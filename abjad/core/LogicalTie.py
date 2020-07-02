@@ -1,12 +1,4 @@
-import itertools
-
-from .. import exceptions
-from ..duration import Duration
-from ..indicators.RepeatTie import RepeatTie
-from ..indicators.Tie import Tie
-from ..ratio import Ratio
-from .Component import detach
-from .Selection import Selection, select
+from .Selection import Selection
 
 
 class LogicalTie(Selection):
@@ -42,21 +34,6 @@ class LogicalTie(Selection):
 
     ### PRIVATE METHODS ###
 
-    def _fuse_leaves_by_immediate_parent(self):
-        result = []
-        parts = self._get_leaves_grouped_by_immediate_parents()
-        for part in parts:
-            result.append(part._fuse())
-        return result
-
-    def _get_leaves_grouped_by_immediate_parents(self):
-        result = []
-        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
-        for key, values_generator in pairs_generator:
-            group = select(list(values_generator))
-            result.append(group)
-        return result
-
     def _scale(self, multiplier):
         for leaf in list(self):
             leaf._scale(multiplier)
@@ -80,10 +57,9 @@ class LogicalTie(Selection):
 
         Returns true or false.
         """
-        from .Chord import Chord
-        from .Note import Note
-
-        return isinstance(self.head, (Chord, Note))
+        return hasattr(self.head, "written_pitch") or hasattr(
+            self.head, "written_pitches"
+        )
 
     @property
     def is_trivial(self):
@@ -121,124 +97,3 @@ class LogicalTie(Selection):
         Returns duration.
         """
         return sum([_.written_duration for _ in self])
-
-    ### PUBLIC METHODS ###
-
-    def to_tuplet(self, proportions):
-        r"""
-        Changes logical tie to tuplet.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff(r"df'8 c'8 ~ c'16 cqs''4")
-            >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-            >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
-            >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-            >>> time_signature = abjad.TimeSignature((9, 16))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    \time 9/16
-                    df'8
-                    \p
-                    \<
-                    c'8
-                    ~
-                    c'16
-                    cqs''4
-                    \f
-                }
-
-            >>> logical_tie = abjad.select(staff[1]).logical_tie()
-            >>> logical_tie.to_tuplet([2, 1, 1, 1])
-            Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    \time 9/16
-                    df'8
-                    \p
-                    \<
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'8
-                        c'16
-                        c'16
-                        c'16
-                    }
-                    cqs''4
-                    \f
-                }
-
-            >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
-            >>> abjad.hairpin('p < f', staff[:])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
-            >>> time_signature = abjad.TimeSignature((7, 16))
-            >>> abjad.attach(time_signature, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                \with
-                {
-                    \override DynamicLineSpanner.staff-padding = #3
-                }
-                {
-                    \time 7/16
-                    c'8
-                    \p
-                    \<
-                    ~
-                    c'16
-                    cqs''4
-                    \f
-                }
-
-        Returns tuplet.
-        """
-        from .Mutation import mutate
-        from .Note import Note
-        from .NoteMaker import NoteMaker
-        from .Tuplet import Tuplet
-
-        proportions = Ratio(proportions)
-        target_duration = self._get_preprolated_duration()
-        prolated_duration = target_duration / sum(proportions.numbers)
-        basic_written_duration = prolated_duration.equal_or_greater_power_of_two
-        written_durations = [_ * basic_written_duration for _ in proportions.numbers]
-        maker = NoteMaker()
-        try:
-            notes = [Note(0, _) for _ in written_durations]
-        except exceptions.AssignabilityError:
-            denominator = target_duration._denominator
-            note_durations = [Duration(_, denominator) for _ in proportions.numbers]
-            notes = maker(0, note_durations)
-        tuplet = Tuplet.from_duration(target_duration, notes)
-        for leaf in self:
-            detach(Tie, leaf)
-            detach(RepeatTie, leaf)
-        mutate(self).replace(tuplet)
-        return tuplet

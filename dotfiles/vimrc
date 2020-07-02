@@ -97,10 +97,10 @@ nnoremap <C-y> :center 80<cr>hhv0r#A<space><esc>40A#<esc>kJ$d79<bar>^
 
 " hjkl navigation only
 " but note that arrow keys always work in paste mode
-map   <Up>     <NOP>
-map   <Down>   <NOP>
-map   <Left>   <NOP>
-map   <Right>  <NOP>
+" map   <Up>     <NOP>
+" map   <Down>   <NOP>
+" map   <Left>   <NOP>
+" map   <Right>  <NOP>
 
 " indentation 
 vnoremap < <gv

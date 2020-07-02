@@ -6,7 +6,7 @@ def test_Container_index_01():
     Elements that compare equal return different indices in container.
     """
 
-    container = abjad.Container(4 * abjad.Note("c'4"))
+    container = abjad.Container("c'4 c'4 c'4 c'4")
 
     assert container.index(container[0]) == 0
     assert container.index(container[1]) == 1

@@ -40,13 +40,11 @@ class Skip(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
-        from ..parsers.parse import parse
-
         input_leaf = None
         written_duration = None
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
-            parsed = parse(string)
+            parsed = self._parse_lilypond_string(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
             written_duration = input_leaf.written_duration
@@ -58,8 +56,7 @@ class Skip(Leaf):
         elif len(arguments) == 0:
             written_duration = Duration(1, 4)
         else:
-            message = f"can not initialize skip from {arguments!r}."
-            raise ValueError(message)
+            raise ValueError(f"can not initialize skip from {arguments!r}.")
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)

@@ -5,20 +5,22 @@ import shutil
 import typing
 
 from .. import typings
+from ..bundle import LilyPondFormatBundle
+from ..configuration import Configuration
 from ..core.Component import attach
-from ..core.Iteration import iterate
+from ..core.Iteration import Iteration
 from ..core.Score import Score
 from ..core.StaffGroup import StaffGroup
 from ..formatting import LilyPondFormatManager
 from ..indicators.Clef import Clef
-from ..indicators.LilyPondLiteral import LilyPondLiteral
 from ..indicators.TimeSignature import TimeSignature
-from ..system.Configuration import Configuration
-from ..system.IOManager import IOManager
+from ..iox import IOManager
+from ..overrides import LilyPondLiteral
 from ..tags import Tag
 from ..utilities.CyclicTuple import CyclicTuple
 from ..utilities.OrderedDict import OrderedDict
 from ..utilities.String import String
+from ..utilities.TypedList import TypedList
 from .Line import Line
 from .Part import Part
 from .PartManifest import PartManifest
@@ -77,7 +79,7 @@ class Path(pathlib.PosixPath):
         """
         Gets interpreter representation of path.
         """
-        return "Path('{}')".format(self)
+        return f"Path('{self}')"
 
     ### PRIVATE PROPERTIES ###
 
@@ -179,7 +181,7 @@ class Path(pathlib.PosixPath):
         assert markup is not None, repr(margin_markup)
         strings = markup._get_format_pieces()
         strings.insert(0, "shortInstrumentName =")
-        indent = 4 * " "
+        indent = LilyPondFormatBundle.indent
         strings = [indent + _ for _ in strings]
         strings = [r"\with", "{"] + strings + ["}"]
         return strings
@@ -200,7 +202,7 @@ class Path(pathlib.PosixPath):
     def _get_file_path_ending_with(self, string):
         if not self.is_dir():
             return
-        glob = "*{}".format(string)
+        glob = f"*{string}"
         for path in sorted(self.glob(glob)):
             if path.is_file():
                 return path
@@ -615,164 +617,6 @@ class Path(pathlib.PosixPath):
         metadata[name] = value
         self.write_metadata_py(metadata)
 
-    def coerce(self, name, suffix=None) -> str:
-        """
-        Coerces asset ``name``.
-
-        ..  container:: example
-
-            >>> path = abjad.Path("/path/to/scores/my_score/my_score")
-
-        ..  container:: example
-
-            In build directory:
-
-            >>> build = path.builds / "letter"
-            >>> build.coerce("back cover.tex")
-            'back cover.tex'
-            >>> build.coerce("Back Cover.tex")
-            'Back Cover.tex'
-            >>> build.coerce("BACK_COVER.tex")
-            'BACK_COVER.tex'
-
-            >>> build.coerce("new music.ly")
-            'new music.ly'
-            >>> build.coerce("New Music.ly")
-            'New Music.ly'
-            >>> build.coerce("NEW_MUSIC.ly")
-            'NEW_MUSIC.ly'
-
-            >>> build.coerce("page_layout.py")
-            'page_layout.py'
-            >>> build.coerce("Page Layout.py")
-            'Page Layout.py'
-            >>> build.coerce("PAGE_LAYOUT.py")
-            'PAGE_LAYOUT.py'
-
-        ..  container:: example
-
-            In builds directory:
-
-            >>> path.builds.coerce("letter_landscape")
-            'letter-landscape'
-            >>> path.builds.coerce("letter landscape")
-            'letter-landscape'
-            >>> path.builds.coerce("Letter Landscape")
-            'letter-landscape'
-
-        ..  container:: example
-
-            In contents directory:
-
-            >>> path.contents.coerce("ETC")
-            'etc'
-
-        ..  container:: example
-
-            In distribution directory:
-
-            >>> path.distribution.coerce("program notes.txt")
-            'program-notes.txt'
-            >>> path.distribution.coerce("Program Notes.txt")
-            'program-notes.txt'
-            >>> path.distribution.coerce("PROGRAM_NOTES.txt")
-            'program-notes.txt'
-
-        ..  container:: example
-
-            In etc directory:
-
-            >>> path.etc.coerce("sketches.md")
-            'sketches.md'
-            >>> path.etc.coerce("Sketches.md")
-            'sketches.md'
-            >>> path.etc.coerce("SKETCHES.md")
-            'sketches.md'
-
-        ..  container:: example
-
-            In segment directory:
-
-            >>> path.segments.coerce("_")
-            '_'
-            >>> path.segments.coerce("A")
-            'A'
-            >>> path.segments.coerce("A1")
-            'A1'
-            >>> path.segments.coerce("A99")
-            'A99'
-
-            >>> path.segments.coerce("segment_01")
-            'segment_01'
-            >>> path.segments.coerce("segment 01")
-            'segment_01'
-            >>> path.segments.coerce("Segment 01")
-            'segment_01'
-            >>> path.segments.coerce("SEGMENT 01")
-            'segment_01'
-
-        ..  container:: example
-
-            In stylesheets directory:
-
-            >>> path.stylesheets.coerce("segment stylesheet")
-            'segment-stylesheet.ily'
-            >>> path.stylesheets.coerce("Segment Stylesheet")
-            'segment-stylesheet.ily'
-            >>> path.stylesheets.coerce("SEGMENT_STYLESHEET")
-            'segment-stylesheet.ily'
-
-        ..  container:: example
-
-            Does not coerce in unknown directory:
-
-            >>> path = abjad.Path("/unknown/path")
-
-            >>> path.coerce("custom-script")
-            'custom-script'
-            >>> path.coerce("custom_script")
-            'custom_script'
-            >>> path.coerce("CUSTOM_SCRIPT")
-            'CUSTOM_SCRIPT'
-
-        """
-        name = String(name).strip_diacritics()
-        assert os.path.sep not in name, repr(name)
-        suffix = suffix or type(self)(name).suffix
-        stem = String(type(self)(name).stem)
-        if self.is_scores():
-            name = stem.to_snake_case()
-        #        elif self.is_external():
-        #            pass
-        elif self.is__assets():
-            pass
-        elif self.is__segments():
-            pass
-        elif self.is_build():
-            pass
-        elif self.is_builds():
-            name = stem.to_dash_case()
-        elif self.is_contents():
-            name = stem.to_snake_case()
-        elif self.is_distribution():
-            name = stem.to_dash_case() + suffix
-        elif self.is_etc():
-            name = stem.to_dash_case() + suffix
-        elif self.is_segment():
-            name = stem.to_snake_case() + ".py"
-        elif self.is_segments():
-            if stem.is_segment_name():
-                name = stem
-            else:
-                name = stem.to_snake_case()
-        elif self.is_stylesheets():
-            name = stem.to_dash_case() + ".ily"
-        elif self.is_wrapper():
-            pass
-        elif self.is_external():
-            pass
-        return name
-
     def count(
         self, tag: typing.Union[str, typing.Callable]
     ) -> typing.Tuple[typings.IntegerPair, typings.IntegerPair]:
@@ -897,7 +741,7 @@ class Path(pathlib.PosixPath):
                             tag_ = tag.append(Tag("NOT_TOPMOST"))
                         else:
                             tag_ = tag
-                        strings = LilyPondFormatManager.tag([dereference], tag=tag_)
+                        strings = Tag.tag([dereference], tag=tag_)
                         dereference = strings[0]
                         dereference = dereference + "\n"
                         if bool(stack):
@@ -919,7 +763,7 @@ class Path(pathlib.PosixPath):
         else:
             include_name = str(include_path)
         foo = f'\\include "{include_name}"'
-        foo = LilyPondFormatManager.tag([foo], tag=tag)[0]
+        foo = Tag.tag([foo], tag=tag)[0]
         if preamble_lines[-1].startswith(r"\paper"):
             preamble_lines.insert(-2, foo + "\n")
         else:
@@ -951,7 +795,7 @@ class Path(pathlib.PosixPath):
             words = first_line.split()
             site = words.index("%*%")
             first_line = " ".join(words[:site])
-            first_line = LilyPondFormatManager.tag([first_line], tag=tag)[0]
+            first_line = Tag.tag([first_line], tag=tag)[0]
             first_line += "\n"
             lines.append(first_line)
             for variable_line in variable_lines[1:]:
@@ -965,7 +809,7 @@ class Path(pathlib.PosixPath):
             words = last_line.split()
             site = words.index("%*%")
             last_line = " ".join(words[:site])
-            last_line = LilyPondFormatManager.tag([last_line], tag=tag)[0]
+            last_line = Tag.tag([last_line], tag=tag)[0]
             last_line += "\n"
             lines[-1] = last_line
             if i < total - 1:
@@ -1061,7 +905,7 @@ class Path(pathlib.PosixPath):
             >>> path = abjad.Path("/path/to/scores/my_score/my_score")
 
             >>> path.contents.get_identifier()
-            '(untitled score)'
+            'my_score'
 
             >>> segment = path.segments / "segment_01"
             >>> segment.get_identifier()
@@ -1457,7 +1301,7 @@ class Path(pathlib.PosixPath):
 
             >>> path = abjad.Path("/path/to/scores/my_score/my_score")
             >>> path.get_title()
-            '(untitled score)'
+            'my_score'
 
         """
         if year and self.get_metadatum("year"):
@@ -1467,7 +1311,7 @@ class Path(pathlib.PosixPath):
             return result
         else:
             result = self.get_metadatum("title")
-            result = result or "(untitled score)"
+            result = result or self.name
             return result
 
     @staticmethod
@@ -2118,7 +1962,7 @@ class Path(pathlib.PosixPath):
             names.append(name)
         if is_segments:
             names = [_ for _ in names if _.is_segment_name()]
-            names = String.sort_segment_names(names)
+            names = Path.sort_segment_names(names)
         if self.is__segments():
             prefix = "segment-"
             names = [_ for _ in names if _.startswith(prefix)]
@@ -2257,7 +2101,7 @@ class Path(pathlib.PosixPath):
         if not hasattr(score_template, "skeleton"):
             return None
         skeleton = score_template.skeleton()
-        indent = 4 * " "
+        indent = LilyPondFormatBundle.indent
         context = skeleton["Global_Skips"]
         identifiers = self.global_skip_identifiers()
         strings = ["\\" + _ for _ in identifiers]
@@ -2270,7 +2114,7 @@ class Path(pathlib.PosixPath):
         attach(literal, context)
         module = self._import_score_package()
         instruments = getattr(module, "instruments", None)
-        for staff_group in iterate(skeleton).components(StaffGroup):
+        for staff_group in Iteration(skeleton).components(StaffGroup):
             if staff_group:
                 continue
             assert len(staff_group) == 0, repr(staff_group)
@@ -2313,6 +2157,55 @@ class Path(pathlib.PosixPath):
             literal = LilyPondLiteral(strings)
             attach(literal, staff_group)
         return skeleton
+
+    @staticmethod
+    def sort_segment_names(strings) -> typing.List[String]:
+        """
+        Sorts segment name ``strings``.
+
+        ..  container:: example
+
+            >>> strings = ['AA', 'Z', '_11', '_9']
+            >>> abjad.Path.sort_segment_names(strings)
+            ['_9', '_11', 'Z', 'AA']
+
+        """
+        names = []
+        for string in strings:
+            name = String(string)
+            if not name.is_segment_name():
+                raise ValueError(f"must be segment name (not {string!r}).")
+            names.append(name)
+
+        def _compare(name_1, name_2):
+            letter_1 = name_1.segment_letter()
+            letter_2 = name_2.segment_letter()
+            rank_1 = name_1.segment_rank()
+            rank_2 = name_2.segment_rank()
+            if letter_1 == letter_2:
+                if rank_1 < rank_2:
+                    return -1
+                if rank_1 == rank_2:
+                    return 0
+                if rank_1 > rank_2:
+                    return 1
+            if letter_1 == "_":
+                return -1
+            if letter_2 == "_":
+                return 1
+            if len(letter_1) == len(letter_2):
+                if letter_1 < letter_2:
+                    return -1
+                if letter_2 < letter_1:
+                    return 1
+            if len(letter_1) < len(letter_2):
+                return -1
+            assert len(letter_2) < len(letter_1)
+            return 1
+
+        names_ = TypedList(names)
+        names_.sort(cmp=_compare)
+        return list(names_)
 
     def segment_number_to_path(self, number) -> typing.Optional["Path"]:
         """

@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..pitch.intervals import NamedInterval
 from ..pitch.pitches import NamedPitch
 from ..storage import StorageFormatManager
@@ -56,7 +56,7 @@ class StartTrillSpan(object):
         *,
         interval: typing.Union[str, NamedInterval] = None,
         pitch: typing.Union[str, NamedPitch] = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         if interval is not None:
             interval = NamedInterval(interval)
@@ -65,8 +65,8 @@ class StartTrillSpan(object):
             pitch = NamedPitch(pitch)
         self._pitch = pitch
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -238,7 +238,7 @@ class StartTrillSpan(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 
@@ -251,13 +251,13 @@ class StartTrillSpan(object):
             >>> abjad.tweak(start_trill_span).color = 'blue'
             >>> abjad.f(start_trill_span)
             abjad.StartTrillSpan(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_trill_span_2 = copy.copy(start_trill_span)
             >>> abjad.f(start_trill_span_2)
             abjad.StartTrillSpan(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
         """

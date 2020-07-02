@@ -12,9 +12,8 @@ from .. import enums, mathtools
 from ..markups import MarkupList
 from ..ratio import Ratio
 from ..storage import FormatSpecification, StorageFormatManager
-from ..system.Signature import Signature
 from .CyclicTuple import CyclicTuple
-from .Expression import Expression
+from .Expression import Expression, Signature
 
 
 class Sequence(collections.abc.Sequence):
@@ -772,9 +771,8 @@ class Sequence(collections.abc.Sequence):
     @staticmethod
     def _make_map_string_template(operand):
         try:
-            string_template = "{operand} /@ {{}}"
             operand = operand.get_string(name="X")
-            string_template = string_template.format(operand=operand)
+            string_template = f"{operand} /@ {{}}"
             return string_template
         except ValueError:
             return "unknown string template"
@@ -872,11 +870,9 @@ class Sequence(collections.abc.Sequence):
                     current_part = []
                     current_target_weight_index += 1
                 else:
-                    message = "elements in sequence too big."
-                    raise Exception(message)
+                    raise Exception("elements in sequence too big.")
             else:
-                message = "candidate and target rates must compare."
-                raise ValueError(message)
+                raise ValueError("candidate and target rates must compare.")
         if current_part:
             if overhang:
                 result.append(current_part)
@@ -900,8 +896,7 @@ class Sequence(collections.abc.Sequence):
                         if current_part:
                             result.append(current_part)
                             break
-                    message = "too few elements in sequence."
-                    raise Exception(message)
+                    raise Exception("too few elements in sequence.")
                 current_part.append(item)
                 if target_weight <= mathtools.weight(current_part):
                     result.append(current_part)
@@ -925,8 +920,7 @@ class Sequence(collections.abc.Sequence):
                 try:
                     item = l_copy.pop(0)
                 except IndexError:
-                    message = "too few elements in sequence."
-                    raise Exception(message)
+                    raise Exception("too few elements in sequence.")
                 current_weight = mathtools.weight(current_part)
                 candidate_weight = current_weight + mathtools.weight([item])
                 if candidate_weight < target_weight:
@@ -943,11 +937,9 @@ class Sequence(collections.abc.Sequence):
                         l_copy.insert(0, item)
                         break
                     else:
-                        message = "elements in sequence too big."
-                        raise Exception(message)
+                        raise Exception("elements in sequence too big.")
                 else:
-                    message = "candidate and target weights must compare."
-                    raise ValueError(message)
+                    raise ValueError("candidate and target weights must compare.")
         if overhang:
             left_over = current_part + l_copy
             if left_over:
@@ -1279,7 +1271,7 @@ class Sequence(collections.abc.Sequence):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'8 d' d' e' e' e'")
-            >>> predicate = abjad.PitchSet.from_selection
+            >>> predicate = lambda x: abjad.PitchSet.from_selection(abjad.select(x))
             >>> for item in abjad.sequence(staff).group_by(predicate):
             ...     item
             ...
@@ -3147,8 +3139,7 @@ class Sequence(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if not all(isinstance(_, int) and 0 <= _ for _ in counts):
-            message = f"must be nonnegative integers: {counts!r}."
-            raise Exception(counts)
+            raise Exception(f"must be nonnegative integers: {counts!r}.")
         sequence = self
         if reversed_:
             sequence = type(self)(reversed(sequence))
@@ -3180,8 +3171,7 @@ class Sequence(collections.abc.Sequence):
             elif overhang is enums.Exact and len(part) == count:
                 result.append(part)
             elif overhang is enums.Exact and len(part) != count:
-                message = "sequence does not partition exactly."
-                raise Exception(message)
+                raise Exception("sequence does not partition exactly.")
         if reversed_:
             result_ = []
             for part in reversed(result):
@@ -3686,8 +3676,7 @@ class Sequence(collections.abc.Sequence):
             if flattened_candidate == self[: len(flattened_candidate)]:
                 return candidate
             else:
-                message = "can not partition exactly."
-                raise Exception(message)
+                raise Exception("can not partition exactly.")
         elif allow_part_weights is enums.More:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_least(
@@ -3764,7 +3753,7 @@ class Sequence(collections.abc.Sequence):
             >>> sequence.permute([3, 0, 1, 2])
             Traceback (most recent call last):
                 ...
-            ValueError: permutation Sequence([3, 0, 1, 2]) must match length of sequence Sequence([1, 2, 3, 4, 5, 6]).
+            ValueError: permutation Sequence([3, 0, 1, 2]) must match length of Sequence([1, 2, 3, 4, 5, 6]).
 
         """
         if self._expression:
@@ -3773,8 +3762,7 @@ class Sequence(collections.abc.Sequence):
         if not permutation.is_permutation():
             raise ValueError(f"must be permutation: {permutation!r}.")
         if len(permutation) != len(self):
-            message = "permutation {!r} must match length of sequence {!r}."
-            message = message.format(permutation, self)
+            message = f"permutation {permutation!r} must match length of {self !r}."
             raise ValueError(message)
         result = []
         for i, item in enumerate(self):
@@ -4121,8 +4109,7 @@ class Sequence(collections.abc.Sequence):
                 i += 1
             return type(self)(items)
         else:
-            message = f"is not an ordinal value constant: {allow_total!r}."
-            raise ValueError(message)
+            raise ValueError(f"is not an ordinal value constant: {allow_total!r}.")
         return type(self)(items=items)
 
     def replace(self, old, new) -> "Sequence":
@@ -4597,11 +4584,11 @@ class Sequence(collections.abc.Sequence):
 
         Returns selection.
         """
-        from ..core.Selection import select
+        from ..core.Selection import Selection
 
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        return select(self)
+        return Selection(self)
 
     def sort(self, key=None, reverse=False) -> "Sequence":
         """

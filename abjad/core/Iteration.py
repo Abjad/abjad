@@ -1,14 +1,19 @@
 import collections
 
 from ..pitch.pitches import NamedPitch, Pitch
-from ..pitch.segments import PitchSegment
 from ..pitch.sets import PitchSet
 from ..storage import StorageFormatManager
-from ..utilities.Enumerator import Enumerator
 from ..utilities.Expression import Expression
 from ..utilities.OrderedDict import OrderedDict
-from ..utilities.Sequence import Sequence
-from .Component import inspect
+from .Chord import Chord
+from .Component import Component
+from .Container import Container
+from .Leaf import Leaf
+from .MultimeasureRest import MultimeasureRest
+from .Note import Note
+from .Rest import Rest
+from .Skip import Skip
+from .inspectx import Inspection
 
 
 class Iteration(object):
@@ -79,9 +84,6 @@ class Iteration(object):
         grace=None,
         reverse=None,
     ):
-        from .Component import Component
-        from .Leaf import Leaf
-
         argument = client
         prototype = prototype or Component
         before_grace_container = None
@@ -89,7 +91,7 @@ class Iteration(object):
         exclude = Iteration._coerce_exclude(exclude)
         assert isinstance(exclude, tuple), repr(exclude)
         if grace is not False and isinstance(argument, Leaf):
-            inspection = inspect(argument)
+            inspection = Inspection(argument)
             before_grace_container = inspection.before_grace_container()
             after_grace_container = inspection.after_grace_container()
         if not reverse:
@@ -108,8 +110,8 @@ class Iteration(object):
             if isinstance(argument, prototype):
                 if (
                     grace is None
-                    or (grace is True and inspect(argument).grace())
-                    or (grace is False and not inspect(argument).grace())
+                    or (grace is True and Inspection(argument).grace())
+                    or (grace is False and not Inspection(argument).grace())
                 ):
                     if not Iteration._should_exclude(argument, exclude):
                         yield argument
@@ -153,8 +155,8 @@ class Iteration(object):
             if isinstance(argument, prototype):
                 if (
                     grace is None
-                    or (grace is True and inspect(argument).grace())
-                    or (grace is False and not inspect(argument).grace())
+                    or (grace is True and Inspection(argument).grace())
+                    or (grace is False and not Inspection(argument).grace())
                 ):
                     if not Iteration._should_exclude(argument, exclude):
                         yield argument
@@ -186,7 +188,7 @@ class Iteration(object):
     def _should_exclude(argument, exclude):
         assert isinstance(exclude, tuple)
         for string in exclude:
-            if inspect(argument).has_indicator(string):
+            if Inspection(argument).has_indicator(string):
                 return True
         return False
 
@@ -376,8 +378,6 @@ class Iteration(object):
 
         Returns generator.
         """
-        from .Container import Container
-
         if isinstance(self.client, Container):
             for component in self._iterate_components(
                 self.client,
@@ -411,78 +411,6 @@ class Iteration(object):
                 reverse=reverse,
             ):
                 yield component
-
-    def leaf_pairs(self):
-        r"""
-        Iterates leaf pairs.
-
-        ..  container:: example
-
-            >>> score = abjad.Score()
-            >>> score.append(abjad.Staff("c'8 d'8 e'8 f'8 g'4"))
-            >>> score.append(abjad.Staff("c4 a,4 g,4"))
-            >>> abjad.attach(abjad.Clef('bass'), score[1][0])
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                <<
-                    \new Staff
-                    {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                        g'4
-                    }
-                    \new Staff
-                    {
-                        \clef "bass"
-                        c4
-                        a,4
-                        g,4
-                    }
-                >>
-
-            >>> for leaf_pair in abjad.iterate(score).leaf_pairs():
-            ...     leaf_pair
-            Selection([Note("c'8"), Note('c4')])
-            Selection([Note("c'8"), Note("d'8")])
-            Selection([Note('c4'), Note("d'8")])
-            Selection([Note("d'8"), Note("e'8")])
-            Selection([Note("d'8"), Note('a,4')])
-            Selection([Note('c4'), Note("e'8")])
-            Selection([Note('c4'), Note('a,4')])
-            Selection([Note("e'8"), Note('a,4')])
-            Selection([Note("e'8"), Note("f'8")])
-            Selection([Note('a,4'), Note("f'8")])
-            Selection([Note("f'8"), Note("g'4")])
-            Selection([Note("f'8"), Note('g,4')])
-            Selection([Note('a,4'), Note("g'4")])
-            Selection([Note('a,4'), Note('g,4')])
-            Selection([Note("g'4"), Note('g,4')])
-
-        Iterates leaf pairs left-to-right and top-to-bottom.
-
-        Returns generator.
-        """
-        from .Selection import Selection
-
-        vertical_moments = self.vertical_moments()
-        for moment_1, moment_2 in Sequence(vertical_moments).nwise():
-            enumerator = Enumerator(moment_1.start_leaves)
-            for pair in enumerator.yield_pairs():
-                yield Selection(pair)
-            sequences = [moment_1.leaves, moment_2.start_leaves]
-            enumerator = Enumerator(sequences)
-            for pair in enumerator.yield_outer_product():
-                yield Selection(pair)
-        else:
-            enumerator = Enumerator(moment_2.start_leaves)
-            for pair in enumerator.yield_pairs():
-                yield Selection(pair)
 
     def leaves(
         self, prototype=None, *, exclude=None, grace=None, pitched=None, reverse=None,
@@ -713,13 +641,6 @@ class Iteration(object):
 
         Returns generator.
         """
-        from .Chord import Chord
-        from .Leaf import Leaf
-        from .MultimeasureRest import MultimeasureRest
-        from .Note import Note
-        from .Rest import Rest
-        from .Skip import Skip
-
         prototype = prototype or Leaf
         if pitched is True:
             prototype = (Chord, Note)
@@ -1083,7 +1004,7 @@ class Iteration(object):
         for leaf in self.leaves(
             exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
         ):
-            logical_tie = leaf._get_logical_tie()
+            logical_tie = Inspection._get_logical_tie(leaf)
             if leaf is not logical_tie.head:
                 continue
             if (
@@ -1094,152 +1015,6 @@ class Iteration(object):
                 if logical_tie not in yielded_logical_ties:
                     yielded_logical_ties.add(logical_tie)
                     yield logical_tie
-
-    # TODO: move to Instrument
-    def out_of_range(self):
-        r"""
-        Iterates out-of-range notes and chords.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
-            >>> violin = abjad.Violin()
-            >>> abjad.attach(violin, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    c'8
-                    r8
-                    <d fs>8
-                    r8
-                }
-
-            >>> for leaf in abjad.iterate(staff).out_of_range():
-            ...     leaf
-            ...
-            Chord('<d fs>8')
-
-        Returns generator.
-        """
-        from ..instruments import Instrument
-
-        for leaf in self.leaves(pitched=True):
-            instrument = inspect(leaf).effective(Instrument)
-            if instrument is None:
-                raise ValueError("no instrument found.")
-            if leaf not in instrument.pitch_range:
-                yield leaf
-
-    def pitch_pairs(self):
-        r"""
-        Iterates pitch pairs.
-
-        ..  container:: example
-
-            Iterates note pitch pairs:
-
-            >>> score = abjad.Score()
-            >>> score.append(abjad.Staff("c'8 d' e' f' g'4"))
-            >>> score.append(abjad.Staff("c4 a, g,"))
-            >>> abjad.attach(abjad.Clef('bass'), score[1][0])
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                <<
-                    \new Staff
-                    {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                        g'4
-                    }
-                    \new Staff
-                    {
-                        \clef "bass"
-                        c4
-                        a,4
-                        g,4
-                    }
-                >>
-
-            >>> for pair in abjad.iterate(score).pitch_pairs():
-            ...     pair
-            PitchSegment("c' c")
-            PitchSegment("c' d'")
-            PitchSegment("c d'")
-            PitchSegment("d' e'")
-            PitchSegment("d' a,")
-            PitchSegment("c e'")
-            PitchSegment("c a,")
-            PitchSegment("e' a,")
-            PitchSegment("e' f'")
-            PitchSegment("a, f'")
-            PitchSegment("f' g'")
-            PitchSegment("f' g,")
-            PitchSegment("a, g'")
-            PitchSegment("a, g,")
-            PitchSegment("g' g,")
-
-        ..  container:: example
-
-            Iterates chord pitch pairs:
-
-            >>> staff = abjad.Staff("<c' d' e'>4 <f'' g''>4")
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    <c' d' e'>4
-                    <f'' g''>4
-                }
-
-            >>> for pair in abjad.iterate(staff).pitch_pairs():
-            ...     pair
-            ...
-            PitchSegment("c' d'")
-            PitchSegment("c' e'")
-            PitchSegment("d' e'")
-            PitchSegment("c' f''")
-            PitchSegment("c' g''")
-            PitchSegment("d' f''")
-            PitchSegment("d' g''")
-            PitchSegment("e' f''")
-            PitchSegment("e' g''")
-            PitchSegment("f'' g''")
-
-        Returns generator.
-        """
-        for leaf_pair in self.leaf_pairs():
-            pitches = sorted(Iteration(leaf_pair[0]).pitches())
-            enumerator = Enumerator(pitches)
-            for pair in enumerator.yield_pairs():
-                yield PitchSegment(pair)
-            if isinstance(leaf_pair, set):
-                pitches = sorted(Iteration(leaf_pair).pitches())
-                enumerator = Enumerator(pitches)
-                for pair in enumerator.yield_pairs():
-                    yield PitchSegment(pair)
-            else:
-                pitches_1 = sorted(Iteration(leaf_pair[0]).pitches())
-                pitches_2 = sorted(Iteration(leaf_pair[1]).pitches())
-                sequences = [pitches_1, pitches_2]
-                enumerator = Enumerator(sequences)
-                for pair in enumerator.yield_outer_product():
-                    yield PitchSegment(pair)
-            pitches = sorted(Iteration(leaf_pair[1]).pitches())
-            enumerator = Enumerator(pitches)
-            for pair in enumerator.yield_pairs():
-                yield PitchSegment(pair)
 
     def pitches(self):
         r"""
@@ -1309,8 +1084,6 @@ class Iteration(object):
 
         Returns generator.
         """
-        from .Chord import Chord
-
         if isinstance(self.client, Pitch):
             pitch = NamedPitch(self.client)
             yield pitch
@@ -1492,14 +1265,14 @@ class Iteration(object):
         """
         components = self.leaves(prototype=prototype, exclude=exclude)
         components = list(components)
-        components.sort(key=lambda _: inspect(_).timespan().start_offset)
+        components.sort(key=lambda _: Inspection(_).timespan().start_offset)
         offset_to_components = OrderedDict()
         for component in components:
-            start_offset = inspect(component).timespan().start_offset
+            start_offset = Inspection(component).timespan().start_offset
             if start_offset not in offset_to_components:
                 offset_to_components[start_offset] = []
         for component in components:
-            start_offset = inspect(component).timespan().start_offset
+            start_offset = Inspection(component).timespan().start_offset
             offset_to_components[start_offset].append(component)
         components = []
         for start_offset, list_ in offset_to_components.items():
@@ -1507,178 +1280,6 @@ class Iteration(object):
         if reverse:
             components.reverse()
         return tuple(components)
-
-    def vertical_moments(self, reverse=None):
-        r'''
-        Iterates vertical moments.
-
-        ..  container:: example
-
-            Iterates vertical moments:
-
-            >>> score = abjad.Score([])
-            >>> staff = abjad.Staff(r"\times 4/3 { d''8 c''8 b'8 }")
-            >>> score.append(staff)
-            >>> staff_group = abjad.StaffGroup([])
-            >>> staff_group.lilypond_type = 'PianoStaff'
-            >>> staff_group.append(abjad.Staff("a'4 g'4"))
-            >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
-            >>> score.append(staff_group)
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                <<
-                    \new Staff
-                    {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
-                            d''8
-                            c''8
-                            b'8
-                        }
-                    }
-                    \new PianoStaff
-                    <<
-                        \new Staff
-                        {
-                            a'4
-                            g'4
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            f'8
-                            e'8
-                            d'8
-                            c'8
-                        }
-                    >>
-                >>
-
-            >>> for vertical_moment in abjad.iterate(score).vertical_moments():
-            ...     vertical_moment.leaves
-            ...
-            Selection([Note("d''8"), Note("a'4"), Note("f'8")])
-            Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-            Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-            Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-            Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-            Selection([Note("b'8"), Note("g'4"), Note("c'8")])
-
-            >>> for vertical_moment in abjad.iterate(staff_group).vertical_moments():
-            ...     vertical_moment.leaves
-            ...
-            Selection([Note("a'4"), Note("f'8")])
-            Selection([Note("a'4"), Note("e'8")])
-            Selection([Note("g'4"), Note("d'8")])
-            Selection([Note("g'4"), Note("c'8")])
-
-        ..  container:: example
-
-            Iterates vertical moments in reverse:
-
-            >>> score = abjad.Score([])
-            >>> staff = abjad.Staff(r"\times 4/3 { d''8 c''8 b'8 }")
-            >>> score.append(staff)
-            >>> staff_group = abjad.StaffGroup([])
-            >>> staff_group.lilypond_type = 'PianoStaff'
-            >>> staff_group.append(abjad.Staff("a'4 g'4"))
-            >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
-            >>> score.append(staff_group)
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                <<
-                    \new Staff
-                    {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
-                            d''8
-                            c''8
-                            b'8
-                        }
-                    }
-                    \new PianoStaff
-                    <<
-                        \new Staff
-                        {
-                            a'4
-                            g'4
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            f'8
-                            e'8
-                            d'8
-                            c'8
-                        }
-                    >>
-                >>
-
-            >>> agent = abjad.iterate(score)
-            >>> for vertical_moment in agent.vertical_moments(
-            ...     reverse=True,
-            ...     ):
-            ...     vertical_moment.leaves
-            ...
-            Selection([Note("b'8"), Note("g'4"), Note("c'8")])
-            Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-            Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-            Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-            Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-            Selection([Note("d''8"), Note("a'4"), Note("f'8")])
-
-            >>> agent = abjad.iterate(staff_group)
-            >>> for vertical_moment in agent.vertical_moments(
-            ...     reverse=True,
-            ...     ):
-            ...     vertical_moment.leaves
-            ...
-            Selection([Note("g'4"), Note("c'8")])
-            Selection([Note("g'4"), Note("d'8")])
-            Selection([Note("a'4"), Note("e'8")])
-            Selection([Note("a'4"), Note("f'8")])
-
-        Returns tuple.
-        '''
-        from .VerticalMoment import VerticalMoment
-
-        moments = []
-        components = list(self.components())
-        components.sort(key=lambda _: inspect(_).timespan().start_offset)
-        offset_to_components = OrderedDict()
-        for component in components:
-            start_offset = inspect(component).timespan().start_offset
-            if start_offset not in offset_to_components:
-                offset_to_components[start_offset] = []
-        # TODO: optimize with bisect
-        for component in components:
-            inserted = False
-            timespan = inspect(component).timespan()
-            for offset, list_ in offset_to_components.items():
-                if (
-                    timespan.start_offset <= offset < timespan.stop_offset
-                    and component not in list_
-                ):
-                    list_.append(component)
-                    inserted = True
-                elif inserted is True:
-                    break
-        moments = []
-        for offset, list_ in offset_to_components.items():
-            list_.sort(key=lambda _: inspect(_).parentage().score_index())
-            moment = VerticalMoment(components=list_, offset=offset)
-            moments.append(moment)
-        if reverse is True:
-            moments.reverse()
-        return tuple(moments)
 
 
 ### FUNCTIONS ###

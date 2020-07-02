@@ -89,12 +89,9 @@ class Enumerator(object):
         """
         rgf = Sequence(items=rgf)
         if not Enumerator._is_restricted_growth_function(rgf):
-            message = "must be restricted growth function: {!r}."
-            message = message.format(rgf)
-            raise ValueError(message)
+            raise ValueError(f"must be restricted growth function: {rgf!r}.")
         if not len(sequence) == len(rgf):
-            message = "lengths must be equal."
-            raise ValueError(message)
+            raise ValueError("lengths must be equal.")
         partition = []
         for part_index in range(max(rgf)):
             part = []

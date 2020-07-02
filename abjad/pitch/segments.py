@@ -8,8 +8,7 @@ from .. import mathtools
 from ..duration import Multiplier
 from ..new import new
 from ..storage import FormatSpecification
-from ..system.Signature import Signature
-from ..utilities.Expression import Expression
+from ..utilities.Expression import Expression, Signature
 from ..utilities.Sequence import Sequence
 from ..utilities.TypedCollection import TypedCollection
 from ..utilities.TypedTuple import TypedTuple
@@ -113,9 +112,7 @@ class Segment(TypedTuple):
         elif hasattr(self.item_class, "__abs__"):
             items = [abs(x) for x in self]
         else:
-            message = "invalid item class: {!r}."
-            message = message.format(self.item_class)
-            raise ValueError(message)
+            raise ValueError(f"invalid item class: {self.item_class!r}.")
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
@@ -127,18 +124,17 @@ class Segment(TypedTuple):
     def _get_padded_string(self, width=2):
         strings = []
         for item in self:
-            string = "{{!s:>{}}}"
-            string = string.format(width)
-            string = string.format(item)
+            string = f"{item!s:>{width}}"
             strings.append(string)
-        return "<{}>".format(", ".join(strings))
+        string = ", ".join(strings)
+        return f"<{string}>"
 
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes segment from `selection`.
+        Makes segment from ``selection``.
 
         Returns new segment.
         """
@@ -365,13 +361,13 @@ class IntervalSegment(Segment):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes interval segment from component `selection`.
+        Makes interval segment from component ``selection``.
 
         ..  container:: example
 
             >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
             >>> abjad.IntervalSegment.from_selection(
-            ...     staff,
+            ...     abjad.select(staff),
             ...     item_class=abjad.NumberedInterval,
             ...     )
             IntervalSegment([2, 2, 1, 2, 2, 2, 1])
@@ -404,7 +400,7 @@ class IntervalSegment(Segment):
 
     def rotate(self, n=0):
         """
-        Rotates interval segment by index `n`.
+        Rotates interval segment by index ``n``.
 
         Returns new interval segment.
         """
@@ -537,7 +533,7 @@ class PitchClassSegment(Segment):
     )
     def __add__(self, argument):
         r"""
-        Adds `argument` to segment.
+        Adds ``argument`` to segment.
 
         ..  container:: example
 
@@ -1026,7 +1022,7 @@ class PitchClassSegment(Segment):
 
     def __contains__(self, argument):
         r"""
-        Is true when pitch-class segment contains `argument`.
+        Is true when pitch-class segment contains ``argument``.
 
         ..  container:: example
 
@@ -1148,7 +1144,7 @@ class PitchClassSegment(Segment):
     )
     def __getitem__(self, argument):
         r"""
-        Gets `argument` from segment.
+        Gets ``argument`` from segment.
 
         ..  container:: example
 
@@ -1460,7 +1456,7 @@ class PitchClassSegment(Segment):
 
     def __mul__(self, n):
         r"""
-        Multiplies pitch-class segment by `n`.
+        Multiplies pitch-class segment by ``n``.
 
         ..  container:: example
 
@@ -1492,11 +1488,11 @@ class PitchClassSegment(Segment):
         else:
             contents = ", ".join([str(_) for _ in self])
             contents = "[" + contents + "]"
-        return "{}({})".format(type(self).__name__, contents)
+        return f"{type(self).__name__}({contents})"
 
     def __rmul__(self, n):
         r"""
-        Multiplies `n` by pitch-class segment.
+        Multiplies ``n`` by pitch-class segment.
 
         ..  container:: example
 
@@ -1537,7 +1533,7 @@ class PitchClassSegment(Segment):
         separator = " "
         if self.item_class is NumberedPitchClass:
             separator = ", "
-        return "PC<{}>".format(separator.join(items))
+        return f"PC<{separator.join(items)}>"
 
     ### PRIVATE PROPERTIES ###
 
@@ -1710,7 +1706,7 @@ class PitchClassSegment(Segment):
 
     def count(self, item):
         """
-        Counts `item` in segment.
+        Counts ``item`` in segment.
 
         ..  container:: example
 
@@ -1748,7 +1744,7 @@ class PitchClassSegment(Segment):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Initializes segment from `selection`.
+        Initializes segment from ``selection``.
 
         ..  container:: example
 
@@ -1809,7 +1805,7 @@ class PitchClassSegment(Segment):
 
     def index(self, item):
         """
-        Gets index of `item` in segment.
+        Gets index of ``item`` in segment.
 
         ..  container:: example
 
@@ -2021,7 +2017,7 @@ class PitchClassSegment(Segment):
     @Signature(is_operator=True, method_name="M", subscript="n")
     def multiply(self, n=1):
         r"""
-        Multiplies pitch-classes in segment by `n`.
+        Multiplies pitch-classes in segment by ``n``.
 
         ..  container:: example
 
@@ -2332,7 +2328,7 @@ class PitchClassSegment(Segment):
     @Signature()
     def permute(self, row=None):
         r"""
-        Permutes segment by twelve-tone `row`.
+        Permutes segment by twelve-tone ``row``.
 
         ..  container:: example
 
@@ -2613,7 +2609,7 @@ class PitchClassSegment(Segment):
     )
     def rotate(self, n=0, stravinsky=False):
         r"""
-        Rotates segment by index `n`.
+        Rotates segment by index ``n``.
 
         ..  container:: example
 
@@ -3179,7 +3175,7 @@ class PitchClassSegment(Segment):
     @Signature(is_operator=True, method_name="T", subscript="n")
     def transpose(self, n=0):
         r"""
-        Transposes segment by index `n`.
+        Transposes segment by index ``n``.
 
         ..  container:: example
 
@@ -3718,7 +3714,7 @@ class PitchSegment(Segment):
 
     def __contains__(self, argument):
         """
-        Is true when pitch segment contains `argument`.
+        Is true when pitch segment contains ``argument``.
 
         ..  container:: example
 
@@ -3754,7 +3750,7 @@ class PitchSegment(Segment):
         else:
             contents = ", ".join([str(_) for _ in self])
             contents = "[" + contents + "]"
-        return "{}({})".format(type(self).__name__, contents)
+        return f"{type(self).__name__}({contents})"
 
     def __str__(self):
         """
@@ -3780,7 +3776,7 @@ class PitchSegment(Segment):
         separator = " "
         if self.item_class is NumberedPitch:
             separator = ", "
-        return "<{}>".format(separator.join(items))
+        return f"<{separator.join(items)}>"
 
     ### PRIVATE PROPERTIES ###
 
@@ -3980,7 +3976,7 @@ class PitchSegment(Segment):
     @classmethod
     def from_selection(class_, selection, item_class=None) -> "PitchSegment":
         r"""
-        Makes pitch segment from `selection`.
+        Makes pitch segment from ``selection``.
 
         ..  container:: example
 
@@ -4025,19 +4021,9 @@ class PitchSegment(Segment):
                 >>
 
         """
-        from ..core.Iteration import iterate
-
-        named_pitches = []
-        for component in iterate(selection).leaves(pitched=True):
-            try:
-                named_pitches.extend(component.written_pitches)
-            except AttributeError:
-                pass
-            try:
-                named_pitches.append(component.written_pitch)
-            except AttributeError:
-                pass
-        return class_(items=named_pitches, item_class=item_class)
+        assert hasattr(selection, "pitch_segment"), repr(selection)
+        pitch_segment = selection.pitch_segment()
+        return class_(items=pitch_segment, item_class=item_class)
 
     def has_duplicates(self) -> bool:
         """
@@ -4060,7 +4046,7 @@ class PitchSegment(Segment):
 
     def invert(self, axis=None):
         r"""
-        Inverts pitch segment about `axis`.
+        Inverts pitch segment about ``axis``.
 
         ..  container:: example
 
@@ -4138,7 +4124,7 @@ class PitchSegment(Segment):
 
     def multiply(self, n=1):
         r"""
-        Multiplies pitch segment by index `n`.
+        Multiplies pitch segment by index ``n``.
 
         ..  container:: example
 
@@ -4293,7 +4279,7 @@ class PitchSegment(Segment):
 
     def rotate(self, n=0, stravinsky=False):
         r"""
-        Rotates pitch segment by index `n`.
+        Rotates pitch segment by index ``n``.
 
         ..  container:: example
 
@@ -4654,7 +4640,7 @@ class PitchSegment(Segment):
 
     def transpose(self, n=0):
         r"""
-        Transposes pitch segment by index `n`.
+        Transposes pitch segment by index ``n``.
 
         ..  container:: example
 
@@ -4776,7 +4762,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def __call__(self, pitch_classes):
         r"""
-        Calls row on `pitch_classes`.
+        Calls row on ``pitch_classes``.
 
         ..  container:: example
 
@@ -4993,7 +4979,7 @@ class TwelveToneRow(PitchClassSegment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        Returns permuted pitch-classes in object of type `pitch_classes`.
+        Returns permuted pitch-classes in object of type ``pitch_classes``.
         """
         new_pitch_classes = []
         for pitch_class in pitch_classes:
@@ -5006,7 +4992,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def __getitem__(self, argument):
         r"""
-        Gets item or slice identified by `argument`.
+        Gets item or slice identified by ``argument``.
 
         ..  container:: example
 
@@ -5078,7 +5064,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def __mul__(self, argument):
         r"""
-        Multiplies row by `argument`.
+        Multiplies row by ``argument``.
 
         ..  container:: example
 
@@ -5185,7 +5171,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def __rmul__(self, argument):
         r"""
-        Multiplies `argument` by row.
+        Multiplies ``argument`` by row.
 
         ..  container:: example
 
@@ -5301,8 +5287,7 @@ class TwelveToneRow(PitchClassSegment):
         numbers = [pc.number for pc in pitch_classes]
         numbers.sort()
         if not numbers == list(range(12)):
-            message = "must contain all twelve pitch-classes: {!r}."
-            message = message.format(pitch_classes)
+            message = f"must contain all twelve pitch-classes: {pitch_classes!r}."
             raise ValueError(message)
 
     ### PUBLIC PROPERTIES ###
@@ -5407,7 +5392,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def count(self, item):
         """
-        Counts `item` in row.
+        Counts ``item`` in row.
 
         ..  container:: example
 
@@ -5452,7 +5437,7 @@ class TwelveToneRow(PitchClassSegment):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes row from `selection`.
+        Makes row from ``selection``.
 
         Not yet implemented.
 
@@ -5495,7 +5480,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def index(self, item):
         """
-        Gets index of `item` in row.
+        Gets index of ``item`` in row.
 
         ..  container:: example
 
@@ -5532,7 +5517,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def invert(self, axis=None):
         r"""
-        Inverts row about optional `axis`.
+        Inverts row about optional ``axis``.
 
         ..  container:: example
 
@@ -5545,7 +5530,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Inverts row about first pitch-class when `axis` is none:
+            Inverts row about first pitch-class when ``axis`` is none:
 
             >>> inversion = row.invert()
             >>> lilypond_file = abjad.illustrate(inversion)
@@ -5681,7 +5666,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def multiply(self, n=1):
         r"""
-        Multiplies pitch-classes in row by `n`.
+        Multiplies pitch-classes in row by ``n``.
 
         ..  container:: example
 
@@ -5875,7 +5860,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def rotate(self, n=0, stravinsky=False):
         r"""
-        Rotates row by index `n`.
+        Rotates row by index ``n``.
 
         ..  container:: example
 
@@ -6017,7 +6002,7 @@ class TwelveToneRow(PitchClassSegment):
 
     def transpose(self, n=0):
         r"""
-        Transposes row by index `n`.
+        Transposes row by index ``n``.
 
         ..  container:: example
 

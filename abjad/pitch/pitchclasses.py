@@ -22,15 +22,14 @@ class PitchClass(object):
 
     ### INITIALIZER ###
 
-    # @abc.abstractmethod
     def __init__(self, argument):
         if isinstance(argument, str):
             match = constants._comprehensive_pitch_name_regex.match(argument)
             if not match:
                 match = constants._comprehensive_pitch_class_name_regex.match(argument)
             if not match:
-                message = "can not instantiate {} from {!r}."
-                message = message.format(type(self).__name__, argument)
+                class_name = type(self).__name__
+                message = f"can not instantiate {class_name} from {argument!r}."
                 raise ValueError(message)
             group_dict = match.groupdict()
             dpc_name = group_dict["diatonic_pc_name"].lower()
@@ -46,8 +45,8 @@ class PitchClass(object):
                 pitch = NamedPitch(argument)
                 self._from_pitch_or_pitch_class(pitch)
             except Exception:
-                message = "can not instantiate {} from {!r}."
-                message = message.format(type(self).__name__, argument)
+                class_name = type(self).__name__
+                message = f"can not instantiate {class_name} from {argument!r}."
                 raise ValueError(message)
 
     ### SPECIAL METHODS ###
@@ -71,7 +70,7 @@ class PitchClass(object):
         """
         Formats pitch-class.
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
 
         Returns string.
         """
@@ -92,10 +91,9 @@ class PitchClass(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    # @abc.abstractmethod
     def __lt__(self, argument):
         """
-        Is true when pitch-class is less than `argument`.
+        Is true when pitch-class is less than ``argument``.
 
         Returns true or false.
         """
@@ -109,27 +107,21 @@ class PitchClass(object):
 
     ### PRIVATE METHODS ###
 
-    # @abc.abstractmethod
     def _from_named_parts(self, dpc_number, alteration):
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def _from_number(self, number):
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def _get_alteration(self):
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def _get_diatonic_pc_number(self):
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def _get_lilypond_format(self):
         raise NotImplementedError
 
@@ -146,14 +138,12 @@ class PitchClass(object):
 
     ### PUBLIC PROPERTIES ###
 
-    # @abc.abstractproperty
     def accidental(self):
         """
         Gets accidental of pitch-class.
         """
         raise NotImplementedError
 
-    # @abc.abstractproperty
     def pitch_class_label(self):
         """
         Gets pitch-class label of pitch-class.
@@ -162,28 +152,25 @@ class PitchClass(object):
 
     ### PUBLIC METHODS ###
 
-    # @abc.abstractmethod
     def invert(self, axis=None):
         """
-        Inverts pitch-class about `axis`.
+        Inverts pitch-class about ``axis``.
 
         Returns new pitch-class.
         """
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def multiply(self, n=1):
         """
-        Multiplies pitch-class by `n`.
+        Multiplies pitch-class by ``n``.
 
         Returns new pitch-class.
         """
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def transpose(self, n=0):
         """
-        Transposes pitch-class by index `n`.
+        Transposes pitch-class by index ``n``.
 
         Returns new pitch-class.
         """
@@ -315,7 +302,7 @@ class NamedPitchClass(PitchClass):
 
     def __add__(self, named_interval):
         """
-        Adds `named_interval` to named pitch-class.
+        Adds ``named_interval`` to named pitch-class.
 
         ..  container:: example
 
@@ -333,7 +320,7 @@ class NamedPitchClass(PitchClass):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` can be coerced to a named pitch-class with
+        Is true when ``argument`` can be coerced to a named pitch-class with
         pitch-class name equal to that of this named pitch-class.
 
         ..  container:: example
@@ -376,7 +363,7 @@ class NamedPitchClass(PitchClass):
             >>> format(abjad.NamedPitchClass('cs'))
             "abjad.NamedPitchClass('cs')"
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
 
         Returns string.
         """
@@ -394,7 +381,7 @@ class NamedPitchClass(PitchClass):
 
     def __lt__(self, argument):
         """
-        Is true when `argument` is a named pitch-class with a pitch
+        Is true when ``argument`` is a named pitch-class with a pitch
         number greater than that of this named pitch-class.
 
         ..  container:: example
@@ -411,12 +398,10 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('d') < abjad.NamedPitchClass('cs')
             False
 
-        Raises type error when `argument` is not a named pitch-class.
+        Raises type error when ``argument`` is not a named pitch-class.
         """
         if not isinstance(argument, type(self)):
-            message = "can not compare named pitch-class to {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"can not compare named pitch-class to {argument!r}.")
         return self.number < argument.number
 
     def __radd__(self, interval):
@@ -431,8 +416,7 @@ class NamedPitchClass(PitchClass):
             NotImplementedError: right-addition not defined on NamedPitchClass.
 
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __str__(self):
@@ -450,7 +434,7 @@ class NamedPitchClass(PitchClass):
 
     def __sub__(self, argument):
         """
-        Subtracts `argument` from named pitch-class.
+        Subtracts ``argument`` from named pitch-class.
 
         ..  container:: example
 
@@ -465,13 +449,11 @@ class NamedPitchClass(PitchClass):
 
         Returns named inversion-equivalent interval-class.
         """
-        from .intervals import NamedInterval
         from .intervalclasses import NamedInversionEquivalentIntervalClass
+        from .intervals import NamedInterval
 
         if not isinstance(argument, type(self)):
-            message = "must be named pitch-class: {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"must be named pitch-class: {argument!r}.")
         pitch_1 = NamedPitch((self.name, 4))
         pitch_2 = NamedPitch((argument.name, 4))
         mdi = NamedInterval.from_pitch_carriers(pitch_1, pitch_2)
@@ -525,9 +507,9 @@ class NamedPitchClass(PitchClass):
         )
 
     def _get_lilypond_format(self):
-        return "{}{!s}".format(
-            self._get_diatonic_pc_name(), Accidental(self._get_alteration()),
-        )
+        name = self._get_diatonic_pc_name()
+        accidental = Accidental(self._get_alteration())
+        return f"{name}{accidental!s}"
 
     ### PUBLIC PROPERTIES ###
 
@@ -569,7 +551,7 @@ class NamedPitchClass(PitchClass):
         diatonic_pc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
             self._diatonic_pc_number
         ]
-        return "{}{!s}".format(diatonic_pc_name, self._accidental)
+        return f"{diatonic_pc_name}{self._accidental!s}"
 
     @property
     def number(self):
@@ -601,9 +583,8 @@ class NamedPitchClass(PitchClass):
 
         Returns string.
         """
-        return "{}{}".format(
-            self._get_diatonic_pc_name().upper(), self.accidental.symbol
-        )
+        pc = self._get_diatonic_pc_name().upper()
+        return f"{pc}{self.accidental.symbol}"
 
     ### PUBLIC METHODS ###
 
@@ -623,7 +604,7 @@ class NamedPitchClass(PitchClass):
 
     def multiply(self, n=1):
         """
-        Multiplies named pitch-class by `n`.
+        Multiplies named pitch-class by ``n``.
 
         ..  container:: example
 
@@ -636,7 +617,7 @@ class NamedPitchClass(PitchClass):
 
     def transpose(self, n=0):
         """
-        Transposes named pitch-class by index named interval `n`.
+        Transposes named pitch-class by index named interval ``n``.
 
         ..  container:: example
 
@@ -742,7 +723,7 @@ class NumberedPitchClass(PitchClass):
 
     def __add__(self, argument):
         """
-        Adds `argument` to numbered pitch-class.
+        Adds ``argument`` to numbered pitch-class.
 
         ..  container:: example
 
@@ -784,7 +765,7 @@ class NumberedPitchClass(PitchClass):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a numbered pitch-class with pitch-class
+        Is true when ``argument`` is a numbered pitch-class with pitch-class
         number equal to that of this numbered pitch-class.
 
         ..  container:: example
@@ -827,7 +808,7 @@ class NumberedPitchClass(PitchClass):
             >>> format(abjad.NumberedPitchClass(13))
             'abjad.NumberedPitchClass(1)'
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
 
         Returns string.
         """
@@ -845,7 +826,7 @@ class NumberedPitchClass(PitchClass):
 
     def __lt__(self, argument):
         """
-        Is true when `argument` is a numbered pitch-class with a pitch
+        Is true when ``argument`` is a numbered pitch-class with a pitch
         number greater than that of this numberd pitch-class.
 
         ..  container:: example
@@ -862,12 +843,10 @@ class NumberedPitchClass(PitchClass):
             >>> abjad.NumberedPitchClass(2) < abjad.NumberedPitchClass(1)
             False
 
-        Raises type error when `argument` is not a numbered pitch-class.
+        Raises type error when ``argument`` is not a numbered pitch-class.
         """
         if not isinstance(argument, type(self)):
-            message = "can not compare numbered pitch-class to {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"can not compare numbered pitch-class to {argument!r}.")
         return self.number < argument.number
 
     def __neg__(self):
@@ -897,8 +876,7 @@ class NumberedPitchClass(PitchClass):
 
         Raises not implemented error.
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __str__(self):
@@ -911,7 +889,7 @@ class NumberedPitchClass(PitchClass):
 
     def __sub__(self, argument):
         """
-        Subtracts `argument` from numbered pitch-class.
+        Subtracts ``argument`` from numbered pitch-class.
 
         Subtraction is defined against both numbered intervals
         and against other pitch-classes.
@@ -1065,9 +1043,8 @@ class NumberedPitchClass(PitchClass):
 
         Returns string.
         """
-        return "{}{}".format(
-            self._get_diatonic_pc_name().upper(), self.accidental.symbol
-        )
+        name = self._get_diatonic_pc_name().upper()
+        return f"{name}{self.accidental.symbol}"
 
     ### PUBLIC METHODS ###
 
@@ -1108,7 +1085,7 @@ class NumberedPitchClass(PitchClass):
 
     def multiply(self, n=1):
         """
-        Multiplies pitch-class number by `n`.
+        Multiplies pitch-class number by ``n``.
 
         ..  container:: example
 
@@ -1135,7 +1112,7 @@ class NumberedPitchClass(PitchClass):
 
     def transpose(self, n=0):
         """
-        Transposes numbered pitch-class by index `n`.
+        Transposes numbered pitch-class by index ``n``.
 
         ..  container:: example
 

@@ -80,8 +80,8 @@ def test_Chord___init___08():
     assert format(skip) == "s8"
     assert format(chord) == "<>8"
 
-    assert abjad.inspect(skip).wellformed()
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(skip)
+    assert abjad.wellformed(chord)
 
 
 def test_Chord___init___09():
@@ -94,7 +94,7 @@ def test_Chord___init___09():
 
     assert format(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(chord)
 
 
 def test_Chord___init___10():
@@ -107,7 +107,7 @@ def test_Chord___init___10():
 
     assert format(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(chord)
 
 
 def test_Chord___init___11():
@@ -120,7 +120,7 @@ def test_Chord___init___11():
 
     assert format(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(chord)
 
 
 def test_Chord___init___12():
@@ -133,8 +133,8 @@ def test_Chord___init___12():
 
     assert format(rest) == "r8"
     assert format(chord) == "<>8"
-    assert abjad.inspect(rest).wellformed()
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(rest)
+    assert abjad.wellformed(chord)
 
 
 def test_Chord___init___13():
@@ -146,7 +146,7 @@ def test_Chord___init___13():
     chord = abjad.Chord(tuplet[1])
 
     assert format(chord) == "<>8"
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(chord)
     assert abjad.inspect(chord).parentage().parent is None
 
 
@@ -160,8 +160,8 @@ def test_Chord___init___14():
 
     assert format(note) == "d'8"
     assert format(chord) == "<d'>8"
-    assert abjad.inspect(note).wellformed()
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(note)
+    assert abjad.wellformed(chord)
 
 
 def test_Chord___init___15():
@@ -173,7 +173,7 @@ def test_Chord___init___15():
     chord = abjad.Chord(tuplet[1])
 
     assert format(chord) == "<c'>8"
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(chord)
     assert abjad.inspect(chord).parentage().parent is None
 
 
@@ -186,7 +186,7 @@ def test_Chord___init___16():
     chord = abjad.Chord(staff[1])
 
     assert format(chord) == "<d'>8"
-    assert abjad.inspect(chord).wellformed()
+    assert abjad.wellformed(chord)
     assert abjad.inspect(chord).parentage().parent is None
 
 

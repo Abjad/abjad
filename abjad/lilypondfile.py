@@ -8,28 +8,26 @@ import pathlib
 import subprocess
 import time
 
+from .bundle import LilyPondFormatBundle
+from .configuration import Configuration
+from .contextmanagers import TemporaryDirectoryChange
 from .core.Component import Component, attach
-from .core.Component import inspect as abjad_inspect
 from .core.Container import Container
 from .core.Context import Context
-from .core.Iteration import iterate
+from .core.Iteration import Iteration
 from .core.Score import Score
-from .core.Selection import Selection, select
+from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.Voice import Voice
-from .formatting import LilyPondFormatManager
-from .indicators.LilyPondLiteral import LilyPondLiteral
+from .core.inspectx import Inspection
 from .indicators.TimeSignature import TimeSignature
-from .lilypondnames.LilyPondGrobNameManager import override
-from .lilypondnames.LilyPondSettingNameManager import setting
+from .overrides import LilyPondLiteral, override, setting
 from .pitch.pitches import NamedPitch
 from .scheme import Scheme, SpacingVector
 from .storage import FormatSpecification, StorageFormatManager
-from .system.Configuration import Configuration
-from .system.TemporaryDirectoryChange import TemporaryDirectoryChange
 from .tags import Tag
-from .utilities.Sequence import sequence
+from .utilities.Sequence import Sequence
 
 configuration = Configuration()
 
@@ -171,7 +169,7 @@ class Block(object):
     ### PRIVATE METHODS ###
 
     def _format_item(self, item, depth=1):
-        indent = LilyPondFormatManager.indent * depth
+        indent = LilyPondFormatBundle.indent * depth
         result = []
         if isinstance(item, (list, tuple)):
             result.append(indent + "{")
@@ -213,7 +211,7 @@ class Block(object):
         from .core.Leaf import Leaf
         from .markups import Markup
 
-        indent = LilyPondFormatManager.indent
+        indent = LilyPondFormatBundle.indent
         result = []
         if (
             not self._get_formatted_user_attributes()
@@ -228,7 +226,7 @@ class Block(object):
             return result
         string = f"{self._escaped_name} {{"
         if tag is not None:
-            strings = LilyPondFormatManager.tag([string], tag=tag)
+            strings = Tag.tag([string], tag=tag)
             string = strings[0]
         result.append(string)
         for item in self.items:
@@ -245,7 +243,7 @@ class Block(object):
         result.extend(formatted_context_blocks)
         string = "}"
         if tag is not None:
-            strings = LilyPondFormatManager.tag([string], tag=tag)
+            strings = Tag.tag([string], tag=tag)
             string = strings[0]
         result.append(string)
 
@@ -433,11 +431,10 @@ class ContextBlock(Block):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self, tag=None):
-        indent = LilyPondFormatManager.indent
+        indent = LilyPondFormatBundle.indent
         result = []
         string = f"{self._escaped_name} {{"
         result.append(string)
-        manager = LilyPondFormatManager
         # CAUTION: source context name must come before type_ to allow
         # context redefinition.
         if self.source_lilypond_type is not None:
@@ -466,12 +463,7 @@ class ContextBlock(Block):
         for statement in overrides:
             string = indent + statement
             result.append(string)
-        setting_contributions = []
-        for key, value in setting(self)._get_attribute_tuples():
-            setting_contribution = manager.format_lilypond_context_setting_in_with_block(
-                key, value
-            )
-            setting_contributions.append(setting_contribution)
+        setting_contributions = setting(self)._format_in_with_block()
         for setting_contribution in sorted(setting_contributions):
             string = indent + setting_contribution
             result.append(string)
@@ -1283,7 +1275,7 @@ class LilyPondFile(object):
         score = None
         if self.score_block and self.score_block.items:
             items = self.score_block.items
-            for container in iterate(items).components(Container):
+            for container in Iteration(items).components(Container):
                 if isinstance(container, Context):
                     score = container
                     break
@@ -1305,7 +1297,7 @@ class LilyPondFile(object):
                 if score is name:
                     return score
                 prototype = Context
-                for context in iterate(score).components(prototype):
+                for context in Iteration(score).components(prototype):
                     if context is name:
                         return context
             raise KeyError(f"can not find {name}.")
@@ -1317,7 +1309,7 @@ class LilyPondFile(object):
                 if isinstance(score, name):
                     return score
                 prototype = Context
-                for context in iterate(score).components(prototype):
+                for context in Iteration(score).components(prototype):
                     if isinstance(context, name):
                         return context
             raise KeyError(f"can not find item of class {name}.")
@@ -1354,7 +1346,7 @@ class LilyPondFile(object):
             string = f"{self.lilypond_language_token}"
             includes.append(string)
         tag = Tag("abjad.LilyPondFile._get_format_pieces()")
-        includes = LilyPondFormatManager.tag(includes, tag=self.get_tag(tag))
+        includes = Tag.tag(includes, tag=self.get_tag(tag))
         includes = "\n".join(includes)
         if includes:
             result.append(includes)
@@ -1421,7 +1413,7 @@ class LilyPondFile(object):
             else:
                 result.append(format(include))
         if result:
-            result = LilyPondFormatManager.tag(result, tag=tag)
+            result = Tag.tag(result, tag=tag)
             result = ["\n".join(result)]
         return result
 
@@ -1439,7 +1431,7 @@ class LilyPondFile(object):
             string = f"#(set-global-staff-size {global_staff_size})"
             result.append(string)
         if result:
-            result = LilyPondFormatManager.tag(result, tag=tag)
+            result = Tag.tag(result, tag=tag)
             result = ["\n".join(result)]
         return result
 
@@ -2218,16 +2210,16 @@ class LilyPondFile(object):
                 selections_ = selections.values()
             else:
                 raise TypeError(selections)
-            for note in select(selections_).notes():
+            for note in Selection(selections_).notes():
                 if note.written_pitch != NamedPitch("c'"):
                     pitched_staff = True
                     break
-            chords = select(selections_).chords()
+            chords = Selection(selections_).chords()
             if chords:
                 pitched_staff = True
         if isinstance(selections, (list, Selection)):
             if divisions is None:
-                duration = abjad_inspect(selections).duration()
+                duration = Inspection(selections).duration()
                 divisions = [duration]
             time_signatures = time_signatures or divisions
             time_signatures = [TimeSignature(_) for _ in time_signatures]
@@ -2240,7 +2232,7 @@ class LilyPondFile(object):
             voices = []
             for voice_name in sorted(selections):
                 selections_ = selections[voice_name]
-                selections_ = sequence(selections_).flatten(depth=-1)
+                selections_ = Sequence(selections_).flatten(depth=-1)
                 selections_ = copy.deepcopy(selections_)
                 voice = Voice(selections_, name=voice_name)
                 if attach_lilypond_voice_commands:
@@ -2257,7 +2249,7 @@ class LilyPondFile(object):
                 voices.append(voice)
             staff = Staff(voices, simultaneous=True)
             if divisions is None:
-                duration = abjad_inspect(staff).duration()
+                duration = Inspection(staff).duration()
                 divisions = [duration]
         else:
             message = "must be list or dictionary of selections:"

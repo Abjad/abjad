@@ -1,4 +1,3 @@
-# import abc
 import functools
 import math
 import numbers
@@ -25,7 +24,6 @@ class Pitch(object):
 
     ### INITIALIZER ###
 
-    # @abc.abstractmethod
     def __init__(self, argument, accidental=None, arrow=None, octave=None):
         from .pitchclasses import NamedPitchClass, PitchClass
 
@@ -34,8 +32,8 @@ class Pitch(object):
             if not match:
                 match = constants._comprehensive_pitch_class_name_regex.match(argument)
             if not match:
-                message = "can not instantiate {} from {!r}."
-                message = message.format(type(self).__name__, argument)
+                class_name = type(self).__name__
+                message = f"can not instantiate {class_name} from {argument!r}."
                 raise ValueError(message)
             group_dict = match.groupdict()
             _dpc_name = group_dict["diatonic_pc_name"].lower()
@@ -60,9 +58,8 @@ class Pitch(object):
         elif hasattr(argument, "note_heads") and len(argument.note_heads):
             self._from_pitch_or_pitch_class(argument.note_heads[0])
         else:
-            message = "can not instantiate {} from {!r}."
-            message = message.format(type(self).__name__, argument)
-            raise ValueError(message)
+            class_name = type(self).__name__
+            raise ValueError(f"can not instantiate {class_name} from {argument!r}.")
         if accidental is not None:
             accidental = Accidental(accidental)
             self._pitch_class = type(self._pitch_class)(
@@ -95,7 +92,7 @@ class Pitch(object):
         """
         Formats pitch.
 
-        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
 
         Returns string.
         """
@@ -116,10 +113,9 @@ class Pitch(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    # @abc.abstractmethod
     def __lt__(self, argument):
         """
-        Is true when pitch is less than `argument`.
+        Is true when pitch is less than ``argument``.
 
         Returns true or false.
         """
@@ -133,7 +129,6 @@ class Pitch(object):
 
     ### PRIVATE PROPERTIES ###
 
-    # @abc.abstractmethod
     def _get_lilypond_format(self):
         raise NotImplementedError
 
@@ -187,7 +182,6 @@ class Pitch(object):
 
     ### PUBLIC PROPERTIES ###
 
-    # @abc.abstractproperty
     @property
     def arrow(self):
         """
@@ -205,7 +199,6 @@ class Pitch(object):
         hertz = pow(2.0, (float(self.number) - 9.0) / 12.0) * 440.0
         return hertz
 
-    # @abc.abstractproperty
     @property
     def name(self):
         """
@@ -215,7 +208,6 @@ class Pitch(object):
         """
         raise NotImplementedError
 
-    # @abc.abstractproperty
     @property
     def number(self):
         """
@@ -225,7 +217,6 @@ class Pitch(object):
         """
         raise NotImplementedError
 
-    # @abc.abstractproperty
     @property
     def octave(self):
         """
@@ -235,7 +226,6 @@ class Pitch(object):
         """
         raise NotImplementedError
 
-    # @abc.abstractproperty
     @property
     def pitch_class(self):
         """
@@ -248,10 +238,9 @@ class Pitch(object):
     ### PUBLIC METHODS ###
 
     @classmethod
-    # @abc.abstractmethod
     def from_hertz(class_, hertz):
         """
-        Creates pitch from `hertz`.
+        Creates pitch from ``hertz``.
 
         Returns new pitch.
         """
@@ -259,21 +248,19 @@ class Pitch(object):
         pitch = class_(midi)
         return pitch
 
-    # @abc.abstractmethod
     def get_name(self, locale=None):
         """
-        Gets name of pitch according to `locale`.
+        Gets name of pitch according to ``locale``.
 
         Returns string.
         """
         raise NotImplementedError
 
-    # @abc.abstractmethod
     def invert(self, axis=None):
         """
-        Inverts pitch about `axis`.
+        Inverts pitch about ``axis``.
 
-        Interprets `axis` of none equal to middle C.
+        Interprets ``axis`` of none equal to middle C.
 
         Returns new pitch.
         """
@@ -283,19 +270,17 @@ class Pitch(object):
         result = axis.transpose(interval)
         return result
 
-    # @abc.abstractmethod
     def multiply(self, n=1):
         """
-        Multiplies pitch by `n`.
+        Multiplies pitch by ``n``.
 
         Returns new pitch.
         """
         return type(self)(n * self.number)
 
-    # @abc.abstractmethod
     def transpose(self, n):
         """
-        Transposes pitch by index `n`.
+        Transposes pitch by index ``n``.
 
         Returns new pitch.
         """
@@ -382,7 +367,7 @@ class NamedPitch(Pitch):
 
     def __add__(self, interval):
         """
-        Adds named pitch to `interval`.
+        Adds named pitch to ``interval``.
 
         ..  container:: example
 
@@ -433,7 +418,7 @@ class NamedPitch(Pitch):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a named pitch equal to this named pitch.
+        Is true when ``argument`` is a named pitch equal to this named pitch.
 
         ..  container:: example
 
@@ -476,7 +461,7 @@ class NamedPitch(Pitch):
 
     def __lt__(self, argument):
         """
-        Is true when named pitch is less than `argument`.
+        Is true when named pitch is less than ``argument``.
 
         ..  container:: example
 
@@ -529,8 +514,7 @@ class NamedPitch(Pitch):
             NotImplementedError: right-addition not defined on NamedPitch.
 
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __str__(self):
@@ -554,7 +538,7 @@ class NamedPitch(Pitch):
 
     def __sub__(self, argument):
         """
-        Subtracts `argument` from named pitch.
+        Subtracts ``argument`` from named pitch.
 
         ..  container:: example
 
@@ -764,7 +748,7 @@ class NamedPitch(Pitch):
 
         Returns string.
         """
-        return "{!s}{!s}".format(self.pitch_class, self.octave)
+        return f"{self.pitch_class!s}{self.octave!s}"
 
     @property
     def number(self):
@@ -842,7 +826,7 @@ class NamedPitch(Pitch):
     @classmethod
     def from_hertz(class_, hertz):
         """
-        Makes named pitch from `hertz`.
+        Makes named pitch from ``hertz``.
 
         ..  container:: example
 
@@ -862,7 +846,7 @@ class NamedPitch(Pitch):
 
     def get_name(self, locale=None):
         """
-        Gets name of named pitch according to `locale`.
+        Gets name of named pitch according to ``locale``.
 
         ..  container:: example
 
@@ -872,26 +856,21 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cs''").get_name(locale='us')
             'C#5'
 
-        Set `locale` to `'us'` or none.
+        Set ``locale`` to ``'us'`` or none.
 
         Returns string.
         """
         if locale is None:
             return self.name
         elif locale == "us":
-            return "{}{}{}".format(
-                self._get_diatonic_pc_name().upper(),
-                self.accidental.symbol,
-                self.octave.number,
-            )
+            name = self._get_diatonic_pc_name().upper()
+            return f"{name}{self.accidental.symbol}{self.octave.number}"
         else:
-            message = "must be 'us' or none: {!r}."
-            message = message.format(locale)
-            raise ValueError(message)
+            raise ValueError(f"must be 'us' or none: {locale!r}.")
 
     def invert(self, axis=None):
         """
-        Inverts named pitch around `axis`.
+        Inverts named pitch around ``axis``.
 
         ..  container:: example
 
@@ -920,7 +899,7 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("d'").invert('a')
             NamedPitch('e')
 
-        Interprets none-valued `axis` equal to middle C.
+        Interprets none-valued ``axis`` equal to middle C.
 
         Returns new named pitch.
         """
@@ -995,12 +974,12 @@ class NamedPitch(Pitch):
         ]
         accidental = Accidental(alteration)
         octave = Octave(octave)
-        pitch_name = "{}{!s}{!s}".format(diatonic_pc_name, accidental, octave)
+        pitch_name = f"{diatonic_pc_name}{accidental!s}{octave!s}"
         return type(self)(pitch_name, arrow=self.arrow)
 
     def transpose(self, n=0):
         """
-        Transposes named pitch by index `n`.
+        Transposes named pitch by index ``n``.
 
         ..  container:: example
 
@@ -1078,7 +1057,7 @@ class NumberedPitch(Pitch):
 
     def __add__(self, argument):
         """
-        Adds `argument` to numbered pitch.
+        Adds ``argument`` to numbered pitch.
 
         ..  container:: example
 
@@ -1095,8 +1074,8 @@ class NumberedPitch(Pitch):
         return type(self)(semitones)
 
     def __lt__(self, argument):
-        r"""Is true when `argument` can be coerced to a numbered pitch and when this
-        numbered pitch is less than `argument`.
+        r"""Is true when ``argument`` can be coerced to a numbered pitch and when this
+        numbered pitch is less than ``argument``.
 
         ..  container:: example
 
@@ -1151,7 +1130,7 @@ class NumberedPitch(Pitch):
 
     def __radd__(self, argument):
         """
-        Adds numbered pitch to `argument`.
+        Adds numbered pitch to ``argument``.
 
         ..  container:: example
 
@@ -1178,7 +1157,7 @@ class NumberedPitch(Pitch):
 
     def __sub__(self, argument):
         """
-        Subtracts `argument` from numbered pitch.
+        Subtracts ``argument`` from numbered pitch.
 
         ..  container:: example
 
@@ -1339,7 +1318,7 @@ class NumberedPitch(Pitch):
 
         Returns string
         """
-        return "{}{}".format(self.pitch_class.name, self.octave.ticks)
+        return f"{self.pitch_class.name}{self.octave.ticks}"
 
     @property
     def number(self):
@@ -1392,7 +1371,7 @@ class NumberedPitch(Pitch):
     @classmethod
     def from_hertz(class_, hertz):
         """
-        Makes numbered pitch from `hertz`.
+        Makes numbered pitch from ``hertz``.
 
         ..  container:: example
 
@@ -1412,7 +1391,7 @@ class NumberedPitch(Pitch):
 
     def get_name(self, locale=None):
         """
-        Gets name of numbered pitch name according to `locale`.
+        Gets name of numbered pitch name according to ``locale``.
 
         ..  container:: example
 
@@ -1422,7 +1401,7 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).get_name(locale='us')
             'C#5'
 
-        Set `locale` to `'us'` or none.
+        Set ``locale`` to ``'us'`` or none.
 
         Returns string.
         """
@@ -1430,7 +1409,7 @@ class NumberedPitch(Pitch):
 
     def interpolate(self, stop_pitch, fraction):
         """
-        Interpolates between numbered pitch and `stop_pitch` by `fraction`.
+        Interpolates between numbered pitch and ``stop_pitch`` by ``fraction``.
 
         ..  container:: example
 
@@ -1491,7 +1470,7 @@ class NumberedPitch(Pitch):
 
     def invert(self, axis=None):
         """
-        Inverts numbered pitch around `axis`.
+        Inverts numbered pitch around ``axis``.
 
         ..  container:: example
 
@@ -1526,7 +1505,7 @@ class NumberedPitch(Pitch):
 
     def multiply(self, n=1):
         """
-        Multiplies numbered pitch by index `n`.
+        Multiplies numbered pitch by index ``n``.
 
         ..  container:: example
 
@@ -1539,7 +1518,7 @@ class NumberedPitch(Pitch):
 
     def transpose(self, n=0):
         """
-        Tranposes numbered pitch by `n` semitones.
+        Tranposes numbered pitch by ``n`` semitones.
 
         ..  container:: example
 

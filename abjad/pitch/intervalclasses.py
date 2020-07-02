@@ -1,4 +1,3 @@
-# import abc
 import copy
 import functools
 import numbers
@@ -10,7 +9,6 @@ from .intervals import Interval, NamedInterval, NumberedInterval
 from .pitches import NamedPitch
 
 
-# NOTE: mypy 0.770 errors on functools combined with abstract class
 @functools.total_ordering
 class IntervalClass(object):
     """
@@ -25,7 +23,6 @@ class IntervalClass(object):
 
     ### INITIALIZER ###
 
-    # @abc.abstractmethod
     def __init__(self, argument):
         if isinstance(argument, str):
             match = constants._interval_name_abbreviation_regex.match(argument)
@@ -35,11 +32,11 @@ class IntervalClass(object):
                     self._from_number(argument)
                     return
                 except ValueError:
-                    message = "can not initialize {} from {!r}."
-                    message = message.format(type(self).__name__, argument)
+                    message = (
+                        f"can not initialize {type(self).__name__} from {argument!r}."
+                    )
                     raise ValueError(message)
-                message = "can not initialize {} from {!r}."
-                message = message.format(type(self).__name__, argument)
+                message = f"can not initialize {type(self).__name__} from {argument!r}."
                 raise ValueError(message)
             group_dict = match.groupdict()
             direction = group_dict["direction"]
@@ -68,8 +65,7 @@ class IntervalClass(object):
         elif isinstance(argument, (Interval, IntervalClass)):
             self._from_interval_or_interval_class(argument)
         else:
-            message = "can not initialize {} from {!r}."
-            message = message.format(type(self).__name__, argument)
+            message = f"can not initialize {type(self).__name__} from {argument!r}."
             raise ValueError(message)
 
     ### SPECIAL METHODS ###
@@ -82,10 +78,9 @@ class IntervalClass(object):
         """
         return type(self)(abs(self._number))
 
-    # @abc.abstractmethod
     def __add__(self, argument):
         """
-        Adds `argument` to interval-class.
+        Adds ``argument`` to interval-class.
 
         Returns new interval-class.
         """
@@ -117,10 +112,9 @@ class IntervalClass(object):
             raise TypeError(f"unhashable type: {self}")
         return result
 
-    # @abc.abstractmethod
     def __lt__(self, argument):
         """
-        Is true when interval-class is less than `argument`.
+        Is true when interval-class is less than ``argument``
 
         Returns true or false.
         """
@@ -140,10 +134,9 @@ class IntervalClass(object):
         """
         return str(self.number)
 
-    # @abc.abstractmethod
     def __sub__(self, argument):
         """
-        Subtracts `argument` from interval-class.
+        Subtracts ``argument`` from interval-class.
 
         Returns new interval-class.
         """
@@ -237,8 +230,9 @@ class IntervalClass(object):
             ).get(quality[0])
             is None
         ):
-            message = "can not initialize {} from {!r} and {!r}."
-            message = message.format(cls.__name__, quality, diatonic_number)
+            name = cls.__name__
+            number = diatonic_number
+            message = f"can not initialize {name} from {quality!r} and {number!r}."
             raise ValueError(message)
         return quality
 
@@ -257,7 +251,7 @@ class IntervalClass(object):
 
     def transpose(self, pitch_carrier):
         """
-        Transposes `pitch_carrier` by interval-class.
+        Transposes ``pitch_carrier`` by interval-class.
 
         Returns new pitch carrier.
         """
@@ -317,7 +311,7 @@ class NamedIntervalClass(IntervalClass):
 
     def __add__(self, argument):
         """
-        Adds `argument` to named interval-class.
+        Adds ``argument`` to named interval-class.
 
         Returns new named interval-class.
         """
@@ -332,7 +326,7 @@ class NamedIntervalClass(IntervalClass):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a named interval-class with direction
+        Is true when ``argument`` is a named interval-class with direction
         number, quality string and number equal to those of this named
         interval-class.
 
@@ -389,7 +383,7 @@ class NamedIntervalClass(IntervalClass):
 
     def __lt__(self, argument):
         """
-        Is true when `argument` is a named interval class with a number
+        Is true when ``argument`` is a named interval class with a number
         greater than that of this named interval.
 
         ..  container:: example
@@ -433,7 +427,7 @@ class NamedIntervalClass(IntervalClass):
 
     def __radd__(self, argument):
         """
-        Adds interval-class to `argument`.
+        Adds interval-class to ``argument``
 
         Returns new named interval-class.
         """
@@ -458,7 +452,7 @@ class NamedIntervalClass(IntervalClass):
 
     def __sub__(self, argument):
         """
-        Subtracts `argument` from named interval-class.
+        Subtracts ``argument`` from named interval-class.
 
         Returns new named interval-class.
         """
@@ -568,8 +562,8 @@ class NamedIntervalClass(IntervalClass):
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         """
-        Makes named interval-class from `pitch_carrier_1` and
-        `pitch_carrier_2`.
+        Makes named interval-class from ``pitch_carrier_1`` and
+        ``pitch_carrier_2``
 
         ..  container:: example
 
@@ -680,7 +674,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a named inversion-equivalent
+        Is true when ``argument`` is a named inversion-equivalent
         interval-class with name equal to that of this named
         inversion-equivalent interval-class.
 
@@ -745,8 +739,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     @classmethod
     def _process_quality_and_number(class_, quality, number):
         if number == 0:
-            message = "named interval can not equal zero."
-            raise ValueError(message)
+            raise ValueError("named interval can not equal zero.")
         elif abs(number) == 1:
             number = 1
         elif abs(number) % 7 == 0:
@@ -769,7 +762,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         """
         Makes named inversion-equivalent interval-class from
-        `pitch_carrier_1` and `pitch_carrier_2`.
+        ``pitch_carrier_1`` and ``pitch_carrier_2``
 
         ..  container:: example
 
@@ -843,7 +836,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def __add__(self, argument):
         """
-        Adds `argument` to numbered interval-class.
+        Adds ``argument`` to numbered interval-class.
 
         Returns new numbered interval-class.
         """
@@ -855,7 +848,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a numbered interval-class with number
+        Is true when ``argument`` is a numbered interval-class with number
         equal to that of this numbered interval-class.
 
         ..  container:: example
@@ -907,7 +900,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def __lt__(self, argument):
         """
-        Is true when numbered interval-class is less than `argument`.
+        Is true when numbered interval-class is less than ``argument``
 
         ..  container:: example
 
@@ -946,7 +939,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def __radd__(self, argument):
         """
-        Adds `argument` to numbered interval-class.
+        Adds ``argument`` to numbered interval-class.
 
         Returns new numbered interval-class.
         """
@@ -979,7 +972,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def __sub__(self, argument):
         """
-        Subtracts `argument` from numbered interval-class.
+        Subtracts ``argument`` from numbered interval-class.
 
         Returns new numbered interval-class.
         """
@@ -1034,8 +1027,8 @@ class NumberedIntervalClass(IntervalClass):
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        """Makes numbered interval-class from `pitch_carrier_1` and
-        `pitch_carrier_2`.
+        """Makes numbered interval-class from ``pitch_carrier_1`` and
+        ``pitch_carrier_2``
 
         ..  container:: example
 
@@ -1152,7 +1145,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     def __lt__(self, argument):
         """
-        Is true when `argument` is a numbered inversion-equivalent
+        Is true when ``argument`` is a numbered inversion-equivalent
         interval-class with a number less than this numbered
         inversion-equivalent interval-class.
         """

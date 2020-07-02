@@ -21,13 +21,13 @@ class AbjDevScript(CLIAggregator):
     """
     Entry-point to the Abjad developer scripts catalog.
 
-    Can be accessed on the commandline via `abj-dev` or `ajv`:
+    Can be accessed on the commandline via ``abj-dev`` or ``ajv``
 
     ..  shell::
 
         ajv --help
 
-    `ajv` supports subcommands similar to `svn`:
+    ``ajv`` supports subcommands similar to ``svn``
 
     ..  shell::
 
@@ -192,7 +192,7 @@ class ReplaceScript(CLI):
         ajv replace text --help
 
     Multiple patterns for excluding files or folders can be specified by
-    restating the `--without-files` or `--without-dirs` commands:
+    restating the ``without-files`` or ``without-dirs`` commands:
 
     ..  code-block:: bash
 
@@ -232,9 +232,7 @@ class ReplaceScript(CLI):
                     self.pattern = re.compile(pattern)
                     self.whole_words_only = whole_words_only
                 except Exception:
-                    message = "can't compile {!r} as a regex pattern."
-                    message = message.format(pattern)
-                    raise ValueError(message)
+                    raise ValueError(f"can't compile {pattern!r} as a regex pattern.")
 
             def __call__(self, line, pos):
                 start, length = self._search(line, pos)
@@ -258,8 +256,7 @@ class ReplaceScript(CLI):
         )
 
     def _process_args(self, arguments):
-        message = "Replacing {!r} with {!r} ..."
-        message = message.format(arguments.old, arguments.new)
+        message = f"Replacing {arguments.old!r} with {arguments.new!r} ..."
         print(message)
         skipped_dirs_patterns = self.skipped_directories
         skipped_dirs_patterns += arguments.without_dirs
@@ -268,9 +265,8 @@ class ReplaceScript(CLI):
             arguments.old = self._get_regex_search_callable(arguments)
             index, length = arguments.old("", 0)
             if 0 <= index:
-                message = "regex pattern {!r} matches the empty string."
-                message = message.format(arguments.old.pattern.pattern)
-                raise ValueError(message)
+                p = arguments.old.pattern.pattern
+                raise ValueError(f"regex pattern {p!r} matches the empty string.")
         else:
             arguments.old = self._get_naive_search_callable(arguments)
         changed_file_count = 0
@@ -356,15 +352,15 @@ class ReplaceScript(CLI):
                 should_replace = True
                 if verbose:
                     print()
-                    print("{}: {}".format(file_name, line_number))
-                    print("-{}".format(line))
-                    print("+{}".format(replaced_line))
+                    print(f"{file_name}: {line_number}")
+                    print(f"-{line}")
+                    print(f"+{replaced_line}")
             else:
                 print()
-                print("{}: {}".format(file_name, line_number))
+                print(f"{file_name}: {line_number}")
                 print()
-                print("{}".format(line))
-                print("{}".format(carats))
+                print(f"{line}")
+                print(f"{carats}")
                 print()
                 result = input("Replace? [Y/n] > ").lower()
                 while result not in ("", "y", "yes", "n", "no"):

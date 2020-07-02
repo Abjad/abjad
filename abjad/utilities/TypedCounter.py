@@ -221,8 +221,8 @@ class TypedCounter(TypedCollection, collections.abc.MutableMapping):
 
         Will return new typed counter.
         """
-        message = "{}.fromkeys() is undefined. Use {}(iterable) instead."
-        message = message.format(class_.__name__, class_.__name__)
+        name = class_.__name__
+        message = f"{name}.fromkeys() is undefined. Use {name}(iterable) instead."
         raise NotImplementedError(message)
 
     def items(self):

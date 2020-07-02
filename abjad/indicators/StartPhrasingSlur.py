@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
@@ -59,12 +59,12 @@ class StartPhrasingSlur(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         self._direction = direction
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -175,7 +175,7 @@ class StartPhrasingSlur(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 
@@ -188,13 +188,13 @@ class StartPhrasingSlur(object):
             >>> abjad.tweak(start_phrasing_slur).color = 'blue'
             >>> abjad.f(start_phrasing_slur)
             abjad.StartPhrasingSlur(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
             >>> abjad.f(start_phrasing_slur_2)
             abjad.StartPhrasingSlur(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
         """

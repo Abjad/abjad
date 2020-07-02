@@ -46,7 +46,8 @@ def test_Rest___init___04():
     """
 
     chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 4))
-    tuplet = abjad.Tuplet((2, 3), 3 * chord)
+    chords = abjad.mutate(chord).copy(3)
+    tuplet = abjad.Tuplet((2, 3), chords)
     rest = abjad.Rest(tuplet[0])
 
     assert format(rest) == abjad.String.normalize(
@@ -55,7 +56,7 @@ def test_Rest___init___04():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___05():
@@ -64,7 +65,8 @@ def test_Rest___init___05():
     """
 
     chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 8))
-    staff = abjad.Staff(3 * chord)
+    chords = abjad.mutate(chord).copy(3)
+    staff = abjad.Staff(chords)
     abjad.beam(staff[:])
     rest = abjad.Rest(staff[0])
 
@@ -75,7 +77,7 @@ def test_Rest___init___05():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___06():
@@ -92,7 +94,7 @@ def test_Rest___init___06():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___07():
@@ -100,8 +102,7 @@ def test_Rest___init___07():
     Initialize rest from tupletted skip.
     """
 
-    skip = abjad.Skip("s4")
-    tuplet = abjad.Tuplet((2, 3), 3 * skip)
+    tuplet = abjad.Tuplet((2, 3), "s4 s4 s4")
     rest = abjad.Rest(tuplet[0])
 
     assert format(rest) == abjad.String.normalize(
@@ -110,7 +111,7 @@ def test_Rest___init___07():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___08():
@@ -127,7 +128,7 @@ def test_Rest___init___08():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___09():
@@ -144,7 +145,7 @@ def test_Rest___init___09():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___10():
@@ -161,7 +162,7 @@ def test_Rest___init___10():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___11():
@@ -179,7 +180,7 @@ def test_Rest___init___11():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)
 
 
 def test_Rest___init___12():
@@ -206,7 +207,7 @@ def test_Rest___init___12():
         """
     )
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Rest___init___13():
@@ -222,4 +223,4 @@ def test_Rest___init___13():
         """
     )
 
-    assert abjad.inspect(rest).wellformed()
+    assert abjad.wellformed(rest)

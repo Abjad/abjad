@@ -56,5 +56,5 @@ def test_Voice___delitem___01():
         """
     )
 
-    assert abjad.inspect(voice).wellformed()
-    assert abjad.inspect(container).wellformed()
+    assert abjad.wellformed(voice)
+    assert abjad.wellformed(container)

@@ -2,8 +2,7 @@ import functools
 import numbers
 import typing
 
-from ..core.Iteration import iterate
-from ..formatting import LilyPondFormatBundle
+from ..bundle import LilyPondFormatBundle
 from ..pitch import constants as pitch_constants
 from ..pitch.pitches import NamedPitch
 from ..storage import FormatSpecification, StorageFormatManager
@@ -274,9 +273,7 @@ class Clef(object):
             elif suffix == "15":
                 alteration = 13
             else:
-                message = "bad clef alteration suffix: {!r}."
-                message = message.format(suffix)
-                raise Exception(message)
+                raise Exception(f"bad clef alteration suffix: {suffix!r}.")
         elif "^" in self._name:
             base_name, part, suffix = clef_name.partition("^")
             if suffix == "8":
@@ -284,9 +281,7 @@ class Clef(object):
             elif suffix == "15":
                 alteration = -13
             else:
-                message = "bad clef alteration suffix: {!r}."
-                message = message.format(suffix)
-                raise Exception(message)
+                raise Exception(f"bad clef alteration suffix: {suffix!r}.")
         else:
             base_name = clef_name
         return self._clef_name_to_middle_c_position[base_name] + alteration
@@ -348,7 +343,9 @@ class Clef(object):
             lines.
 
         """
-        pitches = iterate(selection).pitches()
+        from ..core.Iteration import Iteration
+
+        pitches = Iteration(selection).pitches()
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
         ]
@@ -560,7 +557,7 @@ class StaffPosition(object):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a staff position with the same number as
+        Is true when ``argument`` is a staff position with the same number as
         this staff position.
 
         ..  container:: example
@@ -609,7 +606,7 @@ class StaffPosition(object):
 
     def __lt__(self, argument):
         """
-        Is true when staff position is less than `argument`.
+        Is true when staff position is less than ``argument``.
 
         ..  container:: example
 
@@ -663,7 +660,7 @@ class StaffPosition(object):
 
         Returns string.
         """
-        return "{}({})".format(type(self).__name__, self.number)
+        return f"{type(self).__name__}({self.number})"
 
     ### PRIVATE METHODS ###
 
@@ -844,7 +841,7 @@ class StaffPosition(object):
 
     def to_pitch(self, clef):
         """
-        Makes named pitch from staff position and `clef`.
+        Makes named pitch from staff position and ``clef``.
 
         ..  container:: example
 

@@ -1,9 +1,8 @@
 import typing
 
 from .. import enums, markups, typings
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import LilyPondOverride, TweakInterface
 from ..storage import StorageFormatManager
 from ..utilities.String import String
 
@@ -108,7 +107,7 @@ class StartTextSpan(object):
         right_padding: typings.Number = None,
         right_text: typing.Union[str, markups.Markup] = None,
         style: str = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         assert isinstance(command, str), repr(command)
         assert command.startswith("\\"), repr(command)
@@ -139,8 +138,8 @@ class StartTextSpan(object):
             assert style in self._styles, repr(style)
         self._style = style
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -176,7 +175,7 @@ class StartTextSpan(object):
         return string
 
     def _get_left_broken_text_tweak(self):
-        override = LilyPondGrobOverride(
+        override = LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "left-broken", "text"),
             value=self.left_broken_text,
@@ -190,7 +189,7 @@ class StartTextSpan(object):
         concat_hspace_left_markup = markups.Markup.hspace(self.concat_hspace_left)
         markup_list = [self.left_text, concat_hspace_left_markup]
         markup = markups.Markup.concat(markup_list)
-        override = LilyPondGrobOverride(
+        override = LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "left", "text"),
             value=markup,
@@ -223,7 +222,7 @@ class StartTextSpan(object):
         return bundle
 
     def _get_right_padding_tweak(self):
-        override = LilyPondGrobOverride(
+        override = LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "right", "padding"),
             value=self.right_padding,
@@ -241,7 +240,7 @@ class StartTextSpan(object):
             markup = markups.Markup.concat(markup_list)
         else:
             markup = self.right_text
-        override = LilyPondGrobOverride(
+        override = LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "right", "text"),
             value=markup,
@@ -728,7 +727,7 @@ class StartTextSpan(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 
@@ -747,7 +746,7 @@ class StartTextSpan(object):
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
                 style='dashed-line-with-arrow',
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
                 )
 
             >>> start_text_span_2 = copy.copy(start_text_span)
@@ -756,7 +755,7 @@ class StartTextSpan(object):
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
                 style='dashed-line-with-arrow',
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
                 )
 
         """

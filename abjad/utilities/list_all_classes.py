@@ -3,7 +3,7 @@ from .yield_all_modules import yield_all_modules
 
 def list_all_classes(modules=None, ignored_classes=None):
     """
-    Lists all public classes defined in `path`.
+    Lists all public classes defined in ``path``.
 
     ..  container:: example
 

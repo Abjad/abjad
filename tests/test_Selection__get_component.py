@@ -2,76 +2,6 @@ import abjad
 
 
 def test_Selection__get_component_01():
-    """
-    Read forwards for positive n.
-    """
-
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-
-    r"""
-    \new Staff {
-      {
-            \time 2/8
-            c'8
-            d'8
-      }
-      {
-            \time 2/8
-            e'8
-            f'8
-      }
-      {
-            \time 2/8
-            g'8
-            a'8
-      }
-    }
-    """
-
-    assert abjad.select(staff)._get_component(abjad.Leaf, 0) is staff[0][0]
-    assert abjad.select(staff)._get_component(abjad.Leaf, 1) is staff[0][1]
-    assert abjad.select(staff)._get_component(abjad.Leaf, 2) is staff[1][0]
-    assert abjad.select(staff)._get_component(abjad.Leaf, 3) is staff[1][1]
-    assert abjad.select(staff)._get_component(abjad.Leaf, 4) is staff[2][0]
-    assert abjad.select(staff)._get_component(abjad.Leaf, 5) is staff[2][1]
-
-
-def test_Selection__get_component_02():
-    """
-    Read backwards for negative n.
-    """
-
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-
-    r"""
-    \new Staff {
-      {
-            \time 2/8
-            c'8
-            d'8
-      }
-      {
-            \time 2/8
-            e'8
-            f'8
-      }
-      {
-            \time 2/8
-            g'8
-            a'8
-      }
-    }
-    """
-
-    assert abjad.select(staff)._get_component(abjad.Leaf, -1) is staff[2][1]
-    assert abjad.select(staff)._get_component(abjad.Leaf, -2) is staff[2][0]
-    assert abjad.select(staff)._get_component(abjad.Leaf, -3) is staff[1][1]
-    assert abjad.select(staff)._get_component(abjad.Leaf, -4) is staff[1][0]
-    assert abjad.select(staff)._get_component(abjad.Leaf, -5) is staff[0][1]
-    assert abjad.select(staff)._get_component(abjad.Leaf, -6) is staff[0][0]
-
-
-def test_Selection__get_component_03():
 
     staff = abjad.Staff(
         r"""
@@ -102,7 +32,7 @@ def test_Selection__get_component_03():
     assert abjad.select(staff)._get_component(abjad.Staff, 0) is staff
 
 
-def test_Selection__get_component_04():
+def test_Selection__get_component_02():
     """
     Iterates backwards with negative values of n.
     """

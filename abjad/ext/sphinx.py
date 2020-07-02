@@ -24,11 +24,11 @@ from sphinx.util.osutil import copyfile, ensuredir
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
+from ..configuration import Configuration
+from ..contextmanagers import TemporaryDirectoryChange
 from ..illustrate import illustrate
 from ..iox import Illustrator, LilyPondIO, Player
 from ..lilypondfile import Block, LilyPondVersionToken
-from ..system.Configuration import Configuration
-from ..system.TemporaryDirectoryChange import TemporaryDirectoryChange
 
 configuration = Configuration()
 logger = logging.getLogger(__name__)

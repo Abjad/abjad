@@ -69,8 +69,9 @@ class Vector(TypedCounter):
 
         Returns string.
         """
-        parts = ["{}: {}".format(key, value) for key, value in self.items()]
-        return "<{}>".format(", ".join(parts))
+        parts = [f"{key}: {value}" for key, value in self.items()]
+        string = ", ".join(parts)
+        return f"<{string}>"
 
     ### PRIVATE PROPERTIES ###
 
@@ -129,7 +130,7 @@ class Vector(TypedCounter):
     @abc.abstractmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes vector from `selection`.
+        Makes vector from ``selection``.
 
         Returns vector.
         """
@@ -248,7 +249,7 @@ class IntervalVector(Vector):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes interval vector from `selection`.
+        Makes interval vector from ``selection``.
 
         Returns interval vector.
         """
@@ -375,15 +376,16 @@ class IntervalClassVector(Vector):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes interval-class vector from `selection`.
+        Makes interval-class vector from ``selection``.
 
         ..  container:: example
 
             Makes numbered inversion-equivalent interval-class vector from
             selection:
 
+            >>> chord = abjad.Chord("<c' d' b''>4"),
             >>> vector = abjad.IntervalClassVector.from_selection(
-            ...     abjad.Chord("<c' d' b''>4"),
+            ...     abjad.select(chord),
             ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
             ...     )
             >>> vector
@@ -393,8 +395,9 @@ class IntervalClassVector(Vector):
 
             Makes numbered interval-class vector from selection:
 
+            >>> chord = abjad.Chord("<c' d' b''>4")
             >>> vector = abjad.IntervalClassVector.from_selection(
-            ...     abjad.Chord("<c' d' b''>4"),
+            ...     abjad.select(chord),
             ...     item_class=abjad.NumberedIntervalClass,
             ...     )
             >>> vector
@@ -407,8 +410,9 @@ class IntervalClassVector(Vector):
 
             Makes named interval-class vector from selection:
 
+            >>> chord = abjad.Chord("<c' d' b''>4")
             >>> vector = abjad.IntervalClassVector.from_selection(
-            ...     abjad.Chord("<c' d' b''>4"),
+            ...     abjad.select(chord),
             ...     item_class=None,
             ...     )
             >>> vector
@@ -535,7 +539,7 @@ class PitchClassVector(Vector):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes pitch-class vector from `selection`.
+        Makes pitch-class vector from ``selection``.
 
         Returns pitch-class vector.
         """
@@ -622,7 +626,7 @@ class PitchVector(Vector):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes pitch vector from `selection`.
+        Makes pitch vector from ``selection``.
 
         Returns pitch vector.
         """

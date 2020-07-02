@@ -2,8 +2,9 @@ import collections
 import typing
 
 from ..storage import StorageFormatManager
-from .Component import Component, inspect
-from .Selection import select
+from .Component import Component
+from .Selection import Selection
+from .inspectx import Inspection
 
 
 class Descendants(collections.abc.Sequence):
@@ -81,7 +82,7 @@ class Descendants(collections.abc.Sequence):
         if component is None:
             components = ()
         else:
-            components = list(select(component).components())
+            components = list(Selection(component).components())
         result = []
         if cross_offset is None:
             result = components
@@ -89,8 +90,8 @@ class Descendants(collections.abc.Sequence):
             for component in components:
                 append_x = True
                 if not (
-                    inspect(component).timespan().start_offset < cross_offset
-                    and cross_offset < inspect(component).timespan().stop_offset
+                    Inspection(component).timespan().start_offset < cross_offset
+                    and cross_offset < Inspection(component).timespan().stop_offset
                 ):
                     append_x = False
                 if append_x:

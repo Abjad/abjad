@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 from ..utilities.String import String
 
@@ -55,14 +55,12 @@ class StartBeam(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, *, direction: int = None, tweaks: LilyPondTweakManager = None
-    ) -> None:
+    def __init__(self, *, direction: int = None, tweaks: TweakInterface = None) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -173,7 +171,7 @@ class StartBeam(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 
@@ -186,13 +184,13 @@ class StartBeam(object):
             >>> abjad.tweak(start_beam).color = 'blue'
             >>> abjad.f(start_beam)
             abjad.StartBeam(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_beam_2 = copy.copy(start_beam)
             >>> abjad.f(start_beam_2)
             abjad.StartBeam(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
         """

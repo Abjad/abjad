@@ -51,7 +51,7 @@ def test_Container___delitem___01():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
     # container leaves are still slurred
     assert format(container) == abjad.String.normalize(
@@ -66,7 +66,7 @@ def test_Container___delitem___01():
         """
     ), print(format(container))
 
-    assert abjad.inspect(container).wellformed()
+    assert abjad.wellformed(container)
 
 
 def test_Container___delitem___02():
@@ -90,7 +90,7 @@ def test_Container___delitem___02():
         """
     )
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container___delitem___03():
@@ -113,7 +113,7 @@ def test_Container___delitem___03():
         """
     )
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container___delitem___04():
@@ -135,7 +135,7 @@ def test_Container___delitem___04():
         """
     )
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container___delitem___05():
@@ -157,7 +157,7 @@ def test_Container___delitem___05():
         """
     )
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container___delitem___06():
@@ -199,7 +199,7 @@ def test_Container___delitem___07():
         """
     )
 
-    assert abjad.inspect(tuplet).wellformed()
+    assert abjad.wellformed(tuplet)
 
 
 def test_Container___delitem___08():
@@ -250,5 +250,5 @@ def test_Container___delitem___08():
         """
     ), abjad.f(voice)
 
-    assert abjad.inspect(voice).wellformed()
-    assert abjad.inspect(leaf).wellformed()
+    assert abjad.wellformed(voice)
+    assert abjad.wellformed(leaf)

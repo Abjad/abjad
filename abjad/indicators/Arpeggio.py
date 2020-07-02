@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 
 
 class Arpeggio(object):
@@ -48,15 +48,13 @@ class Arpeggio(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, *, direction: int = None, tweaks: LilyPondTweakManager = None
-    ) -> None:
+    def __init__(self, *, direction: int = None, tweaks: TweakInterface = None) -> None:
         if direction is not None:
             assert direction in (enums.Up, enums.Down, enums.Center)
         self._direction = direction
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### PRIVATE METHODS ###
 
@@ -104,7 +102,7 @@ class Arpeggio(object):
         return self._direction
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

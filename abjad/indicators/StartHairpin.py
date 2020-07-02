@@ -1,9 +1,8 @@
 import typing
 
 from .. import enums
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import LilyPondOverride, TweakInterface
 from ..storage import StorageFormatManager
 from ..tags import Tags
 from ..utilities.String import String
@@ -72,15 +71,15 @@ class StartHairpin(object):
         shape="<",
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         assert shape in self._known_shapes, repr(shape)
         self._shape = shape
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -117,13 +116,13 @@ class StartHairpin(object):
 
     @staticmethod
     def _circled_tip():
-        return LilyPondGrobOverride(
+        return LilyPondOverride(
             grob_name="Hairpin", once=True, property_path="circled-tip", value=True,
         )
 
     @staticmethod
     def _constante_hairpin():
-        return LilyPondGrobOverride(
+        return LilyPondOverride(
             grob_name="Hairpin",
             once=True,
             property_path="stencil",
@@ -132,7 +131,7 @@ class StartHairpin(object):
 
     @staticmethod
     def _flared_hairpin():
-        return LilyPondGrobOverride(
+        return LilyPondOverride(
             grob_name="Hairpin",
             once=True,
             property_path="stencil",
@@ -576,7 +575,7 @@ class StartHairpin(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

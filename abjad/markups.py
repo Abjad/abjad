@@ -8,11 +8,11 @@ import typing
 import quicktions
 
 from . import enums, mathtools
-from .formatting import LilyPondFormatManager
-from .lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from .bundle import LilyPondFormatBundle
 from .ly.colors import colors
 from .ly.music_glyphs import music_glyphs
 from .new import new
+from .overrides import TweakInterface
 from .scheme import Scheme, SchemeColor, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
 from .tags import Tag
@@ -197,7 +197,7 @@ class Markup(object):
         *,
         direction: typing.Union[int, enums.VerticalAlignment] = None,
         literal: bool = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         from .parsers.parse import parse
 
@@ -249,8 +249,8 @@ class Markup(object):
             literal = bool(literal)
         self._literal = literal
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -295,9 +295,7 @@ class Markup(object):
         elif isinstance(argument, MarkupCommand):
             commands.append(argument)
         else:
-            message = "must be markup or markup command: {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"must be markup or markup command: {argument!r}.")
         markup = type(self)(contents=commands, direction=self.direction)
         return markup
 
@@ -480,9 +478,7 @@ class Markup(object):
         Returns true or false.
         """
         if not isinstance(argument, type(self)):
-            message = "can only compare markup to markup: {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"can only compare markup to markup: {argument!r}.")
         return self.contents < argument.contents
 
     def __radd__(self, argument):
@@ -526,9 +522,7 @@ class Markup(object):
         elif isinstance(argument, MarkupCommand):
             commands.append(argument)
         else:
-            message = "must be markup or markup command: {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"must be markup or markup command: {argument!r}.")
         commands.extend(self.contents)
         markup = type(self)(contents=commands, direction=self.direction)
         return markup
@@ -568,7 +562,7 @@ class Markup(object):
         tweaks = []
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-        indent = LilyPondFormatManager.indent
+        indent = LilyPondFormatBundle.indent
         direction = ""
         if self.direction is not None:
             direction = String.to_tridirectional_lilypond_symbol(self.direction)
@@ -620,9 +614,7 @@ class Markup(object):
         elif isinstance(argument, (str, MarkupCommand)):
             contents = argument
         else:
-            message = "must be markup, markup command or string: {!r}."
-            message = message.format(argument)
-            raise TypeError(argument)
+            raise TypeError(f"must be markup, markup command or string: {argument!r}.")
         return contents
 
     ### PUBLIC PROPERTIES ###
@@ -787,7 +779,7 @@ class Markup(object):
 
     # TODO: Tweaks do not appear on markup without direction!
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks.
 
@@ -1113,9 +1105,7 @@ class Markup(object):
         Returns new markup.
         """
         if not len(markup_list) == 2:
-            message = "markup list must be length 2: {!r}."
-            message = message.format(markup_list)
-            raise Exception(message)
+            raise Exception(f"markup list must be length 2: {markup_list!r}.")
         markup_1, markup_2 = markup_list
         contents_1 = class_._parse_markup_command_argument(markup_1)
         contents_2 = class_._parse_markup_command_argument(markup_2)
@@ -1406,9 +1396,7 @@ class Markup(object):
         elif isinstance(direction, numbers.Number):
             direction = Scheme(str(direction))
         else:
-            message = "unknown direction: {!r}."
-            message = message.format(direction)
-            raise ValueError(message)
+            raise ValueError(f"unknown direction: {direction!r}.")
         command = MarkupCommand("general-align", axis, direction, contents)
         return new(self, contents=command)
 
@@ -3147,13 +3135,13 @@ class MarkupCommand(object):
                     if isinstance(item, str):
                         result.append(formatted)
                     else:
-                        result.append("#{}".format(formatted))
-            return ["{}{}".format(indent, item) for item in result]
+                        result.append(f"#{formatted}")
+            return [f"{indent}{item}" for item in result]
 
-        indent = LilyPondFormatManager.indent
-        parts = [r"\{}".format(self.name)]
+        indent = LilyPondFormatBundle.indent
+        parts = [rf"\{self.name}"]
         parts.extend(recurse(self.arguments))
-        parts = LilyPondFormatManager.tag(parts, self.tag, deactivate=self.deactivate)
+        parts = Tag.tag(parts, self.tag, deactivate=self.deactivate)
         return parts
 
     def _get_format_specification(self):
@@ -3800,9 +3788,7 @@ class MarkupList(TypedList):
         Returns new markup.
         """
         if not len(self) == 2:
-            message = "markup list must be length 2: {!r}."
-            message = message.format(self)
-            raise Exception(message)
+            raise Exception(f"markup list must be length 2: {self!r}.")
         markup_1, markup_2 = self.items
         contents_1 = Markup._parse_markup_command_argument(markup_1)
         contents_2 = Markup._parse_markup_command_argument(markup_2)
@@ -4335,12 +4321,12 @@ class Postscript(object):
         if isinstance(argument, str):
             if argument.startswith("/"):
                 return argument
-            return "({})".format(argument)
+            return f"({argument})"
         elif isinstance(argument, collections.abc.Sequence):
             if not argument:
                 return "[ ]"
             contents = " ".join(Postscript._format_argument(_) for _ in argument)
-            return "[ {} ]".format(contents)
+            return f"[ {contents} ]"
         elif isinstance(argument, bool):
             return str(argument).lower()
         elif isinstance(argument, (int, float)):
@@ -4562,7 +4548,7 @@ class Postscript(object):
         """
         font_name = str(font_name)
         font_name = font_name.replace(" ", "-")
-        font_name = "/{}".format(font_name)
+        font_name = f"/{font_name}"
         operator = PostscriptOperator("findfont", font_name)
         return self._with_operator(operator)
 

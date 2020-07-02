@@ -107,7 +107,7 @@ class Accidental(object):
 
     def __add__(self, argument):
         """
-        Adds `argument` to accidental.
+        Adds ``argument`` to accidental.
 
         ..  container:: example
 
@@ -122,14 +122,13 @@ class Accidental(object):
         Returns new accidental.
         """
         if not isinstance(argument, type(self)):
-            message = "can only add accidental to other accidental."
-            raise TypeError(message)
+            raise TypeError("can only add accidental to other accidental.")
         semitones = self.semitones + argument.semitones
         return type(self)(semitones)
 
     def __call__(self, argument):
         """
-        Calls accidental on `argument`.
+        Calls accidental on ``argument``.
 
         >>> accidental = abjad.Accidental('s')
 
@@ -165,12 +164,10 @@ class Accidental(object):
             >>> accidental(abjad.NumberedPitchClass(0.5))
             NumberedPitchClass(1.5)
 
-        Returns new object of `argument` type.
+        Returns new object of ``argument`` type.
         """
         if not hasattr(argument, "_apply_accidental"):
-            message = "do not know how to apply accidental to {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"do not know how to apply accidental to {argument!r}.")
         return argument._apply_accidental(self)
 
     def __eq__(self, argument) -> bool:
@@ -193,7 +190,7 @@ class Accidental(object):
 
     def __lt__(self, argument):
         """
-        Is true when `argument` is an accidental with semitones greater
+        Is true when ``argument`` is an accidental with semitones greater
         than those of this accidental.
 
         ..  container:: example
@@ -314,12 +311,12 @@ class Accidental(object):
         semitones, remainder = divmod(semitones, 1.0)
         abbreviation = character * int(semitones)
         if remainder:
-            abbreviation += "q{}".format(character)
+            abbreviation += f"q{character}"
         return abbreviation
 
     def __sub__(self, argument):
         """
-        Subtracts `argument` from accidental.
+        Subtracts ``argument`` from accidental.
 
         ..  container:: example
 
@@ -334,8 +331,7 @@ class Accidental(object):
         Returns new accidental.
         """
         if not isinstance(argument, type(self)):
-            message = "can only subtract accidental from other accidental."
-            raise TypeError(message)
+            raise TypeError("can only subtract accidental from other accidental.")
         semitones = self.semitones - argument.semitones
         return type(self)(semitones)
 

@@ -73,7 +73,9 @@ def test_Container_is_simultaneous_05():
     """
 
     # allowed
-    container = abjad.Container(2 * abjad.Container("c'8 c'8 c'8 c'8"))
+    container = abjad.Container(
+        [abjad.Container("c'8 c'8 c'8 c'8"), abjad.Container("c'8 c'8 c'8 c'8")]
+    )
 
     # not allowed
     container = abjad.Container("c'8 c'8 c'8 c'8")

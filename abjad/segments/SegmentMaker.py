@@ -1,16 +1,17 @@
 import typing
 
 from .. import const
-from ..core.Component import attach, inspect
+from ..core.Component import attach
 from ..core.Container import Container
 from ..core.Context import Context
-from ..core.Iteration import iterate
+from ..core.Iteration import Iteration
 from ..core.Score import Score
-from ..core.Selection import select
+from ..core.Selection import Selection
 from ..core.Staff import Staff
 from ..core.Voice import Voice
-from ..indicators.LilyPondLiteral import LilyPondLiteral
+from ..core.inspectx import Inspection
 from ..lilypondfile import LilyPondFile
+from ..overrides import LilyPondLiteral
 from ..storage import StorageFormatManager
 from ..tags import Tag
 from ..timespans import TimespanList
@@ -108,8 +109,8 @@ class SegmentMaker(object):
             contexts.append(context)
         except ValueError:
             pass
-        for voice in iterate(self.score).components(Voice):
-            if inspect(voice).has_indicator(const.INTERMITTENT):
+        for voice in Iteration(self.score).components(Voice):
+            if Inspection(voice).has_indicator(const.INTERMITTENT):
                 continue
             contexts.append(voice)
         container_to_part_assignment = OrderedDict()
@@ -132,7 +133,7 @@ class SegmentMaker(object):
                 context_identifier = suffixed_context_name
             context.identifier = f"%*% {context_identifier}"
             part_container_count = 0
-            for container in iterate(context).components(Container):
+            for container in Iteration(context).components(Container):
                 if not container.identifier:
                     continue
                 if container.identifier.startswith("%*% Part"):
@@ -146,11 +147,11 @@ class SegmentMaker(object):
                     container_identifier = String(container_identifier)
                     assert container_identifier.is_lilypond_identifier()
                     assert container_identifier not in container_to_part_assignment
-                    timespan = inspect(container).timespan()
+                    timespan = Inspection(container).timespan()
                     pair = (part, timespan)
                     container_to_part_assignment[container_identifier] = pair
                     container.identifier = f"%*% {container_identifier}"
-        for staff in iterate(self.score).components(Staff):
+        for staff in Iteration(self.score).components(Staff):
             if segment_name:
                 context_identifier = f"{segment_name}_{staff.name}"
             else:
@@ -254,22 +255,22 @@ class SegmentMaker(object):
         Comments measure numbers in ``score``.
         """
         offset_to_measure_number = {}
-        for context in iterate(score).components(Context):
+        for context in Iteration(score).components(Context):
             if not context.simultaneous:
                 break
         site = Tag("abjad.SegmentMaker.comment_measure_numbers()")
-        measures = select(context).leaves().group_by_measure()
+        measures = Selection(context).leaves().group_by_measure()
         for i, measure in enumerate(measures):
             measure_number = i + 1
-            first_leaf = select(measure).leaf(0)
-            start_offset = inspect(first_leaf).timespan().start_offset
+            first_leaf = Selection(measure).leaf(0)
+            start_offset = Inspection(first_leaf).timespan().start_offset
             offset_to_measure_number[start_offset] = measure_number
-        for leaf in iterate(score).leaves():
-            offset = inspect(leaf).timespan().start_offset
+        for leaf in Iteration(score).leaves():
+            offset = Inspection(leaf).timespan().start_offset
             measure_number = offset_to_measure_number.get(offset, None)
             if measure_number is None:
                 continue
-            context = inspect(leaf).parentage().get(Context)
+            context = Inspection(leaf).parentage().get(Context)
             if context.name is None:
                 string = f"% [{context.lilypond_type} measure {measure_number}]"
             else:

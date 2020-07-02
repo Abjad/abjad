@@ -28,7 +28,7 @@ def test_Container_append_01():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container_append_02():
@@ -53,7 +53,7 @@ def test_Container_append_02():
         """
     ), print(format(tuplet))
 
-    assert abjad.inspect(tuplet).wellformed()
+    assert abjad.wellformed(tuplet)
 
 
 def test_Container_append_03():
@@ -129,7 +129,7 @@ def test_Container_append_04():
         """
     ), print(format(voice_1))
 
-    assert abjad.inspect(voice_1).wellformed()
+    assert abjad.wellformed(voice_1)
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -143,7 +143,7 @@ def test_Container_append_04():
         """
     ), print(format(voice_2))
 
-    assert abjad.inspect(voice_2).wellformed()
+    assert abjad.wellformed(voice_2)
 
 
 def test_Container_append_05():
@@ -185,7 +185,7 @@ def test_Container_append_05():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container_append_06():

@@ -74,25 +74,12 @@ class Parentage(collections.abc.Sequence):
     ### INITIALIZER ###
 
     def __init__(self, component=None):
-        assert isinstance(component, (Component, type(None)))
+        components = []
+        if component is not None:
+            assert isinstance(component, Component), repr(component)
+            components.extend(component._get_parentage())
         self._component = component
-        if component is None:
-            components = ()
-        else:
-            components = []
-            parent = component
-            prototype = (AfterGraceContainer, BeforeGraceContainer)
-            while parent is not None:
-                components.append(parent)
-                if isinstance(parent, prototype):
-                    if parent._main_leaf is not None:
-                        parent = parent._main_leaf._parent
-                    else:
-                        parent = None
-                else:
-                    parent = parent._parent
-            components = tuple(components)
-        self._components = components
+        self._components = tuple(components)
 
     ### SPECIAL METHODS ###
 

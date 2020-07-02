@@ -966,8 +966,7 @@ class SetClass(object):
         self, cardinality=1, rank=1, *, lex_rank=None, transposition_only=None
     ):
         if bool(transposition_only) and lex_rank is False:
-            message = "SG1 set-classes are always lex-rank."
-            raise Exception(message)
+            raise Exception("SG1 set-classes are always lex-rank.")
         cardinality = int(cardinality)
         assert 0 <= cardinality <= 12, repr(cardinality)
         self._cardinality = cardinality
@@ -1056,8 +1055,7 @@ class SetClass(object):
 
         Returns string.
         """
-        string = "SC({}-{}){!s}"
-        string = string.format(self.cardinality, self.rank, self.prime_form)
+        string = f"SC({self.cardinality}-{self.rank}){self.prime_form!s}"
         string = string.replace("PC", "")
         return string
 
@@ -1099,12 +1097,10 @@ class SetClass(object):
                 prime_form = str(prime_form)
                 prime_form = prime_form.replace("{", "(")
                 prime_form = prime_form.replace("}", ")")
-                message = "({}, {}): {},"
-                message = message.format(cardinality, rank, prime_form)
+                message = f"({cardinality}, {rank}): {prime_form},"
                 print(message)
             print()
-        message = "total set-classes: {}"
-        message = message.format(total)
+        message = f"total set-classes: {total}"
         print(message)
         print()
 
@@ -1466,7 +1462,7 @@ class SetClass(object):
     @staticmethod
     def from_pitch_class_set(pitch_class_set, lex_rank=None, transposition_only=None):
         """
-        Makes set-class from `pitch_class_set`.
+        Makes set-class from ``pitch_class_set``.
 
         ..  container:: example
 

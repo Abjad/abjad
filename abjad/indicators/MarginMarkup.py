@@ -1,6 +1,6 @@
 import typing
 
-from ..formatting import LilyPondFormatBundle
+from ..bundle import LilyPondFormatBundle
 from ..markups import Markup
 from ..new import new
 from ..storage import StorageFormatManager

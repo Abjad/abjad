@@ -1,7 +1,8 @@
 import typing
 
+from ..bundle import LilyPondFormatBundle
 from ..core.Context import Context
-from ..formatting import LilyPondFormatBundle, LilyPondFormatManager
+from ..overrides import OverrideInterface
 from ..storage import FormatSpecification, StorageFormatManager
 
 
@@ -162,7 +163,7 @@ class PersistentOverride(object):
         else:
             lilypond_type = self.context
         strings = []
-        string = LilyPondFormatManager.make_lilypond_override_string(
+        string = OverrideInterface.make_lilypond_override_string(
             self.grob, self.attribute, self.value, context=lilypond_type, once=False,
         )
         strings.append(string)

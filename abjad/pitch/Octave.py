@@ -74,7 +74,7 @@ class Octave(object):
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is octave with same octave number.
+        Is true when ``argument`` is octave with same octave number.
 
         ..  container:: example
 
@@ -138,7 +138,7 @@ class Octave(object):
 
     def __lt__(self, argument):
         """
-        Is true when octave is less than `argument`.
+        Is true when octave is less than ``argument``.
 
         ..  container:: example
 
@@ -284,7 +284,7 @@ class Octave(object):
 
     @classmethod
     def from_pitch(class_, pitch) -> "Octave":
-        """Makes octave from `pitch`.
+        """Makes octave from ``pitch``.
 
         ..  container:: example
 

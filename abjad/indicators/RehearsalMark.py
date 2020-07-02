@@ -1,10 +1,10 @@
 import copy
 import typing
 
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
 from ..markups import Markup
 from ..new import new
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
@@ -56,14 +56,14 @@ class RehearsalMark(object):
         *,
         markup: typing.Union[Markup, str] = None,
         number: int = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         self._tweaks = None
         self._markup = markup
         self._number = number
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -256,7 +256,7 @@ class RehearsalMark(object):
         return self._number
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

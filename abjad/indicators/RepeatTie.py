@@ -1,10 +1,9 @@
 import typing
 
 from .. import enums
-from ..core.Component import inspect
+from ..bundle import LilyPondFormatBundle
 from ..duration import Duration
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 from ..tags import Tags
 from ..utilities.String import String
@@ -64,13 +63,13 @@ class RepeatTie(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         direction_ = String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -103,11 +102,12 @@ class RepeatTie(object):
     def _attachment_test_all(self, argument):
         from ..core.Chord import Chord
         from ..core.Note import Note
+        from ..core.inspectx import Inspection
 
         if not isinstance(argument, (Chord, Note)):
             string = f"Must be note or chord (not {argument})."
             return [string]
-        previous_leaf = inspect(argument).leaf(-1)
+        previous_leaf = Inspection(argument).leaf(-1)
         if not isinstance(previous_leaf, (Chord, Note, type(None))):
             string = f"Can not attach repeat-tie to {argument}"
             string += f" when previous leaf is {previous_leaf}."
@@ -134,12 +134,13 @@ class RepeatTie(object):
     def _should_force_repeat_tie_up(leaf):
         from ..core.Chord import Chord
         from ..core.Note import Note
+        from ..core.inspectx import Inspection
 
         if not isinstance(leaf, (Note, Chord)):
             return False
         if leaf.written_duration < Duration(1):
             return False
-        clef = inspect(leaf).effective(Clef, default=Clef("treble"))
+        clef = Inspection(leaf).effective(Clef, default=Clef("treble"))
         if isinstance(leaf, Note):
             written_pitches = [leaf.written_pitch]
         else:
@@ -275,7 +276,7 @@ class RepeatTie(object):
         return self._persistent
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

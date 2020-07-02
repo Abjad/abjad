@@ -1,15 +1,15 @@
 import typing
 
 from .. import typings
+from ..bundle import LilyPondFormatBundle
 from ..duration import Duration
-from ..formatting import LilyPondFormatManager
-from ..indicators.LilyPondLiteral import LilyPondLiteral
-from ..lilypondnames.LilyPondTweakManager import tweak
+from ..overrides import LilyPondLiteral, tweak
 from ..tags import Tag, Tags
-from .Component import attach, detach, inspect
+from .Component import attach, detach
 from .Container import Container
-from .Mutation import mutate
-from .Selection import select
+from .Mutation import Mutation
+from .Selection import Selection
+from .inspectx import Inspection
 
 abjad_tags = Tags()
 
@@ -133,11 +133,11 @@ class OnBeatGraceContainer(Container):
         from .Voice import Voice
 
         anchor_leaf = self._get_on_beat_anchor_leaf()
-        anchor_voice = inspect(anchor_leaf).parentage().get(Voice)
-        final_anchor_leaf = inspect(anchor_voice).leaf(-1)
-        next_leaf = inspect(final_anchor_leaf).leaf(1)
+        anchor_voice = Inspection(anchor_leaf).parentage().get(Voice)
+        final_anchor_leaf = Inspection(anchor_voice).leaf(-1)
+        next_leaf = Inspection(final_anchor_leaf).leaf(1)
         literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
-        if inspect(next_leaf).has_indicator(literal):
+        if Inspection(next_leaf).has_indicator(literal):
             return
         if isinstance(next_leaf._parent, OnBeatGraceContainer):
             return
@@ -152,7 +152,7 @@ class OnBeatGraceContainer(Container):
         return r'\context Voice = "On_Beat_Grace_Container"'
 
     def _format_open_brackets_slot(self, bundle):
-        indent = LilyPondFormatManager.indent
+        indent = LilyPondFormatBundle.indent
         result = []
         if self.identifier:
             open_bracket = f"{{   {self.identifier}"
@@ -199,21 +199,20 @@ class OnBeatGraceContainer(Container):
         if container is None:
             return None
         if len(container) != 2:
-            message = "Combine on-beat grace container with one other voice."
-            raise Exception(message)
+            raise Exception("Combine on-beat grace container with one other voice.")
         if container.index(self) == 0:
             anchor_voice = container[-1]
         else:
             assert container.index(self) == 1
             anchor_voice = container[0]
-        anchor_leaf = select(anchor_voice).leaf(0, grace=False)
+        anchor_leaf = Selection(anchor_voice).leaf(0, grace=False)
         return anchor_leaf
 
     def _match_anchor_leaf(self):
         from .Chord import Chord
         from .Note import Note
 
-        first_grace = inspect(self).leaf(0)
+        first_grace = Inspection(self).leaf(0)
         if not isinstance(first_grace, (Note, Chord)):
             message = "must start with note or chord:\n"
             message += f"    {repr(self)}"
@@ -224,9 +223,9 @@ class OnBeatGraceContainer(Container):
         ):
             if isinstance(first_grace, Note):
                 chord = Chord(first_grace)
-                mutate(first_grace).replace(chord)
+                Mutation(first_grace).replace(chord)
                 first_grace = chord
-            anchor_pitches = inspect(anchor_leaf).pitches()
+            anchor_pitches = Inspection(anchor_leaf).pitches()
             highest_pitch = list(sorted(anchor_pitches))[-1]
             if highest_pitch not in first_grace.note_heads:
                 first_grace.note_heads.append(highest_pitch)
@@ -237,8 +236,8 @@ class OnBeatGraceContainer(Container):
     def _set_leaf_durations(self):
         if self.leaf_duration is None:
             return
-        for leaf in select(self).leaves():
-            duration = inspect(leaf).duration()
+        for leaf in Selection(self).leaves():
+            duration = Inspection(leaf).duration()
             if duration != self.leaf_duration:
                 multiplier = self.leaf_duration / duration
                 leaf.multiplier = multiplier
@@ -779,11 +778,10 @@ def on_beat_grace_container(
         Exception: grace Duration(11, 8) exceeds anchor Duration(1, 4).
 
     """
+    from ..spanners import beam, slur
     from .Container import Container
     from .Selection import Selection
     from .Voice import Voice
-    from ..spanners import beam
-    from ..spanners import slur
 
     def _site(n):
         return Tag(f"abjad.on_beat_grace_container({n})")
@@ -800,19 +798,19 @@ def on_beat_grace_container(
     )
     if not isinstance(anchor_voice_selection, Selection):
         raise Exception(f"must be selection:\n {repr(anchor_voice_selection)}")
-    anchor_leaf = inspect(anchor_voice_selection).leaf(0)
-    anchor_voice = inspect(anchor_leaf).parentage().get(Voice)
+    anchor_leaf = Inspection(anchor_voice_selection).leaf(0)
+    anchor_voice = Inspection(anchor_leaf).parentage().get(Voice)
     if anchor_voice.name is None:
         raise Exception(f"anchor voice must be named:\n   {repr(anchor_voice)}")
     anchor_voice_insert = Voice(name=anchor_voice.name)
-    mutate(anchor_voice_selection).wrap(anchor_voice_insert)
+    Mutation(anchor_voice_selection).wrap(anchor_voice_insert)
     container = Container(simultaneous=True)
-    mutate(anchor_voice_insert).wrap(container)
+    Mutation(anchor_voice_insert).wrap(container)
     container.insert(0, on_beat_grace_container)
     on_beat_grace_container._match_anchor_leaf()
     on_beat_grace_container._set_leaf_durations()
-    insert_duration = inspect(anchor_voice_insert).duration()
-    grace_container_duration = inspect(on_beat_grace_container).duration()
+    insert_duration = Inspection(anchor_voice_insert).duration()
+    grace_container_duration = Inspection(on_beat_grace_container).duration()
     if insert_duration < grace_container_duration:
         message = f"grace {repr(grace_container_duration)}"
         message += f" exceeds anchor {repr(insert_duration)}."
@@ -834,7 +832,7 @@ def on_beat_grace_container(
         3: r"\voiceThree",
         4: r"\voiceFour",
     }
-    first_grace = inspect(on_beat_grace_container).leaf(0)
+    first_grace = Inspection(on_beat_grace_container).leaf(0)
     one_voice_literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
     string = voice_number_to_string.get(grace_voice_number, None)
     if string is not None:
@@ -846,8 +844,8 @@ def on_beat_grace_container(
         detach(one_voice_literal, anchor_leaf)
         attach(LilyPondLiteral(string), anchor_leaf, tag=_site(4))
     if not do_not_stop_polyphony:
-        last_anchor_leaf = inspect(anchor_voice_selection).leaf(-1)
-        next_leaf = inspect(last_anchor_leaf).leaf(1)
+        last_anchor_leaf = Inspection(anchor_voice_selection).leaf(-1)
+        next_leaf = Inspection(last_anchor_leaf).leaf(1)
         if next_leaf is not None:
             literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
             attach(literal, next_leaf, tag=_site(5))

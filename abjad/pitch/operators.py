@@ -55,7 +55,7 @@ class CompoundOperator(object):
 
     def __add__(self, operator):
         """
-        Composes compound operator and `operator`.
+        Composes compound operator and ``operator``.
 
         ..  container:: example
 
@@ -107,7 +107,7 @@ class CompoundOperator(object):
 
     def __call__(self, argument):
         """
-        Calls compound operator on `argument`.
+        Calls compound operator on ``argument``.
 
         ..  container:: example
 
@@ -128,7 +128,7 @@ class CompoundOperator(object):
             >>> transform
             PitchClassSegment([2, 7, 8, 11])
 
-        Returns new object with type equal to that of `argument`.
+        Returns new object with type equal to that of ``argument``.
         """
         if self.operators is None:
             return argument
@@ -156,7 +156,7 @@ class CompoundOperator(object):
 
     def __radd__(self, operator):
         """
-        Composes `operator` and compound operator.
+        Composes ``operator`` and compound operator.
 
         ..  container
 
@@ -334,8 +334,8 @@ class CompoundOperator(object):
 
     def duplicate(self, counts=None, indices=None, period=None):
         """
-        Configures compound operator to duplicate pitches by `counts`, with
-        optional `indices` and `period`.
+        Configures compound operator to duplicate pitches by ``counts``, with
+        optional ``indices`` and ``period``.
 
         ..  container:: example
 
@@ -355,7 +355,7 @@ class CompoundOperator(object):
 
     def invert(self, axis=None):
         """
-        Configures compound operator to invert pitches about `axis`.
+        Configures compound operator to invert pitches about ``axis``.
 
         ..  container:: example
 
@@ -375,7 +375,7 @@ class CompoundOperator(object):
 
     def multiply(self, n=1):
         """
-        Configures compound operator to multiply pitch-classes by index `n`.
+        Configures compound operator to multiply pitch-classes by index ``n``.
 
         ..  container:: example
 
@@ -415,7 +415,7 @@ class CompoundOperator(object):
 
     def rotate(self, n=0, period=None, stravinsky=None):
         """
-        Configures compound operator to rotate pitches by index `n`.
+        Configures compound operator to rotate pitches by index ``n``.
 
         ..  container:: example
 
@@ -435,7 +435,7 @@ class CompoundOperator(object):
 
     def transpose(self, n=0):
         """
-        Configures compound operator to transpose pitches by index `n`.
+        Configures compound operator to transpose pitches by index ``n``.
 
         ..  container:: example
 
@@ -502,7 +502,7 @@ class Duplication(object):
 
     def __call__(self, argument):
         """
-        Calls rotation on `argument`.
+        Calls rotation on ``argument``.
 
         ..  container:: example
 
@@ -595,7 +595,7 @@ class Duplication(object):
             >>> operator_(pitch_classes)
             PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
 
-        Returns new object with type equal to that of `argument`.
+        Returns new object with type equal to that of ``argument``.
         """
         if not isinstance(argument, collections.abc.Sequence):
             argument = (argument,)
@@ -762,7 +762,7 @@ class Inversion(object):
 
     def __add__(self, operator):
         r"""
-        Composes inversion and `operator`.
+        Composes inversion and ``operator``.
 
         ..  container:: example
 
@@ -845,7 +845,7 @@ class Inversion(object):
 
     def __call__(self, argument):
         """
-        Calls inversion on `argument`.
+        Calls inversion on ``argument``.
 
         ..  container:: example
 
@@ -910,14 +910,12 @@ class Inversion(object):
             >>> inversion(setting)
             PitchClassSet(['c', 'af', 'bf'])
 
-        Returns new object with type equal to that of `argument`.
+        Returns new object with type equal to that of ``argument``.
         """
         if hasattr(argument, "invert"):
             result = argument.invert(axis=self.axis)
         else:
-            message = "do not know how to invert: {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"do not know how to invert: {argument!r}.")
         return result
 
     def __eq__(self, argument) -> bool:
@@ -951,8 +949,7 @@ class Inversion(object):
 
         Raises not implemented error.
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __repr__(self) -> str:
@@ -978,8 +975,8 @@ class Inversion(object):
         """
         if self.axis is None:
             return "I"
-        string = "I({})"
-        string = string.format(self.axis.get_name(locale="us"))
+        axis = self.axis.get_name(locale="us")
+        string = f"I({axis})"
         return string
 
     ### PRIVATE METHODS ###
@@ -1049,7 +1046,7 @@ class Multiplication(object):
 
     def __add__(self, operator):
         r"""
-        Composes multiplication and `operator`.
+        Composes multiplication and ``operator``.
 
         ..  container:: example
 
@@ -1122,7 +1119,7 @@ class Multiplication(object):
 
     def __call__(self, argument):
         """
-        Calls multiplication on `argument`.
+        Calls multiplication on ``argument``.
 
         ..  container:: example
 
@@ -1142,14 +1139,12 @@ class Multiplication(object):
             >>> multiplication(pitch)
             NamedPitch("b'''")
 
-        Returns new object with type equal to that of `argument`.
+        Returns new object with type equal to that of ``argument``.
         """
         if hasattr(argument, "multiply"):
             result = argument.multiply(self.n)
         else:
-            message = "do not know how to multiply: {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"do not know how to multiply: {argument!r}.")
         return result
 
     def __eq__(self, argument) -> bool:
@@ -1183,8 +1178,7 @@ class Multiplication(object):
 
         Raises not implemented error.
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __repr__(self) -> str:
@@ -1208,8 +1202,7 @@ class Multiplication(object):
             'M5'
 
         """
-        string = "M{}"
-        string = string.format(self.n)
+        string = f"M{self.n}"
         return string
 
     ### PRIVATE METHODS ###
@@ -1277,7 +1270,7 @@ class Retrograde(object):
 
     def __add__(self, operator):
         r"""
-        Composes retrograde and `operator`.
+        Composes retrograde and ``operator``.
 
         ..  container:: example
 
@@ -1360,7 +1353,7 @@ class Retrograde(object):
 
     def __call__(self, argument):
         """
-        Calls retrograde on `argument`.
+        Calls retrograde on ``argument``.
 
         ..  container:: example
 
@@ -1391,7 +1384,7 @@ class Retrograde(object):
             >>> retrograde(segment)
             PitchSegment("e' d' c' a' g' f' c'' b'")
 
-        Returns new object with type equal to that of `argument`.
+        Returns new object with type equal to that of ``argument``.
         """
         if isinstance(argument, (Pitch, PitchClass)):
             return argument
@@ -1439,8 +1432,7 @@ class Retrograde(object):
 
         Raises not implemented error.
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __repr__(self) -> str:
@@ -1525,7 +1517,7 @@ class Rotation(object):
 
     def __add__(self, operator):
         r"""
-        Composes rotation and `operator`.
+        Composes rotation and ``operator``.
 
         ..  container:: example
 
@@ -1608,7 +1600,7 @@ class Rotation(object):
 
     def __call__(self, argument):
         """
-        Calls rotation on `argument`.
+        Calls rotation on ``argument``.
 
         ..  container:: example
 
@@ -1664,7 +1656,7 @@ class Rotation(object):
             >>> rotation(pitches)
             PitchSegment("c' af bf f' df' ef' b' as'")
 
-        Returns new object with type equal to that of `argument`.
+        Returns new object with type equal to that of ``argument``.
         """
         if isinstance(argument, (Pitch, PitchClass)):
             return argument
@@ -1712,8 +1704,7 @@ class Rotation(object):
 
         Raises not implemented error.
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __repr__(self) -> str:
@@ -1747,10 +1738,10 @@ class Rotation(object):
             'rs1'
 
         """
-        string = "r{}"
         if self.stravinsky:
-            string = "rs{}"
-        string = string.format(self.n)
+            string = f"rs{self.n}"
+        else:
+            string = f"r{self.n}"
         return string
 
     ### PRIVATE METHODS ###
@@ -1853,7 +1844,7 @@ class Transposition(object):
 
     def __add__(self, operator):
         r"""
-        Composes transposition and `operator`.
+        Composes transposition and ``operator``.
 
         ..  container:: example
 
@@ -1925,7 +1916,7 @@ class Transposition(object):
 
     def __call__(self, argument):
         """
-        Calls transposition on `argument`.
+        Calls transposition on ``argument``.
 
         ..  container:: example
 
@@ -1954,7 +1945,7 @@ class Transposition(object):
             >>> transposition(pitches)
             [NumberedPitch(17), NumberedPitch(18)]
 
-        Returns new object with type equal to that of `argument`.
+        Returns new object with type equal to that of ``argument``.
         """
         if hasattr(argument, "transpose"):
             result = argument.transpose(self.n)
@@ -1965,9 +1956,7 @@ class Transposition(object):
                 items.append(item)
             result = type(argument)(items)
         else:
-            message = "do not know how to transpose: {!r}."
-            message = message.format(argument)
-            raise TypeError(message)
+            raise TypeError(f"do not know how to transpose: {argument!r}.")
         return result
 
     def __eq__(self, argument) -> bool:
@@ -2001,8 +1990,7 @@ class Transposition(object):
 
         Raises not implemented error.
         """
-        message = "right-addition not defined on {}."
-        message = message.format(type(self).__name__)
+        message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
     def __repr__(self) -> str:
@@ -2026,8 +2014,7 @@ class Transposition(object):
             'T2'
 
         """
-        string = "T{}"
-        string = string.format(self.n)
+        string = f"T{self.n}"
         return string
 
     ### PRIVATE METHODS ###

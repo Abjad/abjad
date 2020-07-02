@@ -1,5 +1,5 @@
 from .. import enums
-from ..formatting import LilyPondFormatBundle
+from ..bundle import LilyPondFormatBundle
 from ..scheme import Scheme
 from ..storage import StorageFormatManager
 

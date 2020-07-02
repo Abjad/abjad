@@ -65,7 +65,7 @@ def test_Mutation_split_01():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
     assert len(result) == 3
 
 
@@ -74,7 +74,10 @@ def test_Mutation_split_02():
     Cyclically splits consecutive notes in score.
     """
 
-    staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
@@ -138,7 +141,7 @@ def test_Mutation_split_02():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
     assert len(result) == 6
 
 
@@ -147,7 +150,10 @@ def test_Mutation_split_03():
     Cyclically splits note in score.
     """
 
-    staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
@@ -210,7 +216,7 @@ def test_Mutation_split_03():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
     assert len(result) == 4
 
 
@@ -219,7 +225,10 @@ def test_Mutation_split_04():
     Cyclically splits consecutive notes in score.
     """
 
-    staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
@@ -283,7 +292,7 @@ def test_Mutation_split_04():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
     assert len(result) == 8
 
 
@@ -292,7 +301,10 @@ def test_Mutation_split_05():
     Cyclically splits measure in score.
     """
 
-    staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
@@ -359,7 +371,7 @@ def test_Mutation_split_05():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
     assert len(result) == 4
 
 
@@ -368,7 +380,10 @@ def test_Mutation_split_06():
     Cyclically splits consecutive measures in score.
     """
 
-    staff = abjad.Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
@@ -443,7 +458,7 @@ def test_Mutation_split_06():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
     assert len(result) == 6
 
 
@@ -485,7 +500,7 @@ def test_Mutation_split_07():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_split_08():
@@ -524,7 +539,7 @@ def test_Mutation_split_08():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_split_09():
@@ -551,7 +566,7 @@ def test_Mutation_split_09():
         """
     ), print(format(voice_1))
 
-    assert abjad.inspect(voice_1).wellformed()
+    assert abjad.wellformed(voice_1)
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -563,7 +578,7 @@ def test_Mutation_split_09():
         """
     ), print(format(voice_2))
 
-    assert abjad.inspect(voice_2).wellformed()
+    assert abjad.wellformed(voice_2)
 
 
 def test_Mutation_split_10():
@@ -625,7 +640,7 @@ def test_Mutation_split_10():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
 
 
 def test_Mutation_split_11():
@@ -706,7 +721,7 @@ def test_Mutation_split_11():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
 
 
 def test_Mutation_split_12():
@@ -799,7 +814,7 @@ def test_Mutation_split_12():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
 
 
 def test_Mutation_split_13():
@@ -865,7 +880,7 @@ def test_Mutation_split_13():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_split_14():
@@ -923,7 +938,7 @@ def test_Mutation_split_14():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_split_15():
@@ -951,4 +966,4 @@ def test_Mutation_split_15():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)

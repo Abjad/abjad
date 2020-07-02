@@ -1,10 +1,11 @@
 from ..core.Chord import Chord
-from ..core.Component import attach, detach, inspect
+from ..core.Component import attach, detach
 from ..core.Container import Container
 from ..core.Note import Note
 from ..core.Rest import Rest
-from ..core.Selection import select
+from ..core.Selection import Selection
 from ..core.Tuplet import Tuplet
+from ..core.inspectx import Inspection
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
 from ..indicators.StartBeam import StartBeam
@@ -15,7 +16,7 @@ from ..indicators.Tie import Tie
 from ..indicators.TimeSignature import TimeSignature
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
-from ..system.Parser import Parser
+from .base import Parser
 
 
 class ReducedLyParser(Parser):
@@ -417,7 +418,7 @@ class ReducedLyParser(Parser):
         measure = Container()
         for x in p[3]:
             measure.append(x)
-        leaf = inspect(measure).leaf(0)
+        leaf = Inspection(measure).leaf(0)
         time_signature = TimeSignature(p[2].pair)
         attach(time_signature, leaf)
         p[0] = measure
@@ -487,9 +488,7 @@ class ReducedLyParser(Parser):
         """
         duration_log = p[1]
         dots = "." * p[2]
-        duration = Duration.from_lilypond_duration_string(
-            "{}{}".format(abs(duration_log), dots)
-        )
+        duration = Duration.from_lilypond_duration_string(f"{abs(duration_log)}{dots}")
         self._default_duration = duration
         p[0] = duration
 
@@ -618,7 +617,7 @@ class ReducedLyParser(Parser):
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = select(parsed).leaves()
+        leaves = Selection(parsed).leaves()
         if leaves:
             self._attach_indicators(leaves)
         for leaf in leaves:
@@ -668,7 +667,7 @@ class ReducedLyParser(Parser):
 ### FUNCTIONS ###
 
 
-def parse_reduced_ly_syntax(string):
+def parse_reduced_ly_syntax(string) -> Container:
     """
     Parse the reduced LilyPond rhythmic syntax:
 
@@ -676,6 +675,8 @@ def parse_reduced_ly_syntax(string):
 
         >>> string = '4 -4. 8.. 5/3 { } 4'
         >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+        >>> container
+        <{5}>
 
         >>> for component in container:
         ...     component
@@ -686,6 +687,5 @@ def parse_reduced_ly_syntax(string):
         Tuplet(Multiplier(5, 3), '')
         Note("c'4")
 
-    Returns list.
     """
     return ReducedLyParser()(string)

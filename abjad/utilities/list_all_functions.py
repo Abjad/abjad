@@ -5,7 +5,7 @@ from .yield_all_modules import yield_all_modules
 
 def list_all_functions(modules=None):
     """
-    Lists all public functions defined in `modules`.
+    Lists all public functions defined in ``modules``.
 
     ..  container:: example
 

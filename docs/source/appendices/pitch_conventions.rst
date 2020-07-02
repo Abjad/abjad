@@ -11,7 +11,8 @@ Abjad numbers pitches like this:
 
 ::
 
-    >>> score, treble_staff, bass_staff = abjad.Score.make_piano_score()
+    >>> from abjad.illustrate import _make_piano_score
+    >>> score, treble_staff, bass_staff = _make_piano_score()
     >>> duration = abjad.Duration(1, 32)
 
 ::
@@ -61,7 +62,7 @@ Abjad numbers diatonic pitches like this:
 
 ::
 
-    >>> score, treble_staff, bass_staff = abjad.Score.make_piano_score()
+    >>> score, treble_staff, bass_staff = _make_piano_score()
     >>> duration = abjad.Duration(1, 32)
 
 ::

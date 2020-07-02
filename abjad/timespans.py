@@ -12,8 +12,7 @@ from .markups import Markup, Postscript
 from .new import new
 from .ratio import Ratio
 from .storage import FormatSpecification, StorageFormatManager
-from .system.Signature import Signature
-from .utilities.Expression import Expression
+from .utilities.Expression import Expression, Signature
 from .utilities.Sequence import Sequence
 from .utilities.TypedList import TypedList
 
@@ -1552,9 +1551,7 @@ class Timespan(object):
             new_stop_offset = self._stop_offset
             new_start_offset = self._stop_offset - new_duration
         else:
-            message = "unknown anchor direction: {!r}."
-            message = message.format(anchor)
-            raise ValueError(message)
+            raise ValueError(f"unknown anchor direction: {anchor!r}.")
         result = new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
         return result
 
@@ -5096,11 +5093,9 @@ class TimespanList(TypedList):
         if len(timespans) == 1:
             return timespans[0]
         elif 1 < len(timespans):
-            message = "extra timespan."
-            raise Exception(message)
+            raise Exception("extra timespan.")
         else:
-            message = "missing timespan."
-            raise Exception(message)
+            raise Exception("missing timespan.")
 
     def get_timespans_that_satisfy_time_relation(self, time_relation) -> "TimespanList":
         """
@@ -5145,9 +5140,7 @@ class TimespanList(TypedList):
                 if time_relation(*timespan.offsets):
                     result.append(timespan)
             else:
-                message = "unknown time relation: {!r}."
-                message = message.format(time_relation)
-                raise ValueError(message)
+                raise ValueError(f"unknown time relation: {time_relation!r}.")
         return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation) -> bool:

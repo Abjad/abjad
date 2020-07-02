@@ -9,7 +9,142 @@ import uqbar.enums
 
 from ..new import new
 from ..storage import FormatSpecification, StorageFormatManager
-from ..system.Signature import Signature
+
+
+class Signature(object):
+    """
+    Signature.
+
+    Decorates expression-enabled methods.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        "_argument_list_callback",
+        "_is_operator",
+        "_markup_maker_callback",
+        "_method_name",
+        "_method_name_callback",
+        "_string_template_callback",
+        "_subscript",
+        "_superscript",
+    )
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        argument_list_callback=None,
+        is_operator=None,
+        markup_maker_callback=None,
+        method_name=None,
+        method_name_callback=None,
+        string_template_callback=None,
+        subscript=None,
+        superscript=None,
+    ):
+        self._argument_list_callback = argument_list_callback
+        self._is_operator = is_operator
+        self._markup_maker_callback = markup_maker_callback
+        self._method_name = method_name
+        self._method_name_callback = method_name_callback
+        self._string_template_callback = string_template_callback
+        self._subscript = subscript
+        self._superscript = superscript
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, method):
+        """
+        Calls signature decorator on ``method``.
+
+        Returns ``method`` with metadata attached.
+        """
+        method.argument_list_callback = self.argument_list_callback
+        method.is_operator = self.is_operator
+        method.markup_maker_callback = self.markup_maker_callback
+        method.method_name = self.method_name
+        method.method_name_callback = self.method_name_callback
+        method.string_template_callback = self.string_template_callback
+        method.subscript = self.subscript
+        method.superscript = self.superscript
+        method.has_signature_decorator = True
+        return method
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def argument_list_callback(self):
+        """
+        Gets argument list callback.
+
+        Returns string or none.
+        """
+        return self._argument_list_callback
+
+    @property
+    def is_operator(self):
+        """
+        Is true when method typesets like operator.
+
+        Returns true, false or none.
+        """
+        return self._is_operator
+
+    @property
+    def markup_maker_callback(self):
+        """
+        Gets markup maker callback.
+
+        Returns string or none.
+        """
+        return self._markup_maker_callback
+
+    @property
+    def method_name(self):
+        """
+        Gets method name.
+
+        Returns string or none.
+        """
+        return self._method_name
+
+    @property
+    def method_name_callback(self):
+        """
+        Gets method name callback.
+
+        Returns string or none.
+        """
+        return self._method_name_callback
+
+    @property
+    def string_template_callback(self):
+        """
+        Gets string template callback.
+
+        Returns string or none.
+        """
+        return self._string_template_callback
+
+    @property
+    def subscript(self):
+        """
+        Gets subscript.
+
+        Returns string or none.
+        """
+        return self._subscript
+
+    @property
+    def superscript(self):
+        """
+        Gets superscript.
+
+        Returns string or none.
+        """
+        return self._superscript
 
 
 class Expression(object):
@@ -123,9 +258,6 @@ class Expression(object):
         subexpressions=None,
         template=None,
     ):
-        #        if evaluation_template is not None:
-        #            if "abjad.core.Selection" in evaluation_template:
-        #                raise Exception(evaluation_template)
         if argument_values is not None:
             assert isinstance(argument_values, dict)
             argument_values = argument_values or None
@@ -134,8 +266,7 @@ class Expression(object):
             callbacks = tuple(callbacks)
         self._callbacks = callbacks
         if not isinstance(evaluation_template, (str, type(None))):
-            message = "must be string or none: {!r}."
-            message = message.format(evaluation_template)
+            message = f"must be string or none: {evaluation_template!r}."
             raise TypeError(message)
         self._evaluation_template = evaluation_template
         self._force_return = force_return
@@ -147,16 +278,13 @@ class Expression(object):
         self._is_composite = is_composite
         self._is_initializer = is_initializer
         if not isinstance(keywords, (dict, type(None))):
-            message = "keywords must be dictionary or none: {!r}."
-            message = message.format(keywords)
-            raise TypeError(message)
+            raise TypeError(f"keywords must be dictionary or none: {keywords!r}.")
         if is_postfix is not None:
             is_postfix = bool(is_postfix)
         self._is_postfix = is_postfix
         self._keywords = keywords
         if not isinstance(map_operand, (Expression, list, type(None))):
-            message = "must be expression, expression list or none: {!r}."
-            message = message.format(map_operand)
+            message = f"must be expression, expression list or none: {map_operand!r}."
             raise TypeError(message)
         self._lone = lone
         if map_index is not None:
@@ -168,29 +296,21 @@ class Expression(object):
         self._markup_maker_callback = markup_maker_callback
         self._module_names = module_names
         if not isinstance(name, (str, type(None))):
-            message = "name must be string or none: {!r}."
-            message = message.format(name)
-            raise TypeError(name)
+            raise TypeError(f"name must be string or none: {name!r}.")
         self._name = name
         if not isinstance(next_name, (str, type(None))):
-            message = "next name must be string or none: {!r}."
-            message = message.format(next_name)
-            raise TypeError(next_name)
+            raise TypeError(f"next name must be string or none: {next_name!r}.")
         self._next_name = next_name
         self._precedence = precedence
         self._proxy_class = proxy_class
         if not isinstance(string_template, (str, type(None))):
-            message = "must be string or none: {!r}."
-            message = message.format(string_template)
-            raise TypeError(message)
+            raise TypeError(f"must be string or none: {string_template!r}.")
         if qualified_method_name is not None:
             assert isinstance(qualified_method_name, str)
         self._qualified_method_name = qualified_method_name
         self._string_template = string_template
         if not isinstance(subclass_hook, (str, type(None))):
-            message = "must be string or none: {!r}."
-            message = message.format(subclass_hook)
-            raise TypeError(message)
+            raise TypeError(f"must be string or none: {subclass_hook!r}.")
         self._subclass_hook = subclass_hook
         if subexpressions is not None:
             subexpressions = tuple(subexpressions)
@@ -373,13 +493,13 @@ class Expression(object):
             if hasattr(self._proxy_class, name):
                 proxy_object = self._proxy_class()
                 if not hasattr(proxy_object, name):
-                    message = "proxy object {!r} has no attribute {!r}."
-                    message = message.format(proxy_object, name)
+                    message = (
+                        f"proxy object {proxy_object!r} has no attribute {name!r}."
+                    )
                     raise Exception(message)
                 if not hasattr(proxy_object, "_expression"):
                     class_name = proxy_object.__name__
-                    message = "does not implement expression protocol: {}."
-                    message = message.format(class_name)
+                    message = f"does not implement expression protocol: {class_name}."
                     raise Exception(message)
                 proxy_object._expression = self
                 callable_ = getattr(proxy_object, name)
@@ -387,9 +507,8 @@ class Expression(object):
                 if inspect.isfunction(callable_):
                     callable_.__dict__["frozen_expression"] = self
                 return callable_
-        message = "{} object has no attribute {!r}."
-        message = message.format(type(self).__name__, name)
-        raise AttributeError(message)
+        class_name = type(self).__name__
+        raise AttributeError(f"{class_name} object has no attribute {name!r}.")
 
     def __getitem__(self, argument):
         """
@@ -460,8 +579,7 @@ class Expression(object):
     ### PRIVATE METHODS ###
 
     def _apply_callback_markup(self, name, direction=None, previous_callback=None):
-        from ..markups import Markup
-        from ..markups import MarkupList
+        from ..markups import Markup, MarkupList
 
         if previous_callback and previous_callback.next_name:
             name = previous_callback.next_name
@@ -511,15 +629,12 @@ class Expression(object):
                 string = previous_callback.next_name
             template = callback.string_template
             if template is None:
-                message = "callback {!r} has no string template."
-                message = message.format(callback)
-                raise ValueError(message)
+                raise ValueError(f"callback {callback!r} has no string template.")
             try:
                 string = template.format(string)
             except Exception as e:
-                message = "callback {!r} with template {!r}"
-                message += " and name {!r} raises {!r}."
-                message = message.format(callback, template, string, e)
+                message = f"callback {callback!r} with template {template!r}"
+                message += f" and name {string!r} raises {e!r}."
                 raise Exception(message)
             previous_callback = callback
         return string
@@ -541,21 +656,18 @@ class Expression(object):
             for i, argument in enumerate(arguments):
                 if argument is None:
                     continue
-                string = "__argument_{i}"
-                string = string.format(i=i)
+                string = f"__argument_{i}"
                 globals_[string] = argument
                 strings.append(string)
             keywords_ = self.keywords or {}
             keywords_.update(keywords)
             for key, value in keywords_.items():
                 value = self._to_evaluable_string(value)
-                string = "{key}={value}"
-                string = string.format(key=key, value=value)
+                string = f"{key}={value}"
                 strings.append(string)
             strings = ", ".join(strings)
-            statement = "{class_name}({strings})"
             class_name = self.evaluation_template
-            statement = statement.format(class_name=class_name, strings=strings)
+            statement = f"{class_name}({strings})"
         else:
             if not arguments:
                 statement = statement.replace("{}", "")
@@ -569,8 +681,8 @@ class Expression(object):
                 try:
                     statement = statement.format(*strings)
                 except Exception as exception:
-                    message = "statement {!r} raises {!r}."
-                    message = message.format(statement, exception.args[0])
+                    arg = exception.args[0]
+                    message = f"statement {statement!r} raises {arg!r}."
                     raise type(exception)(message)
         old_phrase = "_map_index=None"
         if old_phrase in statement:
@@ -579,8 +691,8 @@ class Expression(object):
         try:
             result = eval(statement, globals_)
         except Exception as exception:
-            message = "evaluable statement {!r} raises {!r}."
-            message = message.format(statement, exception.args[0])
+            arg = exception.args[0]
+            message = f"evaluable statement {statement!r} raises {arg!r}."
             raise type(exception)(message)
         if self.force_return:
             result = __argument_0
@@ -606,9 +718,7 @@ class Expression(object):
         try:
             pairs = eval(statement, globals_)
         except (NameError, SyntaxError, TypeError) as e:
-            message = "{!r} raises {!r}."
-            message = message.format(statement, e)
-            raise Exception(message)
+            raise Exception(f"{statement!r} raises {e!r}.")
         items = []
         for count, group in pairs:
             try:
@@ -648,9 +758,7 @@ class Expression(object):
         try:
             result = eval(statement, globals_)
         except (NameError, SyntaxError, TypeError) as e:
-            message = "{!r} raises {!r}."
-            message = message.format(statement, e)
-            raise Exception(message)
+            raise Exception(f"{statement!r} raises {e!r}.")
         try:
             result = class_(result)
         except TypeError:
@@ -705,9 +813,7 @@ class Expression(object):
             if callback is None:
                 callback = getattr(Expression, callback_name, None)
             if callback is None:
-                message = "can not find callback {!r}."
-                message = message.format(callback_name)
-                raise ValueError(message)
+                raise ValueError(f"can not find callback {callback_name!r}.")
         return callback
 
     @staticmethod
@@ -716,8 +822,8 @@ class Expression(object):
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
             arguments = Expression._wrap_arguments(frame, static_class=static_class)
-            template = "{{}}.{function_name}({arguments})"
-            template = template.format(function_name=function_name, arguments=arguments)
+            template = f"{{}}.{function_name}({arguments})"
+            # template = template.format(function_name=function_name, arguments=arguments)
         finally:
             del frame
         return template
@@ -781,8 +887,7 @@ class Expression(object):
 
     @staticmethod
     def _make___getitem___markup(markup, argument):
-        from ..markups import Markup
-        from ..markups import MarkupList
+        from ..markups import Markup, MarkupList
 
         markup_list = MarkupList()
         markup_list.append(markup)
@@ -814,8 +919,7 @@ class Expression(object):
 
     @staticmethod
     def _make_establish_equivalence_markup(lhs, rhs):
-        from ..markups import Markup
-        from ..markups import MarkupList
+        from ..markups import Markup, MarkupList
 
         markup_list = MarkupList()
         lhs = Markup(lhs).bold()
@@ -876,8 +980,8 @@ class Expression(object):
         else:
             arguments = Expression._wrap_arguments(frame)
         if arguments:
-            template = "{}({{}}, {})"
-            template = template.format(method_name, arguments)
+            template = f"{method_name}({{}}, {arguments})"
+            # template = template.format(method_name, arguments)
         else:
             template = method_name + "({})"
         return template
@@ -901,9 +1005,9 @@ class Expression(object):
     ):
         assert isinstance(class_, type), repr(class_)
         if not hasattr(class_, "_expression"):
-            message = "class does not implement expression protocol: {!r}."
-            message = message.format(class_)
-            raise TypeError(message)
+            raise TypeError(
+                f"class does not implement expression protocol: {class_!r}."
+            )
         parts = class_.__module__.split(".")
         if parts[-1] != class_.__name__:
             parts.append(class_.__name__)
@@ -937,9 +1041,7 @@ class Expression(object):
         globals_ = self._make_globals()
         method = eval(qualified_method_name, globals_)
         if not getattr(method, "has_signature_decorator", False):
-            message = "{} has no signature decorator."
-            message = message.format(method)
-            raise Exception(message)
+            raise Exception(f"{method} has no signature decorator.")
         callback_name = getattr(method, "markup_maker_callback", None)
         if callback_name is not None:
             parts = qualified_method_name.split(".")
@@ -1000,8 +1102,7 @@ class Expression(object):
     def _make_operator_markup(
         markup, method_name=None, subscript=None, superscript=None
     ):
-        from ..markups import Markup
-        from ..markups import MarkupList
+        from ..markups import Markup, MarkupList
 
         markup_list = MarkupList([method_name, markup])
         if superscript is not None:
@@ -1052,9 +1153,7 @@ class Expression(object):
             stop = i.stop
             step = i.step
         else:
-            message = "must be integer or slice: {!r}."
-            message = message.format(i)
-            raise TypeError(message)
+            raise TypeError(f"must be integer or slice: {i!r}.")
         subscript_string = subscript_string.format(
             i=i, start=start, stop=stop, step=step
         )
@@ -1556,8 +1655,8 @@ class Expression(object):
                     }
 
         """
-        template = "{name} = {{}}"
-        template = template.format(name=name)
+        template = f"{name} = {{}}"
+        # template = template.format(name=name)
         callback = self.make_callback(
             evaluation_template="{}",
             is_composite=True,
@@ -1592,9 +1691,7 @@ class Expression(object):
                         name = callback.name
                         break
             if name is None:
-                message = "expression name not found: {!r}."
-                message = message.format(self)
-                raise ValueError(message)
+                raise ValueError(f"expression name not found: {self!r}.")
             markup = self._apply_callback_markup(name)
         if markup is not None:
             markup = new(markup, direction=direction)
@@ -1689,15 +1786,11 @@ class Expression(object):
                 strings.append(string)
             template = self.string_template
             if template is None:
-                message = "expression has no string template: {!r}."
-                message = message.format(self)
-                raise ValueError(message)
+                raise ValueError(f"expression has no string template: {self!r}.")
             try:
                 string = template.format(*strings)
             except Exception as e:
-                message = "{!r} with template {!r} raises {!r}."
-                message = message.format(self, template, e)
-                raise Exception(message)
+                raise Exception(f"{self!r} with template {template!r} raises {e!r}.")
             return self._compile_callback_strings(string)
         else:
             if name is None:
@@ -1708,9 +1801,7 @@ class Expression(object):
                         name = callback.name
                         break
             if name is None:
-                message = "expression name not found: {!r}."
-                message = message.format(self)
-                raise ValueError(message)
+                raise ValueError(f"expression name not found: {self!r}.")
             return self._compile_callback_strings(name)
 
     def label(self, **keywords) -> "Expression":

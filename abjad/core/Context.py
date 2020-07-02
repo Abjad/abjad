@@ -1,11 +1,10 @@
 import copy
 import typing
 
-from ..formatting import LilyPondFormatManager
-from ..instruments import Instrument
-from ..lilypondnames.LilyPondContext import LilyPondContext
+from ..bundle import LilyPondFormatBundle
+from ..ly.LilyPondContext import LilyPondContext
 from ..tags import Tag
-from .Component import Wrapper, inspect
+from .Component import Wrapper
 from .Container import Container
 
 
@@ -154,7 +153,7 @@ class Context(Container):
         return string
 
     def _format_open_brackets_slot(self, bundle):
-        indent = LilyPondFormatManager.indent
+        indent = LilyPondFormatBundle.indent
         result = []
         if self.simultaneous:
             if self.identifier:
@@ -234,38 +233,6 @@ class Context(Container):
     def _get_lilypond_format(self):
         self._update_now(indicators=True)
         return self._format_component()
-
-    @staticmethod
-    def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=None):
-        wrappers = {}
-        for wrapper in dependent_wrappers:
-            if wrapper.annotation:
-                continue
-            indicator = wrapper.indicator
-            if not getattr(indicator, "persistent", False):
-                continue
-            assert isinstance(indicator.persistent, bool)
-            should_omit = False
-            if omit_with_indicator is not None:
-                parentage = inspect(wrapper.component).parentage()
-                for component in parentage:
-                    if inspect(component).has_indicator(omit_with_indicator):
-                        should_omit = True
-                        continue
-            if should_omit:
-                continue
-            if hasattr(indicator, "parameter"):
-                key = indicator.parameter
-            elif isinstance(indicator, Instrument):
-                key = "Instrument"
-            else:
-                key = str(type(indicator))
-            if (
-                key not in wrappers
-                or wrappers[key].start_offset <= wrapper.start_offset
-            ):
-                wrappers[key] = wrapper
-        return wrappers
 
     def _get_repr_kwargs_names(self):
         if self.lilypond_type == type(self).__name__:
