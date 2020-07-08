@@ -2,12 +2,11 @@ import functools
 import numbers
 import typing
 
-from ..core.Iteration import iterate
 from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .Octave import Octave
 from .pitchclasses import NamedPitchClass
-from .pitches import NamedPitch, NumberedPitch
+from .pitches import NamedPitch, NumberedPitch, Pitch
 
 
 @functools.total_ordering
@@ -90,7 +89,7 @@ class PitchRange(object):
 
     def __contains__(self, argument) -> bool:
         """
-        Is true when pitch range contains `argument`.
+        Is true when pitch range contains ``argument``.
 
         ..  container:: example
 
@@ -261,33 +260,16 @@ class PitchRange(object):
             True
 
         """
-        # TODO: remove dependency
-        from ..core.Component import inspect
-
         if isinstance(argument, (int, float)):
             pitch = NamedPitch(argument)
             return self._contains_pitch(pitch)
-        elif isinstance(argument, NamedPitch):
+        if isinstance(argument, Pitch):
             return self._contains_pitch(argument)
-        elif hasattr(argument, "written_pitch"):
-            sounding_pitch = inspect(argument).sounding_pitch()
-            return self._contains_pitch(sounding_pitch)
-        elif hasattr(argument, "written_pitches"):
-            sounding_pitches = inspect(argument).sounding_pitches()
-            return all(self._contains_pitch(x) for x in sounding_pitches)
-        pitches = list(iterate(argument).pitches())
-        if pitches:
-            return all(self._contains_pitch(x) for x in pitches)
-        else:
-            try:
-                return all(self._contains_pitch(x) for x in argument)
-            except TypeError:
-                return False
-        return False
+        raise Exception(f"must be pitch or number {argument!r}.")
 
     def __eq__(self, argument):
         """
-        Is true when `argument` is a pitch range with start and stop equal
+        Is true when ``argument`` is a pitch range with start and stop equal
         to those of this pitch range.
 
         ..  container:: example
@@ -325,8 +307,8 @@ class PitchRange(object):
         """
         Formats pitch range.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        Set ``format_specification`` to ``''`` or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
 
         Returns string.
         """
@@ -352,7 +334,7 @@ class PitchRange(object):
     def __lt__(self, argument):
         """
         Is true when start pitch of this pitch-range is less than start
-        pitch of `argument` pitch range.
+        pitch of ``argument`` pitch range.
 
         ..  container:: example
 
@@ -485,9 +467,7 @@ class PitchRange(object):
         range_string = range_string.replace("+inf", "1000")
         match = constants._range_string_regex.match(range_string)
         if match is None:
-            message = "can not instantiate pitch range: {!r}"
-            message = message.format(range_string)
-            raise ValueError(message)
+            raise ValueError(f"can not instantiate pitch range: {range_string!r}")
         group_dict = match.groupdict()
         start_punctuation = group_dict["open_bracket"]
         start_pitch_string = group_dict["start_pitch"]
@@ -611,7 +591,7 @@ class PitchRange(object):
 
         """
         octave = Octave(octave)
-        return PitchRange("[C{}, C{})".format(octave.number, octave.number + 1))
+        return PitchRange(f"[C{octave.number}, C{octave.number + 1})")
 
     @staticmethod
     def from_pitches(
@@ -652,7 +632,7 @@ class PitchRange(object):
 
     @classmethod
     def is_range_string(class_, argument) -> bool:
-        """Is true when `argument` is a pitch range string.
+        """Is true when ``argument`` is a pitch range string.
 
         ..  container:: example
 
@@ -683,7 +663,7 @@ class PitchRange(object):
 
     def voice_pitch_class(self, pitch_class):
         """
-        Voices `pitch_class`:
+        Voices ``pitch_class``:
 
         ..  container:: example
 

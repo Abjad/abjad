@@ -302,7 +302,7 @@ _alphabetic_accidental_regex_atom = (
 
 _symbolic_accidental_regex_atom = "(?P<symbolic_accidental>[#]+[+]?|[b]+[~]?|[+]|[~]|)"
 
-_octave_number_regex_atom = "(?P<octave_number>{}|)".format(_integer_regex_atom)
+_octave_number_regex_atom = f"(?P<octave_number>{_integer_regex_atom}|)"
 
 _octave_tick_regex_atom = "(?P<octave_tick>,+|'+|)"
 

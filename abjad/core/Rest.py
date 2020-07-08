@@ -41,14 +41,12 @@ class Rest(Leaf):
         multiplier: typings.DurationTyping = None,
         tag: Tag = None,
     ) -> None:
-        from ..parsers.parse import parse
-
         original_input = written_duration
         if isinstance(written_duration, Leaf):
             multiplier = written_duration.multiplier
         if isinstance(written_duration, str):
             string = f"{{ {written_duration} }}"
-            parsed = parse(string)
+            parsed = self._parse_lilypond_string(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
         if isinstance(written_duration, Leaf):

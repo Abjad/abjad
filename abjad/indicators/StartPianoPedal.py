@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
@@ -77,15 +77,13 @@ class StartPianoPedal(object):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, kind: str = None, *, tweaks: LilyPondTweakManager = None
-    ) -> None:
+    def __init__(self, kind: str = None, *, tweaks: TweakInterface = None) -> None:
         if kind is not None:
             assert kind in ("sustain", "sostenuto", "corda")
         self._kind = kind
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -197,7 +195,7 @@ class StartPianoPedal(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 
@@ -210,13 +208,13 @@ class StartPianoPedal(object):
             >>> abjad.tweak(start_piano_pedal).color = 'blue'
             >>> abjad.f(start_piano_pedal)
             abjad.StartPianoPedal(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
             >>> abjad.f(start_piano_pedal_2)
             abjad.StartPianoPedal(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
         """

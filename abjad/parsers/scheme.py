@@ -2,7 +2,7 @@ from ply import lex
 
 from .. import exceptions
 from ..scheme import Scheme, SchemePair
-from ..system.Parser import Parser
+from .base import Parser
 
 
 class SchemeParser(Parser):
@@ -48,10 +48,10 @@ class SchemeParser(Parser):
 
     A = r"[A-Za-z]"
     N = r"[0-9]"
-    DIGIT = r"{}".format(N)
-    UNSIGNED = r"{}+".format(N)
+    DIGIT = rf"{N}"
+    UNSIGNED = rf"{N}+"
     HEX = r"(X|x)[A-Fa-f0-9]+"
-    INT = r"(-?{})".format(UNSIGNED)
+    INT = rf"(-?{UNSIGNED})"
     REAL = r"(({}\.{}*)|(-?\.{}+))".format(INT, N, N)
     INITIAL = r"({}|!|\$|%|&|\*|/|<|>|\?|~|_|\^|:|=)".format(A)
     SUBSEQUENT = r"({}|{}|\.|\+|-)".format(INITIAL, N)
@@ -241,9 +241,7 @@ class SchemeParser(Parser):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         if self.debug:
-            print(
-                "SchemeParser-{}: Illegal character {!r}".format(id(self), t.value[0])
-            )
+            print(f"SchemeParser-{id(self)}: Illegal character {t.value[0]!r}")
         # t.lexer.skip(1)
 
     t_quote_error = t_error

@@ -541,13 +541,10 @@ class Ratio(NonreducedRatio):
         Returns result with weight equal to absolute value of ``n``.
         """
         if not mathtools.is_integer_equivalent_number(n):
-            message = "is not integer-equivalent number: {!r}."
-            message = message.format(n)
-            raise TypeError(message)
+            raise TypeError(f"is not integer-equivalent number: {n!r}.")
         ratio = self.numbers
         if not all(mathtools.is_integer_equivalent_number(part) for part in ratio):
-            message = "some parts in {!r} not integer-equivalent numbers."
-            message = message.format(ratio)
+            message = f"some parts in {ratio!r} not integer-equivalent numbers."
             raise TypeError(message)
         result = [0]
         divisions = [

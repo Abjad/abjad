@@ -1,7 +1,7 @@
 from ..pitch.intervals import NamedInterval
 from ..pitch.segments import IntervalSegment
 from ..storage import FormatSpecification, StorageFormatManager
-from ..utilities.Sequence import sequence
+from ..utilities.Sequence import Sequence
 
 
 class Mode(object):
@@ -37,9 +37,7 @@ class Mode(object):
         elif isinstance(mode_name, Mode):
             mode_name = mode_name.mode_name
         else:
-            message = "must be mode or mode name: {!r}."
-            message = message.format(mode_name)
-            raise TypeError(message)
+            raise TypeError(f"must be mode or mode name: {mode_name!r}.")
         mdi_segment = self._initialize_with_mode_name(mode_name)
         self._named_interval_segment = mdi_segment
         self._mode_name = mode_name
@@ -147,27 +145,25 @@ class Mode(object):
         A2 = NamedInterval("aug2")
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if mode_name == "dorian":
-            mdi_segment.extend(sequence(dorian).rotate(n=0))
+            mdi_segment.extend(Sequence(dorian).rotate(n=0))
         elif mode_name == "phrygian":
-            mdi_segment.extend(sequence(dorian).rotate(n=-1))
+            mdi_segment.extend(Sequence(dorian).rotate(n=-1))
         elif mode_name == "lydian":
-            mdi_segment.extend(sequence(dorian).rotate(n=-2))
+            mdi_segment.extend(Sequence(dorian).rotate(n=-2))
         elif mode_name == "mixolydian":
-            mdi_segment.extend(sequence(dorian).rotate(n=-3))
+            mdi_segment.extend(Sequence(dorian).rotate(n=-3))
         elif mode_name in ("aeolian", "minor", "natural minor"):
-            mdi_segment.extend(sequence(dorian).rotate(n=-4))
+            mdi_segment.extend(Sequence(dorian).rotate(n=-4))
         elif mode_name == "locrian":
-            mdi_segment.extend(sequence(dorian).rotate(n=-5))
+            mdi_segment.extend(Sequence(dorian).rotate(n=-5))
         elif mode_name in ("ionian", "major"):
-            mdi_segment.extend(sequence(dorian).rotate(n=-6))
+            mdi_segment.extend(Sequence(dorian).rotate(n=-6))
         elif mode_name == "melodic minor":
             mdi_segment.extend([M2, m2, M2, M2, M2, M2, m2])
         elif mode_name == "harmonic minor":
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
-            message = "unknown mode name: {!r}."
-            message = message.format(mode_name)
-            raise ValueError(message)
+            raise ValueError(f"unknown mode name: {mode_name!r}.")
         return IntervalSegment(items=mdi_segment, item_class=NamedInterval)
 
     ### PUBLIC PROPERTIES ###

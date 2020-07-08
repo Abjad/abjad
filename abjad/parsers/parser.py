@@ -23,11 +23,9 @@ from ..core.Cluster import Cluster
 from ..core.Component import Component, attach
 from ..core.Container import Container
 from ..core.Context import Context
-from ..core.DrumNoteHead import DrumNoteHead
 from ..core.Leaf import Leaf
 from ..core.MultimeasureRest import MultimeasureRest
 from ..core.Note import Note
-from ..core.NoteHead import NoteHead
 from ..core.Rest import Rest
 from ..core.Score import Score
 from ..core.Skip import Skip
@@ -35,6 +33,7 @@ from ..core.Staff import Staff
 from ..core.StaffGroup import StaffGroup
 from ..core.Tuplet import Tuplet
 from ..core.Voice import Voice
+from ..core.noteheads import DrumNoteHead, NoteHead
 from ..duration import Duration, Multiplier
 from ..indicators.Articulation import Articulation
 from ..indicators.BarLine import BarLine
@@ -42,7 +41,6 @@ from ..indicators.Clef import Clef
 from ..indicators.Dynamic import Dynamic
 from ..indicators.Glissando import Glissando
 from ..indicators.KeySignature import KeySignature
-from ..indicators.LilyPondLiteral import LilyPondLiteral
 from ..indicators.MetronomeMark import MetronomeMark
 from ..indicators.StartBeam import StartBeam
 from ..indicators.StartGroup import StartGroup
@@ -69,14 +67,15 @@ from ..ly.grob_interfaces import grob_interfaces
 from ..ly.language_pitch_names import language_pitch_names
 from ..ly.markup_functions import markup_functions, markup_list_functions
 from ..markups import Markup, MarkupCommand
+from ..overrides import LilyPondLiteral
 from ..pitch import constants as pitch_constants
 from ..pitch.Accidental import Accidental
 from ..pitch.Octave import Octave
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..scheme import Scheme
-from ..system.Parser import Parser
 from ..utilities.String import String
+from .base import Parser
 
 
 class LilyPondDuration(object):
@@ -171,9 +170,7 @@ class ContextSpeccedMusic(Music):
         if self.lilypond_type in self.known_contexts:
             context = self.known_contexts[self.lilypond_type]([])
         else:
-            message = "context type not supported: {}."
-            message = message.format(self.lilypond_type)
-            raise Exception(message)
+            raise Exception(f"context type not supported: {self.lilypond_type}.")
 
         if self.optional_id is not None:
             context.name = self.optional_id
@@ -244,8 +241,7 @@ class GuileProxy(object):
             function_name = function_name[1:]
             result = getattr(self, function_name)(*arguments)
             return result
-        message = "LilyPondParser can not emulate music function: {}."
-        message = message.format(function_name)
+        message = f"LilyPondParser can not emulate music function: {function_name}."
         raise Exception(message)
 
     ### FUNCTION EMULATORS ###
@@ -718,11 +714,13 @@ class LilyPondGrammarGenerator(object):
                 for i, r in enumerate(rh):
                     if r in matches:
                         rh[i] = matches[r]
-                docstring = "{} : {}".format(nonterminal, " ".join(rh))
+                string = " ".join(rh)
+                docstring = f"{nonterminal} : {string}"
                 for i, r in enumerate(rh):
                     if r[0] == "'" and r[-1] == "'":
-                        rh[i] = "Chr{}".format(ord(r[-2]))
-                funcname = "p_{}__{}".format(nonterminal, "__".join(rh))
+                        rh[i] = f"Chr{ord(r[-2])}"
+                string = "__".join(rh)
+                funcname = f"p_{nonterminal}__{string}"
                 rewrites[funcname] = docstring
         return rewrites
 
@@ -768,23 +766,19 @@ class LilyPondGrammarGenerator(object):
             for key in ly_keys:
                 funcname = key
                 docstring = productions[key]
-                f.write("    def {}(self, p):\n".format(funcname))
-                f.write("        {!r}\n".format(docstring))
-                f.write(
-                    "        p[0] = Node('{}', p[1:])\n\n\n".format(current_nonterminal)
-                )
+                f.write(f"    def {funcname}(self, p):\n")
+                f.write(f"        {docstring!r}\n")
+                f.write(f"        p[0] = Node('{current_nonterminal}', p[1:])\n\n\n")
             for funcname, docstring in sorted(productions.items()):
                 nonterminal = funcname.split("__")[0][2:]
                 if nonterminal == "start_symbol":
                     continue
                 if nonterminal != current_nonterminal:
                     current_nonterminal = nonterminal
-                    f.write("    ### {} ###\n\n\n".format(current_nonterminal))
-                f.write("    def {}(self, p):\n".format(funcname))
-                f.write("        {!r}\n".format(docstring))
-                f.write(
-                    "        p[0] = Node('{}', p[1:])\n\n\n".format(current_nonterminal)
-                )
+                    f.write(f"    ### {current_nonterminal} ###\n\n\n")
+                f.write(f"    def {funcname}(self, p):\n")
+                f.write(f"        {docstring!r}\n")
+                f.write(f"        p[0] = Node('{current_nonterminal}', p[1:])\n\n\n")
             f.write("    def p_error(self, p):\n")
             f.write("        pass\n\n")
 
@@ -1818,9 +1812,7 @@ class LilyPondLexicalDefinition(object):
     # <incl,version,sourcefilename>\"[^"]*
     def t_version_341(self, t):
         r'"[^"]*'
-        message = "end quote missing: {!r}."
-        message = message.format(t)
-        raise Exception(message)
+        raise Exception(f"end quote missing: {t!r}.")
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}
@@ -1871,7 +1863,7 @@ class LilyPondLexicalDefinition(object):
             # if isinstance(result, str):
             #    t.type = 'STRING'
             #    if t.value.find(' ') != -1:
-            #        t.value = '"{}"'.format(t.value)
+            #        t.value = f'"{t.value}"'
             # else:
             #    t.type = 'SCM_TOKEN'
             t.lexer.skip(scheme_parser.cursor_end + 1)
@@ -2294,9 +2286,7 @@ class LilyPondLexicalDefinition(object):
         # then, check for it in the current_module dictionary
         # which we've dumped out of LilyPond
         if identifier not in self.client._current_module:
-            message = "unknown escaped word: {!r}."
-            message = message.format(t.value)
-            raise Exception(message)
+            raise Exception(f"unknown escaped word: {t.value!r}.")
         lookup = self.client._current_module[identifier]
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
@@ -2777,9 +2767,7 @@ class LilyPondParser(Parser):
         if context in known_contexts:
             context = known_contexts[context]([])
         else:
-            message = "context type {!r} not supported."
-            message = message.format(context)
-            raise Exception(message)
+            raise Exception(f"context type {context!r} not supported.")
         if lilypond_type in ("GrandStaff", "PianoStaff"):
             context.lilypond_type = lilypond_type
         if optional_id is not None:
@@ -6615,9 +6603,7 @@ class SyntaxNode(object):
         """
         if isinstance(self.value, (list, tuple)):
             return self.value.__getitem__(argument)
-        message = "can not get: {!r}."
-        message = message.format(argument)
-        raise Exception(message)
+        raise Exception(f"can not get: {argument!r}.")
 
     def __len__(self):
         """
@@ -6627,8 +6613,7 @@ class SyntaxNode(object):
         """
         if isinstance(self.value, (list, tuple)):
             return len(self.value)
-        message = "value must be list or tuple."
-        raise Exception(message)
+        raise Exception("value must be list or tuple.")
 
     def __repr__(self):
         """
@@ -6636,7 +6621,7 @@ class SyntaxNode(object):
 
         Returns string.
         """
-        return "{}({}, {})".format(type(self).__name__, self.type, type(self.value))
+        return f"{type(self).__name__}({self.type}, {type(self.value)})"
 
     def __str__(self):
         """

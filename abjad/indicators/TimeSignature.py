@@ -179,12 +179,12 @@ class TimeSignature(object):
 
         """
         if not isinstance(argument, type(self)):
-            raise Exception("must be time signature: {argument!r}.")
+            raise Exception(f"must be time signature: {argument!r}.")
         nonreduced_1 = NonreducedFraction(self.numerator, self.denominator)
         nonreduced_2 = NonreducedFraction(argument.numerator, argument.denominator)
         result = nonreduced_1 + nonreduced_2
-        result = type(self)((result.numerator, result.denominator))
-        return result
+        time_signature = type(self)((result.numerator, result.denominator))
+        return time_signature
 
     def __copy__(self, *arguments) -> "TimeSignature":
         """Copies time signature."""

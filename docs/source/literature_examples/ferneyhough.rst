@@ -68,7 +68,7 @@ the second `logical tie` requires two notes to express the ``5/16`` duration:
 
 ::
 
-    >>> normal_tuplet = abjad.Tuplet.from_duration_and_ratio(abjad.Duration(1, 4), (3, 5))
+    >>> normal_tuplet = abjad.makers.tuplet_from_duration_and_ratio(abjad.Duration(1, 4), (3, 5))
     >>> staff = abjad.Staff([normal_tuplet], lilypond_type='RhythmicStaff')
     >>> show(staff)
 

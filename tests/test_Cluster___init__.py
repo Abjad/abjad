@@ -17,7 +17,7 @@ def test_Cluster___init___01():
 
 
 def test_Cluster___init___02():
-    cluster = abjad.Cluster(abjad.Note(1, (1, 4)) * 4)
+    cluster = abjad.Cluster("cs'4 cs'4 cs'4 cs'4")
     assert isinstance(cluster, abjad.Cluster)
     assert not cluster.simultaneous
     assert len(cluster) == 4

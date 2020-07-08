@@ -390,7 +390,7 @@ class StorageFormatManager(object):
             )
             for line in key_pieces[:-1]:
                 result.append(prefix + line)
-            result.append("{}{}: {}".format(prefix, key_pieces[-1], value_pieces[0]))
+            result.append(f"{prefix}{key_pieces[-1]}: {value_pieces[0]}")
             for line in value_pieces[1:]:
                 result.append(prefix + line)
             result[-1] = result[-1] + suffix
@@ -487,14 +487,14 @@ class StorageFormatManager(object):
                 pieces = agent._dispatch_formatting(
                     as_storage_format=as_storage_format, is_indented=is_indented,
                 )
-                pieces[0] = "{}={}".format(name, pieces[0])
+                pieces[0] = f"{name}={pieces[0]}"
                 for piece in pieces[:-1]:
                     keyword_argument_pieces.append(prefix + piece)
                 keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
             if not positional_argument_pieces and not keyword_argument_pieces:
-                result.append("{}()".format(class_name_prefix))
+                result.append(f"{class_name_prefix}()")
             else:
-                result.append("{}({}".format(class_name_prefix, infix))
+                result.append(f"{class_name_prefix}({infix}")
                 result.extend(positional_argument_pieces)
                 if positional_argument_pieces and not keyword_argument_pieces:
                     result[-1] = result[-1].rstrip(suffix) + infix
@@ -503,7 +503,7 @@ class StorageFormatManager(object):
                 if not as_storage_format:
                     result[-1] = result[-1].rstrip(suffix) + infix
                 if is_indented:
-                    result.append("{})".format(prefix))
+                    result.append(f"{prefix})")
                 else:
                     result.append(")")
         if is_bracketed:

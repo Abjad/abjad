@@ -9,8 +9,10 @@ Many score objects contain other score objects.
 
 ::
 
-    >>> tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
-    >>> staff = abjad.Staff(2 * tuplet)
+    >>> staff = abjad.Staff([
+    ...     abjad.Tuplet((2, 3), "c'4 d'4 e'4"),
+    ...     abjad.Tuplet((2, 3), "c'4 d'4 e'4"),
+    ... ])
     >>> score = abjad.Score([staff])
     >>> show(score)
 

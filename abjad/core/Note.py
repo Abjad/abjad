@@ -1,14 +1,12 @@
 import typing
 
-from .. import instruments, typings
+from .. import typings
 from ..duration import Duration
 from ..ly.drums import drums
 from ..pitch.pitches import NamedPitch
 from ..tags import Tag
-from .Component import inspect
-from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
-from .NoteHead import NoteHead
+from .noteheads import DrumNoteHead, NoteHead
 
 
 class Note(Leaf):
@@ -58,20 +56,18 @@ class Note(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
-        from ..parsers.parse import parse
-        from .Chord import Chord
-
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
-            parsed = parse(string)
+            parsed = self._parse_lilypond_string(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
         written_pitch = None
         is_cautionary = False
         is_forced = False
         is_parenthesized = False
-        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
+        # if len(arguments) == 1 and isinstance(arguments[0], Leaf):
+        if len(arguments) == 1 and hasattr(arguments[0], "written_duration"):
             leaf = arguments[0]
             written_pitch = None
             written_duration = leaf.written_duration
@@ -83,7 +79,7 @@ class Note(Leaf):
                 is_forced = leaf.note_head.is_forced
                 is_parenthesized = leaf.note_head.is_parenthesized
             # TODO: move into separate from_chord() constructor:
-            elif isinstance(leaf, Chord):
+            elif hasattr(leaf, "written_pitches"):
                 written_pitches = [x.written_pitch for x in leaf.note_heads]
                 if written_pitches:
                     written_pitch = written_pitches[0]
@@ -139,26 +135,6 @@ class Note(Leaf):
 
     def _get_compact_representation(self):
         return self._get_body()[0]
-
-    def _get_compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return f"{self._get_body()[0]} ~"
-        else:
-            return self._get_body()[0]
-
-    def _get_sounding_pitch(self):
-        if "sounding pitch" in inspect(self).indicators(str):
-            return self.written_pitch
-        else:
-            instrument = self._get_effective(instruments.Instrument)
-            if instrument:
-                sounding_pitch = instrument.middle_c_sounding_pitch
-            else:
-                sounding_pitch = NamedPitch("C4")
-            interval = NamedPitch("C4") - sounding_pitch
-            sounding_pitch = interval.transpose(self.written_pitch)
-            return sounding_pitch
 
     ### PUBLIC PROPERTIES ###
 

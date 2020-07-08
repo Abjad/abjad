@@ -413,12 +413,9 @@ def divisors(n) -> typing.List[int]:
     Raises not implemented error on ``0``.
     """
     if not isinstance(n, int):
-        message = "must be integer: {!r}."
-        message = message.format(n)
-        raise TypeError(message)
+        raise TypeError(f"must be integer: {n!r}.")
     if n == 0:
-        message = "all numbers divide zero evenly."
-        raise NotImplementedError(message)
+        raise NotImplementedError("all numbers divide zero evenly.")
     n = abs(n)
     divisors = [1]
     for i in range(2, int(math.sqrt(n)) + 1):
@@ -460,9 +457,7 @@ def factors(n) -> typing.List[int]:
     Returns factors in increasing order.
     """
     if not is_positive_integer(n):
-        message = "must be positive integer: {!r}."
-        message = message.format(n)
-        raise TypeError(message)
+        raise TypeError(f"must be positive integer: {n!r}.")
     factor = 2
     factors = []
     while 1 < n:
@@ -555,9 +550,7 @@ def greatest_power_of_two_less_equal(n, i=0) -> int:
 
     """
     if n <= 0:
-        message = "must be positive: {!r}."
-        message = message.format(n)
-        raise ValueError(message)
+        raise ValueError(f"must be positive: {n!r}.")
     return 2 ** (int(math.log(n, 2)) - i)
 
 
@@ -635,7 +628,8 @@ def integer_to_binary_string(n) -> str:
     ..  container:: example
 
         >>> for n in range(1, 16 + 1):
-        ...     print('{}\t{}'.format(n, abjad.mathtools.integer_to_binary_string(n)))
+        ...     string = abjad.mathtools.integer_to_binary_string(n)
+        ...     print(f"{n}\t{string}")
         ...
         1  1
         2  10
@@ -932,13 +926,9 @@ def least_common_multiple(*integers) -> int:
     """
     if len(integers) == 1:
         if not isinstance(integers[0], int):
-            message = "must be integer: {!r}."
-            message = message.format(integers[0])
-            raise TypeError(message)
+            raise TypeError(f"must be integer: {integers[0]!r}.")
         if not 0 < integers[0]:
-            message = "must be positive: {!r}."
-            message = message.format(integers[0])
-            raise ValueError(message)
+            raise ValueError(f"must be positive: {integers[0]!r}.")
         return integers[0]
     current_lcm = _least_common_multiple_helper(*integers[:2])
     for remaining_positive_integer in integers[2:]:

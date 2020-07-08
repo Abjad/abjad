@@ -9,7 +9,7 @@ def test_Staff___delitem___01():
             abjad.Rest((1, 4)),
             abjad.Chord([2, 3, 4], (1, 4)),
             abjad.Skip((1, 4)),
-            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+            abjad.Tuplet((4, 5), "c'16 c'16 c'16 c'16"),
         ]
     )
 
@@ -49,7 +49,7 @@ def test_Staff___delitem___02():
             abjad.Rest((1, 4)),
             abjad.Chord([2, 3, 4], (1, 4)),
             abjad.Skip((1, 4)),
-            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+            abjad.Tuplet((4, 5), "c'16 c'16 c'16 c'16"),
         ]
     )
 
@@ -89,7 +89,7 @@ def test_Staff___delitem___03():
             abjad.Rest((1, 4)),
             abjad.Chord([2, 3, 4], (1, 4)),
             abjad.Skip((1, 4)),
-            abjad.Tuplet((4, 5), 4 * abjad.Note(0, (1, 16))),
+            abjad.Tuplet((4, 5), "c'16 c'16 c'16 c'16"),
         ]
     )
 

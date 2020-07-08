@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
@@ -113,13 +113,13 @@ class Fermata(object):
     ### INITIALIZER ###
 
     def __init__(
-        self, command: str = "fermata", *, tweaks: LilyPondTweakManager = None
+        self, command: str = "fermata", *, tweaks: TweakInterface = None
     ) -> None:
         assert command in self._allowable_commands, repr(command)
         self._command = command
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -255,7 +255,7 @@ class Fermata(object):
         return self._context
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

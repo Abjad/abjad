@@ -33,7 +33,9 @@ def test_Parentage_logical_voice_03():
     same signature.
     """
 
-    staff = abjad.Staff(abjad.Voice("c'8 d'8 e'8 f'8") * 2)
+    staff = abjad.Staff(
+        [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("c'8 d'8 e'8 f'8")]
+    )
     staff[0].name = "foo"
     staff[1].name = "foo"
 
@@ -417,7 +419,7 @@ def test_Parentage_logical_voice_11():
     even when the staves have the same name.
     """
 
-    container = abjad.Container(2 * abjad.Staff("c'8 c'8"))
+    container = abjad.Container([abjad.Staff("c'8 c'8"), abjad.Staff("c'8 c'8")])
     container[0].name = container[1].name = "staff"
 
     assert format(container) == abjad.String.normalize(

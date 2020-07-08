@@ -4,11 +4,10 @@ import textwrap
 import typing
 import unicodedata
 
-import roman  # type: ignore
+import roman
 import six
 
 from .. import enums
-from .TypedList import TypedList
 
 
 class String(str):
@@ -1352,55 +1351,6 @@ class String(str):
         pairs.sort(key=lambda pair: pair[1])
         strings_ = [pair[0] for pair in pairs]
         return strings_
-
-    @staticmethod
-    def sort_segment_names(strings) -> typing.List["String"]:
-        """
-        Sorts segment name ``strings``.
-
-        ..  container:: example
-
-            >>> strings = ['AA', 'Z', '_11', '_9']
-            >>> abjad.String.sort_segment_names(strings)
-            ['_9', '_11', 'Z', 'AA']
-
-        """
-        names = []
-        for string in strings:
-            name = String(string)
-            if not name.is_segment_name():
-                raise ValueError(f"must be segment name (not {string!r}).")
-            names.append(name)
-
-        def _compare(name_1, name_2):
-            letter_1 = name_1.segment_letter()
-            letter_2 = name_2.segment_letter()
-            rank_1 = name_1.segment_rank()
-            rank_2 = name_2.segment_rank()
-            if letter_1 == letter_2:
-                if rank_1 < rank_2:
-                    return -1
-                if rank_1 == rank_2:
-                    return 0
-                if rank_1 > rank_2:
-                    return 1
-            if letter_1 == "_":
-                return -1
-            if letter_2 == "_":
-                return 1
-            if len(letter_1) == len(letter_2):
-                if letter_1 < letter_2:
-                    return -1
-                if letter_2 < letter_1:
-                    return 1
-            if len(letter_1) < len(letter_2):
-                return -1
-            assert len(letter_2) < len(letter_1)
-            return 1
-
-        names_ = TypedList(names)
-        names_.sort(cmp=_compare)
-        return list(names_)
 
     def strip_diacritics(self) -> "String":
         """

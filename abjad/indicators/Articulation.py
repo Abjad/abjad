@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import FormatSpecification, StorageFormatManager
 from ..utilities.String import String
 
@@ -134,7 +134,7 @@ class Articulation(object):
         name: str = None,
         *,
         direction: typing.Union[str, enums.VerticalAlignment] = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         if isinstance(name, type(self)):
             argument = name
@@ -153,8 +153,8 @@ class Articulation(object):
         self._direction = direction_
         self._format_slot = "after"
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -168,8 +168,8 @@ class Articulation(object):
         """
         Formats articulation.
 
-        Set ``format_specification`` to `''`, `'lilypond`' or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        Set ``format_specification`` to ``''``, ``'lilypond``' or ``'storage'``.
+        Interprets ``''`` equal to ``'storage'``.
         """
         if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
@@ -281,7 +281,7 @@ class Articulation(object):
         return self._name
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

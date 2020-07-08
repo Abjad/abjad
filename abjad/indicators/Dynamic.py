@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums, mathtools
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import FormatSpecification, StorageFormatManager
 from ..tags import Tags
 from ..utilities.String import String
@@ -238,7 +238,7 @@ class Dynamic(object):
             int, mathtools.Infinity, mathtools.NegativeInfinity
         ] = None,
         sforzando: bool = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         if name is not None:
             assert isinstance(name, (str, type(self))), repr(name)
@@ -285,8 +285,8 @@ class Dynamic(object):
             sforzando = bool(sforzando)
         self._sforzando = sforzando
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -1391,7 +1391,7 @@ class Dynamic(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

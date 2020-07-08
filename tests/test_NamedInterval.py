@@ -1563,7 +1563,7 @@ values = [
 
 
 @pytest.mark.parametrize("pitch_a, pitch_b, name", values)
-def test_abjad_NamedInterval_01(pitch_a, pitch_b, name):
+def test_NamedInterval_01(pitch_a, pitch_b, name):
     pitch_a = abjad.NamedPitch(pitch_a)
     pitch_b = abjad.NamedPitch(pitch_b)
     interval = abjad.NamedInterval.from_pitch_carriers(pitch_a, pitch_b)

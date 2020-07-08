@@ -26,7 +26,7 @@ def test_Container_extend_01():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container_extend_02():
@@ -57,7 +57,7 @@ def test_Container_extend_02():
         """
     ), print(format(voice_1))
 
-    assert abjad.inspect(voice_1).wellformed()
+    assert abjad.wellformed(voice_1)
 
 
 def test_Container_extend_03():
@@ -81,7 +81,7 @@ def test_Container_extend_03():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container_extend_04():
@@ -106,7 +106,7 @@ def test_Container_extend_04():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Container_extend_05():
@@ -166,7 +166,7 @@ def test_Container_extend_07():
         """
     ), print(format(voice_1))
 
-    assert abjad.inspect(voice_1).wellformed()
+    assert abjad.wellformed(voice_1)
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -179,7 +179,7 @@ def test_Container_extend_07():
         """
     ), print(format(voice_2))
 
-    assert abjad.inspect(voice_2).wellformed()
+    assert abjad.wellformed(voice_2)
 
 
 def test_Container_extend_08():
@@ -230,7 +230,7 @@ def test_Container_extend_08():
         """
     ), print(format(voice_1))
 
-    assert abjad.inspect(voice_1).wellformed()
+    assert abjad.wellformed(voice_1)
 
     assert format(voice_2) == abjad.String.normalize(
         r"""
@@ -243,7 +243,7 @@ def test_Container_extend_08():
         """
     ), print(format(voice_2))
 
-    assert abjad.inspect(voice_2).wellformed()
+    assert abjad.wellformed(voice_2)
 
 
 def test_Container_extend_09():
@@ -267,7 +267,7 @@ def test_Container_extend_09():
         """
     ), print(format(container))
 
-    assert abjad.inspect(container).wellformed()
+    assert abjad.wellformed(container)
 
 
 def test_Container_extend_10():
@@ -299,4 +299,4 @@ def test_Container_extend_10():
         """
     ), print(format(container))
 
-    assert abjad.inspect(container).wellformed()
+    assert abjad.wellformed(container)

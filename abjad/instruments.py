@@ -5,8 +5,6 @@ Instrument classes.
 import copy
 import typing
 
-from .core.Component import inspect
-from .core.Iteration import iterate
 from .markups import Markup
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
@@ -203,7 +201,9 @@ class Instrument(object):
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
-        if inspect(component_expression).has_indicator(Instrument):
+        from .core.inspectx import Inspection
+
+        if Inspection(component_expression).has_indicator(Instrument):
             string = f"Already has instrument: {component_expression}."
             return string
         return True
@@ -374,7 +374,7 @@ class Instrument(object):
     @staticmethod
     def transpose_from_sounding_pitch(argument):
         r"""
-        Transpose notes and chords in `argument` from sounding pitch
+        Transpose notes and chords in ``argument`` from sounding pitch
         to written pitch:
 
         ..  container:: example
@@ -411,8 +411,11 @@ class Instrument(object):
 
         Returns none.
         """
-        for leaf in iterate(argument).leaves(pitched=True):
-            instrument = inspect(leaf).effective(Instrument)
+        from .core.Iteration import Iteration
+        from .core.inspectx import Inspection
+
+        for leaf in Iteration(argument).leaves(pitched=True):
+            instrument = Inspection(leaf).effective(Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch
@@ -429,7 +432,7 @@ class Instrument(object):
     @staticmethod
     def transpose_from_written_pitch(argument):
         r"""
-        Transposes notes and chords in `argument` from sounding pitch
+        Transposes notes and chords in ``argument`` from sounding pitch
         to written pitch.
 
         ..  container:: example
@@ -466,8 +469,11 @@ class Instrument(object):
 
         Returns none.
         """
-        for leaf in iterate(argument).leaves(pitched=True):
-            instrument = inspect(leaf).effective(Instrument)
+        from .core.Iteration import Iteration
+        from .core.inspectx import Inspection
+
+        for leaf in Iteration(argument).leaves(pitched=True):
+            instrument = Inspection(leaf).effective(Instrument)
             if not instrument:
                 continue
             sounding_pitch = instrument.middle_c_sounding_pitch

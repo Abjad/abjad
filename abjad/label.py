@@ -5,18 +5,17 @@ import typing
 from . import enums
 from .core.Chord import Chord
 from .core.Component import Component, attach, detach
-from .core.Component import inspect as abjad_inspect
-from .core.Iteration import iterate
+from .core.Iteration import Iteration
 from .core.Note import Note
-from .core.Selection import select
+from .core.Selection import Selection
 from .core.Skip import Skip
+from .core.inspectx import Inspection
+from .core.verticalmoment import iterate_vertical_moments
 from .duration import Duration, NonreducedFraction
 from .indicators.LilyPondComment import LilyPondComment
-from .indicators.LilyPondLiteral import LilyPondLiteral
-from .lilypondnames.LilyPondGrobNameManager import override
-from .lilypondnames.LilyPondTweakManager import tweak
 from .markups import Markup, MarkupCommand
 from .new import new
+from .overrides import LilyPondLiteral, override, tweak
 from .pitch.SetClass import SetClass
 from .pitch.intervalclasses import (
     NamedIntervalClass,
@@ -232,8 +231,7 @@ class Label(object):
     def __init__(self, client=None, deactivate=None, tag=None):
         prototype = (Component, collections.abc.Iterable, type(None))
         if not isinstance(client, prototype):
-            message = f"must be component, iterable or none: {client!r}."
-            raise TypeError(message)
+            raise TypeError(f"must be component, iterable or none: {client!r}.")
         self._client = client
         self._deactivate = deactivate
         self._expression = None
@@ -438,7 +436,7 @@ class Label(object):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for leaf in iterate(self.client).leaves():
+        for leaf in Iteration(self.client).leaves():
             self._color_leaf(leaf, color)
 
     def color_note_heads(self, color_map=None):
@@ -632,7 +630,7 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
-        for leaf in iterate(self.client).leaves():
+        for leaf in Iteration(self.client).leaves():
             if isinstance(leaf, Chord):
                 for note_head in leaf.note_heads:
                     number = note_head.written_pitch.number
@@ -732,7 +730,7 @@ class Label(object):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for leaf in iterate(self.client).leaves():
+        for leaf in Iteration(self.client).leaves():
             detach(Markup, leaf)
 
     def vertical_moments(self, direction=enums.Up, prototype=None):
@@ -1808,7 +1806,7 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or int
-        vertical_moments = iterate(self.client).vertical_moments()
+        vertical_moments = iterate_vertical_moments(self.client)
         for index, vertical_moment in enumerate(vertical_moments):
             label = None
             if prototype is int:
@@ -2090,8 +2088,8 @@ class Label(object):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        for logical_tie in iterate(self.client).logical_ties():
-            duration = abjad_inspect(logical_tie).duration(in_seconds=in_seconds)
+        for logical_tie in Iteration(self.client).logical_ties():
+            duration = Inspection(logical_tie).duration(in_seconds=in_seconds)
             if denominator is not None:
                 duration = NonreducedFraction(duration)
                 duration = duration.with_denominator(denominator)
@@ -2376,7 +2374,8 @@ class Label(object):
             ..  container:: example
 
                 >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
-                >>> staff = abjad.Staff(4 * tuplet)
+                >>> tuplets = abjad.mutate(tuplet).copy(4)
+                >>> staff = abjad.Staff(tuplets)
                 >>> abjad.label(staff).with_indices(prototype=abjad.Tuplet)
                 >>> abjad.override(staff).text_script.staff_padding = 2
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -2427,7 +2426,8 @@ class Label(object):
             ..  container:: example expression
 
                 >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
-                >>> staff = abjad.Staff(4 * tuplet)
+                >>> tuplets = abjad.mutate(tuplet).copy(4)
+                >>> staff = abjad.Staff(tuplets)
                 >>> expression = abjad.label().with_indices(
                 ...     prototype=abjad.Tuplet,
                 ...     )
@@ -2483,14 +2483,14 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if prototype is None:
-            items = iterate(self.client).logical_ties()
+            items = Iteration(self.client).logical_ties()
         else:
-            items = iterate(self.client).components(prototype=prototype)
+            items = Iteration(self.client).components(prototype=prototype)
         items = list(items)
         for index, item in enumerate(items):
             string = str(index)
             label = Markup(string, direction=direction)
-            leaves = select(item).leaves()
+            leaves = Selection(item).leaves()
             first_leaf = leaves[0]
             self._attach(label, first_leaf)
 
@@ -2898,9 +2898,9 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or NamedInterval
-        for note in iterate(self.client).leaves(Note):
+        for note in Iteration(self.client).leaves(Note):
             label = None
-            next_leaf = abjad_inspect(note).leaf(1)
+            next_leaf = Inspection(note).leaf(1)
             if isinstance(next_leaf, Note):
                 interval = NamedInterval.from_pitch_carriers(note, next_leaf)
                 if prototype is NamedInterval:
@@ -3486,7 +3486,7 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         prototype = prototype or NamedPitch
-        logical_ties = iterate(self.client).logical_ties()
+        logical_ties = Iteration(self.client).logical_ties()
         for logical_tie in logical_ties:
             leaf = logical_tie.head
             label = None
@@ -4159,9 +4159,9 @@ class Label(object):
         direction = direction or enums.Up
         if global_offset is not None:
             assert isinstance(global_offset, Duration)
-        for logical_tie in iterate(self.client).logical_ties():
+        for logical_tie in Iteration(self.client).logical_ties():
             if clock_time:
-                inspector = abjad_inspect(logical_tie.head)
+                inspector = Inspection(logical_tie.head)
                 timespan = inspector.timespan(in_seconds=True)
                 start_offset = timespan.start_offset
                 if global_offset is not None:
@@ -4172,7 +4172,7 @@ class Label(object):
                 else:
                     string = f'"{string}"'
             else:
-                timespan = abjad_inspect(logical_tie.head).timespan()
+                timespan = Inspection(logical_tie.head).timespan()
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset
@@ -4298,3 +4298,296 @@ def label(client=None, deactivate=None, tag=None):
     expression = Expression()
     expression = expression.label(tag=tag)
     return expression
+
+
+class ColorMap(object):
+    """
+    Color map.
+
+    ..  container:: example
+
+        Maps pitch-classes to red, green and blue:
+
+        >>> color_map = abjad.ColorMap(
+        ...     colors=["red", "green", "blue"],
+        ...     pitch_iterables=[
+        ...         [-8, 2, 10, 21],
+        ...         [0, 11, 32, 41],
+        ...         [15, 25, 42, 43],
+        ...     ],
+        ... )
+
+        >>> abjad.f(color_map)
+        abjad.ColorMap(
+            colors=['red', 'green', 'blue'],
+            pitch_iterables=[
+                [-8, 2, 10, 21],
+                [0, 11, 32, 41],
+                [15, 25, 42, 43],
+                ],
+            )
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_color_dictionary", "_colors", "_pitch_iterables")
+
+    _publish_storage_format = True
+
+    ### INITIALIZER ###
+
+    def __init__(self, *, colors=None, pitch_iterables=None):
+        pitch_iterables = pitch_iterables or []
+        colors = colors or []
+        assert len(pitch_iterables) == len(colors)
+        self._pitch_iterables = pitch_iterables
+        self._colors = colors
+        self._color_dictionary = {}
+        self._initialize_color_dictionary()
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal
+        the initialization values of ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification="") -> str:
+        """
+        Formats color map.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> abjad.f(color_map)
+            abjad.ColorMap(
+                colors=['red', 'green', 'blue'],
+                pitch_iterables=[
+                    [-8, 2, 10, 21],
+                    [0, 11, 32, 41],
+                    [15, 25, 42, 43],
+                    ],
+                )
+
+        """
+        if format_specification in ("", "storage"):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __getitem__(self, pitch_class) -> str:
+        """
+        Gets ``pitch_class`` color.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map[11]
+            'green'
+
+        """
+        pitch_class = NumberedPitchClass(pitch_class)
+        return self._color_dictionary[pitch_class.number]
+
+    def __hash__(self) -> int:
+        """
+        Hashes Abjad value object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f"unhashable type: {self}")
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PRIVATE METHODS ###
+
+    def _initialize_color_dictionary(self):
+        for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
+            for pitch in pitch_iterable:
+                pc = NumberedPitchClass(pitch)
+                keys = self._color_dictionary.keys()
+                if pc.number in list(keys):
+                    print(pc, list(self._color_dictionary.keys()))
+                    raise KeyError("duplicated pitch-class in color map: {pc!r}.")
+                self._color_dictionary[pc.number] = color
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def colors(self) -> typing.List[str]:
+        """
+        Gets colors.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map.colors
+            ['red', 'green', 'blue']
+
+        """
+        return self._colors
+
+    @property
+    def is_twelve_tone_complete(self) -> bool:
+        """
+        Is true when color map contains all 12-ET pitch-classes.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map.is_twelve_tone_complete
+            True
+
+        """
+        pcs = range(12)
+        return set(pcs).issubset(set(self._color_dictionary.keys()))
+
+    @property
+    def is_twenty_four_tone_complete(self) -> bool:
+        """
+        Is true when color map contains all 24-ET pitch-classes.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map.is_twenty_four_tone_complete
+            False
+
+        """
+        pcs = [x / 2.0 for x in range(24)]
+        pcs = [int(x) if int(x) == x else x for x in pcs]
+        return set(pcs).issubset(set(self._color_dictionary.keys()))
+
+    @property
+    def pairs(self) -> typing.List[typing.Tuple[int, str]]:
+        """
+        Gets pairs.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> for pair in color_map.pairs:
+            ...     pair
+            ...
+            (0, 'green')
+            (1, 'blue')
+            (2, 'red')
+            (3, 'blue')
+            (4, 'red')
+            (5, 'green')
+            (6, 'blue')
+            (7, 'blue')
+            (8, 'green')
+            (9, 'red')
+            (10, 'red')
+            (11, 'green')
+
+        """
+        items = list(self._color_dictionary.items())
+        return list(sorted(items))
+
+    @property
+    def pitch_iterables(self) -> typing.List[typing.List[int]]:
+        """
+        Gets pitch iterables.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map.pitch_iterables
+            [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
+
+        """
+        return self._pitch_iterables
+
+    ### PUBLIC METHODS ###
+
+    def get(self, key, alternative=None) -> str:
+        """
+        Gets ``key`` from color map.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["red", "green", "blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map.get(11)
+            'green'
+
+        Returns ``alternative`` when ``key`` is not found.
+        """
+        try:
+            return self[key]
+        except (KeyError, TypeError, ValueError):
+            return alternative

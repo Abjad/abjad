@@ -1,31 +1,360 @@
+import abc
 import collections
 import inspect
 import itertools
+import operator
 import typing
 
-from .. import enums, typings
+from .. import enums, mathtools, typings
 from ..duration import Duration, Offset
 from ..indicators.Tie import Tie
 from ..new import new
-from ..pitch.PitchInequality import PitchInequality
+from ..pitch.pitches import NamedPitch, NumberedPitch
+from ..pitch.segments import PitchSegment
 from ..pitch.sets import PitchSet
 from ..ratio import Ratio
 from ..storage import FormatSpecification, StorageFormatManager
 from ..utilities.CyclicTuple import CyclicTuple
-from ..utilities.DurationInequality import DurationInequality
 from ..utilities.Expression import Expression
-from ..utilities.LengthInequality import LengthInequality
 from ..utilities.Pattern import Pattern
 from ..utilities.Sequence import Sequence
 from .Chord import Chord
 from .Component import Component, attach, detach
-from .Component import inspect as abjad_inspect
-from .Iteration import iterate
+from .Container import Container
+from .Context import Context
+from .Iteration import Iteration
 from .Leaf import Leaf
 from .MultimeasureRest import MultimeasureRest
 from .Note import Note
+from .Parentage import Parentage
 from .Rest import Rest
 from .Skip import Skip
+from .Tuplet import Tuplet
+from .Voice import Voice
+from .inspectx import Inspection
+
+### INEQUALITIES ###
+
+
+class Inequality(object):
+    """
+    Inequality.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Inequalities"
+
+    __slots__ = ("_operator_string", "_operator_function")
+
+    _operator_strings = ("!=", "<", "<=", "==", ">", ">=")
+
+    ### INITIALIZER ###
+
+    def __init__(self, operator_string="<"):
+        assert operator_string in self._operator_strings
+        self._operator_string = operator_string
+        self._operator_function = {
+            "!=": operator.ne,
+            "<": operator.lt,
+            "<=": operator.le,
+            "==": operator.eq,
+            ">": operator.gt,
+            ">=": operator.ge,
+        }[self._operator_string]
+
+    ### SPECIAL METHODS ###
+
+    @abc.abstractmethod
+    def __call__(self, argument):
+        """
+        Calls inequality on ``argument``.
+
+        Returns true or false.
+        """
+        raise NotImplementedError
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true equal to ``argument``.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __format__(self, format_specification="") -> str:
+        """
+        Formats inequality.
+        """
+        if format_specification in ("", "storage"):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
+    def __hash__(self) -> int:
+        """
+        Hashes object.
+        """
+        hash_values = StorageFormatManager(self).get_hash_values()
+        try:
+            result = hash(hash_values)
+        except TypeError:
+            raise TypeError(f"unhashable type: {self}")
+        return result
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def operator_string(self) -> str:
+        """
+        Gets operator string.
+
+        Returns string.
+        """
+        return self._operator_string
+
+
+class DurationInequality(Inequality):
+    """
+    Duration inequality.
+
+    ..  container:: example
+
+        >>> inequality = abjad.DurationInequality('<', (3, 4))
+        >>> abjad.f(inequality)
+        abjad.DurationInequality(
+            operator_string='<',
+            duration=abjad.Duration(3, 4),
+            )
+
+        >>> inequality(abjad.Duration(1, 2))
+        True
+
+        >>> inequality(abjad.Note("c'4"))
+        True
+
+        >>> inequality(abjad.Container("c'1 d'1"))
+        False
+
+    ..  container:: example
+
+        Has clean interpreter representation:
+
+        >>> abjad.DurationInequality('<', (3, 4))
+        DurationInequality(operator_string='<', duration=Duration(3, 4))
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Inequalities"
+
+    __slots__ = ("_duration", "_preprolated")
+
+    _publish_storage_format = True
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self, operator_string: str = "<", duration=None, *, preprolated: bool = None,
+    ) -> None:
+        Inequality.__init__(self, operator_string=operator_string)
+        if duration is None:
+            duration = mathtools.Infinity()
+        infinities = (mathtools.Infinity(), mathtools.NegativeInfinity())
+        if duration not in infinities:
+            duration = Duration(duration)
+            assert 0 <= duration
+        self._duration = duration
+        self._preprolated = preprolated
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, argument) -> bool:
+        """
+        Calls inequality on ``argument``.
+        """
+        if self.preprolated and hasattr(argument, "_get_preprolated_duration"):
+            duration = argument._get_preprolated_duration()
+        else:
+            try:
+                duration = Inspection(argument).duration()
+            except TypeError:
+                duration = Duration(argument)
+        return self._operator_function(duration, self.duration)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration(self) -> Duration:
+        """
+        Gets duration.
+        """
+        return self._duration
+
+    @property
+    def preprolated(self) -> typing.Optional[bool]:
+        """
+        Is true when inequality evaluates preprolated duration.
+        """
+        return self._preprolated
+
+
+class LengthInequality(Inequality):
+    """
+    Length inequality.
+
+    ..  container:: example
+
+        >>> inequality = abjad.LengthInequality('<', 4)
+        >>> abjad.f(inequality)
+        abjad.LengthInequality(
+            operator_string='<',
+            length=4,
+            )
+
+        >>> inequality([1, 2, 3])
+        True
+
+        >>> inequality([1, 2, 3, 4])
+        False
+
+        >>> inequality([1, 2, 3, 4, 5])
+        False
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Inequalities"
+
+    __slots__ = ("_length",)
+
+    _publish_storage_format = True
+
+    ### INITIALIZER ###
+
+    def __init__(self, operator_string="<", length=None):
+        Inequality.__init__(self, operator_string=operator_string)
+        if length is None:
+            length = mathtools.Infinity()
+        assert 0 <= length
+        infinities = (mathtools.Infinity(), mathtools.NegativeInfinity())
+        if length not in infinities:
+            length = int(length)
+        self._length = length
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, argument):
+        """
+        Calls inequality on ``argument``.
+
+        Returns true or false.
+        """
+        return self._operator_function(len(argument), self.length)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def length(self):
+        """
+        Gets length.
+
+        Returns integer.
+        """
+        return self._length
+
+
+class PitchInequality(object):
+    """
+    Pitch inequality.
+
+    ..  container:: example
+
+        >>> inequality = abjad.PitchInequality('&', 'C4 E4')
+        >>> abjad.f(inequality)
+        abjad.PitchInequality(
+            operator_string='&',
+            pitches=abjad.PitchSet(
+                [0, 4]
+                ),
+            )
+
+        >>> inequality(abjad.Staff("d'8 e' f' g'"))
+        True
+
+        >>> inequality(abjad.Staff("e'8 f' g' a'"))
+        True
+
+        >>> inequality(abjad.Staff("f'8 g' a' b'"))
+        False
+
+    .. note:: only intersection currently implemented.
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Inequalities"
+
+    __slots__ = ("_operator_string", "_pitches")
+
+    _set_theoretic_operator_strings = ("&", "|", "^")
+
+    _publish_storage_format = True
+
+    ### INITIALIZER ###
+
+    def __init__(self, operator_string="&", pitches=None):
+        assert operator_string in self._set_theoretic_operator_strings
+        self._operator_string = operator_string
+        # only intersection is currently implemented
+        if not isinstance(pitches, collections.abc.Iterable):
+            pitches = [pitches]
+        pitches = PitchSet(items=pitches, item_class=NumberedPitch)
+        self._pitches = pitches
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, argument) -> bool:
+        """
+        Calls inequality on ``argument``.
+        """
+        if not self.pitches:
+            return False
+        selection = Selection(argument)
+        pitch_set = PitchSet.from_selection(selection, item_class=NumberedPitch)
+        if self.operator_string == "&":
+            return bool(self.pitches.intersection(pitch_set))
+        else:
+            raise NotImplementedError(f"implement {self.operator_string!r}.")
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def operator_string(self):
+        """
+        Gets operator string.
+
+        Returns string.
+        """
+        return self._operator_string
+
+    @property
+    def pitches(self):
+        """
+        Gets pitches.
+
+        Returns numbered pitch set.
+        """
+        return self._pitches
+
+
+### SELECTION ###
 
 
 class Selection(collections.abc.Sequence):
@@ -236,7 +565,6 @@ class Selection(collections.abc.Sequence):
         Concatenates selection to ``argument``.
         """
         if self._expression:
-            raise Exception("BBB")
             return self._update_expression(inspect.currentframe())
         assert isinstance(argument, collections.abc.Iterable)
         items = tuple(argument) + self.items
@@ -286,7 +614,7 @@ class Selection(collections.abc.Sequence):
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         result = []
-        generator = iterate(argument).components(
+        generator = Iteration(argument).components(
             prototype, exclude=exclude, grace=grace
         )
         components = list(generator)
@@ -301,8 +629,6 @@ class Selection(collections.abc.Sequence):
         return class_(result)
 
     def _copy(self):
-        from .Container import Container
-
         assert self.are_contiguous_logical_voice()
         new_components = []
         for component in self:
@@ -314,70 +640,13 @@ class Selection(collections.abc.Sequence):
         new_components = type(self)(new_components)
         return new_components
 
-    def _fuse(self):
-        from .Tuplet import Tuplet
-
-        assert self.are_contiguous_logical_voice()
-        if self.are_leaves():
-            return self._fuse_leaves()
-        elif all(isinstance(_, Tuplet) for _ in self):
-            return self._fuse_tuplets()
-        else:
-            raise Exception("can only fuse leaves and tuplets (not {self}).")
-
-    def _fuse_leaves(self):
-        assert self.are_leaves()
-        assert self.are_contiguous_logical_voice()
-        leaves = self
-        if len(leaves) <= 1:
-            return leaves
-        originally_tied = abjad_inspect(self[-1]).has_indicator(Tie)
-        total_preprolated = leaves._get_preprolated_duration()
-        for leaf in leaves[1:]:
-            parent = leaf._parent
-            if parent:
-                index = parent.index(leaf)
-                del parent[index]
-        result = leaves[0]._set_duration(total_preprolated)
-        if not originally_tied:
-            last_leaf = select(result).leaf(-1)
-            detach(Tie, last_leaf)
-        return result
-
-    def _fuse_tuplets(self):
-        from .Container import Container
-        from .Mutation import mutate
-        from .Tuplet import Tuplet
-
-        assert self.are_contiguous_same_parent(prototype=Tuplet)
-        if len(self) == 0:
-            return None
-        first = self[0]
-        first_multiplier = first.multiplier
-        for tuplet in self[1:]:
-            if tuplet.multiplier != first_multiplier:
-                raise ValueError("tuplets must carry same multiplier.")
-        assert isinstance(first, Tuplet)
-        new_tuplet = Tuplet(first_multiplier, [])
-        wrapped = False
-        if (
-            abjad_inspect(self[0]).parentage().root
-            is not abjad_inspect(self[-1]).parentage().root
-        ):
-            dummy_container = Container(self)
-            wrapped = True
-        mutate(self).swap(new_tuplet)
-        if wrapped:
-            del dummy_container[:]
-        return new_tuplet
-
     def _get_component(self, prototype=None, n=0, recurse=True):
         prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         if 0 <= n:
             if recurse:
-                components = iterate(self).components(prototype)
+                components = Iteration(self).components(prototype)
             else:
                 components = self.items
             for i, x in enumerate(components):
@@ -385,7 +654,7 @@ class Selection(collections.abc.Sequence):
                     return x
         else:
             if recurse:
-                components = iterate(self).components(prototype, reverse=True)
+                components = Iteration(self).components(prototype, reverse=True)
             else:
                 components = reversed(self.items)
             for i, x in enumerate(components):
@@ -401,8 +670,8 @@ class Selection(collections.abc.Sequence):
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
         for component in self:
-            start_offsets.append(abjad_inspect(component).timespan().start_offset)
-            stop_offsets.append(abjad_inspect(component).timespan().stop_offset)
+            start_offsets.append(Inspection(component).timespan().start_offset)
+            stop_offsets.append(Inspection(component).timespan().stop_offset)
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self, ignore_before_after_grace=None):
@@ -436,8 +705,6 @@ class Selection(collections.abc.Sequence):
         """
         Not composer-safe.
         """
-        from .Container import Container
-
         assert self.are_contiguous_same_parent()
         assert isinstance(container, Container)
         assert not container
@@ -451,8 +718,6 @@ class Selection(collections.abc.Sequence):
         """
         Not composer-safe.
         """
-        from .Container import Container
-
         assert self.are_contiguous_same_parent()
         assert isinstance(container, Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
@@ -466,7 +731,7 @@ class Selection(collections.abc.Sequence):
         result_ = []
         for item in result:
             if isinstance(item, Component):
-                logical_tie = item._get_logical_tie()
+                logical_tie = Inspection._get_logical_tie(item)
                 if head == (item is logical_tie.head):
                     result_.append(item)
                 else:
@@ -476,7 +741,7 @@ class Selection(collections.abc.Sequence):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = component._get_logical_tie()
+                    logical_tie = Inspection._get_logical_tie(component)
                     if head == logical_tie.head:
                         selection.append(item)
                     else:
@@ -490,10 +755,7 @@ class Selection(collections.abc.Sequence):
 
     @staticmethod
     def _is_immediate_child_of_outermost_voice(component):
-        from .Context import Context
-        from .Voice import Voice
-
-        parentage = abjad_inspect(component).parentage()
+        parentage = Inspection(component).parentage()
         context = parentage.get(Voice, -1) or parentage.get(Context)
         if context is not None:
             return parentage.component._parent is context
@@ -501,7 +763,7 @@ class Selection(collections.abc.Sequence):
 
     def _iterate_components(self, recurse=True, reverse=False):
         if recurse:
-            return iterate(self).components()
+            return Iteration(self).components()
         else:
             return self._iterate_top_level_components(reverse=reverse)
 
@@ -525,7 +787,7 @@ class Selection(collections.abc.Sequence):
         result_ = []
         for item in result:
             if isinstance(item, Component):
-                logical_tie = item._get_logical_tie()
+                logical_tie = Inspection._get_logical_tie(item)
                 if tail == (item is logical_tie.tail):
                     result_.append(item)
                 else:
@@ -535,7 +797,7 @@ class Selection(collections.abc.Sequence):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
-                    logical_tie = component._get_logical_tie()
+                    logical_tie = Inspection._get_logical_tie(component)
                     if tail == logical_tie.tail:
                         selection.append(item)
                     else:
@@ -728,19 +990,18 @@ class Selection(collections.abc.Sequence):
         if len(self) == 0:
             return True
         if all(
-            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
-            for _ in self
+            isinstance(_, prototype) and Inspection(_).parentage().orphan for _ in self
         ):
             return True
         first = self[0]
         if not isinstance(first, prototype):
             return False
-        first_parentage = abjad_inspect(first).parentage()
+        first_parentage = Inspection(first).parentage()
         first_logical_voice = first_parentage.logical_voice()
         first_root = first_parentage.root
         previous = first
         for current in self[1:]:
-            current_parentage = abjad_inspect(current).parentage()
+            current_parentage = Inspection(current).parentage()
             current_logical_voice = current_parentage.logical_voice()
             # false if wrong type of component found
             if not isinstance(current, prototype):
@@ -851,8 +1112,7 @@ class Selection(collections.abc.Sequence):
         if len(self) == 0:
             return True
         if all(
-            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
-            for _ in self
+            isinstance(_, prototype) and Inspection(_).parentage().orphan for _ in self
         ):
             return True
         first = self[0]
@@ -871,7 +1131,7 @@ class Selection(collections.abc.Sequence):
                 current, ignore_before_after_grace=ignore_before_after_grace
             ):
                 strictly_contiguous = False
-            if not abjad_inspect(current).parentage().orphan and (
+            if not Inspection(current).parentage().orphan and (
                 not same_parent or not strictly_contiguous
             ):
                 return False
@@ -917,18 +1177,17 @@ class Selection(collections.abc.Sequence):
         if len(self) == 0:
             return True
         if all(
-            isinstance(_, prototype) and abjad_inspect(_).parentage().orphan
-            for _ in self
+            isinstance(_, prototype) and Inspection(_).parentage().orphan for _ in self
         ):
             return True
         first = self[0]
         if not isinstance(first, prototype):
             return False
         same_logical_voice = True
-        parentage = abjad_inspect(first).parentage()
+        parentage = Inspection(first).parentage()
         first_logical_voice = parentage.logical_voice()
         for component in self[1:]:
-            parentage = abjad_inspect(component).parentage()
+            parentage = Inspection(component).parentage()
             if parentage.logical_voice() != first_logical_voice:
                 same_logical_voice = False
             if not parentage.orphan and not same_logical_voice:
@@ -1538,7 +1797,7 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        generator = iterate(self).components(
+        generator = Iteration(self).components(
             prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
         )
         return type(self)(generator, previous=self._previous)
@@ -3273,8 +3532,8 @@ class Selection(collections.abc.Sequence):
         selection: typing.List[typing.Union[Component, Selection]] = []
         selection.extend(self[:1])
         for item in self[1:]:
-            this_timespan = abjad_inspect(selection[-1]).timespan()
-            that_timespan = abjad_inspect(item).timespan()
+            this_timespan = Inspection(selection[-1]).timespan()
+            that_timespan = Inspection(item).timespan()
             # remove displacement
             this_stop_offset = this_timespan.stop_offset
             this_stop_offset = Offset(this_stop_offset.pair)
@@ -3374,7 +3633,7 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
 
         def predicate(argument):
-            return abjad_inspect(argument).duration()
+            return Inspection(argument).duration()
 
         return self.group_by(predicate)
 
@@ -3972,7 +4231,8 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
 
         def predicate(argument):
-            return PitchSet.from_selection(argument)
+            selection = Selection(argument)
+            return PitchSet.from_selection(selection)
 
         return self.group_by(predicate)
 
@@ -6058,7 +6318,7 @@ class Selection(collections.abc.Sequence):
         '''
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        generator = iterate(self).logical_ties(
+        generator = Iteration(self).logical_ties(
             exclude=exclude,
             grace=grace,
             nontrivial=nontrivial,
@@ -7170,10 +7430,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -7257,10 +7523,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -7337,10 +7609,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -7430,10 +7708,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -7526,10 +7810,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -7604,10 +7894,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.inspect(staff).leaf(0)
@@ -7693,10 +7989,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.inspect(staff).leaf(0)
@@ -7785,10 +8087,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.inspect(staff).leaf(0)
@@ -7869,10 +8177,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.inspect(staff).leaf(0)
@@ -7969,10 +8283,16 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> staff = abjad.Staff(
-                ...     "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
-                ...     "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-                ...     )
+                >>> staff = abjad.Staff([
+                ...     abjad.Container("c'8 d'"),
+                ...     abjad.Container("e'8 f'"),
+                ...     abjad.Container("g'8 a'"),
+                ...     abjad.Container("b'8 c''"),
+                ... ])
+                >>> for container in staff:
+                ...     time_signature = abjad.TimeSignature((2, 8))
+                ...     abjad.attach(time_signature, container[0])
+                ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.inspect(staff).leaf(0)
@@ -8086,7 +8406,7 @@ class Selection(collections.abc.Sequence):
                 break
             component_duration = component._get_duration()
             if in_seconds:
-                component_duration = abjad_inspect(component).duration(in_seconds=True)
+                component_duration = Inspection(component).duration(in_seconds=True)
             candidate_duration = cumulative_duration + component_duration
             if candidate_duration < target_duration:
                 part.append(component)
@@ -8109,11 +8429,11 @@ class Selection(collections.abc.Sequence):
                     part = [component]
                     if in_seconds:
                         sum_ = sum(
-                            [abjad_inspect(_).duration(in_seconds=True) for _ in part]
+                            [Inspection(_).duration(in_seconds=True) for _ in part]
                         )
                         cumulative_duration = Duration(sum_)
                     else:
-                        sum_ = sum([abjad_inspect(_).duration() for _ in part])
+                        sum_ = sum([Inspection(_).duration() for _ in part])
                         cumulative_duration = Duration(sum_)
                     current_duration_index += 1
                     try:
@@ -8287,6 +8607,29 @@ class Selection(collections.abc.Sequence):
         parts = Sequence(self).partition_by_counts(counts=counts)
         selections = [type(self)(_) for _ in parts]
         return type(self)(selections)
+
+    def pitch_segment(self) -> PitchSegment:
+        r"""
+        Gets written pitches in selection as pitch segment.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4 <d' e'>4 f'4 g'4 c'2. d'")
+            >>> staff[:].pitch_segment()
+            PitchSegment("c' d' e' f' g' c' d'")
+
+        """
+        pitches = []
+        for leaf in Iteration(self).leaves(pitched=True):
+            try:
+                pitches.extend(leaf.written_pitches)
+            except AttributeError:
+                pass
+            try:
+                pitches.append(leaf.written_pitch)
+            except AttributeError:
+                pass
+        return PitchSegment(items=pitches, item_class=NamedPitch)
 
     def rest(
         self, n: int, *, exclude: typings.Strings = None, grace: bool = None
@@ -8959,8 +9302,8 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result: typing.List[typing.Union[Component, Selection]] = []
-        for component in iterate(self).components(exclude=exclude):
-            for component_ in abjad_inspect(component).parentage():
+        for component in Iteration(self).components(exclude=exclude):
+            for component_ in Inspection(component).parentage():
                 if (
                     self._is_immediate_child_of_outermost_voice(component_)
                     and component_ not in result
@@ -8998,7 +9341,7 @@ class Selection(collections.abc.Sequence):
                 >>> result = abjad.select(staff).tuplet(-1)
 
                 >>> result
-                Tuplet(Multiplier(10, 9), "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16")
+                Tuplet(Multiplier(10, 9), "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
             ..  container:: example expression
 
@@ -9006,7 +9349,7 @@ class Selection(collections.abc.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Tuplet(Multiplier(10, 9), "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16")
+                Tuplet(Multiplier(10, 9), "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
                 >>> selector.color(result)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -9326,8 +9669,6 @@ class Selection(collections.abc.Sequence):
 
         """
         from .Descendants import Descendants
-        from .Parentage import Parentage
-        from .Tuplet import Tuplet
 
         if self._expression:
             return self._update_expression(inspect.currentframe())
@@ -9725,13 +10066,13 @@ class Selection(collections.abc.Sequence):
         leaves = list(self.leaves())
         previous_leaf = leaves[-1]
         while True:
-            next_leaf = abjad_inspect(previous_leaf).leaf(1)
+            next_leaf = Inspection(previous_leaf).leaf(1)
             if next_leaf is None:
                 break
             if (
                 grace is None
-                or (grace is True and abjad_inspect(next_leaf).grace())
-                or (grace is False and not abjad_inspect(next_leaf).grace())
+                or (grace is True and Inspection(next_leaf).grace())
+                or (grace is False and not Inspection(next_leaf).grace())
             ):
                 leaves.append(next_leaf)
                 break
@@ -10026,7 +10367,7 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
-        previous_leaf = abjad_inspect(leaves[0]).leaf(-1)
+        previous_leaf = Inspection(leaves[0]).leaf(-1)
         if previous_leaf is not None:
             leaves.insert(0, previous_leaf)
         return type(self)(leaves)

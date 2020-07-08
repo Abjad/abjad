@@ -232,66 +232,52 @@ class Duration(quicktions.Fraction):
         residue = type(self)(residue)
         return truncated, residue
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when duration equals ``argument``.
-
-        Returns true or false.
         """
         return quicktions.Fraction.__eq__(self, argument)
 
-    def __format__(self, format_specification=""):
+    def __format__(self, format_specification="") -> str:
         """
         Formats duration.
 
         Set ``format_specification`` to ``''`` or ``'storage'``.
         Interprets ``''`` equal to ``'storage'``.
-
-        Returns string.
         """
         if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
-    def __ge__(self, argument):
+    def __ge__(self, argument) -> bool:
         """
         Is true when duration is greater than or equal to ``argument``.
-
-        Returns true or false.
         """
         return quicktions.Fraction.__ge__(self, argument)
 
-    def __gt__(self, argument):
+    def __gt__(self, argument) -> bool:
         """
         Is true when duration is greater than ``argument``.
-
-        Returns true or false.
         """
         return quicktions.Fraction.__gt__(self, argument)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes duration.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super().__hash__()
 
-    def __le__(self, argument):
+    def __le__(self, argument) -> bool:
         """
         Is true when duration is less than or equal to ``argument``.
-
-        Returns true or false.
         """
         return quicktions.Fraction.__le__(self, argument)
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when duration is less than ``argument``.
-
-        Returns true or false.
         """
         return quicktions.Fraction.__lt__(self, argument)
 
@@ -334,9 +320,30 @@ class Duration(quicktions.Fraction):
             result = type(self)(quicktions.Fraction.__mul__(self, *arguments))
         return result
 
-    def __ne__(self, argument):
+    def __ne__(self, argument) -> bool:
         """
-        Is true when duration does not equal ``argument``.
+        Redefined explicitly because ``abjad.Duration`` inherits from built-in
+        ``quicktions.Fraction``:
+
+        "The __ne__ method follows automatically from __eq__ only if __ne__
+        isn't already defined in a superclass.  So, if you're inheriting from a
+        builtin, it's best to override both."
+
+        See https://bugs.python.org/issue4395#msg89533.
+
+        ..  container:: example
+
+            REGRESSION:
+
+            >>> offset_1 = abjad.Offset(1)
+            >>> offset_2 = abjad.Offset(1, displacement=(-1, 16))
+
+            >>> offset_1 == offset_2
+            False
+
+            >>> offset_1 != offset_2
+            True
+
         """
         return not self == argument
 
@@ -504,9 +511,7 @@ class Duration(quicktions.Fraction):
         pattern = r"^(%s)(\.*)$" % body_strings
         match = re.match(pattern, duration_string)
         if match is None:
-            message = "incorrect duration string format: {!r}."
-            message = message.format(duration_string)
-            raise TypeError(message)
+            raise TypeError(f"incorrect duration string format: {duration_string!r}.")
         body_string, dots_string = match.groups()
         try:
             body_denominator = int(body_string)
@@ -519,9 +524,7 @@ class Duration(quicktions.Fraction):
             elif body_string == r"\maxima":
                 body_duration = quicktions.Fraction(8)
             else:
-                message = "unknown body string: {!r}."
-                message = message.format(body_string)
-                raise ValueError(message)
+                raise ValueError(f"unknown body string: {body_string!r}.")
         rational = body_duration
         for n in range(len(dots_string)):
             exponent = n + 1
@@ -532,14 +535,12 @@ class Duration(quicktions.Fraction):
         return rational
 
     @staticmethod
-    def _least_power_of_two_greater_equal(n, i=0):
+    def _least_power_of_two_greater_equal(n, i=0) -> int:
         """
         When ``i = 2``, returns the second integer power of 2 greater than
         the least integer power of 2 greater than or equal to ``n``, and, in
         general, return the ``i`` th integer power of 2 greater than the least
         integer power of 2 greater than or equal to ``n``.
-
-        Returns integer.
         """
         assert isinstance(n, (int, float, quicktions.Fraction)), repr(n)
         assert 0 <= n, repr(n)
@@ -562,11 +563,11 @@ class Duration(quicktions.Fraction):
             ...         duration = abjad.Duration(n, 16)
             ...         sixteenths = duration.with_denominator(16)
             ...         dot_count = duration.dot_count
-            ...         string = f'{sixteenths!s}\t{dot_count}'
+            ...         string = f"{sixteenths!s}\t{dot_count}"
             ...         print(string)
             ...     except abjad.AssignabilityError:
             ...         sixteenths = duration.with_denominator(16)
-            ...         print(f'{sixteenths!s}\t--')
+            ...         print(f"{sixteenths!s}\t--")
             ...
             1/16    0
             2/16    0
@@ -610,7 +611,7 @@ class Duration(quicktions.Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_assignable
             ...     sixteenths = duration.with_denominator(16)
-            ...     print(f'{sixteenths!s}\t{result!s}')
+            ...     print(f"{sixteenths!s}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -651,7 +652,7 @@ class Duration(quicktions.Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_power_of_two
             ...     sixteenths = duration.with_denominator(16)
-            ...     print(f'{sixteenths!s}\t{result!s}')
+            ...     print(f"{sixteenths!s}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -687,7 +688,7 @@ class Duration(quicktions.Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_assignable
             ...     sixteenths = duration.with_denominator(16)
-            ...     print(f'{sixteenths!s}\t{result!s}')
+            ...     print(f"{sixteenths!s}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -729,7 +730,7 @@ class Duration(quicktions.Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_power_of_two
             ...     sixteenths = duration.with_denominator(16)
-            ...     print(f'{sixteenths!s}\t{result!s}')
+            ...     print(f"{sixteenths!s}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -764,7 +765,7 @@ class Duration(quicktions.Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     exponent = duration.exponent
             ...     sixteenths = duration.with_denominator(16)
-            ...     print(f'{sixteenths!s}\t{duration.exponent!s}')
+            ...     print(f"{sixteenths!s}\t{duration.exponent!s}")
             ...
             1/16	4
             2/16	3
@@ -798,7 +799,7 @@ class Duration(quicktions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(n, 64)
             ...     sixty_fourths = duration.with_denominator(64)
-            ...     print(f'{sixty_fourths!s}\t{duration.flag_count}')
+            ...     print(f"{sixty_fourths!s}\t{duration.flag_count}")
             ...
             1/64    4
             2/64    3
@@ -836,7 +837,7 @@ class Duration(quicktions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(1, n)
             ...     result = duration.has_power_of_two_denominator
-            ...     print('{!s}\t{}'.format(duration, result))
+            ...     print(f"{duration!s}\t{result}")
             ...
             1       True
             1/2     True
@@ -871,7 +872,7 @@ class Duration(quicktions.Fraction):
             >>> for denominator in range(1, 16 + 1):
             ...     duration = abjad.Duration(1, denominator)
             ...     result = duration.implied_prolation
-            ...     print('{!s}\t{!s}'.format(duration, result))
+            ...     print(f"{duration!s}\t{result!s}")
             ...
             1       1
             1/2     1
@@ -907,7 +908,7 @@ class Duration(quicktions.Fraction):
             >>> for numerator in range(0, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     sixteenths = duration.with_denominator(16)
-            ...     print('{!s}\t{}'.format(sixteenths, duration.is_assignable))
+            ...     print(f"{sixteenths!s}\t{duration.is_assignable}")
             ...
             0/16    False
             1/16    True
@@ -960,9 +961,7 @@ class Duration(quicktions.Fraction):
         elif undotted_rational == type(self)(8, 1):
             undotted_duration_string = r"\maxima"
         else:
-            message = "can not process undotted rational: {}"
-            message = message.format(undotted_rational)
-            raise ValueError(message)
+            raise ValueError(f"can not process undotted rational: {undotted_rational}")
         dot_count = self.dot_count
         dot_string = "." * dot_count
         dotted_duration_string = undotted_duration_string + dot_string
@@ -1126,7 +1125,7 @@ class Duration(quicktions.Fraction):
             >>> clock_string
             "1'57''"
 
-            >>> string = '"{}"'.format(clock_string)
+            >>> string = f'"{clock_string}"'
             >>> markup = abjad.Markup(string, direction=abjad.Up)
             >>> abjad.attach(markup, note)
             >>> abjad.show(note) # doctest: +SKIP
@@ -1264,11 +1263,9 @@ class Multiplier(Duration):
 
     ### SPECIAL METHODS ###
 
-    def __mul__(self, *arguments):
+    def __mul__(self, *arguments) -> "Duration":
         """
         Multiplier times duration gives duration.
-
-        Returns duration.
         """
         if len(arguments) == 1 and type(arguments[0]) is Duration:
             return Duration(Duration.__mul__(self, *arguments))
@@ -1463,7 +1460,7 @@ class Offset(Duration):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments):
+    def __copy__(self, *arguments) -> "Offset":
         """
         Copies offset.
 
@@ -1488,11 +1485,10 @@ class Offset(Duration):
             >>> offset_1 is offset_2
             False
 
-        Returns new offset.
         """
         return type(self)(self.pair, displacement=self.displacement)
 
-    def __deepcopy__(self, *arguments):
+    def __deepcopy__(self, *arguments) -> "Offset":
         """
         Deep copies offset.
 
@@ -1517,11 +1513,10 @@ class Offset(Duration):
             >>> offset_1 is offset_2
             False
 
-        Returns new offset.
         """
         return self.__copy__(*arguments)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when offset equals ``argument``.
 
@@ -1575,13 +1570,12 @@ class Offset(Duration):
             >>> offset_2 == offset_2
             True
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_displacement() == argument._get_displacement()
         return super().__eq__(argument)
 
-    def __ge__(self, argument):
+    def __ge__(self, argument) -> bool:
         """
         Is true when offset is greater than or equal to ``argument``.
 
@@ -1635,13 +1629,12 @@ class Offset(Duration):
             >>> offset_2 >= offset_2
             True
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_displacement() >= argument._get_displacement()
         return super().__ge__(argument)
 
-    def __gt__(self, argument):
+    def __gt__(self, argument) -> bool:
         """
         Is true when offset is greater than ``argument``.
 
@@ -1695,13 +1688,12 @@ class Offset(Duration):
             >>> offset_2 > offset_2
             False
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_displacement() > argument._get_displacement()
         return Duration.__gt__(self, argument)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes offset.
 
@@ -1709,7 +1701,7 @@ class Offset(Duration):
         """
         return super().__hash__()
 
-    def __le__(self, argument):
+    def __le__(self, argument) -> bool:
         """
         Is true when offset is less than or equal to ``argument``.
 
@@ -1763,13 +1755,12 @@ class Offset(Duration):
             >>> offset_2 <= offset_2
             True
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_displacement() <= argument._get_displacement()
         return super().__le__(argument)
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when offset is less than ``argument``.
 
@@ -1840,13 +1831,12 @@ class Offset(Duration):
             >>> offset_2 < offset_2
             False
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)) and self.pair == argument.pair:
             return self._get_displacement() < argument._get_displacement()
         return super().__lt__(argument)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of offset.
 
@@ -1863,23 +1853,28 @@ class Offset(Duration):
 
     def __sub__(self, argument):
         """
-        Offset taken from offset returns duration:
+        Subtracts ``argument`` from offset.
 
-        >>> abjad.Offset(2) - abjad.Offset(1, 2)
-        Duration(3, 2)
+        ..  container:: example
 
-        Duration taken from offset returns another offset:
+            Offset taken from offset returns duration:
 
-        >>> abjad.Offset(2) - abjad.Duration(1, 2)
-        Offset((3, 2))
+            >>> abjad.Offset(2) - abjad.Offset(1, 2)
+            Duration(3, 2)
 
-        Coerce ``argument`` to offset when ``argument`` is neither offset nor
-        duration:
+            Duration taken from offset returns another offset:
 
-        >>> abjad.Offset(2) - abjad.Fraction(1, 2)
-        Duration(3, 2)
+            >>> abjad.Offset(2) - abjad.Duration(1, 2)
+            Offset((3, 2))
 
-        Returns duration or offset.
+        ..  container::
+
+            Coerces ``argument`` to offset when ``argument`` is neither offset nor
+            duration:
+
+            >>> abjad.Offset(2) - abjad.Fraction(1, 2)
+            Duration(3, 2)
+
         """
         if isinstance(argument, type(self)):
             return Duration(super().__sub__(argument))
@@ -1911,7 +1906,7 @@ class Offset(Duration):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def displacement(self):
+    def displacement(self) -> "Duration":
         """
         Gets displacement.
 
@@ -1942,11 +1937,6 @@ class Offset(Duration):
             >>> offset
             Offset((1, 4))
 
-        Defaults to none.
-
-        Set to duration or none.
-
-        Returns duration or none.
         """
         return self._displacement
 
@@ -2053,9 +2043,7 @@ class NonreducedFraction(quicktions.Fraction):
             numerator = 0
             denominator = 1
         else:
-            message = "can not initialize {}: {!r}."
-            message = message.format(class_.__name__, arguments)
-            raise ValueError(message)
+            raise ValueError(f"can not initialize {class_.__name__}: {arguments!r}.")
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
         self = quicktions.Fraction.__new__(class_, numerator, denominator)
@@ -2073,7 +2061,7 @@ class NonreducedFraction(quicktions.Fraction):
 
     ### SPECIAL METHODS ###
 
-    def __abs__(self):
+    def __abs__(self) -> "NonreducedFraction":
         """
         Gets absolute value of nonreduced fraction.
 
@@ -2082,12 +2070,11 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abs(abjad.NonreducedFraction(-3, 3))
             NonreducedFraction(3, 3)
 
-        Returns nonreduced fraction.
         """
         pair = (abs(self.numerator), self.denominator)
-        return self._from_pair(pair)
+        return type(self)(pair)
 
-    def __add__(self, argument):
+    def __add__(self, argument) -> "NonreducedFraction":
         """
         Adds ``argument`` to nonreduced fraction.
 
@@ -2099,18 +2086,17 @@ class NonreducedFraction(quicktions.Fraction):
             >>> 1 + abjad.NonreducedFraction(3, 3)
             NonreducedFraction(6, 3)
 
-        Returns nonreduced fraction.
         """
         if isinstance(argument, int):
             numerator = self.numerator + argument * self.denominator
             pair = (numerator, self.denominator)
-            return self._from_pair(pair)
+            return type(self)(pair)
         if getattr(argument, "denominator", "foo") == "foo":
             raise ValueError(argument)
         if self.denominator == argument.denominator:
             numerator = self.numerator + argument.numerator
             pair = (numerator, self.denominator)
-            return self._from_pair(pair)
+            return type(self)(pair)
         else:
             denominators = [self.denominator, argument.denominator]
             denominator = mathtools.least_common_multiple(*denominators)
@@ -2119,9 +2105,9 @@ class NonreducedFraction(quicktions.Fraction):
             self_numerator = self_multiplier * self.numerator
             argument_numerator = argument_multiplier * argument.numerator
             pair = (self_numerator + argument_numerator, denominator)
-            return self._from_pair(pair)
+            return type(self)(pair)
 
-    def __div__(self, argument):
+    def __div__(self, argument) -> "NonreducedFraction":
         """
         Divides nonreduced fraction by ``argument``.
 
@@ -2130,7 +2116,6 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 3) / 1
             NonreducedFraction(3, 3)
 
-        Returns nonreduced fraction.
         """
         denominators = [self.denominator]
         if isinstance(argument, type(self)):
@@ -2139,7 +2124,7 @@ class NonreducedFraction(quicktions.Fraction):
         fraction = self.reduce() / argument
         return self._fraction_with_denominator(fraction, max(denominators))
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` equals nonreduced fraction.
 
@@ -2148,11 +2133,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 3) == 1
             True
 
-        Returns true or false.
         """
         return self.reduce() == argument
 
-    def __format__(self, format_specification=""):
+    def __format__(self, format_specification="") -> str:
         """
         Formats nonreduced fraction.
 
@@ -2162,13 +2146,12 @@ class NonreducedFraction(quicktions.Fraction):
             >>> print(format(fraction))
             abjad.NonreducedFraction(-6, 3)
 
-        Returns string.
         """
         if format_specification in ("", "storage"):
             return StorageFormatManager(self).get_storage_format()
         return str(self)
 
-    def __ge__(self, argument):
+    def __ge__(self, argument) -> bool:
         """
         Is true when nonreduced fraction is greater than or equal to
         ``argument``.
@@ -2178,11 +2161,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 3) >= 1
             True
 
-        Returns true or false.
         """
         return self.reduce() >= argument
 
-    def __gt__(self, argument):
+    def __gt__(self, argument) -> bool:
         """
         Is true when nonreduced fraction is greater than ``argument``.
 
@@ -2191,21 +2173,18 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 3) > 1
             False
 
-        Returns true or false.
         """
         return self.reduce() > argument
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes nonreduced fraction.
 
         Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
         """
         return super().__hash__()
 
-    def __le__(self, argument):
+    def __le__(self, argument) -> bool:
         """
         Is true when nonreduced fraction is less than or equal to ``argument``.
 
@@ -2214,11 +2193,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 3) <= 1
             True
 
-        Returns true or false.
         """
         return self.reduce() <= argument
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when nonreduced fraction is less than ``argument``.
 
@@ -2231,7 +2209,7 @@ class NonreducedFraction(quicktions.Fraction):
         """
         return self.reduce() < argument
 
-    def __mul__(self, argument):
+    def __mul__(self, argument) -> "NonreducedFraction":
         """
         Multiplies nonreduced fraction by ``argument``.
 
@@ -2240,7 +2218,6 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 3) * 3
             NonreducedFraction(9, 3)
 
-        Returns nonreduced fraction.
         """
         denominators = [self.denominator]
         if isinstance(argument, type(self)):
@@ -2249,7 +2226,7 @@ class NonreducedFraction(quicktions.Fraction):
         fraction = self.reduce() * argument
         return self._fraction_with_denominator(fraction, max(denominators))
 
-    def __neg__(self):
+    def __neg__(self) -> "NonreducedFraction":
         """
         Negates nonreduced fraction.
 
@@ -2258,12 +2235,11 @@ class NonreducedFraction(quicktions.Fraction):
             >>> -abjad.NonreducedFraction(3, 3)
             NonreducedFraction(-3, 3)
 
-        Returns nonreduced fraction.
         """
         pair = (-self.numerator, self.denominator)
-        return self._from_pair(pair)
+        return type(self)(pair)
 
-    def __pow__(self, argument):
+    def __pow__(self, argument) -> "NonreducedFraction":
         """
         Raises nonreduced fraction to ``argument``.
 
@@ -2272,14 +2248,13 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 6) ** -1
             NonreducedFraction(6, 3)
 
-        Returns nonreduced fraction.
         """
         if argument == -1:
             pair = (self.denominator, self.numerator)
-            return self._from_pair(pair)
+            return type(self)(pair)
         return super().__pow__(argument)
 
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> "NonreducedFraction":
         """
         Adds nonreduced fraction to ``argument``.
 
@@ -2288,11 +2263,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> 1 + abjad.NonreducedFraction(3, 3)
             NonreducedFraction(6, 3)
 
-        Returns nonreduced fraction.
         """
         return self + argument
 
-    def __rdiv__(self, argument):
+    def __rdiv__(self, argument) -> "NonreducedFraction":
         """
         Divides ``argument`` by nonreduced fraction.
 
@@ -2301,7 +2275,6 @@ class NonreducedFraction(quicktions.Fraction):
             >>> 1 / abjad.NonreducedFraction(3, 3)
             NonreducedFraction(3, 3)
 
-        Returns nonreduced fraction.
         """
         denominators = [self.denominator]
         if isinstance(argument, type(self)):
@@ -2312,7 +2285,7 @@ class NonreducedFraction(quicktions.Fraction):
 
     __rtruediv__ = __rdiv__
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of nonreduced fraction.
 
@@ -2321,11 +2294,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(3, 6)
             NonreducedFraction(3, 6)
 
-        Returns string.
         """
         return StorageFormatManager(self).get_repr_format()
 
-    def __rmul__(self, argument):
+    def __rmul__(self, argument) -> "NonreducedFraction":
         """
         Multiplies ``argument`` by nonreduced fraction.
 
@@ -2334,11 +2306,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> 3 * abjad.NonreducedFraction(3, 3)
             NonreducedFraction(9, 3)
 
-        Returns nonreduced fraction.
         """
         return self * argument
 
-    def __rsub__(self, argument):
+    def __rsub__(self, argument) -> "NonreducedFraction":
         """
         Subtracts nonreduced fraction from ``argument``.
 
@@ -2347,11 +2318,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> 1 - abjad.NonreducedFraction(3, 3)
             NonreducedFraction(0, 3)
 
-        Returns nonreduced fraction.
         """
         return -self + argument
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Gets string representation of nonreduced fraction.
 
@@ -2362,11 +2332,10 @@ class NonreducedFraction(quicktions.Fraction):
             >>> str(fraction)
             '-6/3'
 
-        Returns string.
         """
-        return "{}/{}".format(self.numerator, self.denominator)
+        return f"{self.numerator}/{self.denominator}"
 
-    def __sub__(self, argument):
+    def __sub__(self, argument) -> "NonreducedFraction":
         """
         Subtracts ``argument`` from nonreduced fraction.
 
@@ -2381,7 +2350,6 @@ class NonreducedFraction(quicktions.Fraction):
             >>> abjad.NonreducedFraction(18, 16) - abjad.NonreducedFraction(5, 4)
             NonreducedFraction(-2, 16)
 
-        Returns nonreduced fraction.
         """
         denominators = [self.denominator]
         if isinstance(argument, type(self)):
@@ -2393,8 +2361,6 @@ class NonreducedFraction(quicktions.Fraction):
     def __truediv__(self, argument) -> "NonreducedFraction":
         """
         Divides nonreduced fraction in Python 3.
-
-        Returns nonreduced fraction.
         """
         return self.__div__(argument)
 
@@ -2403,15 +2369,9 @@ class NonreducedFraction(quicktions.Fraction):
     def _fraction_with_denominator(self, fraction, denominator):
         denominators = [denominator, fraction.denominator]
         denominator = mathtools.least_common_multiple(*denominators)
-        result = self._from_pair(fraction)
+        result = type(self)(fraction)
         result = result.with_denominator(denominator)
         return result
-
-    def _from_pair(self, pair):
-        """
-        Method is designed to be subclassed.
-        """
-        return type(self)(pair)
 
     def _get_format_specification(self):
         return FormatSpecification(
@@ -2496,13 +2456,13 @@ class NonreducedFraction(quicktions.Fraction):
             candidate_result_denominator = self_denominator / multiplier
             if candidate_result_denominator.denominator == 1:
                 pair = (self.numerator, candidate_result_denominator.numerator)
-                return self._from_pair(pair)
+                return type(self)(pair)
             else:
                 denominator = candidate_result_denominator.denominator
                 result_numerator = self.numerator * denominator
                 result_denominator = candidate_result_denominator.numerator
                 pair = (result_numerator, result_denominator)
-                return self._from_pair(pair)
+                return type(self)(pair)
         else:
             return multiplier * self
 
@@ -2555,7 +2515,7 @@ class NonreducedFraction(quicktions.Fraction):
         for factor in result_denominator_factors:
             result_denominator *= factor
         pair = (result_numerator, result_denominator)
-        return self._from_pair(pair)
+        return type(self)(pair)
 
     def multiply_without_reducing(self, argument) -> "NonreducedFraction":
         """
@@ -2577,11 +2537,11 @@ class NonreducedFraction(quicktions.Fraction):
             NonreducedFraction(12, 32)
 
         """
-        argument = self._from_pair(argument)
+        argument = type(self)(argument)
         numerator = self.numerator * argument.numerator
         denominator = self.denominator * argument.denominator
         pair = (numerator, denominator)
-        return self._from_pair(pair)
+        return type(self)(pair)
 
     def reduce(self) -> quicktions.Fraction:
         """
@@ -2668,7 +2628,7 @@ class NonreducedFraction(quicktions.Fraction):
             pair = (new_numerator.numerator, new_denominator.numerator)
         else:
             pair = (current_numerator, current_denominator)
-        return self._from_pair(pair)
+        return type(self)(pair)
 
     def with_multiple_of_denominator(self, denominator) -> "NonreducedFraction":
         """
@@ -2723,6 +2683,8 @@ class NonreducedFraction(quicktions.Fraction):
         """
         Gets zero because nonreduced fractions have no imaginary part.
 
+        ..  container:: example
+
             >>> abjad.NonreducedFraction(-6, 3).imag
             0
 
@@ -2733,6 +2695,8 @@ class NonreducedFraction(quicktions.Fraction):
     def numerator(self) -> int:
         """
         Gets numerator of nonreduced fraction.
+
+        ..  container:: example
 
             >>> abjad.NonreducedFraction(-6, 3).numerator
             -6
@@ -2745,6 +2709,8 @@ class NonreducedFraction(quicktions.Fraction):
         """
         Gets (numerator, denominator) pair of nonreduced fraction.
 
+        ..  container:: example
+
             >>> abjad.NonreducedFraction(-6, 3).pair
             (-6, 3)
 
@@ -2756,6 +2722,8 @@ class NonreducedFraction(quicktions.Fraction):
         """
         Gets nonreduced fraction because nonreduced fractions are their own
         real component.
+
+        ..  container:: example
 
             >>> abjad.NonreducedFraction(-6, 3).real
             NonreducedFraction(-6, 3)

@@ -31,7 +31,9 @@ def test_Skip___init___03():
     Initialize skip from tupletized note.
     """
 
-    tuplet = abjad.Tuplet((2, 3), 3 * abjad.Chord([2, 3, 4], (1, 4)))
+    chord = abjad.Chord([2, 3, 4], (1, 4))
+    chords = abjad.mutate(chord).copy(3)
+    tuplet = abjad.Tuplet((2, 3), chords)
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(tuplet[0], abjad.Chord)
@@ -46,7 +48,9 @@ def test_Skip___init___04():
     Initialize skip from beamed chord.
     """
 
-    staff = abjad.Staff(abjad.Chord([2, 3, 4], (1, 4)) * 3)
+    chord = abjad.Chord([2, 3, 4], (1, 4))
+    chords = abjad.mutate(chord).copy(3)
+    staff = abjad.Staff(chords)
     abjad.beam(staff[:])
     skip = abjad.Skip(staff[0])
     assert isinstance(staff[0], abjad.Chord)
@@ -71,7 +75,7 @@ def test_Skip___init___05():
 
 def test_Skip___init___06():
 
-    tuplet = abjad.Tuplet((2, 3), 3 * abjad.Note(0, (1, 8)))
+    tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(tuplet[0], abjad.Note)
@@ -85,7 +89,7 @@ def test_Skip___init___07():
     Initialize skip from beamed note.
     """
 
-    staff = abjad.Staff(abjad.Note(0, (1, 8)) * 3)
+    staff = abjad.Staff("c'8 c'8 c'8")
     abjad.beam(staff[:])
     skip = abjad.Skip(staff[0])
     assert isinstance(staff[0], abjad.Note)
@@ -114,7 +118,7 @@ def test_Skip___init___09():
     Initialize skip from tupletized rest.
     """
 
-    tuplet = abjad.Tuplet((2, 3), 3 * abjad.Rest((1, 8)))
+    tuplet = abjad.Tuplet((2, 3), "r8 r8 r8")
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(skip, abjad.Skip)

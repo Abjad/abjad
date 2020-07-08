@@ -49,7 +49,6 @@ isort-check:
 	--multi-line=3 \
 	--project=abjad \
 	--project=abjadext \
-	--recursive \
 	--skip=abjad/__init__.py \
 	--thirdparty=ply \
 	--thirdparty=roman \
@@ -60,13 +59,11 @@ isort-check:
 
 isort-reformat:
 	isort \
-	--apply \
 	--case-sensitive \
 	--line-width=88 \
 	--multi-line=3 \
 	--project=abjad \
 	--project=abjadext \
-	--recursive \
 	--skip=abjad/__init__.py \
 	--thirdparty=ply \
 	--thirdparty=roman \
@@ -88,9 +85,7 @@ pytest:
 	pytest \
 	--cov-config=.coveragerc \
 	--cov-report=html \
-	--cov-report=term \
 	--cov=${project} \
-	--durations=20 \
 	.
 
 pytest-x:
@@ -99,9 +94,7 @@ pytest-x:
 	-x \
 	--cov-config=.coveragerc \
 	--cov-report=html \
-	--cov-report=term \
 	--cov=${project} \
-	--durations=20 \
 	.
 
 reformat:

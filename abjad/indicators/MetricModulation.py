@@ -1,9 +1,9 @@
 import typing
 
 from .. import enums, typings
-from ..core.Component import inspect
-from ..core.Selection import select
-from ..formatting import LilyPondFormatBundle
+from ..bundle import LilyPondFormatBundle
+from ..core.Selection import Selection
+from ..core.inspectx import Inspection
 from ..markups import Markup
 from ..new import new
 from ..ratio import Ratio
@@ -592,7 +592,7 @@ class MetricModulation(object):
 
     def _initialize_rhythm(self, rhythm):
         if not hasattr(rhythm, "_items"):
-            selection = select([rhythm])
+            selection = Selection([rhythm])
         else:
             assert hasattr(rhythm, "_items"), repr(rhythm)
             selection = rhythm
@@ -686,8 +686,8 @@ class MetricModulation(object):
             Ratio((2, 3))
 
         """
-        left_duration = inspect(self.left_rhythm).duration()
-        right_duration = inspect(self.right_rhythm).duration()
+        left_duration = Inspection(self.left_rhythm).duration()
+        right_duration = Inspection(self.right_rhythm).duration()
         duration = left_duration / right_duration
         ratio = Ratio(duration.pair)
         return ratio

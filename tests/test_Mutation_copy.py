@@ -7,7 +7,16 @@ def test_Mutation_copy_01():
     Returns Python list of copied components.
     """
 
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    staff = abjad.Staff(
+        [
+            abjad.Container("c'8 d'"),
+            abjad.Container("e'8 f'"),
+            abjad.Container("g'8 a'"),
+        ]
+    )
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.slur(leaves)
     abjad.trill_spanner(leaves)
@@ -56,8 +65,8 @@ def test_Mutation_copy_01():
         """,
         print(format(new)),
     )
-    assert abjad.inspect(staff).wellformed()
-    assert abjad.inspect(new).wellformed()
+    assert abjad.wellformed(staff)
+    assert abjad.wellformed(new)
 
 
 def test_Mutation_copy_02():
@@ -65,7 +74,16 @@ def test_Mutation_copy_02():
     Copy one measure.
     """
 
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    staff = abjad.Staff(
+        [
+            abjad.Container("c'8 d'"),
+            abjad.Container("e'8 f'"),
+            abjad.Container("g'8 a'"),
+        ]
+    )
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.slur(leaves)
     abjad.trill_spanner(leaves)
@@ -116,8 +134,8 @@ def test_Mutation_copy_02():
         """
     ), print(format(new))
 
-    assert abjad.inspect(staff).wellformed()
-    assert abjad.inspect(new).wellformed()
+    assert abjad.wellformed(staff)
+    assert abjad.wellformed(new)
 
 
 def test_Mutation_copy_03():
@@ -125,7 +143,16 @@ def test_Mutation_copy_03():
     Three notes crossing measure boundaries.
     """
 
-    staff = abjad.Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    staff = abjad.Staff(
+        [
+            abjad.Container("c'8 d'"),
+            abjad.Container("e'8 f'"),
+            abjad.Container("g'8 a'"),
+        ]
+    )
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.slur(leaves)
     abjad.trill_spanner(leaves)
@@ -178,15 +205,23 @@ def test_Mutation_copy_03():
         """
     ), print(format(new))
 
-    assert abjad.inspect(staff).wellformed()
-    assert abjad.inspect(new).wellformed()
+    assert abjad.wellformed(staff)
+    assert abjad.wellformed(new)
 
 
 def test_Mutation_copy_04():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        [
+            abjad.Container("c'8 d'"),
+            abjad.Container("e'8 f'"),
+            abjad.Container("g'8 a'"),
+            abjad.Container("b'8 c''"),
+        ]
     )
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -259,14 +294,22 @@ def test_Mutation_copy_04():
         """
     ), print(format(new_staff))
 
-    assert abjad.inspect(new_staff).wellformed()
+    assert abjad.wellformed(new_staff)
 
 
 def test_Mutation_copy_05():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        [
+            abjad.Container("c'8 d'"),
+            abjad.Container("e'8 f'"),
+            abjad.Container("g'8 a'"),
+            abjad.Container("b'8 c''"),
+        ]
     )
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -331,15 +374,23 @@ def test_Mutation_copy_05():
         """
     ), print(format(new_staff))
 
-    assert abjad.inspect(staff).wellformed()
-    assert abjad.inspect(new_staff).wellformed()
+    assert abjad.wellformed(staff)
+    assert abjad.wellformed(new_staff)
 
 
 def test_Mutation_copy_06():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        [
+            abjad.Container("c'8 d'"),
+            abjad.Container("e'8 f'"),
+            abjad.Container("g'8 a'"),
+            abjad.Container("b'8 c''"),
+        ]
     )
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -398,15 +449,23 @@ def test_Mutation_copy_06():
         """
     ), print(format(new_staff))
 
-    assert abjad.inspect(staff).wellformed()
-    assert abjad.inspect(new_staff).wellformed()
+    assert abjad.wellformed(staff)
+    assert abjad.wellformed(new_staff)
 
 
 def test_Mutation_copy_07():
 
     staff = abjad.Staff(
-        "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
+        [
+            abjad.Container("c'8 d'"),
+            abjad.Container("e'8 f'"),
+            abjad.Container("g'8 a'"),
+            abjad.Container("b'8 c''"),
+        ]
     )
+    for container in staff:
+        time_signature = abjad.TimeSignature((2, 8))
+        abjad.attach(time_signature, container[0])
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
@@ -466,8 +525,8 @@ def test_Mutation_copy_07():
         """
     ), print(format(new_staff))
 
-    assert abjad.inspect(staff).wellformed()
-    assert abjad.inspect(new_staff).wellformed()
+    assert abjad.wellformed(staff)
+    assert abjad.wellformed(new_staff)
 
 
 def test_Mutation_copy_08():
@@ -522,4 +581,4 @@ def test_Mutation_copy_08():
         }
         """
     )
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)

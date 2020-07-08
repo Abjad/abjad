@@ -1,3 +1,0 @@
-"""
-Abjad's system internals.
-"""

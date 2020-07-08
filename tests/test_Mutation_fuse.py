@@ -8,7 +8,18 @@ def test_Mutation_fuse_01():
     Works with list of leaves.
     """
 
-    notes = 8 * abjad.Note("c'4")
+    notes = abjad.Selection(
+        [
+            abjad.Note("c'4"),
+            abjad.Note("c'4"),
+            abjad.Note("c'4"),
+            abjad.Note("c'4"),
+            abjad.Note("c'4"),
+            abjad.Note("c'4"),
+            abjad.Note("c'4"),
+            abjad.Note("c'4"),
+        ]
+    )
     fused = abjad.mutate(notes).fuse()
 
     assert len(fused) == 1
@@ -30,7 +41,7 @@ def test_Mutation_fuse_03():
     Works with containers.
     """
 
-    voice = abjad.Voice(8 * abjad.Note("c'4"))
+    voice = abjad.Voice("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
     fused = abjad.mutate(voice[:]).fuse()
     assert len(fused) == 1
     assert fused[0].written_duration == 2
@@ -56,7 +67,7 @@ def test_Mutation_fuse_04():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_fuse_05():
@@ -92,7 +103,7 @@ def test_Mutation_fuse_05():
     )
 
     assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
 
 
 def test_Mutation_fuse_06():
@@ -152,7 +163,7 @@ def test_Mutation_fuse_06():
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
     assert new is not tuplet_1 and new is not tuplet_2
-    assert abjad.inspect(new).wellformed()
+    assert abjad.wellformed(new)
 
 
 def test_Mutation_fuse_07():
@@ -211,7 +222,7 @@ def test_Mutation_fuse_07():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_fuse_08():
@@ -276,7 +287,7 @@ def test_Mutation_fuse_08():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_fuse_09():
@@ -337,7 +348,7 @@ def test_Mutation_fuse_10():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
 
 def test_Mutation_fuse_11():

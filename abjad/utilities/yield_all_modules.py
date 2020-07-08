@@ -4,14 +4,14 @@ import types
 
 import uqbar.apis
 
-from ..system.Configuration import Configuration
+from ..configuration import Configuration
 
 configuration = Configuration
 
 
 def yield_all_modules(paths=None):
     """
-    Yields all modules encountered in `path`.
+    Yields all modules encountered in ``path``.
 
     Returns generator.
     """

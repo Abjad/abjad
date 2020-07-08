@@ -1,30 +1,28 @@
 import copy
 
-from . import enums
+from . import deprecated, enums
 from .core.Chord import Chord
-from .core.Component import attach, inspect
-from .core.Iteration import iterate
-from .core.LeafMaker import LeafMaker
-from .core.Mutation import mutate
+from .core.Component import Component, attach
+from .core.Iteration import Iteration
+from .core.Mutation import Mutation
 from .core.Note import Note
-from .core.NoteMaker import NoteMaker
 from .core.Rest import Rest
 from .core.Score import Score
-from .core.Selection import Selection, select
+from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
 from .core.Voice import Voice
+from .core.inspectx import Inspection
+from .core.makers import LeafMaker, NoteMaker
 from .duration import Duration
 from .indicators.Clef import Clef
-from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.MetricModulation import MetricModulation
 from .indicators.StaffChange import StaffChange
 from .lilypondfile import Block, LilyPondFile
-from .lilypondnames.LilyPondGrobNameManager import override
-from .lilypondnames.LilyPondSettingNameManager import setting
 from .markups import Markup, MarkupCommand, MarkupList, Postscript
 from .new import new
+from .overrides import LilyPondLiteral, override, setting
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment, Segment
@@ -49,46 +47,9 @@ def illustrate(item, **keywords):
     return method(item, **keywords)
 
 
-def _make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
-    leaves = leaves or []
-    lowest_treble_pitch = NamedPitch(lowest_treble_pitch)
-    treble_staff = Staff(name="Treble_Staff")
-    bass_staff = Staff(name="Bass_Staff")
-    staff_group = StaffGroup([treble_staff, bass_staff], lilypond_type="PianoStaff")
-    score = Score()
-    score.append(staff_group)
-    for leaf in leaves:
-        treble_pitches, bass_pitches = [], []
-        for pitch in inspect(leaf).pitches():
-            if pitch < lowest_treble_pitch:
-                bass_pitches.append(pitch)
-            else:
-                treble_pitches.append(pitch)
-        written_duration = leaf.written_duration
-        if not treble_pitches:
-            treble_leaf = Rest(written_duration)
-        elif len(treble_pitches) == 1:
-            treble_leaf = Note(treble_pitches[0], written_duration)
-        else:
-            treble_leaf = Chord(treble_pitches, written_duration)
-        treble_staff.append(treble_leaf)
-        if not bass_pitches:
-            bass_leaf = Rest(written_duration)
-        elif len(bass_pitches) == 1:
-            bass_leaf = Note(bass_pitches[0], written_duration)
-        else:
-            bass_leaf = Chord(bass_pitches, written_duration)
-        bass_staff.append(bass_leaf)
-    if 0 < len(treble_staff):
-        attach(Clef("treble"), treble_staff[0])
-    if 0 < len(bass_staff):
-        attach(Clef("bass"), bass_staff[0])
-    if sketch:
-        override(score).time_signature.stencil = False
-        override(score).bar_number.transparent = True
-        override(score).bar_line.stencil = False
-        override(score).span_bar.stencil = False
-    return score, treble_staff, bass_staff
+def _illustrate_component(component):
+    lilypond_file = LilyPondFile.new(component)
+    return lilypond_file
 
 
 def _illustrate_markup(markup):
@@ -138,27 +99,27 @@ def _illustrate_pitch_range(pitch_range):
             bass_staff = Staff()
             attach(Clef("bass"), bass_staff)
             bass_staff.extend([start_note, stop_note])
-            bass_leaves = select(bass_staff).leaves()
+            bass_leaves = Selection(bass_staff).leaves()
             glissando(bass_leaves)
             score = Score([bass_staff])
         else:
             treble_staff = Staff()
             attach(Clef("treble"), treble_staff)
             treble_staff.extend([start_note, stop_note])
-            treble_leaves = select(treble_staff).leaves()
+            treble_leaves = Selection(treble_staff).leaves()
             glissando(treble_leaves)
             score = Score([treble_staff])
     else:
         result = _make_piano_score()
         score, treble_staff, bass_staff = result
         bass_staff.extend([start_note, stop_note])
-        treble_staff.extend(Skip(1) * 2)
-        bass_leaves = select(bass_staff).leaves()
+        treble_staff.extend("s1 s1")
+        bass_leaves = Selection(bass_staff).leaves()
         glissando(bass_leaves)
         attach(StaffChange(treble_staff), bass_staff[1])
         attach(Clef("treble"), treble_staff[0])
         attach(Clef("bass"), bass_staff[0])
-    for leaf in iterate(score).leaves():
+    for leaf in Iteration(score).leaves():
         leaf.multiplier = (1, 4)
     override(score).bar_line.stencil = False
     override(score).span_bar.stencil = False
@@ -174,7 +135,7 @@ def _illustrate_pitch_segment(segment):
     notes = maker(named_pitches, [1])
     result = _make_piano_score(leaves=notes, sketch=True)
     score, treble_staff, bass_staff = result
-    for leaf in iterate(score).leaves():
+    for leaf in Iteration(score).leaves():
         leaf.multiplier = (1, 8)
     override(score).rest.transparent = True
     lilypond_file = LilyPondFile.new(score)
@@ -227,7 +188,7 @@ def _illustrate_segment(
     voice = Voice(notes)
     staff = Staff([voice])
     score = Score([staff])
-    score.add_final_bar_line()
+    deprecated.add_final_bar_line(score)
     override(score).bar_line.transparent = True
     override(score).bar_number.stencil = False
     override(score).beam.stencil = False
@@ -236,7 +197,7 @@ def _illustrate_segment(
     override(score).time_signature.stencil = False
     string = r"\override Score.BarLine.transparent = ##f"
     command = LilyPondLiteral(string, "after")
-    last_leaf = select(score).leaves()[-1]
+    last_leaf = Selection(score).leaves()[-1]
     attach(command, last_leaf)
     moment = SchemeMoment((1, 12))
     setting(score).proportional_notation_duration = moment
@@ -265,10 +226,10 @@ def _illustrate_segment(
 
 
 def _illustrate_selection(selection):
-    components = mutate(selection).copy()
+    components = Mutation(selection).copy()
     staff = Staff(components)
     found_different_pitch = False
-    for pitch in iterate(staff).pitches():
+    for pitch in Iteration(staff).pitches():
         if pitch != NamedPitch("c'"):
             found_different_pitch = True
             break
@@ -281,6 +242,7 @@ def _illustrate_selection(selection):
 
 class_to_method = OrderedDict(
     [
+        (Component, _illustrate_component),
         (Markup, _illustrate_markup),
         (MarkupList, _illustrate_markup_list),
         (Postscript, _illustrate_postscript),
@@ -321,6 +283,48 @@ def _make_markup_score_block(selection):
     override(score).spacing_spanner.spacing_increment = 0.5
     setting(score).proportional_notation_duration = False
     return score, layout_block
+
+
+def _make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
+    leaves = leaves or []
+    lowest_treble_pitch = NamedPitch(lowest_treble_pitch)
+    treble_staff = Staff(name="Treble_Staff")
+    bass_staff = Staff(name="Bass_Staff")
+    staff_group = StaffGroup([treble_staff, bass_staff], lilypond_type="PianoStaff")
+    score = Score()
+    score.append(staff_group)
+    for leaf in leaves:
+        treble_pitches, bass_pitches = [], []
+        for pitch in Inspection(leaf).pitches():
+            if pitch < lowest_treble_pitch:
+                bass_pitches.append(pitch)
+            else:
+                treble_pitches.append(pitch)
+        written_duration = leaf.written_duration
+        if not treble_pitches:
+            treble_leaf = Rest(written_duration)
+        elif len(treble_pitches) == 1:
+            treble_leaf = Note(treble_pitches[0], written_duration)
+        else:
+            treble_leaf = Chord(treble_pitches, written_duration)
+        treble_staff.append(treble_leaf)
+        if not bass_pitches:
+            bass_leaf = Rest(written_duration)
+        elif len(bass_pitches) == 1:
+            bass_leaf = Note(bass_pitches[0], written_duration)
+        else:
+            bass_leaf = Chord(bass_pitches, written_duration)
+        bass_staff.append(bass_leaf)
+    if 0 < len(treble_staff):
+        attach(Clef("treble"), treble_staff[0])
+    if 0 < len(bass_staff):
+        attach(Clef("bass"), bass_staff[0])
+    if sketch:
+        override(score).time_signature.stencil = False
+        override(score).bar_number.transparent = True
+        override(score).bar_line.stencil = False
+        override(score).span_bar.stencil = False
+    return score, treble_staff, bass_staff
 
 
 def _to_score_markup(selection):

@@ -6,7 +6,7 @@ def test_Staff_time_signature_01():
     Force time signature on nonempty staff.
     """
 
-    staff = abjad.Staff(abjad.Note("c'4") * 8)
+    staff = abjad.Staff("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
 
@@ -33,7 +33,7 @@ def test_Staff_time_signature_02():
     Staff time signature carries over to staff-contained leaves.
     """
 
-    staff = abjad.Staff(abjad.Note("c'4") * 8)
+    staff = abjad.Staff("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
     for x in staff:
@@ -47,7 +47,7 @@ def test_Staff_time_signature_03():
     Staff time signature set and then clear.
     """
 
-    staff = abjad.Staff(abjad.Note("c'4") * 8)
+    staff = abjad.Staff("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
     abjad.detach(time_signature, staff[0])

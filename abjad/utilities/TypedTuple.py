@@ -74,8 +74,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
         try:
             result = hash(hash_values)
         except TypeError:
-            message = "unhashable type: {}".format(self)
-            raise TypeError(message)
+            raise TypeError(f"unhashable type: {self}")
         return result
 
     def __mul__(self, argument):

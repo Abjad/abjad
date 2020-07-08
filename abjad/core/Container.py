@@ -1,18 +1,12 @@
 import collections
 import typing
 
-import uqbar.graphs
-
 from .. import exceptions
+from ..bundle import LilyPondFormatBundle
 from ..duration import Duration
-from ..formatting import LilyPondFormatManager
 from ..storage import FormatSpecification
 from ..tags import Tag
-from .Component import Component, inspect
-from .Iteration import iterate
-from .Leaf import Leaf
-from .Note import Note
-from .Selection import Selection, select
+from .Component import Component
 
 
 class Container(Component):
@@ -271,7 +265,7 @@ class Container(Component):
                     }
                 }
 
-            >>> abjad.inspect(voice).wellformed()
+            >>> abjad.wellformed(voice)
             True
 
             First tuplet must have start slur removed:
@@ -290,28 +284,32 @@ class Container(Component):
                     e'4
                 }
 
-            >>> abjad.inspect(tuplet_1).wellformed()
+            >>> abjad.wellformed(tuplet_1)
             True
 
         Returns none.
         """
+        from .Selection import Selection
+
         components = self[i]
         if not isinstance(components, Selection):
-            components = select([components])
+            components = Selection([components])
         components._set_parents(None)
 
-    def __getitem__(self, argument) -> typing.Union[Component, Selection]:
+    def __getitem__(self, argument):
         """
         Gets item or slice identified by ``argument``.
 
         Traverses top-level items only.
         """
+        from .Selection import Selection
+
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
         elif isinstance(argument, slice) and not self.simultaneous:
-            return select(self.components.__getitem__(argument))
+            return Selection(self.components.__getitem__(argument))
         elif isinstance(argument, slice) and self.simultaneous:
-            return select(self.components.__getitem__(argument))
+            return Selection(self.components.__getitem__(argument))
         elif isinstance(argument, str):
             if argument not in self._named_children:
                 raise ValueError(f"can not find component named {argument!r}.")
@@ -326,57 +324,16 @@ class Container(Component):
         """
         return [], self.identifier, self.simultaneous, self.name, self.tag
 
+    # TODO: teach uqbar about iox._graph_container() and remove Container.__graph__()
     def __graph__(self, **keywords):
         """
         Graphviz graph representation of container.
 
         Returns Graphviz graph.
         """
+        from ..iox import _graph_container
 
-        def recurse(component, leaf_cluster):
-            component_node = component._as_graphviz_node()
-            node_mapping[component] = component_node
-            node_order = [component_node.name]
-            if isinstance(component, Container):
-                graph.append(component_node)
-                this_leaf_cluster = uqbar.graphs.Graph(
-                    name=component_node.name,
-                    attributes={"color": "grey75", "penwidth": 2},
-                )
-                all_are_leaves = True
-                pending_node_order = []
-                for child in component:
-                    if not isinstance(child, Leaf):
-                        all_are_leaves = False
-                    child_node, child_node_order = recurse(child, this_leaf_cluster)
-                    pending_node_order.extend(child_node_order)
-                    edge = uqbar.graphs.Edge()
-                    edge.attach(component_node, child_node)
-                if all_are_leaves:
-                    pending_node_order.reverse()
-                node_order.extend(pending_node_order)
-                if len(this_leaf_cluster):
-                    leaf_cluster.append(this_leaf_cluster)
-            else:
-                leaf_cluster.append(component_node)
-            return component_node, node_order
-
-        node_order = []
-        node_mapping = {}
-        graph = uqbar.graphs.Graph(
-            name="G",
-            attributes={"style": "rounded"},
-            edge_attributes={},
-            node_attributes={"fontname": "Arial", "shape": "none"},
-        )
-        leaf_cluster = uqbar.graphs.Graph(name="leaves")
-        component_node, node_order = recurse(self, leaf_cluster)
-        if len(leaf_cluster) == 1:
-            graph.append(leaf_cluster[0])
-        elif len(leaf_cluster):
-            graph.append(leaf_cluster)
-        graph._node_order = node_order
-        return graph
+        return _graph_container(self)
 
     def __iter__(self):
         """
@@ -425,24 +382,6 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _all_are_orphan_components(argument):
-        for component in argument:
-            if not isinstance(component, Component):
-                return False
-            if not inspect(component).parentage().orphan:
-                return False
-        return True
-
-    def _as_graphviz_node(self):
-        node = Component._as_graphviz_node(self)
-        node[0].append(
-            uqbar.graphs.TableRow(
-                [uqbar.graphs.TableCell(type(self).__name__, attributes={"border": 0})]
-            )
-        )
-        return node
-
     def _copy_with_children(self):
         new_container = self.__copy__()
         for component in self:
@@ -454,9 +393,8 @@ class Container(Component):
         return new_container
 
     def _eject_contents(self):
-        if inspect(self).parentage().parent is not None:
-            message = "can not eject contents of in-score container."
-            raise Exception(message)
+        if self._parent is not None:
+            raise Exception("can not eject contents of in-score container.")
         contents = self[:]
         for component in contents:
             component._set_parent(None)
@@ -488,7 +426,7 @@ class Container(Component):
             else:
                 brackets_close = ["}"]
         if self.tag is not None:
-            brackets_close = LilyPondFormatManager.tag(brackets_close, tag=self.tag)
+            brackets_close = Tag.tag(brackets_close, tag=self.tag)
         result.append([("close brackets", ""), brackets_close])
         return tuple(result)
 
@@ -500,7 +438,7 @@ class Container(Component):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_content_pieces(self):
-        indent = LilyPondFormatManager.indent
+        indent = LilyPondFormatBundle.indent
         strings = []
         for component in self.components:
             string = component.__format__(format_specification="lilypond")
@@ -530,7 +468,7 @@ class Container(Component):
             else:
                 brackets_open = ["{"]
         if self.tag is not None:
-            brackets_open = LilyPondFormatManager.tag(brackets_open, tag=self.tag)
+            brackets_open = Tag.tag(brackets_open, tag=self.tag)
         result.append([("open brackets", ""), brackets_open])
         return tuple(result)
 
@@ -582,20 +520,18 @@ class Container(Component):
             return max([Duration(0)] + [x._get_preprolated_duration() for x in self])
         else:
             duration = Duration(0)
-            for x in self:
-                duration += x._get_preprolated_duration()
+            for component in self:
+                duration += component._get_preprolated_duration()
             return duration
 
     def _get_contents_summary(self):
         if 0 < len(self):
             result = []
-            for x in self.components:
-                if hasattr(x, "_get_compact_representation_with_tie"):
-                    result.append(x._get_compact_representation_with_tie())
-                elif hasattr(x, "_get_compact_representation"):
-                    result.append(x._get_compact_representation())
+            for component in self.components:
+                if hasattr(component, "_get_compact_representation"):
+                    result.append(component._get_compact_representation())
                 else:
-                    result.append(str(x))
+                    result.append(str(component))
             return " ".join(result)
         else:
             return ""
@@ -605,8 +541,8 @@ class Container(Component):
             return max([Duration(0)] + [x._get_duration(in_seconds=True) for x in self])
         else:
             duration = Duration(0)
-            for leaf in iterate(self).leaves():
-                duration += leaf._get_duration(in_seconds=True)
+            for component in self:
+                duration += component._get_duration_in_seconds()
             return duration
 
     def _get_format_specification(self):
@@ -655,6 +591,8 @@ class Container(Component):
         return ["simultaneous", "name"]
 
     def _initialize_components(self, components):
+        from .Selection import Selection
+
         if isinstance(components, collections.abc.Iterable) and not isinstance(
             components, str
         ):
@@ -670,25 +608,25 @@ class Container(Component):
             components = components_
             for component in components:
                 if not isinstance(component, Component):
-                    message = f"must be component: {component!r}."
-                    raise Exception(message)
-        if self._all_are_orphan_components(components):
-            self._components = list(components)
-            self[:]._set_parents(self)
-        elif isinstance(components, str):
+                    raise Exception(f"must be component: {component!r}.")
+        if isinstance(components, str):
             parsed = self._parse_string(components)
             self._components = []
             self.simultaneous = parsed.simultaneous
             if (
                 parsed.simultaneous
-                or not select(parsed[:]).are_contiguous_logical_voice()
+                or not Selection(parsed[:]).are_contiguous_logical_voice()
             ):
                 while len(parsed):
                     self.append(parsed.pop(0))
             else:
                 self[:] = parsed[:]
         else:
-            raise TypeError(f"can't initialize container from {components!r}.")
+            for component in components:
+                if component._parent is not None:
+                    raise Exception(f"must not have parent: {component!r}.")
+            self._components = list(components)
+            self[:]._set_parents(self)
 
     def _is_on_beat_anchor_voice(self):
         from .Voice import Voice
@@ -720,51 +658,12 @@ class Container(Component):
     def _is_one_of_my_last_leaves(self, leaf):
         return leaf in self._get_descendants_stopping_with()
 
-    def _iterate_bottom_up(self):
-        def recurse(node):
-            if isinstance(node, Container):
-                for x in node:
-                    for y in recurse(x):
-                        yield y
-            yield node
-
-        return recurse(self)
-
-    def _iterate_top_down(self):
-        def recurse(node):
-            yield node
-            if isinstance(node, Container):
-                for x in node:
-                    for y in recurse(x):
-                        yield y
-
-        return recurse(self)
-
     def _parse_string(self, string):
-        from ..parsers.parse import parse
-        from ..parsers.reduced import ReducedLyParser
-        from ..lilypondfile import LilyPondFile
-        from .. import rhythmtrees
-
         user_input = string.strip()
-        if user_input.startswith("abj:"):
-            parser = ReducedLyParser()
-            parsed = parser(user_input[4:])
-            if parser._toplevel_component_count == 1:
-                parent = inspect(parsed).parentage().parent
-                if parent is None:
-                    parsed = Container([parsed])
-                else:
-                    parsed = parent
-        elif user_input.startswith("rtm:"):
-            parsed = rhythmtrees.parse_rtm_syntax(user_input[4:])
-        else:
-            if not user_input.startswith("<<") or not user_input.endswith(">>"):
-                user_input = f"{{ {user_input} }}"
-            parsed = parse(user_input)
-            if isinstance(parsed, LilyPondFile):
-                parsed = Container(parsed.items[:])
-            assert isinstance(parsed, Container)
+        if not user_input.startswith("<<") or not user_input.endswith(">>"):
+            user_input = f"{{ {user_input} }}"
+        parsed = self._parse_lilypond_string(user_input)
+        assert isinstance(parsed, Container)
         return parsed
 
     @staticmethod
@@ -781,11 +680,13 @@ class Container(Component):
 
     def _set_item(self, i, argument):
         from .BeforeGraceContainer import BeforeGraceContainer
+        from .Iteration import Iteration
+        from .Selection import Selection
 
-        argument_indicators = []
-        for component in iterate(argument).components():
-            wrappers = inspect(component).wrappers()
-            argument_indicators.extend(wrappers)
+        argument_wrappers = []
+        for component in Iteration(argument).components():
+            wrappers = component._get_indicators(unwrap=False)
+            argument_wrappers.extend(wrappers)
         if isinstance(i, int):
             argument = [argument]
             if i < 0:
@@ -818,164 +719,8 @@ class Container(Component):
         self._components.__setitem__(slice(start, start), argument)
         for component in argument:
             component._set_parent(self)
-        for indicator in argument_indicators:
-            if hasattr(indicator, "_update_effective_context"):
-                indicator._update_effective_context()
-
-    def _split_at_index(self, i):
-        """
-        Splits container to the left of index ``i``.
-
-        Preserves tuplet multiplier when container is a tuplet.
-
-        Preserves time signature denominator when container is a measure.
-
-        Resizes resizable containers.
-
-        Returns split parts.
-        """
-        from .Mutation import mutate
-        from .Tuplet import Tuplet
-
-        # partition my components
-        left_components = self[:i]
-        right_components = self[i:]
-        # instantiate new left and right containers
-        if isinstance(self, Tuplet):
-            multiplier = self.multiplier
-            left = type(self)(multiplier, [])
-            mutate(left_components).wrap(left)
-            right = type(self)(multiplier, [])
-            mutate(right_components).wrap(right)
-        else:
-            left = self.__copy__()
-            mutate(left_components).wrap(left)
-            right = self.__copy__()
-            mutate(right_components).wrap(right)
-        # save left and right containers together for iteration
-        halves = (left, right)
-        nonempty_halves = [half for half in halves if len(half)]
-        # incorporate left and right parents in score if possible
-        selection = select(self)
-        parent, start, stop = selection._get_parent_and_start_stop_indices()
-        if parent is not None:
-            parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
-            for part in nonempty_halves:
-                part._set_parent(parent)
-        else:
-            left._set_parent(None)
-            right._set_parent(None)
-        # return new left and right containers
-        return halves
-
-    def _split_by_duration(self, duration):
-        if self.simultaneous:
-            return self._split_simultaneous_by_duration(duration=duration)
-        duration = Duration(duration)
-        assert 0 <= duration, repr(duration)
-        if duration == 0:
-            return [], self
-        # get split point score offset
-        timespan = inspect(self).timespan()
-        global_split_point = timespan.start_offset + duration
-        # get any duration-crossing descendents
-        cross_offset = timespan.start_offset + duration
-        duration_crossing_descendants = []
-        for descendant in inspect(self).descendants():
-            timespan = inspect(descendant).timespan()
-            start_offset = timespan.start_offset
-            stop_offset = timespan.stop_offset
-            if start_offset < cross_offset < stop_offset:
-                duration_crossing_descendants.append(descendant)
-        # any duration-crossing leaf will be at end of list
-        bottom = duration_crossing_descendants[-1]
-        did_split_leaf = False
-        # if split point necessitates leaf split
-        if isinstance(bottom, Leaf):
-            assert isinstance(bottom, Leaf)
-            did_split_leaf = True
-            timespan = inspect(bottom).timespan()
-            start_offset = timespan.start_offset
-            split_point_in_bottom = global_split_point - start_offset
-            new_leaves = bottom._split_by_durations([split_point_in_bottom])
-            for leaf in new_leaves:
-                timespan = inspect(leaf).timespan()
-                if timespan.stop_offset == global_split_point:
-                    leaf_left_of_split = leaf
-                if timespan.start_offset == global_split_point:
-                    leaf_right_of_split = leaf
-            duration_crossing_containers = duration_crossing_descendants[:-1]
-            if not len(duration_crossing_containers):
-                # return left_list, right_list
-                raise Exception("how did we get here?")
-        # if split point falls between leaves
-        # then find leaf to immediate right of split point
-        # in order to start upward crawl through duration-crossing containers
-        else:
-            duration_crossing_containers = duration_crossing_descendants[:]
-            for leaf in iterate(bottom).leaves():
-                timespan = inspect(leaf).timespan()
-                if timespan.start_offset == global_split_point:
-                    leaf_right_of_split = leaf
-                    leaf_left_of_split = inspect(leaf).leaf(-1)
-                    break
-            else:
-                raise Exception("can not split empty container {bottom!r}.")
-        assert leaf_left_of_split is not None
-        assert leaf_right_of_split is not None
-        # find component to right of split
-        # that is also immediate child of last duration-crossing container
-        for component in inspect(leaf_right_of_split).parentage():
-            parent = inspect(component).parentage().parent
-            if parent is duration_crossing_containers[-1]:
-                highest_level_component_right_of_split = component
-                break
-        else:
-            raise ValueError("should not be able to get here.")
-        # crawl back up through duration-crossing containers and split each
-        previous = highest_level_component_right_of_split
-        for container in reversed(duration_crossing_containers):
-            assert isinstance(container, Container)
-            index = container.index(previous)
-            left, right = container._split_at_index(index)
-            previous = right
-        # reapply tie here if crawl above killed tie applied to leaves
-        if did_split_leaf:
-            if isinstance(leaf_left_of_split, Note):
-                if (
-                    inspect(leaf_left_of_split).parentage().root
-                    is inspect(leaf_right_of_split).parentage().root
-                ):
-                    leaves_around_split = (
-                        leaf_left_of_split,
-                        leaf_right_of_split,
-                    )
-                    selection = select(leaves_around_split)
-                    selection._attach_tie_to_leaves()
-        # return list-wrapped halves of container
-        return [left], [right]
-
-    def _split_simultaneous_by_duration(self, duration):
-        from .Mutation import mutate
-
-        assert self.simultaneous
-        left_components, right_components = [], []
-        for component in self[:]:
-            halves = component._split_by_duration(duration=duration)
-            left_components_, right_components_ = halves
-            left_components.extend(left_components_)
-            right_components.extend(right_components_)
-        left_components = select(left_components)
-        right_components = select(right_components)
-        left_container = self.__copy__()
-        right_container = self.__copy__()
-        left_container.extend(left_components)
-        right_container.extend(right_components)
-        if inspect(self).parentage().parent is not None:
-            containers = select([left_container, right_container])
-            mutate(self).replace(containers)
-        # return list-wrapped halves of container
-        return [left_container], [right_container]
+        for wrapper in argument_wrappers:
+            wrapper._update_effective_context()
 
     ### PUBLIC PROPERTIES ###
 
@@ -1070,7 +815,8 @@ class Container(Component):
     def name(self, argument):
         assert isinstance(argument, (str, type(None)))
         old_name = self._name
-        for parent in inspect(self).parentage()[1:]:
+        parent = self._parent
+        while parent is not None:
             named_children = parent._named_children
             if old_name is not None:
                 named_children[old_name].remove(self)
@@ -1081,6 +827,7 @@ class Container(Component):
                     named_children[argument] = [self]
                 else:
                     named_children[argument].append(self)
+            parent = parent._parent
         self._name = argument
 
     @property
@@ -1308,8 +1055,7 @@ class Container(Component):
             if element is component:
                 return i
         else:
-            message = f"component {component!r} not in container {self!r}."
-            raise ValueError(message)
+            raise ValueError(f"component {component!r} not in container {self!r}.")
 
     def insert(self, i, component) -> None:
         r"""

@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
@@ -65,7 +65,7 @@ class Glissando(object):
         parenthesize_repeats: bool = None,
         stems: bool = None,
         style: str = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
         zero_padding: bool = None,
     ) -> None:
         if allow_repeats is not None:
@@ -84,8 +84,8 @@ class Glissando(object):
             assert isinstance(style, str), repr(style)
         self._style = style
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
         if zero_padding is not None:
             zero_padding = bool(zero_padding)
         self._zero_padding = zero_padding
@@ -163,7 +163,7 @@ class Glissando(object):
         return self._persistent
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

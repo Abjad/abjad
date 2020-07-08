@@ -6,17 +6,16 @@ dist: xenial
 
 language: python
 
+python:
+  - 3.6
+  - 3.7
+  - 3.8
+
 git:
   depth: false
 
 cache:
   - pip
-
-jobs:
-  include:
-    - python: "3.6"
-    - python: "3.7"
-    - python: "3.8"
 
 before_install:
   # install lilypond
@@ -37,7 +36,7 @@ install:
   # install without development dependencies
   - pip install -e .
   # echo the configuration file path to debug read-only-filesystem handling
-  - python -c "import abjad; print(abjad.configuration.configuration_file_path)"
+  - python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
   # prime the parser
   - scr/prime-parser-tables
   # install development dependencies

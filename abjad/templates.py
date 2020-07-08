@@ -3,27 +3,27 @@ import collections
 import typing
 
 from . import const, instruments
-from .core.Component import Wrapper, attach, inspect
+from .core.Component import Wrapper, annotate, attach
 from .core.Context import Context
-from .core.Iteration import iterate
+from .core.Iteration import Iteration
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Score import Score
-from .core.Selection import select
+from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
 from .core.Voice import Voice
+from .core.inspectx import Inspection
 from .indicators.Clef import Clef
-from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.MarginMarkup import MarginMarkup
 from .instruments import Piano
 from .lilypondfile import LilyPondFile
 from .new import new
+from .overrides import LilyPondLiteral
 from .segments.Part import Part
 from .segments.PartAssignment import PartAssignment
 from .segments.PartManifest import PartManifest
 from .storage import StorageFormatManager
-from .system.annotate import annotate
 from .tags import Tag, Tags
 from .utilities.OrderedDict import OrderedDict
 
@@ -67,14 +67,16 @@ class ScoreTemplate(object):
         """
         Illustrates score template.
         """
+        from .illustrate import illustrate
+
         score: Score = self()
         site = "abjad.ScoreTemplate.__illustrate__()"
         tag = Tag(site)
-        for voice in iterate(score).components(Voice):
+        for voice in Iteration(score).components(Voice):
             skip = Skip(1, tag=tag)
             voice.append(skip)
         self.attach_defaults(score)
-        lilypond_file: LilyPondFile = score.__illustrate__()
+        lilypond_file: LilyPondFile = illustrate(score)
         lilypond_file = new(
             lilypond_file,
             default_paper_size=default_paper_size,
@@ -175,8 +177,8 @@ class ScoreTemplate(object):
         empty_prototype = (MultimeasureRest, Skip)
         prototype = (Staff, StaffGroup)
         if isinstance(argument, Score):
-            staff__groups = select(argument).components(prototype)
-            staves = select(argument).components(Staff)
+            staff__groups = list(Selection(argument).components(prototype))
+            staves = list(Selection(argument).components(Staff))
         elif isinstance(argument, Staff):
             staff__groups = [argument]
             staves = [argument]
@@ -186,36 +188,37 @@ class ScoreTemplate(object):
             staves = []
         for staff__group in staff__groups:
             leaf = None
-            voices = select(staff__group).components(Voice)
+            voices = Selection(staff__group).components(Voice)
+            assert isinstance(voices, Selection), repr(voices)
             # find leaf 0 in first nonempty voice
             for voice in voices:
                 leaves = []
-                for leaf_ in select(voice).leaves():
-                    if inspect(leaf_).has_indicator(const.HIDDEN):
+                for leaf_ in Iteration(voice).leaves():
+                    if Inspection(leaf_).has_indicator(const.HIDDEN):
                         leaves.append(leaf_)
                 if not all(isinstance(_, empty_prototype) for _ in leaves):
-                    leaf = inspect(voice).leaf(0)
+                    leaf = Inspection(voice).leaf(0)
                     break
             # otherwise, find first leaf in voice in non-removable staff
             if leaf is None:
                 for voice in voices:
                     voice_might_vanish = False
-                    for component in inspect(voice).parentage():
-                        if inspect(component).annotation(tag) is True:
+                    for component in Inspection(voice).parentage():
+                        if Inspection(component).annotation(tag) is True:
                             voice_might_vanish = True
                     if not voice_might_vanish:
-                        leaf = inspect(voice).leaf(0)
+                        leaf = Inspection(voice).leaf(0)
                         if leaf is not None:
                             break
             # otherwise, as last resort find first leaf in first voice
             if leaf is None:
-                leaf = inspect(voices[0]).leaf(0)
+                leaf = Inspection(voices[0]).leaf(0)
             if leaf is None:
                 continue
-            instrument = inspect(leaf).indicator(instruments.Instrument)
+            instrument = Inspection(leaf).indicator(instruments.Instrument)
             if instrument is None:
                 string = "default_instrument"
-                instrument = inspect(staff__group).annotation(string)
+                instrument = Inspection(staff__group).annotation(string)
                 if instrument is not None:
                     wrapper = attach(
                         instrument,
@@ -225,10 +228,10 @@ class ScoreTemplate(object):
                         wrapper=True,
                     )
                     wrappers.append(wrapper)
-            margin_markup = inspect(leaf).indicator(MarginMarkup)
+            margin_markup = Inspection(leaf).indicator(MarginMarkup)
             if margin_markup is None:
                 string = "default_margin_markup"
-                margin_markup = inspect(staff__group).annotation(string)
+                margin_markup = Inspection(staff__group).annotation(string)
                 if margin_markup is not None:
                     wrapper = attach(
                         margin_markup,
@@ -240,11 +243,11 @@ class ScoreTemplate(object):
                     )
                     wrappers.append(wrapper)
         for staff in staves:
-            leaf = inspect(staff).leaf(0)
-            clef = inspect(leaf).indicator(Clef)
+            leaf = Inspection(staff).leaf(0)
+            clef = Inspection(leaf).indicator(Clef)
             if clef is not None:
                 continue
-            clef = inspect(staff).annotation("default_clef")
+            clef = Inspection(staff).annotation("default_clef")
             if clef is not None:
                 wrapper = attach(
                     clef,
@@ -464,19 +467,19 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
-                name = "Voice_{}".format(number)
+                name = f"Voice_{number}"
                 voice = Voice([], name=name, tag=tag)
-                name = "Staff_{}".format(number)
+                name = f"Staff_{number}"
                 staff = Staff([voice], name=name, tag=tag)
                 staff.lilypond_type = "RhythmicStaff"
                 annotate(staff, "default_clef", Clef("percussion"))
                 staves.append(staff)
-                key = "v{}".format(number)
+                key = f"v{number}"
                 self.voice_abbreviations[key] = voice.name
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
-                name = "Staff_{}".format(staff_number)
+                name = f"Staff_{staff_number}"
                 staff = Staff(name=name, tag=tag)
                 staff.lilypond_type = "RhythmicStaff"
                 assert 1 <= voice_count
@@ -485,12 +488,12 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                     if voice_count == 1:
                         voice_identifier = str(staff_number)
                     else:
-                        voice_identifier = "{}_{}".format(staff_number, voice_number)
+                        voice_identifier = f"{staff_number}_{voice_number}"
                         staff.simultaneous = True
-                    name = "Voice_{}".format(voice_identifier)
+                    name = f"Voice_{voice_identifier}"
                     voice = Voice([], name=name, tag=tag)
                     staff.append(voice)
-                    key = "v{}".format(voice_identifier)
+                    key = f"v{voice_identifier}"
                     self.voice_abbreviations[key] = voice.name
                 staves.append(staff)
         grouped_rhythmic_staves_staff_group = StaffGroup(
@@ -643,10 +646,10 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         tag = Tag(site)
         for index in range(self.staff_count):
             number = index + 1
-            voice = Voice([], name="Voice_{}".format(number), tag=tag)
-            staff = Staff([voice], name="Staff_{}".format(number), tag=tag)
+            voice = Voice([], name=f"Voice_{number}", tag=tag)
+            staff = Staff([voice], name=f"Staff_{number}", tag=tag)
             staves.append(staff)
-            self.voice_abbreviations["v{}".format(number)] = voice.name
+            self.voice_abbreviations[f"v{number}"] = voice.name
         staff_group = StaffGroup(staves, name="Grouped_Staves_Staff_Group", tag=tag)
         score = Score([staff_group], name="Grouped_Staves_Score", tag=tag)
         return score
@@ -1288,7 +1291,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             lilypond_type="GlobalContext", name="Global_Context", tag=tag
         )
         instrument_tags = " ".join(tag_names)
-        tag_string = r"\tag #'({})".format(instrument_tags)
+        tag_string = rf"\tag #'({instrument_tags})"
         literal = LilyPondLiteral(tag_string, "before")
         attach(literal, global_context, tag=tag)
         score.insert(0, global_context)
@@ -1301,9 +1304,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         tag = Tag(site)
         name = instrument.name.title()
         instrument_staff_group = StaffGroup(
-            lilypond_type="{}StaffGroup".format(name),
-            name="{}_Staff_Group".format(name),
-            tag=tag,
+            lilypond_type=f"{name}StaffGroup", name=f"{name}_Staff_Group", tag=tag,
         )
         tag_names = []
         if count == 1:
@@ -1325,24 +1326,24 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         site = "StringOrchestraScoreTemplate._make_performer_staff_group()"
         tag = Tag(site)
         if number is not None:
-            name = "{}_{}".format(instrument.name.title(), number)
+            name = f"{instrument.name.title()}_{number}"
         else:
             name = instrument.name.title()
         pitch_range = instrument.pitch_range
         staff_group = StaffGroup(
             lilypond_type="StringPerformerStaffGroup",
-            name="{}_Staff_Group".format(name),
+            name=f"{name}_Staff_Group",
             tag=tag,
         )
         tag_name = name.replace(" ", "")
-        tag_string = r"\tag #'{}".format(tag_name)
+        tag_string = rf"\tag #'{tag_name}"
         tag_command = LilyPondLiteral(tag_string, "before")
         attach(tag_command, staff_group, tag=tag)
         if self.split_hands:
             lh_voice = Voice(
                 [],
                 lilypond_type="FingeringVoice",
-                name="{}_Fingering_Voice".format(name),
+                name=f"{name}_Fingering_Voice",
                 tag=tag,
             )
             abbreviation = lh_voice.name.lower().replace(" ", "_")
@@ -1350,39 +1351,33 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             lh_staff = Staff(
                 [lh_voice],
                 lilypond_type="FingeringStaff",
-                name="{}_Fingering_Staff".format(name),
+                name=f"{name}_Fingering_Staff",
                 tag=tag,
             )
             lh_staff.simultaneous = True
             annotate(lh_staff, "pitch_range", pitch_range)
             annotate(lh_staff, "default_clef", Clef(clef_name))
             rh_voice = Voice(
-                [],
-                lilypond_type="BowingVoice",
-                name="{}_Bowing_Voice".format(name),
-                tag=tag,
+                [], lilypond_type="BowingVoice", name=f"{name}_Bowing_Voice", tag=tag,
             )
             abbreviation = rh_voice.name.lower().replace(" ", "_")
             self.voice_abbreviations[abbreviation] = rh_voice.name
             rh_staff = Staff(
                 [rh_voice],
                 lilypond_type="BowingStaff",
-                name="{}_Bowing_Staff".format(name),
+                name=f"{name}_Bowing_Staff",
                 tag=tag,
             )
             rh_staff.simultaneous = True
             staff_group.extend([rh_staff, lh_staff])
         else:
             lh_voice = Voice(
-                [],
-                lilypond_type="FingeringVoice",
-                name="{}_Voice".format(name),
-                tag=tag,
+                [], lilypond_type="FingeringVoice", name=f"{name}_Voice", tag=tag,
             )
             lh_staff = Staff(
                 [lh_voice],
                 lilypond_type="FingeringStaff",
-                name="{}_Staff".format(name),
+                name=f"{name}_Staff",
                 tag=tag,
             )
             lh_staff.simultaneous = True

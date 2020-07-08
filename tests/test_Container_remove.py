@@ -50,8 +50,8 @@ def test_Container_remove_01():
 
     assert format(note) == "d'8\n[\n]"
 
-    assert abjad.inspect(voice).wellformed()
-    assert abjad.inspect(note).wellformed()
+    assert abjad.wellformed(voice)
+    assert abjad.wellformed(note)
 
 
 def test_Container_remove_02():
@@ -99,7 +99,7 @@ def test_Container_remove_02():
         """
     )
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
 
     assert format(sequential) == abjad.String.normalize(
         r"""
@@ -111,7 +111,7 @@ def test_Container_remove_02():
         """
     )
 
-    assert abjad.inspect(sequential).wellformed()
+    assert abjad.wellformed(sequential)
 
 
 def test_Container_remove_03():

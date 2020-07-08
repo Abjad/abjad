@@ -1,17 +1,15 @@
 import copy
 import typing
 
-from .. import instruments, typings
+from .. import typings
+from ..bundle import LilyPondFormatBundle
 from ..duration import Duration
-from ..formatting import LilyPondFormatManager
 from ..ly.drums import drums
 from ..pitch.pitches import NamedPitch
 from ..pitch.segments import PitchSegment
 from ..tags import Tag
-from .Component import inspect
-from .DrumNoteHead import DrumNoteHead
 from .Leaf import Leaf
-from .NoteHead import NoteHead, NoteHeadList
+from .noteheads import DrumNoteHead, NoteHead, NoteHeadList
 
 
 class Chord(Leaf):
@@ -61,27 +59,24 @@ class Chord(Leaf):
     def __init__(
         self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
     ) -> None:
-        from ..parsers.parse import parse
-        from .Note import Note
-
         assert len(arguments) in (0, 1, 2)
         self._note_heads = NoteHeadList(client=self)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
-            parsed = parse(string)
+            parsed = self._parse_lilypond_string(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
         are_cautionary: typing.List[typing.Optional[bool]] = []
         are_forced: typing.List[typing.Optional[bool]] = []
         are_parenthesized: typing.List[typing.Optional[bool]] = []
-        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
+        if len(arguments) == 1 and hasattr(arguments[0], "written_duration"):
             leaf = arguments[0]
             written_pitches = []
             written_duration = leaf.written_duration
             if multiplier is None:
                 multiplier = leaf.multiplier
             # TODO: move to dedicated from_note() constructor:
-            if isinstance(leaf, Note) and leaf.note_head is not None:
+            if hasattr(leaf, "written_pitch") and leaf.note_head is not None:
                 written_pitches.append(leaf.note_head.written_pitch)
                 are_cautionary = [leaf.note_head.is_cautionary]
                 are_forced = [leaf.note_head.is_forced]
@@ -179,7 +174,7 @@ class Chord(Leaf):
         return result
 
     def _format_leaf_nucleus(self):
-        indent = LilyPondFormatManager.indent
+        indent = LilyPondFormatBundle.indent
         result = []
         note_heads = self.note_heads
         if any("\n" in format(x) for x in note_heads):
@@ -201,32 +196,12 @@ class Chord(Leaf):
         return [result]
 
     def _get_compact_representation(self):
-        return f"<{self._get_summary()}>{self._get_formatted_duration()}"
-
-    def _get_compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return f"{self._get_compact_representation()} ~"
-        else:
-            return self._get_compact_representation()
-
-    def _get_sounding_pitches(self):
-        if "sounding pitch" in inspect(self).indicators(str):
-            return self.written_pitches
-        else:
-            instrument = self._get_effective(instruments.Instrument)
-            if instrument:
-                sounding_pitch = instrument.middle_c_sounding_pitch
-            else:
-                sounding_pitch = NamedPitch("C4")
-            interval = NamedPitch("C4") - sounding_pitch
-            sounding_pitches = [
-                interval.transpose(pitch) for pitch in self.written_pitches
-            ]
-            return tuple(sounding_pitches)
+        summary = self._get_summary()
+        duration = self._get_formatted_duration()
+        return f"<{summary}>{duration}"
 
     def _get_summary(self):
-        return " ".join([str(x) for x in self.note_heads])
+        return " ".join([str(_) for _ in self.note_heads])
 
     ### PUBLIC PROPERTIES ###
 

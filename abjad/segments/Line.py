@@ -225,8 +225,7 @@ class Line(object):
         Returns true or false.
         """
         if not callable(predicate) and not isinstance(predicate, Tag):
-            message = f"must be callable or tag: {predicate!r}"
-            raise Exception(message)
+            raise Exception(f"must be callable or tag: {predicate!r}")
         tags = self.get_tags()
         if not tags:
             return False

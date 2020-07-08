@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums, typings
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
@@ -53,13 +53,13 @@ class BendAfter(object):
     ### INITIALIZER ###
 
     def __init__(
-        self, bend_amount: typings.Number = -4, *, tweaks: LilyPondTweakManager = None,
+        self, bend_amount: typings.Number = -4, *, tweaks: TweakInterface = None,
     ) -> None:
         assert isinstance(bend_amount, (int, float)), repr(bend_amount)
         self._bend_amount = bend_amount
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -121,7 +121,7 @@ class BendAfter(object):
         return self._bend_amount
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks.
 

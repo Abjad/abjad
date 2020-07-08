@@ -163,7 +163,7 @@ and add a double bar to the end of the score:
     >>> clef = abjad.Clef("bass")
     >>> leaf = lower_staff_voice_2_leaves[0]
     >>> abjad.attach(clef, leaf)
-    >>> bar_line = score.add_final_bar_line()
+    >>> bar_line = abjad.deprecated.add_final_bar_line(score)
     >>> abjad.show(score)
 
 Now let's add dynamics. We override LilyPond's DynamicLineSpanner grob to

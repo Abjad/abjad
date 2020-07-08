@@ -62,7 +62,8 @@ class Set(TypedFrozenset):
         """
         items = self._get_sorted_repr_items()
         items = [str(_) for _ in items]
-        return "{{{}}}".format(", ".join(items))
+        string = ", ".join(items)
+        return f"{{{string}}}"
 
     ### PRIVATE PROPERTIES ###
 
@@ -101,9 +102,7 @@ class Set(TypedFrozenset):
         elif hasattr(self.item_class, "__abs__"):
             repr_items = [abs(x) for x in items]
         else:
-            message = "invalid item class: {!r}."
-            message = message.format(self.item_class)
-            raise ValueError(message)
+            raise ValueError(f"invalid item class: {self.item_class!r}.")
         return repr_items
 
     def _sort_self(self):
@@ -127,7 +126,7 @@ class Set(TypedFrozenset):
     @abc.abstractmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes set from `selection`.
+        Makes set from ``selection``.
 
         Returns set.
         """
@@ -210,8 +209,8 @@ class IntervalClassSet(Set):
 
             ::
 
-                >>> interval_classes = abjad.IntervalClassSet.from_selection(
-                ...     staff_group)
+                >>> selection = abjad.select(staff_group)
+                >>> interval_classes = abjad.IntervalClassSet.from_selection(selection)
                 >>> for interval_class in sorted(interval_classes):
                 ...     interval_class
                 ...
@@ -357,7 +356,7 @@ class PitchClassSet(Set):
 
     def __contains__(self, argument):
         """
-        Is true when pitch-class set contains `argument`.
+        Is true when pitch-class set contains ``argument``.
 
         ..  container:: example
 
@@ -488,7 +487,7 @@ class PitchClassSet(Set):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes pitch-class set from `selection`.
+        Makes pitch-class set from ``selection``.
 
         ..  container:: example
 
@@ -710,7 +709,7 @@ class PitchClassSet(Set):
 
     def is_transposed_subset(self, pcset):
         """
-        Is true when pitch-class set is transposed subset of `pcset`.
+        Is true when pitch-class set is transposed subset of ``pcset``.
 
         ..  container:: example
 
@@ -733,7 +732,7 @@ class PitchClassSet(Set):
 
     def is_transposed_superset(self, pcset):
         """
-        Is true when pitch-class set is transposed superset of `pcset`.
+        Is true when pitch-class set is transposed superset of ``pcset``.
 
         ..  container:: example
 
@@ -756,7 +755,7 @@ class PitchClassSet(Set):
 
     def multiply(self, n):
         """
-        Multiplies pitch-class set by `n`.
+        Multiplies pitch-class set by ``n``.
 
         ..  container:: example
 
@@ -772,7 +771,7 @@ class PitchClassSet(Set):
 
     def order_by(self, segment):
         """
-        Orders pitch-class set by pitch-class `segment`.
+        Orders pitch-class set by pitch-class ``segment``.
 
         ..  container:: example
 
@@ -784,19 +783,17 @@ class PitchClassSet(Set):
         Returns pitch-class segment.
         """
         if not len(self) == len(segment):
-            message = "set and segment must be on equal length."
-            raise ValueError(message)
+            raise ValueError("set and segment must be on equal length.")
         enumerator = Enumerator(self)
         for pitch_classes in enumerator.yield_permutations():
             candidate = PitchClassSegment(pitch_classes)
             if candidate._is_equivalent_under_transposition(segment):
                 return candidate
-        message = f"{self!s} can not order by {segment!s}."
-        raise ValueError(message)
+        raise ValueError(f"{self!s} can not order by {segment!s}.")
 
     def transpose(self, n=0):
         """
-        Transposes all pitch-classes in pitch-class set by index `n`.
+        Transposes all pitch-classes in pitch-class set by index ``n``.
 
         ..  container:: example
 
@@ -873,7 +870,7 @@ class PitchSet(Set):
 
     def __eq__(self, argument):
         """
-        Is true when pitch set equals `argument`.
+        Is true when pitch set equals ``argument``.
 
         ..  container:: example
 
@@ -941,7 +938,7 @@ class PitchSet(Set):
 
     def _is_equivalent_under_transposition(self, argument):
         """
-        True if pitch set is equivalent to `argument` under transposition.
+        True if pitch set is equivalent to ``argument`` under transposition.
 
         Returns true or false.
         """
@@ -1041,7 +1038,7 @@ class PitchSet(Set):
     @classmethod
     def from_selection(class_, selection, item_class=None):
         """
-        Makes pitch set from `selection`.
+        Makes pitch set from ``selection``.
 
         ..  container:: example
 
@@ -1058,7 +1055,7 @@ class PitchSet(Set):
 
     def invert(self, axis):
         """
-        Inverts pitch set about `axis`.
+        Inverts pitch set about ``axis``.
 
         Returns new pitch set.
         """
@@ -1067,7 +1064,7 @@ class PitchSet(Set):
 
     def issubset(self, argument):
         """
-        Is true when pitch set is subset of `argument`.
+        Is true when pitch set is subset of ``argument``.
 
         ..  container:: example
 
@@ -1092,7 +1089,7 @@ class PitchSet(Set):
 
     def issuperset(self, argument):
         """
-        Is true when pitch set is superset of `argument`.
+        Is true when pitch set is superset of ``argument``.
 
         ..  container:: example
 
@@ -1117,7 +1114,7 @@ class PitchSet(Set):
 
     def register(self, pitch_classes):
         """
-        Registers `pitch_classes` by pitch set.
+        Registers ``pitch_classes`` by pitch set.
 
         ..  container:: example
 
@@ -1153,13 +1150,12 @@ class PitchSet(Set):
         elif isinstance(pitch_classes, int):
             result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
         else:
-            message = "must be pitch-class or list of pitch-classes."
-            raise TypeError(message)
+            raise TypeError("must be pitch-class or list of pitch-classes.")
         return result
 
     def transpose(self, n=0):
         """
-        Transposes pitch set by index `n`.
+        Transposes pitch set by index ``n``.
 
         Returns new pitch set.
         """

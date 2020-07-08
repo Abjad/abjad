@@ -9,14 +9,14 @@ import uqbar.containers
 import uqbar.graphs
 
 from . import mathtools
-from .core.Component import inspect
 from .core.Container import Container
-from .core.LeafMaker import LeafMaker
 from .core.Tuplet import Tuplet
+from .core.inspectx import Inspection
+from .core.makers import LeafMaker
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
+from .parsers.base import Parser
 from .spanners import tie
 from .storage import FormatSpecification, StorageFormatManager
-from .system.Parser import Parser
 from .utilities.Sequence import Sequence
 
 
@@ -379,8 +379,8 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         Returns string.
         """
         if self.is_pitched:
-            return "{!s}".format(self.preprolated_duration)
-        return "-{!s}".format(self.preprolated_duration)
+            return f"{self.preprolated_duration!s}"
+        return f"-{self.preprolated_duration!s}"
 
     ### PUBLIC PROPERTIES ###
 
@@ -514,8 +514,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         if isinstance(children, (list, str, tuple)):
             self.extend(children)
         elif children is not None:
-            message = "can not instantiate {} with {!r}."
-            raise ValueError(message.format(type(self), children))
+            raise ValueError(f"can not instantiate {type(self)} with {children!r}.")
 
     ### SPECIAL METHODS ###
 
@@ -629,7 +628,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                     if 1 < len(leaves):
                         tie(leaves)
             assert tuplet.multiplier == 1, repr(tuplet.multiplier)
-            contents_duration = inspect(tuplet).duration()
+            contents_duration = Inspection(tuplet).duration()
             target_duration = tuplet_duration
             multiplier = target_duration / contents_duration
             tuplet.multiplier = multiplier
@@ -719,9 +718,9 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
         Returns string.
         """
-        return "{}(({}, {}))".format(
-            type(self).__name__, self.duration.numerator, self.duration.denominator,
-        )
+        class_name = type(self).__name__
+        numerator, denominator = self.duration.pair
+        return f"{class_name}(({numerator}, {denominator}))"
 
     ### PRIVATE METHODS ###
 
@@ -759,7 +758,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
     def _pretty_rtm_format_pieces(self):
         result = []
-        result.append("({!s} (".format(self.preprolated_duration))
+        result.append(f"({self.preprolated_duration!s} (")
         for child in self:
             result.extend(["    " + x for x in child._pretty_rtm_format_pieces()])
         result[-1] = result[-1] + "))"
@@ -787,9 +786,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
         Returns string.
         """
-        return "({!s} ({}))".format(
-            self.preprolated_duration, " ".join([x.rtm_format for x in self])
-        )
+        string = " ".join([x.rtm_format for x in self])
+        return f"({self.preprolated_duration!s} ({string}))"
 
 
 class RhythmTreeParser(Parser):

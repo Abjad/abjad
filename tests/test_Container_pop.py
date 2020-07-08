@@ -42,11 +42,11 @@ def test_Container_pop_01():
         """
     ), print(format(voice))
 
-    assert abjad.inspect(voice).wellformed()
+    assert abjad.wellformed(voice)
 
     "Result is now d'8 [ ]"
 
-    assert abjad.inspect(result).wellformed()
+    assert abjad.wellformed(result)
     assert format(result) == "d'8\n[\n]"
 
 
@@ -92,7 +92,7 @@ def test_Container_pop_02():
         """
     ), print(format(staff))
 
-    assert abjad.inspect(staff).wellformed()
+    assert abjad.wellformed(staff)
 
     assert format(sequential) == abjad.String.normalize(
         r"""
@@ -104,4 +104,4 @@ def test_Container_pop_02():
         """
     ), print(format(sequential))
 
-    assert abjad.inspect(sequential).wellformed()
+    assert abjad.wellformed(sequential)

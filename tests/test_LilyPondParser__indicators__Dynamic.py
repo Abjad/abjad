@@ -4,7 +4,7 @@ import abjad
 # TODO: dynamics should accept direction strings.
 def test_LilyPondParser__indicators__Dynamic_01():
 
-    target = abjad.Staff(abjad.Note(-12, (1, 2)) * 6)
+    target = abjad.Staff("c2 c2 c2 c2 c2 c2")
     dynamic = abjad.Dynamic("ppp")
     abjad.attach(dynamic, target[0])
     dynamic = abjad.Dynamic("mp")

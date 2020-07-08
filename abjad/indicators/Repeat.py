@@ -1,4 +1,4 @@
-from ..formatting import LilyPondFormatBundle
+from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 

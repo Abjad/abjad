@@ -6,8 +6,9 @@ def test_Inspection_effective_staff_01():
     Staff changes work on the first note of a staff.
     """
 
-    staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
-    staff_group = abjad.StaffGroup(staves)
+    staff_group = abjad.StaffGroup(
+        [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
+    )
     staff_group.lilypond_type = "PianoStaff"
     staff_group.simultaneous = True
     staff_group[0].name = "RH"
@@ -38,7 +39,7 @@ def test_Inspection_effective_staff_01():
         """
     )
 
-    assert abjad.inspect(staff_group).wellformed()
+    assert abjad.wellformed(staff_group)
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][1]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][2]).effective_staff() is staff_group[1]
@@ -54,8 +55,9 @@ def test_Inspection_effective_staff_02():
     Staff changes work on middle notes of a staff.
     """
 
-    staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
-    staff_group = abjad.StaffGroup(staves)
+    staff_group = abjad.StaffGroup(
+        [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
+    )
     staff_group.lilypond_type = "PianoStaff"
     staff_group.simultaneous = True
     staff_group[0].name = "RH"
@@ -89,7 +91,7 @@ def test_Inspection_effective_staff_02():
         """
     )
 
-    assert abjad.inspect(staff_group).wellformed()
+    assert abjad.wellformed(staff_group)
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][1]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][2]).effective_staff() is staff_group[0]
@@ -105,8 +107,9 @@ def test_Inspection_effective_staff_03():
     Staff changes work on the last note of a staff.
     """
 
-    staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
-    staff_group = abjad.StaffGroup(staves)
+    staff_group = abjad.StaffGroup(
+        [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
+    )
     staff_group.lilypond_type = "PianoStaff"
     staff_group.simultaneous = True
     staff_group[0].name = "RH"
@@ -137,7 +140,7 @@ def test_Inspection_effective_staff_03():
         """
     )
 
-    assert abjad.inspect(staff_group).wellformed()
+    assert abjad.wellformed(staff_group)
 
 
 def test_Inspection_effective_staff_04():
@@ -145,8 +148,9 @@ def test_Inspection_effective_staff_04():
     Redudant staff changes are allowed.
     """
 
-    staves = 2 * abjad.Staff("c'8 d'8 e'8 f'8")
-    staff_group = abjad.StaffGroup(staves)
+    staff_group = abjad.StaffGroup(
+        [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
+    )
     staff_group.lilypond_type = "PianoStaff"
     staff_group.simultaneous = True
     staff_group[0].name = "RH"
@@ -180,7 +184,7 @@ def test_Inspection_effective_staff_04():
         """
     )
 
-    assert abjad.inspect(staff_group).wellformed()
+    assert abjad.wellformed(staff_group)
     assert abjad.inspect(staff_group[0][0]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][1]).effective_staff() is staff_group[1]
     assert abjad.inspect(staff_group[0][2]).effective_staff() is staff_group[1]

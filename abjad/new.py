@@ -99,8 +99,7 @@ def new(argument, *arguments, **keywords):
                 manager_ = StorageFormatManager(argument)
                 template_dict.update(manager_.get_template_dict())
         else:
-            message = f"{type(argument)} has no key {key!r}."
-            raise KeyError(message)
+            raise KeyError(f"{type(argument)} has no key {key!r}.")
     for key, pairs in recursive_arguments.items():
         recursed_object = getattr(argument, key)
         if recursed_object is None:

@@ -5,14 +5,15 @@ import typing
 
 from . import enums, typings
 from .core.Chord import Chord
-from .core.Component import Component, attach, detach, inspect
-from .core.Iteration import iterate
+from .core.Component import Component, attach, detach
+from .core.Iteration import Iteration
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Note import Note
 from .core.Rest import Rest
-from .core.Selection import Selection, select
+from .core.Selection import DurationInequality, Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
+from .core.inspectx import Inspection
 from .duration import Duration
 from .indicators.BeamCount import BeamCount
 from .indicators.BendAfter import BendAfter
@@ -20,7 +21,6 @@ from .indicators.BowContactPoint import BowContactPoint
 from .indicators.BowMotionTechnique import BowMotionTechnique
 from .indicators.Dynamic import Dynamic
 from .indicators.Glissando import Glissando
-from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.Ottava import Ottava
 from .indicators.RepeatTie import RepeatTie
 from .indicators.StartBeam import StartBeam
@@ -40,14 +40,9 @@ from .indicators.StopSlur import StopSlur
 from .indicators.StopTextSpan import StopTextSpan
 from .indicators.StopTrillSpan import StopTrillSpan
 from .indicators.Tie import Tie
-from .lilypondnames.LilyPondTweakManager import (
-    IndexedTweakManager,
-    LilyPondTweakManager,
-    tweak,
-)
+from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, tweak
 from .scheme import SchemeSymbol
 from .tags import Tag, Tags
-from .utilities.DurationInequality import DurationInequality
 from .utilities.Expression import Expression
 from .utilities.Sequence import Sequence
 
@@ -68,7 +63,7 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
                 continue
         else:
             manager_ = item
-        assert isinstance(manager_, LilyPondTweakManager)
+        assert isinstance(manager_, TweakInterface)
         tuples = manager_._get_attribute_tuples()
         for attribute, value in tuples:
             setattr(manager, attribute, value)
@@ -112,7 +107,7 @@ def beam(
     """
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    original_leaves = iterate(argument).leaves()
+    original_leaves = Iteration(argument).leaves()
     original_leaves = list(original_leaves)
 
     silent_prototype = (MultimeasureRest, Rest, Skip)
@@ -140,17 +135,20 @@ def beam(
         if this_index + 1 == that_index:
             run.append(leaf)
         else:
-            selection = select(run)
+            selection = Selection(run)
             runs.append(selection)
             run = [leaf]
     if run:
-        selection = select(run)
+        selection = Selection(run)
         runs.append(selection)
-    runs_ = select(runs)
+    runs_ = Selection(runs)
+    assert isinstance(runs_, Selection), repr(runs_)
     # print(runs, 'RRR', len(runs))
     # print()
     if not beam_lone_notes:
-        runs_ = runs_.nontrivial()
+        result = runs_.nontrivial()
+        assert isinstance(result, Selection), repr(result)
+        runs_ = result
     for run in runs_:
         # print(run, 'RRR')
         if all(isinstance(_, silent_prototype) for _ in run):
@@ -165,25 +163,24 @@ def beam(
         attach(stop_beam_, stop_leaf, tag=tag)
 
         # for leaf in run:
-        #    print(leaf, inspect(leaf).indicators())
+        #    print(leaf, Inspection(leaf).indicators())
 
         if stemlet_length is None:
             continue
-        staff = inspect(start_leaf).parentage().get(Staff)
+        staff = Inspection(start_leaf).parentage().get(Staff)
         lilypond_type = getattr(staff, "lilypond_type", "Staff")
-        string = r"\override {}.Stem.stemlet-length = {}"
-        string = string.format(lilypond_type, stemlet_length)
+        string = rf"\override {lilypond_type}.Stem.stemlet-length = {stemlet_length}"
         literal = LilyPondLiteral(string)
-        for indicator in inspect(start_leaf).indicators():
+        for indicator in Inspection(start_leaf).indicators():
             if indicator == literal:
                 break
         else:
             attach(literal, start_leaf, tag=tag)
-        staff = inspect(stop_leaf).parentage().get(Staff)
+        staff = Inspection(stop_leaf).parentage().get(Staff)
         lilypond_type = getattr(staff, "lilypond_type", "Staff")
         string = rf"\revert {lilypond_type}.Stem.stemlet-length"
         literal = LilyPondLiteral(string)
-        for indicator in inspect(stop_leaf).indicators():
+        for indicator in Inspection(stop_leaf).indicators():
             if indicator == literal:
                 break
         else:
@@ -211,7 +208,7 @@ def beam(
 
     span_beam_count = span_beam_count or 1
     durations = [Duration(_) for _ in durations]
-    leaf_durations = [inspect(_).duration() for _ in original_leaves]
+    leaf_durations = [Inspection(_).duration() for _ in original_leaves]
     leaf_durations_ = Sequence(leaf_durations)
     parts = leaf_durations_.partition_by_weights(durations, overhang=True)
     part_counts = [len(_) for _ in parts]
@@ -618,7 +615,7 @@ def bow_contact_spanner(
     """
 
     def _get_indicators(leaf):
-        inspector = inspect(leaf)
+        inspector = Inspection(leaf)
         bow_contact_point = None
         prototype = BowContactPoint
         if inspector.has_indicator(prototype):
@@ -640,17 +637,19 @@ def bow_contact_spanner(
     def _make_bow_change_contributions(leaf, leaves, bow_contact_point):
         cautionary_change = False
         direction_change = None
-        next_leaf = inspect(leaf).leaf(1)
+        next_leaf = Inspection(leaf).leaf(1)
         this_contact_point = bow_contact_point
         if this_contact_point is None:
             return
-        next_contact_point = inspect(next_leaf).indicator(BowContactPoint)
+        next_contact_point = Inspection(next_leaf).indicator(BowContactPoint)
         if next_contact_point is None:
             return
-        previous_leaf = inspect(leaf).leaf(-1)
+        previous_leaf = Inspection(leaf).leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            previous_contact_points = inspect(previous_leaf).indicators(BowContactPoint)
+            previous_contact_points = Inspection(previous_leaf).indicators(
+                BowContactPoint
+            )
             if previous_contact_points:
                 previous_contact_point = previous_contact_points[0]
         if (
@@ -663,8 +662,10 @@ def bow_contact_spanner(
             elif next_contact_point < this_contact_point:
                 direction_change = enums.Up
         else:
-            previous_leaf = inspect(leaf).leaf(-1)
-            previous_contact_point = inspect(previous_leaf).indicator(BowContactPoint)
+            previous_leaf = Inspection(leaf).leaf(-1)
+            previous_contact_point = Inspection(previous_leaf).indicator(
+                BowContactPoint
+            )
             if (
                 previous_contact_point < this_contact_point
                 and next_contact_point < this_contact_point
@@ -698,10 +699,10 @@ def bow_contact_spanner(
         if leaf is leaves[-1]:
             return False
         silent_prototype = (MultimeasureRest, Rest, Skip)
-        next_leaf = inspect(leaf).leaf(1)
+        next_leaf = Inspection(leaf).leaf(1)
         if next_leaf is None or isinstance(next_leaf, silent_prototype):
             return False
-        next_contact_point = inspect(next_leaf).indicator(BowContactPoint)
+        next_contact_point = Inspection(next_leaf).indicator(BowContactPoint)
         if next_contact_point is None:
             return False
         elif next_contact_point.contact_point is None:
@@ -730,7 +731,8 @@ def bow_contact_spanner(
         if not omit_bow_changes:
             _make_bow_change_contributions(leaf, leaves, bow_contact_point)
 
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
+    assert isinstance(leaves, Selection), repr(leaves)
     for leaf in leaves:
         _format_leaf(leaf, leaves)
 
@@ -1326,8 +1328,7 @@ def glissando(
     tag = tag or Tag()
 
     if right_broken_show_next and not right_broken:
-        message = "set right_broken_show_next only when right_broken is true."
-        raise Exception(message)
+        raise Exception("set right_broken_show_next only when right_broken is true.")
 
     if hide_middle_stems and not hide_middle_note_heads:
         message = "set hide_middle_stems only when"
@@ -1335,11 +1336,11 @@ def glissando(
         raise Exception(message)
 
     def _is_last_in_tie_chain(leaf):
-        logical_tie = leaf._get_logical_tie()
+        logical_tie = Inspection._get_logical_tie(leaf)
         return leaf is logical_tie[-1]
 
     def _next_leaf_changes_current_pitch(leaf):
-        next_leaf = inspect(leaf).leaf(n=1)
+        next_leaf = Inspection(leaf).leaf(n=1)
         if (
             isinstance(leaf, Note)
             and isinstance(next_leaf, Note)
@@ -1362,7 +1363,7 @@ def glissando(
                 note_head.is_parenthesized = True
 
     def _previous_leaf_changes_current_pitch(leaf):
-        previous_leaf = inspect(leaf).leaf(n=-1)
+        previous_leaf = Inspection(leaf).leaf(n=-1)
         if (
             isinstance(leaf, Note)
             and isinstance(previous_leaf, Note)
@@ -1381,7 +1382,7 @@ def glissando(
     if hide_stem_selector is not None:
         should_hide_stem = hide_stem_selector(argument)
 
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     total = len(leaves) - 1
     for i, leaf in enumerate(leaves):
         if leaf is not leaves[0]:
@@ -1390,7 +1391,7 @@ def glissando(
                     _parenthesize_leaf(leaf)
         should_attach_glissando = False
         deactivate_glissando = None
-        if inspect(leaf).has_indicator(BendAfter):
+        if Inspection(leaf).has_indicator(BendAfter):
             pass
         elif leaf is leaves[-1]:
             if right_broken is True:
@@ -1666,7 +1667,7 @@ def hairpin(
 
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
 
@@ -1713,7 +1714,7 @@ def horizontal_bracket(
     stop_group = stop_group or StopGroup()
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     attach(start_group, start_leaf, tag=tag)
@@ -1755,7 +1756,7 @@ def ottava(
     assert isinstance(stop_ottava, Ottava), repr(stop_ottava)
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     attach(start_ottava, start_leaf, tag=tag)
@@ -1798,7 +1799,7 @@ def phrasing_slur(
     stop_phrasing_slur = StopPhrasingSlur()
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     start_phrasing_slur = start_phrasing_slur or StartPhrasingSlur()
@@ -1849,7 +1850,7 @@ def piano_pedal(
     stop_piano_pedal = stop_piano_pedal or StopPianoPedal()
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     attach(start_piano_pedal, start_leaf, tag=tag)
@@ -1892,7 +1893,7 @@ def slur(
     stop_slur = stop_slur or StopSlur()
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     attach(start_slur, start_leaf, tag=tag)
@@ -2074,7 +2075,7 @@ def text_spanner(
     stop_text_span = stop_text_span or StopTextSpan()
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     attach(start_text_span, start_leaf, tag=tag)
@@ -2276,14 +2277,15 @@ def tie(
     assert isinstance(inequality, DurationInequality), repr(inequality)
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
+    assert isinstance(leaves, Selection), repr(leaves)
     if len(leaves) < 2:
         raise Exception("must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
         if not isinstance(leaf, (Note, Chord)):
             raise Exception(r"tie note or chord (not {leaf!r}).")
     for current_leaf, next_leaf in Sequence(leaves).nwise():
-        duration = inspect(current_leaf).duration()
+        duration = Inspection(current_leaf).duration()
         if inequality(duration):
             detach(Tie, current_leaf)
             detach(RepeatTie, next_leaf)
@@ -2331,7 +2333,7 @@ def trill_spanner(
     stop_trill_span = stop_trill_span or StopTrillSpan()
     assert isinstance(selector, Expression)
     argument = selector(argument)
-    leaves = select(argument).leaves()
+    leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     attach(start_trill_span, start_leaf, tag=tag)

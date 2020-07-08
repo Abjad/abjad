@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
@@ -28,11 +28,7 @@ class StopPianoPedal(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        kind: str = None,
-        *,
-        leak: bool = None,
-        tweaks: LilyPondTweakManager = None,
+        self, kind: str = None, *, leak: bool = None, tweaks: TweakInterface = None,
     ) -> None:
         if kind is not None:
             assert kind in ("sustain", "sostenuto", "corda")
@@ -41,8 +37,8 @@ class StopPianoPedal(object):
             leak = bool(leak)
         self._leak = leak
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -224,7 +220,7 @@ class StopPianoPedal(object):
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 
@@ -237,13 +233,13 @@ class StopPianoPedal(object):
             >>> abjad.tweak(stop_piano_pedal).color = 'blue'
             >>> abjad.f(stop_piano_pedal)
             abjad.StopPianoPedal(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> stop_piano_pedal_2 = copy.copy(stop_piano_pedal)
             >>> abjad.f(stop_piano_pedal_2)
             abjad.StopPianoPedal(
-                tweaks=LilyPondTweakManager(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
         """

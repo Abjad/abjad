@@ -2,20 +2,14 @@ import abc
 import copy
 import typing
 
-import uqbar.graphs
-
-from .. import enums, exceptions
+from .. import exceptions
+from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
-from ..formatting import LilyPondFormatManager
 from ..indicators.MetronomeMark import MetronomeMark
-from ..indicators.RepeatTie import RepeatTie
-from ..indicators.Tie import Tie
-from ..lilypondnames.LilyPondGrobNameManager import override
-from ..lilypondnames.LilyPondSettingNameManager import setting
+from ..overrides import override, setting
 from ..storage import FormatSpecification
 from ..tags import Tag
-from ..utilities.Sequence import Sequence
-from .Component import Component, attach, detach, inspect
+from .Component import Component, attach
 
 
 class Leaf(Component):
@@ -84,28 +78,6 @@ class Leaf(Component):
         return self._get_compact_representation()
 
     ### PRIVATE METHODS ###
-
-    def _as_graphviz_node(self):
-        lilypond_format = self._get_compact_representation()
-        lilypond_format = lilypond_format.replace("<", "&lt;")
-        lilypond_format = lilypond_format.replace(">", "&gt;")
-        node = Component._as_graphviz_node(self)
-        node[0].extend(
-            [
-                uqbar.graphs.TableRow(
-                    [
-                        uqbar.graphs.TableCell(
-                            type(self).__name__, attributes={"border": 0}
-                        )
-                    ]
-                ),
-                uqbar.graphs.HRule(),
-                uqbar.graphs.TableRow(
-                    [uqbar.graphs.TableCell(lilypond_format, attributes={"border": 0})]
-                ),
-            ]
-        )
-        return node
 
     def _copy_override_and_set_from_leaf(self, leaf):
         if getattr(leaf, "_overrides", None) is not None:
@@ -192,7 +164,7 @@ class Leaf(Component):
         strings = self._get_body()
         if self.tag:
             tag = Tag(self.tag)
-            strings = LilyPondFormatManager.tag(strings, tag=tag)
+            strings = Tag.tag(strings, tag=tag)
         return strings
 
     def _format_opening_slot(self, bundle):
@@ -246,37 +218,6 @@ class Leaf(Component):
         result = " * ".join(strings)
         return result
 
-    def _get_logical_tie(self):
-        from .LogicalTie import LogicalTie
-
-        leaves_before, leaves_after = [], []
-        current_leaf = self
-        while True:
-            previous_leaf = inspect(current_leaf).leaf(-1)
-            if previous_leaf is None:
-                break
-            if inspect(current_leaf).has_indicator(RepeatTie) or inspect(
-                previous_leaf
-            ).has_indicator(Tie):
-                leaves_before.insert(0, previous_leaf)
-            else:
-                break
-            current_leaf = previous_leaf
-        current_leaf = self
-        while True:
-            next_leaf = inspect(current_leaf).leaf(1)
-            if next_leaf is None:
-                break
-            if inspect(current_leaf).has_indicator(Tie) or inspect(
-                next_leaf
-            ).has_indicator(RepeatTie):
-                leaves_after.append(next_leaf)
-            else:
-                break
-            current_leaf = next_leaf
-        leaves = leaves_before + [self] + leaves_after
-        return LogicalTie(items=leaves)
-
     def _get_multiplied_duration(self):
         if self.written_duration:
             if self.multiplier is not None:
@@ -287,221 +228,24 @@ class Leaf(Component):
     def _get_preprolated_duration(self):
         return self._get_multiplied_duration()
 
-    def _leaf(self, n):
-        from .Container import Container
-        from .OnBeatGraceContainer import OnBeatGraceContainer
-        from .Selection import select
-
-        assert n in (-1, 0, 1), repr(n)
-        if n == 0:
-            return self
-        sibling = self._sibling(n)
-        if sibling is None:
-            return None
-        if n == 1:
-            components = sibling._get_descendants_starting_with()
-        else:
-            assert n == -1
-            if (
-                isinstance(sibling, Container)
-                and len(sibling) == 2
-                and any(isinstance(_, OnBeatGraceContainer) for _ in sibling)
-            ):
-                if isinstance(sibling[0], OnBeatGraceContainer):
-                    main_voice = sibling[1]
-                else:
-                    main_voice = sibling[0]
-                return main_voice[-1]
-            components = sibling._get_descendants_stopping_with()
-        for component in components:
-            if not isinstance(component, Leaf):
-                continue
-            if select([self, component]).are_logical_voice():
-                return component
-
     def _process_contribution_packet(self, contribution_packet):
-        manager = LilyPondFormatManager
-        indent = manager.indent
         result = ""
         for contributor, contributions in contribution_packet:
             if contributions:
                 if isinstance(contributor, tuple):
-                    contributor = indent + contributor[0] + ":\n"
+                    contributor = LilyPondFormatBundle.indent + contributor[0] + ":\n"
                 else:
-                    contributor = indent + contributor + ":\n"
+                    contributor = LilyPondFormatBundle.indent + contributor + ":\n"
                 result += contributor
                 for contribution in contributions:
-                    contribution = (indent * 2) + contribution + "\n"
+                    contribution = (
+                        (LilyPondFormatBundle.indent * 2) + contribution + "\n"
+                    )
                     result += contribution
         return result
 
-    def _report_format_contributions(self):
-        manager = LilyPondFormatManager
-        indent = manager.indent
-        bundle = manager.bundle_format_contributions(self)
-        report = ""
-        report += 'slot "absolute before":\n'
-        packet = self._format_absolute_before_slot(bundle)
-        report += self._process_contribution_packet(packet)
-        report += 'slot "before":\n'
-        packet = self._format_before_slot(bundle)
-        report += self._process_contribution_packet(packet)
-        report += 'slot "opening":\n'
-        packet = self._format_opening_slot(bundle)
-        report += self._process_contribution_packet(packet)
-        report += 'slot "contents slot":\n'
-        report += indent + "leaf body:\n"
-        string = self._format_contents_slot(bundle)[0][1][0]
-        report += (2 * indent) + string + "\n"
-        report += 'slot "closing":\n'
-        packet = self._format_closing_slot(bundle)
-        report += self._process_contribution_packet(packet)
-        report += 'slot "after":\n'
-        packet = self._format_after_slot(bundle)
-        report += self._process_contribution_packet(packet)
-        report += 'slot "absolute after":\n'
-        packet = self._format_absolute_after_slot(bundle)
-        report += self._process_contribution_packet(packet)
-        while report[-1] == "\n":
-            report = report[:-1]
-        return report
-
     def _scale(self, multiplier):
-        # new_duration = multiplier * self._get_duration()
-        # self._set_duration(new_duration)
         self.written_duration *= multiplier
-
-    def _set_duration(self, new_duration):
-        from .Chord import Chord
-        from .Mutation import mutate
-        from .Note import Note
-        from .NoteMaker import NoteMaker
-        from .Selection import select
-        from .Tuplet import Tuplet
-        from ..spanners import tie as abjad_tie
-
-        new_duration = Duration(new_duration)
-        if self.multiplier is not None:
-            multiplier = new_duration.__div__(self.written_duration)
-            self.multiplier = multiplier
-            return select(self)
-        try:
-            self.written_duration = new_duration
-            return select(self)
-        except exceptions.AssignabilityError:
-            pass
-        maker = NoteMaker()
-        components = maker(0, new_duration)
-        new_leaves = select(components).leaves()
-        following_leaf_count = len(new_leaves) - 1
-        following_leaves = following_leaf_count * self
-        all_leaves = [self] + following_leaves
-        for leaf, new_leaf in zip(all_leaves, new_leaves):
-            leaf.written_duration = new_leaf.written_duration
-        logical_tie = self._get_logical_tie()
-        logical_tie_leaves = list(logical_tie.leaves)
-        for leaf in logical_tie:
-            detach(Tie, leaf)
-            detach(RepeatTie, leaf)
-        if self._parent is not None:
-            index = self._parent.index(self)
-            next_ = index + 1
-            self._parent[next_:next_] = following_leaves
-        index = logical_tie_leaves.index(self)
-        next_ = index + 1
-        logical_tie_leaves[next_:next_] = following_leaves
-        if 1 < len(logical_tie_leaves) and isinstance(self, (Note, Chord)):
-            abjad_tie(logical_tie_leaves)
-        if isinstance(components[0], Leaf):
-            return select(all_leaves)
-        else:
-            assert isinstance(components[0], Tuplet)
-            assert len(components) == 1
-            tuplet = components[0]
-            multiplier = tuplet.multiplier
-            tuplet = Tuplet(multiplier, [])
-            mutate(all_leaves).wrap(tuplet)
-            return select(tuplet)
-
-    def _split_by_durations(self, durations, cyclic=False):
-        from .Chord import Chord
-        from .Mutation import mutate
-        from .Note import Note
-        from .Selection import Selection
-        from .Tuplet import Tuplet
-
-        durations = [Duration(_) for _ in durations]
-        durations = Sequence(durations)
-        leaf_duration = inspect(self).duration()
-        if cyclic:
-            durations = durations.repeat_to_weight(leaf_duration)
-        if sum(durations) < leaf_duration:
-            last_duration = leaf_duration - sum(durations)
-            durations = list(durations)
-            durations.append(last_duration)
-            durations = Sequence(durations)
-        durations = durations.truncate(weight=leaf_duration)
-        originally_tied = inspect(self).has_indicator(Tie)
-        originally_repeat_tied = inspect(self).has_indicator(RepeatTie)
-        result_selections = []
-        # detach grace containers
-        before_grace_container = self._before_grace_container
-        if before_grace_container is not None:
-            detach(before_grace_container, self)
-        after_grace_container = self._after_grace_container
-        if after_grace_container is not None:
-            detach(after_grace_container, self)
-        # do other things
-        leaf_prolation = inspect(self).parentage().prolation
-        for duration in durations:
-            new_leaf = copy.copy(self)
-            preprolated_duration = duration / leaf_prolation
-            selection = new_leaf._set_duration(preprolated_duration)
-            result_selections.append(selection)
-        result_components = Sequence(result_selections).flatten(depth=-1)
-        result_components = Selection(result_components)
-        result_leaves = Selection(result_components).leaves(grace=False)
-        assert all(isinstance(_, Selection) for _ in result_selections)
-        assert all(isinstance(_, Component) for _ in result_components)
-        assert result_leaves.are_leaves()
-        # strip result leaves of all indicators
-        for leaf in result_leaves:
-            detach(object, leaf)
-        # replace leaf with flattened result
-        if inspect(self).parentage().parent is not None:
-            mutate(self).replace(result_components)
-        # move indicators
-        first_result_leaf = result_leaves[0]
-        last_result_leaf = result_leaves[-1]
-        for indicator in inspect(self).indicators():
-            detach(indicator, self)
-            direction = getattr(indicator, "_time_orientation", enums.Left)
-            if direction is enums.Left:
-                attach(indicator, first_result_leaf)
-            elif direction == enums.Right:
-                attach(indicator, last_result_leaf)
-            else:
-                raise ValueError(direction)
-        # reattach grace containers
-        if before_grace_container is not None:
-            attach(before_grace_container, first_result_leaf)
-        if after_grace_container is not None:
-            attach(after_grace_container, last_result_leaf)
-        # fuse tuplets
-        if isinstance(result_components[0], Tuplet):
-            mutate(result_components).fuse()
-        # tie split notes
-        if isinstance(self, (Note, Chord)) and 1 < len(result_leaves):
-            result_leaves._attach_tie_to_leaves()
-        if originally_repeat_tied and not inspect(result_leaves[0]).has_indicator(
-            RepeatTie
-        ):
-            attach(RepeatTie(), result_leaves[0])
-        if originally_tied and not inspect(result_leaves[-1]).has_indicator(Tie):
-            attach(Tie(), result_leaves[-1])
-        assert isinstance(result_leaves, Selection)
-        assert all(isinstance(_, Leaf) for _ in result_leaves)
-        return result_leaves
 
     ### PUBLIC PROPERTIES ###
 

@@ -10,15 +10,15 @@ import uqbar.graphs
 
 from . import markups, mathtools, rhythmtrees
 from .core.Chord import Chord
-from .core.Component import inspect
 from .core.Container import Container
 from .core.LogicalTie import LogicalTie
-from .core.Mutation import mutate
+from .core.Mutation import Mutation
 from .core.Note import Note
 from .core.Rest import Rest
 from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Tuplet import Tuplet
+from .core.inspectx import Inspection
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
 from .storage import FormatSpecification, StorageFormatManager
@@ -52,7 +52,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `2/4` comprises two beats.
+        ``2/4`` comprises two beats.
 
     ..  container:: example
 
@@ -67,7 +67,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `3/4` comprises three beats.
+        ``3/4`` comprises three beats.
 
     ..  container:: example
 
@@ -85,7 +85,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `4/4` comprises four beats.
+        ``4/4`` comprises four beats.
 
     ..  container:: example
 
@@ -105,7 +105,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `6/8` comprises two beats of three parts each.
+        ``6/8`` comprises two beats of three parts each.
 
     ..  container:: example
 
@@ -133,7 +133,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `12/8` comprises four beats of three parts each.
+        ``12/8`` comprises four beats of three parts each.
 
     ..  container:: example
 
@@ -152,7 +152,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `5/4` comprises two unequal beats. By default unequal beats
+        ``5/4`` comprises two unequal beats. By default unequal beats
         are arranged from greatest to least.
 
     ..  container:: example
@@ -175,7 +175,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `7/4` comprises three unequal beats. Beats are arranged from
+        ``7/4`` comprises three unequal beats. Beats are arranged from
         greatest to least by default.
 
     ..  container:: example
@@ -201,7 +201,7 @@ class Meter(object):
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        `7/4` with beats arragned from least to greatest.
+        ``7/4`` with beats arragned from least to greatest.
 
     ..  container:: example
 
@@ -700,279 +700,6 @@ class Meter(object):
             storage_format_kwargs_names=[],
         )
 
-    @staticmethod
-    def _rewrite_meter(
-        components,
-        meter,
-        boundary_depth=None,
-        initial_offset=None,
-        maximum_dot_count=None,
-        rewrite_tuplets=True,
-    ):
-        def recurse(
-            boundary_depth=None, boundary_offsets=None, depth=0, logical_tie=None,
-        ):
-            offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-            logical_tie_duration = logical_tie._get_preprolated_duration()
-            logical_tie_timespan = inspect(logical_tie).timespan()
-            logical_tie_start_offset = logical_tie_timespan.start_offset
-            logical_tie_stop_offset = logical_tie_timespan.stop_offset
-            logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
-            logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
-            if not _MeterManager.is_acceptable_logical_tie(
-                logical_tie_duration=logical_tie_duration,
-                logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
-                logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
-                maximum_dot_count=maximum_dot_count,
-            ):
-                split_offset = None
-                offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-                # If the logical tie's start aligns,
-                # take the latest possible offset.
-                if logical_tie_starts_in_offsets:
-                    offsets = reversed(offsets)
-                for offset in offsets:
-                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
-                        split_offset = offset
-                        break
-                if split_offset is not None:
-                    split_offset -= logical_tie_start_offset
-                    shards = mutate(logical_tie[:]).split([split_offset])
-                    logical_ties = [LogicalTie(_) for _ in shards]
-                    for logical_tie in logical_ties:
-                        recurse(
-                            boundary_depth=boundary_depth,
-                            boundary_offsets=boundary_offsets,
-                            depth=depth,
-                            logical_tie=logical_tie,
-                        )
-                else:
-                    recurse(
-                        boundary_depth=boundary_depth,
-                        boundary_offsets=boundary_offsets,
-                        depth=depth + 1,
-                        logical_tie=logical_tie,
-                    )
-            elif _MeterManager.is_boundary_crossing_logical_tie(
-                boundary_depth=boundary_depth,
-                boundary_offsets=boundary_offsets,
-                logical_tie_start_offset=logical_tie_start_offset,
-                logical_tie_stop_offset=logical_tie_stop_offset,
-            ):
-                offsets = boundary_offsets
-                if logical_tie_start_offset in boundary_offsets:
-                    offsets = reversed(boundary_offsets)
-                split_offset = None
-                for offset in offsets:
-                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
-                        split_offset = offset
-                        break
-                assert split_offset is not None
-                split_offset -= logical_tie_start_offset
-                shards = mutate(logical_tie[:]).split([split_offset])
-                logical_ties = [LogicalTie(shard) for shard in shards]
-                for logical_tie in logical_ties:
-                    recurse(
-                        boundary_depth=boundary_depth,
-                        boundary_offsets=boundary_offsets,
-                        depth=depth,
-                        logical_tie=logical_tie,
-                    )
-            else:
-                logical_tie[:]._fuse()
-
-        assert isinstance(components, Selection), repr(components)
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        boundary_depth = boundary_depth or meter.preferred_boundary_depth
-        # Validate arguments.
-        assert Selection(components).are_contiguous_logical_voice()
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        if boundary_depth is not None:
-            boundary_depth = int(boundary_depth)
-        if maximum_dot_count is not None:
-            maximum_dot_count = int(maximum_dot_count)
-            assert 0 <= maximum_dot_count
-        if initial_offset is None:
-            initial_offset = Offset(0)
-        initial_offset = Offset(initial_offset)
-        first_start_offset = inspect(components[0]).timespan().start_offset
-        last_start_offset = inspect(components[-1]).timespan().start_offset
-        difference = last_start_offset - first_start_offset + initial_offset
-        assert difference < meter.implied_time_signature.duration
-        # Build offset inventory, adjusted for initial offset and prolation.
-        first_offset = inspect(components[0]).timespan().start_offset
-        first_offset -= initial_offset
-        if components[0]._parent is None:
-            prolation = 1
-        else:
-            parentage = inspect(components[0]._parent).parentage()
-            prolation = parentage.prolation
-        offset_inventory = []
-        for offsets in meter.depthwise_offset_inventory:
-            offsets = [(_ * prolation) + first_offset for _ in offsets]
-            offset_inventory.append(tuple(offsets))
-        # Build boundary offset inventory, if applicable.
-        if boundary_depth is not None:
-            boundary_offsets = offset_inventory[boundary_depth]
-        else:
-            boundary_offsets = None
-        # Cache results of iterator;
-        # we'll be mutating the underlying collection
-        iterator = _MeterManager.iterate_rewrite_inputs(components)
-        items = tuple(iterator)
-        for item in items:
-            if isinstance(item, LogicalTie):
-                recurse(
-                    boundary_depth=boundary_depth,
-                    boundary_offsets=boundary_offsets,
-                    depth=0,
-                    logical_tie=item,
-                )
-            elif isinstance(item, Tuplet) and not rewrite_tuplets:
-                pass
-            else:
-                preprolated_duration = sum(
-                    [_._get_preprolated_duration() for _ in item]
-                )
-                if preprolated_duration.numerator == 1:
-                    preprolated_duration = NonreducedFraction(preprolated_duration)
-                    preprolated_duration = preprolated_duration.with_denominator(
-                        preprolated_duration.denominator * 4
-                    )
-                sub_metrical_hierarchy = Meter(preprolated_duration)
-                sub_boundary_depth = 1
-                if boundary_depth is None:
-                    sub_boundary_depth = None
-                Meter._rewrite_meter(
-                    item[:],
-                    sub_metrical_hierarchy,
-                    boundary_depth=sub_boundary_depth,
-                    maximum_dot_count=maximum_dot_count,
-                )
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def fit_meters(
-        argument,
-        meters,
-        denominator=32,
-        discard_final_orphan_downbeat=True,
-        maximum_run_length=None,
-        starting_offset=None,
-    ):
-        """
-        Finds the best-matching sequence of meters for the offsets
-        contained in ``argument``.
-
-        ..  container:: example
-
-            >>> meters = [(3, 4), (4, 4), (5, 4)]
-            >>> meters = [abjad.Meter(_) for _ in meters]
-
-        ..  container:: example
-
-            Matches a series of hypothetical ``4/4`` measures:
-
-            >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> for meter in abjad.Meter.fit_meters(argument, meters):
-            ...     print(meter.implied_time_signature)
-            ...
-            4/4
-            4/4
-            4/4
-            4/4
-
-        ..  container:: example
-
-            Matches a series of hypothetical ``5/4`` measures:
-
-            >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> for meter in abjad.Meter.fit_meters(argument, meters):
-            ...     print(meter.implied_time_signature)
-            ...
-            3/4
-            4/4
-            3/4
-            5/4
-            5/4
-
-        Coerces offsets from ``argument`` via
-        ``MetricAccentKernel.count_offsets()``.
-
-        Coerces Meters from ``meters`` via ``MeterList``.
-
-        Returns list.
-        """
-        session = _MeterFittingSession(
-            kernel_denominator=denominator,
-            maximum_run_length=maximum_run_length,
-            meters=meters,
-            offset_counter=argument,
-        )
-        meters = session()
-        return meters
-
-    def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
-        r"""
-        Generates a dictionary of all offsets in a meter up
-        to ``denominator``.
-
-        Keys are the offsets and the values are the normalized weights of
-        those offsets.
-
-        ..  container:: example
-
-            >>> meter = abjad.Meter((4, 4))
-            >>> kernel = meter.generate_offset_kernel_to_denominator(8)
-            >>> for offset, weight in sorted(kernel.kernel.items()):
-            ...     print('{!s}\t{!s}'.format(offset, weight))
-            ...
-            0       3/16
-            1/8     1/16
-            1/4     1/8
-            3/8     1/16
-            1/2     1/8
-            5/8     1/16
-            3/4     1/8
-            7/8     1/16
-            1       3/16
-
-        This is useful for testing how strongly a collection of offsets
-        responds to a given meter.
-
-        Returns dictionary.
-        """
-        assert mathtools.is_positive_integer_power_of_two(
-            denominator // self.denominator
-        )
-        inventory = list(self.depthwise_offset_inventory)
-        old_flag_count = Duration(1, self.denominator).flag_count
-        new_flag_count = Duration(1, denominator).flag_count
-        extra_depth = new_flag_count - old_flag_count
-        for _ in range(extra_depth):
-            old_offsets = inventory[-1]
-            new_offsets = []
-            for first, second in Sequence(old_offsets).nwise():
-                new_offsets.append(first)
-                new_offsets.append((first + second) / 2)
-            new_offsets.append(old_offsets[-1])
-            inventory.append(tuple(new_offsets))
-        total = 0
-        kernel = {}
-        for offsets in inventory:
-            for offset in offsets:
-                if offset not in kernel:
-                    kernel[offset] = 0
-                kernel[offset] += 1
-                total += 1
-        if normalize:
-            for offset, response in kernel.items():
-                kernel[offset] = Multiplier(response, total)
-        return MetricAccentKernel(kernel)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -1277,7 +1004,7 @@ class Meter(object):
             >>> meter.preferred_boundary_depth
             1
 
-        Used by ``mutate().rewrite_meter()``.
+        Used by ``abjad.Mutation.rewrite_meter()``.
 
         Defaults to none.
 
@@ -1388,6 +1115,1384 @@ class Meter(object):
         Returns string.
         """
         return self._root_node.rtm_format
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def fit_meters(
+        argument,
+        meters,
+        denominator=32,
+        discard_final_orphan_downbeat=True,
+        maximum_run_length=None,
+        starting_offset=None,
+    ):
+        """
+        Finds the best-matching sequence of meters for the offsets
+        contained in ``argument``.
+
+        ..  container:: example
+
+            >>> meters = [(3, 4), (4, 4), (5, 4)]
+            >>> meters = [abjad.Meter(_) for _ in meters]
+
+        ..  container:: example
+
+            Matches a series of hypothetical ``4/4`` measures:
+
+            >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
+            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            ...     print(meter.implied_time_signature)
+            ...
+            4/4
+            4/4
+            4/4
+            4/4
+
+        ..  container:: example
+
+            Matches a series of hypothetical ``5/4`` measures:
+
+            >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
+            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            ...     print(meter.implied_time_signature)
+            ...
+            3/4
+            4/4
+            3/4
+            5/4
+            5/4
+
+        Coerces offsets from ``argument`` via
+        ``MetricAccentKernel.count_offsets()``.
+
+        Coerces Meters from ``meters`` via ``MeterList``.
+
+        Returns list.
+        """
+        session = _MeterFittingSession(
+            kernel_denominator=denominator,
+            maximum_run_length=maximum_run_length,
+            meters=meters,
+            offset_counter=argument,
+        )
+        meters = session()
+        return meters
+
+    def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
+        r"""
+        Generates a dictionary of all offsets in a meter up
+        to ``denominator``.
+
+        Keys are the offsets and the values are the normalized weights of
+        those offsets.
+
+        ..  container:: example
+
+            >>> meter = abjad.Meter((4, 4))
+            >>> kernel = meter.generate_offset_kernel_to_denominator(8)
+            >>> for offset, weight in sorted(kernel.kernel.items()):
+            ...     print(f"{offset!s}\t{weight!s}")
+            ...
+            0       3/16
+            1/8     1/16
+            1/4     1/8
+            3/8     1/16
+            1/2     1/8
+            5/8     1/16
+            3/4     1/8
+            7/8     1/16
+            1       3/16
+
+        This is useful for testing how strongly a collection of offsets
+        responds to a given meter.
+
+        Returns dictionary.
+        """
+        assert mathtools.is_positive_integer_power_of_two(
+            denominator // self.denominator
+        )
+        inventory = list(self.depthwise_offset_inventory)
+        old_flag_count = Duration(1, self.denominator).flag_count
+        new_flag_count = Duration(1, denominator).flag_count
+        extra_depth = new_flag_count - old_flag_count
+        for _ in range(extra_depth):
+            old_offsets = inventory[-1]
+            new_offsets = []
+            for first, second in Sequence(old_offsets).nwise():
+                new_offsets.append(first)
+                new_offsets.append((first + second) / 2)
+            new_offsets.append(old_offsets[-1])
+            inventory.append(tuple(new_offsets))
+        total = 0
+        kernel = {}
+        for offsets in inventory:
+            for offset in offsets:
+                if offset not in kernel:
+                    kernel[offset] = 0
+                kernel[offset] += 1
+                total += 1
+        if normalize:
+            for offset, response in kernel.items():
+                kernel[offset] = Multiplier(response, total)
+        return MetricAccentKernel(kernel)
+
+    def rewrite_meter(
+        components,
+        meter,
+        boundary_depth=None,
+        initial_offset=None,
+        maximum_dot_count=None,
+        rewrite_tuplets=True,
+    ):
+        r"""
+        Rewrites the contents of logical ties in an expression to match ``meter``.
+
+        ..  container:: example
+
+            Rewrites the contents of a measure in a staff using the default
+            meter for that measure's time signature:
+
+            >>> string = "| 2/4 c'2 ~ |"
+            >>> string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
+            >>> string += "| 2/4 e'2 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff[:] = container
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 2/4
+                        c'2
+                        ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'2..
+                        ~
+                        d'16
+                        e'32
+                        ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+            >>> meter = abjad.Meter((4, 4))
+            >>> print(meter.pretty_rtm_format)
+            (4/4 (
+                1/4
+                1/4
+                1/4
+                1/4))
+
+            >>> abjad.Meter.rewrite_meter(staff[1][:], meter)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 2/4
+                        c'2
+                        ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'8..
+                        ~
+                        d'2
+                        ~
+                        d'8..
+                        e'32
+                        ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+        ..  container:: example
+
+            Rewrites the contents of a measure in a staff using a custom meter:
+
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff[:] = container
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 2/4
+                        c'2
+                        ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'2..
+                        ~
+                        d'16
+                        e'32
+                        ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+            >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+            >>> meter = abjad.Meter(rtm)
+            >>> print(meter.pretty_rtm_format) # doctest: +SKIP
+            (4/4 (
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
+
+            >>> abjad.Meter.rewrite_meter(staff[1][:], meter)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 2/4
+                        c'2
+                        ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'4...
+                        ~
+                        d'4...
+                        e'32
+                        ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+        ..  container:: example
+
+            Limit the maximum number of dots per leaf using
+            ``maximum_dot_count``:
+
+            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'8
+                        e'8
+                        fs'4...
+                    }
+                }
+
+            Without constraining the ``maximum_dot_count``:
+
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(measure[:], time_signature)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16.
+                        ~
+                        d'32
+                        e'16.
+                        ~
+                        e'32
+                        fs'4...
+                    }
+                }
+
+            Constraining the ``maximum_dot_count`` to ``2``:
+
+            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(
+            ...     measure[:],
+            ...     time_signature,
+            ...     maximum_dot_count=2,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16.
+                        ~
+                        d'32
+                        e'16.
+                        ~
+                        e'32
+                        fs'8..
+                        ~
+                        fs'4
+                    }
+                }
+
+            Constraining the ``maximum_dot_count`` to ``1``:
+
+            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(
+            ...     measure[:],
+            ...     time_signature,
+            ...     maximum_dot_count=1,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16.
+                        ~
+                        d'32
+                        e'16.
+                        ~
+                        e'32
+                        fs'16.
+                        ~
+                        fs'8
+                        ~
+                        fs'4
+                    }
+                }
+
+            Constraining the ``maximum_dot_count`` to ``0``:
+
+            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(
+            ...     measure[:],
+            ...     time_signature,
+            ...     maximum_dot_count=0,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 3/4
+                        c'32
+                        d'16
+                        ~
+                        d'32
+                        ~
+                        d'32
+                        e'16
+                        ~
+                        e'32
+                        ~
+                        e'32
+                        fs'16
+                        ~
+                        fs'32
+                        ~
+                        fs'8
+                        ~
+                        fs'4
+                    }
+                }
+
+        ..  container:: example
+
+            Split logical ties at different depths of the ``Meter``, if those
+            logical ties cross any offsets at that depth, but do not also both
+            begin and end at any of those offsets.
+
+            Consider the default meter for ``9/8``:
+
+            >>> meter = abjad.Meter((9, 8))
+            >>> print(meter.pretty_rtm_format)
+            (9/8 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
+
+            We can establish that meter without specifying
+            a ``boundary_depth``:
+
+            >>> string = "| 9/8 c'2 d'2 e'8 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'2
+                        d'2
+                        e'8
+                    }
+                }
+
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(measure[:], time_signature)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'2
+                        d'4
+                        ~
+                        d'4
+                        e'8
+                    }
+                }
+
+            With a ``boundary_depth`` of ``1`` logical ties which cross any
+            offsets created by nodes with a depth of ``1`` in this Meter's rhythm
+            tree - i.e.  ``0/8`` ``3/8`` ``6/8`` and ``9/8`` - which do not also
+            begin and end at any of those offsets, will be split:
+
+            >>> string = "| 9/8 c'2 d'2 e'8 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(
+            ...     measure[:],
+            ...     time_signature,
+            ...     boundary_depth=1,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'4.
+                        ~
+                        c'8
+                        d'4
+                        ~
+                        d'4
+                        e'8
+                    }
+                }
+
+            For this ``9/8`` meter, and this input notation, A ``boundary_depth``
+            of ``2`` causes no change, as all logical ties already align to
+            multiples of ``1/8``
+
+            >>> string = "| 9/8 c'2 d'2 e'8 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(
+            ...     measure[:],
+            ...     time_signature,
+            ...     boundary_depth=2,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 9/8
+                        c'2
+                        d'4
+                        ~
+                        d'4
+                        e'8
+                    }
+                }
+
+        ..  container:: example
+
+            Comparison of ``3/4`` and ``6/8`` at ``boundary_depths`` of 0 and 1:
+
+            >>> triple = "| 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |"
+            >>> triple += "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(triple)
+            >>> staff_1 = abjad.Staff()
+            >>> staff_1[:] = container
+            >>> duples = "| 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |"
+            >>> duples += "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(duples)
+            >>> staff_2 = abjad.Staff()
+            >>> staff_2[:] = container
+            >>> score = abjad.Score([staff_1, staff_2])
+
+            In order to see the different time signatures on each staff,
+            we need to move some engravers from the Score context to the
+            Staff context:
+
+            >>> engravers = [
+            ...     'Timing_translator',
+            ...     'Time_signature_engraver',
+            ...     'Default_bar_line_engraver',
+            ...     ]
+            >>> score.remove_commands.extend(engravers)
+            >>> score[0].consists_commands.extend(engravers)
+            >>> score[1].consists_commands.extend(engravers)
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                \with
+                {
+                    \remove Timing_translator
+                    \remove Time_signature_engraver
+                    \remove Default_bar_line_engraver
+                }
+                <<
+                    \new Staff
+                    \with
+                    {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    }
+                    {
+                        {
+                            \time 3/4
+                            c'2
+                            c'4
+                        }
+                        {
+                            \time 3/4
+                            c'4
+                            c'2
+                        }
+                        {
+                            \time 3/4
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            \time 3/4
+                            c'2
+                            ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            \time 3/4
+                            c'8
+                            c'8
+                            ~
+                            c'2
+                        }
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    }
+                    {
+                        {
+                            \time 6/8
+                            c'2
+                            c'4
+                        }
+                        {
+                            \time 6/8
+                            c'4
+                            c'2
+                        }
+                        {
+                            \time 6/8
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            \time 6/8
+                            c'2
+                            ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            \time 6/8
+                            c'8
+                            c'8
+                            ~
+                            c'2
+                        }
+                    }
+                >>
+
+            Here we establish a meter without specifying any boundary depth:
+
+            >>> for staff in score:
+            ...     for container in staff:
+            ...         leaf = abjad.inspect(container).leaf(0)
+            ...         time_signature = abjad.inspect(leaf).indicator(
+            ...             abjad.TimeSignature
+            ...             )
+            ...         abjad.Meter.rewrite_meter(container[:], time_signature)
+            ...
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                \with
+                {
+                    \remove Timing_translator
+                    \remove Time_signature_engraver
+                    \remove Default_bar_line_engraver
+                }
+                <<
+                    \new Staff
+                    \with
+                    {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    }
+                    {
+                        {
+                            \time 3/4
+                            c'2
+                            c'4
+                        }
+                        {
+                            \time 3/4
+                            c'4
+                            c'2
+                        }
+                        {
+                            \time 3/4
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            \time 3/4
+                            c'2
+                            ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            \time 3/4
+                            c'8
+                            c'8
+                            ~
+                            c'2
+                        }
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    }
+                    {
+                        {
+                            \time 6/8
+                            c'2
+                            c'4
+                        }
+                        {
+                            \time 6/8
+                            c'4
+                            c'2
+                        }
+                        {
+                            \time 6/8
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            \time 6/8
+                            c'4.
+                            ~
+                            c'4
+                            c'8
+                        }
+                        {
+                            \time 6/8
+                            c'8
+                            c'4
+                            ~
+                            c'4.
+                        }
+                    }
+                >>
+
+            Here we reestablish meter at a boundary depth of ``1``
+
+            >>> for staff in score:
+            ...     for container in staff:
+            ...         leaf = abjad.inspect(container).leaf(0)
+            ...         time_signature = abjad.inspect(leaf).indicator(
+            ...             abjad.TimeSignature
+            ...             )
+            ...         abjad.Meter.rewrite_meter(
+            ...             container[:],
+            ...             time_signature,
+            ...             boundary_depth=1,
+            ...             )
+            ...
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(score)
+                \new Score
+                \with
+                {
+                    \remove Timing_translator
+                    \remove Time_signature_engraver
+                    \remove Default_bar_line_engraver
+                }
+                <<
+                    \new Staff
+                    \with
+                    {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    }
+                    {
+                        {
+                            \time 3/4
+                            c'2
+                            c'4
+                        }
+                        {
+                            \time 3/4
+                            c'4
+                            c'2
+                        }
+                        {
+                            \time 3/4
+                            c'4
+                            ~
+                            c'8
+                            c'8
+                            ~
+                            c'4
+                        }
+                        {
+                            \time 3/4
+                            c'2
+                            ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            \time 3/4
+                            c'8
+                            c'8
+                            ~
+                            c'2
+                        }
+                    }
+                    \new Staff
+                    \with
+                    {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    }
+                    {
+                        {
+                            \time 6/8
+                            c'4.
+                            ~
+                            c'8
+                            c'4
+                        }
+                        {
+                            \time 6/8
+                            c'4
+                            c'8
+                            ~
+                            c'4.
+                        }
+                        {
+                            \time 6/8
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            \time 6/8
+                            c'4.
+                            ~
+                            c'4
+                            c'8
+                        }
+                        {
+                            \time 6/8
+                            c'8
+                            c'4
+                            ~
+                            c'4.
+                        }
+                    }
+                >>
+
+            Note that the two time signatures are much more clearly
+            disambiguated above.
+
+        ..  container:: example
+
+            Establishing meter recursively in measures with nested tuplets:
+
+            >>> string = "| 4/4 c'16 ~ c'4 d'8. ~ "
+            >>> string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
+            >>> string += "f'4 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> staff = abjad.Staff()
+            >>> staff.append(container)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 4/4
+                        c'16
+                        ~
+                        c'4
+                        d'8.
+                        ~
+                        \times 2/3 {
+                            d'8.
+                            ~
+                            \tweak text #tuplet-number::calc-fraction-text
+                            \times 3/5 {
+                                d'16
+                                e'8.
+                                f'16
+                                ~
+                            }
+                        }
+                        f'4
+                    }
+                }
+
+            When establishing a meter on a selection of components which
+            contain containers, like tuplets or containers, ``rewrite_meter()``
+            will recurse into those containers, treating them as measures whose
+            time signature is derived from the preprolated preprolated_duration
+            of the container's contents:
+
+            >>> measure = staff[0]
+            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            ...     abjad.TimeSignature
+            ...     )
+            >>> abjad.Meter.rewrite_meter(
+            ...     measure[:],
+            ...     time_signature,
+            ...     boundary_depth=1,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    {
+                        \time 4/4
+                        c'4
+                        ~
+                        c'16
+                        d'8.
+                        ~
+                        \times 2/3 {
+                            d'8
+                            ~
+                            d'16
+                            ~
+                            \tweak text #tuplet-number::calc-fraction-text
+                            \times 3/5 {
+                                d'16
+                                e'8
+                                ~
+                                e'16
+                                f'16
+                                ~
+                            }
+                        }
+                        f'4
+                    }
+                }
+
+        ..  container:: example
+
+            Default rewrite behavior doesn't subdivide the first note in this
+            measure because the first note in the measure starts at the
+            beginning of a level-0 beat in meter:
+
+            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
+            >>> meter = abjad.Meter((6, 8))
+            >>> abjad.Meter.rewrite_meter(staff[:], meter)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 6/8
+                    c'4..
+                    c'16
+                    ~
+                    c'4
+                }
+
+            Setting boundary depth to 1 subdivides the first note in this
+            measure:
+
+            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
+            >>> meter = abjad.Meter((6, 8))
+            >>> abjad.Meter.rewrite_meter(staff[:], meter, boundary_depth=1)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 6/8
+                    c'4.
+                    ~
+                    c'16
+                    c'16
+                    ~
+                    c'4
+                }
+
+            Another way of doing this is by setting preferred boundary depth on
+            the meter itself:
+
+            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
+            >>> meter = abjad.Meter(
+            ...     (6, 8),
+            ...     preferred_boundary_depth=1,
+            ...     )
+            >>> abjad.Meter.rewrite_meter(staff[:], meter)
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 6/8
+                    c'4.
+                    ~
+                    c'16
+                    c'16
+                    ~
+                    c'4
+                }
+
+            This makes it possible to divide different meters in different
+            ways.
+
+        ..  container:: example
+
+            Rewrites notes and tuplets:
+
+            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
+            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+            >>> staff = abjad.Staff(string)
+            >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 6/4
+                    c'8
+                    ~
+                    c'8
+                    ~
+                    c'8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'4.
+                        r16
+                    }
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'4.
+                    }
+                    c'8
+                    ~
+                    c'8
+                    ~
+                    c'8
+                }
+
+            >>> meter = abjad.Meter((6, 4))
+            >>> abjad.Meter.rewrite_meter(
+            ...     staff[:],
+            ...     meter,
+            ...     boundary_depth=1,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 6/4
+                    c'4.
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'8.
+                        ~
+                        c'8
+                        ~
+                        c'16
+                        r16
+                    }
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'8
+                        ~
+                        c'4
+                    }
+                    c'4.
+                }
+
+            The tied note rewriting is good while the tuplet rewriting
+            could use some adjustment.
+
+            Rewrites notes but not tuplets:
+
+            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
+            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+            >>> staff = abjad.Staff(string)
+            >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 6/4
+                    c'8
+                    ~
+                    c'8
+                    ~
+                    c'8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'4.
+                        r16
+                    }
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'4.
+                    }
+                    c'8
+                    ~
+                    c'8
+                    ~
+                    c'8
+                }
+
+            >>> meter = abjad.Meter((6, 4))
+            >>> abjad.Meter.rewrite_meter(
+            ...     staff[:],
+            ...     meter,
+            ...     boundary_depth=1,
+            ...     rewrite_tuplets=False,
+            ...     )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \time 6/4
+                    c'4.
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'4.
+                        r16
+                    }
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'4.
+                    }
+                    c'4.
+                }
+
+        Operates in place and returns none.
+        """
+
+        def recurse(
+            boundary_depth=None, boundary_offsets=None, depth=0, logical_tie=None,
+        ):
+            offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
+            logical_tie_duration = logical_tie._get_preprolated_duration()
+            logical_tie_timespan = Inspection(logical_tie).timespan()
+            logical_tie_start_offset = logical_tie_timespan.start_offset
+            logical_tie_stop_offset = logical_tie_timespan.stop_offset
+            logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
+            logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
+            if not _MeterManager.is_acceptable_logical_tie(
+                logical_tie_duration=logical_tie_duration,
+                logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
+                logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
+                maximum_dot_count=maximum_dot_count,
+            ):
+                split_offset = None
+                offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
+                # If the logical tie's start aligns,
+                # take the latest possible offset.
+                if logical_tie_starts_in_offsets:
+                    offsets = reversed(offsets)
+                for offset in offsets:
+                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
+                        split_offset = offset
+                        break
+                if split_offset is not None:
+                    split_offset -= logical_tie_start_offset
+                    shards = Mutation(logical_tie[:]).split([split_offset])
+                    logical_ties = [LogicalTie(_) for _ in shards]
+                    for logical_tie in logical_ties:
+                        recurse(
+                            boundary_depth=boundary_depth,
+                            boundary_offsets=boundary_offsets,
+                            depth=depth,
+                            logical_tie=logical_tie,
+                        )
+                else:
+                    recurse(
+                        boundary_depth=boundary_depth,
+                        boundary_offsets=boundary_offsets,
+                        depth=depth + 1,
+                        logical_tie=logical_tie,
+                    )
+            elif _MeterManager.is_boundary_crossing_logical_tie(
+                boundary_depth=boundary_depth,
+                boundary_offsets=boundary_offsets,
+                logical_tie_start_offset=logical_tie_start_offset,
+                logical_tie_stop_offset=logical_tie_stop_offset,
+            ):
+                offsets = boundary_offsets
+                if logical_tie_start_offset in boundary_offsets:
+                    offsets = reversed(boundary_offsets)
+                split_offset = None
+                for offset in offsets:
+                    if logical_tie_start_offset < offset < logical_tie_stop_offset:
+                        split_offset = offset
+                        break
+                assert split_offset is not None
+                split_offset -= logical_tie_start_offset
+                shards = Mutation(logical_tie[:]).split([split_offset])
+                logical_ties = [LogicalTie(shard) for shard in shards]
+                for logical_tie in logical_ties:
+                    recurse(
+                        boundary_depth=boundary_depth,
+                        boundary_offsets=boundary_offsets,
+                        depth=depth,
+                        logical_tie=logical_tie,
+                    )
+            else:
+                Mutation._fuse(logical_tie[:])
+
+        assert isinstance(components, Selection), repr(components)
+        if not isinstance(meter, Meter):
+            meter = Meter(meter)
+        boundary_depth = boundary_depth or meter.preferred_boundary_depth
+        # Validate arguments.
+        assert Selection(components).are_contiguous_logical_voice()
+        if not isinstance(meter, Meter):
+            meter = Meter(meter)
+        if boundary_depth is not None:
+            boundary_depth = int(boundary_depth)
+        if maximum_dot_count is not None:
+            maximum_dot_count = int(maximum_dot_count)
+            assert 0 <= maximum_dot_count
+        if initial_offset is None:
+            initial_offset = Offset(0)
+        initial_offset = Offset(initial_offset)
+        first_start_offset = Inspection(components[0]).timespan().start_offset
+        last_start_offset = Inspection(components[-1]).timespan().start_offset
+        difference = last_start_offset - first_start_offset + initial_offset
+        assert difference < meter.implied_time_signature.duration
+        # Build offset inventory, adjusted for initial offset and prolation.
+        first_offset = Inspection(components[0]).timespan().start_offset
+        first_offset -= initial_offset
+        if components[0]._parent is None:
+            prolation = 1
+        else:
+            parentage = Inspection(components[0]._parent).parentage()
+            prolation = parentage.prolation
+        offset_inventory = []
+        for offsets in meter.depthwise_offset_inventory:
+            offsets = [(_ * prolation) + first_offset for _ in offsets]
+            offset_inventory.append(tuple(offsets))
+        # Build boundary offset inventory, if applicable.
+        if boundary_depth is not None:
+            boundary_offsets = offset_inventory[boundary_depth]
+        else:
+            boundary_offsets = None
+        # Cache results of iterator;
+        # we'll be mutating the underlying collection
+        iterator = _MeterManager.iterate_rewrite_inputs(components)
+        items = tuple(iterator)
+        for item in items:
+            if isinstance(item, LogicalTie):
+                recurse(
+                    boundary_depth=boundary_depth,
+                    boundary_offsets=boundary_offsets,
+                    depth=0,
+                    logical_tie=item,
+                )
+            elif isinstance(item, Tuplet) and not rewrite_tuplets:
+                pass
+            else:
+                preprolated_duration = sum(
+                    [_._get_preprolated_duration() for _ in item]
+                )
+                if preprolated_duration.numerator == 1:
+                    preprolated_duration = NonreducedFraction(preprolated_duration)
+                    preprolated_duration = preprolated_duration.with_denominator(
+                        preprolated_duration.denominator * 4
+                    )
+                sub_metrical_hierarchy = Meter(preprolated_duration)
+                sub_boundary_depth = 1
+                if boundary_depth is None:
+                    sub_boundary_depth = None
+                Meter.rewrite_meter(
+                    item[:],
+                    sub_metrical_hierarchy,
+                    boundary_depth=sub_boundary_depth,
+                    maximum_dot_count=maximum_dot_count,
+                )
 
 
 class MeterList(TypedList):
@@ -1805,6 +2910,24 @@ class MetricAccentKernel(object):
             storage_format_kwargs_names=[],
         )
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration(self):
+        """
+        Gets duration.
+        """
+        return Duration(self._offsets[-1])
+
+    @property
+    def kernel(self):
+        """
+        The kernel datastructure.
+
+        Returns dict.
+        """
+        return self._kernel.copy()
+
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -1885,24 +3008,6 @@ class MetricAccentKernel(object):
             denominator=denominator, normalize=normalize
         )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration(self):
-        """
-        Gets duration.
-        """
-        return Duration(self._offsets[-1])
-
-    @property
-    def kernel(self):
-        """
-        The kernel datastructure.
-
-        Returns dict.
-        """
-        return self._kernel.copy()
-
 
 class OffsetCounter(TypedCounter):
     """
@@ -1951,8 +3056,8 @@ class OffsetCounter(TypedCounter):
                     self[item.stop_offset] += 1
                 except Exception:
                     if hasattr(item, "_get_timespan"):
-                        self[inspect(item).timespan().start_offset] += 1
-                        self[inspect(item).timespan().stop_offset] += 1
+                        self[Inspection(item).timespan().start_offset] += 1
+                        self[Inspection(item).timespan().stop_offset] += 1
                     else:
                         offset = Offset(item)
                         self[offset] += 1
@@ -2321,13 +3426,15 @@ class _MeterManager(object):
         Iterates topmost masked logical ties, rest groups and containers
         in ``argument``, masked by ``argument``.
 
-        >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
+        >>> string = "! 2/4 c'4 d'4 ~ !"
         >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
         >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
         >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
         >>> string += "! 2/4 b'4 c''4 !"
         >>> string = string.replace('!', '|')
-        >>> staff = abjad.Staff(string)
+        >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+        >>> staff = abjad.Staff()
+        >>> staff[:] = container
 
         ..  docs::
 
@@ -2388,7 +3495,7 @@ class _MeterManager(object):
         LogicalTie([Note("d'8.")])
         LogicalTie([Rest('r16'), Rest('r8.')])
         LogicalTie([Note("e'16")])
-        Tuplet(Multiplier(2, 3), "e'8 ~ e'8 f'8 ~")
+        Tuplet(Multiplier(2, 3), "e'8 e'8 f'8")
         LogicalTie([Note("f'4")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
@@ -2412,7 +3519,7 @@ class _MeterManager(object):
         current_leaf_group_is_silent = False
         for component in argument:
             if isinstance(component, (Note, Chord)):
-                this_tie = inspect(component).logical_tie()
+                this_tie = Inspection(component).logical_tie()
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (

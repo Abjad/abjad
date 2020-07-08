@@ -1,7 +1,7 @@
 import collections
 
 from ..storage import StorageFormatManager
-from .Component import inspect
+from .inspectx import Inspection
 
 
 class Lineage(collections.abc.Sequence):
@@ -79,9 +79,9 @@ class Lineage(collections.abc.Sequence):
         self._component = component
         components = []
         if component is not None:
-            components.extend(reversed(inspect(component).parentage()[1:]))
+            components.extend(reversed(Inspection(component).parentage()[1:]))
             components.append(component)
-            components.extend(inspect(component).descendants()[1:])
+            components.extend(Inspection(component).descendants()[1:])
         self._components = components
 
     ### SPECIAL METHODS ###

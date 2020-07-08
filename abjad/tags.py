@@ -75,8 +75,7 @@ class Tag(object):
             if word_.startswith("-"):
                 not_edition_tags.append(word_)
         if 1 < len(only_edition_tags):
-            message = f"at most one only-edition tag: {only_edition_tags!r}."
-            raise Exception(message)
+            raise Exception(f"at most one only-edition tag: {only_edition_tags!r}.")
         if only_edition_tags and not_edition_tags:
             message = "only-edition and not-edition forbidden in same tag:\n\n"
             message += f"  {only_edition_tags} / {not_edition_tags}"
@@ -411,6 +410,34 @@ class Tag(object):
                 return Tag(word)
         else:
             return None
+
+    @staticmethod
+    def tag(strings, tag, deactivate=None) -> typing.List[str]:
+        """
+        Tags ``strings`` with ``tag``.
+        """
+        if not tag:
+            return strings
+        if not strings:
+            return strings
+        if deactivate is not None:
+            assert isinstance(deactivate, type(True)), repr(deactivate)
+        length = max([len(_) for _ in strings])
+        strings_ = []
+        for string in strings:
+            if "%!" in string and r"\tweak" in string:
+                strings_.append(string)
+                continue
+            if "%!" not in string:
+                pad = length - len(string)
+            else:
+                pad = 0
+            tag_ = pad * " " + " " + "%!" + " " + str(tag)
+            string = string + tag_
+            strings_.append(string)
+        if deactivate is True:
+            strings_ = ["%@% " + _ for _ in strings_]
+        return strings_
 
 
 class Tags(object):

@@ -6,15 +6,15 @@ import typing
 import quicktions
 
 from .. import exceptions, mathtools, typings
+from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
-from ..formatting import LilyPondFormatBundle
 from ..markups import Markup
 from ..new import new
 from ..ratio import Ratio
 from ..scheme import Scheme
 from ..storage import FormatSpecification, StorageFormatManager
 from ..utilities.Enumerator import Enumerator
-from ..utilities.Sequence import sequence
+from ..utilities.Sequence import Sequence
 
 
 @functools.total_ordering
@@ -626,14 +626,12 @@ class MetronomeMark(object):
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
         ) and mathtools.is_integer_equivalent_number(self.units_per_minute):
-            string = "{}={}"
             integer = int(float(self.units_per_minute))
-            string = string.format(self._dotted, integer)
+            string = f"{self._dotted}={integer}"
         elif isinstance(self.units_per_minute, tuple):
-            string = "{}={}-{}"
-            string = string.format(
-                self._dotted, self.units_per_minute[0], self.units_per_minute[1],
-            )
+            first = self.units_per_minute[0]
+            second = self.units_per_minute[1]
+            string = f"{self._dotted}={first}-{second}"
         else:
             raise TypeError(f"unknown: {self.units_per_minute!r}.")
         return string
@@ -742,10 +740,8 @@ class MetronomeMark(object):
         if self.reference_duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
-            string = "{}={}-{}"
-            string = string.format(
-                self._dotted, self.units_per_minute[0], self.units_per_minute[1],
-            )
+            first, second = self.units_per_minute
+            string = f"{self._dotted}={first}-{second}"
             return string
         elif isinstance(self.units_per_minute, quicktions.Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
@@ -1210,9 +1206,9 @@ class MetronomeMark(object):
             if quicktions.Fraction(1, 2) <= _ <= quicktions.Fraction(2)
         ]
         multipliers.sort()
-        multipliers = sequence(multipliers).remove_repeats()
+        multipliers_ = Sequence(multipliers).remove_repeats()
         pairs = []
-        for multiplier in multipliers:
+        for multiplier in multipliers_:
             new_units_per_minute = multiplier * self.units_per_minute
             if integer_tempos_only and not mathtools.is_integer_equivalent_number(
                 new_units_per_minute

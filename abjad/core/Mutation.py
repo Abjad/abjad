@@ -1,16 +1,25 @@
-from .. import enums
+import copy
+import itertools
+
+from .. import enums, exceptions
 from ..duration import Duration
-from ..indicators.TimeSignature import TimeSignature
+from ..indicators.RepeatTie import RepeatTie
+from ..indicators.Tie import Tie
 from ..pitch.intervals import NamedInterval
+from ..ratio import Ratio
+from ..spanners import tie
 from ..storage import StorageFormatManager
-from ..utilities.Sequence import sequence
+from ..utilities.Sequence import Sequence
 from .Chord import Chord
-from .Component import Component, inspect
+from .Component import Component, attach, detach
 from .Container import Container
-from .Iteration import iterate
+from .Iteration import Iteration
 from .Leaf import Leaf
 from .Note import Note
-from .Selection import Selection, select
+from .Selection import Selection
+from .Tuplet import Tuplet
+from .inspectx import Inspection
+from .makers import NoteMaker
 
 
 class Mutation(object):
@@ -48,6 +57,369 @@ class Mutation(object):
         """
         return StorageFormatManager(self).get_repr_format()
 
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _fuse(SELECTION):
+        assert SELECTION.are_contiguous_logical_voice()
+        if SELECTION.are_leaves():
+            return Mutation._fuse_leaves(SELECTION)
+        elif all(isinstance(_, Tuplet) for _ in SELECTION):
+            return Mutation._fuse_tuplets(SELECTION)
+        else:
+            raise Exception("can only fuse leaves and tuplets (not {self}).")
+
+    @staticmethod
+    def _fuse_leaves(SELECTION):
+        assert SELECTION.are_leaves()
+        assert SELECTION.are_contiguous_logical_voice()
+        leaves = SELECTION
+        if len(leaves) <= 1:
+            return leaves
+        originally_tied = Inspection(SELECTION[-1]).has_indicator(Tie)
+        total_preprolated = leaves._get_preprolated_duration()
+        for leaf in leaves[1:]:
+            parent = leaf._parent
+            if parent:
+                index = parent.index(leaf)
+                del parent[index]
+        result = Mutation._set_leaf_duration(leaves[0], total_preprolated)
+        if not originally_tied:
+            last_leaf = Selection(result).leaf(-1)
+            detach(Tie, last_leaf)
+        return result
+
+    @staticmethod
+    def _fuse_leaves_by_immediate_parent(SELECTION):
+        result = []
+        parts = Mutation._get_leaves_grouped_by_immediate_parents(SELECTION)
+        for part in parts:
+            fused = Mutation._fuse(part)
+            result.append(fused)
+        return result
+
+    @staticmethod
+    def _fuse_tuplets(SELECTION):
+        assert SELECTION.are_contiguous_same_parent(prototype=Tuplet)
+        if len(SELECTION) == 0:
+            return None
+        first = SELECTION[0]
+        first_multiplier = first.multiplier
+        for tuplet in SELECTION[1:]:
+            if tuplet.multiplier != first_multiplier:
+                raise ValueError("tuplets must carry same multiplier.")
+        assert isinstance(first, Tuplet)
+        new_tuplet = Tuplet(first_multiplier, [])
+        wrapped = False
+        if (
+            Inspection(SELECTION[0]).parentage().root
+            is not Inspection(SELECTION[-1]).parentage().root
+        ):
+            dummy_container = Container(SELECTION)
+            wrapped = True
+        Mutation(SELECTION).swap(new_tuplet)
+        if wrapped:
+            del dummy_container[:]
+        return new_tuplet
+
+    @staticmethod
+    def _get_leaves_grouped_by_immediate_parents(SELECTION):
+        result = []
+        pairs_generator = itertools.groupby(SELECTION, lambda x: id(x._parent))
+        for key, values_generator in pairs_generator:
+            group = Selection(list(values_generator))
+            result.append(group)
+        return result
+
+    @staticmethod
+    def _move_indicators(donor_component, recipient_component):
+        for wrapper in Inspection(donor_component).wrappers():
+            detach(wrapper, donor_component)
+            attach(wrapper, recipient_component)
+
+    @staticmethod
+    def _set_leaf_duration(leaf, new_duration):
+        new_duration = Duration(new_duration)
+        if leaf.multiplier is not None:
+            multiplier = new_duration.__div__(leaf.written_duration)
+            leaf.multiplier = multiplier
+            return Selection(leaf)
+        try:
+            leaf.written_duration = new_duration
+            return Selection(leaf)
+        except exceptions.AssignabilityError:
+            pass
+        maker = NoteMaker()
+        components = maker(0, new_duration)
+        new_leaves = Selection(components).leaves()
+        following_leaf_count = len(new_leaves) - 1
+        # following_leaves = following_leaf_count * leaf
+        following_leaves = []
+        for i in range(following_leaf_count):
+            rr = Mutation(leaf).copy()
+            following_leaves.append(rr)
+        all_leaves = [leaf] + following_leaves
+        for leaf_, new_leaf in zip(all_leaves, new_leaves):
+            leaf_.written_duration = new_leaf.written_duration
+        logical_tie = Inspection._get_logical_tie(leaf)
+        logical_tie_leaves = list(logical_tie.leaves)
+        for leaf_ in logical_tie:
+            detach(Tie, leaf_)
+            detach(RepeatTie, leaf_)
+        if leaf._parent is not None:
+            index = leaf._parent.index(leaf)
+            next_ = index + 1
+            leaf._parent[next_:next_] = following_leaves
+        index = logical_tie_leaves.index(leaf)
+        next_ = index + 1
+        logical_tie_leaves[next_:next_] = following_leaves
+        if 1 < len(logical_tie_leaves) and isinstance(leaf, (Note, Chord)):
+            tie(logical_tie_leaves)
+        if isinstance(components[0], Leaf):
+            return Selection(all_leaves)
+        else:
+            assert isinstance(components[0], Tuplet)
+            assert len(components) == 1
+            tuplet = components[0]
+            multiplier = tuplet.multiplier
+            tuplet = Tuplet(multiplier, [])
+            if not isinstance(all_leaves, Selection):
+                all_leaves = Selection(all_leaves)
+            Mutation(all_leaves).wrap(tuplet)
+            return Selection(tuplet)
+
+    @staticmethod
+    def _split_container_at_index(CONTAINER, i):
+        """
+        Splits container to the left of index ``i``.
+
+        Preserves tuplet multiplier when container is a tuplet.
+
+        Preserves time signature denominator when container is a measure.
+
+        Resizes resizable containers.
+
+        Returns split parts.
+        """
+        # partition my components
+        left_components = CONTAINER[:i]
+        right_components = CONTAINER[i:]
+        # instantiate new left and right containers
+        if isinstance(CONTAINER, Tuplet):
+            multiplier = CONTAINER.multiplier
+            left = type(CONTAINER)(multiplier, [])
+            Mutation(left_components).wrap(left)
+            right = type(CONTAINER)(multiplier, [])
+            Mutation(right_components).wrap(right)
+        else:
+            left = CONTAINER.__copy__()
+            Mutation(left_components).wrap(left)
+            right = CONTAINER.__copy__()
+            Mutation(right_components).wrap(right)
+        # save left and right containers together for iteration
+        halves = (left, right)
+        nonempty_halves = [half for half in halves if len(half)]
+        # incorporate left and right parents in score if possible
+        selection = Selection(CONTAINER)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        if parent is not None:
+            parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
+            for part in nonempty_halves:
+                part._set_parent(parent)
+        else:
+            left._set_parent(None)
+            right._set_parent(None)
+        # return new left and right containers
+        return halves
+
+    @staticmethod
+    def _split_container_by_duration(CONTAINER, duration):
+        if CONTAINER.simultaneous:
+            return Mutation._split_simultaneous_by_duration(
+                CONTAINER, duration=duration
+            )
+        duration = Duration(duration)
+        assert 0 <= duration, repr(duration)
+        if duration == 0:
+            return [], CONTAINER
+        # get split point score offset
+        timespan = Inspection(CONTAINER).timespan()
+        global_split_point = timespan.start_offset + duration
+        # get any duration-crossing descendents
+        cross_offset = timespan.start_offset + duration
+        duration_crossing_descendants = []
+        for descendant in Inspection(CONTAINER).descendants():
+            timespan = Inspection(descendant).timespan()
+            start_offset = timespan.start_offset
+            stop_offset = timespan.stop_offset
+            if start_offset < cross_offset < stop_offset:
+                duration_crossing_descendants.append(descendant)
+        # any duration-crossing leaf will be at end of list
+        bottom = duration_crossing_descendants[-1]
+        did_split_leaf = False
+        # if split point necessitates leaf split
+        if isinstance(bottom, Leaf):
+            assert isinstance(bottom, Leaf)
+            did_split_leaf = True
+            timespan = Inspection(bottom).timespan()
+            start_offset = timespan.start_offset
+            split_point_in_bottom = global_split_point - start_offset
+            new_leaves = Mutation._split_leaf_by_durations(
+                bottom, [split_point_in_bottom],
+            )
+            for leaf in new_leaves:
+                timespan = Inspection(leaf).timespan()
+                if timespan.stop_offset == global_split_point:
+                    leaf_left_of_split = leaf
+                if timespan.start_offset == global_split_point:
+                    leaf_right_of_split = leaf
+            duration_crossing_containers = duration_crossing_descendants[:-1]
+            if not len(duration_crossing_containers):
+                # return left_list, right_list
+                raise Exception("how did we get here?")
+        # if split point falls between leaves
+        # then find leaf to immediate right of split point
+        # in order to start upward crawl through duration-crossing containers
+        else:
+            duration_crossing_containers = duration_crossing_descendants[:]
+            for leaf in Iteration(bottom).leaves():
+                timespan = Inspection(leaf).timespan()
+                if timespan.start_offset == global_split_point:
+                    leaf_right_of_split = leaf
+                    leaf_left_of_split = Inspection(leaf).leaf(-1)
+                    break
+            else:
+                raise Exception("can not split empty container {bottom!r}.")
+        assert leaf_left_of_split is not None
+        assert leaf_right_of_split is not None
+        # find component to right of split
+        # that is also immediate child of last duration-crossing container
+        for component in Inspection(leaf_right_of_split).parentage():
+            parent = Inspection(component).parentage().parent
+            if parent is duration_crossing_containers[-1]:
+                highest_level_component_right_of_split = component
+                break
+        else:
+            raise ValueError("should not be able to get here.")
+        # crawl back up through duration-crossing containers and split each
+        previous = highest_level_component_right_of_split
+        for container in reversed(duration_crossing_containers):
+            assert isinstance(container, Container)
+            index = container.index(previous)
+            left, right = Mutation._split_container_at_index(container, index)
+            previous = right
+        # reapply tie here if crawl above killed tie applied to leaves
+        if did_split_leaf:
+            if isinstance(leaf_left_of_split, Note):
+                if (
+                    Inspection(leaf_left_of_split).parentage().root
+                    is Inspection(leaf_right_of_split).parentage().root
+                ):
+                    leaves_around_split = (
+                        leaf_left_of_split,
+                        leaf_right_of_split,
+                    )
+                    selection = Selection(leaves_around_split)
+                    selection._attach_tie_to_leaves()
+        # return list-wrapped halves of container
+        return [left], [right]
+
+    @staticmethod
+    def _split_simultaneous_by_duration(CONTAINER, duration):
+        assert CONTAINER.simultaneous
+        left_components, right_components = [], []
+        for component in CONTAINER[:]:
+            halves = Mutation._split_container_by_duration(component, duration=duration)
+            left_components_, right_components_ = halves
+            left_components.extend(left_components_)
+            right_components.extend(right_components_)
+        left_components = Selection(left_components)
+        right_components = Selection(right_components)
+        left_container = CONTAINER.__copy__()
+        right_container = CONTAINER.__copy__()
+        left_container.extend(left_components)
+        right_container.extend(right_components)
+        if Inspection(CONTAINER).parentage().parent is not None:
+            containers = Selection([left_container, right_container])
+            Mutation(CONTAINER).replace(containers)
+        # return list-wrapped halves of container
+        return [left_container], [right_container]
+
+    @staticmethod
+    def _split_leaf_by_durations(LEAF, durations, cyclic=False):
+        durations = [Duration(_) for _ in durations]
+        durations = Sequence(durations)
+        leaf_duration = Inspection(LEAF).duration()
+        if cyclic:
+            durations = durations.repeat_to_weight(leaf_duration)
+        if sum(durations) < leaf_duration:
+            last_duration = leaf_duration - sum(durations)
+            durations = list(durations)
+            durations.append(last_duration)
+            durations = Sequence(durations)
+        durations = durations.truncate(weight=leaf_duration)
+        originally_tied = Inspection(LEAF).has_indicator(Tie)
+        originally_repeat_tied = Inspection(LEAF).has_indicator(RepeatTie)
+        result_selections = []
+        # detach grace containers
+        before_grace_container = LEAF._before_grace_container
+        if before_grace_container is not None:
+            detach(before_grace_container, LEAF)
+        after_grace_container = LEAF._after_grace_container
+        if after_grace_container is not None:
+            detach(after_grace_container, LEAF)
+        # do other things
+        leaf_prolation = Inspection(LEAF).parentage().prolation
+        for duration in durations:
+            new_leaf = copy.copy(LEAF)
+            preprolated_duration = duration / leaf_prolation
+            selection = Mutation._set_leaf_duration(new_leaf, preprolated_duration)
+            result_selections.append(selection)
+        result_components = Sequence(result_selections).flatten(depth=-1)
+        result_components = Selection(result_components)
+        result_leaves = Selection(result_components).leaves(grace=False)
+        assert all(isinstance(_, Selection) for _ in result_selections)
+        assert all(isinstance(_, Component) for _ in result_components)
+        assert result_leaves.are_leaves()
+        # strip result leaves of all indicators
+        for leaf in result_leaves:
+            detach(object, leaf)
+        # replace leaf with flattened result
+        if Inspection(LEAF).parentage().parent is not None:
+            Mutation(LEAF).replace(result_components)
+        # move indicators
+        first_result_leaf = result_leaves[0]
+        last_result_leaf = result_leaves[-1]
+        for indicator in Inspection(LEAF).indicators():
+            detach(indicator, LEAF)
+            direction = getattr(indicator, "_time_orientation", enums.Left)
+            if direction is enums.Left:
+                attach(indicator, first_result_leaf)
+            elif direction == enums.Right:
+                attach(indicator, last_result_leaf)
+            else:
+                raise ValueError(direction)
+        # reattach grace containers
+        if before_grace_container is not None:
+            attach(before_grace_container, first_result_leaf)
+        if after_grace_container is not None:
+            attach(after_grace_container, last_result_leaf)
+        # fuse tuplets
+        if isinstance(result_components[0], Tuplet):
+            Mutation(result_components).fuse()
+        # tie split notes
+        if isinstance(LEAF, (Note, Chord)) and 1 < len(result_leaves):
+            result_leaves._attach_tie_to_leaves()
+        if originally_repeat_tied and not Inspection(result_leaves[0]).has_indicator(
+            RepeatTie
+        ):
+            attach(RepeatTie(), result_leaves[0])
+        if originally_tied and not Inspection(result_leaves[-1]).has_indicator(Tie):
+            attach(Tie(), result_leaves[-1])
+        assert isinstance(result_leaves, Selection)
+        assert all(isinstance(_, Leaf) for _ in result_leaves)
+        return result_leaves
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -61,7 +433,7 @@ class Mutation(object):
 
     ### PUBLIC METHODS ###
 
-    def copy(self):
+    def copy(self, n=1):
         r"""
         Copies client.
 
@@ -175,14 +547,21 @@ class Mutation(object):
         Returns selection of new components.
         """
         if isinstance(self.client, Component):
-            selection = select(self.client)
+            selection = Selection(self.client)
         else:
             selection = self.client
-        result = selection._copy()
-        if isinstance(self.client, Component):
-            if len(result) == 1:
-                result = result[0]
-        return result
+        if n == 1:
+            result = selection._copy()
+            if isinstance(self.client, Component):
+                if len(result) == 1:
+                    result = result[0]
+            return result
+        else:
+            result = []
+            for _ in range(n):
+                result_ = self.copy()
+                result.append(result_)
+            return result
 
     def eject_contents(self):
         r"""
@@ -233,7 +612,7 @@ class Mutation(object):
 
             New container is well formed:
 
-            >>> abjad.inspect(staff).wellformed()
+            >>> abjad.wellformed(staff)
             True
 
             Old container is empty:
@@ -527,14 +906,127 @@ class Mutation(object):
         Returns selection.
         """
         if isinstance(self.client, Component):
-            selection = select(self.client)
-            return selection._fuse()
+            selection = Selection(self.client)
+            return Mutation._fuse(selection)
         elif (
             isinstance(self.client, Selection)
             and self.client.are_contiguous_logical_voice()
         ):
-            selection = select(self.client)
-            return selection._fuse()
+            selection = Selection(self.client)
+            return Mutation._fuse(selection)
+
+    def logical_tie_to_tuplet(self, proportions) -> Tuplet:
+        r"""
+        Changes logical tie to tuplet.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff(r"df'8 c'8 ~ c'16 cqs''4")
+            >>> abjad.attach(abjad.Dynamic('p'), staff[0])
+            >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
+            >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
+            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+            >>> time_signature = abjad.TimeSignature((9, 16))
+            >>> abjad.attach(time_signature, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #3
+                }
+                {
+                    \time 9/16
+                    df'8
+                    \p
+                    \<
+                    c'8
+                    ~
+                    c'16
+                    cqs''4
+                    \f
+                }
+
+            >>> logical_tie = abjad.select(staff[1]).logical_tie()
+            >>> abjad.mutate(logical_tie).logical_tie_to_tuplet([2, 1, 1, 1])
+            Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #3
+                }
+                {
+                    \time 9/16
+                    df'8
+                    \p
+                    \<
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'8
+                        c'16
+                        c'16
+                        c'16
+                    }
+                    cqs''4
+                    \f
+                }
+
+            >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
+            >>> abjad.hairpin('p < f', staff[:])
+            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+            >>> time_signature = abjad.TimeSignature((7, 16))
+            >>> abjad.attach(time_signature, staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                \with
+                {
+                    \override DynamicLineSpanner.staff-padding = #3
+                }
+                {
+                    \time 7/16
+                    c'8
+                    \p
+                    \<
+                    ~
+                    c'16
+                    cqs''4
+                    \f
+                }
+
+        """
+        proportions = Ratio(proportions)
+        target_duration = self.client._get_preprolated_duration()
+        prolated_duration = target_duration / sum(proportions.numbers)
+        basic_written_duration = prolated_duration.equal_or_greater_power_of_two
+        written_durations = [_ * basic_written_duration for _ in proportions.numbers]
+        maker = NoteMaker()
+        try:
+            notes = Selection([Note(0, _) for _ in written_durations])
+        except exceptions.AssignabilityError:
+            denominator = target_duration._denominator
+            note_durations = [Duration(_, denominator) for _ in proportions.numbers]
+            notes = maker(0, note_durations)
+        tuplet = Tuplet.from_duration(target_duration, notes)
+        for leaf in self.client:
+            detach(Tie, leaf)
+            detach(RepeatTie, leaf)
+        Mutation(self.client).replace(tuplet)
+        return tuplet
 
     def replace(self, recipients, wrappers=False):
         r"""
@@ -656,7 +1148,7 @@ class Mutation(object):
             (Note("f'4"), None)
             (Note("g'4"), None)
 
-            >>> abjad.inspect(staff).wellformed()
+            >>> abjad.wellformed(staff)
             True
 
         ..  container:: example
@@ -709,7 +1201,7 @@ class Mutation(object):
             (Note("f'4"), Clef('alto'))
             (Note("g'4"), Clef('alto'))
 
-            >>> abjad.inspect(staff).wellformed()
+            >>> abjad.wellformed(staff)
             True
 
         ..  container:: example
@@ -737,22 +1229,20 @@ class Mutation(object):
         if isinstance(self.client, Selection):
             donors = self.client
         else:
-            donors = select(self.client)
+            donors = Selection(self.client)
         assert donors.are_contiguous_same_parent()
         if not isinstance(recipients, Selection):
-            recipients = select(recipients)
+            recipients = Selection(recipients)
         assert recipients.are_contiguous_same_parent()
         if not donors:
             return
         if wrappers is True:
             if 1 < len(donors) or not isinstance(donors[0], Leaf):
-                message = f"set wrappers only with single leaf: {donors!r}."
-                raise Exception(message)
+                raise Exception(f"set wrappers only with single leaf: {donors!r}.")
             if 1 < len(recipients) or not isinstance(recipients[0], Leaf):
-                message = f"set wrappers only with single leaf: {recipients!r}."
-                raise Exception(message)
+                raise Exception(f"set wrappers only with single leaf: {recipients!r}.")
             donor = donors[0]
-            wrappers = inspect(donor).wrappers()
+            wrappers = Inspection(donor).wrappers()
             recipient = recipients[0]
         parent, start, stop = donors._get_parent_and_start_stop_indices()
         assert parent is not None, repr(donors)
@@ -771,1103 +1261,6 @@ class Mutation(object):
             context = wrapper._find_correct_effective_context()
             if context is not None:
                 context._dependent_wrappers.append(wrapper)
-
-    def rewrite_meter(
-        self,
-        meter,
-        boundary_depth=None,
-        initial_offset=None,
-        maximum_dot_count=None,
-        rewrite_tuplets=True,
-    ):
-        r"""
-        Rewrites the contents of logical ties in an expression to match
-        ``meter``.
-
-        ..  container:: example
-
-            Rewrites the contents of a measure in a staff using the default
-            meter for that measure's time signature:
-
-            >>> string = "abj: | 2/4 c'2 ~ |"
-            >>> string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
-            >>> string += "| 2/4 e'2 |"
-            >>> staff = abjad.Staff(string)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 2/4
-                        c'2
-                        ~
-                    }
-                    {
-                        \time 4/4
-                        c'32
-                        d'2..
-                        ~
-                        d'16
-                        e'32
-                        ~
-                    }
-                    {
-                        \time 2/4
-                        e'2
-                    }
-                }
-
-            >>> meter = abjad.Meter((4, 4))
-            >>> print(meter.pretty_rtm_format)
-            (4/4 (
-                1/4
-                1/4
-                1/4
-                1/4))
-
-            >>> abjad.mutate(staff[1][:]).rewrite_meter(meter)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 2/4
-                        c'2
-                        ~
-                    }
-                    {
-                        \time 4/4
-                        c'32
-                        d'8..
-                        ~
-                        d'2
-                        ~
-                        d'8..
-                        e'32
-                        ~
-                    }
-                    {
-                        \time 2/4
-                        e'2
-                    }
-                }
-
-        ..  container:: example
-
-            Rewrites the contents of a measure in a staff using a custom meter:
-
-            >>> staff = abjad.Staff(string)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 2/4
-                        c'2
-                        ~
-                    }
-                    {
-                        \time 4/4
-                        c'32
-                        d'2..
-                        ~
-                        d'16
-                        e'32
-                        ~
-                    }
-                    {
-                        \time 2/4
-                        e'2
-                    }
-                }
-
-            >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-            >>> meter = abjad.Meter(rtm)
-            >>> print(meter.pretty_rtm_format) # doctest: +SKIP
-            (4/4 (
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))))
-
-            >>> abjad.mutate(staff[1][:]).rewrite_meter(meter)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 2/4
-                        c'2
-                        ~
-                    }
-                    {
-                        \time 4/4
-                        c'32
-                        d'4...
-                        ~
-                        d'4...
-                        e'32
-                        ~
-                    }
-                    {
-                        \time 2/4
-                        e'2
-                    }
-                }
-
-        ..  container:: example
-
-            Limit the maximum number of dots per leaf using
-            ``maximum_dot_count``:
-
-            >>> string = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
-            >>> staff = abjad.Staff(string)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 3/4
-                        c'32
-                        d'8
-                        e'8
-                        fs'4...
-                    }
-                }
-
-            Without constraining the ``maximum_dot_count``:
-
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(time_signature)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 3/4
-                        c'32
-                        d'16.
-                        ~
-                        d'32
-                        e'16.
-                        ~
-                        e'32
-                        fs'4...
-                    }
-                }
-
-            Constraining the ``maximum_dot_count`` to ``2``:
-
-            >>> staff = abjad.Staff(string)
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     time_signature,
-            ...     maximum_dot_count=2,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 3/4
-                        c'32
-                        d'16.
-                        ~
-                        d'32
-                        e'16.
-                        ~
-                        e'32
-                        fs'8..
-                        ~
-                        fs'4
-                    }
-                }
-
-            Constraining the ``maximum_dot_count`` to ``1``:
-
-            >>> staff = abjad.Staff(string)
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     time_signature,
-            ...     maximum_dot_count=1,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 3/4
-                        c'32
-                        d'16.
-                        ~
-                        d'32
-                        e'16.
-                        ~
-                        e'32
-                        fs'16.
-                        ~
-                        fs'8
-                        ~
-                        fs'4
-                    }
-                }
-
-            Constraining the ``maximum_dot_count`` to ``0``:
-
-            >>> staff = abjad.Staff(string)
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     time_signature,
-            ...     maximum_dot_count=0,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 3/4
-                        c'32
-                        d'16
-                        ~
-                        d'32
-                        ~
-                        d'32
-                        e'16
-                        ~
-                        e'32
-                        ~
-                        e'32
-                        fs'16
-                        ~
-                        fs'32
-                        ~
-                        fs'8
-                        ~
-                        fs'4
-                    }
-                }
-
-        ..  container:: example
-
-            Split logical ties at different depths of the ``Meter``, if those
-            logical ties cross any offsets at that depth, but do not also both
-            begin and end at any of those offsets.
-
-            Consider the default meter for ``9/8``:
-
-            >>> meter = abjad.Meter((9, 8))
-            >>> print(meter.pretty_rtm_format)
-            (9/8 (
-                (3/8 (
-                    1/8
-                    1/8
-                    1/8))
-                (3/8 (
-                    1/8
-                    1/8
-                    1/8))
-                (3/8 (
-                    1/8
-                    1/8
-                    1/8))))
-
-            We can establish that meter without specifying
-            a ``boundary_depth``:
-
-            >>> string = "abj: | 9/8 c'2 d'2 e'8 |"
-            >>> staff = abjad.Staff(string)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 9/8
-                        c'2
-                        d'2
-                        e'8
-                    }
-                }
-
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(time_signature)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 9/8
-                        c'2
-                        d'4
-                        ~
-                        d'4
-                        e'8
-                    }
-                }
-
-            With a ``boundary_depth`` of `1`, logical ties which cross any
-            offsets created by nodes with a depth of `1` in this Meter's rhythm
-            tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also
-            begin and end at any of those offsets, will be split:
-
-            >>> staff = abjad.Staff(string)
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     time_signature,
-            ...     boundary_depth=1,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 9/8
-                        c'4.
-                        ~
-                        c'8
-                        d'4
-                        ~
-                        d'4
-                        e'8
-                    }
-                }
-
-            For this `9/8` meter, and this input notation, A ``boundary_depth``
-            of `2` causes no change, as all logical ties already align to
-            multiples of `1/8`:
-
-            >>> staff = abjad.Staff(string)
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     time_signature,
-            ...     boundary_depth=2,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 9/8
-                        c'2
-                        d'4
-                        ~
-                        d'4
-                        e'8
-                    }
-                }
-
-        ..  container:: example
-
-            Comparison of `3/4` and `6/8`, at ``boundary_depths`` of 0 and 1:
-
-            >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |"
-            >>> triple += "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
-            >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |"
-            >>> duples += "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
-            >>> score = abjad.Score([
-            ...     abjad.Staff(triple),
-            ...     abjad.Staff(duples),
-            ...     ])
-
-            In order to see the different time signatures on each staff,
-            we need to move some engravers from the Score context to the
-            Staff context:
-
-            >>> engravers = [
-            ...     'Timing_translator',
-            ...     'Time_signature_engraver',
-            ...     'Default_bar_line_engraver',
-            ...     ]
-            >>> score.remove_commands.extend(engravers)
-            >>> score[0].consists_commands.extend(engravers)
-            >>> score[1].consists_commands.extend(engravers)
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                \with
-                {
-                    \remove Timing_translator
-                    \remove Time_signature_engraver
-                    \remove Default_bar_line_engraver
-                }
-                <<
-                    \new Staff
-                    \with
-                    {
-                        \consists Timing_translator
-                        \consists Time_signature_engraver
-                        \consists Default_bar_line_engraver
-                    }
-                    {
-                        {
-                            \time 3/4
-                            c'2
-                            c'4
-                        }
-                        {
-                            \time 3/4
-                            c'4
-                            c'2
-                        }
-                        {
-                            \time 3/4
-                            c'4.
-                            c'4.
-                        }
-                        {
-                            \time 3/4
-                            c'2
-                            ~
-                            c'8
-                            c'8
-                        }
-                        {
-                            \time 3/4
-                            c'8
-                            c'8
-                            ~
-                            c'2
-                        }
-                    }
-                    \new Staff
-                    \with
-                    {
-                        \consists Timing_translator
-                        \consists Time_signature_engraver
-                        \consists Default_bar_line_engraver
-                    }
-                    {
-                        {
-                            \time 6/8
-                            c'2
-                            c'4
-                        }
-                        {
-                            \time 6/8
-                            c'4
-                            c'2
-                        }
-                        {
-                            \time 6/8
-                            c'4.
-                            c'4.
-                        }
-                        {
-                            \time 6/8
-                            c'2
-                            ~
-                            c'8
-                            c'8
-                        }
-                        {
-                            \time 6/8
-                            c'8
-                            c'8
-                            ~
-                            c'2
-                        }
-                    }
-                >>
-
-            Here we establish a meter without specifying any boundary depth:
-
-            >>> for staff in score:
-            ...     for container in staff:
-            ...         leaf = abjad.inspect(container).leaf(0)
-            ...         time_signature = abjad.inspect(leaf).indicator(
-            ...             abjad.TimeSignature
-            ...             )
-            ...         abjad.mutate(container[:]).rewrite_meter(time_signature)
-            ...
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                \with
-                {
-                    \remove Timing_translator
-                    \remove Time_signature_engraver
-                    \remove Default_bar_line_engraver
-                }
-                <<
-                    \new Staff
-                    \with
-                    {
-                        \consists Timing_translator
-                        \consists Time_signature_engraver
-                        \consists Default_bar_line_engraver
-                    }
-                    {
-                        {
-                            \time 3/4
-                            c'2
-                            c'4
-                        }
-                        {
-                            \time 3/4
-                            c'4
-                            c'2
-                        }
-                        {
-                            \time 3/4
-                            c'4.
-                            c'4.
-                        }
-                        {
-                            \time 3/4
-                            c'2
-                            ~
-                            c'8
-                            c'8
-                        }
-                        {
-                            \time 3/4
-                            c'8
-                            c'8
-                            ~
-                            c'2
-                        }
-                    }
-                    \new Staff
-                    \with
-                    {
-                        \consists Timing_translator
-                        \consists Time_signature_engraver
-                        \consists Default_bar_line_engraver
-                    }
-                    {
-                        {
-                            \time 6/8
-                            c'2
-                            c'4
-                        }
-                        {
-                            \time 6/8
-                            c'4
-                            c'2
-                        }
-                        {
-                            \time 6/8
-                            c'4.
-                            c'4.
-                        }
-                        {
-                            \time 6/8
-                            c'4.
-                            ~
-                            c'4
-                            c'8
-                        }
-                        {
-                            \time 6/8
-                            c'8
-                            c'4
-                            ~
-                            c'4.
-                        }
-                    }
-                >>
-
-            Here we reestablish meter at a boundary depth of `1`:
-
-            >>> for staff in score:
-            ...     for container in staff:
-            ...         leaf = abjad.inspect(container).leaf(0)
-            ...         time_signature = abjad.inspect(leaf).indicator(
-            ...             abjad.TimeSignature
-            ...             )
-            ...         abjad.mutate(container[:]).rewrite_meter(
-            ...             time_signature,
-            ...             boundary_depth=1,
-            ...             )
-            ...
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(score)
-                \new Score
-                \with
-                {
-                    \remove Timing_translator
-                    \remove Time_signature_engraver
-                    \remove Default_bar_line_engraver
-                }
-                <<
-                    \new Staff
-                    \with
-                    {
-                        \consists Timing_translator
-                        \consists Time_signature_engraver
-                        \consists Default_bar_line_engraver
-                    }
-                    {
-                        {
-                            \time 3/4
-                            c'2
-                            c'4
-                        }
-                        {
-                            \time 3/4
-                            c'4
-                            c'2
-                        }
-                        {
-                            \time 3/4
-                            c'4
-                            ~
-                            c'8
-                            c'8
-                            ~
-                            c'4
-                        }
-                        {
-                            \time 3/4
-                            c'2
-                            ~
-                            c'8
-                            c'8
-                        }
-                        {
-                            \time 3/4
-                            c'8
-                            c'8
-                            ~
-                            c'2
-                        }
-                    }
-                    \new Staff
-                    \with
-                    {
-                        \consists Timing_translator
-                        \consists Time_signature_engraver
-                        \consists Default_bar_line_engraver
-                    }
-                    {
-                        {
-                            \time 6/8
-                            c'4.
-                            ~
-                            c'8
-                            c'4
-                        }
-                        {
-                            \time 6/8
-                            c'4
-                            c'8
-                            ~
-                            c'4.
-                        }
-                        {
-                            \time 6/8
-                            c'4.
-                            c'4.
-                        }
-                        {
-                            \time 6/8
-                            c'4.
-                            ~
-                            c'4
-                            c'8
-                        }
-                        {
-                            \time 6/8
-                            c'8
-                            c'4
-                            ~
-                            c'4.
-                        }
-                    }
-                >>
-
-            Note that the two time signatures are much more clearly
-            disambiguated above.
-
-        ..  container:: example
-
-            Establishing meter recursively in measures with nested tuplets:
-
-            >>> string = "abj: | 4/4 c'16 ~ c'4 d'8. ~ "
-            >>> string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
-            >>> string += "f'4 |"
-            >>> staff = abjad.Staff(string)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 4/4
-                        c'16
-                        ~
-                        c'4
-                        d'8.
-                        ~
-                        \times 2/3 {
-                            d'8.
-                            ~
-                            \tweak text #tuplet-number::calc-fraction-text
-                            \times 3/5 {
-                                d'16
-                                e'8.
-                                f'16
-                                ~
-                            }
-                        }
-                        f'4
-                    }
-                }
-
-            When establishing a meter on a selection of components which
-            contain containers, like tuplets or containers, ``rewrite_meter()``
-            will recurse into those containers, treating them as measures whose
-            time signature is derived from the preprolated preprolated_duration
-            of the container's contents:
-
-            >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.mutate(measure[:]).rewrite_meter(
-            ...     time_signature,
-            ...     boundary_depth=1,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    {
-                        \time 4/4
-                        c'4
-                        ~
-                        c'16
-                        d'8.
-                        ~
-                        \times 2/3 {
-                            d'8
-                            ~
-                            d'16
-                            ~
-                            \tweak text #tuplet-number::calc-fraction-text
-                            \times 3/5 {
-                                d'16
-                                e'8
-                                ~
-                                e'16
-                                f'16
-                                ~
-                            }
-                        }
-                        f'4
-                    }
-                }
-
-        ..  container:: example
-
-            Default rewrite behavior doesn't subdivide the first note in this
-            measure because the first note in the measure starts at the
-            beginning of a level-0 beat in meter:
-
-            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
-            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8))
-            >>> abjad.mutate(staff[:]).rewrite_meter(meter)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 6/8
-                    c'4..
-                    c'16
-                    ~
-                    c'4
-                }
-
-            Setting boundary depth to 1 subdivides the first note in this
-            measure:
-
-            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
-            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8))
-            >>> abjad.mutate(staff[:]).rewrite_meter(meter, boundary_depth=1)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 6/8
-                    c'4.
-                    ~
-                    c'16
-                    c'16
-                    ~
-                    c'4
-                }
-
-            Another way of doing this is by setting preferred boundary depth on
-            the meter itself:
-
-            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
-            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter(
-            ...     (6, 8),
-            ...     preferred_boundary_depth=1,
-            ...     )
-            >>> abjad.mutate(staff[:]).rewrite_meter(meter)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 6/8
-                    c'4.
-                    ~
-                    c'16
-                    c'16
-                    ~
-                    c'4
-                }
-
-            This makes it possible to divide different meters in different
-            ways.
-
-        ..  container:: example
-
-            Rewrites notes and tuplets:
-
-            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
-            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-            >>> staff = abjad.Staff(string)
-            >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 6/4
-                    c'8
-                    ~
-                    c'8
-                    ~
-                    c'8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        c'4.
-                        r16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        r16
-                        c'4.
-                    }
-                    c'8
-                    ~
-                    c'8
-                    ~
-                    c'8
-                }
-
-            >>> meter = abjad.Meter((6, 4))
-            >>> abjad.mutate(staff[:]).rewrite_meter(
-            ...     meter,
-            ...     boundary_depth=1,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 6/4
-                    c'4.
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        c'8.
-                        ~
-                        c'8
-                        ~
-                        c'16
-                        r16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        r16
-                        c'8
-                        ~
-                        c'4
-                    }
-                    c'4.
-                }
-
-            The tied note rewriting is good while the tuplet rewriting
-            could use some adjustment.
-
-            Rewrites notes but not tuplets:
-
-            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
-            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-            >>> staff = abjad.Staff(string)
-            >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 6/4
-                    c'8
-                    ~
-                    c'8
-                    ~
-                    c'8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        c'4.
-                        r16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        r16
-                        c'4.
-                    }
-                    c'8
-                    ~
-                    c'8
-                    ~
-                    c'8
-                }
-
-            >>> meter = abjad.Meter((6, 4))
-            >>> abjad.mutate(staff[:]).rewrite_meter(
-            ...     meter,
-            ...     boundary_depth=1,
-            ...     rewrite_tuplets=False,
-            ...     )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    \time 6/4
-                    c'4.
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        c'4.
-                        r16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
-                        r16
-                        c'4.
-                    }
-                    c'4.
-                }
-
-        Operates in place and returns none.
-        """
-        from ..meter import Meter
-
-        selection = self.client
-        if isinstance(selection, Container):
-            selection = selection[:]
-        assert isinstance(selection, Selection)
-        if isinstance(meter, TimeSignature):
-            meter = Meter(meter)
-        if not isinstance(meter, Meter):
-            raise Exception(f"must be meter or time signature (not {meter}).")
-        result = Meter._rewrite_meter(
-            selection,
-            meter,
-            boundary_depth=boundary_depth,
-            initial_offset=initial_offset,
-            maximum_dot_count=maximum_dot_count,
-            rewrite_tuplets=rewrite_tuplets,
-        )
-        return result
 
     def scale(self, multiplier) -> None:
         r"""
@@ -2197,13 +1590,13 @@ class Mutation(object):
             >>> for voice in staff:
             ...     voice
             ...
-            Voice("c'8 ~", lilypond_type='CustomVoice', name='1')
             Voice("c'8", lilypond_type='CustomVoice', name='1')
-            Voice("d'8 ~", lilypond_type='CustomVoice', name='1')
+            Voice("c'8", lilypond_type='CustomVoice', name='1')
             Voice("d'8", lilypond_type='CustomVoice', name='1')
-            Voice("e'8 ~", lilypond_type='CustomVoice', name='1')
+            Voice("d'8", lilypond_type='CustomVoice', name='1')
             Voice("e'8", lilypond_type='CustomVoice', name='1')
-            Voice("f'8 ~", lilypond_type='CustomVoice', name='1')
+            Voice("e'8", lilypond_type='CustomVoice', name='1')
+            Voice("f'8", lilypond_type='CustomVoice', name='1')
             Voice("f'8", lilypond_type='CustomVoice', name='1')
 
         ..  container:: example
@@ -2422,20 +1815,20 @@ class Mutation(object):
         single_component_input = False
         if isinstance(components, Component):
             single_component_input = True
-            components = select(components)
+            components = Selection(components)
         assert all(isinstance(_, Component) for _ in components)
         if not isinstance(components, Selection):
-            components = select(components)
+            components = Selection(components)
         durations = [Duration(_) for _ in durations]
         if not durations:
             if single_component_input:
                 return components
             else:
                 return [], components
-        total_component_duration = inspect(components).duration()
+        total_component_duration = Inspection(components).duration()
         total_split_duration = sum(durations)
         if cyclic:
-            durations = sequence(durations)
+            durations = Sequence(durations)
             durations = durations.repeat_to_weight(total_component_duration)
             durations = list(durations)
         elif total_split_duration < total_component_duration:
@@ -2443,7 +1836,7 @@ class Mutation(object):
             durations.append(final_offset)
         elif total_component_duration < total_split_duration:
             weight = total_component_duration
-            durations = sequence(durations).truncate(weight=weight)
+            durations = Sequence(durations).truncate(weight=weight)
             durations = list(durations)
         # keep copy of durations to partition result components
         durations_copy = durations[:]
@@ -2470,7 +1863,7 @@ class Mutation(object):
             else:
                 break
             # find where current component endpoint will position us
-            duration_ = inspect(current_component).duration()
+            duration_ = Inspection(current_component).duration()
             candidate_shard_duration = current_shard_duration + duration_
             # if current component would fill current shard exactly
             if candidate_shard_duration == next_split_point:
@@ -2485,11 +1878,11 @@ class Mutation(object):
                 local_split_duration -= current_shard_duration
                 if isinstance(current_component, Leaf):
                     leaf_split_durations = [local_split_duration]
-                    duration_ = inspect(current_component).duration()
+                    duration_ = Inspection(current_component).duration()
                     current_duration = duration_
                     additional_required_duration = current_duration
                     additional_required_duration -= local_split_duration
-                    split_durations = sequence(durations)
+                    split_durations = Sequence(durations)
                     split_durations = split_durations.split(
                         [additional_required_duration], cyclic=False, overhang=True,
                     )
@@ -2497,15 +1890,17 @@ class Mutation(object):
                     additional_durations = split_durations[0]
                     leaf_split_durations.extend(additional_durations)
                     durations = split_durations[-1]
-                    leaf_shards = current_component._split_by_durations(
-                        leaf_split_durations, cyclic=False
+                    leaf_shards = self._split_leaf_by_durations(
+                        current_component, leaf_split_durations, cyclic=False,
                     )
                     shard.extend(leaf_shards)
                     result.append(shard)
                     offset_index += len(additional_durations)
                 else:
                     assert isinstance(current_component, Container)
-                    pair = current_component._split_by_duration(local_split_duration)
+                    pair = Mutation._split_container_by_duration(
+                        current_component, local_split_duration,
+                    )
                     left_list, right_list = pair
                     shard.extend(left_list)
                     result.append(shard)
@@ -2516,7 +1911,7 @@ class Mutation(object):
             # if current component would not fill current shard
             elif candidate_shard_duration < next_split_point:
                 shard.append(current_component)
-                duration_ = inspect(current_component).duration()
+                duration_ = Inspection(current_component).duration()
                 current_shard_duration += duration_
                 advance_to_next_offset = False
             else:
@@ -2530,8 +1925,10 @@ class Mutation(object):
         if len(remaining_components):
             result.append(remaining_components)
         # partition split components according to input durations
-        result = sequence(result).flatten(depth=-1)
-        result = select(result).partition_by_durations(durations_copy, fill=enums.Exact)
+        result = Sequence(result).flatten(depth=-1)
+        result = Selection(result).partition_by_durations(
+            durations_copy, fill=enums.Exact
+        )
         # return list of shards
         assert all(isinstance(_, Selection) for _ in result)
         return result
@@ -2609,7 +2006,7 @@ class Mutation(object):
         if isinstance(self.client, Selection):
             donors = self.client
         else:
-            donors = select(self.client)
+            donors = Selection(self.client)
         assert donors.are_contiguous_same_parent()
         assert isinstance(container, Container)
         assert not container, repr(container)
@@ -2672,7 +2069,7 @@ class Mutation(object):
         Returns none.
         """
         named_interval = NamedInterval(argument)
-        for x in iterate(self.client).components((Note, Chord)):
+        for x in Iteration(self.client).components((Note, Chord)):
             if isinstance(x, Note):
                 old_written_pitch = x.note_head.written_pitch
                 new_written_pitch = old_written_pitch.transpose(named_interval)
@@ -2880,10 +2277,9 @@ class Mutation(object):
         Returns none.
         """
         if not isinstance(container, Container) or 0 < len(container):
-            message = f"must be empty container: {container!r}."
-            raise Exception(message)
+            raise Exception(f"must be empty container: {container!r}.")
         if isinstance(self.client, Component):
-            selection = select(self.client)
+            selection = Selection(self.client)
         else:
             selection = self.client
         assert isinstance(selection, Selection), repr(selection)

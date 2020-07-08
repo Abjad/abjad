@@ -231,8 +231,7 @@ class Scheme(object):
             force_quotes = bool(force_quotes)
         self._force_quotes = force_quotes
         if quoting is not None and not set(r"',@`#").issuperset(set(quoting)):
-            message = rf"quoting must be ' or , or @ or ` or #: {quoting!r}."
-            raise ValueError(message)
+            raise ValueError(rf"quoting must be ' or , or @ or ` or #: {quoting!r}.")
         self._quoting = quoting
         if verbatim is not None:
             verbatim = bool(verbatim)
@@ -481,8 +480,7 @@ class SchemeAssociativeList(Scheme):
             elif isinstance(item, SchemePair):
                 pair = item
             else:
-                message = f"must be Python pair or Scheme pair: {item!r}."
-                raise TypeError(message)
+                raise TypeError(f"must be Python pair or Scheme pair: {item!r}.")
             pairs.append(pair)
         Scheme.__init__(self, value=pairs, quoting="'")
 
@@ -519,9 +517,7 @@ class SchemeColor(Scheme):
     ### PRIVATE METHODS ###
 
     def _get_formatted_value(self):
-        string = "(x11-color '{})"
-        string = string.format(self._value)
-        return string
+        return f"(x11-color '{self._value})"
 
 
 @functools.total_ordering

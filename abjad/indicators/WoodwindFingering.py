@@ -262,7 +262,7 @@ class WoodwindFingering(object):
         """
         Formats woodwind fingering.
 
-        Set ``format_specification`` to `''` or `'storage'`.
+        Set ``format_specification`` to ``''`` or ``'storage'``.
         """
         return StorageFormatManager(self).get_storage_format()
 

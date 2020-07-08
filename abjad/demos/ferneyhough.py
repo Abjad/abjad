@@ -772,14 +772,14 @@ class FerneyhoughDemo(object):
         """
         Makes nested tuplet.
         """
-        outer_tuplet = abjad.Tuplet.from_duration_and_ratio(
+        outer_tuplet = abjad.makers.tuplet_from_duration_and_ratio(
             tuplet_duration, outer_tuplet_proportions
         )
         inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
         selector = abjad.select().leaves()
         last_leaf = selector(outer_tuplet)[-1]
         right_logical_tie = abjad.inspect(last_leaf).logical_tie()
-        right_logical_tie.to_tuplet(inner_tuplet_proportions)
+        abjad.mutate(right_logical_tie).logical_tie_to_tuplet(inner_tuplet_proportions)
         return outer_tuplet
 
     def make_row_of_nested_tuplets(

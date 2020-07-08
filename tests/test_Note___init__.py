@@ -66,7 +66,7 @@ def test_Note___init___06():
         """
     )
 
-    assert abjad.inspect(note).wellformed()
+    assert abjad.wellformed(note)
 
 
 def test_Note___init___07():
@@ -75,7 +75,8 @@ def test_Note___init___07():
     """
 
     chord = abjad.Chord([2, 3, 4], (1, 4))
-    tuplet = abjad.Tuplet((2, 3), 3 * chord)
+    chords = abjad.mutate(chord).copy(3)
+    tuplet = abjad.Tuplet((2, 3), chords)
     note = abjad.Note(tuplet[0])
 
     assert format(note) == abjad.String.normalize(
@@ -84,7 +85,7 @@ def test_Note___init___07():
         """
     )
 
-    assert abjad.inspect(note).wellformed()
+    assert abjad.wellformed(note)
 
 
 def test_Note___init___08():
@@ -93,7 +94,8 @@ def test_Note___init___08():
     """
 
     chord = abjad.Chord([2, 3, 4], (1, 8))
-    staff = abjad.Staff(3 * chord)
+    chords = abjad.mutate(chord).copy(3)
+    staff = abjad.Staff(chords)
     abjad.beam(staff[:])
     note = abjad.Note(staff[0])
 
@@ -104,7 +106,7 @@ def test_Note___init___08():
         """
     ), print(format(note))
 
-    assert abjad.inspect(note).wellformed()
+    assert abjad.wellformed(note)
 
 
 def test_Note___init___09():
@@ -121,7 +123,7 @@ def test_Note___init___09():
         """
     )
 
-    assert abjad.inspect(note).wellformed()
+    assert abjad.wellformed(note)
 
 
 def test_Note___init___10():
@@ -129,7 +131,7 @@ def test_Note___init___10():
     Initializes note from tupletized rest.
     """
 
-    tuplet = abjad.Tuplet((2, 3), 3 * abjad.Rest((1, 8)))
+    tuplet = abjad.Tuplet((2, 3), "r8 r8 r8")
     duration = tuplet[0].written_duration
     note = abjad.Note(tuplet[0])
 
@@ -178,7 +180,7 @@ def test_Note___init___13():
     Initializes note from tupletized skip.
     """
 
-    tuplet = abjad.Tuplet((2, 3), 3 * abjad.Skip((1, 8)))
+    tuplet = abjad.Tuplet((2, 3), "s8 s8 s8")
     duration = tuplet[0].written_duration
     note = abjad.Note(tuplet[0])
 

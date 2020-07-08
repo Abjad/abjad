@@ -120,11 +120,14 @@ quarter notes:
 
 ::
 
-    >>> quarter_notes = 4 * abjad.Note("c'4")
-    >>> half_note = abjad.Note("c'2", multiplier=(1, 2))
-    >>> half_notes = 4 * half_note
-    >>> top_staff = abjad.Staff(quarter_notes, lilypond_type='RhythmicStaff')
-    >>> bottom_staff = abjad.Staff(half_notes, lilypond_type='RhythmicStaff')
+    >>> half_notes = [
+    ...     abjad.Note("c'2", multiplier=(1, 2)),
+    ...     abjad.Note("c'2", multiplier=(1, 2)),
+    ...     abjad.Note("c'2", multiplier=(1, 2)),
+    ...     abjad.Note("c'2", multiplier=(1, 2)),
+    ... ]
+    >>> top_staff = abjad.Staff("c'4 c'4 c'4 c'4", lilypond_type="RhythmicStaff")
+    >>> bottom_staff = abjad.Staff(half_notes, lilypond_type="RhythmicStaff")
     >>> staff_group = abjad.StaffGroup([top_staff, bottom_staff])
 
 ::

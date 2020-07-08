@@ -1,7 +1,7 @@
 import typing
 
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..pitch.pitchclasses import NamedPitchClass
 from ..storage import FormatSpecification, StorageFormatManager
 from .Mode import Mode
@@ -66,17 +66,13 @@ class KeySignature(object):
     ### INITIALIZER ###
 
     def __init__(
-        self,
-        tonic: str = "c",
-        mode: str = "major",
-        *,
-        tweaks: LilyPondTweakManager = None,
+        self, tonic: str = "c", mode: str = "major", *, tweaks: TweakInterface = None,
     ) -> None:
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -279,7 +275,7 @@ class KeySignature(object):
         return self._tonic
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks.
 

@@ -1,10 +1,9 @@
 import collections
 
 from ..storage import FormatSpecification, StorageFormatManager
-from .TypedCollection import TypedCollection
 
 
-class OrderedDict(TypedCollection, collections.abc.MutableMapping):
+class OrderedDict(collections.abc.MutableMapping):
     r"""
     Ordered dictionary.
 
@@ -99,14 +98,13 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = ("_collection",)
 
     _publish_storage_format = True
 
     ### INITIALIZER ###
 
-    def __init__(self, items=None, item_class=None):
-        TypedCollection.__init__(self, item_class=item_class)
+    def __init__(self, items=None):
         if isinstance(items, dict):
             items = sorted(items.items())
         elif isinstance(items, collections.abc.Mapping):
@@ -116,7 +114,7 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
         for item in items:
             assert len(item) == 2, repr(item)
             key = item[0]
-            value = self._coerce_item(item[1])
+            value = item[1]
             the_item = (key, value)
             the_items.append(the_item)
         self._collection = collections.OrderedDict(the_items)
@@ -149,6 +147,25 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
         """
         del self._collection[i]
 
+    def __eq__(self, argument):
+        """
+        Is true when ``argument`` is an ordered dict with items that
+        compare equal to those of this ordered dict.
+
+        Returns true or false.
+        """
+        if issubclass(type(argument), type(self)):
+            return self._collection == argument._collection
+        elif isinstance(argument, type(self._collection)):
+            return self._collection == argument
+        return False
+
+    def __format__(self, format_specification="") -> str:
+        """
+        Formats object.
+        """
+        return StorageFormatManager(self).get_storage_format()
+
     def __ge__(self, argument):
         """
         Is true when typed ordered dictionary is greater than or equal
@@ -175,6 +192,30 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
         """
         argument = type(self)(argument)
         return self._collection.__gt__(argument._collection)
+
+    def __hash__(self):
+        """
+        Hashes typed collection.
+
+        Redefined in tandem with __eq__.
+        """
+        return object.__hash__(self)
+
+    def __iter__(self):
+        """
+        Iterates typed collection.
+
+        Returns generator.
+        """
+        return self._collection.__iter__()
+
+    def __len__(self):
+        """
+        Gets length of typed collection.
+
+        Returns nonnegative integer.
+        """
+        return len(self._collection)
 
     def __le__(self, argument):
         """
@@ -203,14 +244,19 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
         """
         return self._collection.__reversed__()
 
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
     def __setitem__(self, i, argument):
         """
         Changes items in ``argument`` to items and sets.
 
         Returns none.
         """
-        new_item = self._coerce_item(argument)
-        self._collection[i] = new_item
+        self._collection[i] = argument
 
     ### PRIVATE METHODS ###
 
@@ -245,7 +291,7 @@ class OrderedDict(TypedCollection, collections.abc.MutableMapping):
         """
         ordered_dictionary = self._collection.copy()
         items = list(ordered_dictionary.items())
-        return type(self)(item_class=self.item_class, items=items)
+        return type(self)(items=items)
 
     def get(self, i, default=None):
         """

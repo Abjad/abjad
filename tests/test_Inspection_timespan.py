@@ -236,7 +236,13 @@ def test_Inspection_timespan_19():
     Offsets works on sequential tuplets.
     """
 
-    voice = abjad.Voice(3 * abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"))
+    voice = abjad.Voice(
+        [
+            abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"),
+            abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"),
+            abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"),
+        ]
+    )
     assert abjad.inspect(voice[0]).timespan().start_offset == 0 * abjad.Offset(1, 4)
     assert abjad.inspect(voice[1]).timespan().start_offset == 1 * abjad.Offset(1, 4)
     assert abjad.inspect(voice[2]).timespan().start_offset == 2 * abjad.Offset(1, 4)

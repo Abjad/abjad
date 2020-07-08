@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums
-from ..formatting import LilyPondFormatBundle
-from ..lilypondnames.LilyPondTweakManager import LilyPondTweakManager
+from ..bundle import LilyPondFormatBundle
+from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 from ..utilities.String import String
 
@@ -42,7 +42,7 @@ class Staccatissimo(object):
         self,
         *,
         direction: enums.VerticalAlignment = None,
-        tweaks: LilyPondTweakManager = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
@@ -51,8 +51,8 @@ class Staccatissimo(object):
             assert direction_ in directions, repr(direction_)
         self._direction = direction_
         if tweaks is not None:
-            assert isinstance(tweaks, LilyPondTweakManager), repr(tweaks)
-        self._tweaks = LilyPondTweakManager.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, TweakInterface), repr(tweaks)
+        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -176,7 +176,7 @@ class Staccatissimo(object):
         return self._direction
 
     @property
-    def tweaks(self) -> typing.Optional[LilyPondTweakManager]:
+    def tweaks(self) -> typing.Optional[TweakInterface]:
         r"""
         Gets tweaks
 

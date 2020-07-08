@@ -35,49 +35,33 @@ from .duration import (
     Offset,
 )
 
+from .parsers.base import Parser
 from .parsers import parser
 from .parsers.parse import parse
+
+from .bundle import (
+    LilyPondFormatBundle,
+    SlotContributions,
+)
 
 from .storage import (
     FormatSpecification,
     StorageFormatSpecification,
     StorageFormatManager,
 )
-from .system.Configuration import Configuration
-from .system.ContextManager import ContextManager
-from .system.FilesystemState import FilesystemState
-from .system.ForbidUpdate import ForbidUpdate
-from .system.IOManager import IOManager
+from .configuration import Configuration
 from .formatting import (
-    LilyPondFormatBundle,
     LilyPondFormatManager,
-    SlotContributions,
     f,
 )
-from .system.NullContextManager import NullContextManager
-from .system.Parser import Parser
-from .system.PersistenceManager import PersistenceManager, persist
-from .system.ProgressIndicator import ProgressIndicator
-from .system.RedirectedStreams import RedirectedStreams
-from .system.Signature import Signature
-from .system.TemporaryDirectory import TemporaryDirectory
-from .system.TemporaryDirectoryChange import TemporaryDirectoryChange
-from .system.TestManager import TestManager
-from .system.Timer import Timer
-from .system.annotate import annotate
 from .tags import Tag, Tags
 
 from .utilities.CyclicTuple import CyclicTuple
-from .utilities.DurationInequality import DurationInequality
 from .utilities.Enumerator import Enumerator
-from .utilities.Expression import Expression
-from .utilities.Inequality import Inequality
-from .utilities.LengthInequality import LengthInequality
+from .utilities.Expression import Expression, Signature
 from .utilities.OrderedDict import OrderedDict
-from .utilities.Pattern import Pattern
-from .utilities.PatternTuple import PatternTuple
+from .utilities.Pattern import Pattern, PatternTuple
 from .utilities.Sequence import Sequence, sequence
-from .utilities.SortedCollection import SortedCollection
 from .utilities.String import String
 from .utilities.TypedCollection import TypedCollection
 from .utilities.TypedCounter import TypedCounter
@@ -104,6 +88,20 @@ from .typings import (
     Strings,
 )
 
+from .contextmanagers import (
+    ContextManager,
+    FilesystemState,
+    ForbidUpdate,
+    NullContextManager,
+    ProgressIndicator,
+    RedirectedStreams,
+    TemporaryDirectory,
+    TemporaryDirectoryChange,
+    Timer,
+)
+
+from . import deprecated
+
 from .indicators.Arpeggio import Arpeggio
 from .indicators.Articulation import Articulation
 from .indicators.BarLine import BarLine
@@ -123,7 +121,6 @@ from .indicators.KeyCluster import KeyCluster
 from .indicators.KeySignature import KeySignature
 from .indicators.LaissezVibrer import LaissezVibrer
 from .indicators.LilyPondComment import LilyPondComment
-from .indicators.LilyPondLiteral import LilyPondLiteral
 from .indicators.MarginMarkup import MarginMarkup
 from .indicators.MetricModulation import MetricModulation
 from .indicators.MetronomeMark import MetronomeMark
@@ -222,22 +219,25 @@ from .lilypondfile import (
     PackageGitCommitToken,
 )
 
-from .lilypondnames.LilyPondContext import LilyPondContext
-from .lilypondnames.LilyPondContextSetting import LilyPondContextSetting
-from .lilypondnames.LilyPondEngraver import LilyPondEngraver
-from .lilypondnames.LilyPondGrob import LilyPondGrob
-from .lilypondnames.LilyPondGrobInterface import LilyPondGrobInterface
-from .lilypondnames.LilyPondGrobNameManager import LilyPondGrobNameManager, override
-from .lilypondnames.LilyPondGrobOverride import LilyPondGrobOverride
-from .lilypondnames.LilyPondNameManager import LilyPondNameManager
-from .lilypondnames.LilyPondSettingNameManager import (
-    LilyPondSettingNameManager,
+from .overrides import (
+    LilyPondSetting,
+    OverrideInterface,
+    override,
+    LilyPondOverride,
+    LilyPondLiteral,
+    Interface,
+    SettingInterface,
     setting,
+    IndexedTweakManager,
+    IndexedTweakManagers,
+    TweakInterface,
+    tweak,
 )
-from .lilypondnames.LilyPondTweakManager import IndexedTweakManager
-from .lilypondnames.LilyPondTweakManager import IndexedTweakManagers
-from .lilypondnames.LilyPondTweakManager import LilyPondTweakManager
-from .lilypondnames.LilyPondTweakManager import tweak
+
+from .ly.LilyPondContext import LilyPondContext
+from .ly.LilyPondEngraver import LilyPondEngraver
+from .ly.LilyPondGrob import LilyPondGrob
+from .ly.LilyPondGrobInterface import LilyPondGrobInterface
 
 from .markups import (
     Markup,
@@ -279,9 +279,7 @@ from .pitch.pitches import (
     PitchTyping,
 )
 from .pitch.Accidental import Accidental
-from .pitch.ColorMap import ColorMap
 from .pitch.Octave import Octave
-from .pitch.PitchInequality import PitchInequality
 from .pitch.PitchRange import PitchRange
 from .pitch.SetClass import SetClass
 from .pitch.operators import (
@@ -331,42 +329,53 @@ from .core.AfterGraceContainer import AfterGraceContainer
 from .core.BeforeGraceContainer import BeforeGraceContainer
 from .core.Chord import Chord
 from .core.Cluster import Cluster
-from .core.Component import Component, attach, detach
-from .core.Component import Inspection
-from .core.Component import UpdateManager
+from .core.Component import Component, annotate, attach, detach
 from .core.Component import Wrapper
 from .core.Container import Container
 from .core.Context import Context
 from .core.Descendants import Descendants
-from .core.DrumNoteHead import DrumNoteHead
-from .core.Component import inspect
 from .core.Iteration import Iteration
 from .core.Iteration import iterate
 from .core.Leaf import Leaf
-from .core.LeafMaker import LeafMaker
+from .core.makers import LeafMaker, NoteMaker
+from .core import makers
 from .core.Lineage import Lineage
 from .core.LogicalTie import LogicalTie
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Mutation import Mutation, mutate
 from .core.Note import Note
-from .core.NoteHead import NoteHead, NoteHeadList
-from .core.NoteMaker import NoteMaker
+from .core.noteheads import DrumNoteHead, NoteHead, NoteHeadList
 from .core.OnBeatGraceContainer import OnBeatGraceContainer
 from .core.OnBeatGraceContainer import on_beat_grace_container
 from .core.Parentage import Parentage
 from .core.Rest import Rest
 from .core.Score import Score
-from .core.Selection import Selection, select
+from .core.Selection import (
+    Inequality,
+    DurationInequality,
+    LengthInequality,
+    PitchInequality,
+    Selection,
+    select,
+)
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
 from .core.TremoloContainer import TremoloContainer
 from .core.Tuplet import Tuplet
-from .core.VerticalMoment import VerticalMoment
+from .core.verticalmoment import (
+    VerticalMoment,
+    iterate_leaf_pairs,
+    iterate_pitch_pairs,
+    iterate_vertical_moments,
+)
 from .core.Voice import Voice
-from .core.Wellformedness import Wellformedness
+from .core.inspectx import Inspection
+from .core.inspectx import inspect
+from .core.update import UpdateManager
+from .core.wellformedness import Wellformedness, wellformed
 
-from .label import Label, label
+from .label import ColorMap, Label, label
 
 from .segments.Job import Job
 from .segments.Line import Line
@@ -403,7 +412,7 @@ from .templates import (
     StringQuartetScoreTemplate,
     TwoStaffPianoScoreTemplate,
 )
-from .iox import graph, play, show
+from .iox import IOManager, PersistenceManager, TestManager, graph, persist, play, show
 
 from .mathtools import (
     Infinity,
@@ -415,9 +424,11 @@ from .ratio import (
     Ratio,
 )
 
-from .respell import (
+from .iterpitches import (
+    iterate_out_of_range,
     respell_with_flats,
     respell_with_sharps,
+    sounding_pitches_are_in_range,
 )
 
 from .timespans import (
@@ -434,7 +445,6 @@ from . import demos
 from . import ly
 from . import utilities
 
-configuration = Configuration()
 tags = Tags()
 index = Pattern.index
 index_all = Pattern.index_all
@@ -467,7 +477,6 @@ __all__ = [
     "SchemeParserFinishedError",
     "UnboundedTimeIntervalError",
     "WellformednessError",
-    "configuration",
     "parser",
     "FormatSpecification",
     "StorageFormatSpecification",
@@ -507,7 +516,6 @@ __all__ = [
     "Pattern",
     "PatternTuple",
     "Sequence",
-    "SortedCollection",
     "String",
     "TypedCollection",
     "TypedCounter",
@@ -646,17 +654,17 @@ __all__ = [
     "LilyPondVersionToken",
     "PackageGitCommitToken",
     "LilyPondContext",
-    "LilyPondContextSetting",
+    "LilyPondSetting",
     "LilyPondEngraver",
     "LilyPondGrob",
     "LilyPondGrobInterface",
-    "LilyPondGrobNameManager",
-    "LilyPondGrobOverride",
-    "LilyPondNameManager",
-    "LilyPondSettingNameManager",
+    "OverrideInterface",
+    "LilyPondOverride",
+    "Interface",
+    "SettingInterface",
     "IndexedTweakManager",
     "IndexedTweakManagers",
-    "LilyPondTweakManager",
+    "TweakInterface",
     "Markup",
     "MarkupCommand",
     "MarkupList",
@@ -819,5 +827,13 @@ __all__ = [
     "tags",
     "respell_with_flats",
     "respell_with_sharps",
+    "sounding_pitches_are_in_range",
     "illustrate",
+    "deprecated",
+    "makers",
+    "wellformed",
+    "iterate_vertical_moments",
+    "iterate_leaf_pairs",
+    "iterate_pitch_pairs",
+    "iterate_out_of_range",
 ]
