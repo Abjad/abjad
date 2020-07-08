@@ -377,33 +377,6 @@ class Markup(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=""):
-        r"""
-        Formats markup.
-
-        ..  container:: example
-
-            Formats markup:
-
-            >>> string = r'\italic { Allegro assai }'
-            >>> markup = abjad.Markup(string)
-            >>> abjad.f(markup)
-            \markup {
-                \italic
-                    {
-                        Allegro
-                        assai
-                    }
-                }
-
-        Returns string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        elif format_specification == "storage":
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self):
         """
         Hashes markup.
@@ -595,8 +568,7 @@ class Markup(object):
         return tweaks + pieces
 
     def _get_format_specification(self):
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         return FormatSpecification(
             client=self, repr_is_indented=False, storage_format_kwargs_names=names,
         )
@@ -2798,7 +2770,7 @@ class MarkupCommand(object):
         >>> rotate = abjad.MarkupCommand('rotate', 60, line)
         >>> combine = abjad.MarkupCommand('combine', rotate, circle)
 
-        >>> print(format(combine, 'lilypond'))
+        >>> print(abjad.lilypond(combine))
         \combine
             \rotate
                 #60
@@ -2974,81 +2946,6 @@ class MarkupCommand(object):
                 if self.arguments == argument.arguments:
                     return True
         return False
-
-    def __format__(self, format_specification=""):
-        r"""
-        Formats markup command.
-
-        ..  container:: example
-
-            Prints storage format:
-
-            >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
-            >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
-            >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
-            >>> rotate = abjad.MarkupCommand('rotate', 60, line)
-            >>> combine = abjad.MarkupCommand('combine', rotate, circle)
-
-            >>> print(format(combine, 'storage'))
-            abjad.MarkupCommand(
-                'combine',
-                abjad.MarkupCommand(
-                    'rotate',
-                    60,
-                    abjad.MarkupCommand(
-                        'line',
-                        [
-                            abjad.MarkupCommand(
-                                'rounded-box',
-                                'hello?'
-                                ),
-                            'wow!',
-                            ]
-                        )
-                    ),
-                abjad.MarkupCommand(
-                    'draw-circle',
-                    2.5,
-                    0.1,
-                    False
-                    )
-                )
-
-        ..  container:: example
-
-            Prints LilyPond format:
-
-            >>> circle = abjad.MarkupCommand('draw-circle', 2.5, 0.1, False)
-            >>> square = abjad.MarkupCommand('rounded-box', 'hello?')
-            >>> line = abjad.MarkupCommand('line', [square, 'wow!'])
-            >>> rotate = abjad.MarkupCommand('rotate', 60, line)
-            >>> combine = abjad.MarkupCommand('combine', rotate, circle)
-
-            >>> print(format(combine, 'lilypond'))
-            \combine
-                \rotate
-                    #60
-                    \line
-                        {
-                            \rounded-box
-                                hello?
-                            wow!
-                        }
-                \draw-circle
-                    #2.5
-                    #0.1
-                    ##f
-
-        Set ``format_specification`` to ``''``, ``'lilypond'`` or
-        ``'storage'``. Interprets ``''`` equal to ``'storage'``.
-
-        Returns string.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        elif format_specification == "lilypond":
-            return self._get_lilypond_format()
-        return str(self)
 
     def __hash__(self):
         """
@@ -3313,7 +3210,7 @@ class MarkupCommand(object):
             ...     markup_b,
             ...     markup_c,
             ...     )
-            >>> result = format(markup, 'lilypond')
+            >>> result = markup._get_lilypond_format()
 
             >>> print(result)
             \combine \combine \draw-circle #4 #0.4 ##f
@@ -3406,35 +3303,6 @@ class MarkupList(TypedList):
         Returns true or false.
         """
         return super().__contains__(item)
-
-    def __format__(self, format_specification=""):
-        """
-        Formats markup list.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                Formats markup list:
-
-
-                    >>> markups = ['Allegro', 'assai']
-                    >>> markup_list = abjad.MarkupList(markups)
-                    >>> abjad.f(markup_list)
-                    abjad.MarkupList(
-                        items=[
-                            abjad.Markup(
-                                contents=['Allegro'],
-                                ),
-                            abjad.Markup(
-                                contents=['assai'],
-                                ),
-                            ],
-                        )
-
-        Returns string.
-        """
-        return super().__format__(format_specification=format_specification)
 
     def __iadd__(self, argument):
         r"""
@@ -3543,8 +3411,7 @@ class MarkupList(TypedList):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         if self.item_class is Markup:
             names.remove("item_class")
         return FormatSpecification(client=self, storage_format_kwargs_names=names)
@@ -4191,7 +4058,7 @@ class Postscript(object):
         >>> postscript = postscript.setdash((2, 1))
         >>> postscript = postscript.lineto(3, -4)
         >>> postscript = postscript.stroke()
-        >>> print(format(postscript))
+        >>> print(abjad.storage(postscript))
         abjad.Postscript(
             operators=(
                 abjad.PostscriptOperator('moveto', 1.0, 1.0),
@@ -4262,17 +4129,6 @@ class Postscript(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """
@@ -4362,7 +4218,7 @@ class Postscript(object):
             >>> postscript = postscript.stroke()
 
             >>> markup = postscript.as_markup()
-            >>> print(format(markup))
+            >>> print(abjad.lilypond(markup))
             \markup {
                 \postscript
                     #"
@@ -4660,7 +4516,7 @@ class Postscript(object):
             >>> postscript = postscript.moveto(1, 1)
             >>> postscript = postscript.lineto(3, -4)
             >>> postscript = postscript.stroke()
-            >>> print(format(postscript))
+            >>> print(abjad.storage(postscript))
             abjad.Postscript(
                 operators=(
                     abjad.PostscriptOperator('moveto', 1.0, 1.0),
@@ -4751,7 +4607,7 @@ class Postscript(object):
             >>> postscript = postscript.rmoveto(1, 1)
             >>> postscript = postscript.rlineto(3, -4)
             >>> postscript = postscript.stroke()
-            >>> print(format(postscript))
+            >>> print(abjad.storage(postscript))
             abjad.Postscript(
                 operators=(
                     abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
@@ -4782,7 +4638,7 @@ class Postscript(object):
             >>> postscript = postscript.rmoveto(1, 1)
             >>> postscript = postscript.rlineto(3, -4)
             >>> postscript = postscript.stroke()
-            >>> print(format(postscript))
+            >>> print(abjad.storage(postscript))
             abjad.Postscript(
                 operators=(
                     abjad.PostscriptOperator('rmoveto', 1.0, 1.0),
@@ -4916,7 +4772,7 @@ class Postscript(object):
         ..  container:: example
 
             >>> postscript = abjad.Postscript().setdash([2, 1], 3)
-            >>> print(format(postscript))
+            >>> print(abjad.storage(postscript))
             abjad.Postscript(
                 operators=(
                     abjad.PostscriptOperator('setdash', (2.0, 1.0), 3.0),
@@ -4929,7 +4785,7 @@ class Postscript(object):
         ..  container:: example
 
             >>> postscript = abjad.Postscript().setdash()
-            >>> print(format(postscript))
+            >>> print(abjad.storage(postscript))
             abjad.Postscript(
                 operators=(
                     abjad.PostscriptOperator('setdash', (), 0.0),
@@ -5026,7 +4882,7 @@ class Postscript(object):
             >>> postscript = postscript.setlinewidth(2.5)
             >>> postscript = postscript.lineto(3, -4)
             >>> postscript = postscript.stroke()
-            >>> print(format(postscript))
+            >>> print(abjad.storage(postscript))
             abjad.Postscript(
                 operators=(
                     abjad.PostscriptOperator('moveto', 1.0, 1.0),
@@ -5133,7 +4989,7 @@ class Postscript(object):
             >>> postscript = abjad.Postscript()
             >>> postscript = postscript.lineto(3, -4)
             >>> postscript = postscript.stroke()
-            >>> print(format(postscript))
+            >>> print(abjad.storage(postscript))
             abjad.Postscript(
                 operators=(
                     abjad.PostscriptOperator('lineto', 3.0, -4.0),
@@ -5208,9 +5064,9 @@ class PostscriptOperator(object):
 
     ..  container:: example
 
-        >>> operator = abjad.PostscriptOperator('rmoveto', 1, 1.5)
-        >>> print(format(operator))
-        abjad.PostscriptOperator('rmoveto', 1, 1.5)
+        >>> operator = abjad.PostscriptOperator("rmoveto", 1, 1.5)
+        >>> abjad.storage(operator)
+        "abjad.PostscriptOperator('rmoveto', 1, 1.5)"
 
     """
 
@@ -5236,17 +5092,6 @@ class PostscriptOperator(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """

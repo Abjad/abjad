@@ -134,7 +134,7 @@ class BowContactPoint(object):
             One quarter of the way from frog to point:
 
             >>> indicator = abjad.BowContactPoint((1, 4))
-            >>> print(format(indicator.markup, 'lilypond'))
+            >>> print(abjad.lilypond(indicator.markup))
             \markup {
                 \center-align
                     \vcenter
@@ -149,7 +149,7 @@ class BowContactPoint(object):
             Three fifths of the way from frog to point:
 
             >>> indicator = abjad.BowContactPoint((3, 5))
-            >>> print(format(indicator.markup, 'lilypond'))
+            >>> print(abjad.lilypond(indicator.markup))
             \markup {
                 \center-align
                     \vcenter

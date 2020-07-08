@@ -1,10 +1,10 @@
 import collections
 import typing
 
+from ..inspectx import Inspection
+from ..selectx import Selection
 from ..storage import StorageFormatManager
 from .Component import Component
-from .Selection import Selection
-from .inspectx import Inspection
 
 
 class Descendants(collections.abc.Sequence):

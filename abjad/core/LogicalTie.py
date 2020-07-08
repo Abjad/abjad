@@ -1,4 +1,4 @@
-from .Selection import Selection
+from ..selectx import Selection
 
 
 class LogicalTie(Selection):

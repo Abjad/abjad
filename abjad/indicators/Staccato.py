@@ -63,6 +63,24 @@ class Staccato(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
+    def __format__(self, format_specification="") -> str:
+        r"""
+        Formats staccato.
+
+        ..  container:: example
+
+            Storage format:
+
+            >>> print(format(abjad.Staccato()))
+            abjad.Staccato()
+
+        """
+        if format_specification == "lilypond":
+            return self._get_lilypond_format()
+        if format_specification in ("", "storage"):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.

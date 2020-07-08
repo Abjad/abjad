@@ -3,23 +3,23 @@ import math
 import numbers
 import typing
 
-from .. import exceptions, mathtools, typings
-from ..duration import Duration, Multiplier, NonreducedFraction
-from ..pitch.pitchclasses import PitchClass
-from ..pitch.pitches import NamedPitch, NumberedPitch
-from ..ratio import NonreducedRatio, Ratio
-from ..spanners import tie
-from ..tags import Tag
-from ..utilities.Sequence import Sequence
-from .Chord import Chord
-from .Leaf import Leaf
-from .MultimeasureRest import MultimeasureRest
-from .Note import Note
-from .Rest import Rest
-from .Selection import Selection
-from .Skip import Skip
-from .Tuplet import Tuplet
+from . import exceptions, mathtools, typings
+from .core.Chord import Chord
+from .core.Leaf import Leaf
+from .core.MultimeasureRest import MultimeasureRest
+from .core.Note import Note
+from .core.Rest import Rest
+from .core.Skip import Skip
+from .core.Tuplet import Tuplet
+from .duration import Duration, Multiplier, NonreducedFraction
 from .inspectx import Inspection
+from .pitch.pitchclasses import PitchClass
+from .pitch.pitches import NamedPitch, NumberedPitch
+from .ratio import NonreducedRatio, Ratio
+from .selectx import Selection
+from .spanners import tie
+from .tags import Tag
+from .utilities.Sequence import Sequence
 
 
 class LeafMaker(object):

@@ -88,20 +88,6 @@ class Pitch(object):
         """
         return float(self.number)
 
-    def __format__(self, format_specification=""):
-        """
-        Formats pitch.
-
-        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
-
-        Returns string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        elif format_specification == "storage":
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -590,7 +576,8 @@ class NamedPitch(Pitch):
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         from .pitchclasses import NamedPitchClass
 
-        name = format(pitch_or_pitch_class, "lilypond")
+        # name = format(pitch_or_pitch_class, "lilypond")
+        name = pitch_or_pitch_class._get_lilypond_format()
         if not isinstance(pitch_or_pitch_class, Pitch):
             name += "'"
         if isinstance(pitch_or_pitch_class, Pitch):

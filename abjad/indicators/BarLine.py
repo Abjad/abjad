@@ -106,6 +106,24 @@ class BarLine(object):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification="") -> str:
+        r"""
+        Formats bar line.
+
+        ..  container:: example
+
+            Storage format:
+
+            >>> print(format(abjad.BarLine()))
+            abjad.BarLine('|', format_slot='after', )
+
+        """
+        if format_specification == "lilypond":
+            return self._get_lilypond_format()
+        if format_specification in ("", "storage"):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
     def __repr__(self):
         """
         Delegates to storage format manager.

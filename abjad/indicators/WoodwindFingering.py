@@ -25,7 +25,7 @@ class WoodwindFingering(object):
         ...     right_hand=right_hand,
         ...     )
 
-        >>> print(format(woodwind_fingering, 'storage'))
+        >>> print(abjad.storage(woodwind_fingering))
         abjad.WoodwindFingering(
             name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -39,7 +39,7 @@ class WoodwindFingering(object):
 
         >>> woodwind_fingering_2 = abjad.WoodwindFingering(
         ...     woodwind_fingering)
-        >>> print(format(woodwind_fingering_2))
+        >>> print(abjad.storage(woodwind_fingering_2))
         abjad.WoodwindFingering(
             name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -52,7 +52,7 @@ class WoodwindFingering(object):
         Calls Woodwind fingering to create woodwind diagram markup command:
 
         >>> fingering_command = woodwind_fingering()
-        >>> print(format(fingering_command, 'storage'))
+        >>> print(abjad.storage(fingering_command))
         abjad.MarkupCommand(
             'woodwind-diagram',
             abjad.Scheme(

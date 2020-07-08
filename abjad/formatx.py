@@ -1,6 +1,7 @@
 from . import enums
 from .bundle import LilyPondFormatBundle
-from .core.inspectx import Inspection
+from .inspectx import Inspection
+from .lilypond import lilypond
 from .new import new
 from .overrides import override, setting
 from .storage import StorageFormatManager
@@ -268,13 +269,20 @@ class LilyPondFormatManager(object):
         """
         Gets all format contributions for ``component``.
         """
-        manager = LilyPondFormatManager
         bundle = LilyPondFormatBundle()
-        manager._populate_indicator_format_contributions(component, bundle)
-        manager._populate_spanner_format_contributions(component, bundle)
-        manager._populate_context_setting_format_contributions(component, bundle)
-        manager._populate_grob_override_format_contributions(component, bundle)
-        manager._populate_grob_revert_format_contributions(component, bundle)
+        LilyPondFormatManager._populate_indicator_format_contributions(
+            component, bundle
+        )
+        LilyPondFormatManager._populate_spanner_format_contributions(component, bundle)
+        LilyPondFormatManager._populate_context_setting_format_contributions(
+            component, bundle
+        )
+        LilyPondFormatManager._populate_grob_override_format_contributions(
+            component, bundle
+        )
+        LilyPondFormatManager._populate_grob_revert_format_contributions(
+            component, bundle
+        )
         bundle.sort_overrides()
         return bundle
 
@@ -346,7 +354,10 @@ def f(argument, strict=None):
     if hasattr(argument, "_publish_storage_format"):
         string = StorageFormatManager(argument).get_storage_format()
     else:
-        string = format(argument, "lilypond")
+        try:
+            string = format(argument, "lilypond")
+        except TypeError:
+            string = lilypond(argument)
     realign = None
     if isinstance(strict, int):
         string = LilyPondFormatManager.align_tags(string, strict)

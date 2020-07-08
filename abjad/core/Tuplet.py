@@ -1418,8 +1418,7 @@ class Tuplet(Container):
 
     def toggle_prolation(self) -> None:
         r"""
-        Changes augmented tuplets to diminished;
-        changes diminished tuplets to augmented.
+        Changes augmented tuplets to diminished; changes diminished tuplets to augmented.
 
         ..  container:: example
 
@@ -1517,18 +1516,18 @@ class Tuplet(Container):
 
         Does not yet work with nested tuplets.
         """
-        from .Iteration import Iteration
-
         if self.diminution():
             while self.diminution():
                 self.multiplier *= 2
-                for leaf in Iteration(self).leaves():
-                    leaf.written_duration /= 2
+                for component in self._get_subtree():
+                    if isinstance(component, Leaf):
+                        component.written_duration /= 2
         elif self.augmentation():
             while not self.diminution():
                 self.multiplier /= 2
-                for leaf in Iteration(self).leaves():
-                    leaf.written_duration *= 2
+                for component in self._get_subtree():
+                    if isinstance(component, Leaf):
+                        component.written_duration *= 2
 
     def trivial(self) -> bool:
         r"""
@@ -1576,17 +1575,19 @@ class Tuplet(Container):
             False
 
         """
-        from .Iteration import Iteration
-
-        for leaf in Iteration(self).leaves():
-            if leaf.multiplier is not None:
-                return False
-        return self.multiplier == 1
+        if self.multiplier != 1:
+            return False
+        for component in self:
+            if isinstance(component, Tuplet):
+                continue
+            elif hasattr(component, "written_duration"):
+                if component.multiplier is not None:
+                    return False
+        return True
 
     def trivializable(self) -> bool:
         r"""
-        Is true when tuplet is trivializable (can be rewritten with a ratio of
-        1:1).
+        Is true when tuplet is trivializable (can be rewritten with a ratio of 1:1).
 
         ..  container:: example
 

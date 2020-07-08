@@ -1,5 +1,6 @@
 import collections
 
+from ..inspectx import Inspection
 from ..pitch.pitches import NamedPitch, Pitch
 from ..pitch.sets import PitchSet
 from ..storage import StorageFormatManager
@@ -13,7 +14,6 @@ from .MultimeasureRest import MultimeasureRest
 from .Note import Note
 from .Rest import Rest
 from .Skip import Skip
-from .inspectx import Inspection
 
 
 class Iteration(object):

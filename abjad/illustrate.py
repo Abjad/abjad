@@ -1,26 +1,26 @@
 import copy
 
 from . import deprecated, enums
+from .attach import attach
 from .core.Chord import Chord
-from .core.Component import Component, attach
+from .core.Component import Component
 from .core.Iteration import Iteration
-from .core.Mutation import Mutation
 from .core.Note import Note
 from .core.Rest import Rest
 from .core.Score import Score
-from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
 from .core.Voice import Voice
-from .core.inspectx import Inspection
-from .core.makers import LeafMaker, NoteMaker
 from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.MetricModulation import MetricModulation
 from .indicators.StaffChange import StaffChange
+from .inspectx import Inspection
 from .lilypondfile import Block, LilyPondFile
+from .makers import LeafMaker, NoteMaker
 from .markups import Markup, MarkupCommand, MarkupList, Postscript
+from .mutate import Mutation
 from .new import new
 from .overrides import LilyPondLiteral, override, setting
 from .pitch.PitchRange import PitchRange
@@ -28,6 +28,7 @@ from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment, Segment
 from .pitch.sets import PitchClassSet, PitchSet
 from .scheme import Scheme, SchemeMoment
+from .selectx import Selection
 from .spanners import glissando
 from .utilities.OrderedDict import OrderedDict
 
@@ -116,7 +117,7 @@ def _illustrate_pitch_range(pitch_range):
         treble_staff.extend("s1 s1")
         bass_leaves = Selection(bass_staff).leaves()
         glissando(bass_leaves)
-        attach(StaffChange(treble_staff), bass_staff[1])
+        attach(StaffChange("Treble_Staff"), bass_staff[1])
         attach(Clef("treble"), treble_staff[0])
         attach(Clef("bass"), bass_staff[0])
     for leaf in Iteration(score).leaves():

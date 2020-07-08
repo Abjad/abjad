@@ -4584,7 +4584,7 @@ class Sequence(collections.abc.Sequence):
 
         Returns selection.
         """
-        from ..core.Selection import Selection
+        from ..selectx import Selection
 
         if self._expression:
             return self._update_expression(inspect.currentframe())

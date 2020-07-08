@@ -193,7 +193,7 @@ class ColorFingering(object):
             First color fingering:
 
             >>> fingering = abjad.ColorFingering(1)
-            >>> print(format(fingering.markup, 'lilypond'))
+            >>> print(abjad.lilypond(fingering.markup))
             \markup {
                 \override
                     #'(circle-padding . 0.25)
@@ -208,7 +208,7 @@ class ColorFingering(object):
             Second color fingering:
 
             >>> fingering = abjad.ColorFingering(2)
-            >>> print(format(fingering.markup, 'lilypond'))
+            >>> print(abjad.lilypond(fingering.markup))
             \markup {
                 \override
                     #'(circle-padding . 0.25)

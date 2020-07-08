@@ -36,6 +36,22 @@ class StopHairpin(object):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification="") -> str:
+        r"""
+        Formats stop hairpin.
+
+        ..  container:: example
+
+            Storage format:
+
+            >>> print(format(abjad.StopHairpin()))
+            abjad.StopHairpin()
+
+        """
+        if format_specification in ("", "storage"):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
     def __repr__(self) -> str:
         """
         Gets interpreter representation.

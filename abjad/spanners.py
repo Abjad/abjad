@@ -4,16 +4,15 @@ Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
 import typing
 
 from . import enums, typings
+from .attach import attach, detach
 from .core.Chord import Chord
-from .core.Component import Component, attach, detach
+from .core.Component import Component
 from .core.Iteration import Iteration
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Note import Note
 from .core.Rest import Rest
-from .core.Selection import DurationInequality, Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
-from .core.inspectx import Inspection
 from .duration import Duration
 from .indicators.BeamCount import BeamCount
 from .indicators.BendAfter import BendAfter
@@ -40,8 +39,10 @@ from .indicators.StopSlur import StopSlur
 from .indicators.StopTextSpan import StopTextSpan
 from .indicators.StopTrillSpan import StopTrillSpan
 from .indicators.Tie import Tie
+from .inspectx import Inspection
 from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, tweak
 from .scheme import SchemeSymbol
+from .selectx import DurationInequality, Selection
 from .tags import Tag, Tags
 from .utilities.Expression import Expression
 from .utilities.Sequence import Sequence

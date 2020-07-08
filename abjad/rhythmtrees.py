@@ -11,9 +11,10 @@ import uqbar.graphs
 from . import mathtools
 from .core.Container import Container
 from .core.Tuplet import Tuplet
-from .core.inspectx import Inspection
-from .core.makers import LeafMaker
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
+from .inspectx import Inspection
+from .makers import LeafMaker
+from .mutate import Mutation
 from .parsers.base import Parser
 from .spanners import tie
 from .storage import FormatSpecification, StorageFormatManager
@@ -642,7 +643,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         for component in result[:]:
             if isinstance(component, Tuplet):
                 if component.trivial():
-                    component._extract()
+                    Mutation._extract(component)
         return result
 
     def __graph__(self, **keywords):

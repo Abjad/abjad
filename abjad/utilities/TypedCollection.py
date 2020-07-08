@@ -99,8 +99,7 @@ class TypedCollection(object):
         return coerce_(item)
 
     def _get_format_specification(self):
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         if "items" in names:
             names.remove("items")
         return FormatSpecification(

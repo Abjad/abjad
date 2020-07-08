@@ -168,6 +168,11 @@ class Articulation(object):
         """
         Formats articulation.
 
+        ..  container::
+
+            >>> print(format(abjad.Articulation(".")))
+            abjad.Articulation('.')
+
         Set ``format_specification`` to ``''``, ``'lilypond``' or ``'storage'``.
         Interprets ``''`` equal to ``'storage'``.
         """

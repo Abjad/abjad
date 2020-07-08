@@ -3,6 +3,7 @@ import typing
 from .. import enums
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
+from ..storage import StorageFormatManager
 
 
 class Arpeggio(object):
@@ -55,6 +56,26 @@ class Arpeggio(object):
         if tweaks is not None:
             assert isinstance(tweaks, TweakInterface), repr(tweaks)
         self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification="") -> str:
+        r"""
+        Formats arpeggio.
+
+        ..  container:: example
+
+            Storage format:
+
+            >>> print(format(abjad.Arpeggio()))
+            abjad.Arpeggio()
+
+        """
+        if format_specification == "lilypond":
+            return self._get_lilypond_format()
+        if format_specification in ("", "storage"):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
 
     ### PRIVATE METHODS ###
 

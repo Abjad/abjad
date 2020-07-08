@@ -261,8 +261,7 @@ class OrderedDict(collections.abc.MutableMapping):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         if "items" in names:
             names.remove("items")
         values = [list(self._collection.items())]

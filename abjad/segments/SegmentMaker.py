@@ -1,17 +1,17 @@
 import typing
 
 from .. import const
-from ..core.Component import attach
+from ..attach import attach
 from ..core.Container import Container
 from ..core.Context import Context
 from ..core.Iteration import Iteration
 from ..core.Score import Score
-from ..core.Selection import Selection
 from ..core.Staff import Staff
 from ..core.Voice import Voice
-from ..core.inspectx import Inspection
+from ..inspectx import Inspection
 from ..lilypondfile import LilyPondFile
 from ..overrides import LilyPondLiteral
+from ..selectx import Selection
 from ..storage import StorageFormatManager
 from ..tags import Tag
 from ..timespans import TimespanList

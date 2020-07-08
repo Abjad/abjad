@@ -1270,7 +1270,10 @@ class Expression(object):
             try:
                 argument = format(argument, "storage")
             except (TypeError, ValueError):
-                raise Exception(f"can not make storage format: {argument!r}.")
+                try:
+                    argument = StorageFormatManager(argument).get_storage_format()
+                except (TypeError, ValueError):
+                    raise Exception(f"can not make storage format: {argument!r}.")
         # abjad class
         elif inspect.isclass(argument) and "abjad" in argument.__module__:
             argument = f"abjad.{argument.__name__}"
@@ -2040,7 +2043,7 @@ class Expression(object):
                 Note("gf'8")
 
         """
-        from ..core.Selection import Selection
+        from ..selectx import Selection
 
         class_ = Selection
         callback = self._make_initializer_callback(class_, **keywords)

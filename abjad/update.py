@@ -1,12 +1,15 @@
-from .. import mathtools
-from ..duration import Duration, Multiplier, Offset
-from ..indicators.MetronomeMark import MetronomeMark
-from ..indicators.TimeSignature import TimeSignature
-from ..storage import StorageFormatManager
-from ..timespans import AnnotatedTimespan, TimespanList
-from ..utilities.Sequence import Sequence
-from .Iteration import Iteration
+from . import mathtools
+from .core.AfterGraceContainer import AfterGraceContainer
+from .core.BeforeGraceContainer import BeforeGraceContainer
+from .core.Iteration import Iteration
+from .core.obgc import OnBeatGraceContainer
+from .duration import Duration, Multiplier, Offset
+from .indicators.MetronomeMark import MetronomeMark
+from .indicators.TimeSignature import TimeSignature
 from .inspectx import Inspection
+from .storage import StorageFormatManager
+from .timespans import AnnotatedTimespan, TimespanList
+from .utilities.Sequence import Sequence
 
 
 class UpdateManager(object):
@@ -253,8 +256,6 @@ class UpdateManager(object):
         Updating offsets does not update indicators.
         Updating offsets does not update offsets in seconds.
         """
-        from .OnBeatGraceContainer import OnBeatGraceContainer
-
         on_beat_grace_music = []
         for component in self._iterate_entire_score(root):
             if isinstance(component, OnBeatGraceContainer) or isinstance(
@@ -307,10 +308,6 @@ class UpdateManager(object):
 
     @classmethod
     def _update_component_offsets(class_, component):
-        from .AfterGraceContainer import AfterGraceContainer
-        from .BeforeGraceContainer import BeforeGraceContainer
-        from .OnBeatGraceContainer import OnBeatGraceContainer
-
         if isinstance(component, BeforeGraceContainer):
             pair = class_._get_before_grace_leaf_offsets(component[0])
             start_offset = pair[0]
@@ -344,14 +341,14 @@ class UpdateManager(object):
             # on-beat anchor leaf:
             if (
                 component._parent is not None
-                and component._parent._is_on_beat_anchor_voice()
+                and OnBeatGraceContainer._is_on_beat_anchor_voice(component._parent)
                 and component is component._parent[0]
             ):
                 anchor_voice = component._parent
-                assert anchor_voice._is_on_beat_anchor_voice()
+                assert OnBeatGraceContainer._is_on_beat_anchor_voice(anchor_voice)
                 on_beat_grace_container = None
                 on_beat_wrapper = anchor_voice._parent
-                assert on_beat_wrapper._is_on_beat_wrapper()
+                assert OnBeatGraceContainer._is_on_beat_wrapper(on_beat_wrapper)
                 index = on_beat_wrapper.index(anchor_voice)
                 if index == 0:
                     on_beat_grace_container = on_beat_wrapper[1]

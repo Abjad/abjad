@@ -5,13 +5,13 @@ import shutil
 import typing
 
 from .. import typings
+from ..attach import attach
 from ..bundle import LilyPondFormatBundle
 from ..configuration import Configuration
-from ..core.Component import attach
 from ..core.Iteration import Iteration
 from ..core.Score import Score
 from ..core.StaffGroup import StaffGroup
-from ..formatting import LilyPondFormatManager
+from ..formatx import LilyPondFormatManager
 from ..indicators.Clef import Clef
 from ..indicators.TimeSignature import TimeSignature
 from ..iox import IOManager

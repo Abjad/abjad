@@ -2,11 +2,11 @@ import typing
 
 from .. import enums, typings
 from ..bundle import LilyPondFormatBundle
-from ..core.Selection import Selection
-from ..core.inspectx import Inspection
+from ..inspectx import Inspection
 from ..markups import Markup
 from ..new import new
 from ..ratio import Ratio
+from ..selectx import Selection
 from ..storage import StorageFormatManager
 
 

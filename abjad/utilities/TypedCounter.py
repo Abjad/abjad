@@ -176,8 +176,7 @@ class TypedCounter(TypedCollection, collections.abc.MutableMapping):
         return the_items, itemdict
 
     def _get_format_specification(self):
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         if "items" in names:
             names.remove("items")
         return FormatSpecification(

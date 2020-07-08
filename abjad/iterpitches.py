@@ -3,11 +3,11 @@ import typing
 from .core.Chord import Chord
 from .core.Iteration import Iteration
 from .core.Note import Note
-from .core.Selection import Selection
-from .core.inspectx import Inspection
+from .inspectx import Inspection
 from .instruments import Instrument
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch, Pitch
+from .selectx import Selection
 
 
 def iterate_out_of_range(components) -> typing.Generator:

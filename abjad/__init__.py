@@ -35,6 +35,8 @@ from .duration import (
     Offset,
 )
 
+from .lilypond import lilypond
+
 from .parsers.base import Parser
 from .parsers import parser
 from .parsers.parse import parse
@@ -48,9 +50,10 @@ from .storage import (
     FormatSpecification,
     StorageFormatSpecification,
     StorageFormatManager,
+    storage,
 )
 from .configuration import Configuration
-from .formatting import (
+from .formatx import (
     LilyPondFormatManager,
     f,
 )
@@ -329,28 +332,40 @@ from .core.AfterGraceContainer import AfterGraceContainer
 from .core.BeforeGraceContainer import BeforeGraceContainer
 from .core.Chord import Chord
 from .core.Cluster import Cluster
-from .core.Component import Component, annotate, attach, detach
-from .core.Component import Wrapper
+from .core.Component import Component
 from .core.Container import Container
 from .core.Context import Context
 from .core.Descendants import Descendants
 from .core.Iteration import Iteration
 from .core.Iteration import iterate
 from .core.Leaf import Leaf
-from .core.makers import LeafMaker, NoteMaker
-from .core import makers
 from .core.Lineage import Lineage
 from .core.LogicalTie import LogicalTie
 from .core.MultimeasureRest import MultimeasureRest
-from .core.Mutation import Mutation, mutate
 from .core.Note import Note
 from .core.noteheads import DrumNoteHead, NoteHead, NoteHeadList
-from .core.OnBeatGraceContainer import OnBeatGraceContainer
-from .core.OnBeatGraceContainer import on_beat_grace_container
+from .core.obgc import OnBeatGraceContainer, on_beat_grace_container
 from .core.Parentage import Parentage
 from .core.Rest import Rest
 from .core.Score import Score
-from .core.Selection import (
+from .core.Skip import Skip
+from .core.Staff import Staff
+from .core.StaffGroup import StaffGroup
+from .core.TremoloContainer import TremoloContainer
+from .core.Tuplet import Tuplet
+from .verticalmoment import (
+    VerticalMoment,
+    iterate_leaf_pairs,
+    iterate_pitch_pairs,
+    iterate_vertical_moments,
+)
+from .core.Voice import Voice
+from .attach import Wrapper, annotate, attach, detach
+from .inspectx import Inspection, inspect
+from . import makers
+from .makers import LeafMaker, NoteMaker
+from .mutate import Mutation, mutate
+from .selectx import (
     Inequality,
     DurationInequality,
     LengthInequality,
@@ -358,22 +373,8 @@ from .core.Selection import (
     Selection,
     select,
 )
-from .core.Skip import Skip
-from .core.Staff import Staff
-from .core.StaffGroup import StaffGroup
-from .core.TremoloContainer import TremoloContainer
-from .core.Tuplet import Tuplet
-from .core.verticalmoment import (
-    VerticalMoment,
-    iterate_leaf_pairs,
-    iterate_pitch_pairs,
-    iterate_vertical_moments,
-)
-from .core.Voice import Voice
-from .core.inspectx import Inspection
-from .core.inspectx import inspect
-from .core.update import UpdateManager
-from .core.wellformedness import Wellformedness, wellformed
+from .update import UpdateManager
+from .wellformedness import Wellformedness, wellformed
 
 from .label import ColorMap, Label, label
 
@@ -836,4 +837,6 @@ __all__ = [
     "iterate_leaf_pairs",
     "iterate_pitch_pairs",
     "iterate_out_of_range",
+    "storage",
+    "lilypond",
 ]

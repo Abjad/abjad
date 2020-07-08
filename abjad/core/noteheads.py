@@ -203,8 +203,7 @@ class NoteHead(object):
             arguments.extend(self.tweaks._get_attribute_pairs())
         arguments = ", ".join([str(_) for _ in arguments])
         repr_text = f"{type(self).__name__}({arguments})"
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         if "client" in names:
             names.remove("client")
         if "tweaks" in names:
@@ -606,8 +605,7 @@ class NoteHeadList(TypedList):
         return coerce_(item)
 
     def _get_format_specification(self):
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         if "client" in names:
             names.remove("client")
         if "items" in names:

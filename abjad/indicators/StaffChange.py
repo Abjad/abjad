@@ -17,7 +17,7 @@ class StaffChange(object):
         >>> rh_staff = abjad.Staff("c'8 d'8 e'8 f'8", name='RHStaff')
         >>> lh_staff = abjad.Staff("s2", name='LHStaff')
         >>> staff_group.extend([rh_staff, lh_staff])
-        >>> staff_change = abjad.StaffChange(lh_staff)
+        >>> staff_change = abjad.StaffChange("LHStaff")
         >>> abjad.attach(staff_change, rh_staff[2])
         >>> abjad.show(staff_group) # doctest: +SKIP
 
@@ -57,11 +57,8 @@ class StaffChange(object):
     ### INITIALIZER ###
 
     def __init__(self, staff=None):
-        from ..core.Staff import Staff
-
         if staff is not None:
-            if not isinstance(staff, Staff):
-                raise TypeError(f"must be staff: {staff!r}.")
+            assert isinstance(staff, str), repr(staff)
         self._staff = staff
 
     ### SPECIAL METHODS ###
@@ -107,14 +104,14 @@ class StaffChange(object):
             Explicit staff change:
 
             >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-            >>> staff_change = abjad.StaffChange(staff=lh_staff)
+            >>> staff_change = abjad.StaffChange("LHStaff")
             >>> print(str(staff_change))
             \change Staff = LHStaff
 
         """
         if self.staff is None:
             return r"\change Staff = ##f"
-        value = Scheme.format_scheme_value(self.staff.name)
+        value = Scheme.format_scheme_value(self.staff)
         return rf"\change Staff = {value}"
 
     ### PRIVATE METHODS ###
@@ -147,7 +144,7 @@ class StaffChange(object):
             Explicit staff change:
 
             >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-            >>> staff_change = abjad.StaffChange(staff=lh_staff)
+            >>> staff_change = abjad.StaffChange("LHStaff")
             >>> staff_change.context
             'Staff'
 
@@ -172,9 +169,9 @@ class StaffChange(object):
             Explicit staff change:
 
             >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-            >>> staff_change = abjad.StaffChange(staff=lh_staff)
+            >>> staff_change = abjad.StaffChange("LHStaff")
             >>> staff_change.staff
-            Staff('s2', name='LHStaff')
+            'LHStaff'
 
         Returns staff or none.
         """

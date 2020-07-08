@@ -102,7 +102,7 @@ def test_LilyPondParser__indicators__Markup_04():
     markup = abjad.Markup((command1, command2))
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(markup, "lilypond"))
+    result = parser(abjad.lilypond(markup))
 
     assert isinstance(result, abjad.Markup)
-    assert format(result, "lilypond") == format(markup, "lilypond")
+    assert abjad.lilypond(result) == abjad.lilypond(markup)

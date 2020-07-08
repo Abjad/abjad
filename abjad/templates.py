@@ -3,19 +3,19 @@ import collections
 import typing
 
 from . import const, instruments
-from .core.Component import Wrapper, annotate, attach
+from .attach import Wrapper, annotate, attach
 from .core.Context import Context
 from .core.Iteration import Iteration
 from .core.MultimeasureRest import MultimeasureRest
 from .core.Score import Score
-from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.StaffGroup import StaffGroup
 from .core.Voice import Voice
-from .core.inspectx import Inspection
+from .illustrate import illustrate
 from .indicators.Clef import Clef
 from .indicators.MarginMarkup import MarginMarkup
+from .inspectx import Inspection
 from .instruments import Piano
 from .lilypondfile import LilyPondFile
 from .new import new
@@ -23,6 +23,7 @@ from .overrides import LilyPondLiteral
 from .segments.Part import Part
 from .segments.PartAssignment import PartAssignment
 from .segments.PartManifest import PartManifest
+from .selectx import Selection
 from .storage import StorageFormatManager
 from .tags import Tag, Tags
 from .utilities.OrderedDict import OrderedDict
@@ -67,8 +68,6 @@ class ScoreTemplate(object):
         """
         Illustrates score template.
         """
-        from .illustrate import illustrate
-
         score: Score = self()
         site = "abjad.ScoreTemplate.__illustrate__()"
         tag = Tag(site)

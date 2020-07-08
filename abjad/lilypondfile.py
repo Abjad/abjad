@@ -8,23 +8,24 @@ import pathlib
 import subprocess
 import time
 
+from .attach import attach
 from .bundle import LilyPondFormatBundle
 from .configuration import Configuration
 from .contextmanagers import TemporaryDirectoryChange
-from .core.Component import Component, attach
+from .core.Component import Component
 from .core.Container import Container
 from .core.Context import Context
 from .core.Iteration import Iteration
 from .core.Score import Score
-from .core.Selection import Selection
 from .core.Skip import Skip
 from .core.Staff import Staff
 from .core.Voice import Voice
-from .core.inspectx import Inspection
 from .indicators.TimeSignature import TimeSignature
+from .inspectx import Inspection
 from .overrides import LilyPondLiteral, override, setting
 from .pitch.pitches import NamedPitch
 from .scheme import Scheme, SpacingVector
+from .selectx import Selection
 from .storage import FormatSpecification, StorageFormatManager
 from .tags import Tag
 from .utilities.Sequence import Sequence

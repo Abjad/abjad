@@ -102,7 +102,7 @@ class RepeatTie(object):
     def _attachment_test_all(self, argument):
         from ..core.Chord import Chord
         from ..core.Note import Note
-        from ..core.inspectx import Inspection
+        from ..inspectx import Inspection
 
         if not isinstance(argument, (Chord, Note)):
             string = f"Must be note or chord (not {argument})."
@@ -134,7 +134,7 @@ class RepeatTie(object):
     def _should_force_repeat_tie_up(leaf):
         from ..core.Chord import Chord
         from ..core.Note import Note
-        from ..core.inspectx import Inspection
+        from ..inspectx import Inspection
 
         if not isinstance(leaf, (Note, Chord)):
             return False

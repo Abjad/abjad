@@ -289,12 +289,12 @@ class Container(Component):
 
         Returns none.
         """
-        from .Selection import Selection
-
-        components = self[i]
-        if not isinstance(components, Selection):
-            components = Selection([components])
-        components._set_parents(None)
+        result = self[i]
+        if isinstance(result, Component):
+            result._set_parent(None)
+            return
+        for component in result:
+            component._set_parent(None)
 
     def __getitem__(self, argument):
         """
@@ -302,13 +302,11 @@ class Container(Component):
 
         Traverses top-level items only.
         """
-        from .Selection import Selection
+        from ..selectx import Selection
 
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
-        elif isinstance(argument, slice) and not self.simultaneous:
-            return Selection(self.components.__getitem__(argument))
-        elif isinstance(argument, slice) and self.simultaneous:
+        elif isinstance(argument, slice):
             return Selection(self.components.__getitem__(argument))
         elif isinstance(argument, str):
             if argument not in self._named_children:
@@ -378,7 +376,7 @@ class Container(Component):
             if isinstance(i, int):
                 assert len(argument) == 1, repr(argument)
                 argument = argument[0]
-        return self._set_item(i, argument)
+        self._set_item(i, argument)
 
     ### PRIVATE METHODS ###
 
@@ -536,14 +534,25 @@ class Container(Component):
         else:
             return ""
 
-    def _get_duration_in_seconds(self):
+    def _get_descendants_starting_with(self):
+        result = []
+        result.append(self)
         if self.simultaneous:
-            return max([Duration(0)] + [x._get_duration(in_seconds=True) for x in self])
-        else:
-            duration = Duration(0)
-            for component in self:
-                duration += component._get_duration_in_seconds()
-            return duration
+            for x in self:
+                result.extend(x._get_descendants_starting_with())
+        elif self:
+            result.extend(self[0]._get_descendants_starting_with())
+        return result
+
+    def _get_descendants_stopping_with(self):
+        result = []
+        result.append(self)
+        if self.simultaneous:
+            for x in self:
+                result.extend(x._get_descendants_stopping_with())
+        elif self:
+            result.extend(self[-1]._get_descendants_stopping_with())
+        return result
 
     def _get_format_specification(self):
         repr_text = None
@@ -567,38 +576,25 @@ class Container(Component):
             storage_format_args_values=storage_format_args_values,
         )
 
-    def _get_on_beat_anchor_voice(self):
-        from .OnBeatGraceContainer import OnBeatGraceContainer
-
-        container = self._parent
-        if container is None:
-            return None
-        if not container.simultaneous:
-            return None
-        if not len(container) == 2:
-            return None
-        index = container.index(self)
-        if index == 0 and isinstance(container[1], OnBeatGraceContainer):
-            return container[1]
-        if index == 1 and isinstance(container[0], OnBeatGraceContainer):
-            return container[0]
-        return None
-
     def _get_preprolated_duration(self):
         return self._get_contents_duration()
 
     def _get_repr_kwargs_names(self):
         return ["simultaneous", "name"]
 
-    def _initialize_components(self, components):
-        from .Selection import Selection
+    def _get_subtree(self):
+        result = [self]
+        for component in self:
+            result.extend(component._get_subtree())
+        return result
 
+    def _initialize_components(self, components):
         if isinstance(components, collections.abc.Iterable) and not isinstance(
             components, str
         ):
             components_ = []
             for item in components:
-                if isinstance(item, Selection):
+                if hasattr(item, "_items"):
                     components_.extend(item)
                 elif isinstance(item, str):
                     parsed = self._parse_string(item)
@@ -613,44 +609,13 @@ class Container(Component):
             parsed = self._parse_string(components)
             self._components = []
             self.simultaneous = parsed.simultaneous
-            if (
-                parsed.simultaneous
-                or not Selection(parsed[:]).are_contiguous_logical_voice()
-            ):
-                while len(parsed):
-                    self.append(parsed.pop(0))
-            else:
-                self[:] = parsed[:]
+            self[:] = parsed[:]
         else:
             for component in components:
                 if component._parent is not None:
                     raise Exception(f"must not have parent: {component!r}.")
             self._components = list(components)
             self[:]._set_parents(self)
-
-    def _is_on_beat_anchor_voice(self):
-        from .Voice import Voice
-
-        wrapper = self._parent
-        if wrapper is None:
-            return False
-        if not isinstance(self, Voice):
-            return False
-        return wrapper._is_on_beat_wrapper()
-
-    def _is_on_beat_wrapper(self):
-        from .OnBeatGraceContainer import OnBeatGraceContainer
-        from .Voice import Voice
-
-        if not self.simultaneous:
-            return False
-        if len(self) != 2:
-            return False
-        if isinstance(self[0], OnBeatGraceContainer) and isinstance(self[1], Voice):
-            return True
-        if isinstance(self[0], Voice) and isinstance(self[1], OnBeatGraceContainer):
-            return True
-        return False
 
     def _is_one_of_my_first_leaves(self, leaf):
         return leaf in self._get_descendants_starting_with()
@@ -679,12 +644,8 @@ class Container(Component):
             item._scale(multiplier)
 
     def _set_item(self, i, argument):
-        from .BeforeGraceContainer import BeforeGraceContainer
-        from .Iteration import Iteration
-        from .Selection import Selection
-
         argument_wrappers = []
-        for component in Iteration(argument).components():
+        for component in self._get_components(argument):
             wrappers = component._get_indicators(unwrap=False)
             argument_wrappers.extend(wrappers)
         if isinstance(i, int):
@@ -692,17 +653,15 @@ class Container(Component):
             if i < 0:
                 i = len(self) + i
             i = slice(i, i + 1)
-        prototype = (Component, Selection)
-        assert all(isinstance(_, prototype) for _ in argument)
         new_argument = []
         for item in argument:
-            if isinstance(item, Selection):
+            if hasattr(item, "_items"):
                 new_argument.extend(item)
             else:
                 new_argument.append(item)
         argument = new_argument
         assert all(isinstance(_, Component) for _ in argument)
-        if any(isinstance(_, BeforeGraceContainer) for _ in argument):
+        if any(hasattr(_, "_main_leaf") for _ in argument):
             raise Exception("must attach grace container to note or chord.")
         if self._check_for_cycles(argument):
             raise exceptions.ParentageError("attempted to induce cycles.")

@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
+def test_Mutation__fuse_leaves_by_immediate_parent_01():
     """
     Fuse leaves in logical tie with same immediate parent.
     """
@@ -32,7 +32,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_01():
     assert abjad.wellformed(staff)
 
 
-def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
+def test_Mutation__fuse_leaves_by_immediate_parent_02():
     """
     Fuse leaves in logical tie with same immediate parent.
     """
@@ -71,7 +71,7 @@ def test_LogicalTie__fuse_leaves_by_immediate_parent_02():
     assert len(result) == 1
 
 
-def test_LogicalTie__fuse_leaves_by_immediate_parent_03():
+def test_Mutation__fuse_leaves_by_immediate_parent_03():
     """
     Fuse leaves in logical tie with same immediate parent.
     """

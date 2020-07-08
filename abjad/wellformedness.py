@@ -1,23 +1,23 @@
 import typing
 
-from .. import const
-from ..duration import Duration
-from ..indicators.Clef import Clef
-from ..indicators.StartBeam import StartBeam
-from ..indicators.StartHairpin import StartHairpin
-from ..indicators.StartTextSpan import StartTextSpan
-from ..indicators.StopBeam import StopBeam
-from ..indicators.StopHairpin import StopHairpin
-from ..indicators.StopTextSpan import StopTextSpan
-from ..instruments import Instrument
-from ..iterpitches import sounding_pitches_are_in_range
-from ..storage import StorageFormatManager
-from ..tags import Tags
-from ..utilities.Sequence import Sequence
-from .Container import Container
-from .Context import Context
-from .Iteration import Iteration
+from . import const
+from .core.Container import Container
+from .core.Context import Context
+from .core.Iteration import Iteration
+from .duration import Duration
+from .indicators.Clef import Clef
+from .indicators.StartBeam import StartBeam
+from .indicators.StartHairpin import StartHairpin
+from .indicators.StartTextSpan import StartTextSpan
+from .indicators.StopBeam import StopBeam
+from .indicators.StopHairpin import StopHairpin
+from .indicators.StopTextSpan import StopTextSpan
 from .inspectx import Inspection
+from .instruments import Instrument
+from .iterpitches import sounding_pitches_are_in_range
+from .storage import StorageFormatManager
+from .tags import Tags
+from .utilities.Sequence import Sequence
 
 abjad_tags = Tags()
 
@@ -440,9 +440,8 @@ class Wellformedness(object):
                 continue
             if Inspection(leaf).has_indicator(const.HIDDEN):
                 continue
-            if hasattr(argument, "_has_effective_indicator"):
-                if "unpitched" in Inspection(argument).indicators(str):
-                    continue
+            if "unpitched" in Inspection(argument).indicators(str):
+                continue
             instrument = Inspection(leaf).effective(Instrument)
             if instrument is None:
                 continue

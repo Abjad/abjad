@@ -24,9 +24,9 @@ from .contextmanagers import Timer
 from .core.Container import Container
 from .core.Leaf import Leaf
 from .core.Tuplet import Tuplet
-from .core.inspectx import Inspection
-from .formatting import LilyPondFormatManager, StorageFormatManager
+from .formatx import LilyPondFormatManager, StorageFormatManager
 from .illustrate import illustrate
+from .inspectx import Inspection
 from .lilypondfile import Block
 
 configuration = Configuration()

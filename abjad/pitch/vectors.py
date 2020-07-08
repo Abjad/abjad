@@ -461,37 +461,6 @@ class PitchClassVector(Vector):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=""):
-        """
-        Gets format of pitch-class vector.
-
-        ..  container:: example
-
-            >>> vector = abjad.PitchClassVector(
-            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-            ...     item_class=abjad.NumberedPitchClass,
-            ...     )
-
-            >>> abjad.f(vector)
-            abjad.PitchClassVector(
-                {
-                    abjad.NumberedPitchClass(0): 1,
-                    abjad.NumberedPitchClass(1): 1,
-                    abjad.NumberedPitchClass(2): 1,
-                    abjad.NumberedPitchClass(3): 1,
-                    abjad.NumberedPitchClass(4): 2,
-                    abjad.NumberedPitchClass(6): 1,
-                    abjad.NumberedPitchClass(7): 1,
-                    abjad.NumberedPitchClass(9): 2,
-                    abjad.NumberedPitchClass(10): 1,
-                    },
-                item_class=abjad.NumberedPitchClass,
-                )
-
-        Returns string.
-        """
-        return super().__format__(format_specification=format_specification)
-
     def __repr__(self):
         """
         Gets interpreter representation of pitch-class vector.

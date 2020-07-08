@@ -4,7 +4,6 @@ import typing
 from ..bundle import LilyPondFormatBundle
 from ..ly.LilyPondContext import LilyPondContext
 from ..tags import Tag
-from .Component import Wrapper
 from .Container import Container
 
 
@@ -78,7 +77,7 @@ class Context(Container):
         tag: Tag = None,
     ) -> None:
         self._consists_commands: typing.List[str] = []
-        self._dependent_wrappers: typing.List[Wrapper] = []
+        self._dependent_wrappers: typing.List = []
         self._remove_commands: typing.List[str] = []
         self.lilypond_type = lilypond_type
         Container.__init__(

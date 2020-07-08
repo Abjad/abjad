@@ -200,8 +200,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        manager = StorageFormatManager(self)
-        names = list(manager.signature_keyword_names)
+        names = list(StorageFormatManager(self).signature_keyword_names)
         if "items" in names:
             names.remove("items")
         if "keep_sorted" in names:

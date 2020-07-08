@@ -1,7 +1,7 @@
 import collections
 
+from ..inspectx import Inspection
 from ..storage import StorageFormatManager
-from .inspectx import Inspection
 
 
 class Lineage(collections.abc.Sequence):

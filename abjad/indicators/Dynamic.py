@@ -328,6 +328,24 @@ class Dynamic(object):
             return True
         return False
 
+    def __format__(self, format_specification="") -> str:
+        r"""
+        Formats dynamic.
+
+        ..  container:: example
+
+            Storage format:
+
+            >>> print(format(abjad.Dynamic("f")))
+            abjad.Dynamic('f')
+
+        """
+        if format_specification == "lilypond":
+            return self._get_lilypond_format()
+        if format_specification in ("", "storage"):
+            return StorageFormatManager(self).get_storage_format()
+        return str(self)
+
     def __hash__(self) -> int:
         """
         Hashes dynamic.

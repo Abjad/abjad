@@ -1,15 +1,19 @@
 import typing
 
 from .. import typings
+from ..attach import attach, detach
 from ..bundle import LilyPondFormatBundle
 from ..duration import Duration
+from ..inspectx import Inspection
+from ..mutate import Mutation
 from ..overrides import LilyPondLiteral, tweak
+from ..selectx import Selection
+from ..spanners import beam, slur
 from ..tags import Tag, Tags
-from .Component import attach, detach
+from .Chord import Chord
 from .Container import Container
-from .Mutation import Mutation
-from .Selection import Selection
-from .inspectx import Inspection
+from .Note import Note
+from .Voice import Voice
 
 abjad_tags = Tags()
 
@@ -130,8 +134,6 @@ class OnBeatGraceContainer(Container):
     # This is hackish, and some sort of longer term solution should
     # happen later.
     def _attach_lilypond_one_voice(self):
-        from .Voice import Voice
-
         anchor_leaf = self._get_on_beat_anchor_leaf()
         anchor_voice = Inspection(anchor_leaf).parentage().get(Voice)
         final_anchor_leaf = Inspection(anchor_voice).leaf(-1)
@@ -141,7 +143,7 @@ class OnBeatGraceContainer(Container):
             return
         if isinstance(next_leaf._parent, OnBeatGraceContainer):
             return
-        if next_leaf._parent._is_on_beat_anchor_voice():
+        if self._is_on_beat_anchor_voice(next_leaf._parent):
             return
         site = "abjad.OnBeatGraceContainer._attach_lilypond_one_voice()"
         tag = Tag(site)
@@ -208,10 +210,32 @@ class OnBeatGraceContainer(Container):
         anchor_leaf = Selection(anchor_voice).leaf(0, grace=False)
         return anchor_leaf
 
-    def _match_anchor_leaf(self):
-        from .Chord import Chord
-        from .Note import Note
+    @staticmethod
+    def _is_on_beat_anchor_voice(CONTAINER):
+        wrapper = CONTAINER._parent
+        if wrapper is None:
+            return False
+        if not isinstance(CONTAINER, Voice):
+            return False
+        return OnBeatGraceContainer._is_on_beat_wrapper(wrapper)
 
+    @staticmethod
+    def _is_on_beat_wrapper(CONTAINER):
+        if not CONTAINER.simultaneous:
+            return False
+        if len(CONTAINER) != 2:
+            return False
+        if isinstance(CONTAINER[0], OnBeatGraceContainer) and isinstance(
+            CONTAINER[1], Voice
+        ):
+            return True
+        if isinstance(CONTAINER[0], Voice) and isinstance(
+            CONTAINER[1], OnBeatGraceContainer
+        ):
+            return True
+        return False
+
+    def _match_anchor_leaf(self):
         first_grace = Inspection(self).leaf(0)
         if not isinstance(first_grace, (Note, Chord)):
             message = "must start with note or chord:\n"
@@ -778,10 +802,6 @@ def on_beat_grace_container(
         Exception: grace Duration(11, 8) exceeds anchor Duration(1, 4).
 
     """
-    from ..spanners import beam, slur
-    from .Container import Container
-    from .Selection import Selection
-    from .Voice import Voice
 
     def _site(n):
         return Tag(f"abjad.on_beat_grace_container({n})")

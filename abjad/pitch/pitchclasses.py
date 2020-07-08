@@ -66,20 +66,6 @@ class PitchClass(object):
         """
         return float(self.number)
 
-    def __format__(self, format_specification=""):
-        """
-        Formats pitch-class.
-
-        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
-
-        Returns string.
-        """
-        if format_specification == "lilypond":
-            return self._get_lilypond_format()
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -353,21 +339,6 @@ class NamedPitchClass(PitchClass):
         Returns true or false.
         """
         return super().__eq__(argument)
-
-    def __format__(self, format_specification=""):
-        """
-        Formats named pitch-class.
-
-        ..  container:: example
-
-            >>> format(abjad.NamedPitchClass('cs'))
-            "abjad.NamedPitchClass('cs')"
-
-        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
-
-        Returns string.
-        """
-        return super().__format__(format_specification=format_specification)
 
     def __hash__(self):
         """
@@ -799,21 +770,6 @@ class NumberedPitchClass(PitchClass):
         """
         return super().__eq__(argument)
 
-    def __format__(self, format_specification=""):
-        """
-        Formats numbered pitch-class.
-
-        ..  container:: example
-
-            >>> format(abjad.NumberedPitchClass(13))
-            'abjad.NumberedPitchClass(1)'
-
-        Set ``format_specification`` to ``''``, ``'lilypond'`` or ``'storage'``.
-
-        Returns string.
-        """
-        return super().__format__(format_specification=format_specification)
-
     def __hash__(self):
         """
         Hashes numbered pitch-class.
@@ -972,7 +928,8 @@ class NumberedPitchClass(PitchClass):
         )
 
     def _get_lilypond_format(self):
-        return format(NamedPitchClass(self), "lilypond")
+        # return format(NamedPitchClass(self), "lilypond")
+        return NamedPitchClass(self)._get_lilypond_format()
 
     ### PUBLIC PROPERTIES ###
 

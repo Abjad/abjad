@@ -201,7 +201,7 @@ class Instrument(object):
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
-        from .core.inspectx import Inspection
+        from .inspectx import Inspection
 
         if Inspection(component_expression).has_indicator(Instrument):
             string = f"Already has instrument: {component_expression}."
@@ -412,7 +412,7 @@ class Instrument(object):
         Returns none.
         """
         from .core.Iteration import Iteration
-        from .core.inspectx import Inspection
+        from .inspectx import Inspection
 
         for leaf in Iteration(argument).leaves(pitched=True):
             instrument = Inspection(leaf).effective(Instrument)
@@ -470,7 +470,7 @@ class Instrument(object):
         Returns none.
         """
         from .core.Iteration import Iteration
-        from .core.inspectx import Inspection
+        from .inspectx import Inspection
 
         for leaf in Iteration(argument).leaves(pitched=True):
             instrument = Inspection(leaf).effective(Instrument)

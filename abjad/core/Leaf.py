@@ -5,11 +5,11 @@ import typing
 from .. import exceptions
 from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
-from ..indicators.MetronomeMark import MetronomeMark
+from ..new import new
 from ..overrides import override, setting
 from ..storage import FormatSpecification
 from ..tags import Tag
-from .Component import Component, attach
+from .Component import Component
 
 
 class Leaf(Component):
@@ -51,17 +51,17 @@ class Leaf(Component):
         """
         Shallow copies leaf.
         """
-        new = Component.__copy__(self, *arguments)
-        new.multiplier = self.multiplier
+        leaf = Component.__copy__(self, *arguments)
+        leaf.multiplier = self.multiplier
         before_grace_container = self._before_grace_container
         if before_grace_container is not None:
-            new_grace_container = before_grace_container._copy_with_children()
-            attach(new_grace_container, new)
+            grace_container = before_grace_container._copy_with_children()
+            grace_container._attach(leaf)
         after_grace_container = self._after_grace_container
         if after_grace_container is not None:
-            new_after_grace_container = after_grace_container._copy_with_children()
-            attach(new_after_grace_container, new)
-        return new
+            grace_container = after_grace_container._copy_with_children()
+            grace_container._attach(leaf)
+        return leaf
 
     def __getnewargs__(self):
         """
@@ -84,12 +84,9 @@ class Leaf(Component):
             self._overrides = copy.copy(override(leaf))
         if getattr(leaf, "_lilypond_setting_name_manager", None) is not None:
             self._lilypond_setting_name_manager = copy.copy(setting(leaf))
-        new_wrappers = []
         for wrapper in leaf._wrappers:
-            new_wrapper = copy.copy(wrapper)
-            new_wrappers.append(new_wrapper)
-        for new_wrapper in new_wrappers:
-            attach(new_wrapper, self)
+            wrapper_ = copy.copy(wrapper)
+            new(wrapper_, component=self)
 
     def _format_after_grace_body(self):
         result = []
@@ -180,18 +177,6 @@ class Leaf(Component):
     def _get_compact_representation(self):
         return f"({self._get_formatted_duration()})"
 
-    def _get_duration_in_seconds(self):
-        mark = self._get_effective(MetronomeMark)
-        if mark is not None and not mark.is_imprecise:
-            result = (
-                self._get_duration()
-                / mark.reference_duration
-                / mark.units_per_minute
-                * 60
-            )
-            return Duration(result)
-        raise exceptions.MissingMetronomeMarkError
-
     def _get_format_pieces(self):
         return self._get_lilypond_format().split("\n")
 
@@ -227,6 +212,15 @@ class Leaf(Component):
 
     def _get_preprolated_duration(self):
         return self._get_multiplied_duration()
+
+    def _get_subtree(self):
+        result = []
+        if self._before_grace_container is not None:
+            result.extend(self._before_grace_container._get_subtree())
+        result.append(self)
+        if self._after_grace_container is not None:
+            result.extend(self._after_grace_container._get_subtree())
+        return result
 
     def _process_contribution_packet(self, contribution_packet):
         result = ""
