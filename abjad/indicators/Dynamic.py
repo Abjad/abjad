@@ -328,6 +328,54 @@ class Dynamic(object):
             return True
         return False
 
+    def __ge__(self, argument) -> bool:
+        """
+        Is true when dynamic is greater than or equal to ``argument``.
+        
+        ..  container:: example
+        
+            >>> dynamic_1 = abjad.Dynamic('p')
+            >>> dynamic_2 = abjad.Dynamic('p')
+            >>> dynamic_3 = abjad.Dynamic('pp')
+            >>> dynamic_4 = abjad.Dynamic('f')
+            
+            >>> dynamic_1 >= dynamic_2
+            True
+            >>> dynamic_1 >= dynamic_3
+            True
+            >>> dynamic_1 >= dynamic_4
+            False
+            
+        """
+        if isinstance(argument, type(self)):
+            return self.ordinal >= argument.ordinal
+        else:
+            raise TypeError(argument)
+
+    def __gt__(self, argument) -> bool:
+        """
+        Is true when dynamic is greater than ``argument``.
+        
+        ..  container:: example
+        
+            >>> dynamic_1 = abjad.Dynamic('p')
+            >>> dynamic_2 = abjad.Dynamic('p')
+            >>> dynamic_3 = abjad.Dynamic('pp')
+            >>> dynamic_4 = abjad.Dynamic('f')
+            
+            >>> dynamic_1 > dynamic_2
+            False
+            >>> dynamic_1 > dynamic_3
+            True
+            >>> dynamic_1 > dynamic_4
+            False
+            
+        """
+        if isinstance(argument, type(self)):
+            return self.ordinal > argument.ordinal
+        else:
+            raise TypeError(argument)
+
     def __hash__(self) -> int:
         """
         Hashes dynamic.
@@ -340,6 +388,54 @@ class Dynamic(object):
         except TypeError:
             raise TypeError(f"unhashable type: {self}")
         return result
+
+    def __le__(self, argument) -> bool:
+        """
+        Is true when dynamic is less than or equal to ``argument``.
+        
+        ..  container:: example
+        
+            >>> dynamic_1 = abjad.Dynamic('p')
+            >>> dynamic_2 = abjad.Dynamic('p')
+            >>> dynamic_3 = abjad.Dynamic('pp')
+            >>> dynamic_4 = abjad.Dynamic('f')
+            
+            >>> dynamic_1 <= dynamic_2
+            True
+            >>> dynamic_1 <= dynamic_3
+            False
+            >>> dynamic_1 <= dynamic_4
+            True
+            
+        """
+        if isinstance(argument, type(self)):
+            return self.ordinal <= argument.ordinal
+        else:
+            raise TypeError(argument)
+
+    def __lt__(self, argument) -> bool:
+        """
+        Is true when duration is less than ``argument``.
+        
+        ..  container:: example
+        
+            >>> dynamic_1 = abjad.Dynamic('p')
+            >>> dynamic_2 = abjad.Dynamic('p')
+            >>> dynamic_3 = abjad.Dynamic('pp')
+            >>> dynamic_4 = abjad.Dynamic('f')
+            
+            >>> dynamic_1 < dynamic_2
+            False
+            >>> dynamic_1 < dynamic_3
+            False
+            >>> dynamic_1 < dynamic_4
+            True
+            
+        """
+        if isinstance(argument, type(self)):
+            return self.ordinal < argument.ordinal
+        else:
+            raise TypeError(argument)
 
     def __repr__(self):
         """
