@@ -25,8 +25,6 @@ class StopHairpin(object):
 
     # _persistent = True
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, *, leak: bool = None) -> None:

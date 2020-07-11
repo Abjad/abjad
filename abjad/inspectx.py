@@ -1,18 +1,8 @@
-import bisect
 import collections
 import typing
 
-from . import enums, exceptions, typings
-from .core.Chord import Chord
-from .core.Component import Component
-from .core.Container import Container
-from .core.Context import Context
-from .core.Leaf import Leaf
-from .core.Note import Note
-from .core.Staff import Staff
-from .core.Voice import Voice
+from . import _inspect, enums, typings
 from .duration import Duration
-from .indicators.MetronomeMark import MetronomeMark
 from .indicators.RepeatTie import RepeatTie
 from .indicators.StaffChange import StaffChange
 from .indicators.Tie import Tie
@@ -21,9 +11,10 @@ from .instruments import Instrument
 from .markups import Markup
 from .pitch.pitches import NamedPitch
 from .pitch.sets import PitchSet
+from .score import Chord, Component, Container, Leaf, Note, Staff
 from .storage import StorageFormatManager
-from .tags import Tag
-from .timespans import Timespan
+from .tag import Tag
+from .timespan import Timespan
 
 
 class Inspection(object):
@@ -70,115 +61,8 @@ class Inspection(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _get_duration_in_seconds(COMPONENT):
-        if isinstance(COMPONENT, Container):
-            if COMPONENT.simultaneous:
-                return max(
-                    [Duration(0)]
-                    + [Inspection._get_duration_in_seconds(_) for _ in COMPONENT]
-                )
-            else:
-                duration = Duration(0)
-                for component in COMPONENT:
-                    duration += Inspection._get_duration_in_seconds(component)
-                return duration
-        else:
-            mark = Inspection._get_effective(COMPONENT, MetronomeMark)
-            if mark is not None and not mark.is_imprecise:
-                result = (
-                    COMPONENT._get_duration()
-                    / mark.reference_duration
-                    / mark.units_per_minute
-                    * 60
-                )
-                return Duration(result)
-            raise exceptions.MissingMetronomeMarkError
-
-    @staticmethod
-    def _get_effective(
-        COMPONENT, prototype, *, attributes=None, command=None, n=0, unwrap=True
-    ):
-        COMPONENT._update_now(indicators=True)
-        candidate_wrappers = {}
-        parentage = COMPONENT._get_parentage()
-        enclosing_voice_name = None
-        for component in parentage:
-            if isinstance(component, Voice):
-                if (
-                    enclosing_voice_name is not None
-                    and component.name != enclosing_voice_name
-                ):
-                    continue
-                else:
-                    enclosing_voice_name = component.name or id(component)
-            local_wrappers = []
-            for wrapper in component._wrappers:
-                if wrapper.annotation:
-                    continue
-                if isinstance(wrapper.indicator, prototype):
-                    append_wrapper = True
-                    if command is not None and wrapper.indicator.command != command:
-                        continue
-                    if attributes is not None:
-                        for name, value in attributes.items():
-                            if getattr(wrapper.indicator, name, None) != value:
-                                append_wrapper = False
-                    if not append_wrapper:
-                        continue
-                    local_wrappers.append(wrapper)
-            # active indicator takes precendence over inactive indicator
-            if any(_.deactivate is True for _ in local_wrappers) and not all(
-                _.deactivate is True for _ in local_wrappers
-            ):
-                local_wrappers = [_ for _ in local_wrappers if _.deactivate is not True]
-            for wrapper in local_wrappers:
-                offset = wrapper.start_offset
-                candidate_wrappers.setdefault(offset, []).append(wrapper)
-            if not isinstance(component, Context):
-                continue
-            for wrapper in component._dependent_wrappers:
-                if wrapper.annotation:
-                    continue
-                if isinstance(wrapper.indicator, prototype):
-                    append_wrapper = True
-                    if command is not None and wrapper.indicator.command != command:
-                        continue
-                    if attributes is not None:
-                        for name, value in attributes.items():
-                            if getattr(wrapper.indicator, name, None) != value:
-                                append_wrapper = False
-                    if not append_wrapper:
-                        continue
-                    offset = wrapper.start_offset
-                    candidate_wrappers.setdefault(offset, []).append(wrapper)
-        if not candidate_wrappers:
-            return
-        all_offsets = sorted(candidate_wrappers)
-        start_offset = COMPONENT._get_timespan().start_offset
-        index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
-        if index < 0:
-            return
-        elif len(candidate_wrappers) <= index:
-            return
-        wrapper = candidate_wrappers[all_offsets[index]][0]
-        if unwrap:
-            return wrapper.indicator
-        return wrapper
-
-    @staticmethod
-    def _get_effective_staff(COMPONENT):
-        staff_change = Inspection._get_effective(COMPONENT, StaffChange)
-        if staff_change is not None:
-            for component in COMPONENT._get_parentage():
-                root = component
-            effective_staff = root[staff_change.staff]
-            return effective_staff
-        effective_staff = Inspection(COMPONENT).parentage().get(Staff)
-        return effective_staff
-
-    @staticmethod
     def _get_logical_tie(LEAF):
-        from .core.LogicalTie import LogicalTie
+        from .selectx import LogicalTie
 
         leaves_before, leaves_after = [], []
         current_leaf = LEAF
@@ -210,7 +94,7 @@ class Inspection(object):
 
     @staticmethod
     def _get_on_beat_anchor_voice(CONTAINER):
-        from .core.obgc import OnBeatGraceContainer
+        from .obgc import OnBeatGraceContainer
 
         container = CONTAINER._parent
         if container is None:
@@ -260,7 +144,7 @@ class Inspection(object):
 
     @staticmethod
     def _get_sibling_with_graces(COMPONENT, n):
-        from .core.obgc import OnBeatGraceContainer
+        from .obgc import OnBeatGraceContainer
 
         assert n in (-1, 0, 1), repr(COMPONENT, n)
         if n == 0:
@@ -346,7 +230,7 @@ class Inspection(object):
         if "sounding pitch" in Inspection(NOTE).indicators(str):
             return NOTE.written_pitch
         else:
-            instrument = Inspection._get_effective(NOTE, Instrument)
+            instrument = _inspect._get_effective(NOTE, Instrument)
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
@@ -360,7 +244,7 @@ class Inspection(object):
         if "sounding pitch" in Inspection(chord).indicators(str):
             return chord.written_pitches
         else:
-            instrument = Inspection._get_effective(chord, Instrument)
+            instrument = _inspect._get_effective(chord, Instrument)
             if instrument:
                 sounding_pitch = instrument.middle_c_sounding_pitch
             else:
@@ -372,18 +256,8 @@ class Inspection(object):
             return tuple(sounding_pitches)
 
     @staticmethod
-    def _has_effective_indicator(
-        COMPONENT, prototype, *, attributes=None, command=None
-    ):
-        indicator = Inspection._get_effective(
-            COMPONENT, prototype, attributes=attributes, command=command
-        )
-        return indicator is not None
-
-    @staticmethod
     def _immediately_precedes(component_1, component_2, ignore_before_after_grace=None):
-        from .core.AfterGraceContainer import AfterGraceContainer
-        from .core.BeforeGraceContainer import BeforeGraceContainer
+        from .score import AfterGraceContainer, BeforeGraceContainer
 
         successors = []
         current = component_1
@@ -408,8 +282,7 @@ class Inspection(object):
 
     @staticmethod
     def _leaf(LEAF, n):
-        from .core.obgc import OnBeatGraceContainer
-        from .selectx import Selection
+        from .obgc import OnBeatGraceContainer
 
         assert n in (-1, 0, 1), repr(n)
         if n == 0:
@@ -435,7 +308,7 @@ class Inspection(object):
         for component in components:
             if not isinstance(component, Leaf):
                 continue
-            if Selection([LEAF, component]).are_logical_voice():
+            if _inspect._are_logical_voice([LEAF, component]):
                 return component
 
     ### PUBLIC PROPERTIES ###
@@ -730,7 +603,7 @@ class Inspection(object):
         """
         if not isinstance(self.client, Component):
             raise Exception("can only get indicator on component.")
-        time_signature = Inspection._get_effective(self.client, TimeSignature)
+        time_signature = _inspect._get_effective(self.client, TimeSignature)
         if time_signature is None:
             time_signature_duration = Duration(4, 4)
         else:
@@ -1185,7 +1058,6 @@ class Inspection(object):
                 Note("fs'16")
 
         """
-        from .core.Descendants import Descendants
         from .selectx import Selection
 
         if isinstance(self.client, Component):
@@ -1355,7 +1227,7 @@ class Inspection(object):
         """
         if isinstance(self.client, Component):
             if in_seconds is True:
-                return self._get_duration_in_seconds(self.client)
+                return _inspect._get_duration_in_seconds(self.client)
             else:
                 return self.client._get_duration()
         assert isinstance(self.client, collections.abc.Iterable), repr(self.client)
@@ -1853,7 +1725,7 @@ class Inspection(object):
             raise Exception("can only get effective on components.")
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
-        result = Inspection._get_effective(
+        result = _inspect._get_effective(
             self.client, prototype, attributes=attributes, n=n, unwrap=unwrap
         )
         if result is None:
@@ -1953,7 +1825,17 @@ class Inspection(object):
         """
         if not isinstance(self.client, Component):
             raise Exception("can only get effective staff on components.")
-        return self._get_effective_staff(self.client)
+        staff_change = _inspect._get_effective(self.client, StaffChange)
+        if staff_change is not None:
+            for component in self.client._get_parentage():
+                root = component
+            effective_staff = root[staff_change.staff]
+            return effective_staff
+        for component in self.client._get_parentage():
+            if isinstance(component, Staff):
+                effective_staff = component
+                break
+        return effective_staff
 
     def effective_wrapper(
         self,
@@ -2170,9 +2052,8 @@ class Inspection(object):
 
 
         """
-        from .core.AfterGraceContainer import AfterGraceContainer
-        from .core.BeforeGraceContainer import BeforeGraceContainer
-        from .core.obgc import OnBeatGraceContainer
+        from .obgc import OnBeatGraceContainer
+        from .score import AfterGraceContainer, BeforeGraceContainer
 
         prototype = (
             AfterGraceContainer,
@@ -2329,9 +2210,13 @@ class Inspection(object):
             raise Exception("can only get effective indicator on component.")
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
-        return self._has_effective_indicator(
-            self.client, prototype=prototype, attributes=attributes
+        #        return self._has_effective_indicator(
+        #            self.client, prototype=prototype, attributes=attributes
+        #        )
+        indicator = _inspect._get_effective(
+            self.client, prototype, attributes=attributes
         )
+        return indicator is not None
 
     def has_indicator(
         self,
@@ -3094,7 +2979,7 @@ class Inspection(object):
             ---
 
         """
-        from .core.Iteration import Iteration
+        from .iterate import Iteration
 
         if n not in (-1, 0, 1):
             message = "n must be -1, 0 or 1:\n"
@@ -3316,8 +3201,6 @@ class Inspection(object):
                 Note("fs'16")
 
         """
-        from .core.Lineage import Lineage
-
         if not isinstance(self.client, Component):
             raise Exception("can only get lineage on component.")
         return Lineage(self.client)
@@ -3836,7 +3719,7 @@ class Inspection(object):
                 (Note("ds'4"), <Staff{4}>)
 
         """
-        from .core.Parentage import Parentage
+        from .parentage import Parentage
 
         if not isinstance(self.client, Component):
             message = "can only get parentage on component"
@@ -4047,7 +3930,7 @@ class Inspection(object):
             >>> staff = abjad.Staff("d''8 e''8 f''8 g''8")
             >>> piccolo = abjad.Piccolo()
             >>> abjad.attach(piccolo, staff[0])
-            >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
+            >>> abjad.iterpitches.transpose_from_sounding_pitch(staff)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4083,7 +3966,7 @@ class Inspection(object):
             >>> staff = abjad.Staff("<c''' e'''>4 <d''' fs'''>4")
             >>> glockenspiel = abjad.Glockenspiel()
             >>> abjad.attach(glockenspiel, staff[0])
-            >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
+            >>> abjad.iterpitches.transpose_from_sounding_pitch(staff)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4542,6 +4425,306 @@ class Inspection(object):
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
         return self.indicators(prototype=prototype, unwrap=False)
+
+
+class Descendants(collections.abc.Sequence):
+    r'''
+    Descendants of a component.
+
+    ..  container:: example
+
+        >>> score = abjad.Score()
+        >>> staff = abjad.Staff(
+        ...     r"""\new Voice = "Treble_Voice" { c'4 }""",
+        ...     name="Treble_Staff",
+        ...     )
+        >>> score.append(staff)
+        >>> bass = abjad.Staff(
+        ...     r"""\new Voice = "Bass_Voice" { b,4 }""",
+        ...     name="Bass_Staff",
+        ...     )
+        >>> score.append(bass)
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(score)
+            \new Score
+            <<
+                \context Staff = "Treble_Staff"
+                {
+                    \context Voice = "Treble_Voice"
+                    {
+                        c'4
+                    }
+                }
+                \context Staff = "Bass_Staff"
+                {
+                    \context Voice = "Bass_Voice"
+                    {
+                        b,4
+                    }
+                }
+            >>
+
+        >>> for component in abjad.inspect(score).descendants():
+        ...     component
+        ...
+        <Score<<2>>>
+        <Staff-"Treble_Staff"{1}>
+        Voice("c'4", name='Treble_Voice')
+        Note("c'4")
+        <Staff-"Bass_Staff"{1}>
+        Voice('b,4', name='Bass_Voice')
+        Note('b,4')
+
+        >>> bass_voice = score["Bass_Voice"]
+        >>> agent = abjad.inspect(bass_voice)
+        >>> for component in agent.descendants():
+        ...     component
+        ...
+        Voice('b,4', name='Bass_Voice')
+        Note('b,4')
+
+    '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Selections"
+
+    __slots__ = ("_component", "_components")
+
+    ### INITIALIZER ###
+
+    def __init__(self, component=None, cross_offset=None):
+        from .selectx import Selection
+
+        assert isinstance(component, (Component, type(None)))
+        self._component = component
+        if component is not None:
+            descendants = Selection._iterate_descendants(component)
+        else:
+            descendants = ()
+        self._components = descendants
+
+    ### SPECIAL METHODS ###
+
+    def __getitem__(self, argument):
+        """
+        Gets ``argument``.
+
+        Returns component or tuple of components.
+        """
+        return self.components.__getitem__(argument)
+
+    def __len__(self) -> int:
+        """
+        Gets length of descendants.
+        """
+        return len(self._components)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def component(self) -> Component:
+        """
+        Gets component.
+        """
+        return self._component
+
+    @property
+    def components(self) -> typing.Tuple[Component]:
+        """
+        Gets components.
+        """
+        return self._components
+
+    def count(self, prototype=None) -> int:
+        r"""
+        Gets number of ``prototype`` in descendants.
+
+        ..  container:: example
+
+            Gets tuplet count:
+
+            >>> staff = abjad.Staff(
+            ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
+            ... )
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(staff)
+                \new Staff
+                {
+                    \times 2/3 {
+                        c'2
+                        \times 2/3 {
+                            d'8
+                            e'8
+                            f'8
+                        }
+                    }
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                }
+
+            >>> for component in abjad.select(staff).components():
+            ...     parentage = abjad.inspect(component).descendants()
+            ...     count = parentage.count(abjad.Tuplet)
+            ...     print(f"{repr(component):55} {repr(count)}")
+            <Staff{2}>                                              3
+            Tuplet(Multiplier(2, 3), "c'2 { 2/3 d'8 e'8 f'8 }")     2
+            Note("c'2")                                             0
+            Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")                 1
+            Note("d'8")                                             0
+            Note("e'8")                                             0
+            Note("f'8")                                             0
+            Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")                 1
+            Note("c'4")                                             0
+            Note("d'4")                                             0
+            Note("e'4")                                             0
+
+        """
+        n = 0
+        if prototype is None:
+            prototype = Component
+        for component in self:
+            if isinstance(component, prototype):
+                n += 1
+        return n
+
+
+class Lineage(collections.abc.Sequence):
+    r'''
+    Lineage of a component.
+
+    ..  container:: example
+
+        >>> score = abjad.Score()
+        >>> staff = abjad.Staff(
+        ...     r"""\new Voice = "Treble_Voice" { c'4 }""",
+        ...     name='Treble_Staff',
+        ...     )
+        >>> score.append(staff)
+        >>> bass = abjad.Staff(
+        ...     r"""\new Voice = "Bass_Voice" { b,4 }""",
+        ...     name='Bass_Staff',
+        ...     )
+        >>> score.append(bass)
+
+        ..  docs::
+
+            >>> abjad.f(score)
+            \new Score
+            <<
+                \context Staff = "Treble_Staff"
+                {
+                    \context Voice = "Treble_Voice"
+                    {
+                        c'4
+                    }
+                }
+                \context Staff = "Bass_Staff"
+                {
+                    \context Voice = "Bass_Voice"
+                    {
+                        b,4
+                    }
+                }
+            >>
+
+        >>> for component in abjad.inspect(score).lineage():
+        ...     component
+        ...
+        <Score<<2>>>
+        <Staff-"Treble_Staff"{1}>
+        Voice("c'4", name='Treble_Voice')
+        Note("c'4")
+        <Staff-"Bass_Staff"{1}>
+        Voice('b,4', name='Bass_Voice')
+        Note('b,4')
+
+        >>> bass_voice = score['Bass_Voice']
+        >>> for component in abjad.inspect(bass_voice).lineage():
+        ...     component
+        ...
+        <Score<<2>>>
+        <Staff-"Bass_Staff"{1}>
+        Voice('b,4', name='Bass_Voice')
+        Note('b,4')
+
+    '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Selections"
+
+    __slots__ = ("_component", "_components")
+
+    ### INITIALIZER ###
+
+    def __init__(self, component=None):
+        if component is not None:
+            assert hasattr(component, "_timespan"), repr(component)
+        self._component = component
+        components = []
+        if component is not None:
+            components.extend(reversed(Inspection(component).parentage()[1:]))
+            components.append(component)
+            components.extend(Inspection(component).descendants()[1:])
+        self._components = components
+
+    ### SPECIAL METHODS ###
+
+    def __getitem__(self, argument):
+        """
+        Gets ``argument``.
+
+        Returns component or tuple.
+        """
+        return self.components.__getitem__(argument)
+
+    def __len__(self):
+        """
+        Gets length of lineage.
+
+        Returns int.
+        """
+        return len(self._components)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def component(self):
+        """
+        The component from which the lineage was derived.
+        """
+        return self._component
+
+    @property
+    def components(self):
+        """
+        Gets components.
+
+        Returns tuple.
+        """
+        return self._components
 
 
 ### FUNCTIONS ###

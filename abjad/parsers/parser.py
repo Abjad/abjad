@@ -18,23 +18,6 @@ from ply.yacc import (  # type: ignore
 
 from .. import exceptions
 from ..attach import attach
-from ..core.BeforeGraceContainer import BeforeGraceContainer
-from ..core.Chord import Chord
-from ..core.Cluster import Cluster
-from ..core.Component import Component
-from ..core.Container import Container
-from ..core.Context import Context
-from ..core.Leaf import Leaf
-from ..core.MultimeasureRest import MultimeasureRest
-from ..core.Note import Note
-from ..core.Rest import Rest
-from ..core.Score import Score
-from ..core.Skip import Skip
-from ..core.Staff import Staff
-from ..core.StaffGroup import StaffGroup
-from ..core.Tuplet import Tuplet
-from ..core.Voice import Voice
-from ..core.noteheads import DrumNoteHead, NoteHead
 from ..duration import Duration, Multiplier
 from ..indicators.Articulation import Articulation
 from ..indicators.BarLine import BarLine
@@ -75,7 +58,27 @@ from ..pitch.Octave import Octave
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..scheme import Scheme
-from ..utilities.String import String
+from ..score import (
+    BeforeGraceContainer,
+    Chord,
+    Cluster,
+    Component,
+    Container,
+    Context,
+    DrumNoteHead,
+    Leaf,
+    MultimeasureRest,
+    Note,
+    NoteHead,
+    Rest,
+    Score,
+    Skip,
+    Staff,
+    StaffGroup,
+    Tuplet,
+    Voice,
+)
+from ..stringx import String
 from .base import Parser
 
 

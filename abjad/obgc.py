@@ -1,21 +1,16 @@
 import typing
 
-from .. import typings
-from ..attach import attach, detach
-from ..bundle import LilyPondFormatBundle
-from ..duration import Duration
-from ..inspectx import Inspection
-from ..mutate import Mutation
-from ..overrides import LilyPondLiteral, tweak
-from ..selectx import Selection
-from ..spanners import beam, slur
-from ..tags import Tag, Tags
-from .Chord import Chord
-from .Container import Container
-from .Note import Note
-from .Voice import Voice
-
-abjad_tags = Tags()
+from . import typings
+from .attach import attach, detach
+from .bundle import LilyPondFormatBundle
+from .duration import Duration
+from .inspectx import Inspection
+from .mutate import Mutation
+from .overrides import LilyPondLiteral, tweak
+from .score import Chord, Container, Note, Voice
+from .selectx import Selection
+from .spanners import beam, slur
+from .tag import Tag
 
 
 class OnBeatGraceContainer(Container):
@@ -121,13 +116,13 @@ class OnBeatGraceContainer(Container):
 
     # NOTE: format="absolute_before" for \oneVoice so that this works:
     #
-    #           \oneVoice                                                                  %! abjad.on_beat_grace_container(5)
-    #           \override Stem.direction = #down                                           %! baca.stem_down():baca.OverrideCommand._call(1)
+    #           \oneVoice
+    #           \override Stem.direction = #down
     #
     # ... because this ...
     #
-    #           \override Stem.direction = #down                                           %! baca.stem_down():baca.OverrideCommand._call(1)
-    #           \oneVoice                                                                  %! abjad.on_beat_grace_container(5)
+    #           \override Stem.direction = #down
+    #           \oneVoice
     #
     # ... doesn't work.
     #
@@ -147,7 +142,7 @@ class OnBeatGraceContainer(Container):
             return
         site = "abjad.OnBeatGraceContainer._attach_lilypond_one_voice()"
         tag = Tag(site)
-        tag = tag.append(abjad_tags.ONE_VOICE_COMMAND)
+        tag = tag.append(Tag("ONE_VOICE_COMMAND"))
         attach(literal, next_leaf, tag=tag)
 
     def _format_invocation(self):

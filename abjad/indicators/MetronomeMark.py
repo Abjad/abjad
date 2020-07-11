@@ -5,16 +5,16 @@ import typing
 
 import quicktions
 
-from .. import exceptions, mathtools, typings
+from .. import exceptions, mathx, typings
 from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
+from ..enumeratex import Enumerator
 from ..markups import Markup
 from ..new import new
 from ..ratio import Ratio
 from ..scheme import Scheme
+from ..sequence import Sequence
 from ..storage import FormatSpecification, StorageFormatManager
-from ..utilities.Enumerator import Enumerator
-from ..utilities.Sequence import Sequence
 
 
 @functools.total_ordering
@@ -332,7 +332,7 @@ class MetronomeMark(object):
         elif isinstance(argument, (int, quicktions.Fraction)):
             assert isinstance(self.units_per_minute, (int, quicktions.Fraction))
             units_per_minute = self.units_per_minute / argument
-            if mathtools.is_integer_equivalent_number(units_per_minute):
+            if mathx.is_integer_equivalent_number(units_per_minute):
                 units_per_minute = int(units_per_minute)
             else:
                 units_per_minute = quicktions.Fraction(units_per_minute)
@@ -576,14 +576,14 @@ class MetronomeMark(object):
             string = f"{self._dotted}={self.units_per_minute}"
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
-        ) and not mathtools.is_integer_equivalent_number(self.units_per_minute):
+        ) and not mathx.is_integer_equivalent_number(self.units_per_minute):
             integer_part = int(float(self.units_per_minute))
             remainder = self.units_per_minute - integer_part
             remainder = quicktions.Fraction(remainder)
             string = f"{self._dotted}={integer_part}+{remainder}"
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
-        ) and mathtools.is_integer_equivalent_number(self.units_per_minute):
+        ) and mathx.is_integer_equivalent_number(self.units_per_minute):
             integer = int(float(self.units_per_minute))
             string = f"{self._dotted}={integer}"
         elif isinstance(self.units_per_minute, tuple):
@@ -1168,7 +1168,7 @@ class MetronomeMark(object):
         pairs = []
         for multiplier in multipliers_:
             new_units_per_minute = multiplier * self.units_per_minute
-            if integer_tempos_only and not mathtools.is_integer_equivalent_number(
+            if integer_tempos_only and not mathx.is_integer_equivalent_number(
                 new_units_per_minute
             ):
                 continue
@@ -1240,7 +1240,7 @@ class MetronomeMark(object):
         stem = 1
         if isinstance(
             units_per_minute, quicktions.Fraction
-        ) and not mathtools.is_integer_equivalent_number(units_per_minute):
+        ) and not mathx.is_integer_equivalent_number(units_per_minute):
             if decimal:
                 decimal_: typing.Union[float, str]
                 if decimal is True:

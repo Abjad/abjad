@@ -8,17 +8,16 @@ import quicktions
 import uqbar.containers
 import uqbar.graphs
 
-from . import mathtools
-from .core.Container import Container
-from .core.Tuplet import Tuplet
+from . import mathx
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .inspectx import Inspection
 from .makers import LeafMaker
 from .mutate import Mutation
 from .parsers.base import Parser
+from .score import Container, Tuplet
+from .sequence import Sequence
 from .spanners import tie
 from .storage import FormatSpecification, StorageFormatManager
-from .utilities.Sequence import Sequence
 
 
 class RhythmTreeMixin(object):
@@ -227,7 +226,7 @@ class RhythmTreeMixin(object):
 
         Returns multiplier.
         """
-        return mathtools.cumulative_products(self.prolations)[-1]
+        return mathx.cumulative_products(self.prolations)[-1]
 
     @property
     def prolations(self):
@@ -496,10 +495,6 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
     Returns ``RhythmTreeContainer`` instance.
     """
-
-    ### CLASS VARIABLES ###
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 

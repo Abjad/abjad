@@ -3,7 +3,7 @@ import typing
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
-from ..utilities.String import String
+from ..stringx import String
 
 
 class StartBeam(object):
@@ -50,8 +50,6 @@ class StartBeam(object):
     _parameter = "BEAM"
 
     _persistent = True
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 

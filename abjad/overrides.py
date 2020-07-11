@@ -8,8 +8,8 @@ from .ly.contexts import contexts
 from .ly.grob_interfaces import grob_interfaces
 from .scheme import Scheme, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
-from .tags import Tag
-from .utilities.String import String
+from .stringx import String
+from .tag import Tag
 
 
 class LilyPondLiteral(object):

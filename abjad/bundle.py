@@ -1,7 +1,7 @@
 import typing
 
 from .storage import FormatSpecification, StorageFormatManager
-from .tags import Tag
+from .tag import Tag
 
 
 class LilyPondFormatBundle(object):

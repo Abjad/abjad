@@ -4,10 +4,7 @@ from .. import enums
 from ..bundle import LilyPondFormatBundle
 from ..overrides import LilyPondOverride, TweakInterface
 from ..storage import StorageFormatManager
-from ..tags import Tags
-from ..utilities.String import String
-
-abjad_tags = Tags()
+from ..stringx import String
 
 
 class StartHairpin(object):

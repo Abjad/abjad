@@ -46,11 +46,11 @@ interpreted sequentially rather than simultaneously.
 Inspecting the LilyPond format of a staff
 -----------------------------------------
 
-Use ``format()`` to get the LilyPond format of a staff:
+Use ``abjad.lilypond()`` to get the LilyPond format of a staff:
 
 ::
 
-    >>> print(format(staff, 'lilypond'))
+    >>> print(abjad.lilypond(staff))
 
 
 Selecting the music in a staff

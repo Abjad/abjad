@@ -1,15 +1,14 @@
-from . import mathtools
-from .core.AfterGraceContainer import AfterGraceContainer
-from .core.BeforeGraceContainer import BeforeGraceContainer
-from .core.Iteration import Iteration
-from .core.obgc import OnBeatGraceContainer
+from . import mathx
 from .duration import Duration, Multiplier, Offset
 from .indicators.MetronomeMark import MetronomeMark
 from .indicators.TimeSignature import TimeSignature
 from .inspectx import Inspection
+from .iterate import Iteration
+from .obgc import OnBeatGraceContainer
+from .score import AfterGraceContainer, BeforeGraceContainer
+from .sequence import Sequence
 from .storage import StorageFormatManager
-from .timespans import AnnotatedTimespan, TimespanList
-from .utilities.Sequence import Sequence
+from .timespan import AnnotatedTimespan, TimespanList
 
 
 class UpdateManager(object):
@@ -226,7 +225,7 @@ class UpdateManager(object):
                 measure_number = 0
                 return measure_number
         measure_start_offsets = measure_start_offsets[:]
-        measure_start_offsets.append(mathtools.Infinity())
+        measure_start_offsets.append(mathx.Infinity())
         pairs = Sequence(measure_start_offsets)
         pairs = pairs.nwise()
         for measure_index, pair in enumerate(pairs):

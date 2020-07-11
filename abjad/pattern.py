@@ -2,12 +2,12 @@ import collections
 import inspect
 import operator
 
-from .. import mathtools
-from ..new import new
-from ..storage import FormatSpecification, StorageFormatManager
-from .Expression import Expression
-from .Sequence import Sequence
-from .TypedTuple import TypedTuple
+from . import mathx
+from .expression import Expression
+from .new import new
+from .sequence import Sequence
+from .storage import FormatSpecification, StorageFormatManager
+from .typedcollections import TypedTuple
 
 
 class Pattern(object):
@@ -154,8 +154,6 @@ class Pattern(object):
         "xor": operator.xor,
     }
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(
@@ -180,7 +178,7 @@ class Pattern(object):
             assert operator in self._name_to_operator, repr(operator)
         self._operator = operator
         if period is not None:
-            assert mathtools.is_positive_integer(period), repr(period)
+            assert mathx.is_positive_integer(period), repr(period)
         if patterns is not None:
             assert all(isinstance(_, type(self)) for _ in patterns)
             patterns = tuple(patterns)
@@ -1014,7 +1012,7 @@ class Pattern(object):
         if self.patterns:
             periods = [_.period for _ in self.patterns]
             if None not in periods:
-                return mathtools.least_common_multiple(*periods)
+                return mathx.least_common_multiple(*periods)
 
     @property
     def template(self):

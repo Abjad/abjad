@@ -4,14 +4,13 @@ import importlib
 import inspect
 import types
 
-from .. import mathtools
+from .. import mathx
 from ..duration import Multiplier
+from ..expression import Expression, Signature
 from ..new import new
+from ..sequence import Sequence
 from ..storage import FormatSpecification
-from ..utilities.Expression import Expression, Signature
-from ..utilities.Sequence import Sequence
-from ..utilities.TypedCollection import TypedCollection
-from ..utilities.TypedTuple import TypedTuple
+from ..typedcollections import TypedCollection, TypedTuple
 from .Octave import Octave
 from .intervalclasses import (
     IntervalClass,
@@ -106,7 +105,7 @@ class Segment(TypedTuple):
             items = [x.pitch_class_number for x in self]
         elif self.item_class.__name__.startswith("Numbered"):
             items = [
-                mathtools.integer_equivalent_number_to_integer(float(x.number))
+                mathx.integer_equivalent_number_to_integer(float(x.number))
                 for x in self
             ]
         elif hasattr(self.item_class, "__abs__"):
@@ -236,7 +235,7 @@ class IntervalClassSegment(Segment):
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
-        intervals = mathtools.difference_series(pitches)
+        intervals = mathx.difference_series(pitches)
         return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self) -> bool:
@@ -376,7 +375,7 @@ class IntervalSegment(Segment):
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
-        intervals = (-x for x in mathtools.difference_series(pitches))
+        intervals = (-x for x in mathx.difference_series(pitches))
         return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self) -> bool:

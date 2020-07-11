@@ -5,15 +5,8 @@ import typing
 
 from . import enums, typings
 from .attach import attach, detach
-from .core.Chord import Chord
-from .core.Component import Component
-from .core.Iteration import Iteration
-from .core.MultimeasureRest import MultimeasureRest
-from .core.Note import Note
-from .core.Rest import Rest
-from .core.Skip import Skip
-from .core.Staff import Staff
 from .duration import Duration
+from .expression import Expression
 from .indicators.BeamCount import BeamCount
 from .indicators.BendAfter import BendAfter
 from .indicators.BowContactPoint import BowContactPoint
@@ -40,14 +33,13 @@ from .indicators.StopTextSpan import StopTextSpan
 from .indicators.StopTrillSpan import StopTrillSpan
 from .indicators.Tie import Tie
 from .inspectx import Inspection
+from .iterate import Iteration
 from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, tweak
 from .scheme import SchemeSymbol
+from .score import Chord, Component, MultimeasureRest, Note, Rest, Skip, Staff
 from .selectx import DurationInequality, Selection
-from .tags import Tag, Tags
-from .utilities.Expression import Expression
-from .utilities.Sequence import Sequence
-
-abjad_tags = Tags()
+from .sequence import Sequence
+from .tag import Tag
 
 
 def _apply_tweaks(argument, tweaks, i=None, total=None):
@@ -1441,8 +1433,8 @@ def glissando(
                         literal,
                         leaf,
                         tag=tag.append(Tag("abjad.glissando(0)"))
-                        .append(abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS)
-                        .append(abjad_tags.RIGHT_BROKEN),
+                        .append(Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
+                        .append(Tag("RIGHT_BROKEN")),
                     )
                 else:
                     attach(
@@ -1466,8 +1458,8 @@ def glissando(
                     literal,
                     leaf,
                     tag=tag.append(Tag("abjad.glissando(2)"))
-                    .append(abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS)
-                    .append(abjad_tags.LEFT_BROKEN),
+                    .append(Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
+                    .append(Tag("LEFT_BROKEN")),
                 )
             elif left_broken and leaf is leaves[1]:
                 string = r"\override NoteColumn.glissando-skip = ##t"
@@ -1476,8 +1468,8 @@ def glissando(
                     literal,
                     leaf,
                     tag=tag.append(Tag("abjad.glissando(3)"))
-                    .append(abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS)
-                    .append(abjad_tags.LEFT_BROKEN),
+                    .append(Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
+                    .append(Tag("LEFT_BROKEN")),
                 )
             if leaf is leaves[-1]:
                 strings = [
@@ -1498,8 +1490,8 @@ def glissando(
                         leaf,
                         deactivate=False,
                         tag=tag.append(Tag("abjad.glissando(4)"))
-                        .append(abjad_tags.HIDE_TO_JOIN_BROKEN_SPANNERS)
-                        .append(abjad_tags.RIGHT_BROKEN),
+                        .append(Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
+                        .append(Tag("RIGHT_BROKEN")),
                     )
                     if right_broken_show_next:
                         literal = LilyPondLiteral(strings, format_slot="after")
@@ -1508,8 +1500,8 @@ def glissando(
                             leaf,
                             deactivate=True,
                             tag=tag.append(Tag("abjad.glissando(5)"))
-                            .append(abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS)
-                            .append(abjad_tags.RIGHT_BROKEN_SHOW_NEXT),
+                            .append(Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
+                            .append(Tag("RIGHT_BROKEN_SHOW_NEXT")),
                         )
                 else:
                     literal = LilyPondLiteral(strings)
@@ -1521,7 +1513,7 @@ def glissando(
             _apply_tweaks(glissando, tweaks, i=i, total=total)
             tag_ = tag.append(Tag("abjad.glissando(7)"))
             if deactivate_glissando:
-                tag_ = tag_.append(abjad_tags.SHOW_TO_JOIN_BROKEN_SPANNERS)
+                tag_ = tag_.append(Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
             attach(glissando, leaf, deactivate=deactivate_glissando, tag=tag_)
 
 

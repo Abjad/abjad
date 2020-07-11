@@ -7,24 +7,19 @@ import typing
 
 import uqbar.graphs
 
-from . import markups, mathtools, rhythmtrees
-from .core.Chord import Chord
-from .core.Container import Container
-from .core.LogicalTie import LogicalTie
-from .core.Note import Note
-from .core.Rest import Rest
-from .core.Skip import Skip
-from .core.Tuplet import Tuplet
+from . import markups, mathx, rhythmtrees
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
 from .inspectx import Inspection
+from .lilypondfile import LilyPondFile
 from .mutate import Mutation
-from .selectx import Selection
+from .new import new
+from .score import Chord, Container, Note, Rest, Skip, Tuplet
+from .selectx import LogicalTie, Selection
+from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
-from .timespans import Timespan, TimespanList
-from .utilities.Sequence import Sequence
-from .utilities.TypedCounter import TypedCounter
-from .utilities.TypedList import TypedList
+from .timespan import OffsetCounter, Timespan, TimespanList
+from .typedcollections import TypedList
 
 
 class Meter(object):
@@ -362,7 +357,7 @@ class Meter(object):
             else:
                 fraction = NonreducedFraction(argument.numerator, argument.denominator)
             numerator, denominator = fraction.numerator, fraction.denominator
-            factors = mathtools.factors(numerator)
+            factors = mathx.factors(numerator)
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
@@ -867,7 +862,7 @@ class Meter(object):
 
         Returns true or false.
         """
-        if 3 in mathtools.divisors(self.numerator):
+        if 3 in mathx.divisors(self.numerator):
             if not self.numerator == 3:
                 return True
         return False
@@ -1188,9 +1183,7 @@ class Meter(object):
 
         Returns dictionary.
         """
-        assert mathtools.is_positive_integer_power_of_two(
-            denominator // self.denominator
-        )
+        assert mathx.is_positive_integer_power_of_two(denominator // self.denominator)
         inventory = list(self.depthwise_offset_inventory)
         old_flag_count = Duration(1, self.denominator).flag_count
         new_flag_count = Duration(1, denominator).flag_count
@@ -2509,15 +2502,13 @@ class MeterList(TypedList):
 
     ### SPECIAL METHODS ###
 
-    def __illustrate__(self, denominator=16, range_=None, scale=None):
+    def __illustrate__(self, denominator=16, range_=None, scale=None) -> LilyPondFile:
         r"""
         Illustrates meters.
 
         ..  container:: example
 
-            >>> meters = abjad.MeterList([
-            ...     (3, 4), (5, 16), (7, 8),
-            ...     ])
+            >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
             >>> abjad.show(meters, scale=0.5) # doctest: +SKIP
 
             ..  doctest
@@ -2709,11 +2700,9 @@ class MeterList(TypedList):
 
         Returns LilyPond file.
         """
-        from .illustrate import illustrate
-
         durations = [_.duration for _ in self]
         total_duration = sum(durations)
-        offsets = mathtools.cumulative_sums(durations, start=0)
+        offsets = mathx.cumulative_sums(durations, start=0)
         timespans = TimespanList()
         for one, two in Sequence(offsets).nwise():
             timespan = Timespan(start_offset=one, stop_offset=two)
@@ -2761,11 +2750,14 @@ class MeterList(TypedList):
             fraction_markups.append(fraction)
         fraction_markup = fraction_markups[0]
         for markup in fraction_markups[1:]:
-            markup_list = [fraction_markup, markup]
-            markup_list = markups.MarkupList(markup_list)
+            markup_list = markups.MarkupList([fraction_markup, markup])
             fraction_markup = markup_list.combine()
         markup = markups.Markup.column([fraction_markup, lines_markup])
-        return illustrate(markup)
+        # return illustrate(markup)
+        lilypond_file = LilyPondFile.new()
+        markup = new(markup, direction=None)
+        lilypond_file.items.append(markup)
+        return lilypond_file
 
     ### PRIVATE METHODS ###
 
@@ -2902,7 +2894,7 @@ class MetricAccentKernel(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def count_offsets(argument):
+    def count_offsets(argument) -> OffsetCounter:
         r"""
         Count offsets in ``argument``.
 
@@ -2978,126 +2970,6 @@ class MetricAccentKernel(object):
         return meter.generate_offset_kernel_to_denominator(
             denominator=denominator, normalize=normalize
         )
-
-
-class OffsetCounter(TypedCounter):
-    """
-    Offset counter.
-
-    ..  container:: example
-
-        >>> timespans = abjad.TimespanList([
-        ...     abjad.Timespan(0, 16),
-        ...     abjad.Timespan(5, 12),
-        ...     abjad.Timespan(-2, 8),
-        ...     ])
-        >>> timespan_operand = abjad.Timespan(6, 10)
-        >>> timespans = timespans - timespan_operand
-        >>> offset_counter = abjad.OffsetCounter(timespans)
-
-        >>> abjad.f(offset_counter)
-        abjad.OffsetCounter(
-            {
-                abjad.Offset((-2, 1)): 1,
-                abjad.Offset((0, 1)): 1,
-                abjad.Offset((5, 1)): 1,
-                abjad.Offset((6, 1)): 3,
-                abjad.Offset((10, 1)): 2,
-                abjad.Offset((12, 1)): 1,
-                abjad.Offset((16, 1)): 1,
-                }
-            )
-
-        >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None):
-        TypedCounter.__init__(self, item_class=Offset)
-        if items:
-            for item in items:
-                try:
-                    self[item.start_offset] += 1
-                    self[item.stop_offset] += 1
-                except Exception:
-                    if hasattr(item, "_get_timespan"):
-                        self[Inspection(item).timespan().start_offset] += 1
-                        self[Inspection(item).timespan().stop_offset] += 1
-                    else:
-                        offset = Offset(item)
-                        self[offset] += 1
-
-    ### SPECIAL METHODS ###
-
-    def __illustrate__(self, range_=None, scale=None):
-        r"""
-        Illustrates offset counter.
-
-        ..  container:: example
-
-            >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(0, 16),
-            ...     abjad.Timespan(5, 12),
-            ...     abjad.Timespan(-2, 8),
-            ...     ])
-            >>> timespan_operand = abjad.Timespan(6, 10)
-            >>> timespans = timespans - timespan_operand
-            >>> offset_counter = abjad.OffsetCounter(timespans)
-            >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
-
-        Returns LilyPond file.
-        """
-        from .illustrate import illustrate
-
-        if not self:
-            return illustrate(markups.Markup.null())
-        if isinstance(range_, Timespan):
-            minimum, maximum = range_.start_offset, range_.stop_offset
-        elif range_ is not None:
-            minimum, maximum = range_
-        else:
-            minimum, maximum = min(self), max(self)
-        minimum = float(Offset(minimum))
-        maximum = float(Offset(maximum))
-        if scale is None:
-            scale = 1.0
-        assert 0 < scale
-        postscript_scale = 150.0 / (maximum - minimum)
-        postscript_scale *= float(scale)
-        postscript_x_offset = (minimum * postscript_scale) - 1
-        ps = markups.Postscript()
-        ps = ps.setlinewidth(0.2)
-        ps = ps.setdash([2, 1])
-        for offset, count in sorted(self.items()):
-            offset = float(offset) * postscript_scale
-            offset -= postscript_x_offset
-            ps = ps.moveto(offset, -1)
-            ps = ps.rlineto(0, (float(count) * -3) + 1)
-            ps = ps.stroke()
-        markup = markups.Markup.postscript(ps)
-        pieces = [markup]
-        for offset in sorted(self):
-            offset = Multiplier(offset)
-            numerator, denominator = offset.numerator, offset.denominator
-            fraction = markups.Markup.fraction(numerator, denominator)
-            fraction = fraction.center_align().fontsize(-3).sans()
-            x_translation = float(offset) * postscript_scale
-            x_translation -= postscript_x_offset
-            fraction = fraction.translate((x_translation, 1))
-            pieces.append(fraction)
-        markup = markups.Markup.overlay(pieces)
-        return illustrate(markup)
-
-    ### PRIVATE METHODS ###
-
-    def _coerce_item(self, item):
-        return Offset(item)
 
 
 class _MeterFittingSession(object):

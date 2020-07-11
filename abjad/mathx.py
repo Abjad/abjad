@@ -20,17 +20,17 @@ def all_are_equal(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.all_are_equal([99, 99, 99, 99, 99, 99])
+        >>> abjad.mathx.all_are_equal([99, 99, 99, 99, 99, 99])
         True
 
-        >>> abjad.mathtools.all_are_equal(17)
+        >>> abjad.mathx.all_are_equal(17)
         False
 
     ..  container:: example
 
         Is true when ``argument`` is empty:
 
-        >>> abjad.mathtools.all_are_equal([])
+        >>> abjad.mathx.all_are_equal([])
         True
 
     """
@@ -55,10 +55,10 @@ def all_are_integer_equivalent(argument) -> bool:
     ..  container:: example
 
         >>> items = [1, '2', 3.0, abjad.Fraction(4, 1)]
-        >>> abjad.mathtools.all_are_integer_equivalent(items)
+        >>> abjad.mathx.all_are_integer_equivalent(items)
         True
 
-        >>> abjad.mathtools.all_are_integer_equivalent([1, '2', 3.5, 4])
+        >>> abjad.mathx.all_are_integer_equivalent([1, '2', 3.5, 4])
         False
 
     """
@@ -76,10 +76,10 @@ def all_are_integer_equivalent_numbers(argument) -> bool:
     ..  container:: example
 
         >>> items = [1, 2, 3.0, abjad.Fraction(4, 1)]
-        >>> abjad.mathtools.all_are_integer_equivalent_numbers(items)
+        >>> abjad.mathx.all_are_integer_equivalent_numbers(items)
         True
 
-        >>> abjad.mathtools.all_are_integer_equivalent_numbers([1, 2, 3.5, 4])
+        >>> abjad.mathx.all_are_integer_equivalent_numbers([1, 2, 3.5, 4])
         False
 
     """
@@ -97,11 +97,11 @@ def all_are_nonnegative_integer_equivalent_numbers(argument) -> bool:
     ..  container:: example
 
         >>> items = [0, 0.0, abjad.Fraction(0), 2, 2.0, abjad.Fraction(2)]
-        >>> abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(items)
+        >>> abjad.mathx.all_are_nonnegative_integer_equivalent_numbers(items)
         True
 
         >>> items = [0, 0.0, abjad.Fraction(0), -2, 2.0, abjad.Fraction(2)]
-        >>> abjad.mathtools.all_are_nonnegative_integer_equivalent_numbers(items)
+        >>> abjad.mathx.all_are_nonnegative_integer_equivalent_numbers(items)
         False
 
     """
@@ -119,17 +119,17 @@ def all_are_nonnegative_integer_powers_of_two(argument) -> bool:
     ..  container:: example
 
         >>> items = [0, 1, 1, 1, 2, 4, 32, 32]
-        >>> abjad.mathtools.all_are_nonnegative_integer_powers_of_two(items)
+        >>> abjad.mathx.all_are_nonnegative_integer_powers_of_two(items)
         True
 
-        >>> abjad.mathtools.all_are_nonnegative_integer_powers_of_two(17)
+        >>> abjad.mathx.all_are_nonnegative_integer_powers_of_two(17)
         False
 
     ..  container:: example
 
         Is true when ``argument`` is empty:
 
-        >>> abjad.mathtools.all_are_nonnegative_integer_powers_of_two([])
+        >>> abjad.mathx.all_are_nonnegative_integer_powers_of_two([])
         True
 
     """
@@ -146,10 +146,10 @@ def all_are_nonnegative_integers(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, 99])
+        >>> abjad.mathx.all_are_nonnegative_integers([0, 1, 2, 99])
         True
 
-        >>> abjad.mathtools.all_are_nonnegative_integers([0, 1, 2, -99])
+        >>> abjad.mathx.all_are_nonnegative_integers([0, 1, 2, -99])
         False
 
     """
@@ -169,17 +169,17 @@ def all_are_pairs_of_types(argument, first_type, second_type) -> bool:
     ..  container:: example
 
         >>> items = [(1., 'a'), (2.1, 'b'), (3.45, 'c')]
-        >>> abjad.mathtools.all_are_pairs_of_types(items, float, str)
+        >>> abjad.mathx.all_are_pairs_of_types(items, float, str)
         True
 
-        >>> abjad.mathtools.all_are_pairs_of_types('foo', float, str)
+        >>> abjad.mathx.all_are_pairs_of_types('foo', float, str)
         False
 
     ..  container:: example
 
         Is true when ``argument`` is empty:
 
-        >>> abjad.mathtools.all_are_pairs_of_types([], float, str)
+        >>> abjad.mathx.all_are_pairs_of_types([], float, str)
         True
 
     """
@@ -202,10 +202,10 @@ def all_are_positive_integers(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.all_are_positive_integers([1, 2, 3, 99])
+        >>> abjad.mathx.all_are_positive_integers([1, 2, 3, 99])
         True
 
-        >>> abjad.mathtools.all_are_positive_integers(17)
+        >>> abjad.mathx.all_are_positive_integers(17)
         False
 
     """
@@ -221,20 +221,20 @@ def are_relatively_prime(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.are_relatively_prime([13, 14, 15])
+        >>> abjad.mathx.are_relatively_prime([13, 14, 15])
         True
 
-        >>> abjad.mathtools.are_relatively_prime([13, 14, 15, 16])
+        >>> abjad.mathx.are_relatively_prime([13, 14, 15, 16])
         False
 
-        >>> abjad.mathtools.are_relatively_prime('text')
+        >>> abjad.mathx.are_relatively_prime('text')
         False
 
     ..  container:: example
 
         Returns true when ``argument`` is empty:
 
-        >>> abjad.mathtools.are_relatively_prime([])
+        >>> abjad.mathx.are_relatively_prime([])
         True
 
     """
@@ -258,13 +258,13 @@ def arithmetic_mean(argument) -> typing.Union[int, float]:
 
     ..  container:: example
 
-        >>> abjad.mathtools.arithmetic_mean([1, 2, 2, 20, 30])
+        >>> abjad.mathx.arithmetic_mean([1, 2, 2, 20, 30])
         11
 
-        >>> abjad.mathtools.arithmetic_mean([1, 2, 20])
+        >>> abjad.mathx.arithmetic_mean([1, 2, 20])
         Fraction(23, 3)
 
-        >>> abjad.mathtools.arithmetic_mean([2, 2, 20.0])
+        >>> abjad.mathx.arithmetic_mean([2, 2, 20.0])
         8.0
 
     Raises exception when ``argument`` is not iterable.
@@ -290,7 +290,7 @@ def binomial_coefficient(n, k) -> int:
     ..  container:: example
 
         >>> for k in range(8):
-        ...     print(k, '\t', abjad.mathtools.binomial_coefficient(8, k))
+        ...     print(k, '\t', abjad.mathx.binomial_coefficient(8, k))
         ...
         0  1
         1  8
@@ -311,10 +311,10 @@ def cumulative_products(argument):
 
     ..  container:: example
 
-        >>> abjad.mathtools.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
+        >>> abjad.mathx.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
         [1, 2, 6, 24, 120, 720, 5040, 40320]
 
-        >>> abjad.mathtools.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
+        >>> abjad.mathx.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
         [1, -2, -6, 24, 120, -720, -5040, 40320]
 
     Raises exception when ``argument`` is not iterable.
@@ -337,10 +337,10 @@ def cumulative_sums(argument, start=0):
 
     ..  container:: example
 
-        >>> abjad.mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8], start=0)
+        >>> abjad.mathx.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8], start=0)
         [0, 1, 3, 6, 10, 15, 21, 28, 36]
 
-        >>> abjad.mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8], start=None)
+        >>> abjad.mathx.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8], start=None)
         [1, 3, 6, 10, 15, 21, 28, 36]
 
     Raises exception when ``argument`` is not iterable.
@@ -366,10 +366,10 @@ def difference_series(argument):
 
     ..  container:: example
 
-        >>> abjad.mathtools.difference_series([1, 1, 2, 3, 5, 5, 6])
+        >>> abjad.mathx.difference_series([1, 1, 2, 3, 5, 5, 6])
         [0, 1, 1, 2, 0, 1]
 
-        >>> abjad.mathtools.difference_series([9, 6, 8, 5, 7, 4, 6])
+        >>> abjad.mathx.difference_series([9, 6, 8, 5, 7, 4, 6])
         [-3, 2, -3, 2, -3, 2]
 
     Returns new object of ``argument`` type.
@@ -386,11 +386,11 @@ def divisors(n) -> typing.List[int]:
 
     ..  container:: example
 
-        >>> abjad.mathtools.divisors(84)
+        >>> abjad.mathx.divisors(84)
         [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84]
 
         >>> for x in range(10, 20):
-        ...     print(x, abjad.mathtools.divisors(x))
+        ...     print(x, abjad.mathx.divisors(x))
         ...
         10 [1, 2, 5, 10]
         11 [1, 11]
@@ -407,7 +407,7 @@ def divisors(n) -> typing.List[int]:
 
         Allows nonpositive ``n``:
 
-        >>> abjad.mathtools.divisors(-27)
+        >>> abjad.mathx.divisors(-27)
         [1, 3, 9, 27]
 
     Raises not implemented error on ``0``.
@@ -435,11 +435,11 @@ def factors(n) -> typing.List[int]:
 
     ..  container:: example
 
-        >>> abjad.mathtools.factors(84)
+        >>> abjad.mathx.factors(84)
         [2, 2, 3, 7]
 
         >>> for n in range(10, 20):
-        ...   print(n, abjad.mathtools.factors(n))
+        ...   print(n, abjad.mathx.factors(n))
         ...
         10 [2, 5]
         11 [11]
@@ -475,7 +475,7 @@ def fraction_to_proper_fraction(rational,) -> typing.Tuple[int, quicktions.Fract
 
     ..  container:: example
 
-        >>> abjad.mathtools.fraction_to_proper_fraction(abjad.Fraction(116, 8))
+        >>> abjad.mathx.fraction_to_proper_fraction(abjad.Fraction(116, 8))
         (14, Fraction(1, 2))
 
     """
@@ -491,7 +491,7 @@ def greatest_common_divisor(*integers) -> int:
 
     ..  container:: example
 
-        >>> abjad.mathtools.greatest_common_divisor(84, -94, -144)
+        >>> abjad.mathx.greatest_common_divisor(84, -94, -144)
         2
 
     Allows nonpositive input.
@@ -518,7 +518,7 @@ def greatest_power_of_two_less_equal(n, i=0) -> int:
     ..  container:: example
 
         >>> for n in range(10, 20):
-        ...     print('\t%s\t%s' % (n, abjad.mathtools.greatest_power_of_two_less_equal(n)))
+        ...     print('\t%s\t%s' % (n, abjad.mathx.greatest_power_of_two_less_equal(n)))
         ...
         10 8
         11 8
@@ -535,7 +535,7 @@ def greatest_power_of_two_less_equal(n, i=0) -> int:
         positive ``n``:
 
         >>> for n in range(10, 20):
-        ...     print('\t%s\t%s' % (n, abjad.mathtools.greatest_power_of_two_less_equal(n, i=1)))
+        ...     print('\t%s\t%s' % (n, abjad.mathx.greatest_power_of_two_less_equal(n, i=1)))
         ...
         10 4
         11 4
@@ -562,14 +562,14 @@ def integer_equivalent_number_to_integer(number) -> typing.Union[int, float]:
 
         Returns integer-equivalent number as integer:
 
-        >>> abjad.mathtools.integer_equivalent_number_to_integer(17.0)
+        >>> abjad.mathx.integer_equivalent_number_to_integer(17.0)
         17
 
     ..  container:: example
 
         Returns noninteger-equivalent number unchanged:
 
-        >>> abjad.mathtools.integer_equivalent_number_to_integer(17.5)
+        >>> abjad.mathx.integer_equivalent_number_to_integer(17.5)
         17.5
 
     """
@@ -587,21 +587,21 @@ def integer_to_base_k_tuple(n, k) -> typing.Tuple[int, ...]:
 
         Gets base-10 digits of 1066:
 
-        >>> abjad.mathtools.integer_to_base_k_tuple(1066, 10)
+        >>> abjad.mathx.integer_to_base_k_tuple(1066, 10)
         (1, 0, 6, 6)
 
     ..  container:: example
 
         Gets base-2 digits of 1066:
 
-        >>> abjad.mathtools.integer_to_base_k_tuple(1066, 2)
+        >>> abjad.mathx.integer_to_base_k_tuple(1066, 2)
         (1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0)
 
     ..  container:: example
 
         Gets base-26 digits of 1066:
 
-        >>> abjad.mathtools.integer_to_base_k_tuple(1066, 26)
+        >>> abjad.mathx.integer_to_base_k_tuple(1066, 26)
         (1, 15, 0)
 
     """
@@ -628,7 +628,7 @@ def integer_to_binary_string(n) -> str:
     ..  container:: example
 
         >>> for n in range(1, 16 + 1):
-        ...     string = abjad.mathtools.integer_to_binary_string(n)
+        ...     string = abjad.mathx.integer_to_binary_string(n)
         ...     print(f"{n}\t{string}")
         ...
         1  1
@@ -665,7 +665,7 @@ def is_assignable_integer(argument) -> bool:
     ..  container:: example
 
         >>> for n in range(0, 16 + 1):
-        ...     print('%s\t%s' % (n, abjad.mathtools.is_assignable_integer(n)))
+        ...     print('%s\t%s' % (n, abjad.mathx.is_assignable_integer(n)))
         ...
         0  False
         1  True
@@ -699,13 +699,13 @@ def is_integer_equivalent(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.is_integer_equivalent(12.0)
+        >>> abjad.mathx.is_integer_equivalent(12.0)
         True
 
-        >>> abjad.mathtools.is_integer_equivalent('12')
+        >>> abjad.mathx.is_integer_equivalent('12')
         True
 
-        >>> abjad.mathtools.is_integer_equivalent('foo')
+        >>> abjad.mathx.is_integer_equivalent('foo')
         False
 
     """
@@ -725,11 +725,11 @@ def is_integer_equivalent_n_tuple(argument, n) -> bool:
     ..  container:: example
 
         >>> tuple_ = (2.0, '3', abjad.Fraction(4, 1))
-        >>> abjad.mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
+        >>> abjad.mathx.is_integer_equivalent_n_tuple(tuple_, 3)
         True
 
         >>> tuple_ = (2.5, '3', abjad.Fraction(4, 1))
-        >>> abjad.mathtools.is_integer_equivalent_n_tuple(tuple_, 3)
+        >>> abjad.mathx.is_integer_equivalent_n_tuple(tuple_, 3)
         False
 
     """
@@ -747,10 +747,10 @@ def is_integer_equivalent_number(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.is_integer_equivalent_number(12.0)
+        >>> abjad.mathx.is_integer_equivalent_number(12.0)
         True
 
-        >>> abjad.mathtools.is_integer_equivalent_number(abjad.Duration(1, 2))
+        >>> abjad.mathx.is_integer_equivalent_number(abjad.Duration(1, 2))
         False
 
     """
@@ -765,13 +765,13 @@ def is_nonnegative_integer(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.is_nonnegative_integer(99)
+        >>> abjad.mathx.is_nonnegative_integer(99)
         True
 
-        >>> abjad.mathtools.is_nonnegative_integer(0)
+        >>> abjad.mathx.is_nonnegative_integer(0)
         True
 
-        >>> abjad.mathtools.is_nonnegative_integer(-1)
+        >>> abjad.mathx.is_nonnegative_integer(-1)
         False
 
     """
@@ -788,7 +788,7 @@ def is_nonnegative_integer_equivalent_number(argument) -> bool:
     ..  container:: example
 
         >>> duration = abjad.Duration(4, 2)
-        >>> abjad.mathtools.is_nonnegative_integer_equivalent_number(duration)
+        >>> abjad.mathx.is_nonnegative_integer_equivalent_number(duration)
         True
 
     """
@@ -802,7 +802,7 @@ def is_nonnegative_integer_power_of_two(argument) -> bool:
     ..  container:: example
 
         >>> for n in range(10):
-        ...     print(n, abjad.mathtools.is_nonnegative_integer_power_of_two(n))
+        ...     print(n, abjad.mathx.is_nonnegative_integer_power_of_two(n))
         ...
         0 True
         1 True
@@ -832,13 +832,13 @@ def is_positive_integer(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.is_positive_integer(99)
+        >>> abjad.mathx.is_positive_integer(99)
         True
 
-        >>> abjad.mathtools.is_positive_integer(0)
+        >>> abjad.mathx.is_positive_integer(0)
         False
 
-        >>> abjad.mathtools.is_positive_integer(-1)
+        >>> abjad.mathx.is_positive_integer(-1)
         False
 
     """
@@ -854,7 +854,7 @@ def is_positive_integer_equivalent_number(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.mathtools.is_positive_integer_equivalent_number(
+        >>> abjad.mathx.is_positive_integer_equivalent_number(
         ...     abjad.Duration(4, 2)
         ...     )
         True
@@ -873,7 +873,7 @@ def is_positive_integer_power_of_two(argument) -> bool:
     ..  container:: example
 
         >>> for n in range(10):
-        ...     print(n, abjad.mathtools.is_positive_integer_power_of_two(n))
+        ...     print(n, abjad.mathx.is_positive_integer_power_of_two(n))
         ...
         0 False
         1 True
@@ -896,31 +896,31 @@ def least_common_multiple(*integers) -> int:
 
     ..  container:: example
 
-        >>> abjad.mathtools.least_common_multiple(2, 4, 5, 10, 20)
+        >>> abjad.mathx.least_common_multiple(2, 4, 5, 10, 20)
         20
 
-        >>> abjad.mathtools.least_common_multiple(4, 4)
+        >>> abjad.mathx.least_common_multiple(4, 4)
         4
 
-        >>> abjad.mathtools.least_common_multiple(4, 5)
+        >>> abjad.mathx.least_common_multiple(4, 5)
         20
 
-        >>> abjad.mathtools.least_common_multiple(4, 6)
+        >>> abjad.mathx.least_common_multiple(4, 6)
         12
 
-        >>> abjad.mathtools.least_common_multiple(4, 7)
+        >>> abjad.mathx.least_common_multiple(4, 7)
         28
 
-        >>> abjad.mathtools.least_common_multiple(4, 8)
+        >>> abjad.mathx.least_common_multiple(4, 8)
         8
 
-        >>> abjad.mathtools.least_common_multiple(4, 9)
+        >>> abjad.mathx.least_common_multiple(4, 9)
         36
 
-        >>> abjad.mathtools.least_common_multiple(4, 10)
+        >>> abjad.mathx.least_common_multiple(4, 10)
         20
 
-        >>> abjad.mathtools.least_common_multiple(4, 11)
+        >>> abjad.mathx.least_common_multiple(4, 11)
         44
 
     """
@@ -965,7 +965,7 @@ def partition_integer_into_canonic_parts(
         Returns all parts positive on positive ``n``:
 
         >>> for n in range(1, 11):
-        ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n))
+        ...     print(n, abjad.mathx.partition_integer_into_canonic_parts(n))
         ...
         1 (1,)
         2 (2,)
@@ -983,7 +983,7 @@ def partition_integer_into_canonic_parts(
         Returns all parts negative on negative ``n``:
 
         >>> for n in reversed(range(-20, -10)):
-        ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n))
+        ...     print(n, abjad.mathx.partition_integer_into_canonic_parts(n))
         ...
         -11 (-8, -3)
         -12 (-12,)
@@ -1001,7 +1001,7 @@ def partition_integer_into_canonic_parts(
         Returns parts that increase monotonically:
 
         >>> for n in range(11, 21):
-        ...     print(n, abjad.mathtools.partition_integer_into_canonic_parts(n,
+        ...     print(n, abjad.mathx.partition_integer_into_canonic_parts(n,
         ...         decrease_parts_monotonically=False))
         ...
         11 (3, 8)
@@ -1052,17 +1052,17 @@ def sign(n) -> int:
 
         Returns -1 on negative ``n``:
 
-        >>> abjad.mathtools.sign(-96.2)
+        >>> abjad.mathx.sign(-96.2)
         -1
 
         Returns 0 when ``n`` is 0:
 
-        >>> abjad.mathtools.sign(0)
+        >>> abjad.mathx.sign(0)
         0
 
         Returns 1 on positive ``n``:
 
-        >>> abjad.mathtools.sign(abjad.Duration(9, 8))
+        >>> abjad.mathx.sign(abjad.Duration(9, 8))
         1
 
     """
@@ -1075,12 +1075,12 @@ def weight(argument) -> int:
 
     ..  container:: example
 
-        >>> abjad.mathtools.weight([-1, -2, 3, 4, 5])
+        >>> abjad.mathx.weight([-1, -2, 3, 4, 5])
         15
 
     ..  container:: example
 
-        >>> abjad.mathtools.weight([])
+        >>> abjad.mathx.weight([])
         0
 
     Defined equal to sum of the absolute value of items in ``argument``.
@@ -1094,7 +1094,7 @@ def yield_all_compositions_of_integer(n) -> typing.Generator:
 
     ..  container:: example
 
-        >>> for tuple_ in abjad.mathtools.yield_all_compositions_of_integer(5):
+        >>> for tuple_ in abjad.mathx.yield_all_compositions_of_integer(5):
         ...     tuple_
         ...
         (5,)

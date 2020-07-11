@@ -21,8 +21,6 @@ class StopPianoPedal(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     _time_orientation = enums.Right
 
     ### INITIALIZER ###

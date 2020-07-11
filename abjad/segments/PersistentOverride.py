@@ -1,8 +1,8 @@
 import typing
 
 from ..bundle import LilyPondFormatBundle
-from ..core.Context import Context
 from ..overrides import OverrideInterface
+from ..score import Context
 from ..storage import FormatSpecification, StorageFormatManager
 
 
@@ -19,7 +19,7 @@ class PersistentOverride(object):
         ...     value=(-2, 0),
         ...     )
 
-        >>> abjad.f(override)
+        >>> print(abjad.storage(override))
         abjad.PersistentOverride(
             attribute='bar_extent',
             context='Staff',
@@ -41,8 +41,6 @@ class PersistentOverride(object):
     )
 
     _persistent = True
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -156,18 +154,16 @@ class PersistentOverride(object):
             lilypond_type = context.lilypond_type
         else:
             lilypond_type = self.context
-        strings = []
         string = OverrideInterface.make_lilypond_override_string(
             self.grob, self.attribute, self.value, context=lilypond_type, once=False,
         )
-        strings.append(string)
-        return strings
+        return string
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
         if self.hide:
             return bundle
-        strings = self._get_lilypond_format()
+        strings = [self._get_lilypond_format()]
         if self.after:
             bundle.after.commands.extend(strings)
         else:

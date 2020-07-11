@@ -1,19 +1,12 @@
 import collections
 
-from ..inspectx import Inspection
-from ..pitch.pitches import NamedPitch, Pitch
-from ..pitch.sets import PitchSet
-from ..storage import StorageFormatManager
-from ..utilities.Expression import Expression
-from ..utilities.OrderedDict import OrderedDict
-from .Chord import Chord
-from .Component import Component
-from .Container import Container
-from .Leaf import Leaf
-from .MultimeasureRest import MultimeasureRest
-from .Note import Note
-from .Rest import Rest
-from .Skip import Skip
+from .expression import Expression
+from .inspectx import Inspection
+from .ordereddict import OrderedDict
+from .pitch.pitches import NamedPitch, Pitch
+from .pitch.sets import PitchSet
+from .score import Chord, Component, Container, Leaf, MultimeasureRest, Note, Rest, Skip
+from .storage import StorageFormatManager
 
 
 class Iteration(object):

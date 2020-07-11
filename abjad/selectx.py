@@ -5,34 +5,36 @@ import itertools
 import operator
 import typing
 
-from . import enums, mathtools, typings
+from . import _inspect, enums, mathx, typings
 from .attach import attach, detach
-from .core.Chord import Chord
-from .core.Component import Component
-from .core.Container import Container
-from .core.Context import Context
-from .core.Iteration import Iteration
-from .core.Leaf import Leaf
-from .core.MultimeasureRest import MultimeasureRest
-from .core.Note import Note
-from .core.Parentage import Parentage
-from .core.Rest import Rest
-from .core.Skip import Skip
-from .core.Tuplet import Tuplet
-from .core.Voice import Voice
+from .cyclictuple import CyclicTuple
 from .duration import Duration, Offset
+from .expression import Expression
 from .indicators.Tie import Tie
 from .inspectx import Inspection
+from .iterate import Iteration
 from .new import new
+from .parentage import Parentage
+from .pattern import Pattern
 from .pitch.pitches import NamedPitch, NumberedPitch
 from .pitch.segments import PitchSegment
 from .pitch.sets import PitchSet
 from .ratio import Ratio
+from .score import (
+    Chord,
+    Component,
+    Container,
+    Context,
+    Leaf,
+    MultimeasureRest,
+    Note,
+    Rest,
+    Skip,
+    Tuplet,
+    Voice,
+)
+from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
-from .utilities.CyclicTuple import CyclicTuple
-from .utilities.Expression import Expression
-from .utilities.Pattern import Pattern
-from .utilities.Sequence import Sequence
 
 ### INEQUALITIES ###
 
@@ -147,8 +149,6 @@ class DurationInequality(Inequality):
 
     __slots__ = ("_duration", "_preprolated")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(
@@ -156,8 +156,8 @@ class DurationInequality(Inequality):
     ) -> None:
         Inequality.__init__(self, operator_string=operator_string)
         if duration is None:
-            duration = mathtools.Infinity()
-        infinities = (mathtools.Infinity(), mathtools.NegativeInfinity())
+            duration = mathx.Infinity()
+        infinities = (mathx.Infinity(), mathx.NegativeInfinity())
         if duration not in infinities:
             duration = Duration(duration)
             assert 0 <= duration
@@ -226,16 +226,14 @@ class LengthInequality(Inequality):
 
     __slots__ = ("_length",)
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, operator_string="<", length=None):
         Inequality.__init__(self, operator_string=operator_string)
         if length is None:
-            length = mathtools.Infinity()
+            length = mathx.Infinity()
         assert 0 <= length
-        infinities = (mathtools.Infinity(), mathtools.NegativeInfinity())
+        infinities = (mathx.Infinity(), mathx.NegativeInfinity())
         if length not in infinities:
             length = int(length)
         self._length = length
@@ -297,8 +295,6 @@ class PitchInequality(object):
     __slots__ = ("_operator_string", "_pitches")
 
     _set_theoretic_operator_strings = ("&", "|", "^")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -655,8 +651,8 @@ class Selection(collections.abc.Sequence):
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
         for component in self:
-            start_offsets.append(Inspection(component).timespan().start_offset)
-            stop_offsets.append(Inspection(component).timespan().stop_offset)
+            start_offsets.append(component._get_timespan().start_offset)
+            stop_offsets.append(component._get_timespan().stop_offset)
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self, ignore_before_after_grace=None):
@@ -740,7 +736,7 @@ class Selection(collections.abc.Sequence):
 
     @staticmethod
     def _is_immediate_child_of_outermost_voice(component):
-        parentage = Inspection(component).parentage()
+        parentage = Parentage(component)
         context = parentage.get(Voice, -1) or parentage.get(Context)
         if context is not None:
             return parentage.component._parent is context
@@ -751,6 +747,28 @@ class Selection(collections.abc.Sequence):
             return Iteration(self).components()
         else:
             return self._iterate_top_level_components(reverse=reverse)
+
+    @staticmethod
+    def _iterate_descendants(component, cross_offset=None):
+        assert isinstance(component, Component), repr(component)
+        if component is None:
+            components = ()
+        else:
+            components = list(Selection(component).components())
+        result = []
+        if cross_offset is None:
+            result = components
+        else:
+            for component in components:
+                append_x = True
+                if not (
+                    component._get_timespan().start_offset < cross_offset
+                    and cross_offset < component._get_timespan().stop_offset
+                ):
+                    append_x = False
+                if append_x:
+                    result.append(component)
+        return tuple(result)
 
     def _iterate_top_level_components(self, reverse=False):
         if reverse:
@@ -974,19 +992,17 @@ class Selection(collections.abc.Sequence):
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
-        if all(
-            isinstance(_, prototype) and Inspection(_).parentage().orphan for _ in self
-        ):
+        if all(isinstance(_, prototype) and _._parent is None for _ in self):
             return True
         first = self[0]
         if not isinstance(first, prototype):
             return False
-        first_parentage = Inspection(first).parentage()
+        first_parentage = Parentage(first)
         first_logical_voice = first_parentage.logical_voice()
         first_root = first_parentage.root
         previous = first
         for current in self[1:]:
-            current_parentage = Inspection(current).parentage()
+            current_parentage = Parentage(current)
             current_logical_voice = current_parentage.logical_voice()
             # false if wrong type of component found
             if not isinstance(current, prototype):
@@ -1098,9 +1114,7 @@ class Selection(collections.abc.Sequence):
         assert isinstance(prototype, tuple)
         if len(self) == 0:
             return True
-        if all(
-            isinstance(_, prototype) and Inspection(_).parentage().orphan for _ in self
-        ):
+        if all(isinstance(_, prototype) and _._parent is None for _ in self):
             return True
         first = self[0]
         if not isinstance(first, prototype):
@@ -1118,7 +1132,7 @@ class Selection(collections.abc.Sequence):
                 previous, current, ignore_before_after_grace=ignore_before_after_grace,
             ):
                 strictly_contiguous = False
-            if not Inspection(current).parentage().orphan and (
+            if current._parent is not None and (
                 not same_parent or not strictly_contiguous
             ):
                 return False
@@ -1157,29 +1171,7 @@ class Selection(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())
-        prototype = prototype or (Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        assert isinstance(prototype, tuple)
-        if len(self) == 0:
-            return True
-        if all(
-            isinstance(_, prototype) and Inspection(_).parentage().orphan for _ in self
-        ):
-            return True
-        first = self[0]
-        if not isinstance(first, prototype):
-            return False
-        same_logical_voice = True
-        parentage = Inspection(first).parentage()
-        first_logical_voice = parentage.logical_voice()
-        for component in self[1:]:
-            parentage = Inspection(component).parentage()
-            if parentage.logical_voice() != first_logical_voice:
-                same_logical_voice = False
-            if not parentage.orphan and not same_logical_voice:
-                return False
-        return True
+        return _inspect._are_logical_voice(self, prototype=prototype)
 
     def chord(
         self, n: int, *, exclude: typings.Strings = None, grace: bool = None
@@ -8393,7 +8385,7 @@ class Selection(collections.abc.Sequence):
                 break
             component_duration = component._get_duration()
             if in_seconds:
-                component_duration = Inspection(component).duration(in_seconds=True)
+                component_duration = _inspect._get_duration_in_seconds(component)
             candidate_duration = cumulative_duration + component_duration
             if candidate_duration < target_duration:
                 part.append(component)
@@ -8415,9 +8407,7 @@ class Selection(collections.abc.Sequence):
                     result.append(part)
                     part = [component]
                     if in_seconds:
-                        sum_ = sum(
-                            [Inspection(_).duration(in_seconds=True) for _ in part]
-                        )
+                        sum_ = sum([_inspect._get_duration_in_seconds(_) for _ in part])
                         cumulative_duration = Duration(sum_)
                     else:
                         sum_ = sum([Inspection(_).duration() for _ in part])
@@ -9290,7 +9280,7 @@ class Selection(collections.abc.Sequence):
             return self._update_expression(inspect.currentframe())
         result: typing.List[typing.Union[Component, Selection]] = []
         for component in Iteration(self).components(exclude=exclude):
-            for component_ in Inspection(component).parentage():
+            for component_ in Parentage(component):
                 if (
                     self._is_immediate_child_of_outermost_voice(component_)
                     and component_ not in result
@@ -9650,13 +9640,10 @@ class Selection(collections.abc.Sequence):
                     }
                 }
 
-            Tuplets at level 1 are top-level tuplets: level-1 tuplets contain
-            only 1 tuplet (themselves) and are not contained by any other
-            tuplets.
+            Tuplets at level 1 are top-level tuplets: level-1 tuplets contain only 1
+            tuplet (themselves) and are not contained by any other tuplets.
 
         """
-        from .core.Descendants import Descendants
-
         if self._expression:
             return self._update_expression(inspect.currentframe())
         tuplets = self.components(Tuplet, exclude=exclude)
@@ -9666,7 +9653,11 @@ class Selection(collections.abc.Sequence):
         elif level < 0:
             result = []
             for tuplet in tuplets:
-                if -Descendants(tuplet).count(Tuplet) == level:
+                count = 0
+                for component in self._iterate_descendants(tuplet):
+                    if isinstance(component, Tuplet):
+                        count += 1
+                if -count == level:
                     result.append(tuplet)
         else:
             result = []
@@ -10404,3 +10395,101 @@ def select(items=None, previous=None):
     if items is None:
         return Expression().select(previous=previous)
     return Selection(items=items, previous=previous)
+
+
+class LogicalTie(Selection):
+    """
+    Logical tie of a component.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c' d' e' ~ e'")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> abjad.select(staff[2]).logical_tie()
+        LogicalTie([Note("e'4"), Note("e'4")])
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
+    def __getitem__(self, argument):
+        """
+        Gets ``argument``.
+
+        Returns component or vanilla selection (not logical tie).
+        """
+        result = self.items.__getitem__(argument)
+        if isinstance(result, tuple):
+            result = Selection(result)
+        return result
+
+    ### PRIVATE METHODS ###
+
+    def _scale(self, multiplier):
+        for leaf in list(self):
+            leaf._scale(multiplier)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def head(self):
+        """
+        Reference to element ``0`` in logical tie.
+
+        Returns component.
+        """
+        if self.items:
+            return self.items[0]
+
+    @property
+    def is_pitched(self):
+        """
+        Is true when logical tie head is a note or chord.
+
+        Returns true or false.
+        """
+        return hasattr(self.head, "written_pitch") or hasattr(
+            self.head, "written_pitches"
+        )
+
+    @property
+    def is_trivial(self):
+        """
+        Is true when length of logical tie is less than or equal to ``1``.
+
+        Returns true or false.
+        """
+        return len(self) <= 1
+
+    @property
+    def leaves(self):
+        """
+        Gets leaves in logical tie.
+
+        Returns selection.
+        """
+        return Selection(self)
+
+    @property
+    def tail(self):
+        """
+        Gets last leaf in logical tie.
+
+        Returns leaf.
+        """
+        if self.items:
+            return self.items[-1]
+
+    @property
+    def written_duration(self):
+        """
+        Sum of written duration of all components in logical tie.
+
+        Returns duration.
+        """
+        return sum([_.written_duration for _ in self])

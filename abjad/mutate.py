@@ -3,24 +3,19 @@ import itertools
 
 from . import enums, exceptions
 from .attach import attach, detach
-from .core.Chord import Chord
-from .core.Component import Component
-from .core.Container import Container
-from .core.Iteration import Iteration
-from .core.Leaf import Leaf
-from .core.Note import Note
-from .core.Tuplet import Tuplet
 from .duration import Duration
 from .indicators.RepeatTie import RepeatTie
 from .indicators.Tie import Tie
 from .inspectx import Inspection
+from .iterate import Iteration
 from .makers import NoteMaker
 from .pitch.intervals import NamedInterval
 from .ratio import Ratio
+from .score import Chord, Component, Container, Leaf, Note, Tuplet
 from .selectx import Selection
+from .sequence import Sequence
 from .spanners import tie
 from .storage import StorageFormatManager
-from .utilities.Sequence import Sequence
 
 
 class Mutation(object):

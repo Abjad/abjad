@@ -1,9 +1,4 @@
 from ..attach import attach, detach
-from ..core.Chord import Chord
-from ..core.Container import Container
-from ..core.Note import Note
-from ..core.Rest import Rest
-from ..core.Tuplet import Tuplet
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
 from ..indicators.StartBeam import StartBeam
@@ -15,6 +10,7 @@ from ..indicators.TimeSignature import TimeSignature
 from ..inspectx import Inspection
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
+from ..score import Chord, Container, Note, Rest, Tuplet
 from ..selectx import Selection
 from .base import Parser
 

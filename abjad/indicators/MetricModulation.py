@@ -319,27 +319,21 @@ class MetricModulation(object):
         "_scale",
     )
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(
         self,
-        left_rhythm=None,
-        right_rhythm=None,
+        left_rhythm,
+        right_rhythm,
         *,
         hide: bool = None,
         left_markup: Markup = None,
         right_markup: Markup = None,
         scale: typing.Tuple[typings.Number, typings.Number] = (1, 1),
     ) -> None:
-        from ..core.Note import Note
-
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
-        left_rhythm = left_rhythm or Note("c4")
-        right_rhythm = right_rhythm or Note("c4")
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)

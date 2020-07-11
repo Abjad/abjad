@@ -3,7 +3,7 @@ import math
 import numbers
 import typing
 
-from .. import mathtools
+from .. import mathx
 from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .Accidental import Accidental
@@ -136,7 +136,7 @@ class Pitch(object):
             div += 1
         elif mod == 0.5:
             div += 0.5
-        return mathtools.integer_equivalent_number_to_integer(div)
+        return mathx.integer_equivalent_number_to_integer(div)
 
     @staticmethod
     def _to_pitch_class_item_class(item_class):
@@ -763,7 +763,7 @@ class NamedPitch(Pitch):
         ]
         alteration = self.pitch_class._get_alteration()
         octave_base_pitch = (self.octave.number - 4) * 12
-        return mathtools.integer_equivalent_number_to_integer(
+        return mathx.integer_equivalent_number_to_integer(
             pc_number + alteration + octave_base_pitch
         )
 
@@ -1179,7 +1179,7 @@ class NumberedPitch(Pitch):
         pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
         pc_number += alteration
         pc_number += (octave - 4) * 12
-        self._number = mathtools.integer_equivalent_number_to_integer(pc_number)
+        self._number = mathx.integer_equivalent_number_to_integer(pc_number)
         octave_number, pc_number = divmod(self._number, 12)
         self._pitch_class = NumberedPitchClass(pc_number)
         self._octave = Octave(octave_number + 4)
@@ -1320,9 +1320,7 @@ class NumberedPitch(Pitch):
         """
         pc_number = float(self.pitch_class)
         octave_base_pitch = (self.octave.number - 4) * 12
-        return mathtools.integer_equivalent_number_to_integer(
-            pc_number + octave_base_pitch
-        )
+        return mathx.integer_equivalent_number_to_integer(pc_number + octave_base_pitch)
 
     @property
     def octave(self):

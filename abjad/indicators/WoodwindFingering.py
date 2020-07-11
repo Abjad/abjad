@@ -195,8 +195,6 @@ class WoodwindFingering(object):
 
     __slots__ = ("_center_column", "_name", "_left_hand", "_right_hand")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(

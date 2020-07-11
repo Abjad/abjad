@@ -1,8 +1,8 @@
 import functools
 import itertools
 
-from .. import mathtools
-from .Sequence import Sequence
+from . import mathx
+from .sequence import Sequence
 
 
 class Enumerator(object):
@@ -134,7 +134,7 @@ class Enumerator(object):
 
         Returns generator of tuples.
         """
-        assert mathtools.is_positive_integer(length), repr(length)
+        assert mathx.is_positive_integer(length), repr(length)
         last_rgf = list(range(1, length + 1))
         rgf = length * [1]
         yield tuple(rgf)
@@ -267,7 +267,7 @@ class Enumerator(object):
         """
         length = len(self.sequence)
         for i in range(2 ** length):
-            binary_string = mathtools.integer_to_binary_string(i)
+            binary_string = mathx.integer_to_binary_string(i)
             binary_string = binary_string.zfill(length)
             sublist = []
             for j, digit in enumerate(reversed(binary_string)):
@@ -457,7 +457,7 @@ class Enumerator(object):
         """
         length = len(self.sequence) - 1
         for i in range(2 ** length):
-            binary_string = mathtools.integer_to_binary_string(i)
+            binary_string = mathx.integer_to_binary_string(i)
             binary_string = binary_string.zfill(length)
             part = list(self.sequence[0:1])
             partition = [part]

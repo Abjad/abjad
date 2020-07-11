@@ -4,14 +4,11 @@ import typing
 
 from . import enums
 from .attach import attach, detach
-from .core.Chord import Chord
-from .core.Component import Component
-from .core.Iteration import Iteration
-from .core.Note import Note
-from .core.Skip import Skip
 from .duration import Duration, NonreducedFraction
+from .expression import Expression
 from .indicators.LilyPondComment import LilyPondComment
 from .inspectx import Inspection
+from .iterate import Iteration
 from .markups import Markup, MarkupCommand
 from .new import new
 from .overrides import LilyPondLiteral, override, tweak
@@ -28,10 +25,10 @@ from .pitch.segments import PitchSegment
 from .pitch.sets import PitchClassSet
 from .pitch.vectors import IntervalClassVector
 from .scheme import SchemeColor
+from .score import Chord, Component, Note, Skip
 from .selectx import Selection
 from .storage import StorageFormatManager
-from .tags import Tag
-from .utilities.Expression import Expression
+from .tag import Tag
 from .verticalmoment import iterate_vertical_moments
 
 
@@ -4333,8 +4330,6 @@ class ColorMap(object):
     ### CLASS VARIABLES ###
 
     __slots__ = ("_color_dictionary", "_colors", "_pitch_iterables")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 

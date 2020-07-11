@@ -12,24 +12,19 @@ from .attach import attach
 from .bundle import LilyPondFormatBundle
 from .configuration import Configuration
 from .contextmanagers import TemporaryDirectoryChange
-from .core.Component import Component
-from .core.Container import Container
-from .core.Context import Context
-from .core.Iteration import Iteration
-from .core.Score import Score
-from .core.Skip import Skip
-from .core.Staff import Staff
-from .core.Voice import Voice
 from .indicators.TimeSignature import TimeSignature
 from .inspectx import Inspection
+from .iterate import Iteration
 from .lilypond import lilypond
+from .markups import Markup
 from .overrides import LilyPondLiteral, override, setting
 from .pitch.pitches import NamedPitch
 from .scheme import Scheme, SpacingVector
+from .score import Component, Container, Context, Leaf, Score, Skip, Staff, Voice
 from .selectx import Selection
+from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
-from .tags import Tag
-from .utilities.Sequence import Sequence
+from .tag import Tag
 
 configuration = Configuration()
 
@@ -198,9 +193,6 @@ class Block(object):
         return result
 
     def _get_format_pieces(self, tag=None):
-        from .core.Leaf import Leaf
-        from .markups import Markup
-
         indent = LilyPondFormatBundle.indent
         result = []
         if (
@@ -245,9 +237,6 @@ class Block(object):
         )
 
     def _get_formatted_user_attributes(self):
-        from .markups import Markup
-        from .scheme import Scheme
-
         result = []
         prototype = Scheme
         for value in self.items:
@@ -1299,7 +1288,14 @@ class LilyPondFile(object):
         return result
 
     def _get_lilypond_format(self):
-        return "\n\n".join(self._get_format_pieces())
+        string = "\n\n".join(self._get_format_pieces())
+        lines = []
+        for line in string.split("\n"):
+            if line.isspace():
+                lines.append("")
+            else:
+                lines.append(line)
+        return "\n".join(lines)
 
     @staticmethod
     def _make_global_context_block(font_size=3, minimum_distance=10, padding=4):

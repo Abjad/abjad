@@ -64,8 +64,6 @@ class MarginMarkup(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     _redraw = True
 
     ### INITIALIZER ##

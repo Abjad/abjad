@@ -1,6 +1,6 @@
 import collections
 
-from ..storage import FormatSpecification, StorageFormatManager
+from .storage import FormatSpecification, StorageFormatManager
 
 
 class OrderedDict(collections.abc.MutableMapping):
@@ -99,8 +99,6 @@ class OrderedDict(collections.abc.MutableMapping):
     ### CLASS VARIABLES ###
 
     __slots__ = ("_collection",)
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 

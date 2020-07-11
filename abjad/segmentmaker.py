@@ -1,24 +1,20 @@
 import typing
 
-from .. import const
-from ..attach import attach
-from ..core.Container import Container
-from ..core.Context import Context
-from ..core.Iteration import Iteration
-from ..core.Score import Score
-from ..core.Staff import Staff
-from ..core.Voice import Voice
-from ..inspectx import Inspection
-from ..lilypondfile import LilyPondFile
-from ..overrides import LilyPondLiteral
-from ..selectx import Selection
-from ..storage import StorageFormatManager
-from ..tags import Tag
-from ..timespans import TimespanList
-from ..utilities.OrderedDict import OrderedDict
-from ..utilities.String import String
-from .PartAssignment import PartAssignment
-from .Path import Path
+from . import const
+from .attach import attach
+from .inspectx import Inspection
+from .iterate import Iteration
+from .lilypondfile import LilyPondFile
+from .ordereddict import OrderedDict
+from .overrides import LilyPondLiteral
+from .path import Path
+from .score import Container, Context, Score, Staff, Voice
+from .segments.PartAssignment import PartAssignment
+from .selectx import Selection
+from .storage import StorageFormatManager
+from .stringx import String
+from .tag import Tag
+from .timespan import TimespanList
 
 
 class SegmentMaker(object):

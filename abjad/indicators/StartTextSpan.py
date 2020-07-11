@@ -4,7 +4,7 @@ from .. import enums, markups, typings
 from ..bundle import LilyPondFormatBundle
 from ..overrides import LilyPondOverride, TweakInterface
 from ..storage import StorageFormatManager
-from ..utilities.String import String
+from ..stringx import String
 
 
 class StartTextSpan(object):
@@ -80,8 +80,6 @@ class StartTextSpan(object):
     _parameter = "TEXT_SPANNER"
 
     _persistent = True
-
-    _publish_storage_format = True
 
     _styles = (
         "dashed-line-with-arrow",

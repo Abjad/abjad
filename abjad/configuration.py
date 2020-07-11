@@ -1,12 +1,16 @@
+import collections
+import importlib
 import os
 import pathlib
 import subprocess
 import tempfile
 import time
 import traceback
+import types
 import typing
 
 import six
+import uqbar.apis
 
 from .storage import StorageFormatManager
 
@@ -476,3 +480,85 @@ class Configuration(object):
         lilypond_version_string = lilypond_version_string.strip()
         Configuration._lilypond_version_string = lilypond_version_string
         return lilypond_version_string
+
+
+### FUNCTIONS ###
+
+
+def list_all_classes(modules=None, ignored_classes=None):
+    """
+    Lists all public classes defined in ``path``.
+
+    ..  container:: example
+
+        >>> all_classes = abjad.list_all_classes(modules="abjad")
+
+    """
+    all_classes = set()
+    for module in yield_all_modules(modules):
+        name = module.__name__.split(".")[-1]
+        if name.startswith("_"):
+            continue
+        if not hasattr(module, name):
+            continue
+        obj = getattr(module, name)
+        if isinstance(obj, type):
+            all_classes.add(obj)
+    if ignored_classes:
+        ignored_classes = set(ignored_classes)
+        all_classes.difference_update(ignored_classes)
+    return list(sorted(all_classes, key=lambda x: (x.__module__, x.__name__)))
+
+
+def list_all_functions(modules=None):
+    """
+    Lists all public functions defined in ``modules``.
+
+    ..  container:: example
+
+        >>> all_functions = abjad.list_all_functions(modules="abjad")
+
+    """
+    all_functions = set()
+    for module in yield_all_modules(modules):
+        name = module.__name__.split(".")[-1]
+        if name.startswith("_"):
+            continue
+        if not hasattr(module, name):
+            continue
+        obj = getattr(module, name)
+        if isinstance(obj, types.FunctionType):
+            all_functions.add(obj)
+    return list(sorted(all_functions, key=lambda x: (x.__module__, x.__name__)))
+
+
+configuration = Configuration()
+
+
+def yield_all_modules(paths=None):
+    """
+    Yields all modules encountered in ``path``.
+
+    Returns generator.
+    """
+    _paths = []
+    if not paths:
+        _paths = configuration.abjad_directory
+    elif isinstance(paths, str):
+        module = importlib.import_module(paths)
+        _paths.extend(module.__path__)
+    elif isinstance(paths, types.ModuleType):
+        _paths.extend(paths.__path__)
+    elif isinstance(paths, collections.abc.Iterable):
+        for path in paths:
+            if isinstance(path, types.ModuleType):
+                _paths.extend(path.__path__)
+            elif isinstance(path, str):
+                module = importlib.import_module(path)
+                _paths.extend(module.__path__)
+            else:
+                raise ValueError(module)
+    for path in _paths:
+        for source_path in uqbar.apis.collect_source_paths([path]):
+            package_path = uqbar.apis.source_path_to_package_path(source_path)
+            yield importlib.import_module(package_path)

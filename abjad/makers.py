@@ -3,23 +3,17 @@ import math
 import numbers
 import typing
 
-from . import exceptions, mathtools, typings
-from .core.Chord import Chord
-from .core.Leaf import Leaf
-from .core.MultimeasureRest import MultimeasureRest
-from .core.Note import Note
-from .core.Rest import Rest
-from .core.Skip import Skip
-from .core.Tuplet import Tuplet
+from . import exceptions, mathx, typings
 from .duration import Duration, Multiplier, NonreducedFraction
 from .inspectx import Inspection
 from .pitch.pitchclasses import PitchClass
 from .pitch.pitches import NamedPitch, NumberedPitch
 from .ratio import NonreducedRatio, Ratio
+from .score import Chord, Leaf, MultimeasureRest, Note, Rest, Skip, Tuplet
 from .selectx import Selection
+from .sequence import Sequence
 from .spanners import tie
-from .tags import Tag
-from .utilities.Sequence import Sequence
+from .tag import Tag
 
 
 class LeafMaker(object):
@@ -432,8 +426,6 @@ class LeafMaker(object):
         "_use_multimeasure_rests",
     )
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(
@@ -491,7 +483,7 @@ class LeafMaker(object):
         result: typing.List[typing.Union[Tuplet, Leaf]] = []
         for duration_group in duration_groups:
             # get factors in denominator of duration group other than 1, 2.
-            factors_ = mathtools.factors(duration_group[0].denominator)
+            factors_ = mathx.factors(duration_group[0].denominator)
             factors = set(factors_)
             factors.discard(1)
             factors.discard(2)
@@ -513,7 +505,7 @@ class LeafMaker(object):
             else:
                 # compute tuplet prolation
                 denominator = duration_group[0].denominator
-                numerator = mathtools.greatest_power_of_two_less_equal(denominator)
+                numerator = mathx.greatest_power_of_two_less_equal(denominator)
                 multiplier = (numerator, denominator)
                 ratio = 1 / Duration(*multiplier)
                 duration_group = [
@@ -623,7 +615,7 @@ class LeafMaker(object):
                 2 * forbidden_duration.denominator,
                 duration.denominator,
             ]
-            denominator = mathtools.least_common_multiple(*denominators)
+            denominator = mathx.least_common_multiple(*denominators)
             forbidden_duration = NonreducedFraction(forbidden_duration)
             forbidden_duration = forbidden_duration.with_denominator(denominator)
             duration = NonreducedFraction(duration)
@@ -633,7 +625,7 @@ class LeafMaker(object):
             preferred_numerator = forbidden_numerator / 2
         # make written duration numerators
         numerators = []
-        parts = mathtools.partition_integer_into_canonic_parts(duration.numerator)
+        parts = mathx.partition_integer_into_canonic_parts(duration.numerator)
         if forbidden_duration is not None and forbidden_duration <= duration:
             for part in parts:
                 if forbidden_numerator <= part:
@@ -666,8 +658,8 @@ class LeafMaker(object):
 
     @staticmethod
     def _partition_less_than_double(n, m):
-        assert mathtools.is_positive_integer_equivalent_number(n)
-        assert mathtools.is_positive_integer_equivalent_number(m)
+        assert mathx.is_positive_integer_equivalent_number(n)
+        assert mathx.is_positive_integer_equivalent_number(m)
         n, m = int(n), int(m)
         result = []
         current_value = n
@@ -895,8 +887,6 @@ class NoteMaker(object):
 
     __slots__ = ("_increase_monotonic", "_tag")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, *, increase_monotonic: bool = None, tag: Tag = None) -> None:
@@ -927,7 +917,7 @@ class NoteMaker(object):
         result: typing.List[typing.Union[Note, Tuplet]] = []
         for duration in durations:
             # get factors in denominator of duration group duration not 1 or 2
-            factors = set(mathtools.factors(duration[0].denominator))
+            factors = set(mathx.factors(duration[0].denominator))
             factors.discard(1)
             factors.discard(2)
             ps = pitches[0 : len(duration)]
@@ -944,7 +934,7 @@ class NoteMaker(object):
             else:
                 # compute prolation
                 denominator = duration[0].denominator
-                numerator = mathtools.greatest_power_of_two_less_equal(denominator)
+                numerator = mathx.greatest_power_of_two_less_equal(denominator)
                 multiplier = Multiplier(numerator, denominator)
                 ratio = multiplier.reciprocal
                 duration = [ratio * Duration(d) for d in duration]
@@ -1294,7 +1284,7 @@ def tuplet_from_duration_and_ratio(
     """
     duration = Duration(duration)
     ratio = Ratio(ratio)
-    basic_prolated_duration = duration / mathtools.weight(ratio.numbers)
+    basic_prolated_duration = duration / mathx.weight(ratio.numbers)
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
     written_durations = [x * basic_written_duration for x in ratio.numbers]
     leaf_maker = LeafMaker(increase_monotonic=increase_monotonic, tag=tag)
@@ -1812,7 +1802,7 @@ def tuplet_from_ratio_and_pair(
             raise ValueError("no divide zero values.")
     else:
         exponent = int(
-            math.log(mathtools.weight(ratio.numbers), 2) - math.log(numerator, 2)
+            math.log(mathx.weight(ratio.numbers), 2) - math.log(numerator, 2)
         )
         denominator = int(denominator * 2 ** exponent)
         components: typing.List[typing.Union[Note, Rest]] = []

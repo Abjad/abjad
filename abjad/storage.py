@@ -305,12 +305,11 @@ class StorageFormatManager(object):
         "core",
         "indicators",
         "markup",
-        "mathtools",
+        "mathx",
         "meter",
         "pitch",
         "scheme",
         "timespans",
-        "utilities",
     )
 
     _unindented_whitespace = "", "", ", "

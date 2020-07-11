@@ -1,4 +1,4 @@
-from .. import mathtools
+from .. import mathx
 from ..bundle import LilyPondFormatBundle
 from ..storage import FormatSpecification, StorageFormatManager
 
@@ -51,7 +51,7 @@ class StemTremolo(object):
         if isinstance(tremolo_flags, type(self)):
             tremolo_flags = tremolo_flags.tremolo_flags
         tremolo_flags = int(tremolo_flags)
-        if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
+        if not mathx.is_nonnegative_integer_power_of_two(tremolo_flags):
             raise ValueError(f"nonnegative integer power of 2: {tremolo_flags!r}.")
         self._tremolo_flags = tremolo_flags
 

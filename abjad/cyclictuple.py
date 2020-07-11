@@ -1,6 +1,6 @@
 import typing
 
-from ..storage import FormatSpecification, StorageFormatManager
+from .storage import FormatSpecification, StorageFormatManager
 
 
 class CyclicTuple(object):

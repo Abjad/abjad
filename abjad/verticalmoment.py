@@ -1,13 +1,11 @@
-from .core.Chord import Chord
-from .core.Iteration import Iteration
-from .core.Leaf import Leaf
-from .core.Note import Note
+from .enumeratex import Enumerator
 from .inspectx import Inspection
+from .iterate import Iteration
+from .ordereddict import OrderedDict
 from .pitch.segments import PitchSegment
+from .score import Chord, Leaf, Note
 from .selectx import Selection
-from .utilities.Enumerator import Enumerator
-from .utilities.OrderedDict import OrderedDict
-from .utilities.Sequence import Sequence
+from .sequence import Sequence
 
 
 class VerticalMoment(object):

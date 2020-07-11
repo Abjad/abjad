@@ -2,11 +2,10 @@ import abc
 import collections
 import types
 
-from .. import mathtools
+from .. import mathx
+from ..enumeratex import Enumerator
 from ..storage import FormatSpecification
-from ..utilities.Enumerator import Enumerator
-from ..utilities.TypedCollection import TypedCollection
-from ..utilities.TypedCounter import TypedCounter
+from ..typedcollections import TypedCollection, TypedCounter
 from .intervalclasses import IntervalClass, NamedIntervalClass, NumberedIntervalClass
 from .intervals import Interval, NamedInterval, NumberedInterval
 from .pitchclasses import NamedPitchClass, NumberedPitchClass, PitchClass
@@ -115,7 +114,7 @@ class Vector(TypedCounter):
             repr_items = {str(k): v for k, v in self.items()}
         else:
             repr_items = {
-                mathtools.integer_equivalent_number_to_integer(float(k.number)): v
+                mathx.integer_equivalent_number_to_integer(float(k.number)): v
                 for k, v in self.items()
             }
         return FormatSpecification(

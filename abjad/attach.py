@@ -2,16 +2,11 @@ import copy
 import importlib
 import typing
 
-from . import exceptions
-from .core.AfterGraceContainer import AfterGraceContainer
-from .core.BeforeGraceContainer import BeforeGraceContainer
-from .core.Component import Component
-from .core.Container import Container
-from .core.Leaf import Leaf
+from . import _inspect, exceptions
 from .duration import Multiplier, Offset
-from .inspectx import Inspection
+from .score import AfterGraceContainer, BeforeGraceContainer, Component, Container, Leaf
 from .storage import FormatSpecification, StorageFormatManager, storage
-from .tags import Tag
+from .tag import Tag
 
 
 class Wrapper(object):
@@ -134,8 +129,6 @@ class Wrapper(object):
         "_synthetic_offset",
         "_tag",
     )
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -471,7 +464,7 @@ class Wrapper(object):
             return
         prototype = type(self.indicator)
         command = getattr(self.indicator, "command", None)
-        wrapper = Inspection._get_effective(
+        wrapper = _inspect._get_effective(
             component, prototype, attributes={"command": command}, unwrap=False,
         )
         wrapper_format_slot = None

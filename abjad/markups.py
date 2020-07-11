@@ -7,18 +7,18 @@ import typing
 
 import quicktions
 
-from . import enums, mathtools
+from . import enums, mathx
 from .bundle import LilyPondFormatBundle
+from .expression import Expression
 from .ly.colors import colors
 from .ly.music_glyphs import music_glyphs
 from .new import new
 from .overrides import TweakInterface
 from .scheme import Scheme, SchemeColor, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
-from .tags import Tag
-from .utilities.Expression import Expression
-from .utilities.String import String
-from .utilities.TypedList import TypedList
+from .stringx import String
+from .tag import Tag
+from .typedcollections import TypedList
 
 
 class Markup(object):
@@ -1275,7 +1275,7 @@ class Markup(object):
         Returns new markup
         """
         fontsize = float(fontsize)
-        fontsize = mathtools.integer_equivalent_number_to_integer(fontsize)
+        fontsize = mathx.integer_equivalent_number_to_integer(fontsize)
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand("fontsize", fontsize, contents)
         return new(self, contents=command)
@@ -1603,7 +1603,7 @@ class Markup(object):
             >>> abjad.show(markup) # doctest: +SKIP
 
         """
-        if mathtools.is_integer_equivalent_number(rational):
+        if mathx.is_integer_equivalent_number(rational):
             number = int(rational)
             markup = Markup(number, direction=direction)
             return markup
@@ -4186,7 +4186,7 @@ class Postscript(object):
         elif isinstance(argument, bool):
             return str(argument).lower()
         elif isinstance(argument, (int, float)):
-            argument = mathtools.integer_equivalent_number_to_integer(argument)
+            argument = mathx.integer_equivalent_number_to_integer(argument)
             return str(argument)
         return str(argument)
 

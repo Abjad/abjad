@@ -7,8 +7,8 @@ import typing
 import quicktions
 import uqbar.enums
 
-from ..new import new
-from ..storage import FormatSpecification, StorageFormatManager, storage
+from .new import new
+from .storage import FormatSpecification, StorageFormatManager, storage
 
 
 class Signature(object):
@@ -227,8 +227,6 @@ class Expression(object):
     )
 
     _private_attributes_to_copy: typing.List[str] = []
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -561,7 +559,7 @@ class Expression(object):
     ### PRIVATE METHODS ###
 
     def _apply_callback_markup(self, name, direction=None, previous_callback=None):
-        from ..markups import Markup, MarkupList
+        from .markups import Markup, MarkupList
 
         if previous_callback and previous_callback.next_name:
             name = previous_callback.next_name
@@ -854,7 +852,7 @@ class Expression(object):
 
     @staticmethod
     def _make___add___markup(markup, argument):
-        from ..markups import MarkupList
+        from .markups import MarkupList
 
         markup_list = MarkupList()
         markup_list.append(markup)
@@ -869,7 +867,7 @@ class Expression(object):
 
     @staticmethod
     def _make___getitem___markup(markup, argument):
-        from ..markups import Markup, MarkupList
+        from .markups import Markup, MarkupList
 
         markup_list = MarkupList()
         markup_list.append(markup)
@@ -886,7 +884,7 @@ class Expression(object):
 
     @staticmethod
     def _make___radd___markup(markup, argument):
-        from ..markups import MarkupList
+        from .markups import MarkupList
 
         markup_list = MarkupList()
         markup_list.append(str(argument))
@@ -901,7 +899,7 @@ class Expression(object):
 
     @staticmethod
     def _make_establish_equivalence_markup(lhs, rhs):
-        from ..markups import Markup, MarkupList
+        from .markups import Markup, MarkupList
 
         markup_list = MarkupList()
         lhs = Markup(lhs).bold()
@@ -922,7 +920,7 @@ class Expression(object):
 
     @staticmethod
     def _make_expression_add_markup(markups):
-        from ..markups import MarkupList
+        from .markups import MarkupList
 
         assert len(markups) == 2
         markup_list = MarkupList()
@@ -936,7 +934,7 @@ class Expression(object):
     def _make_function_markup(
         markup, method_name, argument_list_callback, method, argument_values
     ):
-        from ..markups import MarkupList
+        from .markups import MarkupList
 
         if argument_list_callback:
             arguments = argument_list_callback(**argument_values)
@@ -1009,7 +1007,7 @@ class Expression(object):
         )
 
     def _make_method_markup(self, markup):
-        from ..markups import Markup
+        from .markups import Markup
 
         if self.is_initializer:
             assert self.qualified_method_name is None
@@ -1084,7 +1082,7 @@ class Expression(object):
     def _make_operator_markup(
         markup, method_name=None, subscript=None, superscript=None
     ):
-        from ..markups import Markup, MarkupList
+        from .markups import Markup, MarkupList
 
         markup_list = MarkupList([method_name, markup])
         if superscript is not None:
@@ -1112,7 +1110,7 @@ class Expression(object):
 
     @staticmethod
     def _make_subscript_string(i, markup=False):
-        from .Pattern import Pattern
+        from .pattern import Pattern
 
         if isinstance(i, (int, Pattern)):
             if markup:
@@ -1216,7 +1214,7 @@ class Expression(object):
 
     @staticmethod
     def _to_evaluable_string(argument):
-        from .Sequence import Sequence
+        from .sequence import Sequence
 
         if argument is None:
             pass
@@ -1578,8 +1576,8 @@ class Expression(object):
         """
         Colors ``argument``.
         """
-        from ..label import Label
-        from .CyclicTuple import CyclicTuple
+        from .cyclictuple import CyclicTuple
+        from .label import Label
 
         if self._is_singular_get_item():
             colors = colors or ["green"]
@@ -1846,7 +1844,7 @@ class Expression(object):
                     }
 
         """
-        from ..label import Label
+        from .label import Label
 
         class_ = Label
         callback = self._make_initializer_callback(class_, **keywords)
@@ -1944,7 +1942,7 @@ class Expression(object):
                     }
 
         """
-        from ..pitch.segments import PitchClassSegment
+        from .pitch.segments import PitchClassSegment
 
         class_ = PitchClassSegment
         callback = self._make_initializer_callback(
@@ -1958,7 +1956,7 @@ class Expression(object):
         """
         Makes pitch set expression.
         """
-        from ..pitch.sets import PitchSet
+        from .pitch.sets import PitchSet
 
         class_ = PitchSet
         callback = self._make_initializer_callback(
@@ -2025,7 +2023,7 @@ class Expression(object):
                 Note("gf'8")
 
         """
-        from ..selectx import Selection
+        from .selectx import Selection
 
         class_ = Selection
         callback = self._make_initializer_callback(class_, **keywords)
@@ -2048,7 +2046,7 @@ class Expression(object):
             Sequence([4, 5, 6, 3, 2, 1])
 
         """
-        from .Sequence import Sequence
+        from .sequence import Sequence
 
         class_ = Sequence
         callback = self._make_initializer_callback(
@@ -2069,7 +2067,7 @@ class Expression(object):
             Timespan(Offset((0, 1)), Offset((1, 4)))
 
         """
-        from ..timespans import Timespan
+        from .timespan import Timespan
 
         class_ = Timespan
         callback = self._make_initializer_callback(

@@ -2,33 +2,24 @@ import abc
 import collections
 import typing
 
-from . import const, instruments
+from . import instruments
 from .attach import Wrapper, annotate, attach
-from .core.Context import Context
-from .core.Iteration import Iteration
-from .core.MultimeasureRest import MultimeasureRest
-from .core.Score import Score
-from .core.Skip import Skip
-from .core.Staff import Staff
-from .core.StaffGroup import StaffGroup
-from .core.Voice import Voice
 from .illustrate import illustrate
 from .indicators.Clef import Clef
-from .indicators.MarginMarkup import MarginMarkup
 from .inspectx import Inspection
 from .instruments import Piano
+from .iterate import Iteration
 from .lilypondfile import LilyPondFile
 from .new import new
+from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral
+from .score import Context, Score, Skip, Staff, StaffGroup, Voice
 from .segments.Part import Part
 from .segments.PartAssignment import PartAssignment
 from .segments.PartManifest import PartManifest
 from .selectx import Selection
 from .storage import StorageFormatManager
-from .tags import Tag, Tags
-from .utilities.OrderedDict import OrderedDict
-
-abjad_tags = Tags()
+from .tag import Tag
 
 
 class ScoreTemplate(object):
@@ -172,75 +163,9 @@ class ScoreTemplate(object):
         """
         assert isinstance(argument, (Score, Staff, StaffGroup)), repr(argument)
         wrappers: typing.List[Wrapper] = []
-        tag = const.REMOVE_ALL_EMPTY_STAVES
-        empty_prototype = (MultimeasureRest, Skip)
         prototype = (Staff, StaffGroup)
-        if isinstance(argument, Score):
-            staff__groups = list(Selection(argument).components(prototype))
-            staves = list(Selection(argument).components(Staff))
-        elif isinstance(argument, Staff):
-            staff__groups = [argument]
-            staves = [argument]
-        else:
-            assert isinstance(argument, StaffGroup), repr(argument)
-            staff__groups = [argument]
-            staves = []
-        for staff__group in staff__groups:
-            leaf = None
-            voices = Selection(staff__group).components(Voice)
-            assert isinstance(voices, Selection), repr(voices)
-            # find leaf 0 in first nonempty voice
-            for voice in voices:
-                leaves = []
-                for leaf_ in Iteration(voice).leaves():
-                    if Inspection(leaf_).has_indicator(const.HIDDEN):
-                        leaves.append(leaf_)
-                if not all(isinstance(_, empty_prototype) for _ in leaves):
-                    leaf = Inspection(voice).leaf(0)
-                    break
-            # otherwise, find first leaf in voice in non-removable staff
-            if leaf is None:
-                for voice in voices:
-                    voice_might_vanish = False
-                    for component in Inspection(voice).parentage():
-                        if Inspection(component).annotation(tag) is True:
-                            voice_might_vanish = True
-                    if not voice_might_vanish:
-                        leaf = Inspection(voice).leaf(0)
-                        if leaf is not None:
-                            break
-            # otherwise, as last resort find first leaf in first voice
-            if leaf is None:
-                leaf = Inspection(voices[0]).leaf(0)
-            if leaf is None:
-                continue
-            instrument = Inspection(leaf).indicator(instruments.Instrument)
-            if instrument is None:
-                string = "default_instrument"
-                instrument = Inspection(staff__group).annotation(string)
-                if instrument is not None:
-                    wrapper = attach(
-                        instrument,
-                        leaf,
-                        context=staff__group.lilypond_type,
-                        tag=Tag("abjad.ScoreTemplate.attach_defaults(1)"),
-                        wrapper=True,
-                    )
-                    wrappers.append(wrapper)
-            margin_markup = Inspection(leaf).indicator(MarginMarkup)
-            if margin_markup is None:
-                string = "default_margin_markup"
-                margin_markup = Inspection(staff__group).annotation(string)
-                if margin_markup is not None:
-                    wrapper = attach(
-                        margin_markup,
-                        leaf,
-                        tag=abjad_tags.NOT_PARTS.append(
-                            Tag("abjad.ScoreTemplate.attach_defaults(2)")
-                        ),
-                        wrapper=True,
-                    )
-                    wrappers.append(wrapper)
+        staves = Selection(argument).components(prototype)
+        assert isinstance(staves, Selection), repr(staves)
         for staff in staves:
             leaf = Inspection(staff).leaf(0)
             clef = Inspection(leaf).indicator(Clef)
@@ -1662,7 +1587,6 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
             >>> rh_voice.append("g'4")
             >>> lh_voice.append("c4")
-            >>> wrappers = template.attach_defaults(score)
 
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1693,16 +1617,11 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
                         {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
                             \context Voice = "LH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
                             {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                                \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults(3)
                                 c4
                             }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
                         }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
                     >>                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
                 >>                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
-
-            >>> wrapper = abjad.inspect(rh_voice[0]).wrapper(abjad.Instrument)
-            >>> wrapper.context
-            'PianoStaff'
 
         """
         site = "abjad.TwoStaffPianoScoreTemplate.__call__()"

@@ -4,7 +4,7 @@ from .inspectx import Inspection
 from .new import new
 from .overrides import override, setting
 from .storage import StorageFormatManager, storage
-from .tags import Tag
+from .tag import Tag
 
 
 class LilyPondFormatManager(object):
@@ -350,12 +350,11 @@ def f(argument, strict=None):
     """
     if strict is not None:
         assert isinstance(strict, int), repr(strict)
-    if hasattr(argument, "_publish_storage_format"):
-        string = StorageFormatManager(argument).get_storage_format()
-    elif hasattr(argument, "_get_lilypond_format"):
+    if hasattr(argument, "_get_lilypond_format"):
         string = argument._get_lilypond_format()
     else:
         string = storage(argument)
+    assert isinstance(string, str), repr(string)
     realign = None
     if isinstance(strict, int):
         string = LilyPondFormatManager.align_tags(string, strict)

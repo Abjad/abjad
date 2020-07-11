@@ -1,7 +1,7 @@
 import functools
 import numbers
 
-from .. import enums, mathtools
+from .. import enums, mathx
 from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .Accidental import Accidental
@@ -120,7 +120,7 @@ class PitchClass(object):
         elif mod == 0.5:
             div += 0.5
         div %= 12
-        return mathtools.integer_equivalent_number_to_integer(div)
+        return mathx.integer_equivalent_number_to_integer(div)
 
     ### PUBLIC PROPERTIES ###
 

@@ -304,25 +304,22 @@ class Clef(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_selection(selection) -> "Clef":
+    def from_pitches(pitches) -> "Clef":
         """
-        Makes clef from ``selection``.
+        Makes clef from ``pitches``.
 
         ..  container:: example
 
             >>> maker = abjad.NoteMaker()
             >>> notes = maker(range(-12, -6), [(1, 4)])
             >>> staff = abjad.Staff(notes)
-            >>> abjad.Clef.from_selection(staff)
+            >>> pitches = abjad.iterate(staff).pitches()
+            >>> abjad.Clef.from_pitches(pitches)
             Clef('bass')
 
-            Choses between treble and bass based on minimal number of ledger
-            lines.
+            Choses between treble and bass based on minimal number of ledger lines.
 
         """
-        from ..core.Iteration import Iteration
-
-        pitches = Iteration(selection).pitches()
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
         ]

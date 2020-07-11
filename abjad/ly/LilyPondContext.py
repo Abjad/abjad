@@ -74,8 +74,6 @@ class LilyPondContext(object):
 
     _identity_map: typing.Dict[str, "LilyPondContext"] = {}
 
-    _publish_storage_format = True
-
     ### CONSTRUCTOR ###
 
     def __new__(class_, name="Voice"):

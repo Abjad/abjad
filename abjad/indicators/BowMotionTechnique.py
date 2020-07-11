@@ -34,8 +34,6 @@ class BowMotionTechnique(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     _valid_technique_names = ("circular", "jete", "ordinario", None)
 
     ### INITIALIZER ###

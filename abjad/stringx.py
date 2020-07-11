@@ -7,7 +7,7 @@ import unicodedata
 import roman
 import six
 
-from .. import enums
+from . import enums
 
 
 class String(str):

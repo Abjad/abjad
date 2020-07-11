@@ -1,9 +1,6 @@
 import typing
 
 from . import const
-from .core.Container import Container
-from .core.Context import Context
-from .core.Iteration import Iteration
 from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.StartBeam import StartBeam
@@ -14,12 +11,12 @@ from .indicators.StopHairpin import StopHairpin
 from .indicators.StopTextSpan import StopTextSpan
 from .inspectx import Inspection
 from .instruments import Instrument
+from .iterate import Iteration
 from .iterpitches import sounding_pitches_are_in_range
+from .score import Container, Context
+from .sequence import Sequence
 from .storage import StorageFormatManager
-from .tags import Tags
-from .utilities.Sequence import Sequence
-
-abjad_tags = Tags()
+from .tag import Tag
 
 
 class Wellformedness(object):
@@ -36,8 +33,6 @@ class Wellformedness(object):
     ### CLASS VARIABLES ###
 
     __documentation_section__ = "Collaborators"
-
-    _publish_storage_format = True
 
     ### SPECIAL METHODS ###
 
@@ -97,7 +92,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> print(abjad.lilypond(voice))
                 \new Voice
                 {
                     c'4
@@ -129,7 +124,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> print(abjad.lilypond(voice))
                 \new Voice
                 {
                     c'8
@@ -164,7 +159,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> print(abjad.lilypond(voice))
                 \new Voice
                 {
                     c'8
@@ -233,7 +228,7 @@ class Wellformedness(object):
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> staff.append(abjad.Container())
 
-            >>> abjad.f(staff)
+            >>> print(abjad.lilypond(staff))
             \new Staff
             {
                 c'4
@@ -288,7 +283,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> print(abjad.lilypond(staff))
                 \new Staff
                 {
                     \clef "alto"
@@ -323,7 +318,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> print(abjad.lilypond(staff))
                 \new Staff
                 {
                     \clef "percussion"
@@ -378,7 +373,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> print(abjad.lilypond(staff))
                 \new Staff
                 {
                     c'8
@@ -411,7 +406,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> print(abjad.lilypond(staff))
                 \new Staff
                 {
                     c'8
@@ -463,7 +458,7 @@ class Wellformedness(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> abjad.text_spanner(voice)
             >>> abjad.text_spanner(voice[1:3])
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'4
@@ -500,7 +495,7 @@ class Wellformedness(object):
             >>> command = r'\stopTextSpanOne'
             >>> stop_text_span = abjad.StopTextSpan(command=command)
             >>> abjad.attach(stop_text_span, voice[2])
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'4
@@ -532,7 +527,7 @@ class Wellformedness(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> abjad.text_spanner(voice[:3])
             >>> abjad.text_spanner(voice[-2:])
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'4
@@ -572,7 +567,7 @@ class Wellformedness(object):
             >>> abjad.attach(stop_text_span, voice[3])
             >>> abjad.show(voice) # doctest: +SKIP
 
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'2
@@ -643,7 +638,7 @@ class Wellformedness(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, voice[-1])
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'4
@@ -676,7 +671,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> print(abjad.lilypond(voice))
                 \new Voice
                 {
                     c'4
@@ -728,7 +723,7 @@ class Wellformedness(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> start_hairpin = abjad.StartHairpin('<')
             >>> abjad.attach(start_hairpin, voice[0])
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'4
@@ -757,7 +752,7 @@ class Wellformedness(object):
             >>> abjad.attach(dynamic, voice[0])
             >>> start_hairpin = abjad.StartHairpin('<')
             >>> abjad.attach(start_hairpin, voice[0])
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'4
@@ -791,7 +786,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> print(abjad.lilypond(voice))
                 \new Voice
                 {
                     c'4
@@ -818,7 +813,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> print(abjad.lilypond(voice))
                 \new Voice
                 {
                     c'4
@@ -847,7 +842,7 @@ class Wellformedness(object):
                     if isinstance(wrapper.indicator, StartHairpin):
                         total += 1
             if isinstance(last_dynamic, StartHairpin) and str(
-                abjad_tags.RIGHT_BROKEN
+                Tag("RIGHT_BROKEN")
             ) not in str(last_tag):
                 violators.append(wrapper.component)
         return violators, total
@@ -865,7 +860,7 @@ class Wellformedness(object):
             >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
             >>> start_text_span = abjad.StartTextSpan()
             >>> abjad.attach(start_text_span, voice[0])
-            >>> abjad.f(voice)
+            >>> print(abjad.lilypond(voice))
             \new Voice
             {
                 c'4
@@ -898,7 +893,7 @@ class Wellformedness(object):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> print(abjad.lilypond(voice))
                 \new Voice
                 {
                     c'4

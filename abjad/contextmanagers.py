@@ -11,7 +11,7 @@ import time
 
 from .configuration import Configuration
 from .storage import FormatSpecification, StorageFormatManager
-from .utilities.String import String
+from .stringx import String
 
 configuration = Configuration()
 

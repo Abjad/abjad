@@ -21,13 +21,11 @@ import abjad
 
 from .configuration import Configuration
 from .contextmanagers import Timer
-from .core.Container import Container
-from .core.Leaf import Leaf
-from .core.Tuplet import Tuplet
 from .formatx import LilyPondFormatManager, StorageFormatManager
 from .illustrate import illustrate
 from .inspectx import Inspection
 from .lilypondfile import Block
+from .score import Container, Leaf, Tuplet
 
 configuration = Configuration()
 

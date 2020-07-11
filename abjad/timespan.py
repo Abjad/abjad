@@ -6,18 +6,135 @@ import copy
 import inspect
 import typing
 
-from . import enums, mathtools
+from . import enums, mathx
 from .duration import Duration, Multiplier, Offset
+from .expression import Expression, Signature
 from .markups import Markup, Postscript
 from .new import new
 from .ratio import Ratio
+from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
-from .utilities.Expression import Expression, Signature
-from .utilities.Sequence import Sequence
-from .utilities.TypedList import TypedList
+from .typedcollections import TypedCounter, TypedList
 
-infinity = mathtools.Infinity()
-negative_infinity = mathtools.NegativeInfinity()
+infinity = mathx.Infinity()
+negative_infinity = mathx.NegativeInfinity()
+
+
+class OffsetCounter(TypedCounter):
+    """
+    Offset counter.
+
+    ..  container:: example
+
+        >>> timespans = abjad.TimespanList([
+        ...     abjad.Timespan(0, 16),
+        ...     abjad.Timespan(5, 12),
+        ...     abjad.Timespan(-2, 8),
+        ...     ])
+        >>> timespan_operand = abjad.Timespan(6, 10)
+        >>> timespans = timespans - timespan_operand
+        >>> offset_counter = abjad.OffsetCounter(timespans)
+
+        >>> abjad.f(offset_counter)
+        abjad.OffsetCounter(
+            {
+                abjad.Offset((-2, 1)): 1,
+                abjad.Offset((0, 1)): 1,
+                abjad.Offset((5, 1)): 1,
+                abjad.Offset((6, 1)): 3,
+                abjad.Offset((10, 1)): 2,
+                abjad.Offset((12, 1)): 1,
+                abjad.Offset((16, 1)): 1,
+                }
+            )
+
+        >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(self, items=None):
+        TypedCounter.__init__(self, item_class=Offset)
+        if items:
+            for item in items:
+                try:
+                    self[item.start_offset] += 1
+                    self[item.stop_offset] += 1
+                except Exception:
+                    if hasattr(item, "_get_timespan"):
+                        self[item._get_timespan().start_offset] += 1
+                        self[item._get_timespan().stop_offset] += 1
+                    else:
+                        offset = Offset(item)
+                        self[offset] += 1
+
+    ### SPECIAL METHODS ###
+
+    def _make_markup(self, range_=None, scale=None) -> Markup:
+        r"""
+        Illustrates offset counter.
+
+        ..  container:: example
+
+            >>> timespans = abjad.TimespanList([
+            ...     abjad.Timespan(0, 16),
+            ...     abjad.Timespan(5, 12),
+            ...     abjad.Timespan(-2, 8),
+            ...     ])
+            >>> timespan_operand = abjad.Timespan(6, 10)
+            >>> timespans = timespans - timespan_operand
+            >>> offset_counter = abjad.OffsetCounter(timespans)
+            >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
+
+        """
+        if not self:
+            return Markup.null()
+        if isinstance(range_, Timespan):
+            minimum, maximum = range_.start_offset, range_.stop_offset
+        elif range_ is not None:
+            minimum, maximum = range_
+        else:
+            minimum, maximum = min(self), max(self)
+        minimum_float = float(Offset(minimum))
+        maximum_float = float(Offset(maximum))
+        if scale is None:
+            scale = 1.0
+        assert 0 < scale
+        postscript_scale = 150.0 / (maximum_float - minimum_float)
+        postscript_scale *= float(scale)
+        postscript_x_offset = (minimum_float * postscript_scale) - 1
+        ps = Postscript()
+        ps = ps.setlinewidth(0.2)
+        ps = ps.setdash([2, 1])
+        for offset, count in sorted(self.items()):
+            offset = float(offset) * postscript_scale
+            offset -= postscript_x_offset
+            ps = ps.moveto(offset, -1)
+            ps = ps.rlineto(0, (float(count) * -3) + 1)
+            ps = ps.stroke()
+        markup = Markup.postscript(ps)
+        pieces = [markup]
+        for offset in sorted(self):
+            offset = Multiplier(offset)
+            numerator, denominator = offset.numerator, offset.denominator
+            fraction = Markup.fraction(numerator, denominator)
+            fraction = fraction.center_align().fontsize(-3).sans()
+            x_translation = float(offset) * postscript_scale
+            x_translation -= postscript_x_offset
+            fraction = fraction.translate((x_translation, 1))
+            pieces.append(fraction)
+        markup = Markup.overlay(pieces)
+        return markup
+
+    ### PRIVATE METHODS ###
+
+    def _coerce_item(self, item):
+        return Offset(item)
 
 
 class Timespan(object):
@@ -41,8 +158,6 @@ class Timespan(object):
     __documentation_section__ = "Timespans"
 
     __slots__ = ("_expression", "_start_offset", "_stop_offset")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -238,15 +353,6 @@ class Timespan(object):
         Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
         return super().__hash__()
-
-    def __illustrate__(self, range_=None, scale=None):
-        """
-        Illustrates timespan.
-
-        Returns LilyPond file.
-        """
-        timespans = TimespanList([self])
-        return timespans.__illustrate__(range_=range_, scale=scale)
 
     def __le__(self, argument) -> bool:
         """
@@ -1004,7 +1110,7 @@ class Timespan(object):
         ratio = Ratio(ratio)
         unit_duration = self.duration / sum(ratio.numbers)
         part_durations = [numerator * unit_duration for numerator in ratio.numbers]
-        start_offsets = mathtools.cumulative_sums(
+        start_offsets = mathx.cumulative_sums(
             [self._start_offset] + part_durations, start=None
         )
         offset_pairs = Sequence(start_offsets).nwise()
@@ -2873,11 +2979,11 @@ class TimespanList(TypedList):
         self[:] = sorted(new_timespans)
         return self
 
-    def __illustrate__(
+    def _make_markup(
         self, key=None, range_=None, sort_callable=None, sortkey=None, scale=None,
-    ):
+    ) -> Markup:
         r"""
-        Illustrates timespans.
+        Makes markup.
 
         ..  container:: example
 
@@ -2896,7 +3002,7 @@ class TimespanList(TypedList):
 
             ..  docs::
 
-                >>> lilypond_file = timespans.__illustrate__()
+                >>> lilypond_file = abjad.illustrate(timespans)
                 >>> markup = lilypond_file.items[-1]
                 >>> abjad.f(markup)
                 \markup {
@@ -3079,7 +3185,8 @@ class TimespanList(TypedList):
 
             ..  docs::
 
-                >>> lilypond_file = timespans.__illustrate__(
+                >>> lilypond_file = abjad.illustrate(
+                ...     timespans,
                 ...     key="annotation",
                 ...     sort_callable=human_sorted_keys,
                 ...     )
@@ -3280,10 +3387,10 @@ class TimespanList(TypedList):
 
         Returns markup.
         """
-        from .illustrate import illustrate
-
         if not self:
-            return illustrate(Markup.null())
+            return Markup.null()
+        maximum: typing.Union[Offset, mathx.Infinity]
+        minimum: typing.Union[Offset, mathx.NegativeInfinity]
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -3293,11 +3400,11 @@ class TimespanList(TypedList):
         if scale is None:
             scale = 1.0
         assert 0 < scale
-        minimum = float(Offset(minimum))
-        maximum = float(Offset(maximum))
-        postscript_scale = 150.0 / (maximum - minimum)
+        minimum_float = float(Offset(minimum))
+        maximum_float = float(Offset(maximum))
+        postscript_scale = 150.0 / (maximum_float - minimum_float)
         postscript_scale *= float(scale)
-        postscript_x_offset = (minimum * postscript_scale) - 1
+        postscript_x_offset = (minimum_float * postscript_scale) - 1
         if key is None:
             markup = self._make_timespan_list_markup(
                 self, postscript_x_offset, postscript_scale, sortkey=sortkey
@@ -3328,7 +3435,7 @@ class TimespanList(TypedList):
                 )
                 markups.append(timespan_markup)
             markup = Markup.left_column(markups)
-        return illustrate(markup)
+        return markup
 
     def __invert__(self) -> "TimespanList":
         """
@@ -3435,19 +3542,14 @@ class TimespanList(TypedList):
     ### PRIVATE METHODS ###
 
     def _coerce_item(self, item):
-        def _coerce(argument):
-            if timespans.Timespan._implements_timespan_interface(argument):
-                return argument
-            elif isinstance(argument, timespans.Timespan):
-                return argument
-            elif isinstance(argument, tuple) and len(argument) == 2:
-                return timespans.Timespan(*argument)
-            else:
-                return timespans.Timespan(argument)
-
-        from abjad import timespans
-
-        return _coerce(item)
+        if Timespan._implements_timespan_interface(item):
+            return item
+        elif isinstance(item, Timespan):
+            return item
+        elif isinstance(item, tuple) and len(item) == 2:
+            return Timespan(*item)
+        else:
+            return Timespan(item)
 
     def _get_offsets(self, argument):
         try:
@@ -3831,7 +3933,7 @@ class TimespanList(TypedList):
         return True
 
     @property
-    def start_offset(self) -> typing.Union[Offset, mathtools.NegativeInfinity]:
+    def start_offset(self) -> typing.Union[Offset, mathx.NegativeInfinity]:
         """
         Gets start offset.
 
@@ -3881,7 +3983,7 @@ class TimespanList(TypedList):
             return negative_infinity
 
     @property
-    def stop_offset(self) -> typing.Union[Offset, mathtools.Infinity]:
+    def stop_offset(self) -> typing.Union[Offset, mathx.Infinity]:
         """
         Gets stop offset.
 
@@ -4803,8 +4905,6 @@ class TimespanList(TypedList):
 
         Returns counter.
         """
-        from abjad.meter import OffsetCounter
-
         return OffsetCounter(self)
 
     def explode(self, inventory_count=None) -> typing.Tuple["TimespanList", ...]:

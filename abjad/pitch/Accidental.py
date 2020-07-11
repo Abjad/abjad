@@ -1,7 +1,7 @@
 import functools
 import numbers
 
-from .. import enums, mathtools
+from .. import enums, mathx
 from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 
@@ -94,7 +94,7 @@ class Accidental(object):
         elif isinstance(name, type(self)):
             _arrow = name.arrow
             semitones = name.semitones
-        semitones = mathtools.integer_equivalent_number_to_integer(semitones)
+        semitones = mathx.integer_equivalent_number_to_integer(semitones)
         self._semitones = semitones
         self._arrow = _arrow
         if arrow is not None:

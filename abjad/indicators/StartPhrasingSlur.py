@@ -51,8 +51,6 @@ class StartPhrasingSlur(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(

@@ -51,11 +51,11 @@ interpreted sequentially rather than simultaneously.
 Understanding the LilyPond format of a score
 --------------------------------------------
 
-Use ``format()`` to get the LilyPond format of a score:
+Use ``abjad.lilypond()`` to get the LilyPond format of a score:
 
 ::
 
-    >>> print(format(score, 'lilypond'))
+    >>> print(abjad.lilypond(score))
 
 
 Selecting the music in a score

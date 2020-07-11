@@ -1,7 +1,7 @@
 import pytest
 
 import abjad
-from abjad import mathtools
+from abjad import mathx
 
 values = [
     ("-A1", -1, "-A1"),
@@ -314,10 +314,10 @@ def test_init(input_, semitones, name):
                 group_dict["number"],
             )
         )
-        if (mathtools.sign(float(instance)) == instance.direction_number) and abs(
+        if (mathx.sign(float(instance)) == instance.direction_number) and abs(
             instance.number
         ) != 1:
-            direction = mathtools.sign(float(instance))
+            direction = mathx.sign(float(instance))
             assert float(inflected_up) == (abs(float(instance)) + 0.5) * direction
             assert float(inflected_down) == (abs(float(instance)) - 0.5) * direction
 

@@ -1,17 +1,19 @@
 import collections
 import typing
 
-from .. import mathtools
-from ..duration import Multiplier
-from ..storage import StorageFormatManager
-from ..utilities.OrderedDict import OrderedDict
-from .AfterGraceContainer import AfterGraceContainer
-from .BeforeGraceContainer import BeforeGraceContainer
-from .Component import Component
-from .Score import Score
-from .Staff import Staff
-from .StaffGroup import StaffGroup
-from .Voice import Voice
+from . import mathx
+from .duration import Multiplier
+from .ordereddict import OrderedDict
+from .score import (
+    AfterGraceContainer,
+    BeforeGraceContainer,
+    Component,
+    Score,
+    Staff,
+    StaffGroup,
+    Voice,
+)
+from .storage import StorageFormatManager
 
 
 class Parentage(collections.abc.Sequence):
@@ -659,7 +661,7 @@ class Parentage(collections.abc.Sequence):
 
         """
         prolations = [Multiplier(1)] + self._prolations()
-        products = mathtools.cumulative_products(prolations)
+        products = mathx.cumulative_products(prolations)
         return products[-1]
 
     @property

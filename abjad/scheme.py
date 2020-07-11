@@ -8,7 +8,7 @@ import typing
 from . import enums, typings
 from .duration import NonreducedFraction
 from .storage import FormatSpecification, StorageFormatManager
-from .utilities.String import String
+from .stringx import String
 
 
 class Scheme(object):
@@ -76,7 +76,7 @@ class Scheme(object):
         >>> function_2 = 'tuplet-number::calc-denominator-text'
         >>> string = abjad.Scheme('4', force_quotes=True)
         >>> scheme = abjad.Scheme([function_1, function_2, string])
-        >>> abjad.f(scheme)
+        >>> print(abjad.storage(scheme))
         abjad.Scheme(
             [
                 'tuplet-number::append-note-wrapper',
@@ -101,7 +101,7 @@ class Scheme(object):
         >>> string = '(lambda (grob) (grob-interpret-markup grob'
         >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
         >>> scheme = abjad.Scheme(string, verbatim=True)
-        >>> abjad.f(scheme)
+        >>> print(abjad.storage(scheme))
         abjad.Scheme(
             '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))',
             verbatim=True,
@@ -191,8 +191,6 @@ class Scheme(object):
     ### CLASS VARIABLES ###
 
     __slots__ = ("_force_quotes", "_quoting", "_value", "_verbatim")
-
-    _publish_storage_format = True
 
     lilypond_color_constants = (
         "black",
@@ -424,7 +422,7 @@ class SchemeAssociativeList(Scheme):
         ...     ('space', 2),
         ...     ('padding', 0.5),
         ...     ])
-        >>> abjad.f(scheme_alist)
+        >>> print(abjad.storage(scheme_alist))
         abjad.SchemeAssociativeList(
             [
                 abjad.SchemePair(('space', 2)),
@@ -477,7 +475,7 @@ class SchemeColor(Scheme):
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> print(abjad.lilypond(note))
             \once \override NoteHead.color = #(x11-color 'ForestGreen)
             c'4
 
@@ -830,7 +828,7 @@ class SpacingVector(SchemeVector):
 
         >>> vector = abjad.SpacingVector(0, 0, 12, 0)
 
-        >>> abjad.f(vector)
+        >>> print(abjad.storage(vector))
         abjad.SpacingVector(
             abjad.SchemePair(('basic-distance', 0)),
             abjad.SchemePair(('minimum-distance', 0)),
@@ -847,7 +845,7 @@ class SpacingVector(SchemeVector):
 
         ..  docs::
 
-            >>> abjad.f(lilypond_file.paper_block)
+            >>> print(abjad.lilypond(lilypond_file.paper_block))
             \paper {
                 system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
             }

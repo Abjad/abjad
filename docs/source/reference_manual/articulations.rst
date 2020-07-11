@@ -114,7 +114,7 @@ representation:
 
 ::
 
-    >>> print(format(articulation, 'lilypond'))
+    >>> print(abjad.lilypond(articulation))
 
 
 Controlling whether an articulation appears above or below the staff

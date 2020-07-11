@@ -1,12 +1,12 @@
 import collections
 
 from .. import markups
+from ..cyclictuple import CyclicTuple
 from ..new import new
+from ..pattern import Pattern
+from ..sequence import Sequence
 from ..storage import StorageFormatManager
-from ..utilities.CyclicTuple import CyclicTuple
-from ..utilities.Pattern import Pattern
-from ..utilities.Sequence import Sequence
-from ..utilities.TypedCollection import TypedCollection
+from ..typedcollections import TypedCollection
 from .pitchclasses import PitchClass
 from .pitches import NamedPitch, Pitch
 from .segments import PitchClassSegment, PitchSegment
@@ -36,8 +36,6 @@ class CompoundOperator(object):
     ### CLASS VARIABLES ###
 
     __slots__ = ("_operators", "_show_identity_operators")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -474,8 +472,6 @@ class Duplication(object):
     ### CLASS VARIABLES ###
 
     __slots__ = ("_counts", "_indices", "_period")
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 

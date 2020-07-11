@@ -1,7 +1,7 @@
 import functools
 import typing
 
-from .. import enums, mathtools
+from .. import enums, mathx
 from ..bundle import LilyPondFormatBundle
 from ..markups import Markup
 from ..new import new
@@ -68,13 +68,11 @@ class ColorFingering(object):
 
     _format_slot = "after"
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, number: int = None, *, tweaks: TweakInterface = None) -> None:
         if number is not None:
-            assert mathtools.is_positive_integer(number)
+            assert mathx.is_positive_integer(number)
         self._number = number
         if tweaks is not None:
             assert isinstance(tweaks, TweakInterface), repr(tweaks)

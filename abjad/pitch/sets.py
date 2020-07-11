@@ -3,12 +3,11 @@ import collections
 import copy
 import types
 
+from ..enumeratex import Enumerator
 from ..new import new
+from ..sequence import Sequence
 from ..storage import FormatSpecification
-from ..utilities.Enumerator import Enumerator
-from ..utilities.Sequence import Sequence
-from ..utilities.TypedCollection import TypedCollection
-from ..utilities.TypedFrozenset import TypedFrozenset
+from ..typedcollections import TypedCollection, TypedFrozenset
 from .intervalclasses import IntervalClass, NamedIntervalClass, NumberedIntervalClass
 from .intervals import Interval, NamedInterval, NumberedInterval
 from .pitchclasses import NamedPitchClass, NumberedPitchClass, PitchClass

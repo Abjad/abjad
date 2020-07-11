@@ -40,8 +40,6 @@ class BowContactPoint(object):
 
     __slots__ = ("_contact_point",)
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, contact_point: typings.IntegerPair = None) -> None:

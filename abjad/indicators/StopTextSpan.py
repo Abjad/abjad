@@ -25,8 +25,6 @@ class StopTextSpan(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, command: str = r"\stopTextSpan", *, leak: bool = None) -> None:
