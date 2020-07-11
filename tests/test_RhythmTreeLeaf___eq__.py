@@ -7,7 +7,7 @@ def test_RhythmTreeLeaf___eq___01():
     a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1, is_pitched=True)
     b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1, is_pitched=True)
 
-    assert format(a) == format(b)
+    assert abjad.storage(a) == abjad.storage(b)
     assert a != b
 
 

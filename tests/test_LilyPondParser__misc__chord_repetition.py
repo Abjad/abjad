@@ -12,7 +12,7 @@ def test_LilyPondParser__misc__chord_repetition_01():
         ]
     )
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             <c' e' g'>4
@@ -26,7 +26,7 @@ def test_LilyPondParser__misc__chord_repetition_01():
     string = r"""{ <c' e' g'> q q q }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__misc__chord_repetition_02():
@@ -51,7 +51,7 @@ def test_LilyPondParser__misc__chord_repetition_02():
     articulation = abjad.Articulation("staccatissimo")
     abjad.attach(articulation, target[-1])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -72,7 +72,7 @@ def test_LilyPondParser__misc__chord_repetition_02():
     string = r"""\new Staff { <c' e' g'>8\p q q4-| q8.^"text" q16 q4-| }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__misc__chord_repetition_03():
@@ -88,7 +88,7 @@ def test_LilyPondParser__misc__chord_repetition_03():
         ]
     )
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             <c' e' g'>8
@@ -104,4 +104,4 @@ def test_LilyPondParser__misc__chord_repetition_03():
     string = r"""{ <c' e' g'>8 c'' q c'' r4 q }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

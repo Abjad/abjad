@@ -159,17 +159,6 @@ class Instrument(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -659,17 +648,6 @@ class Tuning(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """

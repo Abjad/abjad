@@ -65,12 +65,6 @@ class CyclicTuple(object):
             return self._items == argument._items
         return False
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __getitem__(self, argument) -> typing.Any:
         """
         Gets item or slice identified by ``argument``.

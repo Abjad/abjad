@@ -5,7 +5,7 @@ def test_LilyPondParser__contexts__StaffGroup_01():
 
     target = abjad.StaffGroup([])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new StaffGroup
         <<
@@ -14,5 +14,5 @@ def test_LilyPondParser__contexts__StaffGroup_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

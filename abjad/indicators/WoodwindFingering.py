@@ -258,14 +258,6 @@ class WoodwindFingering(object):
             "woodwind-diagram", instrument_as_scheme, key_groups_as_scheme_
         )
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats woodwind fingering.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation.

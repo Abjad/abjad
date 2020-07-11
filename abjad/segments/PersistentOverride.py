@@ -133,12 +133,6 @@ class PersistentOverride(object):
             return True
         return False
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __hash__(self) -> int:
         """
         Hashes persistent override.

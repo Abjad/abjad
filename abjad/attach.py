@@ -10,7 +10,7 @@ from .core.Container import Container
 from .core.Leaf import Leaf
 from .duration import Multiplier, Offset
 from .inspectx import Inspection
-from .storage import FormatSpecification, StorageFormatManager
+from .storage import FormatSpecification, StorageFormatManager, storage
 from .tags import Tag
 
 
@@ -329,17 +329,6 @@ class Wrapper(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -512,10 +501,10 @@ class Wrapper(object):
                 break
         if wrapper.indicator == self.indicator and context is not wrapper_context:
             return
-        message = f"\n\nCan not attach ...\n\n{self}\n\n..."
+        message = f"\n\nCan not attach ...\n\n{storage(self)}\n\n..."
         message += f" to {repr(component)}"
         message += f" in {getattr(context, 'name', None)} because ..."
-        message += f"\n\n{format(wrapper)}\n\n"
+        message += f"\n\n{storage(wrapper)}\n\n"
         message += "... is already attached"
         if component is wrapper.component:
             message += " to the same leaf."

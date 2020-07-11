@@ -177,9 +177,9 @@ class Chord(Leaf):
         indent = LilyPondFormatBundle.indent
         result = []
         note_heads = self.note_heads
-        if any("\n" in format(x) for x in note_heads):
+        if any("\n" in _._get_lilypond_format() for _ in note_heads):
             for note_head in note_heads:
-                current_format = format(note_head)
+                current_format = note_head._get_lilypond_format()
                 format_list = current_format.split("\n")
                 format_list = [indent + x for x in format_list]
                 result.extend(format_list)
@@ -188,7 +188,7 @@ class Chord(Leaf):
             result = "\n".join(result)
             result += str(self._get_formatted_duration())
         else:
-            result.extend([format(_) for _ in note_heads])
+            result.extend([_._get_lilypond_format() for _ in note_heads])
             pitches = " ".join(result)
             duration = self._get_formatted_duration()
             result = f"<{pitches}>{duration}"

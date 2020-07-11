@@ -32,10 +32,7 @@ class PartAssignment(object):
 
         >>> part_assignment = abjad.PartAssignment('Horn', [1, 3])
 
-        >>> abjad.f(part_assignment)
-        PartAssignment('Horn', [1, 3])
-
-        >>> print(format(part_assignment))
+        >>> print(abjad.storage(part_assignment))
         abjad.PartAssignment('Horn', [1, 3])
 
     """
@@ -178,14 +175,6 @@ class PartAssignment(object):
             if argument.section == self.section:
                 return argument.members == self.members
         return False
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """

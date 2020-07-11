@@ -68,22 +68,6 @@ class NonreducedRatio(collections.abc.Sequence):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=""):
-        """
-        Formats duration.
-
-        ..  container:: example
-
-            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-            >>> print(format(ratio))
-            abjad.NonreducedRatio((2, 4, 2))
-
-        Returns string.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __getitem__(self, argument):
         """
         Gets item or slice identified by ``argument``.

@@ -14,7 +14,7 @@ def test_Container_remove_01():
     abjad.slur(voice[:])
     abjad.beam(voice[1:2], beam_lone_notes=True)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -33,7 +33,7 @@ def test_Container_remove_01():
     note = voice[1]
     voice.remove(note)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -48,7 +48,7 @@ def test_Container_remove_01():
 
     "Note is now d'8 [ ]"
 
-    assert format(note) == "d'8\n[\n]"
+    assert abjad.lilypond(note) == "d'8\n[\n]"
 
     assert abjad.wellformed(voice)
     assert abjad.wellformed(note)
@@ -66,7 +66,7 @@ def test_Container_remove_02():
     sequential = staff[0]
     abjad.beam(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -86,7 +86,7 @@ def test_Container_remove_02():
 
     staff.remove(sequential)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -101,7 +101,7 @@ def test_Container_remove_02():
 
     assert abjad.wellformed(staff)
 
-    assert format(sequential) == abjad.String.normalize(
+    assert abjad.lilypond(sequential) == abjad.String.normalize(
         r"""
         {
             c'8

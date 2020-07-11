@@ -222,29 +222,6 @@ class Clef(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        r"""
-        Formats clef.
-
-        ..  container:: example
-
-            >>> clef = abjad.Clef('treble')
-            >>> print(format(clef))
-            abjad.Clef('treble')
-
-        ..  container:: example
-
-            >>> clef = abjad.Clef('treble')
-            >>> print(format(clef, 'lilypond'))
-            \clef "treble"
-
-        """
-        if format_specification == "lilypond":
-            return self._get_lilypond_format()
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.

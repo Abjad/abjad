@@ -576,7 +576,6 @@ class NamedPitch(Pitch):
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         from .pitchclasses import NamedPitchClass
 
-        # name = format(pitch_or_pitch_class, "lilypond")
         name = pitch_or_pitch_class._get_lilypond_format()
         if not isinstance(pitch_or_pitch_class, Pitch):
             name += "'"

@@ -8,7 +8,7 @@ def test_LilyPondParser__indicators__BarLine_01():
     bar_line = abjad.BarLine("|.")
     abjad.attach(bar_line, target[-1])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -21,7 +21,7 @@ def test_LilyPondParser__indicators__BarLine_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     items = abjad.inspect(result[2]).indicators()
     assert 1 == len(items) and isinstance(items[0], abjad.BarLine)

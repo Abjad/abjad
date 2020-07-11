@@ -27,7 +27,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation #3 #1 #2 #1 #'(1 . 1)
 
     ..  container:: example
@@ -43,7 +43,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #4 #5 #2 #0 #'(1 . 1)
 
         >>> metric_modulation = abjad.MetricModulation(
@@ -55,7 +55,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation-tuplet-rhs #2 #0 #2 #0 #4 #5 #'(1 . 1)
 
     ..  container:: example
@@ -71,7 +71,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation-tuplet-rhs #4 #1 #3 #0 #2 #3 #'(1 . 1)
 
     ..  container:: example
@@ -89,7 +89,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup {
                 \score
                     {
@@ -184,7 +184,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup {
                 \score
                     {
@@ -412,37 +412,6 @@ class MetricModulation(object):
             if self.ratio == argument.ratio:
                 return True
         return False
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
-
-            >>> abjad.f(metric_modulation)
-            abjad.MetricModulation(
-                left_rhythm=abjad.Selection(
-                    [
-                        abjad.Note("c'4"),
-                        ]
-                    ),
-                right_rhythm=abjad.Selection(
-                    [
-                        abjad.Note("c'4."),
-                        ]
-                    ),
-                scale=(1, 1),
-                )
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """

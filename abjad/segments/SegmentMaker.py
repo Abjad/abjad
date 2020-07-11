@@ -63,12 +63,6 @@ class SegmentMaker(object):
         """
         return StorageFormatManager.compare_objects(self, expr)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __hash__(self):
         """
         Hashes segment-maker.

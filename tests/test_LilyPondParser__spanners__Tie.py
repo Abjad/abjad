@@ -8,8 +8,8 @@ def test_LilyPondParser__spanners__Tie_01():
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
     abjad.tie(target[:])
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__Tie_02():
@@ -34,8 +34,8 @@ def test_LilyPondParser__spanners__Tie_04():
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
     abjad.tie(target[:], direction=abjad.Up)
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__Tie_05():
@@ -46,5 +46,5 @@ def test_LilyPondParser__spanners__Tie_05():
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
     abjad.tie(target[:], direction=abjad.Down)
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

@@ -392,48 +392,6 @@ class MetronomeMark(object):
             return True
         return False
 
-    def __format__(self, format_specification="") -> str:
-        r"""
-        Formats metronome mark.
-
-        ..  container:: example
-
-            Without custom markup:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 84, 'Allegro')
-            >>> print(format(mark))
-            abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=84,
-                textual_indication='Allegro',
-                )
-
-        ..  container:: example
-
-            With custom markup:
-
-            >>> markup = abjad.Markup(r'\italic { Allegro }')
-            >>> mark = abjad.MetronomeMark((1, 4), 84, custom_markup=markup)
-            >>> print(format(mark))
-            abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=84,
-                custom_markup=abjad.Markup(
-                    contents=[
-                        abjad.MarkupCommand(
-                            'italic',
-                            ['Allegro']
-                            ),
-                        ],
-                    ),
-                )
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        assert format_specification == "lilypond"
-        return self._get_lilypond_format()
-
     def __hash__(self) -> int:
         """
         Hashes metronome mark.
@@ -1242,7 +1200,7 @@ class MetronomeMark(object):
 
             ..  docs::
 
-                >>> print(format(markup))
+                >>> print(abjad.lilypond(markup))
                 \markup \abjad-metronome-mark-markup #2 #0 #1 #"90"
 
         ..  container:: example
@@ -1257,7 +1215,7 @@ class MetronomeMark(object):
 
             ..  docs::
 
-                >>> print(format(markup))
+                >>> print(abjad.lilypond(markup))
                 \markup \abjad-metronome-mark-markup #2 #0 #1 #"90.1"
 
         ..  container:: example
@@ -1272,7 +1230,7 @@ class MetronomeMark(object):
 
             ..  docs::
 
-                >>> print(format(markup))
+                >>> print(abjad.lilypond(markup))
                 \markup \abjad-metronome-mark-mixed-number-markup #2 #0 #1 #"90" #"2" #"3"
 
         """

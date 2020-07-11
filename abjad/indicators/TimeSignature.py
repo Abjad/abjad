@@ -207,21 +207,6 @@ class TimeSignature(object):
         else:
             return False
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats time signature.
-
-        ..  container:: example
-
-            >>> print(format(abjad.TimeSignature((3, 8))))
-            abjad.TimeSignature((3, 8))
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        assert format_specification == "lilypond"
-        return self._get_lilypond_format()
-
     def __ge__(self, argument) -> bool:
         """
         Is true when duration of time signature is greater than or equal to

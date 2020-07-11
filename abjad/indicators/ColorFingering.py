@@ -89,28 +89,6 @@ class ColorFingering(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        r"""
-        Formats color fingering.
-
-        Set ``format_specification`` to ``''``, ``'lilypond'`` or
-        ``'storage'``. Interprets ``''`` equal to ``'storage'``.
-
-        ..  container:: example
-
-            >>> fingering = abjad.ColorFingering(1)
-            >>> abjad.f(fingering)
-            abjad.ColorFingering(
-                number=1,
-                )
-
-        """
-        if format_specification == "lilypond":
-            return self._get_lilypond_format()
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -168,7 +146,7 @@ class ColorFingering(object):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        return format(self.markup, "lilypond")
+        return self.markup._get_lilypond_format()
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()

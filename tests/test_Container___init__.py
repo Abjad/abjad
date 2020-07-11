@@ -9,7 +9,7 @@ def test_Container___init___01():
     container = abjad.Container([])
 
     assert isinstance(container, abjad.Container)
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
         }
@@ -25,7 +25,7 @@ def test_Container___init___02():
     container = abjad.Container("c'8 d'8 e'8")
 
     assert isinstance(container, abjad.Container)
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             c'8

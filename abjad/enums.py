@@ -14,9 +14,6 @@ class Comparison(uqbar.enums.StrictEnumeration):
     Exact = 0
     More = 1
 
-    def __format__(self, format_spec):
-        return repr(self)
-
     def __repr__(self):
         return self.name
 
@@ -49,19 +46,14 @@ class VerticalAlignment(uqbar.enums.StrictEnumeration):
     Center = 0
     Up = 1
 
-    def __format__(self, format_spec):
-        """
-        Formats vertical alignment as ``storage`` or ``lilypond``.
-        """
-        if format_spec == "lilypond":
-            return {self.Down: "_", self.Up: "^", self.Center: "-"}[self]
-        return repr(self)
-
     def __repr__(self):
         return self.name
 
     def __str__(self):
         return self.name
+
+    def _get_lilypond_format(self):
+        return {self.Down: "_", self.Up: "^", self.Center: "-"}[self]
 
     @classmethod
     def from_expr(cls, expr):

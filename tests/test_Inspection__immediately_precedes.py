@@ -40,7 +40,7 @@ def test_Inspection__immediately_precedes_05():
 
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -70,7 +70,7 @@ def test_Inspection__immediately_precedes_06():
 
     voice = abjad.Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -100,7 +100,7 @@ def test_Inspection__immediately_precedes_07():
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -136,7 +136,7 @@ def test_Inspection__immediately_precedes_08():
     staff[0].name = "foo"
     staff[1].name = "foo"
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -171,7 +171,7 @@ def test_Inspection__immediately_precedes_09():
     staff[0].name = "foo"
     staff[1].name = "bar"
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -204,7 +204,7 @@ def test_Inspection__immediately_precedes_10():
     staff_2 = abjad.Staff([abjad.Voice("g'8 a'8 b'8 c''8")])
     container = abjad.Container([staff_1, staff_2])
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             \new Staff
@@ -256,7 +256,7 @@ def test_Inspection__immediately_precedes_11():
     staff_2.simultaneous = True
     container = abjad.Container([staff_1, staff_2])
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             \new Staff
@@ -332,7 +332,7 @@ def test_Inspection__immediately_precedes_12():
 
     voice = abjad.Voice("{ { c'8 d'8 e'8 f'8 } } { { g'8 a'8 b'8 c''8 } }")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {

@@ -13,7 +13,7 @@ def test_LilyPondParser__spanners__Slur_01():
     abjad.slur(target[2:])
     abjad.slur(target[:3])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -29,8 +29,8 @@ def test_LilyPondParser__spanners__Slur_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__Slur_02():
@@ -43,7 +43,7 @@ def test_LilyPondParser__spanners__Slur_02():
     abjad.slur(target[2:])
     abjad.slur(target[:3])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -62,7 +62,7 @@ def test_LilyPondParser__spanners__Slur_02():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__Slur_03():
@@ -117,7 +117,7 @@ def test_LilyPondParser__spanners__Slur_07():
     start_slur = abjad.StartSlur(direction=abjad.Up)
     abjad.slur(target[2:], start_slur=start_slur)
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -133,5 +133,5 @@ def test_LilyPondParser__spanners__Slur_07():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

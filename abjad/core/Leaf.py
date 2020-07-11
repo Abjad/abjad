@@ -92,7 +92,7 @@ class Leaf(Component):
         result = []
         container = self._after_grace_container
         if container is not None:
-            result.append(format(container))
+            result.append(container._get_lilypond_format())
         return result
 
     def _format_after_grace_command(self):
@@ -150,7 +150,7 @@ class Leaf(Component):
         result = []
         container = self._before_grace_container
         if container is not None:
-            result.append(format(container))
+            result.append(container._get_lilypond_format())
         return result
 
     def _format_leaf_body(self, bundle):
@@ -186,7 +186,7 @@ class Leaf(Component):
             client=self,
             repr_is_indented=False,
             repr_args_values=[summary],
-            storage_format_args_values=[format(self, "lilypond")],
+            storage_format_args_values=[self._get_lilypond_format()],
             storage_format_is_indented=False,
             storage_format_kwargs_names=[],
         )

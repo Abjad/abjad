@@ -287,7 +287,7 @@ class LilyPondExtension(Extension):
             illustration._use_relative_includes = True
             includes = [stylesheet]
             illustration._includes = tuple(includes)
-        code = format(illustration, "lilypond")
+        code = illustration._get_lilypond_format()
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
         node["no-stylesheet"] = self.no_stylesheet

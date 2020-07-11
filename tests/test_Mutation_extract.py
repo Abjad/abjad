@@ -10,7 +10,7 @@ def test_Mutation_extract_01():
     abjad.beam(voice[:])
     abjad.glissando(voice[:])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -25,12 +25,12 @@ def test_Mutation_extract_01():
             ]
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     note = voice[1]
     abjad.mutate(note).extract()
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -43,7 +43,7 @@ def test_Mutation_extract_01():
             ]
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(note)
     assert abjad.wellformed(voice)
@@ -58,7 +58,7 @@ def test_Mutation_extract_02():
     abjad.beam(voice[:])
     abjad.glissando(voice[:])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -73,13 +73,13 @@ def test_Mutation_extract_02():
             ]
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     notes = voice[:2]
     for note in notes:
         abjad.mutate(note).extract()
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -89,7 +89,7 @@ def test_Mutation_extract_02():
             ]
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     for note in notes:
         assert abjad.wellformed(note)
@@ -108,7 +108,7 @@ def test_Mutation_extract_03():
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -124,12 +124,12 @@ def test_Mutation_extract_03():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     container = staff[0]
     abjad.mutate(container).extract()
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -143,7 +143,7 @@ def test_Mutation_extract_03():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert not container
     assert abjad.wellformed(staff)
@@ -162,7 +162,7 @@ def test_Mutation_extract_04():
     abjad.beam(leaves)
     abjad.glissando(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -187,13 +187,13 @@ def test_Mutation_extract_04():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     containers = voice[:2]
     for container in containers:
         abjad.mutate(container).extract()
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -214,7 +214,7 @@ def test_Mutation_extract_04():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     for container in containers:
         assert not container

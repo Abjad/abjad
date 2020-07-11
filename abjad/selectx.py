@@ -81,14 +81,6 @@ class Inequality(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats inequality.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes object.
@@ -487,14 +479,6 @@ class Selection(collections.abc.Sequence):
         elif isinstance(argument, collections.abc.Sequence):
             return self.items == tuple(argument)
         return False
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats selection.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        raise ValueError(repr(format_specification))
 
     def __getitem__(self, argument):
         r"""

@@ -1470,7 +1470,7 @@ class String(str):
             raise ValueError(repr(argument))
         if alignment is enums.Center:
             raise ValueError(repr(argument))
-        return String(format(alignment, "lilypond"))
+        return String(alignment._get_lilypond_format())
 
     def to_dash_case(self) -> "String":
         """
@@ -1745,7 +1745,7 @@ class String(str):
             alignment = enums.VerticalAlignment.from_expr(argument)
         except Exception:
             raise ValueError(repr(argument))
-        return String(format(alignment, "lilypond"))
+        return String(alignment._get_lilypond_format())
 
     @staticmethod
     def to_tridirectional_ordinal_constant(

@@ -16,6 +16,7 @@ from ..indicators.Clef import Clef
 from ..indicators.TimeSignature import TimeSignature
 from ..iox import IOManager
 from ..overrides import LilyPondLiteral
+from ..storage import storage
 from ..tags import Tag
 from ..utilities.CyclicTuple import CyclicTuple
 from ..utilities.OrderedDict import OrderedDict
@@ -2017,7 +2018,7 @@ class Path(pathlib.PosixPath):
             raise TypeError(f"must be part (not {part!r}).")
         identifiers = []
         default_clef = self._part_name_to_default_clef(part.name)
-        clef_string = format(default_clef, "lilypond")
+        clef_string = default_clef._get_lilypond_format()
         assert clef_string.startswith("\\"), repr(clef_string)
         clef_string = clef_string[1:]
         identifiers.append(clef_string)
@@ -2138,7 +2139,7 @@ class Path(pathlib.PosixPath):
             if not abjad_instrument:
                 raise Exception(f"can not find {key!r}.")
             clef = Clef(abjad_instrument.allowable_clefs[0])
-            clef_string = format(clef, "lilypond")
+            clef_string = clef._get_lilypond_format()
             strings = []
             method = self._context_name_to_first_appearance_margin_markup
             for staff_name, identifiers in dictionary.items():
@@ -2353,7 +2354,7 @@ class Path(pathlib.PosixPath):
         items.sort()
         dictionary = OrderedDict(items)
         if dictionary:
-            line = format(dictionary, "storage")
+            line = storage(dictionary)
             line = f"{variable_name} = {line}"
             lines.append(line)
         else:

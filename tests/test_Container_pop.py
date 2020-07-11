@@ -11,7 +11,7 @@ def test_Container_pop_01():
     abjad.slur(voice[:])
     abjad.beam(voice[1:2], beam_lone_notes=True)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -25,11 +25,11 @@ def test_Container_pop_01():
             )
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     result = voice.pop(1)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -40,14 +40,14 @@ def test_Container_pop_01():
             )
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
     "Result is now d'8 [ ]"
 
     assert abjad.wellformed(result)
-    assert format(result) == "d'8\n[\n]"
+    assert abjad.lilypond(result) == "d'8\n[\n]"
 
 
 def test_Container_pop_02():
@@ -59,7 +59,7 @@ def test_Container_pop_02():
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -75,11 +75,11 @@ def test_Container_pop_02():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     sequential = staff.pop()
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -90,11 +90,11 @@ def test_Container_pop_02():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
-    assert format(sequential) == abjad.String.normalize(
+    assert abjad.lilypond(sequential) == abjad.String.normalize(
         r"""
         {
             e'8
@@ -102,6 +102,6 @@ def test_Container_pop_02():
             ]
         }
         """
-    ), print(format(sequential))
+    ), print(abjad.lilypond(sequential))
 
     assert abjad.wellformed(sequential)

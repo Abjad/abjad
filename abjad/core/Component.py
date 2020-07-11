@@ -97,23 +97,6 @@ class Component(object):
             new(wrapper_, component=component)
         return component
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats component.
-        """
-        if format_specification in ("", "lilypond"):
-            string = self._get_lilypond_format()
-        else:
-            assert format_specification == "storage"
-            string = StorageFormatManager(self).get_storage_format()
-        lines = []
-        for line in string.split("\n"):
-            if line.isspace():
-                line = ""
-            lines.append(line)
-        string = "\n".join(lines)
-        return string
-
     def __getnewargs__(self):
         """
         Gets new arguments.

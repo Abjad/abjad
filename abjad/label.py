@@ -4356,36 +4356,6 @@ class ColorMap(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats color map.
-
-        ..  container:: example
-
-            >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...     ],
-            ... )
-
-            >>> abjad.f(color_map)
-            abjad.ColorMap(
-                colors=['red', 'green', 'blue'],
-                pitch_iterables=[
-                    [-8, 2, 10, 21],
-                    [0, 11, 32, 41],
-                    [15, 25, 42, 43],
-                    ],
-                )
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __getitem__(self, pitch_class) -> str:
         """
         Gets ``pitch_class`` color.

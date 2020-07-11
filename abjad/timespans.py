@@ -165,25 +165,6 @@ class Timespan(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    #    def __format__(self, format_specification="") -> str:
-    #        """
-    #        Formats timespan.
-    #
-    #        ..  container:: example
-    #
-    #            >>> timespan = abjad.Timespan(0, 10)
-    #            >>> abjad.f(timespan)
-    #            abjad.Timespan(
-    #                start_offset=abjad.Offset((0, 1)),
-    #                stop_offset=abjad.Offset((10, 1)),
-    #                )
-    #
-    #        Returns string.
-    #        """
-    #        if format_specification in ("", "storage"):
-    #            return StorageFormatManager(self).get_storage_format()
-    #        return str(self)
-
     def __ge__(self, argument) -> bool:
         """
         Is true when ``argument`` start offset is greater or equal

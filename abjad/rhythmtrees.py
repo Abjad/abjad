@@ -48,12 +48,6 @@ class RhythmTreeMixin(object):
         """
         raise NotImplementedError
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -653,7 +647,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
         >>> tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
         >>> graph = tree.__graph__()
-        >>> print(format(graph, 'graphviz'))
+        >>> print(format(graph, "graphviz"))
         digraph G {
             graph [bgcolor=transparent,
                 truecolor=true];

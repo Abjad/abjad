@@ -388,26 +388,6 @@ class Meter(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification=""):
-        """
-        Formats meter.
-
-        ..  container:: example
-
-            Gets storage format of ``7/4``:
-
-            >>> meter = abjad.Meter((7, 4))
-            >>> print(format(meter))
-            abjad.Meter(
-                '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-                )
-
-        Returns string.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __graph__(self, **keywords):
         """
         Gets Graphviz format of meter.
@@ -1046,7 +1026,7 @@ class Meter(object):
         ..  container:: example
 
             >>> meter = abjad.Meter((7, 4))
-            >>> print(format(meter.root_node))
+            >>> print(abjad.storage(meter.root_node))
             abjad.rhythmtrees.RhythmTreeContainer(
                 children=(
                     abjad.rhythmtrees.RhythmTreeContainer(
@@ -2874,14 +2854,6 @@ class MetricAccentKernel(object):
         Returns true or false.
         """
         return super().__eq__(argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self):
         """

@@ -7,7 +7,7 @@ def test_LilyPondParser__containers__Tuplet_01():
     notes = maker([0, 2, 4], (1, 8))
     target = abjad.Tuplet(abjad.Multiplier(2, 3), notes)
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \times 2/3 {
             c'8
@@ -18,5 +18,5 @@ def test_LilyPondParser__containers__Tuplet_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

@@ -290,14 +290,6 @@ class Pattern(object):
             result = type(self)(operator="and", patterns=[self, pattern])
         return result
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __invert__(self):
         """
         Inverts pattern.

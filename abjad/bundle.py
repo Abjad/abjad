@@ -45,12 +45,6 @@ class LilyPondFormatBundle(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation.

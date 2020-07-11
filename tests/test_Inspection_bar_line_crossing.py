@@ -10,7 +10,7 @@ def test_Inspection_bar_line_crossing_01():
     time_signature = abjad.TimeSignature((2, 8), partial=abjad.Duration(1, 8))
     abjad.attach(time_signature, staff[0])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {

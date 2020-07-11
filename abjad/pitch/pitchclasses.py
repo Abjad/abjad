@@ -928,7 +928,6 @@ class NumberedPitchClass(PitchClass):
         )
 
     def _get_lilypond_format(self):
-        # return format(NamedPitchClass(self), "lilypond")
         return NamedPitchClass(self)._get_lilypond_format()
 
     ### PUBLIC PROPERTIES ###

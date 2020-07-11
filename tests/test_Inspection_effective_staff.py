@@ -16,7 +16,7 @@ def test_Inspection_effective_staff_01():
     staff_change = abjad.StaffChange("LH")
     abjad.attach(staff_change, staff_group[0][0])
 
-    assert format(staff_group) == abjad.String.normalize(
+    assert abjad.lilypond(staff_group) == abjad.String.normalize(
         r"""
         \new PianoStaff
         <<
@@ -67,7 +67,7 @@ def test_Inspection_effective_staff_02():
     staff_change = abjad.StaffChange("RH")
     abjad.attach(staff_change, staff_group[0][2])
 
-    assert format(staff_group) == abjad.String.normalize(
+    assert abjad.lilypond(staff_group) == abjad.String.normalize(
         r"""
         \new PianoStaff
         <<
@@ -117,7 +117,7 @@ def test_Inspection_effective_staff_03():
     staff_change = abjad.StaffChange("LH")
     abjad.attach(staff_change, staff_group[0][-1])
 
-    assert format(staff_group) == abjad.String.normalize(
+    assert abjad.lilypond(staff_group) == abjad.String.normalize(
         r"""
         \new PianoStaff
         <<
@@ -160,7 +160,7 @@ def test_Inspection_effective_staff_04():
     staff_change = abjad.StaffChange("LH")
     abjad.attach(staff_change, staff_group[0][1])
 
-    assert format(staff_group) == abjad.String.normalize(
+    assert abjad.lilypond(staff_group) == abjad.String.normalize(
         r"""
         \new PianoStaff
         <<

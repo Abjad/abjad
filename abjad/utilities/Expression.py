@@ -8,7 +8,7 @@ import quicktions
 import uqbar.enums
 
 from ..new import new
-from ..storage import FormatSpecification, StorageFormatManager
+from ..storage import FormatSpecification, StorageFormatManager, storage
 
 
 class Signature(object):
@@ -462,24 +462,6 @@ class Expression(object):
 
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats expression.
-
-        ..  container:: example expression
-
-            Formats identity expression:
-
-            >>> expression = abjad.Expression()
-
-            >>> abjad.f(expression)
-            abjad.Expression()
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __getattr__(self, name):
         """
@@ -1268,7 +1250,7 @@ class Expression(object):
         # abjad object
         elif not inspect.isclass(argument):
             try:
-                argument = format(argument, "storage")
+                argument = storage(argument)
             except (TypeError, ValueError):
                 try:
                     argument = StorageFormatManager(argument).get_storage_format()

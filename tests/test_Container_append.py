@@ -12,7 +12,7 @@ def test_Container_append_01():
     abjad.beam(voice[:])
     voice.append(abjad.Container("e'8 f'8"))
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -26,7 +26,7 @@ def test_Container_append_01():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -40,7 +40,7 @@ def test_Container_append_02():
     abjad.beam(tuplet[:])
     tuplet.append(abjad.Note(5, (1, 16)), preserve_duration=True)
 
-    assert format(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \times 4/7 {
             c'8
@@ -51,7 +51,7 @@ def test_Container_append_02():
             f'16
         }
         """
-    ), print(format(tuplet))
+    ), print(abjad.lilypond(tuplet))
 
     assert abjad.wellformed(tuplet)
 
@@ -82,7 +82,7 @@ def test_Container_append_04():
     voice_1 = abjad.Voice("c'8 d'8 e'8")
     abjad.beam(voice_1[:])
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -93,12 +93,12 @@ def test_Container_append_04():
             ]
         }
         """
-    ), print(format(voice_1))
+    ), print(abjad.lilypond(voice_1))
 
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice_2[:])
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -110,11 +110,11 @@ def test_Container_append_04():
             ]
         }
         """
-    ), print(format(voice_2))
+    ), print(abjad.lilypond(voice_2))
 
     voice_1.append(voice_2[-1])
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -127,11 +127,11 @@ def test_Container_append_04():
             ]
         }
         """
-    ), print(format(voice_1))
+    ), print(abjad.lilypond(voice_1))
 
     assert abjad.wellformed(voice_1)
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -141,7 +141,7 @@ def test_Container_append_04():
             e'8
         }
         """
-    ), print(format(voice_2))
+    ), print(abjad.lilypond(voice_2))
 
     assert abjad.wellformed(voice_2)
 
@@ -155,7 +155,7 @@ def test_Container_append_05():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -167,11 +167,11 @@ def test_Container_append_05():
             ]
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     voice.append(voice[1])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -183,7 +183,7 @@ def test_Container_append_05():
             d'8
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 

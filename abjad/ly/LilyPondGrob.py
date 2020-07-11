@@ -12,8 +12,10 @@ class LilyPondGrob(object):
     ..  container:: example
 
         >>> grob = abjad.LilyPondGrob('Beam')
-        >>> print(format(grob))
-        LilyPondGrob(name='Beam')
+        >>> print(abjad.storage(grob))
+        abjad.LilyPondGrob(
+            name='Beam',
+            )
 
     """
 

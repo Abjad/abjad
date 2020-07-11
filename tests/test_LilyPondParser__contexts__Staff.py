@@ -5,7 +5,7 @@ def test_LilyPondParser__contexts__Staff_01():
 
     target = abjad.Staff([])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -14,8 +14,8 @@ def test_LilyPondParser__contexts__Staff_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__contexts__Staff_02():
@@ -26,7 +26,7 @@ def test_LilyPondParser__contexts__Staff_02():
     target.append(abjad.Voice(maker([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
     target.append(abjad.Voice(maker([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         <<
@@ -57,5 +57,5 @@ def test_LilyPondParser__contexts__Staff_02():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

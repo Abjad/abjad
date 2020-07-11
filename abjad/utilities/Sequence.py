@@ -295,41 +295,6 @@ class Sequence(collections.abc.Sequence):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats sequence.
-
-        ..  container:: example
-
-            Formats sequence:
-
-            >>> abjad.f(abjad.sequence([1, 2, 3, 4, 5, 6]))
-            Sequence([1, 2, 3, 4, 5, 6])
-
-        ..  container:: example expression
-
-            Formats expression:
-
-            >>> expression = abjad.Expression(name='J')
-            >>> expression = expression.sequence()
-            >>> abjad.f(expression)
-            abjad.Expression(
-                callbacks=[
-                    abjad.Expression(
-                        evaluation_template='abjad.Sequence',
-                        is_initializer=True,
-                        string_template='{}',
-                        ),
-                    ],
-                name='J',
-                proxy_class=abjad.Sequence,
-                )
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     @Signature(
         markup_maker_callback="_make___getitem___markup",
         string_template_callback="_make___getitem___string_template",

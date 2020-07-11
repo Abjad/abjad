@@ -8,8 +8,8 @@ def test_LilyPondParser__spanners__Glissando_01():
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
     abjad.glissando(target[:])
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__Glissando_02():

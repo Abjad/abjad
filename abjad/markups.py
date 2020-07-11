@@ -3018,7 +3018,7 @@ class MarkupCommand(object):
                     result.extend(recurse(item))
                     result.append("}")
                 elif isinstance(item, Scheme):
-                    result.append(format(item))
+                    result.append(item._get_lilypond_format())
                 elif hasattr(item, "_get_format_pieces"):
                     result.extend(item._get_format_pieces())
                 elif isinstance(item, str) and "\n" in item:

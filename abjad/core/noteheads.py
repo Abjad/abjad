@@ -112,16 +112,6 @@ class NoteHead(object):
             return self.written_pitch == argument.written_pitch
         return self.written_pitch == argument
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats note-head.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        elif format_specification == "storage":
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes note-head.
@@ -189,7 +179,7 @@ class NoteHead(object):
         written_pitch = self.written_pitch
         if isinstance(written_pitch, NamedPitch):
             written_pitch = written_pitch.simplify()
-        kernel = format(written_pitch)
+        kernel = str(written_pitch)
         if self.is_forced:
             kernel += "!"
         if self.is_cautionary:

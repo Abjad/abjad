@@ -3,7 +3,6 @@ import typing
 
 from . import enums
 from .bundle import LilyPondFormatBundle
-from .lilypond import lilypond
 from .ly.colors import colors
 from .ly.contexts import contexts
 from .ly.grob_interfaces import grob_interfaces
@@ -197,15 +196,6 @@ class LilyPondLiteral(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats LilyPond literal.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        assert format_specification == "lilypond"
-        return str(self.argument)
 
     def __hash__(self) -> int:
         """
@@ -1265,10 +1255,7 @@ class OverrideInterface(Interface):
             argument = Scheme(argument)
         else:
             argument = Scheme(argument, quoting="'")
-        try:
-            result = format(argument, "lilypond")
-        except TypeError:
-            result = lilypond(argument)
+        result = argument._get_lilypond_format()
         return result
 
     @staticmethod

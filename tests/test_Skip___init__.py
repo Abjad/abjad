@@ -68,7 +68,7 @@ def test_Skip___init___05():
     # check that attributes have not been removed or added.
     assert dir(note) == dir(abjad.Note("c'4"))
     assert dir(skip) == dir(abjad.Skip((1, 4)))
-    assert format(skip) == "s8"
+    assert abjad.lilypond(skip) == "s8"
     assert skip._parent is None
     assert skip.written_duration == duration
 

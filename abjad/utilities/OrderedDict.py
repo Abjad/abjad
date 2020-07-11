@@ -160,12 +160,6 @@ class OrderedDict(collections.abc.MutableMapping):
             return self._collection == argument
         return False
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __ge__(self, argument):
         """
         Is true when typed ordered dictionary is greater than or equal

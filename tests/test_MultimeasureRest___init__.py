@@ -8,7 +8,7 @@ def test_MultimeasureRest___init___01():
 
     multimeasure_rest = abjad.MultimeasureRest()
 
-    assert format(multimeasure_rest) == abjad.String.normalize(
+    assert abjad.lilypond(multimeasure_rest) == abjad.String.normalize(
         r"""
         R4
         """

@@ -7,7 +7,7 @@ def test_LilyPondParser__containers__nesting_01():
         [abjad.Container([]), abjad.Container([abjad.Container([])])]
     )
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             {
@@ -21,5 +21,5 @@ def test_LilyPondParser__containers__nesting_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

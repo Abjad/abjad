@@ -11,8 +11,10 @@ class LilyPondGrobInterface(object):
     ..  container:: example
 
         >>> interface = abjad.LilyPondGrobInterface('beam-interface')
-        >>> abjad.f(interface)
-        LilyPondGrobInterface(name='beam-interface')
+        >>> print(abjad.storage(interface))
+        abjad.LilyPondGrobInterface(
+            name='beam-interface',
+            )
 
     """
 
@@ -39,14 +41,6 @@ class LilyPondGrobInterface(object):
         self._name = name
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __repr__(self) -> str:
         """

@@ -22,6 +22,7 @@ from .core.Staff import Staff
 from .core.Voice import Voice
 from .indicators.TimeSignature import TimeSignature
 from .inspectx import Inspection
+from .lilypond import lilypond
 from .overrides import LilyPondLiteral, override, setting
 from .pitch.pitches import NamedPitch
 from .scheme import Scheme, SpacingVector
@@ -103,18 +104,6 @@ class Block(object):
         """
         self._public_attribute_names.remove(name)
         object.__delattr__(self, name)
-
-    def __format__(self, format_specification=""):
-        """
-        Formats block.
-
-        Returns string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        else:
-            assert format_specification == "storage"
-            return StorageFormatManager(self).get_storage_format()
 
     def __getitem__(self, name):
         """
@@ -263,7 +252,7 @@ class Block(object):
         prototype = Scheme
         for value in self.items:
             if isinstance(value, prototype):
-                result.append(format(value, "lilypond"))
+                result.append(lilypond(value))
         prototype = (LilyPondDimension, Scheme)
         for key in self._public_attribute_names:
             assert not key.startswith("_"), repr(key)
@@ -280,10 +269,10 @@ class Block(object):
             if isinstance(value, Markup):
                 formatted_value = value._get_format_pieces()
             elif isinstance(value, prototype):
-                formatted_value = [format(value, "lilypond")]
+                formatted_value = [lilypond(value)]
             else:
                 formatted_value = Scheme(value)
-                formatted_value = format(formatted_value, "lilypond")
+                formatted_value = lilypond(formatted_value)
                 formatted_value = [formatted_value]
             setting = f"{formatted_key!s} = {formatted_value[0]!s}"
             result.append(setting)
@@ -398,7 +387,7 @@ class ContextBlock(Block):
         >>> block
         <ContextBlock(source_lilypond_type='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 
-        >>> print(format(block))
+        >>> print(abjad.lilypond(block))
         \context {
             \Staff
             \name FluteStaff
@@ -750,22 +739,6 @@ class DateTimeToken(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=""):
-        """
-        Formats date / time token.
-
-        ..  container:: example
-
-            >>> token = abjad.DateTimeToken()
-            >>> print(format(token)) # doctest: +SKIP
-            2014-01-04 14:42
-
-        Returns string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        return StorageFormatManager(self).get_storage_format()
-
     def __repr__(self):
         """
         Gets interpreter representation of date / time token.
@@ -829,22 +802,6 @@ class LilyPondDimension(object):
         self._unit = unit
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification=""):
-        r"""
-        Formats LilyPond dimension.
-
-        ..  container:: example
-
-            >>> dimension = abjad.LilyPondDimension(2, 'in')
-            >>> print(format(dimension))
-            2\in
-
-        Returns string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self) -> str:
         """
@@ -924,7 +881,7 @@ class LilyPondFile(object):
 
         ::
 
-            >>> print(format(lilypond_file)) # doctest: +SKIP
+            >>> print(abjad.lilypond(lilypond_file)) # doctest: +SKIP
             % 2004-01-14 17:29
 
             % File construct as an example.
@@ -1044,101 +1001,6 @@ class LilyPondFile(object):
             return True
         except (AssertionError, KeyError, ValueError, TypeError):
             return False
-
-    def __format__(self, format_specification=""):
-        r"""
-        Formats LilyPond file.
-
-        ..  container:: example
-
-            Gets format:
-
-            >>> lilypond_file = abjad.LilyPondFile.new()
-
-            >>> print(format(lilypond_file)) # doctest: +SKIP
-            % 2016-01-31 20:29
-            <BLANKLINE>
-            \version "2.19.35"
-            \language "english"
-            <BLANKLINE>
-            \header {}
-            <BLANKLINE>
-            \layout {}
-            <BLANKLINE>
-            \paper {}
-
-        ..  container:: example
-
-            Works with empty layout and MIDI blocks:
-
-            >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
-            >>> score_block = abjad.Block(name='score')
-            >>> layout_block = abjad.Block(name='layout')
-            >>> midi_block = abjad.Block(name='midi')
-            >>> score_block.items.append(score)
-            >>> score_block.items.append(layout_block)
-            >>> score_block.items.append(midi_block)
-
-            >>> abjad.f(score_block)
-            \score {
-                \new Score
-                <<
-                    \new Staff
-                    {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                    }
-                >>
-                \layout {}
-                \midi {}
-            }
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'8 d' e' f'")
-            >>> abjad.attach(abjad.Articulation('.'), staff[0])
-            >>> abjad.attach(abjad.Markup('Allegro'), staff[0])
-            >>> score = abjad.Score([staff])
-            >>> lilypond_file = abjad.LilyPondFile.new([score])
-            >>> lilypond_file._lilypond_version_token = None
-
-            >>> abjad.f(lilypond_file)
-            \language "english" %! abjad.LilyPondFile._get_format_pieces()
-            <BLANKLINE>
-            \header { %! abjad.LilyPondFile._get_formatted_blocks()
-                tagline = ##f
-            } %! abjad.LilyPondFile._get_formatted_blocks()
-            <BLANKLINE>
-            \layout {}
-            <BLANKLINE>
-            \paper {}
-            <BLANKLINE>
-            \score { %! abjad.LilyPondFile._get_formatted_blocks()
-                {
-                    \new Score
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            - \staccato
-                            - \markup { Allegro }
-                            d'8
-                            e'8
-                            f'8
-                        }
-                    >>
-                }
-            } %! abjad.LilyPondFile._get_formatted_blocks()
-
-        Returns string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        else:
-            assert format_specification == "storage"
-            return StorageFormatManager(self).get_storage_format()
 
     def __getitem__(self, name):
         r"""
@@ -1341,10 +1203,10 @@ class LilyPondFile(object):
         result.extend(self._get_formatted_comments())
         includes = []
         if self.lilypond_version_token is not None:
-            string = f"{self.lilypond_version_token}"
+            string = f"{self.lilypond_version_token._get_lilypond_format()}"
             includes.append(string)
         if self.lilypond_language_token is not None:
-            string = f"{self.lilypond_language_token}"
+            string = f"{self.lilypond_language_token._get_lilypond_format()}"
             includes.append(string)
         tag = Tag("abjad.LilyPondFile._get_format_pieces()")
         includes = Tag.tag(includes, tag=self.get_tag(tag))
@@ -1386,7 +1248,7 @@ class LilyPondFile(object):
         result = []
         for comment in self.comments:
             if "_get_lilypond_format" in dir(comment) and not isinstance(comment, str):
-                lilypond_format = format(comment)
+                lilypond_format = comment._get_lilypond_format()
                 if lilypond_format:
                     string = f"% {comment}"
                     result.append(string)
@@ -1412,7 +1274,7 @@ class LilyPondFile(object):
                 string = str(include.argument)
                 result.append(string)
             else:
-                result.append(format(include))
+                result.append(include._get_lilypond_format())
         if result:
             result = Tag.tag(result, tag=tag)
             result = ["\n".join(result)]
@@ -2288,22 +2150,6 @@ class LilyPondLanguageToken(object):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=""):
-        r"""
-        Formats LilyPond language token.
-
-        ..  container:: example
-
-            >>> token = abjad.LilyPondLanguageToken()
-            >>> print(format(token))
-            \language "english"
-
-        Returns string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        return StorageFormatManager(self).get_storage_format()
-
     def __repr__(self):
         """
         Gets interpreter representation of LilyPond language token.
@@ -2349,24 +2195,6 @@ class LilyPondVersionToken(object):
         self._version_string = version_string
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification=""):
-        r"""
-        Formats LilyPond version token.
-
-        ..  container:: example
-
-            >>> token = abjad.LilyPondVersionToken()
-            >>> print(format(token)) # doctest: +SKIP
-            \version "2.19.84"
-
-        Return string.
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        elif format_specification == "storage":
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __repr__(self):
         """
@@ -2429,7 +2257,7 @@ class PackageGitCommitToken(object):
         >>> token
         PackageGitCommitToken(package_name='abjad')
 
-        >>> print(format(token))  # doctest: +SKIP
+        >>> print(abjad.lilypond(token))  # doctest: +SKIP
         package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
     """
@@ -2444,26 +2272,6 @@ class PackageGitCommitToken(object):
         self._package_name = package_name
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification=""):
-        """
-        Formats package git commit token.
-
-        ..  container:: example
-
-            >>> token = abjad.PackageGitCommitToken('abjad')
-            >>> print(format(token)) # doctest: +SKIP
-            package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
-
-        Return string.
-        """
-        if not self.package_name:
-            return ""
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        elif format_specification == "storage":
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __repr__(self) -> str:
         """

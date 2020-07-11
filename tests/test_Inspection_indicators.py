@@ -10,7 +10,7 @@ def test_Inspection_indicators_01():
     command_2 = abjad.LilyPondLiteral(r"\slurUp")
     abjad.attach(command_2, staff[0])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -24,7 +24,7 @@ def test_Inspection_indicators_01():
             )
         }
         """
-    ), format(staff)
+    ), abjad.lilypond(staff)
 
     indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondLiteral)
     assert command_1 in indicators
@@ -41,7 +41,7 @@ def test_Inspection_indicators_02():
     command = abjad.LilyPondLiteral(r"\slurDotted")
     abjad.attach(command, staff[0])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -55,7 +55,7 @@ def test_Inspection_indicators_02():
             )
         }
         """
-    ), format(staff)
+    ), abjad.lilypond(staff)
 
     items = abjad.inspect(staff[0]).indicators()
     assert comment in items
@@ -71,7 +71,7 @@ def test_Inspection_indicators_03():
     dynamic = abjad.Dynamic("p")
     abjad.attach(dynamic, staff[0])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -83,7 +83,7 @@ def test_Inspection_indicators_03():
             f'8
         }
         """
-    ), format(staff)
+    ), abjad.lilypond(staff)
 
     indicators = abjad.inspect(staff[0]).indicators()
     assert len(indicators) == 2
@@ -97,7 +97,7 @@ def test_Inspection_indicators_04():
     comment_2 = abjad.LilyPondComment("comment 2")
     abjad.attach(comment_2, staff[0])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -109,7 +109,7 @@ def test_Inspection_indicators_04():
             f'8
         }
         """
-    ), format(staff)
+    ), abjad.lilypond(staff)
 
     indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondComment)
     assert comment_1 in indicators

@@ -439,7 +439,7 @@ class Container(Component):
         indent = LilyPondFormatBundle.indent
         strings = []
         for component in self.components:
-            string = component.__format__(format_specification="lilypond")
+            string = component._get_lilypond_format()
             for string in string.split("\n"):
                 if string.isspace():
                     string = ""
@@ -561,7 +561,7 @@ class Container(Component):
         storage_format_args_values = []
         if self:
             repr_args_values.append(self._get_contents_summary())
-            lilypond_format = " ".join(format(x, "lilypond") for x in self)
+            lilypond_format = " ".join(_._get_lilypond_format() for _ in self)
             lilypond_format = lilypond_format.replace("\n", " ")
             lilypond_format = lilypond_format.replace("\t", " ")
             lilypond_format = lilypond_format.replace("  ", " ")

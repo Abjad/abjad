@@ -15,7 +15,7 @@ def test_Inspection_duration_01():
     abjad.attach(mark, staff[2])
     score = abjad.Score([staff])
 
-    assert format(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.String.normalize(
         r"""
         \new Score
         <<
@@ -57,7 +57,7 @@ def test_Inspection_duration_03():
     abjad.attach(mark, staff[2])
     abjad.Score([staff])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {

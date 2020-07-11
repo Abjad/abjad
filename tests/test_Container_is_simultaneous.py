@@ -49,7 +49,7 @@ def test_Container_is_simultaneous_04():
     container = abjad.Container([abjad.Voice("c'8 cs'8"), abjad.Voice("d'8 ef'8")])
     container.simultaneous = True
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         <<
             \new Voice

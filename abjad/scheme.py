@@ -20,7 +20,7 @@ class Scheme(object):
         A Scheme boolean value:
 
         >>> scheme = abjad.Scheme(True)
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         ##t
 
     ..  container:: example
@@ -31,7 +31,7 @@ class Scheme(object):
         ...     ('left', (1, 2, False)),
         ...     ('right', (1, 2, 3.3)),
         ...     ])
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #((left (1 2 #f)) (right (1 2 3.3)))
 
     ..  container:: example
@@ -40,7 +40,7 @@ class Scheme(object):
 
         >>> scheme_1 = abjad.Scheme([1, 2, 3])
         >>> scheme_2 = abjad.Scheme((1, 2, 3))
-        >>> format(scheme_1) == format(scheme_2)
+        >>> abjad.lilypond(scheme_1) == abjad.lilypond(scheme_2)
         True
 
         Scheme wraps nested variable-length arguments in a tuple.
@@ -50,7 +50,7 @@ class Scheme(object):
         A quoted Scheme expression:
 
         >>> scheme = abjad.Scheme((1, 2, 3), quoting="'#")
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #'#(1 2 3)
 
         Use the ``quoting`` keyword to prepend Scheme's various quote, unquote,
@@ -61,7 +61,7 @@ class Scheme(object):
         A Scheme expression with forced quotes:
 
         >>> scheme = abjad.Scheme('nospaces', force_quotes=True)
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #"nospaces"
 
         Use this in certain \override situations when LilyPond's Scheme
@@ -88,7 +88,7 @@ class Scheme(object):
                 ]
             )
 
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #(tuplet-number::append-note-wrapper tuplet-number::calc-denominator-text "4")
 
     ..  container:: example
@@ -107,7 +107,7 @@ class Scheme(object):
             verbatim=True,
             )
 
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
 
     ..  container:: example
@@ -149,36 +149,36 @@ class Scheme(object):
     ..  container:: example
 
         __str__ of abjad.Scheme returns the abjad.Scheme formatted value
-        without the hash mark, while format(Scheme) returns the formatted value
+        without the hash mark, while abjad.lilypond(Scheme) returns the formatted value
         with the hash mark, allowing for nested abjad.Scheme expressions:
 
         >>> scheme = abjad.Scheme(['fus', 'ro', 'dah'], quoting = "'")
         >>> str(scheme)
         "'(fus ro dah)"
 
-        >>> format(scheme)
+        >>> abjad.lilypond(scheme)
         "#'(fus ro dah)"
 
     ..  container:: example
 
         Scheme attempts to format Python values into abjad.Scheme equivalents:
 
-        >>> format(abjad.Scheme(True))
+        >>> abjad.lilypond(abjad.Scheme(True))
         '##t'
 
-        >>> format(abjad.Scheme(False))
+        >>> abjad.lilypond(abjad.Scheme(False))
         '##f'
 
-        >>> format(abjad.Scheme(None))
+        >>> abjad.lilypond(abjad.Scheme(None))
         '##f'
 
-        >>> format(abjad.Scheme('hello world'))
+        >>> abjad.lilypond(abjad.Scheme('hello world'))
         '#"hello world"'
 
-        >>> format(abjad.Scheme([1, 2, 3]))
+        >>> abjad.lilypond(abjad.Scheme([1, 2, 3]))
         '#(1 2 3)'
 
-        >>> format(abjad.Scheme([
+        >>> abjad.lilypond(abjad.Scheme([
         ...     abjad.SchemePair(('padding', 1)),
         ...     abjad.SchemePair(('attach-dir', -1)),
         ...     ],
@@ -247,33 +247,6 @@ class Scheme(object):
         Returns true or false.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats scheme.
-
-        ..  container:: example
-
-            Scheme LilyPond format:
-
-            >>> scheme = abjad.Scheme('foo')
-            >>> format(scheme)
-            '#foo'
-
-        ..  container:: example
-
-            Scheme storage format:
-
-            >>> abjad.f(scheme)
-            abjad.Scheme(
-                'foo'
-                )
-
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        assert format_specification == "storage"
-        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self) -> str:
         """
@@ -459,7 +432,7 @@ class SchemeAssociativeList(Scheme):
                 ]
             )
 
-        >>> print(format(scheme_alist))
+        >>> print(abjad.lilypond(scheme_alist))
         #'((space . 2) (padding . 0.5))
 
     Scheme associative lists are immutable.
@@ -647,13 +620,13 @@ class SchemePair(Scheme):
         Right-hand side string forces quotes:
 
         >>> scheme_pair = abjad.SchemePair(('font-name', 'Times'))
-        >>> format(scheme_pair)
+        >>> abjad.lilypond(scheme_pair)
         '#\'(font-name . "Times")'
 
         Right-hand side nonstring does not force quotes:
 
         >>> scheme_pair = abjad.SchemePair(('spacing', 4))
-        >>> format(scheme_pair)
+        >>> abjad.lilypond(scheme_pair)
         "#'(spacing . 4)"
 
     """
@@ -668,25 +641,6 @@ class SchemePair(Scheme):
         assert isinstance(value, tuple), repr(value)
         assert len(value) == 2, repr(value)
         Scheme.__init__(self, value=value)
-
-    ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Scheme pair.
-
-        ..  container:: example
-
-            >>> scheme_pair = abjad.SchemePair((-1, 1))
-
-            >>> format(scheme_pair)
-            "#'(-1 . 1)"
-
-            >>> abjad.f(scheme_pair)
-            abjad.SchemePair((-1, 1))
-
-        """
-        return super().__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###
 
@@ -742,7 +696,7 @@ class SchemeSymbol(Scheme):
         >>> scheme
         SchemeSymbol('cross')
 
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #'cross
 
     """
@@ -789,7 +743,7 @@ class SchemeVector(Scheme):
         >>> scheme = abjad.SchemeVector([True, True, False])
         >>> scheme
         SchemeVector(True, True, False)
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #'(#t #t #f)
 
     ..  container:: example
@@ -799,7 +753,7 @@ class SchemeVector(Scheme):
         >>> scheme = abjad.SchemeVector(['foo', 'bar', 'blah'])
         >>> scheme
         SchemeVector('foo', 'bar', 'blah')
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #'(foo bar blah)
 
     Scheme vectors and Scheme vector constants differ in only their LilyPond
@@ -839,7 +793,7 @@ class SchemeVectorConstant(Scheme):
         >>> scheme = abjad.SchemeVectorConstant([True, True, False])
         >>> scheme
         SchemeVectorConstant(True, True, False)
-        >>> print(format(scheme))
+        >>> print(abjad.lilypond(scheme))
         #'#(#t #t #f)
 
     Scheme vectors and Scheme vector constants differ in only their LilyPond

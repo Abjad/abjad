@@ -338,7 +338,7 @@ def test_Inspection_timespan_26():
     mark = abjad.MetronomeMark(abjad.Duration(1, 8), 48)
     abjad.attach(mark, staff[0], context="Staff")
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {

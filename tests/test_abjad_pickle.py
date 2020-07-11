@@ -42,6 +42,6 @@ def test_abjad_pickle_01(class_):
     instance_one = class_()
     pickle_string = pickle.dumps(instance_one)
     instance_two = pickle.loads(pickle_string)
-    instance_one_format = format(instance_one, "storage")
-    instance_two_format = format(instance_two, "storage")
+    instance_one_format = abjad.lilypond(instance_one, "storage")
+    instance_two_format = abjad.lilypond(instance_two, "storage")
     assert instance_one_format == instance_two_format

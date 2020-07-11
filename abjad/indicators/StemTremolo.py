@@ -64,32 +64,6 @@ class StemTremolo(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats stem tremolo.
-
-        ..  container:: example
-
-            Sixteenth-note tremolo:
-
-            >>> stem_tremolo = abjad.StemTremolo(16)
-            >>> print(format(stem_tremolo))
-            :16
-
-        ..  container:: example
-
-            Thirty-second-note tremolo:
-
-            >>> stem_tremolo = abjad.StemTremolo(32)
-            >>> print(format(stem_tremolo))
-            :32
-
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        assert format_specification == "storage"
-        return StorageFormatManager(self).get_storage_format()
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.

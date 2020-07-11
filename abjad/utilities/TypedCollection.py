@@ -50,12 +50,6 @@ class TypedCollection(object):
             return self._collection == argument
         return False
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
-
     def __hash__(self):
         """
         Hashes typed collection.

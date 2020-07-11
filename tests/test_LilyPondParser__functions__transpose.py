@@ -9,7 +9,7 @@ def test_LilyPondParser__functions__transpose_01():
     key_signature = abjad.KeySignature("e", "major")
     abjad.attach(key_signature, target[0])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -25,7 +25,7 @@ def test_LilyPondParser__functions__transpose_01():
     string = r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__transpose_02():
@@ -36,7 +36,7 @@ def test_LilyPondParser__functions__transpose_02():
     key_signature = abjad.KeySignature("ef", "major")
     abjad.attach(key_signature, target[0])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -52,7 +52,7 @@ def test_LilyPondParser__functions__transpose_02():
     string = r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__transpose_03():
@@ -65,7 +65,7 @@ def test_LilyPondParser__functions__transpose_03():
         ]
     )
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -94,4 +94,4 @@ def test_LilyPondParser__functions__transpose_03():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
