@@ -71,7 +71,6 @@ def test_Mutation__split_container_by_duration_01():
 def test_Mutation__split_container_by_duration_02():
     """
     Split in-score container at split offset with non-power-of-two denominator.
-    Does not tie leaves after split.
     """
 
     staff = abjad.Staff()
@@ -114,11 +113,15 @@ def test_Mutation__split_container_by_duration_02():
                 c'8
                 [
                 (
-            }
-            {
+                \tweak edge-height #'(0.7 . 0)
                 \times 4/5 {
                     d'16.
                     ~
+                }
+            }
+            {
+                \tweak edge-height #'(0.7 . 0)
+                \times 4/5 {
                     d'16
                     ]
                 }

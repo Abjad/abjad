@@ -72,7 +72,7 @@ class Mutation(object):
         elif all(isinstance(_, Tuplet) for _ in SELECTION):
             return Mutation._fuse_tuplets(SELECTION)
         else:
-            raise Exception("can only fuse leaves and tuplets (not {self}).")
+            raise Exception(f"can only fuse leaves and tuplets (not {SELECTION}).")
 
     @staticmethod
     def _fuse_leaves(SELECTION):
@@ -246,6 +246,7 @@ class Mutation(object):
         duration = Duration(duration)
         assert 0 <= duration, repr(duration)
         if duration == 0:
+            # TODO: disallow and raise Exception
             return [], CONTAINER
         # get split point score offset
         timespan = Inspection(CONTAINER).timespan()
@@ -265,13 +266,20 @@ class Mutation(object):
         # if split point necessitates leaf split
         if isinstance(bottom, Leaf):
             assert isinstance(bottom, Leaf)
+            original_bottom_parent = bottom._parent
             did_split_leaf = True
             timespan = Inspection(bottom).timespan()
-            start_offset = timespan.start_offset
-            split_point_in_bottom = global_split_point - start_offset
+            split_point_in_bottom = global_split_point - timespan.start_offset
             new_leaves = Mutation._split_leaf_by_durations(
                 bottom, [split_point_in_bottom],
             )
+            if new_leaves[0]._parent is not original_bottom_parent:
+                new_leaves_tuplet_wrapper = new_leaves[0]._parent
+                assert isinstance(new_leaves_tuplet_wrapper, Tuplet)
+                assert new_leaves_tuplet_wrapper._parent is original_bottom_parent
+                Mutation._split_container_by_duration(
+                    new_leaves_tuplet_wrapper, split_point_in_bottom,
+                )
             for leaf in new_leaves:
                 timespan = Inspection(leaf).timespan()
                 if timespan.stop_offset == global_split_point:
@@ -279,9 +287,7 @@ class Mutation(object):
                 if timespan.start_offset == global_split_point:
                     leaf_right_of_split = leaf
             duration_crossing_containers = duration_crossing_descendants[:-1]
-            if not len(duration_crossing_containers):
-                # return left_list, right_list
-                raise Exception("how did we get here?")
+            assert len(duration_crossing_containers)
         # if split point falls between leaves
         # then find leaf to immediate right of split point
         # in order to start upward crawl through duration-crossing containers
@@ -299,9 +305,8 @@ class Mutation(object):
         assert leaf_right_of_split is not None
         # find component to right of split
         # that is also immediate child of last duration-crossing container
-        for component in Inspection(leaf_right_of_split).parentage():
-            parent = Inspection(component).parentage().parent
-            if parent is duration_crossing_containers[-1]:
+        for component in leaf_right_of_split._get_parentage():
+            if component._parent is duration_crossing_containers[-1]:
                 highest_level_component_right_of_split = component
                 break
         else:
@@ -1817,19 +1822,13 @@ class Mutation(object):
         Returns list of selections.
         """
         components = self.client
-        single_component_input = False
         if isinstance(components, Component):
-            single_component_input = True
             components = Selection(components)
         assert all(isinstance(_, Component) for _ in components)
         if not isinstance(components, Selection):
             components = Selection(components)
         durations = [Duration(_) for _ in durations]
-        if not durations:
-            if single_component_input:
-                return components
-            else:
-                return [], components
+        assert len(durations), repr(durations)
         total_component_duration = Inspection(components).duration()
         total_split_duration = sum(durations)
         if cyclic:
@@ -1857,16 +1856,14 @@ class Mutation(object):
         while True:
             # grab next split point
             if advance_to_next_offset:
-                if durations:
-                    next_split_point = durations.pop(0)
-                else:
+                if not durations:
                     break
+                next_split_point = durations.pop(0)
             advance_to_next_offset = True
             # grab next component from input stack of components
-            if remaining_components:
-                current_component = remaining_components.pop(0)
-            else:
+            if not remaining_components:
                 break
+            current_component = remaining_components.pop(0)
             # find where current component endpoint will position us
             duration_ = Inspection(current_component).duration()
             candidate_shard_duration = current_shard_duration + duration_
@@ -1903,7 +1900,7 @@ class Mutation(object):
                     offset_index += len(additional_durations)
                 else:
                     assert isinstance(current_component, Container)
-                    pair = Mutation._split_container_by_duration(
+                    pair = self._split_container_by_duration(
                         current_component, local_split_duration,
                     )
                     left_list, right_list = pair
