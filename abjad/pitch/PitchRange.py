@@ -74,8 +74,6 @@ class PitchRange(object):
 
     __slots__ = ("_start", "_stop")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, range_string="[A0, C8]"):
@@ -302,19 +300,6 @@ class PitchRange(object):
         Returns true or false.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification=""):
-        """
-        Formats pitch range.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-
-        Returns string.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self):
         """

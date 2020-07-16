@@ -1,15 +1,13 @@
 import copy
 
-from .core.Component import attach
-from .core.Iteration import Iteration
-from .core.Leaf import Leaf
-from .core.MultimeasureRest import MultimeasureRest
-from .core.Selection import Selection
-from .core.Voice import Voice
-from .core.inspectx import Inspection
+from .attach import attach
 from .indicators.BarLine import BarLine
+from .inspectx import Inspection
+from .iterate import Iteration
 from .overrides import override
-from .tags import Tag
+from .score import Leaf, MultimeasureRest, Voice
+from .selectx import Selection
+from .tag import Tag
 
 
 def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine:

@@ -1,13 +1,11 @@
 import typing
 
+from .. import tags as abjad_tags
+from ..path import Path
 from ..storage import StorageFormatManager
-from ..tags import Tag, Tags
-from ..utilities.String import String
-from .Path import Path
-from .activate import activate
-from .deactivate import deactivate
+from ..stringx import String
+from ..tag import Tag, activate, deactivate
 
-abjad_tags = Tags()
 callable_type = typing.Union[str, typing.Callable, None]
 activation_type = typing.Tuple[callable_type, str]
 

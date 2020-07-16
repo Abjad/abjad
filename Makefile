@@ -49,7 +49,6 @@ isort-check:
 	--multi-line=3 \
 	--project=abjad \
 	--project=abjadext \
-	--skip=abjad/__init__.py \
 	--thirdparty=ply \
 	--thirdparty=roman \
 	--thirdparty=uqbar \
@@ -64,7 +63,6 @@ isort-reformat:
 	--multi-line=3 \
 	--project=abjad \
 	--project=abjadext \
-	--skip=abjad/__init__.py \
 	--thirdparty=ply \
 	--thirdparty=roman \
 	--thirdparty=uqbar \

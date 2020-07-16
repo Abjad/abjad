@@ -17,7 +17,7 @@ def test_Voice___copy___01():
     abjad.setting(voice_1).tuplet_full_length = True
     voice_2 = copy.copy(voice_1)
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \context Voice = "SopranoVoice"
         \with

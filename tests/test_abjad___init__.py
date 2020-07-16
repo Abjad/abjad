@@ -7,9 +7,9 @@ import abjad
 
 ignored_classes = (
     abjad.FormatSpecification,
+    abjad.MetricModulation,
     abjad.Path,
     abjad.StorageFormatManager,
-    abjad.Tags,
 )
 
 classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
@@ -34,8 +34,8 @@ valid_types = (
     abjad.Duration,
     float,
     int,
-    abjad.mathtools.Infinity,
-    abjad.mathtools.NegativeInfinity,
+    abjad.mathx.Infinity,
+    abjad.mathx.NegativeInfinity,
     str,
     tuple,
     type(None),

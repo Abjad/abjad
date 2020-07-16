@@ -10,7 +10,7 @@ def test_Chord___copy___01():
 
     assert isinstance(chord_1, abjad.Chord)
     assert isinstance(chord_2, abjad.Chord)
-    assert format(chord_1) == format(chord_2)
+    assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
 
@@ -24,7 +24,7 @@ def test_Chord___copy___02():
 
     assert isinstance(chord_1, abjad.Chord)
     assert isinstance(chord_2, abjad.Chord)
-    assert format(chord_1) == format(chord_2)
+    assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
 
@@ -41,7 +41,7 @@ def test_Chord___copy___03():
 
     assert isinstance(chord_1, abjad.Chord)
     assert isinstance(chord_2, abjad.Chord)
-    assert format(chord_1) == format(chord_2)
+    assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
 
@@ -54,7 +54,7 @@ def test_Chord___copy___04():
     abjad.tweak(chord_1.note_heads[0]).color = "red"
     chord_2 = copy.copy(chord_1)
 
-    assert format(chord_1) == abjad.String.normalize(
+    assert abjad.lilypond(chord_1) == abjad.String.normalize(
         r"""
         <
             \tweak color #red
@@ -65,7 +65,7 @@ def test_Chord___copy___04():
         """
     )
 
-    assert format(chord_2) == abjad.String.normalize(
+    assert abjad.lilypond(chord_2) == abjad.String.normalize(
         r"""
         <
             \tweak color #red
@@ -80,7 +80,7 @@ def test_Chord___copy___04():
     assert chord_2.note_heads[1]._client is chord_2
     assert chord_2.note_heads[2]._client is chord_2
 
-    assert format(chord_1) == format(chord_2)
+    assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
     assert chord_1.note_heads[0] == chord_2.note_heads[0]
@@ -105,7 +105,7 @@ def test_Chord___copy___05():
 
     chord_2 = copy.copy(chord_1)
 
-    assert format(chord_1) == format(chord_2)
+    assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
     articulation_2 = abjad.inspect(chord_2).indicators(abjad.Articulation)[0]

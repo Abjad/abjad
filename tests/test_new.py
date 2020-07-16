@@ -34,7 +34,7 @@ def test_new_01():
         pitch_segment=abjad.PitchSegment("c d e f"), ratio=abjad.Ratio([1, 2, 3]),
     )
 
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -55,7 +55,7 @@ def test_new_01():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate == old_aggregate
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -71,7 +71,7 @@ def test_new_01():
             )
         """
     )
-    assert format(new_aggregate) == abjad.String.normalize(
+    assert abjad.storage(new_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -95,7 +95,7 @@ def test_new_02():
         pitch_segment=abjad.PitchSegment("c d e f"), ratio=abjad.Ratio([1, 2, 3]),
     )
 
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -116,7 +116,7 @@ def test_new_02():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -132,7 +132,7 @@ def test_new_02():
             )
         """
     )
-    assert format(new_aggregate) == abjad.String.normalize(
+    assert abjad.storage(new_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -154,7 +154,7 @@ def test_new_03():
 
     old_aggregate = Aggregate(pitch_segment=abjad.PitchSegment("c d e f"))
 
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -174,7 +174,7 @@ def test_new_03():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -189,7 +189,7 @@ def test_new_03():
             )
         """
     )
-    assert format(new_aggregate) == abjad.String.normalize(
+    assert abjad.storage(new_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -210,7 +210,7 @@ def test_new_04():
 
     old_aggregate = Aggregate(pitch_segment=abjad.PitchSegment("c d e f"))
 
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -230,7 +230,7 @@ def test_new_04():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -245,7 +245,7 @@ def test_new_04():
             )
         """
     )
-    assert format(new_aggregate) == abjad.String.normalize(
+    assert abjad.storage(new_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -267,7 +267,7 @@ def test_new_05():
 
     old_aggregate = Aggregate(pitch_segment=abjad.PitchSegment("c d e f"))
 
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -287,7 +287,7 @@ def test_new_05():
 
     assert new_aggregate is not old_aggregate
     assert new_aggregate != old_aggregate
-    assert format(old_aggregate) == abjad.String.normalize(
+    assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(
@@ -302,7 +302,7 @@ def test_new_05():
             )
         """
     )
-    assert format(new_aggregate) == abjad.String.normalize(
+    assert abjad.storage(new_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(
             pitch_segment=abjad.PitchSegment(

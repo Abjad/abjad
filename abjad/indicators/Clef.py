@@ -222,29 +222,6 @@ class Clef(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        r"""
-        Formats clef.
-
-        ..  container:: example
-
-            >>> clef = abjad.Clef('treble')
-            >>> print(format(clef))
-            abjad.Clef('treble')
-
-        ..  container:: example
-
-            >>> clef = abjad.Clef('treble')
-            >>> print(format(clef, 'lilypond'))
-            \clef "treble"
-
-        """
-        if format_specification == "lilypond":
-            return self._get_lilypond_format()
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -327,25 +304,22 @@ class Clef(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_selection(selection) -> "Clef":
+    def from_pitches(pitches) -> "Clef":
         """
-        Makes clef from ``selection``.
+        Makes clef from ``pitches``.
 
         ..  container:: example
 
             >>> maker = abjad.NoteMaker()
             >>> notes = maker(range(-12, -6), [(1, 4)])
             >>> staff = abjad.Staff(notes)
-            >>> abjad.Clef.from_selection(staff)
+            >>> pitches = abjad.iterate(staff).pitches()
+            >>> abjad.Clef.from_pitches(pitches)
             Clef('bass')
 
-            Choses between treble and bass based on minimal number of ledger
-            lines.
+            Choses between treble and bass based on minimal number of ledger lines.
 
         """
-        from ..core.Iteration import Iteration
-
-        pitches = Iteration(selection).pitches()
         diatonic_pitch_numbers = [
             pitch._get_diatonic_pitch_number() for pitch in pitches
         ]

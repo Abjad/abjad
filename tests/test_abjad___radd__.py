@@ -5,9 +5,10 @@ import pytest
 import abjad
 
 ignored_classes = (
-    abjad.String,
-    abjad.StorageFormatManager,
     abjad.FormatSpecification,
+    abjad.MetricModulation,
+    abjad.StorageFormatManager,
+    abjad.String,
 )
 
 classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)

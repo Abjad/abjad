@@ -4,7 +4,7 @@ from .. import enums
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
-from ..utilities.String import String
+from ..stringx import String
 
 
 class Staccatissimo(object):

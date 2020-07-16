@@ -15,7 +15,7 @@ def test_Mutation__split_container_by_duration_01():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -35,11 +35,11 @@ def test_Mutation__split_container_by_duration_01():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     abjad.Mutation._split_container_by_duration(staff[0], abjad.Duration(1, 32))
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -63,7 +63,7 @@ def test_Mutation__split_container_by_duration_01():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -71,7 +71,6 @@ def test_Mutation__split_container_by_duration_01():
 def test_Mutation__split_container_by_duration_02():
     """
     Split in-score container at split offset with non-power-of-two denominator.
-    Does not tie leaves after split.
     """
 
     staff = abjad.Staff()
@@ -82,7 +81,7 @@ def test_Mutation__split_container_by_duration_02():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -102,11 +101,11 @@ def test_Mutation__split_container_by_duration_02():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     abjad.Mutation._split_container_by_duration(staff[0], abjad.Duration(1, 5))
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -114,11 +113,15 @@ def test_Mutation__split_container_by_duration_02():
                 c'8
                 [
                 (
-            }
-            {
+                \tweak edge-height #'(0.7 . 0)
                 \times 4/5 {
                     d'16.
                     ~
+                }
+            }
+            {
+                \tweak edge-height #'(0.7 . 0)
+                \times 4/5 {
                     d'16
                     ]
                 }
@@ -132,6 +135,6 @@ def test_Mutation__split_container_by_duration_02():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)

@@ -8,7 +8,7 @@ def test_Container___setitem___01():
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -24,7 +24,7 @@ def test_Container___setitem___01():
 
     voice[1] = abjad.Note("c''8")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -47,7 +47,7 @@ def test_Container___setitem___02():
 
     voice = abjad.Voice("c'8 [ d'8 ] e'8 f'8")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -63,7 +63,7 @@ def test_Container___setitem___02():
 
     voice[1] = abjad.Container("c'16 c'16 c'16")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -90,7 +90,7 @@ def test_Container___setitem___03():
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -110,7 +110,7 @@ def test_Container___setitem___03():
 
     voice[1] = abjad.Note("c''8")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -136,7 +136,7 @@ def test_Container___setitem___04():
     leaves = abjad.select(voice).leaves()
     abjad.beam(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -152,11 +152,11 @@ def test_Container___setitem___04():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     voice[1] = abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -172,7 +172,7 @@ def test_Container___setitem___04():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -184,7 +184,7 @@ def test_Container___setitem___05():
 
     voice = abjad.Voice("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -200,11 +200,11 @@ def test_Container___setitem___05():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     voice[1] = abjad.Note("c''8")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -216,7 +216,7 @@ def test_Container___setitem___05():
             c''8
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -231,7 +231,7 @@ def test_Container___setitem___06():
     )
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -249,11 +249,11 @@ def test_Container___setitem___06():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     voice[1] = abjad.Rest("r2")
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -266,7 +266,7 @@ def test_Container___setitem___06():
             r2
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -288,7 +288,7 @@ def test_Container___setitem___07():
     voice_1 = abjad.Voice(notes[:3])
     abjad.beam(voice_1[:])
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -299,12 +299,12 @@ def test_Container___setitem___07():
             ]
         }
         """
-    ), print(format(voice_1))
+    ), print(abjad.lilypond(voice_1))
 
     voice_2 = abjad.Voice(notes[3:])
     abjad.beam(voice_2[:])
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -315,11 +315,11 @@ def test_Container___setitem___07():
             ]
         }
         """
-    ), print(format(voice_2))
+    ), print(abjad.lilypond(voice_2))
 
     voice_1[1] = voice_2[1]
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -330,11 +330,11 @@ def test_Container___setitem___07():
             ]
         }
         """
-    ), print(format(voice_1))
+    ), print(abjad.lilypond(voice_1))
 
     assert abjad.wellformed(voice_1)
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -344,7 +344,7 @@ def test_Container___setitem___07():
             ]
         }
         """
-    ), print(format(voice_2))
+    ), print(abjad.lilypond(voice_2))
 
     assert abjad.wellformed(voice_2)
 
@@ -366,7 +366,7 @@ def test_Container___setitem___08():
     voice_1 = abjad.Voice(notes[:3])
     abjad.beam(voice_1[:])
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -377,7 +377,7 @@ def test_Container___setitem___08():
             ]
         }
         """
-    ), print(format(voice_1))
+    ), print(abjad.lilypond(voice_1))
 
     voice_2 = abjad.Voice(notes[3:])
     abjad.mutate(voice_2[1:3]).wrap(abjad.Container())
@@ -385,7 +385,7 @@ def test_Container___setitem___08():
     leaves = abjad.select(voice_2[1]).leaves()
     abjad.slur(leaves)
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -399,11 +399,11 @@ def test_Container___setitem___08():
             b'8
         }
         """
-    ), print(format(voice_2))
+    ), print(abjad.lilypond(voice_2))
 
     voice_1[1] = voice_2[1]
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -419,11 +419,11 @@ def test_Container___setitem___08():
             ]
         }
         """
-    ), print(format(voice_1))
+    ), print(abjad.lilypond(voice_1))
 
     assert abjad.wellformed(voice_1)
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -431,7 +431,7 @@ def test_Container___setitem___08():
             b'8
         }
         """
-    ), print(format(voice_2))
+    ), print(abjad.lilypond(voice_2))
 
     assert abjad.wellformed(voice_2)
 
@@ -442,7 +442,7 @@ def test_Container___setitem___09():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[2:2] = [abjad.Note("g'8")]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -453,7 +453,7 @@ def test_Container___setitem___09():
             f'8
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -466,7 +466,7 @@ def test_Container___setitem___10():
     note = abjad.Note("g'8")
     staff[2:2] = [note]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -479,7 +479,7 @@ def test_Container___setitem___10():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -503,7 +503,7 @@ def test_Container___setitem___11():
     staff = abjad.Staff(beginning + end)
     abjad.beam(staff[:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -515,11 +515,11 @@ def test_Container___setitem___11():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     staff[2:2] = middle
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -533,7 +533,7 @@ def test_Container___setitem___11():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -546,7 +546,7 @@ def test_Container___setitem___12():
     note = abjad.Note("c''8")
     staff[1:3] = [note]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -557,7 +557,7 @@ def test_Container___setitem___12():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -570,7 +570,7 @@ def test_Container___setitem___13():
     notes = [abjad.Note("b'8"), abjad.Note("a'8"), abjad.Note("g'8")]
     staff[1:3] = notes
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -583,7 +583,7 @@ def test_Container___setitem___13():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -593,7 +593,7 @@ def test_Container___setitem___14():
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -609,12 +609,12 @@ def test_Container___setitem___14():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     container = staff[0]
     staff[0:1] = container[:]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -628,7 +628,7 @@ def test_Container___setitem___14():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
     assert len(container) == 0
@@ -641,7 +641,7 @@ def test_Container___setitem___15():
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -657,11 +657,11 @@ def test_Container___setitem___15():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     staff[0:0] = staff[0][:1]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -677,7 +677,7 @@ def test_Container___setitem___15():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -693,7 +693,7 @@ def test_Container___setitem___16():
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -709,11 +709,11 @@ def test_Container___setitem___16():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     staff[0:0] = staff[0][:]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -729,7 +729,7 @@ def test_Container___setitem___16():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
 
 def test_Container___setitem___17():
@@ -742,7 +742,7 @@ def test_Container___setitem___17():
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -758,13 +758,13 @@ def test_Container___setitem___17():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     container = staff[0]
     staff[0:0] = container[:]
     container[0:0] = staff[-1][:1]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -780,7 +780,7 @@ def test_Container___setitem___17():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -793,7 +793,7 @@ def test_Container___setitem___18():
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[-1000:-1000] = [abjad.Rest("r8")]
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -806,9 +806,9 @@ def test_Container___setitem___18():
             ]
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -821,7 +821,7 @@ def test_Container___setitem___18():
             ]
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -832,7 +832,7 @@ def test_Container___setitem___19():
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[1000:1000] = [abjad.Rest("r8")]
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -845,7 +845,7 @@ def test_Container___setitem___19():
             r8
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -861,7 +861,7 @@ def test_Container___setitem___20():
     outer_container = abjad.Container()
     abjad.mutate(inner_container).wrap(outer_container)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -877,13 +877,13 @@ def test_Container___setitem___20():
             f'8
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     # sets contents of outer container to nothing
     outer_container[:] = []
 
     # outer container is empty and remains in score
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -893,9 +893,9 @@ def test_Container___setitem___20():
             f'8
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
-    assert format(inner_container) == abjad.String.normalize(
+    assert abjad.lilypond(inner_container) == abjad.String.normalize(
         r"""
         {
             d'8
@@ -904,7 +904,7 @@ def test_Container___setitem___20():
             ]
         }
         """
-    ), print(format(inner_container))
+    ), print(abjad.lilypond(inner_container))
 
     # ALTERNATIVE: use del(container)
     staff = abjad.Staff("c'8 d'8 [ e'8 ] f'8")
@@ -913,7 +913,7 @@ def test_Container___setitem___20():
     outer_container = abjad.Container()
     abjad.mutate(inner_container).wrap(outer_container)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -929,13 +929,13 @@ def test_Container___setitem___20():
             f'8
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     # deletes outer container
     del outer_container[:]
 
     # outer container is empty and remains in score (as before)
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -945,10 +945,10 @@ def test_Container___setitem___20():
             f'8
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     # inner container leaves are still spanned
-    assert format(inner_container) == abjad.String.normalize(
+    assert abjad.lilypond(inner_container) == abjad.String.normalize(
         r"""
         {
             d'8
@@ -957,4 +957,4 @@ def test_Container___setitem___20():
             ]
         }
         """
-    ), print(format(inner_container))
+    ), print(abjad.lilypond(inner_container))

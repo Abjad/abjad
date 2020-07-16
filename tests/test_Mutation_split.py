@@ -14,7 +14,7 @@ def test_Mutation_split_01():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -34,12 +34,12 @@ def test_Mutation_split_01():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     notes = staff[0][1:2]
     result = abjad.mutate(notes).split([abjad.Duration(3, 64)], cyclic=True)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -63,7 +63,7 @@ def test_Mutation_split_01():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
     assert len(result) == 3
@@ -83,7 +83,7 @@ def test_Mutation_split_02():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -105,11 +105,11 @@ def test_Mutation_split_02():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     result = abjad.mutate(leaves).split([abjad.Duration(3, 32)], cyclic=True)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -139,7 +139,7 @@ def test_Mutation_split_02():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
     assert len(result) == 6
@@ -159,7 +159,7 @@ def test_Mutation_split_03():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -181,12 +181,12 @@ def test_Mutation_split_03():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     notes = staff[0][1:]
     result = abjad.mutate(notes).split([abjad.Duration(1, 32)], cyclic=True)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -214,7 +214,7 @@ def test_Mutation_split_03():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
     assert len(result) == 4
@@ -234,7 +234,7 @@ def test_Mutation_split_04():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -256,11 +256,11 @@ def test_Mutation_split_04():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     result = abjad.mutate(leaves).split([abjad.Duration(1, 16)], cyclic=True)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -290,7 +290,7 @@ def test_Mutation_split_04():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
     assert len(result) == 8
@@ -310,7 +310,7 @@ def test_Mutation_split_05():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -332,12 +332,12 @@ def test_Mutation_split_05():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     measures = staff[:1]
     result = abjad.mutate(measures).split([abjad.Duration(1, 16)], cyclic=True)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -369,7 +369,7 @@ def test_Mutation_split_05():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
     assert len(result) == 4
@@ -389,7 +389,7 @@ def test_Mutation_split_06():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -411,12 +411,12 @@ def test_Mutation_split_06():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     measures = staff[:]
     result = abjad.mutate(measures).split([abjad.Duration(3, 32)], cyclic=True)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -456,7 +456,7 @@ def test_Mutation_split_06():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
     assert len(result) == 6
@@ -476,7 +476,7 @@ def test_Mutation_split_07():
     tuplets = voice[1:2]
     abjad.mutate(tuplets).split([abjad.Duration(1, 12)])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -498,7 +498,7 @@ def test_Mutation_split_07():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -517,7 +517,7 @@ def test_Mutation_split_08():
     measures = voice[1:2]
     abjad.mutate(measures).split([abjad.Duration(1, 8)])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -537,7 +537,7 @@ def test_Mutation_split_08():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -556,7 +556,7 @@ def test_Mutation_split_09():
     voice_1 = result[0][0]
     voice_2 = result[1][0]
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -564,11 +564,11 @@ def test_Mutation_split_09():
             d'8
         }
         """
-    ), print(format(voice_1))
+    ), print(abjad.lilypond(voice_1))
 
     assert abjad.wellformed(voice_1)
 
-    assert format(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -576,7 +576,7 @@ def test_Mutation_split_09():
             f'8
         }
         """
-    ), print(format(voice_2))
+    ), print(abjad.lilypond(voice_2))
 
     assert abjad.wellformed(voice_2)
 
@@ -594,7 +594,7 @@ def test_Mutation_split_10():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == abjad.String.normalize(
+    assert abjad.lilypond(left) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -602,9 +602,9 @@ def test_Mutation_split_10():
             d'8
         }
         """
-    ), print(format(left))
+    ), print(abjad.lilypond(left))
 
-    assert format(right) == abjad.String.normalize(
+    assert abjad.lilypond(right) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -612,17 +612,17 @@ def test_Mutation_split_10():
             f'8
         }
         """
-    ), print(format(right))
+    ), print(abjad.lilypond(right))
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -638,7 +638,7 @@ def test_Mutation_split_10():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -658,7 +658,7 @@ def test_Mutation_split_11():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -674,9 +674,9 @@ def test_Mutation_split_11():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
-    assert format(left) == abjad.String.normalize(
+    assert abjad.lilypond(left) == abjad.String.normalize(
         r"""
         {
             c'8
@@ -684,9 +684,9 @@ def test_Mutation_split_11():
             d'8
         }
         """
-    ), print(format(left))
+    ), print(abjad.lilypond(left))
 
-    assert format(right) == abjad.String.normalize(
+    assert abjad.lilypond(right) == abjad.String.normalize(
         r"""
         {
             e'8
@@ -694,16 +694,16 @@ def test_Mutation_split_11():
             ]
         }
         """
-    ), print(format(right))
+    ), print(abjad.lilypond(right))
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         {
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -719,7 +719,7 @@ def test_Mutation_split_11():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -739,7 +739,7 @@ def test_Mutation_split_12():
     left = result[0][0]
     right = result[1][0]
 
-    assert format(left) == abjad.String.normalize(
+    assert abjad.lilypond(left) == abjad.String.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
@@ -748,9 +748,9 @@ def test_Mutation_split_12():
             c'8
         }
         """
-    ), print(format(left))
+    ), print(abjad.lilypond(left))
 
-    assert format(right) == abjad.String.normalize(
+    assert abjad.lilypond(right) == abjad.String.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
@@ -760,16 +760,16 @@ def test_Mutation_split_12():
             ]
         }
         """
-    ), print(format(right))
+    ), print(abjad.lilypond(right))
 
-    assert format(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \times 4/5 {
         }
         """
-    ), print(format(tuplet))
+    ), print(abjad.lilypond(tuplet))
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -788,9 +788,9 @@ def test_Mutation_split_12():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -812,7 +812,7 @@ def test_Mutation_split_12():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -827,7 +827,7 @@ def test_Mutation_split_13():
     abjad.beam(leaves)
     abjad.slur(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -847,12 +847,12 @@ def test_Mutation_split_13():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     note = voice[0]
     abjad.mutate(note).split([abjad.Duration(1, 8), abjad.Duration(3, 8)], cyclic=True)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -878,7 +878,7 @@ def test_Mutation_split_13():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -893,7 +893,7 @@ def test_Mutation_split_14():
     abjad.beam(leaves)
     abjad.slur(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -909,12 +909,12 @@ def test_Mutation_split_14():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     container = voice[0]
     abjad.mutate(container).split([abjad.Duration(1, 8)], cyclic=True)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -936,7 +936,7 @@ def test_Mutation_split_14():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -951,7 +951,7 @@ def test_Mutation_split_15():
     notes = staff[:1]
     abjad.mutate(notes).split([abjad.Duration(5, 24)])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -964,6 +964,6 @@ def test_Mutation_split_15():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)

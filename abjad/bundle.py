@@ -1,7 +1,7 @@
 import typing
 
 from .storage import FormatSpecification, StorageFormatManager
-from .tags import Tag
+from .tag import Tag
 
 
 class LilyPondFormatBundle(object):
@@ -44,12 +44,6 @@ class LilyPondFormatBundle(object):
         self._grob_reverts = []
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self) -> str:
         """

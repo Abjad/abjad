@@ -63,11 +63,11 @@ The remaining arguments show the top-level components of tuplet.
 Formatting tuplets
 ------------------
 
-Use ``format()`` to get the LilyPond format a tuplet:
+Use ``abjad.lilypond()`` to get the LilyPond format a tuplet:
 
 ::
 
-    >>> print(format(tuplet, 'lilypond'))
+    >>> print(abjad.lilypond(tuplet))
 
 
 Selecting the music in a tuplet

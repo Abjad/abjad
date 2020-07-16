@@ -13,8 +13,8 @@ import types
 
 from uqbar.cli import CLI, CLIAggregator
 
-from .utilities.String import String
-from .utilities.yield_all_modules import yield_all_modules
+from .configuration import yield_all_modules
+from .stringx import String
 
 
 class AbjDevScript(CLIAggregator):

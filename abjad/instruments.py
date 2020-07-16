@@ -1,18 +1,17 @@
 """
 Instrument classes.
 """
-
 import copy
 import typing
 
+from .enumeratex import Enumerator
 from .markups import Markup
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
 from .storage import FormatSpecification, StorageFormatManager
-from .utilities.Enumerator import Enumerator
-from .utilities.String import String
+from .stringx import String
 
 
 class Instrument(object):
@@ -98,8 +97,6 @@ class Instrument(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     _redraw = True
 
     ### INITIALIZER ###
@@ -159,17 +156,6 @@ class Instrument(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -200,11 +186,10 @@ class Instrument(object):
 
     ### PRIVATE METHODS ###
 
-    def _attachment_test_all(self, component_expression):
-        from .core.inspectx import Inspection
-
-        if Inspection(component_expression).has_indicator(Instrument):
-            string = f"Already has instrument: {component_expression}."
+    def _attachment_test_all(self, leaf):
+        assert hasattr(leaf, "written_duration")
+        if leaf._has_indicator(Instrument):
+            string = f"Already has instrument: {leaf}."
             return string
         return True
 
@@ -369,123 +354,6 @@ class Instrument(object):
         """
         return self._short_name
 
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def transpose_from_sounding_pitch(argument):
-        r"""
-        Transpose notes and chords in ``argument`` from sounding pitch
-        to written pitch:
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
-            >>> clarinet = abjad.ClarinetInBFlat()
-            >>> abjad.attach(clarinet, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    <c' e' g'>4
-                    d'4
-                    r4
-                    e'4
-                }
-
-            >>> abjad.Instrument.transpose_from_sounding_pitch(staff)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    <d' fs' a'>4
-                    e'4
-                    r4
-                    fs'4
-                }
-
-        Returns none.
-        """
-        from .core.Iteration import Iteration
-        from .core.inspectx import Inspection
-
-        for leaf in Iteration(argument).leaves(pitched=True):
-            instrument = Inspection(leaf).effective(Instrument)
-            if not instrument:
-                continue
-            sounding_pitch = instrument.middle_c_sounding_pitch
-            interval = NamedPitch("C4") - sounding_pitch
-            interval *= -1
-            if hasattr(leaf, "written_pitch"):
-                pitch = leaf.written_pitch
-                pitch = interval.transpose(pitch)
-                leaf.written_pitch = pitch
-            elif hasattr(leaf, "written_pitches"):
-                pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
-                leaf.written_pitches = pitches
-
-    @staticmethod
-    def transpose_from_written_pitch(argument):
-        r"""
-        Transposes notes and chords in ``argument`` from sounding pitch
-        to written pitch.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
-            >>> clarinet = abjad.ClarinetInBFlat()
-            >>> abjad.attach(clarinet, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    <c' e' g'>4
-                    d'4
-                    r4
-                    e'4
-                }
-
-            >>> abjad.Instrument.transpose_from_written_pitch(staff)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(staff)
-                \new Staff
-                {
-                    <bf d' f'>4
-                    c'4
-                    r4
-                    d'4
-                }
-
-        Returns none.
-        """
-        from .core.Iteration import Iteration
-        from .core.inspectx import Inspection
-
-        for leaf in Iteration(argument).leaves(pitched=True):
-            instrument = Inspection(leaf).effective(Instrument)
-            if not instrument:
-                continue
-            sounding_pitch = instrument.middle_c_sounding_pitch
-            interval = NamedPitch("C4") - sounding_pitch
-            if hasattr(leaf, "written_pitch"):
-                written_pitch = leaf.written_pitch
-                written_pitch = interval.transpose(written_pitch)
-                leaf.written_pitch = written_pitch
-            elif hasattr(leaf, "written_pitches"):
-                pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
-                leaf.written_pitches = pitches
-
 
 class StringNumber(object):
     """
@@ -516,8 +384,6 @@ class StringNumber(object):
     ### CLASS VARIABLES
 
     __slots__ = ("_numbers",)
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -640,8 +506,6 @@ class Tuning(object):
 
     __slots__ = ("_pitches",)
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, pitches: typing.Union["Tuning", typing.Iterable] = None) -> None:
@@ -659,17 +523,6 @@ class Tuning(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """

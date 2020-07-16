@@ -10,7 +10,7 @@ def test_RhythmTreeLeaf___copy___01():
 
     copied = copy.copy(leaf)
 
-    assert format(leaf) == format(copied)
+    assert abjad.storage(leaf) == abjad.storage(copied)
     assert leaf is not copied
 
 
@@ -20,5 +20,5 @@ def test_RhythmTreeLeaf___copy___02():
 
     copied = copy.copy(leaf)
 
-    assert format(leaf) == format(copied)
+    assert abjad.storage(leaf) == abjad.storage(copied)
     assert leaf is not copied

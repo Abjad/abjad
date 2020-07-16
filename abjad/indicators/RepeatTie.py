@@ -5,11 +5,8 @@ from ..bundle import LilyPondFormatBundle
 from ..duration import Duration
 from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
-from ..tags import Tags
-from ..utilities.String import String
+from ..stringx import String
 from .Clef import Clef, StaffPosition
-
-abjad_tags = Tags()
 
 
 class RepeatTie(object):
@@ -55,8 +52,6 @@ class RepeatTie(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(
@@ -100,17 +95,10 @@ class RepeatTie(object):
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, argument):
-        from ..core.Chord import Chord
-        from ..core.Note import Note
-        from ..core.inspectx import Inspection
-
-        if not isinstance(argument, (Chord, Note)):
+        if not (
+            hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
+        ):
             string = f"Must be note or chord (not {argument})."
-            return [string]
-        previous_leaf = Inspection(argument).leaf(-1)
-        if not isinstance(previous_leaf, (Chord, Note, type(None))):
-            string = f"Can not attach repeat-tie to {argument}"
-            string += f" when previous leaf is {previous_leaf}."
             return [string]
         return True
 
@@ -132,16 +120,14 @@ class RepeatTie(object):
 
     @staticmethod
     def _should_force_repeat_tie_up(leaf):
-        from ..core.Chord import Chord
-        from ..core.Note import Note
-        from ..core.inspectx import Inspection
+        from ..inspectx import Inspection
 
-        if not isinstance(leaf, (Note, Chord)):
+        if not hasattr(leaf, "written_pitch") and not hasattr(leaf, "written_pitches"):
             return False
         if leaf.written_duration < Duration(1):
             return False
         clef = Inspection(leaf).effective(Clef, default=Clef("treble"))
-        if isinstance(leaf, Note):
+        if hasattr(leaf, "written_pitch"):
             written_pitches = [leaf.written_pitch]
         else:
             written_pitches = leaf.written_pitches

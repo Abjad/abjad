@@ -2,7 +2,7 @@ import typing
 
 from ..duration import Offset
 from ..storage import FormatSpecification, StorageFormatManager
-from ..tags import Tag
+from ..tag import Tag
 
 
 class Momento(object):
@@ -56,12 +56,6 @@ class Momento(object):
         self._value = value
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self) -> str:
         """

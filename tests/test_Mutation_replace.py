@@ -13,7 +13,7 @@ def test_Mutation_replace_01():
     abjad.beam(staff[2:])
     abjad.hairpin("< !", staff[:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -29,7 +29,7 @@ def test_Mutation_replace_01():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     old_notes = staff[1:3]
     new_notes = abjad.Selection(
@@ -43,7 +43,7 @@ def test_Mutation_replace_01():
     )
     abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -60,7 +60,7 @@ def test_Mutation_replace_01():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -76,7 +76,7 @@ def test_Mutation_replace_02():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -90,7 +90,7 @@ def test_Mutation_replace_02():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     old_notes = staff[:1]
     new_notes = abjad.Selection(
@@ -104,7 +104,7 @@ def test_Mutation_replace_02():
     )
     abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -121,7 +121,7 @@ def test_Mutation_replace_02():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -137,7 +137,7 @@ def test_Mutation_replace_03():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -151,7 +151,7 @@ def test_Mutation_replace_03():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     old_notes = staff[:2]
     new_notes = abjad.Selection(
@@ -165,7 +165,7 @@ def test_Mutation_replace_03():
     )
     abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -180,7 +180,7 @@ def test_Mutation_replace_03():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -196,7 +196,7 @@ def test_Mutation_replace_04():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -210,7 +210,7 @@ def test_Mutation_replace_04():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     old_notes = staff[:3]
     new_notes = abjad.Selection(
@@ -224,7 +224,7 @@ def test_Mutation_replace_04():
     )
     abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -237,7 +237,7 @@ def test_Mutation_replace_04():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -253,7 +253,7 @@ def test_Mutation_replace_05():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -267,7 +267,7 @@ def test_Mutation_replace_05():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     old_notes = staff[:]
     new_notes = abjad.Selection(
@@ -281,7 +281,7 @@ def test_Mutation_replace_05():
     )
     abjad.mutate(old_notes).replace(new_notes)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -292,7 +292,7 @@ def test_Mutation_replace_05():
             c''16
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -311,7 +311,7 @@ def test_Mutation_replace_06():
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8")])
     abjad.beam(staff[0][:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -326,13 +326,13 @@ def test_Mutation_replace_06():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     voice_selection = staff[:1]
     voice = voice_selection[0]
     abjad.mutate(voice_selection).replace(staff[0][:])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -344,7 +344,7 @@ def test_Mutation_replace_06():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert not voice
     assert abjad.wellformed(staff)

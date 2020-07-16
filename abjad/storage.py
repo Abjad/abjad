@@ -305,12 +305,11 @@ class StorageFormatManager(object):
         "core",
         "indicators",
         "markup",
-        "mathtools",
+        "mathx",
         "meter",
         "pitch",
         "scheme",
         "timespans",
-        "utilities",
     )
 
     _unindented_whitespace = "", "", ", "
@@ -686,7 +685,6 @@ class StorageFormatManager(object):
         """
         Gets class name prefix.
         """
-        manager = StorageFormatManager(self._client)
         if not isinstance(self._client, type):
             class_name = type(self._client).__name__
         else:
@@ -696,8 +694,8 @@ class StorageFormatManager(object):
             root_package = importlib.import_module(root_package_name)
             parts = [root_package_name]
             if class_name not in dir(root_package):
-                tools_package_name = manager.get_tools_package_name()
-                parts.append(tools_package_name)
+                name = StorageFormatManager(self._client).get_tools_package_name()
+                parts.append(name)
             parts.append(class_name)
             return ".".join(parts)
         return class_name
@@ -858,3 +856,13 @@ class StorageFormatManager(object):
             elif parameter.kind == inspect._VAR_KEYWORD:
                 accepts_kwargs = True
         return (positional_names, keyword_names, accepts_args, accepts_kwargs)
+
+
+### FUNCTIONS ###
+
+
+def storage(argument):
+    """
+    Gets storage format of ``argument``.
+    """
+    return StorageFormatManager(argument).get_storage_format()

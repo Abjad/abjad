@@ -10,7 +10,7 @@ def test_Mutation__split_leaf_by_durations_01():
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -21,11 +21,11 @@ def test_Mutation__split_leaf_by_durations_01():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     abjad.Mutation._split_leaf_by_durations(staff[1], [abjad.Duration(1, 32)])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -38,7 +38,7 @@ def test_Mutation__split_leaf_by_durations_01():
             ]
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -58,7 +58,7 @@ def test_Mutation__split_leaf_by_durations_02():
     leaf = abjad.inspect(staff).leaf(0)
     abjad.Mutation._split_leaf_by_durations(leaf, [abjad.Duration(1, 20)])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -75,7 +75,7 @@ def test_Mutation__split_leaf_by_durations_02():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -130,7 +130,7 @@ def test_Mutation__split_leaf_by_durations_06():
     assert isinstance(new_leaves, abjad.Selection)
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -141,7 +141,7 @@ def test_Mutation__split_leaf_by_durations_06():
             c'16.
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)
 
@@ -158,7 +158,7 @@ def test_Mutation__split_leaf_by_durations_07():
     new_leaves = abjad.Mutation._split_leaf_by_durations(note, [abjad.Duration(1, 8)])
     staff = abjad.Staff(new_leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -171,7 +171,7 @@ def test_Mutation__split_leaf_by_durations_07():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.inspect(new_leaves[0]).after_grace_container() is None
     assert len(abjad.inspect(new_leaves[1]).after_grace_container()) == 1
@@ -190,7 +190,7 @@ def test_Mutation__split_leaf_by_durations_08():
     new_leaves = abjad.Mutation._split_leaf_by_durations(note, [abjad.Duration(5, 32)])
     staff = abjad.Staff(new_leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -205,7 +205,7 @@ def test_Mutation__split_leaf_by_durations_08():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     abjad.wellformed(staff)
 
@@ -222,7 +222,7 @@ def test_Mutation__split_leaf_by_durations_09():
     new_leaves = abjad.Mutation._split_leaf_by_durations(note, [abjad.Duration(1, 16)])
     staff = abjad.Staff(new_leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -234,7 +234,7 @@ def test_Mutation__split_leaf_by_durations_09():
             c'8.
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     abjad.wellformed(staff)
 
@@ -253,7 +253,7 @@ def test_Mutation__split_leaf_by_durations_10():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -273,11 +273,11 @@ def test_Mutation__split_leaf_by_durations_10():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     abjad.Mutation._split_leaf_by_durations(leaves[0], [abjad.Duration(1, 32)])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -299,6 +299,6 @@ def test_Mutation__split_leaf_by_durations_10():
             }
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.wellformed(staff)

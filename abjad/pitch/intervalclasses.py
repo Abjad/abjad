@@ -2,7 +2,7 @@ import copy
 import functools
 import numbers
 
-from .. import mathtools
+from .. import mathx
 from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .intervals import Interval, NamedInterval, NumberedInterval
@@ -54,7 +54,7 @@ class IntervalClass(object):
             self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, tuple) and len(argument) == 2:
             quality, number = argument
-            direction = mathtools.sign(number)
+            direction = mathx.sign(number)
             diatonic_number = abs(number)
             quality = self._validate_quality_and_diatonic_number(
                 quality, diatonic_number
@@ -178,14 +178,14 @@ class IntervalClass(object):
         if abs(diatonic_number) == 1:
             semitones = abs(semitones)
         while abs(semitones) > 12:
-            semitones = (abs(semitones) - 12) * mathtools.sign(semitones)
+            semitones = (abs(semitones) - 12) * mathx.sign(semitones)
         semitones *= direction
-        return mathtools.integer_equivalent_number_to_integer(semitones)
+        return mathx.integer_equivalent_number_to_integer(semitones)
 
     @classmethod
     def _numbered_to_named(cls, number):
         number = cls._to_nearest_quarter_tone(float(number))
-        direction = mathtools.sign(number)
+        direction = mathx.sign(number)
         octaves, semitones = divmod(abs(number), 12)
         if semitones == 0 and octaves:
             semitones = 12
@@ -209,7 +209,7 @@ class IntervalClass(object):
             div += 1
         elif mod == 0.5:
             div += 0.5
-        return mathtools.integer_equivalent_number_to_integer(div)
+        return mathx.integer_equivalent_number_to_integer(div)
 
     @classmethod
     def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
@@ -471,7 +471,7 @@ class NamedIntervalClass(IntervalClass):
         try:
             quality = argument.quality
             diatonic_number = abs(argument.number)
-            direction = mathtools.sign(argument.number)
+            direction = mathx.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
@@ -528,7 +528,7 @@ class NamedIntervalClass(IntervalClass):
         """
         if self.quality == "P" and abs(self.number) == 1:
             return 0
-        return mathtools.sign(self.number)
+        return mathx.sign(self.number)
 
     @property
     def name(self):
@@ -991,7 +991,7 @@ class NumberedIntervalClass(IntervalClass):
         self._number = self._named_to_numbered(direction, quality, diatonic_number)
 
     def _from_number(self, argument):
-        direction = mathtools.sign(argument)
+        direction = mathx.sign(argument)
         number = self._to_nearest_quarter_tone(abs(argument))
         pc_number = number % 12
         if pc_number == 0 and number:

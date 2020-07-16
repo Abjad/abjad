@@ -7,7 +7,7 @@ def test_LilyPondParser__indicators__Markup_01():
     markup = abjad.Markup("hello!", direction=abjad.Up)
     abjad.attach(markup, target[0])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -21,10 +21,7 @@ def test_LilyPondParser__indicators__Markup_01():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert (
-        format(target, "lilypond") == format(result, "lilypond")
-        and target is not result
-    )
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     assert 1 == len(abjad.inspect(result[0]).markup())
 
 
@@ -34,7 +31,7 @@ def test_LilyPondParser__indicators__Markup_02():
     markup = abjad.Markup(["X", "Y", "Z", "a b c"], direction=abjad.Down)
     abjad.attach(markup, target[0])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -53,10 +50,7 @@ def test_LilyPondParser__indicators__Markup_02():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert (
-        format(target, "lilypond") == format(result, "lilypond")
-        and target is not result
-    )
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     assert 1 == len(abjad.inspect(result[0]).markup())
 
 
@@ -72,7 +66,7 @@ def test_LilyPondParser__indicators__Markup_03():
     articulation = abjad.Articulation(".")
     abjad.attach(articulation, target[0])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -88,10 +82,7 @@ def test_LilyPondParser__indicators__Markup_03():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert (
-        format(target, "lilypond") == format(result, "lilypond")
-        and target is not result
-    )
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     assert 1 == len(abjad.inspect(result[0]).markup())
 
 
@@ -102,7 +93,7 @@ def test_LilyPondParser__indicators__Markup_04():
     markup = abjad.Markup((command1, command2))
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(markup, "lilypond"))
+    result = parser(abjad.lilypond(markup))
 
     assert isinstance(result, abjad.Markup)
-    assert format(result, "lilypond") == format(markup, "lilypond")
+    assert abjad.lilypond(result) == abjad.lilypond(markup)

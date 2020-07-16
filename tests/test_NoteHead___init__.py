@@ -39,4 +39,4 @@ def test_NoteHead___init___04():
 
     note_head = abjad.NoteHead("cs''", tweaks=abjad.tweak("red").color)
 
-    assert format(note_head) == "\\tweak color #red\ncs''"
+    assert abjad.lilypond(note_head) == "\\tweak color #red\ncs''"

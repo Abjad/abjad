@@ -71,7 +71,7 @@ def test_Parentage_logical_voice_04():
 
     abjad.override(voice).note_head.color = "red"
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         \with
@@ -141,7 +141,7 @@ def test_Parentage_logical_voice_05():
     abjad.override(voice).note_head.color = "red"
     voice.name = "foo"
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \context Voice = "foo"
         \with
@@ -207,7 +207,7 @@ def test_Parentage_logical_voice_06():
     abjad.beam(leaves[:2])
     abjad.beam(leaves[2:])
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             \context Staff = "staff1"
@@ -275,7 +275,7 @@ def test_Parentage_logical_voice_07():
     abjad.override(container[1][1]).note_head.color = "red"
     abjad.override(container[2][1]).note_head.color = "red"
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             c'8
@@ -384,7 +384,7 @@ def test_Parentage_logical_voice_10():
         """
     )
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -422,7 +422,7 @@ def test_Parentage_logical_voice_11():
     container = abjad.Container([abjad.Staff("c'8 c'8"), abjad.Staff("c'8 c'8")])
     container[0].name = container[1].name = "staff"
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             \context Staff = "staff"

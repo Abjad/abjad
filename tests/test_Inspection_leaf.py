@@ -7,7 +7,7 @@ def test_Inspection_leaf_01():
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -52,7 +52,7 @@ def test_Inspection_leaf_02():
     assert abjad.inspect(voice[2]).leaf(-1) is voice[1]
     assert abjad.inspect(voice[3]).leaf(-1) is voice[2]
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -82,7 +82,7 @@ def test_Inspection_leaf_03():
     assert abjad.inspect(staff[2]).leaf(-1) is staff[1]
     assert abjad.inspect(staff[3]).leaf(-1) is staff[2]
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -102,7 +102,7 @@ def test_Inspection_leaf_04():
 
     container = abjad.Container([abjad.Note(i, (1, 8)) for i in range(4)])
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             c'8
@@ -131,7 +131,7 @@ def test_Inspection_leaf_05():
 
     tuplet = abjad.Tuplet((2, 3), "c'8 cs'8 d'8")
 
-    assert format(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \times 2/3 {
             c'8
@@ -159,7 +159,7 @@ def test_Inspection_leaf_06():
     container_2 = abjad.Container([abjad.Note(i, (1, 8)) for i in range(4, 8)])
     voice = abjad.Voice([container_1, container_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -199,7 +199,7 @@ def test_Inspection_leaf_07():
     tuplet_2 = abjad.Tuplet((2, 3), "ef'8 e'8 f'8")
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -235,7 +235,7 @@ def test_Inspection_leaf_08():
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
     staff = abjad.Staff([voice_1, voice_2])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -272,7 +272,7 @@ def test_Inspection_leaf_09():
     voice_2.name = "My Voice"
     staff = abjad.Staff([voice_1, voice_2])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -316,7 +316,7 @@ def test_Inspection_leaf_10():
     voice_2.name = "My Voice"
     staff = abjad.Staff([voice_1, voice_2])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -369,7 +369,7 @@ def test_Inspection_leaf_11():
 
     container = abjad.Container([staff_1, staff_2])
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             \context Staff = "mystaff"
@@ -423,7 +423,7 @@ def test_Inspection_leaf_12():
 
     container = abjad.Container([staff_1, staff_2])
 
-    assert format(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
         {
             \context Staff = "mystaff"
@@ -482,7 +482,7 @@ def test_Inspection_leaf_13():
     container_2 = abjad.Container([container_2])
     voice = abjad.Voice([container_1, container_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -529,7 +529,7 @@ def test_Inspection_leaf_14():
     container_2 = abjad.Container([container_2])
     voice = abjad.Voice([container_1, container_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -576,7 +576,7 @@ def test_Inspection_leaf_15():
     container_2 = abjad.Container([abjad.Note(i, (1, 8)) for i in range(4, 8)])
     voice = abjad.Voice([container_1, container_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -620,7 +620,7 @@ def test_Inspection_leaf_16():
     container_2 = abjad.Container([abjad.Note(i, (1, 8)) for i in range(3, 5)])
     voice = abjad.Voice([container_1, abjad.Note(2, (1, 8)), container_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -655,7 +655,7 @@ def test_Inspection_leaf_17():
     tuplet_2 = abjad.Tuplet((2, 3), notes)
     voice = abjad.Voice([tuplet_1, abjad.Note(3, (1, 8)), tuplet_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -690,7 +690,7 @@ def test_Inspection_leaf_18():
     contents = [abjad.Note("c'4"), inner_tuplet, abjad.Note("c'4")]
     tuplet = abjad.Tuplet((2, 3), contents)
 
-    assert format(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \times 2/3 {
             c'4
@@ -720,7 +720,7 @@ def test_Inspection_leaf_19():
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
     staff = abjad.Staff([voice_1, note, voice_2])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -762,7 +762,7 @@ def test_Inspection_leaf_20():
     voice_3.name = "My Voice"
     staff = abjad.Staff([voice_1, voice_2, voice_3])
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -810,7 +810,7 @@ def test_Inspection_leaf_21():
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
     outer_voice = abjad.Voice([inner_voice, abjad.Note(3, (1, 8))])
 
-    assert format(outer_voice) == abjad.String.normalize(
+    assert abjad.lilypond(outer_voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -842,7 +842,7 @@ def test_Inspection_leaf_22():
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(1, 4)])
     outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
 
-    assert format(outer_voice) == abjad.String.normalize(
+    assert abjad.lilypond(outer_voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -876,7 +876,7 @@ def test_Inspection_leaf_23():
     outer_voice = abjad.Voice([inner_voice, abjad.Note(3, (1, 8))])
     outer_voice.name = "My Voice"
 
-    assert format(outer_voice) == abjad.String.normalize(
+    assert abjad.lilypond(outer_voice) == abjad.String.normalize(
         r"""
         \context Voice = "My Voice"
         {
@@ -910,7 +910,7 @@ def test_Inspection_leaf_24():
     outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
     outer_voice.name = "My Voice"
 
-    assert format(outer_voice) == abjad.String.normalize(
+    assert abjad.lilypond(outer_voice) == abjad.String.normalize(
         r"""
         \context Voice = "My Voice"
         {
@@ -944,7 +944,7 @@ def test_Inspection_leaf_25():
     outer_voice = abjad.Voice([inner_voice, abjad.Note(3, (1, 8))])
     outer_voice.name = "My Voice"
 
-    assert format(outer_voice) == abjad.String.normalize(
+    assert abjad.lilypond(outer_voice) == abjad.String.normalize(
         r"""
         \context Voice = "My Voice"
         {
@@ -978,7 +978,7 @@ def test_Inspection_leaf_26():
     voice_1 = abjad.Voice([abjad.Note(0, (1, 8)), voice_2])
     voice_1.name = "Voice 1"
 
-    assert format(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.String.normalize(
         r"""
         \context Voice = "Voice 1"
         {

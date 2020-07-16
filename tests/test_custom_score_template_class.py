@@ -27,7 +27,7 @@ def test_custom_score_template_class_01():
     named_context_score_template = NamedContextScoreTemplate()
     score = named_context_score_template()
 
-    assert format(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.String.normalize(
         r"""
         \context Score = "Green_Score"
         <<
@@ -69,7 +69,7 @@ def test_custom_score_template_class_02():
     custom_context_score_template = CustomContextScoreTemplate()
     score = custom_context_score_template()
 
-    assert format(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.String.normalize(
         r"""
         \new Score
         <<
@@ -113,7 +113,7 @@ def test_custom_score_template_class_02():
     lilypond_file.layout_block.items.append(context_block)
     context_block.accepts_commands.append("CustomStaff")
 
-    assert format(lilypond_file.layout_block) == abjad.String.normalize(
+    assert abjad.lilypond(lilypond_file.layout_block) == abjad.String.normalize(
         r"""
         \layout {
             \context {
@@ -140,7 +140,7 @@ def test_custom_score_template_class_02():
         """
     )
 
-    assert format(lilypond_file.score_block) == abjad.String.normalize(
+    assert abjad.lilypond(lilypond_file.score_block) == abjad.String.normalize(
         r"""
         \score {
             \new Score

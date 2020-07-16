@@ -58,8 +58,6 @@ class StringContactPoint(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, contact_point: str = "ordinario") -> None:

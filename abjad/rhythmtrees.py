@@ -8,16 +8,16 @@ import quicktions
 import uqbar.containers
 import uqbar.graphs
 
-from . import mathtools
-from .core.Container import Container
-from .core.Tuplet import Tuplet
-from .core.inspectx import Inspection
-from .core.makers import LeafMaker
+from . import mathx
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
+from .inspectx import Inspection
+from .makers import LeafMaker
+from .mutate import Mutation
 from .parsers.base import Parser
+from .score import Container, Tuplet
+from .sequence import Sequence
 from .spanners import tie
 from .storage import FormatSpecification, StorageFormatManager
-from .utilities.Sequence import Sequence
 
 
 class RhythmTreeMixin(object):
@@ -46,12 +46,6 @@ class RhythmTreeMixin(object):
         Calls rhythm tree node on ``pulse_duration``.
         """
         raise NotImplementedError
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats object.
-        """
-        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self) -> str:
         """
@@ -232,7 +226,7 @@ class RhythmTreeMixin(object):
 
         Returns multiplier.
         """
-        return mathtools.cumulative_products(self.prolations)[-1]
+        return mathx.cumulative_products(self.prolations)[-1]
 
     @property
     def prolations(self):
@@ -502,10 +496,6 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
     Returns ``RhythmTreeContainer`` instance.
     """
 
-    ### CLASS VARIABLES ###
-
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, children=None, preprolated_duration=1, name=None):
@@ -642,7 +632,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         for component in result[:]:
             if isinstance(component, Tuplet):
                 if component.trivial():
-                    component._extract()
+                    Mutation._extract(component)
         return result
 
     def __graph__(self, **keywords):
@@ -652,7 +642,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
         >>> tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
         >>> graph = tree.__graph__()
-        >>> print(format(graph, 'graphviz'))
+        >>> print(format(graph, "graphviz"))
         digraph G {
             graph [bgcolor=transparent,
                 truecolor=true];

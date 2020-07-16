@@ -38,8 +38,6 @@ class Ottava(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, n: int = None, *, format_slot: str = None) -> None:

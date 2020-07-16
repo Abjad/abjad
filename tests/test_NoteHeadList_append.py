@@ -11,7 +11,7 @@ def test_NoteHeadList_append_01():
     abjad.tweak(note_head).style = "harmonic"
     chord.note_heads.append(note_head)
 
-    assert format(chord) == abjad.String.normalize(
+    assert abjad.lilypond(chord) == abjad.String.normalize(
         r"""
         <
             c'

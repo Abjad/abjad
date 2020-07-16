@@ -8,7 +8,7 @@ def test_Cluster___init___01():
     cluster = abjad.Cluster([])
     assert not cluster.simultaneous
     assert len(cluster) == 0
-    assert format(cluster) == abjad.String.normalize(
+    assert abjad.lilypond(cluster) == abjad.String.normalize(
         r"""
         \makeClusters {
         }
@@ -21,7 +21,7 @@ def test_Cluster___init___02():
     assert isinstance(cluster, abjad.Cluster)
     assert not cluster.simultaneous
     assert len(cluster) == 4
-    assert format(cluster) == abjad.String.normalize(
+    assert abjad.lilypond(cluster) == abjad.String.normalize(
         r"""
         \makeClusters {
             cs'4

@@ -7,7 +7,7 @@ def test_LilyPondParser__functions__relative_01():
     pitches = [2, 5, 9, 7, 12, 11, 5, 2]
     target = abjad.Container(maker(pitches, (1, 4)))
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             d'4
@@ -25,7 +25,7 @@ def test_LilyPondParser__functions__relative_01():
     string = r"\relative c' { d f a g c b f d }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_02():
@@ -34,7 +34,7 @@ def test_LilyPondParser__functions__relative_02():
     pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
     target = abjad.Container(maker(pitches, (1, 4)))
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             b'4
@@ -56,7 +56,7 @@ def test_LilyPondParser__functions__relative_02():
     string = r"\relative c'' { b c b d b e b a b g b f }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_03():
@@ -65,7 +65,7 @@ def test_LilyPondParser__functions__relative_03():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker(pitches, (1, 4)))
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             a'4
@@ -83,7 +83,7 @@ def test_LilyPondParser__functions__relative_03():
     string = r"\relative c'' { a a, c' f, g g'' a,, f' }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_04():
@@ -99,7 +99,7 @@ def test_LilyPondParser__functions__relative_04():
     leaves = maker(pitches, 1)
     target = abjad.Container(leaves)
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             <a' c'' e''>1
@@ -114,7 +114,7 @@ def test_LilyPondParser__functions__relative_04():
     string = r"""\relative c'' { <a c e>1 <f a c> <a c e> <f' a c> <b, e b,> }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_05():
@@ -123,7 +123,7 @@ def test_LilyPondParser__functions__relative_05():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker(pitches, [(1, 4)]))
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c4
@@ -141,7 +141,7 @@ def test_LilyPondParser__functions__relative_05():
     string = r"""\relative c { c f b e a d g c }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_06():
@@ -163,7 +163,7 @@ def test_LilyPondParser__functions__relative_06():
         ]
     )
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -183,7 +183,7 @@ def test_LilyPondParser__functions__relative_06():
     string = r"""\relative c' { c d e f \relative c'' { c d e f } }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_07():
@@ -204,7 +204,7 @@ def test_LilyPondParser__functions__relative_07():
         ]
     )
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             d'4
@@ -224,7 +224,7 @@ def test_LilyPondParser__functions__relative_07():
     string = r"""\relative c' { d e \transpose f g { d e \relative c' { d e } } }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_08():
@@ -238,7 +238,7 @@ def test_LilyPondParser__functions__relative_08():
         ]
     )
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -252,7 +252,7 @@ def test_LilyPondParser__functions__relative_08():
     string = r"""\relative c' { c <c e g> <c' e g'> <c, e, g''> }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__functions__relative_09():
@@ -262,7 +262,7 @@ def test_LilyPondParser__functions__relative_09():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker(pitches, [(1, 2)]))
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c''2
@@ -280,4 +280,4 @@ def test_LilyPondParser__functions__relative_09():
     string = r"""\relative c'' { c2 fs c2 gf b2 ess b2 fff }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

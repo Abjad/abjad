@@ -1,7 +1,7 @@
 import functools
 import typing
 
-from .. import enums, mathtools
+from .. import enums, mathx
 from ..bundle import LilyPondFormatBundle
 from ..markups import Markup
 from ..new import new
@@ -68,13 +68,11 @@ class ColorFingering(object):
 
     _format_slot = "after"
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, number: int = None, *, tweaks: TweakInterface = None) -> None:
         if number is not None:
-            assert mathtools.is_positive_integer(number)
+            assert mathx.is_positive_integer(number)
         self._number = number
         if tweaks is not None:
             assert isinstance(tweaks, TweakInterface), repr(tweaks)
@@ -88,28 +86,6 @@ class ColorFingering(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        r"""
-        Formats color fingering.
-
-        Set ``format_specification`` to ``''``, ``'lilypond'`` or
-        ``'storage'``. Interprets ``''`` equal to ``'storage'``.
-
-        ..  container:: example
-
-            >>> fingering = abjad.ColorFingering(1)
-            >>> abjad.f(fingering)
-            abjad.ColorFingering(
-                number=1,
-                )
-
-        """
-        if format_specification == "lilypond":
-            return self._get_lilypond_format()
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """
@@ -168,7 +144,7 @@ class ColorFingering(object):
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        return format(self.markup, "lilypond")
+        return self.markup._get_lilypond_format()
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
@@ -193,7 +169,7 @@ class ColorFingering(object):
             First color fingering:
 
             >>> fingering = abjad.ColorFingering(1)
-            >>> print(format(fingering.markup, 'lilypond'))
+            >>> print(abjad.lilypond(fingering.markup))
             \markup {
                 \override
                     #'(circle-padding . 0.25)
@@ -208,7 +184,7 @@ class ColorFingering(object):
             Second color fingering:
 
             >>> fingering = abjad.ColorFingering(2)
-            >>> print(format(fingering.markup, 'lilypond'))
+            >>> print(abjad.lilypond(fingering.markup))
             \markup {
                 \override
                     #'(circle-padding . 0.25)

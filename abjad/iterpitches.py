@@ -1,13 +1,12 @@
 import typing
 
-from .core.Chord import Chord
-from .core.Iteration import Iteration
-from .core.Note import Note
-from .core.Selection import Selection
-from .core.inspectx import Inspection
+from .inspectx import Inspection
 from .instruments import Instrument
+from .iterate import Iteration
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch, Pitch
+from .score import Chord, Note
+from .selectx import Selection
 
 
 def iterate_out_of_range(components) -> typing.Generator:
@@ -32,7 +31,7 @@ def iterate_out_of_range(components) -> typing.Generator:
                 r8
             }
 
-        >>> for leaf in abjad.iterate_out_of_range(staff):
+        >>> for leaf in abjad.iterpitches.iterate_out_of_range(staff):
         ...     leaf
         ...
         Chord('<d fs>8')
@@ -72,7 +71,7 @@ def respell_with_flats(selection):
                 f'8
             }
 
-        >>> abjad.respell_with_flats(staff)
+        >>> abjad.iterpitches.respell_with_flats(staff)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -123,7 +122,7 @@ def respell_with_sharps(selection):
                 f'8
             }
 
-        >>> abjad.respell_with_sharps(staff)
+        >>> abjad.iterpitches.respell_with_sharps(staff)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -172,3 +171,110 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
         except TypeError:
             return False
     return False
+
+
+def transpose_from_sounding_pitch(argument):
+    r"""
+    Transpose notes and chords in ``argument`` from sounding pitch to written pitch.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
+        >>> clarinet = abjad.ClarinetInBFlat()
+        >>> abjad.attach(clarinet, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                <c' e' g'>4
+                d'4
+                r4
+                e'4
+            }
+
+        >>> abjad.iterpitches.transpose_from_sounding_pitch(staff)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                <d' fs' a'>4
+                e'4
+                r4
+                fs'4
+            }
+
+    Returns none.
+    """
+    for leaf in Iteration(argument).leaves(pitched=True):
+        instrument = Inspection(leaf).effective(Instrument)
+        if not instrument:
+            continue
+        sounding_pitch = instrument.middle_c_sounding_pitch
+        interval = NamedPitch("C4") - sounding_pitch
+        interval *= -1
+        if hasattr(leaf, "written_pitch"):
+            pitch = leaf.written_pitch
+            pitch = interval.transpose(pitch)
+            leaf.written_pitch = pitch
+        elif hasattr(leaf, "written_pitches"):
+            pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
+            leaf.written_pitches = pitches
+
+
+def transpose_from_written_pitch(argument):
+    r"""
+    Transposes notes and chords in ``argument`` from sounding pitch to written pitch.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("<c' e' g'>4 d'4 r4 e'4")
+        >>> clarinet = abjad.ClarinetInBFlat()
+        >>> abjad.attach(clarinet, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                <c' e' g'>4
+                d'4
+                r4
+                e'4
+            }
+
+        >>> abjad.iterpitches.transpose_from_written_pitch(staff)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                <bf d' f'>4
+                c'4
+                r4
+                d'4
+            }
+
+    Returns none.
+    """
+    for leaf in Iteration(argument).leaves(pitched=True):
+        instrument = Inspection(leaf).effective(Instrument)
+        if not instrument:
+            continue
+        sounding_pitch = instrument.middle_c_sounding_pitch
+        interval = NamedPitch("C4") - sounding_pitch
+        if hasattr(leaf, "written_pitch"):
+            written_pitch = leaf.written_pitch
+            written_pitch = interval.transpose(written_pitch)
+            leaf.written_pitch = written_pitch
+        elif hasattr(leaf, "written_pitches"):
+            pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
+            leaf.written_pitches = pitches

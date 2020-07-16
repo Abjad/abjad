@@ -17,7 +17,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     result = abjad.parse(string)
     assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
-    assert format(result.items[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result.items[0]) == abjad.String.normalize(
         r"""
         \header {
             globalvariable = #"This abjad.overrides the global variable"
@@ -30,7 +30,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
         }
         """
     )
-    assert format(result.items[1]) == abjad.String.normalize(
+    assert abjad.lilypond(result.items[1]) == abjad.String.normalize(
         r"""
         \score {
             \new Staff
@@ -60,7 +60,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_02():
     result = abjad.parse(string)
     assert isinstance(result, abjad.LilyPondFile)
     assert len(result.items) == 2
-    assert format(result.items[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result.items[0]) == abjad.String.normalize(
         r"""
         \header {
             composername = #"Foo von Bar"
@@ -79,7 +79,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_02():
         }
         """
     )
-    assert format(result.items[1]) == abjad.String.normalize(
+    assert abjad.lilypond(result.items[1]) == abjad.String.normalize(
         r"""
         {
             c'1

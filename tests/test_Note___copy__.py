@@ -13,7 +13,7 @@ def test_Note___copy___01():
 
     assert isinstance(note_1, abjad.Note)
     assert isinstance(note_2, abjad.Note)
-    assert format(note_1) == format(note_2)
+    assert abjad.lilypond(note_1) == abjad.lilypond(note_2)
     assert note_1 is not note_2
 
 
@@ -27,7 +27,7 @@ def test_Note___copy___02():
 
     assert isinstance(note_1, abjad.Note)
     assert isinstance(note_2, abjad.Note)
-    assert format(note_1) == format(note_2)
+    assert abjad.lilypond(note_1) == abjad.lilypond(note_2)
     assert note_1 is not note_2
 
 
@@ -44,7 +44,7 @@ def test_Note___copy___03():
 
     assert isinstance(note_1, abjad.Note)
     assert isinstance(note_2, abjad.Note)
-    assert format(note_1) == format(note_2)
+    assert abjad.lilypond(note_1) == abjad.lilypond(note_2)
     assert note_1 is not note_2
 
 
@@ -57,7 +57,7 @@ def test_Note___copy___04():
     grace_container_1 = abjad.AfterGraceContainer([abjad.Note("d'32")])
     abjad.attach(grace_container_1, note_1)
 
-    assert format(note_1) == abjad.String.normalize(
+    assert abjad.lilypond(note_1) == abjad.String.normalize(
         r"""
         \afterGrace
         c'4
@@ -70,7 +70,7 @@ def test_Note___copy___04():
     note_2 = copy.copy(note_1)
     grace_container_2 = abjad.inspect(note_2).after_grace_container()
 
-    assert format(note_2) == abjad.String.normalize(
+    assert abjad.lilypond(note_2) == abjad.String.normalize(
         r"""
         \afterGrace
         c'4
@@ -97,7 +97,7 @@ def test_Note___copy___05():
     abjad.attach(grace, note)
     abjad.override(note).note_head.color = "red"
 
-    assert format(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.String.normalize(
         r"""
         \grace {
             d'16
@@ -111,7 +111,7 @@ def test_Note___copy___05():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert format(new_note) == format(note)
+    assert abjad.lilypond(new_note) == abjad.lilypond(note)
 
 
 def test_Note___copy___06():
@@ -127,7 +127,7 @@ def test_Note___copy___06():
     abjad.attach(grace, note)
     abjad.override(note).note_head.color = "red"
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -152,7 +152,7 @@ def test_Note___copy___06():
     assert abjad.inspect(note).parentage().parent is staff
     assert abjad.inspect(new_note).parentage().parent is not staff
     assert isinstance(abjad.inspect(new_note).parentage().parent, abjad.Staff)
-    assert format(new_note) == format(note)
-    assert format(abjad.inspect(note).parentage().parent) == format(
+    assert abjad.lilypond(new_note) == abjad.lilypond(note)
+    assert abjad.lilypond(abjad.inspect(note).parentage().parent) == abjad.lilypond(
         abjad.inspect(new_note).parentage().parent
     )

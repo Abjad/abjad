@@ -9,7 +9,7 @@ def test_LilyPondParser__functions__grace_01():
 
     abjad.attach(grace, target[2])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -26,4 +26,4 @@ def test_LilyPondParser__functions__grace_01():
     string = r"{ c'4 d'4 \grace { g''16 fs''16} e'2 }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

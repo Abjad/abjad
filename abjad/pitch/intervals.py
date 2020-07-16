@@ -3,7 +3,7 @@ import functools
 import numbers
 import typing
 
-from .. import mathtools
+from .. import mathx
 from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
 from .pitches import NamedPitch, NumberedPitch
@@ -55,7 +55,7 @@ class Interval(object):
             self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, tuple) and len(argument) == 2:
             quality, number = argument
-            direction = mathtools.sign(number)
+            direction = mathx.sign(number)
             diatonic_number = abs(number)
             quality = self._validate_quality_and_diatonic_number(
                 quality, diatonic_number
@@ -177,12 +177,12 @@ class Interval(object):
         else:
             semitones += octave_number * 12
         semitones *= direction
-        return mathtools.integer_equivalent_number_to_integer(semitones)
+        return mathx.integer_equivalent_number_to_integer(semitones)
 
     @classmethod
     def _numbered_to_named(cls, number):
         number = cls._to_nearest_quarter_tone(float(number))
-        direction = mathtools.sign(number)
+        direction = mathx.sign(number)
         octaves, semitones = divmod(abs(number), 12)
         quartertone = ""
         if semitones % 1:
@@ -205,7 +205,7 @@ class Interval(object):
             div += 1
         elif mod == 0.5:
             div += 0.5
-        return mathtools.integer_equivalent_number_to_integer(div)
+        return mathx.integer_equivalent_number_to_integer(div)
 
     @classmethod
     def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
@@ -607,7 +607,7 @@ class NamedInterval(Interval):
         try:
             quality = argument.quality
             diatonic_number = abs(argument.number)
-            direction = mathtools.sign(argument.number)
+            direction = mathx.sign(argument.number)
         except AttributeError:
             direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
@@ -670,7 +670,7 @@ class NamedInterval(Interval):
         """
         if self.quality == "P" and abs(self.number) == 1:
             return 0
-        return mathtools.sign(self.number)
+        return mathx.sign(self.number)
 
     @property
     def interval_class(self):
@@ -727,7 +727,7 @@ class NamedInterval(Interval):
         Returns nonnegative number.
         """
         number = self._interval_class._number
-        direction = mathtools.sign(number)
+        direction = mathx.sign(number)
         number = abs(number) + (7 * self.octaves)
         return number * direction
 
@@ -856,9 +856,9 @@ class NamedInterval(Interval):
         pitch_2 = NamedPitch(pitch_carrier_2)
         degree_1 = pitch_1._get_diatonic_pitch_number()
         degree_2 = pitch_2._get_diatonic_pitch_number()
-        named_sign = mathtools.sign(degree_1 - degree_2)
+        named_sign = mathx.sign(degree_1 - degree_2)
         named_i_number = abs(degree_1 - degree_2) + 1
-        numbered_sign = mathtools.sign(
+        numbered_sign = mathx.sign(
             float(NumberedPitch(pitch_1)) - float(NumberedPitch(pitch_2))
         )
         numbered_i_number = abs(
@@ -1158,7 +1158,7 @@ class NumberedInterval(Interval):
         Returns string.
         """
         direction_symbol = constants._direction_number_to_direction_symbol[
-            mathtools.sign(self.number)
+            mathx.sign(self.number)
         ]
         return f"{direction_symbol}{abs(self.number)}"
 
@@ -1186,7 +1186,7 @@ class NumberedInterval(Interval):
         from .intervalclasses import NumberedIntervalClass
 
         number = self._to_nearest_quarter_tone(argument)
-        direction = mathtools.sign(number)
+        direction = mathx.sign(number)
         octaves = 0
         pc_number = abs(number)
         while pc_number > 12:
@@ -1225,7 +1225,7 @@ class NumberedInterval(Interval):
 
         Returns integer.
         """ ""
-        return mathtools.sign(self.number)
+        return mathx.sign(self.number)
 
     @property
     def interval_class(self):
@@ -1255,7 +1255,7 @@ class NumberedInterval(Interval):
         Returns number.
         """
         number = self._interval_class._number
-        direction = mathtools.sign(number)
+        direction = mathx.sign(number)
         number = abs(number) + (12 * self.octaves)
         return number * direction
 
@@ -1327,7 +1327,7 @@ class NumberedInterval(Interval):
         pitch_1 = NamedPitch(pitch_carrier_1)
         pitch_2 = NamedPitch(pitch_carrier_2)
         number = NumberedPitch(pitch_2).number - NumberedPitch(pitch_1).number
-        number = mathtools.integer_equivalent_number_to_integer(number)
+        number = mathx.integer_equivalent_number_to_integer(number)
         return class_(number)
 
     def transpose(self, pitch_carrier):

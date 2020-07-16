@@ -5,16 +5,16 @@ import typing
 
 import quicktions
 
-from .. import exceptions, mathtools, typings
+from .. import exceptions, mathx, typings
 from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
+from ..enumeratex import Enumerator
 from ..markups import Markup
 from ..new import new
 from ..ratio import Ratio
 from ..scheme import Scheme
+from ..sequence import Sequence
 from ..storage import FormatSpecification, StorageFormatManager
-from ..utilities.Enumerator import Enumerator
-from ..utilities.Sequence import Sequence
 
 
 @functools.total_ordering
@@ -332,7 +332,7 @@ class MetronomeMark(object):
         elif isinstance(argument, (int, quicktions.Fraction)):
             assert isinstance(self.units_per_minute, (int, quicktions.Fraction))
             units_per_minute = self.units_per_minute / argument
-            if mathtools.is_integer_equivalent_number(units_per_minute):
+            if mathx.is_integer_equivalent_number(units_per_minute):
                 units_per_minute = int(units_per_minute)
             else:
                 units_per_minute = quicktions.Fraction(units_per_minute)
@@ -391,48 +391,6 @@ class MetronomeMark(object):
         ):
             return True
         return False
-
-    def __format__(self, format_specification="") -> str:
-        r"""
-        Formats metronome mark.
-
-        ..  container:: example
-
-            Without custom markup:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 84, 'Allegro')
-            >>> print(format(mark))
-            abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=84,
-                textual_indication='Allegro',
-                )
-
-        ..  container:: example
-
-            With custom markup:
-
-            >>> markup = abjad.Markup(r'\italic { Allegro }')
-            >>> mark = abjad.MetronomeMark((1, 4), 84, custom_markup=markup)
-            >>> print(format(mark))
-            abjad.MetronomeMark(
-                reference_duration=abjad.Duration(1, 4),
-                units_per_minute=84,
-                custom_markup=abjad.Markup(
-                    contents=[
-                        abjad.MarkupCommand(
-                            'italic',
-                            ['Allegro']
-                            ),
-                        ],
-                    ),
-                )
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        assert format_specification == "lilypond"
-        return self._get_lilypond_format()
 
     def __hash__(self) -> int:
         """
@@ -618,14 +576,14 @@ class MetronomeMark(object):
             string = f"{self._dotted}={self.units_per_minute}"
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
-        ) and not mathtools.is_integer_equivalent_number(self.units_per_minute):
+        ) and not mathx.is_integer_equivalent_number(self.units_per_minute):
             integer_part = int(float(self.units_per_minute))
             remainder = self.units_per_minute - integer_part
             remainder = quicktions.Fraction(remainder)
             string = f"{self._dotted}={integer_part}+{remainder}"
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
-        ) and mathtools.is_integer_equivalent_number(self.units_per_minute):
+        ) and mathx.is_integer_equivalent_number(self.units_per_minute):
             integer = int(float(self.units_per_minute))
             string = f"{self._dotted}={integer}"
         elif isinstance(self.units_per_minute, tuple):
@@ -1210,7 +1168,7 @@ class MetronomeMark(object):
         pairs = []
         for multiplier in multipliers_:
             new_units_per_minute = multiplier * self.units_per_minute
-            if integer_tempos_only and not mathtools.is_integer_equivalent_number(
+            if integer_tempos_only and not mathx.is_integer_equivalent_number(
                 new_units_per_minute
             ):
                 continue
@@ -1242,7 +1200,7 @@ class MetronomeMark(object):
 
             ..  docs::
 
-                >>> print(format(markup))
+                >>> print(abjad.lilypond(markup))
                 \markup \abjad-metronome-mark-markup #2 #0 #1 #"90"
 
         ..  container:: example
@@ -1257,7 +1215,7 @@ class MetronomeMark(object):
 
             ..  docs::
 
-                >>> print(format(markup))
+                >>> print(abjad.lilypond(markup))
                 \markup \abjad-metronome-mark-markup #2 #0 #1 #"90.1"
 
         ..  container:: example
@@ -1272,7 +1230,7 @@ class MetronomeMark(object):
 
             ..  docs::
 
-                >>> print(format(markup))
+                >>> print(abjad.lilypond(markup))
                 \markup \abjad-metronome-mark-mixed-number-markup #2 #0 #1 #"90" #"2" #"3"
 
         """
@@ -1282,7 +1240,7 @@ class MetronomeMark(object):
         stem = 1
         if isinstance(
             units_per_minute, quicktions.Fraction
-        ) and not mathtools.is_integer_equivalent_number(units_per_minute):
+        ) and not mathx.is_integer_equivalent_number(units_per_minute):
             if decimal:
                 decimal_: typing.Union[float, str]
                 if decimal is True:

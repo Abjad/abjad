@@ -1,6 +1,6 @@
 import typing
 
-from .. import mathtools, typings
+from .. import mathx, typings
 from ..duration import Duration, Multiplier, NonreducedFraction
 from ..storage import FormatSpecification, StorageFormatManager
 
@@ -151,7 +151,7 @@ class TimeSignature(object):
             hide = bool(hide)
         self._hide: typing.Optional[bool] = hide
         self._multiplier = self.implied_prolation
-        result = mathtools.is_nonnegative_integer_power_of_two(self.denominator)
+        result = mathx.is_nonnegative_integer_power_of_two(self.denominator)
         assert isinstance(result, bool)
         self._has_non_power_of_two_denominator: bool = not (result)
 
@@ -206,21 +206,6 @@ class TimeSignature(object):
             return self.numerator == argument[0] and self.denominator == argument[1]
         else:
             return False
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats time signature.
-
-        ..  container:: example
-
-            >>> print(format(abjad.TimeSignature((3, 8))))
-            abjad.TimeSignature((3, 8))
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        assert format_specification == "lilypond"
-        return self._get_lilypond_format()
 
     def __ge__(self, argument) -> bool:
         """
@@ -589,11 +574,11 @@ class TimeSignature(object):
         contents_multiplier = Multiplier(contents_multiplier)
         non_power_of_two_denominator = self.denominator
         if contents_multiplier == Multiplier(1):
-            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+            power_of_two_denominator = mathx.greatest_power_of_two_less_equal(
                 non_power_of_two_denominator
             )
         else:
-            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+            power_of_two_denominator = mathx.greatest_power_of_two_less_equal(
                 non_power_of_two_denominator, 1
             )
         non_power_of_two_pair = NonreducedFraction(self.pair)

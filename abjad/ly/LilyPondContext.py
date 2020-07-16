@@ -74,8 +74,6 @@ class LilyPondContext(object):
 
     _identity_map: typing.Dict[str, "LilyPondContext"] = {}
 
-    _publish_storage_format = True
-
     ### CONSTRUCTOR ###
 
     def __new__(class_, name="Voice"):
@@ -915,8 +913,10 @@ class LilyPondContext(object):
             ...     name='BowingStaff',
             ...     removes=['Note_heads_engraver'],
             ...     )
-            >>> print(format(custom_context))
-            LilyPondContext(name='BowingStaff')
+            >>> print(abjad.storage(custom_context))
+            abjad.LilyPondContext(
+                name='BowingStaff',
+                )
 
             >>> custom_context.is_custom
             True

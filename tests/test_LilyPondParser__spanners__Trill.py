@@ -14,7 +14,7 @@ def test_LilyPondParser__spanners__Trill_01():
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -30,8 +30,8 @@ def test_LilyPondParser__spanners__Trill_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__Trill_02():
@@ -45,7 +45,7 @@ def test_LilyPondParser__spanners__Trill_02():
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -67,7 +67,7 @@ def test_LilyPondParser__spanners__Trill_02():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__Trill_03():

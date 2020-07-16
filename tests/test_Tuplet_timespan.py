@@ -5,7 +5,7 @@ def test_Tuplet_timespan_01():
 
     staff = abjad.Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {

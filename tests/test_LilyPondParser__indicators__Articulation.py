@@ -20,7 +20,7 @@ def test_LilyPondParser__indicators__Articulation_01():
     articulation = abjad.Articulation("portato")
     abjad.attach(articulation, target[6])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -46,7 +46,7 @@ def test_LilyPondParser__indicators__Articulation_01():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     for x in result:
         assert 1 == len(abjad.inspect(x).indicators(abjad.Articulation))
 
@@ -73,7 +73,7 @@ def test_LilyPondParser__indicators__Articulation_02():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     assert 7 == len(abjad.inspect(result[0]).indicators(abjad.Articulation))
 
 
@@ -93,7 +93,7 @@ def test_LilyPondParser__indicators__Articulation_03():
     articulation = abjad.Articulation("fermata")
     abjad.attach(articulation, target[3])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c''4
@@ -112,6 +112,6 @@ def test_LilyPondParser__indicators__Articulation_03():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     for x in result:
         assert 1 == len(abjad.inspect(x).indicators(abjad.Articulation))

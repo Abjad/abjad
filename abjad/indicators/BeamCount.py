@@ -17,8 +17,6 @@ class BeamCount(object):
 
     __slots__ = ("_left", "_right")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, left: int = 0, right: int = 0) -> None:

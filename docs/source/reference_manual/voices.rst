@@ -47,11 +47,11 @@ interpreted sequentially rather than simultaneously.
 Formatting voices
 -----------------
 
-Use ``format()`` to get the LilyPond format of a voice:
+Use ``abjad.lilypond()`` to get the LilyPond format of a voice:
 
 ::
 
-    >>> print(format(voice, 'lilypond'))
+    >>> print(abjad.lilypond(voice))
 
 
 Selecting the components in a voice

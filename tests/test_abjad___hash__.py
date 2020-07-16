@@ -6,9 +6,9 @@ import abjad
 
 ignored_classes = (
     abjad.FormatSpecification,
+    abjad.MetricModulation,
     abjad.Path,
     abjad.StorageFormatManager,
-    abjad.Tags,
 )
 
 classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)

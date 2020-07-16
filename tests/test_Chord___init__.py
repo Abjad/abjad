@@ -7,7 +7,7 @@ def test_Chord___init___01():
     """
 
     chord = abjad.Chord([], (1, 4))
-    assert format(chord) == "<>4"
+    assert abjad.lilypond(chord) == "<>4"
 
 
 def test_Chord___init___02():
@@ -16,7 +16,7 @@ def test_Chord___init___02():
     """
 
     chord = abjad.Chord([2, 4, 5], (1, 4))
-    assert format(chord) == "<d' e' f'>4"
+    assert abjad.lilypond(chord) == "<d' e' f'>4"
 
 
 def test_Chord___init___03():
@@ -25,7 +25,7 @@ def test_Chord___init___03():
     """
 
     chord = abjad.Chord([("ds", 4), ("ef", 4)], (1, 4))
-    assert format(chord) == "<ds' ef'>4"
+    assert abjad.lilypond(chord) == "<ds' ef'>4"
 
 
 def test_Chord___init___04():
@@ -37,7 +37,7 @@ def test_Chord___init___04():
     pitches.append(abjad.NamedPitch("D#4"))
     pitches.append(abjad.NamedPitch("Eb4"))
     chord = abjad.Chord(pitches, (1, 4))
-    assert format(chord) == "<ds' ef'>4"
+    assert abjad.lilypond(chord) == "<ds' ef'>4"
 
 
 def test_Chord___init___05():
@@ -47,7 +47,7 @@ def test_Chord___init___05():
 
     pitches = [2, ("ef", 4), abjad.NamedPitch(4)]
     chord = abjad.Chord(pitches, (1, 4))
-    assert format(chord) == "<d' ef' e'>4"
+    assert abjad.lilypond(chord) == "<d' ef' e'>4"
 
 
 def test_Chord___init___06():
@@ -57,7 +57,7 @@ def test_Chord___init___06():
 
     pitches = ["d'", "ef'", "e'"]
     chord = abjad.Chord(pitches, (1, 4))
-    assert format(chord) == "<d' ef' e'>4"
+    assert abjad.lilypond(chord) == "<d' ef' e'>4"
 
 
 def test_Chord___init___07():
@@ -66,7 +66,7 @@ def test_Chord___init___07():
     """
 
     chord = abjad.Chord("<d' ef' e'>4")
-    assert format(chord) == "<d' ef' e'>4"
+    assert abjad.lilypond(chord) == "<d' ef' e'>4"
 
 
 def test_Chord___init___08():
@@ -77,8 +77,8 @@ def test_Chord___init___08():
     skip = abjad.Skip("s8")
     chord = abjad.Chord(skip)
 
-    assert format(skip) == "s8"
-    assert format(chord) == "<>8"
+    assert abjad.lilypond(skip) == "s8"
+    assert abjad.lilypond(chord) == "<>8"
 
     assert abjad.wellformed(skip)
     assert abjad.wellformed(chord)
@@ -92,7 +92,7 @@ def test_Chord___init___09():
     tuplet = abjad.Tuplet((2, 3), "s8 s8 s8")
     chord = abjad.Chord(tuplet[0])
 
-    assert format(chord) == "<>8"
+    assert abjad.lilypond(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
     assert abjad.wellformed(chord)
 
@@ -105,7 +105,7 @@ def test_Chord___init___10():
     tuplet = abjad.Voice("s8 s8 s8")
     chord = abjad.Chord(tuplet[0])
 
-    assert format(chord) == "<>8"
+    assert abjad.lilypond(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
     assert abjad.wellformed(chord)
 
@@ -118,7 +118,7 @@ def test_Chord___init___11():
     staff = abjad.Staff("c'8 [ s8 c'8 ]")
     chord = abjad.Chord(staff[1])
 
-    assert format(chord) == "<>8"
+    assert abjad.lilypond(chord) == "<>8"
     assert abjad.inspect(chord).parentage().parent is None
     assert abjad.wellformed(chord)
 
@@ -131,8 +131,8 @@ def test_Chord___init___12():
     rest = abjad.Rest("r8")
     chord = abjad.Chord(rest)
 
-    assert format(rest) == "r8"
-    assert format(chord) == "<>8"
+    assert abjad.lilypond(rest) == "r8"
+    assert abjad.lilypond(chord) == "<>8"
     assert abjad.wellformed(rest)
     assert abjad.wellformed(chord)
 
@@ -145,7 +145,7 @@ def test_Chord___init___13():
     tuplet = abjad.Tuplet((2, 3), "r8 r8 r8")
     chord = abjad.Chord(tuplet[1])
 
-    assert format(chord) == "<>8"
+    assert abjad.lilypond(chord) == "<>8"
     assert abjad.wellformed(chord)
     assert abjad.inspect(chord).parentage().parent is None
 
@@ -158,8 +158,8 @@ def test_Chord___init___14():
     note = abjad.Note("d'8")
     chord = abjad.Chord(note)
 
-    assert format(note) == "d'8"
-    assert format(chord) == "<d'>8"
+    assert abjad.lilypond(note) == "d'8"
+    assert abjad.lilypond(chord) == "<d'>8"
     assert abjad.wellformed(note)
     assert abjad.wellformed(chord)
 
@@ -172,7 +172,7 @@ def test_Chord___init___15():
     tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     chord = abjad.Chord(tuplet[1])
 
-    assert format(chord) == "<c'>8"
+    assert abjad.lilypond(chord) == "<c'>8"
     assert abjad.wellformed(chord)
     assert abjad.inspect(chord).parentage().parent is None
 
@@ -185,7 +185,7 @@ def test_Chord___init___16():
     staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
     chord = abjad.Chord(staff[1])
 
-    assert format(chord) == "<d'>8"
+    assert abjad.lilypond(chord) == "<d'>8"
     assert abjad.wellformed(chord)
     assert abjad.inspect(chord).parentage().parent is None
 
@@ -197,7 +197,7 @@ def test_Chord___init___17():
 
     chord = abjad.Chord("<>8.")
 
-    assert format(chord) == "<>8."
+    assert abjad.lilypond(chord) == "<>8."
     assert not len(chord.note_heads)
 
 
@@ -209,7 +209,7 @@ def test_Chord___init___18():
 
     chord = abjad.Chord("<c!? e? g! b>4")
 
-    assert format(chord) == "<c!? e? g! b>4"
+    assert abjad.lilypond(chord) == "<c!? e? g! b>4"
 
 
 def test_Chord___init___19():
@@ -220,7 +220,7 @@ def test_Chord___init___19():
     note = abjad.Note("c'!?4")
     chord = abjad.Chord(note)
 
-    assert format(chord) == "<c'!?>4"
+    assert abjad.lilypond(chord) == "<c'!?>4"
 
 
 def test_Chord___init___20():
@@ -231,7 +231,7 @@ def test_Chord___init___20():
     chord_1 = abjad.Chord("<c' e' g' bf'>4")
     chord_2 = abjad.Chord(chord_1, abjad.Duration(1, 8))
 
-    assert format(chord_2) == "<c' e' g' bf'>8"
+    assert abjad.lilypond(chord_2) == "<c' e' g' bf'>8"
 
 
 def test_Chord___init___21():
@@ -241,4 +241,4 @@ def test_Chord___init___21():
 
     chord = abjad.Chord("<sn? bd! tamb>4")
 
-    assert format(chord) == "<bassdrum! snare? tambourine>4"
+    assert abjad.lilypond(chord) == "<bassdrum! snare? tambourine>4"

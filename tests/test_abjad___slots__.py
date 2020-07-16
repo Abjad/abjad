@@ -7,6 +7,7 @@ import abjad
 ignored_classes = (
     abjad.Expression,
     abjad.FormatSpecification,
+    abjad.MetricModulation,
     abjad.StorageFormatManager,
 )
 

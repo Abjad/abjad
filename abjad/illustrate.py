@@ -1,35 +1,29 @@
 import copy
 
 from . import deprecated, enums
-from .core.Chord import Chord
-from .core.Component import Component, attach
-from .core.Iteration import Iteration
-from .core.Mutation import Mutation
-from .core.Note import Note
-from .core.Rest import Rest
-from .core.Score import Score
-from .core.Selection import Selection
-from .core.Skip import Skip
-from .core.Staff import Staff
-from .core.StaffGroup import StaffGroup
-from .core.Voice import Voice
-from .core.inspectx import Inspection
-from .core.makers import LeafMaker, NoteMaker
+from .attach import attach
 from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.MetricModulation import MetricModulation
 from .indicators.StaffChange import StaffChange
+from .inspectx import Inspection
+from .iterate import Iteration
 from .lilypondfile import Block, LilyPondFile
+from .makers import LeafMaker, NoteMaker
 from .markups import Markup, MarkupCommand, MarkupList, Postscript
+from .mutate import Mutation
 from .new import new
+from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral, override, setting
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment, Segment
 from .pitch.sets import PitchClassSet, PitchSet
 from .scheme import Scheme, SchemeMoment
+from .score import Chord, Component, Note, Rest, Score, Skip, Staff, StaffGroup, Voice
+from .selectx import Selection
 from .spanners import glissando
-from .utilities.OrderedDict import OrderedDict
+from .timespan import OffsetCounter, Timespan, TimespanList
 
 
 def illustrate(item, **keywords):
@@ -57,6 +51,11 @@ def _illustrate_markup(markup):
     markup = new(markup, direction=None)
     lilypond_file.items.append(markup)
     return lilypond_file
+
+
+def _illustrate_markup_maker(argument, **keywords):
+    markup = argument._make_markup(**keywords)
+    return _illustrate_markup(markup)
 
 
 def _illustrate_markup_list(markup_list):
@@ -90,8 +89,8 @@ def _illustrate_pitch_class_set(set_):
 
 
 def _illustrate_pitch_range(pitch_range):
-    start_pitch_clef = Clef.from_selection(pitch_range.start_pitch)
-    stop_pitch_clef = Clef.from_selection(pitch_range.stop_pitch)
+    start_pitch_clef = Clef.from_pitches([pitch_range.start_pitch])
+    stop_pitch_clef = Clef.from_pitches([pitch_range.stop_pitch])
     start_note = Note(pitch_range.start_pitch, 1)
     stop_note = Note(pitch_range.stop_pitch, 1)
     if start_pitch_clef == stop_pitch_clef:
@@ -116,7 +115,7 @@ def _illustrate_pitch_range(pitch_range):
         treble_staff.extend("s1 s1")
         bass_leaves = Selection(bass_staff).leaves()
         glissando(bass_leaves)
-        attach(StaffChange(treble_staff), bass_staff[1])
+        attach(StaffChange("Treble_Staff"), bass_staff[1])
         attach(Clef("treble"), treble_staff[0])
         attach(Clef("bass"), bass_staff[0])
     for leaf in Iteration(score).leaves():
@@ -240,19 +239,27 @@ def _illustrate_selection(selection):
     return lilypond_file
 
 
+def _illustrate_timespan(timespan):
+    timespans = TimespanList([timespan])
+    return _illustrate_markup_maker(timespans)
+
+
 class_to_method = OrderedDict(
     [
         (Component, _illustrate_component),
         (Markup, _illustrate_markup),
         (MarkupList, _illustrate_markup_list),
-        (Postscript, _illustrate_postscript),
         (MetricModulation, _illustrate_metric_modulation),
+        (OffsetCounter, _illustrate_markup_maker),
+        (Postscript, _illustrate_postscript),
         (PitchRange, _illustrate_pitch_range),
         (PitchClassSet, _illustrate_pitch_class_set),
         (PitchSegment, _illustrate_pitch_segment),
         (Segment, _illustrate_segment),
         (PitchSet, _illustrate_pitch_set),
         (Selection, _illustrate_selection),
+        (Timespan, _illustrate_timespan),
+        (TimespanList, _illustrate_markup_maker),
     ]
 )
 

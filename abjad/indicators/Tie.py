@@ -4,10 +4,7 @@ from .. import enums
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
-from ..tags import Tags
-from ..utilities.String import String
-
-abjad_tags = Tags()
+from ..stringx import String
 
 
 class Tie(object):
@@ -52,8 +49,6 @@ class Tie(object):
     _context = "Voice"
 
     _persistent = True
-
-    _publish_storage_format = True
 
     ### INITIALIZER ###
 
@@ -103,17 +98,10 @@ class Tie(object):
         return string
 
     def _attachment_test_all(self, argument):
-        from ..core.Chord import Chord
-        from ..core.Note import Note
-        from ..core.inspectx import Inspection
-
-        if not isinstance(argument, (Chord, Note)):
+        if not (
+            hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
+        ):
             string = f"Must be note or chord (not {argument})."
-            return [string]
-        next_leaf = Inspection(argument).leaf(1)
-        if not isinstance(next_leaf, (Chord, Note, type(None))):
-            string = f"Can not attach tie to {argument}"
-            string += f" when next leaf is {next_leaf}."
             return [string]
         return True
 

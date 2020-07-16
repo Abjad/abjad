@@ -1,4 +1,4 @@
-from .. import mathtools
+from .. import mathx
 from ..storage import StorageFormatManager
 from .pitchclasses import NumberedPitchClass
 from .sets import PitchClassSet
@@ -576,8 +576,6 @@ class SetClass(object):
 
     assert len(_lex_identifier_to_prime_form) == 224
 
-    _publish_storage_format = True
-
     _transposition_only_identifier_to_prime_form = {
         # 0
         (0, 1): (),
@@ -991,17 +989,6 @@ class SetClass(object):
         """
         return StorageFormatManager.compare_objects(self, argument)
 
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats Abjad object.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
-
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
@@ -1123,7 +1110,7 @@ class SetClass(object):
             return result
 
         for i in range(4096):
-            string = mathtools.integer_to_binary_string(i).zfill(12)
+            string = mathx.integer_to_binary_string(i).zfill(12)
             subset = "".join(list(reversed(string)))
             subset = _helper(subset)
             subset = PitchClassSet(subset, item_class=NumberedPitchClass)

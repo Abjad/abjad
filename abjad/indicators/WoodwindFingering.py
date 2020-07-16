@@ -25,7 +25,7 @@ class WoodwindFingering(object):
         ...     right_hand=right_hand,
         ...     )
 
-        >>> print(format(woodwind_fingering, 'storage'))
+        >>> print(abjad.storage(woodwind_fingering))
         abjad.WoodwindFingering(
             name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -39,7 +39,7 @@ class WoodwindFingering(object):
 
         >>> woodwind_fingering_2 = abjad.WoodwindFingering(
         ...     woodwind_fingering)
-        >>> print(format(woodwind_fingering_2))
+        >>> print(abjad.storage(woodwind_fingering_2))
         abjad.WoodwindFingering(
             name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -52,7 +52,7 @@ class WoodwindFingering(object):
         Calls Woodwind fingering to create woodwind diagram markup command:
 
         >>> fingering_command = woodwind_fingering()
-        >>> print(format(fingering_command, 'storage'))
+        >>> print(abjad.storage(fingering_command))
         abjad.MarkupCommand(
             'woodwind-diagram',
             abjad.Scheme(
@@ -195,8 +195,6 @@ class WoodwindFingering(object):
 
     __slots__ = ("_center_column", "_name", "_left_hand", "_right_hand")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(
@@ -257,14 +255,6 @@ class WoodwindFingering(object):
         return MarkupCommand(
             "woodwind-diagram", instrument_as_scheme, key_groups_as_scheme_
         )
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats woodwind fingering.
-
-        Set ``format_specification`` to ``''`` or ``'storage'``.
-        """
-        return StorageFormatManager(self).get_storage_format()
 
     def __repr__(self) -> str:
         """

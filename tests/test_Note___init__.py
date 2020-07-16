@@ -10,7 +10,7 @@ def test_Note___init___01():
 
     note = abjad.Note()
 
-    assert format(note) == "c'4"
+    assert abjad.lilypond(note) == "c'4"
 
 
 def test_Note___init___02():
@@ -20,7 +20,7 @@ def test_Note___init___02():
 
     note = abjad.Note(-37, (1, 4))
 
-    assert format(note) == "b,,,4"
+    assert abjad.lilypond(note) == "b,,,4"
 
 
 def test_Note___init___03():
@@ -39,7 +39,7 @@ def test_Note___init___04():
 
     note = abjad.Note("c,,", (1, 4))
 
-    assert format(note) == "c,,4"
+    assert abjad.lilypond(note) == "c,,4"
 
 
 def test_Note___init___05():
@@ -49,7 +49,7 @@ def test_Note___init___05():
 
     note = abjad.Note("cs8.")
 
-    assert format(note) == "cs8."
+    assert abjad.lilypond(note) == "cs8."
 
 
 def test_Note___init___06():
@@ -60,7 +60,7 @@ def test_Note___init___06():
     chord = abjad.Chord([2, 3, 4], (1, 4))
     note = abjad.Note(chord)
 
-    assert format(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.String.normalize(
         r"""
         d'4
         """
@@ -79,7 +79,7 @@ def test_Note___init___07():
     tuplet = abjad.Tuplet((2, 3), chords)
     note = abjad.Note(tuplet[0])
 
-    assert format(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.String.normalize(
         r"""
         d'4
         """
@@ -99,12 +99,12 @@ def test_Note___init___08():
     abjad.beam(staff[:])
     note = abjad.Note(staff[0])
 
-    assert format(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.String.normalize(
         r"""
         d'8
         [
         """
-    ), print(format(note))
+    ), print(abjad.lilypond(note))
 
     assert abjad.wellformed(note)
 
@@ -117,7 +117,7 @@ def test_Note___init___09():
     rest = abjad.Rest("r8")
     note = abjad.Note(rest)
 
-    assert format(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.String.normalize(
         r"""
         8
         """
@@ -215,7 +215,7 @@ def test_Note___init___15():
 
     note = abjad.Note("c'?4")
 
-    assert format(note) == "c'?4"
+    assert abjad.lilypond(note) == "c'?4"
 
 
 def test_Note___init___16():
@@ -225,7 +225,7 @@ def test_Note___init___16():
 
     note = abjad.Note("c'!4")
 
-    assert format(note) == "c'!4"
+    assert abjad.lilypond(note) == "c'!4"
 
 
 def test_Note___init___17():
@@ -235,7 +235,7 @@ def test_Note___init___17():
 
     note = abjad.Note("c'!?4")
 
-    assert format(note) == "c'!?4"
+    assert abjad.lilypond(note) == "c'!?4"
 
 
 def test_Note___init___18():
@@ -246,7 +246,7 @@ def test_Note___init___18():
     chord = abjad.Chord("<c'!? e' g'>4")
     note = abjad.Note(chord)
 
-    assert format(note) == "c'!?4"
+    assert abjad.lilypond(note) == "c'!?4"
 
 
 def test_Note___init___19():
@@ -256,4 +256,4 @@ def test_Note___init___19():
 
     note = abjad.Note("sn4")
 
-    assert format(note) == "snare4"
+    assert abjad.lilypond(note) == "snare4"

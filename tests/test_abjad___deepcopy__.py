@@ -33,8 +33,8 @@ def test_abjad___deepcopy___01(class_):
         return
     instance_one = class_()
     instance_two = copy.deepcopy(instance_one)
-    instance_one_format = format(instance_one, "storage")
-    instance_two_format = format(instance_two, "storage")
+    instance_one_format = abjad.lilypond(instance_one, "storage")
+    instance_two_format = abjad.lilypond(instance_two, "storage")
     if not issubclass(class_, abjad.Container):
         assert instance_one_format == instance_two_format
     # TODO: eventually this second asset should also pass

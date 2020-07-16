@@ -54,8 +54,6 @@ class StartMarkup(object):
 
     __slots__ = ("_context", "_format_slot", "_markup")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ##
 
     def __init__(

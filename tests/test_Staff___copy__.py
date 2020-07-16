@@ -15,7 +15,7 @@ def test_Staff___copy___01():
 
     staff_2 = copy.copy(staff_1)
 
-    assert format(staff_2) == abjad.String.normalize(
+    assert abjad.lilypond(staff_2) == abjad.String.normalize(
         r"""
         \new Staff
         \with

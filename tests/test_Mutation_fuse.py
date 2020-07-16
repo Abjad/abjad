@@ -56,7 +56,7 @@ def test_Mutation_fuse_04():
     voice = abjad.Voice([abjad.Note(0, (2, 16)), abjad.Note(9, (3, 16))])
     abjad.mutate(voice[:]).fuse()
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -65,7 +65,7 @@ def test_Mutation_fuse_04():
             c'16
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -79,7 +79,7 @@ def test_Mutation_fuse_05():
     staff[0].multiplier = (1, 16)
     staff[1].multiplier = (5, 16)
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -87,13 +87,13 @@ def test_Mutation_fuse_05():
             s1 * 5/16
         }
         """
-    ), print(format(staff))
+    ), print(abjad.lilypond(staff))
 
     assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
 
     abjad.mutate(staff[:]).fuse()
 
-    assert format(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
         \new Staff
         {
@@ -116,7 +116,7 @@ def test_Mutation_fuse_06():
     tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
     abjad.slur(tuplet_2[:])
 
-    assert format(tuplet_1) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet_1) == abjad.String.normalize(
         r"""
         \times 2/3 {
             c'8
@@ -126,9 +126,9 @@ def test_Mutation_fuse_06():
             ]
         }
         """
-    ), print(format(tuplet_1))
+    ), print(abjad.lilypond(tuplet_1))
 
-    assert format(tuplet_2) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet_2) == abjad.String.normalize(
         r"""
         \times 2/3 {
             c'16
@@ -138,12 +138,12 @@ def test_Mutation_fuse_06():
             )
         }
         """
-    ), print(format(tuplet_2))
+    ), print(abjad.lilypond(tuplet_2))
 
     tuplets = abjad.select([tuplet_1, tuplet_2])
     new = abjad.mutate(tuplets).fuse()
 
-    assert format(new) == abjad.String.normalize(
+    assert abjad.lilypond(new) == abjad.String.normalize(
         r"""
         \times 2/3 {
             c'8
@@ -158,7 +158,7 @@ def test_Mutation_fuse_06():
             )
         }
         """
-    ), print(format(new))
+    ), print(abjad.lilypond(new))
 
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
@@ -177,7 +177,7 @@ def test_Mutation_fuse_07():
     abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -197,12 +197,12 @@ def test_Mutation_fuse_07():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     tuplets = voice[:]
     abjad.mutate(tuplets).fuse()
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -220,7 +220,7 @@ def test_Mutation_fuse_07():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -236,7 +236,7 @@ def test_Mutation_fuse_08():
     abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -259,12 +259,12 @@ def test_Mutation_fuse_08():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     tuplets = voice[:]
     abjad.mutate(tuplets).fuse()
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -285,7 +285,7 @@ def test_Mutation_fuse_08():
             }
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 
@@ -311,7 +311,7 @@ def test_Mutation_fuse_10():
     leaves = abjad.select(voice).leaves()
     abjad.slur(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -328,12 +328,12 @@ def test_Mutation_fuse_10():
             )
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     tuplets = voice[:2]
     abjad.mutate(tuplets).fuse()
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -346,7 +346,7 @@ def test_Mutation_fuse_10():
             )
         }
         """
-    ), print(format(voice))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.wellformed(voice)
 

@@ -7,7 +7,7 @@ def test_LilyPondParser__indicators__TimeSignature_01():
     time_signature = abjad.TimeSignature((8, 8))
     abjad.attach(time_signature, target[0][0])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         \new Score
         <<
@@ -21,8 +21,8 @@ def test_LilyPondParser__indicators__TimeSignature_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     leaves = abjad.select(result).leaves()
     leaf = leaves[0]
     time_signatures = abjad.inspect(leaf).indicators(abjad.TimeSignature)

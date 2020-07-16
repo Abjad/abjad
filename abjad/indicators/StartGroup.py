@@ -46,8 +46,6 @@ class StartGroup(object):
 
     _persistent = True
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, *, tweaks: TweakInterface = None) -> None:

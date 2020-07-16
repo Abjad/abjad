@@ -5,9 +5,10 @@ import pytest
 import abjad
 
 ignored_classes = (
+    abjad.FormatSpecification,
+    abjad.MetricModulation,
     abjad.Path,
     abjad.StorageFormatManager,
-    abjad.FormatSpecification,
 )
 
 classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
@@ -27,16 +28,17 @@ def test_abjad___format___01(class_):
     if getattr(class_, "_is_abstract", None) is True:
         return
     instance = class_()
-    instance_format = format(instance, "storage")
+    instance_format = abjad.lilypond(instance, "storage")
     assert isinstance(instance_format, str)
     assert not instance_format == ""
 
 
 ignored_classes = (
-    abjad.Path,
-    abjad.Meter,
-    abjad.StorageFormatManager,
     abjad.FormatSpecification,
+    abjad.Meter,
+    abjad.MetricModulation,
+    abjad.Path,
+    abjad.StorageFormatManager,
 )
 
 classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
@@ -57,18 +59,17 @@ def test_abjad___format___02(class_):
     environment.update(abjad.demos.__dict__)
     environment["abjad"] = abjad
     instance_one = class_()
-    instance_one_format = format(instance_one, "storage")
+    instance_one_format = abjad.lilypond(instance_one, "storage")
     assert isinstance(instance_one_format, str)
     assert instance_one_format != ""
     instance_two = eval(instance_one_format, environment)
-    instance_two_format = format(instance_two, "storage")
+    instance_two_format = abjad.lilypond(instance_two, "storage")
     assert instance_one_format == instance_two_format
 
 
 ignored_classes = (
-    # abjad.Parser,
+    abjad.MetricModulation,
     abjad.Path,
-    abjad.Tags,
     abjad.parser.SyntaxNode,
 )
 

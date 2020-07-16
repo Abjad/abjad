@@ -16,4 +16,4 @@ def test_LilyPondParser__contexts__with_blocks_01():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result) and target is not result
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

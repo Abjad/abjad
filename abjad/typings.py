@@ -1,12 +1,11 @@
 """
 Utilities for typehinting.
 """
-
 import typing
 
 from .duration import Duration
+from .expression import Expression
 from .ratio import Ratio
-from .utilities.Expression import Expression
 
 IntegerPair = typing.Tuple[int, int]
 

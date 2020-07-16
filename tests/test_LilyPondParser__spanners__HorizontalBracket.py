@@ -11,7 +11,7 @@ def test_LilyPondParser__spanners__HorizontalBracket_01():
     abjad.horizontal_bracket(target[:2])
     abjad.horizontal_bracket(target[2:])
 
-    assert format(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
         {
             c'4
@@ -29,8 +29,8 @@ def test_LilyPondParser__spanners__HorizontalBracket_01():
     )
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(format(target))
-    assert format(target) == format(result) and target is not result
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__spanners__HorizontalBracket_02():

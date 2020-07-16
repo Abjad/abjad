@@ -73,8 +73,6 @@ class StartPianoPedal(object):
 
     _parameter = "PEDAL"
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, kind: str = None, *, tweaks: TweakInterface = None) -> None:

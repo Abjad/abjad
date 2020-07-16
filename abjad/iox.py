@@ -21,13 +21,11 @@ import abjad
 
 from .configuration import Configuration
 from .contextmanagers import Timer
-from .core.Container import Container
-from .core.Leaf import Leaf
-from .core.Tuplet import Tuplet
-from .core.inspectx import Inspection
-from .formatting import LilyPondFormatManager, StorageFormatManager
+from .formatx import LilyPondFormatManager, StorageFormatManager
 from .illustrate import illustrate
+from .inspectx import Inspection
 from .lilypondfile import Block
+from .score import Container, Leaf, Tuplet
 
 configuration = Configuration()
 
@@ -161,7 +159,7 @@ class LilyPondIO(object):
             lilypond_file = self.illustrable.__illustrate__(**self.keywords)
         else:
             lilypond_file = illustrate(self.illustrable, **self.keywords)
-        return format(lilypond_file, "lilypond")
+        return lilypond_file._get_lilypond_format()
 
     def get_stylesheets_path(self) -> pathlib.Path:
         path = getattr(abjad, "__path__")
@@ -720,7 +718,7 @@ class PersistenceManager(object):
         assert ly_file_path.endswith(".ly"), ly_file_path
         timer = Timer()
         with timer:
-            string = lilypond_file.__format__(format_specification="lilypond")
+            string = lilypond_file._get_lilypond_format()
             if isinstance(strict, int):
                 string = LilyPondFormatManager.align_tags(string, strict)
         abjad_formatting_time = timer.elapsed_time
@@ -900,7 +898,7 @@ class Player(LilyPondIO):
         assert hasattr(lilypond_file, "score_block")
         block = Block(name="midi")
         lilypond_file.score_block.items.append(block)
-        return format(lilypond_file, "lilypond")
+        return lilypond_file._get_lilypond_format()
 
 
 class TestManager(object):
@@ -1013,8 +1011,7 @@ class TestManager(object):
 
         Returns true or false.
         """
-        if not isinstance(string_1, str):
-            string_1 = format(string_1)
+        assert isinstance(string_1, str), repr(str)
         split_lines = string_2.split("\n")
         if not split_lines[0] or split_lines[0].isspace():
             split_lines.pop(0)
@@ -1076,10 +1073,12 @@ class TestManager(object):
         Gets diff of ``object_a`` and ``object_b`` formats.
 
         >>> one = abjad.Flute()
+        >>> string_1 = abjad.storage(one)
 
         >>> two = abjad.BassFlute()
+        >>> string_2 = abjad.storage(two)
 
-        >>> diff = abjad.TestManager.diff(one, two, 'Diff:')
+        >>> diff = abjad.TestManager.diff(string_1, string_2, 'Diff:')
         >>> print(diff)
         Diff:
         - abjad.Flute(
@@ -1118,14 +1117,10 @@ class TestManager(object):
 
         Returns string.
         """
-        try:
-            a_format = format(object_a, "storage")
-        except ValueError:
-            a_format = format(object_a)
-        try:
-            b_format = format(object_b, "storage")
-        except ValueError:
-            b_format = format(object_b)
+        assert isinstance(object_a, str), repr(object_a)
+        assert isinstance(object_b, str), repr(object_b)
+        a_format = object_a
+        b_format = object_b
         a_format = a_format.splitlines(True)
         b_format = b_format.splitlines(True)
         diff = "".join(difflib.ndiff(a_format, b_format))

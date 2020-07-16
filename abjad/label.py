@@ -3,16 +3,12 @@ import inspect
 import typing
 
 from . import enums
-from .core.Chord import Chord
-from .core.Component import Component, attach, detach
-from .core.Iteration import Iteration
-from .core.Note import Note
-from .core.Selection import Selection
-from .core.Skip import Skip
-from .core.inspectx import Inspection
-from .core.verticalmoment import iterate_vertical_moments
+from .attach import attach, detach
 from .duration import Duration, NonreducedFraction
+from .expression import Expression
 from .indicators.LilyPondComment import LilyPondComment
+from .inspectx import Inspection
+from .iterate import Iteration
 from .markups import Markup, MarkupCommand
 from .new import new
 from .overrides import LilyPondLiteral, override, tweak
@@ -29,9 +25,11 @@ from .pitch.segments import PitchSegment
 from .pitch.sets import PitchClassSet
 from .pitch.vectors import IntervalClassVector
 from .scheme import SchemeColor
+from .score import Chord, Component, Note, Skip
+from .selectx import Selection
 from .storage import StorageFormatManager
-from .tags import Tag
-from .utilities.Expression import Expression
+from .tag import Tag
+from .verticalmoment import iterate_vertical_moments
 
 
 class Label(object):
@@ -4333,8 +4331,6 @@ class ColorMap(object):
 
     __slots__ = ("_color_dictionary", "_colors", "_pitch_iterables")
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(self, *, colors=None, pitch_iterables=None):
@@ -4354,36 +4350,6 @@ class ColorMap(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats color map.
-
-        ..  container:: example
-
-            >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...     ],
-            ... )
-
-            >>> abjad.f(color_map)
-            abjad.ColorMap(
-                colors=['red', 'green', 'blue'],
-                pitch_iterables=[
-                    [-8, 2, 10, 21],
-                    [0, 11, 32, 41],
-                    [15, 25, 42, 43],
-                    ],
-                )
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __getitem__(self, pitch_class) -> str:
         """

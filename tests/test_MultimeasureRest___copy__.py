@@ -10,5 +10,5 @@ def test_MultimeasureRest___copy___01():
 
     assert isinstance(multi_measure_rest_1, abjad.MultimeasureRest)
     assert isinstance(multi_measure_rest_2, abjad.MultimeasureRest)
-    assert format(multi_measure_rest_1) == format(multi_measure_rest_2)
+    assert abjad.lilypond(multi_measure_rest_1) == abjad.lilypond(multi_measure_rest_2)
     assert multi_measure_rest_1 is not multi_measure_rest_2

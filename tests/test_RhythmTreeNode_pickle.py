@@ -11,6 +11,6 @@ def test_RhythmTreeNode_pickle_01():
 
     pickled = pickle.loads(pickle.dumps(tree))
 
-    assert format(pickled) == format(tree)
+    assert abjad.storage(pickled) == abjad.storage(tree)
     assert pickled != tree
     assert pickled is not tree

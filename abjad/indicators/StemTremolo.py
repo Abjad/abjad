@@ -1,4 +1,4 @@
-from .. import mathtools
+from .. import mathx
 from ..bundle import LilyPondFormatBundle
 from ..storage import FormatSpecification, StorageFormatManager
 
@@ -51,7 +51,7 @@ class StemTremolo(object):
         if isinstance(tremolo_flags, type(self)):
             tremolo_flags = tremolo_flags.tremolo_flags
         tremolo_flags = int(tremolo_flags)
-        if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
+        if not mathx.is_nonnegative_integer_power_of_two(tremolo_flags):
             raise ValueError(f"nonnegative integer power of 2: {tremolo_flags!r}.")
         self._tremolo_flags = tremolo_flags
 
@@ -63,32 +63,6 @@ class StemTremolo(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats stem tremolo.
-
-        ..  container:: example
-
-            Sixteenth-note tremolo:
-
-            >>> stem_tremolo = abjad.StemTremolo(16)
-            >>> print(format(stem_tremolo))
-            :16
-
-        ..  container:: example
-
-            Thirty-second-note tremolo:
-
-            >>> stem_tremolo = abjad.StemTremolo(32)
-            >>> print(format(stem_tremolo))
-            :32
-
-        """
-        if format_specification in ("", "lilypond"):
-            return self._get_lilypond_format()
-        assert format_specification == "storage"
-        return StorageFormatManager(self).get_storage_format()
 
     def __hash__(self) -> int:
         """

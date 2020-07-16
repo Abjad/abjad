@@ -1,13 +1,10 @@
 import typing
 
-from .. import enums, mathtools
+from .. import enums, mathx
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 from ..storage import FormatSpecification, StorageFormatManager
-from ..tags import Tags
-from ..utilities.String import String
-
-abjad_tags = Tags()
+from ..stringx import String
 
 
 class Dynamic(object):
@@ -155,7 +152,7 @@ class Dynamic(object):
         "ppp": -4,
         "pp": -3,
         "p": -2,
-        "niente": mathtools.NegativeInfinity(),
+        "niente": mathx.NegativeInfinity(),
         "mp": -1,
         "mf": 1,
         "f": 2,
@@ -201,7 +198,7 @@ class Dynamic(object):
         -3: "pp",
         -2: "p",
         -1: "mp",
-        mathtools.NegativeInfinity(): "niente",
+        mathx.NegativeInfinity(): "niente",
         1: "mf",
         2: "f",
         3: "ff",
@@ -234,9 +231,7 @@ class Dynamic(object):
         hide: bool = None,
         leak: bool = None,
         name_is_textual: bool = None,
-        ordinal: typing.Union[
-            int, mathtools.Infinity, mathtools.NegativeInfinity
-        ] = None,
+        ordinal: typing.Union[int, mathx.Infinity, mathx.NegativeInfinity] = None,
         sforzando: bool = None,
         tweaks: TweakInterface = None,
     ) -> None:
@@ -277,9 +272,7 @@ class Dynamic(object):
             name_is_textual = bool(name_is_textual)
         self._name_is_textual = name_is_textual
         if ordinal is not None:
-            assert isinstance(
-                ordinal, (int, mathtools.Infinity, mathtools.NegativeInfinity)
-            )
+            assert isinstance(ordinal, (int, mathx.Infinity, mathx.NegativeInfinity))
         self._ordinal = ordinal
         if sforzando is not None:
             sforzando = bool(sforzando)
@@ -1132,7 +1125,7 @@ class Dynamic(object):
         return self._name_is_textual
 
     @property
-    # def ordinal(self) -> typing.Union[int, mathtools.Infinity, mathtools.NegativeInfinity]:
+    # def ordinal(self) -> typing.Union[int, mathx.Infinity, mathx.NegativeInfinity]:
     def ordinal(self):
         """
         Gets ordinal.
@@ -1345,12 +1338,12 @@ class Dynamic(object):
             >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(-5)
             'pppp'
 
-            >>> negative_infinity = abjad.mathtools.NegativeInfinity()
+            >>> negative_infinity = abjad.mathx.NegativeInfinity()
             >>> abjad.Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
             'niente'
 
         """
-        if dynamic_ordinal == mathtools.NegativeInfinity():
+        if dynamic_ordinal == mathx.NegativeInfinity():
             return "niente"
         else:
             return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]

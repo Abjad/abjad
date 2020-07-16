@@ -3,7 +3,7 @@ import typing
 
 import quicktions
 
-from . import mathtools
+from . import mathx
 from .duration import Multiplier
 from .storage import FormatSpecification, StorageFormatManager
 
@@ -67,22 +67,6 @@ class NonreducedRatio(collections.abc.Sequence):
         Returns true or false.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification=""):
-        """
-        Formats duration.
-
-        ..  container:: example
-
-            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-            >>> print(format(ratio))
-            abjad.NonreducedRatio((2, 4, 2))
-
-        Returns string.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __getitem__(self, argument):
         """
@@ -299,7 +283,7 @@ class Ratio(NonreducedRatio):
             strings = numbers.split(":")
             numbers = [int(_) for _ in strings]
         numbers = [int(_) for _ in numbers]
-        gcd = mathtools.greatest_common_divisor(*numbers)
+        gcd = mathx.greatest_common_divisor(*numbers)
         numbers = [_ // gcd for _ in numbers]
         self._numbers = tuple(numbers)
 
@@ -540,25 +524,23 @@ class Ratio(NonreducedRatio):
 
         Returns result with weight equal to absolute value of ``n``.
         """
-        if not mathtools.is_integer_equivalent_number(n):
+        if not mathx.is_integer_equivalent_number(n):
             raise TypeError(f"is not integer-equivalent number: {n!r}.")
         ratio = self.numbers
-        if not all(mathtools.is_integer_equivalent_number(part) for part in ratio):
+        if not all(mathx.is_integer_equivalent_number(part) for part in ratio):
             message = f"some parts in {ratio!r} not integer-equivalent numbers."
             raise TypeError(message)
         result = [0]
-        divisions = [
-            float(abs(n)) * abs(part) / mathtools.weight(ratio) for part in ratio
-        ]
-        cumulative_divisions = mathtools.cumulative_sums(divisions, start=None)
+        divisions = [float(abs(n)) * abs(part) / mathx.weight(ratio) for part in ratio]
+        cumulative_divisions = mathx.cumulative_sums(divisions, start=None)
         for division in cumulative_divisions:
             rounded_division = int(round(division)) - sum(result)
             if division - round(division) == 0.5:
                 rounded_division += 1
             result.append(rounded_division)
         result = result[1:]
-        if mathtools.sign(n) == -1:
+        if mathx.sign(n) == -1:
             result = [-x for x in result]
-        ratio_signs = [mathtools.sign(x) for x in ratio]
+        ratio_signs = [mathx.sign(x) for x in ratio]
         result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
         return result

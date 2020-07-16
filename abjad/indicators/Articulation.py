@@ -4,7 +4,7 @@ from .. import enums
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 from ..storage import FormatSpecification, StorageFormatManager
-from ..utilities.String import String
+from ..stringx import String
 
 
 class Articulation(object):
@@ -163,19 +163,6 @@ class Articulation(object):
         Is true when articulation equals ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats articulation.
-
-        Set ``format_specification`` to ``''``, ``'lilypond``' or ``'storage'``.
-        Interprets ``''`` equal to ``'storage'``.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        else:
-            assert format_specification == "lilypond"
-            return self._get_lilypond_format()
 
     def __hash__(self):
         """

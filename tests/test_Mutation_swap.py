@@ -12,7 +12,7 @@ def test_Mutation_swap_01():
     leaves = abjad.select(voice).leaves()
     abjad.beam(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -37,7 +37,7 @@ def test_Mutation_swap_01():
     tuplet = abjad.Tuplet((3, 4), [])
     abjad.mutate(voice[:2]).swap(tuplet)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -71,7 +71,7 @@ def test_Mutation_swap_02():
     voice.name = "foo"
     abjad.beam(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \context Voice = "foo"
         {
@@ -97,7 +97,7 @@ def test_Mutation_swap_02():
     new_voice.name = "foo"
     abjad.mutate(voice[1:2]).swap(new_voice)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \context Voice = "foo"
         {
@@ -132,7 +132,7 @@ def test_Mutation_swap_03():
     leaves = abjad.select(voice).leaves()
     abjad.beam(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -157,7 +157,7 @@ def test_Mutation_swap_03():
     tuplet = abjad.Tuplet((3, 4), [])
     abjad.mutate(voice[1:2]).swap(tuplet)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -222,7 +222,7 @@ def test_Mutation_swap_06():
     leaves = abjad.select(voice).leaves()
     abjad.beam(leaves)
 
-    assert format(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -256,7 +256,7 @@ def test_Mutation_swap_07():
 
     measure = abjad.Container("c'8 d'8 e'8 f'8")
 
-    assert format(measure) == abjad.String.normalize(
+    assert abjad.lilypond(measure) == abjad.String.normalize(
         r"""
         {
             c'8
@@ -270,7 +270,7 @@ def test_Mutation_swap_07():
     new_measure = abjad.Container()
     abjad.mutate(measure).swap(new_measure)
 
-    assert format(new_measure) == abjad.String.normalize(
+    assert abjad.lilypond(new_measure) == abjad.String.normalize(
         r"""
         {
             c'8

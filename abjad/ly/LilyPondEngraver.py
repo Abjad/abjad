@@ -12,8 +12,10 @@ class LilyPondEngraver(object):
     ..  container:: example
 
         >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
-        >>> print(format(engraver))
-        LilyPondEngraver(name='Auto_beam_engraver')
+        >>> print(abjad.storage(engraver))
+        abjad.LilyPondEngraver(
+            name='Auto_beam_engraver',
+            )
 
     """
 

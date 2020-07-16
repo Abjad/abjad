@@ -8,8 +8,8 @@ from .ly.contexts import contexts
 from .ly.grob_interfaces import grob_interfaces
 from .scheme import Scheme, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
-from .tags import Tag
-from .utilities.String import String
+from .stringx import String
+from .tag import Tag
 
 
 class LilyPondLiteral(object):
@@ -196,15 +196,6 @@ class LilyPondLiteral(object):
         the initialization values of ``argument``.
         """
         return StorageFormatManager.compare_objects(self, argument)
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats LilyPond literal.
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        assert format_specification == "lilypond"
-        return str(self.argument)
 
     def __hash__(self) -> int:
         """
@@ -1264,7 +1255,8 @@ class OverrideInterface(Interface):
             argument = Scheme(argument)
         else:
             argument = Scheme(argument, quoting="'")
-        return format(argument, "lilypond")
+        result = argument._get_lilypond_format()
+        return result
 
     @staticmethod
     def make_lilypond_override_string(
@@ -1372,8 +1364,7 @@ def override(argument):
 
     """
     if getattr(argument, "_overrides", None) is None:
-        manager = OverrideInterface()
-        argument._overrides = manager
+        argument._overrides = OverrideInterface()
     return argument._overrides
 
 
@@ -1559,8 +1550,7 @@ def setting(argument):
 
     """
     if getattr(argument, "_lilypond_setting_name_manager", None) is None:
-        manager = SettingInterface()
-        argument._lilypond_setting_name_manager = manager
+        argument._lilypond_setting_name_manager = SettingInterface()
     return argument._lilypond_setting_name_manager
 
 
@@ -2173,16 +2163,16 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)
     prototype = (bool, int, float, str, tuple, Scheme)
     if expression is True or argument in constants or isinstance(argument, prototype):
-        manager = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
-        manager._pending_value = argument
-        return manager
+        interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
+        interface._pending_value = argument
+        return interface
     if not hasattr(argument, "_tweaks"):
         name = type(argument).__name__
         raise NotImplementedError(f"{name} does not allow tweaks (yet).")
     if argument._tweaks is None:
-        manager = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
-        argument._tweaks = manager
+        interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
+        argument._tweaks = interface
     else:
-        manager = argument._tweaks
-        manager.__init__(deactivate=deactivate, literal=literal, tag=tag)
-    return manager
+        interface = argument._tweaks
+        interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
+    return interface

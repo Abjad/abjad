@@ -7,7 +7,7 @@ def test_RhythmTreeContainer___eq___01():
     a = abjad.rhythmtrees.RhythmTreeContainer(children=[])
     b = abjad.rhythmtrees.RhythmTreeContainer(children=[])
 
-    assert format(a) == format(b)
+    assert abjad.storage(a) == abjad.storage(b)
     assert a != b
 
 
@@ -20,7 +20,7 @@ def test_RhythmTreeContainer___eq___02():
         children=[abjad.rhythmtrees.RhythmTreeLeaf()]
     )
 
-    assert format(a) == format(b)
+    assert abjad.storage(a) == abjad.storage(b)
     assert a != b
 
 

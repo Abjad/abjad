@@ -4,14 +4,13 @@ import importlib
 import inspect
 import types
 
-from .. import mathtools
+from .. import mathx
 from ..duration import Multiplier
+from ..expression import Expression, Signature
 from ..new import new
+from ..sequence import Sequence
 from ..storage import FormatSpecification
-from ..utilities.Expression import Expression, Signature
-from ..utilities.Sequence import Sequence
-from ..utilities.TypedCollection import TypedCollection
-from ..utilities.TypedTuple import TypedTuple
+from ..typedcollections import TypedCollection, TypedTuple
 from .Octave import Octave
 from .intervalclasses import (
     IntervalClass,
@@ -106,7 +105,7 @@ class Segment(TypedTuple):
             items = [x.pitch_class_number for x in self]
         elif self.item_class.__name__.startswith("Numbered"):
             items = [
-                mathtools.integer_equivalent_number_to_integer(float(x.number))
+                mathx.integer_equivalent_number_to_integer(float(x.number))
                 for x in self
             ]
         elif hasattr(self.item_class, "__abs__"):
@@ -236,7 +235,7 @@ class IntervalClassSegment(Segment):
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
-        intervals = mathtools.difference_series(pitches)
+        intervals = mathx.difference_series(pitches)
         return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self) -> bool:
@@ -376,7 +375,7 @@ class IntervalSegment(Segment):
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
-        intervals = (-x for x in mathtools.difference_series(pitches))
+        intervals = (-x for x in mathx.difference_series(pitches))
         return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self) -> bool:
@@ -1054,89 +1053,6 @@ class PitchClassSegment(Segment):
         Returns true or false.
         """
         return super().__contains__(argument)
-
-    def __format__(self, format_specification=""):
-        r"""
-        Formats segment.
-
-        ..  container:: example
-
-            With numbered pitch-classes:
-
-            >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
-            >>> J = abjad.PitchClassSegment(items=pitch_numbers)
-
-            >>> abjad.f(J)
-            abjad.PitchClassSegment(
-                (
-                    abjad.NumberedPitchClass(10),
-                    abjad.NumberedPitchClass(10.5),
-                    abjad.NumberedPitchClass(6),
-                    abjad.NumberedPitchClass(7),
-                    abjad.NumberedPitchClass(10.5),
-                    abjad.NumberedPitchClass(7),
-                    ),
-                item_class=abjad.NumberedPitchClass,
-                )
-
-            >>> lilypond_file = abjad.illustrate(J)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice
-                {
-                    bf'8
-                    bqf'8
-                    fs'8
-                    g'8
-                    bqf'8
-                    g'8
-                    \bar "|." %! SCORE_1
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            With named pitch-classes:
-
-            >>> pitch_names = ['c', 'ef', 'bqs,', 'd']
-            >>> K = abjad.PitchClassSegment(
-            ...     items=pitch_names,
-            ...     item_class=abjad.NamedPitchClass,
-            ...     )
-
-            >>> abjad.f(K)
-            abjad.PitchClassSegment(
-                (
-                    abjad.NamedPitchClass('c'),
-                    abjad.NamedPitchClass('ef'),
-                    abjad.NamedPitchClass('bqs'),
-                    abjad.NamedPitchClass('d'),
-                    ),
-                item_class=abjad.NamedPitchClass,
-                )
-
-            >>> lilypond_file = abjad.illustrate(K)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(lilypond_file[abjad.Voice])
-                \new Voice
-                {
-                    c'8
-                    ef'8
-                    bqs'8
-                    d'8
-                    \bar "|." %! SCORE_1
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        Returns string.
-        """
-        return super().__format__(format_specification=format_specification)
 
     @Signature(
         markup_maker_callback="_make___getitem___markup",

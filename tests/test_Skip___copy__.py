@@ -13,7 +13,7 @@ def test_Skip___copy___01():
 
     assert isinstance(skip_1, abjad.Skip)
     assert isinstance(skip_2, abjad.Skip)
-    assert format(skip_1) == format(skip_2)
+    assert abjad.lilypond(skip_1) == abjad.lilypond(skip_2)
     assert skip_1 is not skip_2
 
 
@@ -27,7 +27,7 @@ def test_Skip___copy___02():
 
     assert isinstance(skip_1, abjad.Skip)
     assert isinstance(skip_2, abjad.Skip)
-    assert format(skip_1) == format(skip_2)
+    assert abjad.lilypond(skip_1) == abjad.lilypond(skip_2)
     assert skip_1 is not skip_2
 
 
@@ -44,5 +44,5 @@ def test_Skip___copy___03():
 
     assert isinstance(skip_1, abjad.Skip)
     assert isinstance(skip_2, abjad.Skip)
-    assert format(skip_1) == format(skip_2)
+    assert abjad.lilypond(skip_1) == abjad.lilypond(skip_2)
     assert skip_1 is not skip_2

@@ -2,11 +2,11 @@ import typing
 
 from .. import enums, typings
 from ..bundle import LilyPondFormatBundle
-from ..core.Selection import Selection
-from ..core.inspectx import Inspection
+from ..inspectx import Inspection
 from ..markups import Markup
 from ..new import new
 from ..ratio import Ratio
+from ..selectx import Selection
 from ..storage import StorageFormatManager
 
 
@@ -27,7 +27,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation #3 #1 #2 #1 #'(1 . 1)
 
     ..  container:: example
@@ -43,7 +43,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #4 #5 #2 #0 #'(1 . 1)
 
         >>> metric_modulation = abjad.MetricModulation(
@@ -55,7 +55,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation-tuplet-rhs #2 #0 #2 #0 #4 #5 #'(1 . 1)
 
     ..  container:: example
@@ -71,7 +71,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup \abjad-metric-modulation-tuplet-rhs #4 #1 #3 #0 #2 #3 #'(1 . 1)
 
     ..  container:: example
@@ -89,7 +89,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup {
                 \score
                     {
@@ -184,7 +184,7 @@ class MetricModulation(object):
 
         ..  docs::
 
-            >>> print(format(metric_modulation, 'lilypond'))
+            >>> print(abjad.lilypond(metric_modulation))
             \markup {
                 \score
                     {
@@ -319,27 +319,21 @@ class MetricModulation(object):
         "_scale",
     )
 
-    _publish_storage_format = True
-
     ### INITIALIZER ###
 
     def __init__(
         self,
-        left_rhythm=None,
-        right_rhythm=None,
+        left_rhythm,
+        right_rhythm,
         *,
         hide: bool = None,
         left_markup: Markup = None,
         right_markup: Markup = None,
         scale: typing.Tuple[typings.Number, typings.Number] = (1, 1),
     ) -> None:
-        from ..core.Note import Note
-
         if hide is not None:
             hide = bool(hide)
         self._hide = hide
-        left_rhythm = left_rhythm or Note("c4")
-        right_rhythm = right_rhythm or Note("c4")
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)
@@ -412,37 +406,6 @@ class MetricModulation(object):
             if self.ratio == argument.ratio:
                 return True
         return False
-
-    def __format__(self, format_specification="") -> str:
-        """
-        Formats metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
-
-            >>> abjad.f(metric_modulation)
-            abjad.MetricModulation(
-                left_rhythm=abjad.Selection(
-                    [
-                        abjad.Note("c'4"),
-                        ]
-                    ),
-                right_rhythm=abjad.Selection(
-                    [
-                        abjad.Note("c'4."),
-                        ]
-                    ),
-                scale=(1, 1),
-                )
-
-        """
-        if format_specification in ("", "storage"):
-            return StorageFormatManager(self).get_storage_format()
-        return str(self)
 
     def __hash__(self) -> int:
         """

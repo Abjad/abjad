@@ -2,11 +2,10 @@ import abc
 import collections
 import types
 
-from .. import mathtools
+from .. import mathx
+from ..enumeratex import Enumerator
 from ..storage import FormatSpecification
-from ..utilities.Enumerator import Enumerator
-from ..utilities.TypedCollection import TypedCollection
-from ..utilities.TypedCounter import TypedCounter
+from ..typedcollections import TypedCollection, TypedCounter
 from .intervalclasses import IntervalClass, NamedIntervalClass, NumberedIntervalClass
 from .intervals import Interval, NamedInterval, NumberedInterval
 from .pitchclasses import NamedPitchClass, NumberedPitchClass, PitchClass
@@ -115,7 +114,7 @@ class Vector(TypedCounter):
             repr_items = {str(k): v for k, v in self.items()}
         else:
             repr_items = {
-                mathtools.integer_equivalent_number_to_integer(float(k.number)): v
+                mathx.integer_equivalent_number_to_integer(float(k.number)): v
                 for k, v in self.items()
             }
         return FormatSpecification(
@@ -460,37 +459,6 @@ class PitchClassVector(Vector):
     __slots__ = ()
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification=""):
-        """
-        Gets format of pitch-class vector.
-
-        ..  container:: example
-
-            >>> vector = abjad.PitchClassVector(
-            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-            ...     item_class=abjad.NumberedPitchClass,
-            ...     )
-
-            >>> abjad.f(vector)
-            abjad.PitchClassVector(
-                {
-                    abjad.NumberedPitchClass(0): 1,
-                    abjad.NumberedPitchClass(1): 1,
-                    abjad.NumberedPitchClass(2): 1,
-                    abjad.NumberedPitchClass(3): 1,
-                    abjad.NumberedPitchClass(4): 2,
-                    abjad.NumberedPitchClass(6): 1,
-                    abjad.NumberedPitchClass(7): 1,
-                    abjad.NumberedPitchClass(9): 2,
-                    abjad.NumberedPitchClass(10): 1,
-                    },
-                item_class=abjad.NumberedPitchClass,
-                )
-
-        Returns string.
-        """
-        return super().__format__(format_specification=format_specification)
 
     def __repr__(self):
         """

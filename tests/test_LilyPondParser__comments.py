@@ -12,4 +12,4 @@ def test_LilyPondParser__comments_01():
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert format(target) == format(result)
+    assert abjad.lilypond(target) == abjad.lilypond(result)

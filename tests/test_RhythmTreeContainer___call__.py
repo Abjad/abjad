@@ -11,7 +11,7 @@ def test_RhythmTreeContainer___call___01():
     assert isinstance(result, list)
     assert len(result) == 1
 
-    assert format(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.String.normalize(
         r"""
         \times 4/5 {
             c'16
@@ -34,7 +34,7 @@ def test_RhythmTreeContainer___call___02():
 
     assert isinstance(result, abjad.Selection)
     assert len(result) == 6
-    assert [format(x) for x in result] == [
+    assert [abjad.lilypond(x) for x in result] == [
         "c'16",
         "c'32",
         "c'32",
