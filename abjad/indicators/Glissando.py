@@ -5,7 +5,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class Glissando(object):
+class Glissando:
     r"""
     LilyPond ``\glissando`` command.
 

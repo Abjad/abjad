@@ -18,7 +18,7 @@ from ..storage import FormatSpecification, StorageFormatManager
 
 
 @functools.total_ordering
-class MetronomeMark(object):
+class MetronomeMark:
     r"""
     MetronomeMark.
 
@@ -52,10 +52,11 @@ class MetronomeMark(object):
 
         Initializes rational-valued metronome mark:
 
+        >>> import quicktions
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(272, 3))
+        >>> mark = abjad.MetronomeMark((1, 4), quicktions.Fraction(272, 3))
         >>> abjad.attach(mark, staff[0])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -81,7 +82,7 @@ class MetronomeMark(object):
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
-        ...     abjad.Fraction(272, 3),
+        ...     quicktions.Fraction(272, 3),
         ...     decimal="90.66",
         ... )
         >>> abjad.attach(mark, staff[0])
@@ -109,7 +110,7 @@ class MetronomeMark(object):
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
-        ...     abjad.Fraction(901, 10),
+        ...     quicktions.Fraction(901, 10),
         ...     decimal=True,
         ... )
         >>> abjad.attach(mark, staff[0])
@@ -801,13 +802,14 @@ class MetronomeMark(object):
 
             With custom markup:
 
+            >>> import quicktions
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
             ...     abjad.Duration(1, 4),
             ...     67.5,
             ...  )
             >>> mark = abjad.MetronomeMark(
             ...     reference_duration=(1, 4),
-            ...     units_per_minute=abjad.Fraction(135, 2),
+            ...     units_per_minute=quicktions.Fraction(135, 2),
             ...     custom_markup=markup,
             ...  )
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -840,16 +842,17 @@ class MetronomeMark(object):
 
         ..  container:: example
 
+            >>> import quicktions
             >>> mark = abjad.MetronomeMark(
             ...     (1, 4),
-            ...     abjad.Fraction(272, 3),
+            ...     quicktions.Fraction(272, 3),
             ... )
             >>> mark.decimal is None
             True
 
             >>> mark = abjad.MetronomeMark(
             ...     (1, 4),
-            ...     abjad.Fraction(272, 3),
+            ...     quicktions.Fraction(272, 3),
             ...     decimal="90.66",
             ... )
             >>> mark.decimal
@@ -857,7 +860,7 @@ class MetronomeMark(object):
 
             >>> mark = abjad.MetronomeMark(
             ...     (1, 4),
-            ...     abjad.Fraction(901, 10),
+            ...     quicktions.Fraction(901, 10),
             ...     decimal=True,
             ... )
             >>> mark.decimal
@@ -1053,7 +1056,8 @@ class MetronomeMark(object):
 
             Rational-valued metronome mark:
 
-            >>> mark = abjad.MetronomeMark((1, 4), abjad.Fraction(272, 3))
+            >>> import quicktions
+            >>> mark = abjad.MetronomeMark((1, 4), quicktions.Fraction(272, 3))
             >>> mark.units_per_minute
             Fraction(272, 3)
 
@@ -1222,9 +1226,10 @@ class MetronomeMark(object):
 
             Rational-valued metronome mark:
 
+            >>> import quicktions
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
             ...     abjad.Duration(1, 4),
-            ...     abjad.Fraction(272, 3),
+            ...     quicktions.Fraction(272, 3),
             ... )
             >>> abjad.show(markup) # doctest: +SKIP
 

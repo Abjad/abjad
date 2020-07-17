@@ -4,7 +4,7 @@ from ..scheme import Scheme
 from ..storage import StorageFormatManager
 
 
-class StaffChange(object):
+class StaffChange:
     r"""
     Staff change.
 

@@ -7,7 +7,7 @@ from ..storage import FormatSpecification, StorageFormatManager
 from ..stringx import String
 
 
-class Dynamic(object):
+class Dynamic:
     r"""
     Dynamic.
 
@@ -394,7 +394,7 @@ class Dynamic(object):
             repr_is_indented=False,
             storage_format_args_values=[self.name],
             storage_format_is_indented=False,
-            storage_format_kwargs_names=keywords,
+            storage_format_keyword_names=keywords,
         )
 
     def _get_lilypond_format(self):

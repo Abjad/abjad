@@ -115,7 +115,7 @@ class Segment(TypedTuple):
         return FormatSpecification(
             client=self,
             repr_is_indented=False,
-            repr_kwargs_names=["name"],
+            repr_keyword_names=["name"],
             repr_args_values=[items],
             storage_format_args_values=[tuple(self._collection)],
         )
@@ -439,7 +439,7 @@ class PitchClassSegment(Segment):
         ..  container:: example expression
 
             >>> expression = abjad.Expression()
-            >>> expression = expression.pitch_class_segment()
+            >>> expression = abjad.pitch_class_segment()
 
             >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
             >>> lilypond_file = abjad.illustrate(segment)
@@ -490,7 +490,7 @@ class PitchClassSegment(Segment):
         ..  container:: example expression
 
             >>> expression = abjad.Expression()
-            >>> expression = expression.pitch_class_segment(
+            >>> expression = abjad.pitch_class_segment(
             ...     item_class=abjad.NamedPitchClass,
             ...     )
 
@@ -588,8 +588,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression + pitch_names
 
                 >>> expression(pitch_numbers)
@@ -672,8 +671,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression_J = abjad.Expression(name='J')
-                >>> expression_J = expression_J.pitch_class_segment()
+                >>> expression_J = abjad.pitch_class_segment(name="J")
                 >>> expression = expression_J + expression_J + expression_J
 
                 >>> expression(pitch_numbers)
@@ -764,8 +762,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.rotate(n=1)
                 >>> expression = expression + K.rotate(n=2)
 
@@ -849,8 +846,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.rotate(n=1)
                 >>> expression = expression + K.rotate(n=2)
                 >>> expression = expression.retrograde()
@@ -908,8 +904,7 @@ class PitchClassSegment(Segment):
 
             Establishes equivalence:
 
-            >>> expression = abjad.Expression(name='J')
-            >>> expression = expression.pitch_class_segment()
+            >>> expression = abjad.pitch_class_segment(name="J")
             >>> expression = expression.rotate(n=1)
             >>> expression = expression + K.rotate(n=2)
             >>> expression = expression.establish_equivalence(name='Q')
@@ -1085,8 +1080,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression[0]
 
                 >>> expression(items=[-2, -1.5, 6, 7, -1.5, 7])
@@ -1122,8 +1116,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression[-1]
 
                 >>> expression(items=[-2, -1.5, 6, 7, -1.5, 7])
@@ -1176,8 +1169,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression[:4]
 
                 >>> expression(items=[-2, -1.5, 6, 7, -1.5, 7])
@@ -1241,8 +1233,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression[:4]
                 >>> expression = expression.retrograde()
 
@@ -1311,8 +1302,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.retrograde()
                 >>> expression = expression[:4]
 
@@ -1579,7 +1569,7 @@ class PitchClassSegment(Segment):
                 Initializes items positionally:
 
                 >>> expression = abjad.Expression()
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment()
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
                 >>> segment = expression(items)
@@ -1595,7 +1585,7 @@ class PitchClassSegment(Segment):
                 Initializes items from keyword:
 
                 >>> expression = abjad.Expression()
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment()
 
                 >>> items = [-2, -1.5, 6, 7, -1.5, 7]
                 >>> segment = expression(items=items)
@@ -1803,8 +1793,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.invert()
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -1874,8 +1863,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.invert()
                 >>> expression = expression.invert()
 
@@ -1977,8 +1965,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.multiply(n=1)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2047,8 +2034,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.multiply(n=5)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2117,8 +2103,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.multiply(n=7)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2187,8 +2172,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.multiply(n=11)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2294,8 +2278,7 @@ class PitchClassSegment(Segment):
 
         ..  container:: example expression
 
-            >>> expression = abjad.Expression(name='J')
-            >>> expression = expression.pitch_class_segment()
+            >>> expression = abjad.pitch_class_segment(name="J")
             >>> row = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
             >>> expression = expression.permute(row)
 
@@ -2389,8 +2372,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.retrograde()
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2460,8 +2442,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.retrograde()
                 >>> expression = expression.retrograde()
 
@@ -2569,8 +2550,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.rotate(n=1)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2639,8 +2619,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.rotate(n=-1)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2712,8 +2691,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.rotate(n=0)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -2786,8 +2764,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.rotate(n=1, stravinsky=True)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -3135,8 +3112,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.transpose(n=13)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -3205,8 +3181,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.transpose(n=-13)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -3278,8 +3253,7 @@ class PitchClassSegment(Segment):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.transpose(n=0)
 
                 >>> expression([-2, -1.5, 6, 7, -1.5, 7])
@@ -6028,3 +6002,21 @@ class TwelveToneRow(PitchClassSegment):
 
         """
         return super().transpose(n=n)
+
+
+### FUNCTIONS ###
+
+
+def pitch_class_segment(items=None, item_class=None, **keywords):
+    """
+    Makes pitch-class segment or pitch-class segment expression.
+    """
+    if items is not None:
+        return PitchClassSegment(items=items, item_class=item_class)
+    name = keywords.pop("name", None)
+    expression = Expression(name=name, proxy_class=PitchClassSegment)
+    callback = Expression._make_initializer_callback(
+        PitchClassSegment, string_template="{}", **keywords
+    )
+    expression = expression.append_callback(callback)
+    return expression

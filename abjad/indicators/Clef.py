@@ -8,7 +8,7 @@ from ..pitch.pitches import NamedPitch
 from ..storage import FormatSpecification, StorageFormatManager
 
 
-class Clef(object):
+class Clef:
     r"""
     Clef.
 
@@ -480,7 +480,7 @@ class Clef(object):
 
 
 @functools.total_ordering
-class StaffPosition(object):
+class StaffPosition:
     """
     Staff position.
 
@@ -644,7 +644,7 @@ class StaffPosition(object):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=[self.number],
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     ### PUBLIC PROPERTIES ###

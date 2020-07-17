@@ -4,6 +4,7 @@ import copy
 import types
 
 from ..enumeratex import Enumerator
+from ..expression import Expression
 from ..new import new
 from ..sequence import Sequence
 from ..storage import FormatSpecification
@@ -87,7 +88,7 @@ class Set(TypedFrozenset):
             repr_is_indented=False,
             repr_args_values=[repr_items],
             storage_format_args_values=[repr_items],
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     def _get_sorted_repr_items(self):
@@ -1160,3 +1161,21 @@ class PitchSet(Set):
         """
         items = (pitch.transpose(n=n) for pitch in self)
         return new(self, items=items)
+
+
+### FUNCTIONS ###
+
+
+def pitch_set(items=None, item_class=None, **keywords):
+    """
+    Makes pitch set or pitch set expression.
+    """
+    if items is not None:
+        return PitchSet(items=items, item_class=item_class)
+    name = keywords.pop("name", None)
+    expression = Expression(name=name, proxy_class=PitchSet)
+    callback = Expression._make_initializer_callback(
+        PitchSet, string_template="{}", **keywords
+    )
+    expression = expression.append_callback(callback)
+    return expression

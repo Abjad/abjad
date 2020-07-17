@@ -8,7 +8,7 @@ from . import constants
 
 
 @functools.total_ordering
-class Octave(object):
+class Octave:
     """
     Octave.
 
@@ -210,7 +210,7 @@ class Octave(object):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=[self.number],
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     @classmethod

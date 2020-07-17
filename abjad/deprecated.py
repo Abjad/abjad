@@ -1,8 +1,8 @@
 import copy
 
+from . import _iterate
 from .attach import attach
 from .indicators.BarLine import BarLine
-from .inspectx import Inspection
 from .iterate import Iteration
 from .overrides import override
 from .score import Leaf, MultimeasureRest, Voice
@@ -56,11 +56,11 @@ def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine
     """
     bar_line = BarLine(abbreviation)
     if not to_each_voice:
-        last_leaf = Inspection(score).leaf(-1)
+        last_leaf = _iterate._get_leaf(score, -1)
         attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
     else:
         for voice in Iteration(score).components(Voice):
-            last_leaf = Inspection(voice).leaf(-1)
+            last_leaf = _iterate._get_leaf(voice, -1)
             attach(bar_line, last_leaf, tag=Tag("SCORE_1"))
     return bar_line
 

@@ -11,7 +11,7 @@ from .pitches import NamedPitch, NumberedPitch
 
 # NOTE: mypy 0.770 errors on functools combined with abstract class
 @functools.total_ordering
-class Interval(object):
+class Interval:
     """
     Abstract interval.
     """

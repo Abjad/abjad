@@ -89,7 +89,7 @@ def new(argument, *arguments, **keywords):
             pair = (subkey, value)
             recursive_arguments[key].append(pair)
             continue
-        if key in template_dict or manager.signature_accepts_kwargs:
+        if key in template_dict or manager.signature_accepts_keywords:
             template_dict[key] = value
         elif isinstance(getattr(argument, key, None), types.MethodType):
             method = getattr(argument, key)

@@ -6,7 +6,7 @@ from .LilyPondEngraver import LilyPondEngraver
 from .LilyPondGrob import LilyPondGrob
 
 
-class LilyPondContext(object):
+class LilyPondContext:
     r"""
     LilyPond context.
 

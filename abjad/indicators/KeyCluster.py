@@ -4,7 +4,7 @@ from ..markups import Markup
 from ..storage import StorageFormatManager
 
 
-class KeyCluster(object):
+class KeyCluster:
     r"""
     Key cluster.
 

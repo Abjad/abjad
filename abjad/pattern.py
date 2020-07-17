@@ -10,7 +10,7 @@ from .storage import FormatSpecification, StorageFormatManager
 from .typedcollections import TypedTuple
 
 
-class Pattern(object):
+class Pattern:
     """
     Pattern.
 
@@ -638,7 +638,6 @@ class Pattern(object):
 
     def _get_format_specification(self):
         if self.template is None:
-            # return super()._get_format_specification()
             return FormatSpecification(client=self)
         return FormatSpecification(
             client=self,
@@ -646,7 +645,7 @@ class Pattern(object):
             storage_format_is_indented=False,
             storage_format_args_values=[self.template],
             storage_format_forced_override=self.template,
-            storage_format_kwargs_names=(),
+            storage_format_keyword_names=(),
         )
 
     @staticmethod
@@ -659,6 +658,9 @@ class Pattern(object):
         finally:
             del frame
         return template
+
+    def _make_subscript_string(self):
+        return str(self)
 
     ### PUBLIC PROPERTIES ###
 

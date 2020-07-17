@@ -15,7 +15,7 @@ import uqbar.apis
 from .storage import StorageFormatManager
 
 
-class Configuration(object):
+class Configuration:
     """
     Configuration.
 
@@ -485,7 +485,7 @@ class Configuration(object):
 ### FUNCTIONS ###
 
 
-def list_all_classes(modules=None, ignored_classes=None):
+def list_all_classes(modules="abjad", ignored_classes=None):
     """
     Lists all public classes defined in ``path``.
 
@@ -510,7 +510,7 @@ def list_all_classes(modules=None, ignored_classes=None):
     return list(sorted(all_classes, key=lambda x: (x.__module__, x.__name__)))
 
 
-def list_all_functions(modules=None):
+def list_all_functions(modules="abjad"):
     """
     Lists all public functions defined in ``modules``.
 

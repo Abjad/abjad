@@ -261,7 +261,7 @@ class OrderedDict(collections.abc.MutableMapping):
             self,
             repr_is_indented=False,
             storage_format_args_values=values,
-            storage_format_kwargs_names=names,
+            storage_format_keyword_names=names,
         )
 
     ### PUBLIC METHODS ###

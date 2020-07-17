@@ -1,15 +1,15 @@
-import collections
+import typing
 
+from . import _iterate, score
 from .expression import Expression
-from .inspectx import Inspection
 from .ordereddict import OrderedDict
 from .pitch.pitches import NamedPitch, Pitch
 from .pitch.sets import PitchSet
-from .score import Chord, Component, Container, Leaf, MultimeasureRest, Note, Rest, Skip
+from .selectx import LogicalTie
 from .storage import StorageFormatManager
 
 
-class Iteration(object):
+class Iteration:
     r"""
     Iteration.
 
@@ -53,137 +53,6 @@ class Iteration(object):
         Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
-
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _coerce_exclude(exclude):
-        if exclude is None:
-            exclude = ()
-        elif isinstance(exclude, str):
-            exclude = (exclude,)
-        else:
-            exclude = tuple(exclude)
-        assert isinstance(exclude, tuple), repr(exclude)
-        return exclude
-
-    @staticmethod
-    def _iterate_components(
-        client,
-        prototype=None,
-        *,
-        exclude=None,
-        do_not_iterate_grace_containers=None,
-        grace=None,
-        reverse=None,
-    ):
-        argument = client
-        prototype = prototype or Component
-        before_grace_container = None
-        after_grace_container = None
-        exclude = Iteration._coerce_exclude(exclude)
-        assert isinstance(exclude, tuple), repr(exclude)
-        if grace is not False and isinstance(argument, Leaf):
-            inspection = Inspection(argument)
-            before_grace_container = inspection.before_grace_container()
-            after_grace_container = inspection.after_grace_container()
-        if not reverse:
-            if (
-                not do_not_iterate_grace_containers
-                and grace is not False
-                and before_grace_container
-            ):
-                yield from Iteration._iterate_components(
-                    before_grace_container,
-                    prototype,
-                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                    grace=grace,
-                    reverse=reverse,
-                )
-            if isinstance(argument, prototype):
-                if (
-                    grace is None
-                    or (grace is True and Inspection(argument).grace())
-                    or (grace is False and not Inspection(argument).grace())
-                ):
-                    if not Iteration._should_exclude(argument, exclude):
-                        yield argument
-            if (
-                not do_not_iterate_grace_containers
-                and grace is not False
-                and after_grace_container
-            ):
-                yield from Iteration._iterate_components(
-                    after_grace_container,
-                    prototype,
-                    exclude=exclude,
-                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                    grace=grace,
-                    reverse=reverse,
-                )
-            if isinstance(argument, collections.abc.Iterable):
-                for item in argument:
-                    yield from Iteration._iterate_components(
-                        item,
-                        prototype,
-                        exclude=exclude,
-                        do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                        grace=grace,
-                        reverse=reverse,
-                    )
-        else:
-            if (
-                not do_not_iterate_grace_containers
-                and grace is not False
-                and after_grace_container
-            ):
-                yield from Iteration._iterate_components(
-                    after_grace_container,
-                    prototype,
-                    exclude=exclude,
-                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                    grace=grace,
-                    reverse=reverse,
-                )
-            if isinstance(argument, prototype):
-                if (
-                    grace is None
-                    or (grace is True and Inspection(argument).grace())
-                    or (grace is False and not Inspection(argument).grace())
-                ):
-                    if not Iteration._should_exclude(argument, exclude):
-                        yield argument
-            if (
-                not do_not_iterate_grace_containers
-                and grace is not False
-                and before_grace_container
-            ):
-                yield from Iteration._iterate_components(
-                    before_grace_container,
-                    prototype,
-                    exclude=exclude,
-                    do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                    grace=grace,
-                    reverse=reverse,
-                )
-            if isinstance(argument, collections.abc.Iterable):
-                for item in reversed(argument):
-                    yield from Iteration._iterate_components(
-                        item,
-                        prototype,
-                        exclude=exclude,
-                        do_not_iterate_grace_containers=do_not_iterate_grace_containers,
-                        grace=grace,
-                        reverse=reverse,
-                    )
-
-    @staticmethod
-    def _should_exclude(argument, exclude):
-        assert isinstance(exclude, tuple)
-        for string in exclude:
-            if Inspection(argument).has_indicator(string):
-                return True
-        return False
 
     ### PUBLIC PROPERTIES ###
 
@@ -371,39 +240,9 @@ class Iteration(object):
 
         Returns generator.
         """
-        if isinstance(self.client, Container):
-            for component in self._iterate_components(
-                self.client,
-                prototype,
-                exclude=exclude,
-                do_not_iterate_grace_containers=False,
-                grace=grace,
-                reverse=reverse,
-            ):
-                yield component
-        elif isinstance(self.client, collections.abc.Iterable):
-            if not reverse:
-                for item in self.client:
-                    generator = Iteration(item).components(
-                        prototype, exclude=exclude, grace=grace, reverse=reverse,
-                    )
-                    yield from generator
-            else:
-                for item in reversed(self.client):
-                    generator = Iteration(item).components(
-                        prototype, exclude=exclude, grace=grace, reverse=reverse,
-                    )
-                    yield from generator
-        else:
-            for component in self._iterate_components(
-                self.client,
-                prototype,
-                exclude=exclude,
-                do_not_iterate_grace_containers=True,
-                grace=grace,
-                reverse=reverse,
-            ):
-                yield component
+        return _iterate._public_iterate_components(
+            self.client, prototype, exclude=exclude, grace=grace, reverse=reverse,
+        )
 
     def leaves(
         self, prototype=None, *, exclude=None, grace=None, pitched=None, reverse=None,
@@ -634,18 +473,18 @@ class Iteration(object):
 
         Returns generator.
         """
-        prototype = prototype or Leaf
-        if pitched is True:
-            prototype = (Chord, Note)
-        elif pitched is False:
-            prototype = (MultimeasureRest, Rest, Skip)
-        return self.components(
-            prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
+        return _iterate._public_iterate_leaves(
+            self.client,
+            prototype=prototype,
+            exclude=exclude,
+            grace=grace,
+            pitched=pitched,
+            reverse=reverse,
         )
 
     def logical_ties(
         self, *, exclude=None, grace=None, nontrivial=None, pitched=None, reverse=None,
-    ):
+    ) -> typing.Generator:
         r"""
         Iterates logical ties.
 
@@ -993,21 +832,15 @@ class Iteration(object):
 
         Returns generator.
         """
-        yielded_logical_ties = set()
-        for leaf in self.leaves(
-            exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
-        ):
-            logical_tie = Inspection._get_logical_tie(leaf)
-            if leaf is not logical_tie.head:
-                continue
-            if (
-                nontrivial is None
-                or (nontrivial is True and not logical_tie.is_trivial)
-                or (nontrivial is False and logical_tie.is_trivial)
-            ):
-                if logical_tie not in yielded_logical_ties:
-                    yielded_logical_ties.add(logical_tie)
-                    yield logical_tie
+        return _iterate._iterate_logical_ties(
+            self.client,
+            exclude=exclude,
+            grace=grace,
+            nontrivial=nontrivial,
+            pitched=pitched,
+            reverse=reverse,
+            wrapper_class=LogicalTie,
+        )
 
     def pitches(self):
         r"""
@@ -1085,7 +918,7 @@ class Iteration(object):
             result.extend(self.client.pitches)
         except AttributeError:
             pass
-        if isinstance(self.client, Chord):
+        if isinstance(self.client, score.Chord):
             result.extend(self.client.written_pitches)
         elif isinstance(self.client, PitchSet):
             result.extend(sorted(list(self.client)))
@@ -1258,14 +1091,14 @@ class Iteration(object):
         """
         components = self.leaves(prototype=prototype, exclude=exclude)
         components = list(components)
-        components.sort(key=lambda _: Inspection(_).timespan().start_offset)
+        components.sort(key=lambda _: _._get_timespan().start_offset)
         offset_to_components = OrderedDict()
         for component in components:
-            start_offset = Inspection(component).timespan().start_offset
+            start_offset = component._get_timespan().start_offset
             if start_offset not in offset_to_components:
                 offset_to_components[start_offset] = []
         for component in components:
-            start_offset = Inspection(component).timespan().start_offset
+            start_offset = component._get_timespan().start_offset
             offset_to_components[start_offset].append(component)
         components = []
         for start_offset, list_ in offset_to_components.items():

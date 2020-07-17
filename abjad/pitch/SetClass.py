@@ -4,7 +4,7 @@ from .pitchclasses import NumberedPitchClass
 from .sets import PitchClassSet
 
 
-class SetClass(object):
+class SetClass:
     """
     Set-class.
 

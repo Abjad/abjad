@@ -65,7 +65,8 @@ class Duration(quicktions.Fraction):
 
         Intializes from fraction:
 
-        >>> abjad.Duration(abjad.Fraction(3, 16))
+        >>> import quicktions
+        >>> abjad.Duration(quicktions.Fraction(3, 16))
         Duration(3, 16)
 
     ..  container:: example
@@ -86,7 +87,7 @@ class Duration(quicktions.Fraction):
 
         Durations inherit from built-in fraction:
 
-        >>> isinstance(abjad.Duration(3, 16), abjad.Fraction)
+        >>> isinstance(abjad.Duration(3, 16), quicktions.Fraction)
         True
 
     ..  container:: example
@@ -470,7 +471,7 @@ class Duration(quicktions.Fraction):
             client=self,
             storage_format_args_values=[self.numerator, self.denominator],
             storage_format_is_indented=False,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     @staticmethod
@@ -1211,7 +1212,8 @@ class Multiplier(Duration):
 
         Intializes from fraction:
 
-        >>> abjad.Multiplier(abjad.Fraction(3, 16))
+        >>> import quicktions
+        >>> abjad.Multiplier(quicktions.Fraction(3, 16))
         Multiplier(3, 16)
 
     ..  container:: example
@@ -1232,7 +1234,7 @@ class Multiplier(Duration):
 
         Multipliers inherit from built-in fraction:
 
-        >>> isinstance(abjad.Multiplier(3, 16), abjad.Fraction)
+        >>> isinstance(abjad.Multiplier(3, 16), quicktions.Fraction)
         True
 
     ..  container:: example
@@ -1378,7 +1380,8 @@ class Offset(Duration):
 
         Intializes from fraction:
 
-        >>> abjad.Offset(abjad.Fraction(3, 16))
+        >>> import quicktions
+        >>> abjad.Offset(quicktions.Fraction(3, 16))
         Offset((3, 16))
 
     ..  container:: example
@@ -1399,7 +1402,7 @@ class Offset(Duration):
 
         Offsets inherit from built-in fraction:
 
-        >>> isinstance(abjad.Offset(3, 16), abjad.Fraction)
+        >>> isinstance(abjad.Offset(3, 16), quicktions.Fraction)
         True
 
     ..  container:: example
@@ -1861,7 +1864,8 @@ class Offset(Duration):
             Coerces ``argument`` to offset when ``argument`` is neither offset nor
             duration:
 
-            >>> abjad.Offset(2) - abjad.Fraction(1, 2)
+            >>> import quicktions
+            >>> abjad.Offset(2) - quicktions.Fraction(1, 2)
             Duration(3, 2)
 
         """
@@ -1889,7 +1893,7 @@ class Offset(Duration):
             client=self,
             storage_format_args_values=values,
             storage_format_is_indented=False,
-            storage_format_kwargs_names=names,
+            storage_format_keyword_names=names,
         )
 
     ### PUBLIC PROPERTIES ###
@@ -1966,7 +1970,8 @@ class NonreducedFraction(quicktions.Fraction):
 
         Nonreduced fractions inherit from built-in fraction:
 
-        >>> isinstance(abjad.NonreducedFraction(3, 6), abjad.Fraction)
+        >>> import quicktions
+        >>> isinstance(abjad.NonreducedFraction(3, 6), quicktions.Fraction)
         True
 
     ..  container:: example
@@ -2353,7 +2358,7 @@ class NonreducedFraction(quicktions.Fraction):
             repr_is_indented=False,
             storage_format_args_values=[self.numerator, self.denominator],
             storage_format_is_indented=False,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     @staticmethod

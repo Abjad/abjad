@@ -5,7 +5,7 @@ from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 
 
-class Arpeggio(object):
+class Arpeggio:
     r"""
     Arpeggio.
 

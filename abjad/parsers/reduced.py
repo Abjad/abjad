@@ -1,3 +1,4 @@
+from .. import _iterate
 from ..attach import attach, detach
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
@@ -7,7 +8,6 @@ from ..indicators.StopBeam import StopBeam
 from ..indicators.StopSlur import StopSlur
 from ..indicators.Tie import Tie
 from ..indicators.TimeSignature import TimeSignature
-from ..inspectx import Inspection
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..score import Chord, Container, Note, Rest, Tuplet
@@ -414,7 +414,7 @@ class ReducedLyParser(Parser):
         measure = Container()
         for x in p[3]:
             measure.append(x)
-        leaf = Inspection(measure).leaf(0)
+        leaf = _iterate._get_leaf(measure, 0)
         time_signature = TimeSignature(p[2].pair)
         attach(time_signature, leaf)
         p[0] = measure

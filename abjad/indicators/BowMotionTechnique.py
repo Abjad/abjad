@@ -1,7 +1,7 @@
 import typing
 
 
-class BowMotionTechnique(object):
+class BowMotionTechnique:
     """
     Bow motion technique.
 

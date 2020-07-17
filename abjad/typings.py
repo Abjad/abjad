@@ -4,7 +4,6 @@ Utilities for typehinting.
 import typing
 
 from .duration import Duration
-from .expression import Expression
 from .ratio import Ratio
 
 IntegerPair = typing.Tuple[int, int]
@@ -28,7 +27,5 @@ Prototype = typing.Union[typing.Type, typing.Tuple[typing.Type, ...]]
 RatioTyping = typing.Union[Duration, Ratio, typing.Tuple[int, ...]]
 
 RatioSequenceTyping = typing.Sequence[RatioTyping]
-
-SelectorTyping = Expression
 
 Strings = typing.Union[str, typing.Sequence[str]]

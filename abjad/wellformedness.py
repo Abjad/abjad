@@ -1,6 +1,6 @@
 import typing
 
-from . import const
+from . import _inspect, const
 from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.StartBeam import StartBeam
@@ -9,17 +9,17 @@ from .indicators.StartTextSpan import StartTextSpan
 from .indicators.StopBeam import StopBeam
 from .indicators.StopHairpin import StopHairpin
 from .indicators.StopTextSpan import StopTextSpan
-from .inspectx import Inspection
 from .instruments import Instrument
 from .iterate import Iteration
 from .iterpitches import sounding_pitches_are_in_range
+from .parentage import Parentage
 from .score import Container, Context
 from .sequence import Sequence
 from .storage import StorageFormatManager
 from .tag import Tag
 
 
-class Wellformedness(object):
+class Wellformedness:
     """
     Wellformedness.
 
@@ -190,17 +190,17 @@ class Wellformedness(object):
             total += 1
             if leaf.written_duration < Duration((1, 4)):
                 continue
-            start_wrapper = Inspection(leaf).effective_wrapper(StartBeam)
+            start_wrapper = _inspect._get_effective(leaf, StartBeam, unwrap=False)
             if start_wrapper is None:
                 continue
-            stop_wrapper = Inspection(leaf).effective_wrapper(StopBeam)
+            stop_wrapper = _inspect._get_effective(leaf, StopBeam, unwrap=False)
             if stop_wrapper is None:
                 violators.append(leaf)
                 continue
             if stop_wrapper.leaked_start_offset < start_wrapper.leaked_start_offset:
                 violators.append(leaf)
                 continue
-            leaf_start_offset = Inspection(leaf).timespan().start_offset
+            leaf_start_offset = leaf._get_timespan().start_offset
             if stop_wrapper.leaked_start_offset == leaf_start_offset:
                 violators.append(leaf)
         return violators, total
@@ -261,8 +261,8 @@ class Wellformedness(object):
         for i, component in enumerate(components):
             total.add(component)
             if 0 < i:
-                parentage = Inspection(component).parentage()
-                if parentage.parent is None:
+                # TODO: figure out why "if component._parent is None" doesn't work
+                if Parentage(component).parent is None:
                     violators.append(component)
         return violators, len(total)
 
@@ -344,10 +344,10 @@ class Wellformedness(object):
         violators, total = [], set()
         for leaf in Iteration(argument).leaves():
             total.add(leaf)
-            instrument = Inspection(leaf).effective(Instrument)
+            instrument = _inspect._get_effective(leaf, Instrument)
             if instrument is None:
                 continue
-            clef = Inspection(leaf).effective(Clef)
+            clef = _inspect._get_effective(leaf, Clef)
             if clef is None:
                 continue
             allowable_clefs = [Clef(_) for _ in instrument.allowable_clefs]
@@ -431,13 +431,13 @@ class Wellformedness(object):
         violators, total = [], set()
         for leaf in Iteration(argument).leaves(pitched=True):
             total.add(leaf)
-            if Inspection(leaf).has_indicator(const.ALLOW_OUT_OF_RANGE):
+            if leaf._has_indicator(const.ALLOW_OUT_OF_RANGE):
                 continue
-            if Inspection(leaf).has_indicator(const.HIDDEN):
+            if leaf._has_indicator(const.HIDDEN):
                 continue
-            if "unpitched" in Inspection(argument).indicators(str):
+            if "unpitched" in argument._get_indicators(str):
                 continue
-            instrument = Inspection(leaf).effective(Instrument)
+            instrument = _inspect._get_effective(leaf, Instrument)
             if instrument is None:
                 continue
             # if leaf not in instrument.pitch_range:

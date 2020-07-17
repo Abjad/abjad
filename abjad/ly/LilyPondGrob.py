@@ -5,7 +5,7 @@ from ..storage import StorageFormatManager
 from .LilyPondGrobInterface import LilyPondGrobInterface
 
 
-class LilyPondGrob(object):
+class LilyPondGrob:
     """
     LilyPond grob.
 

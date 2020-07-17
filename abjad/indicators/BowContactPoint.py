@@ -8,7 +8,7 @@ from ..storage import StorageFormatManager
 
 
 @functools.total_ordering
-class BowContactPoint(object):
+class BowContactPoint:
     """
     Bow contact point.
 

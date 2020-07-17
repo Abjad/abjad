@@ -12,7 +12,7 @@ from .stringx import String
 from .tag import Tag
 
 
-class LilyPondLiteral(object):
+class LilyPondLiteral:
     r"""
     LilyPond literal.
 
@@ -393,7 +393,7 @@ class LilyPondLiteral(object):
         return LilyPondLiteral._allowable_format_slots
 
 
-class Interface(object):
+class Interface:
     """
     LilyPond name manager.
 
@@ -527,7 +527,7 @@ class Interface(object):
         return list(sorted(vars(self).items()))
 
 
-class LilyPondOverride(object):
+class LilyPondOverride:
     r"""
     LilyPond grob override.
 
@@ -962,7 +962,7 @@ class LilyPondOverride(object):
         return " ".join(result)
 
 
-class LilyPondSetting(object):
+class LilyPondSetting:
     r"""
     LilyPond context setting.
 

@@ -9,7 +9,7 @@ from .storage import FormatSpecification, StorageFormatManager, storage
 from .tag import Tag
 
 
-class Wrapper(object):
+class Wrapper:
     r"""
     Wrapper.
 
@@ -437,7 +437,7 @@ class Wrapper(object):
         return FormatSpecification(
             client=self,
             storage_format_args_values=None,
-            storage_format_kwargs_names=keywords,
+            storage_format_keyword_names=keywords,
         )
 
     def _unbind_component(self):

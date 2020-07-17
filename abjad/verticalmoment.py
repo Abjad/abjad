@@ -1,14 +1,14 @@
 from .enumeratex import Enumerator
-from .inspectx import Inspection
 from .iterate import Iteration
 from .ordereddict import OrderedDict
+from .parentage import Parentage
 from .pitch.segments import PitchSegment
 from .score import Chord, Leaf, Note
 from .selectx import Selection
 from .sequence import Sequence
 
 
-class VerticalMoment(object):
+class VerticalMoment:
     r'''
     Vertical moment.
 
@@ -461,7 +461,7 @@ class VerticalMoment(object):
         """
         result = []
         for component in self.components:
-            if Inspection(component).timespan().start_offset == self.offset:
+            if component._get_timespan().start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
         return result
@@ -629,16 +629,16 @@ def iterate_vertical_moments(components, reverse=None):
     '''
     moments = []
     components = list(Selection(components).components())
-    components.sort(key=lambda _: Inspection(_).timespan().start_offset)
+    components.sort(key=lambda _: _._get_timespan().start_offset)
     offset_to_components = OrderedDict()
     for component in components:
-        start_offset = Inspection(component).timespan().start_offset
+        start_offset = component._get_timespan().start_offset
         if start_offset not in offset_to_components:
             offset_to_components[start_offset] = []
     # TODO: optimize with bisect
     for component in components:
         inserted = False
-        timespan = Inspection(component).timespan()
+        timespan = component._get_timespan()
         for offset, list_ in offset_to_components.items():
             if (
                 timespan.start_offset <= offset < timespan.stop_offset
@@ -650,7 +650,7 @@ def iterate_vertical_moments(components, reverse=None):
                 break
     moments = []
     for offset, list_ in offset_to_components.items():
-        list_.sort(key=lambda _: Inspection(_).parentage().score_index())
+        list_.sort(key=lambda _: Parentage(_).score_index())
         moment = VerticalMoment(components=list_, offset=offset)
         moments.append(moment)
     if reverse is True:

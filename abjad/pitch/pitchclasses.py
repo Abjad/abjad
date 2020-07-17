@@ -9,7 +9,7 @@ from .pitches import NamedPitch, NumberedPitch, Pitch
 
 
 @functools.total_ordering
-class PitchClass(object):
+class PitchClass:
     """
     Abstract pitch-class.
     """
@@ -474,7 +474,7 @@ class NamedPitchClass(PitchClass):
             coerce_for_equality=True,
             storage_format_is_indented=False,
             storage_format_args_values=values,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     def _get_lilypond_format(self):
@@ -924,7 +924,7 @@ class NumberedPitchClass(PitchClass):
             coerce_for_equality=True,
             storage_format_is_indented=False,
             storage_format_args_values=values,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     def _get_lilypond_format(self):

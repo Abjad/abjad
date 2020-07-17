@@ -2,11 +2,10 @@ import abc
 import collections
 import typing
 
-from . import instruments
+from . import _inspect, _iterate, instruments
 from .attach import Wrapper, annotate, attach
-from .illustrate import illustrate
+from .illustrators import illustrate
 from .indicators.Clef import Clef
-from .inspectx import Inspection
 from .instruments import Piano
 from .iterate import Iteration
 from .lilypondfile import LilyPondFile
@@ -22,7 +21,7 @@ from .storage import StorageFormatManager
 from .tag import Tag
 
 
-class ScoreTemplate(object):
+class ScoreTemplate:
     """
     Abstract score template.
     """
@@ -167,11 +166,11 @@ class ScoreTemplate(object):
         staves = Selection(argument).components(prototype)
         assert isinstance(staves, Selection), repr(staves)
         for staff in staves:
-            leaf = Inspection(staff).leaf(0)
-            clef = Inspection(leaf).indicator(Clef)
+            leaf = _iterate._get_leaf(staff, 0)
+            clef = _inspect._get_indicator(leaf, Clef)
             if clef is not None:
                 continue
-            clef = Inspection(staff).annotation("default_clef")
+            clef = _inspect._get_annotation(staff, "default_clef")
             if clef is not None:
                 wrapper = attach(
                     clef,

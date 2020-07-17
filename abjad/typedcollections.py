@@ -5,7 +5,7 @@ from .new import new
 from .storage import FormatSpecification, StorageFormatManager
 
 
-class TypedCollection(object):
+class TypedCollection:
     """
     Abstract typed collection.
     """
@@ -100,7 +100,7 @@ class TypedCollection(object):
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
-            storage_format_kwargs_names=names,
+            storage_format_keyword_names=names,
         )
 
     def _on_insertion(self, item):
@@ -298,7 +298,7 @@ class TypedCounter(TypedCollection, collections.abc.MutableMapping):
 
         the_items = []
         if items is not None:
-            if isinstance(items, collections.Mapping):
+            if isinstance(items, collections.abc.Mapping):
                 items = _coerce_mapping(items)
             else:
                 the_items = []
@@ -315,7 +315,7 @@ class TypedCounter(TypedCollection, collections.abc.MutableMapping):
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
-            storage_format_kwargs_names=names,
+            storage_format_keyword_names=names,
             template_names=names,
         )
 
@@ -814,7 +814,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
-            storage_format_kwargs_names=names,
+            storage_format_keyword_names=names,
         )
 
     ### PUBLIC METHODS ###
@@ -989,7 +989,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
                 with ``sort()``.
                 """
 
-                class CmpToKey(object):
+                class CmpToKey:
                     def __init__(self, argument):
                         self.argument = argument
 

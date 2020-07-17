@@ -8,7 +8,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class RehearsalMark(object):
+class RehearsalMark:
     r"""
     Rehearsal mark.
 

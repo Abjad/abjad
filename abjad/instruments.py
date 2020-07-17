@@ -14,7 +14,7 @@ from .storage import FormatSpecification, StorageFormatManager
 from .stringx import String
 
 
-class Instrument(object):
+class Instrument:
     r"""
     Instrument.
 
@@ -199,7 +199,7 @@ class Instrument(object):
             self,
             repr_args_values=[],
             repr_is_indented=False,
-            repr_kwargs_names=keywords,
+            repr_keyword_names=keywords,
         )
 
     def _get_lilypond_format(self, context=None):
@@ -355,7 +355,7 @@ class Instrument(object):
         return self._short_name
 
 
-class StringNumber(object):
+class StringNumber:
     """
     String number.
 
@@ -478,7 +478,7 @@ class StringNumber(object):
         pass
 
 
-class Tuning(object):
+class Tuning:
     """
     Tuning.
 

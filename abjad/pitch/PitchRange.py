@@ -10,7 +10,7 @@ from .pitches import NamedPitch, NumberedPitch, Pitch
 
 
 @functools.total_ordering
-class PitchRange(object):
+class PitchRange:
     r"""
     Pitch range.
 

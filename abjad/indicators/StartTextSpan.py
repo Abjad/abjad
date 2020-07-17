@@ -7,7 +7,7 @@ from ..storage import StorageFormatManager
 from ..stringx import String
 
 
-class StartTextSpan(object):
+class StartTextSpan:
     r"""
     LilyPond ``\startTextSpan`` command.
 

@@ -2,7 +2,7 @@ from ..markups import Markup
 from ..storage import StorageFormatManager
 
 
-class StringContactPoint(object):
+class StringContactPoint:
     """
     String contact point.
 

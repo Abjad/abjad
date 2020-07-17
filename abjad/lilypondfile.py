@@ -8,12 +8,12 @@ import pathlib
 import subprocess
 import time
 
+from . import _inspect
 from .attach import attach
 from .bundle import LilyPondFormatBundle
 from .configuration import Configuration
 from .contextmanagers import TemporaryDirectoryChange
 from .indicators.TimeSignature import TimeSignature
-from .inspectx import Inspection
 from .iterate import Iteration
 from .lilypond import lilypond
 from .markups import Markup
@@ -29,7 +29,7 @@ from .tag import Tag
 configuration = Configuration()
 
 
-class Block(object):
+class Block:
     r"""
     A LilyPond file block.
 
@@ -705,7 +705,7 @@ class ContextBlock(Block):
         return self._type_
 
 
-class DateTimeToken(object):
+class DateTimeToken:
     """
     A LilyPond file date / time token.
 
@@ -766,7 +766,7 @@ class DateTimeToken(object):
         return date_string
 
 
-class LilyPondDimension(object):
+class LilyPondDimension:
     r"""
     A LilyPond file ``\paper`` block dimension.
 
@@ -839,7 +839,7 @@ class LilyPondDimension(object):
         return self._value
 
 
-class LilyPondFile(object):
+class LilyPondFile:
     r"""
     A LilyPond file.
 
@@ -2078,7 +2078,7 @@ class LilyPondFile(object):
                 pitched_staff = True
         if isinstance(selections, (list, Selection)):
             if divisions is None:
-                duration = Inspection(selections).duration()
+                duration = _inspect._get_duration(selections)
                 divisions = [duration]
             time_signatures = time_signatures or divisions
             time_signatures = [TimeSignature(_) for _ in time_signatures]
@@ -2108,7 +2108,7 @@ class LilyPondFile(object):
                 voices.append(voice)
             staff = Staff(voices, simultaneous=True)
             if divisions is None:
-                duration = Inspection(staff).duration()
+                duration = staff._get_duration()
                 divisions = [duration]
         else:
             message = "must be list or dictionary of selections:"
@@ -2129,7 +2129,7 @@ class LilyPondFile(object):
         return lilypond_file
 
 
-class LilyPondLanguageToken(object):
+class LilyPondLanguageToken:
     r"""
     A LilyPond file ``\language`` token.
 
@@ -2167,7 +2167,7 @@ class LilyPondLanguageToken(object):
         return string
 
 
-class LilyPondVersionToken(object):
+class LilyPondVersionToken:
     r"""
     A LilyPond file ``\version`` token.
 
@@ -2243,7 +2243,7 @@ class LilyPondVersionToken(object):
         return self._version_string
 
 
-class PackageGitCommitToken(object):
+class PackageGitCommitToken:
     """
     A Python package git commit token.
 

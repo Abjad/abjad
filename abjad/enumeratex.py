@@ -5,7 +5,7 @@ from . import mathx
 from .sequence import Sequence
 
 
-class Enumerator(object):
+class Enumerator:
     """
     Enumerator.
 

@@ -9,7 +9,6 @@ import quicktions
 
 from . import enums, mathx
 from .bundle import LilyPondFormatBundle
-from .expression import Expression
 from .ly.colors import colors
 from .ly.music_glyphs import music_glyphs
 from .new import new
@@ -21,7 +20,7 @@ from .tag import Tag
 from .typedcollections import TypedList
 
 
-class Markup(object):
+class Markup:
     r"""
     LilyPond markup.
 
@@ -570,7 +569,7 @@ class Markup(object):
     def _get_format_specification(self):
         names = list(StorageFormatManager(self).signature_keyword_names)
         return FormatSpecification(
-            client=self, repr_is_indented=False, storage_format_kwargs_names=names,
+            client=self, repr_is_indented=False, storage_format_keyword_names=names,
         )
 
     def _get_lilypond_format(self):
@@ -1575,8 +1574,9 @@ class Markup(object):
 
             With integer-equivalent number:
 
+            >>> import quicktions
             >>> markup = abjad.Markup.make_improper_fraction_markup(
-            ...     abjad.Fraction(6, 3),
+            ...     quicktions.Fraction(6, 3),
             ...     direction=abjad.Up,
             ...     )
             >>> abjad.f(markup)
@@ -1589,7 +1589,7 @@ class Markup(object):
             With non-integer-equivalent number:
 
             >>> markup = abjad.Markup.make_improper_fraction_markup(
-            ...     abjad.Fraction(7, 3),
+            ...     quicktions.Fraction(7, 3),
             ...     )
             >>> abjad.f(markup)
             \markup {
@@ -2756,7 +2756,7 @@ class Markup(object):
         return new(self, contents=command)
 
 
-class MarkupCommand(object):
+class MarkupCommand:
     r"""
     LilyPond markup command.
 
@@ -3046,7 +3046,7 @@ class MarkupCommand(object):
             client=self,
             repr_is_indented=False,
             storage_format_args_values=(self.name,) + self.arguments,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     def _get_lilypond_format(self):
@@ -3414,9 +3414,11 @@ class MarkupList(TypedList):
         names = list(StorageFormatManager(self).signature_keyword_names)
         if self.item_class is Markup:
             names.remove("item_class")
-        return FormatSpecification(client=self, storage_format_kwargs_names=names)
+        return FormatSpecification(client=self, storage_format_keyword_names=names)
 
     def _update_expression(self, frame, force_return=None):
+        from .expression import Expression
+
         callback = Expression._frame_to_callback(frame, force_return=force_return)
         return self._expression.append_callback(callback)
 
@@ -4027,7 +4029,7 @@ class MarkupList(TypedList):
         return Markup(contents=command, direction=direction)
 
 
-class Postscript(object):
+class Postscript:
     r"""
     Postscript session.
 
@@ -5058,7 +5060,7 @@ class Postscript(object):
         return self._operators
 
 
-class PostscriptOperator(object):
+class PostscriptOperator:
     """
     Postscript operator.
 
@@ -5138,7 +5140,7 @@ class PostscriptOperator(object):
             client=self,
             storage_format_args_values=values,
             storage_format_is_indented=False,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     ### PUBLIC PROPERTIES ###

@@ -7,11 +7,12 @@ import typing
 import quicktions
 import uqbar.enums
 
+from . import markups
 from .new import new
 from .storage import FormatSpecification, StorageFormatManager, storage
 
 
-class Signature(object):
+class Signature:
     """
     Signature.
 
@@ -147,7 +148,7 @@ class Signature(object):
         return self._superscript
 
 
-class Expression(object):
+class Expression:
     """
     Expression.
 
@@ -326,8 +327,7 @@ class Expression(object):
 
             Adds expressions:
 
-            >>> expression = abjad.Expression()
-            >>> expression = expression.sequence()
+            >>> expression = abjad.sequence()
             >>> expression = expression + [4, 5, 6]
             >>> abjad.f(expression)
             abjad.Expression(
@@ -437,24 +437,24 @@ class Expression(object):
 
         ..  container:: example
 
-            >>> expression_1 = abjad.Expression().sequence()
-            >>> expression_2 = abjad.Expression().sequence()
+            >>> expression_1 = abjad.sequence()
+            >>> expression_2 = abjad.sequence()
             >>> expression_1 == expression_2
             True
 
-            >>> expression_1 = abjad.Expression().sequence()
+            >>> expression_1 = abjad.sequence()
             >>> expression_2 = abjad.new(expression_1)
             >>> expression_1 == expression_2
             True
 
         ..  container:: example
 
-            >>> expression_1 = abjad.Expression().sequence()
-            >>> expression_2 = abjad.Expression().sequence().reverse()
+            >>> expression_1 = abjad.sequence()
+            >>> expression_2 = abjad.sequence().reverse()
             >>> expression_1 == expression_2
             False
 
-            >>> expression_1 = abjad.Expression().sequence()
+            >>> expression_1 = abjad.sequence()
             >>> expression_1 == 'text'
             False
 
@@ -559,13 +559,11 @@ class Expression(object):
     ### PRIVATE METHODS ###
 
     def _apply_callback_markup(self, name, direction=None, previous_callback=None):
-        from .markups import Markup, MarkupList
-
         if previous_callback and previous_callback.next_name:
             name = previous_callback.next_name
         markup = name
         if isinstance(markup, str):
-            markup = Markup(markup).bold()
+            markup = markups.Markup(markup).bold()
         if not self.callbacks:
             return markup
         callback = self.callbacks[0]
@@ -574,7 +572,7 @@ class Expression(object):
             and previous_callback.is_composite
             and not callback.is_composite
         ):
-            markup = MarkupList(["(", markup, ")"]).concat()
+            markup = markups.MarkupList(["(", markup, ")"]).concat()
         markup = callback._make_method_markup(markup)
         previous_precedence = callback.precedence or 0
         previous_callback = callback
@@ -582,7 +580,7 @@ class Expression(object):
             if previous_callback and previous_callback.next_name:
                 markup = previous_callback.next_name
                 if isinstance(markup, str):
-                    markup = Markup(markup).bold()
+                    markup = markups.Markup(markup).bold()
             current_precedence = callback.precedence or 0
             parenthesize_argument = False
             if (
@@ -595,7 +593,7 @@ class Expression(object):
             if previous_callback and previous_callback.next_name:
                 parenthesize_argument = False
             if parenthesize_argument:
-                markup = MarkupList(["(", markup, ")"]).concat()
+                markup = markups.MarkupList(["(", markup, ")"]).concat()
             markup = callback._make_method_markup(markup)
             previous_callback = callback
         markup = new(markup, direction=direction)
@@ -642,7 +640,7 @@ class Expression(object):
             keywords_ = self.keywords or {}
             keywords_.update(keywords)
             for key, value in keywords_.items():
-                value = self._to_evaluable_string(value)
+                value = Expression._to_evaluable_string(value)
                 string = f"{key}={value}"
                 strings.append(string)
             strings = ", ".join(strings)
@@ -803,7 +801,6 @@ class Expression(object):
             function_name = frame_info.function
             arguments = Expression._wrap_arguments(frame, static_class=static_class)
             template = f"{{}}.{function_name}({arguments})"
-            # template = template.format(function_name=function_name, arguments=arguments)
         finally:
             del frame
         return template
@@ -817,7 +814,7 @@ class Expression(object):
             storage_format_is_indented=False,
             storage_format_args_values=[self.template],
             storage_format_forced_override=self.template,
-            storage_format_kwargs_names=(),
+            storage_format_keyword_names=(),
         )
 
     @staticmethod
@@ -852,9 +849,7 @@ class Expression(object):
 
     @staticmethod
     def _make___add___markup(markup, argument):
-        from .markups import MarkupList
-
-        markup_list = MarkupList()
+        markup_list = markups.MarkupList()
         markup_list.append(markup)
         markup_list.append("+")
         markup_list.append(str(argument))
@@ -867,12 +862,10 @@ class Expression(object):
 
     @staticmethod
     def _make___getitem___markup(markup, argument):
-        from .markups import Markup, MarkupList
-
-        markup_list = MarkupList()
+        markup_list = markups.MarkupList()
         markup_list.append(markup)
         string = Expression._make_subscript_string(argument, markup=True)
-        subscript_markup = Markup(string).sub()
+        subscript_markup = markups.Markup(string).sub()
         markup_list.append(subscript_markup)
         markup = markup_list.concat()
         return markup
@@ -884,9 +877,7 @@ class Expression(object):
 
     @staticmethod
     def _make___radd___markup(markup, argument):
-        from .markups import MarkupList
-
-        markup_list = MarkupList()
+        markup_list = markups.MarkupList()
         markup_list.append(str(argument))
         markup_list.append("+")
         markup_list.append(markup)
@@ -899,34 +890,31 @@ class Expression(object):
 
     @staticmethod
     def _make_establish_equivalence_markup(lhs, rhs):
-        from .markups import Markup, MarkupList
-
-        markup_list = MarkupList()
-        lhs = Markup(lhs).bold()
+        markup_list = markups.MarkupList()
+        lhs = markups.Markup(lhs).bold()
         markup_list.append(lhs)
         markup_list.append("=")
-        assert isinstance(rhs, Markup)
+        assert isinstance(rhs, markups.Markup)
         markup_list.append(rhs)
         markup = markup_list.line()
         return markup
 
-    def _make_evaluable_keywords(self, keywords):
+    @staticmethod
+    def _make_evaluable_keywords(keywords):
         result = {}
         for key, value in keywords.items():
             if isinstance(value, type):
-                value = self._to_evaluable_string(value)
+                value = Expression._to_evaluable_string(value)
             result[key] = value
         return result
 
     @staticmethod
-    def _make_expression_add_markup(markups):
-        from .markups import MarkupList
-
-        assert len(markups) == 2
-        markup_list = MarkupList()
-        markup_list.append(markups[0])
+    def _make_expression_add_markup(markups_):
+        assert len(markups_) == 2
+        markup_list = markups.MarkupList()
+        markup_list.append(markups_[0])
         markup_list.append("+")
-        markup_list.append(markups[1])
+        markup_list.append(markups_[1])
         markup = markup_list.line()
         return markup
 
@@ -934,13 +922,11 @@ class Expression(object):
     def _make_function_markup(
         markup, method_name, argument_list_callback, method, argument_values
     ):
-        from .markups import MarkupList
-
         if argument_list_callback:
             arguments = argument_list_callback(**argument_values)
         else:
             arguments = Expression._wrap_arguments_new(method, argument_values)
-        markup_list = MarkupList()
+        markup_list = markups.MarkupList()
         markup_list.append(method_name + "(")
         markup_list.append(markup)
         if arguments:
@@ -961,14 +947,13 @@ class Expression(object):
             arguments = Expression._wrap_arguments(frame)
         if arguments:
             template = f"{method_name}({{}}, {arguments})"
-            # template = template.format(method_name, arguments)
         else:
             template = method_name + "({})"
         return template
 
     def _make_globals(self):
         abjad = importlib.import_module("abjad")
-        globals_ = {"abjad": abjad}
+        globals_ = {"abjad": abjad, "quicktions": quicktions}
         globals_.update(abjad.__dict__.copy())
         module_names = self.module_names or []
         if self.qualified_method_name is not None:
@@ -980,14 +965,19 @@ class Expression(object):
             globals_[module_name] = module
         return globals_
 
+    @staticmethod
     def _make_initializer_callback(
-        self, class_, module_names=None, string_template=None, **keywords
+        class_,
+        *,
+        callback_class=None,
+        module_names=None,
+        string_template=None,
+        **keywords,
     ):
         assert isinstance(class_, type), repr(class_)
         if not hasattr(class_, "_expression"):
-            raise TypeError(
-                f"class does not implement expression protocol: {class_!r}."
-            )
+            message = f"class does not implement expression protocol: {class_!r}."
+            raise TypeError(message)
         parts = class_.__module__.split(".")
         if parts[-1] != class_.__name__:
             parts.append(class_.__name__)
@@ -996,9 +986,11 @@ class Expression(object):
             evaluation_template = f"abjad.{class_.__name__}"
         else:
             evaluation_template = ".".join(parts)
-        keywords = self._make_evaluable_keywords(keywords)
+        keywords = Expression._make_evaluable_keywords(keywords)
         keywords = keywords or None
-        return type(self)(
+        if callback_class is None:
+            callback_class = Expression
+        return callback_class(
             evaluation_template=evaluation_template,
             is_initializer=True,
             keywords=keywords,
@@ -1007,11 +999,9 @@ class Expression(object):
         )
 
     def _make_method_markup(self, markup):
-        from .markups import Markup
-
         if self.is_initializer:
             assert self.qualified_method_name is None
-            return Markup(markup)
+            return markups.Markup(markup)
         qualified_method_name = self.qualified_method_name
         assert isinstance(qualified_method_name, str), repr(self)
         if qualified_method_name == "abjad.Expression.establish_equivalence":
@@ -1082,15 +1072,13 @@ class Expression(object):
     def _make_operator_markup(
         markup, method_name=None, subscript=None, superscript=None
     ):
-        from .markups import Markup, MarkupList
-
-        markup_list = MarkupList([method_name, markup])
+        markup_list = markups.MarkupList([method_name, markup])
         if superscript is not None:
-            superscript = Markup(str(superscript))
+            superscript = markups.Markup(str(superscript))
             superscript = superscript.super()
             markup_list.insert(1, superscript)
         if subscript is not None:
-            subscript = Markup(str(subscript))
+            subscript = markups.Markup(str(subscript))
             subscript = subscript.sub()
             markup_list.insert(1, subscript)
         markup = markup_list.concat()
@@ -1110,9 +1098,12 @@ class Expression(object):
 
     @staticmethod
     def _make_subscript_string(i, markup=False):
-        from .pattern import Pattern
-
-        if isinstance(i, (int, Pattern)):
+        if hasattr(i, "_make_subscript_string"):
+            subscript_string = i._make_subscript_string()
+            if not markup:
+                subscript_string = f"[{subscript_string}]"
+            return subscript_string
+        if isinstance(i, int):
             if markup:
                 subscript_string = "{i}"
             else:
@@ -1214,26 +1205,24 @@ class Expression(object):
 
     @staticmethod
     def _to_evaluable_string(argument):
-        from .sequence import Sequence
-
         if argument is None:
             pass
         elif isinstance(argument, str):
             argument = repr(argument)
+        elif argument.__class__ is quicktions.Fraction:
+            argument = f"quicktions.{argument!r}"
         elif isinstance(argument, quicktions.Fraction):
-            argument = f"abjad.{argument.__repr__()}"
+            argument = f"abjad.{argument!r}"
         elif isinstance(argument, numbers.Number):
             argument = str(argument)
-        # elif isinstance(argument, (list, tuple)):
-        elif isinstance(argument, (list, tuple, Sequence)):
+        elif isinstance(argument, (list, tuple)):
             item_strings = []
             item_count = len(argument)
             for item in argument:
                 item_string = Expression._to_evaluable_string(item)
                 item_strings.append(item_string)
             items = ", ".join(item_strings)
-            # if isinstance(argument, list):
-            if isinstance(argument, (list, Sequence)):
+            if isinstance(argument, list):
                 argument = f"[{items}]"
             elif isinstance(argument, tuple):
                 if item_count == 1:
@@ -1244,7 +1233,7 @@ class Expression(object):
         elif isinstance(argument, slice):
             argument = repr(argument)
         elif isinstance(argument, uqbar.enums.StrictEnumeration):
-            argument = f"abjad.{repr(argument)}"
+            argument = f"abjad.{argument!r}"
         # abjad object
         elif not inspect.isclass(argument):
             try:
@@ -1257,7 +1246,7 @@ class Expression(object):
         # abjad class
         elif inspect.isclass(argument) and "abjad" in argument.__module__:
             argument = f"abjad.{argument.__name__}"
-        # builtin class like tuple in classes=(tuple,)
+        # builtin class [like tuple used in classes=(tuple,)]
         elif inspect.isclass(argument) and "abjad" not in argument.__module__:
             argument = argument.__name__
         else:
@@ -1469,7 +1458,7 @@ class Expression(object):
             >>> expression.name
             'J'
 
-            >>> expression = expression.sequence()
+            >>> expression = abjad.sequence(name="J")
             >>> expression.name
             'J'
 
@@ -1572,32 +1561,13 @@ class Expression(object):
         callbacks = callbacks + [callback]
         return new(self, callbacks=callbacks)
 
-    def color(self, argument, colors=None) -> None:
-        """
-        Colors ``argument``.
-        """
-        from .cyclictuple import CyclicTuple
-        from .label import Label
-
-        if self._is_singular_get_item():
-            colors = colors or ["green"]
-            color = colors[0]
-            Label(argument).color_leaves(color=color)
-        else:
-            colors = colors or ["red", "blue"]
-            colors = CyclicTuple(colors)
-            for i, item in enumerate(argument):
-                color = colors[i]
-                Label(item).color_leaves(color=color)
-
     def establish_equivalence(self, name) -> "Expression":
         r"""
         Makes new expression with ``name``.
 
         ..  container:: example expression
 
-            >>> expression = abjad.Expression(name='J')
-            >>> expression = expression.pitch_class_segment()
+            >>> expression = abjad.pitch_class_segment(name='J')
             >>> expression = expression.rotate(n=1)
             >>> expression = expression.rotate(n=2)
             >>> expression = expression.establish_equivalence(name='Q')
@@ -1639,7 +1609,6 @@ class Expression(object):
 
         """
         template = f"{name} = {{}}"
-        # template = template.format(name=name)
         callback = self.make_callback(
             evaluation_template="{}",
             is_composite=True,
@@ -1706,8 +1675,7 @@ class Expression(object):
 
                 With name:
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.reverse()
                 >>> expression = expression.rotate(n=2)
 
@@ -1730,8 +1698,7 @@ class Expression(object):
 
                 Without name:
 
-                >>> expression = abjad.Expression()
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment()
                 >>> expression = expression.invert()
                 >>> expression = expression.rotate(n=2)
 
@@ -1745,8 +1712,7 @@ class Expression(object):
 
                 With name:
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
+                >>> expression = abjad.pitch_class_segment(name="J")
                 >>> expression = expression.invert()
                 >>> expression = expression.rotate(n=2)
 
@@ -1787,70 +1753,6 @@ class Expression(object):
                 raise ValueError(f"expression name not found: {self!r}.")
             return self._compile_callback_strings(name)
 
-    def label(self, **keywords) -> "Expression":
-        r"""
-        Makes label expression.
-
-        ..  container:: example
-
-            Makes expression to label logical tie durations:
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.label()
-                >>> expression = expression.with_durations()
-
-                >>> expression(staff)
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        c'4.
-                        ^ \markup {
-                            \fraction
-                                3
-                                8
-                            }
-                        d'8
-                        ^ \markup {
-                            \fraction
-                                4
-                                8
-                            }
-                        ~
-                        d'4.
-                        e'16
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
-                        [
-                        ef'16
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
-                        ]
-                    }
-
-        """
-        from .label import Label
-
-        class_ = Label
-        callback = self._make_initializer_callback(class_, **keywords)
-        expression = self.append_callback(callback)
-        return new(expression, proxy_class=class_)
-
     @staticmethod
     def make_callback(
         evaluation_template=None,
@@ -1886,85 +1788,6 @@ class Expression(object):
             string_template=string_template,
         )
 
-    def pitch_class_segment(self, **keywords) -> "Expression":
-        r"""
-        Makes pitch-class segment expression.
-
-        ..  container:: example
-
-            Makes expression to transpose pitch-class segment:
-
-            >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-            >>> J = abjad.PitchClassSegment(items=items)
-            >>> J
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-
-            >>> lilypond_file = abjad.illustrate(J)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.pitch_class_segment()
-                >>> expression = expression.transpose(n=13)
-
-                >>> expression([-2, -1.5, 6, 7, -1.5, 7])
-                PitchClassSegment([11, 11.5, 7, 8, 11.5, 8])
-
-                >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
-                >>> markup = expression.get_markup()
-                >>> lilypond_file = abjad.illustrate(segment, figure_name=markup)
-                >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(lilypond_file[abjad.Voice])
-                    \new Voice
-                    {
-                        b'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    T
-                                    \sub
-                                        13
-                                    \bold
-                                        J
-                                }
-                            }
-                        bqs'8
-                        g'8
-                        af'8
-                        bqs'8
-                        af'8
-                        \bar "|." %! SCORE_1
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-        """
-        from .pitch.segments import PitchClassSegment
-
-        class_ = PitchClassSegment
-        callback = self._make_initializer_callback(
-            class_, string_template="{}", **keywords
-        )
-        expression = self.append_callback(callback)
-        return new(expression, proxy_class=class_)
-
-    # TODO: add examples
-    def pitch_set(self, **keywords) -> "Expression":
-        """
-        Makes pitch set expression.
-        """
-        from .pitch.sets import PitchSet
-
-        class_ = PitchSet
-        callback = self._make_initializer_callback(
-            class_, string_template="{}", **keywords
-        )
-        expression = self.append_callback(callback)
-        return new(expression, proxy_class=class_)
-
     def print(self, argument) -> None:
         """
         Prints ``argument``.
@@ -1974,107 +1797,6 @@ class Expression(object):
         else:
             for item in argument:
                 print(repr(item))
-
-    def select(self, **keywords) -> "Expression":
-        r"""
-        Makes select expression.
-
-        ..  container:: example
-
-            Makes expression to select leaves:
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff()
-                >>> staff.extend("<c' bf'>8 <g' a'>8")
-                >>> staff.extend("af'8 r8")
-                >>> staff.extend("r8 gf'8")
-                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(staff)
-                    \new Staff
-                    {
-                        \time 2/8
-                        <c' bf'>8
-                        <g' a'>8
-                        af'8
-                        r8
-                        r8
-                        gf'8
-                    }
-
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression()
-                >>> expression = expression.select()
-                >>> expression = expression.leaves()
-
-                >>> for leaf in expression(staff):
-                ...     leaf
-                ...
-                Chord("<c' bf'>8")
-                Chord("<g' a'>8")
-                Note("af'8")
-                Rest('r8')
-                Rest('r8')
-                Note("gf'8")
-
-        """
-        from .selectx import Selection
-
-        class_ = Selection
-        callback = self._make_initializer_callback(class_, **keywords)
-        expression = self.append_callback(callback)
-        return new(expression, proxy_class=class_, template="abjad.select()")
-
-    def sequence(self, **keywords) -> "Expression":
-        """
-        Makes sequence expression.
-
-        ..  container:: example expression
-
-            Makes expression to initialize, flatten and reverse sequence:
-
-            >>> expression = abjad.sequence()
-            >>> expression = expression.reverse()
-            >>> expression = expression.flatten(depth=-1)
-
-            >>> expression([1, 2, 3, [4, 5, [6]]])
-            Sequence([4, 5, 6, 3, 2, 1])
-
-        """
-        from .sequence import Sequence
-
-        class_ = Sequence
-        callback = self._make_initializer_callback(
-            class_, string_template="{}", **keywords
-        )
-        expression = self.append_callback(callback)
-        return new(expression, proxy_class=class_)
-
-    def timespan(self, **keywords) -> "Expression":
-        """
-        Makes timespan expression.
-
-        ..  container:: example expression
-
-            >>> expression = abjad.timespan()
-
-            >>> expression(start_offset=0, stop_offset=(1, 4))
-            Timespan(Offset((0, 1)), Offset((1, 4)))
-
-        """
-        from .timespan import Timespan
-
-        class_ = Timespan
-        callback = self._make_initializer_callback(
-            class_, string_template="{}", **keywords
-        )
-        expression = self.append_callback(callback)
-        return new(expression, proxy_class=class_)
 
     def wrap_in_list(self) -> "Expression":
         """

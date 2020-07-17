@@ -1,6 +1,6 @@
 import typing
 
-from .inspectx import Inspection
+from . import _inspect
 from .instruments import Instrument
 from .iterate import Iteration
 from .pitch.PitchRange import PitchRange
@@ -40,7 +40,7 @@ def iterate_out_of_range(components) -> typing.Generator:
     leaves = Selection(components).leaves(pitched=True)
     assert isinstance(leaves, Selection), repr(leaves)
     for leaf in leaves:
-        instrument = Inspection(leaf).effective(Instrument)
+        instrument = _inspect._get_effective(leaf, Instrument)
         if instrument is None:
             raise ValueError("no instrument found.")
         if not sounding_pitches_are_in_range(leaf, instrument.pitch_range):
@@ -157,10 +157,10 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     if isinstance(argument, Pitch):
         return pitch_range._contains_pitch(argument)
     if hasattr(argument, "written_pitch"):
-        sounding_pitch = Inspection(argument).sounding_pitch()
+        sounding_pitch = _inspect._get_sounding_pitch(argument)
         return pitch_range._contains_pitch(sounding_pitch)
     if hasattr(argument, "written_pitches"):
-        sounding_pitches = Inspection(argument).sounding_pitches()
+        sounding_pitches = _inspect._get_sounding_pitches(argument)
         return all(pitch_range._contains_pitch(_) for _ in sounding_pitches)
     pitches = list(Iteration(argument).pitches())
     if pitches:
@@ -212,7 +212,7 @@ def transpose_from_sounding_pitch(argument):
     Returns none.
     """
     for leaf in Iteration(argument).leaves(pitched=True):
-        instrument = Inspection(leaf).effective(Instrument)
+        instrument = _inspect._get_effective(leaf, Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch
@@ -266,7 +266,7 @@ def transpose_from_written_pitch(argument):
     Returns none.
     """
     for leaf in Iteration(argument).leaves(pitched=True):
-        instrument = Inspection(leaf).effective(Instrument)
+        instrument = _inspect._get_effective(leaf, Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch

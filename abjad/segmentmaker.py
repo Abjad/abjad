@@ -2,11 +2,11 @@ import typing
 
 from . import const
 from .attach import attach
-from .inspectx import Inspection
 from .iterate import Iteration
 from .lilypondfile import LilyPondFile
 from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral
+from .parentage import Parentage
 from .path import Path
 from .score import Container, Context, Score, Staff, Voice
 from .segments.PartAssignment import PartAssignment
@@ -17,7 +17,7 @@ from .tag import Tag
 from .timespan import TimespanList
 
 
-class SegmentMaker(object):
+class SegmentMaker:
     """
     Segment-maker.
     """
@@ -100,7 +100,7 @@ class SegmentMaker(object):
         except ValueError:
             pass
         for voice in Iteration(self.score).components(Voice):
-            if Inspection(voice).has_indicator(const.INTERMITTENT):
+            if voice._has_indicator(const.INTERMITTENT):
                 continue
             contexts.append(voice)
         container_to_part_assignment = OrderedDict()
@@ -137,7 +137,7 @@ class SegmentMaker(object):
                     container_identifier = String(container_identifier)
                     assert container_identifier.is_lilypond_identifier()
                     assert container_identifier not in container_to_part_assignment
-                    timespan = Inspection(container).timespan()
+                    timespan = container._get_timespan()
                     pair = (part, timespan)
                     container_to_part_assignment[container_identifier] = pair
                     container.identifier = f"%*% {container_identifier}"
@@ -253,14 +253,14 @@ class SegmentMaker(object):
         for i, measure in enumerate(measures):
             measure_number = i + 1
             first_leaf = Selection(measure).leaf(0)
-            start_offset = Inspection(first_leaf).timespan().start_offset
+            start_offset = first_leaf._get_timespan().start_offset
             offset_to_measure_number[start_offset] = measure_number
         for leaf in Iteration(score).leaves():
-            offset = Inspection(leaf).timespan().start_offset
+            offset = leaf._get_timespan().start_offset
             measure_number = offset_to_measure_number.get(offset, None)
             if measure_number is None:
                 continue
-            context = Inspection(leaf).parentage().get(Context)
+            context = Parentage(leaf).get(Context)
             if context.name is None:
                 string = f"% [{context.lilypond_type} measure {measure_number}]"
             else:

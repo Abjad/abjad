@@ -7,7 +7,7 @@ from ..pitch.pitches import NamedPitch
 from ..storage import StorageFormatManager
 
 
-class StartTrillSpan(object):
+class StartTrillSpan:
     r"""
     LilyPond ``\startTrillSpan`` command.
 

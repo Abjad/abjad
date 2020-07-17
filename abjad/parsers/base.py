@@ -13,7 +13,7 @@ from ..configuration import Configuration
 configuration = Configuration()
 
 
-class Parser(object):
+class Parser:
     """
     Abstract base class for Abjad parsers.
 

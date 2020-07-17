@@ -6,7 +6,7 @@ from ..scheme import Scheme, SchemePair
 from ..storage import StorageFormatManager
 
 
-class WoodwindFingering(object):
+class WoodwindFingering:
     r"""
     Woodwind fingering.
 

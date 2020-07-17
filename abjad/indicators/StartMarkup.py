@@ -6,7 +6,7 @@ from ..new import new
 from ..storage import StorageFormatManager
 
 
-class StartMarkup(object):
+class StartMarkup:
     r"""
     Start markup.
 

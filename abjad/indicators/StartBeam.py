@@ -6,7 +6,7 @@ from ..storage import StorageFormatManager
 from ..stringx import String
 
 
-class StartBeam(object):
+class StartBeam:
     r"""
     LilyPond ``[`` command.
 

@@ -4,7 +4,7 @@ from .storage import FormatSpecification, StorageFormatManager
 from .tag import Tag
 
 
-class LilyPondFormatBundle(object):
+class LilyPondFormatBundle:
     """
     LilyPond format bundle.
 
@@ -71,7 +71,7 @@ class LilyPondFormatBundle(object):
             _ for _ in slot_contribution_names if getattr(self, _).has_contributions
         ]
         names.extend(_ for _ in grob_contribution_names if getattr(self, _))
-        return FormatSpecification(client=self, storage_format_kwargs_names=names)
+        return FormatSpecification(client=self, storage_format_keyword_names=names)
 
     ### PUBLIC METHODS ###
 
@@ -213,7 +213,7 @@ class LilyPondFormatBundle(object):
         return self._opening
 
 
-class SlotContributions(object):
+class SlotContributions:
     """
     Slot contributions.
     """
@@ -273,7 +273,7 @@ class SlotContributions(object):
             "trill_spanner_starts",
         ]
         names = [_ for _ in names if getattr(self, _)]
-        return FormatSpecification(client=self, storage_format_kwargs_names=names)
+        return FormatSpecification(client=self, storage_format_keyword_names=names)
 
     ### PUBLIC PROPERTIES ###
 

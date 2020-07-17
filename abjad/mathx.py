@@ -54,7 +54,8 @@ def all_are_integer_equivalent(argument) -> bool:
 
     ..  container:: example
 
-        >>> items = [1, '2', 3.0, abjad.Fraction(4, 1)]
+        >>> import quicktions
+        >>> items = [1, '2', 3.0, quicktions.Fraction(4, 1)]
         >>> abjad.mathx.all_are_integer_equivalent(items)
         True
 
@@ -75,7 +76,8 @@ def all_are_integer_equivalent_numbers(argument) -> bool:
 
     ..  container:: example
 
-        >>> items = [1, 2, 3.0, abjad.Fraction(4, 1)]
+        >>> import quicktions
+        >>> items = [1, 2, 3.0, quicktions.Fraction(4, 1)]
         >>> abjad.mathx.all_are_integer_equivalent_numbers(items)
         True
 
@@ -96,11 +98,12 @@ def all_are_nonnegative_integer_equivalent_numbers(argument) -> bool:
 
     ..  container:: example
 
-        >>> items = [0, 0.0, abjad.Fraction(0), 2, 2.0, abjad.Fraction(2)]
+        >>> import quicktions
+        >>> items = [0, 0.0, quicktions.Fraction(0), 2, 2.0, quicktions.Fraction(2)]
         >>> abjad.mathx.all_are_nonnegative_integer_equivalent_numbers(items)
         True
 
-        >>> items = [0, 0.0, abjad.Fraction(0), -2, 2.0, abjad.Fraction(2)]
+        >>> items = [0, 0.0, quicktions.Fraction(0), -2, 2.0, quicktions.Fraction(2)]
         >>> abjad.mathx.all_are_nonnegative_integer_equivalent_numbers(items)
         False
 
@@ -475,7 +478,8 @@ def fraction_to_proper_fraction(rational,) -> typing.Tuple[int, quicktions.Fract
 
     ..  container:: example
 
-        >>> abjad.mathx.fraction_to_proper_fraction(abjad.Fraction(116, 8))
+        >>> import quicktions
+        >>> abjad.mathx.fraction_to_proper_fraction(quicktions.Fraction(116, 8))
         (14, Fraction(1, 2))
 
     """
@@ -724,11 +728,12 @@ def is_integer_equivalent_n_tuple(argument, n) -> bool:
 
     ..  container:: example
 
-        >>> tuple_ = (2.0, '3', abjad.Fraction(4, 1))
+        >>> import quicktions
+        >>> tuple_ = (2.0, '3', quicktions.Fraction(4, 1))
         >>> abjad.mathx.is_integer_equivalent_n_tuple(tuple_, 3)
         True
 
-        >>> tuple_ = (2.5, '3', abjad.Fraction(4, 1))
+        >>> tuple_ = (2.5, '3', quicktions.Fraction(4, 1))
         >>> abjad.mathx.is_integer_equivalent_n_tuple(tuple_, 3)
         False
 
@@ -1144,7 +1149,7 @@ def yield_all_compositions_of_integer(n) -> typing.Generator:
 ### CLASSES ###
 
 
-class Infinity(object):
+class Infinity:
     """
     Infinity.
 

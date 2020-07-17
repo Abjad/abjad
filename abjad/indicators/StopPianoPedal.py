@@ -6,7 +6,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class StopPianoPedal(object):
+class StopPianoPedal:
     r"""
     LilyPond ``\sostenutoOff``, ``\sustainOff``, ``\treCorde`` commands.
     """

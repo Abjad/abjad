@@ -5,7 +5,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class StopSlur(object):
+class StopSlur:
     r"""
     LilyPond ``)`` command.
 

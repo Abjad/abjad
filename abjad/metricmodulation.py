@@ -1,16 +1,15 @@
 import typing
 
-from .. import enums, typings
-from ..bundle import LilyPondFormatBundle
-from ..inspectx import Inspection
-from ..markups import Markup
-from ..new import new
-from ..ratio import Ratio
-from ..selectx import Selection
-from ..storage import StorageFormatManager
+from . import _inspect, enums, illustrators, score, typings
+from .bundle import LilyPondFormatBundle
+from .markups import Markup
+from .new import new
+from .ratio import Ratio
+from .selectx import Selection
+from .storage import StorageFormatManager
 
 
-class MetricModulation(object):
+class MetricModulation:
     r"""
     Metric modulation.
 
@@ -445,7 +444,7 @@ class MetricModulation(object):
 
     ### PRIVATE METHODS ###
 
-    def _get_compact_output(self):
+    def _get_lilypond_command_string(self):
         if self._note_to_note():
             arguments = self._get_markup_arguments()
             left_exponent, left_dots, right_exponent, right_dots = arguments
@@ -473,14 +472,6 @@ class MetricModulation(object):
         string += f" #'({self.scale[0]} . {self.scale[1]})"
         return string
 
-    def _get_left_markup(self):
-        from ..illustrate import _to_score_markup
-
-        if self.left_markup is not None:
-            return self.left_markup
-        markup = _to_score_markup(self.left_rhythm)
-        return markup
-
     def _get_lilypond_format(self):
         return str(self)
 
@@ -494,15 +485,19 @@ class MetricModulation(object):
         return bundle
 
     def _get_markup(self):
-        result = self._get_compact_output()
-        if result is None:
-            left_markup = self._get_left_markup()
-            equal = Markup("=")
-            right_space = Markup.hspace(-0.5)
-            right_markup = self._get_right_markup()
-            markup = left_markup + equal + right_space + right_markup
-        else:
-            markup = Markup(rf"\markup {result}", literal=True)
+        string = self._get_lilypond_command_string()
+        if string is not None:
+            markup = Markup(rf"\markup {string}", literal=True)
+            return markup
+        if self.left_markup is not None:
+            left_markup = self.left_markup
+        left_markup = illustrators.selection_to_score_markup(self.left_rhythm)
+        equal = Markup("=")
+        right_space = Markup.hspace(-0.5)
+        if self.right_markup is not None:
+            right_markup = self.right_markup
+        right_markup = illustrators.selection_to_score_markup(self.right_rhythm)
+        markup = left_markup + equal + right_space + right_markup
         return markup
 
     def _get_markup_arguments(self):
@@ -545,14 +540,6 @@ class MetricModulation(object):
         else:
             raise Exception("implement tied note values.")
 
-    def _get_right_markup(self):
-        from ..illustrate import _to_score_markup
-
-        if self.right_markup is not None:
-            return self.right_markup
-        markup = _to_score_markup(self.right_rhythm)
-        return markup
-
     def _initialize_rhythm(self, rhythm):
         if not hasattr(rhythm, "_items"):
             selection = Selection([rhythm])
@@ -563,9 +550,9 @@ class MetricModulation(object):
 
     def _lhs_tuplet(self):
         if (
-            hasattr(self.left_rhythm[0], "denominator")
+            isinstance(self.left_rhythm[0], score.Tuplet)
             and len(self.left_rhythm[0]) == 1
-            and hasattr(self.right_rhythm[0], "written_pitch")
+            and isinstance(self.right_rhythm[0], score.Note)
             and len(self.right_rhythm) == 1
         ):
             return True
@@ -573,9 +560,9 @@ class MetricModulation(object):
 
     def _note_to_note(self):
         if (
-            hasattr(self.left_rhythm[0], "written_pitch")
+            isinstance(self.left_rhythm[0], score.Note)
             and len(self.left_rhythm) == 1
-            and hasattr(self.right_rhythm[0], "written_pitch")
+            and isinstance(self.right_rhythm[0], score.Note)
             and len(self.right_rhythm) == 1
         ):
             return True
@@ -583,9 +570,9 @@ class MetricModulation(object):
 
     def _rhs_tuplet(self):
         if (
-            hasattr(self.left_rhythm[0], "written_pitch")
+            isinstance(self.left_rhythm[0], score.Note)
             and len(self.left_rhythm) == 1
-            and hasattr(self.right_rhythm[0], "denominator")
+            and isinstance(self.right_rhythm[0], score.Tuplet)
             and len(self.right_rhythm[0]) == 1
         ):
             return True
@@ -649,8 +636,8 @@ class MetricModulation(object):
             Ratio((2, 3))
 
         """
-        left_duration = Inspection(self.left_rhythm).duration()
-        right_duration = Inspection(self.right_rhythm).duration()
+        left_duration = _inspect._get_duration(self.left_rhythm)
+        right_duration = _inspect._get_duration(self.right_rhythm)
         duration = left_duration / right_duration
         ratio = Ratio(duration.pair)
         return ratio
