@@ -1,6 +1,6 @@
 \version "2.19.84"
 \include "fraction-accidental-markups.ily"
-\include "general-edo-accidental-markups.ily"
+\include "general-et-accidental-markups.ily"
 
 %%% one quarter tone down %%%
 one-quarter-flat-markup = \markup \musicglyph #"accidentals.mirroredflat"
