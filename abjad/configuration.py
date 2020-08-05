@@ -81,11 +81,7 @@ class Configuration:
             except (IOError, OSError):
                 traceback.print_exc()
         self._settings = configuration
-        if not os.path.exists(self.abjad_output_directory):
-            try:
-                os.makedirs(self.abjad_output_directory)
-            except (IOError, OSError):
-                traceback.print_exc()
+        self._make_missing_directories()
 
     ### SPECIAL METHODS ###
 
@@ -285,6 +281,13 @@ class Configuration:
         options = self._get_option_definitions()
         specs = [(key, options[key]["spec"]) for key in options]
         return dict(specs)
+
+    def _make_missing_directories(self):
+        if not os.path.exists(self.abjad_output_directory):
+            try:
+                os.makedirs(self.abjad_output_directory)
+            except (IOError, OSError):
+                traceback.print_exc()
 
     def _validate_configuration(self, configuration):
         option_definitions = self._get_option_definitions()
