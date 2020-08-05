@@ -45,7 +45,7 @@ There was, and still is, no reason to believe that general purpose programming
 languages and development tools should come readily supplied with the objects
 and methods most suitable for composerly applications.  And this means that the
 attributes of a domain-specific language that will best meet the needs of
-composes interested in working formally with the full complement of
+composers interested in working formally with the full complement of
 capabilities in traditional score remains an open question.
 
 We continued our work in score formalization independently until 2005, Trevor in
