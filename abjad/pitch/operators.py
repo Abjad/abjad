@@ -12,7 +12,7 @@ from .pitches import NamedPitch, Pitch
 from .segments import PitchClassSegment, PitchSegment
 
 
-class CompoundOperator(object):
+class CompoundOperator:
     """
     Compound operator.
 
@@ -453,7 +453,7 @@ class CompoundOperator(object):
         return self._with_operator(operator)
 
 
-class Duplication(object):
+class Duplication:
     """
     Duplication.
 
@@ -726,7 +726,7 @@ class Duplication(object):
         return self._period
 
 
-class Inversion(object):
+class Inversion:
     """
     Inversion operator.
 
@@ -1012,7 +1012,7 @@ class Inversion(object):
         return self._axis
 
 
-class Multiplication(object):
+class Multiplication:
     """
     Multiplication operator.
 
@@ -1238,7 +1238,7 @@ class Multiplication(object):
         return self._n
 
 
-class Retrograde(object):
+class Retrograde:
     """
     Retrograde operator.
 
@@ -1477,7 +1477,7 @@ class Retrograde(object):
         return self._period
 
 
-class Rotation(object):
+class Rotation:
     """
     Rotation operator.
 
@@ -1810,7 +1810,7 @@ class Rotation(object):
         return self._stravinsky
 
 
-class Transposition(object):
+class Transposition:
     """
     Transposition operator.
 

@@ -5,7 +5,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class Fermata(object):
+class Fermata:
     r"""
     Fermata.
 

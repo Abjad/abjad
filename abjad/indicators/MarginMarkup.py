@@ -6,7 +6,7 @@ from ..new import new
 from ..storage import StorageFormatManager
 
 
-class MarginMarkup(object):
+class MarginMarkup:
     r"""
     Margin markup.
 

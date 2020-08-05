@@ -4,7 +4,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class StopHairpin(object):
+class StopHairpin:
     r"""
     LilyPond ``\!`` command.
 

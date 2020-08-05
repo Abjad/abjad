@@ -7,7 +7,7 @@ from ..storage import FormatSpecification, StorageFormatManager
 from .Mode import Mode
 
 
-class KeySignature(object):
+class KeySignature:
     r"""
     Key signature.
 

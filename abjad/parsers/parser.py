@@ -82,7 +82,7 @@ from ..stringx import String
 from .base import Parser
 
 
-class LilyPondDuration(object):
+class LilyPondDuration:
     """
     Model of a duration in LilyPond.
 
@@ -107,7 +107,7 @@ current_module["longa"] = LilyPondDuration(Duration(4, 1), None)
 current_module["maxima"] = LilyPondDuration(Duration(8, 1), None)
 
 
-class Music(object):
+class Music:
     """
     Abjad model of the LilyPond AST music node.
     """
@@ -212,7 +212,7 @@ class ContextSpeccedMusic(Music):
         }
 
 
-class GuileProxy(object):
+class GuileProxy:
     """
     Emulates LilyPond music functions.
 
@@ -541,7 +541,7 @@ class GuileProxy(object):
         return pitch
 
 
-class LilyPondEvent(object):
+class LilyPondEvent:
     """
     Model of an arbitrary event in LilyPond.
 
@@ -583,7 +583,7 @@ class LilyPondEvent(object):
         return f"{name}({str(self)})"
 
 
-class LilyPondFraction(object):
+class LilyPondFraction:
     """
     Model of a fraction in LilyPond.
 
@@ -603,7 +603,7 @@ class LilyPondFraction(object):
         self.denominator = denominator
 
 
-class LilyPondGrammarGenerator(object):
+class LilyPondGrammarGenerator:
     """
     Generates a syntax skeleton from LilyPond grammar files.
     """
@@ -744,7 +744,7 @@ class LilyPondGrammarGenerator(object):
         )
         with open(skeleton_path, "w") as f:
             f.write("from abjad.parsers.parser import SyntaxNode as Node \\\n")
-            f.write("class _LilyPondSyntacticalDefinition(object):\n\n")
+            f.write("class _LilyPondSyntacticalDefinition:\n\n")
             f.write("    def __init__(self, client):\n")
             f.write("        self.client = client\n")
             f.write("        self.tokens = self.client.lexdef.tokens\n\n\n")
@@ -1452,7 +1452,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
         raise RuntimeError("yacc: internal parser error!!!\n")
 
 
-class LilyPondLexicalDefinition(object):
+class LilyPondLexicalDefinition:
     """
     The lexical definition of LilyPond's syntax.
 
@@ -3750,7 +3750,7 @@ class LilyPondParser(Parser):
         return self._syndef
 
 
-class LilyPondSyntacticalDefinition(object):
+class LilyPondSyntacticalDefinition:
     """
     The syntactical definition of LilyPond's syntax.
 
@@ -6578,7 +6578,7 @@ class SimultaneousMusic(Music):
     __slots__ = ()
 
 
-class SyntaxNode(object):
+class SyntaxNode:
     """
     A node in an abstract syntax tree (AST).
 

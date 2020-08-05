@@ -6,7 +6,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class BendAfter(object):
+class BendAfter:
     r"""
     Fall or doit.
 

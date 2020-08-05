@@ -3,7 +3,7 @@ import typing
 from .storage import FormatSpecification, StorageFormatManager
 
 
-class Tag(object):
+class Tag:
     """
     Tag.
 
@@ -418,7 +418,7 @@ class Tag(object):
         return strings_
 
 
-class Line(object):
+class Line:
     r"""
     Line in a LilyPond file.
 

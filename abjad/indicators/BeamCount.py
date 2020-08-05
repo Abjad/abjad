@@ -2,7 +2,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class BeamCount(object):
+class BeamCount:
     r"""
     LilyPond ``\setLeftBeamCount``, ``\setRightBeamCount`` command.
 

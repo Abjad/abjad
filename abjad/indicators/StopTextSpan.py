@@ -4,7 +4,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class StopTextSpan(object):
+class StopTextSpan:
     r"""
     LilyPond ``\stopTextSpan`` command.
 

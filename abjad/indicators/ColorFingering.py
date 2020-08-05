@@ -10,7 +10,7 @@ from ..storage import StorageFormatManager
 
 
 @functools.total_ordering
-class ColorFingering(object):
+class ColorFingering:
     r"""
     Color fingering.
 

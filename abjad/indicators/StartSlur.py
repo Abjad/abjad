@@ -7,7 +7,7 @@ from ..storage import StorageFormatManager
 from ..stringx import String
 
 
-class StartSlur(object):
+class StartSlur:
     r"""
     LilyPond ``(`` command.
 

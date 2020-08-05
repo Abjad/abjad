@@ -6,7 +6,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class StartPhrasingSlur(object):
+class StartPhrasingSlur:
     r"""
     LilyPond ``(`` command.
 

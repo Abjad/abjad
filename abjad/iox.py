@@ -13,7 +13,6 @@ import sys
 import tempfile
 import traceback
 import typing
-from typing import Generator, Sequence
 
 import uqbar
 
@@ -22,9 +21,9 @@ import abjad
 from .configuration import Configuration
 from .contextmanagers import Timer
 from .formatx import LilyPondFormatManager, StorageFormatManager
-from .illustrate import illustrate
-from .inspectx import Inspection
+from .illustrators import illustrate
 from .lilypondfile import Block
+from .parentage import Parentage
 from .score import Container, Leaf, Tuplet
 
 configuration = Configuration()
@@ -49,7 +48,7 @@ class AbjadGrapher(uqbar.graphs.Grapher):
         IOManager.open_file(str(output_path))
 
 
-class LilyPondIO(object):
+class LilyPondIO:
     """
     LilyPond IO.
     """
@@ -127,7 +126,7 @@ class LilyPondIO(object):
                 lilypond_path = "lilypond"
         return lilypond_path
 
-    def get_openable_paths(self, output_paths) -> Generator:
+    def get_openable_paths(self, output_paths) -> typing.Generator:
         for path in output_paths:
             if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
                 yield path
@@ -168,7 +167,7 @@ class LilyPondIO(object):
 
     def migrate_assets(
         self, render_prefix, render_directory, output_directory
-    ) -> Sequence[pathlib.Path]:
+    ) -> typing.Sequence[pathlib.Path]:
         migrated_assets = []
         for old_path in render_directory.iterdir():
             if not old_path.name.startswith(render_prefix):
@@ -203,13 +202,13 @@ class Illustrator(LilyPondIO):
 
     ### PUBLIC METHODS ###
 
-    def get_openable_paths(self, output_paths) -> Generator:
+    def get_openable_paths(self, output_paths) -> typing.Generator:
         for path in output_paths:
             if path.suffix == ".pdf":
                 yield path
 
 
-class IOManager(object):
+class IOManager:
     """
     IO manager.
     """
@@ -649,7 +648,7 @@ class IOManager(object):
         return subprocess.call(command, shell=True)
 
 
-class PersistenceManager(object):
+class PersistenceManager:
     """
     Persistence manager.
 
@@ -888,7 +887,7 @@ class Player(LilyPondIO):
 
     ### PUBLIC METHODS ###
 
-    def get_openable_paths(self, output_paths) -> Generator:
+    def get_openable_paths(self, output_paths) -> typing.Generator:
         for path in output_paths:
             if path.suffix in (".mid", ".midi"):
                 yield path
@@ -901,7 +900,7 @@ class Player(LilyPondIO):
         return lilypond_file._get_lilypond_format()
 
 
-class TestManager(object):
+class TestManager:
     """
     Manages test logic.
     """
@@ -1133,7 +1132,7 @@ class TestManager(object):
 
 
 def _as_graphviz_node(component):
-    score_index = Inspection(component).parentage().score_index()
+    score_index = Parentage(component).score_index()
     score_index = "_".join(str(_) for _ in score_index)
     class_name = type(component).__name__
     if score_index:

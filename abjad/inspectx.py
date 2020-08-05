@@ -1,23 +1,23 @@
 import collections
 import typing
 
-from . import _inspect, enums, typings
+from . import _inspect, _iterate, enums, typings
 from .duration import Duration
-from .indicators.RepeatTie import RepeatTie
+from .formatx import LilyPondFormatManager
 from .indicators.StaffChange import StaffChange
-from .indicators.Tie import Tie
 from .indicators.TimeSignature import TimeSignature
-from .instruments import Instrument
 from .markups import Markup
+from .parentage import Parentage
 from .pitch.pitches import NamedPitch
 from .pitch.sets import PitchSet
 from .score import Chord, Component, Container, Leaf, Note, Staff
+from .selectx import LogicalTie, Selection
 from .storage import StorageFormatManager
 from .tag import Tag
 from .timespan import Timespan
 
 
-class Inspection(object):
+class Inspection:
     """
     Inspection.
 
@@ -57,259 +57,6 @@ class Inspection(object):
         Delegates to storage format manager.
         """
         return StorageFormatManager(self).get_repr_format()
-
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _get_logical_tie(LEAF):
-        from .selectx import LogicalTie
-
-        leaves_before, leaves_after = [], []
-        current_leaf = LEAF
-        while True:
-            previous_leaf = Inspection(current_leaf).leaf(-1)
-            if previous_leaf is None:
-                break
-            if Inspection(current_leaf).has_indicator(RepeatTie) or Inspection(
-                previous_leaf
-            ).has_indicator(Tie):
-                leaves_before.insert(0, previous_leaf)
-            else:
-                break
-            current_leaf = previous_leaf
-        current_leaf = LEAF
-        while True:
-            next_leaf = Inspection(current_leaf).leaf(1)
-            if next_leaf is None:
-                break
-            if Inspection(current_leaf).has_indicator(Tie) or Inspection(
-                next_leaf
-            ).has_indicator(RepeatTie):
-                leaves_after.append(next_leaf)
-            else:
-                break
-            current_leaf = next_leaf
-        leaves = leaves_before + [LEAF] + leaves_after
-        return LogicalTie(items=leaves)
-
-    @staticmethod
-    def _get_on_beat_anchor_voice(CONTAINER):
-        from .obgc import OnBeatGraceContainer
-
-        container = CONTAINER._parent
-        if container is None:
-            return None
-        if not container.simultaneous:
-            return None
-        if not len(container) == 2:
-            return None
-        index = container.index(CONTAINER)
-        if index == 0 and isinstance(container[1], OnBeatGraceContainer):
-            return container[1]
-        if index == 1 and isinstance(container[0], OnBeatGraceContainer):
-            return container[0]
-        return None
-
-    @staticmethod
-    def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=None):
-        wrappers = {}
-        for wrapper in dependent_wrappers:
-            if wrapper.annotation:
-                continue
-            indicator = wrapper.indicator
-            if not getattr(indicator, "persistent", False):
-                continue
-            assert isinstance(indicator.persistent, bool)
-            should_omit = False
-            if omit_with_indicator is not None:
-                parentage = Inspection(wrapper.component).parentage()
-                for component in parentage:
-                    if Inspection(component).has_indicator(omit_with_indicator):
-                        should_omit = True
-                        continue
-            if should_omit:
-                continue
-            if hasattr(indicator, "parameter"):
-                key = indicator.parameter
-            elif isinstance(indicator, Instrument):
-                key = "Instrument"
-            else:
-                key = str(type(indicator))
-            if (
-                key not in wrappers
-                or wrappers[key].start_offset <= wrapper.start_offset
-            ):
-                wrappers[key] = wrapper
-        return wrappers
-
-    @staticmethod
-    def _get_sibling_with_graces(COMPONENT, n):
-        from .obgc import OnBeatGraceContainer
-
-        assert n in (-1, 0, 1), repr(COMPONENT, n)
-        if n == 0:
-            return COMPONENT
-        if COMPONENT._parent is None:
-            return None
-        if COMPONENT._parent.simultaneous:
-            return None
-        if (
-            n == 1
-            and getattr(COMPONENT._parent, "_main_leaf", None)
-            and COMPONENT._parent._main_leaf._before_grace_container
-            is COMPONENT._parent
-            and COMPONENT is COMPONENT._parent[-1]
-        ):
-            return COMPONENT._parent._main_leaf
-        # last leaf in on-beat grace redo
-        if (
-            n == 1
-            and COMPONENT is COMPONENT._parent[-1]
-            and isinstance(COMPONENT._parent, OnBeatGraceContainer)
-        ):
-            return COMPONENT._parent._get_on_beat_anchor_leaf()
-        if (
-            n == 1
-            and getattr(COMPONENT._parent, "_main_leaf", None)
-            and COMPONENT._parent._main_leaf._after_grace_container is COMPONENT._parent
-            and COMPONENT is COMPONENT._parent[-1]
-        ):
-            main_leaf = COMPONENT._parent._main_leaf
-            if main_leaf is main_leaf._parent[-1]:
-                return None
-            index = main_leaf._parent.index(main_leaf)
-            return main_leaf._parent[index + 1]
-        if n == 1 and getattr(COMPONENT, "_after_grace_container", None):
-            return COMPONENT._after_grace_container[0]
-        if (
-            n == -1
-            and getattr(COMPONENT._parent, "_main_leaf", None)
-            and COMPONENT._parent._main_leaf._after_grace_container is COMPONENT._parent
-            and COMPONENT is COMPONENT._parent[0]
-        ):
-            return COMPONENT._parent._main_leaf
-        if (
-            n == -1
-            and getattr(COMPONENT._parent, "_main_leaf", None)
-            and COMPONENT._parent._main_leaf._before_grace_container
-            is COMPONENT._parent
-            and COMPONENT is COMPONENT._parent[0]
-        ):
-            main_leaf = COMPONENT._parent._main_leaf
-            if main_leaf is main_leaf._parent[0]:
-                return None
-            index = main_leaf._parent.index(main_leaf)
-            return main_leaf._parent[index - 1]
-        # COMPONENT is main leaf in main voice (simultaneous with on-beat graces)
-        if (
-            n == -1
-            and COMPONENT is COMPONENT._parent[0]
-            and Inspection._get_on_beat_anchor_voice(COMPONENT._parent) is not None
-        ):
-            on_beat = Inspection._get_on_beat_anchor_voice(COMPONENT._parent)
-            return on_beat[-1]
-        if n == -1 and hasattr(COMPONENT, "_get_on_beat_anchor_voice"):
-            raise Exception(repr(COMPONENT))
-            on_beat = Inspection._get_on_beat_anchor_voice(COMPONENT)
-            if on_beat is not None:
-                return on_beat[-1]
-        if n == -1 and getattr(COMPONENT, "_before_grace_container", None):
-            return COMPONENT._before_grace_container[-1]
-        index = COMPONENT._parent.index(COMPONENT) + n
-        if not (0 <= index < len(COMPONENT._parent)):
-            return None
-        candidate = COMPONENT._parent[index]
-        if n == 1 and getattr(candidate, "_before_grace_container", None):
-            return candidate._before_grace_container[0]
-        if n == -1 and getattr(candidate, "_after_grace_container", None):
-            return candidate._after_grace_container[-1]
-        return candidate
-
-    @staticmethod
-    def _get_sounding_pitch(NOTE):
-        if "sounding pitch" in Inspection(NOTE).indicators(str):
-            return NOTE.written_pitch
-        else:
-            instrument = _inspect._get_effective(NOTE, Instrument)
-            if instrument:
-                sounding_pitch = instrument.middle_c_sounding_pitch
-            else:
-                sounding_pitch = NamedPitch("C4")
-            interval = NamedPitch("C4") - sounding_pitch
-            sounding_pitch = interval.transpose(NOTE.written_pitch)
-            return sounding_pitch
-
-    @staticmethod
-    def _get_sounding_pitches(chord):
-        if "sounding pitch" in Inspection(chord).indicators(str):
-            return chord.written_pitches
-        else:
-            instrument = _inspect._get_effective(chord, Instrument)
-            if instrument:
-                sounding_pitch = instrument.middle_c_sounding_pitch
-            else:
-                sounding_pitch = NamedPitch("C4")
-            interval = NamedPitch("C4") - sounding_pitch
-            sounding_pitches = [
-                interval.transpose(pitch) for pitch in chord.written_pitches
-            ]
-            return tuple(sounding_pitches)
-
-    @staticmethod
-    def _immediately_precedes(component_1, component_2, ignore_before_after_grace=None):
-        from .score import AfterGraceContainer, BeforeGraceContainer
-
-        successors = []
-        current = component_1
-        # do not include OnBeatGraceContainer here because
-        # OnBeatGraceContainer is a proper container
-        grace_prototype = (AfterGraceContainer, BeforeGraceContainer)
-        while current is not None:
-            sibling = Inspection._get_sibling_with_graces(current, 1)
-            while (
-                ignore_before_after_grace
-                and sibling is not None
-                and isinstance(sibling._parent, grace_prototype)
-            ):
-                sibling = Inspection._get_sibling_with_graces(sibling, 1)
-            if sibling is None:
-                current = current._parent
-            else:
-                descendants = sibling._get_descendants_starting_with()
-                successors = descendants
-                break
-        return component_2 in successors
-
-    @staticmethod
-    def _leaf(LEAF, n):
-        from .obgc import OnBeatGraceContainer
-
-        assert n in (-1, 0, 1), repr(n)
-        if n == 0:
-            return LEAF
-        sibling = LEAF._sibling(n)
-        if sibling is None:
-            return None
-        if n == 1:
-            components = sibling._get_descendants_starting_with()
-        else:
-            assert n == -1
-            if (
-                isinstance(sibling, Container)
-                and len(sibling) == 2
-                and any(hasattr(_, "_leaf_duration") for _ in sibling)
-            ):
-                if isinstance(sibling[0], OnBeatGraceContainer):
-                    main_voice = sibling[1]
-                else:
-                    main_voice = sibling[0]
-                return main_voice[-1]
-            components = sibling._get_descendants_stopping_with()
-        for component in components:
-            if not isinstance(component, Leaf):
-                continue
-            if _inspect._are_logical_voice([LEAF, component]):
-                return component
 
     ### PUBLIC PROPERTIES ###
 
@@ -493,14 +240,9 @@ class Inspection(object):
             True
 
         """
-        assert isinstance(annotation, str), repr(annotation)
-        for wrapper in self.annotation_wrappers():
-            if wrapper.annotation == annotation:
-                if unwrap is True:
-                    return wrapper.indicator
-                else:
-                    return wrapper
-        return default
+        return _inspect._get_annotation(
+            self.client, annotation, default=default, unwrap=unwrap
+        )
 
     def annotation_wrappers(self):
         r"""
@@ -564,11 +306,7 @@ class Inspection(object):
                 )
 
         """
-        result = []
-        for wrapper in getattr(self.client, "_wrappers", []):
-            if wrapper.annotation:
-                result.append(wrapper)
-        return result
+        return _inspect._get_annotation_wrappers(self.client)
 
     def bar_line_crossing(self) -> bool:
         r"""
@@ -710,8 +448,7 @@ class Inspection(object):
         """
         return getattr(self.client, "_before_grace_container", None)
 
-    # def contents(self) -> typing.Optional["Selection"]:
-    def contents(self):
+    def contents(self) -> typing.Optional["Selection"]:
         r"""
         Gets contents.
 
@@ -894,8 +631,6 @@ class Inspection(object):
                 Note("ds'4")
 
         """
-        from .selectx import Selection
-
         if not isinstance(self.client, Component):
             raise Exception("can only get contents of component.")
         result = []
@@ -903,8 +638,7 @@ class Inspection(object):
         result.extend(getattr(self.client, "components", []))
         return Selection(result)
 
-    # def descendants(self) -> typing.Union["Descendants", "Selection"]:
-    def descendants(self):
+    def descendants(self) -> typing.Union["Descendants", "Selection"]:
         r"""
         Gets descendants.
 
@@ -1058,8 +792,6 @@ class Inspection(object):
                 Note("fs'16")
 
         """
-        from .selectx import Selection
-
         if isinstance(self.client, Component):
             return Descendants(self.client)
         descendants: typing.List[Component] = []
@@ -1225,14 +957,7 @@ class Inspection(object):
             Duration(3, 4)
 
         """
-        if isinstance(self.client, Component):
-            if in_seconds is True:
-                return _inspect._get_duration_in_seconds(self.client)
-            else:
-                return self.client._get_duration()
-        assert isinstance(self.client, collections.abc.Iterable), repr(self.client)
-        durations = [Inspection(_).duration(in_seconds=in_seconds) for _ in self.client]
-        return Duration(sum(durations))
+        return _inspect._get_duration(self.client, in_seconds=in_seconds)
 
     def effective(
         self,
@@ -1732,8 +1457,7 @@ class Inspection(object):
             result = default
         return result
 
-    # def effective_staff(self) -> typing.Optional["Staff"]:
-    def effective_staff(self):
+    def effective_staff(self) -> typing.Optional["Staff"]:
         r"""
         Gets effective staff.
 
@@ -2052,20 +1776,7 @@ class Inspection(object):
 
 
         """
-        from .obgc import OnBeatGraceContainer
-        from .score import AfterGraceContainer, BeforeGraceContainer
-
-        prototype = (
-            AfterGraceContainer,
-            BeforeGraceContainer,
-            OnBeatGraceContainer,
-        )
-        if isinstance(self.client, prototype):
-            return True
-        for component in Inspection(self.client).parentage():
-            if isinstance(component, prototype):
-                return True
-        return False
+        return _inspect._get_grace_container(self.client)
 
     def has_effective_indicator(
         self, prototype: typings.Prototype = None, *, attributes: typing.Dict = None,
@@ -2210,9 +1921,6 @@ class Inspection(object):
             raise Exception("can only get effective indicator on component.")
         if attributes is not None:
             assert isinstance(attributes, dict), repr(attributes)
-        #        return self._has_effective_indicator(
-        #            self.client, prototype=prototype, attributes=attributes
-        #        )
         indicator = _inspect._get_effective(
             self.client, prototype, attributes=attributes
         )
@@ -2555,15 +2263,9 @@ class Inspection(object):
 
         Returns default when no indicator of ``prototype`` attaches to client.
         """
-        if not isinstance(self.client, Component):
-            raise Exception("can only get indicator on component.")
-        indicators = self.client._get_indicators(prototype=prototype, unwrap=unwrap)
-        if not indicators:
-            return default
-        elif len(indicators) == 1:
-            return list(indicators)[0]
-        else:
-            raise Exception("multiple indicators attached to client.")
+        return _inspect._get_indicator(
+            self.client, prototype, default=default, unwrap=unwrap,
+        )
 
     def indicators(
         self,
@@ -2739,8 +2441,7 @@ class Inspection(object):
         )
         return list(result)
 
-    # def leaf(self, n: int = 0) -> typing.Optional["Leaf"]:
-    def leaf(self, n: int = 0):
+    def leaf(self, n: int = 0) -> typing.Optional["Leaf"]:
         r"""
         Gets leaf ``n``.
 
@@ -2979,30 +2680,9 @@ class Inspection(object):
             ---
 
         """
-        from .iterate import Iteration
+        return _iterate._get_leaf(self.client, n=n)
 
-        if n not in (-1, 0, 1):
-            message = "n must be -1, 0 or 1:\n"
-            message += f"   {repr(n)}"
-            raise Exception(message)
-        if isinstance(self.client, Leaf):
-            candidate = Inspection._get_sibling_with_graces(self.client, n)
-            if isinstance(candidate, Leaf):
-                return candidate
-            return self._leaf(self.client, n)
-        if 0 <= n:
-            reverse = False
-        else:
-            reverse = True
-            n = abs(n) - 1
-        leaves = Iteration(self.client).leaves(reverse=reverse)
-        for i, leaf in enumerate(leaves):
-            if i == n:
-                return leaf
-        return None
-
-    # def lineage(self) -> "Lineage":
-    def lineage(self):
+    def lineage(self) -> "Lineage":
         r"""
         Gets lineage.
 
@@ -3205,8 +2885,7 @@ class Inspection(object):
             raise Exception("can only get lineage on component.")
         return Lineage(self.client)
 
-    # def logical_tie(self) -> "LogicalTie":
-    def logical_tie(self):
+    def logical_tie(self) -> "LogicalTie":
         r"""
         Gets logical tie.
 
@@ -3329,7 +3008,8 @@ class Inspection(object):
         """
         if not isinstance(self.client, Leaf):
             raise Exception("can only get logical tie on leaf.")
-        return self._get_logical_tie(self.client)
+        leaves = _iterate._get_logical_tie_leaves(self.client)
+        return LogicalTie(leaves)
 
     def markup(
         self, *, direction: enums.VerticalAlignment = None
@@ -3515,8 +3195,7 @@ class Inspection(object):
         assert isinstance(self.client._measure_number, int)
         return self.client._measure_number
 
-    # def parentage(self) -> "Parentage":
-    def parentage(self):
+    def parentage(self) -> "Parentage":
         r"""
         Gets parentage.
 
@@ -3719,8 +3398,6 @@ class Inspection(object):
                 (Note("ds'4"), <Staff{4}>)
 
         """
-        from .parentage import Parentage
-
         if not isinstance(self.client, Component):
             message = "can only get parentage on component"
             message += f" (not {self.client})."
@@ -3817,8 +3494,6 @@ class Inspection(object):
             Note("fs'16")                  PitchSet(["fs'"])
 
         """
-        from .selectx import Selection
-
         if not self.client:
             return None
         selection = Selection(self.client)
@@ -3902,8 +3577,6 @@ class Inspection(object):
             slot "absolute after":
 
         """
-        from .formatx import LilyPondFormatManager
-
         if isinstance(self.client, Container):
             bundle = LilyPondFormatManager.bundle_format_contributions(self.client)
             result: typing.List[str] = []
@@ -3955,7 +3628,7 @@ class Inspection(object):
         """
         if not isinstance(self.client, Note):
             raise Exception("can only get sounding pitch of note.")
-        return self._get_sounding_pitch(self.client)
+        return _inspect._get_sounding_pitch(self.client)
 
     def sounding_pitches(self) -> PitchSet:
         r"""
@@ -3988,7 +3661,7 @@ class Inspection(object):
         # TODO: extend to any non-none client
         if not isinstance(self.client, Chord):
             raise Exception("can only get sounding pitches of chord.")
-        result = self._get_sounding_pitches(self.client)
+        result = _inspect._get_sounding_pitches(self.client)
         return PitchSet(result)
 
     def sustained(self) -> bool:
@@ -4016,18 +3689,16 @@ class Inspection(object):
             True
 
         """
-        from .selectx import Selection
-
         lt_head_count = 0
         leaves = Selection(self.client).leaves()
         assert isinstance(leaves, Selection), repr(leaves)
         for leaf in leaves:
-            lt = Inspection._get_logical_tie(leaf)
+            lt = Inspection(leaf).logical_tie()
             if lt.head is leaf:
                 lt_head_count += 1
         if lt_head_count == 0:
             return True
-        lt = Inspection._get_logical_tie(leaves[0])
+        lt = Inspection(leaves[0]).logical_tie()
         if lt.head is leaves[0] and lt_head_count == 1:
             return True
         return False
@@ -4184,25 +3855,7 @@ class Inspection(object):
             Timespan(Offset((0, 1)), Offset((3, 4)))
 
         """
-        if isinstance(self.client, Component):
-            return self.client._get_timespan(in_seconds=in_seconds)
-        assert isinstance(self.client, collections.abc.Iterable), repr(self.client)
-        remaining_items = []
-        for i, item in enumerate(self.client):
-            if i == 0:
-                first_item = item
-            else:
-                remaining_items.append(item)
-        timespan = Inspection(first_item).timespan(in_seconds=in_seconds)
-        start_offset = timespan.start_offset
-        stop_offset = timespan.stop_offset
-        for item in remaining_items:
-            timespan = Inspection(item).timespan(in_seconds=in_seconds)
-            if timespan.start_offset < start_offset:
-                start_offset = timespan.start_offset
-            if stop_offset < timespan.stop_offset:
-                stop_offset = timespan.stop_offset
-        return Timespan(start_offset, stop_offset)
+        return _inspect._get_timespan(self.client, in_seconds=in_seconds)
 
     def wrapper(
         self, prototype: typings.Prototype = None, *, attributes: typing.Dict = None,
@@ -4497,12 +4150,10 @@ class Descendants(collections.abc.Sequence):
     ### INITIALIZER ###
 
     def __init__(self, component=None, cross_offset=None):
-        from .selectx import Selection
-
         assert isinstance(component, (Component, type(None)))
         self._component = component
         if component is not None:
-            descendants = Selection._iterate_descendants(component)
+            descendants = _iterate._iterate_descendants(component)
         else:
             descendants = ()
         self._components = descendants

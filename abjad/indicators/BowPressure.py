@@ -3,7 +3,7 @@ import typing
 from ..storage import StorageFormatManager
 
 
-class BowPressure(object):
+class BowPressure:
     """
     Bow pressure indicator.
 

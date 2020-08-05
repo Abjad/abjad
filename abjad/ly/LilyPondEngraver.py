@@ -5,7 +5,7 @@ from ..storage import StorageFormatManager
 from .LilyPondGrob import LilyPondGrob
 
 
-class LilyPondEngraver(object):
+class LilyPondEngraver:
     """
     LilyPond engraver.
 

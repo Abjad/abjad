@@ -4,7 +4,7 @@ from ..storage import StorageFormatManager
 from .Part import Part
 
 
-class Section(object):
+class Section:
     """
     Section.
 

@@ -3,9 +3,8 @@ import math
 import numbers
 import typing
 
-from . import exceptions, mathx, typings
+from . import _inspect, exceptions, mathx, typings
 from .duration import Duration, Multiplier, NonreducedFraction
-from .inspectx import Inspection
 from .pitch.pitchclasses import PitchClass
 from .pitch.pitches import NamedPitch, NumberedPitch
 from .ratio import NonreducedRatio, Ratio
@@ -16,7 +15,7 @@ from .spanners import tie
 from .tag import Tag
 
 
-class LeafMaker(object):
+class LeafMaker:
     r"""
     Leaf-maker.
 
@@ -738,7 +737,7 @@ class LeafMaker(object):
         return self._use_multimeasure_rests
 
 
-class NoteMaker(object):
+class NoteMaker:
     r"""
     Note-maker.
 
@@ -1616,7 +1615,7 @@ def tuplet_from_leaf_and_ratio(
         denominator = target_duration.denominator
         note_durations = [Duration(_, denominator) for _ in proportions.numbers]
         notes = list(maker(0, note_durations))
-    contents_duration = Inspection(notes).duration()
+    contents_duration = _inspect._get_duration(notes)
     multiplier = target_duration / contents_duration
     tuplet = Tuplet(multiplier, notes)
     tuplet.normalize_multiplier()
@@ -1780,23 +1779,23 @@ def tuplet_from_ratio_and_pair(
         if 0 < ratio.numbers[0]:
             try:
                 note = Note(0, duration, tag=tag)
-                duration = Inspection(note).duration()
+                duration = note._get_duration()
                 tuplet = Tuplet.from_duration(duration, [note], tag=tag)
                 return tuplet
             except exceptions.AssignabilityError:
                 note_maker = NoteMaker(tag=tag)
                 notes = note_maker(0, duration)
-                duration = Inspection(notes).duration()
+                duration = _inspect._get_duration(notes)
                 return Tuplet.from_duration(duration, notes, tag=tag)
         elif ratio.numbers[0] < 0:
             try:
                 rest = Rest(duration, tag=tag)
-                duration = Inspection(rest).duration()
+                duration = rest._get_duration()
                 return Tuplet.from_duration(duration, [rest], tag=tag)
             except exceptions.AssignabilityError:
                 leaf_maker = LeafMaker(tag=tag)
                 rests = leaf_maker([None], duration)
-                duration = Inspection(rests).duration()
+                duration = _inspect._get_duration(rests)
                 return Tuplet.from_duration(duration, rests, tag=tag)
         else:
             raise ValueError("no divide zero values.")

@@ -11,7 +11,7 @@ from .storage import FormatSpecification, StorageFormatManager
 from .stringx import String
 
 
-class Scheme(object):
+class Scheme:
     r"""
     Abjad model of Scheme code.
 
@@ -576,7 +576,7 @@ class SchemeMoment(Scheme):
         return FormatSpecification(
             client=self,
             storage_format_args_values=values,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     def _get_formatted_value(self):
@@ -716,7 +716,7 @@ class SchemeSymbol(Scheme):
         return FormatSpecification(
             client=self,
             storage_format_args_values=values,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     ### PUBLIC PROPERTIES ###
@@ -776,7 +776,7 @@ class SchemeVector(Scheme):
         return FormatSpecification(
             client=self,
             storage_format_args_values=values,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
 
@@ -816,7 +816,7 @@ class SchemeVectorConstant(Scheme):
         return FormatSpecification(
             client=self,
             storage_format_args_values=values,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
 

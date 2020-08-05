@@ -2,14 +2,12 @@ import typing
 
 from .. import enums
 from ..bundle import LilyPondFormatBundle
-from ..duration import Duration
 from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 from ..stringx import String
-from .Clef import Clef, StaffPosition
 
 
-class RepeatTie(object):
+class RepeatTie:
     r"""
     LilyPond ``\repeatTie`` command.
 
@@ -111,31 +109,9 @@ class RepeatTie(object):
         if self.direction is not None:
             assert isinstance(self.direction, str)
             strings.append(self.direction)
-        elif self._should_force_repeat_tie_up(component):
-            string = r"- \tweak direction #up"
-            strings.append(string)
         strings.append(r"\repeatTie")
         bundle.after.spanners.extend(strings)
         return bundle
-
-    @staticmethod
-    def _should_force_repeat_tie_up(leaf):
-        from ..inspectx import Inspection
-
-        if not hasattr(leaf, "written_pitch") and not hasattr(leaf, "written_pitches"):
-            return False
-        if leaf.written_duration < Duration(1):
-            return False
-        clef = Inspection(leaf).effective(Clef, default=Clef("treble"))
-        if hasattr(leaf, "written_pitch"):
-            written_pitches = [leaf.written_pitch]
-        else:
-            written_pitches = leaf.written_pitches
-        for written_pitch in written_pitches:
-            staff_position = StaffPosition.from_pitch_and_clef(written_pitch, clef,)
-            if staff_position.number == 0:
-                return True
-        return False
 
     ### PUBLIC PROPERTIES ###
 

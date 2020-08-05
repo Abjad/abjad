@@ -5,7 +5,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class StopGroup(object):
+class StopGroup:
     r"""
     LilyPond ``\stopGroup`` command.
 

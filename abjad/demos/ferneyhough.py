@@ -4,7 +4,7 @@ import sys
 import abjad
 
 
-class FerneyhoughDemo(object):
+class FerneyhoughDemo:
     r"""
     Ferneyhough demo.
 

@@ -5,7 +5,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class StartPianoPedal(object):
+class StartPianoPedal:
     r"""
     LilyPond ``\sustainOn``, ``\sostenutoOn``, ``\unaCorda`` commands.
 

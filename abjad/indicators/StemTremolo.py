@@ -3,7 +3,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import FormatSpecification, StorageFormatManager
 
 
-class StemTremolo(object):
+class StemTremolo:
     """
     Stem tremolo.
 

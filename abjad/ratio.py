@@ -141,7 +141,7 @@ class NonreducedRatio(collections.abc.Sequence):
 
         ..  container:: example
 
-            >>> abjad.Fraction(1) / abjad.Ratio((1, 1, 3))
+            >>> 1 / abjad.Ratio((1, 1, 3))
             [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 
         ..  container:: example
@@ -165,7 +165,7 @@ class NonreducedRatio(collections.abc.Sequence):
             client=self,
             storage_format_args_values=[self.numbers],
             storage_format_is_indented=False,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     ### PUBLIC PROPERTIES ###

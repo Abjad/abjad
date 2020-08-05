@@ -1,6 +1,6 @@
 from quicktions import Fraction
 
-from . import cli, demos, deprecated, iterpitches, ly, makers, tags
+from . import cli, demos, deprecated, illustrators, iterpitches, ly, makers, tags
 from ._version import __version__, __version_info__
 from .attach import Wrapper, annotate, attach, detach
 from .bundle import LilyPondFormatBundle, SlotContributions
@@ -51,7 +51,7 @@ from .exceptions import (
 )
 from .expression import Expression, Signature
 from .formatx import LilyPondFormatManager, f
-from .illustrate import illustrate
+from .illustrators import illustrate
 from .indicators.Arpeggio import Arpeggio
 from .indicators.Articulation import Articulation
 from .indicators.BarLine import BarLine
@@ -71,7 +71,6 @@ from .indicators.KeySignature import KeySignature
 from .indicators.LaissezVibrer import LaissezVibrer
 from .indicators.LilyPondComment import LilyPondComment
 from .indicators.MarginMarkup import MarginMarkup
-from .indicators.MetricModulation import MetricModulation
 from .indicators.MetronomeMark import MetronomeMark
 from .indicators.Mode import Mode
 from .indicators.Ottava import Ottava
@@ -178,6 +177,7 @@ from .makers import LeafMaker, NoteMaker
 from .markups import Markup, MarkupCommand, MarkupList, Postscript, PostscriptOperator
 from .mathx import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
+from .metricmodulation import MetricModulation
 from .mutate import Mutation, mutate
 from .new import new
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
@@ -232,8 +232,16 @@ from .pitch.segments import (
     PitchSegment,
     Segment,
     TwelveToneRow,
+    pitch_class_segment,
 )
-from .pitch.sets import IntervalClassSet, IntervalSet, PitchClassSet, PitchSet, Set
+from .pitch.sets import (
+    IntervalClassSet,
+    IntervalSet,
+    PitchClassSet,
+    PitchSet,
+    Set,
+    pitch_set,
+)
 from .pitch.vectors import (
     IntervalClassVector,
     IntervalVector,
@@ -343,10 +351,8 @@ from .typings import (
     Prototype,
     RatioSequenceTyping,
     RatioTyping,
-    SelectorTyping,
     Strings,
 )
-from .update import UpdateManager
 from .verticalmoment import (
     VerticalMoment,
     iterate_leaf_pairs,
@@ -598,7 +604,6 @@ __all__ = [
     "Segment",
     "SegmentMaker",
     "Selection",
-    "SelectorTyping",
     "Sequence",
     "Set",
     "SetClass",
@@ -670,7 +675,6 @@ __all__ = [
     "TypedTuple",
     "UnboundedTimeIntervalError",
     "Up",
-    "UpdateManager",
     "Vector",
     "VerticalAlignment",
     "VerticalMoment",
@@ -701,6 +705,7 @@ __all__ = [
     "hairpin",
     "horizontal_bracket",
     "illustrate",
+    "illustrators",
     "index",
     "index_all",
     "index_first",
@@ -727,6 +732,8 @@ __all__ = [
     "persist",
     "phrasing_slur",
     "piano_pedal",
+    "pitch_class_segment",
+    "pitch_set",
     "play",
     "select",
     "sequence",

@@ -2,7 +2,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import FormatSpecification, StorageFormatManager
 
 
-class BarLine(object):
+class BarLine:
     r"""
     Bar line.
 

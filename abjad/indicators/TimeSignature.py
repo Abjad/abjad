@@ -5,7 +5,7 @@ from ..duration import Duration, Multiplier, NonreducedFraction
 from ..storage import FormatSpecification, StorageFormatManager
 
 
-class TimeSignature(object):
+class TimeSignature:
     r"""
     Time signature.
 
@@ -299,7 +299,7 @@ class TimeSignature(object):
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.pair],
-            storage_format_kwargs_names=["partial", "hide"],
+            storage_format_keyword_names=["partial", "hide"],
             storage_format_is_indented=storage_format_is_indented,
         )
 

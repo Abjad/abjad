@@ -7,7 +7,7 @@ from ..storage import StorageFormatManager
 from ..stringx import String
 
 
-class StartHairpin(object):
+class StartHairpin:
     r"""
     Hairpin indicator.
 

@@ -16,7 +16,7 @@ from .stringx import String
 configuration = Configuration()
 
 
-class ContextManager(object):
+class ContextManager:
     """
     An abstract context manager class.
     """
@@ -516,7 +516,7 @@ class RedirectedStreams(ContextManager):
             storage_format_is_bracketed=True,
             storage_format_is_indented=False,
             storage_format_args_values=[],
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     ### PUBLIC PROPERTIES ###

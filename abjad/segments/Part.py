@@ -3,7 +3,7 @@ import typing
 from ..storage import StorageFormatManager
 
 
-class Part(object):
+class Part:
     """
     Part.
 

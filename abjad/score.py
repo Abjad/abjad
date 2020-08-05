@@ -23,7 +23,7 @@ from .timespan import Timespan
 from .typedcollections import TypedList
 
 
-class Component(object):
+class Component:
     """
     Component baseclass.
     """
@@ -280,7 +280,7 @@ class Component(object):
         if summary:
             values.append(summary)
         return FormatSpecification(
-            client=self, repr_args_values=values, storage_format_kwargs_names=[],
+            client=self, repr_args_values=values, storage_format_keyword_names=[],
         )
 
     def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
@@ -451,14 +451,14 @@ class Component(object):
                 component._offsets_in_seconds_are_current = False
 
     def _update_measure_numbers(self):
-        from .update import UpdateManager
+        from ._update import _update_measure_numbers
 
-        UpdateManager()._update_measure_numbers(self)
+        _update_measure_numbers(self)
 
     def _update_now(self, offsets=False, offsets_in_seconds=False, indicators=False):
-        from .update import UpdateManager
+        from ._update import _update_now
 
-        return UpdateManager()._update_now(
+        return _update_now(
             self,
             offsets=offsets,
             offsets_in_seconds=offsets_in_seconds,
@@ -651,7 +651,7 @@ class Leaf(Component):
             repr_args_values=[summary],
             storage_format_args_values=[self._get_lilypond_format()],
             storage_format_is_indented=False,
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     def _get_formatted_duration(self):
@@ -1285,7 +1285,7 @@ class Container(Component):
     def _get_format_specification(self):
         repr_text = None
         repr_args_values = []
-        repr_kwargs_names = self._get_repr_kwargs_names()
+        repr_keyword_names = self._get_repr_keyword_names()
         storage_format_args_values = []
         if self:
             repr_args_values.append(self._get_contents_summary())
@@ -1299,7 +1299,7 @@ class Container(Component):
         return FormatSpecification(
             client=self,
             repr_args_values=repr_args_values,
-            repr_kwargs_names=repr_kwargs_names,
+            repr_keyword_names=repr_keyword_names,
             repr_text=repr_text,
             storage_format_args_values=storage_format_args_values,
         )
@@ -1307,7 +1307,7 @@ class Container(Component):
     def _get_preprolated_duration(self):
         return self._get_contents_duration()
 
-    def _get_repr_kwargs_names(self):
+    def _get_repr_keyword_names(self):
         return ["simultaneous", "name"]
 
     def _get_subtree(self):
@@ -3177,7 +3177,7 @@ class Context(Container):
         self._update_now(indicators=True)
         return self._format_component()
 
-    def _get_repr_kwargs_names(self):
+    def _get_repr_keyword_names(self):
         if self.lilypond_type == type(self).__name__:
             return ["simultaneous", "name"]
         else:
@@ -3388,7 +3388,7 @@ class MultimeasureRest(Leaf):
 
 
 @functools.total_ordering
-class NoteHead(object):
+class NoteHead:
     """
     Note-head.
 
@@ -3577,7 +3577,7 @@ class NoteHead(object):
         if "tweaks" in names:
             names.remove("tweaks")
         return FormatSpecification(
-            self, repr_text=repr_text, storage_format_kwargs_names=names
+            self, repr_text=repr_text, storage_format_keyword_names=names
         )
 
     def _get_lilypond_format(self, duration=None):
@@ -3984,7 +3984,7 @@ class NoteHeadList(TypedList):
             self,
             repr_is_indented=False,
             storage_format_args_values=[self._collection],
-            storage_format_kwargs_names=names,
+            storage_format_keyword_names=names,
         )
 
     def _on_insertion(self, item):
@@ -5216,7 +5216,7 @@ class Tuplet(Container):
             client=self,
             repr_args_values=[self.multiplier, self._get_contents_summary()],
             storage_format_args_values=[self.multiplier, self[:]],
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     def _get_lilypond_format(self):
@@ -5465,8 +5465,8 @@ class Tuplet(Container):
 
             >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
             >>> duration = abjad.inspect(tuplet).duration()
-            >>> from abjad.illustrate import duration_to_score_markup
-            >>> markup = duration_to_score_markup(duration)
+            >>> note = abjad.Note.from_pitch_and_duration(0, duration)
+            >>> markup = abjad.illustrators.selection_to_score_markup([note])
             >>> abjad.override(tuplet).tuplet_number.text = markup
             >>> staff = abjad.Staff([tuplet])
             >>> abjad.show(staff) # doctest: +SKIP

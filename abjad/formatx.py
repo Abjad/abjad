@@ -1,13 +1,12 @@
 from . import enums
 from .bundle import LilyPondFormatBundle
-from .inspectx import Inspection
 from .new import new
 from .overrides import override, setting
 from .storage import StorageFormatManager, storage
 from .tag import Tag
 
 
-class LilyPondFormatManager(object):
+class LilyPondFormatManager:
     """
     Manages LilyPond formatting logic.
     """
@@ -31,8 +30,8 @@ class LilyPondFormatManager(object):
     @staticmethod
     def _collect_indicators(component):
         wrappers = []
-        for parent in Inspection(component).parentage():
-            wrappers_ = Inspection(parent).wrappers()
+        for parent in component._get_parentage():
+            wrappers_ = parent._get_indicators(unwrap=False)
             wrappers.extend(wrappers_)
         up_markup_wrappers = []
         down_markup_wrappers = []
@@ -193,22 +192,6 @@ class LilyPondFormatManager(object):
                     bundle.update(bundle_)
 
     @staticmethod
-    def _populate_spanner_format_contributions(component, bundle):
-        if not hasattr(component, "_spanners"):
-            return
-        pairs = []
-        for spanner in Inspection(component).spanners():
-            spanner_bundle = spanner._get_lilypond_format_bundle(component)
-            spanner_bundle.tag_format_contributions(
-                spanner._tag, deactivate=spanner._deactivate
-            )
-            pair = (spanner, spanner_bundle)
-            pairs.append(pair)
-        pairs.sort(key=lambda _: type(_[0]).__name__)
-        for spanner, spanner_bundle in pairs:
-            bundle.update(spanner_bundle)
-
-    @staticmethod
     def _report_leaf_format_contributions(leaf):
         bundle = LilyPondFormatManager.bundle_format_contributions(leaf)
         report = ""
@@ -272,7 +255,6 @@ class LilyPondFormatManager(object):
         LilyPondFormatManager._populate_indicator_format_contributions(
             component, bundle
         )
-        LilyPondFormatManager._populate_spanner_format_contributions(component, bundle)
         LilyPondFormatManager._populate_context_setting_format_contributions(
             component, bundle
         )

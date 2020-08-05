@@ -5,7 +5,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class StopBeam(object):
+class StopBeam:
     r"""
     LilyPond ``]`` command.
 

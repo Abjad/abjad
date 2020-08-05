@@ -117,8 +117,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression + (4, 5, 6)
 
                 >>> expression([1, 2, 3])
@@ -154,8 +153,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression + [4, 5, 6]
 
                 >>> expression([1, 2, 3])
@@ -193,8 +191,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression + [4, 5, 6]
 
                 >>> expression([1, 2, 3])
@@ -233,8 +230,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression + [4, 5, 6]
                 >>> expression = expression.reverse()
 
@@ -316,8 +312,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression[0]
 
                 >>> expression([1, 2, 3, 4, 5, 6])
@@ -355,8 +350,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression[-1]
 
                 >>> expression([1, 2, 3, 4, 5, 6])
@@ -395,8 +389,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression[:3]
 
                 >>> expression([1, 2, 3, 4, 5, 6])
@@ -433,35 +426,6 @@ class Sequence(collections.abc.Sequence):
                 >>> sequence
                 Sequence([1])
 
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
-                >>> expression = expression[0]
-                >>> expression = expression.sequence()
-
-                >>> expression([1, 2, 3, 4, 5, 6])
-                Sequence([1])
-
-                >>> expression.get_string()
-                'J[0]'
-
-                >>> markup = expression.get_markup()
-                >>> abjad.show(markup) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup)
-                    \markup {
-                        \concat
-                            {
-                                \bold
-                                    J
-                                \sub
-                                    0
-                            }
-                        }
-
         ..  container:: example
 
             Gets slice from sequence and flattens slice:
@@ -477,8 +441,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression[:-1]
                 >>> expression = expression.flatten(depth=-1)
 
@@ -569,8 +532,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='K')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='K')
                 >>> expression = (1, 2, 3) + expression
 
                 >>> expression([4, 5, 6])
@@ -606,8 +568,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='K')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='K')
                 >>> expression = [1, 2, 3] + expression
 
                 >>> expression([4, 5, 6])
@@ -643,8 +604,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = [1, 2, 3] + expression
 
                 >>> expression([4, 5, 6])
@@ -991,8 +951,7 @@ class Sequence(collections.abc.Sequence):
 
                 As expression:
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> inequality = abjad.LengthInequality('==', 1)
                 >>> expression = expression.filter(inequality)
 
@@ -1017,8 +976,7 @@ class Sequence(collections.abc.Sequence):
 
                 As expression:
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> inequality = abjad.DurationInequality('==', (1, 8))
                 >>> expression = expression.filter(inequality)
 
@@ -1057,8 +1015,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.flatten()
 
                 >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
@@ -1097,8 +1054,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.flatten(depth=2)
 
                 >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
@@ -1137,8 +1093,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.flatten(depth=-1)
 
                 >>> expression([1, [2, 3, [4]], 5, [6, 7, [8]]])
@@ -1177,8 +1132,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.flatten(classes=(tuple,))
 
                 >>> expression(['ab', 'cd', ('ef', 'gh'), ('ij', 'kl')])
@@ -1246,7 +1200,9 @@ class Sequence(collections.abc.Sequence):
 
         ..  container:: expression
 
-            >>> predicate = abjad.select().leaves().pitch_set()
+            >>> predicate = abjad.select().leaves()
+            >>> callback = abjad.pitch_set()
+            >>> predicate = predicate.append_callback(callback)
             >>> expression = abjad.sequence().group_by(predicate)
 
             >>> staff = abjad.Staff("c'8 d' d' e' e' e'")
@@ -1470,8 +1426,7 @@ class Sequence(collections.abc.Sequence):
 
         ..  container:: example expression
 
-            >>> expression = abjad.Expression(name='J')
-            >>> expression = expression.sequence()
+            >>> expression = abjad.sequence(name='J')
             >>> expression = expression.split([10], cyclic=True)
             >>> expression = expression.join()
 
@@ -1538,8 +1493,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -1830,8 +1784,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
@@ -1881,8 +1834,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=False,
@@ -1936,8 +1888,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -1993,8 +1944,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=True,
@@ -2047,8 +1997,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
@@ -2100,8 +2049,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=False,
@@ -2157,8 +2105,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -2216,8 +2163,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=True,
@@ -2271,8 +2217,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
@@ -2324,8 +2269,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=False,
@@ -2381,8 +2325,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -2440,8 +2383,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=True,
@@ -2496,8 +2438,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
@@ -2551,8 +2492,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=False,
@@ -2610,8 +2550,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -2671,8 +2610,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=True,
@@ -2729,8 +2667,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [2, 3, 5],
                 ...     cyclic=False,
@@ -2787,8 +2724,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [2],
                 ...     cyclic=True,
@@ -2842,8 +2778,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
@@ -2899,8 +2834,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [2, 6],
                 ...     cyclic=True,
@@ -2961,8 +2895,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [2, 6],
                 ...     cyclic=True,
@@ -3022,8 +2955,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts(
                 ...     [5],
                 ...     cyclic=True,
@@ -3072,8 +3004,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.partition_by_counts([])
 
                 >>> for part in expression(range(16)):
@@ -3172,8 +3103,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> ratio = abjad.Ratio((1, 1, 1))
                 >>> expression = expression.partition_by_ratio_of_lengths(ratio)
 
@@ -3219,8 +3149,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> ratio = abjad.Ratio((1, 1, 2))
                 >>> expression = expression.partition_by_ratio_of_lengths(ratio)
 
@@ -3684,8 +3613,7 @@ class Sequence(collections.abc.Sequence):
 
         ..  container:: example expression
 
-            >>> expression = abjad.Expression(name='J')
-            >>> expression = expression.sequence()
+            >>> expression = abjad.sequence(name='J')
             >>> expression = expression.permute([1, 0, 3, 2])
 
             >>> expression([11, 12, 13, 14])
@@ -3842,8 +3770,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.repeat(n=0)
 
                 >>> expression([1, 2, 3])
@@ -3877,8 +3804,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.repeat(n=1)
 
                 >>> expression([1, 2, 3])
@@ -3912,8 +3838,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.repeat(n=2)
 
                 >>> expression([1, 2, 3])
@@ -4317,8 +4242,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.reverse()
 
                 >>> expression([[1, 2], 3, [4, 5]])
@@ -4362,8 +4286,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.reverse(recurse=True)
 
                 >>> for item in expression([segment_1, pitch, segment_2]):
@@ -4425,8 +4348,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.rotate(n=4)
 
                 >>> expression(range(10))
@@ -4465,8 +4387,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.rotate(n=-3)
 
                 >>> expression(range(10))
@@ -4505,8 +4426,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.rotate(n=0)
 
                 >>> expression(range(10))
@@ -4542,18 +4462,6 @@ class Sequence(collections.abc.Sequence):
             for item in self[-n : len(self)] + self[:-n]:
                 items.append(item)
         return type(self)(items=items)
-
-    def select(self):
-        """
-        Selects sequence.
-
-        Returns selection.
-        """
-        from .selectx import Selection
-
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
-        return Selection(self)
 
     def sort(self, key=None, reverse=False) -> "Sequence":
         """
@@ -4602,8 +4510,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.split(
                 ...     (3, 15, 3),
                 ...     cyclic=True,
@@ -4700,8 +4607,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.split(
                 ...     (3, 15, 3),
                 ...     cyclic=True,
@@ -4799,8 +4705,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.sum()
 
                 >>> expression([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -4838,8 +4743,7 @@ class Sequence(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
+                >>> expression = abjad.sequence(name='J')
                 >>> expression = expression.sum()
 
                 >>> expression([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
@@ -4876,35 +4780,6 @@ class Sequence(collections.abc.Sequence):
 
                 >>> sequence
                 Sequence([55])
-
-            ..  container:: example expression
-
-                >>> expression = abjad.Expression(name='J')
-                >>> expression = expression.sequence()
-                >>> expression = expression.sum()
-                >>> expression = expression.sequence()
-
-                >>> expression(range(1, 10+1))
-                Sequence([55])
-
-                >>> expression.get_string()
-                'sum(J)'
-
-                >>> markup = expression.get_markup()
-                >>> abjad.show(markup) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup)
-                    \markup {
-                        \concat
-                            {
-                                sum(
-                                \bold
-                                    J
-                                )
-                            }
-                        }
 
         """
         if self._expression:
@@ -5281,6 +5156,10 @@ def sequence(items=None, **keywords):
     """
     if items is not None:
         return Sequence(items=items, **keywords)
-    expression = Expression()
-    expression = expression.sequence(**keywords)
+    name = keywords.pop("name", None)
+    expression = Expression(name=name, proxy_class=Sequence)
+    callback = Expression._make_initializer_callback(
+        Sequence, string_template="{}", **keywords
+    )
+    expression = expression.append_callback(callback)
     return expression

@@ -5,7 +5,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class StartGroup(object):
+class StartGroup:
     r"""
     LilyPond ``\startGroup`` command.
 

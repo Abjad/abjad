@@ -6,7 +6,7 @@ from ..score import Context
 from ..storage import FormatSpecification, StorageFormatManager
 
 
-class PersistentOverride(object):
+class PersistentOverride:
     """
     Persistent override.
 

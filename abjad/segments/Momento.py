@@ -5,7 +5,7 @@ from ..storage import FormatSpecification, StorageFormatManager
 from ..tag import Tag
 
 
-class Momento(object):
+class Momento:
     """
     Momento.
     """

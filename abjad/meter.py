@@ -7,13 +7,13 @@ import typing
 
 import uqbar.graphs
 
-from . import markups, mathx, rhythmtrees
+from . import _inspect, _iterate, markups, mathx, rhythmtrees
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
-from .inspectx import Inspection
 from .lilypondfile import LilyPondFile
 from .mutate import Mutation
 from .new import new
+from .parentage import Parentage
 from .score import Chord, Container, Note, Rest, Skip, Tuplet
 from .selectx import LogicalTie, Selection
 from .sequence import Sequence
@@ -22,7 +22,7 @@ from .timespan import OffsetCounter, Timespan, TimespanList
 from .typedcollections import TypedList
 
 
-class Meter(object):
+class Meter:
     """
     Meter.
 
@@ -671,7 +671,7 @@ class Meter(object):
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.rtm_format],
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     ### PUBLIC PROPERTIES ###
@@ -2328,7 +2328,7 @@ class Meter(object):
         ):
             offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
             logical_tie_duration = logical_tie._get_preprolated_duration()
-            logical_tie_timespan = Inspection(logical_tie).timespan()
+            logical_tie_timespan = _inspect._get_timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
@@ -2411,17 +2411,17 @@ class Meter(object):
         if initial_offset is None:
             initial_offset = Offset(0)
         initial_offset = Offset(initial_offset)
-        first_start_offset = Inspection(components[0]).timespan().start_offset
-        last_start_offset = Inspection(components[-1]).timespan().start_offset
+        first_start_offset = components[0]._get_timespan().start_offset
+        last_start_offset = components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
         assert difference < meter.implied_time_signature.duration
         # Build offset inventory, adjusted for initial offset and prolation.
-        first_offset = Inspection(components[0]).timespan().start_offset
+        first_offset = components[0]._get_timespan().start_offset
         first_offset -= initial_offset
         if components[0]._parent is None:
             prolation = 1
         else:
-            parentage = Inspection(components[0]._parent).parentage()
+            parentage = Parentage(components[0]._parent)
             prolation = parentage.prolation
         offset_inventory = []
         for offsets in meter.depthwise_offset_inventory:
@@ -2765,7 +2765,7 @@ class MeterList(TypedList):
         return Meter(item)
 
 
-class MetricAccentKernel(object):
+class MetricAccentKernel:
     """
     Metric accent kernel.
 
@@ -2870,7 +2870,7 @@ class MetricAccentKernel(object):
             client=self,
             repr_is_indented=True,
             storage_format_args_values=[self.kernel],
-            storage_format_kwargs_names=[],
+            storage_format_keyword_names=[],
         )
 
     ### PUBLIC PROPERTIES ###
@@ -2972,7 +2972,7 @@ class MetricAccentKernel(object):
         )
 
 
-class _MeterFittingSession(object):
+class _MeterFittingSession:
     """
     Meter-fitting session.
 
@@ -3179,7 +3179,7 @@ class _MeterFittingSession(object):
         return self._ordered_offsets
 
 
-class _MeterManager(object):
+class _MeterManager:
     """
     Meter manager.
     """
@@ -3362,7 +3362,8 @@ class _MeterManager(object):
         current_leaf_group_is_silent = False
         for component in argument:
             if isinstance(component, (Note, Chord)):
-                this_tie = Inspection(component).logical_tie()
+                this_tie_leaves = _iterate._get_logical_tie_leaves(component)
+                this_tie = LogicalTie(this_tie_leaves)
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (

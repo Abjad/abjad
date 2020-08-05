@@ -209,7 +209,7 @@ class ReplaceScript(CLI):
     ### PRIVATE METHODS ###
 
     def _get_naive_search_callable(self, arguments):
-        class NaiveSearch(object):
+        class NaiveSearch:
             def __init__(self, pattern):
                 self.pattern = pattern
 
@@ -222,7 +222,7 @@ class ReplaceScript(CLI):
         return NaiveSearch(arguments.old)
 
     def _get_regex_search_callable(self, arguments):
-        class RegexSearch(object):
+        class RegexSearch:
             def __init__(self, pattern, escaped=False, whole_words_only=False):
                 try:
                     if escaped:

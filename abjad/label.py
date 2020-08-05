@@ -2,12 +2,12 @@ import collections
 import inspect
 import typing
 
-from . import enums
+from . import _inspect, _iterate, enums
 from .attach import attach, detach
+from .cyclictuple import CyclicTuple
 from .duration import Duration, NonreducedFraction
 from .expression import Expression
 from .indicators.LilyPondComment import LilyPondComment
-from .inspectx import Inspection
 from .iterate import Iteration
 from .markups import Markup, MarkupCommand
 from .new import new
@@ -32,7 +32,7 @@ from .tag import Tag
 from .verticalmoment import iterate_vertical_moments
 
 
-class Label(object):
+class Label:
     r"""
     Label.
 
@@ -643,6 +643,23 @@ class Label(object):
                 color = color_map[pc.number]
                 if color is not None:
                     override(leaf).note_head.color = color
+
+    def by_selector(self, selector, colors=None) -> None:
+        """
+        Colors client by ``selector``.
+        """
+        if self._expression:
+            return self._update_expression(inspect.currentframe())
+        if selector._is_singular_get_item():
+            colors = colors or ["green"]
+            color = colors[0]
+            self.color_leaves(color=color)
+        else:
+            colors = colors or ["red", "blue"]
+            colors = CyclicTuple(colors)
+            for i, item in enumerate(self.client):
+                color = colors[i]
+                Label(item).color_leaves(color=color)
 
     def remove_markup(self):
         r"""
@@ -2087,7 +2104,7 @@ class Label(object):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         for logical_tie in Iteration(self.client).logical_ties():
-            duration = Inspection(logical_tie).duration(in_seconds=in_seconds)
+            duration = _inspect._get_duration(logical_tie, in_seconds=in_seconds)
             if denominator is not None:
                 duration = NonreducedFraction(duration)
                 duration = duration.with_denominator(denominator)
@@ -2898,7 +2915,7 @@ class Label(object):
         prototype = prototype or NamedInterval
         for note in Iteration(self.client).leaves(Note):
             label = None
-            next_leaf = Inspection(note).leaf(1)
+            next_leaf = _iterate._get_leaf(note, 1)
             if isinstance(next_leaf, Note):
                 interval = NamedInterval.from_pitch_carriers(note, next_leaf)
                 if prototype is NamedInterval:
@@ -4159,8 +4176,7 @@ class Label(object):
             assert isinstance(global_offset, Duration)
         for logical_tie in Iteration(self.client).logical_ties():
             if clock_time:
-                inspector = Inspection(logical_tie.head)
-                timespan = inspector.timespan(in_seconds=True)
+                timespan = logical_tie.head._get_timespan(in_seconds=True)
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset
@@ -4170,7 +4186,7 @@ class Label(object):
                 else:
                     string = f'"{string}"'
             else:
-                timespan = Inspection(logical_tie.head).timespan()
+                timespan = logical_tie.head._get_timespan()
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset
@@ -4189,116 +4205,7 @@ class Label(object):
         return total_duration
 
 
-### FUNCTIONS ###
-
-
-def label(client=None, deactivate=None, tag=None):
-    r"""
-    Makes label agent or label expression.
-
-    ..  container:: example
-
-        Labels logical ties with start offsets:
-
-        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-        >>> abjad.label(staff).with_start_offsets(direction=abjad.Up)
-        Duration(1, 1)
-
-        >>> abjad.override(staff).text_script.staff_padding = 4
-        >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextScript.staff-padding = #4
-                \override TupletBracket.staff-padding = #0
-            }
-            {
-                \times 2/3 {
-                    c'4
-                    ^ \markup { 0 }
-                    d'4
-                    ^ \markup { 1/6 }
-                    e'4
-                    ^ \markup { 1/3 }
-                    ~
-                }
-                e'4
-                ef'4
-                ^ \markup { 3/4 }
-            }
-
-        See the ``Label`` API entry for many more examples.
-
-    ..  container:: example expression
-
-        Initializes positionally:
-
-        >>> expression = abjad.label()
-        >>> expression(staff)
-        Label(client=<Staff{3}>)
-
-        Initializes from keyword:
-
-        >>> expression = abjad.label()
-        >>> expression(client=staff)
-        Label(client=<Staff{3}>)
-
-        Makes label expression:
-
-            >>> expression = abjad.label()
-            >>> expression = expression.with_start_offsets()
-
-        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-        >>> expression(staff)
-        Duration(1, 1)
-
-        >>> abjad.override(staff).text_script.staff_padding = 4
-        >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> abjad.f(staff)
-            \new Staff
-            \with
-            {
-                \override TextScript.staff-padding = #4
-                \override TupletBracket.staff-padding = #0
-            }
-            {
-                \times 2/3 {
-                    c'4
-                    ^ \markup { 0 }
-                    d'4
-                    ^ \markup { 1/6 }
-                    e'4
-                    ^ \markup { 1/3 }
-                    ~
-                }
-                e'4
-                ef'4
-                ^ \markup { 3/4 }
-            }
-
-        See the ``Label`` API entry for many more examples.
-
-    Returns label agent when ``client`` is not none.
-
-    Returns label expression when ``client`` is none.
-    """
-    if client is not None:
-        return Label(client=client, deactivate=deactivate, tag=tag)
-    expression = Expression()
-    expression = expression.label(tag=tag)
-    return expression
-
-
-class ColorMap(object):
+class ColorMap:
     """
     Color map.
 
@@ -4557,3 +4464,113 @@ class ColorMap(object):
             return self[key]
         except (KeyError, TypeError, ValueError):
             return alternative
+
+
+### FUNCTIONS ###
+
+
+def label(client=None, deactivate=None, tag=None):
+    r"""
+    Makes label agent or label expression.
+
+    ..  container:: example
+
+        Labels logical ties with start offsets:
+
+        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+        >>> abjad.label(staff).with_start_offsets(direction=abjad.Up)
+        Duration(1, 1)
+
+        >>> abjad.override(staff).text_script.staff_padding = 4
+        >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextScript.staff-padding = #4
+                \override TupletBracket.staff-padding = #0
+            }
+            {
+                \times 2/3 {
+                    c'4
+                    ^ \markup { 0 }
+                    d'4
+                    ^ \markup { 1/6 }
+                    e'4
+                    ^ \markup { 1/3 }
+                    ~
+                }
+                e'4
+                ef'4
+                ^ \markup { 3/4 }
+            }
+
+        See the ``Label`` API entry for many more examples.
+
+    ..  container:: example expression
+
+        Initializes positionally:
+
+        >>> expression = abjad.label()
+        >>> expression(staff)
+        Label(client=<Staff{3}>)
+
+        Initializes from keyword:
+
+        >>> expression = abjad.label()
+        >>> expression(client=staff)
+        Label(client=<Staff{3}>)
+
+        Makes label expression:
+
+            >>> expression = abjad.label()
+            >>> expression = expression.with_start_offsets()
+
+        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+        >>> expression(staff)
+        Duration(1, 1)
+
+        >>> abjad.override(staff).text_script.staff_padding = 4
+        >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            \with
+            {
+                \override TextScript.staff-padding = #4
+                \override TupletBracket.staff-padding = #0
+            }
+            {
+                \times 2/3 {
+                    c'4
+                    ^ \markup { 0 }
+                    d'4
+                    ^ \markup { 1/6 }
+                    e'4
+                    ^ \markup { 1/3 }
+                    ~
+                }
+                e'4
+                ef'4
+                ^ \markup { 3/4 }
+            }
+
+        See the ``Label`` API entry for many more examples.
+
+    Returns label agent when ``client`` is not none.
+
+    Returns label expression when ``client`` is none.
+    """
+    if client is not None:
+        return Label(client=client, deactivate=deactivate, tag=tag)
+    expression = Expression(proxy_class=Label)
+    callback = Expression._make_initializer_callback(Label, tag=tag)
+    expression = expression.append_callback(callback)
+    return expression

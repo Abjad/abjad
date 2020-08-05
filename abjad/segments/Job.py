@@ -10,7 +10,7 @@ callable_type = typing.Union[str, typing.Callable, None]
 activation_type = typing.Tuple[callable_type, str]
 
 
-class Job(object):
+class Job:
     """
     Job.
     """

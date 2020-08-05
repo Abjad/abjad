@@ -137,7 +137,7 @@ class OffsetCounter(TypedCounter):
         return Offset(item)
 
 
-class Timespan(object):
+class Timespan:
     """
     Timespan.
 
@@ -6366,8 +6366,11 @@ def timespan(start_offset=None, stop_offset=None, **keywords):
     if start_offset is not None or stop_offset is not None:
         return Timespan(start_offset=start_offset, stop_offset=stop_offset)
     name = keywords.pop("name", None)
-    expression = Expression(name=name)
-    expression = expression.timespan(**keywords)
+    expression = Expression(name=name, proxy_class=Timespan)
+    callback = Expression._make_initializer_callback(
+        Timespan, string_template="{}", **keywords
+    )
+    expression = expression.append_callback(callback)
     return expression
 
 

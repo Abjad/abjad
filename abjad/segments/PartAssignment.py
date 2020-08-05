@@ -7,7 +7,7 @@ from .Part import Part
 token_type = typing.Union[None, int, typings.IntegerPair, typing.List[int]]
 
 
-class PartAssignment(object):
+class PartAssignment:
     """
     Part assignment.
 
@@ -237,15 +237,15 @@ class PartAssignment(object):
         if self.token is not None:
             repr_args_values.append(self.token)
         repr_is_indented = False
-        repr_kwargs_names = []
+        repr_keyword_names = []
         return FormatSpecification(
             self,
             repr_args_values=repr_args_values,
             repr_is_indented=repr_is_indented,
-            repr_kwargs_names=repr_kwargs_names,
+            repr_keyword_names=repr_keyword_names,
             storage_format_args_values=repr_args_values,
             storage_format_is_indented=repr_is_indented,
-            storage_format_kwargs_names=repr_kwargs_names,
+            storage_format_keyword_names=repr_keyword_names,
         )
 
     @staticmethod

@@ -6,7 +6,7 @@ from .PartAssignment import PartAssignment
 from .Section import Section
 
 
-class PartManifest(object):
+class PartManifest:
     """
     Part manifest.
 

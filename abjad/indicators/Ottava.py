@@ -4,7 +4,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class Ottava(object):
+class Ottava:
     r"""
     LilyPond ``\ottava`` command.
 

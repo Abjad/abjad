@@ -7,7 +7,7 @@ from . import constants
 
 
 @functools.total_ordering
-class Accidental(object):
+class Accidental:
     """
     Accidental.
 
@@ -355,7 +355,7 @@ class Accidental(object):
             repr_is_indented=False,
             storage_format_args_values=[self.name],
             storage_format_is_indented=False,
-            storage_format_kwargs_names=["arrow"],
+            storage_format_keyword_names=["arrow"],
         )
 
     def _get_lilypond_format(self):

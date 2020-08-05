@@ -3,6 +3,8 @@ import math
 import numbers
 import typing
 
+import quicktions
+
 from .. import mathx
 from ..storage import FormatSpecification, StorageFormatManager
 from . import constants
@@ -11,7 +13,7 @@ from .Octave import Octave
 
 
 @functools.total_ordering
-class Pitch(object):
+class Pitch:
     """
     Abstract pitch.
     """
@@ -613,7 +615,7 @@ class NamedPitch(Pitch):
             repr_is_indented=False,
             storage_format_args_values=[self.name],
             storage_format_is_indented=False,
-            storage_format_kwargs_names=["arrow"],
+            storage_format_keyword_names=["arrow"],
         )
 
     def _get_lilypond_format(self):
@@ -1220,7 +1222,7 @@ class NumberedPitch(Pitch):
             repr_is_indented=False,
             storage_format_is_indented=False,
             storage_format_args_values=[self.number],
-            storage_format_kwargs_names=["arrow"],
+            storage_format_keyword_names=["arrow"],
         )
 
     def _get_lilypond_format(self):
@@ -1402,15 +1404,15 @@ class NumberedPitch(Pitch):
             >>> start_pitch = abjad.NumberedPitch(0)
             >>> stop_pitch = abjad.NumberedPitch(12)
 
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
+            >>> start_pitch.interpolate(stop_pitch, 0)
             NumberedPitch(0)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
+            >>> start_pitch.interpolate(stop_pitch, (1, 4))
             NumberedPitch(3)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
+            >>> start_pitch.interpolate(stop_pitch, (1, 2))
             NumberedPitch(6)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
+            >>> start_pitch.interpolate(stop_pitch, (3, 4))
             NumberedPitch(9)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
+            >>> start_pitch.interpolate(stop_pitch, 1)
             NumberedPitch(12)
 
         ..  container:: example
@@ -1420,19 +1422,23 @@ class NumberedPitch(Pitch):
             >>> start_pitch = abjad.NumberedPitch(12)
             >>> stop_pitch = abjad.NumberedPitch(0)
 
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(0))
+            >>> start_pitch.interpolate(stop_pitch, 0)
             NumberedPitch(12)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 4))
+            >>> start_pitch.interpolate(stop_pitch, (1, 4))
             NumberedPitch(9)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1, 2))
+            >>> start_pitch.interpolate(stop_pitch, (1, 2))
             NumberedPitch(6)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(3, 4))
+            >>> start_pitch.interpolate(stop_pitch, (3, 4))
             NumberedPitch(3)
-            >>> start_pitch.interpolate(stop_pitch, abjad.Fraction(1))
+            >>> start_pitch.interpolate(stop_pitch, 1)
             NumberedPitch(0)
 
         Returns new numbered pitch.
         """
+        try:
+            fraction = quicktions.Fraction(*fraction)
+        except TypeError:
+            fraction = quicktions.Fraction(fraction)
         assert 0 <= fraction <= 1, repr(fraction)
         stop_pitch = type(self)(stop_pitch)
         distance = stop_pitch - self

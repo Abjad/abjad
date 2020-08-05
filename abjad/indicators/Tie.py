@@ -7,7 +7,7 @@ from ..storage import StorageFormatManager
 from ..stringx import String
 
 
-class Tie(object):
+class Tie:
     r"""
     LilyPond ``~`` command.
 

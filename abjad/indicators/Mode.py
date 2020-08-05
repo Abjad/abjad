@@ -4,7 +4,7 @@ from ..sequence import Sequence
 from ..storage import FormatSpecification, StorageFormatManager
 
 
-class Mode(object):
+class Mode:
     """
     Mode.
 

@@ -6,7 +6,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class LaissezVibrer(object):
+class LaissezVibrer:
     r"""
     Laissez vibrer.
 

@@ -7,7 +7,7 @@ from ..storage import StorageFormatManager
 from ..stringx import String
 
 
-class Staccatissimo(object):
+class Staccatissimo:
     r"""
     Staccatissimo.
 

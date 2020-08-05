@@ -11,7 +11,7 @@ ignored_classes = (
     abjad.StorageFormatManager,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
+classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)
@@ -41,7 +41,7 @@ ignored_classes = (
     abjad.StorageFormatManager,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
+classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)
@@ -73,7 +73,7 @@ ignored_classes = (
     abjad.parser.SyntaxNode,
 )
 
-classes = pytest.helpers.list_all_abjad_classes(ignored_classes=ignored_classes)
+classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
 
 @pytest.mark.parametrize("class_", classes)

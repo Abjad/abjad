@@ -6,7 +6,7 @@ from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
 
 
-class BreathMark(object):
+class BreathMark:
     r"""
     Breath mark.
 

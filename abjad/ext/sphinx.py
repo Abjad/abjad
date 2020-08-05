@@ -26,7 +26,7 @@ from uqbar.strings import normalize
 
 from ..configuration import Configuration
 from ..contextmanagers import TemporaryDirectoryChange
-from ..illustrate import illustrate
+from ..illustrators import illustrate
 from ..iox import Illustrator, LilyPondIO, Player
 from ..lilypondfile import Block, LilyPondVersionToken
 

@@ -3,7 +3,7 @@ import typing
 from .storage import FormatSpecification, StorageFormatManager
 
 
-class CyclicTuple(object):
+class CyclicTuple:
     """
     Cyclic tuple.
 

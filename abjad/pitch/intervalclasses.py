@@ -10,7 +10,7 @@ from .pitches import NamedPitch
 
 
 @functools.total_ordering
-class IntervalClass(object):
+class IntervalClass:
     """
     Abstract interval-class.
     """

@@ -18,7 +18,7 @@ from .spanners import tie
 from .storage import StorageFormatManager
 
 
-class Mutation(object):
+class Mutation:
     """
     Mutation.
 
@@ -81,7 +81,7 @@ class Mutation(object):
         leaves = SELECTION
         if len(leaves) <= 1:
             return leaves
-        originally_tied = Inspection(SELECTION[-1]).has_indicator(Tie)
+        originally_tied = SELECTION[-1]._has_indicator(Tie)
         total_preprolated = leaves._get_preprolated_duration()
         for leaf in leaves[1:]:
             parent = leaf._parent
@@ -166,7 +166,7 @@ class Mutation(object):
         all_leaves = [leaf] + following_leaves
         for leaf_, new_leaf in zip(all_leaves, new_leaves):
             leaf_.written_duration = new_leaf.written_duration
-        logical_tie = Inspection._get_logical_tie(leaf)
+        logical_tie = Inspection(leaf).logical_tie()
         logical_tie_leaves = list(logical_tie.leaves)
         for leaf_ in logical_tie:
             detach(Tie, leaf_)
@@ -368,8 +368,8 @@ class Mutation(object):
             durations.append(last_duration)
             durations = Sequence(durations)
         durations = durations.truncate(weight=leaf_duration)
-        originally_tied = Inspection(LEAF).has_indicator(Tie)
-        originally_repeat_tied = Inspection(LEAF).has_indicator(RepeatTie)
+        originally_tied = LEAF._has_indicator(Tie)
+        originally_repeat_tied = LEAF._has_indicator(RepeatTie)
         result_selections = []
         # detach grace containers
         before_grace_container = LEAF._before_grace_container
@@ -420,11 +420,9 @@ class Mutation(object):
         # tie split notes
         if isinstance(LEAF, (Note, Chord)) and 1 < len(result_leaves):
             result_leaves._attach_tie_to_leaves()
-        if originally_repeat_tied and not Inspection(result_leaves[0]).has_indicator(
-            RepeatTie
-        ):
+        if originally_repeat_tied and not result_leaves[0]._has_indicator(RepeatTie):
             attach(RepeatTie(), result_leaves[0])
-        if originally_tied and not Inspection(result_leaves[-1]).has_indicator(Tie):
+        if originally_tied and not result_leaves[-1]._has_indicator(Tie):
             attach(Tie(), result_leaves[-1])
         assert isinstance(result_leaves, Selection)
         assert all(isinstance(_, Leaf) for _ in result_leaves)

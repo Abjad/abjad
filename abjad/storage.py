@@ -4,7 +4,7 @@ import inspect
 import types
 
 
-class FormatSpecification(object):
+class FormatSpecification:
     """
     Format specification.
     """
@@ -19,13 +19,13 @@ class FormatSpecification(object):
         "_repr_args_values",
         "_repr_is_bracketed",
         "_repr_is_indented",
-        "_repr_kwargs_names",
+        "_repr_keyword_names",
         "_repr_text",
         "_storage_format_args_values",
         "_storage_format_forced_override",
         "_storage_format_is_bracketed",
         "_storage_format_is_indented",
-        "_storage_format_kwargs_names",
+        "_storage_format_keyword_names",
         "_storage_format_text",
         "_template_names",
     )
@@ -39,13 +39,13 @@ class FormatSpecification(object):
         repr_args_values=None,
         repr_is_bracketed=None,
         repr_is_indented=None,
-        repr_kwargs_names=None,
+        repr_keyword_names=None,
         repr_text=None,
         storage_format_args_values=None,
         storage_format_forced_override=None,
         storage_format_is_bracketed=None,
         storage_format_is_indented=True,
-        storage_format_kwargs_names=None,
+        storage_format_keyword_names=None,
         storage_format_text=None,
         template_names=None,
     ):
@@ -54,7 +54,7 @@ class FormatSpecification(object):
         self._repr_args_values = self._coerce_tuple(repr_args_values)
         self._repr_is_bracketed = self._coerce_boolean(repr_is_bracketed)
         self._repr_is_indented = self._coerce_boolean(repr_is_indented)
-        self._repr_kwargs_names = self._coerce_tuple(repr_kwargs_names)
+        self._repr_keyword_names = self._coerce_tuple(repr_keyword_names)
         self._repr_text = self._coerce_string(repr_text)
         self._storage_format_args_values = self._coerce_tuple(
             storage_format_args_values
@@ -66,8 +66,8 @@ class FormatSpecification(object):
         self._storage_format_is_indented = self._coerce_boolean(
             storage_format_is_indented
         )
-        self._storage_format_kwargs_names = self._coerce_tuple(
-            storage_format_kwargs_names
+        self._storage_format_keyword_names = self._coerce_tuple(
+            storage_format_keyword_names
         )
         self._storage_format_text = self._coerce_string(storage_format_text)
         self._template_names = self._coerce_tuple(template_names)
@@ -109,8 +109,8 @@ class FormatSpecification(object):
         return self._repr_is_indented
 
     @property
-    def repr_kwargs_names(self):
-        return self._repr_kwargs_names
+    def repr_keyword_names(self):
+        return self._repr_keyword_names
 
     @property
     def repr_text(self):
@@ -133,8 +133,8 @@ class FormatSpecification(object):
         return self._storage_format_is_indented
 
     @property
-    def storage_format_kwargs_names(self):
-        return self._storage_format_kwargs_names
+    def storage_format_keyword_names(self):
+        return self._storage_format_keyword_names
 
     @property
     def storage_format_text(self):
@@ -145,7 +145,7 @@ class FormatSpecification(object):
         return self._template_names
 
 
-class StorageFormatSpecification(object):
+class StorageFormatSpecification:
     """
     Storage format specification.
     """
@@ -283,7 +283,7 @@ class StorageFormatSpecification(object):
         return self._storage_format_text
 
 
-class StorageFormatManager(object):
+class StorageFormatManager:
     """
     Manages Abjad object storage formats.
     """
@@ -296,7 +296,7 @@ class StorageFormatManager(object):
         "_client",
         "_format_specification",
         "_signature_accepts_args",
-        "_signature_accepts_kwargs",
+        "_signature_accepts_keywords",
         "_signature_keyword_names",
         "_signature_positional_names",
     )
@@ -325,7 +325,7 @@ class StorageFormatManager(object):
             self._signature_positional_names,
             self._signature_keyword_names,
             self._signature_accepts_args,
-            self._signature_accepts_kwargs,
+            self._signature_accepts_keywords,
         ) = self.inspect_signature(self._client)
 
     ### PRIVATE METHODS ###
@@ -458,7 +458,7 @@ class StorageFormatManager(object):
         as_storage_format = formatting_keywords["as_storage_format"]
         is_bracketed = formatting_keywords["is_bracketed"]
         is_indented = formatting_keywords["is_indented"]
-        kwargs_names = formatting_keywords["kwargs_names"]
+        keyword_names = formatting_keywords["keyword_names"]
         text = formatting_keywords["text"]
         result = []
         if is_bracketed:
@@ -478,7 +478,7 @@ class StorageFormatManager(object):
                     positional_argument_pieces.append(prefix + piece)
                 positional_argument_pieces.append(prefix + pieces[-1] + suffix)
             keyword_argument_pieces = []
-            for name in kwargs_names:
+            for name in keyword_names:
                 value = self._get(name)
                 if value is None or isinstance(value, types.MethodType):
                     continue
@@ -539,7 +539,7 @@ class StorageFormatManager(object):
                 args_values = spec.positional_argument_values
                 is_bracketed = False
                 is_indented = spec.is_indented
-                kwargs_names = spec.keyword_argument_names
+                keyword_names = spec.keyword_argument_names
                 text = spec.storage_format_text
             else:
                 spec = self.format_specification
@@ -547,7 +547,7 @@ class StorageFormatManager(object):
                 args_values = spec.storage_format_args_values
                 is_bracketed = spec.storage_format_is_bracketed
                 is_indented = spec.storage_format_is_indented
-                kwargs_names = spec.storage_format_kwargs_names
+                keyword_names = spec.storage_format_keyword_names
                 text = spec.storage_format_text
         else:
             spec = self.format_specification
@@ -557,32 +557,32 @@ class StorageFormatManager(object):
                 args_values = spec.storage_format_args_values
             is_bracketed = spec.repr_is_bracketed
             is_indented = spec.repr_is_indented
-            kwargs_names = spec.repr_kwargs_names
-            if kwargs_names is None:
-                kwargs_names = spec.storage_format_kwargs_names
+            keyword_names = spec.repr_keyword_names
+            if keyword_names is None:
+                keyword_names = spec.storage_format_keyword_names
             text = spec.repr_text
             if text is None:
                 text = spec.storage_format_text
-        if kwargs_names is None:
-            kwargs_names = self.signature_keyword_names
+        if keyword_names is None:
+            keyword_names = self.signature_keyword_names
         if args_values is None:
             args_values = tuple(self._get(_) for _ in self.signature_positional_names)
         if args_values:
-            kwargs_names = list(kwargs_names)
+            keyword_names = list(keyword_names)
             names = self.signature_positional_names
             if not self.signature_accepts_args:
                 names += self.signature_keyword_names
             names = names[: len(args_values)]
             for name in names:
-                if name in kwargs_names:
-                    kwargs_names.remove(name)
-            kwargs_names = tuple(kwargs_names)
+                if name in keyword_names:
+                    keyword_names.remove(name)
+            keyword_names = tuple(keyword_names)
         return dict(
             args_values=args_values,
             as_storage_format=as_storage_format,
             is_bracketed=is_bracketed,
             is_indented=is_indented,
-            kwargs_names=kwargs_names,
+            keyword_names=keyword_names,
             text=text,
             via=via,
         )
@@ -644,8 +644,8 @@ class StorageFormatManager(object):
         return self._signature_accepts_args
 
     @property
-    def signature_accepts_kwargs(self):
-        return self._signature_accepts_kwargs
+    def signature_accepts_keywords(self):
+        return self._signature_accepts_keywords
 
     @property
     def signature_keyword_names(self):
@@ -724,7 +724,7 @@ class StorageFormatManager(object):
         """
         Gets repr keyword dictionary.
         """
-        names = self.specification.repr_kwargs_names
+        names = self.specification.repr_keyword_names
         if names is None:
             specification = StorageFormatSpecification(self.client)
             names = specification.keyword_argument_names or ()
@@ -761,7 +761,7 @@ class StorageFormatManager(object):
         """
         Gets storage format keyword dictionary.
         """
-        names = self.specification.storage_format_kwargs_names
+        names = self.specification.storage_format_keyword_names
         if names is None:
             if hasattr(self.client, "_get_storage_format_specification"):
                 specification = self.client._get_storage_format_specification()
@@ -799,7 +799,7 @@ class StorageFormatManager(object):
                 template_names.extend(specification._keyword_argument_names or ())
             else:
                 template_names.extend(
-                    self.format_specification.storage_format_kwargs_names or ()
+                    self.format_specification.storage_format_keyword_names or ()
                 )
             template_names = sorted(set(template_names))
         template_dict = collections.OrderedDict()
@@ -827,7 +827,7 @@ class StorageFormatManager(object):
         positional_names = []
         keyword_names = []
         accepts_args = False
-        accepts_kwargs = False
+        accepts_keywords = False
         if not isinstance(subject, type):
             subject = type(subject)
         try:
@@ -837,7 +837,7 @@ class StorageFormatManager(object):
                 positional_names,
                 keyword_names,
                 accepts_args,
-                accepts_kwargs,
+                accepts_keywords,
             )
         for name, parameter in signature.parameters.items():
             if parameter.kind == inspect._POSITIONAL_OR_KEYWORD:
@@ -854,8 +854,8 @@ class StorageFormatManager(object):
             elif parameter.kind == inspect._VAR_POSITIONAL:
                 accepts_args = True
             elif parameter.kind == inspect._VAR_KEYWORD:
-                accepts_kwargs = True
-        return (positional_names, keyword_names, accepts_args, accepts_kwargs)
+                accepts_keywords = True
+        return (positional_names, keyword_names, accepts_args, accepts_keywords)
 
 
 ### FUNCTIONS ###

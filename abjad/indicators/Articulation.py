@@ -7,7 +7,7 @@ from ..storage import FormatSpecification, StorageFormatManager
 from ..stringx import String
 
 
-class Articulation(object):
+class Articulation:
     r"""
     Articulation.
 

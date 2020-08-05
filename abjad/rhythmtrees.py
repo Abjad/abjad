@@ -10,7 +10,6 @@ import uqbar.graphs
 
 from . import mathx
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
-from .inspectx import Inspection
 from .makers import LeafMaker
 from .mutate import Mutation
 from .parsers.base import Parser
@@ -20,7 +19,7 @@ from .spanners import tie
 from .storage import FormatSpecification, StorageFormatManager
 
 
-class RhythmTreeMixin(object):
+class RhythmTreeMixin:
     """
     Abstract rhythm-tree node.
     """
@@ -618,7 +617,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                     if 1 < len(leaves):
                         tie(leaves)
             assert tuplet.multiplier == 1, repr(tuplet.multiplier)
-            contents_duration = Inspection(tuplet).duration()
+            contents_duration = tuplet._get_duration()
             target_duration = tuplet_duration
             multiplier = target_duration / contents_duration
             tuplet.multiplier = multiplier

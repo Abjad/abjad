@@ -78,7 +78,6 @@ extras_require = {
         "mypy>=0.770",
         "pytest>=5.4.3",
         "pytest-cov>=2.7.1",
-        "pytest-helpers-namespace",
     ],
 }
 

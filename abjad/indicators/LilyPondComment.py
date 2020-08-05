@@ -4,7 +4,7 @@ from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
 
-class LilyPondComment(object):
+class LilyPondComment:
     r"""
     LilyPond comment.
 
