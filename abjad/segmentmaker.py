@@ -1,18 +1,14 @@
 import typing
 
-from . import const
 from .attach import attach
 from .iterate import Iteration
 from .lilypondfile import LilyPondFile
 from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral
 from .parentage import Parentage
-from .path import Path
-from .score import Container, Context, Score, Staff, Voice
-from .segments.PartAssignment import PartAssignment
+from .score import Context, Score
 from .selectx import Selection
 from .storage import StorageFormatManager
-from .stringx import String
 from .tag import Tag
 from .timespan import TimespanList
 
@@ -49,7 +45,7 @@ class SegmentMaker:
         self._previous_metadata: typing.Optional[OrderedDict] = None
         self._previous_persist: typing.Optional[OrderedDict] = None
         self._score: typing.Optional[Score] = None
-        self._segment_directory: typing.Optional[Path] = None
+        self._segment_directory = None
 
     ### SPECIAL METHODS ###
 
@@ -80,74 +76,6 @@ class SegmentMaker:
         return StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
-
-    def _add_container_identifiers(self):
-        if self.environment == "docs" and not getattr(
-            self, "test_container_identifiers", False
-        ):
-            return
-        segment_name = self.segment_name or ""
-        segment_name = String(segment_name).to_segment_lilypond_identifier()
-        contexts = []
-        try:
-            context = self.score["Global_Skips"]
-            contexts.append(context)
-        except ValueError:
-            pass
-        try:
-            context = self.score["Global_Rests"]
-            contexts.append(context)
-        except ValueError:
-            pass
-        for voice in Iteration(self.score).components(Voice):
-            if voice._has_indicator(const.INTERMITTENT):
-                continue
-            contexts.append(voice)
-        container_to_part_assignment = OrderedDict()
-        context_name_counts = {}
-        for context in contexts:
-            if context.name is None:
-                message = "all contexts must be named:\n"
-                message += f"    {repr(context)}"
-                raise Exception(message)
-            count = context_name_counts.get(context.name, 0)
-            if count == 0:
-                suffixed_context_name = context.name
-            else:
-                suffix = String.base_26(count)
-                suffixed_context_name = f"{context.name}_{suffix}"
-            context_name_counts[context.name] = count + 1
-            if segment_name:
-                context_identifier = f"{segment_name}_{suffixed_context_name}"
-            else:
-                context_identifier = suffixed_context_name
-            context.identifier = f"%*% {context_identifier}"
-            part_container_count = 0
-            for container in Iteration(context).components(Container):
-                if not container.identifier:
-                    continue
-                if container.identifier.startswith("%*% Part"):
-                    part_container_count += 1
-                    part = container.identifier.strip("%*% ")
-                    globals_ = globals()
-                    globals_["PartAssignment"] = PartAssignment
-                    part = eval(part, globals_)
-                    suffix = String().base_26(part_container_count).lower()
-                    container_identifier = f"{context_identifier}_{suffix}"
-                    container_identifier = String(container_identifier)
-                    assert container_identifier.is_lilypond_identifier()
-                    assert container_identifier not in container_to_part_assignment
-                    timespan = container._get_timespan()
-                    pair = (part, timespan)
-                    container_to_part_assignment[container_identifier] = pair
-                    container.identifier = f"%*% {container_identifier}"
-        for staff in Iteration(self.score).components(Staff):
-            if segment_name:
-                context_identifier = f"{segment_name}_{staff.name}"
-            else:
-                context_identifier = staff.name
-            staff.identifier = f"%*% {context_identifier}"
-        self._container_to_part_assignment = container_to_part_assignment
 
     def _check_duplicate_part_assignments(self):
         dictionary = self._container_to_part_assignment
@@ -222,7 +150,7 @@ class SegmentMaker:
         return self._score
 
     @property
-    def segment_directory(self) -> typing.Optional[Path]:
+    def segment_directory(self):
         """
         Gets segment directory.
         """
@@ -281,7 +209,7 @@ class SegmentMaker:
         previous_metadata: OrderedDict = None,
         previous_persist: OrderedDict = None,
         remove: typing.List[Tag] = None,
-        segment_directory: Path = None,
+        segment_directory=None,
     ) -> LilyPondFile:
         """
         Runs segment-maker.

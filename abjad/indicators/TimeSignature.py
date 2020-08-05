@@ -83,7 +83,7 @@ class TimeSignature:
         ...     time_signature,
         ...     staff[0],
         ...     context='Score',
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ... )
         >>> score = abjad.Score([staff])
         >>> abjad.show(staff) # doctest: +SKIP

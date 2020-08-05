@@ -13,9 +13,6 @@ from .new import new
 from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral
 from .score import Context, Score, Skip, Staff, StaffGroup, Voice
-from .segments.Part import Part
-from .segments.PartAssignment import PartAssignment
-from .segments.PartManifest import PartManifest
 from .selectx import Selection
 from .storage import StorageFormatManager
 from .tag import Tag
@@ -35,8 +32,6 @@ class ScoreTemplate:
     _always_make_global_rests = False
 
     _do_not_require_margin_markup = False
-
-    _part_manifest: PartManifest = PartManifest()
 
     ### INITIALIZER ###
 
@@ -118,15 +113,6 @@ class ScoreTemplate:
         """
         return self._do_not_require_margin_markup
 
-    @property
-    def part_manifest(self) -> typing.Optional[PartManifest]:
-        """
-        Gets part manifest.
-        """
-        if self._part_manifest is not None:
-            assert isinstance(self._part_manifest, PartManifest)
-        return self._part_manifest
-
     ### PUBLIC METHODS ###
 
     def allows_instrument(
@@ -138,17 +124,6 @@ class ScoreTemplate:
         To be implemented by concrete score template classes.
         """
         return True
-
-    def allows_part_assignment(
-        self, voice_name: str, part_assignment: PartAssignment
-    ) -> bool:
-        """
-        Is true when ``voice_name`` allows ``part_assignment``.
-        """
-        section = part_assignment.section or "ZZZ"
-        if voice_name.startswith(section):
-            return True
-        return False
 
     def attach_defaults(self, argument) -> typing.List:
         """
@@ -1422,13 +1397,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
-
-    _part_manifest = PartManifest(
-        Part(section="FirstViolin", section_abbreviation="VN-1"),
-        Part(section="SecondViolin", section_abbreviation="VN-2"),
-        Part(section="Viola", section_abbreviation="VA"),
-        Part(section="Cello", section_abbreviation="VC"),
-    )
 
     ### INITIALIZER ###
 

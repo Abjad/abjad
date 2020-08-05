@@ -64,7 +64,7 @@ class Clef:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(
-        ...     abjad.Clef('treble'), staff[0], tag=abjad.tags.ONLY_PARTS
+        ...     abjad.Clef('treble'), staff[0], tag=abjad.Tag("+PARTS")
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 

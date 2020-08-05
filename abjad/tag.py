@@ -99,7 +99,7 @@ class Tag:
             >>> bool(abjad.Tag())
             False
 
-            >>> bool(abjad.tags.ONLY_PARTS)
+            >>> bool(abjad.Tag("+PARTS"))
             True
 
         """
@@ -111,8 +111,8 @@ class Tag:
 
         ..  container:: example
 
-            >>> tag = abjad.tags.NOT_PARTS
-            >>> tag = tag.append(abjad.tags.DEFAULT_CLEF)
+            >>> tag = abjad.Tag("-PARTS")
+            >>> tag = tag.append(abjad.Tag("DEFAULT_CLEF"))
 
             >>> 'PARTS' in tag
             False
@@ -120,7 +120,7 @@ class Tag:
             >>> '-PARTS' in tag
             True
 
-            >>> abjad.tags.DEFAULT_CLEF in tag
+            >>> abjad.Tag("DEFAULT_CLEF") in tag
             True
 
         """
@@ -268,7 +268,7 @@ class Tag:
 
         ..  container:: example
 
-            >>> abjad.Tag('-PARTS').append(abjad.tags.DEFAULT_CLEF)
+            >>> abjad.Tag('-PARTS').append(abjad.Tag("DEFAULT_CLEF"))
             Tag('-PARTS:DEFAULT_CLEF')
 
         """

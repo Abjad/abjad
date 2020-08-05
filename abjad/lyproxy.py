@@ -1,9 +1,7 @@
 import typing
 
-from ..ly.contexts import contexts
-from ..storage import StorageFormatManager
-from .LilyPondEngraver import LilyPondEngraver
-from .LilyPondGrob import LilyPondGrob
+from .lyenv import contexts, engravers, grob_interfaces, interface_properties
+from .storage import StorageFormatManager
 
 
 class LilyPondContext:
@@ -53,6 +51,7 @@ class LilyPondContext:
         [ ] [ ] [ ] [ ] [X] MensuralVoice
         [ ] [ ] [ ] [ ] [X] NoteNames
         [ ] [ ] [ ] [ ] [X] NullVoice
+        [ ] [ ] [X] [ ] [ ] OneStaff
         [ ] [ ] [ ] [X] [ ] PetrucciStaff
         [ ] [ ] [ ] [ ] [X] PetrucciVoice
         [ ] [ ] [X] [ ] [ ] PianoStaff
@@ -111,6 +110,7 @@ class LilyPondContext:
             >>> for accepting_context in context.accepted_by:
             ...     accepting_context
             ...
+            LilyPondContext(name='OneStaff')
             LilyPondContext(name='Score')
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
@@ -127,6 +127,7 @@ class LilyPondContext:
             ChordNames:
                 ChoirStaff,
                 GrandStaff,
+                OneStaff,
                 PianoStaff,
                 Score,
                 StaffGroup
@@ -145,21 +146,27 @@ class LilyPondContext:
             DrumStaff:
                 ChoirStaff,
                 GrandStaff,
+                OneStaff,
                 PianoStaff,
                 Score,
                 StaffGroup
             DrumVoice:
                 DrumStaff
             Dynamics:
+                ChoirStaff,
                 GrandStaff,
-                PianoStaff
+                OneStaff,
+                PianoStaff,
+                Score
             FiguredBass:
                 ChoirStaff,
                 GrandStaff,
+                OneStaff,
                 PianoStaff,
                 Score,
                 StaffGroup
             FretBoards:
+                OneStaff,
                 Score,
                 StaffGroup
             Global:
@@ -168,24 +175,29 @@ class LilyPondContext:
                 Score,
                 StaffGroup
             GregorianTranscriptionStaff:
+                OneStaff,
                 Score
             GregorianTranscriptionVoice:
                 GregorianTranscriptionStaff
             KievanStaff:
+                OneStaff,
                 Score
             KievanVoice:
                 KievanStaff
             Lyrics:
                 ChoirStaff,
                 GrandStaff,
+                OneStaff,
                 PianoStaff,
                 Score,
                 StaffGroup
             MensuralStaff:
+                OneStaff,
                 Score
             MensuralVoice:
                 MensuralStaff
             NoteNames:
+                OneStaff,
                 Score
             NullVoice:
                 DrumStaff,
@@ -197,7 +209,12 @@ class LilyPondContext:
                 Staff,
                 TabStaff,
                 VaticanaStaff
+            OneStaff:
+                ChoirStaff,
+                Score,
+                StaffGroup
             PetrucciStaff:
+                OneStaff,
                 Score
             PetrucciVoice:
                 PetrucciStaff
@@ -208,6 +225,7 @@ class LilyPondContext:
             RhythmicStaff:
                 ChoirStaff,
                 GrandStaff,
+                OneStaff,
                 PianoStaff,
                 Score,
                 StaffGroup
@@ -216,6 +234,7 @@ class LilyPondContext:
             Staff:
                 ChoirStaff,
                 GrandStaff,
+                OneStaff,
                 PianoStaff,
                 Score,
                 StaffGroup
@@ -225,12 +244,14 @@ class LilyPondContext:
                 StaffGroup
             TabStaff:
                 GrandStaff,
+                OneStaff,
                 PianoStaff,
                 Score,
                 StaffGroup
             TabVoice:
                 TabStaff
             VaticanaStaff:
+                OneStaff,
                 Score
             VaticanaVoice:
                 VaticanaStaff
@@ -334,6 +355,8 @@ class LilyPondContext:
             MensuralVoice:
             NoteNames:
             NullVoice:
+            OneStaff:
+                Staff
             PetrucciStaff:
                 PetrucciVoice
             PetrucciVoice:
@@ -370,7 +393,7 @@ class LilyPondContext:
         return None
 
     @property
-    def engravers(self) -> typing.Tuple[LilyPondEngraver, ...]:
+    def engravers(self) -> typing.Tuple["LilyPondEngraver", ...]:
         r"""
         Gets engravers belonging to LilyPond context.
 
@@ -419,7 +442,7 @@ class LilyPondContext:
         return engravers_
 
     @property
-    def grobs(self) -> typing.Tuple[LilyPondGrob, ...]:
+    def grobs(self) -> typing.Tuple["LilyPondGrob", ...]:
         r"""
         Gets grobs created by LilyPond context.
 
@@ -504,6 +527,7 @@ class LilyPondContext:
             [X] MensuralVoice
             [X] NoteNames
             [X] NullVoice
+            [ ] OneStaff
             [ ] PetrucciStaff
             [X] PetrucciVoice
             [ ] PianoStaff
@@ -569,6 +593,7 @@ class LilyPondContext:
             [ ] MensuralVoice
             [ ] NoteNames
             [ ] NullVoice
+            [ ] OneStaff
             [ ] PetrucciStaff
             [ ] PetrucciVoice
             [ ] PianoStaff
@@ -622,6 +647,7 @@ class LilyPondContext:
             [ ] MensuralVoice
             [ ] NoteNames
             [ ] NullVoice
+            [ ] OneStaff
             [ ] PetrucciStaff
             [ ] PetrucciVoice
             [ ] PianoStaff
@@ -675,6 +701,7 @@ class LilyPondContext:
             [ ] MensuralVoice
             [ ] NoteNames
             [ ] NullVoice
+            [ ] OneStaff
             [X] PetrucciStaff
             [ ] PetrucciVoice
             [ ] PianoStaff
@@ -728,6 +755,7 @@ class LilyPondContext:
             [ ] MensuralVoice
             [ ] NoteNames
             [ ] NullVoice
+            [X] OneStaff
             [ ] PetrucciStaff
             [ ] PetrucciVoice
             [X] PianoStaff
@@ -874,6 +902,7 @@ class LilyPondContext:
             LilyPondContext(name='MensuralVoice')
             LilyPondContext(name='NoteNames')
             LilyPondContext(name='NullVoice')
+            LilyPondContext(name='OneStaff')
             LilyPondContext(name='PetrucciStaff')
             LilyPondContext(name='PetrucciVoice')
             LilyPondContext(name='PianoStaff')
@@ -1039,6 +1068,7 @@ class LilyPondContext:
             LilyPondContext(name='ChordNames')
             LilyPondContext(name='Devnull')
             LilyPondContext(name='DrumStaff')
+            LilyPondContext(name='Dynamics')
             LilyPondContext(name='FiguredBass')
             LilyPondContext(name='FingeringStaff')
             LilyPondContext(name='FretBoards')
@@ -1048,6 +1078,7 @@ class LilyPondContext:
             LilyPondContext(name='Lyrics')
             LilyPondContext(name='MensuralStaff')
             LilyPondContext(name='NoteNames')
+            LilyPondContext(name='OneStaff')
             LilyPondContext(name='PetrucciStaff')
             LilyPondContext(name='PianoStaff')
             LilyPondContext(name='RhythmicStaff')
@@ -1066,6 +1097,7 @@ class LilyPondContext:
             LilyPondContext(name='ChordNames')
             LilyPondContext(name='Devnull')
             LilyPondContext(name='DrumStaff')
+            LilyPondContext(name='Dynamics')
             LilyPondContext(name='FiguredBass')
             LilyPondContext(name='FretBoards')
             LilyPondContext(name='GrandStaff')
@@ -1074,6 +1106,7 @@ class LilyPondContext:
             LilyPondContext(name='Lyrics')
             LilyPondContext(name='MensuralStaff')
             LilyPondContext(name='NoteNames')
+            LilyPondContext(name='OneStaff')
             LilyPondContext(name='PetrucciStaff')
             LilyPondContext(name='PianoStaff')
             LilyPondContext(name='RhythmicStaff')
@@ -1092,3 +1125,833 @@ class LilyPondContext:
             assert isinstance(set_, set), repr(set_)
             if self.name in set_:
                 set_.remove(self.name)
+
+
+class LilyPondEngraver:
+    """
+    LilyPond engraver.
+
+    ..  container:: example
+
+        >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
+        >>> print(abjad.storage(engraver))
+        abjad.LilyPondEngraver(
+            name='Auto_beam_engraver',
+            )
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_name",)
+
+    _identity_map: typing.Dict[str, "LilyPondEngraver"] = {}
+
+    ### CONSTRUCTOR ###
+
+    def __new__(class_, name="Note_heads_engraver"):
+        if name in class_._identity_map:
+            obj = class_._identity_map[name]
+        else:
+            obj = object.__new__(class_)
+            class_._identity_map[name] = obj
+        return obj
+
+    ### INITIALIZER ###
+
+    def __init__(self, name: str = "Note_heads_engraver") -> None:
+        assert name in engravers
+        self._name = name
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_all_engravers() -> typing.Tuple["LilyPondEngraver", ...]:
+        """
+        Lists all engravers.
+
+        ..  container:: example
+
+            >>> for lilypond_engraver in abjad.LilyPondEngraver.list_all_engravers():
+            ...     lilypond_engraver
+            ...
+            LilyPondEngraver(name='Accidental_engraver')
+            LilyPondEngraver(name='Ambitus_engraver')
+            LilyPondEngraver(name='Arpeggio_engraver')
+            LilyPondEngraver(name='Auto_beam_engraver')
+            LilyPondEngraver(name='Axis_group_engraver')
+            LilyPondEngraver(name='Balloon_engraver')
+            LilyPondEngraver(name='Bar_engraver')
+            LilyPondEngraver(name='Bar_number_engraver')
+            LilyPondEngraver(name='Beam_collision_engraver')
+            LilyPondEngraver(name='Beam_engraver')
+            LilyPondEngraver(name='Beam_performer')
+            LilyPondEngraver(name='Bend_engraver')
+            LilyPondEngraver(name='Break_align_engraver')
+            LilyPondEngraver(name='Breathing_sign_engraver')
+            LilyPondEngraver(name='Chord_name_engraver')
+            LilyPondEngraver(name='Chord_tremolo_engraver')
+            LilyPondEngraver(name='Clef_engraver')
+            LilyPondEngraver(name='Cluster_spanner_engraver')
+            LilyPondEngraver(name='Collision_engraver')
+            LilyPondEngraver(name='Completion_heads_engraver')
+            LilyPondEngraver(name='Completion_rest_engraver')
+            LilyPondEngraver(name='Concurrent_hairpin_engraver')
+            LilyPondEngraver(name='Control_track_performer')
+            LilyPondEngraver(name='Cue_clef_engraver')
+            LilyPondEngraver(name='Custos_engraver')
+            LilyPondEngraver(name='Default_bar_line_engraver')
+            LilyPondEngraver(name='Dot_column_engraver')
+            LilyPondEngraver(name='Dots_engraver')
+            LilyPondEngraver(name='Double_percent_repeat_engraver')
+            LilyPondEngraver(name='Drum_note_performer')
+            LilyPondEngraver(name='Drum_notes_engraver')
+            LilyPondEngraver(name='Dynamic_align_engraver')
+            LilyPondEngraver(name='Dynamic_engraver')
+            LilyPondEngraver(name='Dynamic_performer')
+            LilyPondEngraver(name='Episema_engraver')
+            LilyPondEngraver(name='Extender_engraver')
+            LilyPondEngraver(name='Figured_bass_engraver')
+            LilyPondEngraver(name='Figured_bass_position_engraver')
+            LilyPondEngraver(name='Fingering_column_engraver')
+            LilyPondEngraver(name='Fingering_engraver')
+            LilyPondEngraver(name='Font_size_engraver')
+            LilyPondEngraver(name='Footnote_engraver')
+            LilyPondEngraver(name='Forbid_line_break_engraver')
+            LilyPondEngraver(name='Fretboard_engraver')
+            LilyPondEngraver(name='Glissando_engraver')
+            LilyPondEngraver(name='Grace_auto_beam_engraver')
+            LilyPondEngraver(name='Grace_beam_engraver')
+            LilyPondEngraver(name='Grace_engraver')
+            LilyPondEngraver(name='Grace_spacing_engraver')
+            LilyPondEngraver(name='Grid_line_span_engraver')
+            LilyPondEngraver(name='Grid_point_engraver')
+            LilyPondEngraver(name='Grob_pq_engraver')
+            LilyPondEngraver(name='Horizontal_bracket_engraver')
+            LilyPondEngraver(name='Hyphen_engraver')
+            LilyPondEngraver(name='Instrument_name_engraver')
+            LilyPondEngraver(name='Instrument_switch_engraver')
+            LilyPondEngraver(name='Keep_alive_together_engraver')
+            LilyPondEngraver(name='Key_engraver')
+            LilyPondEngraver(name='Key_performer')
+            LilyPondEngraver(name='Kievan_ligature_engraver')
+            LilyPondEngraver(name='Laissez_vibrer_engraver')
+            LilyPondEngraver(name='Ledger_line_engraver')
+            LilyPondEngraver(name='Ligature_bracket_engraver')
+            LilyPondEngraver(name='Lyric_engraver')
+            LilyPondEngraver(name='Lyric_performer')
+            LilyPondEngraver(name='Mark_engraver')
+            LilyPondEngraver(name='Measure_counter_engraver')
+            LilyPondEngraver(name='Measure_grouping_engraver')
+            LilyPondEngraver(name='Melody_engraver')
+            LilyPondEngraver(name='Mensural_ligature_engraver')
+            LilyPondEngraver(name='Merge_rests_engraver')
+            LilyPondEngraver(name='Metronome_mark_engraver')
+            LilyPondEngraver(name='Midi_control_change_performer')
+            LilyPondEngraver(name='Multi_measure_rest_engraver')
+            LilyPondEngraver(name='New_fingering_engraver')
+            LilyPondEngraver(name='Note_head_line_engraver')
+            LilyPondEngraver(name='Note_heads_engraver')
+            LilyPondEngraver(name='Note_name_engraver')
+            LilyPondEngraver(name='Note_performer')
+            LilyPondEngraver(name='Note_spacing_engraver')
+            LilyPondEngraver(name='Ottava_spanner_engraver')
+            LilyPondEngraver(name='Output_property_engraver')
+            LilyPondEngraver(name='Page_turn_engraver')
+            LilyPondEngraver(name='Paper_column_engraver')
+            LilyPondEngraver(name='Parenthesis_engraver')
+            LilyPondEngraver(name='Part_combine_engraver')
+            LilyPondEngraver(name='Percent_repeat_engraver')
+            LilyPondEngraver(name='Phrasing_slur_engraver')
+            LilyPondEngraver(name='Piano_pedal_align_engraver')
+            LilyPondEngraver(name='Piano_pedal_engraver')
+            LilyPondEngraver(name='Piano_pedal_performer')
+            LilyPondEngraver(name='Pitch_squash_engraver')
+            LilyPondEngraver(name='Pitched_trill_engraver')
+            LilyPondEngraver(name='Pure_from_neighbor_engraver')
+            LilyPondEngraver(name='Repeat_acknowledge_engraver')
+            LilyPondEngraver(name='Repeat_tie_engraver')
+            LilyPondEngraver(name='Rest_collision_engraver')
+            LilyPondEngraver(name='Rest_engraver')
+            LilyPondEngraver(name='Rhythmic_column_engraver')
+            LilyPondEngraver(name='Script_column_engraver')
+            LilyPondEngraver(name='Script_engraver')
+            LilyPondEngraver(name='Script_row_engraver')
+            LilyPondEngraver(name='Separating_line_group_engraver')
+            LilyPondEngraver(name='Slash_repeat_engraver')
+            LilyPondEngraver(name='Slur_engraver')
+            LilyPondEngraver(name='Slur_performer')
+            LilyPondEngraver(name='Spacing_engraver')
+            LilyPondEngraver(name='Span_arpeggio_engraver')
+            LilyPondEngraver(name='Span_bar_engraver')
+            LilyPondEngraver(name='Span_bar_stub_engraver')
+            LilyPondEngraver(name='Span_stem_engraver')
+            LilyPondEngraver(name='Spanner_break_forbid_engraver')
+            LilyPondEngraver(name='Staff_collecting_engraver')
+            LilyPondEngraver(name='Staff_performer')
+            LilyPondEngraver(name='Staff_symbol_engraver')
+            LilyPondEngraver(name='Stanza_number_align_engraver')
+            LilyPondEngraver(name='Stanza_number_engraver')
+            LilyPondEngraver(name='Stem_engraver')
+            LilyPondEngraver(name='System_start_delimiter_engraver')
+            LilyPondEngraver(name='Tab_note_heads_engraver')
+            LilyPondEngraver(name='Tab_staff_symbol_engraver')
+            LilyPondEngraver(name='Tab_tie_follow_engraver')
+            LilyPondEngraver(name='Tempo_performer')
+            LilyPondEngraver(name='Text_engraver')
+            LilyPondEngraver(name='Text_spanner_engraver')
+            LilyPondEngraver(name='Tie_engraver')
+            LilyPondEngraver(name='Tie_performer')
+            LilyPondEngraver(name='Time_signature_engraver')
+            LilyPondEngraver(name='Time_signature_performer')
+            LilyPondEngraver(name='Timing_translator')
+            LilyPondEngraver(name='Trill_spanner_engraver')
+            LilyPondEngraver(name='Tuplet_engraver')
+            LilyPondEngraver(name='Tweak_engraver')
+            LilyPondEngraver(name='Vaticana_ligature_engraver')
+            LilyPondEngraver(name='Vertical_align_engraver')
+            LilyPondEngraver(name='Volta_engraver')
+
+        """
+        return tuple(LilyPondEngraver(name=name) for name in sorted(engravers))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def grobs(self) -> typing.Tuple["LilyPondGrob", ...]:
+        """
+        Gets LilyPond engraver's created grobs.
+
+        ..  container:: example
+
+            >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
+            >>> for grob in engraver.grobs:
+            ...     grob
+            ...
+            LilyPondGrob(name='Beam')
+
+        """
+        dictionary = engravers[self.name]
+        assert isinstance(dictionary, dict), repr(dictionary)
+        return tuple(LilyPondGrob(name=name) for name in dictionary["grobs_created"])
+
+    @property
+    def name(self) -> str:
+        """
+        Gets name of LilyPond engraver.
+
+        ..  container:: example
+
+            >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
+            >>> engraver.name
+            'Auto_beam_engraver'
+
+        """
+        return self._name
+
+    @property
+    def property_names(self) -> typing.Tuple[str, ...]:
+        """
+        Gets LilyPond engraver's property names.
+
+        ..  container:: example
+
+            >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
+            >>> for property_name in engraver.property_names:
+            ...     property_name
+            ...
+            'autoBeaming'
+            'baseMoment'
+            'beamExceptions'
+            'beamHalfMeasure'
+            'beatStructure'
+            'subdivideBeams'
+
+        """
+        dictionary = engravers[self.name]
+        assert isinstance(dictionary, dict), repr(dictionary)
+        property_names: typing.Set[str] = set()
+        property_names.update(dictionary["properties_read"])
+        property_names.update(dictionary["properties_written"])
+        return tuple(sorted(property_names))
+
+
+class LilyPondGrob:
+    """
+    LilyPond grob.
+
+    ..  container:: example
+
+        >>> grob = abjad.LilyPondGrob('Beam')
+        >>> print(abjad.storage(grob))
+        abjad.LilyPondGrob(
+            name='Beam',
+            )
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_name",)
+
+    _identity_map: typing.Dict[str, "LilyPondGrob"] = {}
+
+    ### CONSTRUCTOR ###
+
+    def __new__(class_, name="NoteHead"):
+        if name in class_._identity_map:
+            obj = class_._identity_map[name]
+        else:
+            obj = object.__new__(class_)
+            class_._identity_map[name] = obj
+        return obj
+
+    ### INITIALIZER ###
+
+    def __init__(self, name="NoteHead") -> None:
+        assert name in grob_interfaces
+        self._name = name
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def interfaces(self) -> typing.Tuple["LilyPondGrobInterface", ...]:
+        """
+        Gets interfaces of LilyPond grob.
+
+        ..  container:: example
+
+            >>> grob = abjad.LilyPondGrob('Beam')
+            >>> for interface in grob.interfaces:
+            ...     interface
+            ...
+            LilyPondGrobInterface(name='beam-interface')
+            LilyPondGrobInterface(name='font-interface')
+            LilyPondGrobInterface(name='grob-interface')
+            LilyPondGrobInterface(name='spanner-interface')
+            LilyPondGrobInterface(name='staff-symbol-referencer-interface')
+            LilyPondGrobInterface(name='unbreakable-spanner-interface')
+
+        """
+        return tuple(
+            LilyPondGrobInterface(_) for _ in sorted(grob_interfaces[self.name])
+        )
+
+    @property
+    def name(self) -> str:
+        """
+        Gets name of LilyPond grob.
+
+        ..  container:: example
+
+            >>> grob = abjad.LilyPondGrob('Beam')
+            >>> grob.name
+            'Beam'
+
+        """
+        return self._name
+
+    @property
+    def property_names(self) -> typing.Tuple[str, ...]:
+        """
+        Gets property names of LilyPond grob.
+
+        ..  container:: example
+
+            >>> grob = abjad.LilyPondGrob('Beam')
+            >>> for property_name in grob.property_names:
+            ...     property_name
+            ...
+            'X-extent'
+            'X-offset'
+            'X-positions'
+            'Y-extent'
+            'Y-offset'
+            'after-line-breaking'
+            'annotation'
+            'auto-knee-gap'
+            'avoid-slur'
+            'beam-thickness'
+            'beamed-stem-shorten'
+            'beaming'
+            'before-line-breaking'
+            'break-overshoot'
+            'breakable'
+            'clip-edges'
+            'collision-interfaces'
+            'collision-voice-only'
+            'color'
+            'concaveness'
+            'cross-staff'
+            'damping'
+            'details'
+            'direction'
+            'extra-offset'
+            'font-encoding'
+            'font-family'
+            'font-features'
+            'font-name'
+            'font-series'
+            'font-shape'
+            'font-size'
+            'footnote-music'
+            'forced-spacing'
+            'gap'
+            'gap-count'
+            'grow-direction'
+            'horizontal-skylines'
+            'id'
+            'inspect-quants'
+            'knee'
+            'layer'
+            'length-fraction'
+            'minimum-X-extent'
+            'minimum-Y-extent'
+            'minimum-length'
+            'minimum-length-after-break'
+            'neutral-direction'
+            'normalized-endpoints'
+            'output-attributes'
+            'parenthesis-friends'
+            'positions'
+            'rotation'
+            'skip-quanting'
+            'skyline-horizontal-padding'
+            'spanner-id'
+            'springs-and-rods'
+            'staff-position'
+            'stencil'
+            'to-barline'
+            'transparent'
+            'vertical-skylines'
+            'whiteout'
+            'whiteout-style'
+
+        """
+        property_names: typing.Set[str] = set()
+        for interface in self.interfaces:
+            property_names.update(interface.property_names)
+        return tuple(sorted(property_names))
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_all_grobs() -> typing.Tuple["LilyPondGrob", ...]:
+        """
+        Lists all grobs.
+
+        ..  container:: example
+
+            >>> for lilypond_grob in abjad.LilyPondGrob.list_all_grobs():
+            ...     lilypond_grob
+            ...
+            LilyPondGrob(name='Accidental')
+            LilyPondGrob(name='AccidentalCautionary')
+            LilyPondGrob(name='AccidentalPlacement')
+            LilyPondGrob(name='AccidentalSuggestion')
+            LilyPondGrob(name='Ambitus')
+            LilyPondGrob(name='AmbitusAccidental')
+            LilyPondGrob(name='AmbitusLine')
+            LilyPondGrob(name='AmbitusNoteHead')
+            LilyPondGrob(name='Arpeggio')
+            LilyPondGrob(name='BalloonTextItem')
+            LilyPondGrob(name='BarLine')
+            LilyPondGrob(name='BarNumber')
+            LilyPondGrob(name='BassFigure')
+            LilyPondGrob(name='BassFigureAlignment')
+            LilyPondGrob(name='BassFigureAlignmentPositioning')
+            LilyPondGrob(name='BassFigureBracket')
+            LilyPondGrob(name='BassFigureContinuation')
+            LilyPondGrob(name='BassFigureLine')
+            LilyPondGrob(name='Beam')
+            LilyPondGrob(name='BendAfter')
+            LilyPondGrob(name='BreakAlignGroup')
+            LilyPondGrob(name='BreakAlignment')
+            LilyPondGrob(name='BreathingSign')
+            LilyPondGrob(name='ChordName')
+            LilyPondGrob(name='Clef')
+            LilyPondGrob(name='ClefModifier')
+            LilyPondGrob(name='ClusterSpanner')
+            LilyPondGrob(name='ClusterSpannerBeacon')
+            LilyPondGrob(name='CombineTextScript')
+            LilyPondGrob(name='CueClef')
+            LilyPondGrob(name='CueEndClef')
+            LilyPondGrob(name='Custos')
+            LilyPondGrob(name='DotColumn')
+            LilyPondGrob(name='Dots')
+            LilyPondGrob(name='DoublePercentRepeat')
+            LilyPondGrob(name='DoublePercentRepeatCounter')
+            LilyPondGrob(name='DoubleRepeatSlash')
+            LilyPondGrob(name='DynamicLineSpanner')
+            LilyPondGrob(name='DynamicText')
+            LilyPondGrob(name='DynamicTextSpanner')
+            LilyPondGrob(name='Episema')
+            LilyPondGrob(name='Fingering')
+            LilyPondGrob(name='FingeringColumn')
+            LilyPondGrob(name='Flag')
+            LilyPondGrob(name='FootnoteItem')
+            LilyPondGrob(name='FootnoteSpanner')
+            LilyPondGrob(name='FretBoard')
+            LilyPondGrob(name='Glissando')
+            LilyPondGrob(name='GraceSpacing')
+            LilyPondGrob(name='GridLine')
+            LilyPondGrob(name='GridPoint')
+            LilyPondGrob(name='Hairpin')
+            LilyPondGrob(name='HorizontalBracket')
+            LilyPondGrob(name='HorizontalBracketText')
+            LilyPondGrob(name='InstrumentName')
+            LilyPondGrob(name='InstrumentSwitch')
+            LilyPondGrob(name='KeyCancellation')
+            LilyPondGrob(name='KeySignature')
+            LilyPondGrob(name='KievanLigature')
+            LilyPondGrob(name='LaissezVibrerTie')
+            LilyPondGrob(name='LaissezVibrerTieColumn')
+            LilyPondGrob(name='LedgerLineSpanner')
+            LilyPondGrob(name='LeftEdge')
+            LilyPondGrob(name='LigatureBracket')
+            LilyPondGrob(name='LyricExtender')
+            LilyPondGrob(name='LyricHyphen')
+            LilyPondGrob(name='LyricSpace')
+            LilyPondGrob(name='LyricText')
+            LilyPondGrob(name='MeasureCounter')
+            LilyPondGrob(name='MeasureGrouping')
+            LilyPondGrob(name='MelodyItem')
+            LilyPondGrob(name='MensuralLigature')
+            LilyPondGrob(name='MetronomeMark')
+            LilyPondGrob(name='MultiMeasureRest')
+            LilyPondGrob(name='MultiMeasureRestNumber')
+            LilyPondGrob(name='MultiMeasureRestText')
+            LilyPondGrob(name='NonMusicalPaperColumn')
+            LilyPondGrob(name='NoteCollision')
+            LilyPondGrob(name='NoteColumn')
+            LilyPondGrob(name='NoteHead')
+            LilyPondGrob(name='NoteName')
+            LilyPondGrob(name='NoteSpacing')
+            LilyPondGrob(name='OttavaBracket')
+            LilyPondGrob(name='PaperColumn')
+            LilyPondGrob(name='ParenthesesItem')
+            LilyPondGrob(name='PercentRepeat')
+            LilyPondGrob(name='PercentRepeatCounter')
+            LilyPondGrob(name='PhrasingSlur')
+            LilyPondGrob(name='PianoPedalBracket')
+            LilyPondGrob(name='RehearsalMark')
+            LilyPondGrob(name='RepeatSlash')
+            LilyPondGrob(name='RepeatTie')
+            LilyPondGrob(name='RepeatTieColumn')
+            LilyPondGrob(name='Rest')
+            LilyPondGrob(name='RestCollision')
+            LilyPondGrob(name='Script')
+            LilyPondGrob(name='ScriptColumn')
+            LilyPondGrob(name='ScriptRow')
+            LilyPondGrob(name='Slur')
+            LilyPondGrob(name='SostenutoPedal')
+            LilyPondGrob(name='SostenutoPedalLineSpanner')
+            LilyPondGrob(name='SpacingSpanner')
+            LilyPondGrob(name='SpanBar')
+            LilyPondGrob(name='SpanBarStub')
+            LilyPondGrob(name='StaffGrouper')
+            LilyPondGrob(name='StaffSpacing')
+            LilyPondGrob(name='StaffSymbol')
+            LilyPondGrob(name='StanzaNumber')
+            LilyPondGrob(name='Stem')
+            LilyPondGrob(name='StemStub')
+            LilyPondGrob(name='StemTremolo')
+            LilyPondGrob(name='StringNumber')
+            LilyPondGrob(name='StrokeFinger')
+            LilyPondGrob(name='SustainPedal')
+            LilyPondGrob(name='SustainPedalLineSpanner')
+            LilyPondGrob(name='System')
+            LilyPondGrob(name='SystemStartBar')
+            LilyPondGrob(name='SystemStartBrace')
+            LilyPondGrob(name='SystemStartBracket')
+            LilyPondGrob(name='SystemStartSquare')
+            LilyPondGrob(name='TabNoteHead')
+            LilyPondGrob(name='TextScript')
+            LilyPondGrob(name='TextSpanner')
+            LilyPondGrob(name='Tie')
+            LilyPondGrob(name='TieColumn')
+            LilyPondGrob(name='TimeSignature')
+            LilyPondGrob(name='TrillPitchAccidental')
+            LilyPondGrob(name='TrillPitchGroup')
+            LilyPondGrob(name='TrillPitchHead')
+            LilyPondGrob(name='TrillSpanner')
+            LilyPondGrob(name='TupletBracket')
+            LilyPondGrob(name='TupletNumber')
+            LilyPondGrob(name='UnaCordaPedal')
+            LilyPondGrob(name='UnaCordaPedalLineSpanner')
+            LilyPondGrob(name='VaticanaLigature')
+            LilyPondGrob(name='VerticalAlignment')
+            LilyPondGrob(name='VerticalAxisGroup')
+            LilyPondGrob(name='VoiceFollower')
+            LilyPondGrob(name='VoltaBracket')
+            LilyPondGrob(name='VoltaBracketSpanner')
+
+        """
+        return tuple(LilyPondGrob(name) for name in sorted(grob_interfaces))
+
+
+class LilyPondGrobInterface:
+    """
+    LilyPond grob interface.
+
+    ..  container:: example
+
+        >>> interface = abjad.LilyPondGrobInterface('beam-interface')
+        >>> print(abjad.storage(interface))
+        abjad.LilyPondGrobInterface(
+            name='beam-interface',
+            )
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_name",)
+
+    _identity_map: typing.Dict[str, "LilyPondGrobInterface"] = {}
+
+    ### CONSTRUCTOR ###
+
+    def __new__(class_, name="grob-interface"):
+        if name in class_._identity_map:
+            obj = class_._identity_map[name]
+        else:
+            obj = object.__new__(class_)
+            class_._identity_map[name] = obj
+        return obj
+
+    ### INITIALIZER ###
+
+    def __init__(self, name: str = "grob-interface") -> None:
+        assert name in interface_properties
+        self._name = name
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_all_interfaces() -> typing.Tuple["LilyPondGrobInterface", ...]:
+        """
+        Lists all interfaces.
+
+        ..  container:: example
+
+            >>> for grob_interface in abjad.LilyPondGrobInterface.list_all_interfaces():
+            ...     grob_interface
+            ...
+            LilyPondGrobInterface(name='accidental-interface')
+            LilyPondGrobInterface(name='accidental-placement-interface')
+            LilyPondGrobInterface(name='accidental-suggestion-interface')
+            LilyPondGrobInterface(name='align-interface')
+            LilyPondGrobInterface(name='ambitus-interface')
+            LilyPondGrobInterface(name='arpeggio-interface')
+            LilyPondGrobInterface(name='axis-group-interface')
+            LilyPondGrobInterface(name='balloon-interface')
+            LilyPondGrobInterface(name='bar-line-interface')
+            LilyPondGrobInterface(name='bass-figure-alignment-interface')
+            LilyPondGrobInterface(name='bass-figure-interface')
+            LilyPondGrobInterface(name='beam-interface')
+            LilyPondGrobInterface(name='bend-after-interface')
+            LilyPondGrobInterface(name='break-alignable-interface')
+            LilyPondGrobInterface(name='break-aligned-interface')
+            LilyPondGrobInterface(name='break-alignment-interface')
+            LilyPondGrobInterface(name='breathing-sign-interface')
+            LilyPondGrobInterface(name='chord-name-interface')
+            LilyPondGrobInterface(name='clef-interface')
+            LilyPondGrobInterface(name='clef-modifier-interface')
+            LilyPondGrobInterface(name='cluster-beacon-interface')
+            LilyPondGrobInterface(name='cluster-interface')
+            LilyPondGrobInterface(name='custos-interface')
+            LilyPondGrobInterface(name='dot-column-interface')
+            LilyPondGrobInterface(name='dots-interface')
+            LilyPondGrobInterface(name='dynamic-interface')
+            LilyPondGrobInterface(name='dynamic-line-spanner-interface')
+            LilyPondGrobInterface(name='dynamic-text-interface')
+            LilyPondGrobInterface(name='dynamic-text-spanner-interface')
+            LilyPondGrobInterface(name='enclosing-bracket-interface')
+            LilyPondGrobInterface(name='episema-interface')
+            LilyPondGrobInterface(name='figured-bass-continuation-interface')
+            LilyPondGrobInterface(name='finger-interface')
+            LilyPondGrobInterface(name='fingering-column-interface')
+            LilyPondGrobInterface(name='flag-interface')
+            LilyPondGrobInterface(name='font-interface')
+            LilyPondGrobInterface(name='footnote-interface')
+            LilyPondGrobInterface(name='footnote-spanner-interface')
+            LilyPondGrobInterface(name='fret-diagram-interface')
+            LilyPondGrobInterface(name='glissando-interface')
+            LilyPondGrobInterface(name='grace-spacing-interface')
+            LilyPondGrobInterface(name='gregorian-ligature-interface')
+            LilyPondGrobInterface(name='grid-line-interface')
+            LilyPondGrobInterface(name='grid-point-interface')
+            LilyPondGrobInterface(name='grob-interface')
+            LilyPondGrobInterface(name='hairpin-interface')
+            LilyPondGrobInterface(name='hara-kiri-group-spanner-interface')
+            LilyPondGrobInterface(name='horizontal-bracket-interface')
+            LilyPondGrobInterface(name='horizontal-bracket-text-interface')
+            LilyPondGrobInterface(name='inline-accidental-interface')
+            LilyPondGrobInterface(name='instrument-specific-markup-interface')
+            LilyPondGrobInterface(name='item-interface')
+            LilyPondGrobInterface(name='key-cancellation-interface')
+            LilyPondGrobInterface(name='key-signature-interface')
+            LilyPondGrobInterface(name='kievan-ligature-interface')
+            LilyPondGrobInterface(name='ledger-line-spanner-interface')
+            LilyPondGrobInterface(name='ledgered-interface')
+            LilyPondGrobInterface(name='ligature-bracket-interface')
+            LilyPondGrobInterface(name='ligature-head-interface')
+            LilyPondGrobInterface(name='ligature-interface')
+            LilyPondGrobInterface(name='line-interface')
+            LilyPondGrobInterface(name='line-spanner-interface')
+            LilyPondGrobInterface(name='lyric-extender-interface')
+            LilyPondGrobInterface(name='lyric-hyphen-interface')
+            LilyPondGrobInterface(name='lyric-interface')
+            LilyPondGrobInterface(name='lyric-syllable-interface')
+            LilyPondGrobInterface(name='mark-interface')
+            LilyPondGrobInterface(name='measure-counter-interface')
+            LilyPondGrobInterface(name='measure-grouping-interface')
+            LilyPondGrobInterface(name='melody-spanner-interface')
+            LilyPondGrobInterface(name='mensural-ligature-interface')
+            LilyPondGrobInterface(name='metronome-mark-interface')
+            LilyPondGrobInterface(name='multi-measure-interface')
+            LilyPondGrobInterface(name='multi-measure-rest-interface')
+            LilyPondGrobInterface(name='note-collision-interface')
+            LilyPondGrobInterface(name='note-column-interface')
+            LilyPondGrobInterface(name='note-head-interface')
+            LilyPondGrobInterface(name='note-name-interface')
+            LilyPondGrobInterface(name='note-spacing-interface')
+            LilyPondGrobInterface(name='number-interface')
+            LilyPondGrobInterface(name='only-prebreak-interface')
+            LilyPondGrobInterface(name='ottava-bracket-interface')
+            LilyPondGrobInterface(name='outside-staff-axis-group-interface')
+            LilyPondGrobInterface(name='outside-staff-interface')
+            LilyPondGrobInterface(name='paper-column-interface')
+            LilyPondGrobInterface(name='parentheses-interface')
+            LilyPondGrobInterface(name='percent-repeat-interface')
+            LilyPondGrobInterface(name='percent-repeat-item-interface')
+            LilyPondGrobInterface(name='piano-pedal-bracket-interface')
+            LilyPondGrobInterface(name='piano-pedal-interface')
+            LilyPondGrobInterface(name='piano-pedal-script-interface')
+            LilyPondGrobInterface(name='pitched-trill-interface')
+            LilyPondGrobInterface(name='pure-from-neighbor-interface')
+            LilyPondGrobInterface(name='rest-collision-interface')
+            LilyPondGrobInterface(name='rest-interface')
+            LilyPondGrobInterface(name='rhythmic-grob-interface')
+            LilyPondGrobInterface(name='rhythmic-head-interface')
+            LilyPondGrobInterface(name='script-column-interface')
+            LilyPondGrobInterface(name='script-interface')
+            LilyPondGrobInterface(name='self-alignment-interface')
+            LilyPondGrobInterface(name='semi-tie-column-interface')
+            LilyPondGrobInterface(name='semi-tie-interface')
+            LilyPondGrobInterface(name='separation-item-interface')
+            LilyPondGrobInterface(name='side-position-interface')
+            LilyPondGrobInterface(name='slur-interface')
+            LilyPondGrobInterface(name='spaceable-grob-interface')
+            LilyPondGrobInterface(name='spacing-interface')
+            LilyPondGrobInterface(name='spacing-options-interface')
+            LilyPondGrobInterface(name='spacing-spanner-interface')
+            LilyPondGrobInterface(name='span-bar-interface')
+            LilyPondGrobInterface(name='spanner-interface')
+            LilyPondGrobInterface(name='staff-grouper-interface')
+            LilyPondGrobInterface(name='staff-spacing-interface')
+            LilyPondGrobInterface(name='staff-symbol-interface')
+            LilyPondGrobInterface(name='staff-symbol-referencer-interface')
+            LilyPondGrobInterface(name='stanza-number-interface')
+            LilyPondGrobInterface(name='stem-interface')
+            LilyPondGrobInterface(name='stem-tremolo-interface')
+            LilyPondGrobInterface(name='string-number-interface')
+            LilyPondGrobInterface(name='stroke-finger-interface')
+            LilyPondGrobInterface(name='system-interface')
+            LilyPondGrobInterface(name='system-start-delimiter-interface')
+            LilyPondGrobInterface(name='system-start-text-interface')
+            LilyPondGrobInterface(name='tab-note-head-interface')
+            LilyPondGrobInterface(name='text-interface')
+            LilyPondGrobInterface(name='text-script-interface')
+            LilyPondGrobInterface(name='tie-column-interface')
+            LilyPondGrobInterface(name='tie-interface')
+            LilyPondGrobInterface(name='time-signature-interface')
+            LilyPondGrobInterface(name='trill-pitch-accidental-interface')
+            LilyPondGrobInterface(name='trill-spanner-interface')
+            LilyPondGrobInterface(name='tuplet-bracket-interface')
+            LilyPondGrobInterface(name='tuplet-number-interface')
+            LilyPondGrobInterface(name='unbreakable-spanner-interface')
+            LilyPondGrobInterface(name='vaticana-ligature-interface')
+            LilyPondGrobInterface(name='volta-bracket-interface')
+            LilyPondGrobInterface(name='volta-interface')
+
+        """
+        return tuple(LilyPondGrobInterface(_) for _ in sorted(interface_properties))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def name(self) -> str:
+        """
+        Gets name of LilyPond grob interface.
+
+        ..  container:: example
+
+            >>> interface = abjad.LilyPondGrobInterface('beam-interface')
+            >>> interface.name
+            'beam-interface'
+
+        """
+        return self._name
+
+    @property
+    def property_names(self) -> typing.Tuple[str, ...]:
+        """
+        Gets property names of LilyPond grob interface.
+
+        ..  container:: example
+
+            >>> interface = abjad.LilyPondGrobInterface('beam-interface')
+            >>> for property_name in interface.property_names:
+            ...     property_name
+            ...
+            'X-positions'
+            'annotation'
+            'auto-knee-gap'
+            'beam-thickness'
+            'beamed-stem-shorten'
+            'beaming'
+            'break-overshoot'
+            'clip-edges'
+            'collision-interfaces'
+            'collision-voice-only'
+            'concaveness'
+            'damping'
+            'details'
+            'direction'
+            'gap'
+            'gap-count'
+            'grow-direction'
+            'inspect-quants'
+            'knee'
+            'length-fraction'
+            'neutral-direction'
+            'positions'
+            'skip-quanting'
+
+        """
+        names = interface_properties[self.name]
+        assert isinstance(names, list), repr(names)
+        assert all(isinstance(_, str) for _ in names), repr(names)
+        return tuple(names)

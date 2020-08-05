@@ -113,8 +113,9 @@ class LilyPondIO:
     ### PUBLIC METHODS ###
 
     def copy_stylesheets(self, render_directory):
-        for path in self.get_stylesheets_path().glob("*.*ly"):
-            shutil.copy(path, render_directory)
+        for directory in self.get_stylesheets_directories():
+            for path in directory.glob("*.*ly"):
+                shutil.copy(path, render_directory)
 
     def get_lilypond_path(self):
         lilypond_path = configuration.get("lilypond_path")
@@ -160,10 +161,17 @@ class LilyPondIO:
             lilypond_file = illustrate(self.illustrable, **self.keywords)
         return lilypond_file._get_lilypond_format()
 
-    def get_stylesheets_path(self) -> pathlib.Path:
+    def get_stylesheets_directories(self) -> typing.List[pathlib.Path]:
+        directories = []
         path = getattr(abjad, "__path__")
         abjad_path = pathlib.Path(path[0])
-        return abjad_path / ".." / "docs" / "source" / "_stylesheets"
+        directory = abjad_path / ".." / "docs" / "source" / "_stylesheets"
+        directories.append(directory)
+        if "sphinx_stylesheets_directory" in configuration:
+            string = configuration["sphinx_stylesheets_directory"]
+            directory = pathlib.Path(string)
+            directories.append(directory)
+        return directories
 
     def migrate_assets(
         self, render_prefix, render_directory, output_directory

@@ -1,6 +1,6 @@
 from quicktions import Fraction
 
-from . import cli, demos, deprecated, illustrators, iterpitches, ly, makers, tags
+from . import cli, demos, deprecated, illustrators, iterpitches, lyconst, lyenv, makers
 from ._version import __version__, __version_info__
 from .attach import Wrapper, annotate, attach, detach
 from .bundle import LilyPondFormatBundle, SlotContributions
@@ -169,10 +169,12 @@ from .lilypondfile import (
     LilyPondVersionToken,
     PackageGitCommitToken,
 )
-from .ly.LilyPondContext import LilyPondContext
-from .ly.LilyPondEngraver import LilyPondEngraver
-from .ly.LilyPondGrob import LilyPondGrob
-from .ly.LilyPondGrobInterface import LilyPondGrobInterface
+from .lyproxy import (
+    LilyPondContext,
+    LilyPondEngraver,
+    LilyPondGrob,
+    LilyPondGrobInterface,
+)
 from .makers import LeafMaker, NoteMaker
 from .markups import Markup, MarkupCommand, MarkupList, Postscript, PostscriptOperator
 from .mathx import Infinity, NegativeInfinity
@@ -200,7 +202,6 @@ from .parentage import Parentage
 from .parsers import parser
 from .parsers.base import Parser
 from .parsers.parse import parse
-from .path import Path
 from .pattern import Pattern, PatternTuple
 from .pitch.Accidental import Accidental
 from .pitch.Octave import Octave
@@ -285,13 +286,6 @@ from .score import (
     Voice,
 )
 from .segmentmaker import SegmentMaker
-from .segments.Job import Job
-from .segments.Momento import Momento
-from .segments.Part import Part
-from .segments.PartAssignment import PartAssignment
-from .segments.PartManifest import PartManifest
-from .segments.PersistentOverride import PersistentOverride
-from .segments.Section import Section
 from .selectx import (
     DurationInequality,
     Inequality,
@@ -471,7 +465,6 @@ __all__ = [
     "IntervalVector",
     "Inversion",
     "Iteration",
-    "Job",
     "KeyCluster",
     "KeySignature",
     "Label",
@@ -512,7 +505,6 @@ __all__ = [
     "MezzoSopranoVoice",
     "MissingMetronomeMarkError",
     "Mode",
-    "Momento",
     "More",
     "MultimeasureRest",
     "Multiplication",
@@ -550,17 +542,12 @@ __all__ = [
     "Parentage",
     "ParentageError",
     "Parser",
-    "Part",
-    "PartAssignment",
-    "PartManifest",
-    "Path",
     "Pattern",
     "PatternTuple",
     "PatternTyping",
     "Percussion",
     "PersistenceManager",
     "PersistentIndicatorError",
-    "PersistentOverride",
     "Piano",
     "Piccolo",
     "Pitch",
@@ -600,7 +587,6 @@ __all__ = [
     "SchemeVectorConstant",
     "Score",
     "ScoreTemplate",
-    "Section",
     "Segment",
     "SegmentMaker",
     "Selection",
@@ -720,7 +706,8 @@ __all__ = [
     "lilypond",
     "list_all_classes",
     "list_all_functions",
-    "ly",
+    "lyconst",
+    "lyenv",
     "makers",
     "mutate",
     "new",
@@ -741,7 +728,6 @@ __all__ = [
     "show",
     "slur",
     "storage",
-    "tags",
     "text_spanner",
     "tie",
     "timespan",

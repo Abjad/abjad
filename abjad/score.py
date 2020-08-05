@@ -10,8 +10,8 @@ import quicktions
 from . import enums, exceptions, mathx, typings
 from .bundle import LilyPondFormatBundle
 from .duration import Duration, Multiplier, NonreducedFraction
-from .ly.LilyPondContext import LilyPondContext
-from .ly.drums import drums
+from .lyconst import drums
+from .lyproxy import LilyPondContext
 from .markups import Markup
 from .new import new
 from .overrides import TweakInterface, override, setting, tweak

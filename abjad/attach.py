@@ -819,13 +819,13 @@ def attach(  # noqa: 302
         ...     abjad.Clef('alto'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ...     )
         >>> abjad.attach(
         ...     abjad.Clef('tenor'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -863,7 +863,7 @@ def attach(  # noqa: 302
         ...     abjad.Clef('alto'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1060,7 +1060,7 @@ def detach(argument, target=None, by_id=False):
         parts:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], tag=abjad.tags.ONLY_SCORE)
+        >>> abjad.attach(markup_1, staff[0], tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
@@ -1111,7 +1111,7 @@ def detach(argument, target=None, by_id=False):
         We start again:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], tag=abjad.tags.ONLY_SCORE)
+        >>> abjad.attach(markup_1, staff[0], tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
