@@ -12,7 +12,8 @@ if __name__ == "__main__":
         file_name = ""
 
     namespace = {}
-    path = abjad.configuration.abjad_directory / "_version.py"
+    configuration = abjad.Configuration()
+    path = configuration.abjad_directory / "abjad" / "_version.py"
     with open(path) as pointer:
         lines = pointer.readlines()
         string = "".join(lines)
