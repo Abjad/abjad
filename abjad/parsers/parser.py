@@ -391,7 +391,7 @@ class GuileProxy:
 
     def slashed_grace_container(self, music):
         r"""
-        Handles LilyPond ``\slahsedGrace`` command.
+        Handles LilyPond ``\slashedGrace`` command.
         """
         grace = BeforeGraceContainer(music[:])
         return grace
