@@ -1,13 +1,13 @@
 \version "2.19.84"
 
 
-natural-markup = \markup
+abjad-natural-markup = \markup
     \musicglyph #"accidentals.natural"
 
-sharp-markup = \markup
+abjad-sharp-markup = \markup
     \musicglyph #"accidentals.sharp"
 
-flat-markup = \markup
+abjad-flat-markup = \markup
     \musicglyph #"accidentals.flat"
 
 double-sharp-markup = \markup

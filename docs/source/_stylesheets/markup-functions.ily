@@ -48,9 +48,9 @@
 
 
 % diatonic accidentals %
-natural = \markup \heji-accidental-markup ##x266e
-sharp = \markup \heji-accidental-markup ##xe262
-flat = \markup \heji-accidental-markup##xe260
+abjad-natural = \markup \heji-accidental-markup ##x266e
+abjad-sharp = \markup \heji-accidental-markup ##xe262
+abjad-flat = \markup \heji-accidental-markup##xe260
 double-sharp = \markup \heji-accidental-markup ##xe263
 double-flat = \markup \heji-accidental-markup ##xe264
 
