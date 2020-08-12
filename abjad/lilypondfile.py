@@ -9,6 +9,7 @@ import subprocess
 import time
 
 from . import _inspect
+from . import tag as _tag
 from .attach import attach
 from .bundle import LilyPondFormatBundle
 from .configuration import Configuration
@@ -24,7 +25,6 @@ from .score import Component, Container, Context, Leaf, Score, Skip, Staff, Voic
 from .selectx import Selection
 from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
-from .tag import Tag
 
 configuration = Configuration()
 
@@ -208,7 +208,7 @@ class Block:
             return result
         string = f"{self._escaped_name} {{"
         if tag is not None:
-            strings = Tag.tag([string], tag=tag)
+            strings = _tag.tag([string], tag=tag)
             string = strings[0]
         result.append(string)
         for item in self.items:
@@ -225,7 +225,7 @@ class Block:
         result.extend(formatted_context_blocks)
         string = "}"
         if tag is not None:
-            strings = Tag.tag([string], tag=tag)
+            strings = _tag.tag([string], tag=tag)
             string = strings[0]
         result.append(string)
 
@@ -934,7 +934,7 @@ class LilyPondFile:
         items=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
         use_relative_includes=None,
     ) -> None:
         comments = comments or ()
@@ -957,7 +957,7 @@ class LilyPondFile:
             version = LilyPondVersionToken()
             self._lilypond_version_token = version
         if tag is not None:
-            assert isinstance(tag, Tag), repr(tag)
+            assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
         self._use_relative_includes = use_relative_includes
 
@@ -1197,8 +1197,8 @@ class LilyPondFile:
         if self.lilypond_language_token is not None:
             string = f"{self.lilypond_language_token._get_lilypond_format()}"
             includes.append(string)
-        tag = Tag("abjad.LilyPondFile._get_format_pieces()")
-        includes = Tag.tag(includes, tag=self.get_tag(tag))
+        tag = _tag.Tag("abjad.LilyPondFile._get_format_pieces()")
+        includes = _tag.tag(includes, tag=self.get_tag(tag))
         includes = "\n".join(includes)
         if includes:
             result.append(includes)
@@ -1219,7 +1219,7 @@ class LilyPondFile:
 
     def _get_formatted_blocks(self):
         result = []
-        tag = Tag("abjad.LilyPondFile._get_formatted_blocks()")
+        tag = _tag.Tag("abjad.LilyPondFile._get_formatted_blocks()")
         tag = self.get_tag(tag)
         for item in self.items:
             if "_get_lilypond_format" in dir(item) and not isinstance(item, str):
@@ -1250,7 +1250,7 @@ class LilyPondFile:
 
     def _get_formatted_includes(self):
         result = []
-        tag = Tag("abjad.LilyPondFile._get_formatted_includes()")
+        tag = _tag.Tag("abjad.LilyPondFile._get_formatted_includes()")
         tag = self.get_tag(tag)
         for include in self.includes:
             if isinstance(include, str):
@@ -1265,13 +1265,13 @@ class LilyPondFile:
             else:
                 result.append(include._get_lilypond_format())
         if result:
-            result = Tag.tag(result, tag=tag)
+            result = _tag.tag(result, tag=tag)
             result = ["\n".join(result)]
         return result
 
     def _get_formatted_scheme_settings(self):
         result = []
-        tag = Tag("abjad.LilyPondFile._get_formatted_scheme_settings()")
+        tag = _tag.Tag("abjad.LilyPondFile._get_formatted_scheme_settings()")
         tag = self.get_tag(tag)
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
@@ -1283,7 +1283,7 @@ class LilyPondFile:
             string = f"#(set-global-staff-size {global_staff_size})"
             result.append(string)
         if result:
-            result = Tag.tag(result, tag=tag)
+            result = _tag.tag(result, tag=tag)
             result = ["\n".join(result)]
         return result
 
@@ -1623,7 +1623,7 @@ class LilyPondFile:
         """
         Gets tag.
         """
-        tag = Tag(self._tag)
+        tag = _tag.Tag(self._tag)
         tag = tag.append(site)
         return tag
 
@@ -1638,7 +1638,7 @@ class LilyPondFile:
         global_staff_size=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
         use_relative_includes=None,
     ):
         r"""

@@ -1,7 +1,7 @@
 import typing
 
-from .storage import FormatSpecification, StorageFormatManager
-from .tag import Tag
+from . import storage
+from . import tag as _tag
 
 
 class LilyPondFormatBundle:
@@ -49,7 +49,7 @@ class LilyPondFormatBundle:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
@@ -71,7 +71,9 @@ class LilyPondFormatBundle:
             _ for _ in slot_contribution_names if getattr(self, _).has_contributions
         ]
         names.extend(_ for _ in grob_contribution_names if getattr(self, _))
-        return FormatSpecification(client=self, storage_format_keyword_names=names)
+        return storage.FormatSpecification(
+            client=self, storage_format_keyword_names=names
+        )
 
     ### PUBLIC METHODS ###
 
@@ -105,9 +107,9 @@ class LilyPondFormatBundle:
         self.after.tag(tag, deactivate)
         self.opening.tag(tag, deactivate)
         self.closing.tag(tag, deactivate)
-        self._context_settings = Tag.tag(self.context_settings, tag, deactivate)
-        self._grob_overrides = Tag.tag(self.grob_overrides, tag, deactivate)
-        self._grob_reverts = Tag.tag(self.grob_reverts, tag, deactivate)
+        self._context_settings = _tag.tag(self.context_settings, tag, deactivate)
+        self._grob_overrides = _tag.tag(self.grob_overrides, tag, deactivate)
+        self._grob_reverts = _tag.tag(self.grob_reverts, tag, deactivate)
 
     def update(self, format_bundle):
         """
@@ -255,7 +257,7 @@ class SlotContributions:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
@@ -273,7 +275,9 @@ class SlotContributions:
             "trill_spanner_starts",
         ]
         names = [_ for _ in names if getattr(self, _)]
-        return FormatSpecification(client=self, storage_format_keyword_names=names)
+        return storage.FormatSpecification(
+            client=self, storage_format_keyword_names=names
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -389,20 +393,20 @@ class SlotContributions:
         """
         Tags contributions.
         """
-        self._articulations = Tag.tag(self.articulations, tag, deactivate)
-        self._commands = Tag.tag(self.commands, tag, deactivate)
-        self._comments = Tag.tag(self.comments, tag, deactivate)
-        self._indicators = Tag.tag(self.indicators, tag, deactivate)
-        self._leaks = Tag.tag(self.leaks, tag, deactivate)
-        self._markup = Tag.tag(self.markup, tag, deactivate)
-        self._spanners = Tag.tag(self.spanners, tag, deactivate)
+        self._articulations = _tag.tag(self.articulations, tag, deactivate)
+        self._commands = _tag.tag(self.commands, tag, deactivate)
+        self._comments = _tag.tag(self.comments, tag, deactivate)
+        self._indicators = _tag.tag(self.indicators, tag, deactivate)
+        self._leaks = _tag.tag(self.leaks, tag, deactivate)
+        self._markup = _tag.tag(self.markup, tag, deactivate)
+        self._spanners = _tag.tag(self.spanners, tag, deactivate)
         strings = []
         # make sure each line of multiline markup is tagged
         for string in self.spanner_starts:
             strings.extend(string.split("\n"))
-        self._spanner_starts = Tag.tag(strings, tag, deactivate)
-        self._spanner_stops = Tag.tag(self.spanner_stops, tag, deactivate)
-        self._stem_tremolos = Tag.tag(self.stem_tremolos, tag, deactivate)
+        self._spanner_starts = _tag.tag(strings, tag, deactivate)
+        self._spanner_stops = _tag.tag(self.spanner_stops, tag, deactivate)
+        self._stem_tremolos = _tag.tag(self.stem_tremolos, tag, deactivate)
 
     def update(self, slot_contributions):
         """

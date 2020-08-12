@@ -2,13 +2,13 @@ import copy
 import typing
 
 from . import enums
+from . import tag as _tag
 from .bundle import LilyPondFormatBundle
 from .lyconst import colors
 from .lyenv import contexts, grob_interfaces
 from .scheme import Scheme, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
 from .stringx import String
-from .tag import Tag
 
 
 class LilyPondLiteral:
@@ -1592,7 +1592,7 @@ class TweakInterface(Interface):
     ### INITIALIZER ###
 
     def __init__(
-        self, *, deactivate: bool = None, literal: bool = None, tag: Tag = None
+        self, *, deactivate: bool = None, literal: bool = None, tag: _tag.Tag = None
     ) -> None:
         if deactivate is not None:
             self._currently_deactivated = deactivate
@@ -1836,7 +1836,7 @@ class TweakInterface(Interface):
             )
             if tag is not None:
                 strings = [string]
-                strings = Tag.tag(strings, deactivate=deactivate, tag=tag)
+                strings = _tag.tag(strings, deactivate=deactivate, tag=tag)
                 string = strings[0]
             result.append(string)
         result.sort()
@@ -2156,7 +2156,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         TweakInterface(('_literal', None), ('bound_details__left_broken__text', False))
 
     """
-    if tag is not None and not isinstance(tag, Tag):
+    if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
 
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)

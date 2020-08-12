@@ -44,4 +44,4 @@ def test_NoteHeadList___setitem___03():
         """
     )
 
-    assert abjad.wellformed(chord)
+    assert abjad.wf.wellformed(chord)

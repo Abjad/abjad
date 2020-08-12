@@ -9,9 +9,8 @@ import sys
 import tempfile
 import time
 
+from . import storage, stringx
 from .configuration import Configuration
-from .storage import FormatSpecification, StorageFormatManager
-from .stringx import String
 
 configuration = Configuration()
 
@@ -53,7 +52,7 @@ class ContextManager:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
 
 class FilesystemState(ContextManager):
@@ -173,10 +172,10 @@ class ForbidUpdate(ContextManager):
         ...         pitch_2 = pitch_1 + abjad.NamedInterval('M3')
         ...         pitches = [pitch_1, pitch_2]
         ...         chord = abjad.Chord(pitches, note.written_duration)
-        ...         abjad.mutate(note).replace(chord)
+        ...         abjad.mutate.replace(note, chord)
         ...
 
-        >>> abjad.wellformed(staff)
+        >>> abjad.wf.wellformed(staff)
         True
 
         >>> abjad.show(staff) # doctest: +SKIP
@@ -509,7 +508,7 @@ class RedirectedStreams(ContextManager):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
+        return storage.FormatSpecification(
             self,
             repr_is_bracketed=True,
             repr_is_indented=False,
@@ -855,7 +854,7 @@ class Timer(ContextManager):
 
         Returns string.
         """
-        identifier = String("second").pluralize(int(self.elapsed_time))
+        identifier = stringx.String("second").pluralize(int(self.elapsed_time))
         message = f"total time {int(self.elapsed_time)} {identifier} ..."
         return message
 

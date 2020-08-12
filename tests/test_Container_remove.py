@@ -50,8 +50,8 @@ def test_Container_remove_01():
 
     assert abjad.lilypond(note) == "d'8\n[\n]"
 
-    assert abjad.wellformed(voice)
-    assert abjad.wellformed(note)
+    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.wellformed(note)
 
 
 def test_Container_remove_02():
@@ -99,7 +99,7 @@ def test_Container_remove_02():
         """
     )
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
     assert abjad.lilypond(sequential) == abjad.String.normalize(
         r"""
@@ -111,7 +111,7 @@ def test_Container_remove_02():
         """
     )
 
-    assert abjad.wellformed(sequential)
+    assert abjad.wf.wellformed(sequential)
 
 
 def test_Container_remove_03():

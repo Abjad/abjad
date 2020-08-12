@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Mutation__set_leaf_duration_01():
+def test_mutate__set_leaf_duration_01():
     """
     Change leaf to tied duration.
     """
@@ -23,7 +23,7 @@ def test_Mutation__set_leaf_duration_01():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.Mutation._set_leaf_duration(voice[1], abjad.Duration(5, 32))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -42,10 +42,10 @@ def test_Mutation__set_leaf_duration_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation__set_leaf_duration_02():
+def test_mutate__set_leaf_duration_02():
     """
     Change tied leaf to tied value.
     Duplicate ties are not created.
@@ -70,7 +70,7 @@ def test_Mutation__set_leaf_duration_02():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.Mutation._set_leaf_duration(voice[1], abjad.Duration(5, 32))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -90,10 +90,10 @@ def test_Mutation__set_leaf_duration_02():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation__set_leaf_duration_03():
+def test_mutate__set_leaf_duration_03():
     """
     Change leaf to nontied duration.
     Same as voice.written_duration = abjad.Duration(3, 16).
@@ -116,7 +116,7 @@ def test_Mutation__set_leaf_duration_03():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.Mutation._set_leaf_duration(voice[1], abjad.Duration(3, 16))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(3, 16))
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -132,10 +132,10 @@ def test_Mutation__set_leaf_duration_03():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation__set_leaf_duration_04():
+def test_mutate__set_leaf_duration_04():
     """
     Change leaf to tied duration without power-of-two denominator.
     abjad.Tuplet inserted over new tied notes.
@@ -158,7 +158,7 @@ def test_Mutation__set_leaf_duration_04():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.Mutation._set_leaf_duration(voice[1], abjad.Duration(5, 48))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 48))
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -180,10 +180,10 @@ def test_Mutation__set_leaf_duration_04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation__set_leaf_duration_05():
+def test_mutate__set_leaf_duration_05():
     """
     Change leaf to untied duration without power-of-two denominator.
     Tuplet inserted over input leaf.
@@ -206,7 +206,7 @@ def test_Mutation__set_leaf_duration_05():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.Mutation._set_leaf_duration(voice[1], abjad.Duration(1, 12))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(1, 12))
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -225,10 +225,10 @@ def test_Mutation__set_leaf_duration_05():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation__set_leaf_duration_06():
+def test_mutate__set_leaf_duration_06():
     """
     Change leaf with LilyPond multiplier to untied duration with
     power-of-two denominator. LilyPond multiplier changes but leaf written
@@ -239,13 +239,13 @@ def test_Mutation__set_leaf_duration_06():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.Mutation._set_leaf_duration(note, abjad.Duration(1, 32))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(1, 32))
 
-    assert abjad.wellformed(note)
+    assert abjad.wf.wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 1/4"
 
 
-def test_Mutation__set_leaf_duration_07():
+def test_mutate__set_leaf_duration_07():
     """
     Change leaf with LilyPond multiplier to untied duration with
     power-of-two denominator. LilyPond multiplier changes but leaf
@@ -256,13 +256,13 @@ def test_Mutation__set_leaf_duration_07():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.Mutation._set_leaf_duration(note, abjad.Duration(3, 32))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(3, 32))
 
-    assert abjad.wellformed(note)
+    assert abjad.wf.wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 3/4"
 
 
-def test_Mutation__set_leaf_duration_08():
+def test_mutate__set_leaf_duration_08():
     """
     Change leaf with LilyPond multiplier to tied duration with
     power-of-two denominator. LilyPond multiplier changes but leaf
@@ -273,13 +273,13 @@ def test_Mutation__set_leaf_duration_08():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.Mutation._set_leaf_duration(note, abjad.Duration(5, 32))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(5, 32))
 
-    assert abjad.wellformed(note)
+    assert abjad.wf.wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 5/4"
 
 
-def test_Mutation__set_leaf_duration_09():
+def test_mutate__set_leaf_duration_09():
     """
     Change leaf with LilyPond multiplier to duration without
     power-of-two denominator. LilyPond multiplier changes but leaf
@@ -290,13 +290,13 @@ def test_Mutation__set_leaf_duration_09():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.Mutation._set_leaf_duration(note, abjad.Duration(1, 24))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(1, 24))
 
-    assert abjad.wellformed(note)
+    assert abjad.wf.wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 1/3"
 
 
-def test_Mutation__set_leaf_duration_10():
+def test_mutate__set_leaf_duration_10():
     """
     Change leaf with LilyPond multiplier.
     Change to tie-necessitating duration without power-of-two denominator.
@@ -307,13 +307,13 @@ def test_Mutation__set_leaf_duration_10():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.Mutation._set_leaf_duration(note, abjad.Duration(5, 24))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(5, 24))
 
-    assert abjad.wellformed(note)
+    assert abjad.wf.wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 5/3"
 
 
-def test_Mutation__set_leaf_duration_11():
+def test_mutate__set_leaf_duration_11():
     """
     Change rest duration.
     """
@@ -335,7 +335,7 @@ def test_Mutation__set_leaf_duration_11():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.Mutation._set_leaf_duration(voice[1], abjad.Duration(5, 32))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -352,4 +352,4 @@ def test_Mutation__set_leaf_duration_11():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)

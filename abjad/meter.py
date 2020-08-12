@@ -7,11 +7,10 @@ import typing
 
 import uqbar.graphs
 
-from . import _inspect, _iterate, markups, mathx, rhythmtrees
+from . import _inspect, _iterate, markups, mathx, mutate, rhythmtrees
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
 from .lilypondfile import LilyPondFile
-from .mutate import Mutation
 from .new import new
 from .parentage import Parentage
 from .score import Chord, Container, Note, Rest, Skip, Tuplet
@@ -978,7 +977,7 @@ class Meter:
             >>> meter.preferred_boundary_depth
             1
 
-        Used by ``abjad.Mutation.rewrite_meter()``.
+        Used by ``abjad.Meter.rewrite_meter()``.
 
         Defaults to none.
 
@@ -1397,7 +1396,8 @@ class Meter:
             Without constraining the ``maximum_dot_count``:
 
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(measure[:], time_signature)
@@ -1428,7 +1428,8 @@ class Meter:
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(
@@ -1465,7 +1466,8 @@ class Meter:
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(
@@ -1504,7 +1506,8 @@ class Meter:
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(
@@ -1589,7 +1592,8 @@ class Meter:
                 }
 
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(measure[:], time_signature)
@@ -1620,7 +1624,8 @@ class Meter:
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(
@@ -1656,7 +1661,8 @@ class Meter:
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(
@@ -1804,8 +1810,9 @@ class Meter:
 
             >>> for staff in score:
             ...     for container in staff:
-            ...         leaf = abjad.inspect(container).leaf(0)
-            ...         time_signature = abjad.inspect(leaf).indicator(
+            ...         leaf = abjad.get.leaf(container, 0)
+            ...         time_signature = abjad.get.indicator(
+            ...             leaf,
             ...             abjad.TimeSignature
             ...             )
             ...         abjad.Meter.rewrite_meter(container[:], time_signature)
@@ -1905,8 +1912,9 @@ class Meter:
 
             >>> for staff in score:
             ...     for container in staff:
-            ...         leaf = abjad.inspect(container).leaf(0)
-            ...         time_signature = abjad.inspect(leaf).indicator(
+            ...         leaf = abjad.get.leaf(container, 0)
+            ...         time_signature = abjad.get.indicator(
+            ...             leaf,
             ...             abjad.TimeSignature
             ...             )
             ...         abjad.Meter.rewrite_meter(
@@ -2063,7 +2071,8 @@ class Meter:
             of the container's contents:
 
             >>> measure = staff[0]
-            >>> time_signature = abjad.inspect(measure[0]).indicator(
+            >>> time_signature = abjad.get.indicator(
+            ...     measure[0],
             ...     abjad.TimeSignature
             ...     )
             >>> abjad.Meter.rewrite_meter(
@@ -2351,7 +2360,7 @@ class Meter:
                         break
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
-                    shards = Mutation(logical_tie[:]).split([split_offset])
+                    shards = mutate.split(logical_tie[:], [split_offset])
                     logical_ties = [LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
@@ -2383,7 +2392,7 @@ class Meter:
                         break
                 assert split_offset is not None
                 split_offset -= logical_tie_start_offset
-                shards = Mutation(logical_tie[:]).split([split_offset])
+                shards = mutate.split(logical_tie[:], [split_offset])
                 logical_ties = [LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
@@ -2393,7 +2402,7 @@ class Meter:
                         logical_tie=logical_tie,
                     )
             else:
-                Mutation._fuse(logical_tie[:])
+                mutate._fuse(logical_tie[:])
 
         assert isinstance(components, Selection), repr(components)
         if not isinstance(meter, Meter):

@@ -33,7 +33,7 @@ class RepeatTie:
             }
 
         >>> for leaf in staff:
-        ...     leaf, abjad.inspect(leaf).logical_tie()
+        ...     leaf, abjad.get.logical_tie(leaf)
         ...
         (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
         (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))

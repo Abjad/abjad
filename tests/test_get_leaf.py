@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Inspection_leaf_01():
+def test_get_leaf_01():
 
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
@@ -30,27 +30,27 @@ def test_Inspection_leaf_01():
     )
 
     leaves = abjad.select(staff).leaves()
-    assert abjad.inspect(leaves[0]).leaf(-1) is None
-    assert abjad.inspect(leaves[0]).leaf(0) is leaves[0]
-    assert abjad.inspect(leaves[0]).leaf(1) is leaves[1]
+    assert abjad.get.leaf(leaves[0], -1) is None
+    assert abjad.get.leaf(leaves[0], 0) is leaves[0]
+    assert abjad.get.leaf(leaves[0], 1) is leaves[1]
 
 
-def test_Inspection_leaf_02():
+def test_get_leaf_02():
     """
     Voice.
     """
 
     voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
 
-    assert abjad.inspect(voice[0]).leaf(1) is voice[1]
-    assert abjad.inspect(voice[1]).leaf(1) is voice[2]
-    assert abjad.inspect(voice[2]).leaf(1) is voice[3]
-    assert abjad.inspect(voice[3]).leaf(1) is None
+    assert abjad.get.leaf(voice[0], 1) is voice[1]
+    assert abjad.get.leaf(voice[1], 1) is voice[2]
+    assert abjad.get.leaf(voice[2], 1) is voice[3]
+    assert abjad.get.leaf(voice[3], 1) is None
 
-    assert abjad.inspect(voice[0]).leaf(-1) is None
-    assert abjad.inspect(voice[1]).leaf(-1) is voice[0]
-    assert abjad.inspect(voice[2]).leaf(-1) is voice[1]
-    assert abjad.inspect(voice[3]).leaf(-1) is voice[2]
+    assert abjad.get.leaf(voice[0], -1) is None
+    assert abjad.get.leaf(voice[1], -1) is voice[0]
+    assert abjad.get.leaf(voice[2], -1) is voice[1]
+    assert abjad.get.leaf(voice[3], -1) is voice[2]
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -65,22 +65,22 @@ def test_Inspection_leaf_02():
     )
 
 
-def test_Inspection_leaf_03():
+def test_get_leaf_03():
     """
     Staff.
     """
 
     staff = abjad.Staff([abjad.Note(i, (1, 8)) for i in range(4)])
 
-    assert abjad.inspect(staff[0]).leaf(1) is staff[1]
-    assert abjad.inspect(staff[1]).leaf(1) is staff[2]
-    assert abjad.inspect(staff[2]).leaf(1) is staff[3]
-    assert abjad.inspect(staff[3]).leaf(1) is None
+    assert abjad.get.leaf(staff[0], 1) is staff[1]
+    assert abjad.get.leaf(staff[1], 1) is staff[2]
+    assert abjad.get.leaf(staff[2], 1) is staff[3]
+    assert abjad.get.leaf(staff[3], 1) is None
 
-    assert abjad.inspect(staff[0]).leaf(-1) is None
-    assert abjad.inspect(staff[1]).leaf(-1) is staff[0]
-    assert abjad.inspect(staff[2]).leaf(-1) is staff[1]
-    assert abjad.inspect(staff[3]).leaf(-1) is staff[2]
+    assert abjad.get.leaf(staff[0], -1) is None
+    assert abjad.get.leaf(staff[1], -1) is staff[0]
+    assert abjad.get.leaf(staff[2], -1) is staff[1]
+    assert abjad.get.leaf(staff[3], -1) is staff[2]
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -95,7 +95,7 @@ def test_Inspection_leaf_03():
     )
 
 
-def test_Inspection_leaf_04():
+def test_get_leaf_04():
     """
     Container.
     """
@@ -113,18 +113,18 @@ def test_Inspection_leaf_04():
         """
     )
 
-    assert abjad.inspect(container[0]).leaf(1) is container[1]
-    assert abjad.inspect(container[1]).leaf(1) is container[2]
-    assert abjad.inspect(container[2]).leaf(1) is container[3]
-    assert abjad.inspect(container[3]).leaf(1) is None
+    assert abjad.get.leaf(container[0], 1) is container[1]
+    assert abjad.get.leaf(container[1], 1) is container[2]
+    assert abjad.get.leaf(container[2], 1) is container[3]
+    assert abjad.get.leaf(container[3], 1) is None
 
-    assert abjad.inspect(container[0]).leaf(-1) is None
-    assert abjad.inspect(container[1]).leaf(-1) is container[0]
-    assert abjad.inspect(container[2]).leaf(-1) is container[1]
-    assert abjad.inspect(container[3]).leaf(-1) is container[2]
+    assert abjad.get.leaf(container[0], -1) is None
+    assert abjad.get.leaf(container[1], -1) is container[0]
+    assert abjad.get.leaf(container[2], -1) is container[1]
+    assert abjad.get.leaf(container[3], -1) is container[2]
 
 
-def test_Inspection_leaf_05():
+def test_get_leaf_05():
     """
     Tuplet.
     """
@@ -141,16 +141,16 @@ def test_Inspection_leaf_05():
         """
     )
 
-    assert abjad.inspect(tuplet[0]).leaf(1) is tuplet[1]
-    assert abjad.inspect(tuplet[1]).leaf(1) is tuplet[2]
-    assert abjad.inspect(tuplet[2]).leaf(1) is None
+    assert abjad.get.leaf(tuplet[0], 1) is tuplet[1]
+    assert abjad.get.leaf(tuplet[1], 1) is tuplet[2]
+    assert abjad.get.leaf(tuplet[2], 1) is None
 
-    assert abjad.inspect(tuplet[0]).leaf(-1) is None
-    assert abjad.inspect(tuplet[1]).leaf(-1) is tuplet[0]
-    assert abjad.inspect(tuplet[2]).leaf(-1) is tuplet[1]
+    assert abjad.get.leaf(tuplet[0], -1) is None
+    assert abjad.get.leaf(tuplet[1], -1) is tuplet[0]
+    assert abjad.get.leaf(tuplet[2], -1) is tuplet[1]
 
 
-def test_Inspection_leaf_06():
+def test_get_leaf_06():
     """
     Contiguous containers inside a voice.
     """
@@ -179,18 +179,18 @@ def test_Inspection_leaf_06():
         """
     )
 
-    assert abjad.inspect(container_1[0]).leaf(1) is container_1[1]
-    assert abjad.inspect(container_1[1]).leaf(1) is container_1[2]
-    assert abjad.inspect(container_1[2]).leaf(1) is container_1[3]
-    assert abjad.inspect(container_1[3]).leaf(1) is container_2[0]
+    assert abjad.get.leaf(container_1[0], 1) is container_1[1]
+    assert abjad.get.leaf(container_1[1], 1) is container_1[2]
+    assert abjad.get.leaf(container_1[2], 1) is container_1[3]
+    assert abjad.get.leaf(container_1[3], 1) is container_2[0]
 
-    assert abjad.inspect(container_1[1]).leaf(-1) is container_1[0]
-    assert abjad.inspect(container_1[2]).leaf(-1) is container_1[1]
-    assert abjad.inspect(container_1[3]).leaf(-1) is container_1[2]
-    assert abjad.inspect(container_2[0]).leaf(-1) is container_1[3]
+    assert abjad.get.leaf(container_1[1], -1) is container_1[0]
+    assert abjad.get.leaf(container_1[2], -1) is container_1[1]
+    assert abjad.get.leaf(container_1[3], -1) is container_1[2]
+    assert abjad.get.leaf(container_2[0], -1) is container_1[3]
 
 
-def test_Inspection_leaf_07():
+def test_get_leaf_07():
     """
     Tuplets inside a voice.
     """
@@ -217,16 +217,16 @@ def test_Inspection_leaf_07():
         """
     )
 
-    assert abjad.inspect(tuplet_1[0]).leaf(1) is tuplet_1[1]
-    assert abjad.inspect(tuplet_1[1]).leaf(1) is tuplet_1[2]
-    assert abjad.inspect(tuplet_1[2]).leaf(1) is tuplet_2[0]
+    assert abjad.get.leaf(tuplet_1[0], 1) is tuplet_1[1]
+    assert abjad.get.leaf(tuplet_1[1], 1) is tuplet_1[2]
+    assert abjad.get.leaf(tuplet_1[2], 1) is tuplet_2[0]
 
-    assert abjad.inspect(tuplet_1[1]).leaf(-1) is tuplet_1[0]
-    assert abjad.inspect(tuplet_1[2]).leaf(-1) is tuplet_1[1]
-    assert abjad.inspect(tuplet_2[0]).leaf(-1) is tuplet_1[2]
+    assert abjad.get.leaf(tuplet_1[1], -1) is tuplet_1[0]
+    assert abjad.get.leaf(tuplet_1[2], -1) is tuplet_1[1]
+    assert abjad.get.leaf(tuplet_2[0], -1) is tuplet_1[2]
 
 
-def test_Inspection_leaf_08():
+def test_get_leaf_08():
     """
     Does not continue across contiguous anonymous voices inside a staff.
     """
@@ -257,11 +257,11 @@ def test_Inspection_leaf_08():
         """
     )
 
-    assert abjad.inspect(voice_1[3]).leaf(1) is None
-    assert abjad.inspect(voice_2[0]).leaf(-1) is None
+    assert abjad.get.leaf(voice_1[3], 1) is None
+    assert abjad.get.leaf(voice_2[0], -1) is None
 
 
-def test_Inspection_leaf_09():
+def test_get_leaf_09():
     """
     Does cross contiguous equally named voices inside a staff.
     """
@@ -294,18 +294,18 @@ def test_Inspection_leaf_09():
         """
     )
 
-    assert abjad.inspect(voice_1[0]).leaf(1) is voice_1[1]
-    assert abjad.inspect(voice_1[1]).leaf(1) is voice_1[2]
-    assert abjad.inspect(voice_1[2]).leaf(1) is voice_1[3]
-    assert abjad.inspect(voice_1[3]).leaf(1) is voice_2[0]
+    assert abjad.get.leaf(voice_1[0], 1) is voice_1[1]
+    assert abjad.get.leaf(voice_1[1], 1) is voice_1[2]
+    assert abjad.get.leaf(voice_1[2], 1) is voice_1[3]
+    assert abjad.get.leaf(voice_1[3], 1) is voice_2[0]
 
-    assert abjad.inspect(voice_1[1]).leaf(-1) is voice_1[0]
-    assert abjad.inspect(voice_1[2]).leaf(-1) is voice_1[1]
-    assert abjad.inspect(voice_1[3]).leaf(-1) is voice_1[2]
-    assert abjad.inspect(voice_2[0]).leaf(-1) is voice_1[3]
+    assert abjad.get.leaf(voice_1[1], -1) is voice_1[0]
+    assert abjad.get.leaf(voice_1[2], -1) is voice_1[1]
+    assert abjad.get.leaf(voice_1[3], -1) is voice_1[2]
+    assert abjad.get.leaf(voice_2[0], -1) is voice_1[3]
 
 
-def test_Inspection_leaf_10():
+def test_get_leaf_10():
     """
     Does not connect through contiguous unequally named voices.
     """
@@ -338,21 +338,21 @@ def test_Inspection_leaf_10():
         """
     )
 
-    assert abjad.inspect(voice_1[0]).leaf(1) is voice_1[1]
-    assert abjad.inspect(voice_1[1]).leaf(1) is voice_1[2]
-    assert abjad.inspect(voice_1[2]).leaf(1) is voice_1[3]
-    assert abjad.inspect(voice_1[3]).leaf(1) is None
+    assert abjad.get.leaf(voice_1[0], 1) is voice_1[1]
+    assert abjad.get.leaf(voice_1[1], 1) is voice_1[2]
+    assert abjad.get.leaf(voice_1[2], 1) is voice_1[3]
+    assert abjad.get.leaf(voice_1[3], 1) is None
 
     voice_2.name = None
-    assert abjad.inspect(voice_1[3]).leaf(1) is None
+    assert abjad.get.leaf(voice_1[3], 1) is None
 
-    assert abjad.inspect(voice_2[1]).leaf(-1) is voice_2[0]
-    assert abjad.inspect(voice_2[2]).leaf(-1) is voice_2[1]
-    assert abjad.inspect(voice_2[3]).leaf(-1) is voice_2[2]
-    assert abjad.inspect(voice_2[0]).leaf(-1) is None
+    assert abjad.get.leaf(voice_2[1], -1) is voice_2[0]
+    assert abjad.get.leaf(voice_2[2], -1) is voice_2[1]
+    assert abjad.get.leaf(voice_2[3], -1) is voice_2[2]
+    assert abjad.get.leaf(voice_2[0], -1) is None
 
 
-def test_Inspection_leaf_11():
+def test_get_leaf_11():
     """
     Does connect through like-named staves containing like-named voices.
     """
@@ -396,11 +396,11 @@ def test_Inspection_leaf_11():
         """
     )
 
-    assert abjad.inspect(voice_1[3]).leaf(1) is voice_2[0]
-    assert abjad.inspect(voice_2[0]).leaf(-1) is voice_1[3]
+    assert abjad.get.leaf(voice_1[3], 1) is voice_2[0]
+    assert abjad.get.leaf(voice_2[0], -1) is voice_1[3]
 
 
-def test_Inspection_leaf_12():
+def test_get_leaf_12():
     """
     Does connect through like-named staves containing like-named voices.
     """
@@ -464,14 +464,14 @@ def test_Inspection_leaf_12():
         """
     )
 
-    assert abjad.inspect(lower_voice_1[3]).leaf(1) is lower_voice_2[0]
-    assert abjad.inspect(higher_voice_1[3]).leaf(1) is higher_voice_2[0]
+    assert abjad.get.leaf(lower_voice_1[3], 1) is lower_voice_2[0]
+    assert abjad.get.leaf(higher_voice_1[3], 1) is higher_voice_2[0]
 
-    assert abjad.inspect(lower_voice_2[0]).leaf(-1) is lower_voice_1[3]
-    assert abjad.inspect(higher_voice_2[0]).leaf(-1) is higher_voice_1[3]
+    assert abjad.get.leaf(lower_voice_2[0], -1) is lower_voice_1[3]
+    assert abjad.get.leaf(higher_voice_2[0], -1) is higher_voice_1[3]
 
 
-def test_Inspection_leaf_13():
+def test_get_leaf_13():
     """
     Does connect through symmetrical nested containers in a voice.
     """
@@ -506,18 +506,18 @@ def test_Inspection_leaf_13():
         """
     )
 
-    assert abjad.inspect(container_1[0][0]).leaf(1) is container_1[0][1]
-    assert abjad.inspect(container_1[0][1]).leaf(1) is container_1[0][2]
-    assert abjad.inspect(container_1[0][2]).leaf(1) is container_1[0][3]
-    assert abjad.inspect(container_1[0][3]).leaf(1) is container_2[0][0]
+    assert abjad.get.leaf(container_1[0][0], 1) is container_1[0][1]
+    assert abjad.get.leaf(container_1[0][1], 1) is container_1[0][2]
+    assert abjad.get.leaf(container_1[0][2], 1) is container_1[0][3]
+    assert abjad.get.leaf(container_1[0][3], 1) is container_2[0][0]
 
-    assert abjad.inspect(container_2[0][1]).leaf(-1) is container_2[0][0]
-    assert abjad.inspect(container_2[0][2]).leaf(-1) is container_2[0][1]
-    assert abjad.inspect(container_2[0][3]).leaf(-1) is container_2[0][2]
-    assert abjad.inspect(container_2[0][0]).leaf(-1) is container_1[0][3]
+    assert abjad.get.leaf(container_2[0][1], -1) is container_2[0][0]
+    assert abjad.get.leaf(container_2[0][2], -1) is container_2[0][1]
+    assert abjad.get.leaf(container_2[0][3], -1) is container_2[0][2]
+    assert abjad.get.leaf(container_2[0][0], -1) is container_1[0][3]
 
 
-def test_Inspection_leaf_14():
+def test_get_leaf_14():
     """
     Tautological parentage asymmetries result in symmetric (balanced) logical
     voice parentage.
@@ -553,18 +553,18 @@ def test_Inspection_leaf_14():
         """
     )
 
-    assert abjad.inspect(container_1[0]).leaf(1) is container_1[1]
-    assert abjad.inspect(container_1[1]).leaf(1) is container_1[2]
-    assert abjad.inspect(container_1[2]).leaf(1) is container_1[3]
-    assert abjad.inspect(container_1[3]).leaf(1) is container_2[0][0][0]
+    assert abjad.get.leaf(container_1[0], 1) is container_1[1]
+    assert abjad.get.leaf(container_1[1], 1) is container_1[2]
+    assert abjad.get.leaf(container_1[2], 1) is container_1[3]
+    assert abjad.get.leaf(container_1[3], 1) is container_2[0][0][0]
 
-    assert abjad.inspect(container_2[0][0][1]).leaf(-1) is container_2[0][0][0]
-    assert abjad.inspect(container_2[0][0][2]).leaf(-1) is container_2[0][0][1]
-    assert abjad.inspect(container_2[0][0][3]).leaf(-1) is container_2[0][0][2]
-    assert abjad.inspect(container_2[0][0][0]).leaf(-1) is container_1[3]
+    assert abjad.get.leaf(container_2[0][0][1], -1) is container_2[0][0][0]
+    assert abjad.get.leaf(container_2[0][0][2], -1) is container_2[0][0][1]
+    assert abjad.get.leaf(container_2[0][0][3], -1) is container_2[0][0][2]
+    assert abjad.get.leaf(container_2[0][0][0], -1) is container_1[3]
 
 
-def test_Inspection_leaf_15():
+def test_get_leaf_15():
     """
     Tautological parentage asymmetries result in symmetric (balanced) lgoical
     voice parentage.
@@ -600,18 +600,18 @@ def test_Inspection_leaf_15():
         """
     )
 
-    assert abjad.inspect(container_1[0][0][0]).leaf(1) is container_1[0][0][1]
-    assert abjad.inspect(container_1[0][0][1]).leaf(1) is container_1[0][0][2]
-    assert abjad.inspect(container_1[0][0][2]).leaf(1) is container_1[0][0][3]
-    assert abjad.inspect(container_1[0][0][3]).leaf(1) is container_2[0]
+    assert abjad.get.leaf(container_1[0][0][0], 1) is container_1[0][0][1]
+    assert abjad.get.leaf(container_1[0][0][1], 1) is container_1[0][0][2]
+    assert abjad.get.leaf(container_1[0][0][2], 1) is container_1[0][0][3]
+    assert abjad.get.leaf(container_1[0][0][3], 1) is container_2[0]
 
-    assert abjad.inspect(container_2[0]).leaf(-1) is container_1[0][0][3]
-    assert abjad.inspect(container_2[1]).leaf(-1) is container_2[0]
-    assert abjad.inspect(container_2[2]).leaf(-1) is container_2[1]
-    assert abjad.inspect(container_2[3]).leaf(-1) is container_2[2]
+    assert abjad.get.leaf(container_2[0], -1) is container_1[0][0][3]
+    assert abjad.get.leaf(container_2[1], -1) is container_2[0]
+    assert abjad.get.leaf(container_2[2], -1) is container_2[1]
+    assert abjad.get.leaf(container_2[3], -1) is container_2[2]
 
 
-def test_Inspection_leaf_16():
+def test_get_leaf_16():
     """
     Does connect in sequence of alternating containers and notes.
     """
@@ -637,14 +637,14 @@ def test_Inspection_leaf_16():
         """
     )
 
-    assert abjad.inspect(container_1[1]).leaf(1) is voice[1]
-    assert abjad.inspect(voice[1]).leaf(1) is container_2[0]
+    assert abjad.get.leaf(container_1[1], 1) is voice[1]
+    assert abjad.get.leaf(voice[1], 1) is container_2[0]
 
-    assert abjad.inspect(voice[1]).leaf(-1) is container_1[1]
-    assert abjad.inspect(container_2[0]).leaf(-1) is voice[1]
+    assert abjad.get.leaf(voice[1], -1) is container_1[1]
+    assert abjad.get.leaf(container_2[0], -1) is voice[1]
 
 
-def test_Inspection_leaf_17():
+def test_get_leaf_17():
     """
     Does connect in sequence of alternating tuplets and notes.
     """
@@ -674,14 +674,14 @@ def test_Inspection_leaf_17():
         """
     )
 
-    assert abjad.inspect(tuplet_1[-1]).leaf(1) is voice[1]
-    assert abjad.inspect(voice[1]).leaf(1) is tuplet_2[0]
+    assert abjad.get.leaf(tuplet_1[-1], 1) is voice[1]
+    assert abjad.get.leaf(voice[1], 1) is tuplet_2[0]
 
-    assert abjad.inspect(voice[1]).leaf(-1) is tuplet_1[-1]
-    assert abjad.inspect(tuplet_2[0]).leaf(-1) is voice[1]
+    assert abjad.get.leaf(voice[1], -1) is tuplet_1[-1]
+    assert abjad.get.leaf(tuplet_2[0], -1) is voice[1]
 
 
-def test_Inspection_leaf_18():
+def test_get_leaf_18():
     """
     Does connect through asymmetrically nested tuplets.
     """
@@ -704,13 +704,13 @@ def test_Inspection_leaf_18():
         """
     )
 
-    assert abjad.inspect(tuplet[0]).leaf(1) is inner_tuplet[0]
-    assert abjad.inspect(inner_tuplet[-1]).leaf(1) is tuplet[-1]
-    assert abjad.inspect(tuplet[-1]).leaf(-1) is inner_tuplet[-1]
-    assert abjad.inspect(inner_tuplet[0]).leaf(-1) is tuplet[0]
+    assert abjad.get.leaf(tuplet[0], 1) is inner_tuplet[0]
+    assert abjad.get.leaf(inner_tuplet[-1], 1) is tuplet[-1]
+    assert abjad.get.leaf(tuplet[-1], -1) is inner_tuplet[-1]
+    assert abjad.get.leaf(inner_tuplet[0], -1) is tuplet[0]
 
 
-def test_Inspection_leaf_19():
+def test_get_leaf_19():
     """
     Returns none in asymmetric logical voice parentage structures.
     """
@@ -742,14 +742,14 @@ def test_Inspection_leaf_19():
         """
     )
 
-    assert abjad.inspect(voice_1[-1]).leaf(1) is None
-    assert abjad.inspect(note).leaf(1) is None
+    assert abjad.get.leaf(voice_1[-1], 1) is None
+    assert abjad.get.leaf(note, 1) is None
 
-    assert abjad.inspect(voice_2[0]).leaf(-1) is None
-    assert abjad.inspect(note).leaf(-1) is None
+    assert abjad.get.leaf(voice_2[0], -1) is None
+    assert abjad.get.leaf(note, -1) is None
 
 
-def test_Inspection_leaf_20():
+def test_get_leaf_20():
     """
     Noncontiguous or broken logical voices do not connect.
     """
@@ -790,19 +790,19 @@ def test_Inspection_leaf_20():
         """
     )
 
-    assert abjad.inspect(voice_1[-1]).leaf(1) is None
-    assert abjad.inspect(voice_2[-1]).leaf(1) is None
+    assert abjad.get.leaf(voice_1[-1], 1) is None
+    assert abjad.get.leaf(voice_2[-1], 1) is None
 
     voice_2.name = None
 
-    assert abjad.inspect(voice_1[-1]).leaf(1) is None
-    assert abjad.inspect(voice_2[-1]).leaf(1) is None
+    assert abjad.get.leaf(voice_1[-1], 1) is None
+    assert abjad.get.leaf(voice_2[-1], 1) is None
 
-    assert abjad.inspect(voice_3[0]).leaf(-1) is None
-    assert abjad.inspect(voice_2[0]).leaf(-1) is None
+    assert abjad.get.leaf(voice_3[0], -1) is None
+    assert abjad.get.leaf(voice_2[0], -1) is None
 
 
-def test_Inspection_leaf_21():
+def test_get_leaf_21():
     """
     Does not connect through nested anonymous voices.
     """
@@ -825,16 +825,16 @@ def test_Inspection_leaf_21():
         """
     )
 
-    assert abjad.inspect(inner_voice[0]).leaf(1) is inner_voice[1]
-    assert abjad.inspect(inner_voice[1]).leaf(1) is inner_voice[2]
-    assert abjad.inspect(inner_voice[2]).leaf(1) is None
+    assert abjad.get.leaf(inner_voice[0], 1) is inner_voice[1]
+    assert abjad.get.leaf(inner_voice[1], 1) is inner_voice[2]
+    assert abjad.get.leaf(inner_voice[2], 1) is None
 
-    assert abjad.inspect(inner_voice[1]).leaf(-1) is inner_voice[0]
-    assert abjad.inspect(inner_voice[2]).leaf(-1) is inner_voice[1]
-    assert abjad.inspect(outer_voice[1]).leaf(-1) is None
+    assert abjad.get.leaf(inner_voice[1], -1) is inner_voice[0]
+    assert abjad.get.leaf(inner_voice[2], -1) is inner_voice[1]
+    assert abjad.get.leaf(outer_voice[1], -1) is None
 
 
-def test_Inspection_leaf_22():
+def test_get_leaf_22():
     """
     Does not connect through nested anonymous voices.
     """
@@ -857,16 +857,16 @@ def test_Inspection_leaf_22():
         """
     )
 
-    assert abjad.inspect(inner_voice[0]).leaf(1) is inner_voice[1]
-    assert abjad.inspect(inner_voice[1]).leaf(1) is inner_voice[2]
-    assert abjad.inspect(outer_voice[0]).leaf(1) is None
+    assert abjad.get.leaf(inner_voice[0], 1) is inner_voice[1]
+    assert abjad.get.leaf(inner_voice[1], 1) is inner_voice[2]
+    assert abjad.get.leaf(outer_voice[0], 1) is None
 
-    assert abjad.inspect(inner_voice[1]).leaf(-1) is inner_voice[0]
-    assert abjad.inspect(inner_voice[2]).leaf(-1) is inner_voice[1]
-    assert abjad.inspect(inner_voice[0]).leaf(-1) is None
+    assert abjad.get.leaf(inner_voice[1], -1) is inner_voice[0]
+    assert abjad.get.leaf(inner_voice[2], -1) is inner_voice[1]
+    assert abjad.get.leaf(inner_voice[0], -1) is None
 
 
-def test_Inspection_leaf_23():
+def test_get_leaf_23():
     """
     Does connect through nested equally named voices.
     """
@@ -891,16 +891,16 @@ def test_Inspection_leaf_23():
         """
     )
 
-    assert abjad.inspect(inner_voice[0]).leaf(1) is inner_voice[1]
-    assert abjad.inspect(inner_voice[1]).leaf(1) is inner_voice[2]
-    assert abjad.inspect(inner_voice[2]).leaf(1) is outer_voice[1]
+    assert abjad.get.leaf(inner_voice[0], 1) is inner_voice[1]
+    assert abjad.get.leaf(inner_voice[1], 1) is inner_voice[2]
+    assert abjad.get.leaf(inner_voice[2], 1) is outer_voice[1]
 
-    assert abjad.inspect(inner_voice[1]).leaf(-1) is inner_voice[0]
-    assert abjad.inspect(inner_voice[2]).leaf(-1) is inner_voice[1]
-    assert abjad.inspect(outer_voice[1]).leaf(-1) is inner_voice[-1]
+    assert abjad.get.leaf(inner_voice[1], -1) is inner_voice[0]
+    assert abjad.get.leaf(inner_voice[2], -1) is inner_voice[1]
+    assert abjad.get.leaf(outer_voice[1], -1) is inner_voice[-1]
 
 
-def test_Inspection_leaf_24():
+def test_get_leaf_24():
     """
     Does connect through nested equally named voices.
     """
@@ -925,16 +925,16 @@ def test_Inspection_leaf_24():
         """
     )
 
-    assert abjad.inspect(inner_voice[0]).leaf(1) is inner_voice[1]
-    assert abjad.inspect(inner_voice[1]).leaf(1) is inner_voice[2]
-    assert abjad.inspect(outer_voice[0]).leaf(1) is inner_voice[0]
+    assert abjad.get.leaf(inner_voice[0], 1) is inner_voice[1]
+    assert abjad.get.leaf(inner_voice[1], 1) is inner_voice[2]
+    assert abjad.get.leaf(outer_voice[0], 1) is inner_voice[0]
 
-    assert abjad.inspect(inner_voice[1]).leaf(-1) is inner_voice[0]
-    assert abjad.inspect(inner_voice[2]).leaf(-1) is inner_voice[1]
-    assert abjad.inspect(inner_voice[0]).leaf(-1) is outer_voice[0]
+    assert abjad.get.leaf(inner_voice[1], -1) is inner_voice[0]
+    assert abjad.get.leaf(inner_voice[2], -1) is inner_voice[1]
+    assert abjad.get.leaf(inner_voice[0], -1) is outer_voice[0]
 
 
-def test_Inspection_leaf_25():
+def test_get_leaf_25():
     """
     Returns none on nested differently named voices.
     """
@@ -959,16 +959,16 @@ def test_Inspection_leaf_25():
         """
     )
 
-    assert abjad.inspect(inner_voice[0]).leaf(1) is inner_voice[1]
-    assert abjad.inspect(inner_voice[1]).leaf(1) is inner_voice[2]
-    assert abjad.inspect(inner_voice[2]).leaf(1) is None
+    assert abjad.get.leaf(inner_voice[0], 1) is inner_voice[1]
+    assert abjad.get.leaf(inner_voice[1], 1) is inner_voice[2]
+    assert abjad.get.leaf(inner_voice[2], 1) is None
 
-    assert abjad.inspect(inner_voice[1]).leaf(-1) is inner_voice[0]
-    assert abjad.inspect(inner_voice[2]).leaf(-1) is inner_voice[1]
-    assert abjad.inspect(outer_voice[1]).leaf(-1) is None
+    assert abjad.get.leaf(inner_voice[1], -1) is inner_voice[0]
+    assert abjad.get.leaf(inner_voice[2], -1) is inner_voice[1]
+    assert abjad.get.leaf(outer_voice[1], -1) is None
 
 
-def test_Inspection_leaf_26():
+def test_get_leaf_26():
     """
     Returns none on nested differently named voices.
     """
@@ -993,10 +993,10 @@ def test_Inspection_leaf_26():
         """
     )
 
-    assert abjad.inspect(voice_2[0]).leaf(1) is voice_2[1]
-    assert abjad.inspect(voice_2[1]).leaf(1) is voice_2[2]
-    assert abjad.inspect(voice_1[0]).leaf(1) is None
+    assert abjad.get.leaf(voice_2[0], 1) is voice_2[1]
+    assert abjad.get.leaf(voice_2[1], 1) is voice_2[2]
+    assert abjad.get.leaf(voice_1[0], 1) is None
 
-    assert abjad.inspect(voice_2[1]).leaf(-1) is voice_2[0]
-    assert abjad.inspect(voice_2[2]).leaf(-1) is voice_2[1]
-    assert abjad.inspect(voice_1[1]).leaf(-1) is voice_2[-1]
+    assert abjad.get.leaf(voice_2[1], -1) is voice_2[0]
+    assert abjad.get.leaf(voice_2[2], -1) is voice_2[1]
+    assert abjad.get.leaf(voice_1[1], -1) is voice_2[-1]

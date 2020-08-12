@@ -212,7 +212,7 @@ class StartHairpin:
 
 
             >>> for leaf in voice:
-            ...     print(leaf, abjad.inspect(leaf).effective(abjad.StartHairpin))
+            ...     print(leaf, abjad.get.effective(leaf, abjad.StartHairpin))
             c'4 StartHairpin(shape='<')
             d'4 StartHairpin(shape='<')
             e'4 StartHairpin(shape='<')

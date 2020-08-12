@@ -389,34 +389,6 @@ class Tag:
         else:
             return None
 
-    @staticmethod
-    def tag(strings, tag, deactivate=None) -> typing.List[str]:
-        """
-        Tags ``strings`` with ``tag``.
-        """
-        if not tag:
-            return strings
-        if not strings:
-            return strings
-        if deactivate is not None:
-            assert isinstance(deactivate, type(True)), repr(deactivate)
-        length = max([len(_) for _ in strings])
-        strings_ = []
-        for string in strings:
-            if "%!" in string and r"\tweak" in string:
-                strings_.append(string)
-                continue
-            if "%!" not in string:
-                pad = length - len(string)
-            else:
-                pad = 0
-            tag_ = pad * " " + " " + "%!" + " " + str(tag)
-            string = string + tag_
-            strings_.append(string)
-        if deactivate is True:
-            strings_ = ["%@% " + _ for _ in strings_]
-        return strings_
-
 
 class Line:
     r"""
@@ -945,3 +917,31 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         return text, count, skipped_count
     else:
         return text, count
+
+
+def tag(strings, tag, deactivate=None) -> typing.List[str]:
+    """
+    Tags ``strings`` with ``tag``.
+    """
+    if not tag:
+        return strings
+    if not strings:
+        return strings
+    if deactivate is not None:
+        assert isinstance(deactivate, type(True)), repr(deactivate)
+    length = max([len(_) for _ in strings])
+    strings_ = []
+    for string in strings:
+        if "%!" in string and r"\tweak" in string:
+            strings_.append(string)
+            continue
+        if "%!" not in string:
+            pad = length - len(string)
+        else:
+            pad = 0
+        tag_ = pad * " " + " " + "%!" + " " + str(tag)
+        string = string + tag_
+        strings_.append(string)
+    if deactivate is True:
+        strings_ = ["%@% " + _ for _ in strings_]
+    return strings_

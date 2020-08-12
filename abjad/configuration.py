@@ -12,7 +12,7 @@ import typing
 import six
 import uqbar.apis
 
-from .storage import StorageFormatManager
+from . import storage
 
 
 class Configuration:
@@ -108,7 +108,7 @@ class Configuration:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     def __setitem__(self, i, argument) -> None:
         """

@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Mutation_copy_01():
+def test_mutate_copy_01():
     """
     Deep copies components.
     Returns Python list of copied components.
@@ -51,7 +51,7 @@ def test_Mutation_copy_01():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(leaves[2:4]).copy()
+    result = abjad.mutate.copy(leaves[2:4])
     new = abjad.Staff(result)
 
     assert abjad.lilypond(new) == abjad.String.normalize(
@@ -65,11 +65,11 @@ def test_Mutation_copy_01():
         """,
         print(abjad.lilypond(new)),
     )
-    assert abjad.wellformed(staff)
-    assert abjad.wellformed(new)
+    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(new)
 
 
-def test_Mutation_copy_02():
+def test_mutate_copy_02():
     """
     Copy one measure.
     """
@@ -118,7 +118,7 @@ def test_Mutation_copy_02():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(staff[1:2]).copy()
+    result = abjad.mutate.copy(staff[1:2])
     new = abjad.Staff(result)
 
     assert abjad.lilypond(new) == abjad.String.normalize(
@@ -134,11 +134,11 @@ def test_Mutation_copy_02():
         """
     ), print(abjad.lilypond(new))
 
-    assert abjad.wellformed(staff)
-    assert abjad.wellformed(new)
+    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(new)
 
 
-def test_Mutation_copy_03():
+def test_mutate_copy_03():
     """
     Three notes crossing measure boundaries.
     """
@@ -187,7 +187,7 @@ def test_Mutation_copy_03():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(leaves[-3:]).copy()
+    result = abjad.mutate.copy(leaves[-3:])
     new = abjad.Staff(result)
 
     assert abjad.lilypond(new) == abjad.String.normalize(
@@ -205,11 +205,11 @@ def test_Mutation_copy_03():
         """
     ), print(abjad.lilypond(new))
 
-    assert abjad.wellformed(staff)
-    assert abjad.wellformed(new)
+    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(new)
 
 
-def test_Mutation_copy_04():
+def test_mutate_copy_04():
 
     staff = abjad.Staff(
         [
@@ -259,7 +259,7 @@ def test_Mutation_copy_04():
     ), print(abjad.lilypond(staff))
 
     selection = abjad.select(staff)
-    new_selection = abjad.mutate(selection).copy()
+    new_selection = abjad.mutate.copy(selection)
     new_staff = new_selection[0]
 
     assert abjad.lilypond(new_staff) == abjad.String.normalize(
@@ -294,10 +294,10 @@ def test_Mutation_copy_04():
         """
     ), print(abjad.lilypond(new_staff))
 
-    assert abjad.wellformed(new_staff)
+    assert abjad.wf.wellformed(new_staff)
 
 
-def test_Mutation_copy_05():
+def test_mutate_copy_05():
 
     staff = abjad.Staff(
         [
@@ -346,7 +346,7 @@ def test_Mutation_copy_05():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(staff[1:]).copy()
+    result = abjad.mutate.copy(staff[1:])
     new_staff = abjad.Staff(result)
 
     assert abjad.lilypond(new_staff) == abjad.String.normalize(
@@ -374,11 +374,11 @@ def test_Mutation_copy_05():
         """
     ), print(abjad.lilypond(new_staff))
 
-    assert abjad.wellformed(staff)
-    assert abjad.wellformed(new_staff)
+    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(new_staff)
 
 
-def test_Mutation_copy_06():
+def test_mutate_copy_06():
 
     staff = abjad.Staff(
         [
@@ -427,7 +427,7 @@ def test_Mutation_copy_06():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(leaves[:6]).copy()
+    result = abjad.mutate.copy(leaves[:6])
     new_staff = abjad.Staff(result)
 
     assert abjad.lilypond(new_staff) == abjad.String.normalize(
@@ -449,11 +449,11 @@ def test_Mutation_copy_06():
         """
     ), print(abjad.lilypond(new_staff))
 
-    assert abjad.wellformed(staff)
-    assert abjad.wellformed(new_staff)
+    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(new_staff)
 
 
-def test_Mutation_copy_07():
+def test_mutate_copy_07():
 
     staff = abjad.Staff(
         [
@@ -502,7 +502,7 @@ def test_Mutation_copy_07():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(staff[-2:]).copy()
+    result = abjad.mutate.copy(staff[-2:])
     new_staff = abjad.Staff(result)
 
     assert abjad.lilypond(new_staff) == abjad.String.normalize(
@@ -525,11 +525,11 @@ def test_Mutation_copy_07():
         """
     ), print(abjad.lilypond(new_staff))
 
-    assert abjad.wellformed(staff)
-    assert abjad.wellformed(new_staff)
+    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(new_staff)
 
 
-def test_Mutation_copy_08():
+def test_mutate_copy_08():
     """
     Copies hairpin.
     """
@@ -555,7 +555,7 @@ def test_Mutation_copy_08():
         """
     )
 
-    new_notes = abjad.mutate(staff[:4]).copy()
+    new_notes = abjad.mutate.copy(staff[:4])
     staff.extend(new_notes)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
@@ -581,4 +581,4 @@ def test_Mutation_copy_08():
         }
         """
     )
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)

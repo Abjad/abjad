@@ -4,8 +4,7 @@ import typing
 
 import quicktions
 
-from . import exceptions, mathx
-from .storage import FormatSpecification, StorageFormatManager
+from . import exceptions, mathx, storage
 
 
 class Duration(quicktions.Fraction):
@@ -399,7 +398,7 @@ class Duration(quicktions.Fraction):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     def __rmod__(self, *arguments):
         """
@@ -467,7 +466,7 @@ class Duration(quicktions.Fraction):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
+        return storage.FormatSpecification(
             client=self,
             storage_format_args_values=[self.numerator, self.denominator],
             storage_format_is_indented=False,
@@ -1889,7 +1888,7 @@ class Offset(Duration):
         values = [(self.numerator, self.denominator)]
         if self._get_displacement():
             names = ["displacement"]
-        return FormatSpecification(
+        return storage.FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_is_indented=False,
@@ -2274,7 +2273,7 @@ class NonreducedFraction(quicktions.Fraction):
             NonreducedFraction(3, 6)
 
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, argument) -> "NonreducedFraction":
         """
@@ -2353,7 +2352,7 @@ class NonreducedFraction(quicktions.Fraction):
         return result
 
     def _get_format_specification(self):
-        return FormatSpecification(
+        return storage.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.numerator, self.denominator],

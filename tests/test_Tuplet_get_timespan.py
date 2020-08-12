@@ -28,7 +28,7 @@ def test_Tuplet_get_timespan_01():
         """
     )
 
-    assert abjad.inspect(staff).timespan(in_seconds=True) == abjad.Timespan(0, 4)
-    assert abjad.inspect(staff[0]).timespan(in_seconds=True) == abjad.Timespan(0, 1)
-    assert abjad.inspect(staff[1]).timespan(in_seconds=True) == abjad.Timespan(1, 2)
-    assert abjad.inspect(staff[-1]).timespan(in_seconds=True) == abjad.Timespan(2, 4)
+    assert abjad.get.timespan(staff, in_seconds=True) == abjad.Timespan(0, 4)
+    assert abjad.get.timespan(staff[0], in_seconds=True) == abjad.Timespan(0, 1)
+    assert abjad.get.timespan(staff[1], in_seconds=True) == abjad.Timespan(1, 2)
+    assert abjad.get.timespan(staff[-1], in_seconds=True) == abjad.Timespan(2, 4)

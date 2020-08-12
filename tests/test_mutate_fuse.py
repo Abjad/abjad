@@ -3,7 +3,7 @@ import pytest
 import abjad
 
 
-def test_Mutation_fuse_01():
+def test_mutate_fuse_01():
     """
     Works with list of leaves.
     """
@@ -20,41 +20,41 @@ def test_Mutation_fuse_01():
             abjad.Note("c'4"),
         ]
     )
-    fused = abjad.mutate(notes).fuse()
+    fused = abjad.mutate.fuse(notes)
 
     assert len(fused) == 1
     assert fused[0].written_duration == abjad.Duration(2)
 
 
-def test_Mutation_fuse_02():
+def test_mutate_fuse_02():
     """
     Works with Leaf component.
     """
 
-    fused = abjad.mutate(abjad.Note("c'4")).fuse()
+    fused = abjad.mutate.fuse(abjad.Note("c'4"))
     assert len(fused) == 1
     assert fused[0].written_duration == abjad.Duration(1, 4)
 
 
-def test_Mutation_fuse_03():
+def test_mutate_fuse_03():
     """
     Works with containers.
     """
 
     voice = abjad.Voice("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
-    fused = abjad.mutate(voice[:]).fuse()
+    fused = abjad.mutate.fuse(voice[:])
     assert len(fused) == 1
     assert fused[0].written_duration == 2
     assert voice[0] is fused[0]
 
 
-def test_Mutation_fuse_04():
+def test_mutate_fuse_04():
     """
     Fusion results in tied notes.
     """
 
     voice = abjad.Voice([abjad.Note(0, (2, 16)), abjad.Note(9, (3, 16))])
-    abjad.mutate(voice[:]).fuse()
+    abjad.mutate.fuse(voice[:])
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -67,10 +67,10 @@ def test_Mutation_fuse_04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_fuse_05():
+def test_mutate_fuse_05():
     """
     Fuses leaves with differing LilyPond multipliers.
     """
@@ -89,9 +89,9 @@ def test_Mutation_fuse_05():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
+    assert abjad.get.duration(staff) == abjad.Duration(3, 8)
 
-    abjad.mutate(staff[:]).fuse()
+    abjad.mutate.fuse(staff[:])
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -102,11 +102,11 @@ def test_Mutation_fuse_05():
         """
     )
 
-    assert abjad.inspect(staff).duration() == abjad.Duration(3, 8)
-    assert abjad.wellformed(staff)
+    assert abjad.get.duration(staff) == abjad.Duration(3, 8)
+    assert abjad.wf.wellformed(staff)
 
 
-def test_Mutation_fuse_06():
+def test_mutate_fuse_06():
     """
     Fuses two unincorporated tuplets with same multiplier.
     """
@@ -141,7 +141,7 @@ def test_Mutation_fuse_06():
     ), print(abjad.lilypond(tuplet_2))
 
     tuplets = abjad.select([tuplet_1, tuplet_2])
-    new = abjad.mutate(tuplets).fuse()
+    new = abjad.mutate.fuse(tuplets)
 
     assert abjad.lilypond(new) == abjad.String.normalize(
         r"""
@@ -163,10 +163,10 @@ def test_Mutation_fuse_06():
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
     assert new is not tuplet_1 and new is not tuplet_2
-    assert abjad.wellformed(new)
+    assert abjad.wf.wellformed(new)
 
 
-def test_Mutation_fuse_07():
+def test_mutate_fuse_07():
     """
     Fuses tuplets with same multiplier in score.
     """
@@ -200,7 +200,7 @@ def test_Mutation_fuse_07():
     ), print(abjad.lilypond(voice))
 
     tuplets = voice[:]
-    abjad.mutate(tuplets).fuse()
+    abjad.mutate.fuse(tuplets)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -222,10 +222,10 @@ def test_Mutation_fuse_07():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_fuse_08():
+def test_mutate_fuse_08():
     """
     Fuses fixed-multiplier tuplets with same multiplier in score.
     """
@@ -262,7 +262,7 @@ def test_Mutation_fuse_08():
     ), print(abjad.lilypond(voice))
 
     tuplets = voice[:]
-    abjad.mutate(tuplets).fuse()
+    abjad.mutate.fuse(tuplets)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -287,10 +287,10 @@ def test_Mutation_fuse_08():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_fuse_09():
+def test_mutate_fuse_09():
     """
     Tuplets must carry same multiplier.
     """
@@ -300,10 +300,10 @@ def test_Mutation_fuse_09():
     tuplets = abjad.select([tuplet_1, tuplet_2])
 
     with pytest.raises(Exception):
-        abjad.mutate(tuplets).fuse()
+        abjad.mutate.fuse(tuplets)
 
 
-def test_Mutation_fuse_10():
+def test_mutate_fuse_10():
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
@@ -331,7 +331,7 @@ def test_Mutation_fuse_10():
     ), print(abjad.lilypond(voice))
 
     tuplets = voice[:2]
-    abjad.mutate(tuplets).fuse()
+    abjad.mutate.fuse(tuplets)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -348,14 +348,14 @@ def test_Mutation_fuse_10():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_fuse_11():
+def test_mutate_fuse_11():
     """
     Fusing empty selection returns none.
     """
 
     staff = abjad.Staff()
-    result = abjad.mutate(staff[:]).fuse()
+    result = abjad.mutate.fuse(staff[:])
     assert result == abjad.Selection()

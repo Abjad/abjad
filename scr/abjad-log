@@ -1,4 +1,4 @@
 #! /usr/bin/env python
 import abjad
 
-abjad.IOManager.open_last_log()
+abjad.iox.open_last_log()

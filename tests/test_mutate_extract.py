@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Mutation_extract_01():
+def test_mutate_extract_01():
     """
     Extracts note.
     """
@@ -28,7 +28,7 @@ def test_Mutation_extract_01():
     ), print(abjad.lilypond(voice))
 
     note = voice[1]
-    abjad.mutate(note).extract()
+    abjad.mutate.extract(note)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -45,11 +45,11 @@ def test_Mutation_extract_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(note)
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(note)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_extract_02():
+def test_mutate_extract_02():
     """
     Extracts multiple notes.
     """
@@ -77,7 +77,7 @@ def test_Mutation_extract_02():
 
     notes = voice[:2]
     for note in notes:
-        abjad.mutate(note).extract()
+        abjad.mutate.extract(note)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -92,12 +92,12 @@ def test_Mutation_extract_02():
     ), print(abjad.lilypond(voice))
 
     for note in notes:
-        assert abjad.wellformed(note)
+        assert abjad.wf.wellformed(note)
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_extract_03():
+def test_mutate_extract_03():
     """
     Extracts container.
     """
@@ -127,7 +127,7 @@ def test_Mutation_extract_03():
     ), print(abjad.lilypond(staff))
 
     container = staff[0]
-    abjad.mutate(container).extract()
+    abjad.mutate.extract(container)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -146,10 +146,10 @@ def test_Mutation_extract_03():
     ), print(abjad.lilypond(staff))
 
     assert not container
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
 
-def test_Mutation_extract_04():
+def test_mutate_extract_04():
     """
     Extracts multiple containers.
     """
@@ -191,7 +191,7 @@ def test_Mutation_extract_04():
 
     containers = voice[:2]
     for container in containers:
-        abjad.mutate(container).extract()
+        abjad.mutate.extract(container)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -219,4 +219,4 @@ def test_Mutation_extract_04():
     for container in containers:
         assert not container
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)

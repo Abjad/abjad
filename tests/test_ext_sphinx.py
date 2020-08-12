@@ -14,7 +14,7 @@ def rm_dirs(app):
 
 
 @pytest.mark.sphinx("html", testroot="ext-sphinx")
-def test_ex_sphinx_html(app, status, warning, rm_dirs):
+def test_ext_sphinx_01(app, status, warning, rm_dirs):
     app.build()
     assert not warning.getvalue().strip()
     images_path = pathlib.Path(app.outdir) / "_images"
@@ -60,7 +60,7 @@ def test_ex_sphinx_html(app, status, warning, rm_dirs):
 
 
 @pytest.mark.sphinx("text", testroot="ext-sphinx")
-def test_ex_sphinx_text(app, status, warning, rm_dirs):
+def test_ext_sphinx_02(app, status, warning, rm_dirs):
     app.build()
     assert not warning.getvalue().strip()
     index_path = pathlib.Path(app.srcdir) / "_build" / "text" / "index.txt"

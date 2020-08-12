@@ -7,9 +7,8 @@ import typing
 import quicktions
 import uqbar.enums
 
-from . import markups
+from . import markups, storage
 from .new import new
-from .storage import FormatSpecification, StorageFormatManager, storage
 
 
 class Signature:
@@ -459,7 +458,7 @@ class Expression:
             False
 
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return storage.StorageFormatManager.compare_objects(self, argument)
 
     def __getattr__(self, name):
         """
@@ -531,7 +530,7 @@ class Expression:
             Expression()
 
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     def __setitem__(self, i, argument):
         """
@@ -807,8 +806,8 @@ class Expression:
 
     def _get_format_specification(self):
         if self.template is None:
-            return FormatSpecification(client=self)
-        return FormatSpecification(
+            return storage.FormatSpecification(client=self)
+        return storage.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_is_indented=False,
@@ -1237,10 +1236,12 @@ class Expression:
         # abjad object
         elif not inspect.isclass(argument):
             try:
-                argument = storage(argument)
+                argument = storage.storage(argument)
             except (TypeError, ValueError):
                 try:
-                    argument = StorageFormatManager(argument).get_storage_format()
+                    argument = storage.StorageFormatManager(
+                        argument
+                    ).get_storage_format()
                 except (TypeError, ValueError):
                     raise Exception(f"can not make storage format: {argument!r}.")
         # abjad class

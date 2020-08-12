@@ -778,8 +778,8 @@ class FerneyhoughDemo:
         inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
         selector = abjad.select().leaves()
         last_leaf = selector(outer_tuplet)[-1]
-        right_logical_tie = abjad.inspect(last_leaf).logical_tie()
-        abjad.mutate(right_logical_tie).logical_tie_to_tuplet(inner_tuplet_proportions)
+        right_logical_tie = abjad.get.logical_tie(last_leaf)
+        abjad.mutate.logical_tie_to_tuplet(right_logical_tie, inner_tuplet_proportions)
         return outer_tuplet
 
     def make_row_of_nested_tuplets(
@@ -826,7 +826,7 @@ class FerneyhoughDemo:
             staff = abjad.Staff(row_of_nested_tuplets)
             staff.lilypond_type = "RhythmicStaff"
             time_signature = abjad.TimeSignature((1, 4))
-            leaf = abjad.inspect(staff).leaf(0)
+            leaf = abjad.get.leaf(staff, 0)
             abjad.attach(time_signature, leaf)
             score.append(staff)
         return score

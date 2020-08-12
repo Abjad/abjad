@@ -25,7 +25,7 @@ def find_lower_camel_case_modules():
 
 
 if __name__ == "__main__":
-    abjad.IOManager.spawn_subprocess("clear")
+    abjad.iox.spawn_subprocess("clear")
     print("Finding lower camel case modules ...")
     print()
     find_lower_camel_case_modules()

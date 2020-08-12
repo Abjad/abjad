@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Mutation__split_container_by_duration_01():
+def test_mutate__split_container_by_duration_01():
     """
     Split one container in score.
     Adds tie after split.
@@ -37,7 +37,7 @@ def test_Mutation__split_container_by_duration_01():
         """
     ), print(abjad.lilypond(staff))
 
-    abjad.Mutation._split_container_by_duration(staff[0], abjad.Duration(1, 32))
+    abjad.mutate._split_container_by_duration(staff[0], abjad.Duration(1, 32))
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -65,10 +65,10 @@ def test_Mutation__split_container_by_duration_01():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
 
-def test_Mutation__split_container_by_duration_02():
+def test_mutate__split_container_by_duration_02():
     """
     Split in-score container at split offset with non-power-of-two denominator.
     """
@@ -103,7 +103,7 @@ def test_Mutation__split_container_by_duration_02():
         """
     ), print(abjad.lilypond(staff))
 
-    abjad.Mutation._split_container_by_duration(staff[0], abjad.Duration(1, 5))
+    abjad.mutate._split_container_by_duration(staff[0], abjad.Duration(1, 5))
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -137,4 +137,4 @@ def test_Mutation__split_container_by_duration_02():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)

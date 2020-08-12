@@ -1093,8 +1093,8 @@ class String(str):
 
             REGRESSION:
 
-            >>> string = abjad.String('IOManager')
-            >>> string.match_word_starts(['I', 'O'])
+            >>> string = abjad.String('LMRSpecifier')
+            >>> string.match_word_starts(['L', 'M', 'R', 'S'])
             True
 
             >>> string = abjad.String('StringQuartetScoreTemplate')

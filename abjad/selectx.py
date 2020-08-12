@@ -5103,7 +5103,7 @@ class Selection(collections.abc.Sequence):
 
         ..  container:: example
 
-            Excludes leaves with ``abjad.const.HIDDEN`` indicator:
+            Excludes leaves with ``"HIDDEN"`` indicator:
 
             ..  container:: example
 
@@ -5111,12 +5111,12 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.attach(abjad.const.HIDDEN, staff[-1][-2])
-                >>> abjad.attach(abjad.const.HIDDEN, staff[-1][-1])
+                >>> abjad.attach("HIDDEN", staff[-1][-2])
+                >>> abjad.attach("HIDDEN", staff[-1][-1])
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
-                >>> result = abjad.select(staff).leaves(exclude=abjad.const.HIDDEN)
+                >>> result = abjad.select(staff).leaves(exclude="HIDDEN")
 
                 >>> for item in result:
                 ...     item
@@ -5132,7 +5132,7 @@ class Selection(collections.abc.Sequence):
 
             ..  container:: example expression
 
-                >>> selector = abjad.select().leaves(exclude=abjad.const.HIDDEN)
+                >>> selector = abjad.select().leaves(exclude="HIDDEN")
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
@@ -5497,7 +5497,7 @@ class Selection(collections.abc.Sequence):
 
         ..  todo:: Write examples.
 
-        ..  todo:: Remove ``abjad.inspect().logical_tie()``.
+        ..  todo:: Remove ``abjad.get.logical_tie()``.
 
         """
         if self._expression:
@@ -7877,7 +7877,7 @@ class Selection(collections.abc.Sequence):
                 ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).leaf(0)
+                >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -7972,7 +7972,7 @@ class Selection(collections.abc.Sequence):
                 ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).leaf(0)
+                >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -8070,7 +8070,7 @@ class Selection(collections.abc.Sequence):
                 ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).leaf(0)
+                >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -8160,7 +8160,7 @@ class Selection(collections.abc.Sequence):
                 ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).leaf(0)
+                >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -8266,7 +8266,7 @@ class Selection(collections.abc.Sequence):
                 ...
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> leaf = abjad.inspect(staff).leaf(0)
+                >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
                 >>> abjad.show(staff) # doctest: +SKIP
 

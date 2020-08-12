@@ -25,5 +25,5 @@ def test_LilyPondParser__indicators__TimeSignature_01():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     leaves = abjad.select(result).leaves()
     leaf = leaves[0]
-    time_signatures = abjad.inspect(leaf).indicators(abjad.TimeSignature)
+    time_signatures = abjad.get.indicators(leaf, abjad.TimeSignature)
     assert len(time_signatures) == 1

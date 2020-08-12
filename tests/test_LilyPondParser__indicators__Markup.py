@@ -22,7 +22,7 @@ def test_LilyPondParser__indicators__Markup_01():
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    assert 1 == len(abjad.inspect(result[0]).markup())
+    assert 1 == len(abjad.get.markup(result[0]))
 
 
 def test_LilyPondParser__indicators__Markup_02():
@@ -51,7 +51,7 @@ def test_LilyPondParser__indicators__Markup_02():
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    assert 1 == len(abjad.inspect(result[0]).markup())
+    assert 1 == len(abjad.get.markup(result[0]))
 
 
 def test_LilyPondParser__indicators__Markup_03():
@@ -83,7 +83,7 @@ def test_LilyPondParser__indicators__Markup_03():
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    assert 1 == len(abjad.inspect(result[0]).markup())
+    assert 1 == len(abjad.get.markup(result[0]))
 
 
 def test_LilyPondParser__indicators__Markup_04():

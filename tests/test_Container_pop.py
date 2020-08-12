@@ -42,11 +42,11 @@ def test_Container_pop_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
     "Result is now d'8 [ ]"
 
-    assert abjad.wellformed(result)
+    assert abjad.wf.wellformed(result)
     assert abjad.lilypond(result) == "d'8\n[\n]"
 
 
@@ -92,7 +92,7 @@ def test_Container_pop_02():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
     assert abjad.lilypond(sequential) == abjad.String.normalize(
         r"""
@@ -104,4 +104,4 @@ def test_Container_pop_02():
         """
     ), print(abjad.lilypond(sequential))
 
-    assert abjad.wellformed(sequential)
+    assert abjad.wf.wellformed(sequential)

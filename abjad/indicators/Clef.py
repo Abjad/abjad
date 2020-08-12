@@ -140,7 +140,7 @@ class Clef:
         But Abjad components work fine:
 
         >>> for leaf in abjad.select(voice_1).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("e'8"), Clef('treble'))
         (Note("g'8"), Clef('treble'))
@@ -150,7 +150,7 @@ class Clef:
         (Note("b'8"), Clef('treble'))
 
         >>> for leaf in abjad.select(voice_2).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("c'4."), Clef('treble'))
         (Note('c,8'), Clef('bass'))
@@ -385,7 +385,7 @@ class Clef:
             }
 
             >>> for leaf in abjad.iterate(staff).leaves():
-            ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+            ...     leaf, abjad.get.effective(leaf, abjad.Clef)
             ...
             (Note("c'4"), Clef('treble'))
             (Note("d'4"), Clef('treble'))

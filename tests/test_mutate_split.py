@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Mutation_split_01():
+def test_mutate_split_01():
     """
     Cyclically splits note in score.
     """
@@ -37,7 +37,7 @@ def test_Mutation_split_01():
     ), print(abjad.lilypond(staff))
 
     notes = staff[0][1:2]
-    result = abjad.mutate(notes).split([abjad.Duration(3, 64)], cyclic=True)
+    result = abjad.mutate.split(notes, [abjad.Duration(3, 64)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -65,11 +65,11 @@ def test_Mutation_split_01():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert len(result) == 3
 
 
-def test_Mutation_split_02():
+def test_mutate_split_02():
     """
     Cyclically splits consecutive notes in score.
     """
@@ -107,7 +107,7 @@ def test_Mutation_split_02():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(leaves).split([abjad.Duration(3, 32)], cyclic=True)
+    result = abjad.mutate.split(leaves, [abjad.Duration(3, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -141,11 +141,11 @@ def test_Mutation_split_02():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert len(result) == 6
 
 
-def test_Mutation_split_03():
+def test_mutate_split_03():
     """
     Cyclically splits note in score.
     """
@@ -184,7 +184,7 @@ def test_Mutation_split_03():
     ), print(abjad.lilypond(staff))
 
     notes = staff[0][1:]
-    result = abjad.mutate(notes).split([abjad.Duration(1, 32)], cyclic=True)
+    result = abjad.mutate.split(notes, [abjad.Duration(1, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -216,11 +216,11 @@ def test_Mutation_split_03():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert len(result) == 4
 
 
-def test_Mutation_split_04():
+def test_mutate_split_04():
     """
     Cyclically splits consecutive notes in score.
     """
@@ -258,7 +258,7 @@ def test_Mutation_split_04():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate(leaves).split([abjad.Duration(1, 16)], cyclic=True)
+    result = abjad.mutate.split(leaves, [abjad.Duration(1, 16)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -292,11 +292,11 @@ def test_Mutation_split_04():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert len(result) == 8
 
 
-def test_Mutation_split_05():
+def test_mutate_split_05():
     """
     Cyclically splits measure in score.
     """
@@ -335,7 +335,7 @@ def test_Mutation_split_05():
     ), print(abjad.lilypond(staff))
 
     measures = staff[:1]
-    result = abjad.mutate(measures).split([abjad.Duration(1, 16)], cyclic=True)
+    result = abjad.mutate.split(measures, [abjad.Duration(1, 16)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -371,11 +371,11 @@ def test_Mutation_split_05():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert len(result) == 4
 
 
-def test_Mutation_split_06():
+def test_mutate_split_06():
     """
     Cyclically splits consecutive measures in score.
     """
@@ -414,7 +414,7 @@ def test_Mutation_split_06():
     ), print(abjad.lilypond(staff))
 
     measures = staff[:]
-    result = abjad.mutate(measures).split([abjad.Duration(3, 32)], cyclic=True)
+    result = abjad.mutate.split(measures, [abjad.Duration(3, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -458,11 +458,11 @@ def test_Mutation_split_06():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert len(result) == 6
 
 
-def test_Mutation_split_07():
+def test_mutate_split_07():
     """
     Splits tuplet in score
     """
@@ -474,7 +474,7 @@ def test_Mutation_split_07():
     abjad.beam(leaves)
 
     tuplets = voice[1:2]
-    abjad.mutate(tuplets).split([abjad.Duration(1, 12)])
+    abjad.mutate.split(tuplets, [abjad.Duration(1, 12)])
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -500,10 +500,10 @@ def test_Mutation_split_07():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_split_08():
+def test_mutate_split_08():
     """
     Splits in-score measure with power-of-two denominator.
     """
@@ -515,7 +515,7 @@ def test_Mutation_split_08():
     abjad.beam(leaves)
 
     measures = voice[1:2]
-    abjad.mutate(measures).split([abjad.Duration(1, 8)])
+    abjad.mutate.split(measures, [abjad.Duration(1, 8)])
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -539,17 +539,17 @@ def test_Mutation_split_08():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_split_09():
+def test_mutate_split_09():
     """
     Splits container in middle.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
-    result = abjad.mutate([voice]).split([abjad.Duration(1, 4)])
+    result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
 
     assert not len(voice)
 
@@ -566,7 +566,7 @@ def test_Mutation_split_09():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wellformed(voice_1)
+    assert abjad.wf.wellformed(voice_1)
 
     assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
@@ -578,10 +578,10 @@ def test_Mutation_split_09():
         """
     ), print(abjad.lilypond(voice_2))
 
-    assert abjad.wellformed(voice_2)
+    assert abjad.wf.wellformed(voice_2)
 
 
-def test_Mutation_split_10():
+def test_mutate_split_10():
     """
     Splits voice at negative index.
     """
@@ -589,7 +589,7 @@ def test_Mutation_split_10():
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8")])
     voice = staff[0]
 
-    result = abjad.mutate([voice]).split([abjad.Duration(1, 4)])
+    result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
 
     left = result[0][0]
     right = result[1][0]
@@ -640,10 +640,10 @@ def test_Mutation_split_10():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
 
-def test_Mutation_split_11():
+def test_mutate_split_11():
     """
     Splits container in score.
     """
@@ -653,7 +653,7 @@ def test_Mutation_split_11():
     leaves = abjad.select(staff).leaves()
     abjad.beam(leaves)
 
-    result = abjad.mutate([voice]).split([abjad.Duration(1, 4)])
+    result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
 
     left = result[0][0]
     right = result[1][0]
@@ -721,10 +721,10 @@ def test_Mutation_split_11():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
 
-def test_Mutation_split_12():
+def test_mutate_split_12():
     """
     Splits tuplet in score.
     """
@@ -734,7 +734,7 @@ def test_Mutation_split_12():
     staff = abjad.Staff([voice])
     abjad.beam(tuplet[:])
 
-    result = abjad.mutate([tuplet]).split([abjad.Duration(1, 5)])
+    result = abjad.mutate.split([tuplet], [abjad.Duration(1, 5)])
 
     left = result[0][0]
     right = result[1][0]
@@ -814,10 +814,10 @@ def test_Mutation_split_12():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
 
-def test_Mutation_split_13():
+def test_mutate_split_13():
     """
     Splits cyclically.
     """
@@ -850,7 +850,7 @@ def test_Mutation_split_13():
     ), print(abjad.lilypond(voice))
 
     note = voice[0]
-    abjad.mutate(note).split([abjad.Duration(1, 8), abjad.Duration(3, 8)], cyclic=True)
+    abjad.mutate.split(note, [abjad.Duration(1, 8), abjad.Duration(3, 8)], cyclic=True)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -880,10 +880,10 @@ def test_Mutation_split_13():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_split_14():
+def test_mutate_split_14():
     """
     Cyclically splits all components in container.
     """
@@ -912,7 +912,7 @@ def test_Mutation_split_14():
     ), print(abjad.lilypond(voice))
 
     container = voice[0]
-    abjad.mutate(container).split([abjad.Duration(1, 8)], cyclic=True)
+    abjad.mutate.split(container, [abjad.Duration(1, 8)], cyclic=True)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -938,10 +938,10 @@ def test_Mutation_split_14():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
-def test_Mutation_split_15():
+def test_mutate_split_15():
     """
     Splits leaf at non-assignable, non-power-of-two offset.
     """
@@ -949,7 +949,7 @@ def test_Mutation_split_15():
     staff = abjad.Staff("c'4")
 
     notes = staff[:1]
-    abjad.mutate(notes).split([abjad.Duration(5, 24)])
+    abjad.mutate.split(notes, [abjad.Duration(5, 24)])
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -966,4 +966,4 @@ def test_Mutation_split_15():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)

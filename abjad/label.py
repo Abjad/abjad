@@ -2389,7 +2389,7 @@ class Label:
             ..  container:: example
 
                 >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
-                >>> tuplets = abjad.mutate(tuplet).copy(4)
+                >>> tuplets = abjad.mutate.copy(tuplet, 4)
                 >>> staff = abjad.Staff(tuplets)
                 >>> abjad.label(staff).with_indices(prototype=abjad.Tuplet)
                 >>> abjad.override(staff).text_script.staff_padding = 2
@@ -2441,7 +2441,7 @@ class Label:
             ..  container:: example expression
 
                 >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
-                >>> tuplets = abjad.mutate(tuplet).copy(4)
+                >>> tuplets = abjad.mutate.copy(tuplet, 4)
                 >>> staff = abjad.Staff(tuplets)
                 >>> expression = abjad.label().with_indices(
                 ...     prototype=abjad.Tuplet,

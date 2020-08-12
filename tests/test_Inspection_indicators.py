@@ -26,7 +26,7 @@ def test_Inspection_indicators_01():
         """
     ), abjad.lilypond(staff)
 
-    indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondLiteral)
+    indicators = abjad.get.indicators(staff[0], abjad.LilyPondLiteral)
     assert command_1 in indicators
     assert command_2 in indicators
     assert len(indicators) == 2
@@ -57,7 +57,7 @@ def test_Inspection_indicators_02():
         """
     ), abjad.lilypond(staff)
 
-    items = abjad.inspect(staff[0]).indicators()
+    items = abjad.get.indicators(staff[0])
     assert comment in items
     assert command in items
     assert len(items) == 3
@@ -85,7 +85,7 @@ def test_Inspection_indicators_03():
         """
     ), abjad.lilypond(staff)
 
-    indicators = abjad.inspect(staff[0]).indicators()
+    indicators = abjad.get.indicators(staff[0])
     assert len(indicators) == 2
 
 
@@ -111,7 +111,7 @@ def test_Inspection_indicators_04():
         """
     ), abjad.lilypond(staff)
 
-    indicators = abjad.inspect(staff[0]).indicators(abjad.LilyPondComment)
+    indicators = abjad.get.indicators(staff[0], abjad.LilyPondComment)
     assert comment_1 in indicators
     assert comment_2 in indicators
     assert len(indicators) == 2
@@ -122,6 +122,6 @@ def test_Inspection_indicators_05():
     note = abjad.Note("c'4")
     stem_tremolo = abjad.StemTremolo(16)
     abjad.attach(stem_tremolo, note)
-    stem_tremolos = abjad.inspect(note).indicators(abjad.StemTremolo)
+    stem_tremolos = abjad.get.indicators(note, abjad.StemTremolo)
 
     assert stem_tremolos[0] is stem_tremolo

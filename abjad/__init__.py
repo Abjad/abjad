@@ -1,6 +1,21 @@
 from quicktions import Fraction
 
-from . import cli, demos, deprecated, illustrators, iterpitches, lyconst, lyenv, makers
+from . import (
+    cli,
+    demos,
+    deprecated,
+    enumeratex,
+    get,
+    illustrators,
+    iox,
+    iterpitches,
+    lyconst,
+    lyenv,
+    makers,
+    mutate,
+    persist,
+    wf,
+)
 from ._version import __version__, __version_info__
 from .attach import Wrapper, annotate, attach, detach
 from .bundle import LilyPondFormatBundle, SlotContributions
@@ -23,7 +38,6 @@ from .contextmanagers import (
 )
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
-from .enumeratex import Enumerator
 from .enums import (
     Both,
     Center,
@@ -51,6 +65,7 @@ from .exceptions import (
 )
 from .expression import Expression, Signature
 from .formatx import LilyPondFormatManager, f
+from .get import Descendants, Lineage
 from .illustrators import illustrate
 from .indicators.Arpeggio import Arpeggio
 from .indicators.Articulation import Articulation
@@ -102,7 +117,6 @@ from .indicators.StringContactPoint import StringContactPoint
 from .indicators.Tie import Tie
 from .indicators.TimeSignature import TimeSignature
 from .indicators.WoodwindFingering import WoodwindFingering
-from .inspectx import Descendants, Inspection, Lineage, inspect
 from .instruments import (
     Accordion,
     AltoFlute,
@@ -155,7 +169,7 @@ from .instruments import (
     Violin,
     Xylophone,
 )
-from .iox import IOManager, PersistenceManager, TestManager, graph, persist, play, show
+from .iox import graph, play, show
 from .iterate import Iteration, iterate
 from .label import ColorMap, Label, label
 from .lilypond import lilypond
@@ -180,7 +194,6 @@ from .markups import Markup, MarkupCommand, MarkupList, Postscript, PostscriptOp
 from .mathx import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
 from .metricmodulation import MetricModulation
-from .mutate import Mutation, mutate
 from .new import new
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
 from .ordereddict import OrderedDict
@@ -353,7 +366,6 @@ from .verticalmoment import (
     iterate_pitch_pairs,
     iterate_vertical_moments,
 )
-from .wellformedness import Wellformedness, wellformed
 
 index = Pattern.index
 index_all = Pattern.index_all
@@ -426,7 +438,6 @@ __all__ = [
     "DurationTyping",
     "Dynamic",
     "EnglishHorn",
-    "Enumerator",
     "Exact",
     "Expression",
     "Fermata",
@@ -444,13 +455,11 @@ __all__ = [
     "Harp",
     "Harpsichord",
     "HorizontalAlignment",
-    "IOManager",
     "ImpreciseMetronomeMarkError",
     "IndexedTweakManager",
     "IndexedTweakManagers",
     "Inequality",
     "Infinity",
-    "Inspection",
     "Instrument",
     "IntegerPair",
     "IntegerSequence",
@@ -509,7 +518,6 @@ __all__ = [
     "MultimeasureRest",
     "Multiplication",
     "Multiplier",
-    "Mutation",
     "NamedInterval",
     "NamedIntervalClass",
     "NamedInversionEquivalentIntervalClass",
@@ -546,7 +554,6 @@ __all__ = [
     "PatternTuple",
     "PatternTyping",
     "Percussion",
-    "PersistenceManager",
     "PersistentIndicatorError",
     "Piano",
     "Piccolo",
@@ -639,7 +646,6 @@ __all__ = [
     "TenorSaxophone",
     "TenorTrombone",
     "TenorVoice",
-    "TestManager",
     "Tie",
     "TimeSignature",
     "Timer",
@@ -668,7 +674,6 @@ __all__ = [
     "Viola",
     "Violin",
     "Voice",
-    "Wellformedness",
     "WellformednessError",
     "WoodwindFingering",
     "Wrapper",
@@ -685,6 +690,7 @@ __all__ = [
     "demos",
     "deprecated",
     "detach",
+    "enumeratex",
     "f",
     "glissando",
     "graph",
@@ -696,7 +702,8 @@ __all__ = [
     "index_all",
     "index_first",
     "index_last",
-    "inspect",
+    "get",
+    "iox",
     "iterate",
     "iterate_leaf_pairs",
     "iterate_pitch_pairs",
@@ -733,6 +740,6 @@ __all__ = [
     "timespan",
     "trill_spanner",
     "tweak",
-    "wellformed",
+    "wf",
     "yield_all_modules",
 ]
