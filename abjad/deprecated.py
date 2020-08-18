@@ -75,10 +75,10 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> score = abjad.Score([staff])
-        >>> place = abjad.Markup('Bremen - Boston - LA.', direction=abjad.Down)
-        >>> date = abjad.Markup('July 2010 - May 2011.')
-        >>> markup = abjad.Markup.right_column([place, date], direction=abjad.Down)
-        >>> markup = markup.italic()
+        >>> place = "Bremen - Boston - LA."
+        >>> date = "July 2010 - May 2011."
+        >>> string = rf'\italic \right-column {{ "{place}" "{date}" }}'
+        >>> markup = abjad.Markup(string, direction=abjad.Down)
         >>> markup = abjad.deprecated.add_final_markup(
         ...     score,
         ...     markup,
@@ -116,16 +116,10 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> staff.append(abjad.MultimeasureRest((4, 4)))
         >>> score = abjad.Score([staff])
-        >>> place = abjad.Markup(
-        ...     'Bremen - Boston - LA.',
-        ...     direction=abjad.Down,
-        ...     )
-        >>> date = abjad.Markup('July 2010 - May 2011.')
-        >>> markup = abjad.Markup.right_column(
-        ...     [place, date],
-        ...     direction=abjad.Down,
-        ...     )
-        >>> markup = markup.italic()
+        >>> place = "Bremen - Boston - LA."
+        >>> date = "July 2010 - May 2011."
+        >>> string = rf'\italic \right-column {{ "{place}" "{date}" }}'
+        >>> markup = abjad.Markup(string, direction=abjad.Down)
         >>> markup = abjad.deprecated.add_final_markup(
         ...     score,
         ...     markup,

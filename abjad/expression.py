@@ -562,7 +562,7 @@ class Expression:
             name = previous_callback.next_name
         markup = name
         if isinstance(markup, str):
-            markup = markups.Markup(markup).bold()
+            markup = markups.Markup(rf'\bold "{markup}"')
         if not self.callbacks:
             return markup
         callback = self.callbacks[0]
@@ -571,7 +571,7 @@ class Expression:
             and previous_callback.is_composite
             and not callback.is_composite
         ):
-            markup = markups.MarkupList(["(", markup, ")"]).concat()
+            markup = markups.Markup(rf"\concat {{ ( {markup.contents[0]} ) }}")
         markup = callback._make_method_markup(markup)
         previous_precedence = callback.precedence or 0
         previous_callback = callback
@@ -579,7 +579,7 @@ class Expression:
             if previous_callback and previous_callback.next_name:
                 markup = previous_callback.next_name
                 if isinstance(markup, str):
-                    markup = markups.Markup(markup).bold()
+                    markup = markups.Markup(rf'\bold "{markup}"')
             current_precedence = callback.precedence or 0
             parenthesize_argument = False
             if (
@@ -592,7 +592,7 @@ class Expression:
             if previous_callback and previous_callback.next_name:
                 parenthesize_argument = False
             if parenthesize_argument:
-                markup = markups.MarkupList(["(", markup, ")"]).concat()
+                markup = markups.Markup(rf"\concat {{ ( {markup.contents[0]} ) }}")
             markup = callback._make_method_markup(markup)
             previous_callback = callback
         markup = new(markup, direction=direction)
@@ -848,11 +848,7 @@ class Expression:
 
     @staticmethod
     def _make___add___markup(markup, argument):
-        markup_list = markups.MarkupList()
-        markup_list.append(markup)
-        markup_list.append("+")
-        markup_list.append(str(argument))
-        markup = markup_list.line()
+        markup = markups.Markup(rf'\line {{ {markup.contents[0]} + "{argument}" }}')
         return markup
 
     @staticmethod
@@ -861,12 +857,9 @@ class Expression:
 
     @staticmethod
     def _make___getitem___markup(markup, argument):
-        markup_list = markups.MarkupList()
-        markup_list.append(markup)
         string = Expression._make_subscript_string(argument, markup=True)
-        subscript_markup = markups.Markup(string).sub()
-        markup_list.append(subscript_markup)
-        markup = markup_list.concat()
+        string = fr'\concat {{ {markup.contents[0]} \sub "{string}" }}'
+        markup = markups.Markup(string)
         return markup
 
     @staticmethod
@@ -876,11 +869,8 @@ class Expression:
 
     @staticmethod
     def _make___radd___markup(markup, argument):
-        markup_list = markups.MarkupList()
-        markup_list.append(str(argument))
-        markup_list.append("+")
-        markup_list.append(markup)
-        markup = markup_list.line()
+        string = rf'\line {{ "{argument}" + {markup.contents[0]} }}'
+        markup = markups.Markup(string)
         return markup
 
     @staticmethod
@@ -889,13 +879,8 @@ class Expression:
 
     @staticmethod
     def _make_establish_equivalence_markup(lhs, rhs):
-        markup_list = markups.MarkupList()
-        lhs = markups.Markup(lhs).bold()
-        markup_list.append(lhs)
-        markup_list.append("=")
-        assert isinstance(rhs, markups.Markup)
-        markup_list.append(rhs)
-        markup = markup_list.line()
+        string = rf'\line {{ \bold "{lhs}" = {rhs.contents[0]} }}'
+        markup = markups.Markup(string)
         return markup
 
     @staticmethod
@@ -910,11 +895,8 @@ class Expression:
     @staticmethod
     def _make_expression_add_markup(markups_):
         assert len(markups_) == 2
-        markup_list = markups.MarkupList()
-        markup_list.append(markups_[0])
-        markup_list.append("+")
-        markup_list.append(markups_[1])
-        markup = markup_list.line()
+        string = rf"\line {{ {markups_[0].contents[0]} + {markups_[1].contents[0]} }}"
+        markup = markups.Markup(string)
         return markup
 
     @staticmethod
@@ -925,14 +907,13 @@ class Expression:
             arguments = argument_list_callback(**argument_values)
         else:
             arguments = Expression._wrap_arguments_new(method, argument_values)
-        markup_list = markups.MarkupList()
-        markup_list.append(method_name + "(")
-        markup_list.append(markup)
+        string = f"{method_name}({markup.contents[0]}"
         if arguments:
-            markup_list.append(", " + arguments + ")")
+            string += f'", {arguments})"'
         else:
-            markup_list.append(")")
-        markup = markup_list.concat()
+            string += " )"
+        string = rf"\concat {{ {string} }}"
+        markup = markups.Markup(string)
         return markup
 
     # TODO: eventually do not pass frame
@@ -1071,16 +1052,13 @@ class Expression:
     def _make_operator_markup(
         markup, method_name=None, subscript=None, superscript=None
     ):
-        markup_list = markups.MarkupList([method_name, markup])
+        string = f"{method_name}"
         if superscript is not None:
-            superscript = markups.Markup(str(superscript))
-            superscript = superscript.super()
-            markup_list.insert(1, superscript)
+            string += rf" \super {superscript}"
         if subscript is not None:
-            subscript = markups.Markup(str(subscript))
-            subscript = subscript.sub()
-            markup_list.insert(1, subscript)
-        markup = markup_list.concat()
+            string += rf"\sub {subscript}"
+        string = rf"\concat {{ {string} {markup.contents[0]} }}"
+        markup = markups.Markup(string)
         return markup
 
     @staticmethod
@@ -1294,7 +1272,8 @@ class Expression:
                     argument_string = "{argument_name}={argument_value}"
                     argument_value = Expression._to_evaluable_string(argument_value)
                     argument_string = argument_string.format(
-                        argument_name=argument_name, argument_value=argument_value,
+                        argument_name=argument_name,
+                        argument_value=argument_value,
                     )
                     argument_strings.append(argument_string)
             arguments = ", ".join(argument_strings)

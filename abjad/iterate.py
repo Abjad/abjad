@@ -241,11 +241,21 @@ class Iteration:
         Returns generator.
         """
         return _iterate._public_iterate_components(
-            self.client, prototype, exclude=exclude, grace=grace, reverse=reverse,
+            self.client,
+            prototype,
+            exclude=exclude,
+            grace=grace,
+            reverse=reverse,
         )
 
     def leaves(
-        self, prototype=None, *, exclude=None, grace=None, pitched=None, reverse=None,
+        self,
+        prototype=None,
+        *,
+        exclude=None,
+        grace=None,
+        pitched=None,
+        reverse=None,
     ):
         r"""
         Iterates leaves.
@@ -483,7 +493,13 @@ class Iteration:
         )
 
     def logical_ties(
-        self, *, exclude=None, grace=None, nontrivial=None, pitched=None, reverse=None,
+        self,
+        *,
+        exclude=None,
+        grace=None,
+        nontrivial=None,
+        pitched=None,
+        reverse=None,
     ) -> typing.Generator:
         r"""
         Iterates logical ties.

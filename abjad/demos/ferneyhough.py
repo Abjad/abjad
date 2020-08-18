@@ -767,7 +767,10 @@ class FerneyhoughDemo:
         return lilypond_file
 
     def make_nested_tuplet(
-        self, tuplet_duration, outer_tuplet_proportions, inner_tuplet_subdivision_count,
+        self,
+        tuplet_duration,
+        outer_tuplet_proportions,
+        inner_tuplet_subdivision_count,
     ):
         """
         Makes nested tuplet.
@@ -849,6 +852,8 @@ if __name__ == "__main__":
 
     demo = abjad.demos.ferneyhough.FerneyhoughDemo()
     lilypond_file = demo(
-        tuplet_duration=tuplet_duration, row_count=row_count, column_count=column_count,
+        tuplet_duration=tuplet_duration,
+        row_count=row_count,
+        column_count=column_count,
     )
     abjad.show(lilypond_file)

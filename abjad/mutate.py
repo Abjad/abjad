@@ -228,13 +228,17 @@ def _split_container_by_duration(CONTAINER, duration):
         did_split_leaf = True
         timespan = get.timespan(bottom)
         split_point_in_bottom = global_split_point - timespan.start_offset
-        new_leaves = _split_leaf_by_durations(bottom, [split_point_in_bottom],)
+        new_leaves = _split_leaf_by_durations(
+            bottom,
+            [split_point_in_bottom],
+        )
         if new_leaves[0]._parent is not original_bottom_parent:
             new_leaves_tuplet_wrapper = new_leaves[0]._parent
             assert isinstance(new_leaves_tuplet_wrapper, Tuplet)
             assert new_leaves_tuplet_wrapper._parent is original_bottom_parent
             _split_container_by_duration(
-                new_leaves_tuplet_wrapper, split_point_in_bottom,
+                new_leaves_tuplet_wrapper,
+                split_point_in_bottom,
             )
         for leaf in new_leaves:
             timespan = get.timespan(leaf)
@@ -1838,14 +1842,18 @@ def split(argument, durations, cyclic=False):
                 additional_required_duration -= local_split_duration
                 split_durations = Sequence(durations)
                 split_durations = split_durations.split(
-                    [additional_required_duration], cyclic=False, overhang=True,
+                    [additional_required_duration],
+                    cyclic=False,
+                    overhang=True,
                 )
                 split_durations = [list(_) for _ in split_durations]
                 additional_durations = split_durations[0]
                 leaf_split_durations.extend(additional_durations)
                 durations = split_durations[-1]
                 leaf_shards = _split_leaf_by_durations(
-                    current_component, leaf_split_durations, cyclic=False,
+                    current_component,
+                    leaf_split_durations,
+                    cyclic=False,
                 )
                 shard.extend(leaf_shards)
                 result.append(shard)
@@ -1853,7 +1861,8 @@ def split(argument, durations, cyclic=False):
             else:
                 assert isinstance(current_component, Container)
                 pair = _split_container_by_duration(
-                    current_component, local_split_duration,
+                    current_component,
+                    local_split_duration,
                 )
                 left_list, right_list = pair
                 shard.extend(left_list)

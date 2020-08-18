@@ -9,29 +9,29 @@ class Tag:
 
     ..  container:: example
 
-        >>> abjad.Tag('YELLOW')
+        >>> abjad.Tag("YELLOW")
         Tag('YELLOW')
 
-        >>> abjad.Tag('YELLOW:RED')
+        >>> abjad.Tag("YELLOW:RED")
         Tag('YELLOW:RED')
 
         Removes duplicate words at initialization:
 
-        >>> abjad.Tag('YELLOW:RED:RED')
+        >>> abjad.Tag("YELLOW:RED:RED")
         Tag('YELLOW:RED')
 
     ..  container:: example
 
         Initializes from other tag:
 
-        >>> abjad.Tag(abjad.Tag('YELLOW'))
+        >>> abjad.Tag(abjad.Tag("YELLOW"))
         Tag('YELLOW')
 
     ..  container:: example
 
         Raises exception on multiple only-edition tags:
 
-        >>> abjad.Tag('+SEGMENT:+PARTS')
+        >>> abjad.Tag("+SEGMENT:+PARTS")
         Traceback (most recent call last):
             ...
         Exception: at most one only-edition tag: ['+SEGMENT', '+PARTS'].
@@ -40,7 +40,7 @@ class Tag:
 
         Raises exception on mixed only-edition / not-edition tags:
 
-        >>> abjad.Tag('+SEGMENT:-PARTS')
+        >>> abjad.Tag("+SEGMENT:-PARTS")
         Traceback (most recent call last):
             ...
         Exception: only-edition and not-edition forbidden in same tag:
@@ -114,10 +114,10 @@ class Tag:
             >>> tag = abjad.Tag("-PARTS")
             >>> tag = tag.append(abjad.Tag("DEFAULT_CLEF"))
 
-            >>> 'PARTS' in tag
+            >>> "PARTS" in tag
             False
 
-            >>> '-PARTS' in tag
+            >>> "-PARTS" in tag
             True
 
             >>> abjad.Tag("DEFAULT_CLEF") in tag
@@ -134,7 +134,7 @@ class Tag:
 
             >>> tag_1 = abjad.Tag()
             >>> tag_2 = abjad.Tag()
-            >>> tag_3 = abjad.Tag('+PARTS')
+            >>> tag_3 = abjad.Tag("+PARTS")
 
             >>> tag_1 == tag_1
             True
@@ -184,7 +184,7 @@ class Tag:
 
         ..  container:: example
 
-            >>> tag = abjad.Tag('-PARTS:-SCORE:DEFAULT_CLEF')
+            >>> tag = abjad.Tag("-PARTS:-SCORE:DEFAULT_CLEF")
             >>> for word  in tag:
             ...     word
             ...
@@ -210,7 +210,7 @@ class Tag:
             >>> str(abjad.Tag())
             ''
 
-            >>> str(abjad.Tag('-PARTS:-SCORE:DEFAULT_CLEF'))
+            >>> str(abjad.Tag("-PARTS:-SCORE:DEFAULT_CLEF"))
             '-PARTS:-SCORE:DEFAULT_CLEF'
 
         """
@@ -241,7 +241,7 @@ class Tag:
             >>> abjad.Tag().string is None
             True
 
-            >>> abjad.Tag('-PARTS:DEFAULT_CLEF').string
+            >>> abjad.Tag("-PARTS:DEFAULT_CLEF").string
             '-PARTS:DEFAULT_CLEF'
 
         """
@@ -254,7 +254,7 @@ class Tag:
 
         ..  container:: example
 
-            >>> abjad.Tag('-PARTS:DEFAULT_CLEF').words
+            >>> abjad.Tag("-PARTS:DEFAULT_CLEF").words
             ['-PARTS', 'DEFAULT_CLEF']
 
         """
@@ -268,7 +268,7 @@ class Tag:
 
         ..  container:: example
 
-            >>> abjad.Tag('-PARTS').append(abjad.Tag("DEFAULT_CLEF"))
+            >>> abjad.Tag("-PARTS").append(abjad.Tag("DEFAULT_CLEF"))
             Tag('-PARTS:DEFAULT_CLEF')
 
         """
@@ -288,22 +288,22 @@ class Tag:
 
         ..  container:: example
 
-            >>> abjad.Tag('FOO').editions()
+            >>> abjad.Tag("FOO").editions()
             []
 
-            >>> abjad.Tag('+SEGMENT').only_edition()
+            >>> abjad.Tag("+SEGMENT").only_edition()
             Tag('+SEGMENT')
 
-            >>> abjad.Tag('+SEGMENT:FOO').only_edition()
+            >>> abjad.Tag("+SEGMENT:FOO").only_edition()
             Tag('+SEGMENT')
 
-            >>> abjad.Tag('-SEGMENT').editions()
+            >>> abjad.Tag("-SEGMENT").editions()
             [Tag('-SEGMENT')]
 
-            >>> abjad.Tag('-SEGMENT:FOO').editions()
+            >>> abjad.Tag("-SEGMENT:FOO").editions()
             [Tag('-SEGMENT')]
 
-            >>> abjad.Tag('-SEGMENT:-PARTS').editions()
+            >>> abjad.Tag("-SEGMENT:-PARTS").editions()
             [Tag('-SEGMENT'), Tag('-PARTS')]
 
         """
@@ -319,13 +319,13 @@ class Tag:
 
         ..  container:: example
 
-            >>> abjad.Tag('FOO').invert_edition_tags()
+            >>> abjad.Tag("FOO").invert_edition_tags()
             Tag('FOO')
 
-            >>> abjad.Tag('FOO:-PARTS').invert_edition_tags()
+            >>> abjad.Tag("FOO:-PARTS").invert_edition_tags()
             Tag('FOO:+PARTS')
 
-            >>> abjad.Tag('FOO:+PARTS').invert_edition_tags()
+            >>> abjad.Tag("FOO:+PARTS").invert_edition_tags()
             Tag('FOO:-PARTS')
 
         """
@@ -348,16 +348,16 @@ class Tag:
 
         ..  container:: example
 
-            >>> abjad.Tag('FOO').not_editions()
+            >>> abjad.Tag("FOO").not_editions()
             []
 
-            >>> abjad.Tag('-SEGMENT').not_editions()
+            >>> abjad.Tag("-SEGMENT").not_editions()
             [Tag('-SEGMENT')]
 
-            >>> abjad.Tag('-SEGMENT:FOO').not_editions()
+            >>> abjad.Tag("-SEGMENT:FOO").not_editions()
             [Tag('-SEGMENT')]
 
-            >>> abjad.Tag('-SEGMENT:-PARTS').not_editions()
+            >>> abjad.Tag("-SEGMENT:-PARTS").not_editions()
             [Tag('-SEGMENT'), Tag('-PARTS')]
 
         """
@@ -373,13 +373,13 @@ class Tag:
 
         ..  container:: example
 
-            >>> abjad.Tag('FOO').only_edition() is None
+            >>> abjad.Tag("FOO").only_edition() is None
             True
 
-            >>> abjad.Tag('+SEGMENT').only_edition()
+            >>> abjad.Tag("+SEGMENT").only_edition()
             Tag('+SEGMENT')
 
-            >>> abjad.Tag('+SEGMENT:FOO').only_edition()
+            >>> abjad.Tag("+SEGMENT:FOO").only_edition()
             Tag('+SEGMENT')
 
         """
@@ -396,7 +396,7 @@ class Line:
 
     ..  container:: example
 
-        >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
+        >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
         >>> abjad.Line(string)
         Line(string='    %@%  \\with-color %! MEASURE_NUMBER:SM31')
 
@@ -428,7 +428,7 @@ class Line:
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
+            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
             >>> str(abjad.Line(string))
             '    %@%  \\with-color %! MEASURE_NUMBER:SM31'
 
@@ -445,7 +445,7 @@ class Line:
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
+            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
             >>> abjad.Line(string).string
             '    %@%  \\with-color %! MEASURE_NUMBER:SM31'
 
@@ -461,7 +461,7 @@ class Line:
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
+            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
             >>> abjad.Line(string).get_tags()
             [Tag('MEASURE_NUMBER'), Tag('SM31')]
 
@@ -469,7 +469,7 @@ class Line:
 
             REGRESSION. Works with multiple ``%!`` prefixes:
 
-            >>> string = r'    %@%  \with-color %! SM31 %! SM32'
+            >>> string = r"    %@%  \with-color %! SM31 %! SM32"
             >>> line = abjad.Line(string)
             >>> line.get_tags()
             [Tag('SM31'), Tag('SM32')]
@@ -540,39 +540,39 @@ class Line:
 
         ..  container:: example
 
-            >>> string = r'    %@%  \with-color %! MEASURE_NUMBER:SM31'
+            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
             >>> line = abjad.Line(string)
 
         ..  container:: example
 
             Tags:
 
-            >>> line.match(abjad.Tag('MEASURE_NUMBER'))
+            >>> line.match(abjad.Tag("MEASURE_NUMBER"))
             True
 
-            >>> line.match(abjad.Tag('SM31'))
+            >>> line.match(abjad.Tag("SM31"))
             True
 
-            >>> line.match(abjad.Tag('%@%'))
+            >>> line.match(abjad.Tag("%@%"))
             False
 
-            >>> line.match(abjad.Tag('with-color'))
+            >>> line.match(abjad.Tag("with-color"))
             False
 
-            >>> line.match(abjad.Tag('%!'))
+            >>> line.match(abjad.Tag("%!"))
             False
 
         ..  container:: example
 
             Lambdas:
 
-            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith('M')))
+            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith("M")))
             True
 
-            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith('S')))
+            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith("S")))
             True
 
-            >>> line.match(lambda x: any(_ for _ in x if str(_)[0] in 'SM'))
+            >>> line.match(lambda x: any(_ for _ in x if str(_)[0] in "SM"))
             True
 
         ..  container:: example
@@ -580,7 +580,7 @@ class Line:
             Functions:
 
             >>> def predicate(tags):
-            ...     if abjad.Tag('SM31') in tags and abjad.Tag('MEASURE_NUMBER') in tags:
+            ...     if abjad.Tag("SM31") in tags and abjad.Tag("MEASURE_NUMBER") in tags:
             ...         return True
             ...     else:
             ...         return False
@@ -589,7 +589,7 @@ class Line:
             True
 
             >>> def predicate(tags):
-            ...     if abjad.Tag('SM31') in tags and abjad.Tag('MEASURE_NUMBER') not in tags:
+            ...     if abjad.Tag("SM31") in tags and abjad.Tag("MEASURE_NUMBER") not in tags:
             ...         return True
             ...     else:
             ...         return False
@@ -601,13 +601,13 @@ class Line:
 
             REGRESSION. Works with multiple ``%!`` prefixes:
 
-            >>> string = r'    %@%  \with-color %! SM31 %! SM32'
+            >>> string = r"    %@%  \with-color %! SM31 %! SM32"
             >>> line = abjad.Line(string)
 
-            >>> line.match(abjad.Tag('SM31'))
+            >>> line.match(abjad.Tag("SM31"))
             True
 
-            >>> line.match(abjad.Tag('SM32'))
+            >>> line.match(abjad.Tag("SM32"))
             True
 
         Returns true or false.
@@ -633,16 +633,16 @@ def activate(text, tag, skipped=False):
 
     ..  container:: example
 
-        Writes (deactivated) tag with ``'%@%'`` prefix into LilyPond
+        Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond
         input:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro').with_color('red')
+        >>> markup = abjad.Markup(r"\with-color #red Allegro")
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag=abjad.Tag('RED_MARKUP'),
+        ...     tag=abjad.Tag("RED_MARKUP"),
         ...     )
 
         >>> text = abjad.lilypond(staff)
@@ -664,7 +664,7 @@ def activate(text, tag, skipped=False):
 
         Activates tag:
 
-        >>> text, count = abjad.activate(text, abjad.Tag('RED_MARKUP'))
+        >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff {
             c'4
@@ -678,13 +678,13 @@ def activate(text, tag, skipped=False):
             f'4
         }
 
-        >>> lines = [_.strip('\n') for _ in text.split('\n')]
+        >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> lilypond_file = abjad.LilyPondFile.new(lines)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Deactivates tag again:
 
-        >>> text, count = abjad.deactivate(text, abjad.Tag('RED_MARKUP'))
+        >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff {
             c'4
@@ -698,13 +698,13 @@ def activate(text, tag, skipped=False):
             f'4
         }
 
-        >>> lines = [_.strip('\n') for _ in text.split('\n')]
+        >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> lilypond_file = abjad.LilyPondFile.new(lines)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Activates tag again:
 
-        >>> text, count = abjad.activate(text, abjad.Tag('RED_MARKUP'))
+        >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff {
             c'4
@@ -718,7 +718,7 @@ def activate(text, tag, skipped=False):
             f'4
         }
 
-        >>> lines = [_.strip('\n') for _ in text.split('\n')]
+        >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> lilypond_file = abjad.LilyPondFile.new(lines)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -779,11 +779,11 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         Writes (active) tag into LilyPond input:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro').with_color('red')
+        >>> markup = abjad.Markup(r"\with-color #red Allegro")
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
-        ...     tag=abjad.Tag('RED_MARKUP'),
+        ...     tag=abjad.Tag("RED_MARKUP"),
         ...     )
 
         >>> text = abjad.lilypond(staff)
@@ -806,7 +806,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         Deactivates tag:
 
         >>> text = abjad.lilypond(staff)
-        >>> text, count = abjad.deactivate(text, abjad.Tag('RED_MARKUP'))
+        >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff {
             c'4
@@ -820,13 +820,13 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
             f'4
         }
 
-        >>> lines = [_.strip('\n') for _ in text.split('\n')]
+        >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> lilypond_file = abjad.LilyPondFile.new(lines)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Activates tag again:
 
-        >>> text, count = abjad.activate(text, abjad.Tag('RED_MARKUP'))
+        >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff {
             c'4
@@ -840,13 +840,13 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
             f'4
         }
 
-        >>> lines = [_.strip('\n') for _ in text.split('\n')]
+        >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> lilypond_file = abjad.LilyPondFile.new(lines)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Deactivates tag again:
 
-        >>> text, count = abjad.deactivate(text, abjad.Tag('RED_MARKUP'))
+        >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff {
             c'4
@@ -860,7 +860,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
             f'4
         }
 
-        >>> lines = [_.strip('\n') for _ in text.split('\n')]
+        >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> lilypond_file = abjad.LilyPondFile.new(lines)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 

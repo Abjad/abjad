@@ -1182,7 +1182,10 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
             "Stack  : %s",
             (
                 "%s . %s"
-                % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead),)
+                % (
+                    " ".join([xx.type for xx in symstack][1:]),
+                    str(self.lookahead),
+                )
             ).lstrip(),
         )
         # --! DEBUG
@@ -1348,7 +1351,10 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 "Error  : %s",
                 (
                     "%s . %s"
-                    % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead),)
+                    % (
+                        " ".join([xx.type for xx in symstack][1:]),
+                        str(self.lookahead),
+                    )
                 ).lstrip(),
             )
             # --! DEBUG
@@ -4047,11 +4053,15 @@ class LilyPondSyntacticalDefinition:
         "chord_body_element : pitch exclamations questions octave_check post_events"
         if p[1] not in drums:
             note_head = NoteHead(
-                written_pitch=p[1], is_cautionary=bool(p[3]), is_forced=bool(p[2]),
+                written_pitch=p[1],
+                is_cautionary=bool(p[3]),
+                is_forced=bool(p[2]),
             )
         else:
             note_head = DrumNoteHead(
-                written_pitch=p[1], is_cautionary=bool(p[3]), is_forced=bool(p[2]),
+                written_pitch=p[1],
+                is_cautionary=bool(p[3]),
+                is_forced=bool(p[2]),
             )
         p[0] = SyntaxNode("chord_body_element", (note_head, p[5]))
 

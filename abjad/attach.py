@@ -467,7 +467,10 @@ class Wrapper:
         prototype = type(self.indicator)
         command = getattr(self.indicator, "command", None)
         wrapper = _inspect._get_effective(
-            component, prototype, attributes={"command": command}, unwrap=False,
+            component,
+            prototype,
+            attributes={"command": command},
+            unwrap=False,
         )
         wrapper_format_slot = None
         if wrapper is not None:
@@ -1077,7 +1080,7 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4
@@ -1100,7 +1103,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4
@@ -1128,7 +1131,7 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4
@@ -1149,7 +1152,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4

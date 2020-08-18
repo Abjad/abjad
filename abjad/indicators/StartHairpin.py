@@ -114,7 +114,10 @@ class StartHairpin:
     @staticmethod
     def _circled_tip():
         return LilyPondOverride(
-            grob_name="Hairpin", once=True, property_path="circled-tip", value=True,
+            grob_name="Hairpin",
+            once=True,
+            property_path="circled-tip",
+            value=True,
         )
 
     @staticmethod

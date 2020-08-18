@@ -98,9 +98,9 @@ class StopTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup('pont.').upright(),
-            ...     right_text=abjad.Markup('tasto').upright(),
-            ...     style='dashed-line-with-arrow',
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\upright tasto"),
+            ...     style="dashed-line-with-arrow",
             ...     )
             >>> abjad.tweak(command).staff_padding = 2.5
             >>> abjad.attach(command, staff[0])
@@ -115,15 +115,8 @@ class StopTextSpan:
                 {
                     c'4
                     - \abjad-dashed-line-with-arrow
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    pont.
-                                \hspace
-                                    #0.5
-                            }
-                        }
+                    - \tweak bound-details.left.text \markup \concat { \upright
+                        pont. \hspace #0.5 }
                     - \tweak bound-details.right.text \markup {
                         \upright
                             tasto
@@ -140,9 +133,9 @@ class StopTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup('pont.').upright(),
-            ...     right_text=abjad.Markup('tasto').upright(),
-            ...     style='dashed-line-with-arrow',
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\upright tasto"),
+            ...     style="dashed-line-with-arrow",
             ...     )
             >>> abjad.tweak(command).staff_padding = 2.5
             >>> abjad.attach(command, staff[0])
@@ -157,15 +150,8 @@ class StopTextSpan:
                 {
                     c'4
                     - \abjad-dashed-line-with-arrow
-                    - \tweak bound-details.left.text \markup {
-                        \concat
-                            {
-                                \upright
-                                    pont.
-                                \hspace
-                                    #0.5
-                            }
-                        }
+                    - \tweak bound-details.left.text \markup \concat { \upright
+                        pont. \hspace #0.5 }
                     - \tweak bound-details.right.text \markup {
                         \upright
                             tasto

@@ -17,7 +17,6 @@ from .overrides import TweakInterface
 from .scheme import Scheme, SchemeColor, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
 from .stringx import String
-from .typedcollections import TypedList
 
 
 class Markup:
@@ -44,8 +43,7 @@ class Markup:
 
         Initializes from other markup:
 
-        >>> markup = abjad.Markup("Allegro assai", direction=abjad.Up)
-        >>> markup = markup.italic()
+        >>> markup = abjad.Markup(r'\italic "Allegro assai"', direction=abjad.Up)
         >>> markup = abjad.Markup(markup, direction=abjad.Down)
         >>> abjad.f(markup)
         _ \markup {
@@ -101,7 +99,7 @@ class Markup:
         Markup can be tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup("Allegro", direction=abjad.Up).italic()
+        >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
         >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -123,7 +121,7 @@ class Markup:
         Markup can be deactively tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup("Allegro", direction=abjad.Up).italic()
+        >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
@@ -151,8 +149,8 @@ class Markup:
         the second italic markup is attached:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup("Allegro", direction=abjad.Up).italic()
-        >>> markup_2 = abjad.Markup("non troppo", direction=abjad.Up).italic()
+        >>> markup_1 = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+        >>> markup_2 = abjad.Markup(r'\italic "non troppo"', direction=abjad.Up)
         >>> abjad.attach(markup_1, staff[0])
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -274,7 +272,7 @@ class Markup:
 
             Adds markup command to markup:
 
-            >>> markup = abjad.Markup("Allegro") + abjad.Markup.hspace(0.75)
+            >>> markup = abjad.Markup(r"Allegro \hspace #0.75")
             >>> markup = markup + abjad.Markup("assai")
             >>> abjad.f(markup)
             \markup {
@@ -474,7 +472,7 @@ class Markup:
 
             Adds markup to markup command:
 
-            >>> markup = abjad.Markup("Allegro") + abjad.Markup.hspace(0.75)
+            >>> markup = abjad.Markup(r"Allegro \hspace #0.75")
             >>> markup = markup + abjad.Markup("assai")
             >>> abjad.f(markup)
             \markup {
@@ -569,7 +567,9 @@ class Markup:
     def _get_format_specification(self):
         names = list(StorageFormatManager(self).signature_keyword_names)
         return FormatSpecification(
-            client=self, repr_is_indented=False, storage_format_keyword_names=names,
+            client=self,
+            repr_is_indented=False,
+            storage_format_keyword_names=names,
         )
 
     def _get_lilypond_format(self):
@@ -756,8 +756,7 @@ class Markup:
 
         ..  container:: example
 
-            >>> markup = abjad.Markup("Allegro assai", direction=abjad.Up)
-            >>> markup = markup.bold()
+            >>> markup = abjad.Markup(r'\bold "Allegro assai"', direction=abjad.Up)
             >>> abjad.tweak(markup).color = "blue"
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(markup, staff[0])
@@ -2225,12 +2224,8 @@ class Markup:
 
         ..  container:: example
 
-            >>> markups = [
-            ...     abjad.Markup("1"),
-            ...     abjad.Markup("st").super(),
-            ...     ]
-            >>> markup_list = abjad.MarkupList(markups)
-            >>> markup = markup_list.concat()
+            >>> string = rf"\concat {{ 1 \super st }}"
+            >>> markup = abjad.Markup(string)
             >>> abjad.f(markup)
             \markup {
                 \concat
@@ -3151,856 +3146,6 @@ class MarkupCommand:
     ### PUBLIC METHODS ###
 
 
-#    @staticmethod
-#    def combine_markup_commands(*commands):
-#        r"""
-#        Combines markup command and / or strings.
-#
-#        LilyPond's '\combine' markup command can only take two arguments, so in
-#        order to combine more than two stencils, a cascade of '\combine'
-#        commands must be employed.  ``combine_markup_commands`` simplifies this
-#        process.
-#
-#        ..  container:: example
-#
-#            >>> markup_a = abjad.MarkupCommand(
-#            ...     "draw-circle",
-#            ...     4,
-#            ...     0.4,
-#            ...     False,
-#            ...     )
-#            >>> markup_b = abjad.MarkupCommand(
-#            ...     "filled-box",
-#            ...     abjad.SchemePair((-4, 4)),
-#            ...     abjad.SchemePair((-0.5, 0.5)),
-#            ...     1,
-#            ...     )
-#            >>> markup_c = "some text"
-#
-#            >>> markup = abjad.MarkupCommand.combine_markup_commands(
-#            ...     markup_a,
-#            ...     markup_b,
-#            ...     markup_c,
-#            ...     )
-#            >>> result = markup._get_lilypond_format()
-#
-#            >>> print(result)
-#            \combine \combine \draw-circle #4 #0.4 ##f
-#                \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
-#
-#        Returns a markup command instance, or a string if that was the only
-#        argument.
-#        """
-#        assert len(commands)
-#        assert all(isinstance(command, (MarkupCommand, str)) for command in commands)
-#        if 1 == len(commands):
-#            return commands[0]
-#        combined = MarkupCommand("combine", commands[0], commands[1])
-#        for command in commands[2:]:
-#            combined = MarkupCommand("combine", combined, command)
-#        return combined
-
-
-class MarkupList(TypedList):
-    r"""
-    Markup list.
-
-    ..  container:: example
-
-        Initializes from strings:
-
-        ..  container:: example
-
-            >>> markups = ["Allegro", "assai"]
-            >>> markup_list = abjad.MarkupList(markups)
-            >>> abjad.f(markup_list)
-            abjad.MarkupList(
-                items=[
-                    abjad.Markup(
-                        contents=['Allegro'],
-                        ),
-                    abjad.Markup(
-                        contents=['assai'],
-                        ),
-                    ],
-                )
-
-            >>> abjad.show(markup_list) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        ],
-                    )
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_expression",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None, keep_sorted=None):
-        self._expression = None
-        item_class = item_class or Markup
-        TypedList.__init__(
-            self, item_class=item_class, items=items, keep_sorted=keep_sorted
-        )
-
-    ### SPECIAL METHODS ###
-
-    def __contains__(self, item):
-        """
-        Is true when markup markup list contains ``item``.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markups = ["Allegro", "assai"]
-                >>> markup_list = abjad.MarkupList(markups)
-
-                >>> "assai" in markup_list
-                True
-
-        Returns true or false.
-        """
-        return super().__contains__(item)
-
-    def __iadd__(self, argument):
-        r"""
-        Changes items in ``argument`` to items and extends markup list.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_list = abjad.MarkupList()
-                >>> markup_list.extend(["Allegro", "assai"])
-                >>> markup_list += ["ma", "non", "troppo"]
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        abjad.Markup(
-                            contents=['ma'],
-                            ),
-                        abjad.Markup(
-                            contents=['non'],
-                            ),
-                        abjad.Markup(
-                            contents=['troppo'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup_list)
-                    abjad.MarkupList(
-                        items=[
-                            abjad.Markup(
-                                contents=['Allegro'],
-                                ),
-                            abjad.Markup(
-                                contents=['assai'],
-                                ),
-                            abjad.Markup(
-                                contents=['ma'],
-                                ),
-                            abjad.Markup(
-                                contents=['non'],
-                                ),
-                            abjad.Markup(
-                                contents=['troppo'],
-                                ),
-                            ],
-                        )
-
-        Returns none.
-        """
-        return super().__iadd__(argument)
-
-    def __setitem__(self, i, argument):
-        r"""
-        Sets item ``i`` equal to ``argument``.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_list = abjad.MarkupList()
-                >>> markup_list.extend(["Allegro", "assai"])
-                >>> markup_list[-1] = "non troppo"
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['non troppo'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup_list)
-                    abjad.MarkupList(
-                        items=[
-                            abjad.Markup(
-                                contents=['Allegro'],
-                                ),
-                            abjad.Markup(
-                                contents=['non troppo'],
-                                ),
-                            ],
-                        )
-
-        Returns none.
-        """
-        return super().__setitem__(i, argument)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        names = list(StorageFormatManager(self).signature_keyword_names)
-        if self.item_class is Markup:
-            names.remove("item_class")
-        return FormatSpecification(client=self, storage_format_keyword_names=names)
-
-    def _update_expression(self, frame, force_return=None):
-        from .expression import Expression
-
-        callback = Expression._frame_to_callback(frame, force_return=force_return)
-        return self._expression.append_callback(callback)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def item_class(self):
-        """
-        Gets markup list item class.
-
-        ..  container:: example
-
-            >>> abjad.MarkupList().item_class
-            <class 'abjad.markups.Markup'>
-
-        Returns markup class.
-        """
-        return super().item_class
-
-    @property
-    def items(self):
-        """
-        Gets markup list items.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                Initializes items positionally:
-
-                >>> items = ["Allegro", "assai"]
-                >>> markup_list = abjad.MarkupList(items)
-                >>> for item in markup_list.items:
-                ...     item
-                ...
-                Markup(contents=['Allegro'])
-                Markup(contents=['assai'])
-
-                Initializes items from keyword:
-
-                >>> items = ["Allegro", "assai"]
-                >>> markup_list = abjad.MarkupList(items=items)
-                >>> for item in markup_list.items:
-                ...     item
-                ...
-                Markup(contents=['Allegro'])
-                Markup(contents=['assai'])
-
-        Returns tuple.
-        """
-        return super().items
-
-    @property
-    def keep_sorted(self):
-        r"""
-        Is true when markup list keeps markups sorted.
-
-        ..  container:: example
-
-            Keeps markup sorted:
-
-            >>> markups = ["Allegro", "assai"]
-            >>> markup_list = abjad.MarkupList(keep_sorted=True)
-            >>> markup_list.append("assai")
-            >>> markup_list.append("Allegro")
-            >>> abjad.show(markup_list) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        ],
-                    keep_sorted=True,
-                    )
-
-        ..  container:: example
-
-            Does not keep markup sorted:
-
-            >>> markups = ["Allegro", "assai"]
-            >>> markup_list = abjad.MarkupList()
-            >>> markup_list.append("assai")
-            >>> markup_list.append("Allegro")
-            >>> abjad.show(markup_list) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        ],
-                    )
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
-        """
-        return super().keep_sorted
-
-    @keep_sorted.setter
-    def keep_sorted(self, keep_sorted):
-        self._keep_sorted = bool(keep_sorted)
-
-    ### PUBLIC METHODS ###
-
-    def append(self, item):
-        """
-        Appends ``item`` to markup list.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_list = abjad.MarkupList(["Allegro"])
-                >>> markup_list.append("assai")
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-        Returns none.
-        """
-        super().append(item)
-
-    def center_column(self, direction=None):
-        r"""
-        LilyPond ``\center-column`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> city = abjad.Markup("Los Angeles")
-                >>> date = abjad.Markup("May - August 2014")
-                >>> markups = [city, date]
-                >>> markup_list = abjad.MarkupList(markups)
-                >>> markup = markup_list.center_column(direction=abjad.Up)
-                >>> abjad.f(markup)
-                ^ \markup {
-                    \center-column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
-                    }
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        contents = []
-        for markup in self:
-            string = Markup._parse_markup_command_argument(markup)
-            contents.append(string)
-        command = MarkupCommand("center-column", contents)
-        return Markup(contents=command, direction=direction)
-
-    def column(self, direction=None):
-        r"""
-        LilyPond ``\column`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> city = abjad.Markup("Los Angeles")
-                >>> date = abjad.Markup("May - August 2014")
-                >>> markup_list = abjad.MarkupList([city, date])
-                >>> markup = markup_list.column()
-                >>> abjad.f(markup)
-                \markup {
-                    \column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
-                    }
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        contents = []
-        for markup in self:
-            contents.extend(markup.contents)
-        command = MarkupCommand("column", contents)
-        return Markup(contents=command, direction=direction)
-
-    def combine(self, direction=None):
-        r"""
-        LilyPond ``\combine`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_one = abjad.Markup("Allegro assai")
-                >>> markup_two = abjad.Markup.draw_line(13, 0)
-                >>> markup_list = [markup_one, markup_two]
-                >>> markup_list = abjad.MarkupList(markup_list)
-                >>> markup = markup_list.combine(direction=abjad.Up)
-                >>> abjad.f(markup)
-                ^ \markup {
-                    \combine
-                        "Allegro assai"
-                        \draw-line
-                            #'(13 . 0)
-                    }
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        if not len(self) == 2:
-            raise Exception(f"markup list must be length 2: {self!r}.")
-        markup_1, markup_2 = self.items
-        contents_1 = Markup._parse_markup_command_argument(markup_1)
-        contents_2 = Markup._parse_markup_command_argument(markup_2)
-        command = MarkupCommand("combine", contents_1, contents_2)
-        return Markup(contents=command, direction=direction)
-
-    def concat(self, direction=None):
-        r"""
-        LilyPond ``\concat`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> downbow = abjad.Markup.musicglyph("scripts.downbow")
-                >>> hspace = abjad.Markup.hspace(1)
-                >>> upbow = abjad.Markup.musicglyph("scripts.upbow")
-                >>> markups = [downbow, hspace, upbow]
-                >>> markup_list = abjad.MarkupList(markups)
-                >>> markup = markup_list.concat(direction=abjad.Up)
-                >>> abjad.f(markup)
-                ^ \markup {
-                    \concat
-                        {
-                            \musicglyph
-                                #"scripts.downbow"
-                            \hspace
-                                #1
-                            \musicglyph
-                                #"scripts.upbow"
-                        }
-                    }
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        result = []
-        for markup in self:
-            contents = Markup._parse_markup_command_argument(markup)
-            result.append(contents)
-        command = MarkupCommand("concat", result)
-        return Markup(contents=command, direction=direction)
-
-    def count(self, item):
-        """
-        Counts ``item`` in markup list.
-
-        ..  container:: example
-
-            >>> markup_list = abjad.MarkupList()
-            >>> markup_list.extend(["Allegro", "assai"])
-
-            >>> abjad.show(markup_list) # doctest: +SKIP
-
-            >>> markup_list.count("Allegro")
-            1
-            >>> markup_list.count("assai")
-            1
-            >>> markup_list.count("ma non troppo")
-            0
-
-        Returns none.
-        """
-        return super().count(item)
-
-    def extend(self, items):
-        r"""
-        Extends markup list with ``items``.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_list = abjad.MarkupList()
-                >>> markup_list.extend(["Allegro", "assai"])
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup_list)
-                    abjad.MarkupList(
-                        items=[
-                            abjad.Markup(
-                                contents=['Allegro'],
-                                ),
-                            abjad.Markup(
-                                contents=['assai'],
-                                ),
-                            ],
-                        )
-
-        Returns none.
-        """
-        super().extend(items)
-
-    def index(self, item):
-        r"""
-        Gets index of ``item`` in markup list.
-
-        ..  container:: example
-
-            >>> markup_list = abjad.MarkupList()
-            >>> markup_list.extend(["Allegro", "assai"])
-            >>> abjad.f(markup_list)
-            abjad.MarkupList(
-                items=[
-                    abjad.Markup(
-                        contents=['Allegro'],
-                        ),
-                    abjad.Markup(
-                        contents=['assai'],
-                        ),
-                    ],
-                )
-
-            >>> abjad.show(markup_list) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        ],
-                    )
-
-            >>> markup_list.index("Allegro")
-            0
-            >>> markup_list.index("assai")
-            1
-
-        Returns none.
-        """
-        return super().index(item)
-
-    def insert(self, i, item):
-        """
-        Inserts ``item`` in markup markup list.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_list = abjad.MarkupList(["assai"])
-                >>> markup_list.insert(0, "Allegro")
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        abjad.Markup(
-                            contents=['assai'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-        Returns markup class.
-        """
-        super().insert(i, item)
-
-    def left_column(self, direction=None):
-        r"""
-        LilyPond ``\left-column`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> city = abjad.Markup("Los Angeles")
-                >>> date = abjad.Markup("May - August 2014")
-                >>> markup_list = abjad.MarkupList([city, date])
-                >>> markup = markup_list.left_column()
-                >>> abjad.f(markup)
-                \markup {
-                    \left-column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
-                    }
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        contents = []
-        for markup in self:
-            contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand("left-column", contents)
-        return Markup(contents=command, direction=direction)
-
-    def line(self, direction=None):
-        r"""
-        LilyPond ``\line`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markups = ["Allegro", "assai"]
-                >>> markup_list = abjad.MarkupList(markups)
-                >>> markup = markup_list.line()
-                >>> abjad.f(markup)
-                \markup {
-                    \line
-                        {
-                            Allegro
-                            assai
-                        }
-                    }
-
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        contents = []
-        for markup in self:
-            contents.extend(markup.contents)
-        command = MarkupCommand("line", contents)
-        return Markup(contents=command, direction=direction)
-
-    def overlay(self, direction=None):
-        r"""
-        LilyPond ``\overlay`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> city = abjad.Markup("Los Angeles")
-                >>> date = abjad.Markup("May - August 2014")
-                >>> markup_list = abjad.MarkupList([city, date])
-                >>> markup = markup_list.overlay(direction=abjad.Up)
-                >>> abjad.f(markup)
-                ^ \markup {
-                    \overlay
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
-                    }
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        contents = []
-        for markup in self:
-            contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand("overlay", contents)
-        return Markup(contents=command, direction=direction)
-
-    def pop(self, i=-1):
-        r"""
-        Pops item ``i`` from markup list.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_list = abjad.MarkupList()
-                >>> markup_list.extend(["Allegro", "assai"])
-                >>> markup_list.pop()
-                Markup(contents=['assai'])
-
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-        Returns none.
-        """
-        return super().pop(i=i)
-
-    def remove(self, item):
-        r"""
-        Removes ``item`` from markup list.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> markup_list = abjad.MarkupList()
-                >>> markup_list.extend(["Allegro", "assai"])
-                >>> markup_list.remove("assai")
-                >>> abjad.f(markup_list)
-                abjad.MarkupList(
-                    items=[
-                        abjad.Markup(
-                            contents=['Allegro'],
-                            ),
-                        ],
-                    )
-
-                >>> abjad.show(markup_list) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> abjad.f(markup_list)
-                    abjad.MarkupList(
-                        items=[
-                            abjad.Markup(
-                                contents=['Allegro'],
-                                ),
-                            ],
-                        )
-
-        Returns none.
-        """
-        super().remove(item)
-
-    def right_column(self, direction=None):
-        r"""
-        LilyPond ``\right-column`` markup command.
-
-        ..  container:: example
-
-            ..  container:: example
-
-                >>> city = abjad.Markup("Los Angeles")
-                >>> date = abjad.Markup("May - August 2014")
-                >>> markup_list = abjad.MarkupList([city, date])
-                >>> markup = markup_list.right_column()
-                >>> abjad.f(markup)
-                \markup {
-                    \right-column
-                        {
-                            "Los Angeles"
-                            "May - August 2014"
-                        }
-                    }
-
-                >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        contents = []
-        for markup in self:
-            contents.append(Markup._parse_markup_command_argument(markup))
-        command = MarkupCommand("right-column", contents)
-        return Markup(contents=command, direction=direction)
-
-
 class Postscript:
     r"""
     Postscript session.
@@ -4213,7 +3358,7 @@ class Postscript:
 
         Returns new markup.
         """
-        return Markup.postscript(self)
+        return Markup(rf'\postscript #"{self}"')
 
     def charpath(self, text, modify_font=True):
         """
@@ -5140,7 +4285,11 @@ class PostscriptOperator:
 
 
 def abjad_metronome_mark(
-    duration_log, dot_count, stem_height, units_per_minute, direction=None,
+    duration_log,
+    dot_count,
+    stem_height,
+    units_per_minute,
+    direction=None,
 ) -> Markup:
     r"""
     Abjad ``\abjad-metronome-mark-markup`` command.

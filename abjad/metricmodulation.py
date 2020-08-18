@@ -493,7 +493,7 @@ class MetricModulation:
             left_markup = self.left_markup
         left_markup = illustrators.selection_to_score_markup(self.left_rhythm)
         equal = Markup("=")
-        right_space = Markup.hspace(-0.5)
+        right_space = Markup(r"\hspace #-0.5")
         if self.right_markup is not None:
             right_markup = self.right_markup
         right_markup = illustrators.selection_to_score_markup(self.right_rhythm)

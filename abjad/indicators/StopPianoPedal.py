@@ -26,7 +26,11 @@ class StopPianoPedal:
     ### INITIALIZER ###
 
     def __init__(
-        self, kind: str = None, *, leak: bool = None, tweaks: TweakInterface = None,
+        self,
+        kind: str = None,
+        *,
+        leak: bool = None,
+        tweaks: TweakInterface = None,
     ) -> None:
         if kind is not None:
             assert kind in ("sustain", "sostenuto", "corda")

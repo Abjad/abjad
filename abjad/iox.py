@@ -194,7 +194,10 @@ class LilyPondIO:
 
     def run_command(self, command):
         completed_process = subprocess.run(
-            command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
         )
         text = completed_process.stdout.decode("utf-8")
         success = completed_process.returncode == 0
@@ -315,7 +318,8 @@ def _graph_container(container):
         if isinstance(component, Container):
             graph.append(component_node)
             this_leaf_cluster = uqbar.graphs.Graph(
-                name=component_node.name, attributes={"color": "grey75", "penwidth": 2},
+                name=component_node.name,
+                attributes={"color": "grey75", "penwidth": 2},
             )
             all_are_leaves = True
             pending_node_order = []
@@ -499,7 +503,11 @@ def count_function_calls(
 
 
 def graph(
-    graphable, format_="pdf", layout="dot", return_timing=False, **keywords,
+    graphable,
+    format_="pdf",
+    layout="dot",
+    return_timing=False,
+    **keywords,
 ):
     r"""
     Graphs ``argument``.
@@ -861,7 +869,10 @@ def make_subprocess(command: str) -> subprocess.Popen:
     Redirects stderr to stdout.
     """
     return subprocess.Popen(
-        command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        command,
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
     )
 
 
@@ -1019,7 +1030,10 @@ def run_command(command: str) -> typing.List[str]:
 
 
 def run_lilypond(
-    ly_path: str, *, flags: str = None, lilypond_log_file_path: pathlib.Path = None,
+    ly_path: str,
+    *,
+    flags: str = None,
+    lilypond_log_file_path: pathlib.Path = None,
 ) -> bool:
     """
     Runs LilyPond on ``ly_path``.
@@ -1051,7 +1065,10 @@ def run_lilypond(
         lilypond_path_, flags, lilypond_base, ly_path
     )
     process = subprocess.Popen(
-        command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        command,
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
     )
     subprocess_output, _ = process.communicate()
     subprocess_output_string = subprocess_output.decode(errors="ignore")

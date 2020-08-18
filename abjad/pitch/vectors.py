@@ -186,7 +186,13 @@ class IntervalVector(Vector):
 
     def __init__(self, items=None, item_class=None):
         if isinstance(
-            items, (PitchSegment, PitchSet, PitchClassSegment, PitchClassSet,),
+            items,
+            (
+                PitchSegment,
+                PitchSet,
+                PitchClassSegment,
+                PitchClassSet,
+            ),
         ):
             intervals = []
             pairs = enumeratex.yield_pairs(items)

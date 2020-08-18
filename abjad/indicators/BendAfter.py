@@ -53,7 +53,10 @@ class BendAfter:
     ### INITIALIZER ###
 
     def __init__(
-        self, bend_amount: typings.Number = -4, *, tweaks: TweakInterface = None,
+        self,
+        bend_amount: typings.Number = -4,
+        *,
+        tweaks: TweakInterface = None,
     ) -> None:
         assert isinstance(bend_amount, (int, float)), repr(bend_amount)
         self._bend_amount = bend_amount

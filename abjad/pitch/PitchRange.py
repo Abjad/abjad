@@ -610,7 +610,10 @@ class PitchRange:
             stop_containment = ")"
         string = "{}{}, {}{}"
         string = string.format(
-            start_containment, start_pitch_string, stop_pitch_string, stop_containment,
+            start_containment,
+            start_pitch_string,
+            stop_pitch_string,
+            stop_containment,
         )
         pitch_range = PitchRange(string)
         return pitch_range

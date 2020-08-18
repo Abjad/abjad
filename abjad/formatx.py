@@ -296,15 +296,14 @@ class LilyPondFormatManager:
 ### FUNCTIONS ###
 
 
-def f(argument, strict=None):
+def f(argument, align_tags=None):
     r"""
     Formats ``argument`` and prints result.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
-        >>> markup = markup.with_color('blue')
+        >>> markup = abjad.Markup(r'\with-color #blue Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, staff[0])
         >>> for leaf in staff:
         ...     abjad.attach(abjad.Articulation('.'), leaf)
@@ -330,16 +329,16 @@ def f(argument, strict=None):
         >>> abjad.show(staff) # doctest: +SKIP
 
     """
-    if strict is not None:
-        assert isinstance(strict, int), repr(strict)
+    if align_tags is not None:
+        assert isinstance(align_tags, int), repr(align_tags)
     if hasattr(argument, "_get_lilypond_format"):
         string = argument._get_lilypond_format()
     else:
         string = storage.storage(argument)
     assert isinstance(string, str), repr(string)
     realign = None
-    if isinstance(strict, int):
-        string = LilyPondFormatManager.align_tags(string, strict)
-        realign = strict
+    if isinstance(align_tags, int):
+        string = LilyPondFormatManager.align_tags(string, align_tags)
+        realign = align_tags
     string = LilyPondFormatManager.left_shift_tags(string, realign=realign)
     print(string)

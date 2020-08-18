@@ -976,7 +976,9 @@ class SetClass:
         assert isinstance(transposition_only, (type(None), type(True)))
         self._transposition_only = transposition_only
         prime_form = self._unrank(
-            self.cardinality, self.rank, transposition_only=self.transposition_only,
+            self.cardinality,
+            self.rank,
+            transposition_only=self.transposition_only,
         )
         self._prime_form = prime_form
 

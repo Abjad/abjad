@@ -65,16 +65,16 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
             }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        2 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        2 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
         Beamed eighth notes are wellformed:
 
@@ -97,16 +97,16 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
             }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
     ..  container:: example
 
@@ -132,16 +132,16 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
             }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
     The examples above feature Abjad voice containers because beams are
     voice-persistent.
@@ -256,16 +256,16 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
             }
 
         >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        4 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        4 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
     ..  container:: example
 
@@ -291,16 +291,16 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
             }
 
         >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
     """
     violators, total = [], set()
@@ -344,16 +344,16 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
             }
 
         >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        1 /	2 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        1 /     2 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
     ..  container:: example
 
@@ -377,16 +377,16 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
             }
 
         >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	2 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     2 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
     """
     violators, total = [], set()
@@ -432,16 +432,16 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        1 /	2 overlapping text spanners
-        0 /	2 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	2 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        1 /     2 overlapping text spanners
+        0 /     2 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     2 unterminated text spanners
 
     ..  container:: example
 
@@ -469,16 +469,16 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	2 overlapping text spanners
-        0 /	2 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	2 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     2 overlapping text spanners
+        0 /     2 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     2 unterminated text spanners
 
     ..  container:: example
 
@@ -501,16 +501,16 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	2 overlapping text spanners
-        0 /	2 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	2 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     2 overlapping text spanners
+        0 /     2 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     2 unterminated text spanners
 
     ..  container:: example
 
@@ -541,16 +541,16 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	2 overlapping text spanners
-        0 /	2 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	2 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     2 overlapping text spanners
+        0 /     2 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     2 unterminated text spanners
 
     """
     violators, total = [], 0
@@ -608,16 +608,16 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        1 /	0 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        1 /     0 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        0 /     0 unterminated text spanners
 
         Matched stop text span is wellformed:
 
@@ -692,16 +692,16 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        1 /	1 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        1 /     1 unterminated hairpins
+        0 /     0 unterminated text spanners
 
         Even with start dynamic:
 
@@ -722,16 +722,16 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	0 overlapping text spanners
-        0 /	0 unmatched stop text spans
-        1 /	1 unterminated hairpins
-        0 /	0 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     0 overlapping text spanners
+        0 /     0 unmatched stop text spans
+        1 /     1 unterminated hairpins
+        0 /     0 unterminated text spanners
 
         Terminated crescendo is wellformed:
 
@@ -828,16 +828,16 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
         }
 
         >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /	4 beamed long notes
-        0 /	5 duplicate ids
-        0 /	1 empty containers
-        0 /	5 missing parents
-        0 /	4 notes on wrong clef
-        0 /	4 out of range pitches
-        0 /	1 overlapping text spanners
-        0 /	1 unmatched stop text spans
-        0 /	0 unterminated hairpins
-        1 /	1 unterminated text spanners
+        0 /     4 beamed long notes
+        0 /     5 duplicate ids
+        0 /     1 empty containers
+        0 /     5 missing parents
+        0 /     4 notes on wrong clef
+        0 /     4 out of range pitches
+        0 /     1 overlapping text spanners
+        0 /     1 unmatched stop text spans
+        0 /     0 unterminated hairpins
+        1 /     1 unterminated text spanners
 
         Terminated text span is wellformed:
 
@@ -988,7 +988,7 @@ def tabulate_wellformedness(
         violator_count = len(violators)
         name = name.replace("check_", "")
         name = name.replace("_", " ")
-        string = f"{violator_count} /\t{total} {name}"
+        string = f"{violator_count} /    {total} {name}"
         strings.append(string)
     return "\n".join(strings)
 

@@ -9,7 +9,7 @@ from .indicators.StaffChange import StaffChange
 from .iterate import Iteration
 from .lilypondfile import Block, LilyPondFile
 from .makers import NoteMaker
-from .markups import Markup, MarkupCommand, MarkupList, Postscript
+from .markups import Markup, MarkupCommand, Postscript
 from .metricmodulation import MetricModulation
 from .new import new
 from .ordereddict import OrderedDict
@@ -36,16 +36,6 @@ def _illustrate_markup(markup):
 def _illustrate_markup_maker(argument, **keywords):
     markup = argument._make_markup(**keywords)
     return _illustrate_markup(markup)
-
-
-def _illustrate_markup_list(markup_list):
-    lilypond_file = LilyPondFile.new()
-    for name in ("layout", "paper", "score"):
-        block = lilypond_file[name]
-        lilypond_file.items.remove(block)
-    markup = Markup.column(list(markup_list))
-    lilypond_file.items.append(markup)
-    return lilypond_file
 
 
 def _illustrate_postscript(postscript):
@@ -215,7 +205,6 @@ _class_to_method = OrderedDict(
     [
         (score.Component, _illustrate_component),
         (Markup, _illustrate_markup),
-        (MarkupList, _illustrate_markup_list),
         (MetricModulation, _illustrate_metric_modulation),
         (_timespan.OffsetCounter, _illustrate_markup_maker),
         (Postscript, _illustrate_postscript),

@@ -702,7 +702,9 @@ class MetronomeMark:
             return string
         elif isinstance(self.units_per_minute, quicktions.Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
-                self.reference_duration, self.units_per_minute, decimal=self.decimal,
+                self.reference_duration,
+                self.units_per_minute,
+                decimal=self.decimal,
             )
             string = str(markup)
             return string
@@ -1107,9 +1109,9 @@ class MetronomeMark:
             ...  )
 
             >>> for tempo, ratio in pairs:
-            ...     string = f'{tempo!s}\t{ratio!s}'
+            ...     string = f'{tempo!s}    {ratio!s}'
             ...     print(string)
-            4=29        1:2
+            4=29    1:2
             4=33+1/7    4:7
             4=34+4/5    3:5
             4=36+1/4    5:8
@@ -1120,18 +1122,18 @@ class MetronomeMark:
             4=48+1/3    5:6
             4=49+5/7    6:7
             4=50+3/4    7:8
-            4=58        1:1
+            4=58    1:1
             4=66+2/7    8:7
             4=67+2/3    7:6
             4=69+3/5    6:5
             4=72+1/2    5:4
             4=77+1/3    4:3
             4=81+1/5    7:5
-            4=87        3:2
+            4=87    3:2
             4=92+4/5    8:5
             4=96+2/3    5:3
-            4=101+1/2   7:4
-            4=116       2:1
+            4=101+1/2    7:4
+            4=116    2:1
 
         ..  container:: example
 
@@ -1145,12 +1147,12 @@ class MetronomeMark:
             ...  )
 
             >>> for tempo, ratio in pairs:
-            ...     string = f'{tempo!s}\t{ratio!s}'
+            ...     string = f'{tempo!s}    {ratio!s}'
             ...     print(string)
-            4=29	1:2
-            4=58	1:1
-            4=87	3:2
-            4=116	2:1
+            4=29    1:2
+            4=58    1:1
+            4=87    3:2
+            4=116    2:1
 
         Constrains ratios such that ``1:2 <= n:d <= 2:1``.
         """

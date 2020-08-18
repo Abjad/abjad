@@ -453,7 +453,8 @@ class NamedPitchClass(PitchClass):
             pitch_or_pitch_class = pitch_or_pitch_class.pitch_class
         self._diatonic_pc_number = pitch_or_pitch_class._get_diatonic_pc_number()
         self._accidental = Accidental(
-            pitch_or_pitch_class._get_alteration(), arrow=pitch_or_pitch_class.arrow,
+            pitch_or_pitch_class._get_alteration(),
+            arrow=pitch_or_pitch_class.arrow,
         )
 
     def _get_alteration(self):

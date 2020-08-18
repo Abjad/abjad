@@ -2170,12 +2170,6 @@ class LilyPondLanguageToken:
 class LilyPondVersionToken:
     r"""
     A LilyPond file ``\version`` token.
-
-    ..  container:: example
-
-        >>> abjad.LilyPondVersionToken() # doctest: +SKIP
-        LilyPondVersionToken('2.19.84')
-
     """
 
     ### CLASS VARIABLES ###

@@ -113,7 +113,10 @@ def after_grace_container(argument):
 
 
 def annotation(
-    argument, annotation: typing.Any, default: typing.Any = None, unwrap: bool = True,
+    argument,
+    annotation: typing.Any,
+    default: typing.Any = None,
+    unwrap: bool = True,
 ) -> typing.Any:
     r"""
     Gets annotation.
@@ -1721,7 +1724,10 @@ def grace(argument) -> bool:
 
 
 def has_effective_indicator(
-    argument, prototype: typings.Prototype = None, *, attributes: typing.Dict = None,
+    argument,
+    prototype: typings.Prototype = None,
+    *,
+    attributes: typing.Dict = None,
 ) -> bool:
     r"""
     Is true when client has effective indicator.
@@ -3812,7 +3818,10 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
 
 
 def wrapper(
-    argument, prototype: typings.Prototype = None, *, attributes: typing.Dict = None,
+    argument,
+    prototype: typings.Prototype = None,
+    *,
+    attributes: typing.Dict = None,
 ):
     r"""
     Gets wrapper.
@@ -3925,7 +3934,10 @@ def wrapper(
 
 
 def wrappers(
-    argument, prototype: typings.Prototype = None, *, attributes: typing.Dict = None,
+    argument,
+    prototype: typings.Prototype = None,
+    *,
+    attributes: typing.Dict = None,
 ):
     r"""
     Gets wrappers.

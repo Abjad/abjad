@@ -754,24 +754,24 @@ class Duration(quicktions.Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     exponent = duration.exponent
             ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}\t{duration.exponent!s}")
+            ...     print(f"{sixteenths!s}    {duration.exponent!s}")
             ...
-            1/16	4
-            2/16	3
-            3/16	3
-            4/16	2
-            5/16	2
-            6/16	2
-            7/16	2
-            8/16	1
-            9/16	1
-            10/16	1
-            11/16	1
-            12/16	1
-            13/16	1
-            14/16	1
-            15/16	1
-            16/16	0
+            1/16    4
+            2/16    3
+            3/16    3
+            4/16    2
+            5/16    2
+            6/16    2
+            7/16    2
+            8/16    1
+            9/16    1
+            10/16    1
+            11/16    1
+            12/16    1
+            13/16    1
+            14/16    1
+            15/16    1
+            16/16    0
 
         """
         return -int(math.floor(math.log(self, 2)))
@@ -1064,7 +1064,9 @@ class Duration(quicktions.Fraction):
         return Duration(seconds)
 
     @staticmethod
-    def from_lilypond_duration_string(lilypond_duration_string,) -> "Duration":
+    def from_lilypond_duration_string(
+        lilypond_duration_string,
+    ) -> "Duration":
         """
         Initializes duration from LilyPond duration string.
 

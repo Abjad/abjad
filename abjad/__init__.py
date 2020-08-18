@@ -190,7 +190,7 @@ from .lyproxy import (
     LilyPondGrobInterface,
 )
 from .makers import LeafMaker, NoteMaker
-from .markups import Markup, MarkupCommand, MarkupList, Postscript, PostscriptOperator
+from .markups import Markup, MarkupCommand, Postscript, PostscriptOperator
 from .mathx import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
 from .metricmodulation import MetricModulation
@@ -505,7 +505,6 @@ __all__ = [
     "Marimba",
     "Markup",
     "MarkupCommand",
-    "MarkupList",
     "Meter",
     "MeterList",
     "MetricAccentKernel",

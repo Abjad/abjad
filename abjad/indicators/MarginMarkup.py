@@ -17,7 +17,7 @@ class MarginMarkup:
         ...     markup=abjad.Markup('Vc.'),
         ...     )
         >>> abjad.attach(margin_markup, staff[0])
-        >>> abjad.show(staff, strict=89) # doctest: +SKIP
+        >>> abjad.show(staff, align_tags=89) # doctest: +SKIP
 
         ..  docs::
 

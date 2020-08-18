@@ -30,7 +30,8 @@ class String(str):
     )
 
     hyphen_delimited_lowercase_file_name_regex = re.compile(
-        "^{}$".format(hyphen_delimited_lowercase_file_name_regex_body), re.VERBOSE,
+        "^{}$".format(hyphen_delimited_lowercase_file_name_regex_body),
+        re.VERBOSE,
     )
 
     lowercamelcase_regex = re.compile(
@@ -54,7 +55,8 @@ class String(str):
     )
 
     underscore_delimited_lowercase_file_name_regex = re.compile(
-        "^{}$".format(underscore_delimited_lowercase_file_name_regex_body), re.VERBOSE,
+        "^{}$".format(underscore_delimited_lowercase_file_name_regex_body),
+        re.VERBOSE,
     )
 
     underscore_delimited_lowercase_file_name_with_extension_regex_body = r"""
@@ -81,7 +83,8 @@ class String(str):
     )
 
     underscore_delimited_lowercase_package_regex = re.compile(
-        "^{}$".format(underscore_delimited_lowercase_package_regex_body), re.VERBOSE,
+        "^{}$".format(underscore_delimited_lowercase_package_regex_body),
+        re.VERBOSE,
     )
 
     uppercamelcase_regex = re.compile("^([A-Z,0-9]+[a-z,0-9]*)*$", re.VERBOSE)
@@ -682,64 +685,6 @@ class String(str):
         except roman.InvalidRomanNumeralError:
             return False
 
-    def is_segment_name(self) -> bool:
-        """
-        Is true when string is segment name or package name.
-
-        ..  container:: example
-
-            >>> abjad.String('_').is_segment_name()
-            True
-            >>> abjad.String('_1').is_segment_name()
-            True
-            >>> abjad.String('_99').is_segment_name()
-            True
-
-        ..  container:: example
-
-            >>> abjad.String('A').is_segment_name()
-            True
-            >>> abjad.String('A1').is_segment_name()
-            True
-            >>> abjad.String('A99').is_segment_name()
-            True
-
-        ..  container:: example
-
-            >>> abjad.String('AB').is_segment_name()
-            True
-            >>> abjad.String('AB1').is_segment_name()
-            True
-            >>> abjad.String('AB99').is_segment_name()
-            True
-
-        ..  container:: example
-
-            >>> abjad.String('segment_01').is_segment_name()
-            True
-
-        ..  container:: example
-
-            >>> abjad.String('__1').is_segment_name()
-            False
-            >>> abjad.String('A_1').is_segment_name()
-            False
-            >>> abjad.String('AB_1').is_segment_name()
-            False
-
-        """
-        if self.is_package_name():
-            return True
-        if self.is_introduction_segment_name():
-            return True
-        if self.is_rehearsal_mark():
-            return True
-        if String(self[0]).is_rehearsal_mark() and self[1:].isdigit():
-            return True
-        if String(self[:2]).is_rehearsal_mark() and self[2:].isdigit():
-            return True
-        return False
-
     def is_shout_case(self) -> bool:
         """
         Is true when string and is shoutcase.
@@ -1264,8 +1209,6 @@ class String(str):
             'AB'
 
         """
-        if not self.is_segment_name():
-            raise ValueError(f"must be segment name (not {self!r}).")
         if len(self) == 1:
             return self
         elif len(self) == 2:
@@ -1309,8 +1252,6 @@ class String(str):
             12
 
         """
-        if not self.is_segment_name():
-            raise ValueError(f"must be segment name (not {self!r}).")
         prefix = "segment_"
         if self.startswith(prefix):
             index = int(self[len(prefix) :])
@@ -1655,7 +1596,9 @@ class String(str):
         return type(self)(string)
 
     @staticmethod
-    def to_tridirectional_direction_string(argument,) -> typing.Optional["String"]:
+    def to_tridirectional_direction_string(
+        argument,
+    ) -> typing.Optional["String"]:
         """
         Changes ``argument`` to tridirectional direction string.
 

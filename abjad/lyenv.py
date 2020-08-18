@@ -1087,13 +1087,23 @@ current_module = {
         "name": "SlurEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "slur-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "slur-event",
+        ),
     },
     ")": {
         "name": "SlurEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "slur-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "slur-event",
+        ),
     },
     "RemoveAllEmptyStaves": "RemoveAllEmptyStaves",
     "RemoveEmptyStaves": "RemoveEmptyStaves",
@@ -1101,7 +1111,12 @@ current_module = {
         "name": "BeamEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "beam-event", "span-event",),
+        "types": (
+            "post-event",
+            "event",
+            "beam-event",
+            "span-event",
+        ),
     },
     r"\!": {
         "name": "CrescendoEvent",
@@ -1119,13 +1134,23 @@ current_module = {
         "name": "PhrasingSlurEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "phrasing-slur-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "phrasing-slur-event",
+        ),
     },
     r"\)": {
         "name": "PhrasingSlurEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "phrasing-slur-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "phrasing-slur-event",
+        ),
     },
     r"\<": {
         "name": "CrescendoEvent",
@@ -1140,7 +1165,11 @@ current_module = {
         ),
     },
     r"\=": {
-        "signature": ("ly:event?", "key?", "ly:event?",),
+        "signature": (
+            "ly:event?",
+            "key?",
+            "ly:event?",
+        ),
         "type": "ly:music-function?",
     },
     r"\>": {
@@ -1159,28 +1188,47 @@ current_module = {
         "name": "LigatureEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("span-event", "ligature-event", "event",),
+        "types": (
+            "span-event",
+            "ligature-event",
+            "event",
+        ),
     },
     "\\": {"name": "VoiceSeparator", "type": "ly:prob?", "types": ("separator",)},
     r"\]": {
         "name": "LigatureEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("span-event", "ligature-event", "event",),
+        "types": (
+            "span-event",
+            "ligature-event",
+            "event",
+        ),
     },
     r"\~": {
         "name": "PesOrFlexaEvent",
         "type": "ly:prob?",
-        "types": ("pes-or-flexa-event", "event",),
+        "types": (
+            "pes-or-flexa-event",
+            "event",
+        ),
     },
     "]": {
         "name": "BeamEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "beam-event", "span-event",),
+        "types": (
+            "post-event",
+            "event",
+            "beam-event",
+            "span-event",
+        ),
     },
     "absolute": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "absolute-volume-alist": "absolute-volume-alist",
@@ -1188,33 +1236,63 @@ current_module = {
         "articulation-type": "accent",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "acciaccatura": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "accidental-styles": "accidental-styles",
     "accidentalStyle": {
-        "signature": ("ly:music?", "symbol-list?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list?",
+        ),
         "type": "ly:music-function?",
     },
     "add-toc-item!": "add-toc-item!",
     "addChordShape": {
-        "signature": ("void?", "symbol?", "pair?", "string-or-pair?",),
+        "signature": (
+            "void?",
+            "symbol?",
+            "pair?",
+            "string-or-pair?",
+        ),
         "type": "ly:music-function?",
     },
     "addInstrumentDefinition": {
-        "signature": ("void?", "string?", "list?",),
+        "signature": (
+            "void?",
+            "string?",
+            "list?",
+        ),
         "type": "ly:music-function?",
     },
     "addQuote": {
-        "signature": ("void?", "string?", "ly:music?",),
+        "signature": (
+            "void?",
+            "string?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "aeolian": "aeolian",
     "afterGrace": {
-        "signature": ("ly:music?", "optional?", "fraction?", "ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "fraction?",
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "afterGraceFraction": "afterGraceFraction",
@@ -1223,18 +1301,27 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "aikenHeadsMinor": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "all-grob-descriptions": "all-grob-descriptions",
     "allowPageTurn": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "allowVoltaHook": {
-        "signature": ("void?", "string?",),
+        "signature": (
+            "void?",
+            "string?",
+        ),
         "type": "ly:music-function?",
     },
     "alterBroken": {
@@ -1247,23 +1334,42 @@ current_module = {
         "type": "ly:music-function?",
     },
     "appendToTag": {
-        "signature": ("ly:music?", "symbol?", "ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "symbol?",
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "applyContext": {
-        "signature": ("ly:music?", "procedure?",),
+        "signature": (
+            "ly:music?",
+            "procedure?",
+        ),
         "type": "ly:music-function?",
     },
     "applyMusic": {
-        "signature": ("ly:music?", "procedure?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "procedure?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "applyOutput": {
-        "signature": ("ly:music?", "symbol-list-or-symbol?", "procedure?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-symbol?",
+            "procedure?",
+        ),
         "type": "ly:music-function?",
     },
     "appoggiatura": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "arabicStringNumbers": {
@@ -1274,7 +1380,11 @@ current_module = {
     "arpeggio": {
         "name": "ArpeggioEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "arpeggio-event", "event",),
+        "types": (
+            "post-event",
+            "arpeggio-event",
+            "event",
+        ),
     },
     "arpeggioArrowDown": {
         "name": "SequentialMusic",
@@ -1307,24 +1417,37 @@ current_module = {
         "types": ("sequential-music",),
     },
     "assertBeamQuant": {
-        "signature": ("ly:music?", "pair?", "pair?",),
+        "signature": (
+            "ly:music?",
+            "pair?",
+            "pair?",
+        ),
         "type": "ly:music-function?",
     },
     "assertBeamSlope": {
-        "signature": ("ly:music?", "procedure?",),
+        "signature": (
+            "ly:music?",
+            "procedure?",
+        ),
         "type": "ly:music-function?",
     },
     "autoBeamOff": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "autoBeamOn": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "autoBreaksOff": {
         "name": "SequentialMusic",
@@ -1350,13 +1473,19 @@ current_module = {
         "context-type": "Score",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "autoPageBreaksOn": {
         "context-type": "Score",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "autochange": {
         "signature": (
@@ -1372,7 +1501,12 @@ current_module = {
         "type": "ly:music-function?",
     },
     "balloonGrobText": {
-        "signature": ("ly:music?", "symbol?", "number-pair?", "cheap-markup?",),
+        "signature": (
+            "ly:music?",
+            "symbol?",
+            "number-pair?",
+            "cheap-markup?",
+        ),
         "type": "ly:music-function?",
     },
     "balloonLengthOff": {
@@ -1386,7 +1520,11 @@ current_module = {
         "types": ("sequential-music",),
     },
     "balloonText": {
-        "signature": ("ly:event?", "number-pair?", "cheap-markup?",),
+        "signature": (
+            "ly:event?",
+            "number-pair?",
+            "cheap-markup?",
+        ),
         "type": "ly:music-function?",
     },
     "banjo-c-tuning": "banjo-c-tuning",
@@ -1394,9 +1532,18 @@ current_module = {
     "banjo-open-d-tuning": "banjo-open-d-tuning",
     "banjo-open-dm-tuning": "banjo-open-dm-tuning",
     "banjo-open-g-tuning": "banjo-open-g-tuning",
-    "bar": {"signature": ("ly:music?", "string?",), "type": "ly:music-function?"},
+    "bar": {
+        "signature": (
+            "ly:music?",
+            "string?",
+        ),
+        "type": "ly:music-function?",
+    },
     "barNumberCheck": {
-        "signature": ("ly:music?", "integer?",),
+        "signature": (
+            "ly:music?",
+            "integer?",
+        ),
         "type": "ly:music-function?",
     },
     "baritone-ukulele-tuning": "baritone-ukulele-tuning",
@@ -1419,25 +1566,43 @@ current_module = {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "bassFigureStaffAlignmentNeutral": {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "bassFigureStaffAlignmentUp": {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "beamExceptions": {
-        "signature": ("scheme?", "ly:music?",),
+        "signature": (
+            "scheme?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
-    "bendAfter": {"signature": ("ly:event?", "real?",), "type": "ly:music-function?"},
+    "bendAfter": {
+        "signature": (
+            "ly:event?",
+            "real?",
+        ),
+        "type": "ly:music-function?",
+    },
     "bigger": 1,
     "blackTriangleMarkup": "blackTriangleMarkup",
     "bongos-style": "bongos-style",
@@ -1446,11 +1611,17 @@ current_module = {
     "book-score-handler": "book-score-handler",
     "book-text-handler": "book-text-handler",
     "bookOutputName": {
-        "signature": ("void?", "string?",),
+        "signature": (
+            "void?",
+            "string?",
+        ),
         "type": "ly:music-function?",
     },
     "bookOutputSuffix": {
-        "signature": ("void?", "string?",),
+        "signature": (
+            "void?",
+            "string?",
+        ),
         "type": "ly:music-function?",
     },
     "bookpart-music-handler": "bookpart-music-handler",
@@ -1459,7 +1630,11 @@ current_module = {
     "break": {
         "name": "LineBreakEvent",
         "type": "ly:prob?",
-        "types": ("line-break-event", "break-event", "event",),
+        "types": (
+            "line-break-event",
+            "break-event",
+            "event",
+        ),
     },
     "breakDynamicSpan": {
         "name": "BreakDynamicSpanEvent",
@@ -1477,42 +1652,73 @@ current_module = {
         "context-type": "Timing",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "cadenzaOn": {
         "context-type": "Timing",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "cello-tuning": "cello-tuning",
     "center": 0,
     "chord-shape": "chord-shape",
     "chord-shape-table": "chord-shape-table",
     "chordRepeats": {
-        "signature": ("ly:music?", "optional?", "list?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "list?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "chordmodifiers": "chordmodifiers",
-    "clef": {"signature": ("ly:music?", "string?",), "type": "ly:music-function?"},
+    "clef": {
+        "signature": (
+            "ly:music?",
+            "string?",
+        ),
+        "type": "ly:music-function?",
+    },
     "coda": {
         "articulation-type": "coda",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "compoundMeter": {
-        "signature": ("ly:music?", "pair?",),
+        "signature": (
+            "ly:music?",
+            "pair?",
+        ),
         "type": "ly:music-function?",
     },
     "compressFullBarRests": {
         "context-type": "Score",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "compressMMRests": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "congas-style": "congas-style",
@@ -1553,63 +1759,121 @@ current_module = {
     },
     "cross-style": "cross-style",
     "crossStaff": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
-    "cueClef": {"signature": ("ly:music?", "string?",), "type": "ly:music-function?"},
+    "cueClef": {
+        "signature": (
+            "ly:music?",
+            "string?",
+        ),
+        "type": "ly:music-function?",
+    },
     "cueClefUnset": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "cueDuring": {
-        "signature": ("ly:music?", "string?", "ly:dir?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "string?",
+            "ly:dir?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "cueDuringWithClef": {
-        "signature": ("ly:music?", "string?", "ly:dir?", "string?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "string?",
+            "ly:dir?",
+            "string?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "dashBang": {
         "articulation-type": "staccatissimo",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "dashDash": {
         "articulation-type": "tenuto",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "dashDot": {
         "articulation-type": "staccato",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "dashHat": {
         "articulation-type": "marcato",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "dashLarger": {
         "articulation-type": "accent",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "dashPlus": {
         "articulation-type": "stopped",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "dashUnderscore": {
         "articulation-type": "portato",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "deadNote": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "deadNotesOff": {
@@ -1658,10 +1922,17 @@ current_module = {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "defineBarLine": {
-        "signature": ("void?", "string?", "list?",),
+        "signature": (
+            "void?",
+            "string?",
+            "list?",
+        ),
         "type": "ly:music-function?",
     },
     "deprecatedcresc": {
@@ -1717,15 +1988,30 @@ current_module = {
         "types": ("sequential-music",),
     },
     "displayLilyMusic": {
-        "signature": ("ly:music?", "optional?", "output-port?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "output-port?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "displayMusic": {
-        "signature": ("ly:music?", "optional?", "output-port?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "output-port?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "displayScheme": {
-        "signature": ("scheme?", "optional?", "output-port?", "scheme?",),
+        "signature": (
+            "scheme?",
+            "optional?",
+            "output-port?",
+            "scheme?",
+        ),
         "type": "ly:music-function?",
     },
     "dorian": "dorian",
@@ -1733,19 +2019,28 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "dotsNeutral": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "dotsUp": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "double-bass-tuning": "double-bass-tuning",
     "down": -1,
@@ -1753,19 +2048,34 @@ current_module = {
         "articulation-type": "downbow",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "downmordent": {
         "articulation-type": "downmordent",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "downprall": {
         "articulation-type": "downprall",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "drumPitchNames": "drumPitchNames",
     "drums-style": "drums-style",
@@ -1795,7 +2105,10 @@ current_module = {
         "types": ("sequential-music",),
     },
     "endSpanners": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "endcr": {
@@ -1862,90 +2175,161 @@ current_module = {
         "name": "EpisemaEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "episema-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "episema-event",
+        ),
     },
     "episemInitium": {
         "name": "EpisemaEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "episema-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "episema-event",
+        ),
     },
     "espressivo": {
         "articulation-type": "espressivo",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "eventChords": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "expandFullBarRests": {
         "context-type": "Score",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "expect-error": "expect-error",
     "f": {
         "name": "AbsoluteDynamicEvent",
         "text": "f",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "featherDurations": {
-        "signature": ("ly:music?", "ly:moment?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:moment?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "fermata": {
         "articulation-type": "fermata",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "fermataMarkup": {
         "name": "MultiMeasureTextEvent",
         "text": ("#<procedure fermata-markup (layout props)>",),
         "type": "ly:prob?",
-        "types": ("post-event", "event", "multi-measure-text-event",),
+        "types": (
+            "post-event",
+            "event",
+            "multi-measure-text-event",
+        ),
     },
     "ff": {
         "name": "AbsoluteDynamicEvent",
         "text": "ff",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "fff": {
         "name": "AbsoluteDynamicEvent",
         "text": "fff",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "ffff": {
         "name": "AbsoluteDynamicEvent",
         "text": "ffff",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "fffff": {
         "name": "AbsoluteDynamicEvent",
         "text": "fffff",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "finger": {
-        "signature": ("ly:event?", "number-or-markup?",),
+        "signature": (
+            "ly:event?",
+            "number-or-markup?",
+        ),
         "type": "ly:music-function?",
     },
     "fixed": {
-        "signature": ("ly:music?", "ly:pitch?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "flageolet": {
         "articulation-type": "flageolet",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "footnote": {
         "signature": (
@@ -1963,7 +2347,12 @@ current_module = {
         "name": "AbsoluteDynamicEvent",
         "text": "fp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "frenchChords": {
         "name": "SequentialMusic",
@@ -1975,19 +2364,30 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "funkHeadsMinor": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "fz": {
         "name": "AbsoluteDynamicEvent",
         "text": "fz",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "germanChords": {
         "name": "SequentialMusic",
@@ -1997,11 +2397,24 @@ current_module = {
     "glissando": {
         "name": "GlissandoEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "glissando-event", "event",),
+        "types": (
+            "post-event",
+            "glissando-event",
+            "event",
+        ),
     },
-    "grace": {"signature": ("ly:music?", "ly:music?",), "type": "ly:music-function?"},
+    "grace": {
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
+        "type": "ly:music-function?",
+    },
     "grobdescriptions": {
-        "signature": ("scheme?", "list?",),
+        "signature": (
+            "scheme?",
+            "list?",
+        ),
         "type": "ly:music-function?",
     },
     "guitar-asus4-tuning": "guitar-asus4-tuning",
@@ -2017,23 +2430,43 @@ current_module = {
         "articulation-type": "halfopen",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "harmonic": {
         "name": "HarmonicEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "harmonic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "harmonic-event",
+        ),
     },
     "harmonicByFret": {
-        "signature": ("ly:music?", "number?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "number?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "harmonicByRatio": {
-        "signature": ("ly:music?", "number?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "number?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "harmonicNote": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "harmonicsOff": {
@@ -2043,7 +2476,10 @@ current_module = {
     },
     "harmonicsOn": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "hide": {
-        "signature": ("ly:music?", "symbol-list-or-music?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-music?",
+        ),
         "type": "ly:music-function?",
     },
     "hideNotes": {
@@ -2060,13 +2496,19 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "huge": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "ignatzekExceptionMusic": {
         "name": "SequentialMusic",
@@ -2086,22 +2528,37 @@ current_module = {
     },
     "inStaffSegno": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "incipit": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "inherit-acceptability": {
-        "signature": ("void?", "symbol?", "symbol?",),
+        "signature": (
+            "void?",
+            "symbol?",
+            "symbol?",
+        ),
         "type": "ly:music-function?",
     },
     "input-file-name": None,
     "instrument-definitions": "instrument-definitions",
     "instrument-equalizer-alist": "instrument-equalizer-alist",
     "instrumentSwitch": {
-        "signature": ("ly:music?", "string?",),
+        "signature": (
+            "ly:music?",
+            "string?",
+        ),
         "type": "ly:music-function?",
     },
     "inversion": {
-        "signature": ("ly:music?", "ly:pitch?", "ly:pitch?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+            "ly:pitch?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "ionian": "ionian",
@@ -2111,11 +2568,21 @@ current_module = {
         "types": ("sequential-music",),
     },
     "keepWithTag": {
-        "signature": ("ly:music?", "symbol-list-or-symbol?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-symbol?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "key": {
-        "signature": ("ly:music?", "optional?", "ly:pitch?", "optional?", "list?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "ly:pitch?",
+            "optional?",
+            "list?",
+        ),
         "type": "ly:music-function?",
     },
     "kievanOff": {
@@ -2129,40 +2596,75 @@ current_module = {
         "types": ("sequential-music",),
     },
     "killCues": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
-    "label": {"signature": ("ly:music?", "symbol?",), "type": "ly:music-function?"},
+    "label": {
+        "signature": (
+            "ly:music?",
+            "symbol?",
+        ),
+        "type": "ly:music-function?",
+    },
     "laissezVibrer": {
         "name": "LaissezVibrerEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "laissez-vibrer-event",),
+        "types": (
+            "post-event",
+            "event",
+            "laissez-vibrer-event",
+        ),
     },
-    "language": {"signature": ("void?", "string?",), "type": "ly:music-function?"},
+    "language": {
+        "signature": (
+            "void?",
+            "string?",
+        ),
+        "type": "ly:music-function?",
+    },
     "language-pitch-names": "language-pitch-names",
     "languageRestore": {"signature": ("void?",), "type": "ly:music-function?"},
     "languageSaveAndChange": {
-        "signature": ("void?", "string?",),
+        "signature": (
+            "void?",
+            "string?",
+        ),
         "type": "ly:music-function?",
     },
     "large": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "left": -1,
     "lheel": {
         "articulation-type": "lheel",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "lineprall": {
         "articulation-type": "lineprall",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "locrian": "locrian",
     # "longa": LilyPondDuration(Duration(4, 1), None),
@@ -2170,21 +2672,38 @@ current_module = {
         "articulation-type": "longfermata",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "ltoe": {
         "articulation-type": "ltoe",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "lydian": "lydian",
     "magnifyMusic": {
-        "signature": ("ly:music?", "positive?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "positive?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "magnifyStaff": {
-        "signature": ("ly:music?", "positive?",),
+        "signature": (
+            "ly:music?",
+            "positive?",
+        ),
         "type": "ly:music-function?",
     },
     "major": "major",
@@ -2194,11 +2713,18 @@ current_module = {
     "make-simple-dash-definition": "make-simple-dash-definition",
     "make-table-of-contents-markup-list": "make-table-of-contents-markup-list",
     "makeClusters": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "makeDefaultStringTuning": {
-        "signature": ("void?", "symbol?", "list?",),
+        "signature": (
+            "void?",
+            "symbol?",
+            "list?",
+        ),
         "type": "ly:music-function?",
     },
     "mandolin-tuning": "mandolin-tuning",
@@ -2206,10 +2732,19 @@ current_module = {
         "articulation-type": "marcato",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "mark": {
-        "signature": ("ly:music?", "optional?", "number-or-markup?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "number-or-markup?",
+        ),
         "type": "ly:music-function?",
     },
     "markLengthOff": {
@@ -2236,86 +2771,146 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "melismaEnd": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "mergeDifferentlyDottedOff": {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "mergeDifferentlyDottedOn": {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "mergeDifferentlyHeadedOff": {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "mergeDifferentlyHeadedOn": {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "mf": {
         "name": "AbsoluteDynamicEvent",
         "text": "mf",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "midiDrumPitches": "midiDrumPitches",
     "minor": "minor",
     "mixolydian": "mixolydian",
     "modalInversion": {
-        "signature": ("ly:music?", "ly:pitch?", "ly:pitch?", "ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+            "ly:pitch?",
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "modalTranspose": {
-        "signature": ("ly:music?", "ly:pitch?", "ly:pitch?", "ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+            "ly:pitch?",
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "mordent": {
         "articulation-type": "mordent",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "mp": {
         "name": "AbsoluteDynamicEvent",
         "text": "mp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "musicMap": {
-        "signature": ("ly:music?", "procedure?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "procedure?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "musicQuotes": "musicQuotes",
     "newSpacingSection": {
         "name": "EventChord",
         "type": "ly:prob?",
-        "types": ("event-chord", "simultaneous-music",),
+        "types": (
+            "event-chord",
+            "simultaneous-music",
+        ),
     },
     "noBeam": {
         "name": "BeamForbidEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "beam-forbid-event",),
+        "types": (
+            "post-event",
+            "event",
+            "beam-forbid-event",
+        ),
     },
     "noBreak": {
         "name": "LineBreakEvent",
         "type": "ly:prob?",
-        "types": ("line-break-event", "break-event", "event",),
+        "types": (
+            "line-break-event",
+            "break-event",
+            "event",
+        ),
     },
     "noPageBreak": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "noPageTurn": {"signature": ("ly:music?",), "type": "ly:music-function?"},
@@ -2323,16 +2918,25 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "numericTimeSignature": {
         "context-type": "Staff",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "octaveCheck": {
-        "signature": ("ly:music?", "ly:pitch?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+        ),
         "type": "ly:music-function?",
     },
     "offset": {
@@ -2345,44 +2949,85 @@ current_module = {
         "type": "ly:music-function?",
     },
     "omit": {
-        "signature": ("ly:music?", "symbol-list-or-music?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-music?",
+        ),
         "type": "ly:music-function?",
     },
-    "once": {"signature": ("ly:music?", "ly:music?",), "type": "ly:music-function?"},
+    "once": {
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
+        "type": "ly:music-function?",
+    },
     "oneVoice": {
         "context-type": "Voice",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "open": {
         "articulation-type": "open",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
-    "ottava": {"signature": ("ly:music?", "integer?",), "type": "ly:music-function?"},
+    "ottava": {
+        "signature": (
+            "ly:music?",
+            "integer?",
+        ),
+        "type": "ly:music-function?",
+    },
     "output-def-music-handler": "output-def-music-handler",
     "output-empty-score-list": "output-empty-score-list",
     "output-suffix": "output-suffix",
     "overrideProperty": {
-        "signature": ("ly:music?", "key-list?", "scheme?",),
+        "signature": (
+            "ly:music?",
+            "key-list?",
+            "scheme?",
+        ),
         "type": "ly:music-function?",
     },
     "overrideTimeSignatureSettings": {
-        "signature": ("ly:music?", "fraction?", "fraction?", "list?", "list?",),
+        "signature": (
+            "ly:music?",
+            "fraction?",
+            "fraction?",
+            "list?",
+            "list?",
+        ),
         "type": "ly:music-function?",
     },
     "p": {
         "name": "AbsoluteDynamicEvent",
         "text": "p",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "pageBreak": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "pageTurn": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "palmMute": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "palmMuteOff": {
@@ -2392,11 +3037,18 @@ current_module = {
     },
     "palmMuteOn": {"signature": ("ly:music?",), "type": "ly:music-function?"},
     "parallelMusic": {
-        "signature": ("void?", "list?", "ly:music?",),
+        "signature": (
+            "void?",
+            "list?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "parenthesize": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "partCombineListener": "partCombineListener",
@@ -2414,19 +3066,28 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "partcombineAutomatic": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "partcombineChords": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "partcombineDown": {
         "signature": (
@@ -2439,26 +3100,39 @@ current_module = {
         "type": "ly:music-function?",
     },
     "partcombineForce": {
-        "signature": ("ly:music?", "optional?", "symbol?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "symbol?",
+        ),
         "type": "ly:music-function?",
     },
     "partcombineSoloI": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "partcombineSoloII": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "partcombineUnisono": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "partcombineUp": {
         "signature": (
@@ -2471,7 +3145,10 @@ current_module = {
         "type": "ly:music-function?",
     },
     "partial": {
-        "signature": ("ly:music?", "ly:duration?",),
+        "signature": (
+            "ly:music?",
+            "ly:duration?",
+        ),
         "type": "ly:music-function?",
     },
     "partialJazzExceptions": "partialJazzExceptions",
@@ -2482,74 +3159,114 @@ current_module = {
     },
     "percussion-style": "percussion-style",
     "phrasingSlurDashPattern": {
-        "signature": ("ly:music?", "number?", "number?",),
+        "signature": (
+            "ly:music?",
+            "number?",
+            "number?",
+        ),
         "type": "ly:music-function?",
     },
     "phrasingSlurDashed": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrasingSlurDotted": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrasingSlurDown": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrasingSlurHalfDashed": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrasingSlurHalfSolid": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrasingSlurNeutral": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrasingSlurSolid": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrasingSlurUp": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "phrygian": "phrygian",
     "pitchedTrill": {
-        "signature": ("ly:music?", "ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "pitchnames": "pitchnames",
     "pointAndClickOff": {"signature": ("void?",), "type": "ly:music-function?"},
     "pointAndClickOn": {"signature": ("void?",), "type": "ly:music-function?"},
     "pointAndClickTypes": {
-        "signature": ("void?", "symbol-list-or-symbol?",),
+        "signature": (
+            "void?",
+            "symbol-list-or-symbol?",
+        ),
         "type": "ly:music-function?",
     },
     "portato": {
         "articulation-type": "portato",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "powerChordExceptions": "powerChordExceptions",
     "powerChordSymbol": {
@@ -2566,79 +3283,141 @@ current_module = {
         "name": "AbsoluteDynamicEvent",
         "text": "pp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "ppp": {
         "name": "AbsoluteDynamicEvent",
         "text": "ppp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "pppp": {
         "name": "AbsoluteDynamicEvent",
         "text": "pppp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "ppppp": {
         "name": "AbsoluteDynamicEvent",
         "text": "ppppp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "prall": {
         "articulation-type": "prall",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "pralldown": {
         "articulation-type": "pralldown",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "prallmordent": {
         "articulation-type": "prallmordent",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "prallprall": {
         "articulation-type": "prallprall",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "prallup": {
         "articulation-type": "prallup",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "predefinedFretboardsOff": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "predefinedFretboardsOn": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "previous-pitchnames": "previous-pitchnames",
     "propertyOverride": {
-        "signature": ("ly:music?", "key-list?", "scheme?",),
+        "signature": (
+            "ly:music?",
+            "key-list?",
+            "scheme?",
+        ),
         "type": "ly:music-function?",
     },
     "propertyRevert": {
-        "signature": ("ly:music?", "key-list?",),
+        "signature": (
+            "ly:music?",
+            "key-list?",
+        ),
         "type": "ly:music-function?",
     },
     "propertySet": {
-        "signature": ("ly:music?", "symbol-list-or-symbol?", "scheme?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-symbol?",
+            "scheme?",
+        ),
         "type": "ly:music-function?",
     },
     "propertyTweak": {
@@ -2651,67 +3430,122 @@ current_module = {
         "type": "ly:music-function?",
     },
     "propertyUnset": {
-        "signature": ("ly:music?", "symbol-list-or-symbol?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-symbol?",
+        ),
         "type": "ly:music-function?",
     },
     "pushToTag": {
-        "signature": ("ly:music?", "symbol?", "ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "symbol?",
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "quoteDuring": {
-        "signature": ("ly:music?", "string?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "string?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "reduceChords": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "relative": {
-        "signature": ("ly:music?", "optional?", "ly:pitch?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "ly:pitch?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "removeWithTag": {
-        "signature": ("ly:music?", "symbol-list-or-symbol?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-symbol?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "repeatTie": {
         "name": "RepeatTieEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "repeat-tie-event",),
+        "types": (
+            "post-event",
+            "event",
+            "repeat-tie-event",
+        ),
     },
     "resetRelativeOctave": {
-        "signature": ("ly:music?", "ly:pitch?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+        ),
         "type": "ly:music-function?",
     },
     "retrograde": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "reverseturn": {
         "articulation-type": "reverseturn",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "revertTimeSignatureSettings": {
-        "signature": ("ly:music?", "pair?",),
+        "signature": (
+            "ly:music?",
+            "pair?",
+        ),
         "type": "ly:music-function?",
     },
     "rfz": {
         "name": "AbsoluteDynamicEvent",
         "text": "rfz",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "rheel": {
         "articulation-type": "rheel",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "right": 1,
     "rightHandFinger": {
-        "signature": ("ly:event?", "number-or-markup?",),
+        "signature": (
+            "ly:event?",
+            "number-or-markup?",
+        ),
         "type": "ly:music-function?",
     },
     "romanStringNumbers": {
@@ -2723,29 +3557,49 @@ current_module = {
         "articulation-type": "rtoe",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "sacredHarpHeads": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "sacredHarpHeadsMinor": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "scaleDurations": {
-        "signature": ("ly:music?", "fraction?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "fraction?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "segno": {
         "articulation-type": "segno",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "semiGermanChords": {
         "name": "SequentialMusic",
@@ -2758,70 +3612,121 @@ current_module = {
         "types": ("sequential-music",),
     },
     "settingsFrom": {
-        "signature": ("scheme?", "optional?", "symbol?", "ly:music?",),
+        "signature": (
+            "scheme?",
+            "optional?",
+            "symbol?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "sf": {
         "name": "AbsoluteDynamicEvent",
         "text": "sf",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "sff": {
         "name": "AbsoluteDynamicEvent",
         "text": "sff",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "sfp": {
         "name": "AbsoluteDynamicEvent",
         "text": "sfp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "sfz": {
         "name": "AbsoluteDynamicEvent",
         "text": "sfz",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "shape": {
-        "signature": ("ly:music?", "list?", "key-list-or-music?",),
+        "signature": (
+            "ly:music?",
+            "list?",
+            "key-list-or-music?",
+        ),
         "type": "ly:music-function?",
     },
     "shiftDurations": {
-        "signature": ("ly:music?", "integer?", "integer?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "integer?",
+            "integer?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "shiftOff": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "shiftOn": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "shiftOnn": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "shiftOnnn": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "shortfermata": {
         "articulation-type": "shortfermata",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "showSplitTiedTabNotes": {
         "name": "SequentialMusic",
@@ -2832,142 +3737,235 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "signumcongruentiae": {
         "articulation-type": "signumcongruentiae",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "single": {
-        "signature": ("ly:music?", "ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "skip": {
-        "signature": ("ly:music?", "ly:duration?",),
+        "signature": (
+            "ly:music?",
+            "ly:duration?",
+        ),
         "type": "ly:music-function?",
     },
     "slashedGrace": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "slurDashPattern": {
-        "signature": ("ly:music?", "number?", "number?",),
+        "signature": (
+            "ly:music?",
+            "number?",
+            "number?",
+        ),
         "type": "ly:music-function?",
     },
     "slurDashed": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "slurDotted": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "slurDown": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "slurHalfDashed": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "slurHalfSolid": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "slurNeutral": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "slurSolid": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "slurUp": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "small": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "smaller": -1,
     "snappizzicato": {
         "articulation-type": "snappizzicato",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "sostenutoOff": {
         "name": "SostenutoEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "pedal-event", "sostenuto-event",),
+        "types": (
+            "post-event",
+            "event",
+            "pedal-event",
+            "sostenuto-event",
+        ),
     },
     "sostenutoOn": {
         "name": "SostenutoEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "pedal-event", "sostenuto-event",),
+        "types": (
+            "post-event",
+            "event",
+            "pedal-event",
+            "sostenuto-event",
+        ),
     },
     "southernHarmonyHeads": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "southernHarmonyHeadsMinor": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "sp": {
         "name": "AbsoluteDynamicEvent",
         "text": "sp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "spacingTweaks": {
-        "signature": ("ly:music?", "list?",),
+        "signature": (
+            "ly:music?",
+            "list?",
+        ),
         "type": "ly:music-function?",
     },
     "spp": {
         "name": "AbsoluteDynamicEvent",
         "text": "spp",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "dynamic-event", "absolute-dynamic-event",),
+        "types": (
+            "post-event",
+            "event",
+            "dynamic-event",
+            "absolute-dynamic-event",
+        ),
     },
     "staccatissimo": {
         "articulation-type": "staccatissimo",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "staccato": {
         "articulation-type": "staccato",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "start": -1,
     "startAcciaccaturaMusic": {
@@ -2989,19 +3987,32 @@ current_module = {
         "name": "SlurEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "slur-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "slur-event",
+        ),
     },
     "startGroup": {
         "name": "NoteGroupingEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "note-grouping-event",),
+        "types": (
+            "post-event",
+            "event",
+            "note-grouping-event",
+        ),
     },
     "startMeasureCount": {
         "name": "MeasureCounterEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("measure-counter-event", "span-event", "event",),
+        "types": (
+            "measure-counter-event",
+            "span-event",
+            "event",
+        ),
     },
     "startSlashedGraceMusic": {
         "name": "SequentialMusic",
@@ -3012,37 +4023,60 @@ current_module = {
         "name": "StaffSpanEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("event", "span-event", "staff-span-event",),
+        "types": (
+            "event",
+            "span-event",
+            "staff-span-event",
+        ),
     },
     "startTextSpan": {
         "name": "TextSpanEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "text-span-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "text-span-event",
+        ),
     },
     "startTrillSpan": {
         "name": "TrillSpanEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "trill-span-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "trill-span-event",
+        ),
     },
     "stemDown": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "stemNeutral": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "stemUp": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "stop": 1,
     "stopAcciaccaturaMusic": {
@@ -3064,19 +4098,32 @@ current_module = {
         "name": "SlurEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "slur-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "slur-event",
+        ),
     },
     "stopGroup": {
         "name": "NoteGroupingEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "note-grouping-event",),
+        "types": (
+            "post-event",
+            "event",
+            "note-grouping-event",
+        ),
     },
     "stopMeasureCount": {
         "name": "MeasureCounterEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("measure-counter-event", "span-event", "event",),
+        "types": (
+            "measure-counter-event",
+            "span-event",
+            "event",
+        ),
     },
     "stopSlashedGraceMusic": {
         "name": "SequentialMusic",
@@ -3087,52 +4134,100 @@ current_module = {
         "name": "StaffSpanEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("event", "span-event", "staff-span-event",),
+        "types": (
+            "event",
+            "span-event",
+            "staff-span-event",
+        ),
     },
     "stopTextSpan": {
         "name": "TextSpanEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "text-span-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "text-span-event",
+        ),
     },
     "stopTrillSpan": {
         "name": "TrillSpanEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "span-event", "event", "trill-span-event",),
+        "types": (
+            "post-event",
+            "span-event",
+            "event",
+            "trill-span-event",
+        ),
     },
     "stopped": {
         "articulation-type": "stopped",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "storePredefinedDiagram": {
-        "signature": ("void?", "hash-table?", "ly:music?", "pair?", "string-or-pair?",),
+        "signature": (
+            "void?",
+            "hash-table?",
+            "ly:music?",
+            "pair?",
+            "string-or-pair?",
+        ),
         "type": "ly:music-function?",
     },
     "stringTuning": {
-        "signature": ("scheme?", "ly:music?",),
+        "signature": (
+            "scheme?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "styledNoteHeads": {
-        "signature": ("ly:music?", "symbol?", "symbol-list-or-symbol?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "symbol?",
+            "symbol-list-or-symbol?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "sustainOff": {
         "name": "SustainEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "pedal-event", "sustain-event",),
+        "types": (
+            "post-event",
+            "event",
+            "pedal-event",
+            "sustain-event",
+        ),
     },
     "sustainOn": {
         "name": "SustainEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "pedal-event", "sustain-event",),
+        "types": (
+            "post-event",
+            "event",
+            "pedal-event",
+            "sustain-event",
+        ),
     },
     "tabChordRepeats": {
-        "signature": ("ly:music?", "optional?", "list?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "list?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "tabChordRepetition": {"signature": ("void?",), "type": "ly:music-function?"},
@@ -3143,21 +4238,34 @@ current_module = {
     },
     "table-of-contents-markup-list": "table-of-contents-markup-list",
     "tag": {
-        "signature": ("ly:music?", "symbol-list-or-symbol?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "symbol-list-or-symbol?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "tagGroup": {
-        "signature": ("void?", "symbol-list?",),
+        "signature": (
+            "void?",
+            "symbol-list?",
+        ),
         "type": "ly:music-function?",
     },
     "teeny": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "temporary": {
-        "signature": ("ly:music?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "tenor-ukulele-tuning": "tenor-ukulele-tuning",
@@ -3165,7 +4273,12 @@ current_module = {
         "articulation-type": "tenuto",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "textLengthOff": {
         "name": "SequentialMusic",
@@ -3181,19 +4294,28 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "textSpannerNeutral": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "textSpannerUp": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "thumb": {
         "name": "FingeringEvent",
@@ -3203,78 +4325,125 @@ current_module = {
             "(#<procedure musicglyph-markup (layout props glyph-name)> scripts.thumb)",
         ),
         "type": "ly:prob?",
-        "types": ("post-event", "fingering-event", "event",),
+        "types": (
+            "post-event",
+            "fingering-event",
+            "event",
+        ),
     },
     "tieDashPattern": {
-        "signature": ("ly:music?", "number?", "number?",),
+        "signature": (
+            "ly:music?",
+            "number?",
+            "number?",
+        ),
         "type": "ly:music-function?",
     },
     "tieDashed": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tieDotted": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tieDown": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tieHalfDashed": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tieHalfSolid": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tieNeutral": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tieSolid": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tieUp": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "timbales-style": "timbales-style",
     "time": {
-        "signature": ("ly:music?", "optional?", "number-list?", "fraction?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "number-list?",
+            "fraction?",
+        ),
         "type": "ly:music-function?",
     },
     "times": {
-        "signature": ("ly:music?", "fraction?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "fraction?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "tiny": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "toc-items": "toc-items",
     "tocItem": {
-        "signature": ("ly:music?", "cheap-markup?",),
+        "signature": (
+            "ly:music?",
+            "cheap-markup?",
+        ),
         "type": "ly:music-function?",
     },
     "tocItemWithDotsMarkup": "tocItemWithDotsMarkup",
@@ -3287,28 +4456,52 @@ current_module = {
     "toplevel-scores": "toplevel-scores",
     "toplevel-text-handler": "toplevel-text-handler",
     "transpose": {
-        "signature": ("ly:music?", "ly:pitch?", "ly:pitch?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+            "ly:pitch?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "transposedCueDuring": {
-        "signature": ("ly:music?", "string?", "ly:dir?", "ly:pitch?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "string?",
+            "ly:dir?",
+            "ly:pitch?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "transposition": {
-        "signature": ("ly:music?", "ly:pitch?",),
+        "signature": (
+            "ly:music?",
+            "ly:pitch?",
+        ),
         "type": "ly:music-function?",
     },
     "treCorde": {
         "name": "UnaCordaEvent",
         "span-direction": 1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "pedal-event", "una-corda-event",),
+        "types": (
+            "post-event",
+            "event",
+            "pedal-event",
+            "una-corda-event",
+        ),
     },
     "trill": {
         "articulation-type": "trill",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "tuplet": {
         "signature": (
@@ -3324,32 +4517,55 @@ current_module = {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tupletNeutral": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "tupletSpan": {
-        "signature": ("ly:music?", "optional?", "ly:duration?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "ly:duration?",
+        ),
         "type": "ly:music-function?",
     },
     "tupletUp": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "turn": {
         "articulation-type": "turn",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "tweak": {
-        "signature": ("ly:music?", "key-list-or-symbol?", "scheme?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "key-list-or-symbol?",
+            "scheme?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "ukulele-d-tuning": "ukulele-d-tuning",
@@ -3363,11 +4579,27 @@ current_module = {
         "name": "UnaCordaEvent",
         "span-direction": -1,
         "type": "ly:prob?",
-        "types": ("post-event", "event", "pedal-event", "una-corda-event",),
+        "types": (
+            "post-event",
+            "event",
+            "pedal-event",
+            "una-corda-event",
+        ),
     },
-    "undo": {"signature": ("ly:music?", "ly:music?",), "type": "ly:music-function?"},
+    "undo": {
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
+        "type": "ly:music-function?",
+    },
     "unfoldRepeats": {
-        "signature": ("ly:music?", "optional?", "symbol-list-or-symbol?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "optional?",
+            "symbol-list-or-symbol?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
     "up": 1,
@@ -3375,32 +4607,57 @@ current_module = {
         "articulation-type": "upbow",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "upmordent": {
         "articulation-type": "upmordent",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "upprall": {
         "articulation-type": "upprall",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "varcoda": {
         "articulation-type": "varcoda",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "version-seen": "version-seen",
     "verylongfermata": {
         "articulation-type": "verylongfermata",
         "name": "ArticulationEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "event", "articulation-event", "script-event",),
+        "types": (
+            "post-event",
+            "event",
+            "articulation-event",
+            "script-event",
+        ),
     },
     "viola-tuning": "viola-tuning",
     "violin-tuning": "violin-tuning",
@@ -3408,7 +4665,10 @@ current_module = {
         "context-type": "Voice",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "voiceFourStyle": {
         "name": "SequentialMusic",
@@ -3424,7 +4684,10 @@ current_module = {
         "context-type": "Voice",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "voiceOneStyle": {
         "name": "SequentialMusic",
@@ -3435,7 +4698,10 @@ current_module = {
         "context-type": "Voice",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "voiceThreeStyle": {
         "name": "SequentialMusic",
@@ -3446,7 +4712,10 @@ current_module = {
         "context-type": "Voice",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "voiceTwoStyle": {
         "name": "SequentialMusic",
@@ -3454,28 +4723,55 @@ current_module = {
         "types": ("sequential-music",),
     },
     "voices": {
-        "signature": ("ly:music?", "key-list?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "key-list?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
-    "void": {"signature": ("void?", "scheme?",), "type": "ly:music-function?"},
+    "void": {
+        "signature": (
+            "void?",
+            "scheme?",
+        ),
+        "type": "ly:music-function?",
+    },
     "walkerHeads": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "walkerHeadsMinor": {
         "context-type": "Bottom",
         "name": "ContextSpeccedMusic",
         "type": "ly:prob?",
-        "types": ("context-specification", "music-wrapper-music",),
+        "types": (
+            "context-specification",
+            "music-wrapper-music",
+        ),
     },
     "whiteTriangleMarkup": "whiteTriangleMarkup",
     "withMusicProperty": {
-        "signature": ("ly:music?", "symbol?", "scheme?", "ly:music?",),
+        "signature": (
+            "ly:music?",
+            "symbol?",
+            "scheme?",
+            "ly:music?",
+        ),
         "type": "ly:music-function?",
     },
-    "xNote": {"signature": ("ly:music?", "ly:music?",), "type": "ly:music-function?"},
+    "xNote": {
+        "signature": (
+            "ly:music?",
+            "ly:music?",
+        ),
+        "type": "ly:music-function?",
+    },
     "xNotesOff": {
         "name": "SequentialMusic",
         "type": "ly:prob?",
@@ -3490,7 +4786,11 @@ current_module = {
     "~": {
         "name": "TieEvent",
         "type": "ly:prob?",
-        "types": ("post-event", "tie-event", "event",),
+        "types": (
+            "post-event",
+            "tie-event",
+            "event",
+        ),
     },
 }
 

@@ -165,7 +165,10 @@ class RhythmTreeMixin:
         node = self
         while node.parent is not None:
             result.append(
-                (node.preprolated_duration, node.parent._get_contents_duration(),)
+                (
+                    node.preprolated_duration,
+                    node.parent._get_contents_duration(),
+                )
             )
             node = node.parent
         result.append(node.preprolated_duration)
@@ -607,7 +610,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                 if isinstance(child, type(self)):
                     tuplet.extend(
                         recurse(
-                            child, child.preprolated_duration * basic_written_duration,
+                            child,
+                            child.preprolated_duration * basic_written_duration,
                         )
                     )
                 else:

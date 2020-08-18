@@ -281,7 +281,9 @@ class Component:
         if summary:
             values.append(summary)
         return FormatSpecification(
-            client=self, repr_args_values=values, storage_format_keyword_names=[],
+            client=self,
+            repr_args_values=values,
+            storage_format_keyword_names=[],
         )
 
     def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
@@ -1709,7 +1711,8 @@ class Container(Component):
                 argument_.append(item)
             argument = argument_
         self.__setitem__(
-            slice(len(self), len(self)), argument.__getitem__(slice(0, len(argument))),
+            slice(len(self), len(self)),
+            argument.__getitem__(slice(0, len(argument))),
         )
 
     def index(self, component) -> int:
@@ -2704,7 +2707,9 @@ class Chord(Leaf):
             new_chord.note_heads.append(note_head)
         return new_chord
 
-    def __getnewargs__(self,) -> typing.Tuple[PitchSegment, Duration]:
+    def __getnewargs__(
+        self,
+    ) -> typing.Tuple[PitchSegment, Duration]:
         """
         Gets new chord arguments.
 
@@ -3031,7 +3036,11 @@ class Context(Container):
         self._remove_commands: typing.List[str] = []
         self.lilypond_type = lilypond_type
         Container.__init__(
-            self, simultaneous=simultaneous, components=components, name=name, tag=tag,
+            self,
+            simultaneous=simultaneous,
+            components=components,
+            name=name,
+            tag=tag,
         )
 
     ### SPECIAL METHODS ###
@@ -3293,7 +3302,7 @@ class Context(Container):
             ...     )
             >>> abjad.show(context) # doctest: +SKIP
 
-            >>> abjad.f(context, strict=20)
+            >>> abjad.f(context, align_tags=20)
             \new CustomContext  %! RED
             {                   %! RED
                 c'4
@@ -3618,7 +3627,7 @@ class NoteHead:
             >>> note.note_head.alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, strict=50)
+            >>> abjad.f(note, align_tags=50)
             c''4                                              %! +PARTS
             %@% c''!4                                         %! -PARTS
 
@@ -3627,7 +3636,7 @@ class NoteHead:
             >>> note.written_pitch = 'D5'
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, strict=50)
+            >>> abjad.f(note, align_tags=50)
             d''4                                              %! +PARTS
             %@% d''!4                                         %! -PARTS
 
@@ -3636,7 +3645,7 @@ class NoteHead:
             >>> note.note_head.alternative = None
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, strict=50)
+            >>> abjad.f(note, align_tags=50)
             d''4
 
         ..  container:: example
@@ -3647,7 +3656,7 @@ class NoteHead:
             >>> chord.note_heads[0].alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> abjad.f(chord, strict=50)
+            >>> abjad.f(chord, align_tags=50)
             <
                 c'                                            %! +PARTS
             %@% c'!                                           %! -PARTS
@@ -3660,7 +3669,7 @@ class NoteHead:
             >>> chord.note_heads[0].written_pitch = 'B3'
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> abjad.f(chord, strict=50)
+            >>> abjad.f(chord, align_tags=50)
             <
                 b                                             %! +PARTS
             %@% b!                                            %! -PARTS
@@ -3671,7 +3680,7 @@ class NoteHead:
             Clear with none:
 
             >>> chord.note_heads[0].alternative = None
-            >>> abjad.f(chord, strict=50)
+            >>> abjad.f(chord, align_tags=50)
             <b d' bf''>4
 
         """
@@ -4637,7 +4646,7 @@ class Score(Context):
             >>> score = abjad.Score([staff], tag=abjad.Tag('GREEN'))
             >>> abjad.show(score) # doctest: +SKIP
 
-            >>> abjad.f(score, strict=20)
+            >>> abjad.f(score, align_tags=20)
             \new Score          %! GREEN
             <<                  %! GREEN
                 \new Staff      %! BLUE
@@ -5718,7 +5727,7 @@ class Tuplet(Container):
             ... )
             >>> abjad.show(tuplet) # doctest: +SKIP
 
-            >>> abjad.f(tuplet, strict=20)
+            >>> abjad.f(tuplet, align_tags=20)
             \times 2/3 {        %! RED
                 c'4
                 d'4
@@ -7083,7 +7092,7 @@ class Voice(Context):
             >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
             >>> abjad.show(voice) # doctest: +SKIP
 
-            >>> abjad.f(voice, strict=20)
+            >>> abjad.f(voice, align_tags=20)
             \new Voice          %! RED
             {                   %! RED
                 c'4
