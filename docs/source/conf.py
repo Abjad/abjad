@@ -26,6 +26,7 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
+    "sphinx.ext.viewcode",
     "abjad.ext.sphinx",
     "sphinx_autodoc_typehints",
     "uqbar.sphinx.api",
