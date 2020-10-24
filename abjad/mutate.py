@@ -81,17 +81,20 @@ class Mutation:
         leaves = SELECTION
         if len(leaves) <= 1:
             return leaves
-        originally_tied = SELECTION[-1]._has_indicator(Tie)
+        originally_tied_after_first_leaf = SELECTION[0]._has_indicator(Tie)
+        originally_tied_at_end = SELECTION[-1]._has_indicator(Tie)
         total_preprolated = leaves._get_preprolated_duration()
         for leaf in leaves[1:]:
             parent = leaf._parent
             if parent:
                 index = parent.index(leaf)
                 del parent[index]
+        if originally_tied_after_first_leaf:
+            detach(Tie, leaves[0])
         result = Mutation._set_leaf_duration(leaves[0], total_preprolated)
-        if not originally_tied:
+        if originally_tied_at_end:
             last_leaf = Selection(result).leaf(-1)
-            detach(Tie, last_leaf)
+            attach(Tie(), last_leaf)
         return result
 
     @staticmethod
