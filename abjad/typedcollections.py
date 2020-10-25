@@ -1,5 +1,5 @@
 import abc
-import collections
+import collections.abc
 
 from .new import new
 from .storage import FormatSpecification, StorageFormatManager

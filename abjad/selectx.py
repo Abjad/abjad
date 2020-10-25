@@ -1,5 +1,5 @@
 import abc
-import collections
+import collections.abc
 import inspect
 import itertools
 import operator
