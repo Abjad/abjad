@@ -72,7 +72,7 @@ extras_require = {
     "rmakers": ["abjad-ext-rmakers>=3.1.0, <3.2.0"],
     "tonality": ["abjad-ext-tonality>=3.1.0, <3.2.0"],
     "test": [
-        "black",
+        "black==19.10b0",  # Trailing comma behavior in 20.x needs work
         "flake8",
         "isort",
         "mypy>=0.770",
