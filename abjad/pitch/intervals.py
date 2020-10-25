@@ -836,6 +836,12 @@ class NamedInterval(Interval):
             ...     )
             NamedInterval('-AAAA1')
 
+            >>> abjad.NamedInterval.from_pitch_carriers(
+            ...     abjad.NamedPitch("ds'"),
+            ...     abjad.NamedPitch("ef''"),
+            ...     )
+            NamedInterval('+d9')
+
             >>> abjad.NamedInterval.from_pitch_carriers("c'", "cs'''")
             NamedInterval('+A15')
 
@@ -867,7 +873,7 @@ class NamedInterval(Interval):
         named_ic_number = named_i_number
         numbered_ic_number = numbered_i_number
 
-        while named_ic_number > 8 and numbered_ic_number > 12:
+        while named_ic_number > 8 and numbered_ic_number >= 12:
             named_ic_number -= 7
             numbered_ic_number -= 12
 
