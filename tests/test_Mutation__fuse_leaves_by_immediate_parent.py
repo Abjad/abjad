@@ -82,12 +82,12 @@ def test_Mutation__fuse_leaves_by_immediate_parent_03():
     assert len(result) == 1
     assert abjad.wellformed(note)
 
+
 def test_Mutation__fuse_leaves_by_immediate_parent_04():
     """
     Fuse leaves in logical tie with same immediate parent.
     """
 
-    
     voice = abjad.Voice(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
     logical_tie = abjad.inspect(voice[0]).logical_tie()
     result = abjad.Mutation._fuse_leaves_by_immediate_parent(logical_tie)
