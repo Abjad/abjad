@@ -2,14 +2,13 @@ import copy
 import typing
 
 from . import enums
+from . import tag as _tag
 from .bundle import LilyPondFormatBundle
-from .ly.colors import colors
-from .ly.contexts import contexts
-from .ly.grob_interfaces import grob_interfaces
+from .lyconst import colors
+from .lyenv import contexts, grob_interfaces
 from .scheme import Scheme, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
 from .stringx import String
-from .tag import Tag
 
 
 class LilyPondLiteral:
@@ -22,7 +21,7 @@ class LilyPondLiteral:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
         >>> abjad.attach(literal, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -46,16 +45,16 @@ class LilyPondLiteral:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
         >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral('', format_slot='absolute_before')
+        >>> literal = abjad.LilyPondLiteral("", format_slot="absolute_before")
         >>> abjad.attach(literal, staff[0])
         >>> literal = abjad.LilyPondLiteral(
-        ...     '% before all formatting',
-        ...     format_slot='absolute_before',
+        ...     "% before all formatting",
+        ...     format_slot="absolute_before",
         ...     )
         >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral('', format_slot='absolute_after')
+        >>> literal = abjad.LilyPondLiteral("", format_slot="absolute_after")
         >>> abjad.attach(literal, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -82,8 +81,8 @@ class LilyPondLiteral:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
-        >>> abjad.attach(literal, staff[0], tag=abjad.tags.ONLY_PARTS)
+        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
+        >>> abjad.attach(literal, staff[0], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
@@ -105,12 +104,12 @@ class LilyPondLiteral:
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.slur(staff[:])
         >>> lines = [
-        ...     r'\stopStaff',
-        ...     r'\startStaff',
-        ...     r'\once \override Staff.StaffSymbol.color = #red',
+        ...     r"\stopStaff",
+        ...     r"\startStaff",
+        ...     r"\once \override Staff.StaffSymbol.color = #red",
         ...     ]
         >>> literal = abjad.LilyPondLiteral(lines)
-        >>> abjad.attach(literal, staff[2], tag=abjad.tags.ONLY_PARTS)
+        >>> abjad.attach(literal, staff[2], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.f(staff)
@@ -132,9 +131,9 @@ class LilyPondLiteral:
         REGRESSION. Duplicate literals are allowed:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral('% text')
+        >>> literal = abjad.LilyPondLiteral("% text")
         >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral('% text')
+        >>> literal = abjad.LilyPondLiteral("% text")
         >>> abjad.attach(literal, staff[0])
 
         >>> abjad.f(staff)
@@ -255,7 +254,7 @@ class LilyPondLiteral:
 
         ..  container:: example
 
-            >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+            >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
             >>> literal.argument
             '\\slurDotted'
 
@@ -272,8 +271,8 @@ class LilyPondLiteral:
             Directed literal:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> literal = abjad.LilyPondLiteral(r'\f', 'after', directed=True)
-            >>> abjad.tweak(literal).color = 'blue'
+            >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
+            >>> abjad.tweak(literal).color = "blue"
             >>> abjad.tweak(literal).dynamic_line_spanner.staff_padding = 5
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -298,11 +297,11 @@ class LilyPondLiteral:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> literal = abjad.LilyPondLiteral(
-            ...     r'\breathe',
-            ...     'after',
+            ...     r"\breathe",
+            ...     "after",
             ...     directed=False,
             ...     )
-            >>> abjad.tweak(literal).color = 'blue'
+            >>> abjad.tweak(literal).color = "blue"
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -334,7 +333,7 @@ class LilyPondLiteral:
 
         ..  container:: example
 
-            >>> literal = abjad.LilyPondLiteral(r'\slurDotted')
+            >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
             >>> literal.format_slot
             'opening'
 
@@ -349,8 +348,8 @@ class LilyPondLiteral:
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> literal = abjad.LilyPondLiteral(r'\f', 'after', directed=True)
-            >>> abjad.tweak(literal).color = 'blue'
+            >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
+            >>> abjad.tweak(literal).color = "blue"
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -534,15 +533,15 @@ class LilyPondOverride:
     ..  container:: example
 
         >>> override = abjad.LilyPondOverride(
-        ...    lilypond_type='Staff',
-        ...    grob_name='TextSpanner',
+        ...    lilypond_type="Staff",
+        ...    grob_name="TextSpanner",
         ...    once=True,
         ...    property_path=(
-        ...        'bound-details',
-        ...        'left',
-        ...        'text',
+        ...        "bound-details",
+        ...        "left",
+        ...        "text",
         ...        ),
-        ...    value=abjad.Markup(r'\bold { over pressure }'),
+        ...    value=abjad.Markup(r"\bold { over pressure }"),
         ...    )
 
         >>> print(override.override_string)
@@ -658,9 +657,9 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> override.grob_name
             'Glissando'
@@ -676,17 +675,17 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> bool(override.is_revert)
             False
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
+            ...     grob_name="Glissando",
             ...     is_revert=True,
-            ...     property_path='style',
+            ...     property_path="style",
             ...     )
             >>> bool(override.is_revert)
             True
@@ -702,23 +701,23 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type='Staff',
-            ...    grob_name='TextSpanner',
+            ...    lilypond_type="Staff",
+            ...    grob_name="TextSpanner",
             ...    once=True,
             ...    property_path=(
-            ...        'bound-details',
-            ...        'left',
-            ...        'text',
+            ...        "bound-details",
+            ...        "left",
+            ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r"\bold { over pressure }"),
             ...    )
             >>> override.lilypond_type
             'Staff'
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> override.lilypond_type is None
             True
@@ -734,23 +733,23 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type='Staff',
-            ...    grob_name='TextSpanner',
+            ...    lilypond_type="Staff",
+            ...    grob_name="TextSpanner",
             ...    once=True,
             ...    property_path=(
-            ...        'bound-details',
-            ...        'left',
-            ...        'text',
+            ...        "bound-details",
+            ...        "left",
+            ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r"\bold { over pressure }"),
             ...    )
             >>> bool(override.once)
             True
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> bool(override.once)
             False
@@ -766,15 +765,15 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type='Staff',
-            ...    grob_name='TextSpanner',
+            ...    lilypond_type="Staff",
+            ...    grob_name="TextSpanner",
             ...    once=True,
             ...    property_path=(
-            ...        'bound-details',
-            ...        'left',
-            ...        'text',
+            ...        "bound-details",
+            ...        "left",
+            ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r"\bold { over pressure }"),
             ...    )
             >>> for line in override.override_format_pieces:
             ...     line
@@ -809,9 +808,9 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> override.override_string
             "\\override Glissando.style = #'zigzag"
@@ -827,15 +826,15 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type='Staff',
-            ...    grob_name='TextSpanner',
+            ...    lilypond_type="Staff",
+            ...    grob_name="TextSpanner",
             ...    once=True,
             ...    property_path=(
-            ...        'bound-details',
-            ...        'left',
-            ...        'text',
+            ...        "bound-details",
+            ...        "left",
+            ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r"\bold { over pressure }"),
             ...    )
             >>> override.property_path
             ('bound-details', 'left', 'text')
@@ -851,9 +850,9 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> override.revert_format_pieces
             ('\\revert Glissando.style',)
@@ -870,9 +869,9 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> override.revert_string
             '\\revert Glissando.style'
@@ -888,15 +887,15 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type='Staff',
-            ...    grob_name='TextSpanner',
+            ...    lilypond_type="Staff",
+            ...    grob_name="TextSpanner",
             ...    once=True,
             ...    property_path=(
-            ...        'bound-details',
-            ...        'left',
-            ...        'text',
+            ...        "bound-details",
+            ...        "left",
+            ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r'\bold { over pressure }'),
+            ...    value=abjad.Markup(r"\bold { over pressure }"),
             ...    )
             >>> override.value
             Markup(contents=[MarkupCommand('bold', ['over', 'pressure'])])
@@ -913,9 +912,9 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='Glissando',
-            ...     property_path='style',
-            ...     value=abjad.SchemeSymbol('zigzag'),
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value=abjad.SchemeSymbol("zigzag"),
             ...     )
             >>> override.tweak_string()
             "- \\tweak style #'zigzag"
@@ -923,9 +922,9 @@ class LilyPondOverride:
         ..  container:: example
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='RehearsalMark',
-            ...     property_path='color',
-            ...     value='red',
+            ...     grob_name="RehearsalMark",
+            ...     property_path="color",
+            ...     value="red",
             ...     )
             >>> override.tweak_string(directed=False)
             '\\tweak color #red'
@@ -935,9 +934,9 @@ class LilyPondOverride:
             LilyPond literals are allowed:
 
             >>> override = abjad.LilyPondOverride(
-            ...     grob_name='TextSpann',
-            ...     property_path=('bound-details', 'left-broken', 'text'),
-            ...     value=abjad.LilyPondLiteral(r'\markup \upright pont.'),
+            ...     grob_name="TextSpann",
+            ...     property_path=("bound-details", "left-broken", "text"),
+            ...     value=abjad.LilyPondLiteral(r"\markup \upright pont."),
             ...     )
             >>> override.tweak_string(directed=False)
             '\\tweak bound-details.left-broken.text \\markup \\upright pont.'
@@ -969,12 +968,12 @@ class LilyPondSetting:
     ..  container:: example
 
         >>> context_setting = abjad.LilyPondSetting(
-        ...    lilypond_type='Score',
-        ...    context_property='autoBeaming',
+        ...    lilypond_type="Score",
+        ...    context_property="autoBeaming",
         ...    value=False,
         ...    )
 
-        >>> print('\n'.join(context_setting.format_pieces))
+        >>> print("\n".join(context_setting.format_pieces))
         \set Score.autoBeaming = ##f
 
     """
@@ -1236,7 +1235,13 @@ class OverrideInterface(Interface):
             pass
         elif argument in (True, False):
             argument = Scheme(argument)
-        elif argument in (enums.Up, enums.Down, enums.Left, enums.Right, enums.Center,):
+        elif argument in (
+            enums.Up,
+            enums.Down,
+            enums.Left,
+            enums.Right,
+            enums.Center,
+        ):
             argument = Scheme(repr(argument).lower())
         elif isinstance(argument, int) or isinstance(argument, float):
             argument = Scheme(argument)
@@ -1287,8 +1292,8 @@ class OverrideInterface(Interface):
         ..  container:: example
 
             >>> abjad.OverrideInterface.make_lilypond_revert_string(
-            ...     'glissando',
-            ...     'bound_details__right__arrow',
+            ...     "glissando",
+            ...     "bound_details__right__arrow",
             ...     )
             '\\revert Glissando.bound-details.right.arrow'
 
@@ -1316,7 +1321,7 @@ def override(argument):
         Overrides staff symbol color:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff).staff_symbol.color = 'red'
+        >>> abjad.override(staff).staff_symbol.color = "red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1339,7 +1344,7 @@ def override(argument):
         Specify grob context like this:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff[0]).staff.staff_symbol.color = 'blue'
+        >>> abjad.override(staff[0]).staff.staff_symbol.color = "blue"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1389,7 +1394,7 @@ class SettingInterface(Interface):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
+            >>> abjad.setting(staff).instrument_name = abjad.Markup("Vn. I")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1522,7 +1527,7 @@ def setting(argument):
         Sets instrument name:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.setting(staff).instrument_name = abjad.Markup('Vn. I')
+        >>> abjad.setting(staff).instrument_name = abjad.Markup("Vn. I")
         >>> abjad.show(staff) # doctest: +SKIP
 
 
@@ -1562,13 +1567,13 @@ class TweakInterface(Interface):
 
         Tweak managers are created by the ``abjad.tweak()`` factory function:
 
-        >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
+        >>> markup = abjad.Markup("Allegro", direction=abjad.Up)
         >>> abjad.tweak(markup)
         TweakInterface(('_literal', None))
 
         Set an attribute like this:
 
-        >>> abjad.tweak(markup).color = 'red'
+        >>> abjad.tweak(markup).color = "red"
 
         The state of the tweak manager has changed:
 
@@ -1593,7 +1598,7 @@ class TweakInterface(Interface):
     ### INITIALIZER ###
 
     def __init__(
-        self, *, deactivate: bool = None, literal: bool = None, tag: Tag = None
+        self, *, deactivate: bool = None, literal: bool = None, tag: _tag.Tag = None
     ) -> None:
         if deactivate is not None:
             self._currently_deactivated = deactivate
@@ -1614,8 +1619,8 @@ class TweakInterface(Interface):
             Tweaks may be tagged:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
-            >>> abjad.tweak(markup, tag=abjad.tags.ONLY_PARTS).color = 'red'
+            >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+            >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "red"
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1636,10 +1641,10 @@ class TweakInterface(Interface):
             Tweaks may be tagged with ``deactivate=True``:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup('Allegro', direction=abjad.Up).italic()
+            >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
             >>> abjad.tweak(
-            ...     markup, deactivate=True, tag=abjad.tags.ONLY_PARTS
-            ... ).color = 'red'
+            ...     markup, deactivate=True, tag=abjad.Tag("+PARTS")
+            ... ).color = "red"
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1660,12 +1665,12 @@ class TweakInterface(Interface):
             Tweak tags and indicator tags may be set together:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup("Allegro", direction=abjad.Up).italic()
-            >>> abjad.tweak(markup, tag=abjad.tags.ONLY_PARTS).color = "red"
+            >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+            >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "red"
             >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff, strict=40)
+            >>> abjad.f(staff, align_tags=40)
             \new Staff
             {
                 c'4
@@ -1684,14 +1689,14 @@ class TweakInterface(Interface):
             Preloaded tweak managers can be made like this:
 
             >>> tweaks = abjad.TweakInterface()
-            >>> tweaks.color = 'red'
+            >>> tweaks.color = "red"
             >>> tweaks.Y_offset = 6
             >>> tweaks
             TweakInterface(('Y_offset', 6), ('_literal', None), ('color', 'red'))
 
             Use the ``abjad.tweak()`` factory function for a shortcut:
 
-            >>> tweaks = abjad.tweak('red').color
+            >>> tweaks = abjad.tweak("red").color
             >>> tweaks
             TweakInterface(('_literal', None), ('color', 'red'))
 
@@ -1746,7 +1751,7 @@ class TweakInterface(Interface):
 
             Allows LilyPond colors:
 
-            >>> abjad.tweak('ForestGreen').color
+            >>> abjad.tweak("ForestGreen").color
             TweakInterface(('_literal', None), ('color', 'ForestGreen'))
 
             >>> string = "#(x11-color 'blue)"
@@ -1755,7 +1760,7 @@ class TweakInterface(Interface):
 
             Raises exception on unknown color:
 
-            >>> abjad.tweak('SavannahGreen').color
+            >>> abjad.tweak("SavannahGreen").color
             Traceback (most recent call last):
                 ...
             Exception: 'SavannahGreen' is not a LilyPond color.
@@ -1833,11 +1838,15 @@ class TweakInterface(Interface):
             else:
                 tag = None
             string = self.make_lilypond_tweak_string(
-                attribute, value, directed=directed, grob=grob, literal=self._literal,
+                attribute,
+                value,
+                directed=directed,
+                grob=grob,
+                literal=self._literal,
             )
             if tag is not None:
                 strings = [string]
-                strings = Tag.tag(strings, deactivate=deactivate, tag=tag)
+                strings = _tag.tag(strings, deactivate=deactivate, tag=tag)
                 string = strings[0]
             result.append(string)
         result.sort()
@@ -1878,7 +1887,7 @@ class TweakInterface(Interface):
             >>> glissando.tweaks is None
             True
 
-            >>> tweaks = abjad.tweak('blue').color
+            >>> tweaks = abjad.tweak("blue").color
             >>> abjad.TweakInterface.set_tweaks(glissando, tweaks)
             TweakInterface(('_literal', None), ('color', 'blue'))
 
@@ -1933,8 +1942,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
-        >>> abjad.tweak(markup).color = 'red'
+        >>> markup = abjad.Markup("Allegro assai", direction=abjad.Up)
+        >>> abjad.tweak(markup).color = "red"
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1955,8 +1964,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> import copy
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup('Allegro assai', direction=abjad.Up)
-        >>> abjad.tweak(markup_1).color = 'red'
+        >>> markup_1 = abjad.Markup("Allegro assai", direction=abjad.Up)
+        >>> abjad.tweak(markup_1).color = "red"
         >>> markup_2 = copy.copy(markup_1)
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1977,9 +1986,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Survives dot-chaining:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro assai', direction=abjad.Up)
-        >>> abjad.tweak(markup).color = 'red'
-        >>> markup = markup.italic()
+        >>> markup = abjad.Markup(r'\italic "Allegro assai"', direction=abjad.Up)
+        >>> abjad.tweak(markup).color = "red"
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2002,11 +2010,11 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Works for opposite-directed coincident markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup('Allegro assai ...', direction=abjad.Up)
-        >>> abjad.tweak(markup_1).color = 'red'
+        >>> markup_1 = abjad.Markup("Allegro assai ...", direction=abjad.Up)
+        >>> abjad.tweak(markup_1).color = "red"
         >>> abjad.attach(markup_1, staff[0])
-        >>> markup_2 = abjad.Markup('... ma non troppo', direction=abjad.Down)
-        >>> abjad.tweak(markup_2).color = 'blue'
+        >>> markup_2 = abjad.Markup("... ma non troppo", direction=abjad.Down)
+        >>> abjad.tweak(markup_2).color = "blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2030,11 +2038,11 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Ignored for same-directed coincident markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup('Allegro assai ...', direction=abjad.Up)
-        >>> abjad.tweak(markup_1).color = 'red'
+        >>> markup_1 = abjad.Markup("Allegro assai ...", direction=abjad.Up)
+        >>> abjad.tweak(markup_1).color = "red"
         >>> abjad.attach(markup_1, staff[0])
-        >>> markup_2 = abjad.Markup('... ma non troppo', direction=abjad.Up)
-        >>> abjad.tweak(markup_2).color = 'blue'
+        >>> markup_2 = abjad.Markup("... ma non troppo", direction=abjad.Up)
+        >>> abjad.tweak(markup_2).color = "blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2060,7 +2068,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks note-head:
 
         >>> staff = abjad.Staff("c'4 cs' d' ds'")
-        >>> abjad.tweak(staff[1].note_head).color = 'red'
+        >>> abjad.tweak(staff[1].note_head).color = "red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2078,7 +2086,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks grob aggregated to note-head:
 
         >>> staff = abjad.Staff("c'4 cs' d' ds'")
-        >>> abjad.tweak(staff[1].note_head).accidental.color = 'red'
+        >>> abjad.tweak(staff[1].note_head).accidental.color = "red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2118,7 +2126,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         REGRESSION. Tweaked tags can be set multiple times:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> dynamic = abjad.Dynamic('f')
+        >>> dynamic = abjad.Dynamic("f")
         >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "red"
         >>> abjad.tweak(dynamic, tag=abjad.Tag("BLUE")).color = "blue"
         >>> abjad.attach(dynamic, staff[0])
@@ -2147,7 +2155,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         Tweak expressions work like this:
 
-        >>> abjad.tweak('red').color
+        >>> abjad.tweak("red").color
         TweakInterface(('_literal', None), ('color', 'red'))
 
         >>> abjad.tweak(6).Y_offset
@@ -2157,7 +2165,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         TweakInterface(('_literal', None), ('bound_details__left_broken__text', False))
 
     """
-    if tag is not None and not isinstance(tag, Tag):
+    if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
 
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)

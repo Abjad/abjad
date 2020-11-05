@@ -35,7 +35,7 @@ def test_Mutation_swap_01():
     )
 
     tuplet = abjad.Tuplet((3, 4), [])
-    abjad.mutate(voice[:2]).swap(tuplet)
+    abjad.mutate.swap(voice[:2], tuplet)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -58,7 +58,7 @@ def test_Mutation_swap_01():
         """
     )
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Mutation_swap_02():
@@ -95,7 +95,7 @@ def test_Mutation_swap_02():
 
     new_voice = abjad.Voice()
     new_voice.name = "foo"
-    abjad.mutate(voice[1:2]).swap(new_voice)
+    abjad.mutate.swap(voice[1:2], new_voice)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -120,7 +120,7 @@ def test_Mutation_swap_02():
         """
     )
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Mutation_swap_03():
@@ -155,7 +155,7 @@ def test_Mutation_swap_03():
     )
 
     tuplet = abjad.Tuplet((3, 4), [])
-    abjad.mutate(voice[1:2]).swap(tuplet)
+    abjad.mutate.swap(voice[1:2], tuplet)
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -180,7 +180,7 @@ def test_Mutation_swap_03():
         """
     )
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Mutation_swap_04():
@@ -194,7 +194,7 @@ def test_Mutation_swap_04():
 
     note = abjad.Note("c'4")
     with pytest.raises(Exception):
-        abjad.mutate(voice[1:2]).swap(note)
+        abjad.mutate.swap(voice[1:2], note)
 
 
 def test_Mutation_swap_05():
@@ -209,7 +209,7 @@ def test_Mutation_swap_05():
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     with pytest.raises(Exception):
-        abjad.mutate(voice[1:2]).swap(tuplet)
+        abjad.mutate.swap(voice[1:2], tuplet)
 
 
 def test_Mutation_swap_06():
@@ -246,7 +246,7 @@ def test_Mutation_swap_06():
 
     tuplet = abjad.Tuplet((2, 3), [])
     with pytest.raises(Exception):
-        abjad.mutate([voice[0], voice[2]]).swap(tuplet)
+        abjad.mutate.swap([voice[0], voice[2]], tuplet)
 
 
 def test_Mutation_swap_07():
@@ -268,7 +268,7 @@ def test_Mutation_swap_07():
     )
 
     new_measure = abjad.Container()
-    abjad.mutate(measure).swap(new_measure)
+    abjad.mutate.swap(measure, new_measure)
 
     assert abjad.lilypond(new_measure) == abjad.String.normalize(
         r"""
@@ -281,4 +281,4 @@ def test_Mutation_swap_07():
         """
     )
 
-    assert abjad.wellformed(new_measure)
+    assert abjad.wf.wellformed(new_measure)

@@ -66,7 +66,11 @@ class KeySignature:
     ### INITIALIZER ###
 
     def __init__(
-        self, tonic: str = "c", mode: str = "major", *, tweaks: TweakInterface = None,
+        self,
+        tonic: str = "c",
+        mode: str = "major",
+        *,
+        tweaks: TweakInterface = None,
     ) -> None:
         self._tonic = NamedPitchClass(tonic)
         self._mode = Mode(mode)

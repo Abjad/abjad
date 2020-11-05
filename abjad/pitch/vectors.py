@@ -2,8 +2,7 @@ import abc
 import collections
 import types
 
-from .. import mathx
-from ..enumeratex import Enumerator
+from .. import enumeratex, mathx
 from ..storage import FormatSpecification
 from ..typedcollections import TypedCollection, TypedCounter
 from .intervalclasses import IntervalClass, NamedIntervalClass, NumberedIntervalClass
@@ -187,11 +186,16 @@ class IntervalVector(Vector):
 
     def __init__(self, items=None, item_class=None):
         if isinstance(
-            items, (PitchSegment, PitchSet, PitchClassSegment, PitchClassSet,),
+            items,
+            (
+                PitchSegment,
+                PitchSet,
+                PitchClassSegment,
+                PitchClassSet,
+            ),
         ):
             intervals = []
-            enumerator = Enumerator(items)
-            pairs = enumerator.yield_pairs()
+            pairs = enumeratex.yield_pairs(items)
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals
@@ -301,8 +305,7 @@ class IntervalClassVector(Vector):
         if isinstance(items, prototype):
             intervals = []
             items = tuple(items)
-            enumerator = Enumerator(items)
-            pairs = enumerator.yield_pairs()
+            pairs = enumeratex.yield_pairs(items)
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals

@@ -108,10 +108,10 @@ def test_Chord___copy___05():
     assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
-    articulation_2 = abjad.inspect(chord_2).indicators(abjad.Articulation)[0]
+    articulation_2 = abjad.get.indicators(chord_2, abjad.Articulation)[0]
     assert articulation_1 == articulation_2
     assert articulation_1 is not articulation_2
 
-    markup_2 = abjad.inspect(chord_2).markup()[0]
+    markup_2 = abjad.get.markup(chord_2)[0]
     assert markup_1 == markup_2
     assert markup_1 is not markup_2

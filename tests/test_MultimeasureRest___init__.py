@@ -14,4 +14,4 @@ def test_MultimeasureRest___init___01():
         """
     )
 
-    assert abjad.wellformed(multimeasure_rest)
+    assert abjad.wf.wellformed(multimeasure_rest)

@@ -11,7 +11,7 @@ import quicktions
 from . import enums, mathx
 from .cyclictuple import CyclicTuple
 from .expression import Expression, Signature
-from .markups import MarkupList
+from .markups import Markup
 from .ratio import Ratio
 from .storage import FormatSpecification, StorageFormatManager
 
@@ -685,12 +685,9 @@ class Sequence(collections.abc.Sequence):
 
     @staticmethod
     def _make_map_markup(markup, operand):
-        markup_list = MarkupList()
         operand_markup = operand.get_markup(name="X")
-        markup_list.append(operand_markup)
-        markup_list.append("/@")
-        markup_list.append(markup)
-        markup = markup_list.line()
+        string = rf"\line {{ {operand_markup.contents[0]} /@ {markup.contents[0]} }}"
+        markup = Markup(string)
         return markup
 
     @staticmethod
@@ -874,7 +871,9 @@ class Sequence(collections.abc.Sequence):
 
     def _update_expression(self, frame, evaluation_template=None, map_operand=None):
         callback = Expression._frame_to_callback(
-            frame, evaluation_template=evaluation_template, map_operand=map_operand,
+            frame,
+            evaluation_template=evaluation_template,
+            map_operand=map_operand,
         )
         return self._expression.append_callback(callback)
 
@@ -1544,7 +1543,9 @@ class Sequence(collections.abc.Sequence):
         """
         if self._expression:
             return self._update_expression(
-                inspect.currentframe(), evaluation_template="map", map_operand=operand,
+                inspect.currentframe(),
+                evaluation_template="map",
+                map_operand=operand,
             )
         if operand is not None:
             is_expression = hasattr(operand, "_set_map_index")
@@ -1754,10 +1755,16 @@ class Sequence(collections.abc.Sequence):
                     item_buffer.pop(0)
 
     @Signature(
-        argument_list_callback="_make_partition_indicator", method_name="partition",
+        argument_list_callback="_make_partition_indicator",
+        method_name="partition",
     )
     def partition_by_counts(
-        self, counts, cyclic=False, enchain=False, overhang=False, reversed_=False,
+        self,
+        counts,
+        cyclic=False,
+        enchain=False,
+        overhang=False,
+        reversed_=False,
     ) -> "Sequence":
         r"""
         Partitions sequence by ``counts``.

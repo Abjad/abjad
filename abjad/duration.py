@@ -4,8 +4,7 @@ import typing
 
 import quicktions
 
-from . import exceptions, mathx
-from .storage import FormatSpecification, StorageFormatManager
+from . import exceptions, mathx, storage
 
 
 class Duration(quicktions.Fraction):
@@ -399,7 +398,7 @@ class Duration(quicktions.Fraction):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     def __rmod__(self, *arguments):
         """
@@ -467,7 +466,7 @@ class Duration(quicktions.Fraction):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
+        return storage.FormatSpecification(
             client=self,
             storage_format_args_values=[self.numerator, self.denominator],
             storage_format_is_indented=False,
@@ -755,24 +754,24 @@ class Duration(quicktions.Fraction):
             ...     duration = abjad.Duration(numerator, 16)
             ...     exponent = duration.exponent
             ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}\t{duration.exponent!s}")
+            ...     print(f"{sixteenths!s}    {duration.exponent!s}")
             ...
-            1/16	4
-            2/16	3
-            3/16	3
-            4/16	2
-            5/16	2
-            6/16	2
-            7/16	2
-            8/16	1
-            9/16	1
-            10/16	1
-            11/16	1
-            12/16	1
-            13/16	1
-            14/16	1
-            15/16	1
-            16/16	0
+            1/16    4
+            2/16    3
+            3/16    3
+            4/16    2
+            5/16    2
+            6/16    2
+            7/16    2
+            8/16    1
+            9/16    1
+            10/16    1
+            11/16    1
+            12/16    1
+            13/16    1
+            14/16    1
+            15/16    1
+            16/16    0
 
         """
         return -int(math.floor(math.log(self, 2)))
@@ -1065,7 +1064,9 @@ class Duration(quicktions.Fraction):
         return Duration(seconds)
 
     @staticmethod
-    def from_lilypond_duration_string(lilypond_duration_string,) -> "Duration":
+    def from_lilypond_duration_string(
+        lilypond_duration_string,
+    ) -> "Duration":
         """
         Initializes duration from LilyPond duration string.
 
@@ -1889,7 +1890,7 @@ class Offset(Duration):
         values = [(self.numerator, self.denominator)]
         if self._get_displacement():
             names = ["displacement"]
-        return FormatSpecification(
+        return storage.FormatSpecification(
             client=self,
             storage_format_args_values=values,
             storage_format_is_indented=False,
@@ -2274,7 +2275,7 @@ class NonreducedFraction(quicktions.Fraction):
             NonreducedFraction(3, 6)
 
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     def __rmul__(self, argument) -> "NonreducedFraction":
         """
@@ -2353,7 +2354,7 @@ class NonreducedFraction(quicktions.Fraction):
         return result
 
     def _get_format_specification(self):
-        return FormatSpecification(
+        return storage.FormatSpecification(
             client=self,
             repr_is_indented=False,
             storage_format_args_values=[self.numerator, self.denominator],

@@ -64,7 +64,7 @@ class Clef:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(
-        ...     abjad.Clef('treble'), staff[0], tag=abjad.tags.ONLY_PARTS
+        ...     abjad.Clef('treble'), staff[0], tag=abjad.Tag("+PARTS")
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -140,7 +140,7 @@ class Clef:
         But Abjad components work fine:
 
         >>> for leaf in abjad.select(voice_1).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("e'8"), Clef('treble'))
         (Note("g'8"), Clef('treble'))
@@ -150,7 +150,7 @@ class Clef:
         (Note("b'8"), Clef('treble'))
 
         >>> for leaf in abjad.select(voice_2).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("c'4."), Clef('treble'))
         (Note('c,8'), Clef('bass'))
@@ -385,7 +385,7 @@ class Clef:
             }
 
             >>> for leaf in abjad.iterate(staff).leaves():
-            ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+            ...     leaf, abjad.get.effective(leaf, abjad.Clef)
             ...
             (Note("c'4"), Clef('treble'))
             (Note("d'4"), Clef('treble'))
@@ -824,21 +824,21 @@ class StaffPosition:
             >>> for n in range(-6, 6):
             ...     staff_position = abjad.StaffPosition(n)
             ...     pitch = staff_position.to_pitch("treble")
-            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     message = f"{staff_position!s}    {pitch}"
             ...     print(message)
             ...
-            StaffPosition(-6)	c'
-            StaffPosition(-5)	d'
-            StaffPosition(-4)	e'
-            StaffPosition(-3)	f'
-            StaffPosition(-2)	g'
-            StaffPosition(-1)	a'
-            StaffPosition(0)	b'
-            StaffPosition(1)	c''
-            StaffPosition(2)	d''
-            StaffPosition(3)	e''
-            StaffPosition(4)	f''
-            StaffPosition(5)	g''
+            StaffPosition(-6)    c'
+            StaffPosition(-5)    d'
+            StaffPosition(-4)    e'
+            StaffPosition(-3)    f'
+            StaffPosition(-2)    g'
+            StaffPosition(-1)    a'
+            StaffPosition(0)    b'
+            StaffPosition(1)    c''
+            StaffPosition(2)    d''
+            StaffPosition(3)    e''
+            StaffPosition(4)    f''
+            StaffPosition(5)    g''
 
         ..  container:: example
 
@@ -847,21 +847,21 @@ class StaffPosition:
             >>> for n in range(-6, 6):
             ...     staff_position = abjad.StaffPosition(n)
             ...     pitch = staff_position.to_pitch("bass")
-            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     message = f"{staff_position!s}    {pitch}"
             ...     print(message)
             ...
-            StaffPosition(-6)	e,
-            StaffPosition(-5)	f,
-            StaffPosition(-4)	g,
-            StaffPosition(-3)	a,
-            StaffPosition(-2)	b,
-            StaffPosition(-1)	c
-            StaffPosition(0)	d
-            StaffPosition(1)	e
-            StaffPosition(2)	f
-            StaffPosition(3)	g
-            StaffPosition(4)	a
-            StaffPosition(5)	b
+            StaffPosition(-6)    e,
+            StaffPosition(-5)    f,
+            StaffPosition(-4)    g,
+            StaffPosition(-3)    a,
+            StaffPosition(-2)    b,
+            StaffPosition(-1)    c
+            StaffPosition(0)    d
+            StaffPosition(1)    e
+            StaffPosition(2)    f
+            StaffPosition(3)    g
+            StaffPosition(4)    a
+            StaffPosition(5)    b
 
         ..  container:: example
 
@@ -870,21 +870,21 @@ class StaffPosition:
             >>> for n in range(-6, 6):
             ...     staff_position = abjad.StaffPosition(n)
             ...     pitch = staff_position.to_pitch("alto")
-            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     message = f"{staff_position!s}    {pitch}"
             ...     print(message)
             ...
-            StaffPosition(-6)	d
-            StaffPosition(-5)	e
-            StaffPosition(-4)	f
-            StaffPosition(-3)	g
-            StaffPosition(-2)	a
-            StaffPosition(-1)	b
-            StaffPosition(0)	c'
-            StaffPosition(1)	d'
-            StaffPosition(2)	e'
-            StaffPosition(3)	f'
-            StaffPosition(4)	g'
-            StaffPosition(5)	a'
+            StaffPosition(-6)    d
+            StaffPosition(-5)    e
+            StaffPosition(-4)    f
+            StaffPosition(-3)    g
+            StaffPosition(-2)    a
+            StaffPosition(-1)    b
+            StaffPosition(0)    c'
+            StaffPosition(1)    d'
+            StaffPosition(2)    e'
+            StaffPosition(3)    f'
+            StaffPosition(4)    g'
+            StaffPosition(5)    a'
 
         ..  container:: example
 
@@ -893,21 +893,21 @@ class StaffPosition:
             >>> for n in range(-6, 6):
             ...     staff_position = abjad.StaffPosition(n)
             ...     pitch = staff_position.to_pitch("percussion")
-            ...     message = f"{staff_position!s}\t{pitch}"
+            ...     message = f"{staff_position!s}    {pitch}"
             ...     print(message)
             ...
-            StaffPosition(-6)	d
-            StaffPosition(-5)	e
-            StaffPosition(-4)	f
-            StaffPosition(-3)	g
-            StaffPosition(-2)	a
-            StaffPosition(-1)	b
-            StaffPosition(0)	c'
-            StaffPosition(1)	d'
-            StaffPosition(2)	e'
-            StaffPosition(3)	f'
-            StaffPosition(4)	g'
-            StaffPosition(5)	a'
+            StaffPosition(-6)    d
+            StaffPosition(-5)    e
+            StaffPosition(-4)    f
+            StaffPosition(-3)    g
+            StaffPosition(-2)    a
+            StaffPosition(-1)    b
+            StaffPosition(0)    c'
+            StaffPosition(1)    d'
+            StaffPosition(2)    e'
+            StaffPosition(3)    f'
+            StaffPosition(4)    g'
+            StaffPosition(5)    a'
 
         Returns new named pitch.
         """

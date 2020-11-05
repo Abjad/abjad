@@ -4,7 +4,7 @@ import time
 
 import abjad
 
-abjad.IOManager.spawn_subprocess("clear")
+abjad.iox.spawn_subprocess("clear")
 start_time = time.time()
 argument = sys.argv[1]
 
@@ -27,7 +27,7 @@ print()
 print("    " + command)
 print()
 
-abjad.IOManager.spawn_subprocess(command)
+abjad.iox.spawn_subprocess(command)
 stop_time = time.time()
 total_time = int(stop_time - start_time)
 

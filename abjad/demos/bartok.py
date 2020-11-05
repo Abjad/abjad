@@ -70,12 +70,12 @@ def make_bartok_score():
     upper_staff_leaves = abjad.select(upper_staff).leaves()
     lower_staff_voice_1_leaves = []
     for leaf in abjad.select(lower_staff).leaves():
-        voice = abjad.inspect(leaf).parentage().get(abjad.Voice)
+        voice = abjad.get.parentage(leaf).get(abjad.Voice)
         if voice.name == "Lower_Staff_Voice_I":
             lower_staff_voice_1_leaves.append(leaf)
     lower_staff_voice_2_leaves = []
     for leaf in abjad.select(lower_staff).leaves():
-        voice = abjad.inspect(leaf).parentage().get(abjad.Voice)
+        voice = abjad.get.parentage(leaf).get(abjad.Voice)
         if voice.name == "Lower_Staff_Voice_II":
             lower_staff_voice_2_leaves.append(leaf)
 

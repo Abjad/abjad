@@ -7,7 +7,6 @@ import abjad
 ignored_classes = (
     abjad.FormatSpecification,
     abjad.MetricModulation,
-    abjad.Path,
     abjad.StorageFormatManager,
 )
 
@@ -37,7 +36,6 @@ ignored_classes = (
     abjad.FormatSpecification,
     abjad.Meter,
     abjad.MetricModulation,
-    abjad.Path,
     abjad.StorageFormatManager,
 )
 
@@ -69,7 +67,6 @@ def test_abjad___format___02(class_):
 
 ignored_classes = (
     abjad.MetricModulation,
-    abjad.Path,
     abjad.parser.SyntaxNode,
 )
 

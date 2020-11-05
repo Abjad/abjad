@@ -3,10 +3,10 @@ import importlib
 import typing
 
 from . import _inspect, exceptions
+from . import tag as _tag
 from .duration import Multiplier, Offset
 from .score import AfterGraceContainer, BeforeGraceContainer, Component, Container, Leaf
 from .storage import FormatSpecification, StorageFormatManager, storage
-from .tag import Tag
 
 
 class Wrapper:
@@ -18,7 +18,7 @@ class Wrapper:
         >>> component = abjad.Note("c'4")
         >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
         >>> abjad.attach(articulation, component)
-        >>> wrapper = abjad.inspect(component).wrapper()
+        >>> wrapper = abjad.get.wrapper(component)
 
         >>> abjad.f(wrapper)
         abjad.Wrapper(
@@ -140,7 +140,7 @@ class Wrapper:
         deactivate: bool = None,
         indicator: typing.Any = None,
         synthetic_offset: int = None,
-        tag: typing.Union[str, Tag] = None,
+        tag: typing.Union[str, _tag.Tag] = None,
     ) -> None:
         assert not isinstance(indicator, type(self)), repr(indicator)
         if annotation is not None:
@@ -163,9 +163,9 @@ class Wrapper:
             synthetic_offset = Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
         if tag is not None:
-            assert isinstance(tag, (str, Tag))
-        tag = Tag(tag)
-        self._tag: Tag = tag
+            assert isinstance(tag, (str, _tag.Tag))
+        tag = _tag.Tag(tag)
+        self._tag: _tag.Tag = tag
         if component is not None:
             self._bind_component(component)
 
@@ -190,10 +190,10 @@ class Wrapper:
             }
 
             >>> leaf = old_staff[0]
-            >>> abjad.inspect(leaf).annotation('bow_direction')
+            >>> abjad.get.annotation(leaf, 'bow_direction')
             Down
 
-            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> new_staff = abjad.mutate.copy(old_staff)
             >>> abjad.f(new_staff)
             \new Staff {
                 c'4
@@ -203,7 +203,7 @@ class Wrapper:
             }
 
             >>> leaf = new_staff[0]
-            >>> abjad.inspect(leaf).annotation("bow_direction")
+            >>> abjad.get.annotation(leaf, "bow_direction")
             Down
 
         ..  container:: example
@@ -223,7 +223,7 @@ class Wrapper:
             }
 
             >>> leaf = old_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> wrapper = abjad.get.wrapper(leaf)
             >>> abjad.f(wrapper)
             abjad.Wrapper(
                 context='Staff',
@@ -231,7 +231,7 @@ class Wrapper:
                 tag=abjad.Tag('RED:M1'),
                 )
 
-            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> new_staff = abjad.mutate.copy(old_staff)
             >>> abjad.f(new_staff)
             \new Staff {
                 \clef "alto" %! RED:M1
@@ -242,7 +242,7 @@ class Wrapper:
             }
 
             >>> leaf = new_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> wrapper = abjad.get.wrapper(leaf)
             >>> abjad.f(wrapper)
             abjad.Wrapper(
                 context='Staff',
@@ -271,7 +271,7 @@ class Wrapper:
             }
 
             >>> leaf = old_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> wrapper = abjad.get.wrapper(leaf)
             >>> abjad.f(wrapper)
             abjad.Wrapper(
                 context='Staff',
@@ -280,7 +280,7 @@ class Wrapper:
                 tag=abjad.Tag('RED:M1'),
                 )
 
-            >>> new_staff = abjad.mutate(old_staff).copy()
+            >>> new_staff = abjad.mutate.copy(old_staff)
             >>> abjad.f(new_staff)
             \new Staff {
                 %@% \clef "alto" %! RED:M1
@@ -291,7 +291,7 @@ class Wrapper:
             }
 
             >>> leaf = new_staff[0]
-            >>> wrapper = abjad.inspect(leaf).wrapper()
+            >>> wrapper = abjad.get.wrapper(leaf)
             >>> abjad.f(wrapper)
             abjad.Wrapper(
                 context='Staff',
@@ -418,7 +418,9 @@ class Wrapper:
         if isinstance(lilypond_format, str):
             lilypond_format = [lilypond_format]
         assert isinstance(lilypond_format, (tuple, list))
-        lilypond_format = Tag.tag(lilypond_format, self.tag, deactivate=self.deactivate)
+        lilypond_format = _tag.tag(
+            lilypond_format, self.tag, deactivate=self.deactivate
+        )
         result.extend(lilypond_format)
         if self._get_effective_context() is not None:
             return result
@@ -465,7 +467,10 @@ class Wrapper:
         prototype = type(self.indicator)
         command = getattr(self.indicator, "command", None)
         wrapper = _inspect._get_effective(
-            component, prototype, attributes={"command": command}, unwrap=False,
+            component,
+            prototype,
+            attributes={"command": command},
+            unwrap=False,
         )
         wrapper_format_slot = None
         if wrapper is not None:
@@ -519,7 +524,7 @@ class Wrapper:
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
             >>> abjad.attach(articulation, note)
-            >>> wrapper = abjad.inspect(note).wrapper()
+            >>> wrapper = abjad.get.wrapper(note)
             >>> wrapper.annotation is None
             True
 
@@ -528,7 +533,7 @@ class Wrapper:
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
             >>> abjad.annotate(note, 'foo', articulation)
-            >>> abjad.inspect(note).annotation('foo')
+            >>> abjad.get.annotation(note, 'foo')
             Articulation('accent', Up)
 
         """
@@ -604,13 +609,13 @@ class Wrapper:
             Start offset and leaked start offset are the same for
             start-text-span:
 
-            >>> wrapper = abjad.inspect(voice[0]).wrapper(abjad.StartTextSpan)
+            >>> wrapper = abjad.get.wrapper(voice[0], abjad.StartTextSpan)
             >>> wrapper.start_offset, wrapper.leaked_start_offset
             (Offset((0, 1)), Offset((0, 1)))
 
             Start offset and leaked start offset differ for stop-text-span:
 
-            >>> wrapper = abjad.inspect(voice[0]).wrapper(abjad.StopTextSpan)
+            >>> wrapper = abjad.get.wrapper(voice[0], abjad.StopTextSpan)
             >>> wrapper.start_offset, wrapper.leaked_start_offset
             (Offset((0, 1)), Offset((1, 2)))
 
@@ -645,18 +650,18 @@ class Wrapper:
         return self._synthetic_offset
 
     @property
-    def tag(self) -> Tag:
+    def tag(self) -> _tag.Tag:
         """
         Gets and sets tag.
         """
-        assert isinstance(self._tag, Tag), repr(self._tag)
+        assert isinstance(self._tag, _tag.Tag), repr(self._tag)
         return self._tag
 
     @tag.setter
     def tag(self, argument):
-        if not isinstance(argument, (str, Tag)):
+        if not isinstance(argument, (str, _tag.Tag)):
             raise Exception(f"string or tag: {argument!r}.")
-        tag = Tag(argument)
+        tag = _tag.Tag(argument)
         self._tag = tag
 
 
@@ -686,17 +691,17 @@ def annotate(component, annotation, indicator) -> None:
                 f'4
             }
 
-        >>> abjad.inspect(staff[0]).annotation('bow_direction')
+        >>> abjad.get.annotation(staff[0], 'bow_direction')
         Down
 
-        >>> abjad.inspect(staff[0]).annotation('bow_fraction') is None
+        >>> abjad.get.annotation(staff[0], 'bow_fraction') is None
         True
 
-        >>> abjad.inspect(staff[0]).annotation('bow_fraction', 99)
+        >>> abjad.get.annotation(staff[0], 'bow_fraction', 99)
         99
 
     """
-    if isinstance(annotation, Tag):
+    if isinstance(annotation, _tag.Tag):
         message = "use the tag=None keyword instead of annotate():\n"
         message += f"   {repr(annotation)}"
         raise Exception(message)
@@ -788,7 +793,7 @@ def attach(  # noqa: 302
             }
 
         >>> for leaf in abjad.select(staff).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Clef)
+        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("c'4"), Clef('alto'))
         (Note("d'4"), Clef('alto'))
@@ -819,13 +824,13 @@ def attach(  # noqa: 302
         ...     abjad.Clef('alto'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ...     )
         >>> abjad.attach(
         ...     abjad.Clef('tenor'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -847,7 +852,7 @@ def attach(  # noqa: 302
         are present:
 
         >>> for note in staff:
-        ...     clef = abjad.inspect(staff[0]).effective(abjad.Clef)
+        ...     clef = abjad.get.effective(staff[0], abjad.Clef)
         ...     note, clef
         ...
         (Note("c'4"), Clef('treble'))
@@ -863,7 +868,7 @@ def attach(  # noqa: 302
         ...     abjad.Clef('alto'),
         ...     staff[0],
         ...     deactivate=True,
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -880,7 +885,7 @@ def attach(  # noqa: 302
             }
 
         >>> for note in staff:
-        ...     clef = abjad.inspect(staff[0]).effective(abjad.Clef)
+        ...     clef = abjad.get.effective(staff[0], abjad.Clef)
         ...     note, clef
         ...
         (Note("c'4"), Clef('alto'))
@@ -913,12 +918,12 @@ def attach(  # noqa: 302
 
     Otherwise returns none.
     """
-    if isinstance(attachable, Tag):
+    if isinstance(attachable, _tag.Tag):
         message = "use the tag=None keyword instead of attach():\n"
         message += f"   {repr(attachable)}"
         raise Exception(message)
 
-    if tag is not None and not isinstance(tag, Tag):
+    if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
 
     if isinstance(attachable, Multiplier):
@@ -958,7 +963,7 @@ def attach(  # noqa: 302
 
     if isinstance(target, Container):
         acceptable = False
-        if isinstance(attachable, (dict, str, Tag, Wrapper)):
+        if isinstance(attachable, (dict, str, _tag.Tag, Wrapper)):
             acceptable = True
         if getattr(attachable, "_can_attach_to_containers", False):
             acceptable = True
@@ -1060,7 +1065,7 @@ def detach(argument, target=None, by_id=False):
         parts:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], tag=abjad.tags.ONLY_SCORE)
+        >>> abjad.attach(markup_1, staff[0], tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
@@ -1075,7 +1080,7 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4
@@ -1098,7 +1103,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4
@@ -1111,7 +1116,7 @@ def detach(argument, target=None, by_id=False):
         We start again:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], tag=abjad.tags.ONLY_SCORE)
+        >>> abjad.attach(markup_1, staff[0], tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
@@ -1126,7 +1131,7 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4
@@ -1147,7 +1152,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, strict=50)
+        >>> abjad.f(staff, align_tags=50)
         \new Staff
         {
             c'4
@@ -1179,7 +1184,7 @@ def detach(argument, target=None, by_id=False):
                 f'4
             }
 
-        >>> wrapper = abjad.inspect(staff[0]).wrappers()[0]
+        >>> wrapper = abjad.get.wrappers(staff[0])[0]
         >>> abjad.detach(wrapper, wrapper.component)
         (Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag()),)
 

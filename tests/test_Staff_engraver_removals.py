@@ -24,4 +24,4 @@ def test_Staff_engraver_removals_01():
         """
     )
 
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)

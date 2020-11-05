@@ -57,7 +57,7 @@ class Parentage(collections.abc.Sequence):
 
         >>> bass_voice = score["Bass_Voice"]
         >>> note = bass_voice[0]
-        >>> for component in abjad.inspect(note).parentage():
+        >>> for component in abjad.get.parentage(note):
         ...     component
         ...
         Note('c4')
@@ -193,7 +193,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.component)}")
             <Staff{1}>                     <Staff{1}>
             <Voice-"Music_Voice"{4}>       <Voice-"Music_Voice"{4}>
@@ -286,7 +286,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     components = parentage.components
             ...     print(f"{repr(component)}:")
             ...     for component_ in components:
@@ -444,7 +444,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.orphan)}")
             <Staff{1}>                     True
             <Voice-"Music_Voice"{4}>       False
@@ -537,7 +537,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.parent)}")
             <Staff{1}>                     None
             <Voice-"Music_Voice"{4}>       <Staff{1}>
@@ -637,7 +637,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
             <Staff{1}>                     Multiplier(1, 1)
             <Voice-"Music_Voice"{2}>       Multiplier(1, 1)
@@ -734,7 +734,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.root)}")
             <Staff{1}>                     <Staff{1}>
             <Voice-"Music_Voice"{4}>       <Staff{1}>
@@ -795,7 +795,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     count = parentage.count(abjad.Tuplet)
             ...     print(f"{repr(component):55} {repr(count)}")
             <Staff{2}>                                              0
@@ -869,7 +869,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for leaf in abjad.iterate(outer_red_voice).leaves():
-            ...     depth = abjad.inspect(leaf).parentage().count(abjad.Voice)
+            ...     depth = abjad.get.parentage(leaf).count(abjad.Voice)
             ...     print(leaf, depth)
             ...
             e''8 1
@@ -947,7 +947,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     count = parentage.count(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(count)}")
             <Staff{1}>                     1
@@ -1039,11 +1039,11 @@ class Parentage(collections.abc.Sequence):
 
             ..  container:: example
 
-                >>> leaf = abjad.inspect(inner_red_voice).leaf(0)
+                >>> leaf = abjad.get.leaf(inner_red_voice, 0)
                 >>> leaf
                 Note("c''4")
 
-                >>> parentage = abjad.inspect(leaf).parentage()
+                >>> parentage = abjad.get.parentage(leaf)
 
                 Returns self when ``n=0``:
 
@@ -1103,8 +1103,8 @@ class Parentage(collections.abc.Sequence):
 
                 Works with nested voices and tuplets:
 
-                >>> leaf = abjad.inspect(inner_red_voice).leaf(0)
-                >>> parentage = abjad.inspect(leaf).parentage()
+                >>> leaf = abjad.get.leaf(inner_red_voice, 0)
+                >>> parentage = abjad.get.parentage(leaf)
                 >>> leaf
                 Note("c''4")
 
@@ -1201,7 +1201,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     result = parentage.get(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(result)}")
             <Staff{1}>                     <Staff{1}>
@@ -1274,7 +1274,7 @@ class Parentage(collections.abc.Sequence):
                 >>
 
             >>> note = voice[0]
-            >>> parentage = abjad.inspect(note).parentage()
+            >>> parentage = abjad.get.parentage(note)
             >>> logical_voice = parentage.logical_voice()
             >>> abjad.f(logical_voice)
             abjad.OrderedDict(
@@ -1315,7 +1315,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> lv = abjad.inspect(voice).parentage().logical_voice()
+            >>> lv = abjad.get.parentage(voice).logical_voice()
             >>> abjad.f(lv)
             abjad.OrderedDict(
                 [
@@ -1326,7 +1326,7 @@ class Parentage(collections.abc.Sequence):
                     ]
                 )
 
-            >>> lv = abjad.inspect(container_1).parentage().logical_voice()
+            >>> lv = abjad.get.parentage(container_1).logical_voice()
             >>> abjad.f(lv)
             abjad.OrderedDict(
                 [
@@ -1337,7 +1337,7 @@ class Parentage(collections.abc.Sequence):
                     ]
                 )
 
-            >>> lv = abjad.inspect(container_1[0]).parentage().logical_voice()
+            >>> lv = abjad.get.parentage(container_1[0]).logical_voice()
             >>> abjad.f(lv)
             abjad.OrderedDict(
                 [
@@ -1348,7 +1348,7 @@ class Parentage(collections.abc.Sequence):
                     ]
                 )
 
-            >>> lv = abjad.inspect(container_2).parentage().logical_voice()
+            >>> lv = abjad.get.parentage(container_2).logical_voice()
             >>> abjad.f(lv)
             abjad.OrderedDict(
                 [
@@ -1359,7 +1359,7 @@ class Parentage(collections.abc.Sequence):
                     ]
                 )
 
-            >>> lv = abjad.inspect(container_2[0]).parentage().logical_voice()
+            >>> lv = abjad.get.parentage(container_2[0]).logical_voice()
             >>> abjad.f(lv)
             abjad.OrderedDict(
                 [
@@ -1426,7 +1426,7 @@ class Parentage(collections.abc.Sequence):
                 >>
 
             >>> for component in abjad.select(score).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     component, parentage.score_index()
             ...
             (<Score<<2>>>, ())
@@ -1506,7 +1506,7 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.inspect(component).parentage()
+            ...     parentage = abjad.get.parentage(component)
             ...     score_index = parentage.score_index()
             ...     print(f"{repr(component):30} {repr(score_index)}")
             <Staff{1}>                     ()

@@ -42,13 +42,13 @@ def test_LilyPondParser__indicators__Articulation_01():
         """
     )
 
-    string = r"""\new Staff { c''4^^ c''_+ c''-- c''-| c''4-> c''-. c''2-_ }"""
+    string = r"""\new Staff { c''4^^ c''_+ c''-- c''-! c''4-> c''-. c''2-_ }"""
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     for x in result:
-        assert 1 == len(abjad.inspect(x).indicators(abjad.Articulation))
+        assert 1 == len(abjad.get.indicators(x, abjad.Articulation))
 
 
 def test_LilyPondParser__indicators__Articulation_02():
@@ -69,12 +69,12 @@ def test_LilyPondParser__indicators__Articulation_02():
     articulation = abjad.Articulation("portato")
     abjad.attach(articulation, target[0])
 
-    string = r"""\new Staff { c'4 ^^ _+ -- -| -> -. -_ }"""
+    string = r"""\new Staff { c'4 ^^ _+ -- -! -> -. -_ }"""
 
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    assert 7 == len(abjad.inspect(result[0]).indicators(abjad.Articulation))
+    assert 7 == len(abjad.get.indicators(result[0], abjad.Articulation))
 
 
 def test_LilyPondParser__indicators__Articulation_03():
@@ -114,4 +114,4 @@ def test_LilyPondParser__indicators__Articulation_03():
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     for x in result:
-        assert 1 == len(abjad.inspect(x).indicators(abjad.Articulation))
+        assert 1 == len(abjad.get.indicators(x, abjad.Articulation))

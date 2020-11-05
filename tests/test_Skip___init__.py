@@ -32,7 +32,7 @@ def test_Skip___init___03():
     """
 
     chord = abjad.Chord([2, 3, 4], (1, 4))
-    chords = abjad.mutate(chord).copy(3)
+    chords = abjad.mutate.copy(chord, 3)
     tuplet = abjad.Tuplet((2, 3), chords)
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
@@ -49,7 +49,7 @@ def test_Skip___init___04():
     """
 
     chord = abjad.Chord([2, 3, 4], (1, 4))
-    chords = abjad.mutate(chord).copy(3)
+    chords = abjad.mutate.copy(chord, 3)
     staff = abjad.Staff(chords)
     abjad.beam(staff[:])
     skip = abjad.Skip(staff[0])

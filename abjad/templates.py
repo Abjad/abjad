@@ -13,9 +13,6 @@ from .new import new
 from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral
 from .score import Context, Score, Skip, Staff, StaffGroup, Voice
-from .segments.Part import Part
-from .segments.PartAssignment import PartAssignment
-from .segments.PartManifest import PartManifest
 from .selectx import Selection
 from .storage import StorageFormatManager
 from .tag import Tag
@@ -35,8 +32,6 @@ class ScoreTemplate:
     _always_make_global_rests = False
 
     _do_not_require_margin_markup = False
-
-    _part_manifest: PartManifest = PartManifest()
 
     ### INITIALIZER ###
 
@@ -86,10 +81,14 @@ class ScoreTemplate:
         site = "abjad.ScoreTemplate._make_global_context()"
         tag = Tag(site)
         global_rests = Context(
-            lilypond_type="GlobalRests", name="Global_Rests", tag=tag,
+            lilypond_type="GlobalRests",
+            name="Global_Rests",
+            tag=tag,
         )
         global_skips = Context(
-            lilypond_type="GlobalSkips", name="Global_Skips", tag=tag,
+            lilypond_type="GlobalSkips",
+            name="Global_Skips",
+            tag=tag,
         )
         global_context = Context(
             [global_rests, global_skips],
@@ -118,15 +117,6 @@ class ScoreTemplate:
         """
         return self._do_not_require_margin_markup
 
-    @property
-    def part_manifest(self) -> typing.Optional[PartManifest]:
-        """
-        Gets part manifest.
-        """
-        if self._part_manifest is not None:
-            assert isinstance(self._part_manifest, PartManifest)
-        return self._part_manifest
-
     ### PUBLIC METHODS ###
 
     def allows_instrument(
@@ -138,17 +128,6 @@ class ScoreTemplate:
         To be implemented by concrete score template classes.
         """
         return True
-
-    def allows_part_assignment(
-        self, voice_name: str, part_assignment: PartAssignment
-    ) -> bool:
-        """
-        Is true when ``voice_name`` allows ``part_assignment``.
-        """
-        section = part_assignment.section or "ZZZ"
-        if voice_name.startswith(section):
-            return True
-        return False
 
     def attach_defaults(self, argument) -> typing.List:
         """
@@ -205,7 +184,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         ..  docs::
 
-            >>> abjad.f(template_1.__illustrate__()[abjad.Score], strict=60)
+            >>> abjad.f(template_1.__illustrate__()[abjad.Score], align_tags=60)
             \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
             <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
                 \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
@@ -248,7 +227,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> score = template_1()
         >>> abjad.show(score) # doctest: +SKIP
 
-        >>> abjad.f(score, strict=60)
+        >>> abjad.f(score, align_tags=60)
         \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
         <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
             \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
@@ -289,7 +268,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         ..  docs::
 
-            >>> abjad.f(template_2.__illustrate__()[abjad.Score], strict=60)
+            >>> abjad.f(template_2.__illustrate__()[abjad.Score], align_tags=60)
             \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
             <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
                 \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
@@ -329,7 +308,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> score = template_2()
         >>> abjad.show(score) # doctest: +SKIP
 
-        >>> abjad.f(score, strict=60)
+        >>> abjad.f(score, align_tags=60)
         \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
         <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
             \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
@@ -475,7 +454,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
         ..  docs::
 
-            >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
+            >>> abjad.f(template.__illustrate__()[abjad.Score], align_tags=60)
             \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
             <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
                 \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
@@ -512,7 +491,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
             >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
 
         >>> score = template()
-        >>> abjad.f(score, strict=60)
+        >>> abjad.f(score, align_tags=60)
         \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
         <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
             \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
@@ -619,7 +598,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         >>> template = abjad.StringOrchestraScoreTemplate()
         >>> abjad.show(template) # doctest: +SKIP
 
-        >>> abjad.f(template.__illustrate__()[abjad.Score], strict=89)
+        >>> abjad.f(template.__illustrate__()[abjad.Score], align_tags=89)
         \context Score = "Score"                                                                 %! abjad.StringOrchestraScoreTemplate.__call__()
         <<                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
             \tag #'(Violin_1 Violin_2 Violin_3 Violin_4 Violin_5 Violin_6 Viola_1 Viola_2 Viola_3 Viola_4 Cello_1 Cello_2 Cello_3 Contrabass_1 Contrabass_2) %! abjad.StringOrchestraScoreTemplate.__call__()
@@ -940,7 +919,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         ...     )
         >>> abjad.show(template) # doctest: +SKIP
 
-        >>> abjad.f(template.__illustrate__()[abjad.Score], strict=89)
+        >>> abjad.f(template.__illustrate__()[abjad.Score], align_tags=89)
         \context Score = "Score"                                                                 %! abjad.StringOrchestraScoreTemplate.__call__()
         <<                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
             \tag #'(Violin_1 Violin_2 Viola Cello)                                               %! abjad.StringOrchestraScoreTemplate.__call__()
@@ -1049,7 +1028,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         ...     )
         >>> abjad.show(template) # doctest: +SKIP
 
-        >>> abjad.f(template.__illustrate__()[abjad.Score], strict=89)
+        >>> abjad.f(template.__illustrate__()[abjad.Score], align_tags=89)
         \context Score = "Score"                                                                 %! abjad.StringOrchestraScoreTemplate.__call__()
         <<                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
             \tag #'(Cello)                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
@@ -1152,7 +1131,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 instrument_staff_group,
                 instrument_tag_names,
             ) = self._make_instrument_staff_group(
-                clef_name=clef_name, count=instrument_count, instrument=instrument,
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
             )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
@@ -1169,7 +1150,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 instrument_staff_group,
                 instrument_tag_names,
             ) = self._make_instrument_staff_group(
-                clef_name=clef_name, count=instrument_count, instrument=instrument,
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
             )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
@@ -1186,7 +1169,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 instrument_staff_group,
                 instrument_tag_names,
             ) = self._make_instrument_staff_group(
-                clef_name=clef_name, count=instrument_count, instrument=instrument,
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
             )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
@@ -1203,7 +1188,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                 instrument_staff_group,
                 instrument_tag_names,
             ) = self._make_instrument_staff_group(
-                clef_name=clef_name, count=instrument_count, instrument=instrument,
+                clef_name=clef_name,
+                count=instrument_count,
+                instrument=instrument,
             )
             staff_group.append(instrument_staff_group)
             tag_names.extend(instrument_tag_names)
@@ -1227,7 +1214,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         tag = Tag(site)
         name = instrument.name.title()
         instrument_staff_group = StaffGroup(
-            lilypond_type=f"{name}StaffGroup", name=f"{name}_Staff_Group", tag=tag,
+            lilypond_type=f"{name}StaffGroup",
+            name=f"{name}_Staff_Group",
+            tag=tag,
         )
         tag_names = []
         if count == 1:
@@ -1281,7 +1270,10 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             annotate(lh_staff, "pitch_range", pitch_range)
             annotate(lh_staff, "default_clef", Clef(clef_name))
             rh_voice = Voice(
-                [], lilypond_type="BowingVoice", name=f"{name}_Bowing_Voice", tag=tag,
+                [],
+                lilypond_type="BowingVoice",
+                name=f"{name}_Bowing_Voice",
+                tag=tag,
             )
             abbreviation = rh_voice.name.lower().replace(" ", "_")
             self.voice_abbreviations[abbreviation] = rh_voice.name
@@ -1295,7 +1287,10 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             staff_group.extend([rh_staff, lh_staff])
         else:
             lh_voice = Voice(
-                [], lilypond_type="FingeringVoice", name=f"{name}_Voice", tag=tag,
+                [],
+                lilypond_type="FingeringVoice",
+                name=f"{name}_Voice",
+                tag=tag,
             )
             lh_staff = Staff(
                 [lh_voice],
@@ -1372,7 +1367,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         >>> template = abjad.StringQuartetScoreTemplate()
         >>> abjad.show(template) # doctest: +SKIP
 
-        >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
+        >>> abjad.f(template.__illustrate__()[abjad.Score], align_tags=60)
         \context Score = "String_Quartet_Score"                     %! abjad.StringQuartetScoreTemplate.__call__()
         <<                                                          %! abjad.StringQuartetScoreTemplate.__call__()
             \context StaffGroup = "String_Quartet_Staff_Group"      %! abjad.StringQuartetScoreTemplate.__call__()
@@ -1422,13 +1417,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
-
-    _part_manifest = PartManifest(
-        Part(section="FirstViolin", section_abbreviation="VN-1"),
-        Part(section="SecondViolin", section_abbreviation="VN-2"),
-        Part(section="Viola", section_abbreviation="VA"),
-        Part(section="Cello", section_abbreviation="VC"),
-    )
 
     ### INITIALIZER ###
 
@@ -1507,7 +1495,9 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         # make string quartet score
         string_quartet_score = Score(
-            [string_quartet_staff_group], name="String_Quartet_Score", tag=tag,
+            [string_quartet_staff_group],
+            name="String_Quartet_Score",
+            tag=tag,
         )
 
         # return string quartet score
@@ -1523,7 +1513,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         >>> template = abjad.TwoStaffPianoScoreTemplate()
         >>> abjad.show(template) # doctest: +SKIP
 
-        >>> abjad.f(template.__illustrate__()[abjad.Score], strict=60)
+        >>> abjad.f(template.__illustrate__()[abjad.Score], align_tags=60)
         \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__()
         <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
             \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context()
@@ -1591,7 +1581,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
             ..  docs::
 
-                >>> abjad.f(score, strict=60)
+                >>> abjad.f(score, align_tags=60)
                 \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__()
                 <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
                     \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context()
@@ -1648,6 +1638,8 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
         # SCORE
         score = Score(
-            [global_context, staff_group], name="Two_Staff_Piano_Score", tag=tag,
+            [global_context, staff_group],
+            name="Two_Staff_Piano_Score",
+            tag=tag,
         )
         return score

@@ -48,5 +48,5 @@ def find_all_duplicate_module_names():
 
 
 if __name__ == "__main__":
-    abjad.IOManager.spawn_subprocess("clear")
+    abjad.iox.spawn_subprocess("clear")
     find_all_duplicate_module_names()

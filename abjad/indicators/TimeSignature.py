@@ -83,7 +83,7 @@ class TimeSignature:
         ...     time_signature,
         ...     staff[0],
         ...     context='Score',
-        ...     tag=abjad.tags.ONLY_PARTS,
+        ...     tag=abjad.Tag("+PARTS"),
         ... )
         >>> score = abjad.Score([staff])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -439,7 +439,7 @@ class TimeSignature:
 
             >>> for leaf in abjad.iterate(staff).leaves():
             ...     prototype = abjad.TimeSignature
-            ...     leaf, abjad.inspect(leaf).effective(prototype)
+            ...     leaf, abjad.get.effective(leaf, prototype)
             ...
             (Note("c'4"), TimeSignature((4, 4)))
             (Note("d'4"), TimeSignature((4, 4)))

@@ -20,5 +20,5 @@ def test_LilyPondParser__indicators__KeySignature_01():
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    key_signatures = abjad.inspect(result[0]).indicators(abjad.KeySignature)
+    key_signatures = abjad.get.indicators(result[0], abjad.KeySignature)
     assert len(key_signatures) == 1

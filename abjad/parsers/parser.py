@@ -44,12 +44,15 @@ from ..indicators.StopTrillSpan import StopTrillSpan
 from ..indicators.Tie import Tie
 from ..indicators.TimeSignature import TimeSignature
 from ..lilypondfile import Block, LilyPondFile
-from ..ly.contexts import contexts
-from ..ly.current_module import current_module
-from ..ly.drums import drums
-from ..ly.grob_interfaces import grob_interfaces
-from ..ly.language_pitch_names import language_pitch_names
-from ..ly.markup_functions import markup_functions, markup_list_functions
+from ..lyconst import drums
+from ..lyenv import (
+    contexts,
+    current_module,
+    grob_interfaces,
+    language_pitch_names,
+    markup_functions,
+    markup_list_functions,
+)
 from ..markups import Markup, MarkupCommand
 from ..overrides import LilyPondLiteral
 from ..pitch import constants as pitch_constants
@@ -1179,7 +1182,10 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
             "Stack  : %s",
             (
                 "%s . %s"
-                % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead),)
+                % (
+                    " ".join([xx.type for xx in symstack][1:]),
+                    str(self.lookahead),
+                )
             ).lstrip(),
         )
         # --! DEBUG
@@ -1345,7 +1351,10 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 "Error  : %s",
                 (
                     "%s . %s"
-                    % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead),)
+                    % (
+                        " ".join([xx.type for xx in symstack][1:]),
+                        str(self.lookahead),
+                    )
                 ).lstrip(),
             )
             # --! DEBUG
@@ -3172,6 +3181,7 @@ class LilyPondParser(Parser):
             MensuralVoice
             NoteNames
             NullVoice
+            OneStaff
             PetrucciStaff
             PetrucciVoice
             PianoStaff
@@ -3296,6 +3306,7 @@ class LilyPondParser(Parser):
             GridPoint
             Hairpin
             HorizontalBracket
+            HorizontalBracketText
             InstrumentName
             InstrumentSwitch
             KeyCancellation
@@ -4042,11 +4053,15 @@ class LilyPondSyntacticalDefinition:
         "chord_body_element : pitch exclamations questions octave_check post_events"
         if p[1] not in drums:
             note_head = NoteHead(
-                written_pitch=p[1], is_cautionary=bool(p[3]), is_forced=bool(p[2]),
+                written_pitch=p[1],
+                is_cautionary=bool(p[3]),
+                is_forced=bool(p[2]),
             )
         else:
             note_head = DrumNoteHead(
-                written_pitch=p[1], is_cautionary=bool(p[3]), is_forced=bool(p[2]),
+                written_pitch=p[1],
+                is_cautionary=bool(p[3]),
+                is_forced=bool(p[2]),
             )
         p[0] = SyntaxNode("chord_body_element", (note_head, p[5]))
 
@@ -4335,43 +4350,53 @@ class LilyPondSyntacticalDefinition:
 
     def p_direction_less_char__Chr126(self, p):
         "direction_less_char : '~'"
-        p[0] = self.client._resolve_event_identifier("tildeSymbol")
+        ### p[0] = self.client._resolve_event_identifier("tildeSymbol")
+        p[0] = self.client._resolve_event_identifier("~")
 
     def p_direction_less_char__Chr40(self, p):
         "direction_less_char : '('"
-        p[0] = self.client._resolve_event_identifier("parenthesisOpenSymbol")
+        ### p[0] = self.client._resolve_event_identifier("parenthesisOpenSymbol")
+        p[0] = self.client._resolve_event_identifier("(")
 
     def p_direction_less_char__Chr41(self, p):
         "direction_less_char : ')'"
-        p[0] = self.client._resolve_event_identifier("parenthesisCloseSymbol")
+        ### p[0] = self.client._resolve_event_identifier("parenthesisCloseSymbol")
+        p[0] = self.client._resolve_event_identifier(")")
 
     def p_direction_less_char__Chr91(self, p):
         "direction_less_char : '['"
-        p[0] = self.client._resolve_event_identifier("bracketOpenSymbol")
+        # p[0] = self.client._resolve_event_identifier("bracketOpenSymbol")
+        p[0] = self.client._resolve_event_identifier("[")
 
     def p_direction_less_char__Chr93(self, p):
         "direction_less_char : ']'"
-        p[0] = self.client._resolve_event_identifier("bracketCloseSymbol")
+        # p[0] = self.client._resolve_event_identifier("bracketCloseSymbol")
+        p[0] = self.client._resolve_event_identifier("]")
 
     def p_direction_less_char__E_ANGLE_CLOSE(self, p):
         "direction_less_char : E_ANGLE_CLOSE"
-        p[0] = self.client._resolve_event_identifier("escapedBiggerSymbol")
+        # p[0] = self.client._resolve_event_identifier("escapedBiggerSymbol")
+        p[0] = self.client._resolve_event_identifier(r"\>")
 
     def p_direction_less_char__E_ANGLE_OPEN(self, p):
         "direction_less_char : E_ANGLE_OPEN"
-        p[0] = self.client._resolve_event_identifier("escapedSmallerSymbol")
+        # p[0] = self.client._resolve_event_identifier("escapedSmallerSymbol")
+        p[0] = self.client._resolve_event_identifier(r"\<")
 
     def p_direction_less_char__E_CLOSE(self, p):
         "direction_less_char : E_CLOSE"
-        p[0] = self.client._resolve_event_identifier("escapedParenthesisCloseSymbol")
+        # p[0] = self.client._resolve_event_identifier("escapedParenthesisCloseSymbol")
+        p[0] = self.client._resolve_event_identifier(r"\)")
 
     def p_direction_less_char__E_EXCLAMATION(self, p):
         "direction_less_char : E_EXCLAMATION"
-        p[0] = self.client._resolve_event_identifier("escapedExclamationSymbol")
+        # p[0] = self.client._resolve_event_identifier("escapedExclamationSymbol")
+        p[0] = self.client._resolve_event_identifier(r"\!")
 
     def p_direction_less_char__E_OPEN(self, p):
         "direction_less_char : E_OPEN"
-        p[0] = self.client._resolve_event_identifier("escapedParenthesisOpenSymbol")
+        # p[0] = self.client._resolve_event_identifier("escapedParenthesisOpenSymbol")
+        p[0] = self.client._resolve_event_identifier(r"\(")
 
     ### direction_less_event ###
 
@@ -6130,37 +6155,38 @@ class LilyPondSyntacticalDefinition:
 
     def p_script_abbreviation__ANGLE_CLOSE(self, p):
         "script_abbreviation : ANGLE_CLOSE"
-        kind = self.client._current_module["dashLarger"]["alias"]
+        kind = self.client._current_module["dashLarger"]["articulation-type"]
         p[0] = Articulation(kind)
 
-    def p_script_abbreviation__Chr124(self, p):
-        "script_abbreviation : '|'"
-        kind = self.client._current_module["dashBar"]["alias"]
+    def p_script_abbreviation__Chr33(self, p):
+        "script_abbreviation : '!'"
+        # kind = self.client._current_module["dashBar"]["articulation-type"]
+        kind = self.client._current_module["dashBang"]["articulation-type"]
         p[0] = Articulation(kind)
 
     def p_script_abbreviation__Chr43(self, p):
         "script_abbreviation : '+'"
-        kind = self.client._current_module["dashPlus"]["alias"]
+        kind = self.client._current_module["dashPlus"]["articulation-type"]
         p[0] = Articulation(kind)
 
     def p_script_abbreviation__Chr45(self, p):
         "script_abbreviation : '-'"
-        kind = self.client._current_module["dashDash"]["alias"]
+        kind = self.client._current_module["dashDash"]["articulation-type"]
         p[0] = Articulation(kind)
 
     def p_script_abbreviation__Chr46(self, p):
         "script_abbreviation : '.'"
-        kind = self.client._current_module["dashDot"]["alias"]
+        kind = self.client._current_module["dashDot"]["articulation-type"]
         p[0] = Articulation(kind)
 
     def p_script_abbreviation__Chr94(self, p):
         "script_abbreviation : '^'"
-        kind = self.client._current_module["dashHat"]["alias"]
+        kind = self.client._current_module["dashHat"]["articulation-type"]
         p[0] = Articulation(kind)
 
     def p_script_abbreviation__Chr95(self, p):
         "script_abbreviation : '_'"
-        kind = self.client._current_module["dashUnderscore"]["alias"]
+        kind = self.client._current_module["dashUnderscore"]["articulation-type"]
         p[0] = Articulation(kind)
 
     ### script_dir ###

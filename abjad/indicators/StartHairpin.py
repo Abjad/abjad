@@ -114,7 +114,10 @@ class StartHairpin:
     @staticmethod
     def _circled_tip():
         return LilyPondOverride(
-            grob_name="Hairpin", once=True, property_path="circled-tip", value=True,
+            grob_name="Hairpin",
+            once=True,
+            property_path="circled-tip",
+            value=True,
         )
 
     @staticmethod
@@ -212,7 +215,7 @@ class StartHairpin:
 
 
             >>> for leaf in voice:
-            ...     print(leaf, abjad.inspect(leaf).effective(abjad.StartHairpin))
+            ...     print(leaf, abjad.get.effective(leaf, abjad.StartHairpin))
             c'4 StartHairpin(shape='<')
             d'4 StartHairpin(shape='<')
             e'4 StartHairpin(shape='<')

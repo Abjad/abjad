@@ -248,13 +248,21 @@ def _public_iterate_components(
         if not reverse:
             for item in ARGUMENT:
                 generator = _public_iterate_components(
-                    item, prototype, exclude=exclude, grace=grace, reverse=reverse,
+                    item,
+                    prototype,
+                    exclude=exclude,
+                    grace=grace,
+                    reverse=reverse,
                 )
                 yield from generator
         else:
             for item in reversed(ARGUMENT):
                 generator = _public_iterate_components(
-                    item, prototype, exclude=exclude, grace=grace, reverse=reverse,
+                    item,
+                    prototype,
+                    exclude=exclude,
+                    grace=grace,
+                    reverse=reverse,
                 )
                 yield from generator
     else:
@@ -270,7 +278,13 @@ def _public_iterate_components(
 
 
 def _public_iterate_leaves(
-    ARGUMENT, prototype=None, *, exclude=None, grace=None, pitched=None, reverse=None,
+    ARGUMENT,
+    prototype=None,
+    *,
+    exclude=None,
+    grace=None,
+    pitched=None,
+    reverse=None,
 ):
     prototype = prototype or score.Leaf
     if pitched is True:

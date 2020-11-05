@@ -4,7 +4,7 @@ Instrument classes.
 import copy
 import typing
 
-from .enumeratex import Enumerator
+from . import enumeratex
 from .markups import Markup
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
@@ -60,7 +60,7 @@ class Instrument:
             >>
 
         >>> for leaf in abjad.select(voice_1).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Instrument)
+        ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("e'8"), Flute())
         (Note("g'8"), Flute())
@@ -68,7 +68,7 @@ class Instrument:
         (Note("a'8"), Flute())
 
         >>> for leaf in abjad.select(voice_2).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Instrument)
+        ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'2"), Viola())
 
@@ -737,8 +737,7 @@ class Tuning:
         assert self.pitches is not None
         pitch_classes = [NamedPitchClass(_) for _ in pitch_classes]
         pitch_classes.extend([None] * (len(self.pitches) - len(pitch_classes)))
-        enumerator = Enumerator(pitch_classes)
-        permutations = enumerator.yield_permutations()
+        permutations = enumeratex.yield_permutations(pitch_classes)
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
         result: typing.List[typing.Tuple[typing.Union[NamedPitch, None], ...]] = []
@@ -757,8 +756,7 @@ class Tuning:
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            enumerator = Enumerator(sequences)
-            subresult = enumerator.yield_outer_product()
+            subresult = enumeratex.yield_outer_product(sequences)
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
         result.sort()
@@ -2164,7 +2162,7 @@ class Flute(Instrument):
         }
 
         >>> for leaf in abjad.select(staff).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Instrument)
+        ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'4"), Flute())
         (Note("d'4"), Flute())

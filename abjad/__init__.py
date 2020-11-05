@@ -1,6 +1,21 @@
 from quicktions import Fraction
 
-from . import cli, demos, deprecated, illustrators, iterpitches, ly, makers, tags
+from . import (
+    cli,
+    demos,
+    deprecated,
+    enumeratex,
+    get,
+    illustrators,
+    iox,
+    iterpitches,
+    lyconst,
+    lyenv,
+    makers,
+    mutate,
+    persist,
+    wf,
+)
 from ._version import __version__, __version_info__
 from .attach import Wrapper, annotate, attach, detach
 from .bundle import LilyPondFormatBundle, SlotContributions
@@ -23,7 +38,6 @@ from .contextmanagers import (
 )
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
-from .enumeratex import Enumerator
 from .enums import (
     Both,
     Center,
@@ -51,6 +65,7 @@ from .exceptions import (
 )
 from .expression import Expression, Signature
 from .formatx import LilyPondFormatManager, f
+from .get import Descendants, Lineage
 from .illustrators import illustrate
 from .indicators.Arpeggio import Arpeggio
 from .indicators.Articulation import Articulation
@@ -102,7 +117,6 @@ from .indicators.StringContactPoint import StringContactPoint
 from .indicators.Tie import Tie
 from .indicators.TimeSignature import TimeSignature
 from .indicators.WoodwindFingering import WoodwindFingering
-from .inspectx import Descendants, Inspection, Lineage, inspect
 from .instruments import (
     Accordion,
     AltoFlute,
@@ -155,7 +169,7 @@ from .instruments import (
     Violin,
     Xylophone,
 )
-from .iox import IOManager, PersistenceManager, TestManager, graph, persist, play, show
+from .iox import graph, play, show
 from .iterate import Iteration, iterate
 from .label import ColorMap, Label, label
 from .lilypond import lilypond
@@ -169,16 +183,17 @@ from .lilypondfile import (
     LilyPondVersionToken,
     PackageGitCommitToken,
 )
-from .ly.LilyPondContext import LilyPondContext
-from .ly.LilyPondEngraver import LilyPondEngraver
-from .ly.LilyPondGrob import LilyPondGrob
-from .ly.LilyPondGrobInterface import LilyPondGrobInterface
+from .lyproxy import (
+    LilyPondContext,
+    LilyPondEngraver,
+    LilyPondGrob,
+    LilyPondGrobInterface,
+)
 from .makers import LeafMaker, NoteMaker
-from .markups import Markup, MarkupCommand, MarkupList, Postscript, PostscriptOperator
+from .markups import Markup, MarkupCommand, Postscript, PostscriptOperator
 from .mathx import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
 from .metricmodulation import MetricModulation
-from .mutate import Mutation, mutate
 from .new import new
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
 from .ordereddict import OrderedDict
@@ -200,7 +215,6 @@ from .parentage import Parentage
 from .parsers import parser
 from .parsers.base import Parser
 from .parsers.parse import parse
-from .path import Path
 from .pattern import Pattern, PatternTuple
 from .pitch.Accidental import Accidental
 from .pitch.Octave import Octave
@@ -285,13 +299,6 @@ from .score import (
     Voice,
 )
 from .segmentmaker import SegmentMaker
-from .segments.Job import Job
-from .segments.Momento import Momento
-from .segments.Part import Part
-from .segments.PartAssignment import PartAssignment
-from .segments.PartManifest import PartManifest
-from .segments.PersistentOverride import PersistentOverride
-from .segments.Section import Section
 from .selectx import (
     DurationInequality,
     Inequality,
@@ -359,7 +366,6 @@ from .verticalmoment import (
     iterate_pitch_pairs,
     iterate_vertical_moments,
 )
-from .wellformedness import Wellformedness, wellformed
 
 index = Pattern.index
 index_all = Pattern.index_all
@@ -432,7 +438,6 @@ __all__ = [
     "DurationTyping",
     "Dynamic",
     "EnglishHorn",
-    "Enumerator",
     "Exact",
     "Expression",
     "Fermata",
@@ -450,13 +455,11 @@ __all__ = [
     "Harp",
     "Harpsichord",
     "HorizontalAlignment",
-    "IOManager",
     "ImpreciseMetronomeMarkError",
     "IndexedTweakManager",
     "IndexedTweakManagers",
     "Inequality",
     "Infinity",
-    "Inspection",
     "Instrument",
     "IntegerPair",
     "IntegerSequence",
@@ -471,7 +474,6 @@ __all__ = [
     "IntervalVector",
     "Inversion",
     "Iteration",
-    "Job",
     "KeyCluster",
     "KeySignature",
     "Label",
@@ -503,7 +505,6 @@ __all__ = [
     "Marimba",
     "Markup",
     "MarkupCommand",
-    "MarkupList",
     "Meter",
     "MeterList",
     "MetricAccentKernel",
@@ -512,12 +513,10 @@ __all__ = [
     "MezzoSopranoVoice",
     "MissingMetronomeMarkError",
     "Mode",
-    "Momento",
     "More",
     "MultimeasureRest",
     "Multiplication",
     "Multiplier",
-    "Mutation",
     "NamedInterval",
     "NamedIntervalClass",
     "NamedInversionEquivalentIntervalClass",
@@ -550,17 +549,11 @@ __all__ = [
     "Parentage",
     "ParentageError",
     "Parser",
-    "Part",
-    "PartAssignment",
-    "PartManifest",
-    "Path",
     "Pattern",
     "PatternTuple",
     "PatternTyping",
     "Percussion",
-    "PersistenceManager",
     "PersistentIndicatorError",
-    "PersistentOverride",
     "Piano",
     "Piccolo",
     "Pitch",
@@ -600,7 +593,6 @@ __all__ = [
     "SchemeVectorConstant",
     "Score",
     "ScoreTemplate",
-    "Section",
     "Segment",
     "SegmentMaker",
     "Selection",
@@ -653,7 +645,6 @@ __all__ = [
     "TenorSaxophone",
     "TenorTrombone",
     "TenorVoice",
-    "TestManager",
     "Tie",
     "TimeSignature",
     "Timer",
@@ -682,7 +673,6 @@ __all__ = [
     "Viola",
     "Violin",
     "Voice",
-    "Wellformedness",
     "WellformednessError",
     "WoodwindFingering",
     "Wrapper",
@@ -699,6 +689,7 @@ __all__ = [
     "demos",
     "deprecated",
     "detach",
+    "enumeratex",
     "f",
     "glissando",
     "graph",
@@ -710,7 +701,8 @@ __all__ = [
     "index_all",
     "index_first",
     "index_last",
-    "inspect",
+    "get",
+    "iox",
     "iterate",
     "iterate_leaf_pairs",
     "iterate_pitch_pairs",
@@ -720,7 +712,8 @@ __all__ = [
     "lilypond",
     "list_all_classes",
     "list_all_functions",
-    "ly",
+    "lyconst",
+    "lyenv",
     "makers",
     "mutate",
     "new",
@@ -741,12 +734,11 @@ __all__ = [
     "show",
     "slur",
     "storage",
-    "tags",
     "text_spanner",
     "tie",
     "timespan",
     "trill_spanner",
     "tweak",
-    "wellformed",
+    "wf",
     "yield_all_modules",
 ]

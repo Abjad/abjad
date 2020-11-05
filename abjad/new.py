@@ -11,7 +11,7 @@ def new(argument, *arguments, **keywords):
 
         Makes markup with new direction:
 
-        >>> markup = abjad.Markup('Andante assai', direction=abjad.Up).italic()
+        >>> markup = abjad.Markup(r'\italic "Andante assai"', direction=abjad.Up)
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -56,7 +56,7 @@ def new(argument, *arguments, **keywords):
 
         REGRESSION. Can be used to set existing properties to none:
 
-        >>> markup = abjad.Markup('Andante assai', direction=abjad.Up).italic()
+        >>> markup = abjad.Markup(r'\italic "Andante assai"', direction=abjad.Up)
         >>> abjad.f(markup)
         ^ \markup {
             \italic

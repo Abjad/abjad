@@ -16,7 +16,7 @@ def test_Staff___setitem___01():
     )
 
     assert len(staff) == 5
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert isinstance(staff[0], abjad.Note)
     assert isinstance(staff[1], abjad.Rest)
     assert isinstance(staff[2], abjad.Chord)
@@ -24,7 +24,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[1] = abjad.Chord([12, 13, 15], (1, 4))
     assert len(staff) == 5
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert isinstance(staff[0], abjad.Note)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -32,7 +32,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[0] = abjad.Rest((1, 4))
     assert len(staff) == 5
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -40,7 +40,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[-2] = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     assert len(staff) == 5
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -48,7 +48,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[-1] = abjad.Note(13, (1, 4))
     assert len(staff) == 5
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -56,7 +56,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Note)
     staff[-3] = abjad.Skip((1, 4))
     assert len(staff) == 5
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Skip)
@@ -127,7 +127,7 @@ def test_Staff___setitem___07():
         assert x.written_pitch == 2
     for x in staff[4:8]:
         assert x.written_pitch == 0
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
 
 def test_Staff___setitem___08():
@@ -137,14 +137,14 @@ def test_Staff___setitem___08():
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
     chord = abjad.Chord([2, 3, 4], (1, 4))
-    chords = abjad.mutate(chord).copy(4)
+    chords = abjad.mutate.copy(chord, 4)
     staff[0:4] = chords
     assert len(staff) == 8
     for x in staff[0:4]:
         assert x.written_duration == abjad.Duration(1, 4)
     for x in staff[4:8]:
         assert x.written_duration == abjad.Duration(1, 8)
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)
 
 
 def test_Staff___setitem___09():
@@ -154,7 +154,7 @@ def test_Staff___setitem___09():
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
     tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
-    tuplets = abjad.mutate(tuplet).copy(2)
+    tuplets = abjad.mutate.copy(tuplet, 2)
     staff[0:4] = tuplets
     assert len(staff) == 6
     for i, x in enumerate(staff):
@@ -162,4 +162,4 @@ def test_Staff___setitem___09():
             assert isinstance(x, abjad.Tuplet)
         else:
             assert isinstance(x, abjad.Note)
-    assert abjad.wellformed(staff)
+    assert abjad.wf.wellformed(staff)

@@ -210,7 +210,7 @@ r"""
         }
 
     >>> for component in abjad.iterate(staff).components():
-    ...     timespan = abjad.inspect(component).timespan()
+    ...     timespan = abjad.get.timespan(component)
     ...     print(f"{repr(component):30} {repr(timespan)}")
     <Staff{1}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
     Voice("b4 d'4 e'4 f'4", name='Music_Voice') Timespan(Offset((0, 1)), Offset((1, 1)))
@@ -283,7 +283,7 @@ r"""
         }
 
     >>> for component in abjad.iterate(staff).components():
-    ...     timespan = abjad.inspect(component).timespan()
+    ...     timespan = abjad.get.timespan(component)
     ...     print(f"{repr(component):30} {repr(timespan)}")
     <Staff{1}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
     <Voice-"Music_Voice"{3}>       Timespan(Offset((0, 1)), Offset((1, 1)))

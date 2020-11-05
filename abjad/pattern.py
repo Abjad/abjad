@@ -1442,7 +1442,10 @@ class Pattern:
         indices = indices or []
         template = Pattern._get_template(inspect.currentframe())
         return Pattern(
-            indices=indices, inverted=inverted, period=period, template=template,
+            indices=indices,
+            inverted=inverted,
+            period=period,
+            template=template,
         )
 
     @staticmethod

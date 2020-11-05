@@ -29,7 +29,7 @@ while [ -n "$1" ]; do
         destination="/$base`date +%H-%M-%S`_$RANDOM$ext"
     fi  
 
-    echo "Moving '$1' to trash ..."
+    echo "Trashing $1 ..."
     \mv -i -- "$1" "$HOME/.Trash$destination"
     shift
 done

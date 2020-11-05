@@ -68,7 +68,7 @@ def test_Note___copy___04():
     )
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = abjad.inspect(note_2).after_grace_container()
+    grace_container_2 = abjad.get.after_grace_container(note_2)
 
     assert abjad.lilypond(note_2) == abjad.String.normalize(
         r"""
@@ -149,10 +149,10 @@ def test_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert abjad.inspect(note).parentage().parent is staff
-    assert abjad.inspect(new_note).parentage().parent is not staff
-    assert isinstance(abjad.inspect(new_note).parentage().parent, abjad.Staff)
+    assert abjad.get.parentage(note).parent is staff
+    assert abjad.get.parentage(new_note).parent is not staff
+    assert isinstance(abjad.get.parentage(new_note).parent, abjad.Staff)
     assert abjad.lilypond(new_note) == abjad.lilypond(note)
-    assert abjad.lilypond(abjad.inspect(note).parentage().parent) == abjad.lilypond(
-        abjad.inspect(new_note).parentage().parent
+    assert abjad.lilypond(abjad.get.parentage(note).parent) == abjad.lilypond(
+        abjad.get.parentage(new_note).parent
     )

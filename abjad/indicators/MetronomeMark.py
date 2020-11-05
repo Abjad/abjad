@@ -5,11 +5,9 @@ import typing
 
 import quicktions
 
-from .. import exceptions, mathx, typings
+from .. import enumeratex, exceptions, markups, mathx, typings
 from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
-from ..enumeratex import Enumerator
-from ..markups import Markup
 from ..new import new
 from ..ratio import Ratio
 from ..scheme import Scheme
@@ -188,7 +186,7 @@ class MetronomeMark:
         units_per_minute: typing.Union[int, quicktions.Fraction] = None,
         textual_indication: str = None,
         *,
-        custom_markup: Markup = None,
+        custom_markup: markups.Markup = None,
         decimal: typing.Union[bool, str] = None,
         hide: bool = None,
     ) -> None:
@@ -216,7 +214,7 @@ class MetronomeMark:
         self._textual_indication = textual_indication
         self._units_per_minute = units_per_minute
         if custom_markup is not None:
-            assert isinstance(custom_markup, Markup), repr(custom_markup)
+            assert isinstance(custom_markup, markups.Markup), repr(custom_markup)
         self._custom_markup = custom_markup
         if decimal is not None:
             assert isinstance(decimal, (bool, str)), repr(decimal)
@@ -704,7 +702,9 @@ class MetronomeMark:
             return string
         elif isinstance(self.units_per_minute, quicktions.Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
-                self.reference_duration, self.units_per_minute, decimal=self.decimal,
+                self.reference_duration,
+                self.units_per_minute,
+                decimal=self.decimal,
             )
             string = str(markup)
             return string
@@ -745,7 +745,7 @@ class MetronomeMark:
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
         stem_height = 1
-        markup = Markup.abjad_metronome_mark(
+        markup = markups.abjad_metronome_mark(
             duration_log,
             self.reference_duration.dot_count,
             stem_height,
@@ -794,7 +794,7 @@ class MetronomeMark:
         return self._context
 
     @property
-    def custom_markup(self) -> typing.Optional[Markup]:
+    def custom_markup(self) -> typing.Optional[markups.Markup]:
         r"""
         Gets custom markup of metronome mark.
 
@@ -903,7 +903,7 @@ class MetronomeMark:
 
             >>> for leaf in abjad.iterate(staff).leaves():
             ...     prototype = abjad.MetronomeMark
-            ...     leaf, abjad.inspect(leaf).effective(prototype)
+            ...     leaf, abjad.get.effective(leaf, prototype)
             ...
             (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72))
             (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72))
@@ -1109,9 +1109,9 @@ class MetronomeMark:
             ...  )
 
             >>> for tempo, ratio in pairs:
-            ...     string = f'{tempo!s}\t{ratio!s}'
+            ...     string = f'{tempo!s}    {ratio!s}'
             ...     print(string)
-            4=29        1:2
+            4=29    1:2
             4=33+1/7    4:7
             4=34+4/5    3:5
             4=36+1/4    5:8
@@ -1122,18 +1122,18 @@ class MetronomeMark:
             4=48+1/3    5:6
             4=49+5/7    6:7
             4=50+3/4    7:8
-            4=58        1:1
+            4=58    1:1
             4=66+2/7    8:7
             4=67+2/3    7:6
             4=69+3/5    6:5
             4=72+1/2    5:4
             4=77+1/3    4:3
             4=81+1/5    7:5
-            4=87        3:2
+            4=87    3:2
             4=92+4/5    8:5
             4=96+2/3    5:3
-            4=101+1/2   7:4
-            4=116       2:1
+            4=101+1/2    7:4
+            4=116    2:1
 
         ..  container:: example
 
@@ -1147,20 +1147,19 @@ class MetronomeMark:
             ...  )
 
             >>> for tempo, ratio in pairs:
-            ...     string = f'{tempo!s}\t{ratio!s}'
+            ...     string = f'{tempo!s}    {ratio!s}'
             ...     print(string)
-            4=29	1:2
-            4=58	1:1
-            4=87	3:2
-            4=116	2:1
+            4=29    1:2
+            4=58    1:1
+            4=87    3:2
+            4=116    2:1
 
         Constrains ratios such that ``1:2 <= n:d <= 2:1``.
         """
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
         numbers = [allowable_numerators, allowable_denominators]
-        enumerator = Enumerator(numbers)
-        pairs = enumerator.yield_outer_product()
+        pairs = enumeratex.yield_outer_product(numbers)
         multipliers = [Multiplier(_) for _ in pairs]
         multipliers = [
             _
@@ -1188,7 +1187,7 @@ class MetronomeMark:
     @staticmethod
     def make_tempo_equation_markup(
         reference_duration, units_per_minute, *, decimal=None
-    ) -> Markup:
+    ) -> markups.Markup:
         r"""
         Makes tempo equation markup.
 
@@ -1253,7 +1252,7 @@ class MetronomeMark:
                 else:
                     assert isinstance(decimal, str), repr(decimal)
                     decimal_ = decimal
-                markup = Markup(
+                markup = markups.Markup(
                     r"\markup \abjad-metronome-mark-markup"
                     f' #{log} #{dots} #{stem} #"{decimal_}"',
                     literal=True,
@@ -1263,14 +1262,14 @@ class MetronomeMark:
                 base = int(nonreduced)
                 remainder = nonreduced - base
                 n, d = remainder.pair
-                markup = Markup(
+                markup = markups.Markup(
                     r"\markup \abjad-metronome-mark-mixed-number-markup"
                     f" #{log} #{dots} #{stem}"
                     f' #"{base}" #"{n}" #"{d}"',
                     literal=True,
                 )
         else:
-            markup = Markup(
+            markup = markups.Markup(
                 r"\markup \abjad-metronome-mark-markup"
                 f' #{log} #{dots} #{stem} #"{units_per_minute}"',
                 literal=True,

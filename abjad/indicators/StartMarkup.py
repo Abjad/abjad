@@ -15,7 +15,7 @@ class StartMarkup:
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
         >>> abjad.attach(start_markup, staff[0])
-        >>> abjad.show(staff, strict=89) # doctest: +SKIP
+        >>> abjad.show(staff, align_tags=89) # doctest: +SKIP
 
         ..  docs::
 

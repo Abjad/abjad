@@ -36,8 +36,8 @@ def test_NonreducedFraction___add___03():
     a = abjad.NonreducedFraction(3, 6)
     b = abjad.NonreducedFraction(3, 12)
 
-    result_one = abjad.IOManager.count_function_calls("a + b", global_context=locals())
-    result_two = abjad.IOManager.count_function_calls("a + 10", global_context=locals())
+    result_one = abjad.iox.count_function_calls("a + b", global_context=locals())
+    result_two = abjad.iox.count_function_calls("a + 10", global_context=locals())
 
     assert result_one <= 110
     assert result_two <= 110

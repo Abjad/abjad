@@ -7,18 +7,19 @@ import typing
 
 import quicktions
 
-from . import enums, exceptions, mathx, typings
+from . import enums, exceptions, mathx
+from . import tag as _tag
+from . import typings
 from .bundle import LilyPondFormatBundle
 from .duration import Duration, Multiplier, NonreducedFraction
-from .ly.LilyPondContext import LilyPondContext
-from .ly.drums import drums
+from .lyconst import drums
+from .lyproxy import LilyPondContext
 from .markups import Markup
 from .new import new
 from .overrides import TweakInterface, override, setting, tweak
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
 from .storage import FormatSpecification, StorageFormatManager
-from .tag import Tag
 from .timespan import Timespan
 from .typedcollections import TypedList
 
@@ -59,7 +60,7 @@ class Component:
         return parse(string)
 
     @abc.abstractmethod
-    def __init__(self, name: str = None, tag: Tag = None) -> None:
+    def __init__(self, name: str = None, tag: _tag.Tag = None) -> None:
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._measure_number = None
@@ -73,7 +74,7 @@ class Component:
         self._stop_offset = None
         self._stop_offset_in_seconds = None
         if tag is not None:
-            assert isinstance(tag, Tag), repr(tag)
+            assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
         self._timespan = Timespan()
         self._wrappers: typing.List = []
@@ -280,7 +281,9 @@ class Component:
         if summary:
             values.append(summary)
         return FormatSpecification(
-            client=self, repr_args_values=values, storage_format_keyword_names=[],
+            client=self,
+            repr_args_values=values,
+            storage_format_keyword_names=[],
         )
 
     def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
@@ -440,7 +443,7 @@ class Component:
                 return sibling
 
     def _tag_strings(self, strings):
-        return Tag.tag(strings, tag=self.tag)
+        return _tag.tag(strings, tag=self.tag)
 
     def _update_later(self, offsets=False, offsets_in_seconds=False):
         assert offsets or offsets_in_seconds
@@ -468,7 +471,7 @@ class Component:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         """
         Gets component tag.
         """
@@ -501,7 +504,9 @@ class Leaf(Component):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, written_duration, *, multiplier=None, tag: Tag = None) -> None:
+    def __init__(
+        self, written_duration, *, multiplier=None, tag: _tag.Tag = None
+    ) -> None:
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
         self._before_grace_container = None
@@ -623,8 +628,8 @@ class Leaf(Component):
     def _format_leaf_nucleus(self):
         strings = self._get_body()
         if self.tag:
-            tag = Tag(self.tag)
-            strings = Tag.tag(strings, tag=tag)
+            tag = _tag.Tag(self.tag)
+            strings = _tag.tag(strings, tag=tag)
         return strings
 
     def _format_opening_slot(self, bundle):
@@ -906,7 +911,7 @@ class Container(Component):
         identifier: str = None,
         simultaneous: bool = None,
         name: str = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         components = components or []
         Component.__init__(self, tag=tag)
@@ -993,7 +998,7 @@ class Container(Component):
                     }
                 }
 
-            >>> abjad.wellformed(voice)
+            >>> abjad.wf.wellformed(voice)
             True
 
             First tuplet must have start slur removed:
@@ -1012,7 +1017,7 @@ class Container(Component):
                     e'4
                 }
 
-            >>> abjad.wellformed(tuplet_1)
+            >>> abjad.wf.wellformed(tuplet_1)
             True
 
         Returns none.
@@ -1152,7 +1157,7 @@ class Container(Component):
             else:
                 brackets_close = ["}"]
         if self.tag is not None:
-            brackets_close = Tag.tag(brackets_close, tag=self.tag)
+            brackets_close = _tag.tag(brackets_close, tag=self.tag)
         result.append([("close brackets", ""), brackets_close])
         return tuple(result)
 
@@ -1194,7 +1199,7 @@ class Container(Component):
             else:
                 brackets_open = ["{"]
         if self.tag is not None:
-            brackets_open = Tag.tag(brackets_open, tag=self.tag)
+            brackets_open = _tag.tag(brackets_open, tag=self.tag)
         result.append([("open brackets", ""), brackets_open])
         return tuple(result)
 
@@ -1706,7 +1711,8 @@ class Container(Component):
                 argument_.append(item)
             argument = argument_
         self.__setitem__(
-            slice(len(self), len(self)), argument.__getitem__(slice(0, len(argument))),
+            slice(len(self), len(self)),
+            argument.__getitem__(slice(0, len(argument))),
         )
 
     def index(self, component) -> int:
@@ -2028,7 +2034,7 @@ class AfterGraceContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, tag: Tag = None) -> None:
+    def __init__(self, components=None, tag: _tag.Tag = None) -> None:
         # _main_leaf slot must be initialized before container initialization
         self._main_leaf = None
         Container.__init__(self, components, tag=tag)
@@ -2238,7 +2244,7 @@ class BeforeGraceContainer(Container):
     ### INITIALIZER ###
 
     def __init__(
-        self, components=None, *, command: str = r"\grace", tag: Tag = None
+        self, components=None, *, command: str = r"\grace", tag: _tag.Tag = None
     ) -> None:
         if command not in self._commands:
             message = f"unknown command: {repr(command)}.\n"
@@ -2609,7 +2615,10 @@ class Chord(Leaf):
     ### INITIALIZER ###
 
     def __init__(
-        self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
+        self,
+        *arguments,
+        multiplier: typings.DurationTyping = None,
+        tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
         self._note_heads = NoteHeadList(client=self)
@@ -2698,7 +2707,9 @@ class Chord(Leaf):
             new_chord.note_heads.append(note_head)
         return new_chord
 
-    def __getnewargs__(self,) -> typing.Tuple[PitchSegment, Duration]:
+    def __getnewargs__(
+        self,
+    ) -> typing.Tuple[PitchSegment, Duration]:
         """
         Gets new chord arguments.
 
@@ -3018,14 +3029,18 @@ class Context(Container):
         lilypond_type: str = "Context",
         simultaneous: bool = None,
         name: str = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         self._consists_commands: typing.List[str] = []
         self._dependent_wrappers: typing.List = []
         self._remove_commands: typing.List[str] = []
         self.lilypond_type = lilypond_type
         Container.__init__(
-            self, simultaneous=simultaneous, components=components, name=name, tag=tag,
+            self,
+            simultaneous=simultaneous,
+            components=components,
+            name=name,
+            tag=tag,
         )
 
     ### SPECIAL METHODS ###
@@ -3274,7 +3289,7 @@ class Context(Container):
         return self._remove_commands
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         r"""
         Gets tag.
 
@@ -3287,7 +3302,7 @@ class Context(Container):
             ...     )
             >>> abjad.show(context) # doctest: +SKIP
 
-            >>> abjad.f(context, strict=20)
+            >>> abjad.f(context, align_tags=20)
             \new CustomContext  %! RED
             {                   %! RED
                 c'4
@@ -3346,7 +3361,10 @@ class MultimeasureRest(Leaf):
     ### INITIALIZER ###
 
     def __init__(
-        self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
+        self,
+        *arguments,
+        multiplier: typings.DurationTyping = None,
+        tag: _tag.Tag = None,
     ) -> None:
         if len(arguments) == 0:
             arguments = ((1, 4),)
@@ -3369,7 +3387,7 @@ class MultimeasureRest(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         r"""
         Gets tag.
 
@@ -3585,11 +3603,11 @@ class NoteHead:
         if duration is not None:
             pieces[-1] = pieces[-1] + duration
         if self.alternative:
-            pieces = Tag.tag(pieces, tag=self.alternative[2])
+            pieces = _tag.tag(pieces, tag=self.alternative[2])
             pieces_ = self.alternative[0]._get_format_pieces()
             if duration is not None:
                 pieces_[-1] = pieces_[-1] + duration
-            pieces_ = Tag.tag(pieces_, deactivate=True, tag=self.alternative[1])
+            pieces_ = _tag.tag(pieces_, deactivate=True, tag=self.alternative[1])
             pieces.extend(pieces_)
         result = "\n".join(pieces)
         return result
@@ -3609,7 +3627,7 @@ class NoteHead:
             >>> note.note_head.alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, strict=50)
+            >>> abjad.f(note, align_tags=50)
             c''4                                              %! +PARTS
             %@% c''!4                                         %! -PARTS
 
@@ -3618,7 +3636,7 @@ class NoteHead:
             >>> note.written_pitch = 'D5'
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, strict=50)
+            >>> abjad.f(note, align_tags=50)
             d''4                                              %! +PARTS
             %@% d''!4                                         %! -PARTS
 
@@ -3627,7 +3645,7 @@ class NoteHead:
             >>> note.note_head.alternative = None
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, strict=50)
+            >>> abjad.f(note, align_tags=50)
             d''4
 
         ..  container:: example
@@ -3638,7 +3656,7 @@ class NoteHead:
             >>> chord.note_heads[0].alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> abjad.f(chord, strict=50)
+            >>> abjad.f(chord, align_tags=50)
             <
                 c'                                            %! +PARTS
             %@% c'!                                           %! -PARTS
@@ -3651,7 +3669,7 @@ class NoteHead:
             >>> chord.note_heads[0].written_pitch = 'B3'
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> abjad.f(chord, strict=50)
+            >>> abjad.f(chord, align_tags=50)
             <
                 b                                             %! +PARTS
             %@% b!                                            %! -PARTS
@@ -3662,7 +3680,7 @@ class NoteHead:
             Clear with none:
 
             >>> chord.note_heads[0].alternative = None
-            >>> abjad.f(chord, strict=50)
+            >>> abjad.f(chord, align_tags=50)
             <b d' bf''>4
 
         """
@@ -4255,7 +4273,10 @@ class Note(Leaf):
     ### INITIALIZER ###
 
     def __init__(
-        self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
+        self,
+        *arguments,
+        multiplier: typings.DurationTyping = None,
+        tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
@@ -4521,7 +4542,7 @@ class Rest(Leaf):
         written_duration=None,
         *,
         multiplier: typings.DurationTyping = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         original_input = written_duration
         if isinstance(written_duration, Leaf):
@@ -4600,7 +4621,7 @@ class Score(Context):
         lilypond_type: str = "Score",
         simultaneous: bool = True,
         name: str = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         Context.__init__(
             self,
@@ -4614,7 +4635,7 @@ class Score(Context):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         r"""
         Gets tag.
 
@@ -4625,7 +4646,7 @@ class Score(Context):
             >>> score = abjad.Score([staff], tag=abjad.Tag('GREEN'))
             >>> abjad.show(score) # doctest: +SKIP
 
-            >>> abjad.f(score, strict=20)
+            >>> abjad.f(score, align_tags=20)
             \new Score          %! GREEN
             <<                  %! GREEN
                 \new Staff      %! BLUE
@@ -4678,7 +4699,10 @@ class Skip(Leaf):
     ### INITIALIZER ###
 
     def __init__(
-        self, *arguments, multiplier: typings.DurationTyping = None, tag: Tag = None,
+        self,
+        *arguments,
+        multiplier: typings.DurationTyping = None,
+        tag: _tag.Tag = None,
     ) -> None:
         input_leaf = None
         written_duration = None
@@ -4799,7 +4823,7 @@ class Staff(Context):
         lilypond_type: str = "Staff",
         simultaneous: bool = None,
         name: str = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         Context.__init__(
             self,
@@ -4861,7 +4885,7 @@ class StaffGroup(Context):
         lilypond_type: str = "StaffGroup",
         simultaneous: bool = True,
         name: str = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         Context.__init__(
             self,
@@ -4905,12 +4929,12 @@ class TremoloContainer(Container):
 
         Duration of container equal to contents duration multiplied by count:
 
-        >>> abjad.inspect(staff[0]).duration()
+        >>> abjad.get.duration(staff[0])
         Duration(1, 4)
 
         Duration of each leaf equal to written duration multiplied by count:
 
-        >>> abjad.inspect(staff[0][0]).duration()
+        >>> abjad.get.duration(staff[0][0])
         Duration(1, 8)
 
     """
@@ -4923,7 +4947,9 @@ class TremoloContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, count: int = 2, components=None, *, tag: Tag = None) -> None:
+    def __init__(
+        self, count: int = 2, components=None, *, tag: _tag.Tag = None
+    ) -> None:
         assert mathx.is_assignable_integer(count), repr(count)
         self._count = count
         Container.__init__(self, components, tag=tag)
@@ -5093,7 +5119,7 @@ class Tuplet(Container):
         denominator: int = None,
         force_fraction: bool = None,
         hide: bool = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
         tweaks: TweakInterface = None,
     ) -> None:
         Container.__init__(self, components, tag=tag)
@@ -5141,7 +5167,7 @@ class Tuplet(Container):
         if self.multiplier:
             strings = ["}"]
             if self.tag is not None:
-                strings = Tag.tag(strings, tag=self.tag)
+                strings = _tag.tag(strings, tag=self.tag)
             result.append([("self_brackets", "close"), strings])
         return tuple(result)
 
@@ -5190,7 +5216,7 @@ class Tuplet(Container):
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
             if self.tag is not None:
-                contributions = Tag.tag(contributions, tag=self.tag)
+                contributions = _tag.tag(contributions, tag=self.tag)
             result.append([contributor, contributions])
         return tuple(result)
 
@@ -5464,7 +5490,7 @@ class Tuplet(Container):
             Ignored when tuplet number text is overridden explicitly:
 
             >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> duration = abjad.inspect(tuplet).duration()
+            >>> duration = abjad.get.duration(tuplet)
             >>> note = abjad.Note.from_pitch_and_duration(0, duration)
             >>> markup = abjad.illustrators.selection_to_score_markup([note])
             >>> abjad.override(tuplet).tuplet_number.text = markup
@@ -5690,7 +5716,7 @@ class Tuplet(Container):
             raise ValueError(f"tuplet multiplier must be positive: {argument!r}.")
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         r"""
         Gets tag.
 
@@ -5701,7 +5727,7 @@ class Tuplet(Container):
             ... )
             >>> abjad.show(tuplet) # doctest: +SKIP
 
-            >>> abjad.f(tuplet, strict=20)
+            >>> abjad.f(tuplet, align_tags=20)
             \times 2/3 {        %! RED
                 c'4
                 d'4
@@ -6028,7 +6054,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: typings.DurationTyping, components, *, tag: Tag = None
+        duration: typings.DurationTyping, components, *, tag: _tag.Tag = None
     ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``components``.
@@ -6793,7 +6819,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate(outer_red_voice).leaves():
-        ...     dynamic = abjad.inspect(leaf).effective(abjad.Dynamic)
+        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         e''8 Dynamic('f')
@@ -6865,7 +6891,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate(outer_red_voice).leaves():
-        ...     dynamic = abjad.inspect(leaf).effective(abjad.Dynamic)
+        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         e''8 None
@@ -6937,7 +6963,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate(outer_red_voice).leaves():
-        ...     dynamic = abjad.inspect(leaf).effective(abjad.Dynamic)
+        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         e''8 None
@@ -7012,7 +7038,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate(outer_red_voice).leaves():
-        ...     dynamic = abjad.inspect(leaf).effective(abjad.Dynamic)
+        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         e''8 None
@@ -7043,7 +7069,7 @@ class Voice(Context):
         lilypond_type: str = "Voice",
         simultaneous: bool = None,
         name: str = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         Context.__init__(
             self,
@@ -7057,7 +7083,7 @@ class Voice(Context):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         r"""
         Gets tag.
 
@@ -7066,7 +7092,7 @@ class Voice(Context):
             >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
             >>> abjad.show(voice) # doctest: +SKIP
 
-            >>> abjad.f(voice, strict=20)
+            >>> abjad.f(voice, align_tags=20)
             \new Voice          %! RED
             {                   %! RED
                 c'4

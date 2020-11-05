@@ -12,7 +12,7 @@ import typing
 import six
 import uqbar.apis
 
-from .storage import StorageFormatManager
+from . import storage
 
 
 class Configuration:
@@ -81,11 +81,7 @@ class Configuration:
             except (IOError, OSError):
                 traceback.print_exc()
         self._settings = configuration
-        if not os.path.exists(self.abjad_output_directory):
-            try:
-                os.makedirs(self.abjad_output_directory)
-            except (IOError, OSError):
-                traceback.print_exc()
+        self._make_missing_directories()
 
     ### SPECIAL METHODS ###
 
@@ -112,7 +108,7 @@ class Configuration:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     def __setitem__(self, i, argument) -> None:
         """
@@ -285,6 +281,13 @@ class Configuration:
         options = self._get_option_definitions()
         specs = [(key, options[key]["spec"]) for key in options]
         return dict(specs)
+
+    def _make_missing_directories(self):
+        if not os.path.exists(self.abjad_output_directory):
+            try:
+                os.makedirs(self.abjad_output_directory)
+            except (IOError, OSError):
+                traceback.print_exc()
 
     def _validate_configuration(self, configuration):
         option_definitions = self._get_option_definitions()

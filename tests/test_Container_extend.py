@@ -26,7 +26,7 @@ def test_Container_extend_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container_extend_02():
@@ -57,7 +57,7 @@ def test_Container_extend_02():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wellformed(voice_1)
+    assert abjad.wf.wellformed(voice_1)
 
 
 def test_Container_extend_03():
@@ -81,7 +81,7 @@ def test_Container_extend_03():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container_extend_04():
@@ -106,7 +106,7 @@ def test_Container_extend_04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wellformed(voice)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container_extend_05():
@@ -166,7 +166,7 @@ def test_Container_extend_07():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wellformed(voice_1)
+    assert abjad.wf.wellformed(voice_1)
 
     assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
@@ -179,7 +179,7 @@ def test_Container_extend_07():
         """
     ), print(abjad.lilypond(voice_2))
 
-    assert abjad.wellformed(voice_2)
+    assert abjad.wf.wellformed(voice_2)
 
 
 def test_Container_extend_08():
@@ -230,7 +230,7 @@ def test_Container_extend_08():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wellformed(voice_1)
+    assert abjad.wf.wellformed(voice_1)
 
     assert abjad.lilypond(voice_2) == abjad.String.normalize(
         r"""
@@ -243,7 +243,7 @@ def test_Container_extend_08():
         """
     ), print(abjad.lilypond(voice_2))
 
-    assert abjad.wellformed(voice_2)
+    assert abjad.wf.wellformed(voice_2)
 
 
 def test_Container_extend_09():
@@ -267,7 +267,7 @@ def test_Container_extend_09():
         """
     ), print(abjad.lilypond(container))
 
-    assert abjad.wellformed(container)
+    assert abjad.wf.wellformed(container)
 
 
 def test_Container_extend_10():
@@ -299,4 +299,4 @@ def test_Container_extend_10():
         """
     ), print(abjad.lilypond(container))
 
-    assert abjad.wellformed(container)
+    assert abjad.wf.wellformed(container)

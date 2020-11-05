@@ -155,9 +155,8 @@ class StringContactPoint:
 
         """
         string = self._contact_point_abbreviations[self.contact_point]
-        string = string.title()
+        string = rf"\caps {string.title()}"
         markup = Markup(string)
-        markup = markup.caps()
         return markup
 
     @property

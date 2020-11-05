@@ -472,7 +472,8 @@ class StorageFormatManager:
             for value in args_values:
                 agent = type(self)(value)
                 pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format, is_indented=is_indented,
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
                 )
                 for piece in pieces[:-1]:
                     positional_argument_pieces.append(prefix + piece)
@@ -484,7 +485,8 @@ class StorageFormatManager:
                     continue
                 agent = type(self)(value)
                 pieces = agent._dispatch_formatting(
-                    as_storage_format=as_storage_format, is_indented=is_indented,
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
                 )
                 pieces[0] = f"{name}={pieces[0]}"
                 for piece in pieces[:-1]:

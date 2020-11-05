@@ -1,9 +1,7 @@
-from . import enums
-from .bundle import LilyPondFormatBundle
+from . import bundle as _bundle
+from . import enums, overrides, storage
+from . import tag as _tag
 from .new import new
-from .overrides import override, setting
-from .storage import StorageFormatManager, storage
-from .tag import Tag
 
 
 class LilyPondFormatManager:
@@ -23,7 +21,7 @@ class LilyPondFormatManager:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return storage.StorageFormatManager(self).get_repr_format()
 
     ### PRIVATE METHODS ###
 
@@ -84,10 +82,10 @@ class LilyPondFormatManager:
     def _populate_context_setting_format_contributions(component, bundle):
         result = []
         if hasattr(component, "_lilypond_type"):
-            strings = setting(component)._format_in_with_block()
+            strings = overrides.setting(component)._format_in_with_block()
             result.extend(strings)
         else:
-            strings = setting(component)._format_inline()
+            strings = overrides.setting(component)._format_inline()
             result.extend(strings)
         result.sort()
         bundle.context_settings.extend(result)
@@ -108,7 +106,7 @@ class LilyPondFormatManager:
     def _populate_grob_override_format_contributions(component, bundle):
         result = []
         once = hasattr(component, "_written_duration")
-        grob = override(component)
+        grob = overrides.override(component)
         contributions = grob._list_format_contributions("override", once=once)
         for string in result[:]:
             if "NoteHead" in string and "pitch" in string:
@@ -126,7 +124,9 @@ class LilyPondFormatManager:
     @staticmethod
     def _populate_grob_revert_format_contributions(component, bundle):
         if not hasattr(component, "_written_duration"):
-            contributions = override(component)._list_format_contributions("revert")
+            contributions = overrides.override(component)._list_format_contributions(
+                "revert"
+            )
             bundle.grob_reverts.extend(contributions)
 
     @staticmethod
@@ -171,7 +171,7 @@ class LilyPondFormatManager:
                 else:
                     markup = wrapper.indicator
                 format_pieces = markup._get_format_pieces()
-                format_pieces = Tag.tag(
+                format_pieces = _tag.tag(
                     format_pieces, wrapper.tag, deactivate=wrapper.deactivate
                 )
                 bundle.after.markup.extend(format_pieces)
@@ -205,9 +205,9 @@ class LilyPondFormatManager:
         packet = leaf._format_opening_slot(bundle)
         report += leaf._process_contribution_packet(packet)
         report += 'slot "contents slot":\n'
-        report += LilyPondFormatBundle.indent + "leaf body:\n"
+        report += _bundle.LilyPondFormatBundle.indent + "leaf body:\n"
         string = leaf._format_contents_slot(bundle)[0][1][0]
-        report += (2 * LilyPondFormatBundle.indent) + string + "\n"
+        report += (2 * _bundle.LilyPondFormatBundle.indent) + string + "\n"
         report += 'slot "closing":\n'
         packet = leaf._format_closing_slot(bundle)
         report += leaf._process_contribution_packet(packet)
@@ -247,11 +247,11 @@ class LilyPondFormatManager:
         return string
 
     @staticmethod
-    def bundle_format_contributions(component) -> "LilyPondFormatBundle":
+    def bundle_format_contributions(component) -> "_bundle.LilyPondFormatBundle":
         """
         Gets all format contributions for ``component``.
         """
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         LilyPondFormatManager._populate_indicator_format_contributions(
             component, bundle
         )
@@ -284,7 +284,7 @@ class LilyPondFormatManager:
             string_ = string[4:]
             tag_start = string_.find("%!")
             string_ = list(string_)
-            string_[tag_start:tag_start] = LilyPondFormatBundle.indent
+            string_[tag_start:tag_start] = _bundle.LilyPondFormatBundle.indent
             string_ = "".join(string_)
             strings_.append(string_)
         text = "\n".join(strings_)
@@ -296,15 +296,14 @@ class LilyPondFormatManager:
 ### FUNCTIONS ###
 
 
-def f(argument, strict=None):
+def f(argument, align_tags=None):
     r"""
     Formats ``argument`` and prints result.
 
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
-        >>> markup = markup.with_color('blue')
+        >>> markup = abjad.Markup(r'\with-color #blue Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, staff[0])
         >>> for leaf in staff:
         ...     abjad.attach(abjad.Articulation('.'), leaf)
@@ -330,16 +329,16 @@ def f(argument, strict=None):
         >>> abjad.show(staff) # doctest: +SKIP
 
     """
-    if strict is not None:
-        assert isinstance(strict, int), repr(strict)
+    if align_tags is not None:
+        assert isinstance(align_tags, int), repr(align_tags)
     if hasattr(argument, "_get_lilypond_format"):
         string = argument._get_lilypond_format()
     else:
-        string = storage(argument)
+        string = storage.storage(argument)
     assert isinstance(string, str), repr(string)
     realign = None
-    if isinstance(strict, int):
-        string = LilyPondFormatManager.align_tags(string, strict)
-        realign = strict
+    if isinstance(align_tags, int):
+        string = LilyPondFormatManager.align_tags(string, align_tags)
+        realign = align_tags
     string = LilyPondFormatManager.left_shift_tags(string, realign=realign)
     print(string)

@@ -96,7 +96,7 @@ class Dynamic:
             >>
 
         >>> for leaf in abjad.select(staff).leaves():
-        ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
+        ...     leaf, abjad.get.effective(leaf, abjad.Dynamic)
         ...
         (Note("e'8"), Dynamic('f'))
         (Note("g'8"), Dynamic('f'))
@@ -812,7 +812,7 @@ class Dynamic:
             }
 
             >>> for leaf in abjad.iterate(voice).leaves():
-            ...     leaf, abjad.inspect(leaf).effective(abjad.Dynamic)
+            ...     leaf, abjad.get.effective(leaf, abjad.Dynamic)
             ...
             (Note("c'4"), Dynamic('f'))
             (Note("d'4"), Dynamic('f'))

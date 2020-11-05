@@ -20,5 +20,5 @@ def test_LilyPondParser__indicators__StemTremolo_01():
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    stem_tremolos = abjad.inspect(result[0]).indicators(abjad.StemTremolo)
+    stem_tremolos = abjad.get.indicators(result[0], abjad.StemTremolo)
     assert 1 == len(stem_tremolos)

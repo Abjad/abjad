@@ -25,7 +25,7 @@ def test_LilyPondParser__indicators__MetronomeMark_01():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     leaves = abjad.select(result).leaves()
     leaf = leaves[0]
-    marks = abjad.inspect(leaf).indicators(abjad.MetronomeMark)
+    marks = abjad.get.indicators(leaf, abjad.MetronomeMark)
     assert len(marks) == 1
 
 
@@ -54,7 +54,7 @@ def test_LilyPondParser__indicators__MetronomeMark_02():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     leaves = abjad.select(result).leaves()
     leaf = leaves[0]
-    marks = abjad.inspect(leaf).indicators(abjad.MetronomeMark)
+    marks = abjad.get.indicators(leaf, abjad.MetronomeMark)
     assert len(marks) == 1
 
 
@@ -83,7 +83,7 @@ def test_LilyPondParser__indicators__MetronomeMark_03():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     leaves = abjad.select(result).leaves()
     leaf = leaves[0]
-    marks = abjad.inspect(leaf).indicators(abjad.MetronomeMark)
+    marks = abjad.get.indicators(leaf, abjad.MetronomeMark)
     assert len(marks) == 1
 
 
@@ -116,7 +116,7 @@ def test_LilyPondParser__indicators__MetronomeMark_04():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     leaves = abjad.select(result).leaves()
     leaf = leaves[0]
-    marks = abjad.inspect(leaf).indicators(abjad.MetronomeMark)
+    marks = abjad.get.indicators(leaf, abjad.MetronomeMark)
     assert len(marks) == 1
 
 
@@ -149,5 +149,5 @@ def test_LilyPondParser__indicators__MetronomeMark_05():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     leaves = abjad.select(result).leaves()
     leaf = leaves[0]
-    marksn = abjad.inspect(leaf).indicators(abjad.MetronomeMark)
+    marksn = abjad.get.indicators(leaf, abjad.MetronomeMark)
     assert len(marksn) == 1

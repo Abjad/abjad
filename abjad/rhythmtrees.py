@@ -8,10 +8,9 @@ import quicktions
 import uqbar.containers
 import uqbar.graphs
 
-from . import mathx
+from . import mathx, mutate
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .makers import LeafMaker
-from .mutate import Mutation
 from .parsers.base import Parser
 from .score import Container, Tuplet
 from .sequence import Sequence
@@ -166,7 +165,10 @@ class RhythmTreeMixin:
         node = self
         while node.parent is not None:
             result.append(
-                (node.preprolated_duration, node.parent._get_contents_duration(),)
+                (
+                    node.preprolated_duration,
+                    node.parent._get_contents_duration(),
+                )
             )
             node = node.parent
         result.append(node.preprolated_duration)
@@ -608,7 +610,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                 if isinstance(child, type(self)):
                     tuplet.extend(
                         recurse(
-                            child, child.preprolated_duration * basic_written_duration,
+                            child,
+                            child.preprolated_duration * basic_written_duration,
                         )
                     )
                 else:
@@ -631,7 +634,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         for component in result[:]:
             if isinstance(component, Tuplet):
                 if component.trivial():
-                    Mutation._extract(component)
+                    mutate._extract(component)
         return result
 
     def __graph__(self, **keywords):

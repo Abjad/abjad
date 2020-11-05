@@ -34,7 +34,7 @@ def find_lower_camel_case_definitions():
 
 
 if __name__ == "__main__":
-    abjad.IOManager.spawn_subprocess("clear")
+    abjad.iox.spawn_subprocess("clear")
     print("Finding lower camel case definitions ...\n")
     find_lower_camel_case_definitions()
     print()

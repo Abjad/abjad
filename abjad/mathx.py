@@ -1,11 +1,11 @@
 """
 Abjad's math library.
 """
-import collections
 import itertools
 import math
 import numbers
 import typing
+from collections import abc as collections_abc
 
 import quicktions
 
@@ -241,7 +241,7 @@ def are_relatively_prime(argument) -> bool:
         True
 
     """
-    if not isinstance(argument, collections.abc.Iterable):
+    if not isinstance(argument, collections_abc.Iterable):
         return False
     if not all(isinstance(_, numbers.Number) for _ in argument):
         return False
@@ -272,7 +272,7 @@ def arithmetic_mean(argument) -> typing.Union[int, float]:
 
     Raises exception when ``argument`` is not iterable.
     """
-    if not isinstance(argument, collections.abc.Sequence):
+    if not isinstance(argument, collections_abc.Sequence):
         raise TypeError(argument)
     total = sum(argument)
     length = len(argument)
@@ -324,7 +324,7 @@ def cumulative_products(argument):
 
     Returns new object of ``argument`` type.
     """
-    if not isinstance(argument, collections.abc.Iterable):
+    if not isinstance(argument, collections_abc.Iterable):
         raise TypeError(argument)
     if len(argument) == 0:
         return type(argument)([])
@@ -472,7 +472,9 @@ def factors(n) -> typing.List[int]:
     return factors
 
 
-def fraction_to_proper_fraction(rational,) -> typing.Tuple[int, quicktions.Fraction]:
+def fraction_to_proper_fraction(
+    rational,
+) -> typing.Tuple[int, quicktions.Fraction]:
     """
     Changes ``rational`` to proper fraction.
 

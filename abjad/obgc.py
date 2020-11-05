@@ -1,10 +1,9 @@
 import typing
 
-from . import _iterate, typings
+from . import _iterate, mutate, typings
 from .attach import attach, detach
 from .bundle import LilyPondFormatBundle
 from .duration import Duration
-from .mutate import Mutation
 from .overrides import LilyPondLiteral, tweak
 from .parentage import Parentage
 from .pitch.sets import PitchSet
@@ -243,7 +242,7 @@ class OnBeatGraceContainer(Container):
         ):
             if isinstance(first_grace, Note):
                 chord = Chord(first_grace)
-                Mutation(first_grace).replace(chord)
+                mutate.replace(first_grace, chord)
                 first_grace = chord
             selection = Selection(anchor_leaf)
             anchor_pitches = PitchSet.from_selection(selection)
@@ -820,9 +819,9 @@ def on_beat_grace_container(
     if anchor_voice.name is None:
         raise Exception(f"anchor voice must be named:\n   {repr(anchor_voice)}")
     anchor_voice_insert = Voice(name=anchor_voice.name)
-    Mutation(anchor_voice_selection).wrap(anchor_voice_insert)
+    mutate.wrap(anchor_voice_selection, anchor_voice_insert)
     container = Container(simultaneous=True)
-    Mutation(anchor_voice_insert).wrap(container)
+    mutate.wrap(anchor_voice_insert, container)
     container.insert(0, on_beat_grace_container)
     on_beat_grace_container._match_anchor_leaf()
     on_beat_grace_container._set_leaf_durations()
