@@ -847,15 +847,10 @@ def find_executable(name: str, *, flags: int = os.X_OK) -> typing.List[pathlib.P
     return result
 
 
+# TODO: merge into run_command()
 def make_subprocess(command: str) -> subprocess.Popen:
     """
     Makes Popen instance.
-
-    ..  container:: example
-
-        >>> command = 'echo "hellow world"'
-        >>> abjad.iox.make_subprocess(command)
-        <subprocess.Popen object at 0x...>
 
     Defined equal to:
 
@@ -868,6 +863,7 @@ def make_subprocess(command: str) -> subprocess.Popen:
 
     Redirects stderr to stdout.
     """
+    # TODO: replace with subprocess.run()
     return subprocess.Popen(
         command,
         shell=True,

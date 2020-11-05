@@ -475,12 +475,10 @@ class Configuration:
         """
         if self._lilypond_version_string is not None:
             return self._lilypond_version_string
-        command = "lilypond --version"
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        command = ["lilypond", "--version"]
+        proc = subprocess.run(command, stdout=subprocess.PIPE)
         assert proc.stdout is not None
-        lilypond_version_string = proc.stdout.readline().decode()
-        lilypond_version_string = lilypond_version_string.split(" ")[-1]
-        lilypond_version_string = lilypond_version_string.strip()
+        lilypond_version_string = proc.stdout.decode().split()[2]
         Configuration._lilypond_version_string = lilypond_version_string
         return lilypond_version_string
 
