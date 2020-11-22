@@ -14,7 +14,7 @@ Let's start with some imports:
 
     >>> import abjad
     >>> import copy
-    >>> from abjadext.demos import part
+    >>> from abjad.demos import part
 
 
 The string music
@@ -83,7 +83,7 @@ give them a 6/4 time signature, just so they line up properly.
 
     >>> staff = abjad.Staff(sequence(descents).flatten())
     >>> time_signature = abjad.TimeSignature((6, 4))
-    >>> leaf = abjad.inspect(staff).leaf(0)
+    >>> leaf = abjad.get.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
     >>> show(staff)
 
@@ -102,7 +102,7 @@ Let's look at the second violins too:
 
     >>> staff = abjad.Staff(sequence(descents).flatten())
     >>> time_signature = abjad.TimeSignature((6, 4))
-    >>> leaf = abjad.inspect(staff).leaf(0)
+    >>> leaf = abjad.get.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
     >>> show(staff)
 
@@ -122,9 +122,9 @@ the bar lines accidentally:
 ::
 
     >>> staff = abjad.Staff(abjad.sequence(descents).flatten())
-    >>> shards = abjad.mutate(staff[:]).split([(3, 2)], cyclic=True)
+    >>> shards = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
-    >>> leaf = abjad.inspect(staff).leaf(0)
+    >>> leaf = abjad.get.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
     >>> abjad.show(staff)
 
@@ -200,6 +200,6 @@ Note that we only show the first two pages as the *Cantus* is still under
 copyright. Please visit the Universal Edition's website to purchase the complete
 score for performance.
 
-Explore the ``abjad-ext-tonality/demos/part.py`` module for the complete code to this
+Explore the ``.../abjad/demos/part.py`` module for the complete code to this
 example. Or import it into your Python session directly with ``from
-abjadext.demos import part``.
+abjad.demos import part``.
