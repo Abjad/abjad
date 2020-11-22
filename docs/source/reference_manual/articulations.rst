@@ -71,11 +71,11 @@ Write a loop to attach articulations to many leaves:
 Getting the articulations attached to a leaf
 --------------------------------------------
 
-Use the inspector to get the articulations attached to a leaf:
+Get the articulations attached to a leaf:
 
 ::
 
-    >>> abjad.inspect(staff[5]).indicators(abjad.Staccato)
+    >>> abjad.get.indicators(staff[5], abjad.Staccato)
 
 
 Detaching articulations from a leaf

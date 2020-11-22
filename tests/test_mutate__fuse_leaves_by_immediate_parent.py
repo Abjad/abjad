@@ -81,3 +81,32 @@ def test_mutate__fuse_leaves_by_immediate_parent_03():
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
     assert len(result) == 1
     assert abjad.wf.wellformed(note)
+
+
+def test_mutate__fuse_leaves_by_immediate_parent_04():
+    """
+    Fuse leaves in logical tie with same immediate parent.
+    """
+
+    voice = abjad.Voice(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
+    logical_tie = abjad.get.logical_tie(voice[0])
+    result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
+
+    assert abjad.lilypond(voice) == abjad.String.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            ~
+            c'16
+            r16
+            r16
+            r16
+            r4
+            r4
+        }
+        """
+    ), print(abjad.lilypond(voice))
+
+    assert abjad.wf.wellformed(voice)
+    assert len(result) == 1

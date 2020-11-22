@@ -105,11 +105,11 @@ of any container:
 Getting the LilyPond comments attached to a component
 -----------------------------------------------------
 
-Use ``abjad.inspect()`` to get the LilyPond comments attached to any component:
+Get the LilyPond comments attached to any component:
 
 ::
 
-    >>> abjad.inspect(note).indicators(abjad.LilyPondComment)
+    >>> abjad.get.indicators(note, abjad.LilyPondComment)
 
 
 Detaching LilyPond comments

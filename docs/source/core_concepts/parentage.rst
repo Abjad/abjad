@@ -22,12 +22,12 @@ Abjad uses the idea of parentage to model the way objects contain each other.
 Getting the parentage of a component
 ------------------------------------
 
-Use the inspector to get the parentage of any component:
+Get the parentage of any component:
 
 ::
 
-    >>> note = abjad.inspect(score).leaf(0)
-    >>> parentage = abjad.inspect(note).parentage()
+    >>> note = abjad.get.leaf(score, 0)
+    >>> parentage = abjad.get.parentage(note)
 
 ::
 

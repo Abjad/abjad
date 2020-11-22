@@ -117,14 +117,14 @@ def _set_leaf_duration(leaf, new_duration):
     components = maker(0, new_duration)
     new_leaves = Selection(components).leaves()
     following_leaf_count = len(new_leaves) - 1
-    # following_leaves = following_leaf_count * leaf
     following_leaves = []
     for i in range(following_leaf_count):
-        rr = copy(leaf)
-        following_leaves.append(rr)
+        following_leaf = copy(leaf)
+        following_leaves.append(following_leaf)
     all_leaves = [leaf] + following_leaves
-    for leaf_, new_leaf in zip(all_leaves, new_leaves):
-        leaf_.written_duration = new_leaf.written_duration
+    assert len(all_leaves) == len(new_leaves)
+    for all_leaf, new_leaf in zip(all_leaves, new_leaves):
+        all_leaf.written_duration = new_leaf.written_duration
     logical_tie = get.logical_tie(leaf)
     logical_tie_leaves = list(logical_tie.leaves)
     for leaf_ in logical_tie:

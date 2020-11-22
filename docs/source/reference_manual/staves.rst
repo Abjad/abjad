@@ -43,8 +43,8 @@ Curly braces ``{`` and ``}`` tell you that the music inside the staff is
 interpreted sequentially rather than simultaneously.
 
 
-Inspecting the LilyPond format of a staff
------------------------------------------
+Getting the LilyPond format of a staff
+--------------------------------------
 
 Use ``abjad.lilypond()`` to get the LilyPond format of a staff:
 
@@ -86,14 +86,14 @@ the staff contains:
     >>> len(staff)
 
 
-Inspecting duration
--------------------
+Getting duration
+----------------
 
-Use the inspector to get the duration of a staff:
+Get the duration of a staff:
 
 ::
 
-    >>> inspect(staff).duration()
+    >>> abjad.get.duration(staff)
 
 
 Appending one component to the end of a staff

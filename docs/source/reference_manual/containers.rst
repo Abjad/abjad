@@ -46,11 +46,11 @@ Get the length of a container with Python's built-in ``len()`` function:
 Inspecting duration
 -------------------
 
-Use ``abjad.inspect()`` the get the duration of a container:
+Get the duration of a container:
 
 ::
 
-    >>> abjad.inspect(container).duration()
+    >>> abjad.get.duration(container)
 
 
 Adding one component to the end of a container

@@ -2955,6 +2955,54 @@ def logical_tie(argument) -> "LogicalTie":
         Note("f'16")                   LogicalTie([Note("f'16")])
         Note("ds'4")                   LogicalTie([Note("ds'4")])
 
+    ..  container:: example
+
+        REGRESSSION. Omits spurious rest when user ties from note to rest:
+
+        >>> staff = abjad.Staff("c'4 r4")
+        >>> # user error; shouldn't tie note to rest:
+        >>> abjad.attach(abjad.Tie(), staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                ~
+                r4
+            }
+
+        >>> abjad.get.logical_tie(staff[0])
+        LogicalTie([Note("c'4")])
+
+        >>> abjad.get.logical_tie(staff[1])
+        LogicalTie([Rest('r4')])
+
+        Omits spurious rest when user repeat-ties into rest from note:
+
+        >>> staff = abjad.Staff("r4 c'4")
+        >>> # user error; shouldn't tie note to rest:
+        >>> abjad.attach(abjad.RepeatTie(), staff[1])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                r4
+                c'4
+                \repeatTie
+            }
+
+        >>> abjad.get.logical_tie(staff[0])
+        LogicalTie([Rest('r4')])
+
+        >>> abjad.get.logical_tie(staff[1])
+        LogicalTie([Note("c'4")])
+
     """
     if not isinstance(argument, Leaf):
         raise Exception("can only get logical tie on leaf.")
