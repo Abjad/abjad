@@ -35,26 +35,25 @@ Use ``abjad.attach()`` to attach an instrument to a leaf:
     >>> abjad.show(staff)
 
 
-Inspecting the instrument attached to a component
--------------------------------------------------
+Getting the instrument attached to a component
+----------------------------------------------
 
-Use ``abjad.inspect()`` to get the instrument attached to a leaf:
+Get the instrument attached to a leaf:
 
 ::
 
-    >>> abjad.inspect(staff[0]).indicator(abjad.Instrument)
+    >>> abjad.get.indicator(staff[0], abjad.Instrument)
 
 
-Inspecting a component's effective instrument
----------------------------------------------
+Getting a component's effective instrument
+------------------------------------------
 
-Use ``abjad.inspect()`` to get the instrument currently in effect for a
-component:
+Get the instrument currently in effect for a component:
 
 ::
 
     >>> for note in staff:
-    ...     abjad.inspect(note).effective(abjad.Instrument)
+    ...     abjad.get.effective(note, abjad.Instrument)
     ...
 
 
@@ -84,11 +83,6 @@ Use ``markup`` to get the instrument name markup of any instrument:
 
     >>> violin.markup
 
-::
-
-    >>> abjad.show(violin.markup)
-
-
 Getting the short name of an instrument
 ---------------------------------------
 
@@ -104,11 +98,6 @@ instrument:
 ::
 
     >>> violin.short_markup
-
-::
-
-    >>> abjad.show(violin.short_markup)
-
 
 Getting an instrument's range
 -----------------------------

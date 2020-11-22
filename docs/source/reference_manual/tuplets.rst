@@ -103,14 +103,14 @@ the tuplet contains:
     >>> len(tuplet)
 
 
-Inspecting tuplet duration
---------------------------
+Getting tuplet duration
+-----------------------
 
-Use the inspector to get the duration of a tuplet:
+Get the duration of a tuplet:
 
 ::
 
-    >>> abjad.inspect(tuplet).duration()
+    >>> abjad.get.duration(tuplet)
 
 
 Understanding rhythmic augmentation and diminution

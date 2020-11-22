@@ -2236,10 +2236,10 @@ def tie(
     leaves = Selection(argument).leaves()
     assert isinstance(leaves, Selection), repr(leaves)
     if len(leaves) < 2:
-        raise Exception("must be two or more notes (not {leaves!r}).")
+        raise Exception(f"must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
         if not isinstance(leaf, (Note, Chord)):
-            raise Exception(r"tie note or chord (not {leaf!r}).")
+            raise Exception(rf"tie note or chord (not {leaf!r}).")
     for current_leaf, next_leaf in Sequence(leaves).nwise():
         duration = current_leaf._get_duration()
         if inequality(duration):

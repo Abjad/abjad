@@ -17,12 +17,24 @@ def _coerce_exclude(exclude):
     return exclude
 
 
+def _is_unpitched(LEAF):
+    if hasattr(LEAF, "written_pitch"):
+        return False
+    if hasattr(LEAF, "written_pitches"):
+        return False
+    return True
+
+
 def _get_logical_tie_leaves(LEAF):
+    if _is_unpitched(LEAF):
+        return [LEAF]
     leaves_before, leaves_after = [], []
     current_leaf = LEAF
     while True:
         previous_leaf = _get_leaf(current_leaf, -1)
         if previous_leaf is None:
+            break
+        if _is_unpitched(previous_leaf):
             break
         if current_leaf._has_indicator(RepeatTie) or previous_leaf._has_indicator(Tie):
             leaves_before.insert(0, previous_leaf)
@@ -33,6 +45,8 @@ def _get_logical_tie_leaves(LEAF):
     while True:
         next_leaf = _get_leaf(current_leaf, 1)
         if next_leaf is None:
+            break
+        if _is_unpitched(next_leaf):
             break
         if current_leaf._has_indicator(Tie) or next_leaf._has_indicator(RepeatTie):
             leaves_after.append(next_leaf)

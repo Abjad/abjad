@@ -87,14 +87,14 @@ the voice contains:
     >>> len(voice)
 
 
-Inspecting voice duration
+Getting voice duration
 -------------------------
 
-Use the inspector to get the duration of a voice:
+Get the duration of a voice:
 
 ::
 
-    >>> inspect(voice).duration()
+    >>> abjad.get.duration(voice)
 
 
 Appending one component to the end of a voice

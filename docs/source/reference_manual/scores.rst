@@ -91,14 +91,14 @@ the score contains:
     >>> len(score)
 
 
-Inspecting duration
--------------------
+Getting duration
+----------------
 
-Use the inspector to get the duration of a score:
+Get the duration of a score:
 
 ::
 
-    >>> abjad.inspect(score).duration()
+    >>> abjad.get.duration(score)
 
 
 Appending one component to the bottom of a score
@@ -147,8 +147,8 @@ Use ``remove()`` to remove a score component by reference:
     >>> show(score)
 
 
-Inspecting whether or not a score contains a component
-------------------------------------------------------
+Finding out whether or not a score contains a component
+-------------------------------------------------------
 
 Use ``in`` to find out whether a score contains a given component:
 
