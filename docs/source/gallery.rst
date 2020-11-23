@@ -19,13 +19,13 @@ Adumbration (2020)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/evans-adumbration-page7-thumbail.png
+    ..  thumbnail:: gallery/evans-adumbration-page7-thumbnail.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 7 of Adumbration,
                 by Gregory Rowland Evans.
 
-    ..  thumbnail:: gallery/evans-adumbration-page11-thumbail.png
+    ..  thumbnail:: gallery/evans-adumbration-page11-thumbnail.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 11 of Adumbration,
