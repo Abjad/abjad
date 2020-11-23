@@ -9,6 +9,28 @@ for many of these scores is also available for pedagogical purposes.
     Click on any image to zoom in.
 
 
+Adumbration (2020)
+`````````````````````
+
+- For string quartet
+- Composed by `Gregory Rowland Evans`_.
+- Written for the 2020/21 JACK quartet residency at the University of Iowa.
+- Source available from https://github.com/GregoryREvans/adumbration/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/evans-adumbration-page7-thumbail.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 7 of Adumbration,
+                by Gregory Rowland Evans.
+
+    ..  thumbnail:: gallery/evans-adumbration-page11-thumbail.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 11 of Adumbration,
+                by Gregory Rowland Evans.
+
 Chalk Line (2020)
 `````````````````````
 
