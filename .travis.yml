@@ -55,7 +55,6 @@ script:
   - make isort-check
   - make mypy
   - make pytest
-  - ajv --help
 
 after_success:
   - pip install --quiet coveralls
