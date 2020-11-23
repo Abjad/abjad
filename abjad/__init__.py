@@ -1,7 +1,6 @@
 from quicktions import Fraction
 
 from . import (
-    cli,
     demos,
     deprecated,
     enumeratex,
@@ -687,7 +686,6 @@ __all__ = [
     "attach",
     "beam",
     "bow_contact_spanner",
-    "cli",
     "deactivate",
     "demos",
     "deprecated",
