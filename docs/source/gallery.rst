@@ -15,13 +15,13 @@ Adumbration (2020)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/evans-adumbration-page7.png
+    ..  thumbnail:: gallery/evans-adumbration-page-7.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 7 of Adumbration,
                 by Gregory Rowland Evans.
 
-    ..  thumbnail:: gallery/evans-adumbration-page11.png
+    ..  thumbnail:: gallery/evans-adumbration-page-11.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 11 of Adumbration,
@@ -37,13 +37,13 @@ Chalk Line (2020)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/evans-chalk-line-page1.png
+    ..  thumbnail:: gallery/evans-chalk-line-page-1.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 1 of Chalk Line,
                 by Gregory Rowland Evans.
 
-    ..  thumbnail:: gallery/evans-chalk-line-page4.png
+    ..  thumbnail:: gallery/evans-chalk-line-page-4.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 4 of Chalk Line,
@@ -65,13 +65,13 @@ Hamonshu (2018-20)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/evans-hamonshu-page1.png
+    ..  thumbnail:: gallery/evans-hamonshu-page-1.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 1 of Hamonshu,
                 by Gregory Rowland Evans.
 
-    ..  thumbnail:: gallery/evans-hamonshu-page4.png
+    ..  thumbnail:: gallery/evans-hamonshu-page-4.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 4 of Hamonshu,
@@ -93,13 +93,13 @@ GUERRERO (2018)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/evans-guerrero-page1.svg
+    ..  thumbnail:: gallery/evans-guerrero-page-1.svg
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 1 of GUERRERO,
                 by Gregory Rowland Evans.
 
-    ..  thumbnail:: gallery/evans-guerrero-page10.svg
+    ..  thumbnail:: gallery/evans-guerrero-page-10.svg
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 10 of GUERRERO,
@@ -116,13 +116,13 @@ Demarest/Lloyd (2016)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-demarest-page19.png
+    ..  thumbnail:: gallery/oberholtzer-demarest-page-19.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 19 of Demarest/Lloyd,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-demarest-page28.png
+    ..  thumbnail:: gallery/oberholtzer-demarest-page-28.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 28 of Demarest/Lloyd,
@@ -144,13 +144,13 @@ Al-kitab al-khamr (2015)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-khamr-page10.png
+    ..  thumbnail:: gallery/baca-khamr-page-10.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 10 of Al-kitab al-khamr,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-khamr-page11.png
+    ..  thumbnail:: gallery/baca-khamr-page-11.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 11 of Al-kitab al-khamr,
@@ -172,13 +172,13 @@ Invisible Cities (iii): Ersilia (2015)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-ersilia-page9.png
+    ..  thumbnail:: gallery/oberholtzer-ersilia-page-9.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 9 of Invisible Cities (iii): Ersilia,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-ersilia-page10.png
+    ..  thumbnail:: gallery/oberholtzer-ersilia-page-10.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 10 of Invisible Cities (iii): Ersilia,
@@ -200,13 +200,13 @@ Ins wasser eingeschrieben (2015)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-ins-wasser-page3.png
+    ..  thumbnail:: gallery/baca-ins-wasser-page-3.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 3 of Ins wasser eingeschrieben,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-ins-wasser-page4.png
+    ..  thumbnail:: gallery/baca-ins-wasser-page-4.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 4 of Ins wasser eingeschrieben,
@@ -229,13 +229,13 @@ Invisible Cities (ii): Armilla (2015)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-armilla-page8.png
+    ..  thumbnail:: gallery/oberholtzer-armilla-page-8.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 8 of Invisible Cities (ii): Armilla,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-armilla-page9.png
+    ..  thumbnail:: gallery/oberholtzer-armilla-page-9.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 9 of Invisible Cities (ii): Armilla,
@@ -257,13 +257,13 @@ Refrain (2014)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/trevino-refrain-page1.png
+    ..  thumbnail:: gallery/trevino-refrain-page-1.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 1 of Refrain,
                 by Jeffrey Treviño.
 
-    ..  thumbnail:: gallery/trevino-refrain-page2.png
+    ..  thumbnail:: gallery/trevino-refrain-page-2.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 2 of Refrain,
@@ -285,13 +285,13 @@ Huitzil (2014)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-huitzil-page12.png
+    ..  thumbnail:: gallery/baca-huitzil-page-12.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 12 of Huitzil,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-huitzil-page13.png
+    ..  thumbnail:: gallery/baca-huitzil-page-13.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 13 of Huitzil,
@@ -313,13 +313,13 @@ Invisible Cities (i): Zaira (2014)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-zaira-page16.png
+    ..  thumbnail:: gallery/oberholtzer-zaira-page-16.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 16 of Invisible Cities (i): Zaira,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-zaira-page17.png
+    ..  thumbnail:: gallery/oberholtzer-zaira-page-17.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 17 of Invisible Cities (i): Zaira,
@@ -341,13 +341,13 @@ Krummzeit (2014)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-krummzeit-page80.png
+    ..  thumbnail:: gallery/baca-krummzeit-page-80.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 80 of Krummzeit,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-krummzeit-page81.png
+    ..  thumbnail:: gallery/baca-krummzeit-page-81.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 81 of Krummzeit,
@@ -369,13 +369,13 @@ Plague Water (2014)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-plague-water-page12.png
+    ..  thumbnail:: gallery/oberholtzer-plague-water-page-12.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 12 of Plague Water,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-plague-water-page13.png
+    ..  thumbnail:: gallery/oberholtzer-plague-water-page-13.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 13 of Plague Water,
@@ -397,13 +397,13 @@ The World All Around (2012-13)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/trevino-world-all-around-page1.png
+    ..  thumbnail:: gallery/trevino-world-all-around-page-1.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 1 of The World All Around,
                 by Jeffrey Treviño.
 
-    ..  thumbnail:: gallery/trevino-world-all-around-page2.png
+    ..  thumbnail:: gallery/trevino-world-all-around-page-2.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 2 of The World All Around,
@@ -462,13 +462,13 @@ Aurora (2011)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-aurora-page6.png
+    ..  thumbnail:: gallery/oberholtzer-aurora-page-6.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 6 of Aurora,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-aurora-page7.png
+    ..  thumbnail:: gallery/oberholtzer-aurora-page-7.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 7 of Aurora,
@@ -490,13 +490,13 @@ L'archipel du corps (2011)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-archipel-page9.png
+    ..  thumbnail:: gallery/baca-archipel-page-9.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 9 of L'archipel du corps,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-archipel-page10.png
+    ..  thumbnail:: gallery/baca-archipel-page-10.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 10 of L'archipel du corps,
@@ -518,13 +518,13 @@ L'imaginaire (2010)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-imaginaire-page4.png
+    ..  thumbnail:: gallery/baca-imaginaire-page-4.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 4 of L'imaginaire,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-imaginaire-page5.png
+    ..  thumbnail:: gallery/baca-imaginaire-page-5.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 5 of L'imaginaire,
@@ -539,13 +539,13 @@ Lagartija (2010)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-lagartija-page4.png
+    ..  thumbnail:: gallery/oberholtzer-lagartija-page-4.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 4 of Lagartija,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-lagartija-page5.png
+    ..  thumbnail:: gallery/oberholtzer-lagartija-page-5.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 5 of Lagartija,
@@ -567,13 +567,13 @@ Mon seul désir (2009)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-desir-page14.png
+    ..  thumbnail:: gallery/baca-desir-page-14.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 14 of Mon seul désir,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-desir-page15.png
+    ..  thumbnail:: gallery/baca-desir-page-15.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 15 of Mon seul désir,
@@ -595,13 +595,13 @@ Lidércfény (2008)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-lidercfeny-page22.png
+    ..  thumbnail:: gallery/baca-lidercfeny-page-22.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 22 of Lidércfény,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-lidercfeny-page23.png
+    ..  thumbnail:: gallery/baca-lidercfeny-page-23.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 23 of Lidércfény,
@@ -623,13 +623,13 @@ Sekka (2007)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-sekka-page5.png
+    ..  thumbnail:: gallery/baca-sekka-page-5.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 5 of Sekka,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-sekka-page6.png
+    ..  thumbnail:: gallery/baca-sekka-page-6.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 6 of Sekka,
@@ -651,13 +651,13 @@ Sekka (2007)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-cary-page5.png
+    ..  thumbnail:: gallery/baca-cary-page-5.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 5 of Čáry,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-cary-page6.png
+    ..  thumbnail:: gallery/baca-cary-page-6.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 6 of Čáry,
@@ -672,13 +672,13 @@ Poème Récursif (2005)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-poeme-recursif-page3.png
+    ..  thumbnail:: gallery/baca-poeme-recursif-page-3.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 3 of Poème Récursif,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-poeme-recursif-page4.png
+    ..  thumbnail:: gallery/baca-poeme-recursif-page-4.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 4 of Poème Récursif,

@@ -116,13 +116,13 @@ Invisible Cities (iii): Ersilia *(2015)*
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/oberholtzer-ersilia-page9.png
+    ..  thumbnail:: gallery/oberholtzer-ersilia-page-9.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 9 of Invisible Cities (iii): Ersilia,
                 by Josiah Wolf Oberholtzer.
 
-    ..  thumbnail:: gallery/oberholtzer-ersilia-page10.png
+    ..  thumbnail:: gallery/oberholtzer-ersilia-page-10.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 10 of Invisible Cities (iii): Ersilia,
