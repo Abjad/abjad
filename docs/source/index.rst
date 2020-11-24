@@ -42,13 +42,14 @@ a major-seventh. Then slur and accent each group:
 
 ::
 
-    >>> groups = abjad.mutate(staff[:]).split(
+    >>> groups = abjad.mutate.split(
+    ...     staff[:],
     ...     durations=[abjad.Duration(5, 16)],
     ...     cyclic=True,
     ... )
     >>> for index, group in enumerate(groups):
     ...     if index % 2:
-    ...         abjad.mutate(group).transpose("M7")
+    ...         abjad.mutate.transpose(group, "M7")
     ...     if 1 < len(group):
     ...         abjad.slur(group)
     ...     accent = abjad.Articulation("accent")
@@ -60,11 +61,11 @@ Then create a second staff and invert its pitches:
 
 ::
 
-    >>> copied_staff = abjad.mutate(staff).copy()
+    >>> copied_staff = abjad.mutate.copy(staff)
     >>> staff_group = abjad.StaffGroup(
     ...     [staff, copied_staff],
     ...     lilypond_type="PianoStaff",
-    ...     )
+    ... )
     >>> for note in abjad.select(copied_staff).notes():
     ...     note.written_pitch = note.written_pitch.invert(axis="G4")
     ... 
@@ -137,13 +138,13 @@ Traiettorie inargentate *(2013)*
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-traiettorie-page6.png
+    ..  thumbnail:: gallery/baca-traiettorie-page-6.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 6 of Traiettorie inargentate,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-traiettorie-page7.png
+    ..  thumbnail:: gallery/baca-traiettorie-page-7.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 7 of Traiettorie inargentate,

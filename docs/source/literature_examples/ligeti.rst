@@ -63,15 +63,14 @@ lower Voice will hold the eighth note run. First the eighth notes:
     >>> notes = maker(pitches, [(1, 8)])
     >>> abjad.beam(notes)
     >>> abjad.slur(notes)
-    >>> abjad.attach(abjad.Dynamic('f'), notes[0])
-    >>> abjad.attach(abjad.Dynamic('p'), notes[1])
+    >>> abjad.attach(abjad.Dynamic("f"), notes[0])
+    >>> abjad.attach(abjad.Dynamic("p"), notes[1])
 
 ::
 
-    >>> voice_lower = abjad.Voice(notes)
-    >>> voice_lower.name = 'rh_lower'
-    >>> command = abjad.LilyPondLiteral(r'\voiceTwo')
-    >>> leaf = abjad.inspect(voice_lower).leaf(0)
+    >>> voice_lower = abjad.Voice(notes, name="rh_lower")
+    >>> command = abjad.LilyPondLiteral(r"\voiceTwo")
+    >>> leaf = abjad.get.leaf(voice_lower, 0)
     >>> abjad.attach(command, leaf)
     >>> abjad.show(voice_lower)
 
@@ -87,14 +86,13 @@ Now we construct the octave:
     >>> import math
     >>> n = int(math.ceil(len(pitches) / 2.))
     >>> chord = abjad.Chord([pitches[0], pitches[0] + 12], (n, 8))
-    >>> articulation = abjad.Articulation('>')
+    >>> articulation = abjad.Articulation(">")
     >>> abjad.attach(articulation, chord)
 
 ::
 
-    >>> voice_higher = abjad.Voice([chord])
-    >>> voice_higher.name = 'rh_higher'
-    >>> command = abjad.LilyPondLiteral(r'\voiceOne')
+    >>> voice_higher = abjad.Voice([chord], name="rh_higher")
+    >>> command = abjad.LilyPondLiteral(r"\voiceOne")
     >>> abjad.attach(command, voice_higher)
     >>> abjad.show(voice_higher)
 

@@ -111,7 +111,7 @@ Memory of Benjamin Britten*.
     :lilypond/pages: 1-2
     :lilypond/with-columns: 2
 
-    >>> from abjadext.demos import part
+    >>> from abjad.demos import part
     >>> lilypond_file = part.make_part_lilypond_file()
     >>> abjad.show(lilypond_file)
 

@@ -27,7 +27,7 @@ def _illustrate_component(component):
 
 
 def _illustrate_markup(markup):
-    lilypond_file = LilyPondFile.new()
+    lilypond_file = LilyPondFile()
     markup = new(markup, direction=None)
     lilypond_file.items.append(markup)
     return lilypond_file
