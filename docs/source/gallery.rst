@@ -2,11 +2,7 @@ Score gallery
 =============
 
 The following works were composed with the assistance of Abjad. The source code
-for many of these scores is also available for pedagogical purposes.
-
-..  hint::
-
-    Click on any image to zoom in.
+for many of these scores is also available. Click on any image to zoom in.
 
 
 Adumbration (2020)
@@ -429,13 +425,13 @@ Traiettorie inargentate (2013)
 
 ..  container:: table-row
 
-    ..  thumbnail:: gallery/baca-traiettorie-page6.png
+    ..  thumbnail:: gallery/baca-traiettorie-page-6.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 6 of Traiettorie inargentate,
                 by Trevor Bača.
 
-    ..  thumbnail:: gallery/baca-traiettorie-page7.png
+    ..  thumbnail:: gallery/baca-traiettorie-page-7.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 7 of Traiettorie inargentate,
