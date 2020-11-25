@@ -13,6 +13,7 @@ class MetricModulation:
     r"""
     Metric modulation.
 
+
     ..  container:: example
 
         With notes:
