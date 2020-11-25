@@ -67,14 +67,6 @@ Multiply the duration of multimeasure rests like this:
     >>> staff = abjad.Staff([multimeasure_rest])
     >>> abjad.show(staff)
 
-Use a LilyPond literal to compress full-bar rests:
-
-::
-
-    >>> command = abjad.LilyPondLiteral(r'\compressFullBarRests')
-    >>> abjad.attach(command, staff)
-    >>> show(staff)
-
 
 Getting and setting the written duration of rests
 -------------------------------------------------

@@ -2532,18 +2532,8 @@ class MeterList(TypedList):
             ..  doctest
 
                 >>> lilypond_file = meters.__illustrate__()
-                >>> abjad.f(lilypond_file) # doctest: +SKIP
-                \version "2.19..."
-                \language "english"
-                <BLANKLINE>
-                \header {
-                    tagline = ##f
-                }
-                <BLANKLINE>
-                \layout {}
-                <BLANKLINE>
-                \paper {}
-                <BLANKLINE>
+                >>> markup = lilypond_file.items[0]
+                >>> abjad.f(markup)
                 \markup {
                     \column
                         {
@@ -2737,13 +2727,13 @@ class MeterList(TypedList):
         postscript_scale = 125.0 / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
-        string = timespans._make_timespan_list_markup(
+        timespan_markup = timespans._make_timespan_list_markup(
             timespans,
             postscript_x_offset,
             postscript_scale,
             draw_offsets=False,
         )
-        timespan_markup = string
+        timespan_string = timespan_markup.contents[0]
         ps = markups.Postscript()
         rational_x_offset = Offset(0)
         for meter in self:
@@ -2759,9 +2749,7 @@ class MeterList(TypedList):
                 ps = ps.stroke()
             rational_x_offset += meter.duration
         ps_markup = rf'\postscript #"{ps}"'
-        string = rf"\combine {timespan_markup} {ps_markup}"
-        lines_markup = markups.Markup(string, literal=True)
-        assert isinstance(lines_markup, markups.Markup)
+        lines_string = rf"\combine {timespan_string} {ps_markup}"
         fraction_markups = []
         for meter, offset in zip(self, offsets):
             numerator, denominator = meter.numerator, meter.denominator
@@ -2774,8 +2762,9 @@ class MeterList(TypedList):
         fraction_markup = str(fraction_markups[0].contents[0])
         for markup in fraction_markups[1:]:
             fraction_markup = rf"\combine {fraction_markup} {markup.contents[0]}"
-        markup = markups.Markup(r"\column {{ {fraction_markup} {lines_markup} }}")
-        lilypond_file = LilyPondFile.new()
+        string = rf"\column {{ {fraction_markup} {lines_string} }}"
+        markup = markups.Markup(string)
+        lilypond_file = LilyPondFile()
         markup = new(markup, direction=None)
         lilypond_file.items.append(markup)
         return lilypond_file

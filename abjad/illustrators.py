@@ -44,8 +44,9 @@ def _illustrate_postscript(postscript):
 
 
 def _illustrate_metric_modulation(metric_modulation):
-    lilypond_file = LilyPondFile.new()
-    lilypond_file.items.append(metric_modulation._get_markup())
+    lilypond_file = LilyPondFile()
+    markup = metric_modulation._get_markup()
+    lilypond_file.items.append(markup)
     return lilypond_file
 
 

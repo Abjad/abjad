@@ -95,7 +95,7 @@ class OffsetCounter(TypedCounter):
 
                 >>> markup = offset_counter._make_markup()
                 >>> abjad.f(markup)
-                \overlay {
+                \markup { \overlay {
                 \postscript #"
                 0.2 setlinewidth
                 [ 2 1 ] 0 setdash
@@ -134,7 +134,7 @@ class OffsetCounter(TypedCounter):
                 \sans \fontsize #-3 \center-align \fraction 12 1
                 \translate #'(151.0 . 1)
                 \sans \fontsize #-3 \center-align \fraction 16 1
-                }
+                } }
 
         """
         if not self:
@@ -174,7 +174,7 @@ class OffsetCounter(TypedCounter):
             string = rf"\sans \fontsize #-3 \center-align \fraction {n} {d}"
             strings.append(string)
         string = "\n".join(strings)
-        markup = Markup(f"\\overlay {{\n{string}\n}}", literal=True)
+        markup = Markup(f"\\markup {{ \\overlay {{\n{string}\n}} }}", literal=True)
         return markup
 
     ### PRIVATE METHODS ###
