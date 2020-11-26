@@ -26,7 +26,7 @@ from .pitch.sets import PitchClassSet
 from .pitch.vectors import IntervalClassVector
 from .scheme import SchemeColor
 from .score import Chord, Component, Note, Skip
-from .selectx import Selection
+from .select import Selection
 from .storage import StorageFormatManager
 from .tag import Tag
 from .verticalmoment import iterate_vertical_moments

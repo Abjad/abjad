@@ -1,7 +1,7 @@
 import collections
 import typing
 
-from . import mathx
+from . import math
 from .duration import Multiplier
 from .ordereddict import OrderedDict
 from .score import (
@@ -661,7 +661,7 @@ class Parentage(collections.abc.Sequence):
 
         """
         prolations = [Multiplier(1)] + self._prolations()
-        products = mathx.cumulative_products(prolations)
+        products = math.cumulative_products(prolations)
         return products[-1]
 
     @property

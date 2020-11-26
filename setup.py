@@ -49,7 +49,6 @@ author = ["Trevor Bača", "Josiah Wolf Oberholtzer", "Víctor Adán"]
 author_email = [
     "trevor.baca@gmail.com",
     "josiah.oberholtzer@gmail.com",
-    "contact@victoradan.net",
 ]
 
 classifiers = [
@@ -62,11 +61,7 @@ classifiers = [
     "Topic :: Artistic Software",
 ]
 
-# TODO: can this be removed?
-entry_points = {"console_scripts": ["ajv = abjad.cli:run_ajv"]}
-
 extras_require = {
-    "cli": ["abjad-ext-cli>=3.1.0, <3.2.0"],
     "ipython": ["abjad-ext-ipython>=3.1.0, <3.2.0"],
     "nauert": ["abjad-ext-nauert>=3.1.0, <3.2.0"],
     "rmakers": ["abjad-ext-rmakers>=3.1.0, <3.2.0"],
@@ -98,7 +93,6 @@ if __name__ == "__main__":
         author_email=", ".join(author_email),
         classifiers=classifiers,
         description=description,
-        entry_points=entry_points,
         extras_require=extras_require,
         include_package_data=True,
         install_requires=install_requires,

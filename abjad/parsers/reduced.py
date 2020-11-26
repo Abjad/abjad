@@ -11,7 +11,7 @@ from ..indicators.TimeSignature import TimeSignature
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..score import Chord, Container, Note, Rest, Tuplet
-from ..selectx import Selection
+from ..select import Selection
 from .base import Parser
 
 

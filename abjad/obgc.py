@@ -8,7 +8,7 @@ from .overrides import LilyPondLiteral, tweak
 from .parentage import Parentage
 from .pitch.sets import PitchSet
 from .score import Chord, Container, Note, Voice
-from .selectx import Selection
+from .select import Selection
 from .spanners import beam, slur
 from .tag import Tag
 

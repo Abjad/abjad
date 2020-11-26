@@ -47,7 +47,7 @@ Use ``attach()`` to attach articulations to a leaf:
 
 ::
 
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 
 Attaching articulations to many leaves
@@ -65,7 +65,7 @@ Write a loop to attach articulations to many leaves:
 
 ::
 
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 
 Getting the articulations attached to a leaf
@@ -89,7 +89,7 @@ Detach articulations with ``detach()``:
 
 ::
 
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 
 Understanding the string representation of an articulation
@@ -129,7 +129,7 @@ Use ``Up`` to force an articulation to appear above the staff:
 
 ::
 
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 Use ``Down`` to force an articulation to appear below the staff:
 
@@ -139,12 +139,12 @@ Use ``Down`` to force an articulation to appear below the staff:
 
 ::
 
-    >>> articulation = abjad.Articulation('turn', direction=Down)
+    >>> articulation = abjad.Articulation("turn", direction=abjad.Down)
     >>> abjad.attach(articulation, staff[5])
 
 ::
 
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 
 Comparing articulations
@@ -154,13 +154,13 @@ Articulations compare equal when name and direction strings compare equal:
 
 ::
 
-    >>> abjad.Articulation('staccato', direction=Up) == abjad.Articulation('staccato', direction=abjad.Up)
+    >>> abjad.Articulation("staccato", direction=abjad.Up) == abjad.Articulation("staccato", direction=abjad.Up)
 
 Otherwise articulations do not compare equal:
 
 ::
 
-    >>> abjad.Articulation('staccato', direction=abjad.Up) == abjad.Articulation('turn', direction=abjad.Up)
+    >>> abjad.Articulation("staccato", direction=abjad.Up) == abjad.Articulation("turn", direction=abjad.Up)
 
 (This chapter's musical examples are based on Haydn's piano sonata number 42, 
 Hob. XVI/27.)

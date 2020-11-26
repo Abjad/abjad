@@ -7,14 +7,14 @@ import typing
 
 import uqbar.graphs
 
-from . import _inspect, _iterate, markups, mathx, mutate, rhythmtrees
+from . import _inspect, _iterate, markups, math, mutate, rhythmtrees
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
 from .lilypondfile import LilyPondFile
 from .new import new
 from .parentage import Parentage
 from .score import Chord, Container, Note, Rest, Skip, Tuplet
-from .selectx import LogicalTie, Selection
+from .select import LogicalTie, Selection
 from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
 from .timespan import OffsetCounter, Timespan, TimespanList
@@ -362,7 +362,7 @@ class Meter:
             else:
                 fraction = NonreducedFraction(argument.numerator, argument.denominator)
             numerator, denominator = fraction.numerator, fraction.denominator
-            factors = mathx.factors(numerator)
+            factors = math.factors(numerator)
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
@@ -867,7 +867,7 @@ class Meter:
 
         Returns true or false.
         """
-        if 3 in mathx.divisors(self.numerator):
+        if 3 in math.divisors(self.numerator):
             if not self.numerator == 3:
                 return True
         return False
@@ -1188,7 +1188,7 @@ class Meter:
 
         Returns dictionary.
         """
-        assert mathx.is_positive_integer_power_of_two(denominator // self.denominator)
+        assert math.is_positive_integer_power_of_two(denominator // self.denominator)
         inventory = list(self.depthwise_offset_inventory)
         old_flag_count = Duration(1, self.denominator).flag_count
         new_flag_count = Duration(1, denominator).flag_count
@@ -2710,7 +2710,7 @@ class MeterList(TypedList):
         """
         durations = [_.duration for _ in self]
         total_duration = sum(durations)
-        offsets = mathx.cumulative_sums(durations, start=0)
+        offsets = math.cumulative_sums(durations, start=0)
         timespans = TimespanList()
         for one, two in Sequence(offsets).nwise():
             timespan = Timespan(start_offset=one, stop_offset=two)

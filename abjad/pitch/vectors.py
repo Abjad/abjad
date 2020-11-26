@@ -2,7 +2,7 @@ import abc
 import collections
 import types
 
-from .. import enumeratex, mathx
+from .. import enumerate, math
 from ..storage import FormatSpecification
 from ..typedcollections import TypedCollection, TypedCounter
 from .intervalclasses import IntervalClass, NamedIntervalClass, NumberedIntervalClass
@@ -113,7 +113,7 @@ class Vector(TypedCounter):
             repr_items = {str(k): v for k, v in self.items()}
         else:
             repr_items = {
-                mathx.integer_equivalent_number_to_integer(float(k.number)): v
+                math.integer_equivalent_number_to_integer(float(k.number)): v
                 for k, v in self.items()
             }
         return FormatSpecification(
@@ -195,7 +195,7 @@ class IntervalVector(Vector):
             ),
         ):
             intervals = []
-            pairs = enumeratex.yield_pairs(items)
+            pairs = enumerate.yield_pairs(items)
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals
@@ -305,7 +305,7 @@ class IntervalClassVector(Vector):
         if isinstance(items, prototype):
             intervals = []
             items = tuple(items)
-            pairs = enumeratex.yield_pairs(items)
+            pairs = enumerate.yield_pairs(items)
             for first, second in pairs:
                 intervals.append(second - first)
             items = intervals

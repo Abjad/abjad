@@ -8,7 +8,7 @@ import typing
 from . import enums, typings
 from .duration import NonreducedFraction
 from .storage import FormatSpecification, StorageFormatManager
-from .stringx import String
+from .string import String
 
 
 class Scheme:

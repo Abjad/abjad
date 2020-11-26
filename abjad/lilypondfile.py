@@ -24,7 +24,7 @@ from .overrides import LilyPondLiteral, override, setting
 from .pitch.pitches import NamedPitch
 from .scheme import Scheme, SpacingVector
 from .score import Component, Container, Context, Leaf, Score, Skip, Staff, Voice
-from .selectx import Selection
+from .select import Selection
 from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
 

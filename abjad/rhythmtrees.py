@@ -8,7 +8,7 @@ import quicktions
 import uqbar.containers
 import uqbar.graphs
 
-from . import mathx, mutate
+from . import math, mutate
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .makers import LeafMaker
 from .parsers.base import Parser
@@ -227,7 +227,7 @@ class RhythmTreeMixin:
 
         Returns multiplier.
         """
-        return mathx.cumulative_products(self.prolations)[-1]
+        return math.cumulative_products(self.prolations)[-1]
 
     @property
     def prolations(self):

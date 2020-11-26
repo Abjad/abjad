@@ -9,7 +9,7 @@ Updates start offsets, stop offsets and indicators everywhere in score.
     implementation of the update manager.
 
 """
-from . import mathx
+from . import math
 from .duration import Duration, Multiplier, Offset
 from .indicators.MetronomeMark import MetronomeMark
 from .indicators.TimeSignature import TimeSignature
@@ -204,7 +204,7 @@ def _to_measure_number(component, measure_start_offsets):
             measure_number = 0
             return measure_number
     measure_start_offsets = measure_start_offsets[:]
-    measure_start_offsets.append(mathx.Infinity())
+    measure_start_offsets.append(math.Infinity())
     pairs = Sequence(measure_start_offsets)
     pairs = pairs.nwise()
     for measure_index, pair in enumerate(pairs):

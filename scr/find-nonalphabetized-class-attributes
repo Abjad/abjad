@@ -84,7 +84,7 @@ def main():
 
 
 if __name__ == "__main__":
-    abjad.iox.spawn_subprocess("clear")
+    abjad.io.spawn_subprocess("clear")
     print("Finding classes with nonalphabetized attributes ...")
     print()
     main()

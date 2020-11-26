@@ -3,7 +3,7 @@ import typing
 
 from . import _inspect, _iterate, enums, typings
 from .duration import Duration
-from .formatx import LilyPondFormatManager
+from .format import LilyPondFormatManager
 from .indicators.StaffChange import StaffChange
 from .indicators.TimeSignature import TimeSignature
 from .markups import Markup
@@ -11,7 +11,7 @@ from .parentage import Parentage
 from .pitch.pitches import NamedPitch
 from .pitch.sets import PitchSet
 from .score import Chord, Component, Container, Leaf, Note, Staff
-from .selectx import LogicalTie, Selection
+from .select import LogicalTie, Selection
 from .storage import StorageFormatManager
 from .tag import Tag
 from .timespan import Timespan

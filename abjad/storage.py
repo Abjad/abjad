@@ -305,7 +305,7 @@ class StorageFormatManager:
         "core",
         "indicators",
         "markup",
-        "mathx",
+        "math",
         "meter",
         "pitch",
         "scheme",

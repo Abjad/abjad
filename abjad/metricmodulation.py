@@ -5,7 +5,7 @@ from .bundle import LilyPondFormatBundle
 from .markups import Markup
 from .new import new
 from .ratio import Ratio
-from .selectx import Selection
+from .select import Selection
 from .storage import StorageFormatManager
 
 

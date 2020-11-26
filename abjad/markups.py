@@ -7,7 +7,7 @@ import typing
 
 import quicktions
 
-from . import enums, mathx
+from . import enums, math
 from . import tag as _tag
 from .bundle import LilyPondFormatBundle
 from .lyconst import colors
@@ -16,7 +16,7 @@ from .new import new
 from .overrides import TweakInterface
 from .scheme import Scheme, SchemeColor, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
-from .stringx import String
+from .string import String
 
 
 class Markup:
@@ -726,14 +726,14 @@ class Markup:
 
             REGRESSION. Input string accepts LilyPond \markup command:
 
-            >>> string = r'\markup { \note #"4" #1 }'
+            >>> string = r'\markup { \note {4} #1 }'
             >>> markup = abjad.Markup(
             ...     string,
             ...     direction=abjad.Up,
             ...     literal=True,
             ...     )
             >>> abjad.f(markup)
-            ^ \markup { \note #"4" #1 }
+            ^ \markup { \note {4} #1 }
 
             >>> note = abjad.Note("c'4")
             >>> abjad.attach(markup, note)
@@ -743,7 +743,7 @@ class Markup:
 
                 >>> abjad.f(note)
                 c'4
-                ^ \markup { \note #"4" #1 }
+                ^ \markup { \note {4} #1 }
 
         """
         return self._literal
@@ -1244,7 +1244,7 @@ class Markup:
         Returns new markup
         """
         fontsize = float(fontsize)
-        fontsize = mathx.integer_equivalent_number_to_integer(fontsize)
+        fontsize = math.integer_equivalent_number_to_integer(fontsize)
         contents = self._parse_markup_command_argument(self)
         command = MarkupCommand("fontsize", fontsize, contents)
         return new(self, contents=command)
@@ -1573,7 +1573,7 @@ class Markup:
             >>> abjad.show(markup) # doctest: +SKIP
 
         """
-        if mathx.is_integer_equivalent_number(rational):
+        if math.is_integer_equivalent_number(rational):
             number = int(rational)
             markup = Markup(number, direction=direction)
             return markup
@@ -3305,7 +3305,7 @@ class Postscript:
         elif isinstance(argument, bool):
             return str(argument).lower()
         elif isinstance(argument, (int, float)):
-            argument = mathx.integer_equivalent_number_to_integer(argument)
+            argument = math.integer_equivalent_number_to_integer(argument)
             return str(argument)
         return str(argument)
 

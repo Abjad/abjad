@@ -3,10 +3,10 @@ from quicktions import Fraction
 from . import (
     demos,
     deprecated,
-    enumeratex,
+    enumerate,
     get,
     illustrators,
-    iox,
+    io,
     iterpitches,
     lyconst,
     lyenv,
@@ -63,7 +63,7 @@ from .exceptions import (
     WellformednessError,
 )
 from .expression import Expression, Signature
-from .formatx import LilyPondFormatManager, f
+from .format import LilyPondFormatManager, f
 from .get import Descendants, Lineage
 from .illustrators import illustrate
 from .indicators.Arpeggio import Arpeggio
@@ -168,7 +168,7 @@ from .instruments import (
     Violin,
     Xylophone,
 )
-from .iox import graph, play, show
+from .io import graph, play, show
 from .iterate import Iteration, iterate
 from .label import ColorMap, Label, label
 from .lilypond import lilypond
@@ -190,7 +190,7 @@ from .lyproxy import (
 )
 from .makers import LeafMaker, NoteMaker
 from .markups import Markup, MarkupCommand, Postscript, PostscriptOperator
-from .mathx import Infinity, NegativeInfinity
+from .math import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
 from .metricmodulation import MetricModulation
 from .new import new
@@ -299,7 +299,7 @@ from .score import (
     Voice,
 )
 from .segmentmaker import SegmentMaker
-from .selectx import (
+from .select import (
     DurationInequality,
     Inequality,
     LengthInequality,
@@ -329,7 +329,7 @@ from .storage import (
     StorageFormatSpecification,
     storage,
 )
-from .stringx import String
+from .string import String
 from .tag import Line, Tag, activate, deactivate
 from .templates import (
     GroupedRhythmicStavesScoreTemplate,
@@ -690,7 +690,7 @@ __all__ = [
     "demos",
     "deprecated",
     "detach",
-    "enumeratex",
+    "enumerate",
     "f",
     "glissando",
     "graph",
@@ -703,7 +703,7 @@ __all__ = [
     "index_first",
     "index_last",
     "get",
-    "iox",
+    "io",
     "iterate",
     "iterate_leaf_pairs",
     "iterate_pitch_pairs",

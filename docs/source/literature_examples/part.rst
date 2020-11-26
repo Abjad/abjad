@@ -81,11 +81,12 @@ give them a 6/4 time signature, just so they line up properly.
 
 ::
 
-    >>> staff = abjad.Staff(sequence(descents).flatten())
+    >>> notes = abjad.sequence(descents).flatten()
+    >>> staff = abjad.Staff(notes)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.get.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 Let's look at the second violins too:
 
@@ -100,11 +101,12 @@ Let's look at the second violins too:
 
 ::
 
-    >>> staff = abjad.Staff(sequence(descents).flatten())
+    >>> notes = abjad.sequence(descents).flatten()
+    >>> staff = abjad.Staff(notes)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.get.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 And, last we'll take a peek at the violas. They have some longer notes, so
 we'll split their music cyclically every 3 half notes, just so nothing crosses
@@ -121,7 +123,8 @@ the bar lines accidentally:
 
 ::
 
-    >>> staff = abjad.Staff(abjad.sequence(descents).flatten())
+    >>> notes = abjad.sequence(descents).flatten()
+    >>> staff = abjad.Staff(notes)
     >>> shards = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.get.leaf(staff, 0)

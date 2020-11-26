@@ -1,10 +1,10 @@
-from . import enumeratex
+from . import enumerate
 from .iterate import Iteration
 from .ordereddict import OrderedDict
 from .parentage import Parentage
 from .pitch.segments import PitchSegment
 from .score import Chord, Leaf, Note
-from .selectx import Selection
+from .select import Selection
 from .sequence import Sequence
 
 
@@ -716,13 +716,13 @@ def iterate_leaf_pairs(components):
     """
     vertical_moments = iterate_vertical_moments(components)
     for moment_1, moment_2 in Sequence(vertical_moments).nwise():
-        for pair in enumeratex.yield_pairs(moment_1.start_leaves):
+        for pair in enumerate.yield_pairs(moment_1.start_leaves):
             yield Selection(pair)
         sequences = [moment_1.leaves, moment_2.start_leaves]
-        for pair in enumeratex.yield_outer_product(sequences):
+        for pair in enumerate.yield_outer_product(sequences):
             yield Selection(pair)
     else:
-        for pair in enumeratex.yield_pairs(moment_2.start_leaves):
+        for pair in enumerate.yield_pairs(moment_2.start_leaves):
             yield Selection(pair)
 
 
@@ -813,18 +813,18 @@ def iterate_pitch_pairs(components):
     """
     for leaf_pair in iterate_leaf_pairs(components):
         pitches = sorted(Iteration(leaf_pair[0]).pitches())
-        for pair in enumeratex.yield_pairs(pitches):
+        for pair in enumerate.yield_pairs(pitches):
             yield PitchSegment(pair)
         if isinstance(leaf_pair, set):
             pitches = sorted(Iteration(leaf_pair).pitches())
-            for pair in enumeratex.yield_pairs(pitches):
+            for pair in enumerate.yield_pairs(pitches):
                 yield PitchSegment(pair)
         else:
             pitches_1 = sorted(Iteration(leaf_pair[0]).pitches())
             pitches_2 = sorted(Iteration(leaf_pair[1]).pitches())
             sequences = [pitches_1, pitches_2]
-            for pair in enumeratex.yield_outer_product(sequences):
+            for pair in enumerate.yield_outer_product(sequences):
                 yield PitchSegment(pair)
         pitches = sorted(Iteration(leaf_pair[1]).pitches())
-        for pair in enumeratex.yield_pairs(pitches):
+        for pair in enumerate.yield_pairs(pitches):
             yield PitchSegment(pair)

@@ -4,7 +4,9 @@ import typing
 
 import quicktions
 
-from . import exceptions, mathx, storage
+from . import exceptions
+from . import math as _math
+from . import storage
 
 
 class Duration(quicktions.Fraction):
@@ -127,8 +129,8 @@ class Duration(quicktions.Fraction):
             if (
                 isinstance(argument, tuple)
                 and len(argument) == 2
-                and mathx.is_integer_equivalent(argument[0])
-                and mathx.is_integer_equivalent(argument[1])
+                and _math.is_integer_equivalent(argument[0])
+                and _math.is_integer_equivalent(argument[1])
                 and not argument[1] == 0
             ):
                 return quicktions.Fraction.__new__(
@@ -144,7 +146,7 @@ class Duration(quicktions.Fraction):
             if (
                 isinstance(argument, tuple)
                 and len(argument) == 1
-                and mathx.is_integer_equivalent(argument[0])
+                and _math.is_integer_equivalent(argument[0])
             ):
                 return quicktions.Fraction.__new__(class_, int(argument[0]))
         else:
@@ -152,7 +154,7 @@ class Duration(quicktions.Fraction):
                 return quicktions.Fraction.__new__(class_, *arguments)
             except TypeError:
                 pass
-            if mathx.all_are_integer_equivalent_numbers(arguments):
+            if _math.all_are_integer_equivalent_numbers(arguments):
                 return quicktions.Fraction.__new__(class_, *[int(x) for x in arguments])
         raise ValueError(f"can not construct duration: {arguments!r}.")
 
@@ -480,9 +482,9 @@ class Duration(quicktions.Fraction):
         group = [durations[0]]
         result = [group]
         for d in durations[1:]:
-            d_f = set(mathx.factors(d.denominator))
+            d_f = set(_math.factors(d.denominator))
             d_f.discard(2)
-            gd_f = set(mathx.factors(group[0].denominator))
+            gd_f = set(_math.factors(group[0].denominator))
             gd_f.discard(2)
             if d_f == gd_f:
                 group.append(d)
@@ -581,7 +583,7 @@ class Duration(quicktions.Fraction):
         """
         if not self.is_assignable:
             raise exceptions.AssignabilityError
-        binary_string = mathx.integer_to_binary_string(self.numerator)
+        binary_string = _math.integer_to_binary_string(self.numerator)
         digit_sum = sum([int(x) for x in list(binary_string)])
         dot_count = digit_sum - 1
         return dot_count
@@ -620,7 +622,7 @@ class Duration(quicktions.Fraction):
             16/16   1
 
         """
-        good_denominator = mathx.greatest_power_of_two_less_equal(self.denominator)
+        good_denominator = _math.greatest_power_of_two_less_equal(self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
         while not candidate.is_assignable:
@@ -882,7 +884,7 @@ class Duration(quicktions.Fraction):
 
         Returns multipler.
         """
-        numerator = mathx.greatest_power_of_two_less_equal(self.denominator)
+        numerator = _math.greatest_power_of_two_less_equal(self.denominator)
         return Multiplier(numerator, self.denominator)
 
     @property
@@ -919,8 +921,8 @@ class Duration(quicktions.Fraction):
 
         """
         if 0 < self < 16:
-            if mathx.is_nonnegative_integer_power_of_two(self.denominator):
-                if mathx.is_assignable_integer(self.numerator):
+            if _math.is_nonnegative_integer_power_of_two(self.denominator):
+                if _math.is_assignable_integer(self.numerator):
                     return True
         return False
 
@@ -1027,7 +1029,7 @@ class Duration(quicktions.Fraction):
         """
         durations_ = [Duration(_) for _ in durations]
         denominators = [_.denominator for _ in durations_]
-        lcd = mathx.least_common_multiple(*denominators)
+        lcd = _math.least_common_multiple(*denominators)
         nonreduced_fractions = [
             NonreducedFraction(_).with_denominator(lcd) for _ in durations_
         ]
@@ -2039,7 +2041,7 @@ class NonreducedFraction(quicktions.Fraction):
             denominator = 1
         else:
             raise ValueError(f"can not initialize {class_.__name__}: {arguments!r}.")
-        numerator *= mathx.sign(denominator)
+        numerator *= _math.sign(denominator)
         denominator = abs(denominator)
         self = quicktions.Fraction.__new__(class_, numerator, denominator)
         self._numerator = numerator
@@ -2094,7 +2096,7 @@ class NonreducedFraction(quicktions.Fraction):
             return type(self)(pair)
         else:
             denominators = [self.denominator, argument.denominator]
-            denominator = mathx.least_common_multiple(*denominators)
+            denominator = _math.least_common_multiple(*denominators)
             self_multiplier = denominator // self.denominator
             argument_multiplier = denominator // argument.denominator
             self_numerator = self_multiplier * self.numerator
@@ -2348,7 +2350,7 @@ class NonreducedFraction(quicktions.Fraction):
 
     def _fraction_with_denominator(self, fraction, denominator):
         denominators = [denominator, fraction.denominator]
-        denominator = mathx.least_common_multiple(*denominators)
+        denominator = _math.least_common_multiple(*denominators)
         result = type(self)(fraction)
         result = result.with_denominator(denominator)
         return result
@@ -2400,7 +2402,7 @@ class NonreducedFraction(quicktions.Fraction):
         """
         durations_ = [Duration(_) for _ in durations]
         denominators = [_.denominator for _ in durations_]
-        lcd = mathx.least_common_multiple(*denominators)
+        lcd = _math.least_common_multiple(*denominators)
         nonreduced_fractions = [
             NonreducedFraction(_).with_denominator(lcd) for _ in durations_
         ]
@@ -2472,14 +2474,14 @@ class NonreducedFraction(quicktions.Fraction):
 
         """
         multiplier = quicktions.Fraction(*multiplier)
-        self_numerator_factors = mathx.factors(self.numerator)
-        multiplier_denominator_factors = mathx.factors(multiplier.denominator)
+        self_numerator_factors = _math.factors(self.numerator)
+        multiplier_denominator_factors = _math.factors(multiplier.denominator)
         for factor in multiplier_denominator_factors[:]:
             if factor in self_numerator_factors:
                 self_numerator_factors.remove(factor)
                 multiplier_denominator_factors.remove(factor)
-        self_denominator_factors = mathx.factors(self.denominator)
-        multiplier_numerator_factors = mathx.factors(multiplier.numerator)
+        self_denominator_factors = _math.factors(self.denominator)
+        multiplier_numerator_factors = _math.factors(multiplier.numerator)
         for factor in multiplier_numerator_factors[:]:
             if factor in self_denominator_factors:
                 self_denominator_factors.remove(factor)

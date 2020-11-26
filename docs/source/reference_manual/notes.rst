@@ -9,8 +9,8 @@ You can make notes from a LilyPond input string:
 
 ::
 
-    >>> note = Note("c'4")
-    >>> show(note)
+    >>> note = abjad.Note("c'4")
+    >>> abjad.show(note)
 
 
 Making notes from numbers
@@ -20,8 +20,8 @@ You can also make notes from numbers:
 
 ::
 
-    >>> note = Note(0, Duration(1, 4))
-    >>> show(note)
+    >>> note = abjad.Note(0, abjad.Duration(1, 4))
+    >>> abjad.show(note)
 
 
 Understanding the interpreter representation of a note
@@ -51,22 +51,22 @@ Set the written pitch of notes like this:
 
 ::
 
-    >>> note.written_pitch = NamedPitch("cs'")
-    >>> show(note)
+    >>> note.written_pitch = abjad.NamedPitch("cs'")
+    >>> abjad.show(note)
 
 Or this:
 
 ::
 
     >>> note.written_pitch = "d'"
-    >>> show(note)
+    >>> abjad.show(note)
 
 Or this:
 
 ::
 
     >>> note.written_pitch = 3
-    >>> show(note)
+    >>> abjad.show(note)
 
 
 Getting and setting the written duration of notes
@@ -82,5 +82,5 @@ Set the written duration of notes like this:
 
 ::
 
-    >>> note.written_duration = Duration(3, 16)
-    >>> show(note)
+    >>> note.written_duration = abjad.Duration(3, 16)
+    >>> abjad.show(note)

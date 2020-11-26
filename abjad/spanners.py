@@ -37,7 +37,7 @@ from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, twe
 from .parentage import Parentage
 from .scheme import SchemeSymbol
 from .score import Chord, Component, MultimeasureRest, Note, Rest, Skip, Staff
-from .selectx import DurationInequality, Selection, select
+from .select import DurationInequality, Selection, select
 from .sequence import Sequence
 from .tag import Tag
 

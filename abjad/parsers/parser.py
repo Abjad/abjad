@@ -81,7 +81,7 @@ from ..score import (
     Tuplet,
     Voice,
 )
-from ..stringx import String
+from ..string import String
 from .base import Parser
 
 

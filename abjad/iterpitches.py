@@ -6,7 +6,7 @@ from .iterate import Iteration
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch, Pitch
 from .score import Chord, Note
-from .selectx import Selection
+from .select import Selection
 
 
 def iterate_out_of_range(components) -> typing.Generator:

@@ -1,7 +1,7 @@
 import functools
 import itertools
 
-from . import mathx
+from . import math
 from . import sequence as _sequence
 
 ### PRIVATE FUNCTIONS ###
@@ -15,26 +15,26 @@ def _is_restricted_growth_function(sequence):
 
         Is true when sequence is a restricted growth function:
 
-        >>> abjad.enumeratex._is_restricted_growth_function([1, 1, 1, 1])
+        >>> abjad.enumerate._is_restricted_growth_function([1, 1, 1, 1])
         True
 
-        >>> abjad.enumeratex._is_restricted_growth_function([1, 1, 1, 2])
+        >>> abjad.enumerate._is_restricted_growth_function([1, 1, 1, 2])
         True
 
-        >>> abjad.enumeratex._is_restricted_growth_function([1, 1, 2, 1])
+        >>> abjad.enumerate._is_restricted_growth_function([1, 1, 2, 1])
         True
 
-        >>> abjad.enumeratex._is_restricted_growth_function([1, 1, 2, 2])
+        >>> abjad.enumerate._is_restricted_growth_function([1, 1, 2, 2])
         True
 
     ..  container:: example
 
         Is false when sequence is not a restricted growth function:
 
-        >>> abjad.enumeratex._is_restricted_growth_function([1, 1, 1, 3])
+        >>> abjad.enumerate._is_restricted_growth_function([1, 1, 1, 3])
         False
 
-        >>> abjad.enumeratex._is_restricted_growth_function([17])
+        >>> abjad.enumerate._is_restricted_growth_function([17])
         False
 
     A restricted growth function is a sequence ``l`` such that
@@ -63,7 +63,7 @@ def _partition_by_rgf(sequence, rgf):
     >>> sequence = abjad.sequence(range(10))
     >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
 
-    >>> abjad.enumeratex._partition_by_rgf(sequence, rgf)
+    >>> abjad.enumerate._partition_by_rgf(sequence, rgf)
     Sequence([Sequence([0, 1, 4]), Sequence([2, 3, 5, 8]), Sequence([6, 7]), Sequence([9])])
 
     Returns list of lists.
@@ -91,7 +91,7 @@ def _yield_restricted_growth_functions(length):
 
     ..  container:: example
 
-        >>> rgfs = abjad.enumeratex._yield_restricted_growth_functions(4)
+        >>> rgfs = abjad.enumerate._yield_restricted_growth_functions(4)
         >>> for rgf in rgfs:
         ...     rgf
         ...
@@ -115,7 +115,7 @@ def _yield_restricted_growth_functions(length):
 
     Returns generator of tuples.
     """
-    assert mathx.is_positive_integer(length), repr(length)
+    assert math.is_positive_integer(length), repr(length)
     last_rgf = list(range(1, length + 1))
     rgf = length * [1]
     yield tuple(rgf)
@@ -141,7 +141,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     ..  container:: example
 
         >>> sequence = abjad.sequence([1, 2, 3, 4])
-        >>> for combination in abjad.enumeratex.yield_combinations(sequence):
+        >>> for combination in abjad.enumerate.yield_combinations(sequence):
         ...     combination
         Sequence([])
         Sequence([1])
@@ -163,7 +163,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     ..  container:: example
 
         >>> sequence = abjad.sequence([1, 2, 3, 4])
-        >>> for combination in abjad.enumeratex.yield_combinations(
+        >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     minimum_length=3,
         ...     ):
@@ -177,7 +177,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     ..  container:: example
 
         >>> sequence = abjad.sequence([1, 2, 3, 4])
-        >>> for combination in abjad.enumeratex.yield_combinations(
+        >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     maximum_length=2,
         ...     ):
@@ -197,7 +197,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     ..  container:: example
 
         >>> sequence = abjad.sequence([1, 2, 3, 4])
-        >>> for combination in abjad.enumeratex.yield_combinations(
+        >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     minimum_length=2,
         ...     maximum_length=2,
@@ -213,7 +213,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     ..  container:: example
 
         >>> sequence = abjad.sequence("text")
-        >>> for combination in abjad.enumeratex.yield_combinations(sequence):
+        >>> for combination in abjad.enumerate.yield_combinations(sequence):
         ...     ''.join([str(_) for _ in combination])
         ''
         't'
@@ -238,7 +238,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     """
     length = len(argument)
     for i in range(2 ** length):
-        binary_string = mathx.integer_to_binary_string(i)
+        binary_string = math.integer_to_binary_string(i)
         binary_string = binary_string.zfill(length)
         sublist = []
         for j, digit in enumerate(reversed(binary_string)):
@@ -265,7 +265,7 @@ def yield_outer_product(argument):
     ..  container:: example
 
         >>> sequences = [abjad.sequence([1, 2, 3]), abjad.sequence(['a', 'b'])]
-        >>> for sequence_ in abjad.enumeratex.yield_outer_product(sequences):
+        >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
         ...     sequence_
         ...
         Sequence([1, 'a'])
@@ -279,7 +279,7 @@ def yield_outer_product(argument):
 
         >>> sequences = [[1, 2, 3], ['a', 'b'], ['X', 'Y']]
         >>> sequences = [abjad.sequence(_) for _ in sequences]
-        >>> for sequence_ in abjad.enumeratex.yield_outer_product(sequences):
+        >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
         ...     sequence_
         ...
         Sequence([1, 'a', 'X'])
@@ -299,7 +299,7 @@ def yield_outer_product(argument):
 
         >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
         >>> sequences = [abjad.sequence(_) for _ in sequences]
-        >>> for sequence_ in abjad.enumeratex.yield_outer_product(sequences):
+        >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
         ...     sequence_
         ...
         Sequence([1, 4, 6])
@@ -346,7 +346,7 @@ def yield_pairs(argument):
 
         Without duplicate items:
 
-        >>> for pair in abjad.enumeratex.yield_pairs([1, 2, 3, 4]):
+        >>> for pair in abjad.enumerate.yield_pairs([1, 2, 3, 4]):
         ...     pair
         ...
         Sequence([1, 2])
@@ -360,7 +360,7 @@ def yield_pairs(argument):
 
         With duplicate items:
 
-        >>> for pair in abjad.enumeratex.yield_pairs([1, 1, 1]):
+        >>> for pair in abjad.enumerate.yield_pairs([1, 1, 1]):
         ...     pair
         ...
         Sequence([1, 1])
@@ -371,7 +371,7 @@ def yield_pairs(argument):
 
         Length-1 sequence:
 
-        >>> for pair in abjad.enumeratex.yield_pairs([1]):
+        >>> for pair in abjad.enumerate.yield_pairs([1]):
         ...     pair
         ...
 
@@ -379,7 +379,7 @@ def yield_pairs(argument):
 
         Empty sequence:
 
-        >>> for pair in abjad.enumeratex.yield_pairs([]):
+        >>> for pair in abjad.enumerate.yield_pairs([]):
         ...     pair
         ...
 
@@ -398,7 +398,7 @@ def yield_partitions(argument):
 
     ..  container:: example
 
-        >>> for partition in abjad.enumeratex.yield_partitions([0, 1, 2]):
+        >>> for partition in abjad.enumerate.yield_partitions([0, 1, 2]):
         ...     partition
         ...
         Sequence([Sequence([0, 1, 2])])
@@ -408,7 +408,7 @@ def yield_partitions(argument):
 
     ..  container:: example
 
-        >>> for partition in abjad.enumeratex.yield_partitions([0, 1, 2, 3]):
+        >>> for partition in abjad.enumerate.yield_partitions([0, 1, 2, 3]):
         ...     partition
         ...
         Sequence([Sequence([0, 1, 2, 3])])
@@ -424,7 +424,7 @@ def yield_partitions(argument):
     """
     length = len(argument) - 1
     for i in range(2 ** length):
-        binary_string = mathx.integer_to_binary_string(i)
+        binary_string = math.integer_to_binary_string(i)
         binary_string = binary_string.zfill(length)
         part = list(argument[0:1])
         partition = [part]
@@ -445,7 +445,7 @@ def yield_permutations(argument):
 
     ..  container:: example
 
-        >>> for permutation in abjad.enumeratex.yield_permutations([1, 2, 3]):
+        >>> for permutation in abjad.enumerate.yield_permutations([1, 2, 3]):
         ...     permutation
         ...
         Sequence([1, 2, 3])
@@ -470,7 +470,7 @@ def yield_set_partitions(argument):
 
     ..  container:: example
 
-        >>> for set_partition in abjad.enumeratex.yield_set_partitions([21, 22, 23, 24]):
+        >>> for set_partition in abjad.enumerate.yield_set_partitions([21, 22, 23, 24]):
         ...     set_partition
         ...
         Sequence([Sequence([21, 22, 23, 24])])
@@ -506,7 +506,7 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
 
     ..  container:: example
 
-        >>> for subsequence in abjad.enumeratex.yield_subsequences([0, 1, 2]):
+        >>> for subsequence in abjad.enumerate.yield_subsequences([0, 1, 2]):
         ...     subsequence
         ...
         Sequence([])
@@ -519,7 +519,7 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
 
     ..  container:: example
 
-        >>> for subsequence in abjad.enumeratex.yield_subsequences(
+        >>> for subsequence in abjad.enumerate.yield_subsequences(
         ...     [0, 1, 2, 3, 4],
         ...     minimum_length=3,
         ...     ):
@@ -534,7 +534,7 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
 
     ..  container:: example
 
-        >>> for subsequence in abjad.enumeratex.yield_subsequences(
+        >>> for subsequence in abjad.enumerate.yield_subsequences(
         ...     [0, 1, 2, 3, 4],
         ...     maximum_length=3,
         ...     ):
@@ -556,7 +556,7 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
 
     ..  container:: example
 
-        >>> for subsequence in abjad.enumeratex.yield_subsequences(
+        >>> for subsequence in abjad.enumerate.yield_subsequences(
         ...     [0, 1, 2, 3, 4],
         ...     minimum_length=3,
         ...     maximum_length=3,

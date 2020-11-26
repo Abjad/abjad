@@ -1,7 +1,7 @@
 import functools
 import typing
 
-from .. import enums, mathx
+from .. import enums, math
 from ..bundle import LilyPondFormatBundle
 from ..markups import Markup
 from ..new import new
@@ -72,7 +72,7 @@ class ColorFingering:
 
     def __init__(self, number: int = None, *, tweaks: TweakInterface = None) -> None:
         if number is not None:
-            assert mathx.is_positive_integer(number)
+            assert math.is_positive_integer(number)
         self._number = number
         if tweaks is not None:
             assert isinstance(tweaks, TweakInterface), repr(tweaks)

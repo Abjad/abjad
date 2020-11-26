@@ -5,7 +5,7 @@ import itertools
 import operator
 import typing
 
-from . import _inspect, _iterate, enums, mathx, typings
+from . import _inspect, _iterate, enums, math, typings
 from .attach import attach, detach
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Offset
@@ -160,8 +160,8 @@ class DurationInequality(Inequality):
     ) -> None:
         Inequality.__init__(self, operator_string=operator_string)
         if duration is None:
-            duration = mathx.Infinity()
-        infinities = (mathx.Infinity(), mathx.NegativeInfinity())
+            duration = math.Infinity()
+        infinities = (math.Infinity(), math.NegativeInfinity())
         if duration not in infinities:
             duration = Duration(duration)
             assert 0 <= duration
@@ -235,9 +235,9 @@ class LengthInequality(Inequality):
     def __init__(self, operator_string="<", length=None):
         Inequality.__init__(self, operator_string=operator_string)
         if length is None:
-            length = mathx.Infinity()
+            length = math.Infinity()
         assert 0 <= length
-        infinities = (mathx.Infinity(), mathx.NegativeInfinity())
+        infinities = (math.Infinity(), math.NegativeInfinity())
         if length not in infinities:
             length = int(length)
         self._length = length

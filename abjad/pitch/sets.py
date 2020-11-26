@@ -3,7 +3,7 @@ import collections
 import copy
 import types
 
-from .. import enumeratex
+from .. import enumerate
 from ..expression import Expression
 from ..new import new
 from ..sequence import Sequence
@@ -153,7 +153,7 @@ class IntervalClassSet(Set):
         )
         if isinstance(items, prototype):
             items = list(items)
-            pairs = enumeratex.yield_pairs(items)
+            pairs = enumerate.yield_pairs(items)
             items = [second - first for first, second in pairs]
         super().__init__(items=items, item_class=item_class)
 
@@ -257,7 +257,7 @@ class IntervalSet(Set):
         )
         if isinstance(items, prototype):
             items = list(items)
-            pairs = enumeratex.yield_pairs(items)
+            pairs = enumerate.yield_pairs(items)
             items = [second - first for first, second in pairs]
         super().__init__(items=items, item_class=item_class)
 
@@ -312,7 +312,7 @@ class IntervalSet(Set):
         Returns interval set.
         """
         pitch_segment = PitchSegment.from_selection(selection)
-        pairs = enumeratex.yield_pairs(pitch_segment)
+        pairs = enumerate.yield_pairs(pitch_segment)
         intervals = [second - first for first, second in pairs]
         return class_(items=intervals, item_class=item_class)
 
@@ -781,7 +781,7 @@ class PitchClassSet(Set):
         """
         if not len(self) == len(segment):
             raise ValueError("set and segment must be on equal length.")
-        for pitch_classes in enumeratex.yield_permutations(self):
+        for pitch_classes in enumerate.yield_permutations(self):
             candidate = PitchClassSegment(pitch_classes)
             if candidate._is_equivalent_under_transposition(segment):
                 return candidate

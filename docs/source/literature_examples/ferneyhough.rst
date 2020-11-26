@@ -45,19 +45,19 @@ divide the final `logical tie` of the resulting tuplet into yet another ratio:
 
     >>> tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (1, 1), 5)
     >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 ::
 
     >>> tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (2, 1), 5)
     >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 ::
 
     >>> tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 1), 5)
     >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 A `logical tie` is a selection of notes or chords connected by ties. It lets us
 talk about a notated rhythm of ``5/16``, for example, which can not be expressed
@@ -70,13 +70,13 @@ the second `logical tie` requires two notes to express the ``5/16`` duration:
 
     >>> normal_tuplet = abjad.makers.tuplet_from_duration_and_ratio(abjad.Duration(1, 4), (3, 5))
     >>> staff = abjad.Staff([normal_tuplet], lilypond_type='RhythmicStaff')
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 ::
 
     >>> subdivided_tuplet = ferneyhough.make_nested_tuplet(abjad.Duration(1, 4), (3, 5), 3)
     >>> staff = abjad.Staff([subdivided_tuplet], lilypond_type='RhythmicStaff')
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 The rhythms
 -----------
@@ -97,7 +97,7 @@ subdivided:
 
     >>> tuplets = ferneyhough.make_row_of_nested_tuplets(duration, (2, 1), 6)
     >>> staff = abjad.Staff(tuplets, lilypond_type='RhythmicStaff')
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 If we can make one single row of rhythms, we can make many rows of rhythms.
 Let's try:
@@ -109,7 +109,7 @@ Let's try:
     ...     staff = abjad.Staff(tuplet_row, lilypond_type='RhythmicStaff')
     ...     score.append(staff)
     ...
-    >>> show(score)
+    >>> abjad.show(score)
 
 That's getting close to what we want, but the typography isn't as good as it
 could be.
@@ -123,7 +123,7 @@ function:
 ::
 
     >>> score = ferneyhough.make_score(abjad.Duration(1, 4), 4, 6)
-    >>> show(score)
+    >>> abjad.show(score)
 
 Then we'll adjust the overall size of our output, and put everything together:
 
@@ -131,7 +131,7 @@ Then we'll adjust the overall size of our output, and put everything together:
 
     >>> ferneyhough.configure_score(score)
     >>> lilypond_file = ferneyhough.make_lilypond_file(abjad.Duration(1, 4), 11, 6)
-    >>> show(lilypond_file)
+    >>> abjad.show(lilypond_file)
 
 Explore the ``abjad/demos/ferneyhough/`` directory for the complete code to
 this example, or import it into your Python session directly with ``from

@@ -20,7 +20,7 @@ Type the following lines of code into ``hello_world.py``:
 ::
 
     note = Note("c'4")
-    show(note)
+    abjad.show(note)
 
 Save ``hello_world.py`` and quit your text editor.
 
@@ -38,7 +38,7 @@ Call Python on ``hello_world.py``:
     :hide:
 
     >>> note = abjad.Note("c'4")
-    >>> show(note)
+    >>> abjad.show(note)
 
 Python reads ``hello_world.py`` and shows the score you've created.
 

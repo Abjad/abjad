@@ -5,7 +5,7 @@ from .expression import Expression
 from .ordereddict import OrderedDict
 from .pitch.pitches import NamedPitch, Pitch
 from .pitch.sets import PitchSet
-from .selectx import LogicalTie
+from .select import LogicalTie
 from .storage import StorageFormatManager
 
 
