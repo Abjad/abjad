@@ -4,7 +4,7 @@ from .. import enums
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 from ..storage import StorageFormatManager
-from ..stringx import String
+from ..string import String
 
 
 class Tie:

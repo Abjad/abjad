@@ -8,7 +8,8 @@ import typing
 
 import quicktions
 
-from . import enums, mathx
+from . import enums
+from . import math as _math
 from .cyclictuple import CyclicTuple
 from .expression import Expression, Signature
 from .markups import Markup
@@ -752,7 +753,7 @@ class Sequence(collections.abc.Sequence):
             target_weight = weights[target_weight_index % len_weights]
             item = l_copy.pop(0)
             current_part.append(item)
-            if target_weight <= mathx.weight(current_part):
+            if target_weight <= _math.weight(current_part):
                 result.append(current_part)
                 current_part = []
                 target_weight_index += 1
@@ -776,8 +777,8 @@ class Sequence(collections.abc.Sequence):
         while l_copy:
             current_target_weight = weights[current_target_weight_index % len(weights)]
             item = l_copy.pop(0)
-            current_part_weight = mathx.weight(current_part)
-            candidate_part_weight = current_part_weight + mathx.weight([item])
+            current_part_weight = _math.weight(current_part)
+            candidate_part_weight = current_part_weight + _math.weight([item])
             if candidate_part_weight < current_target_weight:
                 current_part.append(item)
             elif candidate_part_weight == current_target_weight:
@@ -820,7 +821,7 @@ class Sequence(collections.abc.Sequence):
                             break
                     raise Exception("too few elements in sequence.")
                 current_part.append(item)
-                if target_weight <= mathx.weight(current_part):
+                if target_weight <= _math.weight(current_part):
                     result.append(current_part)
                     current_part = []
                     break
@@ -843,8 +844,8 @@ class Sequence(collections.abc.Sequence):
                     item = l_copy.pop(0)
                 except IndexError:
                     raise Exception("too few elements in sequence.")
-                current_weight = mathx.weight(current_part)
-                candidate_weight = current_weight + mathx.weight([item])
+                current_weight = _math.weight(current_part)
+                candidate_weight = current_weight + _math.weight([item])
                 if candidate_weight < target_weight:
                     current_part.append(item)
                 elif candidate_weight == target_weight:
@@ -3327,9 +3328,9 @@ class Sequence(collections.abc.Sequence):
 
         Returns nested sequence.
         """
-        list_weight = mathx.weight(self)
+        list_weight = _math.weight(self)
         weights_parts = Ratio(weights).partition_integer(list_weight)
-        cumulative_weights = mathx.cumulative_sums(weights_parts, start=None)
+        cumulative_weights = _math.cumulative_sums(weights_parts, start=None)
         items = []
         sublist: typing.List[typing.Any] = []
         items.append(sublist)
@@ -3338,7 +3339,7 @@ class Sequence(collections.abc.Sequence):
             if not isinstance(item, (int, float, quicktions.Fraction)):
                 raise TypeError(f"must be number: {item!r}.")
             sublist.append(item)
-            while current_cumulative_weight <= mathx.weight(
+            while current_cumulative_weight <= _math.weight(
                 type(self)(items).flatten(depth=-1)
             ):
                 try:
@@ -3912,7 +3913,7 @@ class Sequence(collections.abc.Sequence):
             Sequence([2, 3, 1, 2, 3, 1, 2, 3, 1, 2])
 
         """
-        assert mathx.is_nonnegative_integer(length), repr(length)
+        assert _math.is_nonnegative_integer(length), repr(length)
         assert len(self), repr(self)
         items = []
         start %= len(self)
@@ -3965,7 +3966,7 @@ class Sequence(collections.abc.Sequence):
         """
         assert 0 <= weight
         if allow_total is enums.Exact:
-            sequence_weight = mathx.weight(self)
+            sequence_weight = _math.weight(self)
             complete_repetitions = int(
                 math.ceil(float(weight) / float(sequence_weight))
             )
@@ -3983,7 +3984,7 @@ class Sequence(collections.abc.Sequence):
                         absolute_amount_to_keep = element_weight - overage
                         assert 0 < absolute_amount_to_keep
                         signed_amount_to_keep = absolute_amount_to_keep
-                        signed_amount_to_keep *= mathx.sign(item)
+                        signed_amount_to_keep *= _math.sign(item)
                         items.pop()
                         items.append(signed_amount_to_keep)
                         break
@@ -3992,16 +3993,16 @@ class Sequence(collections.abc.Sequence):
         elif allow_total is enums.Less:
             items = [self[0]]
             i = 1
-            while mathx.weight(items) < weight:
+            while _math.weight(items) < weight:
                 items.append(self[i % len(self)])
                 i += 1
-            if weight < mathx.weight(items):
+            if weight < _math.weight(items):
                 items = items[:-1]
             return type(self)(items)
         elif allow_total is enums.More:
             items = [self[0]]
             i = 1
-            while mathx.weight(items) < weight:
+            while _math.weight(items) < weight:
                 items.append(self[i % len(self)])
                 i += 1
             return type(self)(items)
@@ -4664,14 +4665,14 @@ class Sequence(collections.abc.Sequence):
         current_piece: typing.List[typing.Any] = []
         if cyclic:
             weights = Sequence(weights).repeat_to_weight(
-                mathx.weight(self), allow_total=enums.Less
+                _math.weight(self), allow_total=enums.Less
             )
         for weight in weights:
-            current_piece_weight = mathx.weight(current_piece)
+            current_piece_weight = _math.weight(current_piece)
             while current_piece_weight < weight:
                 current_piece.append(self[current_index])
                 current_index += 1
-                current_piece_weight = mathx.weight(current_piece)
+                current_piece_weight = _math.weight(current_piece)
             if current_piece_weight == weight:
                 current_piece_ = type(self)(current_piece)
                 result.append(current_piece_)
@@ -4680,11 +4681,11 @@ class Sequence(collections.abc.Sequence):
                 overage = current_piece_weight - weight
                 current_last_element = current_piece.pop(-1)
                 needed = abs(current_last_element) - overage
-                needed *= mathx.sign(current_last_element)
+                needed *= _math.sign(current_last_element)
                 current_piece.append(needed)
                 current_piece_ = type(self)(current_piece)
                 result.append(current_piece_)
-                overage *= mathx.sign(current_last_element)
+                overage *= _math.sign(current_last_element)
                 current_piece = [overage]
         if overhang:
             last_piece = current_piece
@@ -4852,7 +4853,7 @@ class Sequence(collections.abc.Sequence):
         Sums consecutive positive elements when ``1`` in ``sign``.
         """
         items = []
-        generator = itertools.groupby(self, mathx.sign)
+        generator = itertools.groupby(self, _math.sign)
         for current_sign, group in generator:
             if current_sign in sign:
                 items.append(sum(group))
@@ -4933,8 +4934,8 @@ class Sequence(collections.abc.Sequence):
                     if total < weight:
                         items.append(item)
                     else:
-                        sign = mathx.sign(item)
-                        trimmed_part = weight - mathx.weight(items)
+                        sign = _math.sign(item)
+                        trimmed_part = weight - _math.weight(items)
                         trimmed_part *= sign
                         items.append(trimmed_part)
                         break

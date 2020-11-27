@@ -6,7 +6,7 @@ import copy
 import inspect
 import typing
 
-from . import enums, mathx
+from . import enums, math
 from .duration import Duration, Multiplier, Offset
 from .expression import Expression, Signature
 from .markups import Markup, Postscript
@@ -16,8 +16,8 @@ from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
 from .typedcollections import TypedCounter, TypedList
 
-infinity = mathx.Infinity()
-negative_infinity = mathx.NegativeInfinity()
+infinity = math.Infinity()
+negative_infinity = math.NegativeInfinity()
 
 
 class OffsetCounter(TypedCounter):
@@ -1174,7 +1174,7 @@ class Timespan:
         ratio = Ratio(ratio)
         unit_duration = self.duration / sum(ratio.numbers)
         part_durations = [numerator * unit_duration for numerator in ratio.numbers]
-        start_offsets = mathx.cumulative_sums(
+        start_offsets = math.cumulative_sums(
             [self._start_offset] + part_durations, start=None
         )
         offset_pairs = Sequence(start_offsets).nwise()
@@ -3321,8 +3321,8 @@ class TimespanList(TypedList):
         """
         if not self:
             return Markup.null()
-        maximum: typing.Union[Offset, mathx.Infinity]
-        minimum: typing.Union[Offset, mathx.NegativeInfinity]
+        maximum: typing.Union[Offset, math.Infinity]
+        minimum: typing.Union[Offset, math.NegativeInfinity]
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -3869,7 +3869,7 @@ class TimespanList(TypedList):
         return True
 
     @property
-    def start_offset(self) -> typing.Union[Offset, mathx.NegativeInfinity]:
+    def start_offset(self) -> typing.Union[Offset, math.NegativeInfinity]:
         """
         Gets start offset.
 
@@ -3919,7 +3919,7 @@ class TimespanList(TypedList):
             return negative_infinity
 
     @property
-    def stop_offset(self) -> typing.Union[Offset, mathx.Infinity]:
+    def stop_offset(self) -> typing.Union[Offset, math.Infinity]:
         """
         Gets stop offset.
 

@@ -14,7 +14,7 @@ You can make an Abjad score from a LilyPond input string:
     ... \new Staff { \clef bass c4 a,4 b,4 e4 }
     ... '''
     >>> score = abjad.Score(string)
-    >>> show(score)
+    >>> abjad.show(score)
 
 
 Making a score from a list of Abjad components
@@ -27,7 +27,7 @@ You can also make a score from a list of other Abjad components:
     >>> treble_staff_1 = abjad.Staff("e'4 d'4 e'4 f'4 g'1")
     >>> treble_staff_2 = abjad.Staff("c'2. b8 a8 b1")
     >>> score = abjad.Score([treble_staff_1, treble_staff_2])
-    >>> show(score)
+    >>> abjad.show(score)
 
 
 Understanding the interpreter representation of a score
@@ -112,7 +112,7 @@ Use ``append()`` to append one component to the bottom of a score:
     >>> clef = abjad.Clef('bass')
     >>> abjad.attach(clef, staff[0])
     >>> score.append(staff)
-    >>> show(score)
+    >>> abjad.show(score)
 
 
 Finding the index of a score component
@@ -133,7 +133,7 @@ Use ``pop()`` to remove a score component by index:
 ::
 
     >>> score.pop(1)
-    >>> show(score)
+    >>> abjad.show(score)
 
 
 Removing a score component by reference
@@ -144,7 +144,7 @@ Use ``remove()`` to remove a score component by reference:
 ::
 
     >>> score.remove(treble_staff_1)
-    >>> show(score)
+    >>> abjad.show(score)
 
 
 Finding out whether or not a score contains a component
@@ -172,11 +172,11 @@ You can name Abjad scores:
 
 ::
 
-    >>> score.name = 'Example Score'
-    >>> show(score)
+    >>> score.name = "Example Score"
+    >>> abjad.show(score)
 
 Score names appear in LilyPond input but not in notational output:
 
 ::
 
-    >>> f(score)
+    >>> abjad.f(score)

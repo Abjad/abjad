@@ -796,7 +796,7 @@ def execute_string(
 
         >>> string = 'foo = 23'
         >>> attribute_names = ('foo', 'bar')
-        >>> abjad.iox.execute_string(
+        >>> abjad.io.execute_string(
         ...     string,
         ...     attribute_names=attribute_names,
         ...     )
@@ -945,7 +945,7 @@ def profile(
         ::
 
             >>> argument = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-            >>> abjad.iox.profile(
+            >>> abjad.io.profile(
             ...     argument,
             ...     global_context=globals(),
             ...     ) # doctest: +SKIP

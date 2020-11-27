@@ -148,7 +148,7 @@ Set the multiplier of a tuplet like this:
 
 ::
 
-    >>> tuplet.multiplier = Multiplier(4, 5)
+    >>> tuplet.multiplier = (4, 5)
     >>> abjad.show(tuplet)
 
 
@@ -159,7 +159,7 @@ Use ``append()`` to append one component to the end of a tuplet:
 
 ::
 
-    >>> tuplet.append(Note("e'4."))
+    >>> tuplet.append("e'4.")
     >>> abjad.show(tuplet)
 
 You can also use a LilyPond input string:
@@ -177,7 +177,8 @@ Use ``extend()`` to extend a tuplet with multiple components at once:
 
 ::
 
-    >>> notes = [Note("fs'32"), Note("e'32"), Note("d'32"), Rest((1, 32))]
+    >>> notes = [abjad.Note("fs'32"), abjad.Note("e'32")]
+    >>> notes.extend([abjad.Note("d'32"), abjad.Rest((1, 32))])
     >>> tuplet.extend(notes)
     >>> abjad.show(tuplet)
 
@@ -232,10 +233,10 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 ::
 
-    >>> string = 'tuplet-number::calc-fraction-text'
+    >>> string = "tuplet-number::calc-fraction-text"
     >>> scheme = abjad.Scheme(string)
     >>> abjad.override(tuplet).tuplet_number.text = scheme
-    >>> abjad.override(tuplet).tuplet_number.color = 'red'
+    >>> abjad.override(tuplet).tuplet_number.color = "red"
     >>> staff = abjad.Staff([tuplet])
     >>> abjad.show(staff)
 
@@ -249,7 +250,7 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 ::
 
-    >>> abjad.override(tuplet).tuplet_bracket.color = 'red'
+    >>> abjad.override(tuplet).tuplet_bracket.color = "red"
     >>> abjad.show(staff)
 
 See LilyPond's documentation for lists of grob attributes available.

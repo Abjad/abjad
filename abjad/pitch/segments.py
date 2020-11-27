@@ -4,7 +4,7 @@ import importlib
 import inspect
 import types
 
-from .. import mathx
+from .. import math
 from ..duration import Multiplier
 from ..expression import Expression, Signature
 from ..new import new
@@ -105,8 +105,7 @@ class Segment(TypedTuple):
             items = [x.pitch_class_number for x in self]
         elif self.item_class.__name__.startswith("Numbered"):
             items = [
-                mathx.integer_equivalent_number_to_integer(float(x.number))
-                for x in self
+                math.integer_equivalent_number_to_integer(float(x.number)) for x in self
             ]
         elif hasattr(self.item_class, "__abs__"):
             items = [abs(x) for x in self]
@@ -235,7 +234,7 @@ class IntervalClassSegment(Segment):
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
-        intervals = mathx.difference_series(pitches)
+        intervals = math.difference_series(pitches)
         return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self) -> bool:
@@ -375,7 +374,7 @@ class IntervalSegment(Segment):
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
-        intervals = (-x for x in mathx.difference_series(pitches))
+        intervals = (-x for x in math.difference_series(pitches))
         return class_(items=intervals, item_class=item_class)
 
     def has_duplicates(self) -> bool:

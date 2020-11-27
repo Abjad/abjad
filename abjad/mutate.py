@@ -11,7 +11,7 @@ from .makers import NoteMaker
 from .pitch.intervals import NamedInterval
 from .ratio import Ratio
 from .score import Chord, Component, Container, Leaf, Note, Tuplet
-from .selectx import Selection
+from .select import Selection
 from .sequence import Sequence
 from .spanners import tie
 

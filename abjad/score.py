@@ -7,7 +7,8 @@ import typing
 
 import quicktions
 
-from . import enums, exceptions, mathx
+from . import enums, exceptions
+from . import math as _math
 from . import tag as _tag
 from . import typings
 from .bundle import LilyPondFormatBundle
@@ -170,7 +171,7 @@ class Component:
         return []
 
     def _format_component(self, pieces=False):
-        from .formatx import LilyPondFormatManager
+        from .format import LilyPondFormatManager
 
         result = []
         bundle = LilyPondFormatManager.bundle_format_contributions(self)
@@ -245,7 +246,7 @@ class Component:
         return duration
 
     def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
-        from .formatx import LilyPondFormatManager
+        from .format import LilyPondFormatManager
 
         result = []
         if bundle is None:
@@ -438,7 +439,7 @@ class Component:
         if n == 0:
             return self
         for parent in self._get_parentage():
-            sibling = parent._get_sibling(mathx.sign(n))
+            sibling = parent._get_sibling(_math.sign(n))
             if sibling is not None:
                 return sibling
 
@@ -1035,7 +1036,7 @@ class Container(Component):
 
         Traverses top-level items only.
         """
-        from .selectx import Selection
+        from .select import Selection
 
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
@@ -1055,14 +1056,14 @@ class Container(Component):
         """
         return [], self.identifier, self.simultaneous, self.name, self.tag
 
-    # TODO: teach uqbar about iox._graph_container() and remove Container.__graph__()
+    # TODO: teach uqbar about io._graph_container() and remove Container.__graph__()
     def __graph__(self, **keywords):
         """
         Graphviz graph representation of container.
 
         Returns Graphviz graph.
         """
-        from .iox import _graph_container
+        from .io import _graph_container
 
         return _graph_container(self)
 
@@ -4950,7 +4951,7 @@ class TremoloContainer(Container):
     def __init__(
         self, count: int = 2, components=None, *, tag: _tag.Tag = None
     ) -> None:
-        assert mathx.is_assignable_integer(count), repr(count)
+        assert _math.is_assignable_integer(count), repr(count)
         self._count = count
         Container.__init__(self, components, tag=tag)
         if len(self) != 2:
@@ -5234,7 +5235,7 @@ class Tuplet(Container):
     def _get_edge_height_tweak_string(self):
         duration = self._get_preprolated_duration()
         denominator = duration.denominator
-        if not mathx.is_nonnegative_integer_power_of_two(denominator):
+        if not _math.is_nonnegative_integer_power_of_two(denominator):
             return r"\tweak edge-height #'(0.7 . 0)"
 
     def _get_format_specification(self):
@@ -5265,7 +5266,7 @@ class Tuplet(Container):
     def _get_power_of_two_denominator(self):
         if self.multiplier:
             numerator = self.multiplier.numerator
-            return mathx.is_nonnegative_integer_power_of_two(numerator)
+            return _math.is_nonnegative_integer_power_of_two(numerator)
         else:
             return True
 
@@ -6408,7 +6409,7 @@ class Tuplet(Container):
                 }
 
         """
-        assert mathx.is_nonnegative_integer_power_of_two(denominator)
+        assert _math.is_nonnegative_integer_power_of_two(denominator)
         self.force_fraction = True
         durations = [
             self._get_contents_duration(),

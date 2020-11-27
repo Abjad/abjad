@@ -1,6 +1,6 @@
 import copy
 
-from . import deprecated, enums, overrides, score, selectx
+from . import deprecated, enums, overrides, score, select
 from . import timespan as _timespan
 from .attach import attach
 from .duration import Duration
@@ -69,14 +69,14 @@ def _illustrate_pitch_range(pitch_range):
             bass_staff = score.Staff()
             attach(Clef("bass"), bass_staff)
             bass_staff.extend([start_note, stop_note])
-            bass_leaves = selectx.Selection(bass_staff).leaves()
+            bass_leaves = select.Selection(bass_staff).leaves()
             glissando(bass_leaves)
             score_ = score.Score([bass_staff])
         else:
             treble_staff = score.Staff()
             attach(Clef("treble"), treble_staff)
             treble_staff.extend([start_note, stop_note])
-            treble_leaves = selectx.Selection(treble_staff).leaves()
+            treble_leaves = select.Selection(treble_staff).leaves()
             glissando(treble_leaves)
             score_ = score.Score([treble_staff])
     else:
@@ -84,7 +84,7 @@ def _illustrate_pitch_range(pitch_range):
         score_, treble_staff, bass_staff = result
         bass_staff.extend([start_note, stop_note])
         treble_staff.extend("s1 s1")
-        bass_leaves = selectx.Selection(bass_staff).leaves()
+        bass_leaves = select.Selection(bass_staff).leaves()
         glissando(bass_leaves)
         attach(StaffChange("Treble_Staff"), bass_staff[1])
         attach(Clef("treble"), treble_staff[0])
@@ -169,7 +169,7 @@ def _illustrate_segment(
     overrides.override(score_).time_signature.stencil = False
     string = r"\override Score.BarLine.transparent = ##f"
     command = overrides.LilyPondLiteral(string, "after")
-    last_leaf = selectx.Selection(score_).leaves()[-1]
+    last_leaf = select.Selection(score_).leaves()[-1]
     attach(command, last_leaf)
     moment = SchemeMoment((1, 12))
     overrides.setting(score_).proportional_notation_duration = moment
@@ -252,7 +252,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
     score_.append(staff_group)
     for leaf in leaves:
         treble_pitches, bass_pitches = [], []
-        selection = selectx.Selection(leaf)
+        selection = select.Selection(leaf)
         pitch_set = PitchSet.from_selection(selection)
         for pitch in pitch_set:
             if pitch < lowest_treble_pitch:

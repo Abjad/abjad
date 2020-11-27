@@ -1,11 +1,11 @@
 import pytest
 
 import abjad
-from abjad import mathx
+from abjad import math
 
 values = []
 
-values.extend((x, ((abs(x) % 12) or 12) * mathx.sign(x)) for x in range(-48, 49))
+values.extend((x, ((abs(x) % 12) or 12) * math.sign(x)) for x in range(-48, 49))
 
 values.extend(
     [

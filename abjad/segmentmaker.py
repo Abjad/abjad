@@ -7,7 +7,7 @@ from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral
 from .parentage import Parentage
 from .score import Context, Score
-from .selectx import Selection
+from .select import Selection
 from .storage import StorageFormatManager
 from .tag import Tag
 from .timespan import TimespanList

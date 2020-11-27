@@ -51,7 +51,7 @@ Abjad numbers pitches like this:
     ...     score,
     ...     global_staff_size=15,
     ... )
-    >>> show(lilypond_file)
+    >>> abjad.show(lilypond_file)
 
 
 Diatonic pitch numbers
@@ -110,7 +110,7 @@ Abjad numbers diatonic pitches like this:
     ...     score,
     ...     global_staff_size=15,
     ... )
-    >>> show(lilypond_file)
+    >>> abjad.show(lilypond_file)
 
 
 Accidental abbreviations

@@ -25,8 +25,8 @@ Or with an explicit duration:
 
 ::
 
-    >>> note_3 = Note("e'", abjad.Duration(2, 1))
-    >>> note_4 = Note("f'", abjad.Duration(3, 1))
+    >>> note_3 = abjad.Note("e'", abjad.Duration(2, 1))
+    >>> note_4 = abjad.Note("f'", abjad.Duration(3, 1))
 
 The written duration of a breve always returns an Abjad duration object:
 
@@ -42,7 +42,7 @@ LilyPond renders breves like this:
 ::
 
     >>> staff = abjad.Staff(notes)
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 Abjad also supports longas. A longa equals two breves:
 
@@ -61,7 +61,7 @@ Abjad also supports longas. A longa equals two breves:
  ::
 
     >>> staff = abjad.Staff(notes)
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 A maxima is a duration equal to two longas:
 
@@ -104,7 +104,8 @@ Abjad implements LilyPond multpliers as multiplier objects.
 
 ::
 
-    >>> f(note)
+    >>> string = abjad.lilypond(note)
+    >>> print(string)
 
 ::
 
@@ -113,7 +114,7 @@ Abjad implements LilyPond multpliers as multiplier objects.
 
 ::
 
-    >>> show(note)
+    >>> abjad.show(note)
 
 LilyPond multipliers scale the durations of the half notes below to that of
 quarter notes:
@@ -132,7 +133,7 @@ quarter notes:
 
 ::
 
-    >>> show(staff_group)
+    >>> abjad.show(staff_group)
 
 Note that the LilyPond multiplication `*` operator differs from the Abjad
 multiplication `*` operator. LilyPond multiplication scales duration of
@@ -157,7 +158,7 @@ Consider the measure below:
 
 ::
 
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 Every note in the measure equals one sixteenth of a whole note:
 
@@ -176,7 +177,7 @@ But now consider this measure:
 
 ::
 
-    >>> show(staff)
+    >>> abjad.show(staff)
 
 The notes in this measure are equal to only one twentieth of a whole note:
 Every note in this measures 

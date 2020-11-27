@@ -4,14 +4,14 @@ Instrument classes.
 import copy
 import typing
 
-from . import enumeratex
+from . import enumerate
 from .markups import Markup
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
 from .storage import FormatSpecification, StorageFormatManager
-from .stringx import String
+from .string import String
 
 
 class Instrument:
@@ -737,7 +737,7 @@ class Tuning:
         assert self.pitches is not None
         pitch_classes = [NamedPitchClass(_) for _ in pitch_classes]
         pitch_classes.extend([None] * (len(self.pitches) - len(pitch_classes)))
-        permutations = enumeratex.yield_permutations(pitch_classes)
+        permutations = enumerate.yield_permutations(pitch_classes)
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
         result: typing.List[typing.Tuple[typing.Union[NamedPitch, None], ...]] = []
@@ -756,7 +756,7 @@ class Tuning:
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            subresult = enumeratex.yield_outer_product(sequences)
+            subresult = enumerate.yield_outer_product(sequences)
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
         result.sort()

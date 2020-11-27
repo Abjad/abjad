@@ -9,8 +9,8 @@ You can make a voice from a LilyPond input string:
 
 ::
 
-    >>> voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
-    >>> show(voice)
+    >>> voice = abjad.Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
+    >>> abjad.show(voice)
 
 
 Making a voice from a list of other components
@@ -20,10 +20,10 @@ You can also make a voice from a list of other components:
 
 ::
 
-    >>> tuplet = Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
-    >>> components = [tuplet, Note("f'2"), Note("g'1")]
-    >>> voice = Voice(components)
-    >>> show(voice)
+    >>> tuplet = abjad.Tuplet(abjad.Multiplier(2, 3), "c'4 d'4 e'4")
+    >>> components = [tuplet, abjad.Note("f'2"), abjad.Note("g'1")]
+    >>> voice = abjad.Voice(components)
+    >>> abjad.show(voice)
 
 
 Understanding the interpreter representation of a voice
@@ -51,7 +51,8 @@ Use ``abjad.lilypond()`` to get the LilyPond format of a voice:
 
 ::
 
-    >>> print(abjad.lilypond(voice))
+    >>> string = abjad.lilypond(voice)
+    >>> print(string)
 
 
 Selecting the components in a voice
@@ -67,11 +68,11 @@ Select the components in a voice like this:
 Selecting a voice's leaves
 --------------------------
 
-Use ``select(...).leaves()`` to select the leaves in a voice:
+Use ``abjad.select(...).leaves()`` to select the leaves in a voice:
 
 ::
 
-    >>> select(voice).leaves()
+    >>> abjad.select(voice).leaves()
 
 
 Getting the length of a voice
@@ -104,15 +105,15 @@ Use ``append()`` to append one component to the end of a voice:
 
 ::
 
-    >>> voice.append(Note("af'2"))
-    >>> show(voice)
+    >>> voice.append(abjad.Note("af'2"))
+    >>> abjad.show(voice)
 
 You can also use a LilyPond input string:
 
 ::
 
     >>> voice.append("bf'2")
-    >>> show(voice)
+    >>> abjad.show(voice)
 
 
 Extending a voice with multiple components at once
@@ -122,16 +123,16 @@ Use ``extend()`` to extend a voice with multiple components at once:
 
 ::
 
-    >>> notes = [Note("g'4"), Note("f'4")]
+    >>> notes = [abjad.Note("g'4"), abjad.Note("f'4")]
     >>> voice.extend(notes)
-    >>> show(voice)
+    >>> abjad.show(voice)
 
 You can also use a LilyPond input string:
 
 ::
 
     >>> voice.extend("e'4 ef'4")
-    >>> show(voice)
+    >>> abjad.show(voice)
 
 
 Finding the index of a component in a voice
@@ -156,7 +157,7 @@ Use ``pop()`` to pop the last component of a voice:
 ::
 
     >>> voice.pop()
-    >>> show(voice)
+    >>> abjad.show(voice)
 
 
 Removing a voice component by reference
@@ -167,7 +168,7 @@ Use ``remove()`` to remove any component from a voice by reference:
 ::
 
     >>> voice.remove(voice[-1])
-    >>> show(voice)
+    >>> abjad.show(voice)
 
 
 Naming voices
@@ -177,17 +178,18 @@ You can name Abjad voices:
 
 ::
 
-    >>> voice.name = 'Upper Voice'
+    >>> voice.name = "Upper Voice"
 
 Voice names appear in LilyPond input but not in notation output:
 
 ::
 
-    >>> f(voice)
+    >>> string = abjad.lilypond(voice)
+    >>> print(string)
 
 ::
 
-    >>> show(voice)
+    >>> abjad.show(voice)
 
 
 Changing the context of a voice
@@ -206,7 +208,7 @@ based on a LilyPond voice:
 
 ::
 
-    >>> voice.lilypond_type = 'SpeciallyDefinedVoice'
+    >>> voice.lilypond_type = "SpeciallyDefinedVoice"
 
 ::
 
@@ -214,4 +216,5 @@ based on a LilyPond voice:
 
 ::
 
-    >>> f(voice)
+    >>> string = (voice)
+    >>> print(string)

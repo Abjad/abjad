@@ -92,7 +92,7 @@ You can append with a pitch name:
 ::
 
     >>> chord = abjad.Chord("<f' g' ef''>4")
-    >>> show(chord)
+    >>> abjad.show(chord)
 
 ::
 

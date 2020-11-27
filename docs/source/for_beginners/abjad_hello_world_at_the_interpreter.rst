@@ -37,13 +37,13 @@ After you've imported Abjad you can create a note like this:
 
 ::
 
-    >>> note = Note("c'4")
+    >>> note = abjad.Note("c'4")
 
 And you can show the note like this:
 
 ::
 
-    >>> show(note)
+    >>> abjad.show(note)
 
 Stopping the interpreter
 ------------------------

@@ -5,7 +5,10 @@ import typing
 
 import quicktions
 
-from .. import enumeratex, exceptions, markups, mathx, typings
+from .. import enumerate as _enumerate
+from .. import exceptions, markups
+from .. import math as _math
+from .. import typings
 from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
 from ..new import new
@@ -331,7 +334,7 @@ class MetronomeMark:
         elif isinstance(argument, (int, quicktions.Fraction)):
             assert isinstance(self.units_per_minute, (int, quicktions.Fraction))
             units_per_minute = self.units_per_minute / argument
-            if mathx.is_integer_equivalent_number(units_per_minute):
+            if _math.is_integer_equivalent_number(units_per_minute):
                 units_per_minute = int(units_per_minute)
             else:
                 units_per_minute = quicktions.Fraction(units_per_minute)
@@ -575,14 +578,14 @@ class MetronomeMark:
             string = f"{self._dotted}={self.units_per_minute}"
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
-        ) and not mathx.is_integer_equivalent_number(self.units_per_minute):
+        ) and not _math.is_integer_equivalent_number(self.units_per_minute):
             integer_part = int(float(self.units_per_minute))
             remainder = self.units_per_minute - integer_part
             remainder = quicktions.Fraction(remainder)
             string = f"{self._dotted}={integer_part}+{remainder}"
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
-        ) and mathx.is_integer_equivalent_number(self.units_per_minute):
+        ) and _math.is_integer_equivalent_number(self.units_per_minute):
             integer = int(float(self.units_per_minute))
             string = f"{self._dotted}={integer}"
         elif isinstance(self.units_per_minute, tuple):
@@ -1159,7 +1162,7 @@ class MetronomeMark:
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
         numbers = [allowable_numerators, allowable_denominators]
-        pairs = enumeratex.yield_outer_product(numbers)
+        pairs = _enumerate.yield_outer_product(numbers)
         multipliers = [Multiplier(_) for _ in pairs]
         multipliers = [
             _
@@ -1171,7 +1174,7 @@ class MetronomeMark:
         pairs = []
         for multiplier in multipliers_:
             new_units_per_minute = multiplier * self.units_per_minute
-            if integer_tempos_only and not mathx.is_integer_equivalent_number(
+            if integer_tempos_only and not _math.is_integer_equivalent_number(
                 new_units_per_minute
             ):
                 continue
@@ -1244,7 +1247,7 @@ class MetronomeMark:
         stem = 1
         if isinstance(
             units_per_minute, quicktions.Fraction
-        ) and not mathx.is_integer_equivalent_number(units_per_minute):
+        ) and not _math.is_integer_equivalent_number(units_per_minute):
             if decimal:
                 decimal_: typing.Union[float, str]
                 if decimal is True:

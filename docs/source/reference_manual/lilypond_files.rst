@@ -22,7 +22,7 @@ Make a basic LilyPond file with ``LilyPondFile.new()``:
 
 ::
 
-    >>> show(lilypond_file)
+    >>> abjad.show(lilypond_file)
 
 
 Getting header, layout and paper blocks
@@ -75,7 +75,7 @@ When instantiating:
 
 ::
 
-    >>> show(lilypond_file)
+    >>> abjad.show(lilypond_file)
 
 
 Setting title, subtitle and composer information
@@ -95,4 +95,4 @@ information:
 
 ::
 
-    >>> show(lilypond_file)
+    >>> abjad.show(lilypond_file)

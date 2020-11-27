@@ -10,7 +10,7 @@ Named pitches are the everyday pitches of notes and chords:
 
 ::
 
-    >>> show(note)
+    >>> abjad.show(note)
 
 
 Creating named pitches

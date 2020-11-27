@@ -8,7 +8,7 @@ from .lyconst import colors
 from .lyenv import contexts, grob_interfaces
 from .scheme import Scheme, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
-from .stringx import String
+from .string import String
 
 
 class LilyPondLiteral:

@@ -13,7 +13,7 @@ from .new import new
 from .ordereddict import OrderedDict
 from .overrides import LilyPondLiteral
 from .score import Context, Score, Skip, Staff, StaffGroup, Voice
-from .selectx import Selection
+from .select import Selection
 from .storage import StorageFormatManager
 from .tag import Tag
 

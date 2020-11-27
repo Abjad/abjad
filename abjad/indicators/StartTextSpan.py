@@ -4,7 +4,7 @@ from .. import enums, markups, typings
 from ..bundle import LilyPondFormatBundle
 from ..overrides import LilyPondOverride, TweakInterface
 from ..storage import StorageFormatManager
-from ..stringx import String
+from ..string import String
 
 
 class StartTextSpan:

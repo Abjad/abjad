@@ -2,7 +2,7 @@ import collections
 import inspect
 import operator
 
-from . import mathx
+from . import math
 from .expression import Expression
 from .new import new
 from .sequence import Sequence
@@ -178,7 +178,7 @@ class Pattern:
             assert operator in self._name_to_operator, repr(operator)
         self._operator = operator
         if period is not None:
-            assert mathx.is_positive_integer(period), repr(period)
+            assert math.is_positive_integer(period), repr(period)
         if patterns is not None:
             assert all(isinstance(_, type(self)) for _ in patterns)
             patterns = tuple(patterns)
@@ -1014,7 +1014,7 @@ class Pattern:
         if self.patterns:
             periods = [_.period for _ in self.patterns]
             if None not in periods:
-                return mathx.least_common_multiple(*periods)
+                return math.least_common_multiple(*periods)
 
     @property
     def template(self):

@@ -14,7 +14,7 @@ Many score objects contain other score objects.
     ...     abjad.Tuplet((2, 3), "c'4 d'4 e'4"),
     ... ])
     >>> score = abjad.Score([staff])
-    >>> show(score)
+    >>> abjad.show(score)
 
 Abjad uses the idea of parentage to model the way objects contain each other.
 

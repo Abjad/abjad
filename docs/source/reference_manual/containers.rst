@@ -20,7 +20,7 @@ Or with a LilyPond input string:
 ::
 
     >>> container = abjad.Container("ds'16 cs'16 e'16 c'16 d'2 ~ d'8")
-    >>> show(container)
+    >>> abjad.show(container)
 
 
 Selecting music
@@ -132,8 +132,8 @@ You can name Abjad containers:
 
 ::
 
-    >>> flute_staff = Staff("c'8 d'8 e'8 f'8", name='Flute')
-    >>> violin_staff = Staff("c'8 d'8 e'8 f'8", name='Violin')
+    >>> flute_staff = abjad.Staff("c'8 d'8 e'8 f'8", name='Flute')
+    >>> violin_staff = abjad.Staff("c'8 d'8 e'8 f'8", name='Violin')
     >>> staff_group = abjad.StaffGroup([flute_staff, violin_staff])
     >>> score = abjad.Score([staff_group])
 
@@ -260,7 +260,7 @@ Set ``simultaneous`` by hand as necessary:
 
     >>> voice_1 = abjad.Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata")
     >>> voice_2 = abjad.Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
-    >>> staff = Staff([voice_1, voice_2], simultaneous=True)
+    >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
     >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
     >>> abjad.attach(literal, voice_1)
     >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')

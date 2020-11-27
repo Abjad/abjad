@@ -1,6 +1,6 @@
 import re
 
-from ..selectx import Selection
+from ..select import Selection
 from ..sequence import Sequence
 from ..storage import FormatSpecification, StorageFormatManager
 from .Accidental import Accidental

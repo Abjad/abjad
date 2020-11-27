@@ -1,4 +1,4 @@
-from .. import mathx
+from .. import math
 from ..storage import StorageFormatManager
 from .pitchclasses import NumberedPitchClass
 from .sets import PitchClassSet
@@ -1112,7 +1112,7 @@ class SetClass:
             return result
 
         for i in range(4096):
-            string = mathx.integer_to_binary_string(i).zfill(12)
+            string = math.integer_to_binary_string(i).zfill(12)
             subset = "".join(list(reversed(string)))
             subset = _helper(subset)
             subset = PitchClassSet(subset, item_class=NumberedPitchClass)

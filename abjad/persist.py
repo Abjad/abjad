@@ -3,9 +3,9 @@ import re
 import shutil
 import tempfile
 
-from . import iox
+from . import io
 from .contextmanagers import Timer
-from .formatx import LilyPondFormatManager
+from .format import LilyPondFormatManager
 from .illustrators import illustrate
 
 
@@ -41,7 +41,7 @@ def as_ly(
             string = LilyPondFormatManager.align_tags(string, align_tags)
     abjad_formatting_time = timer.elapsed_time
     directory = os.path.dirname(ly_file_path)
-    iox._ensure_directory_existence(directory)
+    io._ensure_directory_existence(directory)
     with open(ly_file_path, "w") as file_pointer:
         file_pointer.write(string)
     return ly_file_path, abjad_formatting_time
@@ -69,7 +69,7 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     ly_file_path, abjad_formatting_time = result
     timer = Timer()
     with timer:
-        success = iox.run_lilypond(ly_file_path)
+        success = io.run_lilypond(ly_file_path)
     lilypond_rendering_time = timer.elapsed_time
     if remove_ly:
         os.remove(ly_file_path)
@@ -123,7 +123,7 @@ def as_pdf(
     pdf_file_path = f"{without_extension}.pdf"
     timer = Timer()
     with timer:
-        success = iox.run_lilypond(ly_file_path)
+        success = io.run_lilypond(ly_file_path)
     lilypond_rendering_time = timer.elapsed_time
     if remove_ly:
         os.remove(ly_file_path)
@@ -177,7 +177,7 @@ def as_png(
         flags += f" -dresolution={resolution}"
     timer = Timer()
     with timer:
-        success = iox.run_lilypond(temporary_ly_file_path, flags=flags)
+        success = io.run_lilypond(temporary_ly_file_path, flags=flags)
     lilypond_rendering_time = timer.elapsed_time
     png_file_paths = []
     for file_name in os.listdir(temporary_directory):

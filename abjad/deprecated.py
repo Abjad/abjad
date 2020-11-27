@@ -2,7 +2,7 @@ import copy
 
 from . import _iterate
 from . import score as _score
-from . import selectx
+from . import select
 from . import tag as _tag
 from .attach import attach
 from .indicators.BarLine import BarLine
@@ -152,7 +152,7 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
             >>
 
     """
-    selection = selectx.Selection(score)
+    selection = select.Selection(score)
     last_leaf = selection._get_component(_score.Leaf, -1)
     markup = copy.copy(markup)
     attach(markup, last_leaf, tag=_tag.Tag("SCORE_2"))
