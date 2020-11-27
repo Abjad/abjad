@@ -101,6 +101,9 @@ Read more about Abjad here:
     core_concepts/index
     reference_manual/index
 
+Then join the :ref:`Abjad mailing list<mailing_list>` to ask questions and
+contribute.
+
 Score gallery
 -------------
 
@@ -108,7 +111,6 @@ Many scores have been composed with Abjad, including these:
 
 Invisible Cities (iii): Ersilia *(2015)*
 ````````````````````````````````````````
-
 - For chamber orchestra.
 - Composed by `Josiah Wolf Oberholtzer`_.
 - Written for Ensemble Dal Niente.
@@ -197,12 +199,11 @@ the Abjad API, which documents the hundreds of classes that make up the system:
 
     api/index
 
-The Abjad package ecosystem includes tools for commandline score setup,
-rhythmic construction and the basics of tonal analysis:
+The Abjad package ecosystem includes tools for rhythmic quantization and
+rhythmic construction:
 
-- https://github.com/abjad/abjad-ext-cli
+- https://github.com/abjad/abjad-ext-nauert
 - https://github.com/abjad/abjad-ext-rmakers
-- https://github.com/abjad/abjad-ext-tonality
 
 .. - IPython integration: https://github.com/abjad/abjad-ext-ipython
 .. - Quantization tools: https://github.com/abjad/abjad-ext-nauert
