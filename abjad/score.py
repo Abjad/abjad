@@ -1970,7 +1970,7 @@ class AfterGraceContainer(Container):
         >>> leaves = abjad.select(voice).leaves(grace=None)
         >>> markup = abjad.Markup('Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, leaves[1])
-        >>> abjad.attach(abjad.Staccato(), leaves[1])
+        >>> abjad.attach(abjad.Articulation("."), leaves[1])
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -1982,8 +1982,8 @@ class AfterGraceContainer(Container):
                 c'4
                 \afterGrace
                 d'4
+                - \staccato
                 ^ \markup { Allegro }
-                \staccato
                 {
                     c'16
                     d'16

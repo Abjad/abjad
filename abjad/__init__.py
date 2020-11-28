@@ -91,8 +91,6 @@ from .indicators.Ottava import Ottava
 from .indicators.RehearsalMark import RehearsalMark
 from .indicators.Repeat import Repeat
 from .indicators.RepeatTie import RepeatTie
-from .indicators.Staccatissimo import Staccatissimo
-from .indicators.Staccato import Staccato
 from .indicators.StaffChange import StaffChange
 from .indicators.StartBeam import StartBeam
 from .indicators.StartGroup import StartGroup
@@ -609,8 +607,6 @@ __all__ = [
     "SopranoSaxophone",
     "SopranoVoice",
     "SpacingVector",
-    "Staccatissimo",
-    "Staccato",
     "Staff",
     "StaffChange",
     "StaffGroup",

@@ -2240,7 +2240,7 @@ def indicators(
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
         >>> for note in abjad.select(staff).notes():
-        ...     abjad.attach(abjad.Staccato(), note)
+        ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2252,13 +2252,13 @@ def indicators(
                 \context Voice = "Music_Voice"
                 {
                     c'4
-                    \staccato
+                    - \staccato
                     \grace {
                         cs'16
-                        \staccato
+                        - \staccato
                     }
                     d'4
-                    \staccato
+                    - \staccato
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
@@ -2276,28 +2276,28 @@ def indicators(
                             [
                             (
                             gs'16
-                            \staccato
+                            - \staccato
                             a'16
-                            \staccato
+                            - \staccato
                             as'16
+                            - \staccato
                             )
                             ]
-                            \staccato
                         }
                         \context Voice = "Music_Voice"
                         {
                             \voiceTwo %! abjad.on_beat_grace_container(4)
                             e'4
-                            \staccato
+                            - \staccato
                         }
                     >>
                     \oneVoice %! abjad.on_beat_grace_container(5)
                     \afterGrace
                     f'4
-                    \staccato
+                    - \staccato
                     {
                         fs'16
-                        \staccato
+                        - \staccato
                     }
                 }
             }
@@ -2307,21 +2307,21 @@ def indicators(
         ...     print(f"{repr(component):30} {repr(result)}")
         <Staff{1}>                     []
         <Voice-"Music_Voice"{4}>       []
-        Note("c'4")                    [Staccato()]
+        Note("c'4")                    [Articulation('.')]
         BeforeGraceContainer("cs'16")  []
-        Note("cs'16")                  [Staccato()]
-        Note("d'4")                    [Staccato()]
+        Note("cs'16")                  [Articulation('.')]
+        Note("d'4")                    [Articulation('.')]
         <<<2>>>                        []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") [LilyPondLiteral('\\set fontSize = #-3', format_slot='opening')]
         Chord("<e' g'>16")             [StartBeam(), LilyPondLiteral('\\slash', format_slot='opening'), StartSlur(), LilyPondLiteral('\\voiceOne', format_slot='opening'), Clef('alto'), Articulation('>')]
-        Note("gs'16")                  [Staccato()]
-        Note("a'16")                   [Staccato()]
-        Note("as'16")                  [StopBeam(), StopSlur(), Staccato()]
+        Note("gs'16")                  [Articulation('.')]
+        Note("a'16")                   [Articulation('.')]
+        Note("as'16")                  [StopBeam(), StopSlur(), Articulation('.')]
         Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [LilyPondLiteral('\\voiceTwo', format_slot='opening'), Staccato()]
-        Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='absolute_before'), Staccato()]
+        Note("e'4")                    [LilyPondLiteral('\\voiceTwo', format_slot='opening'), Articulation('.')]
+        Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='absolute_before'), Articulation('.')]
         AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Staccato()]
+        Note("fs'16")                  [Articulation('.')]
 
     ..  container:: example
 
@@ -2334,7 +2334,7 @@ def indicators(
         >>> abjad.attach(abjad.Clef("alto"), staff[-1][0])
         >>> staff.append("ds'4")
         >>> for note in abjad.select(staff).notes():
-        ...     abjad.attach(abjad.Staccato(), note)
+        ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2345,21 +2345,21 @@ def indicators(
             {
                 \repeat tremolo 2 {
                     c'16
-                    \staccato
+                    - \staccato
                     e'16
-                    \staccato
+                    - \staccato
                 }
                 cs'4
-                \staccato
+                - \staccato
                 \repeat tremolo 2 {
                     \clef "alto"
                     d'16
-                    \staccato
+                    - \staccato
                     f'16
-                    \staccato
+                    - \staccato
                 }
                 ds'4
-                \staccato
+                - \staccato
             }
 
         >>> for component in abjad.select(staff).components():
@@ -2367,13 +2367,13 @@ def indicators(
         ...     print(f"{repr(component):30} {repr(result)}")
         <Staff{4}>                     []
         TremoloContainer("c'16 e'16")  []
-        Note("c'16")                   [Staccato()]
-        Note("e'16")                   [Staccato()]
-        Note("cs'4")                   [Staccato()]
+        Note("c'16")                   [Articulation('.')]
+        Note("e'16")                   [Articulation('.')]
+        Note("cs'4")                   [Articulation('.')]
         TremoloContainer("d'16 f'16")  []
-        Note("d'16")                   [Clef('alto'), Staccato()]
-        Note("f'16")                   [Staccato()]
-        Note("ds'4")                   [Staccato()]
+        Note("d'16")                   [Clef('alto'), Articulation('.')]
+        Note("f'16")                   [Articulation('.')]
+        Note("ds'4")                   [Articulation('.')]
 
     """
     # TODO: extend to any non-none client
@@ -3888,7 +3888,7 @@ def wrapper(
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
         >>> for note in abjad.select(staff).notes():
-        ...     abjad.attach(abjad.Staccato(), note)
+        ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3900,13 +3900,13 @@ def wrapper(
                 \context Voice = "Music_Voice"
                 {
                     c'4
-                    \staccato
+                    - \staccato
                     \grace {
                         cs'16
-                        \staccato
+                        - \staccato
                     }
                     d'4
-                    \staccato
+                    - \staccato
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
@@ -3924,28 +3924,28 @@ def wrapper(
                             [
                             (
                             gs'16
-                            \staccato
+                            - \staccato
                             a'16
-                            \staccato
+                            - \staccato
                             as'16
+                            - \staccato
                             )
                             ]
-                            \staccato
                         }
                         \context Voice = "Music_Voice"
                         {
                             \voiceTwo %! abjad.on_beat_grace_container(4)
                             e'4
-                            \staccato
+                            - \staccato
                         }
                     >>
                     \oneVoice %! abjad.on_beat_grace_container(5)
                     \afterGrace
                     f'4
-                    \staccato
+                    - \staccato
                     {
                         fs'16
-                        \staccato
+                        - \staccato
                     }
                 }
             }
@@ -3953,25 +3953,25 @@ def wrapper(
         REGRESSION. Works with grace notes (and containers):
 
         >>> for component in abjad.select(staff).components():
-        ...     wrapper = abjad.get.wrapper(component, abjad.Staccato)
+        ...     wrapper = abjad.get.wrapper(component, abjad.Articulation)
         ...     print(f"{repr(component):30} {repr(wrapper)}")
         <Staff{1}>                     None
         <Voice-"Music_Voice"{4}>       None
-        Note("c'4")                    Wrapper(indicator=Staccato(), tag=Tag())
-        BeforeGraceContainer("cs'16")        None
-        Note("cs'16")                  Wrapper(indicator=Staccato(), tag=Tag())
-        Note("d'4")                    Wrapper(indicator=Staccato(), tag=Tag())
+        Note("c'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
+        BeforeGraceContainer("cs'16")  None
+        Note("cs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("d'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
         <<<2>>>                        None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-        Chord("<e' g'>16")             None
-        Note("gs'16")                  Wrapper(indicator=Staccato(), tag=Tag())
-        Note("a'16")                   Wrapper(indicator=Staccato(), tag=Tag())
-        Note("as'16")                  Wrapper(indicator=Staccato(), tag=Tag())
+        Chord("<e' g'>16")             Wrapper(indicator=Articulation('>'), tag=Tag())
+        Note("gs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("a'16")                   Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("as'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
         Voice("e'4", name='Music_Voice') None
-        Note("e'4")                    Wrapper(indicator=Staccato(), tag=Tag())
-        Note("f'4")                    Wrapper(indicator=Staccato(), tag=Tag())
+        Note("e'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("f'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
         AfterGraceContainer("fs'16")   None
-        Note("fs'16")                  Wrapper(indicator=Staccato(), tag=Tag())
+        Note("fs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
 
     Raises exception when more than one indicator of ``prototype`` attach
     to client.
@@ -4006,7 +4006,7 @@ def wrappers(
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
         >>> for note in abjad.select(staff).notes():
-        ...     abjad.attach(abjad.Staccato(), note)
+        ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -4018,13 +4018,13 @@ def wrappers(
                 \context Voice = "Music_Voice"
                 {
                     c'4
-                    \staccato
+                    - \staccato
                     \grace {
                         cs'16
-                        \staccato
+                        - \staccato
                     }
                     d'4
-                    \staccato
+                    - \staccato
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
@@ -4042,52 +4042,52 @@ def wrappers(
                             [
                             (
                             gs'16
-                            \staccato
+                            - \staccato
                             a'16
-                            \staccato
+                            - \staccato
                             as'16
+                            - \staccato
                             )
                             ]
-                            \staccato
                         }
                         \context Voice = "Music_Voice"
                         {
                             \voiceTwo %! abjad.on_beat_grace_container(4)
                             e'4
-                            \staccato
+                            - \staccato
                         }
                     >>
                     \oneVoice %! abjad.on_beat_grace_container(5)
                     \afterGrace
                     f'4
-                    \staccato
+                    - \staccato
                     {
                         fs'16
-                        \staccato
+                        - \staccato
                     }
                 }
             }
 
         >>> for component in abjad.select(staff).components():
-        ...     result = abjad.get.wrappers(component, abjad.Staccato)
+        ...     result = abjad.get.wrappers(component, abjad.Articulation)
         ...     print(f"{repr(component):30} {repr(result)}")
         <Staff{1}>                     []
         <Voice-"Music_Voice"{4}>       []
-        Note("c'4")                    [Wrapper(indicator=Staccato(), tag=Tag())]
-        BeforeGraceContainer("cs'16")        []
-        Note("cs'16")                  [Wrapper(indicator=Staccato(), tag=Tag())]
-        Note("d'4")                    [Wrapper(indicator=Staccato(), tag=Tag())]
+        Note("c'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        BeforeGraceContainer("cs'16")  []
+        Note("cs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("d'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
         <<<2>>>                        []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") []
-        Chord("<e' g'>16")             []
-        Note("gs'16")                  [Wrapper(indicator=Staccato(), tag=Tag())]
-        Note("a'16")                   [Wrapper(indicator=Staccato(), tag=Tag())]
-        Note("as'16")                  [Wrapper(indicator=Staccato(), tag=Tag())]
+        Chord("<e' g'>16")             [Wrapper(indicator=Articulation('>'), tag=Tag())]
+        Note("gs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("a'16")                   [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("as'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
         Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [Wrapper(indicator=Staccato(), tag=Tag())]
-        Note("f'4")                    [Wrapper(indicator=Staccato(), tag=Tag())]
+        Note("e'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("f'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
         AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Wrapper(indicator=Staccato(), tag=Tag())]
+        Note("fs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
 
     """
     if attributes is not None:
