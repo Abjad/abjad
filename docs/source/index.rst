@@ -10,11 +10,11 @@ Quickstart
 
 Get Abjad via `pip`_::
 
-    ~$ sudo pip install abjad
+    ~$ pip install abjad
 
 Then get `LilyPond`_ from http://lilypond.org/development.html. Read the
-:ref:`installation instructions<installation>` for help installing Abjad and
-dependencies like `LilyPond`_.
+:ref:`installation instructions<installation>` for help installing Abjad and dependencies
+like `LilyPond`_.
 
 ..  toctree::
     :hidden:
@@ -37,8 +37,8 @@ Then make some notes:
     >>> staff = abjad.Staff(notes)
     >>> abjad.show(staff)
 
-Split these notes at every 5/16 of a whole note. Transpose every other group up
-a major-seventh. Then slur and accent each group:
+Split these notes at every 5/16 of a whole note. Transpose every other group up a
+major-seventh. Then slur and accent each group:
 
 ::
 
@@ -71,16 +71,16 @@ Then create a second staff and invert its pitches:
     ... 
     >>> abjad.show(staff_group)
 
-Notice that the music notation examples in Abjad's docs are styled in a special
-way: notes, chords and rests are spaced proportionally; there are no bar
-numbers; tuplet numbers are cleaned up; and so on. These settings differ
-somewhat from LilyPond defaults. [#f1]_ 
+Notice that the music notation examples in Abjad's docs are styled in a special way:
+notes, chords and rests are spaced proportionally; there are no bar numbers; tuplet
+numbers are cleaned up; and so on. These settings differ somewhat from LilyPond defaults.
+[#f1]_
 
 Features
 --------
 
-Abjad 3.1 implements an extensive collection of tools for score formalization.
-Among its core features, Abjad lets you:
+Abjad 3.1 implements an extensive collection of tools for score formalization. Among its
+core features, Abjad lets you:
 
 -   Model compositional thinking computationally.
 -   Create music notation in an object-oriented way.
@@ -100,9 +100,9 @@ Read more about Abjad here:
     literature_examples/index
     core_concepts/index
     reference_manual/index
+    api/index
 
-Then join the :ref:`Abjad mailing list<mailing_list>` to ask questions and
-contribute.
+Then join the :ref:`Abjad mailing list<mailing_list>` to ask questions and contribute.
 
 Score gallery
 -------------
@@ -162,15 +162,14 @@ Visit Abjad's score gallery for many more examples.
 ````````````````````````
 Summers | Palo Alto, CA
 
-Introduction to the production of professionally engraved musical scores using
-the Python programming language and the Abjad API for Formalized Score Control
-as part of compositional practice.
+Introduction to the production of professionally engraved musical scores using the Python
+programming language and the Abjad API for Formalized Score Control as part of
+compositional practice.
 
-The course introduces Abjad's object-oriented approach to music notation and
-algorithmic composition through real-world examples and hands-on coding
-activities. No previous programming experience is required. Python basics will
-be taught from the ground up during the course with musical examples designed
-to make sense to composers.
+The course introduces Abjad's object-oriented approach to music notation and algorithmic
+composition through real-world examples and hands-on coding activities. No previous
+programming experience is required. Python basics will be taught from the ground up
+during the course with musical examples designed to make sense to composers.
 
 Topics covered include:
 
@@ -187,17 +186,6 @@ Taught by Jeff Treviño, Trevor Bača and Josiah Wolf Oberholtzer.
 
 Visit the `CCRMA`_ website for the most up-to-date scheduling information about
 this annual course.
-
-Additional information
-----------------------
-
-The most important resource for intermediate and experienced users of Abjad is
-the Abjad API, which documents the hundreds of classes that make up the system:
-
-..  toctree::
-    :maxdepth: 2
-
-    api/index
 
 The Abjad package ecosystem includes tools for rhythmic quantization and
 rhythmic construction:
@@ -246,7 +234,13 @@ Finally, a number of publications discussing Abjad are available for download he
     University of California, San Diego.
     2013.
 
-Happy composing and welcome to Abjad |release|!
+..  toctree::
+    :maxdepth: 1
+    :hidden:
+
+    changes
+
+Happy composing and welcome to Abjad!
 
 ..  rubric:: Footnotes
 

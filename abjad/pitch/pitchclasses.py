@@ -3,7 +3,7 @@ import numbers
 
 from .. import enums, math
 from ..storage import FormatSpecification, StorageFormatManager
-from . import constants
+from . import _lib
 from .Accidental import Accidental
 from .pitches import NamedPitch, NumberedPitch, Pitch
 
@@ -24,16 +24,16 @@ class PitchClass:
 
     def __init__(self, argument):
         if isinstance(argument, str):
-            match = constants._comprehensive_pitch_name_regex.match(argument)
+            match = _lib._comprehensive_pitch_name_regex.match(argument)
             if not match:
-                match = constants._comprehensive_pitch_class_name_regex.match(argument)
+                match = _lib._comprehensive_pitch_class_name_regex.match(argument)
             if not match:
                 class_name = type(self).__name__
                 message = f"can not instantiate {class_name} from {argument!r}."
                 raise ValueError(message)
             group_dict = match.groupdict()
             dpc_name = group_dict["diatonic_pc_name"].lower()
-            dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[dpc_name]
+            dpc_number = _lib._diatonic_pc_name_to_diatonic_pc_number[dpc_name]
             alteration = Accidental(group_dict["comprehensive_accidental"]).semitones
             self._from_named_parts(dpc_number, alteration)
         elif isinstance(argument, numbers.Number):
@@ -461,9 +461,7 @@ class NamedPitchClass(PitchClass):
         return self._accidental.semitones
 
     def _get_diatonic_pc_name(self):
-        return constants._diatonic_pc_number_to_diatonic_pc_name[
-            self._diatonic_pc_number
-        ]
+        return _lib._diatonic_pc_number_to_diatonic_pc_name[self._diatonic_pc_number]
 
     def _get_diatonic_pc_number(self):
         return self._diatonic_pc_number
@@ -520,7 +518,7 @@ class NamedPitchClass(PitchClass):
 
         Returns string.
         """
-        diatonic_pc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
+        diatonic_pc_name = _lib._diatonic_pc_number_to_diatonic_pc_name[
             self._diatonic_pc_number
         ]
         return f"{diatonic_pc_name}{self._accidental!s}"
@@ -537,7 +535,7 @@ class NamedPitchClass(PitchClass):
 
         Returns nonnegative integer or float.
         """
-        dictionary = constants._diatonic_pc_number_to_pitch_class_number
+        dictionary = _lib._diatonic_pc_number_to_pitch_class_number
         result = dictionary[self._diatonic_pc_number]
         result += self._accidental.semitones
         result %= 12
@@ -893,7 +891,7 @@ class NumberedPitchClass(PitchClass):
         return type(self)(semitones)
 
     def _from_named_parts(self, dpc_number, alteration):
-        number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        number = _lib._diatonic_pc_number_to_pitch_class_number[dpc_number]
         number += alteration
         self._from_number(number)
 
@@ -907,14 +905,14 @@ class NumberedPitchClass(PitchClass):
 
     def _get_alteration(self):
         dpc_number = self._get_diatonic_pc_number()
-        pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        pc_number = _lib._diatonic_pc_number_to_pitch_class_number[dpc_number]
         return float(self) - pc_number
 
     def _get_diatonic_pc_name(self):
         return self.name[0]
 
     def _get_diatonic_pc_number(self):
-        return constants._diatonic_pc_name_to_diatonic_pc_number[
+        return _lib._diatonic_pc_name_to_diatonic_pc_number[
             self._get_diatonic_pc_name()
         ]
 
@@ -968,7 +966,7 @@ class NumberedPitchClass(PitchClass):
 
         Returns string.
         """
-        return constants._pitch_class_number_to_pitch_class_name[self.number]
+        return _lib._pitch_class_number_to_pitch_class_name[self.number]
 
     @property
     def number(self):

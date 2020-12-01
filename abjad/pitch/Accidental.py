@@ -3,7 +3,7 @@ import numbers
 
 from .. import enums, math
 from ..storage import FormatSpecification, StorageFormatManager
-from . import constants
+from . import _lib
 
 
 @functools.total_ordering
@@ -58,11 +58,11 @@ class Accidental:
         if name is None:
             pass
         elif isinstance(name, str):
-            if name in constants._accidental_name_to_abbreviation:
-                name = constants._accidental_name_to_abbreviation[name]
-                semitones = constants._accidental_abbreviation_to_semitones[name]
+            if name in _lib._accidental_name_to_abbreviation:
+                name = _lib._accidental_name_to_abbreviation[name]
+                semitones = _lib._accidental_abbreviation_to_semitones[name]
             else:
-                match = constants._comprehensive_accidental_regex.match(name)
+                match = _lib._comprehensive_accidental_regex.match(name)
                 group_dict = match.groupdict()
                 if group_dict["alphabetic_accidental"]:
                     prefix, _, suffix = name.partition("q")
@@ -302,8 +302,8 @@ class Accidental:
 
         Returns string.
         """
-        if self.semitones in constants._accidental_semitones_to_abbreviation:
-            return constants._accidental_semitones_to_abbreviation[self.semitones]
+        if self.semitones in _lib._accidental_semitones_to_abbreviation:
+            return _lib._accidental_semitones_to_abbreviation[self.semitones]
         character = "s"
         if self.semitones < 0:
             character = "f"
@@ -339,15 +339,15 @@ class Accidental:
 
     @classmethod
     def _get_all_accidental_abbreviations(class_):
-        return list(constants._accidental_abbreviation_to_symbol.keys())
+        return list(_lib._accidental_abbreviation_to_symbol.keys())
 
     @classmethod
     def _get_all_accidental_names(class_):
-        return list(constants._accidental_name_to_abbreviation.keys())
+        return list(_lib._accidental_name_to_abbreviation.keys())
 
     @classmethod
     def _get_all_accidental_semitone_values(class_):
-        return list(constants._accidental_semitones_to_abbreviation.keys())
+        return list(_lib._accidental_semitones_to_abbreviation.keys())
 
     def _get_format_specification(self):
         return FormatSpecification(
@@ -365,13 +365,13 @@ class Accidental:
     def _is_abbreviation(class_, argument):
         if not isinstance(argument, str):
             return False
-        return bool(constants._alphabetic_accidental_regex.match(argument))
+        return bool(_lib._alphabetic_accidental_regex.match(argument))
 
     @classmethod
     def _is_symbol(class_, argument):
         if not isinstance(argument, str):
             return False
-        return bool(constants._symbolic_accidental_regex.match(argument))
+        return bool(_lib._symbolic_accidental_regex.match(argument))
 
     ### PUBLIC PROPERTIES ###
 
@@ -441,10 +441,8 @@ class Accidental:
         Returns string.
         """
         try:
-            abbreviation = constants._accidental_semitones_to_abbreviation[
-                self.semitones
-            ]
-            name = constants._accidental_abbreviation_to_name[abbreviation]
+            abbreviation = _lib._accidental_semitones_to_abbreviation[self.semitones]
+            name = _lib._accidental_abbreviation_to_name[abbreviation]
         except KeyError:
             name = str(self)
         return name
@@ -517,6 +515,6 @@ class Accidental:
 
         Returns string.
         """
-        abbreviation = constants._accidental_semitones_to_abbreviation[self.semitones]
-        symbol = constants._accidental_abbreviation_to_symbol[abbreviation]
+        abbreviation = _lib._accidental_semitones_to_abbreviation[self.semitones]
+        symbol = _lib._accidental_abbreviation_to_symbol[abbreviation]
         return symbol

@@ -7,7 +7,7 @@ import quicktions
 
 from .. import math as _math
 from ..storage import FormatSpecification, StorageFormatManager
-from . import constants
+from . import _lib
 from .Accidental import Accidental
 from .Octave import Octave
 
@@ -30,16 +30,16 @@ class Pitch:
         from .pitchclasses import NamedPitchClass, PitchClass
 
         if isinstance(argument, str):
-            match = constants._comprehensive_pitch_name_regex.match(argument)
+            match = _lib._comprehensive_pitch_name_regex.match(argument)
             if not match:
-                match = constants._comprehensive_pitch_class_name_regex.match(argument)
+                match = _lib._comprehensive_pitch_class_name_regex.match(argument)
             if not match:
                 class_name = type(self).__name__
                 message = f"can not instantiate {class_name} from {argument!r}."
                 raise ValueError(message)
             group_dict = match.groupdict()
             _dpc_name = group_dict["diatonic_pc_name"].lower()
-            _dpc_number = constants._diatonic_pc_name_to_diatonic_pc_number[_dpc_name]
+            _dpc_number = _lib._diatonic_pc_name_to_diatonic_pc_number[_dpc_name]
             _alteration = Accidental(group_dict["comprehensive_accidental"]).semitones
             _octave = Octave(group_dict.get("comprehensive_octave", "")).number
             self._from_named_parts(_dpc_number, _alteration, _octave)
@@ -557,7 +557,7 @@ class NamedPitch(Pitch):
     def _from_named_parts(self, dpc_number, alteration, octave):
         from .pitchclasses import NamedPitchClass
 
-        dpc_name = constants._diatonic_pc_number_to_diatonic_pc_name[dpc_number]
+        dpc_name = _lib._diatonic_pc_number_to_diatonic_pc_name[dpc_number]
         accidental = Accidental(alteration)
         octave = Octave(octave)
         self._octave = octave
@@ -592,13 +592,13 @@ class NamedPitch(Pitch):
         return self.accidental.semitones
 
     def _get_diatonic_pc_name(self):
-        return constants._diatonic_pc_number_to_diatonic_pc_name[
+        return _lib._diatonic_pc_number_to_diatonic_pc_name[
             self.pitch_class._diatonic_pc_number
         ]
 
     def _get_diatonic_pc_number(self):
         diatonic_pc_name = self._get_diatonic_pc_name()
-        diatonic_pc_number = constants._diatonic_pc_name_to_diatonic_pc_number[
+        diatonic_pc_number = _lib._diatonic_pc_name_to_diatonic_pc_number[
             diatonic_pc_name
         ]
         return diatonic_pc_number
@@ -636,14 +636,14 @@ class NamedPitch(Pitch):
         return contributions
 
     def _respell_with_flats(self):
-        name = constants._pitch_class_number_to_pitch_class_name_with_flats[
+        name = _lib._pitch_class_number_to_pitch_class_name_with_flats[
             self.pitch_class.number
         ]
         pitch = type(self)((name, self.octave.number))
         return pitch
 
     def _respell_with_sharps(self):
-        name = constants._pitch_class_number_to_pitch_class_name_with_sharps[
+        name = _lib._pitch_class_number_to_pitch_class_name_with_sharps[
             self.pitch_class.number
         ]
         pitch = type(self)((name, self.octave.number))
@@ -760,9 +760,7 @@ class NamedPitch(Pitch):
         Returns number.
         """
         diatonic_pc_number = self.pitch_class._get_diatonic_pc_number()
-        pc_number = constants._diatonic_pc_number_to_pitch_class_number[
-            diatonic_pc_number
-        ]
+        pc_number = _lib._diatonic_pc_number_to_pitch_class_number[diatonic_pc_number]
         alteration = self.pitch_class._get_alteration()
         octave_base_pitch = (self.octave.number - 4) * 12
         return _math.integer_equivalent_number_to_integer(
@@ -957,7 +955,7 @@ class NamedPitch(Pitch):
                 octave -= 1
             diatonic_pc_number = (diatonic_pc_number - 1) % 7
             alteration += step_size
-        diatonic_pc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
+        diatonic_pc_name = _lib._diatonic_pc_number_to_diatonic_pc_name[
             diatonic_pc_number
         ]
         accidental = Accidental(alteration)
@@ -992,10 +990,10 @@ class NamedPitch(Pitch):
         diatonic_pc_number = self._get_diatonic_pc_number()
         diatonic_pc_number += interval.staff_spaces
         diatonic_pc_number %= 7
-        diatonic_pc_name = constants._diatonic_pc_number_to_diatonic_pc_name[
+        diatonic_pc_name = _lib._diatonic_pc_number_to_diatonic_pc_name[
             diatonic_pc_number
         ]
-        pc = constants._diatonic_pc_name_to_pitch_class_number[diatonic_pc_name]
+        pc = _lib._diatonic_pc_name_to_pitch_class_number[diatonic_pc_name]
         nearest_neighbor = self._to_nearest_octave(pitch_number, pc)
         semitones = pitch_number - nearest_neighbor
         accidental = Accidental(semitones)
@@ -1178,7 +1176,7 @@ class NumberedPitch(Pitch):
     def _from_named_parts(self, dpc_number, alteration, octave):
         from .pitchclasses import NumberedPitchClass
 
-        pc_number = constants._diatonic_pc_number_to_pitch_class_number[dpc_number]
+        pc_number = _lib._diatonic_pc_number_to_pitch_class_number[dpc_number]
         pc_number += alteration
         pc_number += (octave - 4) * 12
         self._number = _math.integer_equivalent_number_to_integer(pc_number)

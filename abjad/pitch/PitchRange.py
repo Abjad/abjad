@@ -3,7 +3,7 @@ import numbers
 import typing
 
 from ..storage import FormatSpecification, StorageFormatManager
-from . import constants
+from . import _lib
 from .Octave import Octave
 from .pitchclasses import NamedPitchClass
 from .pitches import NamedPitch, NumberedPitch, Pitch
@@ -450,7 +450,7 @@ class PitchRange:
         assert isinstance(range_string, str), repr(range_string)
         range_string = range_string.replace("-inf", "-1000")
         range_string = range_string.replace("+inf", "1000")
-        match = constants._range_string_regex.match(range_string)
+        match = _lib._range_string_regex.match(range_string)
         if match is None:
             raise ValueError(f"can not instantiate pitch range: {range_string!r}")
         group_dict = match.groupdict()
@@ -458,10 +458,10 @@ class PitchRange:
         start_pitch_string = group_dict["start_pitch"]
         stop_pitch_string = group_dict["stop_pitch"]
         stop_punctuation = group_dict["close_bracket"]
-        start_inclusivity_string = constants._start_punctuation_to_inclusivity_string[
+        start_inclusivity_string = _lib._start_punctuation_to_inclusivity_string[
             start_punctuation
         ]
-        stop_inclusivity_string = constants._stop_punctuation_to_inclusivity_string[
+        stop_inclusivity_string = _lib._stop_punctuation_to_inclusivity_string[
             stop_punctuation
         ]
         if start_pitch_string == "-1000":
@@ -647,7 +647,7 @@ class PitchRange:
         """
         if not isinstance(argument, str):
             return False
-        return bool(constants._range_string_regex.match(argument))
+        return bool(_lib._range_string_regex.match(argument))
 
     def voice_pitch_class(self, pitch_class):
         """

@@ -5,7 +5,7 @@ import typing
 
 from .. import math
 from ..storage import FormatSpecification, StorageFormatManager
-from . import constants
+from . import _lib
 from .pitches import NamedPitch, NumberedPitch
 
 
@@ -26,7 +26,7 @@ class Interval:
 
     def __init__(self, argument):
         if isinstance(argument, str):
-            match = constants._interval_name_abbreviation_regex.match(argument)
+            match = _lib._interval_name_abbreviation_regex.match(argument)
             if match is None:
                 try:
                     argument = float(argument)
@@ -159,9 +159,9 @@ class Interval:
         if len(quality) > 1:
             base_quality = quality[0]
 
-        semitones = constants._diatonic_number_and_quality_to_semitones[
-            diatonic_pc_number
-        ][base_quality]
+        semitones = _lib._diatonic_number_and_quality_to_semitones(
+            diatonic_pc_number, base_quality
+        )
         if base_quality == "d":
             semitones -= len(quality) - 1
         elif base_quality == "A":
@@ -191,7 +191,7 @@ class Interval:
         (
             quality,
             diatonic_number,
-        ) = constants._semitones_to_quality_and_diatonic_number[semitones]
+        ) = _lib._semitones_to_quality_and_diatonic_number[semitones]
         quality += quartertone
         diatonic_number += octaves * 7
         diatonic_number = cls._to_nearest_quarter_tone(diatonic_number)
@@ -209,8 +209,8 @@ class Interval:
 
     @classmethod
     def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
-        if quality in constants._quality_string_to_quality_abbreviation:
-            quality = constants._quality_string_to_quality_abbreviation[quality]
+        if quality in _lib._quality_string_to_quality_abbreviation:
+            quality = _lib._quality_string_to_quality_abbreviation[quality]
         if quality == "aug":
             quality = "A"
         if quality == "dim":
@@ -220,12 +220,10 @@ class Interval:
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
             octaves += 1
-        if (
-            constants._diatonic_number_and_quality_to_semitones.get(
-                diatonic_pc_number, {}
-            ).get(quality[0])
-            is None
-        ):
+        quality_to_semitones = _lib._diatonic_number_to_quality_dictionary[
+            diatonic_pc_number
+        ]
+        if quality[0] not in quality_to_semitones:
             name = cls.__name__
             number = diatonic_number
             message = f"can not initialize {name} from {quality!r} and {number!r}."
@@ -707,7 +705,7 @@ class NamedInterval(Interval):
 
         Returns string.
         """
-        direction_symbol = constants._direction_number_to_direction_symbol[
+        direction_symbol = _lib._direction_number_to_direction_symbol[
             self.direction_number
         ]
         return "{}{}{}".format(
@@ -886,24 +884,25 @@ class NamedInterval(Interval):
             quartertone = "+"
             numbered_ic_number -= 0.5
 
-        mapping: typing.Dict = {
-            value: key
-            for key, value in constants._diatonic_number_and_quality_to_semitones[
-                named_ic_number
-            ].items()
+        quality_to_semitones = _lib._diatonic_number_to_quality_dictionary[
+            named_ic_number
+        ]
+
+        semitones_to_quality: typing.Dict = {
+            value: key for key, value in quality_to_semitones.items()
         }
 
         quality = ""
 
-        while numbered_ic_number > max(mapping):
+        while numbered_ic_number > max(semitones_to_quality):
             numbered_ic_number -= 1
             quality += "A"
 
-        while numbered_ic_number < min(mapping):
+        while numbered_ic_number < min(semitones_to_quality):
             numbered_ic_number += 1
             quality += "d"
 
-        quality += mapping[numbered_ic_number]
+        quality += semitones_to_quality[numbered_ic_number]
         quality += quartertone
         direction = 1
         if pitch_2 < pitch_1:
@@ -1163,7 +1162,7 @@ class NumberedInterval(Interval):
 
         Returns string.
         """
-        direction_symbol = constants._direction_number_to_direction_symbol[
+        direction_symbol = _lib._direction_number_to_direction_symbol[
             math.sign(self.number)
         ]
         return f"{direction_symbol}{abs(self.number)}"

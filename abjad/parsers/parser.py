@@ -55,7 +55,7 @@ from ..lyenv import (
 )
 from ..markups import Markup, MarkupCommand
 from ..overrides import LilyPondLiteral
-from ..pitch import constants as pitch_constants
+from ..pitch import _lib as pitch__lib
 from ..pitch.Accidental import Accidental
 from ..pitch.Octave import Octave
 from ..pitch.pitchclasses import NamedPitchClass
@@ -3130,7 +3130,7 @@ class LilyPondParser(Parser):
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
         octave_ticks = str(Octave(new_oct))
-        pitch_class_name = pitch_constants._diatonic_pc_number_to_diatonic_pc_name[
+        pitch_class_name = pitch__lib._diatonic_pc_number_to_diatonic_pc_name[
             new_step % 7
         ]
         accidental = str(Accidental(new_alt))
@@ -3142,7 +3142,7 @@ class LilyPondParser(Parser):
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
         octave_ticks = str(Octave(new_oct))
-        pitch_class_name = pitch_constants._diatonic_pc_number_to_diatonic_pc_name[
+        pitch_class_name = pitch__lib._diatonic_pc_number_to_diatonic_pc_name[
             new_step % 7
         ]
         accidental = str(Accidental(new_alt))
