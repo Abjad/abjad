@@ -4,13 +4,14 @@ import itertools
 from . import enums, exceptions, get
 from .attach import attach, detach
 from .duration import Duration
+from .indicators.MetronomeMark import MetronomeMark
 from .indicators.RepeatTie import RepeatTie
 from .indicators.Tie import Tie
 from .iterate import Iteration
 from .makers import NoteMaker
 from .pitch.intervals import NamedInterval
 from .ratio import Ratio
-from .score import Chord, Component, Container, Leaf, Note, Tuplet
+from .score import BeforeGraceContainer, Chord, Component, Container, Leaf, Note, Tuplet
 from .select import Selection
 from .sequence import Sequence
 from .spanners import tie
@@ -120,6 +121,8 @@ def _set_leaf_duration(leaf, new_duration):
     following_leaves = []
     for i in range(following_leaf_count):
         following_leaf = copy(leaf)
+        detach(BeforeGraceContainer, following_leaf)
+        detach(MetronomeMark, following_leaf)
         following_leaves.append(following_leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
