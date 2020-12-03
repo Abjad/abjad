@@ -7,6 +7,7 @@ from .duration import Duration
 from .indicators.MetronomeMark import MetronomeMark
 from .indicators.RepeatTie import RepeatTie
 from .indicators.Tie import Tie
+from .indicators.TimeSignature import TimeSignature
 from .iterate import Iteration
 from .makers import NoteMaker
 from .pitch.intervals import NamedInterval
@@ -123,6 +124,7 @@ def _set_leaf_duration(leaf, new_duration):
         following_leaf = copy(leaf)
         detach(BeforeGraceContainer, following_leaf)
         detach(MetronomeMark, following_leaf)
+        detach(TimeSignature, following_leaf)
         following_leaves.append(following_leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
