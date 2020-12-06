@@ -116,6 +116,7 @@ def _indicator_is_at_end(indicator):
         StopPhrasingSlur,
         StopPianoPedal,
         StopSlur,
+        StopTextSpan,
         StopTrillSpan,
     ]
     for cls in classes:
