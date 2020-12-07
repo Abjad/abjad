@@ -38,7 +38,6 @@ from .contextmanagers import (
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .enums import (
-    Both,
     Center,
     Comparison,
     Down,
@@ -46,6 +45,7 @@ from .enums import (
     HorizontalAlignment,
     Left,
     Less,
+    Middle,
     More,
     Right,
     Up,
@@ -396,7 +396,6 @@ __all__ = [
     "BeforeGraceContainer",
     "BendAfter",
     "Block",
-    "Both",
     "BowContactPoint",
     "BowMotionTechnique",
     "BowPressure",
@@ -509,6 +508,7 @@ __all__ = [
     "MetricModulation",
     "MetronomeMark",
     "MezzoSopranoVoice",
+    "Middle",
     "MissingMetronomeMarkError",
     "Mode",
     "More",

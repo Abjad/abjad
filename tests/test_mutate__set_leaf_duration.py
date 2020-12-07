@@ -32,7 +32,6 @@ def test_mutate__set_leaf_duration_01():
             c'8
             [
             d'8
-            ]
             ~
             d'32
             ]
@@ -80,7 +79,6 @@ def test_mutate__set_leaf_duration_02():
             [
             ~
             c'8
-            ]
             ~
             c'32
             ]
@@ -169,7 +167,6 @@ def test_mutate__set_leaf_duration_04():
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8
-                ]
                 ~
                 d'32
                 ]

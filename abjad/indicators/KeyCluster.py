@@ -48,6 +48,8 @@ class KeyCluster:
         "_markup_direction",
     )
 
+    _time_orientation = enums.Middle
+
     ### INITIALIZER ###
 
     def __init__(

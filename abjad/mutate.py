@@ -10,7 +10,7 @@ from .iterate import Iteration
 from .makers import NoteMaker
 from .pitch.intervals import NamedInterval
 from .ratio import Ratio
-from .score import Chord, Component, Container, Leaf, Note, Tuplet
+from .score import BeforeGraceContainer, Chord, Component, Container, Leaf, Note, Tuplet
 from .select import Selection
 from .sequence import Sequence
 from .spanners import tie
@@ -120,7 +120,21 @@ def _set_leaf_duration(leaf, new_duration):
     following_leaves = []
     for i in range(following_leaf_count):
         following_leaf = copy(leaf)
+        for indicator in get.indicators(following_leaf):
+            if i != following_leaf_count - 1:
+                if getattr(indicator, "_time_orientation", enums.Left) != enums.Middle:
+                    detach(indicator, following_leaf)
+            elif (
+                getattr(indicator, "_time_orientation", enums.Left) != enums.Right
+                and getattr(indicator, "_time_orientation", enums.Left) != enums.Middle
+            ):
+                detach(indicator, following_leaf)
+        detach(BeforeGraceContainer, following_leaf)
         following_leaves.append(following_leaf)
+    if following_leaf_count > 0:
+        for indicator in get.indicators(leaf):
+            if getattr(indicator, "_time_orientation", enums.Left) == enums.Right:
+                detach(indicator, leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
     for all_leaf, new_leaf in zip(all_leaves, new_leaves):
