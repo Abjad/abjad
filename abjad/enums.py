@@ -27,7 +27,7 @@ class HorizontalAlignment(uqbar.enums.StrictEnumeration):
     """
 
     Left = -1
-    Both = 0
+    Middle = 0
     Right = 1
 
     def __repr__(self):
@@ -64,19 +64,18 @@ class VerticalAlignment(uqbar.enums.StrictEnumeration):
         return super().from_expr(expr)
 
 
-Both = HorizontalAlignment.Both
 Center = VerticalAlignment.Center
 Down = VerticalAlignment.Down
 Exact = Comparison.Exact
 Left = HorizontalAlignment.Left
 Less = Comparison.Less
+Middle = HorizontalAlignment.Middle
 More = Comparison.More
 Right = HorizontalAlignment.Right
 Up = VerticalAlignment.Up
 
 
 __all__ = [
-    "Both",
     "Center",
     "Comparison",
     "Down",
@@ -84,6 +83,7 @@ __all__ = [
     "HorizontalAlignment",
     "Left",
     "Less",
+    "Middle",
     "More",
     "Right",
     "Up",

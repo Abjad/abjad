@@ -1,4 +1,4 @@
-from .. import math
+from .. import enums, math
 from ..bundle import LilyPondFormatBundle
 from ..storage import FormatSpecification, StorageFormatManager
 
@@ -44,6 +44,8 @@ class StemTremolo:
     __slots__ = ("_tremolo_flags",)
 
     _format_slot = "after"
+
+    _time_orientation = enums.Middle
 
     ### INITIALIZER ###
 

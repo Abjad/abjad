@@ -4,18 +4,7 @@ import itertools
 from . import enums, exceptions, get
 from .attach import attach, detach
 from .duration import Duration
-from .indicators.BendAfter import BendAfter
-from .indicators.KeyCluster import KeyCluster
 from .indicators.RepeatTie import RepeatTie
-from .indicators.StemTremolo import StemTremolo
-from .indicators.StopBeam import StopBeam
-from .indicators.StopGroup import StopGroup
-from .indicators.StopHairpin import StopHairpin
-from .indicators.StopPhrasingSlur import StopPhrasingSlur
-from .indicators.StopPianoPedal import StopPianoPedal
-from .indicators.StopSlur import StopSlur
-from .indicators.StopTextSpan import StopTextSpan
-from .indicators.StopTrillSpan import StopTrillSpan
 from .indicators.Tie import Tie
 from .iterate import Iteration
 from .makers import NoteMaker
@@ -107,32 +96,6 @@ def _get_leaves_grouped_by_immediate_parents(SELECTION):
     return result
 
 
-def _indicator_is_at_end(indicator):
-    classes = [
-        BendAfter,
-        StopBeam,
-        StopGroup,
-        StopHairpin,
-        StopPhrasingSlur,
-        StopPianoPedal,
-        StopSlur,
-        StopTextSpan,
-        StopTrillSpan,
-    ]
-    for cls in classes:
-        if isinstance(indicator, cls):
-            return True
-    return False
-
-
-def _indicator_is_continuous(indicator):
-    classes = [StemTremolo, KeyCluster]
-    for cls in classes:
-        if isinstance(indicator, cls):
-            return True
-    return False
-
-
 def _move_indicators(donor_component, recipient_component):
     for wrapper in get.wrappers(donor_component):
         detach(wrapper, donor_component)
@@ -159,17 +122,18 @@ def _set_leaf_duration(leaf, new_duration):
         following_leaf = copy(leaf)
         for indicator in get.indicators(following_leaf):
             if i != following_leaf_count - 1:
-                if not _indicator_is_continuous(indicator):
+                if getattr(indicator, "_time_orientation", enums.Left) != enums.Middle:
                     detach(indicator, following_leaf)
-            elif not _indicator_is_at_end(indicator) and not _indicator_is_continuous(
-                indicator
+            elif (
+                getattr(indicator, "_time_orientation", enums.Left) != enums.Right
+                and getattr(indicator, "_time_orientation", enums.Left) != enums.Middle
             ):
                 detach(indicator, following_leaf)
         detach(BeforeGraceContainer, following_leaf)
         following_leaves.append(following_leaf)
     if following_leaf_count > 0:
         for indicator in get.indicators(leaf):
-            if _indicator_is_at_end(indicator):
+            if getattr(indicator, "_time_orientation", enums.Left) == enums.Right:
                 detach(indicator, leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
@@ -278,13 +242,17 @@ def _split_container_by_duration(CONTAINER, duration):
         did_split_leaf = True
         timespan = get.timespan(bottom)
         split_point_in_bottom = global_split_point - timespan.start_offset
-        new_leaves = _split_leaf_by_durations(bottom, [split_point_in_bottom],)
+        new_leaves = _split_leaf_by_durations(
+            bottom,
+            [split_point_in_bottom],
+        )
         if new_leaves[0]._parent is not original_bottom_parent:
             new_leaves_tuplet_wrapper = new_leaves[0]._parent
             assert isinstance(new_leaves_tuplet_wrapper, Tuplet)
             assert new_leaves_tuplet_wrapper._parent is original_bottom_parent
             _split_container_by_duration(
-                new_leaves_tuplet_wrapper, split_point_in_bottom,
+                new_leaves_tuplet_wrapper,
+                split_point_in_bottom,
             )
         for leaf in new_leaves:
             timespan = get.timespan(leaf)
@@ -1888,14 +1856,18 @@ def split(argument, durations, cyclic=False):
                 additional_required_duration -= local_split_duration
                 split_durations = Sequence(durations)
                 split_durations = split_durations.split(
-                    [additional_required_duration], cyclic=False, overhang=True,
+                    [additional_required_duration],
+                    cyclic=False,
+                    overhang=True,
                 )
                 split_durations = [list(_) for _ in split_durations]
                 additional_durations = split_durations[0]
                 leaf_split_durations.extend(additional_durations)
                 durations = split_durations[-1]
                 leaf_shards = _split_leaf_by_durations(
-                    current_component, leaf_split_durations, cyclic=False,
+                    current_component,
+                    leaf_split_durations,
+                    cyclic=False,
                 )
                 shard.extend(leaf_shards)
                 result.append(shard)
@@ -1903,7 +1875,8 @@ def split(argument, durations, cyclic=False):
             else:
                 assert isinstance(current_component, Container)
                 pair = _split_container_by_duration(
-                    current_component, local_split_duration,
+                    current_component,
+                    local_split_duration,
                 )
                 left_list, right_list = pair
                 shard.extend(left_list)
