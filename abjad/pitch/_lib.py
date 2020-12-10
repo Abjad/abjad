@@ -1,9 +1,10 @@
 import re
 
-### MAPPINGS ###
+### MAPPINGS (most will become functions) ###
 
 _direction_number_to_direction_symbol = {0: "", 1: "+", -1: "-"}
 
+# TODO: change to function; accommodate arbitrarily long names
 _accidental_abbreviation_to_name = {
     "ss": "double sharp",
     "tqs": "three-quarters sharp",
@@ -16,6 +17,7 @@ _accidental_abbreviation_to_name = {
     "ff": "double flat",
 }
 
+# TODO: change to function; accommodate arbitrarily long names
 _accidental_abbreviation_to_semitones = {
     "ff": -2,
     "tqf": -1.5,
@@ -28,6 +30,7 @@ _accidental_abbreviation_to_semitones = {
     "ss": 2,
 }
 
+# TODO: possibly remove?
 _accidental_abbreviation_to_symbol = {
     "ff": "bb",
     "tqf": "b~",
@@ -40,6 +43,7 @@ _accidental_abbreviation_to_symbol = {
     "ss": "##",
 }
 
+# TODO: change to function; accommodate arbitrarily long names
 _accidental_name_to_abbreviation = {
     "double sharp": "ss",
     "three-quarters sharp": "tqs",
@@ -52,6 +56,7 @@ _accidental_name_to_abbreviation = {
     "double flat": "ff",
 }
 
+# TODO: change to function; accommodate arbitrary numeric input
 _accidental_semitones_to_abbreviation = {
     -2.0: "ff",
     -1.5: "tqf",
@@ -64,6 +69,7 @@ _accidental_semitones_to_abbreviation = {
     2.0: "ss",
 }
 
+# TODO: possibly remove?
 _symbolic_accidental_to_abbreviation = {
     "bb": "ff",
     "b~": "tqf",
@@ -77,6 +83,7 @@ _symbolic_accidental_to_abbreviation = {
     "##": "ss",
 }
 
+# TODO: change to function; accommodate arbitrarily long names
 _symbolic_accidental_to_semitones = {
     "bb": -2,
     "b~": -1.5,
@@ -344,6 +351,7 @@ def _diatonic_number_and_quality_to_semitones(number, quality):
     return semitones
 
 
+# TODO: change to function; accommodate arbitrarily large number of semitones
 _semitones_to_quality_and_diatonic_number = {
     0: ("P", 1),
     1: ("m", 2),
@@ -360,6 +368,7 @@ _semitones_to_quality_and_diatonic_number = {
     12: ("P", 8),
 }
 
+# TODO: change to function; accommodate arbitrarily large strings like "ddd"
 _quality_abbreviation_to_quality_string = {
     "M": "major",
     "m": "minor",
@@ -370,6 +379,7 @@ _quality_abbreviation_to_quality_string = {
     "d": "diminished",
 }
 
+# TODO: change to function; accommodate strings like "double-diminished"
 _quality_string_to_quality_abbreviation = {
     "major": "M",
     "minor": "m",
@@ -378,6 +388,7 @@ _quality_string_to_quality_abbreviation = {
     "diminished": "d",
 }
 
+# TODO: change to function; accommodate arbitrarily large number of semitones
 _semitones_to_quality_string_and_number = {
     0: ("perfect", 1),
     1: ("minor", 2),

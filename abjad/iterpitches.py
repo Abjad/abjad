@@ -47,15 +47,13 @@ def iterate_out_of_range(components) -> typing.Generator:
             yield leaf
 
 
-def respell_with_flats(selection):
+def respell_with_flats(selection) -> None:
     r"""
-    Respells ``selection`` with flats.
+    Respells pitches in ``selection`` with flats.
 
     ..  container:: example
 
-        Respells notes in staff:
-
-        >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+        >>> staff = abjad.Staff("cs'8 ds' es' fs' gs' as' bs'4")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -63,12 +61,13 @@ def respell_with_flats(selection):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8
                 cs'8
-                d'8
-                ef'8
-                e'8
-                f'8
+                ds'8
+                es'8
+                fs'8
+                gs'8
+                as'8
+                bs'4
             }
 
         >>> abjad.iterpitches.respell_with_flats(staff)
@@ -79,34 +78,33 @@ def respell_with_flats(selection):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8
                 df'8
-                d'8
                 ef'8
-                e'8
                 f'8
+                gf'8
+                af'8
+                bf'8
+                c''4
             }
 
-    Returns none.
     """
     for leaf in Iteration(selection).leaves():
         if isinstance(leaf, Note):
-            leaf.written_pitch = leaf.written_pitch._respell_with_flats()
+            assert leaf.written_pitch is not None
+            leaf.written_pitch = leaf.written_pitch._respell(accidental="flats")
         elif isinstance(leaf, Chord):
             for note_head in leaf.note_heads:
-                pitch = note_head.written_pitch._respell_with_flats()
+                pitch = note_head.written_pitch._respell(accidental="flats")
                 note_head.written_pitch = pitch
 
 
-def respell_with_sharps(selection):
+def respell_with_sharps(selection) -> None:
     r"""
-    Respells ``selection`` with sharps.
+    Respells pitches in ``selection`` with sharps.
 
     ..  container:: example
 
-        Respells notes in staff:
-
-        >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+        >>> staff = abjad.Staff("cf'8 df' ef' ff' gf' af' bf'4")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -114,12 +112,13 @@ def respell_with_sharps(selection):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8
-                cs'8
-                d'8
+                cf'8
+                df'8
                 ef'8
-                e'8
-                f'8
+                ff'8
+                gf'8
+                af'8
+                bf'4
             }
 
         >>> abjad.iterpitches.respell_with_sharps(staff)
@@ -130,22 +129,23 @@ def respell_with_sharps(selection):
             >>> abjad.f(staff)
             \new Staff
             {
-                c'8
+                b8
                 cs'8
-                d'8
                 ds'8
                 e'8
-                f'8
+                fs'8
+                gs'8
+                as'4
             }
 
-    Returns none.
     """
     for leaf in Iteration(selection).leaves():
         if isinstance(leaf, Note):
-            leaf.written_pitch = leaf.written_pitch._respell_with_sharps()
+            assert leaf.written_pitch is not None
+            leaf.written_pitch = leaf.written_pitch._respell(accidental="sharps")
         elif isinstance(leaf, Chord):
             for note_head in leaf.note_heads:
-                pitch = note_head.written_pitch._respell_with_sharps()
+                pitch = note_head.written_pitch._respell(accidental="sharps")
                 note_head.written_pitch = pitch
 
 
@@ -173,7 +173,7 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     return False
 
 
-def transpose_from_sounding_pitch(argument):
+def transpose_from_sounding_pitch(argument) -> None:
     r"""
     Transpose notes and chords in ``argument`` from sounding pitch to written pitch.
 
@@ -209,7 +209,6 @@ def transpose_from_sounding_pitch(argument):
                 fs'4
             }
 
-    Returns none.
     """
     for leaf in Iteration(argument).leaves(pitched=True):
         instrument = _inspect._get_effective(leaf, Instrument)
@@ -227,7 +226,7 @@ def transpose_from_sounding_pitch(argument):
             leaf.written_pitches = pitches
 
 
-def transpose_from_written_pitch(argument):
+def transpose_from_written_pitch(argument) -> None:
     r"""
     Transposes notes and chords in ``argument`` from sounding pitch to written pitch.
 
@@ -263,7 +262,6 @@ def transpose_from_written_pitch(argument):
                 d'4
             }
 
-    Returns none.
     """
     for leaf in Iteration(argument).leaves(pitched=True):
         instrument = _inspect._get_effective(leaf, Instrument)
