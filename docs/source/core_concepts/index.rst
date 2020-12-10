@@ -4,7 +4,7 @@ Core concepts
 ..  toctree::
 
     from_abjads_developers
-    lcsi
+    containerized_model
     durations
     parentage
     logical_voices

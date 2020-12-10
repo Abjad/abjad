@@ -1,17 +1,6 @@
 import sphinx_rtd_theme
-from pygments.formatters.latex import LatexFormatter
-from sphinx.highlighting import PygmentsBridge
 
 import abjad
-
-
-class CustomLatexFormatter(LatexFormatter):
-    def __init__(self, **options):
-        super(CustomLatexFormatter, self).__init__(**options)
-        self.verboptions = r"""formatcom=\footnotesize"""
-
-
-PygmentsBridge.latex_formatter = CustomLatexFormatter
 
 ### CORE ###
 
@@ -26,7 +15,9 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
-    "sphinx.ext.viewcode",
+    # temporarily commenting-out prevents "highlighting module code ...";
+    # uncomment viewcode when building official release of docs:
+    # "sphinx.ext.viewcode",
     "abjad.ext.sphinx",
     "sphinx_autodoc_typehints",
     "uqbar.sphinx.api",
@@ -52,52 +43,10 @@ html_show_sourcelink = True
 html_static_path = ["_static"]
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    "collapse_navigation": True,
-    "navigation_depth": -1,
-    "sticky_navigation": True,
-    "style_external_links": True,
+    "navigation_depth": 2,
+    "style_nav_header_background": "#dbc2ff",
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
-### HTML HELP ###
-
-htmlhelp_basename = "Abjaddoc"
-
-### LATEX ###
-
-latex_elements = {
-    "inputenc": r"\usepackage[utf8x]{inputenc}",
-    "utf8extra": "",
-    "papersize": "letterpaper",
-    "pointsize": "10pt",
-    "preamble": r"""
-    \usepackage{upquote}
-    \pdfminorversion=5
-    \setcounter{tocdepth}{2}
-    \definecolor{VerbatimColor}{rgb}{0.95,0.95,0.95}
-    \definecolor{VerbatimBorderColor}{rgb}{1.0,1.0,1.0}
-    \hypersetup{unicode=true}
-    """,
-}
-
-latex_documents = [
-    (
-        "index",
-        "Abjad.tex",
-        "Abjad Documentation",
-        "Trevor Bača & Josiah Wolf Oberholtzer",
-        "manual",
-    ),
-    (
-        "api/index",
-        "AbjadAPI.tex",
-        "Abjad API",
-        "Trevor Bača & Josiah Wolf Oberholtzer",
-        "manual",
-    ),
-]
-
-latex_toplevel_sectioning = "chapter"  # just guessing?
 
 ### EXTENSIONS ###
 
@@ -107,7 +56,7 @@ graphviz_output_format = "svg"
 intersphinx_mapping = {
     "http://josiahwolfoberholtzer.com/uqbar/": None,
     "http://www.sphinx-doc.org/en/master/": None,
-    "https://docs.python.org/3.7/": None,
+    "https://docs.python.org/3.9/": None,
 }
 todo_include_todos = True
 

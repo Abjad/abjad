@@ -59,7 +59,7 @@ Write a loop to attach articulations to many leaves:
 ::
 
     >>> for leaf in staff[:6]:
-    ...     staccato = abjad.Staccato()
+    ...     staccato = abjad.Articulation("staccato")
     ...     abjad.attach(staccato, leaf)
     ...
 
@@ -75,7 +75,7 @@ Get the articulations attached to a leaf:
 
 ::
 
-    >>> abjad.get.indicators(staff[5], abjad.Staccato)
+    >>> abjad.get.indicators(staff[5], abjad.Articulation)
 
 
 Detaching articulations from a leaf
@@ -85,7 +85,7 @@ Detach articulations with ``detach()``:
 
 ::
 
-    >>> abjad.detach(abjad.Staccato, staff[5])
+    >>> abjad.detach(abjad.Articulation, staff[5])
 
 ::
 

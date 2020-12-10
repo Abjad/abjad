@@ -3,7 +3,7 @@ import numbers
 import typing
 
 from ..bundle import LilyPondFormatBundle
-from ..pitch import constants as pitch_constants
+from ..pitch import _lib as pitch__lib
 from ..pitch.pitches import NamedPitch
 from ..storage import FormatSpecification, StorageFormatManager
 
@@ -917,7 +917,7 @@ class StaffPosition:
         offset_staff_position = StaffPosition(offset_staff_position_number)
         octave_number = offset_staff_position.number // 7 + 4
         diatonic_pc_number = offset_staff_position.number % 7
-        pitch_class_number = pitch_constants._diatonic_pc_number_to_pitch_class_number[
+        pitch_class_number = pitch__lib._diatonic_pc_number_to_pitch_class_number[
             diatonic_pc_number
         ]
         pitch_number = 12 * (octave_number - 4)

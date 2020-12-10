@@ -4,7 +4,7 @@ import numbers
 
 from .. import math
 from ..storage import FormatSpecification, StorageFormatManager
-from . import constants
+from . import _lib
 from .intervals import Interval, NamedInterval, NumberedInterval
 from .pitches import NamedPitch
 
@@ -25,7 +25,7 @@ class IntervalClass:
 
     def __init__(self, argument):
         if isinstance(argument, str):
-            match = constants._interval_name_abbreviation_regex.match(argument)
+            match = _lib._interval_name_abbreviation_regex.match(argument)
             if match is None:
                 try:
                     argument = float(argument)
@@ -162,9 +162,10 @@ class IntervalClass:
         if len(quality) > 1:
             base_quality = quality[0]
 
-        semitones = constants._diatonic_number_and_quality_to_semitones[
-            diatonic_pc_number
-        ][base_quality]
+        semitones = _lib._diatonic_number_and_quality_to_semitones(
+            diatonic_pc_number,
+            base_quality,
+        )
         if base_quality == "d":
             semitones -= len(quality) - 1
         elif base_quality == "A":
@@ -196,7 +197,7 @@ class IntervalClass:
         (
             quality,
             diatonic_pc_number,
-        ) = constants._semitones_to_quality_and_diatonic_number[semitones]
+        ) = _lib._semitones_to_quality_and_diatonic_number[semitones]
         quality += quartertone
         diatonic_pc_number = cls._to_nearest_quarter_tone(diatonic_pc_number)
         return direction, quality, diatonic_pc_number
@@ -213,8 +214,8 @@ class IntervalClass:
 
     @classmethod
     def _validate_quality_and_diatonic_number(cls, quality, diatonic_number):
-        if quality in constants._quality_string_to_quality_abbreviation:
-            quality = constants._quality_string_to_quality_abbreviation[quality]
+        if quality in _lib._quality_string_to_quality_abbreviation:
+            quality = _lib._quality_string_to_quality_abbreviation[quality]
         if quality == "aug":
             quality = "A"
         if quality == "dim":
@@ -224,12 +225,10 @@ class IntervalClass:
         while diatonic_pc_number > 7:
             diatonic_pc_number -= 7
             octaves += 1
-        if (
-            constants._diatonic_number_and_quality_to_semitones.get(
-                diatonic_pc_number, {}
-            ).get(quality[0])
-            is None
-        ):
+        quality_to_semitones = _lib._diatonic_number_to_quality_dictionary[
+            diatonic_pc_number
+        ]
+        if quality[0] not in quality_to_semitones:
             name = cls.__name__
             number = diatonic_number
             message = f"can not initialize {name} from {quality!r} and {number!r}."
@@ -543,7 +542,7 @@ class NamedIntervalClass(IntervalClass):
         Returns string.
         """
         return "{}{}{}".format(
-            constants._direction_number_to_direction_symbol[self.direction_number],
+            _lib._direction_number_to_direction_symbol[self.direction_number],
             self._quality,
             abs(self.number),
         )

@@ -228,7 +228,7 @@ _pitch_class_number_to_pitch_class_name_with_sharps = {
     11.5: "bqs",
 }
 
-_diatonic_number_and_quality_to_semitones = {
+_diatonic_number_to_quality_dictionary = {
     1: {"d": -1, "P": 0, "A": 1},
     2: {"d": 0, "m": 1, "M": 2, "A": 3},
     3: {"d": 2, "m": 3, "M": 4, "A": 5},
@@ -238,6 +238,111 @@ _diatonic_number_and_quality_to_semitones = {
     7: {"d": 9, "m": 10, "M": 11, "A": 12},
     8: {"d": 11, "P": 12, "A": 13},
 }
+
+
+def _diatonic_number_to_octaves_and_diatonic_remainder(number):
+    """
+    Captures the idea that diatonic numbers 1 (unison), 8 (octave), 15 (two octaves)
+    are all "types of octave."
+
+    Likewise, diatonic numbers 2 (second), 9 (second + octave), 16 (second + two octaves)
+    are all "types of (diatonic) second."
+
+    ..  container:: example
+
+        >>> module = abjad.pitch._lib
+        >>> function = module._diatonic_number_to_octaves_and_diatonic_remainder
+        >>> for number in range(1, 22 + 1):
+        ...     octaves, diatonic_remainder = function(number)
+        ...     print(f"{number}: {octaves} octave(s) + {diatonic_remainder}")
+        1: 0 octave(s) + 1
+        2: 0 octave(s) + 2
+        3: 0 octave(s) + 3
+        4: 0 octave(s) + 4
+        5: 0 octave(s) + 5
+        6: 0 octave(s) + 6
+        7: 0 octave(s) + 7
+        8: 1 octave(s) + 1
+        9: 1 octave(s) + 2
+        10: 1 octave(s) + 3
+        11: 1 octave(s) + 4
+        12: 1 octave(s) + 5
+        13: 1 octave(s) + 6
+        14: 1 octave(s) + 7
+        15: 2 octave(s) + 1
+        16: 2 octave(s) + 2
+        17: 2 octave(s) + 3
+        18: 2 octave(s) + 4
+        19: 2 octave(s) + 5
+        20: 2 octave(s) + 6
+        21: 2 octave(s) + 7
+        22: 3 octave(s) + 1
+
+    """
+    octaves = (number - 1) // 7
+    remainder = number - 7 * octaves
+    return octaves, remainder
+
+
+def _diatonic_number_and_quality_to_semitones(number, quality):
+    """
+    Setup:
+
+    >>> function = abjad.pitch._lib._diatonic_number_and_quality_to_semitones
+
+    Number of semitones in perfect octaves:
+
+        >>> function(1, "P")
+        0
+
+        >>> function(8, "P")
+        12
+
+        >>> function(15, "P")
+        24
+
+    Number of semitones in diminished octaves:
+
+        >>> function(1, "d")
+        -1
+
+        >>> function(8, "d")
+        11
+
+        >>> function(15, "d")
+        23
+
+    Number of semitones in minor seconds:
+
+        >>> function(2, "m")
+        1
+
+        >>> function(9, "m")
+        13
+
+        >>> function(16, "m")
+        25
+
+    Number of semitones in major seconds:
+
+        >>> function(2, "M")
+        2
+
+        >>> function(9, "M")
+        14
+
+        >>> function(16, "M")
+        26
+
+    """
+    octaves, diatonic_remainder = _diatonic_number_to_octaves_and_diatonic_remainder(
+        number
+    )
+    quality_to_semitones = _diatonic_number_to_quality_dictionary[diatonic_remainder]
+    semitones = quality_to_semitones[quality]
+    semitones += 12 * octaves
+    return semitones
+
 
 _semitones_to_quality_and_diatonic_number = {
     0: ("P", 1),

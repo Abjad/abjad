@@ -4,7 +4,7 @@ import numbers
 import re
 
 from ..storage import FormatSpecification, StorageFormatManager
-from . import constants
+from . import _lib
 
 
 @functools.total_ordering
@@ -52,7 +52,7 @@ class Octave:
         if number is None:
             number = 4
         elif isinstance(number, str):
-            match = constants._comprehensive_octave_regex.match(number)
+            match = _lib._comprehensive_octave_regex.match(number)
             group_dict = match.groupdict()
             number = 3
             if group_dict["octave_number"]:
