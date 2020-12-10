@@ -133,12 +133,12 @@ class Pitch:
     @staticmethod
     def _to_nearest_quarter_tone(number):
         number = round(float(number) * 4) / 4
-        div, mod = divmod(number, 1)
-        if mod == 0.75:
-            div += 1
-        elif mod == 0.5:
-            div += 0.5
-        return _math.integer_equivalent_number_to_integer(div)
+        quotient, remainder = divmod(number, 1)
+        if remainder == 0.75:
+            quotient += 1
+        elif remainder == 0.5:
+            quotient += 0.5
+        return _math.integer_equivalent_number_to_integer(quotient)
 
     @staticmethod
     def _to_pitch_class_item_class(item_class):
@@ -567,12 +567,12 @@ class NamedPitch(Pitch):
         from .pitchclasses import NumberedPitchClass
 
         number = self._to_nearest_quarter_tone(number)
-        div, mod = divmod(number, 12)
-        pitch_class = NumberedPitchClass(mod)
+        quotient, remainder = divmod(number, 12)
+        pitch_class = NumberedPitchClass(remainder)
         self._from_named_parts(
             dpc_number=pitch_class._get_diatonic_pc_number(),
             alteration=pitch_class._get_alteration(),
-            octave=div + 4,
+            octave=quotient + 4,
         )
 
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
@@ -635,19 +635,20 @@ class NamedPitch(Pitch):
         contributions.append(string)
         return contributions
 
-    def _respell_with_flats(self):
-        name = _lib._pitch_class_number_to_pitch_class_name_with_flats[
-            self.pitch_class.number
-        ]
-        pitch = type(self)((name, self.octave.number))
-        return pitch
-
-    def _respell_with_sharps(self):
-        name = _lib._pitch_class_number_to_pitch_class_name_with_sharps[
-            self.pitch_class.number
-        ]
-        pitch = type(self)((name, self.octave.number))
-        return pitch
+    def _respell(self, accidental="sharps"):
+        if accidental == "sharps":
+            dictionary = _lib._pitch_class_number_to_pitch_class_name_with_sharps
+        else:
+            assert accidental == "flats"
+            dictionary = _lib._pitch_class_number_to_pitch_class_name_with_flats
+        name = dictionary[self.pitch_class.number]
+        candidate = type(self)((name, self.octave.number))
+        if candidate.number == self.number - 12:
+            candidate = type(self)(candidate, octave=candidate.octave.number + 1)
+        elif candidate.number == self.number + 12:
+            candidate = type(self)(candidate, octave=candidate.octave.number - 1)
+        assert candidate.number == self.number
+        return candidate
 
     ### PUBLIC PROPERTIES ###
 
