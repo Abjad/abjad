@@ -4,7 +4,7 @@ from ..storage import FormatSpecification, StorageFormatManager
 
 
 class StemTremolo:
-    """
+    r"""
     Stem tremolo.
 
     ..  container:: example
@@ -36,6 +36,42 @@ class StemTremolo:
             >>> abjad.f(note)
             c'4
             :32
+
+    ..  container:: example
+
+        REGRESSION. Consider a note, rest, chord to which a stem tremolo is attached.
+        When such a note, rest, chord splits into two notes, rests, chords then a stem
+        tremolo attaches to each of the resultant notes, rests, chords:
+
+        >>> staff = abjad.Staff("c'4 c'2.")
+        >>> abjad.attach(abjad.StemTremolo(), staff[1])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                c'2.
+                :16
+            }
+
+        >>> abjad.Meter.rewrite_meter(staff[:], abjad.Meter((3, 4)))
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> abjad.f(staff)
+            \new Staff
+            {
+                c'4
+                c'2
+                :16
+                ~
+                c'4
+                :16
+            }
 
     """
 

@@ -381,6 +381,10 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
             attach(indicator, first_result_leaf)
         elif direction == enums.Right:
             attach(indicator, last_result_leaf)
+        elif direction == enums.Middle:
+            attach(indicator, first_result_leaf)
+            indicator_copy = python_copy.copy(indicator)
+            attach(indicator_copy, last_result_leaf)
         else:
             raise ValueError(direction)
     # reattach grace containers

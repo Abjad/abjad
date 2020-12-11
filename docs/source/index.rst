@@ -89,8 +89,6 @@ core features, Abjad lets you:
 -   Parse LilyPond and RTM syntax into Abjad objects.
 -   Create and transform complex rhythms.
 
-.. -   Embed musical notation in `IPython`_ notebooks, `LaTeX`_ and `Sphinx`_ documents.
-
 Read more about Abjad here:
 
 ..  toctree::
@@ -98,8 +96,10 @@ Read more about Abjad here:
 
     for_beginners/index
     literature_examples/index
-    core_concepts/index
+    from_abjads_developers
+    containerized_model
     reference_manual/index
+    lilypond_context_concatenation
     api/index
 
 Then join the :ref:`Abjad mailing list<mailing_list>` to ask questions and contribute.
