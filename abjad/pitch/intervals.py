@@ -855,6 +855,21 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval.from_pitch_carriers("cff'", 'atqs')
             NamedInterval('-dddd+3')
 
+            >>> abjad.NamedInterval.from_pitch_carriers("c'", "d''")
+            NamedInterval('+M9')
+
+            >>> abjad.NamedInterval.from_pitch_carriers("c'", "df''")
+            NamedInterval('+m9')
+
+            >>> abjad.NamedInterval.from_pitch_carriers("c'", "dff''")
+            NamedInterval('+d9')
+
+            >>> abjad.NamedInterval.from_pitch_carriers("c'", "dfff''")
+            NamedInterval('+dd9')
+
+            >>> abjad.NamedInterval.from_pitch_carriers("c'", "dffff''")
+            NamedInterval('+ddd9')
+
         """
         pitch_1 = NamedPitch(pitch_carrier_1)
         pitch_2 = NamedPitch(pitch_carrier_2)
@@ -868,12 +883,11 @@ class NamedInterval(Interval):
         numbered_i_number = abs(
             float(NumberedPitch(pitch_1)) - float(NumberedPitch(pitch_2))
         )
-        named_ic_number = named_i_number
-        numbered_ic_number = numbered_i_number
-
-        while named_ic_number > 8 and numbered_ic_number >= 12:
-            named_ic_number -= 7
-            numbered_ic_number -= 12
+        (
+            octaves,
+            named_ic_number,
+        ) = _lib._diatonic_number_to_octaves_and_diatonic_remainder(named_i_number)
+        numbered_ic_number = numbered_i_number - 12 * octaves
 
         # multiply-diminished intervals can have opposite signs
         if named_sign and (named_sign == -numbered_sign):
