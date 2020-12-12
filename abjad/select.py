@@ -771,6 +771,21 @@ class Selection(collections.abc.Sequence):
             return parentage.component._parent is context
         return None
 
+    # TODO: remove this in favor of the abjad.iterpitches module;
+    #       force users to initialize pitch segments expicitly after iteration.
+    def _pitch_segment(self) -> PitchSegment:
+        pitches = []
+        for leaf in _iterate._public_iterate_leaves(self, pitched=True):
+            try:
+                pitches.extend(leaf.written_pitches)
+            except AttributeError:
+                pass
+            try:
+                pitches.append(leaf.written_pitch)
+            except AttributeError:
+                pass
+        return PitchSegment(items=pitches, item_class=NamedPitch)
+
     def _set_parents(self, new_parent):
         """
         Not composer-safe.
@@ -8599,29 +8614,6 @@ class Selection(collections.abc.Sequence):
         parts = Sequence(self).partition_by_counts(counts=counts)
         selections = [type(self)(_) for _ in parts]
         return type(self)(selections)
-
-    def pitch_segment(self) -> PitchSegment:
-        r"""
-        Gets written pitches in selection as pitch segment.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 <d' e'>4 f'4 g'4 c'2. d'")
-            >>> staff[:].pitch_segment()
-            PitchSegment("c' d' e' f' g' c' d'")
-
-        """
-        pitches = []
-        for leaf in _iterate._public_iterate_leaves(self, pitched=True):
-            try:
-                pitches.extend(leaf.written_pitches)
-            except AttributeError:
-                pass
-            try:
-                pitches.append(leaf.written_pitch)
-            except AttributeError:
-                pass
-        return PitchSegment(items=pitches, item_class=NamedPitch)
 
     def rest(
         self, n: int, *, exclude: typings.Strings = None, grace: bool = None
