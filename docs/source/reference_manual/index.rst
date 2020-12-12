@@ -1,8 +1,8 @@
 Reference manual
 ================
 
-Leaves
-------
+Notes, rests, chords
+--------------------
 
 ..  toctree::
     :numbered:
@@ -23,8 +23,8 @@ Containers
     tuplets
     voices
 
-Attachments
------------
+Indicators
+----------
 
 ..  toctree::
     :numbered:
@@ -42,6 +42,14 @@ LilyPond files
 
     lilypond_files
 
+Durations
+---------
+
+..  toctree::
+    :numbered:
+
+    durations
+
 Pitches
 -------
 
@@ -49,3 +57,12 @@ Pitches
     :numbered:
 
     named_pitches
+
+Score structure
+---------------
+
+..  toctree::
+    :numbered:
+
+    logical_voices
+    parentage
