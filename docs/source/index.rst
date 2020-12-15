@@ -1,99 +1,176 @@
 Abjad |release|
 ===============
 
-..  include:: links.txt
+..  include:: links.rst
 
-..  include:: abstract.txt
+..  include:: abstract.rst
 
-Quickstart
-----------
+----
 
-Get Abjad via `pip`_::
+**Quickstart.** Install LilyPond from http://lilypond.org/development.html. Then get
+Abjad via pip:
+
+::
 
     ~$ pip install abjad
 
-Then get `LilyPond`_ from http://lilypond.org/development.html. Read the
-:ref:`installation instructions<installation>` for help installing Abjad and dependencies
-like `LilyPond`_.
+----
 
-..  toctree::
-    :hidden:
-    :maxdepth: 2
-
-    installation
-
-Start Python and import Abjad:
+**An example.** Start Python, import Abjad, make some notes:
 
 ::
 
     >>> import abjad
+    >>> string = "c'16 f' g' a' d' g' a' b' e' a' b' c'' f' b' c'' d''16"
+    >>> staff_1 = abjad.Staff(string, name="Staff_1")
+    >>> abjad.show(staff_1)
 
-Then make some notes:
-
-::
-
-    >>> duration = abjad.Duration(1, 4)
-    >>> notes = [abjad.Note(pitch, duration) for pitch in range(8)]
-    >>> staff = abjad.Staff(notes)
-    >>> abjad.show(staff)
-
-Split these notes at every 5/16 of a whole note. Transpose every other group up a
-major-seventh. Then slur and accent each group:
+Use Python's list operations to split, reverse, join the input string. Then extend
+staff 1:
 
 ::
 
-    >>> groups = abjad.mutate.split(
-    ...     staff[:],
-    ...     durations=[abjad.Duration(5, 16)],
-    ...     cyclic=True,
-    ... )
-    >>> for index, group in enumerate(groups):
-    ...     if index % 2:
-    ...         abjad.mutate.transpose(group, "M7")
-    ...     if 1 < len(group):
-    ...         abjad.slur(group)
-    ...     accent = abjad.Articulation("accent")
-    ...     abjad.attach(accent, group[0])
-    ...
-    >>> abjad.show(staff)
+    >>> pitches = string.split()
+    >>> pitches = reversed(pitches)
+    >>> retrograde = " ".join(pitches)
+    >>> staff_1.extend(retrograde)
+    >>> abjad.show(staff_1)
 
-Then create a second staff and invert its pitches:
+Create a second staff:
 
 ::
 
-    >>> copied_staff = abjad.mutate.copy(staff)
+    >>> input = string + " " + retrograde
+    >>> staff_2 = abjad.Staff(input, name="Staff_2")
+
+Enclose both staves in a staff group and a score:
+
+::
+
     >>> staff_group = abjad.StaffGroup(
-    ...     [staff, copied_staff],
+    ...     [staff_1, staff_2],
     ...     lilypond_type="PianoStaff",
+    ...     name="PianoStaff",
     ... )
-    >>> for note in abjad.select(copied_staff).notes():
+    >>> score = abjad.Score([staff_group], name="Score")
+    >>> abjad.show(score)
+
+Invert the pitches in staff 2:
+
+::
+
+    >>> for note in abjad.select(score["Staff_2"]).notes():
     ...     note.written_pitch = note.written_pitch.invert(axis="G4")
-    ...
-    >>> abjad.show(staff_group)
+    ... 
+    >>> abjad.show(score)
 
-Notice that the music notation examples in Abjad's docs are styled in a special way:
-notes, chords and rests are spaced proportionally; there are no bar numbers; tuplet
-numbers are cleaned up; and so on. These settings differ somewhat from LilyPond defaults.
-[#f1]_
+Partition the notes in staff 1 according to a repeating pattern; loop over the parts:
 
-Features
---------
+::
 
-Abjad 3.1 implements an extensive collection of tools for score formalization. Among its
-core features, Abjad lets you:
+    >>> notes = abjad.select(score["Staff_1"]).notes()
+    >>> parts = notes.partition_by_counts([2, 4, 4], cyclic=True)
+    >>> for part in parts:
+    ...     part
 
--   Model compositional thinking computationally.
--   Create music notation in an object-oriented way.
--   Select musical objects programmatically.
--   Control the typographic details of music notation.
--   Parse LilyPond and RTM syntax into Abjad objects.
--   Create and transform complex rhythms.
+Define a function to parameterize the loop, attach slurs, attach articulations:
+
+::
+
+    >>> def slur_parts(staff, counts):
+    ...     notes = abjad.select(staff).notes()
+    ...     parts = notes.partition_by_counts(counts, cyclic=True)
+    ...     for part in parts:
+    ...         first_note, last_note = part[0], part[-1]
+    ...         accent = abjad.Articulation("accent")
+    ...         start_slur = abjad.StartSlur()
+    ...         abjad.attach(accent, first_note)
+    ...         abjad.attach(start_slur, first_note)
+    ...         staccato = abjad.Articulation("staccato")
+    ...         stop_slur = abjad.StopSlur()
+    ...         abjad.attach(staccato, last_note)
+    ...         abjad.attach(stop_slur, last_note)
+
+Call the function one way on staff 1 and another way on staff 2:
+
+::
+
+    >>> slur_parts(score["Staff_1"], [2, 4, 4])
+    >>> slur_parts(score["Staff_2"], [4])
+    >>> abjad.show(score)
+
+Tupletize notes in staff 1:
+
+::
+
+    >>> notes = abjad.select(score["Staff_1"]).notes()
+    >>> abjad.mutate.wrap(notes[:6], abjad.Tuplet("3:2"))
+    >>> abjad.mutate.wrap(notes[10:16], abjad.Tuplet("3:2"))
+    >>> abjad.mutate.wrap(notes[20:26], abjad.Tuplet("3:2"))
+    >>> abjad.show(score)
+
+Tupletize notes in staff 2:
+
+::
+
+    >>> notes = abjad.select(score["Staff_2"]).notes()
+    >>> abjad.mutate.wrap(notes[4:10], abjad.Tuplet("3:2"))
+    >>> abjad.mutate.wrap(notes[14:20], abjad.Tuplet("3:2"))
+    >>> abjad.mutate.wrap(notes[24:30], abjad.Tuplet("3:2"))
+    >>> abjad.show(score)
+
+Trim both staves, attach a time signature, attach a doule bar line, clean up tuplet
+brackets:
+
+::
+
+    >>> del(score["Staff_1"][-6:])
+    >>> del(score["Staff_2"][-3:])
+    >>> first_note = abjad.select(score["Staff_1"]).note(0)
+    >>> abjad.attach(abjad.TimeSignature((2, 8)), first_note)
+    >>> last_note = abjad.select(score["Staff_2"]).note(-1)
+    >>> abjad.attach(abjad.BarLine("|."), last_note)
+    >>> abjad.override(score).tuplet_bracket.staff_padding = 2
+    >>> abjad.show(score)
+
+----
+
+Unlike `Max <https://cycling74.com/products/max>`_, `OpenMusic
+<http://repmus.ircam.fr/openmusic/home>`_ or `Pure Data <https://puredata.info/>`_, Abjad
+is not a stand-alone piece of consumer software: Abjad provides no graphic user
+interface, and Abjad provides no audio output beyond LilyPond's built-in MIDI
+functionality. Abjad is for making PDFs of music meant to be read by human performers,
+and for doing this with the techniques of computer programming. Abjad does this by
+extending the Python programming language with a set of functions and classes. Abjad's
+functions and classes "teach" Python about music notation, relying on LilyPond to create
+PDFs of the music you create. When you compose with Abjad you can:
+
+* Explore any Python package as part of music composition.
+* Model compositional thinking programmatically.
+* Create musical objects with a subset of LilyPond's input language.
+* Inspect derived properties of the objects you create.
+* Iterate and surgically select objects with Abjad's selectors.
+* Generate precompositional material programmatically.
+* Generate complete scores programmatically.
+* Style everything with LilyPond.
+
+Perhaps the core intuition behind Abjad is that music tends to be full of patterns, and
+that composers should be able to work explicitly with patterns in the music we compose.
+Abjad provides an interface to this type of thinking: string manipulation, pattern
+matching, all the techniques of programming become available to work with music notation
+and composition. Beginning work with Abjad means intuiting the reasons for working with a
+programming language, even if you aren't a programmer yet. Continued work with Abjad
+means comitting to developing as a programmer as yet another part of the practice of
+composition.
+
+----
 
 Read more about Abjad here:
 
 ..  toctree::
     :maxdepth: 2
 
+    installation
     for_beginners/index
     literature_examples/index
     recipes_pitch
@@ -103,7 +180,7 @@ Read more about Abjad here:
     lilypond_context_concatenation
     api/index
 
-Then join the :ref:`Abjad mailing list<mailing_list>` to ask questions and contribute.
+----
 
 Score gallery
 -------------
@@ -159,105 +236,22 @@ Visit Abjad's score gallery for many more examples.
 
     gallery
 
-`CCRMA Summer Workshop`_
-````````````````````````
-Summers | Palo Alto, CA
-
-Introduction to the production of professionally engraved musical scores using the Python
-programming language and the Abjad API for Formalized Score Control as part of
-compositional practice.
-
-The course introduces Abjad's object-oriented approach to music notation and algorithmic
-composition through real-world examples and hands-on coding activities. No previous
-programming experience is required. Python basics will be taught from the ground up
-during the course with musical examples designed to make sense to composers.
-
-Topics covered include:
-
--   system installation and configuration
--   defining your own functions, classes and modules
--   generating structured tableaux of rhythms, pitch collections and other
-    materials during precomposition
--   managing polyphony with operations on voices, staves and other musical containers
--   working with parametric score layout
--   understanding the document structure of complex scores
--   controlling the details of musical typography programmatically
-
-Taught by Jeff Treviño, Trevor Bača and Josiah Wolf Oberholtzer.
-
-Visit the `CCRMA`_ website for the most up-to-date scheduling information about
-this annual course.
-
-The Abjad package ecosystem includes tools for rhythmic quantization and
-rhythmic construction:
-
-- https://github.com/abjad/abjad-ext-nauert
-- https://github.com/abjad/abjad-ext-rmakers
-
-.. - IPython integration: https://github.com/abjad/abjad-ext-ipython
-.. - Quantization tools: https://github.com/abjad/abjad-ext-nauert
-
-Finally, a number of publications discussing Abjad are available for download here:
-
--   Bača, Trevor, Josiah Wolf Oberholtzer, Jeffrey Treviño and Vıctor Adán.
-    `"Abjad: An Open-Software System For Formalized Score Control."
-    <https://github.com/Abjad/tenor2015/blob/master/abjad.pdf>`_
-    Proceedings of the First International Conference on Technologies for Music
-    Notation and Representation. 2015.
-
--   Davancens, Joseph.
-    `"Heave, Sway, Surge."
-    <https://github.com/jdavancens/dissertationpdf/blob/master/Heave%2C%20Sway%2C%20Surge%20-%20Essay.pdf>`_
-    Doctoral dissertation,
-    University of California, Santa Cruz.
-    2019.
-
--   Evans, Gregory Rowland.
-    `"An introduction to modeling composition through Abjad's model of music notation."
-    <https://github.com/GregoryREvans/thesis/blob/master/An_Introduction_to_Modeling_Composition_through_Abjad's_Model_of_Music_Notation.pdf>`_
-    Master's thesis,
-    University of Miami.
-    2019.
-
--   Oberholtzer, Josiah Wolf.
-    `A Computational Model of Music Composition.
-    <http://dash.harvard.edu/handle/1/17463123>`_
-    Doctoral dissertation,
-    Harvard University,
-    Graduate School of Arts & Sciences.
-    2015.
-
--   Treviño, Jeffrey Robert.
-    `Compositional and analytic applications of automated music notation via
-    object-oriented programming.
-    <https://escholarship.org/uc/item/3kk9b4rv.pdf>`_
-    Doctoral dissertation,
-    University of California, San Diego.
-    2013.
+----
 
 ..  toctree::
     :maxdepth: 1
     :hidden:
 
+    about_the_docs
+    publications
+    summer_workshop
     changes
 
 Happy composing and welcome to Abjad!
 
-..  rubric:: Footnotes
+*Authored: Bača (2.0); revised: Oberholtzer (2.19-21), Bača (3.1, 3.2).*
 
-..  [#f1] LilyPond examples in Abjad's docs are generated via a custom
-          `Sphinx`_ extension housed in the :py:mod:`abjad.ext.sphinx
-          <abjad.ext.sphinx>` subpackage. A default :download:`stylesheet
-          <_stylesheets/default.ily>` is included in each generated file. But
-          not all excerpts are styled the same: examples demonstrating
-          `LilyPond`_ overrides include a non-default stylesheet, for example.
-          ``\include "..."`` statements in Abjad examples reference files in
-          the ``abjad/docs/source/_stylesheets/`` directory.
-
-..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/python-and-abjad-in-music-comp-2018
-..  _CCRMA: https://ccrma.stanford.edu
 ..  _GitHub: https://github.com/Abjad/abjad
-..  _IPython: http://ipython.org/
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com
 ..  _LaTeX: https://tug.org/
 ..  _LilyPond: http://lilypond.org/

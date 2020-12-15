@@ -3910,8 +3910,8 @@ class PitchSegment(Segment):
                 >>
 
         """
-        assert hasattr(selection, "pitch_segment"), repr(selection)
-        pitch_segment = selection.pitch_segment()
+        assert hasattr(selection, "_pitch_segment"), repr(selection)
+        pitch_segment = selection._pitch_segment()
         return class_(items=pitch_segment, item_class=item_class)
 
     def has_duplicates(self) -> bool:

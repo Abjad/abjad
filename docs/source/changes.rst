@@ -1,14 +1,7 @@
 Changes (3.2)
 =============
 
-Changes from Abjad 3.1 (2019-12-18) to Abjad 3.2 (2020-12-12).
-
-----
-
-**DOCS.**
-
-Activated Sphinx's ``sphinx.ext.viewcode`` extension in the docs.
-As suggested by `jgarte <https://github.com/jgarte>`_.
+Changes from Abjad 3.1 (2019-12-19) to Abjad 3.2 (2020-12-13).
 
 ----
 
@@ -101,8 +94,8 @@ As suggested by `jgarte <https://github.com/jgarte>`_.
         abjad.math.weight()
         abjad.math.yield_all_compositions_of_integer()
 
-`#1214 <https://github.com/Abjad/abjad/issues/1214>`_. Replaced ``abjad.mutate()``
-constructor with ``abjad.mutate`` module:
+`#1214 <https://github.com/Abjad/abjad/issues/1214>`_. Changed ``abjad.mutate()``
+constructor to ``abjad.mutate`` module:
 
 ::
 
@@ -132,8 +125,8 @@ constructor with ``abjad.mutate`` module:
         abjad.mutate.transpose(argument)
         abjad.mutate.wrap(argument)
 
-`#1213 <https://github.com/Abjad/abjad/issues/1213>`_. Replaced ``abjad.IOManager`` class
-with ``abjad.io`` module:
+`#1213 <https://github.com/Abjad/abjad/issues/1213>`_. Changed ``abjad.IOManager`` class
+to ``abjad.io`` module:
 
 ::
 
@@ -165,8 +158,8 @@ with ``abjad.io`` module:
         abjad.io.run_lilypond()
         abjad.io.spawn_subprocess()
 
-`#1212 <https://github.com/Abjad/abjad/issues/1212>`_. Replaced ``abjad.persist()``
-constructor with ``abjad.persist`` module:
+`#1212 <https://github.com/Abjad/abjad/issues/1212>`_. Changed ``abjad.persist()``
+constructor to ``abjad.persist`` module:
 
 ::
 
@@ -175,15 +168,26 @@ constructor with ``abjad.persist`` module:
         abjad.persist(argument).as_ly()
         abjad.persist(argument).as_midi()
         abjad.persist(argument).as_pdf()
+        abjad.persist(argument).as_png()
 
     NEW:
 
         abjad.persist.as_ly(argument)
         abjad.persist.as_midi(argument)
         abjad.persist.as_pdf(argument)
+        abjad.persist.as_png(argument)
 
-`#1196 <https://github.com/Abjad/abjad/issues/1196>`_. Replaced ``abjad.inspect()``
-constructor with ``abjad.get`` module:
+You must now pass an explicit path to the following:
+
+::
+
+    abjad.persist.as_ly(argument)
+    abjad.persist.as_midi(argument)
+    abjad.persist.as_pdf(argument)
+    abjad.persist.as_png(argument)
+
+`#1196 <https://github.com/Abjad/abjad/issues/1196>`_. Changed ``abjad.inspect()``
+constructor to ``abjad.get`` module:
 
 ::
 
@@ -249,6 +253,53 @@ constructor with ``abjad.get`` module:
         abjad.get.sustained(argument)
         abjad.get.timespan(argument)
 
+`#1191 <https://github.com/Abjad/abjad/issues/1191>`_. Removed ``abjad.Infinity``,
+``abjad.NegativeInfinity`` "singletons." Previously ``abjad.Infinity`` was an
+instance of the ``abjad.mathtools.Infinity`` class. This was confusing. Because
+``abjad.Infinity`` looked like a class but wasn't:
+
+::
+
+    OLD:
+
+        foo is abjad.Infinity
+        foo is not abjad.Infinity
+
+    NEW:
+
+        foo == abjad.Infinity()
+        foo != abjad.Infinity()
+
+Moved four fancy iteration functions to top-level:
+
+::
+
+    OLD:
+
+        abjad.iterate(argument).leaf_pairs()
+        abjad.iterate(argument).pitch_pairs()
+        abjad.iterate(argument).vertical_moments()
+        abjad.iterate(argument).out_of_range()
+
+    NEW:
+
+        abjad.iterate_leaf_pairs(argument)
+        abjad.iterate_pitch_pairs(argument)
+        abjad.iterate_vertical_moments(argument)
+        abjad.iterate_out_of_range(argument)
+
+Moved rewrite-meter functionality to ``abjad.Meter``:
+
+::
+
+    OLD:
+
+        abjad.mutate(argument).rewrite_meter()
+
+    NEW:
+
+        abjad.Meter.rewrite_meter(argument)
+
 ----
 
 **LESS-SIGNIFICANT CHANGES.**
@@ -267,7 +318,64 @@ constructor with ``abjad.get`` module:
         abjad.Articulation("staccato")
         abjad.Articulation("staccatissimo")
 
-Replaced ``abjad.Enumerate`` class with ``abjad.enumerate`` module:
+`#1198 <https://github.com/Abjad/abjad/issues/1198>`_. Changed access to the Abjad
+configuration class. The old "singleton" pattern wasn't well supported by Python. Now
+just instantiate a new configuration object any time one is required:
+
+::
+
+    OLD:
+
+        abjad.configuration
+
+    NEW:
+
+        abjad.Configuration()
+
+`#1195 <https://github.com/Abjad/abjad/issues/1195>`_. Changed ``abjad.Fraction`` alias
+from ``fractions.Fraction`` to ``quicktions.Fraction``. All installs of Abjad now depend
+on Python's ``quicktions`` package.
+
+
+`#1168 <https://github.com/Abjad/abjad/issues/1168>`_. Removed unused IO methods:
+
+::
+
+    abjad.IOManager.clear_terminal()
+    abjad.IOManager.get_last_output_file_name()
+    abjad.IOManager.get_next_output_file_name()
+    abjad.IOManager.open_last_ly()
+    abjad.IOManager.open_last_pdf()
+    abjad.IOManager.save_last_ly_as()
+    abjad.IOManager.save_last_pdf_as()
+
+`#1133 <https://github.com/Abjad/abjad/issues/1133>`_. Renamed glissando class:
+
+::
+
+    OLD:
+
+        abjad.GlissandoIndicator
+
+    NEW:
+
+        abjad.Glissando
+
+Changed ``abjad.Clef.from_selection()`` to ``abjad.Clef.from_pitches()``:
+
+::
+
+    OLD:
+
+        leaves = abjad.select(staff).leaves()
+        abjad.Clef.from_selection(leaves)
+
+    NEW:
+
+        pitches = abjad.iterate(staff).pitches()
+        abjad.Clef.from_pitches(pitches)
+
+Changed ``abjad.Enumerate`` class to ``abjad.enumerate`` module:
 
 ::
 
@@ -290,15 +398,96 @@ Replaced ``abjad.Enumerate`` class with ``abjad.enumerate`` module:
         abjad.enumerate.yield_set_partitions()
         abjad.enumerate.yield_subsequences()
 
-Replaced ``abjad.Wellformedness`` class with ``abjad.wf`` module:
+Changed ``abjad.OrderedDict`` to no longer coerce input.
+
+Changed ``abjad.StaffChange`` to take staff name instead of staff object:
 
 ::
 
-    OLD: abjad.wellformedness(argument)
-    OLD: abjad.Wellformedness.tabulate_wellformedness(argument)
+    OLD:
 
-    NEW: abjad.wf.wellformedness(argument)
-    NEW: abjad.wf.tabulate_wellformedness(argument)
+        staff = abjad.Staff(name="RH_Staff")
+        staff_change = abjad.StaffChange(staff)
+
+    NEW:
+
+        staff_change = abjad.StaffChange("RH_Staff")
+
+Changed containment testing for pitch ranges:
+
+::
+
+    OLD:
+
+        abjad.PitchRange.__contains__()
+
+    NEW:
+
+        abjad.sounding_pitches_are_in_range()
+
+Changed pitch ``from_selection()`` methods to accept only explicit selection:
+
+::
+
+    OLD:
+
+        abjad.PitchSegment.from_selection(staff)
+
+    NEW:
+
+        selection = abjad.select(staff)
+        abjad.PitchSegment.from_selection(selection)
+
+Changed ``strict=None`` keyword to ``align_tags=None``:
+
+::
+
+    OLD:
+
+        abjad.f(argument, strict=None)
+        abjad.show(argument, strict=None)
+        abjad.persist().as_ly(strict=None)
+        abjad.persist().as_pdf(strict=None)
+
+    NEW:
+
+        abjad.f(argument, align_tags=None)
+        abjad.show(argument, align_tags=None)
+        abjad.persist.as_ly(argument, align_tags=None)
+        abjad.persist.as_pdf(argument, align_tags=None)
+
+Moved accidental respell functions to top level:
+
+::
+
+    OLD:
+
+        abjad.Accidental.respell_with_flats()
+        abjad.Accidental.respell_with_sharps()
+
+    NEW:
+
+        abjad.respell_with_flats()
+        abjad.respell_with_sharps()
+
+Moved logical-tie-to-tuplet functionality:
+
+::
+
+    OLD:
+
+        abjad.LogicalTie.to_tuplet()
+
+    NEW:
+
+        abjad.mutate.logical_tie_to_tuplet()
+
+Moved tag functionality:
+
+::
+
+    OLD: abjad.Tag.tag()
+    NEW: abjad.tag.tag()
 
 Moved transposition functions to new ``abjad.iterpitches`` module:
 
@@ -314,46 +503,63 @@ Moved transposition functions to new ``abjad.iterpitches`` module:
         abjad.iterpitches.transpose_from_sounding_pitch()
         abjad.iterpitches.transpose_from_written_pitch()
 
-Changed ``abjad.Clef.from_selection()`` to ``abjad.Clef.from_pitches()``:
+Moved tuplet-maker functionality to new ``abjad.makers`` module:
 
 ::
 
     OLD:
 
-        leaves = abjad.select(staff).leaves()
-        abjad.Clef.from_selection(leaves)
+        abjad.Tuplet.from_duration_and_ratio()
+        abjad.Tuplet.from_leaf_and_ratio()
+        abjad.Tuplet.from_ratio_and_pair()
 
     NEW:
 
-        pitches = abjad.iterate(staff).pitches()
-        abjad.Clef.from_pitches(pitches)
+        abjad.makers.tuplet_from_duration_and_ratio()
+        abjad.makers.tuplet_from_leaf_and_ratio()
+        abjad.makers.tuplet_from_ratio_and_pair()
 
-Moved ``tag()`` function:
-
-::
-
-    OLD: abjad.Tag.tag()
-    NEW: abjad.tag.tag()
-
-Renamed ``strict=None`` keyword to ``align_tags=None``:
+Moved wellformedness functionality to new ``abjad.wf`` module:
 
 ::
 
     OLD:
 
-        abjad.f(..., strict=None)
-        abjad.show(..., strict=None)
-        abjad.persist().as_ly(strict=None)
-        abjad.persist().as_pdf(strict=None)
+        abjad.inspect(argument).wellformed()
+        abjad.inspect(argument).tabulate_wellformedness()
 
     NEW:
 
-        abjad.f(..., align_tags=None)
-        abjad.show(..., align_tags=None)
-        abjad.persist.as_ly(..., align_tags=None)
-        abjad.persist.as_pdf(..., align_tags=None)
+        abjad.wf.wellformed(argument)
+        abjad.wf.tabulate_wellformedness(argument)
+
+Refactored overrides, settings, tweaks (first wave):
+
+::
+
+    OLD: abjad.LilyPondGrobOverride
+    NEW: abjad.LilyPondOverride
+
+    OLD: abjad.LilyPondContextSetting
+    NEW: abjad.LilyPondSetting
+
+    OLD: abjad.LilyPondNameManager
+    NEW: abjad.Interface
+
+    OLD: abjad.LilyPondGrobNameManager
+    NEW: abjad.OverrideInterface
+
+    OLD: abjad.LilyPondSettingNameManager
+    NEW: abjad.SettingInterface
+
+    OLD: abjad.LilyPondTweakManager
+    NEW: abjad.TweakInterface
 
 Removed ``abjad.MarkupList``.
+
+Removed ``abjad.Path``.
+
+Removed ``abjad.SortedCollection`` class.
 
 Removed ``abjad.String.is_segment_name()``.
 
@@ -362,28 +568,56 @@ Removed ``abjad.TestManager``:
 ::
 
     OLD: abjad.TestManager.compare_files()
-    NEW: abjad.IOManager.compare_files()
+    NEW: abjad.io.compare_files()
 
-Refactored ``abjad.StaffChange`` to take staff name instead of staff object.
+Removed "abj:" parsing from containers:
 
 ::
 
     OLD:
 
-        staff = abjad.Staff(name="RH_Staff")
-        staff_change = abjad.StaffChange(staff)
+        string = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
+        staff = abjad.Staff(string)
 
     NEW:
 
-        staff_change = abjad.StaffChange("RH_Staff")
+        string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+        container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+        staff = abjad.Staff()
+        staff.append(container)
+
+Removed component multiplication:
+
+::
+
+    OLD:
+
+        3 * abjad.Note("c'4")
+
+    NEW:
+
+        note = abjad.Note("c'4")
+        abjad.mutate.copy(note, 3)
+
+Removed RTM parsing from containers:
+
+::
+
+    OLD:
+
+        abjad.Container("rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))")
+
+    NEW:
+
+        abjad.rhythmtrees.parser_rtm_syntax("(1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))")
 
 ----
 
 **DEPRECATED.**
 
-Use of ``format()`` and ``abjad.f()`` are both deprecated. Removed ``__format__()``
+``format()`` and ``abjad.f()`` are both deprecated. Removed ``__format__()``
 definitions and corresponding use of ``format()`` from Abjad in this release. Removal of
-``abjad.f()`` will follow in Abjad 3.3:
+``abjad.f()`` will follow in a later release:
 
 ::
 
@@ -408,9 +642,22 @@ definitions and corresponding use of ``format()`` from Abjad in this release. Re
         string = abjad.lilypond(item)
         print(string)
 
-----
+``add_final_barline()`` and ``add_final_markup()`` are both deprecated. These two
+functions are still available in the new ``abjad.deprecated`` module. Users should
+instead move to making and attaching bar line or markup objects by hand, just like usual
+in a score:
 
-**NEW.**
+::
+
+    OLD:
+
+        abjad.Score.add_final_barline()
+        abjad.Score.add_final_markup()
+
+    NEW:
+
+        abjad.deprecated.add_final_barline()
+        abjad.deprecated.add_final_markup()
 
 ----
 
@@ -420,51 +667,99 @@ definitions and corresponding use of ``format()`` from Abjad in this release. Re
 <https://github.com/Abjad/abjad/pull/1247>`_. Removed duplicate indicators when
 fusing leaves. (`Tsz Kiu Pang <https://nivlekp.github.io/>`_).
 
+`#1201 <https://github.com/Abjad/abjad/issues/1201>`_. Fixed multipart tuplet split.
+
 ----
 
-**CLEANUP.**
+**PACKAGE CLEANUP.**
+
+* Alphabetized Abjad initializer
+* Emptied subpackage initializers
+* Removed ``import *`` statements
+
+----
+
+* Added private ``_iterate.py`` module
+* Added private ``_update.py`` module
+* Added ``attach.py`` module
+* Added ``bundle.py`` module
+* Added ``configuration.py`` module
+* Added ``contextmanagers.py`` module
+* Added ``cyclictuple.py`` module
+* Added ``duration.py`` module
+* Added ``expression.py`` module
+* Added ``format.py`` module
+* Added ``label.py`` module
+* Added ``lilypondfile.py`` module
+* Added ``lyconst.py``, ``lyenv.py``, ``lyproxy.py`` modules
+* Added ``new.py`` module
+* Added ``overrides.py`` module
+* Added ``parsers/`` directory
+* Added ``ratio.py`` module
+* Added ``score.py`` module
+* Added ``segmentmaker.py`` module
+* Added ``select.py`` module
+* Added ``sequence.py`` module
+* Added ``storage.py`` module
+* Added ``typedcollections.py`` module
+* Added ``verticalmoment.py`` module
+* Removed ``tags.py`` module
+* Removed ``top.py`` module
+
+----
+
+* Added ``pitch/operators.py`` module
+* Added ``pitch/pitches.py`` module
+* Added ``pitch/segments.py`` module
+* Added ``pitch/sets.py`` module
+* Added ``pitch/pitchclasses.py`` module
+* Added ``pitch/intervalclasses.py`` module
+* Removed ``__illustrate__()`` method from pitches
+* Removed abstract decorators from pitch and interval classes
+
+----
+
+**OTHER CLEANUP.**
 
 * `#1225 <https://github.com/Abjad/abjad/issues/1225>`_.
   Adjusted ``collections.abc`` imports to mollify mypy.
-  (`Oberholtzer <https://github.com/josiah-wolf-oberholtzer>`_).
+  (`Oberholtzer <https://github.com/josiah-wolf-oberholtzer>`_)
 
 * `#1218 <https://github.com/Abjad/abjad/issues/1218>`_.
-  Removed ``abjad/dotfiles/`` directory.
+  Removed ``abjad/etc/`` directory
 
 * `#1210 <https://github.com/Abjad/abjad/issues/1210>`_.
-  Reran LilyPond scrape scripts with LilyPond 2.19.84.
+  Reran LilyPond scrape scripts with LilyPond 2.19.84
 
-* `#1201 <https://github.com/Abjad/abjad/issues/1201>`_.
-  Fixed multipart tuplet split.
+* Cleaned up ``abjad.Configuration._make_missing_directories()``
 
-* Alphabetized Abjad initializer.
+* Cleaned up exception messaging
 
-* Cleaned up ``abjad.Configuration._make_missing_directories()``.
+* Cleaned up f-strings
 
-* Cleaned up markup.
+* Defined ``abjad.Duration.__ne()__`` explicitly
 
-* Moved LilyPond scrape scripts to ``ly/`` in wrapper directory.
+* Moved LilyPond scrape scripts to ``ly/`` in wrapper directory
 
-* Moved ``yield_all_modules()`` to ``configuration.py`` module.
+* Moved ``yield_all_modules()`` to ``configuration.py`` module
 
-* Reformatted with black 20.8b1.
+* Reformatted with black 20.8b1
 
-* Removed ``const.py`` module.
+* Removed ``const.py`` module
 
-* Removed ``tags.py`` module.
+* Removed ``scr/devel/`` directory. Use ``scr/`` instead
 
-* Replaced ``ly/`` with ``lyconst.py``, ``lyenv.py``, ``lyproxy.py`` modules.
+* Removed ties from ``abjad.Note``, ``abjad.Chord`` reprs
 
-Package cleanup:
+----
 
-* Moved inspectx.py, update.py, wellformedness.py to top level
-* Changed OnBeatGraceContainer.py to obgc.py
-* Changed select.py to selectx.py
-* Added attach.py module
-* Added typedcollections.py module
-* Added cyclictuple.py module
-* Added sequence.py module
-* Added expression.py module
-* Added score.py module
-* Added segmentmaker.py module
-* Added path.py module
+**DOCS.**
+
+Activated Sphinx's ``sphinx.ext.viewcode`` extension in the docs.
+As suggested by `jgarte <https://github.com/jgarte>`_.
+
+Changed single backticks to double backticks in Sphinx docstring markup.
+
+----
+
+*Authored: Bača (3.2).*
