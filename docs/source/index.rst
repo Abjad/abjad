@@ -68,7 +68,7 @@ Then create a second staff and invert its pitches:
     ... )
     >>> for note in abjad.select(copied_staff).notes():
     ...     note.written_pitch = note.written_pitch.invert(axis="G4")
-    ... 
+    ...
     >>> abjad.show(staff_group)
 
 Notice that the music notation examples in Abjad's docs are styled in a special way:
@@ -96,6 +96,7 @@ Read more about Abjad here:
 
     for_beginners/index
     literature_examples/index
+    recipes_pitch
     from_abjads_developers
     containerized_model
     reference_manual/index
@@ -158,7 +159,7 @@ Visit Abjad's score gallery for many more examples.
 
     gallery
 
-`CCRMA Summer Workshop`_ 
+`CCRMA Summer Workshop`_
 ````````````````````````
 Summers | Palo Alto, CA
 
