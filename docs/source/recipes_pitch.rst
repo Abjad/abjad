@@ -58,12 +58,25 @@ Add staff group to score and override settings:
     >>> abjad.override(score).TimeSignature.stencil = "##f"
     >>> abjad.override(score).StaffGrouper.staff_staff_spacing = "#'((basic-distance . 20) (minimum-distance . 20) (padding . 2))"
     >>> abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment((1, 45))
+    >>> abjad.label(group[0][:6]).color_leaves("red")
+    >>> abjad.label(group[0][6:]).color_leaves("blue")
+    >>> abjad.label(group[1][:6]).color_leaves("blue")
+    >>> abjad.label(group[1][6:]).color_leaves("red")
+    >>> abjad.label(group[2][:6]).color_leaves("blue")
+    >>> abjad.label(group[2][6:]).color_leaves("red")
+    >>> abjad.label(group[3][:6]).color_leaves("red")
+    >>> abjad.label(group[3][6:]).color_leaves("blue")
+    >>> file = abjad.LilyPondFile.new(
+    ...     score,
+    ...     includes=["abjad.ily"],
+    ... )
+    ...
 
-Show score:
+Show file:
 
 ::
 
-    >>> abjad.show(score)
+    >>> abjad.show(file)
 
 
 Stravinsky Example
