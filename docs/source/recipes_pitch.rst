@@ -15,11 +15,12 @@ Define appropriately invertible hexachords:
     ...
     >>> score = abjad.Score()
     >>> group = abjad.StaffGroup()
+    >>> source_hex = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])
     >>> source_hexachords = [
-    ...     abjad.PitchClassSegment([0, 4, 9, 10, 8, 5]),
-    ...     abjad.PitchClassSegment([0, 8, 3, 2, 4, 7]),
-    ...     abjad.PitchClassSegment([0, 3, 5, 4, 11, 7]),
-    ...     abjad.PitchClassSegment([0, 9, 7, 8, 1, 5]),
+    ...     source_hex,
+    ...     source_hex.invert(),
+    ...     source_hex.retrograde().transpose((0 - source_hex[-1].number)),
+    ...     source_hex.retrograde().transpose((0 - source_hex[-1].number)).invert(),
     ... ]
     ...
 
@@ -79,10 +80,107 @@ Show file:
     >>> abjad.show(file)
 
 
+Hoffman Example
+---------------
+
+Non-octave-iterating scale in Joel Hoffman's `Piano Concerto`:
+
+Define source scale and interval of replication:
+
+::
+
+    >>> import abjad
+    >>> interval_down = abjad.NamedInterval("-M9")
+    >>> cell = abjad.PitchSegment(
+    ...     [
+    ...         "bf''''",
+    ...         "af''''",
+    ...         "g''''",
+    ...         "fs''''",
+    ...         "f''''",
+    ...         "ef''''",
+    ...         "d''''",
+    ...         "cs''''",
+    ...         "c''''",
+    ...         "b'''",
+    ...         "a'''",
+    ...     ]
+    ... )
+    ...
+
+Collect transpositions of scales:
+
+::
+
+    >>> cells = [cell]
+    >>> for _ in range(5):
+    ...     new_cell = cells[-1].transpose(interval_down)
+    ...     cells.append(new_cell)
+    ...
+    >>> full_scale = []
+    >>> for cell in cells:
+    ...     full_scale.extend(cell)
+    ...
+    >>> full_scale.sort()
+    >>> final_set = abjad.PitchSegment([_ for _ in full_scale])
+
+Create notes from pitch segment:
+
+::
+
+    >>> staff = abjad.Staff([abjad.Note(abjad.NumberedPitch(_), (1, 16)) for _ in final_set])
+
+Attach extra attachments and override score settings:
+
+::
+
+    >>> abjad.attach(abjad.Clef("bass"), staff[0])
+    >>> for note in abjad.select(staff).leaves():
+    ...     if note.written_pitch == "c'":
+    ...         abjad.attach(abjad.Clef("treble"), note)
+    ...
+    >>> abjad.ottava(staff[:11], start_ottava=abjad.Ottava(n=-1))
+    >>> abjad.ottava(staff[44:])
+    >>> abjad.override(staff).BarLine.stencil = "##f"
+    >>> abjad.override(staff).Beam.stencil = "##f"
+    >>> abjad.override(staff).Flag.stencil = "##f"
+    >>> abjad.override(staff).Stem.stencil = "##f"
+    >>> abjad.override(staff).TimeSignature.stencil = "##f"
+    >>> abjad.setting(staff).proportional_notation_duration = abjad.SchemeMoment(
+    ...     (1, 25)
+    ... )
+    ...
+    >>> colors = [
+    ...     "red",
+    ...     "blue",
+    ...     "red",
+    ...     "blue",
+    ...     "red",
+    ...     "blue",
+    ... ]
+    ...
+    >>> leaf_group = abjad.select(staff).leaves().partition_by_counts([11], cyclic=True, overhang=True,)
+    >>> for color, leaves in zip(colors, leaf_group):
+    ...     abjad.label(leaves).color_leaves(color)
+    ...
+    >>> file = abjad.LilyPondFile.new(
+    ...     staff,
+    ...     includes=["abjad.ily"]
+    ... )
+    ...
+    >>> file.paper_block.items.append("indent = 0")
+
+Show file:
+
+::
+
+    >>> abjad.show(file)
+
+
 Stravinsky Example
 ------------------
 
-Stravinskian tone row rotation in `Abraham and Isaac`:
+Tone row rotation in Igor Stravinsky's `Abraham and Isaac`:
 
 
 Define tone row and row permutations:
@@ -194,7 +292,7 @@ Show file of chart scores:
 Webern Example
 --------------
 
-Creation of derived tone rows in Webern's `Concerto for Nine Instruments, Op.24`:
+Derived tone rows in Anton Webern's `Concerto for Nine Instruments, Op.24`:
 
 Define trichord source and tone-row-forming transformations:
 
@@ -258,7 +356,7 @@ Iterate through permutations, creating staves and labeling trichords:
     ...     group.append(staff)
     ...
 
-Attach extra lables and override score settings:
+Attach extra labels and override score settings:
 
 ::
 
@@ -316,7 +414,7 @@ Show file:
 Xenakis Example
 ---------------
 
-Creation of Xenakisian pitch sieve in `Jonchaies`:
+Pitch sieve in Iannis Xenakis's `Jonchaies`:
 
 Initialize periodic patterns and create union:
 
