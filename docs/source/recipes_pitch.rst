@@ -1,11 +1,104 @@
 Pitch Recipes
 =============
 
+Babbitt Example
+---------------
+
+Derived tone rows from inversionally related interval cycles in Milton Babbitt's `Partitions for Piano`:
+
+Define helper function for creating interval cycles:
+
+::
+
+    >>> import abjad
+    >>> def perle_cyclic_set(starting_pitch, interval):
+    ...     returned_list = [starting_pitch]
+    ...     for _ in range(10):
+    ...         val = returned_list[-1] + interval
+    ...         val %= 12
+    ...         returned_list.append(val)
+    ...     return returned_list
+
+Define helper function to intersect cycles:
+
+::
+
+    >>> def intersect_sequences(seq_1, seq_2, pattern_1, pattern_2, length):
+    ...     returned_list = []
+    ...     for index in range(length):
+    ...         match_1 = pattern_1.matches_index(index, length)
+    ...         match_2 = pattern_2.matches_index(index, length)
+    ...         if match_1:
+    ...             value = seq_1.pop(0)
+    ...             returned_list.append(value)
+    ...         elif match_2:
+    ...             value = seq_2.pop(0)
+    ...             returned_list.append(value)
+    ...         else:
+    ...             returned_list.append(None)
+    ...     return returned_list
+
+Create first intersection:
+
+::
+
+    >>> ic1_p5 = perle_cyclic_set(starting_pitch=5, interval=1)
+    >>> ic1_p2 = perle_cyclic_set(starting_pitch=2, interval=1)
+    >>> ic1_p5_pattern = abjad.Pattern(
+    ...     indices=[0, 2, 4],
+    ...     period=6,
+    ... )
+    >>> ic1_p2_pattern = abjad.Pattern(
+    ...     indices=[1, 3, 5],
+    ...     period=6,
+    ... )
+    >>> intersection_1 = intersect_sequences(ic1_p5, ic1_p2, ic1_p5_pattern, ic1_p2_pattern, 6)
+
+Create second intersection:
+
+::
+
+    >>> ic11_p10 = perle_cyclic_set(starting_pitch=10, interval=11)
+    >>> ic11_p1 = perle_cyclic_set(starting_pitch=1, interval=11)
+    >>> ic11_p10_pattern = abjad.Pattern(
+    ...     indices=[0, 2, 4],
+    ...     period=6,
+    ... )
+    >>> ic11_p1_pattern = abjad.Pattern(
+    ...     indices=[1, 3, 5],
+    ...     period=6,
+    ... )
+    >>> intersection_2 = intersect_sequences(ic11_p10, ic11_p1, ic11_p10_pattern, ic11_p1_pattern, 6)
+
+Create and override staff:
+
+::
+
+    >>> row = abjad.TwelveToneRow(intersection_1 + intersection_2)
+    >>> staff = abjad.Staff([abjad.Note(_, (1, 8)) for _ in row])
+    >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
+    >>> abjad.label(staff).with_intervals(prototype=abjad.NumberedIntervalClass)
+    >>> abjad.override(staff).Beam.stencil = "##f"
+    >>> abjad.override(staff).Flag.stencil = "##f"
+    >>> abjad.override(staff).Stem.stencil = "##f"
+    >>> abjad.override(staff).text_script.staff_padding = 4
+    >>> abjad.override(staff).TimeSignature.stencil = "##f"
+    >>> score = abjad.Score([staff])
+    >>> abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment(
+    ...     (1, 20)
+    ... )
+
+Show score:
+
+::
+
+    >>> abjad.show(score)
+
+
 Carter Example
 --------------
 
 Elliott Carter's parallel-inverted all-interval collections:
-
 
 Define appropriately invertible hexachords:
 
@@ -175,6 +268,322 @@ Show file:
 ::
 
     >>> abjad.show(file)
+
+
+Lamb Example
+------------
+
+Triadic sequences in Catherine Lamb's `String Quartet`:
+
+Define helper function to transpose notehead based on calculated cent value of ratio:
+
+::
+
+    >>> import abjad
+    >>> import fractions
+    >>> import math
+    >>> def tune_to_ratio(
+    ...     note_head,
+    ...     ratio,
+    ... ):
+    ...     ratio = fractions.Fraction(ratio)
+    ...     log_ratio = fractions.Fraction(math.log10(ratio))
+    ...     log_2 = fractions.Fraction(1200 / math.log10(2))
+    ...     ji_cents = fractions.Fraction(log_ratio * log_2)
+    ...     semitones = ji_cents / 100
+    ...     parts = math.modf(semitones)
+    ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
+    ...     remainder = round(parts[0] * 100)
+    ...     if 50 < remainder:
+    ...         pitch += 1
+    ...         remainder = -100 + remainder
+    ...     note_head.written_pitch = pitch
+    ...
+
+Define helper function to create markup of cent deviation from equal temperament:
+
+::
+
+    >>> def return_cent_markup(
+    ...     note_head,
+    ...     ratio,
+    ... ):
+    ...     ratio = fractions.Fraction(ratio)
+    ...     log_ratio = fractions.Fraction(math.log10(ratio))
+    ...     log_2 = fractions.Fraction(1200 / math.log10(2))
+    ...     ji_cents = fractions.Fraction(log_ratio * log_2)
+    ...     semitones = ji_cents / 100
+    ...     parts = math.modf(semitones)
+    ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
+    ...     remainder = round(parts[0] * 100)
+    ...     if 50 < abs(remainder):
+    ...         if 0 < remainder:
+    ...             pitch += 1
+    ...             remainder = -100 + remainder
+    ...         else:
+    ...             pitch -= 1
+    ...             remainder = 100 + remainder
+    ...     if remainder < 0:
+    ...         cent_string = f"{remainder}"
+    ...     else:
+    ...         cent_string = f"+{remainder}"
+    ...     mark = abjad.Markup(cent_string, direction=abjad.Up).center_align()
+    ...     return mark
+    ...
+
+Create list of triad sequences written as ratios:
+
+::
+
+    >>> triadic_sequences = [
+    ...     [1, 1, 1],
+    ...     [1, 1, "121/120"],
+    ...     [1, "121/120", "81/80"],
+    ...     [1, "121/120", "49/48"],
+    ...     [1, "49/48", "36/35"],
+    ...     [1, "49/48", "21/20"],
+    ...     [1, "28/27", "15/14"],
+    ...     [1, "36/35", "10/9"],
+    ...     [1, "49/48", "8/7"],
+    ...     [1, "36/35", "7/6"],
+    ... ]
+    ...
+
+Populate staff and call functions on leaves:
+
+::
+
+    >>> group = abjad.StaffGroup()
+    >>> score = abjad.Score([group])
+    >>> for triad in triadic_sequences:
+    ...     staff = abjad.Staff()
+    ...     for ratio in triad:
+    ...         note = abjad.Note()
+    ...         tune_to_ratio(note.note_head, ratio)
+    ...         markup = return_cent_markup(note.note_head, ratio)
+    ...         abjad.attach(markup, note)
+    ...         staff.append(note)
+    ...     group.append(staff)
+    ...
+
+Override score settings:
+
+::
+
+    >>> abjad.override(score).BarLine.stencil = "##f"
+    >>> abjad.override(score).Beam.stencil = "##f"
+    >>> abjad.override(score).Flag.stencil = "##f"
+    >>> abjad.override(score).Stem.stencil = "##f"
+    >>> abjad.override(score).text_script.staff_padding = 4
+    >>> abjad.override(score).TimeSignature.stencil = "##f"
+
+Show score:
+
+::
+
+    >>> abjad.show(score)
+
+
+McLeod Example
+--------------
+
+Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`:
+
+Define interval prime form and steering vector:
+
+::
+
+    >>> ipf = abjad.PitchSegment([0, 2, 7])
+    >>> steering = abjad.PitchSegment([0, 1, 3, 4])
+
+Transpose IPF by steering pitches, inverting as necessary:
+
+::
+
+    >>> field = abjad.PitchSegment()
+    >>> inversions = [False, True, False, True]
+    >>> for bool, i in zip(inversions, steering):
+    ...     transposition = ipf
+    ...     if bool:
+    ...         transposition = transposition.invert().retrograde()
+    ...         val = transposition[0].number
+    ...         transposition = transposition.transpose((0 - val))
+    ...         transposition = transposition.transpose(i)
+    ...     else:
+    ...         transposition = transposition.transpose(i)
+    ...     field += transposition
+    ...
+
+Confirm that pitch field is 12-note-complete:
+
+::
+
+    >>> row = abjad.TwelveToneRow(field)
+
+Populate and override staff:
+
+::
+
+    >>> staff = abjad.Staff([abjad.Note(_, (1, 8)) for _ in row])
+    >>> abjad.override(staff).BarLine.stencil = "##f"
+    >>> abjad.override(staff).Beam.stencil = "##f"
+    >>> abjad.override(staff).Flag.stencil = "##f"
+    >>> abjad.override(staff).Stem.stencil = "##f"
+    >>> abjad.override(staff).text_script.staff_padding = 4
+    >>> abjad.override(staff).TimeSignature.stencil = "##f"
+    >>> score = abjad.Score([staff])
+
+Show score:
+
+::
+
+    >>> abjad.show(score)
+
+
+Nono Example
+------------
+
+Double-stop creation from hexachord pairs in Luigi Nono's `Fragmente -- Stille, an Diotima`:
+
+Define tone row and divide into hexachords:
+
+::
+
+    >>> import abjad
+    >>> scale = abjad.PitchSegment(["cs''", "d''", "ef''", "e''", "f''", "fs''", "g''", "gs''", "a''", "bf''", "b''", "c'''"])
+    >>> hexachord_1 = [_ for _ in scale[:6]]
+    >>> hexachord_2 = [_ for _ in scale[6:]]
+
+Isolate diads from paired hexachords:
+
+::
+
+    >>> diads = [list(_) for _ in zip(hexachord_1, hexachord_2)]
+    >>> reversed_indices = [1, 2, 4, 5]
+    >>> for index in reversed_indices:
+    ...     diads[index] = (diads[index][1], diads[index][0])
+    ...
+    >>> staff = abjad.Staff()
+    >>> for diad in diads:
+    ...     lower = diad[0]
+    ...     higher = diad[1]
+    ...     while higher < lower:
+    ...         higher = abjad.NamedInterval("+P8").transpose(higher)
+    ...     chord = abjad.Chord([lower, higher], (1, 8))
+    ...     staff.append(chord)
+    ...
+
+Change octaves:
+
+::
+
+    >>> staff[2].written_pitches = abjad.NamedInterval("+P8").transpose(staff[2].written_pitches)
+    >>> staff[3].written_pitches = abjad.NamedInterval("+P8").transpose(staff[3].written_pitches)
+    >>> staff[4].written_pitches = abjad.NamedInterval("-P8").transpose(staff[4].written_pitches)
+    >>> staff[5].written_pitches = abjad.NumberedInterval("-24").transpose(staff[5].written_pitches)
+
+Override staff settings:
+
+::
+
+    >>> abjad.override(staff).Beam.stencil = "##f"
+    >>> abjad.override(staff).Flag.stencil = "##f"
+    >>> abjad.override(staff).Stem.stencil = "##f"
+    >>> abjad.override(staff).text_script.staff_padding = 4
+    >>> abjad.override(staff).TimeSignature.stencil = "##f"
+    >>> score = abjad.Score([staff])
+    >>> abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment(
+    ...     (1, 20)
+    ... )
+
+Show score:
+
+::
+
+    >>> abjad.show(score)
+
+
+Saariaho Example
+----------------
+
+Initial harmony in Kaija Saariaho's `Du Cristal`:
+
+Define helper function to transpose notehead by ratio:
+
+::
+
+    >>> import abjad
+    >>> import fractions
+    >>> import math
+    >>> def tune_to_ratio(
+    ...     note_head,
+    ...     ratio,
+    ... ):
+    ...     ratio = fractions.Fraction(ratio)
+    ...     log_ratio = fractions.Fraction(math.log10(ratio))
+    ...     log_2 = fractions.Fraction(1200 / math.log10(2))
+    ...     ji_cents = fractions.Fraction(log_ratio * log_2)
+    ...     semitones = ji_cents / 100
+    ...     parts = math.modf(semitones)
+    ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
+    ...     remainder = round(parts[0] * 100)
+    ...     if 50 < remainder:
+    ...         pitch += 1
+    ...         remainder = -100 + remainder
+    ...     note_head.written_pitch = pitch
+    ...
+
+Create ratio sequence:
+
+::
+
+    >>> sequence = [
+    ...     1,
+    ...     "15/8",
+    ...     "7/2",
+    ...     "17/4",
+    ...     "21/4",
+    ...     6,
+    ...     9,
+    ...     10,
+    ...     "21/2",
+    ...     12,
+    ...     18,
+    ...     20,
+    ... ]
+    ...
+
+Populate staff:
+
+::
+
+    >>> staff = abjad.Staff()
+    >>> for ratio in sequence:
+    ...     note = abjad.Note("df,16")
+    ...     tune_to_ratio(note.note_head, ratio)
+    ...     staff.append(note)
+    ...
+
+Override staff settings:
+
+::
+
+    >>> abjad.attach(abjad.Clef("bass"), staff[0])
+    >>> abjad.attach(abjad.Clef("treble"), staff[3])
+    >>> abjad.ottava(staff[8:])
+    >>> score = abjad.Score([staff])
+    >>> abjad.override(score).BarLine.stencil = "##f"
+    >>> abjad.override(score).Beam.stencil = "##f"
+    >>> abjad.override(score).Flag.stencil = "##f"
+    >>> abjad.override(score).Stem.stencil = "##f"
+    >>> abjad.override(score).text_script.staff_padding = 4
+    >>> abjad.override(score).TimeSignature.stencil = "##f"
+
+Show score:
+
+::
+
+    >>> abjad.show(score)
 
 
 Stravinsky Example
