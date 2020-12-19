@@ -691,7 +691,5 @@ Poème Récursif (2005)
                 by Trevor Bača.
 
 ..  _Fredrik Wallberg: http://quesebifurcan.github.io/music/
-..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com/
-..  _Trevor Bača: http://www.trevorbaca.com/
 ..  _Jeffrey Treviño: http://www.jeffreytrevino.com/
 ..  _Gregory Rowland Evans: http://www.gregoryrowlandevans.com/

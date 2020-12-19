@@ -39,3 +39,7 @@ a.thumbnail {
 .expression {
     background-color: #eff5ff;
     }
+
+p {
+    text-align: justify;
+}
