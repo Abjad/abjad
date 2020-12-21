@@ -7,6 +7,4 @@ Welcome
 
 ..  include:: gallery_teaser.rst
 
-----
-
 ..  include:: sidebar.rst
