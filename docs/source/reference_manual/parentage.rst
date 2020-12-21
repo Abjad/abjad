@@ -1,5 +1,5 @@
-Component parentage
-===================
+Parentage
+=========
 
 ::
 

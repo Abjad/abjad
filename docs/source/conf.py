@@ -2,12 +2,10 @@ import sphinx_rtd_theme
 
 import abjad
 
-### CORE ###
+### GENERAL SPHINX SETTINGS ###
+### https://www.sphinx-doc.org/en/master/usage/configuration.html ###
 
-add_function_parentheses = True
-copyright = "2008-2020, Trevor Bača & Josiah Wolf Oberholtzer"
-exclude_patterns = []
-
+copyright = "2008-2020, Trevor Bača & Josiah Wolf Oberholtzer."
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -15,8 +13,9 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
-    # temporarily commenting-out prevents "highlighting module code ...";
-    # uncomment viewcode when building official release of docs:
+    # temporarily comment out when heavily editing docs;
+    # prevents "highlighting module code ..." pass on every doc build;
+    # uncomment when building official release:
     # "sphinx.ext.viewcode",
     "abjad.ext.sphinx",
     "sphinx_autodoc_typehints",
@@ -25,40 +24,36 @@ extensions = [
     "uqbar.sphinx.inheritance",
     "uqbar.sphinx.style",
 ]
-
-master_doc = "index"
-project = "Abjad"
-pygments_style = "sphinx"
-release = abjad.__version__
-source_suffix = ".rst"
-templates_path = ["_templates"]
-version = abjad.__version__
-
-### HTML ###
-
 html_favicon = "_static/favicon.ico"
-html_last_updated_fmt = "%b %d, %Y"
 html_logo = "_static/abjad-logo.png"
-html_show_sourcelink = True
+html_show_copyright = False
+html_show_sourcelink = False
+html_show_sphinx = False
 html_static_path = ["_static"]
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    "navigation_depth": 2,
+    "canonical_url": "https://abjad.github.io",
+    "display_version": False,
+    # most important setting:
+    # navigation_depth=1 makes sidebar completely flat;
+    # please leave flat navigation in place forever:
+    "navigation_depth": 1,
     "style_nav_header_background": "#dbc2ff",
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+project = "Abjad"
+release = abjad.__version__
+rst_epilog = """
+..  _Bača: https://github.com/trevorbaca
+..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com
+..  _Oberholtzer: https://github.com/josiah-wolf-oberholtzer
+..  _Trevor Bača: http://www.trevorbaca.com/
+"""
+smartquotes = True
+templates_path = ["_templates"]
+version = abjad.__version__
 
-### EXTENSIONS ###
-
-autodoc_member_order = "groupwise"
-graphviz_dot_args = ["-s32"]
-graphviz_output_format = "svg"
-intersphinx_mapping = {
-    "http://josiahwolfoberholtzer.com/uqbar/": None,
-    "http://www.sphinx-doc.org/en/master/": None,
-    "https://docs.python.org/3.9/": None,
-}
-todo_include_todos = True
+### UQBAR ###
 
 uqbar_api_title = "Abjad API"
 uqbar_api_source_paths = ["abjad"]
@@ -100,3 +95,15 @@ try:
     uqbar_book_console_setup.append("from abjadext import microtones")
 except ImportError:
     pass
+
+### OTHER EXTENSIONS ###
+
+autodoc_member_order = "groupwise"
+graphviz_dot_args = ["-s32"]
+graphviz_output_format = "svg"
+intersphinx_mapping = {
+    "http://josiahwolfoberholtzer.com/uqbar/": None,
+    "http://www.sphinx-doc.org/en/master/": None,
+    "https://docs.python.org/3.9/": None,
+}
+todo_include_todos = True
