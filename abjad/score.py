@@ -55,10 +55,10 @@ class Component:
     ### INITIALIZER ###
 
     @staticmethod
-    def _parse_lilypond_string(string):
+    def _parse_lilypond_string(string, language="english"):
         from .parsers.parse import parse
 
-        return parse(string)
+        return parse(string, language=language)
 
     @abc.abstractmethod
     def __init__(self, name: str = None, tag: _tag.Tag = None) -> None:
@@ -906,6 +906,7 @@ class Container(Component):
 
     ### INITIALIZER ###
 
+    # TODO: make all keywords (after components) mandatory keywords
     def __init__(
         self,
         components=None,
@@ -913,6 +914,8 @@ class Container(Component):
         simultaneous: bool = None,
         name: str = None,
         tag: _tag.Tag = None,
+        *,
+        language: str = "english",
     ) -> None:
         components = components or []
         Component.__init__(self, tag=tag)
@@ -920,7 +923,7 @@ class Container(Component):
         self._is_simultaneous = None
         # sets name temporarily for _find_correct_effective_context:
         self._name = name
-        self._initialize_components(components)
+        self._initialize_components(components, language=language)
         self.identifier = identifier
         self.simultaneous = simultaneous
         # sets name permanently after _initalize_components:
@@ -1322,7 +1325,7 @@ class Container(Component):
             result.extend(component._get_subtree())
         return result
 
-    def _initialize_components(self, components):
+    def _initialize_components(self, components, *, language: str = "english"):
         if isinstance(components, collections.abc.Iterable) and not isinstance(
             components, str
         ):
@@ -1331,7 +1334,7 @@ class Container(Component):
                 if hasattr(item, "_items"):
                     components_.extend(item)
                 elif isinstance(item, str):
-                    parsed = self._parse_string(item)
+                    parsed = self._parse_string(item, language=language)
                     components_.append(parsed)
                 else:
                     components_.append(item)
@@ -1340,7 +1343,7 @@ class Container(Component):
                 if not isinstance(component, Component):
                     raise Exception(f"must be component: {component!r}.")
         if isinstance(components, str):
-            parsed = self._parse_string(components)
+            parsed = self._parse_string(components, language=language)
             self._components = []
             self.simultaneous = parsed.simultaneous
             self[:] = parsed[:]
@@ -1357,11 +1360,11 @@ class Container(Component):
     def _is_one_of_my_last_leaves(self, leaf):
         return leaf in self._get_descendants_stopping_with()
 
-    def _parse_string(self, string):
+    def _parse_string(self, string, *, language="english"):
         user_input = string.strip()
         if not user_input.startswith("<<") or not user_input.endswith(">>"):
             user_input = f"{{ {user_input} }}"
-        parsed = self._parse_lilypond_string(user_input)
+        parsed = self._parse_lilypond_string(user_input, language=language)
         assert isinstance(parsed, Container)
         return parsed
 
@@ -1422,7 +1425,7 @@ class Container(Component):
         """
         Gets components in container.
         """
-        return self._components
+        return tuple(self._components)
 
     @property
     def identifier(self) -> typing.Optional[str]:
@@ -1617,7 +1620,7 @@ class Container(Component):
 
     ### PUBLIC METHODS ###
 
-    def append(self, component) -> None:
+    def append(self, component, *, language: str = "english") -> None:
         r"""
         Appends ``component`` to container.
 
@@ -1656,12 +1659,12 @@ class Container(Component):
 
         """
         if isinstance(component, str):
-            selection = self._parse_string(component)
+            selection = self._parse_string(component, language=language)
             assert len(selection) == 1
             component = selection[0]
         self.__setitem__(slice(len(self), len(self)), [component])
 
-    def extend(self, argument) -> None:
+    def extend(self, argument, *, language: str = "english") -> None:
         r"""
         Extends container with ``argument``.
 
@@ -1703,12 +1706,12 @@ class Container(Component):
 
         """
         if isinstance(argument, str):
-            argument = self._parse_string(argument)
+            argument = self._parse_string(argument, language=language)
         elif isinstance(argument, collections.abc.Iterable):
             argument_ = []
             for item in argument:
                 if isinstance(item, str):
-                    item = self._parse_string(item)
+                    item = self._parse_string(item, language=language)
                 argument_.append(item)
             argument = argument_
         self.__setitem__(
@@ -1751,7 +1754,7 @@ class Container(Component):
         else:
             raise ValueError(f"component {component!r} not in container {self!r}.")
 
-    def insert(self, i, component) -> None:
+    def insert(self, i, component, *, language: str = "english") -> None:
         r"""
         Inserts ``component`` at index ``i`` in container.
 
@@ -1814,7 +1817,7 @@ class Container(Component):
         """
         assert isinstance(i, int)
         if isinstance(component, str):
-            selection = self._parse_string(component)
+            selection = self._parse_string(component, language=language)
             assert len(selection) == 1, repr(selection)
             component = selection[0]
         self.__setitem__(slice(i, i), [component])
@@ -2035,10 +2038,12 @@ class AfterGraceContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, tag: _tag.Tag = None) -> None:
+    def __init__(
+        self, components=None, *, language: str = "english", tag: _tag.Tag = None
+    ) -> None:
         # _main_leaf slot must be initialized before container initialization
         self._main_leaf = None
-        Container.__init__(self, components, tag=tag)
+        Container.__init__(self, components, language=language, tag=tag)
 
     ### SPECIAL METHODS ###
 
@@ -2245,7 +2250,12 @@ class BeforeGraceContainer(Container):
     ### INITIALIZER ###
 
     def __init__(
-        self, components=None, *, command: str = r"\grace", tag: _tag.Tag = None
+        self,
+        components=None,
+        *,
+        command: str = r"\grace",
+        language: str = "english",
+        tag: _tag.Tag = None,
     ) -> None:
         if command not in self._commands:
             message = f"unknown command: {repr(command)}.\n"
@@ -2253,7 +2263,7 @@ class BeforeGraceContainer(Container):
             raise Exception(message)
         self._command = command
         self._main_leaf = None
-        Container.__init__(self, components, tag=tag)
+        Container.__init__(self, components, language=language, tag=tag)
 
     ### SPECIAL METHODS ###
 
@@ -2618,6 +2628,7 @@ class Chord(Leaf):
     def __init__(
         self,
         *arguments,
+        language: str = "english",
         multiplier: typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
@@ -2625,7 +2636,7 @@ class Chord(Leaf):
         self._note_heads = NoteHeadList(client=self)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
-            parsed = self._parse_lilypond_string(string)
+            parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
         are_cautionary: typing.List[typing.Optional[bool]] = []
@@ -3024,6 +3035,7 @@ class Context(Container):
 
     ### INITIALIZER ###
 
+    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
@@ -3031,6 +3043,8 @@ class Context(Container):
         simultaneous: bool = None,
         name: str = None,
         tag: _tag.Tag = None,
+        *,
+        language: str = "english",
     ) -> None:
         self._consists_commands: typing.List[str] = []
         self._dependent_wrappers: typing.List = []
@@ -3040,6 +3054,7 @@ class Context(Container):
             self,
             simultaneous=simultaneous,
             components=components,
+            language=language,
             name=name,
             tag=tag,
         )
@@ -3364,12 +3379,13 @@ class MultimeasureRest(Leaf):
     def __init__(
         self,
         *arguments,
+        language: str = "english",
         multiplier: typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
         if len(arguments) == 0:
             arguments = ((1, 4),)
-        rest = Rest(*arguments)
+        rest = Rest(*arguments, language=language)
         Leaf.__init__(self, rest.written_duration, multiplier=multiplier, tag=tag)
 
     ### PRIVATE METHODS ###
@@ -4245,7 +4261,7 @@ class Note(Leaf):
 
     ..  container:: example
 
-        REGRESSION. Initialized from other note:
+        REGRESSION. Initializes from other note:
 
         >>> note = abjad.Note("cs''4", multiplier=(1, 1))
         >>> abjad.show(note) # doctest: +SKIP
@@ -4263,6 +4279,13 @@ class Note(Leaf):
             >>> abjad.f(new_note)
             cs''4 * 1
 
+    ..  container:: example
+
+        Selects language:
+
+        >>> abjad.Note("dod''8.", language="français")
+        Note("cs''8.")
+
     """
 
     ### CLASS VARIABLES ###
@@ -4276,13 +4299,14 @@ class Note(Leaf):
     def __init__(
         self,
         *arguments,
+        language: str = "english",
         multiplier: typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
-            parsed = self._parse_lilypond_string(string)
+            parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
         written_pitch = None
@@ -4542,6 +4566,7 @@ class Rest(Leaf):
         self,
         written_duration=None,
         *,
+        language: str = "english",
         multiplier: typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
@@ -4550,7 +4575,7 @@ class Rest(Leaf):
             multiplier = written_duration.multiplier
         if isinstance(written_duration, str):
             string = f"{{ {written_duration} }}"
-            parsed = self._parse_lilypond_string(string)
+            parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
         if isinstance(written_duration, Leaf):
@@ -4616,6 +4641,7 @@ class Score(Context):
 
     ### INITIALIZER ###
 
+    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
@@ -4623,10 +4649,13 @@ class Score(Context):
         simultaneous: bool = True,
         name: str = None,
         tag: _tag.Tag = None,
+        *,
+        language: str = "english",
     ) -> None:
         Context.__init__(
             self,
             components=components,
+            language=language,
             lilypond_type=lilypond_type,
             simultaneous=simultaneous,
             name=name,
@@ -4702,6 +4731,7 @@ class Skip(Leaf):
     def __init__(
         self,
         *arguments,
+        language: str = "english",
         multiplier: typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
@@ -4709,7 +4739,7 @@ class Skip(Leaf):
         written_duration = None
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
-            parsed = self._parse_lilypond_string(string)
+            parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
             written_duration = input_leaf.written_duration
@@ -4818,6 +4848,7 @@ class Staff(Context):
 
     ### INITIALIZER ###
 
+    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
@@ -4825,10 +4856,13 @@ class Staff(Context):
         simultaneous: bool = None,
         name: str = None,
         tag: _tag.Tag = None,
+        *,
+        language: str = "english",
     ) -> None:
         Context.__init__(
             self,
             components=components,
+            language=language,
             lilypond_type=lilypond_type,
             simultaneous=simultaneous,
             name=name,
@@ -4880,6 +4914,7 @@ class StaffGroup(Context):
 
     ### INITIALIZER ###
 
+    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
@@ -4887,10 +4922,13 @@ class StaffGroup(Context):
         simultaneous: bool = True,
         name: str = None,
         tag: _tag.Tag = None,
+        *,
+        language: str = "english",
     ) -> None:
         Context.__init__(
             self,
             components=components,
+            language=language,
             lilypond_type=lilypond_type,
             simultaneous=simultaneous,
             name=name,
@@ -4949,11 +4987,16 @@ class TremoloContainer(Container):
     ### INITIALIZER ###
 
     def __init__(
-        self, count: int = 2, components=None, *, tag: _tag.Tag = None
+        self,
+        count: int = 2,
+        components=None,
+        *,
+        language: str = "english",
+        tag: _tag.Tag = None,
     ) -> None:
         assert _math.is_assignable_integer(count), repr(count)
         self._count = count
-        Container.__init__(self, components, tag=tag)
+        Container.__init__(self, components, language=language, tag=tag)
         if len(self) != 2:
             raise Exception(f"must contain 2 leaves (not {len(self)}")
 
@@ -5096,6 +5139,13 @@ class Tuplet(Container):
                 e'8
             }
 
+    ..  container:: example
+
+        Selects language:
+
+        >>> abjad.Tuplet("3:2", "do'2 dod' re'", language="français")
+        Tuplet(Multiplier(2, 3), "c'2 cs'2 d'2")
+
     """
 
     ### CLASS VARIABLES ###
@@ -5120,10 +5170,11 @@ class Tuplet(Container):
         denominator: int = None,
         force_fraction: bool = None,
         hide: bool = None,
+        language: str = "english",
         tag: _tag.Tag = None,
         tweaks: TweakInterface = None,
     ) -> None:
-        Container.__init__(self, components, tag=tag)
+        Container.__init__(self, components, language=language, tag=tag)
         if isinstance(multiplier, str) and ":" in multiplier:
             strings = multiplier.split(":")
             numbers = [int(_) for _ in strings]
@@ -5805,7 +5856,9 @@ class Tuplet(Container):
 
     ### PUBLIC METHODS ###
 
-    def append(self, component, preserve_duration=False) -> None:
+    def append(
+        self, component, *, language: str = "english", preserve_duration=False
+    ) -> None:
         r"""
         Appends ``component`` to tuplet.
 
@@ -5879,7 +5932,7 @@ class Tuplet(Container):
         """
         if preserve_duration:
             old_duration = self._get_duration()
-        Container.append(self, component)
+        Container.append(self, component, language=language)
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
@@ -5966,7 +6019,9 @@ class Tuplet(Container):
         else:
             return False
 
-    def extend(self, argument, preserve_duration=False) -> None:
+    def extend(
+        self, argument, *, language: str = "english", preserve_duration=False
+    ) -> None:
         r"""
         Extends tuplet with ``argument``.
 
@@ -6046,7 +6101,7 @@ class Tuplet(Container):
         """
         if preserve_duration:
             old_duration = self._get_duration()
-        Container.extend(self, argument)
+        Container.extend(self, argument, language=language)
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
@@ -7052,6 +7107,13 @@ class Voice(Context):
         e'8 Dynamic('p')
         d''8 Dynamic('mf')
 
+    ..  container:: example
+
+        Selects language:
+
+        >>> abjad.Voice("do'8 re' mi' fa'", language="français")
+        Voice("c'8 d'8 e'8 f'8")
+
     """
 
     ### CLASS VARIABLES ###
@@ -7064,6 +7126,7 @@ class Voice(Context):
 
     ### INITIALIZER ###
 
+    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
@@ -7071,10 +7134,13 @@ class Voice(Context):
         simultaneous: bool = None,
         name: str = None,
         tag: _tag.Tag = None,
+        *,
+        language: str = "english",
     ) -> None:
         Context.__init__(
             self,
             components=components,
+            language=language,
             lilypond_type=lilypond_type,
             simultaneous=simultaneous,
             name=name,
