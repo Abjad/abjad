@@ -62,7 +62,6 @@ install the Abjad package in your ``abjad`` virtual environment:
 ..  code-block:: bash
 
     ~(abjad)$ pip install abjad
-    ...
 
 When you are done working in a virtual environment you can exit the virtual environment
 to return to your default shell:
@@ -71,8 +70,8 @@ to return to your default shell:
 
     ~(abjad)$ deactivate
 
-Add these two lines to your ``~/.profile`` if you decide to use Python virtual
-environments every time you work in Abjad:
+Add these two lines to your profile if you decide to use Python virtual environments
+every time you work in Abjad:
 
 ..  code-block:: bash
 

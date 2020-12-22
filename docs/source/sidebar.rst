@@ -2,29 +2,30 @@
     :caption: First steps
     :hidden:
 
-    first_steps/installation
+    first_steps/install
 
 ..  toctree::
-    :caption: Reference manual
+    :caption: Overview
     :hidden:
 
-    reference_manual/articulations
-    reference_manual/chords
-    reference_manual/containers
-    reference_manual/durations
-    reference_manual/instruments
-    reference_manual/lilypond_comments
-    reference_manual/lilypond_files
-    reference_manual/lilypond_literals
-    reference_manual/logical_voices
-    reference_manual/named_pitches
-    reference_manual/notes
-    reference_manual/parentage
-    reference_manual/rests
-    reference_manual/scores
-    reference_manual/staves
-    reference_manual/tuplets
-    reference_manual/voices
+    overview/introduction
+    overview/construction_notes_rests_chords
+    overview/articulations
+    overview/chords
+    overview/containers
+    overview/durations
+    overview/instruments
+    overview/lilypond_comments
+    overview/lilypond_files
+    overview/lilypond_literals
+    overview/logical_voices
+    overview/named_pitches
+    overview/parentage
+    overview/rests
+    overview/scores
+    overview/staves
+    overview/tuplets
+    overview/voices
 
 ..  toctree::
     :caption: Recipes: pitch
