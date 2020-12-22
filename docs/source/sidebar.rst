@@ -70,9 +70,13 @@
     appendices/about_the_docs
     appendices/colophon
     appendices/community
+    appendices/configuration_file
+    appendices/developer_installation
+    appendices/jupyter_notebooks
     appendices/lilypond_context_concatenation
     appendices/publications
     appendices/summer_workshop
+    appendices/virtual_environments
 
 ..  toctree::
     :caption: Changes

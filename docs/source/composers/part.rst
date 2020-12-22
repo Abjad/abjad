@@ -4,10 +4,6 @@ Pärt, *Cantus in Memory of Benjamin Britten*
 ..  book-defaults::
     :lilypond/stylesheet: literature-examples.ily
 
-..  note::
-
-    Install ``abjad-ext-tonality`` before running this demo.
-
 Let's start with some imports:
 
 ::
