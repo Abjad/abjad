@@ -7,8 +7,6 @@ Define trichord source and tone-row-forming transformations:
 
 ::
 
-    >>> import abjad
-    ...
     >>> score = abjad.Score()
     >>> group = abjad.StaffGroup()
     >>> source_trichord = abjad.PitchClassSegment([0, 1, 4])

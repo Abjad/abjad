@@ -6,7 +6,6 @@ Literature examples
 ..  book::
     :hide:
 
-    >>> import abjad
     >>> import random
     >>> random.seed(0)
 

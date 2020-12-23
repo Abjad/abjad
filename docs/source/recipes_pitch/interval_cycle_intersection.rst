@@ -8,7 +8,6 @@ Define helper function for creating interval cycles:
 
 ::
 
-    >>> import abjad
     >>> def perle_cyclic_set(starting_pitch, interval):
     ...     returned_list = [starting_pitch]
     ...     for _ in range(10):

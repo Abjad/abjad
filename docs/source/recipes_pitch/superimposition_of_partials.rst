@@ -7,7 +7,6 @@ Define helper function to transpose notehead by ratio:
 
 ::
 
-    >>> import abjad
     >>> import fractions
     >>> import math
     >>> def tune_to_ratio(

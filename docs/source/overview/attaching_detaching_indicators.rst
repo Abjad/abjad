@@ -1,5 +1,5 @@
-Articulations
-=============
+Attaching, detaching indicators
+===============================
 
 Articulations model staccato dots, marcato wedges and other symbols.
 

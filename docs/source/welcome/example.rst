@@ -22,8 +22,8 @@ Create a second staff:
 
 ::
 
-    >>> input = string + " " + retrograde
-    >>> staff_2 = abjad.Staff(input, name="Staff_2")
+    >>> string = string + " " + retrograde
+    >>> staff_2 = abjad.Staff(string, name="Staff_2")
 
 Enclose both staves in a staff group and a score:
 
@@ -46,16 +46,7 @@ Invert the pitches in staff 2:
     ... 
     >>> abjad.show(score)
 
-Partition the notes in staff 1 according to a repeating pattern; loop over the parts:
-
-::
-
-    >>> notes = abjad.select(score["Staff_1"]).notes()
-    >>> parts = notes.partition_by_counts([2, 4, 4], cyclic=True)
-    >>> for part in parts:
-    ...     part
-
-Define a function to parameterize the loop, attach slurs, attach articulations:
+Define a function to partition notes, loop over parts, attach slurs, attach articulations:
 
 ::
 
