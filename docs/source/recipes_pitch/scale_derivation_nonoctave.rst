@@ -7,7 +7,6 @@ Define source scale and interval of replication:
 
 ::
 
-    >>> import abjad
     >>> interval_down = abjad.NamedInterval("-M9")
     >>> cell = abjad.PitchSegment(
     ...     [

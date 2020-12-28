@@ -8,7 +8,6 @@ Let's start with some imports:
 
 ::
 
-    >>> import abjad
     >>> import copy
     >>> from abjad.demos import part
 

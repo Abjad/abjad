@@ -7,25 +7,14 @@
 ..  toctree::
     :caption: Overview
     :hidden:
+    :maxdepth: 0
 
-    overview/introduction
-    overview/construction_notes_rests_chords
-    overview/articulations
-    overview/chords
-    overview/containers
-    overview/durations
-    overview/instruments
-    overview/lilypond_comments
-    overview/lilypond_files
-    overview/lilypond_literals
-    overview/logical_voices
-    overview/named_pitches
-    overview/parentage
-    overview/rests
-    overview/scores
-    overview/staves
-    overview/tuplets
-    overview/voices
+    overview/about_the_docs
+    overview/making_musical_objects
+    overview/attaching_detaching_indicators
+    overview/working_with_containers
+    overview/working_with_tuplets
+    overview/working_with_lilypond_files
 
 ..  toctree::
     :caption: Recipes: pitch
@@ -56,7 +45,9 @@
     :caption: Score gallery
     :hidden:
 
-    gallery
+    gallery_2020
+    gallery_2015
+    gallery_2010
 
 ..  toctree::
     :caption: All classes & functions
@@ -68,10 +59,11 @@
     :caption: Appendices
     :hidden:
 
-    appendices/about_the_docs
+    appendices/assignability
+    appendices/best_practices
     appendices/colophon
     appendices/community
-    appendices/configuration_file
+    appendices/configuration
     appendices/developer_installation
     appendices/jupyter_notebooks
     appendices/lilypond_context_concatenation

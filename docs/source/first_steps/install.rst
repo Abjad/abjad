@@ -3,8 +3,7 @@ Install
 
 Abjad is developed and tested on MacOS and Linux. Abjad is not tested on Windows.
 
-(Interested in maintaining Abjad for Windows? We'd be happy to have you :ref:`join the
-team. <appendix-community>`)
+(Interested in maintaining Abjad for Windows? :ref:`Join our team. <appendix-community>`)
 
 ..  rubric:: Check your version of Python
 

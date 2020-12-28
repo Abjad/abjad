@@ -8,7 +8,6 @@ Define tone row and divide into hexachords:
 
 ::
 
-    >>> import abjad
     >>> scale = abjad.PitchSegment(["cs''", "d''", "ef''", "e''", "f''", "fs''", "g''", "gs''", "a''", "bf''", "b''", "c'''"])
     >>> hexachord_1 = [_ for _ in scale[:6]]
     >>> hexachord_2 = [_ for _ in scale[6:]]

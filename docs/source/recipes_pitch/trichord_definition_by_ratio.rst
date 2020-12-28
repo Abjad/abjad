@@ -7,7 +7,6 @@ Define helper function to transpose notehead based on calculated cent value of r
 
 ::
 
-    >>> import abjad
     >>> import fractions
     >>> import math
     >>> def tune_to_ratio(

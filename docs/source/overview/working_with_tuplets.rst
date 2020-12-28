@@ -1,5 +1,5 @@
-Tuplets
-=======
+Working with tuplets
+====================
 
 
 Making a tuplet from a LilyPond input string

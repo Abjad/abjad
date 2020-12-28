@@ -7,8 +7,6 @@ Define appropriately invertible hexachords:
 
 ::
 
-    >>> import abjad
-    ...
     >>> score = abjad.Score()
     >>> group = abjad.StaffGroup()
     >>> source_hex = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])

@@ -8,8 +8,6 @@ Define tone row and row permutations:
 
 ::
 
-    >>> import abjad
-    ...
     >>> file = abjad.LilyPondFile()
     >>> source = abjad.TwelveToneRow([5, 6, 4, 2, 3, 11, 9, 7, 8, 10, 0, 1])
     >>> perms = [

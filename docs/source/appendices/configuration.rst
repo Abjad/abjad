@@ -1,5 +1,5 @@
-Configuration file
-==================
+Configuration
+=============
 
 Abjad creates a ``~/.abjad`` directory the first time it runs. In the ``~/.abjad``
 directory you will find an ``abjad.cfg`` file. This is the Abjad configuration file. You

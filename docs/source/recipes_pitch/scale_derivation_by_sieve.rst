@@ -7,7 +7,6 @@ Initialize periodic patterns and create union:
 
 ::
 
-    >>> import abjad
     >>> x17_0 = abjad.Pattern(indices=[0], period=17)
     >>> x17_1 = abjad.Pattern(indices=[1], period=17)
     >>> x17_4 = abjad.Pattern(indices=[4], period=17)

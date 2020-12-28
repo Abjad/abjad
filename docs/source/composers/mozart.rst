@@ -6,7 +6,6 @@ Mozart, *Musikalisches Würfelspiel*
 
 ::
 
-    >>> import abjad
     >>> from abjad.demos import mozart
 
 ..  book::

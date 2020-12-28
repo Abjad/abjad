@@ -1,5 +1,5 @@
-LilyPond files
-==============
+Working with LilyPond files
+===========================
 
 
 Making LilyPond files

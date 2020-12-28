@@ -6,7 +6,6 @@ Ligeti, "Désordre"
 
 ::
 
-    >>> import abjad
     >>> from abjad.demos import ligeti
 
 This example demonstrates the power of exploiting redundancy to model musical
