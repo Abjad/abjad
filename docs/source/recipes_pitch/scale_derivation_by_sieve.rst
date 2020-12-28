@@ -1,52 +1,58 @@
 Scale derivation, by sieve
 --------------------------
 
-Pitch sieve in Iannis Xenakis's `Jonchaies`:
+The derivation of nonoctave scales by sieve is a 20th-century technique due to Xenakis.
 
-Initialize periodic patterns and create union:
+----
 
-::
-
-    >>> x17_0 = abjad.Pattern(indices=[0], period=17)
-    >>> x17_1 = abjad.Pattern(indices=[1], period=17)
-    >>> x17_4 = abjad.Pattern(indices=[4], period=17)
-    >>> x17_5 = abjad.Pattern(indices=[5], period=17)
-    >>> x17_7 = abjad.Pattern(indices=[7], period=17)
-    >>> x17_11 = abjad.Pattern(indices=[11], period=17)
-    >>> x17_12 = abjad.Pattern(indices=[12], period=17)
-    >>> x17_16 = abjad.Pattern(indices=[16], period=17)
-    >>> sieve = x17_0 | x17_1 | x17_4 | x17_5 | x17_7 | x17_11 | x17_12 | x17_16
-
-Iterate through boolean vector to create pitch list:
+First we define a function to illustrate the examples that follow:
 
 ::
 
-    >>> pitches = []
-    >>> length = 56
-    >>> indices = [_ for _ in range(length)]
-    >>> vector = sieve.get_boolean_vector(total_length=length)
-    >>> for index, boolean_value in zip(indices, vector):
-    ...     if boolean_value:
-    ...         pitches.append(abjad.NumberedPitch(index))
-    ...
+    >>> def illustrate_sieve(sieve, length):
+    ...     pitches = abjad.sequence(range(length))
+    ...     pitches = pitches.retain_pattern(sieve)
+    ...     notes = [abjad.Note(_ - 15, (1, 16)) for _ in pitches]
+    ...     containers = abjad.illustrators.make_piano_score(notes)
+    ...     score, treble_staff, bass_staff = containers
+    ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).Beam.stencil = False
+    ...     abjad.override(score).Flag.stencil = False
+    ...     abjad.override(score).Rest.stencil = False
+    ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
+    ...     abjad.override(score).SpanBar.stencil = False
+    ...     abjad.override(score).Stem.stencil = False
+    ...     abjad.override(score).TimeSignature.stencil = False
+    ...     moment = abjad.SchemeMoment((1, 25))
+    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     return lilypond_file
 
-Initialize note objects from pitch list:
+----
+
+**Jonchaies.** The sieve underlying Xenakis's orchestra piece *Jonchaies*
+(1977) structures a series of 8 consecutive intervals that repeat every 17 semitones.
+
+First three elements of sieve:
 
 ::
 
-    >>> staff = abjad.Staff([abjad.Note(_ - 15, (1, 16)) for _ in pitches])
-    >>> abjad.attach(abjad.Clef("bass"), staff[0])
-    >>> abjad.attach(abjad.Clef("treble"), staff[7])
-    >>> abjad.ottava(staff[21:])
-    >>> abjad.override(staff).BarLine.stencil = "##f"
-    >>> abjad.override(staff).Beam.stencil = "##f"
-    >>> abjad.override(staff).Flag.stencil = "##f"
-    >>> abjad.override(staff).Stem.stencil = "##f"
-    >>> abjad.override(staff).TimeSignature.stencil = "##f"
-    >>> abjad.setting(staff).proportional_notation_duration = abjad.SchemeMoment((1, 25))
+    >>> first_half = abjad.Pattern(indices=[0, 1, 4], period=17)
+    >>> lilypond_file = illustrate_sieve(first_half, 56)
+    >>> abjad.show(lilypond_file)
 
-Show score:
+Remainder of sieve:
 
 ::
 
-    >>> abjad.show(staff)
+    >>> second_half = abjad.Pattern(indices=[5, 7, 11, 12, 16], period=17)
+    >>> lilypond_file = illustrate_sieve(second_half, 56)
+    >>> abjad.show(lilypond_file)
+
+Complete sieve:
+
+::
+
+    >>> sieve = first_half | second_half
+    >>> lilypond_file = illustrate_sieve(sieve, 56)
+    >>> abjad.show(lilypond_file)
