@@ -10,10 +10,8 @@ For beginners
 -------------
 
 **1. Write your code with a proper text editor.** It doesn't matter which one. But don't
-use TextEdit (MacOS) or Notepad (Windows) because they're not meant for editing code. And
-don't use Jupyter notebooks because you will almost certainly confuse yourself by
-evaluating notebook cells out of order. Jupyter notebooks are useful. But use them for
-trying out and documenting bits of code, not architecting full scores.
+use TextEdit or Notepad because they're not meant for editing code. And don't use Jupyter
+notebooks because you'll confuse yourself by evaluating notebook cells out of order.
 
 **2. Keep a test.py file handy at all times to try out small bits of code as you're
 working.**
@@ -26,7 +24,7 @@ zero by formatting your code automatically with black.
 
 ..  container:: example
 
-    Bad: ::
+    Not so good: ::
 
         abjad.Voice()
         abjad.Staff()
@@ -38,11 +36,11 @@ zero by formatting your code automatically with black.
         abjad.Staff(name="Violin_Staff")
         abjad.Score(name="Score")
 
-**5. Contain notes, rests, chords in voices.**
+**5. Contain notes, rests, chords in voices.** Rather than staves.
 
 ..  container:: example
 
-    Bad: ::
+    Not so good: ::
 
         abjad.Staff("c'4' d' e' f'", name="Violin_Staff")
 
@@ -55,13 +53,13 @@ creation.**
 
 ..  container:: example
 
-    Bad: ::
+    Not so good: ::
 
         upper_voice = abjad.Voice("c'4 d' e' f'", name="Upper_Voice")
         lower_voice = abjad.mutate.copy(upper_voice)
         lower_voice.name = "Lower_Voice"
 
-    Better: ::
+    Good: ::
 
         string = "c'4 d' e' f'"
         upper_voice = abjad.Voice(string, name="Upper_Voice")
@@ -72,11 +70,11 @@ Abjad.
 
 ..  container:: example
 
-    Possible, but unnecessary, in Abjad: ::
+    Not so good: ::
 
-        abjad.Markup(r"\bold italic \font-size #4 "Allegro con moto")
+        abjad.Markup(r'\bold italic \font-size #4 "Allegro con moto"')
 
-    Better in LilyPond: ::
+    Good: ::
 
         abjad.Markup(r"\my-score-allegro-con-moto", literal=True) 
 
@@ -85,7 +83,7 @@ than defining them with Abjad.
 
 ..  container:: example
 
-    Possible, but unnecessary, in Abjad: ::
+    Not so good: ::
 
         duration = abjad.SchemeDuration((1, 32))
         abjad.setting(score).proportional_notation_duration = duration
@@ -93,7 +91,7 @@ than defining them with Abjad.
         abjad.setting(score).spacing_spanner.strict_note_spacing = True
         abjad.setting(score).spacing_spanner.uniform_stretching = True
 
-    Better in LilyPond: ::
+    Good: ::
 
         \context {
             \Score
@@ -103,27 +101,25 @@ than defining them with Abjad.
             \override SpacingSpanner.uniform-stretching = ##t
         }
 
-**9. Limit score mutation as much as possible.** Copying, splitting, meter-rewriting and
-the like are computationally expensive. You can do them. But try to limit their use.
+**9. Limit score mutation.** Copying, splitting, meter-rewriting and the like are
+computationally expensive. You can do them. But limit how much.
 
-**10. If you do mutate the score then do so as early in the compositional process as
-possible.** For example, if you rewrite the meter of rhythms you create then do so after
-adding as few indicators as possible. Add articulations, slurs and the like after meter
-rewriting is done.
+**10. If you do mutate the score, do it early.** For example, rewrite meter before adding
+many indicators; add articulations, slurs and the like after meter rewriting is done.
 
 ----
 
 For intermediate users
 ----------------------
 
-**1. Check everything you code into a repository on GitHub.** There's absolutely no good
-reason to forgo the safekeeping that repositories provide. Right now the programmerly
-consensus strongly favors Git (and GitHub), which we also recommend. However, **limit
-your use of Git to four or five extremely simple workflows.** Because Git provides way
-too much rope with which you can hang yourself. And because seemingly **no one** has a
-mental model of how Git actually works. Many professional programmers seem to enjoy
-learning and using advanced Git workflows. But absolutely do not do this. Add, commit,
-push, pull, clone, that's it. Keep it as simple as possible.
+**1. Check everything into GitHub.** There's absolutely no good reason to forgo the
+safekeeping that repositories provide. Right now the programmerly consensus strongly
+favors Git (and GitHub), which we also recommend. However, **limit your use of Git to
+four or five extremely simple workflows.** Because Git provides way too much rope with
+which you can hang yourself. And because seemingly **no one** has a mental model of how
+Git actually works. Many professional programmers seem to enjoy learning and using
+advanced Git workflows. But absolutely do not do this. Add, commit, push, pull, clone,
+that's it. Keep it as simple as possible.
 
 **2. Log the number of seconds it takes to compile each segment in your score.** This
 only takes three or four lines of code. Log how long it takes Abjad to interpret your

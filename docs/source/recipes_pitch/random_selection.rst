@@ -1,5 +1,5 @@
-Mozart, *Musikalisches Würfelspiel*
-===================================
+Random selection, of figures
+============================
 
 ..  book-defaults::
     :lilypond/stylesheet: literature-examples.ily

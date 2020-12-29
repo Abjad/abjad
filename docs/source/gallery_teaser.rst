@@ -1,3 +1,5 @@
+:orphan:
+
 Many scores have been composed with Abjad.
 
 ..  rubric:: Invisible Cities (iii): Ersilia (2015)
@@ -41,5 +43,3 @@ Many scores have been composed with Abjad.
         :group: gallery
         :title: Page 7 of Traiettorie inargentate,
                 by Trevor Bača.
-
-Visit Abjad's score gallery for many more examples. Happy composing and welcome to Abjad!

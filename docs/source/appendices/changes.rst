@@ -1,5 +1,5 @@
-3.2
-===
+Changes
+=======
 
 Changes from Abjad 3.1 (2019-12-19) to Abjad 3.2 (2020-12-13).
 
