@@ -3,7 +3,9 @@ Superimposition of partials
 
 Initial harmony in Kaija Saariaho's `Du Cristal`:
 
-Define helper function to transpose notehead by ratio:
+----
+
+First we define functions to illustrate the examples that follow:
 
 ::
 
@@ -26,8 +28,76 @@ Define helper function to transpose notehead by ratio:
     ...         remainder = -100 + remainder
     ...     note_head.written_pitch = pitch
     ...
+    >>> def illustrate_partials(fundamental, ratio_sequence, moment_denominator):
+    ...     notes = []
+    ...     for ratio in sequence:
+    ...         note = abjad.Note(fundamental, (1, 16))
+    ...         tune_to_ratio(note.note_head, ratio)
+    ...         notes.append(note)
+    ...     containers = abjad.illustrators.make_piano_score(notes)
+    ...     score, treble_staff, bass_staff = containers
+    ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).Beam.stencil = False
+    ...     abjad.override(score).Flag.stencil = False
+    ...     abjad.override(score).Rest.stencil = False
+    ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
+    ...     abjad.override(score).SpanBar.stencil = False
+    ...     abjad.override(score).Stem.stencil = False
+    ...     abjad.override(score).TimeSignature.stencil = False
+    ...     moment = abjad.SchemeMoment((1, moment_denominator))
+    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     return lilypond_file
 
-Create ratio sequence:
+----
+
+Illustrate harmonic series:
+
+::
+
+    >>> sequence = [
+    ...     1,
+    ...     2,
+    ...     3,
+    ...     4,
+    ...     5,
+    ...     6,
+    ...     7,
+    ...     8,
+    ...     9,
+    ...     10,
+    ...     11,
+    ...     12,
+    ...     13,
+    ...     14,
+    ...     15,
+    ...     16,
+    ...     17,
+    ...     18,
+    ...     19,
+    ...     20,
+    ...     21,
+    ...     22,
+    ...     23,
+    ... ]
+    ...
+    >>> file = illustrate_partials("a,,", sequence, 25)
+    >>> abjad.show(file)
+
+Illustrate re-octavated harmonics:
+
+::
+
+    >>> sequence = [
+    ...     "11/8",
+    ...     "7/4",
+    ...     "5/2",
+    ... ]
+    ...
+    >>> file = illustrate_partials("a'", sequence, 25)
+    >>> abjad.show(file)
+
+Illustrate sonority of Du Cristal:
 
 ::
 
@@ -46,37 +116,5 @@ Create ratio sequence:
     ...     20,
     ... ]
     ...
-
-Populate staff:
-
-::
-
-    >>> staff = abjad.Staff()
-    >>> for ratio in sequence:
-    ...     note = abjad.Note("df,16")
-    ...     tune_to_ratio(note.note_head, ratio)
-    ...     staff.append(note)
-    ...
-
-Override staff settings:
-
-::
-
-    >>> abjad.attach(abjad.Clef("bass"), staff[0])
-    >>> abjad.attach(abjad.Clef("treble"), staff[3])
-    >>> abjad.ottava(staff[8:])
-    >>> score = abjad.Score([staff])
-    >>> abjad.override(score).BarLine.stencil = "##f"
-    >>> abjad.override(score).Beam.stencil = "##f"
-    >>> abjad.override(score).Flag.stencil = "##f"
-    >>> abjad.override(score).Stem.stencil = "##f"
-    >>> abjad.override(score).text_script.staff_padding = 4
-    >>> abjad.override(score).TimeSignature.stencil = "##f"
-
-Show score:
-
-::
-
-    >>> abjad.show(score)
-
-
+    >>> file = illustrate_partials("df,", sequence, 25)
+    >>> abjad.show(file)
