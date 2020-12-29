@@ -1,24 +1,12 @@
-Bartók, "Wandering"
-===================
+Score assembly, piano fragment
+==============================
 
 ..  book-defaults::
     :lilypond/stylesheet: literature-examples.ily
 
 This example reconstructs the last five measures of Bartók's "Wandering" from
-*Mikrokosmos*, volume III. The example covers the basics of engraving a preexisting
-fragment of music in Abjad:
-
-..  book-import:: abjad.demos:bartok
-    :hide:
-
-..  book-import:: abjad.demos.bartok:make_bartok_score
-    :hide:
-
-..  book::
-    :hide:
-
-    >>> score = bartok.make_bartok_score()
-    >>> abjad.show(score)
+*Mikrokosmos*, volume III. The example covers the basics of modeling a preexisting
+fragment of music in Abjad.
 
 First let's create an empty score:
 

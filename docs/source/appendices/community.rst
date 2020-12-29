@@ -3,14 +3,8 @@
 Community
 =========
 
-Visit Abjad's GitHub repository here:
-
-https://github.com/Abjad/abjad
-
-----
-
-The Abjad mailing list is hosted on Google Groups. The list is moderated.
-Follow the instructions on this Google Groups page to join:
+The Abjad mailing list is hosted on Google Groups. The list is moderated. Follow the
+instructions on this Google Groups page to join:
 
 https://groups.google.com/g/abjad-user
 
@@ -28,6 +22,12 @@ Confidentiality will always be respected. We are proud of the overwhelming posit
 helpfulness of Abjad users, developers and contributors everywhere. And we gratefully
 acknowledge the example of our friends at `music21
 <https://github.com/cuthbertLab/music21>`_ from whom this text was adapted.
+
+----
+
+Visit Abjad's GitHub repository here:
+
+https://github.com/Abjad/abjad
 
 ----
 

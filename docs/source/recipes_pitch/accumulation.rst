@@ -1,5 +1,5 @@
-Ligeti, "Désordre"
-==================
+Accumulation, by cell
+=====================
 
 ..  book-defaults::
     :lilypond/stylesheet: literature-examples.ily

@@ -1,16 +1,16 @@
-Pärt, *Cantus in Memory of Benjamin Britten*
-============================================
+Mensuration canon
+=================
 
 ..  book-defaults::
     :lilypond/stylesheet: literature-examples.ily
 
-Let's start with some imports:
+This example models the first two pages of Arvo Pärt's *Cantus in Memory of Benjamin
+Britten*. Let's start with some imports:
 
 ::
 
     >>> import copy
     >>> from abjad.demos import part
-
 
 The string music
 ----------------
