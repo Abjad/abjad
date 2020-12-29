@@ -1,5 +1,5 @@
-Accumulation, by cell
-=====================
+Accumulation, of cells
+======================
 
 ..  book-defaults::
     :lilypond/stylesheet: literature-examples.ily

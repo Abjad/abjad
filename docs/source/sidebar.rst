@@ -13,30 +13,34 @@
     :maxdepth: 0
 
     overview/about_the_docs
-    overview/making_musical_objects
-    overview/attaching_detaching_indicators
     overview/working_with_containers
+    overview/container_methods
+    overview/container_time_interpretation
+    overview/container_names
+    overview/setting_lilypond_type
+    overview/working_with_indicators
     overview/working_with_tuplets
     overview/working_with_lilypond_files
+    overview/custom_context_creation
 
 ..  toctree::
     :caption: Examples
     :hidden:
 
-    recipes_pitch/accumulation
-    recipes_pitch/hexachordal_recombination_all_interval
-    recipes_pitch/hexachordal_recombination_by_dyad
-    recipes_pitch/interval_cycle_intersection
-    recipes_pitch/mensuration_canon
-    recipes_pitch/random_selection
-    recipes_pitch/rotation_by_row_index
-    recipes_pitch/row_derivation_by_trichord
-    recipes_pitch/scale_derivation_by_sieve
-    recipes_pitch/score_assembly
-    recipes_pitch/superimposition_of_partials
-    recipes_pitch/tableaux
-    recipes_pitch/tone_clock_tesselation
-    recipes_pitch/trichord_definition_by_ratio
+    examples/accumulation
+    examples/hexachordal_recombination_all_interval
+    examples/hexachordal_recombination_by_dyad
+    examples/interval_cycle_intersection
+    examples/mensuration_canon
+    examples/random_selection
+    examples/rotation_by_row_index
+    examples/row_derivation_by_trichord
+    examples/scale_derivation_by_sieve
+    examples/score_assembly
+    examples/superimposition_of_partials
+    examples/tableaux
+    examples/tone_clock_tesselation
+    examples/trichord_definition_by_ratio
 
 ..  toctree::
     :caption: All classes & functions
