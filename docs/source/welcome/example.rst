@@ -1,4 +1,4 @@
-**An example.** Start Python, import Abjad, make some notes:
+As a first example, start Python, import Abjad, make some notes:
 
 ::
 
@@ -41,7 +41,7 @@ Invert the pitches in staff 2:
 
 ::
 
-    >>> for note in abjad.select(score["Staff_2"]).notes():
+    >>> for note in abjad.select(staff_2).notes():
     ...     note.written_pitch = note.written_pitch.invert(axis="G4")
     ... 
     >>> abjad.show(score)
@@ -64,45 +64,62 @@ Define a function to partition notes, loop over parts, attach slurs, attach arti
     ...         abjad.attach(staccato, last_note)
     ...         abjad.attach(stop_slur, last_note)
 
-Call the function one way on staff 1 and another way on staff 2:
+Slur staff 1:
 
 ::
 
-    >>> slur_parts(score["Staff_1"], [2, 4, 4])
-    >>> slur_parts(score["Staff_2"], [4])
+    >>> slur_parts(staff_1, [2, 4, 4])
     >>> abjad.show(score)
 
-Tupletize notes in staff 1:
+Slur staff 2:
 
 ::
 
-    >>> notes = abjad.select(score["Staff_1"]).notes()
-    >>> abjad.mutate.wrap(notes[:6], abjad.Tuplet("3:2"))
-    >>> abjad.mutate.wrap(notes[10:16], abjad.Tuplet("3:2"))
-    >>> abjad.mutate.wrap(notes[20:26], abjad.Tuplet("3:2"))
+    >>> slur_parts(staff_2, [4])
     >>> abjad.show(score)
 
-Tupletize notes in staff 2:
+Define a function to tupletize alternating groups of notes:
 
 ::
 
-    >>> notes = abjad.select(score["Staff_2"]).notes()
-    >>> abjad.mutate.wrap(notes[4:10], abjad.Tuplet("3:2"))
-    >>> abjad.mutate.wrap(notes[14:20], abjad.Tuplet("3:2"))
-    >>> abjad.mutate.wrap(notes[24:30], abjad.Tuplet("3:2"))
+    >>> def tupletize_notes(staff, counts, modulus):
+    ...     notes = abjad.select(staff).notes()
+    ...     parts = notes.partition_by_counts(counts, cyclic=True)
+    ...     for i, part in enumerate(parts):
+    ...         if i % len(counts) == modulus:
+    ...             abjad.mutate.wrap(part, abjad.Tuplet("3:2"))
+
+Tupletize staff 1:
+
+::
+
+    >>> tupletize_notes(staff_1, [6, 4], 0)
     >>> abjad.show(score)
 
-Trim both staves, attach a time signature, attach a doule bar line, clean up tuplet
-brackets:
+Tupletize staff 2:
 
 ::
 
-    >>> del(score["Staff_1"][-6:])
-    >>> del(score["Staff_2"][-3:])
-    >>> first_note = abjad.select(score["Staff_1"]).note(0)
-    >>> abjad.attach(abjad.TimeSignature((2, 8)), first_note)
-    >>> last_note = abjad.select(score["Staff_2"]).note(-1)
-    >>> abjad.attach(abjad.BarLine("|."), last_note)
+    >>> tupletize_notes(staff_2, [4, 6], 1)
+    >>> abjad.show(score)
+
+Trim both staves:
+
+::
+
+    >>> del(staff_1[-6:])
+    >>> del(staff_2[-3:])
+    >>> abjad.show(score)
+
+Attach a time signature, attach a doule bar line, clean up tuplet brackets:
+
+::
+
+    >>> first_note = abjad.select(staff_1).note(0)
+    >>> time_signature = abjad.TimeSignature((2, 8))
+    >>> abjad.attach(time_signature, first_note)
+    >>> last_note = abjad.select(staff_2).note(-1)
+    >>> bar_line = abjad.BarLine("|.")
+    >>> abjad.attach(bar_line, last_note)
     >>> abjad.override(score).tuplet_bracket.staff_padding = 2
     >>> abjad.show(score)
-
