@@ -4,7 +4,9 @@ Interval cycle intersection
 Derived tone rows from inversionally related interval cycles in Milton Babbitt's
 `Partitions for Piano`:
 
-Define helper function for creating interval cycles:
+----
+
+First we define functions to illustrate the examples that follow:
 
 ::
 
@@ -15,8 +17,6 @@ Define helper function for creating interval cycles:
     ...         val %= 12
     ...         returned_list.append(val)
     ...     return returned_list
-
-Define helper function to intersect cycles:
 
 ::
 
@@ -35,60 +35,93 @@ Define helper function to intersect cycles:
     ...             returned_list.append(None)
     ...     return returned_list
 
-Create first intersection:
+::
+
+    >>> def make_row(cyclic_interval, transposed_interval, hexachord_pattern, second_hex_transposition):
+    ...     first_cycle = perle_cyclic_set(
+    ...         starting_pitch=0,
+    ...         interval=cyclic_interval,
+    ...     )
+    ...     second_cycle = perle_cyclic_set(
+    ...         starting_pitch=transposed_interval,
+    ...         interval=cyclic_interval,
+    ...     )
+    ...     p1 = abjad.Pattern(
+    ...         hexachord_pattern,
+    ...         period=6,
+    ...     )
+    ...     p2 = abjad.Pattern(
+    ...         hexachord_pattern,
+    ...         period=6,
+    ...         inverted=True,
+    ...     )
+    ...     intersection_1 = intersect_sequences(
+    ...         first_cycle,
+    ...         second_cycle,
+    ...         p1,
+    ...         p2,
+    ...         6,
+    ...     )
+    ...     third_cycle = perle_cyclic_set(
+    ...         starting_pitch=(second_hex_transposition % 12),
+    ...         interval=((12 - cyclic_interval) % 12),
+    ...     )
+    ...     fourth_cycle = perle_cyclic_set(
+    ...         starting_pitch=((second_hex_transposition - transposed_interval) % 12),
+    ...         interval=((12 - cyclic_interval) % 12),
+    ...     )
+    ...     p3 = abjad.Pattern(
+    ...         hexachord_pattern,
+    ...         period=6,
+    ...     )
+    ...     p4 = abjad.Pattern(
+    ...         hexachord_pattern,
+    ...         period=6,
+    ...         inverted=True,
+    ...     )
+    ...     intersection_2 = intersect_sequences(
+    ...         third_cycle,
+    ...         fourth_cycle,
+    ...         p3,
+    ...         p4,
+    ...         6,
+    ...     )
+    ...     row = abjad.TwelveToneRow(intersection_1 + intersection_2)
+    ...     return row
 
 ::
 
-    >>> ic1_p5 = perle_cyclic_set(starting_pitch=5, interval=1)
-    >>> ic1_p2 = perle_cyclic_set(starting_pitch=2, interval=1)
-    >>> ic1_p5_pattern = abjad.Pattern(
-    ...     indices=[0, 2, 4],
-    ...     period=6,
-    ... )
-    >>> ic1_p2_pattern = abjad.Pattern(
-    ...     indices=[1, 3, 5],
-    ...     period=6,
-    ... )
-    >>> intersection_1 = intersect_sequences(ic1_p5, ic1_p2, ic1_p5_pattern, ic1_p2_pattern, 6)
+    >>> def illustrate_row(row, moment_denominator):
+    ...     notes = [abjad.Note(_, (1, 8)) for _ in row]
+    ...     containers = abjad.illustrators.make_piano_score(notes)
+    ...     score, treble_staff, bass_staff = containers
+    ...     abjad.override(treble_staff).BarLine.stencil = False
+    ...     abjad.override(treble_staff).Beam.stencil = False
+    ...     abjad.override(treble_staff).Flag.stencil = False
+    ...     abjad.override(treble_staff).Rest.stencil = False
+    ...     abjad.override(treble_staff).SpacingSpanner.strict_note_spacing = True
+    ...     abjad.override(treble_staff).SpanBar.stencil = False
+    ...     abjad.override(treble_staff).Stem.stencil = False
+    ...     abjad.override(treble_staff).TimeSignature.stencil = False
+    ...     moment = abjad.SchemeMoment((1, moment_denominator))
+    ...     abjad.setting(treble_staff).proportional_notation_duration = moment
+    ...     lilypond_file = abjad.LilyPondFile(items=[treble_staff], global_staff_size=16)
+    ...     return lilypond_file
 
-Create second intersection:
-
-::
-
-    >>> ic11_p10 = perle_cyclic_set(starting_pitch=10, interval=11)
-    >>> ic11_p1 = perle_cyclic_set(starting_pitch=1, interval=11)
-    >>> ic11_p10_pattern = abjad.Pattern(
-    ...     indices=[0, 2, 4],
-    ...     period=6,
-    ... )
-    >>> ic11_p1_pattern = abjad.Pattern(
-    ...     indices=[1, 3, 5],
-    ...     period=6,
-    ... )
-    >>> intersection_2 = intersect_sequences(ic11_p10, ic11_p1, ic11_p10_pattern, ic11_p1_pattern, 6)
-
-Create and override staff:
-
-::
-
-    >>> row = abjad.TwelveToneRow(intersection_1 + intersection_2)
-    >>> staff = abjad.Staff([abjad.Note(_, (1, 8)) for _ in row])
-    >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-    >>> abjad.label(staff).with_intervals(prototype=abjad.NumberedIntervalClass)
-    >>> abjad.override(staff).Beam.stencil = "##f"
-    >>> abjad.override(staff).Flag.stencil = "##f"
-    >>> abjad.override(staff).Stem.stencil = "##f"
-    >>> abjad.override(staff).text_script.staff_padding = 4
-    >>> abjad.override(staff).TimeSignature.stencil = "##f"
-    >>> score = abjad.Score([staff])
-    >>> abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment(
-    ...     (1, 20)
-    ... )
+----
 
 Show score:
 
 ::
 
-    >>> abjad.show(score)
+    >>> row = make_row(1, 9, [0, 2, 4], 5)
+    >>> file = illustrate_row(row, 25)
+    >>> abjad.show(file)
 
+Show score:
 
+::
+
+    >>> row = make_row(1, 3, [0, 1, 3], -1)
+    >>> file = illustrate_row(row, 25)
+    >>> abjad.show(file)

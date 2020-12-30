@@ -65,7 +65,7 @@ well as beams, slurs, ties, and articulations.
 ::
 
     >>> staff = abjad.Staff("""
-    ...     c'4 ( d'4 <cs' e'>8 ) -. r8 
+    ...     c'4 ( d'4 <cs' e'>8 ) -. r8
     ...     <g' b' d''>4 ^ \marcato ~ <g' b' d''>1
     ... """)
     >>> abjad.f(staff)
@@ -170,7 +170,7 @@ The result will be a *seventeen*-item-long list of measure definitions:
     >>> choices = mozart.choose_mozart_measures()
     >>> for i, measure in enumerate(choices):
     ...     print(i, measure)
-    ... 
+    ...
 
 The score
 ---------
@@ -222,7 +222,7 @@ To mimic LilyPond's repeat syntax, we'll have to create two
 "before" format slot, insuring that their literal is placed before their
 container's opening curly brace.
 
-Now let's take a look at the code that puts our score together:
+Now let's take a look at the code that puts our score together :
 
 ::
 

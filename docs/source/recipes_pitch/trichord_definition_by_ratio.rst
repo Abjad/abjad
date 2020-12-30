@@ -3,7 +3,9 @@ Trichord definition, by ratio
 
 Triadic sequences in Catherine Lamb's `String Quartet`:
 
-Define helper function to transpose notehead based on calculated cent value of ratio:
+----
+
+Define helper functions:
 
 ::
 
@@ -26,8 +28,6 @@ Define helper function to transpose notehead based on calculated cent value of r
     ...         remainder = -100 + remainder
     ...     note_head.written_pitch = pitch
     ...
-
-Define helper function to create markup of cent deviation from equal temperament:
 
 ::
 
@@ -54,9 +54,33 @@ Define helper function to create markup of cent deviation from equal temperament
     ...         cent_string = f"{remainder}"
     ...     else:
     ...         cent_string = f"+{remainder}"
-    ...     mark = abjad.Markup(cent_string, direction=abjad.Up).center_align()
+    ...     mark = abjad.Markup(cent_string, direction=abjad.Down)
     ...     return mark
     ...
+
+::
+
+    >>> def illustrate_trichords(trichords, fundamental, moment_denominator):
+    ...     group = abjad.StaffGroup([abjad.Staff(), abjad.Staff(), abjad.Staff()])
+    ...     score = abjad.Score([group])
+    ...     for triad in trichords:
+    ...         for i, ratio in enumerate(triad):
+    ...             staff = group[i]
+    ...             note = abjad.Note(fundamental, (1, 1))
+    ...             tune_to_ratio(note.note_head, ratio)
+    ...             markup = return_cent_markup(note.note_head, ratio)
+    ...             abjad.attach(markup, note)
+    ...             staff.append(note)
+    ...     abjad.override(score).Rest.stencil = False
+    ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
+    ...     abjad.override(score).TimeSignature.stencil = False
+    ...     moment = abjad.SchemeMoment((1, moment_denominator))
+    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     return lilypond_file
+    ...
+
+----
 
 Create list of triad sequences written as ratios:
 
@@ -73,39 +97,42 @@ Create list of triad sequences written as ratios:
     ...     [1, "36/35", "9/10"],
     ...     [1, "49/48", "7/8"],
     ...     [1, "36/35", "6/7"],
+    ...     [1, "126/121", "5/6"],
+    ...     [1, "36/35", "4/5"],
+    ...     [1, "28/27", "7/9"],
+    ...     [1, "121/120", 1],
+    ...     [1, "21/20", "3/4"],
+    ...     [1, "81/80", "120/121"],
+    ...     [1, "49/48", "120/121"],
+    ...     [1, "15/14", "5/7"],
+    ...     [1, "36/35", "48/49"],
+    ...     [1, "126/121", "35/36"],
+    ...     [1, "16/15", "2/3"],
+    ...     [1, "16/15", "121/126"],
+    ...     [1, "16/15", "14/15"],
+    ...     [1, "35/32", "5/8"],
+    ...     [1, "35/32", "15/16"],
+    ...     [1, "10/9", "112/121"],
+    ...     [1, "8/7", "4/7"],
+    ...     [1, "9/8", "9/10"],
+    ...     [1, "8/7", "8/9"],
+    ...     [1, "7/6", "1/2"],
+    ...     [1, "7/6", "7/8"],
+    ...     [1, "6/5", "6/7"],
+    ...     [1, "5/4", "5/6"],
+    ...     [1, "9/7", "3/7"],
+    ...     [1, "9/7", "4/5"],
+    ...     [1, "4/3", "7/9"],
+    ...     [1, "4/3", "1/3"],
+    ...     [1, "7/5", "3/4"],
+    ...     [1, "3/2", "1/4"],
+    ...     [1, "3/2", "3/4"],
     ... ]
     ...
-
-Populate staff and call functions on leaves:
-
-::
-
-    >>> group = abjad.StaffGroup()
-    >>> score = abjad.Score([group])
-    >>> for triad in triadic_sequences:
-    ...     staff = abjad.Staff()
-    ...     for ratio in triad:
-    ...         note = abjad.Note()
-    ...         tune_to_ratio(note.note_head, ratio)
-    ...         markup = return_cent_markup(note.note_head, ratio)
-    ...         abjad.attach(markup, note)
-    ...         staff.append(note)
-    ...     group.append(staff)
+    >>> file = illustrate_trichords(
+    ...     triadic_sequences,
+    ...     0,
+    ...     5,
+    ... )
     ...
-
-Override score settings:
-
-::
-
-    >>> abjad.override(score).BarLine.stencil = "##f"
-    >>> abjad.override(score).Beam.stencil = "##f"
-    >>> abjad.override(score).Flag.stencil = "##f"
-    >>> abjad.override(score).Stem.stencil = "##f"
-    >>> abjad.override(score).text_script.staff_padding = 4
-    >>> abjad.override(score).TimeSignature.stencil = "##f"
-
-Show score:
-
-::
-
-    >>> abjad.show(score)
+    >>> abjad.show(file)

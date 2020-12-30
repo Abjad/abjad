@@ -56,3 +56,11 @@ Complete sieve:
     >>> sieve = first_half | second_half
     >>> lilypond_file = illustrate_scale(sieve, 56, -15, 25)
     >>> abjad.show(lilypond_file)
+
+Non-octave scale in Joel Hoffman's **Piano Concerto**:
+
+::
+
+    >>> scale = abjad.Pattern(indices=[0, 2, 3, 4, 5, 6, 8, 9, 10, 11, 13], period=14)
+    >>> lilypond_file = illustrate_scale(scale, 84, -37, 25)
+    >>> abjad.show(lilypond_file)
