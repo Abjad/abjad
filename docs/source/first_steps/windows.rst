@@ -1,7 +1,7 @@
 Windows
 =======
 
-Abjad is developed and tested on MacOS and Linux. Abjad is not tested on Windows.
+Abjad install instructions are tested on MacOS and Linux.
 
-Interested in answering mailing list questions about Abjad for Windows? :ref:`Join our
-team. <appendix-community>`
+Interested in maintaining install instructions for Abjad on Windows? :ref:`Let us know
+and we'll publish them here. <appendix-community>`

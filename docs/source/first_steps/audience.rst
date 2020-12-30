@@ -22,8 +22,8 @@ with Abjad you can:
 * Style everything with LilyPond.
 
 The primary intuition behind Abjad is that music tends to be full of patterns, and
-composers should be able to work programmatically with the patterned parts of the music
-we compose. Abjad provides an interface to this type of thinking: string manipulation,
+composers should be able to work programmatically with patterned parts of the music we
+compose. Abjad provides an interface to this type of thinking: string manipulation,
 pattern matching, all the techniques of programming become available as part of
 composition.
 
