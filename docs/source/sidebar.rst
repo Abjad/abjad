@@ -32,7 +32,6 @@
     recipes_pitch/rotation_by_row_index
     recipes_pitch/row_derivation_by_trichord
     recipes_pitch/scale_derivation_by_sieve
-    recipes_pitch/scale_derivation_nonoctave
     recipes_pitch/score_assembly
     recipes_pitch/superimposition_of_partials
     recipes_pitch/tableaux

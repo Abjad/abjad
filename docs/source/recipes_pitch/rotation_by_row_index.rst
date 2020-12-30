@@ -4,45 +4,27 @@ Rotation, by row index
 Tone row rotation in Igor Stravinsky's `Abraham and Isaac`:
 
 
-Define tone row and row permutations:
+Define helper functions:
+
+----
 
 ::
 
-    >>> file = abjad.LilyPondFile()
-    >>> source = abjad.TwelveToneRow([5, 6, 4, 2, 3, 11, 9, 7, 8, 10, 0, 1])
-    >>> perms = [
-    ...     source,
-    ...     source.invert(),
-    ...     source.retrograde(),
-    ...     abjad.TwelveToneRow(source.retrograde()).invert(),
-    ... ]
+    >>> def permute_row(source):
+    ...     perms = [
+    ...         source,
+    ...         source.invert(),
+    ...         source.retrograde(),
+    ...         abjad.TwelveToneRow(source.retrograde()).invert(),
+    ...     ]
+    ...     return perms
     ...
-    >>> labels = [
-    ...     abjad.Markup(
-    ...         "P",
-    ...         direction=abjad.Up,
-    ...     ),
-    ...     abjad.Markup(
-    ...         "I",
-    ...         direction=abjad.Up,
-    ...     ),
-    ...     abjad.Markup(
-    ...         "R",
-    ...         direction=abjad.Up,
-    ...     ),
-    ...     abjad.Markup(
-    ...         "IR",
-    ...         direction=abjad.Up,
-    ...     ),
-    ... ]
-    ...
-
-Define rotation distances and iterate through permutations, creating charts:
 
 ::
 
-    >>> rotations = [0, -1, -2, -3, -4, -5]
-    >>> for perm, label in zip(perms, labels):
+    >>> def make_rotation_chart(perm, label):
+    ...     file = abjad.LilyPondFile()
+    ...     rotations = [0, -1, -2, -3, -4, -5]
     ...     source_staff = abjad.Staff([abjad.Note(_, (1, 16)) for _ in perm])
     ...     abjad.attach(label, source_staff[0])
     ...     score = abjad.Score([source_staff])
@@ -100,9 +82,52 @@ Define rotation distances and iterate through permutations, creating charts:
     ...     abjad.override(score).StaffGrouper.staff_staff_spacing = "#'((basic-distance . 10) (minimum-distance . 10) (padding . 2))"
     ...     abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment((1, 25))
     ...     file.items.append(score)
+    ...     return file
+
+----
 
 Show file of chart scores:
 
 ::
 
+    >>> source = abjad.TwelveToneRow([5, 6, 4, 2, 3, 11, 9, 7, 8, 10, 0, 1])
+    >>> perms = permute_row(source)
+    >>> labels = [
+    ...     abjad.Markup(
+    ...         "P",
+    ...         direction=abjad.Up,
+    ...     ),
+    ...     abjad.Markup(
+    ...         "I",
+    ...         direction=abjad.Up,
+    ...     ),
+    ...     abjad.Markup(
+    ...         "R",
+    ...         direction=abjad.Up,
+    ...     ),
+    ...     abjad.Markup(
+    ...         "IR",
+    ...         direction=abjad.Up,
+    ...     ),
+    ... ]
+    ...
+
+::
+
+    >>> file = make_rotation_chart(perms[0], labels[0])
+    >>> abjad.show(file)
+
+::
+
+    >>> file = make_rotation_chart(perms[1], labels[1])
+    >>> abjad.show(file)
+
+::
+
+    >>> file = make_rotation_chart(perms[2], labels[2])
+    >>> abjad.show(file)
+
+::
+
+    >>> file = make_rotation_chart(perms[3], labels[3])
     >>> abjad.show(file)

@@ -4,58 +4,100 @@ Hexchordal recombination, by dyad
 Double-stop creation from hexachord pairs in Luigi Nono's `Fragmente -- Stille, an
 Diotima`:
 
-Define tone row and divide into hexachords:
+----
+
+First we define functions to illustrate the examples that follow:
 
 ::
 
-    >>> scale = abjad.PitchSegment(["cs''", "d''", "ef''", "e''", "f''", "fs''", "g''", "gs''", "a''", "bf''", "b''", "c'''"])
-    >>> hexachord_1 = [_ for _ in scale[:6]]
-    >>> hexachord_2 = [_ for _ in scale[6:]]
+    >>> def illustrate_collection(sequence, reversed_indices, transpositions, moment_denominator):
+    ...     center = int(len(sequence) / 2)
+    ...     hexachord_1 = [_ for _ in sequence[:center]]
+    ...     hexachord_2 = [_ for _ in sequence[center:]]
+    ...     diads = [list(_) for _ in zip(hexachord_1, hexachord_2)]
+    ...     for index in reversed_indices:
+    ...        diads[index] = (diads[index][1], diads[index][0])
+    ...     notes = []
+    ...     for diad in diads:
+    ...         lower = diad[0]
+    ...         higher = diad[1]
+    ...         while higher < lower:
+    ...             higher = abjad.NamedInterval("+P8").transpose(higher)
+    ...         chord = abjad.Chord([lower, higher], (1, 8))
+    ...         notes.append(chord)
+    ...     for pair in transpositions:
+    ...         written_pitches = notes[pair[0]].written_pitches
+    ...         interval = abjad.NumberedInterval(pair[1])
+    ...         notes[pair[0]].written_pitches = interval.transpose(written_pitches)
+    ...     containers = abjad.illustrators.make_piano_score(notes)
+    ...     score, treble_staff, bass_staff = containers
+    ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).Beam.stencil = False
+    ...     abjad.override(score).Flag.stencil = False
+    ...     abjad.override(score).Rest.stencil = False
+    ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
+    ...     abjad.override(score).SpanBar.stencil = False
+    ...     abjad.override(score).Stem.stencil = False
+    ...     abjad.override(score).TimeSignature.stencil = False
+    ...     moment = abjad.SchemeMoment((1, moment_denominator))
+    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     return lilypond_file
 
-Isolate diads from paired hexachords:
+----
+
+Show Nono dyads:
 
 ::
 
-    >>> diads = [list(_) for _ in zip(hexachord_1, hexachord_2)]
-    >>> reversed_indices = [1, 2, 4, 5]
-    >>> for index in reversed_indices:
-    ...     diads[index] = (diads[index][1], diads[index][0])
-    ...
-    >>> staff = abjad.Staff()
-    >>> for diad in diads:
-    ...     lower = diad[0]
-    ...     higher = diad[1]
-    ...     while higher < lower:
-    ...         higher = abjad.NamedInterval("+P8").transpose(higher)
-    ...     chord = abjad.Chord([lower, higher], (1, 8))
-    ...     staff.append(chord)
-    ...
-
-Change octaves:
-
-::
-
-    >>> staff[2].written_pitches = abjad.NamedInterval("+P8").transpose(staff[2].written_pitches)
-    >>> staff[3].written_pitches = abjad.NamedInterval("+P8").transpose(staff[3].written_pitches)
-    >>> staff[4].written_pitches = abjad.NamedInterval("-P8").transpose(staff[4].written_pitches)
-    >>> staff[5].written_pitches = abjad.NumberedInterval("-24").transpose(staff[5].written_pitches)
-
-Override staff settings:
-
-::
-
-    >>> abjad.override(staff).Beam.stencil = "##f"
-    >>> abjad.override(staff).Flag.stencil = "##f"
-    >>> abjad.override(staff).Stem.stencil = "##f"
-    >>> abjad.override(staff).text_script.staff_padding = 4
-    >>> abjad.override(staff).TimeSignature.stencil = "##f"
-    >>> score = abjad.Score([staff])
-    >>> abjad.setting(score).proportional_notation_duration = abjad.SchemeMoment(
-    ...     (1, 20)
+    >>> scale = abjad.PitchSegment(
+    ...     [
+    ...         "cs''",
+    ...         "d''",
+    ...         "ef''",
+    ...         "e''",
+    ...         "f''",
+    ...         "fs''",
+    ...         "g''",
+    ...         "gs''",
+    ...         "a''",
+    ...         "bf''",
+    ...         "b''",
+    ...         "c'''",
+    ...     ],
     ... )
+    ...
+    >>> file = illustrate_collection(
+    ...     scale,
+    ...     [1, 2, 4, 5],
+    ...     [(2, "+12"), (3, "+12"), (4, "-12"), (5, "-24")],
+    ...     25,
+    ... )
+    ...
+    >>> abjad.show(file)
 
-Show score:
+Show alternate dyads:
 
 ::
 
-    >>> abjad.show(score)
+    >>> scale = abjad.PitchSegment(
+    ...     [
+    ...         0,
+    ...         1,
+    ...         4,
+    ...         6,
+    ...         2,
+    ...         3,
+    ...         5,
+    ...         9,
+    ...     ],
+    ... )
+    ...
+    >>> file = illustrate_collection(
+    ...     scale,
+    ...     [2, 3],
+    ...     [(0, "-12"), (2, "-24"), (3, "+12")],
+    ...     25,
+    ... )
+    ...
+    >>> abjad.show(file)
