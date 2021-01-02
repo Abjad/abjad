@@ -32,6 +32,11 @@ a.thumbnail {
     cursor: zoom-in;
     }
 
+.author {
+    font-size: small;
+    font-style: italic;
+    }
+
 .exception {
     background-color: #fff4f8;
     }
