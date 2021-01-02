@@ -93,7 +93,5 @@ The function returns a tuple of the indicators detached:
 
     >>> indicators
 
-----
-
-*This musical excerpt on this page is based on Haydn's piano sonata number 42, Hob.
-XVI/27.*
+:author:`[Authored: Bača (2.21, 3.1-2). The musical excerpt on this page derives from
+Haydn's piano sonata number 42, Hob. XVI/27.]`

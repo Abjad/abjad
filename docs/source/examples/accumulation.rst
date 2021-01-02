@@ -196,4 +196,4 @@ LilyPond ``Timing_translator`` out from the score context and into the staff con
 to learn all about how this works. In this example we defined a custom function to set up
 our LilyPond file automatically.
 
-:author:`Contrib. Adán (2.0); rev. Bača (3.2).`
+:author:`[Authored: Adán (2.0); revised: Bača (3.2).]`
