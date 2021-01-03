@@ -1,8 +1,5 @@
-Score assembly, piano fragment
-==============================
-
-..  book-defaults::
-    :lilypond/stylesheet: literature-examples.ily
+Score assembly, piano
+=====================
 
 This example reconstructs the last five measures of Bartók's "Wandering" from
 *Mikrokosmos*, volume III. The example covers the basics of modeling a preexisting

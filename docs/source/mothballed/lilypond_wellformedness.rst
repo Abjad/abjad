@@ -46,7 +46,6 @@ no explicit voice is present:
     >>> abjad.slur(notes)
     >>> abjad.show(staff)
 
-
 **Different voice names determine different logical voices.** Now let's consider a
 slightly more complex example.  The staff below contains two short voices written one
 after the other.  It's unusual to think of musical voices as following one after the
@@ -65,7 +64,8 @@ LilyPond input makes this clear:
 
 ::
 
-    >>> abjad.f(staff)
+    >>> string = abjad.lilypond(staff)
+    >>> print(string)
 
 You can slur together the notes in the first voice:
 
@@ -94,7 +94,6 @@ different logical voices. The practical upshot of this is that voice naming cons
 which notes, rests and chords you can group together with slurs, beams and other
 spanners.
 
-
 **Identical voice names determine a single logical voice.** Now let's consider an example
 in which both voices carry the same name:
 
@@ -121,8 +120,8 @@ voice. The LilyPond input code also makes this clear:
 
 ::
 
-    >>> abjad.f(staff)
-
+    >>> string = abjad.lilypond(staff)
+    >>> print(string)
 
 **The importance of naming voices.** What happens if we choose not to name the explicit
 voices we create?  It is clear that the staff below contains two explicit voices. But

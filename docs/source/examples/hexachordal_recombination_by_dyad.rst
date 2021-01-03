@@ -14,13 +14,13 @@ First we define functions to illustrate the examples that follow:
     ...     center = int(len(sequence) / 2)
     ...     hexachord_1 = [_ for _ in sequence[:center]]
     ...     hexachord_2 = [_ for _ in sequence[center:]]
-    ...     diads = [list(_) for _ in zip(hexachord_1, hexachord_2)]
+    ...     dyads = [list(_) for _ in zip(hexachord_1, hexachord_2)]
     ...     for index in reversed_indices:
-    ...        diads[index] = (diads[index][1], diads[index][0])
+    ...        dyads[index] = (dyads[index][1], dyads[index][0])
     ...     notes = []
-    ...     for diad in diads:
-    ...         lower = diad[0]
-    ...         higher = diad[1]
+    ...     for dyad in dyads:
+    ...         lower = dyad[0]
+    ...         higher = dyad[1]
     ...         while higher < lower:
     ...             higher = abjad.NamedInterval("+P8").transpose(higher)
     ...         chord = abjad.Chord([lower, higher], (1, 8))
