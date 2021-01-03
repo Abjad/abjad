@@ -14,6 +14,7 @@ First we define functions to illustrate the examples that follow:
     >>> def tune_to_ratio(
     ...     note_head,
     ...     ratio,
+    ...     quarter_tones=False,
     ... ):
     ...     ratio = fractions.Fraction(ratio)
     ...     log_ratio = fractions.Fraction(math.log10(ratio))
@@ -23,16 +24,33 @@ First we define functions to illustrate the examples that follow:
     ...     parts = math.modf(semitones)
     ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
     ...     remainder = round(parts[0] * 100)
-    ...     if 50 < remainder:
-    ...         pitch += 1
-    ...         remainder = -100 + remainder
+    ...     if 50 < abs(remainder):
+    ...         if 0 < remainder:
+    ...             pitch += 1
+    ...             remainder = -100 + remainder
+    ...         else:
+    ...             pitch -= 1
+    ...             remainder = 100 + remainder
+    ...     if quarter_tones:
+    ...         if 25 < abs(remainder):
+    ...             if 0 < remainder:
+    ...                 pitch += 0.5
+    ...                 remainder = -50 + remainder
+    ...             else:
+    ...                 pitch -= 0.5
+    ...                 remainder = 50 + remainder
     ...     note_head.written_pitch = pitch
     ...
-    >>> def illustrate_partials(fundamental, ratio_sequence, moment_denominator):
+    >>> def illustrate_partials(
+    ...     fundamental,
+    ...     ratio_sequence,
+    ...     moment_denominator,
+    ...     with_quarter_tones=False,
+    ... ):
     ...     notes = []
     ...     for ratio in sequence:
     ...         note = abjad.Note(fundamental, (1, 16))
-    ...         tune_to_ratio(note.note_head, ratio)
+    ...         tune_to_ratio(note.note_head, ratio, quarter_tones=with_quarter_tones)
     ...         notes.append(note)
     ...     containers = abjad.illustrators.make_piano_score(notes)
     ...     score, treble_staff, bass_staff = containers
@@ -51,37 +69,20 @@ First we define functions to illustrate the examples that follow:
 
 ----
 
-Illustrate harmonic series:
+Illustrate harmonic series approximated to semitones:
 
 ::
 
-    >>> sequence = [
-    ...     1,
-    ...     2,
-    ...     3,
-    ...     4,
-    ...     5,
-    ...     6,
-    ...     7,
-    ...     8,
-    ...     9,
-    ...     10,
-    ...     11,
-    ...     12,
-    ...     13,
-    ...     14,
-    ...     15,
-    ...     16,
-    ...     17,
-    ...     18,
-    ...     19,
-    ...     20,
-    ...     21,
-    ...     22,
-    ...     23,
-    ... ]
-    ...
+    >>> sequence = [_ + 1 for _ in range(31)]
     >>> file = illustrate_partials("a,,", sequence, 25)
+    >>> abjad.show(file)
+
+Illustrate harmonic series approximated to quarter tones:
+
+::
+
+    >>> sequence = [_ + 1 for _ in range(31)]
+    >>> file = illustrate_partials("a,,", sequence, 25, with_quarter_tones=True)
     >>> abjad.show(file)
 
 Illustrate re-octavated harmonics:
@@ -94,7 +95,7 @@ Illustrate re-octavated harmonics:
     ...     "5/2",
     ... ]
     ...
-    >>> file = illustrate_partials("a'", sequence, 25)
+    >>> file = illustrate_partials("a'", sequence, 25, with_quarter_tones=True)
     >>> abjad.show(file)
 
 Illustrate sonority of Du Cristal:
