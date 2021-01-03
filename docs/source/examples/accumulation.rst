@@ -8,52 +8,27 @@ Accumulation, of cells
 
     >>> from abjad.demos import ligeti
 
-This example demonstrates the power of exploiting redundancy to model musical
-structure. The piece that concerns us here is Ligeti's "Désordre" (1986): the
-first piano etude from Book I. Specifically, we will focus on modeling the
-first section of the piece:
+This example demonstrates one way of modeling composition as an accumulation of musical
+cells. The piece that concerns us here is "Désordre" (1986) from the first book of György
+Ligeti's piano etudes. We'll model the first two systems of the score:
 
 .. image :: images/desordre.jpg
 
-The redundancy is immediately evident in the repeating pattern found in both
-staves. The pattern is hierarchical. At the smallest level we have a cell:
+Observe the following characteristics of the cell:
 
-..  book::
-    :hide:
+1. Each cell comprises an octave followed by an eighth-note run.
 
-    >>> cell = abjad.Staff([ligeti.make_desordre_cell([1, 2, 3])])
-    >>> abjad.show(cell)
+2. Octave stems point up while the stems of eighth notes point down.
 
-There are two of these cells per measure. Notice that the cells are strictly
-contained within the measure: no cell crosses a barline. So, the next level in
-the hierarchy is the measure.  Notice that time signatures change and that
-these changes occur independently for each staff. Thus, the staff is the next
-level in the hierarchy.  Finally there's the piano staff, which is composed of
-the right hand staff and the left hand staff.
+3. All eighth-note runs are beamed and slurred.
 
-In what follows we will model this structure bottom to top: cell, measure,
-staff, piano staff, score.
+4. The first note of each cell is marked forte; the following notes are played piano.
 
-The cell
---------
+5. The duration of each cell varies from 3 to 8 eighth notes.
 
-Observe the following characteristic of the cell:
-
-1. It is composed of two layers: the top one which is an octave "chord" and the
-bottom one which is a straight eighth note run.
-
-2. The total duration of the cell can vary, and is always the sum of the
-eight note runs.
-
-3. The eight note runs are always stem down while the octave "chord" is always
-stem up.
-
-4. The eight note runs are always beamed together and slurred, and the first
-two notes always have the dynamic markings 'f' 'p'.
-
-The two "layers" of the cell we will model with two Voices inside a
-simultaneous Container. The top Voice will hold the octave "chord" while the
-lower Voice will hold the eighth note run. First the eighth notes:
+The two "layers" of the cell we will model with two Voices inside a simultaneous
+Container. The top Voice will hold the octave "chord" while the lower Voice will hold the
+eighth note run. First the eighth notes:
 
 ::
 
@@ -73,10 +48,9 @@ lower Voice will hold the eighth note run. First the eighth notes:
     >>> abjad.attach(command, leaf)
     >>> abjad.show(voice_lower)
 
-The notes belonging to the eighth note run are first beamed and slurred. Then
-we add the dynamics to the first two notes, and finally we put them inside
-a Voice. After naming the voice we number it ``2`` so that the stems of the
-notes point down.
+The notes belonging to the eighth note run are first beamed and slurred. Then we add the
+dynamics to the first two notes, and finally we put them inside a Voice. After naming the
+voice we number it ``2`` so that the stems of the notes point down.
 
 Now we construct the octave:
 
@@ -95,14 +69,14 @@ Now we construct the octave:
     >>> abjad.attach(command, voice_higher)
     >>> abjad.show(voice_higher)
 
-The duration of the chord is half the duration of the running eighth notes if
-the duration of the running notes is divisible by two. Otherwise the duration
-of the chord is the next integer greater than this half.  We add the
-articulation marking and finally ad the Chord to a Voice, to which we set the
-number to 1, forcing the stem to always point up.
+The duration of the chord is half the duration of the running eighth notes if the
+duration of the running notes is divisible by two. Otherwise the duration of the chord is
+the next integer greater than this half.  We add the articulation marking and finally ad
+the Chord to a Voice, to which we set the number to 1, forcing the stem to always point
+up.
 
-Finally we combine the two voices in a simultaneous container which results in
-a complete cell:
+Finally we combine the two voices in a simultaneous container which results in a complete
+cell:
 
 ::
 
@@ -111,32 +85,30 @@ a complete cell:
     >>> staff = abjad.Staff([container])
     >>> abjad.show(staff)
 
-Because this cell appears over and over again, we want to reuse this code to
-generate any number of these cells. We here encapsulate it in a function that
-will take only a list of pitches.
+Because this cell appears over and over again, we want to reuse this code to generate any
+number of these cells. We here encapsulate it in a function that will take only a list of
+pitches.
 
 ..  book-import:: abjad.demos.ligeti:make_desordre_cell
 
-Now we can call this function to create any number of cells. That was
-actually the hardest part of reconstructing the opening of Ligeti's "Désordre."
-Because the repetition of patters occurs also at the level of measures and
-staves, we will now define functions to create these other higher level
-constructs.
+Now we can call this function to create any number of cells. That was actually the
+hardest part of reconstructing the opening of Ligeti's "Désordre." Because the repetition
+of patters occurs also at the level of measures and staves, we will now define functions
+to create these other higher level constructs.
 
 The measure
 -----------
 
 We define a function to create a measure from a list of lists of numbers.
 
-The function is very simple. It simply creates a DynamicMeasure and then
-populates it with cells that are created internally with the function
-previously defined. The function takes a list `pitches` which is actually a
-list of lists of pitches (e.g., ``[[1,2,3], [2,3,4]]``. The list of lists of
-pitches is iterated to create each of the cells to be appended to the
-DynamicMeasures. We could have defined the function to take ready made cells
-directly, but we are building the hierarchy of functions so that we can pass
-simple lists of lists of numbers to generate the full structure.  To construct
-a Ligeti measure we would call the function like so:
+The function is very simple. It simply creates a DynamicMeasure and then populates it
+with cells that are created internally with the function previously defined. The function
+takes a list `pitches` which is actually a list of lists of pitches (e.g., ``[[1,2,3],
+[2,3,4]]``. The list of lists of pitches is iterated to create each of the cells to be
+appended to the DynamicMeasures. We could have defined the function to take ready made
+cells directly, but we are building the hierarchy of functions so that we can pass simple
+lists of lists of numbers to generate the full structure.  To construct a Ligeti measure
+we would call the function like so:
 
 ::
 
@@ -152,11 +124,11 @@ Now we move up to the next level, the staff.
 
 ..  book-import:: abjad.demos.ligeti:make_desordre_measure
 
-The function again takes a plain list as argument. The list must be a list of
-lists (for measures) of lists (for cells) of pitches. The function simply
-constructs the Ligeti measures internally by calling our previously defined
-function and puts them inside a Staff.  As with measures, we can now create
-full measure sequences with this new function:
+The function again takes a plain list as argument. The list must be a list of lists (for
+measures) of lists (for cells) of pitches. The function simply constructs the Ligeti
+measures internally by calling our previously defined function and puts them inside a
+Staff.  As with measures, we can now create full measure sequences with this new
+function:
 
 ::
 
@@ -167,16 +139,15 @@ full measure sequences with this new function:
 The score
 ---------
 
-Finally a function that will generate the whole opening section of the piece
-"Désordre":
+Finally a function that will generate the whole opening section of the piece "Désordre":
 
 ..  book-import:: abjad.demos.ligeti:make_desordre_score
 
-The function creates a piano staff, constructs staves with Ligeti music and
-then appends these to the empty piano staff. Finally it sets the clef and key
-signature of the lower staff to match the original score.  The argument of the
-function is a list of length 2, depth 3. The first element in the list
-corresponds to the upper staff, the second to the lower staff.
+The function creates a piano staff, constructs staves with Ligeti music and then appends
+these to the empty piano staff. Finally it sets the clef and key signature of the lower
+staff to match the original score.  The argument of the function is a list of length 2,
+depth 3. The first element in the list corresponds to the upper staff, the second to the
+lower staff.
 
 The final result:
 
@@ -214,14 +185,15 @@ The final result:
     >>> lilypond_file = ligeti.make_desordre_lilypond_file(score)
     >>> abjad.show(lilypond_file)
 
-Now that we have the redundant aspect of the piece compactly expressed and
-encapsulated, we can play around with it by changing the sequence of pitches.
+Now that we have the redundant aspect of the piece compactly expressed and encapsulated,
+we can play around with it by changing the sequence of pitches.
 
-In order for each staff to carry its own sequence of independent measure
-changes, LilyPond requires some special setup prior to rendering. Specifically,
-one must move the LilyPond ``Timing_translator`` out from the score context and
-into the staff context. (You can refer to the LilyPond documentation on
-`Polymetric notation
+In order for each staff to carry its own sequence of independent measure changes,
+LilyPond requires some special setup prior to rendering. Specifically, one must move the
+LilyPond ``Timing_translator`` out from the score context and into the staff context.
+(You can refer to the LilyPond documentation on `Polymetric notation
 <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_
-to learn all about how this works. In this example we defined a custom function
-to set up our LilyPond file automatically.
+to learn all about how this works. In this example we defined a custom function to set up
+our LilyPond file automatically.
+
+:author:`[Authored: Adán (2.0); revised: Bača (3.2).]`

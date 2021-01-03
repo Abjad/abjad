@@ -760,6 +760,4 @@ As suggested by `jgarte <https://github.com/jgarte>`_.
 
 Changed single backticks to double backticks in Sphinx docstring markup.
 
-----
-
-*Authored: Bača (3.2).*
+:author:`[Authored: Bača (3.2).]`

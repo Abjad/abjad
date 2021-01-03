@@ -52,6 +52,9 @@ rst_epilog = """
 ..  _Oberholtzer: https://github.com/josiah-wolf-oberholtzer
 ..  _Trevor Bača: http://www.trevorbaca.com/
 """
+rst_prolog = """
+..  role:: author
+"""
 smartquotes = True
 templates_path = ["_templates"]
 version = abjad.__version__

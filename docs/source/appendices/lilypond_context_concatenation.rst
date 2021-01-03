@@ -120,6 +120,4 @@ the two score contexts share the same name:** ``"Vioin"`` **and** ``"Score"``,
   specifies hyphen-delimited lowercase filenames ``segment-01.ily``, ``segment-02.ily``,
   ``segment-03.ily`` that correspond to the directories in which they were created.
 
-----
-
-*Contributed: Bača (3.2).*
+:author:`[Authored: Bača (3.2).]`
