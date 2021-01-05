@@ -42,7 +42,7 @@ Here's what the first 10 descents for the first violin look like:
     ...     print(string)
     ...
 
-Next we add diads to all of the descents, except for the viola's. We'll use a
+Next we add dyads to all of the descents, except for the viola's. We'll use a
 dictionary as a lookup table, to tell us what interval to add below a given
 pitch class.
 

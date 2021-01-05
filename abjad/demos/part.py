@@ -130,7 +130,7 @@ def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
     }
     shadowed_reservoir = {}
     for name, pitch_contours in pitch_contour_reservoir.items():
-        # The viola does not receive any diads
+        # The viola does not receive any dyads
         if name == "Viola":
             shadowed_reservoir["Viola"] = pitch_contours
             continue
@@ -140,16 +140,16 @@ def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
             for pitch in pitch_contour:
                 pitch_class = pitch.pitch_class
                 shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
-                diad = (shadow_pitch, pitch)
-                shadowed_pitch_contour.append(diad)
+                dyad = (shadow_pitch, pitch)
+                shadowed_pitch_contour.append(dyad)
             shadowed_pitch_contours.append(tuple(shadowed_pitch_contour))
-        # treat the final contour differently: the last note does not become a diad
+        # treat the final contour differently: the last note does not become a dyad
         final_shadowed_pitch_contour = []
         for pitch in pitch_contours[-1][:-1]:
             pitch_class = pitch.pitch_class
             shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
-            diad = (shadow_pitch, pitch)
-            final_shadowed_pitch_contour.append(diad)
+            dyad = (shadow_pitch, pitch)
+            final_shadowed_pitch_contour.append(dyad)
         final_shadowed_pitch_contour.append(pitch_contours[-1][-1])
         shadowed_pitch_contours.append(tuple(final_shadowed_pitch_contour))
         shadowed_reservoir[name] = tuple(shadowed_pitch_contours)
