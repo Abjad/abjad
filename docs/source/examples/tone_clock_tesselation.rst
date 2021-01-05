@@ -1,7 +1,7 @@
 Tone-clock tesselation
 -----------------------
 
-Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`:
+Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
 
 ----
 
@@ -18,6 +18,9 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`:
     ...     abjad.override(score).Rest.stencil = False
     ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
     ...     abjad.override(score).TimeSignature.stencil = False
+    ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).BarNumber.stencil = False
+    ...     abjad.override(score).SpanBar.stencil = False
     ...     moment = abjad.SchemeMoment((1, moment_denominator))
     ...     abjad.setting(score).proportional_notation_duration = moment
     ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
@@ -73,3 +76,5 @@ Alternate reservoir:
     ...
     >>> file = illustrate_trichords(tesselation, 5)
     >>> abjad.show(file)
+
+:author:`[Authored: Bača/Evans (3.2).]`

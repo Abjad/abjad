@@ -16,6 +16,7 @@ First we define a function to illustrate the examples that follow:
     ...     containers = abjad.illustrators.make_piano_score(notes)
     ...     score, treble_staff, bass_staff = containers
     ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).Beam.stencil = False
     ...     abjad.override(score).Flag.stencil = False
     ...     abjad.override(score).Rest.stencil = False
@@ -25,7 +26,14 @@ First we define a function to illustrate the examples that follow:
     ...     abjad.override(score).TimeSignature.stencil = False
     ...     moment = abjad.SchemeMoment((1, moment_denominator))
     ...     abjad.setting(score).proportional_notation_duration = moment
-    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     lilypond_file = abjad.LilyPondFile(
+    ...         items=[
+    ...             score,
+    ...             abjad.Block(name="layout"),
+    ...         ],
+    ...         global_staff_size=16,
+    ...     )
+    ...     lilypond_file.layout_block.items.append("indent = 0")
     ...     return lilypond_file
 
 ----
@@ -64,3 +72,5 @@ Non-octave scale in Joel Hoffman's **Piano Concerto**:
     >>> scale = abjad.Pattern(indices=[0, 2, 3, 4, 5, 6, 8, 9, 10, 11, 13], period=14)
     >>> lilypond_file = illustrate_scale(scale, 84, -37, 25)
     >>> abjad.show(lilypond_file)
+
+:author:`[Authored: Bača/Evans (3.2).]`

@@ -2,7 +2,7 @@ Interval cycle intersection
 ---------------------------
 
 Derived tone rows from inversionally related interval cycles in Milton Babbitt's
-`Partitions for Piano`:
+`Partitions for Piano`.
 
 ----
 
@@ -96,6 +96,7 @@ First we define functions to illustrate the examples that follow:
     ...     containers = abjad.illustrators.make_piano_score(notes)
     ...     score, treble_staff, bass_staff = containers
     ...     abjad.override(treble_staff).BarLine.stencil = False
+    ...     abjad.override(treble_staff).BarNumber.stencil = False
     ...     abjad.override(treble_staff).Beam.stencil = False
     ...     abjad.override(treble_staff).Flag.stencil = False
     ...     abjad.override(treble_staff).Rest.stencil = False
@@ -125,3 +126,5 @@ Show score:
     >>> row = make_row(1, 3, [0, 1, 3], -1)
     >>> file = illustrate_row(row, 25)
     >>> abjad.show(file)
+
+:author:`[Authored: Bača/Evans (3.2).]`

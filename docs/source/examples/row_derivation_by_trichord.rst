@@ -1,7 +1,7 @@
 Row derivation, by trichord
 ---------------------------
 
-Derived tone rows in Anton Webern's `Concerto for Nine Instruments, Op.24`:
+Derived tone rows in Anton Webern's `Concerto for Nine Instruments, Op.24`.
 
 ----
 
@@ -14,6 +14,7 @@ First we define functions to illustrate the examples that follow:
     ...     containers = abjad.illustrators.make_piano_score(notes)
     ...     score, treble_staff, bass_staff = containers
     ...     abjad.override(treble_staff).BarLine.stencil = False
+    ...     abjad.override(treble_staff).BarNumber.stencil = False
     ...     abjad.override(treble_staff).Beam.stencil = False
     ...     abjad.override(treble_staff).Flag.stencil = False
     ...     abjad.override(treble_staff).Rest.stencil = False
@@ -67,3 +68,5 @@ Show retrograde inversion:
 
     >>> file = illustrate_row(row.invert().retrograde(), 25)
     >>> abjad.show(file)
+
+:author:`[Authored: Bača/Evans (3.2).]`
