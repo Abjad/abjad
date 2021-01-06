@@ -1,7 +1,7 @@
 Trichord definition, by ratio
 -----------------------------
 
-Triadic sequences in Catherine Lamb's `String Quartet`:
+Triadic sequences in Catherine Lamb's `String Quartet`.
 
 ----
 
@@ -76,7 +76,8 @@ Define helper functions:
     ...         cent_string = f"{remainder}"
     ...     else:
     ...         cent_string = f"+{remainder}"
-    ...     mark = abjad.Markup(cent_string, direction=abjad.Down)
+    ...     mark = abjad.Markup(cent_string, direction=abjad.Down).general_align("X", -0.75)
+    ...     abjad.tweak(mark).padding = 2.5
     ...     return mark
     ...
 
@@ -93,12 +94,26 @@ Define helper functions:
     ...             markup = return_cent_markup(note.note_head, ratio)
     ...             abjad.attach(markup, note)
     ...             staff.append(note)
+    ...     abjad.attach(abjad.Clef("bass"), abjad.select(group[2]).leaf(0))
+    ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).BarNumber.stencil = False
+    ...     abjad.override(score).SpanBar.stencil = False
     ...     abjad.override(score).Rest.stencil = False
     ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
     ...     abjad.override(score).TimeSignature.stencil = False
     ...     moment = abjad.SchemeMoment((1, moment_denominator))
     ...     abjad.setting(score).proportional_notation_duration = moment
-    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     lilypond_file = abjad.LilyPondFile(
+    ...         items=[
+    ...             score,
+    ...             abjad.Block(name="layout"),
+    ...             abjad.Block(name="paper"),
+    ...         ],
+    ...         global_staff_size=16,
+    ...     )
+    ...     lilypond_file.layout_block.items.append("indent = 0")
+    ...     space = "system-system-spacing = #'((basic-distance . 13) (minimum-distance . 13) (padding . 4))"
+    ...     lilypond_file.paper_block.items.append(space)
     ...     return lilypond_file
     ...
 
@@ -158,3 +173,5 @@ Create list of triad sequences written as ratios:
     ... )
     ...
     >>> abjad.show(file)
+
+:author:`[Authored: Bača/Evans (3.2).]`

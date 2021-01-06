@@ -1,7 +1,7 @@
 Superimposition of partials
 ---------------------------
 
-Initial harmony in Kaija Saariaho's `Du Cristal`:
+Initial harmony in Kaija Saariaho's `Du Cristal`.
 
 ----
 
@@ -55,6 +55,7 @@ First we define functions to illustrate the examples that follow:
     ...     containers = abjad.illustrators.make_piano_score(notes)
     ...     score, treble_staff, bass_staff = containers
     ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).Beam.stencil = False
     ...     abjad.override(score).Flag.stencil = False
     ...     abjad.override(score).Rest.stencil = False
@@ -119,3 +120,5 @@ Illustrate sonority of Du Cristal:
     ...
     >>> file = illustrate_partials("df,", sequence, 25)
     >>> abjad.show(file)
+
+:author:`[Authored: Bača/Evans (3.2).]`

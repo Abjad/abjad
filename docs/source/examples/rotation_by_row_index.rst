@@ -1,7 +1,7 @@
 Rotation, by row index
 ----------------------
 
-Tone row rotation in Igor Stravinsky's `Abraham and Isaac`:
+Tone row rotation in Igor Stravinsky's `Abraham and Isaac`.
 
 
 Define helper functions:
@@ -75,6 +75,7 @@ Define helper functions:
     ...         abjad.attach(m, abjad.select(staff).leaf(0))
     ...         group.append(staff)
     ...     score.append(group)
+    ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).Beam.stencil = "##f"
     ...     abjad.override(score).Flag.stencil = "##f"
     ...     abjad.override(score).Stem.stencil = "##f"
@@ -131,3 +132,5 @@ Show file of chart scores:
 
     >>> file = make_rotation_chart(perms[3], labels[3])
     >>> abjad.show(file)
+
+:author:`[Authored: Bača/Evans (3.2).]`

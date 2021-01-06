@@ -1,7 +1,7 @@
 Hexachordal recombination, all-interval
 ---------------------------------------
 
-Elliott Carter's parallel-inverted all-interval collections:
+Elliott Carter's parallel-inverted all-interval collections.
 
 ----
 
@@ -25,6 +25,7 @@ First we define functions to illustrate the examples that follow:
     ...     containers = abjad.illustrators.make_piano_score(notes)
     ...     score, treble_staff, bass_staff = containers
     ...     abjad.override(score).BarLine.stencil = False
+    ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).Beam.stencil = False
     ...     abjad.override(score).Flag.stencil = False
     ...     abjad.override(score).Rest.stencil = False
@@ -79,3 +80,5 @@ Illustrate parallel-inverted collection from fourth hexachord permutation:
 
     >>> file = illustrate_collection(hexachord_permutations[3], -24, 25)
     >>> abjad.show(file)
+
+:author:`[Authored: Bača/Evans (3.2).]`
