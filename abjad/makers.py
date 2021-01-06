@@ -340,7 +340,7 @@ class LeafMaker:
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/7 {
+                \times 8/14 {
                     #(ly:expect-warning "strange time signature found")
                     \time 5/14
                     f'2
@@ -1398,7 +1398,7 @@ def tuplet_from_leaf_and_ratio(
 
             >>> abjad.f(tuplet)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4 {
+            \times 6/8 {
                 \time 3/16
                 c'32
                 c'16
@@ -1543,7 +1543,7 @@ def tuplet_from_leaf_and_ratio(
 
             >>> abjad.f(tuplet)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4 {
+            \times 6/8 {
                 \time 3/16
                 c'32
                 c'16

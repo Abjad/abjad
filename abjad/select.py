@@ -6350,8 +6350,8 @@ class Selection(collections.abc.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Selection([Tuplet(Multiplier(2, 3), "r8 d'8 e'8")])
-                Selection([Tuplet(Multiplier(2, 3), "e'8 d'8 r8")])
+                Selection([Tuplet('3:2', "r8 d'8 e'8")])
+                Selection([Tuplet('3:2', "e'8 d'8 r8")])
 
             ..  container:: example expression
 
@@ -6360,8 +6360,8 @@ class Selection(collections.abc.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Selection([Tuplet(Multiplier(2, 3), "r8 d'8 e'8")])
-                Selection([Tuplet(Multiplier(2, 3), "e'8 d'8 r8")])
+                Selection([Tuplet('3:2', "r8 d'8 e'8")])
+                Selection([Tuplet('3:2', "e'8 d'8 r8")])
 
                 >>> abjad.label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -9229,7 +9229,7 @@ class Selection(collections.abc.Sequence):
                 Note("c'8")
                 Note("d'8")
                 Rest('r8')
-                Tuplet(Multiplier(2, 3), "e'8 r8 f'8")
+                Tuplet('3:2', "e'8 r8 f'8")
                 Note("g'8")
                 Note("a'8")
                 Rest('r8')
@@ -9243,7 +9243,7 @@ class Selection(collections.abc.Sequence):
                 Note("c'8")
                 Note("d'8")
                 Rest('r8')
-                Tuplet(Multiplier(2, 3), "e'8 r8 f'8")
+                Tuplet('3:2', "e'8 r8 f'8")
                 Note("g'8")
                 Note("a'8")
                 Rest('r8')
@@ -9325,7 +9325,7 @@ class Selection(collections.abc.Sequence):
                 >>> result = abjad.select(staff).tuplet(-1)
 
                 >>> result
-                Tuplet(Multiplier(10, 9), "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
+                Tuplet('9:10', "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
             ..  container:: example expression
 
@@ -9333,7 +9333,7 @@ class Selection(collections.abc.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Tuplet(Multiplier(10, 9), "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
+                Tuplet('9:10', "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
                 >>> abjad.label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -9441,9 +9441,9 @@ class Selection(collections.abc.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Tuplet(Multiplier(2, 3), "c'2 { 2/3 d'8 e'8 f'8 }")
-                Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")
-                Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
+                Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
+                Tuplet('3:2', "d'8 e'8 f'8")
+                Tuplet('3:2', "c'4 d'4 e'4")
 
             ..  container:: example expression
 
@@ -9451,9 +9451,9 @@ class Selection(collections.abc.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Tuplet(Multiplier(2, 3), "c'2 { 2/3 d'8 e'8 f'8 }")
-                Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")
-                Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
+                Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
+                Tuplet('3:2', "d'8 e'8 f'8")
+                Tuplet('3:2', "c'4 d'4 e'4")
 
                 >>> abjad.label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -9524,8 +9524,8 @@ class Selection(collections.abc.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")
-                Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
+                Tuplet('3:2', "d'8 e'8 f'8")
+                Tuplet('3:2', "c'4 d'4 e'4")
 
             ..  container:: example expression
 
@@ -9533,8 +9533,8 @@ class Selection(collections.abc.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")
-                Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
+                Tuplet('3:2', "d'8 e'8 f'8")
+                Tuplet('3:2', "c'4 d'4 e'4")
 
                 >>> abjad.label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
@@ -9605,8 +9605,8 @@ class Selection(collections.abc.Sequence):
                 >>> for item in result:
                 ...     item
                 ...
-                Tuplet(Multiplier(2, 3), "c'2 { 2/3 d'8 e'8 f'8 }")
-                Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
+                Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
+                Tuplet('3:2', "c'4 d'4 e'4")
 
             ..  container:: example expression
 
@@ -9614,8 +9614,8 @@ class Selection(collections.abc.Sequence):
                 >>> result = selector(staff)
 
                 >>> selector.print(result)
-                Tuplet(Multiplier(2, 3), "c'2 { 2/3 d'8 e'8 f'8 }")
-                Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
+                Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
+                Tuplet('3:2', "c'4 d'4 e'4")
 
                 >>> abjad.label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP

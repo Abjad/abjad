@@ -3348,7 +3348,7 @@ class _MeterManager:
         LogicalTie([Note("d'8.")])
         LogicalTie([Rest('r16'), Rest('r8.')])
         LogicalTie([Note("e'16")])
-        Tuplet(Multiplier(2, 3), "e'8 e'8 f'8")
+        Tuplet('3:2', "e'8 e'8 f'8")
         LogicalTie([Note("f'4")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(

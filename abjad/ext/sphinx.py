@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 
 class HiddenDoctestDirective(Directive):
     """
-    An hidden doctest directive.
+    A hidden doctest directive.
 
     Contributes no formatting to documents built by Sphinx.
     """
@@ -61,7 +61,7 @@ class HiddenDoctestDirective(Directive):
 
 class ShellDirective(Directive):
     """
-    An shell directive.
+    A shell directive.
 
     Represents a shell session.
 

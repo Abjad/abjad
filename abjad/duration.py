@@ -2104,6 +2104,58 @@ class NonreducedFraction(quicktions.Fraction):
             pair = (self_numerator + argument_numerator, denominator)
             return type(self)(pair)
 
+    def __copy__(self, *arguments) -> "NonreducedFraction":
+        """
+        Copies nonreduced fraction.
+
+        >>> import copy
+
+        ..  container:: example
+
+            >>> fraction_1 = abjad.NonreducedFraction(4, 6)
+            >>> fraction_2 = copy.copy(fraction_1)
+
+            >>> fraction_1
+            NonreducedFraction(4, 6)
+
+            >>> fraction_2
+            NonreducedFraction(4, 6)
+
+            >>> fraction_1 == fraction_2
+            True
+
+            >>> fraction_1 is fraction_2
+            False
+
+        """
+        return type(self)(self.pair)
+
+    def __deepcopy__(self, *arguments) -> "NonreducedFraction":
+        """
+        Deep copies nonreduced fraction.
+
+        >>> import copy
+
+        ..  container:: example
+
+            >>> fraction_1 = abjad.NonreducedFraction(4, 6)
+            >>> fraction_2 = copy.deepcopy(fraction_1)
+
+            >>> fraction_1
+            NonreducedFraction(4, 6)
+
+            >>> fraction_2
+            NonreducedFraction(4, 6)
+
+            >>> fraction_1 == fraction_2
+            True
+
+            >>> fraction_1 is fraction_2
+            False
+
+        """
+        return self.__copy__(*arguments)
+
     def __div__(self, argument) -> "NonreducedFraction":
         """
         Divides nonreduced fraction by ``argument``.

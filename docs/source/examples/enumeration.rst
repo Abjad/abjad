@@ -1,5 +1,5 @@
-Tableaux, of rhythmic cells
-===========================
+Enumeration, of rhythmic cells
+==============================
 
 Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in
 `The OM Composer's Book 2`. Malt explains that Ferneyhough used OpenMusic to create an

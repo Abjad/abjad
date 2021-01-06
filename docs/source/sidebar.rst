@@ -29,16 +29,16 @@
 
     examples/accumulation
     examples/corpus_selection
+    examples/enumeration
     examples/hexachordal_recombination_all_interval
     examples/hexachordal_recombination_by_dyad
     examples/interval_cycle_intersection
     examples/rotation_by_row_index
     examples/row_derivation_by_trichord
     examples/scale_derivation_by_sieve
-    examples/score_assembly_piano
     examples/score_assembly_strings
+    examples/score_fragment_piano
     examples/superimposition_of_partials
-    examples/tableaux
     examples/tone_clock_tesselation
     examples/trichord_definition_by_ratio
 

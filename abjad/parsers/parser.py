@@ -451,6 +451,21 @@ class GuileProxy:
 
     # transposition
 
+    def tuplet(self, fraction, _optional, music):
+        r"""
+        Handles LilyPond ``\tuplet`` command.
+
+        The ``_optional`` parameter appears to get passed in but is unused.
+        """
+        n, d = fraction.numerator, fraction.denominator
+        string = f"{n}:{d}"
+        if not isinstance(music, Context) and not isinstance(music, Leaf):
+            assert isinstance(music, Container), repr(music)
+            leaves = music[:]
+            music[:] = []
+            return Tuplet(string, leaves)
+        return Tuplet(string, [music])
+
     # tweak
 
     def voiceFour(self):
@@ -2664,6 +2679,7 @@ class LilyPondParser(Parser):
         - ``\time``
         - ``\times``
         - ``\transpose``
+        - ``\tuplet``
         - ``\voiceOne``, ``\voiceTwo``, ``\voiceThree``, ``\voiceFour``
 
     LilyPondParser currently **DOES NOT** understand many other aspects
@@ -3623,6 +3639,7 @@ class LilyPondParser(Parser):
             time
             times
             transpose
+            tuplet
 
         """
         music_functions = []
