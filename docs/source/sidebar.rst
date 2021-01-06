@@ -28,15 +28,15 @@
     :hidden:
 
     examples/accumulation
+    examples/corpus_selection
     examples/hexachordal_recombination_all_interval
     examples/hexachordal_recombination_by_dyad
     examples/interval_cycle_intersection
-    examples/mensuration_canon
-    examples/random_selection
     examples/rotation_by_row_index
     examples/row_derivation_by_trichord
     examples/scale_derivation_by_sieve
-    examples/score_assembly
+    examples/score_assembly_piano
+    examples/score_assembly_strings
     examples/superimposition_of_partials
     examples/tableaux
     examples/tone_clock_tesselation
