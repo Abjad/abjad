@@ -8,7 +8,6 @@ LilyPond comments begin with the ``%`` sign.
 You can include comments in the LilyPond output of the scores you create with
 Abjad.
 
-
 Creating LilyPond comments
 --------------------------
 
@@ -19,7 +18,6 @@ Use ``abjad.LilyPondComment`` to create a LilyPond comment:
     >>> string = 'This is a LilyPond comment before a note.'
     >>> comment_1 = abjad.LilyPondComment(string, 'before')
 
-
 Understanding the interpreter representation of a LilyPond comment
 ------------------------------------------------------------------
 
@@ -29,11 +27,10 @@ Understanding the interpreter representation of a LilyPond comment
 
 ``LilyPondComment`` tells you the comment's class.
 
-``'This is a LilyPond comments before a note.'`` tells you the contents string
-of the comment.
+``'This is a LilyPond comments before a note.'`` tells you the contents string of the
+comment.
 
 ``'before'`` tells you the slot in which the comment will be formatted.
-
 
 Attaching LilyPond comments to leaves
 -------------------------------------
@@ -56,16 +53,16 @@ You can add LilyPond comments before, after or to the right of any leaf:
 
 ::
 
-    >>> abjad.f(note)
-
+    >>> string = abjad.lilypond(note)
+    >>> print(string)
 
 Attaching LilyPond comments to containers
 -----------------------------------------
 
 Use ``abjad.attach()`` to attach LilyPond comments to a container.
 
-You can add LilyPond comments before, after, in the opening or in the closing
-of any container:
+You can add LilyPond comments before, after, in the opening or in the closing of any
+container:
 
 ::
 
@@ -101,8 +98,8 @@ of any container:
 
 ::
 
-    >>> abjad.f(staff)
-
+    >>> string = abjad.lilypond(staff)
+    >>> print(string)
 
 Getting the LilyPond comments attached to a component
 -----------------------------------------------------
@@ -112,7 +109,6 @@ Get the LilyPond comments attached to any component:
 ::
 
     >>> abjad.get.indicators(note, abjad.LilyPondComment)
-
 
 Detaching LilyPond comments
 ---------------------------
@@ -125,7 +121,8 @@ Use ``abjad.detach()`` to detach LilyPond comments:
 
 ::
 
-    >>> abjad.f(note)
+    >>> string = abjad.lilypond(note)
+    >>> print(string)
 
 ::
 
@@ -136,8 +133,8 @@ Use ``abjad.detach()`` to detach LilyPond comments:
 
 ::
 
-    >>> abjad.f(staff)
-
+    >>> string = abjad.lilypond(staff)
+    >>> print(string)
 
 Getting the contents string of a LilyPond comment
 ----------------------------------------------------
