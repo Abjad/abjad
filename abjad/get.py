@@ -4251,13 +4251,13 @@ class Descendants(collections.abc.Sequence):
             ...     count = parentage.count(abjad.Tuplet)
             ...     print(f"{repr(component):55} {repr(count)}")
             <Staff{2}>                                              3
-            Tuplet(Multiplier(2, 3), "c'2 { 2/3 d'8 e'8 f'8 }")     2
+            Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")                2
             Note("c'2")                                             0
-            Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")                 1
+            Tuplet('3:2', "d'8 e'8 f'8")                            1
             Note("d'8")                                             0
             Note("e'8")                                             0
             Note("f'8")                                             0
-            Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")                 1
+            Tuplet('3:2', "c'4 d'4 e'4")                            1
             Note("c'4")                                             0
             Note("d'4")                                             0
             Note("e'4")                                             0

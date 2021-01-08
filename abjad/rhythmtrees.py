@@ -576,7 +576,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
             >>> tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
 
             >>> tree((1, 4))
-            [Tuplet(Multiplier(4, 5), "c'16 { 2/3 c'16 c'16 c'16 } c'8")]
+            [Tuplet('5:4', "c'16 { 2/3 c'16 c'16 c'16 } c'8")]
 
             >>> staff = abjad.Staff(tree((1, 4)))
             >>> abjad.show(staff) # doctest: +SKIP

@@ -953,7 +953,7 @@ class Container(Component):
             Deletes first tuplet in voice:
 
             >>> voice = abjad.Voice()
-            >>> voice.append(abjad.Tuplet((2, 3), "c'4 d'4 e'4"))
+            >>> voice.append(abjad.Tuplet((4, 6), "c'4 d'4 e'4"))
             >>> voice.append(abjad.Tuplet((2, 3), "e'4 d'4 c'4"))
             >>> leaves = abjad.select(voice).leaves()
             >>> abjad.slur(leaves)
@@ -964,7 +964,7 @@ class Container(Component):
                 >>> abjad.f(voice)
                 \new Voice
                 {
-                    \times 2/3 {
+                    \times 4/6 {
                         c'4
                         (
                         d'4
@@ -1015,7 +1015,7 @@ class Container(Component):
             ..  docs::
 
                 >>> abjad.f(tuplet_1)
-                \times 2/3 {
+                \times 4/6 {
                     c'4
                     d'4
                     e'4
@@ -5067,13 +5067,13 @@ class Tuplet(Container):
 
         A tuplet:
 
-        >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
+        >>> tuplet = abjad.Tuplet("6:4", "c'8 d'8 e'8")
         >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
 
             >>> abjad.f(tuplet)
-            \times 2/3 {
+            \times 4/6 {
                 c'8
                 d'8
                 e'8
@@ -5091,7 +5091,7 @@ class Tuplet(Container):
 
             >>> abjad.f(tuplet)
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3 {
+            \times 4/6 {
                 c'8
                 \times 4/7 {
                     g'4.
@@ -5117,7 +5117,7 @@ class Tuplet(Container):
 
             >>> abjad.f(tuplet)
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3 {
+            \times 4/6 {
                 c'8
                 \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
@@ -5143,8 +5143,44 @@ class Tuplet(Container):
 
         Selects language:
 
-        >>> abjad.Tuplet("3:2", "do'2 dod' re'", language="français")
-        Tuplet(Multiplier(2, 3), "c'2 cs'2 d'2")
+        >>> abjad.Tuplet("6:4", "do'2 dod' re'", language="français")
+        Tuplet('6:4', "c'2 cs'2 d'2")
+
+    ..  container:: example
+
+        Tuplets can be entered as LilyPond input:
+
+        >>> voice = abjad.Voice(r"\tuplet 6/4 { c'4 d' e' }")
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                \times 4/6 {
+                    c'4
+                    d'4
+                    e'4
+                }
+            }
+
+        >>> voice = abjad.Voice(r"\times 4/6 { c'4 d' e' }")
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                \times 4/6 {
+                    c'4
+                    d'4
+                    e'4
+                }
+            }
 
     """
 
@@ -5164,7 +5200,7 @@ class Tuplet(Container):
 
     def __init__(
         self,
-        multiplier=(2, 3),
+        multiplier="3:2",
         components=None,
         *,
         denominator: int = None,
@@ -5178,9 +5214,7 @@ class Tuplet(Container):
         if isinstance(multiplier, str) and ":" in multiplier:
             strings = multiplier.split(":")
             numbers = [int(_) for _ in strings]
-            multiplier = Multiplier(numbers[1], numbers[0])
-        else:
-            multiplier = Multiplier(multiplier)
+            multiplier = NonreducedFraction(numbers[1], numbers[0])
         self.multiplier = multiplier
         self.denominator = denominator
         self.force_fraction = force_fraction
@@ -5292,7 +5326,7 @@ class Tuplet(Container):
     def _get_format_specification(self):
         return FormatSpecification(
             client=self,
-            repr_args_values=[self.multiplier, self._get_contents_summary()],
+            repr_args_values=[self.colon_string, self._get_contents_summary()],
             storage_format_args_values=[self.multiplier, self[:]],
             storage_format_keyword_names=[],
         )
@@ -5335,7 +5369,7 @@ class Tuplet(Container):
             return None
 
     def _get_scale_durations_command_string(self):
-        multiplier = self.multiplier
+        multiplier = Multiplier(self.multiplier)
         numerator = multiplier.numerator
         denominator = multiplier.denominator
         string = rf"\scaleDurations #'({numerator} . {denominator}) {{"
@@ -5359,6 +5393,32 @@ class Tuplet(Container):
         self.normalize_multiplier()
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def colon_string(self) -> str:
+        r"""
+        Gets colon string.
+
+        ..  container example
+
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 d' e'")
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> abjad.f(tuplet)
+                \times 2/3 {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            >>> tuplet.colon_string
+            '3:2'
+
+        """
+        numerator, denominator = self.multiplier.pair
+        return f"{denominator}:{numerator}"
 
     @property
     def denominator(self) -> typing.Optional[int]:
@@ -5691,8 +5751,6 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Defined equal to tuplet multiplier:
-
             >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -5700,7 +5758,7 @@ class Tuplet(Container):
             Multiplier(2, 3)
 
         """
-        return self.multiplier
+        return Multiplier(self.multiplier)
 
     @property
     def multiplied_duration(self) -> Duration:
@@ -5717,10 +5775,10 @@ class Tuplet(Container):
             Duration(1, 4)
 
         """
-        return self.multiplier * self._get_contents_duration()
+        return Duration(self.multiplier * self._get_contents_duration())
 
     @property
-    def multiplier(self) -> Multiplier:
+    def multiplier(self) -> NonreducedFraction:
         r"""
         Gets and sets multiplier of tuplet.
 
@@ -5732,7 +5790,7 @@ class Tuplet(Container):
                 >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.multiplier
-            Multiplier(2, 3)
+            NonreducedFraction(2, 3)
 
         ..  container:: example
 
@@ -5757,13 +5815,13 @@ class Tuplet(Container):
     @multiplier.setter
     def multiplier(self, argument):
         if isinstance(argument, (int, quicktions.Fraction)):
-            rational = Multiplier(argument)
+            multiplier = NonreducedFraction(argument)
         elif isinstance(argument, tuple):
-            rational = Multiplier(argument)
+            multiplier = NonreducedFraction(argument)
         else:
             raise ValueError(f"can not set tuplet multiplier: {argument!r}.")
-        if 0 < rational:
-            self._multiplier = rational
+        if 0 < multiplier:
+            self._multiplier = multiplier
         else:
             raise ValueError(f"tuplet multiplier must be positive: {argument!r}.")
 
@@ -6159,7 +6217,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.multiplier.normalized()
+            >>> abjad.Multiplier(tuplet.multiplier).normalized()
             False
 
             >>> tuplet.normalize_multiplier()
@@ -6174,7 +6232,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.multiplier.normalized()
+            >>> abjad.Multiplier(tuplet.multiplier).normalized()
             True
 
         ..  container:: example
@@ -6192,7 +6250,7 @@ class Tuplet(Container):
                     e'32
                 }
 
-            >>> tuplet.multiplier.normalized()
+            >>> abjad.Multiplier(tuplet.multiplier).normalized()
             False
 
             >>> tuplet.normalize_multiplier()
@@ -6208,7 +6266,7 @@ class Tuplet(Container):
                     e'16
                 }
 
-            >>> tuplet.multiplier.normalized()
+            >>> abjad.Multiplier(tuplet.multiplier).normalized()
             True
 
         ..  container:: example
@@ -6226,7 +6284,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.multiplier.normalized()
+            >>> abjad.Multiplier(tuplet.multiplier).normalized()
             False
 
             >>> tuplet.normalize_multiplier()
@@ -6236,13 +6294,13 @@ class Tuplet(Container):
 
                 >>> abjad.f(tuplet)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 5/6 {
+                \times 10/12 {
                     c'8
                     d'8
                     e'8
                 }
 
-            >>> tuplet.multiplier.normalized()
+            >>> abjad.Multiplier(tuplet.multiplier).normalized()
             True
 
         """
@@ -6745,7 +6803,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            duration = component.written_duration * self.multiplier
+            duration = Duration(self.multiplier * component.written_duration)
             if not duration.is_assignable:
                 return False
         return True

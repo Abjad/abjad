@@ -641,13 +641,13 @@ class Parentage(collections.abc.Sequence):
             ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
             <Staff{1}>                     Multiplier(1, 1)
             <Voice-"Music_Voice"{2}>       Multiplier(1, 1)
-            Tuplet(Multiplier(2, 3), "c'4 d'4 e'4") Multiplier(2, 3)
+            Tuplet('3:2', "c'4 d'4 e'4") Multiplier(2, 3)
             Note("c'4")                    Multiplier(2, 3)
             BeforeGraceContainer("cs'16")        Multiplier(2, 3)
             Note("cs'16")                  Multiplier(2, 3)
             Note("d'4")                    Multiplier(2, 3)
             Note("e'4")                    Multiplier(2, 3)
-            Tuplet(Multiplier(2, 3), "{ { <f' a'>8 b'8 } { f'4 } } g'4 a'4") Multiplier(2, 3)
+            Tuplet('3:2', "{ { <f' a'>8 b'8 } { f'4 } } g'4 a'4") Multiplier(2, 3)
             <<<2>>>                        Multiplier(2, 3)
             OnBeatGraceContainer("<f' a'>8 b'8") Multiplier(2, 3)
             Chord("<f' a'>8")              Multiplier(2, 3)
@@ -799,13 +799,13 @@ class Parentage(collections.abc.Sequence):
             ...     count = parentage.count(abjad.Tuplet)
             ...     print(f"{repr(component):55} {repr(count)}")
             <Staff{2}>                                              0
-            Tuplet(Multiplier(2, 3), "c'2 { 2/3 d'8 e'8 f'8 }")     1
+            Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")                1
             Note("c'2")                                             1
-            Tuplet(Multiplier(2, 3), "d'8 e'8 f'8")                 2
+            Tuplet('3:2', "d'8 e'8 f'8")                            2
             Note("d'8")                                             2
             Note("e'8")                                             2
             Note("f'8")                                             2
-            Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")                 1
+            Tuplet('3:2', "c'4 d'4 e'4")                            1
             Note("c'4")                                             1
             Note("d'4")                                             1
             Note("e'4")                                             1
@@ -1431,7 +1431,7 @@ class Parentage(collections.abc.Sequence):
             ...
             (<Score<<2>>>, ())
             (<Staff{1}>, (0,))
-            (Tuplet(Multiplier(2, 3), "c''2 b'2 a'2"), (0, 0))
+            (Tuplet('3:2', "c''2 b'2 a'2"), (0, 0))
             (Note("c''2"), (0, 0, 0))
             (Note("b'2"), (0, 0, 1))
             (Note("a'2"), (0, 0, 2))

@@ -735,7 +735,7 @@ def extract(argument):
             }
 
         >>> abjad.mutate.extract(tuplet)
-        Tuplet(Multiplier(3, 2), "c'4 e'4")
+        Tuplet('2:3', "c'4 e'4")
 
         >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -811,7 +811,7 @@ def fuse(argument):
 
         >>> tuplets = staff[:]
         >>> abjad.mutate.fuse(tuplets)
-        Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 c'16 d'16 e'16")
+        Tuplet('3:2', "c'8 d'8 e'8 c'16 d'16 e'16")
         >>> abjad.show(staff) #doctest: +SKIP
 
         ..  docs::
@@ -930,7 +930,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
 
         >>> logical_tie = abjad.select(staff[1]).logical_tie()
         >>> abjad.mutate.logical_tie_to_tuplet(logical_tie, [2, 1, 1, 1])
-        Tuplet(Multiplier(3, 5), "c'8 c'16 c'16 c'16")
+        Tuplet('5:3', "c'8 c'16 c'16 c'16")
 
         ..  docs::
 
@@ -2215,7 +2215,7 @@ def wrap(argument, container):
         >>> abjad.mutate.wrap(staff[-3:], tuplet)
         Traceback (most recent call last):
             ...
-        Exception: must be empty container: Tuplet(Multiplier(2, 3), "g'8 a'8 fs'8").
+        Exception: must be empty container: Tuplet('3:2', "g'8 a'8 fs'8").
 
     ..  container:: example
 

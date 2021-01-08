@@ -686,7 +686,7 @@ def parse_reduced_ly_syntax(string) -> Container:
         Note("c'4")
         Rest('r4.')
         Note("c'8..")
-        Tuplet(Multiplier(5, 3), '')
+        Tuplet('3:5', '')
         Note("c'4")
 
     """
