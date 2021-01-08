@@ -47,6 +47,7 @@ Define helper functions:
     >>> def return_cent_markup(
     ...     note_head,
     ...     ratio,
+    ...     bass=False,
     ...     quarter_tones=False,
     ... ):
     ...     ratio = fractions.Fraction(ratio)
@@ -56,6 +57,10 @@ Define helper functions:
     ...     semitones = ji_cents / 100
     ...     parts = math.modf(semitones)
     ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
+    ...     if bass is False or pitch <= -8:
+    ...         direction = abjad.Down
+    ...     else:
+    ...         direction = abjad.Up
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
@@ -76,25 +81,47 @@ Define helper functions:
     ...         cent_string = f"{remainder}"
     ...     else:
     ...         cent_string = f"+{remainder}"
-    ...     mark = abjad.Markup(cent_string, direction=abjad.Down).general_align("X", -0.75)
-    ...     abjad.tweak(mark).padding = 2.5
-    ...     return mark
+    ...     markup = abjad.Markup(cent_string, direction=direction)
+    ...     abjad.tweak(markup).parent_alignment_X = 0 
+    ...     abjad.tweak(markup).self_alignment_X = 0.25 
+    ...     if pitch <= -8:
+    ...         abjad.tweak(markup).padding = 1
+    ...     else:
+    ...         abjad.tweak(markup).padding = 2.5
+    ...     return markup
     ...
 
 ::
 
     >>> def illustrate_trichords(trichords, fundamental, moment_denominator):
-    ...     group = abjad.StaffGroup([abjad.Staff(), abjad.Staff(), abjad.Staff()])
-    ...     score = abjad.Score([group])
+    ...     staff_1 = abjad.Staff(name="Staff_1")
+    ...     staff_2 = abjad.Staff(name="Staff_2")
+    ...     staff_3 = abjad.Staff(name="Staff_3")
+    ...     group = abjad.StaffGroup([staff_1, staff_2, staff_3], name="Staff_Group")
+    ...     score = abjad.Score([group], name="Score")
     ...     for triad in trichords:
     ...         for i, ratio in enumerate(triad):
     ...             staff = group[i]
     ...             note = abjad.Note(fundamental, (1, 1))
     ...             tune_to_ratio(note.note_head, ratio)
-    ...             markup = return_cent_markup(note.note_head, ratio)
+    ...             bass = False
+    ...             if i == 2:
+    ...                 bass = True
+    ...             markup = return_cent_markup(note.note_head, ratio, bass=bass)
     ...             abjad.attach(markup, note)
     ...             staff.append(note)
-    ...     abjad.attach(abjad.Clef("bass"), abjad.select(group[2]).leaf(0))
+    ...     for measure_number in (1, 11, 21, 31):
+    ...         note = abjad.select(staff_1).note(measure_number - 1)
+    ...         markup = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
+    ...         abjad.tweak(markup).staff_padding = 8
+    ...         abjad.tweak(markup).transparent = True
+    ...         abjad.attach(markup, note)
+    ...     interface = abjad.override(staff_1).vertical_axis_group
+    ...     interface.staff_staff_spacing__minimum_distance = 12
+    ...     interface = abjad.override(staff_2).vertical_axis_group
+    ...     interface.staff_staff_spacing__minimum_distance = 14
+    ...     note = abjad.select(staff_3).note(0)
+    ...     abjad.attach(abjad.Clef("bass"), note)
     ...     abjad.override(score).BarLine.stencil = False
     ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).SpanBar.stencil = False
@@ -103,16 +130,11 @@ Define helper functions:
     ...     abjad.override(score).TimeSignature.stencil = False
     ...     moment = abjad.SchemeMoment((1, moment_denominator))
     ...     abjad.setting(score).proportional_notation_duration = moment
-    ...     lilypond_file = abjad.LilyPondFile(
-    ...         items=[
-    ...             score,
-    ...             abjad.Block(name="layout"),
-    ...             abjad.Block(name="paper"),
-    ...         ],
-    ...         global_staff_size=16,
-    ...     )
+    ...     items= [score, abjad.Block(name="layout"), abjad.Block(name="paper")]
+    ...     lilypond_file = abjad.LilyPondFile(items=items, global_staff_size=16)
     ...     lilypond_file.layout_block.items.append("indent = 0")
-    ...     space = "system-system-spacing = #'((basic-distance . 13) (minimum-distance . 13) (padding . 4))"
+    ...     space = "system-system-spacing = #'((basic-distance . 13)"
+    ...     space += " (minimum-distance . 13) (padding . 4))"
     ...     lilypond_file.paper_block.items.append(space)
     ...     return lilypond_file
     ...

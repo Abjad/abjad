@@ -293,7 +293,7 @@ Here are other functions:
 
 ::
 
-    >>> def make_mozart_measure(measure_dict):
+    >>> def make_measure(measure_dict):
     ...     # parse the contents of a measure definition dictionary
     ...     # wrap the expression to be parsed inside a LilyPond { } block
     ...     treble = abjad.parse("{{ {} }}".format(measure_dict["t"]))
@@ -302,7 +302,7 @@ Here are other functions:
 
 ::
 
-    >>> def make_mozart_score():
+    >>> def make_score():
     ...     score_template = abjad.TwoStaffPianoScoreTemplate()
     ...     score = score_template()
     ...     # select the measures to use
@@ -311,7 +311,7 @@ Here are other functions:
     ...     treble_volta = abjad.Container()
     ...     bass_volta = abjad.Container()
     ...     for choice in choices[:7]:
-    ...         treble, bass = make_mozart_measure(choice)
+    ...         treble, bass = make_measure(choice)
     ...         treble_volta.append(treble)
     ...         bass_volta.append(bass)
     ...     # abjad.attach indicators to the volta containers
@@ -326,7 +326,7 @@ Here are other functions:
     ...     treble_alternative = abjad.Container()
     ...     bass_alternative = abjad.Container()
     ...     for choice in choices[7:9]:
-    ...         treble, bass = make_mozart_measure(choice)
+    ...         treble, bass = make_measure(choice)
     ...         treble_alternative.append(treble)
     ...         bass_alternative.append(bass)
     ...     # abjad.attach indicators to the alternative containers
@@ -339,7 +339,7 @@ Here are other functions:
     ...     score["LH_Voice"].append(bass_alternative)
     ...     # create the remaining measures
     ...     for choice in choices[9:]:
-    ...         treble, bass = make_mozart_measure(choice)
+    ...         treble, bass = make_measure(choice)
     ...         score["RH_Voice"].append(treble)
     ...         score["LH_Voice"].append(bass)
     ...     # abjad.attach indicators
@@ -349,30 +349,31 @@ Here are other functions:
     ...     bar_line = abjad.BarLine("|.")
     ...     leaf = abjad.get.leaf(score["RH_Staff"], -1)
     ...     abjad.attach(bar_line, leaf)
-    ...     # remove the default piano instrument and add a custom one:
-    ...     abjad.detach(abjad.Instrument, score["Piano_Staff"])
-    ...     klavier = abjad.Piano(name="Katzenklavier", short_name="kk.")
-    ...     leaf = abjad.get.leaf(score["Piano_Staff"], 0)
-    ...     abjad.attach(klavier, leaf)
     ...     first_left_leaf = abjad.select(score["LH_Staff"]).leaves()[0]
     ...     bass_clef = abjad.Clef("bass")
     ...     abjad.attach(bass_clef, first_left_leaf)
+    ...     groups = abjad.select(score["RH_Voice"]).leaves().group_by_measure()
+    ...     markup = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
+    ...     abjad.tweak(markup).staff_padding = 6
+    ...     abjad.tweak(markup).transparent = True
+    ...     abjad.attach(markup, groups[1 - 1][0])
+    ...     markup = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
+    ...     abjad.tweak(markup).staff_padding = 10
+    ...     abjad.tweak(markup).transparent = True
+    ...     abjad.attach(markup, groups[9 - 1][0])
     ...     return score
-
 
 ::
 
-    >>> def make_mozart_lilypond_file():
-    ...     score = make_mozart_score()
-    ...     lilypond_file = abjad.LilyPondFile.new(music=score, global_staff_size=12)
-    ...     title = abjad.Markup(r'\bold \sans "Ein Musikalisches Wuerfelspiel"')
-    ...     composer = abjad.Scheme("W. A. Mozart (maybe?)")
+    >>> def make_lilypond_file():
+    ...     score = make_score()
+    ...     lilypond_file = abjad.LilyPondFile.new(music=score, global_staff_size=16)
+    ...     title = abjad.Markup(r'"Ein Musikalisches Wuerfelspiel"')
+    ...     composer = abjad.Scheme("W. A. Mozart (attr.)")
     ...     lilypond_file.header_block.title = title
     ...     lilypond_file.header_block.composer = composer
-    ...     lilypond_file.layout_block.ragged_right = True
-    ...     list_ = abjad.SchemeAssociativeList([("basic_distance", 8)])
-    ...     lilypond_file.paper_block.markup_system_spacing = list_
-    ...     lilypond_file.paper_block.paper_width = 180
+    ...     lilypond_file.layout_block.indent = 0
+    ...     lilypond_file.layout_block.ragged_right = False
     ...     return lilypond_file
 
 Let's try with a measure-definition of our own:
@@ -380,7 +381,7 @@ Let's try with a measure-definition of our own:
 ::
 
     >>> my_measure_dict = {'b': r'c4 ^\trill r8', 't': "e''8 ( c''8 g'8 )"}
-    >>> treble, bass = make_mozart_measure(my_measure_dict)
+    >>> treble, bass = make_measure(my_measure_dict)
 
 ::
 
@@ -398,7 +399,7 @@ choice for the very last measure:
 ::
 
     >>> my_measure_dict = corpus[-1][-1]
-    >>> treble, bass = make_mozart_measure(my_measure_dict)
+    >>> treble, bass = make_measure(my_measure_dict)
 
 ::
 
@@ -490,17 +491,7 @@ create two :py:class:`abjad.LilyPondLiteral <abjad.overrides.LilyPondLiteral>` i
 both using the "before" format slot, insuring that their literal is placed before their
 container's opening curly brace.
 
-Now let's take a look at the code that puts our score together :
-
-::
-
-    >>> score = make_mozart_score()
-    >>> abjad.show(score)
-
-Our instrument name got cut off!  Looks like we need to do a little formatting.
-
-As you can see above, we've now got our randomized minuet. However, we can still go a bit
-further. LilyPond provides a wide variety of settings for controlling the overall look of
+LilyPond provides a wide variety of settings for controlling the overall look of
 a musical document, often through its `\header`, `\layout` and `\paper` blocks. Abjad, in
 turn, gives us object-oriented access to these settings through the the
 :py:func:`abjad.LilyPondFile <abjad.lilypondfile.LilyPondFile>` class.
@@ -511,45 +502,11 @@ our :py:class:`abjad.Score <abjad.score.Score>` inside a :py:class:`abjad.Lilypo
 of our document to add a title, a composer's name, change the global staff size, paper
 size, staff spacing and so forth.
 
-::
-
-    >>> lilypond_file = make_mozart_lilypond_file()
-    >>> print(lilypond_file)
+The final result:
 
 ::
 
-    >>> string = abjad.lilypond(lilypond_file.header_block)
-    >>> print(string)
-
-::
-
-    >>> string = abjad.lilypond(lilypond_file.header_block)
-    >>> print(string)
-
-::
-
-    >>> string = abjad.lilypond(lilypond_file.layout_block)
-    >>> print(string)
-
-::
-
-    >>> string = abjad.lilypond(lilypond_file.layout_block)
-    >>> print(string)
-
-::
-
-    >>> string = abjad.lilypond(lilypond_file.paper_block)
-    >>> print(string)
-
-::
-
-    >>> string = abjad.lilypond(lilypond_file.paper_block)
-    >>> print(string)
-
-And now the final result:
-
-::
-
+    >>> lilypond_file = make_lilypond_file()
     >>> abjad.show(lilypond_file)
 
-:author:`[Oberholtzer (2.19), Bača (3.2). Music issued by Mozart's publisher in 1792.]`
+:author:`[Oberholtzer (2.19), Bača (3.2). Attributed to W. A. Mozart.]`
