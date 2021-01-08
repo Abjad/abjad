@@ -1,5 +1,5 @@
 Row derivation, by trichord
----------------------------
+===========================
 
 Derived tone rows in Anton Webern's `Concerto for Nine Instruments, Op.24`.
 
@@ -69,4 +69,4 @@ Show retrograde inversion:
     >>> file = illustrate_row(row.invert().retrograde(), 25)
     >>> abjad.show(file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`

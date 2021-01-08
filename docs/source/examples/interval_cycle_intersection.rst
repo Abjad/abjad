@@ -1,5 +1,5 @@
 Interval cycle intersection
----------------------------
+===========================
 
 Derived tone rows from inversionally related interval cycles in Milton Babbitt's
 `Partitions for Piano`.
@@ -127,4 +127,4 @@ Show score:
     >>> file = illustrate_row(row, 25)
     >>> abjad.show(file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`

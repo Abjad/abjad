@@ -289,4 +289,4 @@ The final result:
     >>> lilypond_file = make_desordre_lilypond_file(score)
     >>> abjad.show(lilypond_file)
 
-:author:`[Authored: Adán (2.0), Bača (3.2).]`
+:author:`[Adán (2.0), Bača (3.2)]`

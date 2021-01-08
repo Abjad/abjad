@@ -5,8 +5,7 @@ LilyPond comments
 
 LilyPond comments begin with the ``%`` sign.
 
-You can include comments in the LilyPond output of the scores you create with
-Abjad.
+You can include comments in the LilyPond output of the scores you create with Abjad.
 
 Creating LilyPond comments
 --------------------------

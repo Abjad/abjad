@@ -1,5 +1,5 @@
 Tone-clock tesselation
------------------------
+======================
 
 Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
 
@@ -77,4 +77,4 @@ Alternate reservoir:
     >>> file = illustrate_trichords(tesselation, 5)
     >>> abjad.show(file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`

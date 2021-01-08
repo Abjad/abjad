@@ -12,7 +12,7 @@ Consider the measure below:
 
 ::
 
-    >>> staff = abjad.Staff(r"\time 5/15 c16 [ c c c c ]", lilypond_type='RhythmicStaff')
+    >>> staff = abjad.Staff(r"\time 5/15 c16 [ c c c c ]", lilypond_type="RhythmicStaff")
     >>> leaves = abjad.select(staff).leaves()
 
 ::
@@ -31,7 +31,7 @@ But now consider this measure:
 ::
 
     >>> tuplet = abjad.Tuplet((4, 5), r"\time 4/16 c16 [ c c c c ]")
-    >>> staff = abjad.Staff([tuplet], lilypond_type='RhythmicStaff')
+    >>> staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
     >>> leaves = abjad.select(staff).leaves()
 
 ::
