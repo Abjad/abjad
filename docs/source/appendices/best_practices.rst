@@ -185,3 +185,5 @@ layed out into modules on the filesystem.
 
 **4. Run the Python profiler on your code every once in a while.** To check the
 performance of the code you write. Always profile before you optimize your code.
+
+:author:`[Bača (3.2)]`

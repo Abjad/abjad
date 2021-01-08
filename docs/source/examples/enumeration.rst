@@ -264,3 +264,5 @@ Then we'll adjust the overall size of our output, and put everything together:
     >>> tuplet_duration, row_count, column_count = (1, 4), 11, 6
     >>> lilypond_file = make_lilypond_file(tuplet_duration, row_count, column_count)
     >>> abjad.show(lilypond_file)
+
+:author:`[Bača (1.1, 3.2)]`

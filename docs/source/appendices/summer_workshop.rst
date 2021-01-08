@@ -30,4 +30,6 @@ Taught by Jeff Treviño, Trevor Bača and Josiah Wolf Oberholtzer.
 Visit the `CCRMA`_ website for the most up-to-date scheduling information about this
 annual course.
 
+:author:`[Treviño (2.19)]`
+
 ..  _CCRMA: https://ccrma.stanford.edu

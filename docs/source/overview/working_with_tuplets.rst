@@ -1,7 +1,6 @@
 Tuplets
 =======
 
-
 Making a tuplet from a LilyPond input string
 --------------------------------------------
 
@@ -24,7 +23,6 @@ You can also make tuplets from a list of other components:
     >>> tuplet = abjad.Tuplet((2, 3), leaves)
     >>> abjad.show(tuplet)
 
-
 Understanding the interpreter representation of a tuplet
 --------------------------------------------------------
 
@@ -39,7 +37,6 @@ The interprer representation of an tuplet contains three parts:
 ``Multiplier(2, 3)`` tells you the tuplet's multiplier.
 
 ``[fs'8, g'8, r8]`` tells you the top-level components the tuplet contains.
-
 
 Understanding the string representation of a tuplet
 ---------------------------------------------------
@@ -59,7 +56,6 @@ The asterisks ``*`` denote a fixed-multiplier tuplet.
 
 The remaining arguments show the top-level components of tuplet.
 
-
 Formatting tuplets
 ------------------
 
@@ -67,8 +63,8 @@ Use ``abjad.lilypond()`` to get the LilyPond format a tuplet:
 
 ::
 
-    >>> print(abjad.lilypond(tuplet))
-
+    >>> string = abjad.lilypond(tuplet)
+    >>> print(string)
 
 Selecting the music in a tuplet
 -------------------------------
@@ -79,7 +75,6 @@ Select the music in a tuplet like this:
 
     >>> tuplet[:]
 
-
 Selecting a tuplet's leaves
 ---------------------------
 
@@ -89,19 +84,17 @@ Use ``select(...).leaves()`` to get the leaves in a tuplet:
 
     >>> abjad.select(tuplet).leaves()
 
-
 Getting the length of a tuplet
 ------------------------------
 
 Use ``len()`` to get the length of a tuplet.
 
-The length of a tuplet is defined equal to the number of top-level components
-the tuplet contains:
+The length of a tuplet is defined equal to the number of top-level components the tuplet
+contains:
 
 ::
 
     >>> len(tuplet)
-
 
 Getting tuplet duration
 -----------------------
@@ -112,12 +105,10 @@ Get the duration of a tuplet:
 
     >>> abjad.get.duration(tuplet)
 
-
 Understanding rhythmic augmentation and diminution
 --------------------------------------------------
 
-A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic
-diminution:
+A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic diminution:
 
 ::
 
@@ -127,13 +118,11 @@ diminution:
 
     >>> tuplet.diminution()
 
-A tuplet with a multiplier greater than ``1`` is a type of rhythmic
-augmentation:
+A tuplet with a multiplier greater than ``1`` is a type of rhythmic augmentation:
 
 ::
 
     >>> tuplet.augmentation()
-
 
 Getting and setting the multiplier of a tuplet
 ----------------------------------------------
@@ -151,7 +140,6 @@ Set the multiplier of a tuplet like this:
     >>> tuplet.multiplier = (4, 5)
     >>> abjad.show(tuplet)
 
-
 Appending one component to the end of a tuplet
 ----------------------------------------------
 
@@ -168,7 +156,6 @@ You can also use a LilyPond input string:
 
     >>> tuplet.append("bf8")
     >>> abjad.show(tuplet)
-
 
 Extending a tuplet with multiple components at once
 ---------------------------------------------------
@@ -189,7 +176,6 @@ You can also use a LilyPond input string:
     >>> tuplet.extend("gs'8 a8") 
     >>> abjad.show(tuplet)
 
-
 Finding the index of a component in a tuplet
 --------------------------------------------
 
@@ -203,7 +189,6 @@ Use ``index()`` to find the index of any component in a tuplet:
 
     >>> tuplet.index(notes[1])
 
-
 Popping a tuplet component by index
 -----------------------------------
 
@@ -214,7 +199,6 @@ Use ``pop()`` to remove the last component of a tuplet:
     >>> tuplet.pop()
     >>> abjad.show(tuplet)
 
-
 Removing a tuplet component by reference
 ----------------------------------------
 
@@ -224,7 +208,6 @@ Use ``remove()`` to remove any component from a tuplet by reference:
 
     >>> tuplet.remove(tuplet[3])
     >>> abjad.show(tuplet)
-
 
 Overriding attributes of the LilyPond tuplet number grob
 --------------------------------------------------------
@@ -241,7 +224,6 @@ Override attributes of the LilyPond tuplet number grob like this:
     >>> abjad.show(staff)
 
 See LilyPond's documentation for lists of grob attributes available.
-
 
 Overriding attributes of the LilyPond tuplet bracket grob
 ---------------------------------------------------------

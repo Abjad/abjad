@@ -3,9 +3,8 @@
 LilyPond literals
 =================
 
-LilyPond literals allow you to attach arbitrary LilyPond literals
-to Abjad score components.
-
+LilyPond literals allow you to attach arbitrary LilyPond literals to Abjad score
+components.
 
 Creating LilyPond literals
 --------------------------
@@ -15,7 +14,6 @@ Use ``LilyPondLiteral`` to create a LilyPond literal:
 ::
 
     >>> literal = abjad.LilyPondLiteral(r'\bar "||"', 'after')
-
 
 Understanding the interpreter representation of LilyPond literals
 -----------------------------------------------------------------
@@ -28,9 +26,8 @@ Understanding the interpreter representation of LilyPond literals
 
 ``r'\bar "||"'`` tells you the LilyPond literal to be formatted.
 
-``'after'`` tells you where the literal will be formatted relative to the leaf
-to which it is attached.
-
+``'after'`` tells you where the literal will be formatted relative to the leaf to which
+it is attached.
 
 Attaching LilyPond literals to Abjad components
 -----------------------------------------------
@@ -98,8 +95,8 @@ Use ``argument`` to get the argument of a LilyPond literal:
 Comparing LilyPond literals
 ---------------------------
 
-LilyPond literals compare equal with equal names. Otherwise LilyPond literals
-do not compare equal:
+LilyPond literals compare equal with equal names. Otherwise LilyPond literals do not
+compare equal:
 
 ::
 

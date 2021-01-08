@@ -1,5 +1,5 @@
 Hexchordal recombination, by dyad
----------------------------------
+=================================
 
 Double-stop creation from hexachord pairs in Luigi Nono's `Fragmente -- Stille, an
 Diotima`.
@@ -103,4 +103,4 @@ Show alternate dyads:
     ...
     >>> abjad.show(file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`

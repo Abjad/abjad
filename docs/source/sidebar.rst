@@ -18,7 +18,7 @@
     overview/container_time_interpretation
     overview/container_names
     overview/setting_lilypond_type
-    overview/working_with_indicators
+    overview/indicators
     overview/working_with_tuplets
     overview/working_with_lilypond_files
     overview/custom_context_creation
@@ -55,7 +55,6 @@
     appendices/assignability
     appendices/best_practices
     appendices/changes
-    appendices/colophon
     appendices/community
     appendices/configuration
     appendices/developer_installation

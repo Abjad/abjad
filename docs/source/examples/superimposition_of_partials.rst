@@ -1,5 +1,5 @@
 Superimposition of partials
----------------------------
+===========================
 
 Initial harmony in Kaija Saariaho's `Du Cristal`.
 
@@ -121,4 +121,4 @@ Illustrate sonority of Du Cristal:
     >>> file = illustrate_partials("df,", sequence, 25)
     >>> abjad.show(file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`

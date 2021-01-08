@@ -552,5 +552,4 @@ And now the final result:
 
     >>> abjad.show(lilypond_file)
 
-:author:`[Oberholtzer (2.19), Bača (3.2). Mozart's publisher issued the game shown here
-in 1792.]`
+:author:`[Oberholtzer (2.19), Bača (3.2). Music issued by Mozart's publisher in 1792.]`

@@ -1,5 +1,5 @@
 Scale derivation, by sieve
---------------------------
+==========================
 
 The derivation of nonoctave scales by sieve is a 20th-century technique due to Xenakis.
 
@@ -73,4 +73,4 @@ Non-octave scale in Joel Hoffman's **Piano Concerto**:
     >>> lilypond_file = illustrate_scale(scale, 84, -37, 25)
     >>> abjad.show(lilypond_file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`

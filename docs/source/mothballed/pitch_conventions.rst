@@ -3,7 +3,6 @@
 Pitch conventions
 =================
 
-
 Pitch numbers
 -------------
 
@@ -52,7 +51,6 @@ Abjad numbers pitches like this:
     ...     global_staff_size=15,
     ... )
     >>> abjad.show(lilypond_file)
-
 
 Diatonic pitch numbers
 ----------------------
@@ -112,7 +110,6 @@ Abjad numbers diatonic pitches like this:
     ... )
     >>> abjad.show(lilypond_file)
 
-
 Accidental abbreviations
 ------------------------
 
@@ -131,7 +128,6 @@ Abjad abbreviates accidentals like this:
     double flat                    'ff'
     ======================         ============================
 
-
 Octave designation
 ------------------
 
@@ -148,7 +144,6 @@ Abjad designates octaves with both numbers and ticks:
     C2                     c,
     C1                     c,,
     ===============        =============
-
 
 Default accidental spelling
 ---------------------------

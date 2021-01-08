@@ -1,5 +1,5 @@
 Trichord definition, by ratio
------------------------------
+=============================
 
 Triadic sequences in Catherine Lamb's `String Quartet`.
 
@@ -174,4 +174,4 @@ Create list of triad sequences written as ratios:
     ...
     >>> abjad.show(file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`

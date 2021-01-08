@@ -1,5 +1,5 @@
 Hexachordal recombination, all-interval
----------------------------------------
+=======================================
 
 Elliott Carter's parallel-inverted all-interval collections.
 
@@ -81,4 +81,4 @@ Illustrate parallel-inverted collection from fourth hexachord permutation:
     >>> file = illustrate_collection(hexachord_permutations[3], -24, 25)
     >>> abjad.show(file)
 
-:author:`[Authored: Bača/Evans (3.2).]`
+:author:`[Evans (3.2)]`
