@@ -235,7 +235,6 @@ from .pitch.operators import (
 )
 from .pitch.pitchclasses import NamedPitchClass, NumberedPitchClass, PitchClass
 from .pitch.pitches import NamedPitch, NumberedPitch, Pitch, PitchTyping
-from .pitch.scale import Scale, ScaleDegree
 from .pitch.segments import (
     IntervalClassSegment,
     IntervalSegment,
@@ -578,9 +577,7 @@ __all__ = [
     "Rest",
     "Retrograde",
     "Right",
-    "Scale",
     "Rotation",
-    "ScaleDegree",
     "Scheme",
     "SchemeAssociativeList",
     "SchemeColor",
