@@ -19,7 +19,13 @@ descents per instruments as there are pitches in its overall scale.
 ::
 
     >>> def create_pitch_contour_reservoir():
-    ...     scale = abjad.Scale(("a", "minor"))
+    ...     string = """
+    ...         a, b, c d e f g
+    ...         a b c' d' e' f' g'
+    ...         a' b' c'' d'' e'' f'' g''
+    ...         a'' b'' c''' d''' e''' f''' g''' a'''
+    ...     """
+    ...     gamut = abjad.PitchSegment(string)
     ...     pitch_ranges = {
     ...         "First Violin": abjad.PitchRange("[C4, A6]"),
     ...         "Second Violin": abjad.PitchRange("[A3, A5]"),
@@ -29,8 +35,9 @@ descents per instruments as there are pitches in its overall scale.
     ...     }
     ...     reservoir = {}
     ...     for name, pitch_range in pitch_ranges.items():
-    ...         pitch_set = scale.create_named_pitch_set_in_pitch_range(pitch_range)
-    ...         pitches = sorted(pitch_set, reverse=True)
+    ...         start = gamut.index(pitch_range.start_pitch)
+    ...         stop = gamut.index(pitch_range.stop_pitch)
+    ...         pitches = abjad.PitchSegment(reversed(gamut[start : stop + 1]))
     ...         pitch_descents = []
     ...         for i in range(len(pitches)):
     ...             descent = tuple(pitches[: i + 1])
@@ -43,6 +50,8 @@ Here's what the first 10 descents for the first violin look like:
 ::
 
     >>> reservoir = create_pitch_contour_reservoir()
+    >>> len(reservoir["First Violin"])
+
     >>> for i in range(10):
     ...     descent = reservoir["First Violin"][i]
     ...     string = " ".join(str(x) for x in descent)
