@@ -61,7 +61,7 @@ Define helper functions:
     ...         ]
     ...         for set, name in zip(sets, names):
     ...             voice = abjad.Voice([abjad.Note(_, (1, 16)) for _ in set])
-    ...             for leaf in abjad.iterate(voice).leaves():
+    ...             for leaf in abjad.select(voice).leaves():
     ...                 mark = abjad.Markup(
     ...                     abjad.NumberedPitchClass(leaf.written_pitch),
     ...                     direction=abjad.Up,
