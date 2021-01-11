@@ -1,7 +1,9 @@
 2000-10
 =======
 
-The following works were composed with Abjad. Click on any image to zoom in.
+The following works were composed with Abjad.
+
+----
 
 L'imaginaire (2010)
 ```````````````````
@@ -9,12 +11,13 @@ L'imaginaire (2010)
 - For accordion.
 - Composed by `Trevor Bača`_.
 - Written for Corrado Rojac.
-- Source available from https://github.com/trevorbaca/imaginaire/.
+
+..  - Source available from https://github.com/trevorbaca/imaginaire/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230778361&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230778361&color=ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -30,6 +33,8 @@ L'imaginaire (2010)
         :group: gallery
         :title: Page 5 of L'imaginaire,
                 by Trevor Bača.
+
+----
 
 Lagartija (2010)
 ````````````````
@@ -52,18 +57,21 @@ Lagartija (2010)
         :title: Page 5 of Lagartija,
                 by Josiah Wolf Oberholtzer.
 
+----
+
 Mon seul désir (2009)
 `````````````````````
 
 - For flute, bass clarinet, violin and cello.
 - Composed by `Trevor Bača`_.
 - Written for Either/Or.
-- Source available from https://github.com/trevorbaca/desir/.
+
+..  - Source available from https://github.com/trevorbaca/desir/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230777254&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230777254&color=ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -80,18 +88,21 @@ Mon seul désir (2009)
         :title: Page 15 of Mon seul désir,
                 by Trevor Bača.
 
+----
+
 Lidércfény (2008)
 `````````````````
 
 - For flute, violin and piano.
 - Composed by `Trevor Bača`_.
 - Written for Ensemble InFrequencies.
-- Source available from https://github.com/trevorbaca/lidercfeny/.
+
+..  - Source available from https://github.com/trevorbaca/lidercfeny/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230683931&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230683931&color=ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -108,18 +119,21 @@ Lidércfény (2008)
         :title: Page 23 of Lidércfény,
                 by Trevor Bača.
 
+----
+
 Sekka (2007)
 ````````````
 
 - For flute.
 - Composed by `Trevor Bača`_.
 - Written for Reiko Manabe.
-- Source available from https://github.com/trevorbaca/sekka/.
+
+..  - Source available from https://github.com/trevorbaca/sekka/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230676212&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230676212&color=ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -136,18 +150,21 @@ Sekka (2007)
         :title: Page 6 of Sekka,
                 by Trevor Bača.
 
+----
+
 Čáry (2006)
 ```````````
 
 - For bass flute.
 - Composed by `Trevor Bača`_.
 - Written for Carin Levine.
-- Source available from https://github.com/trevorbaca/cary/.
+
+..  - Source available from https://github.com/trevorbaca/cary/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230674427&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230674427&color=ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -163,6 +180,8 @@ Sekka (2007)
         :group: gallery
         :title: Page 6 of Čáry,
                 by Trevor Bača.
+
+----
 
 Poème Récursif (2005)
 `````````````````````

@@ -1,7 +1,9 @@
 2016-20
 =======
 
-The following works were composed with Abjad. Click on any image to zoom in.
+The following works were composed with Abjad.
+
+----
 
 Adumbration (2020)
 ``````````````````
@@ -14,7 +16,7 @@ Adumbration (2020)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/941581849&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/941581849&color=%23ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -30,6 +32,8 @@ Adumbration (2020)
         :group: gallery
         :title: Page 11 of Adumbration,
                 by Gregory Rowland Evans.
+
+----
 
 Chalk Line (2020)
 `````````````````
@@ -53,6 +57,8 @@ Chalk Line (2020)
         :title: Page 4 of Chalk Line,
                 by Gregory Rowland Evans.
 
+----
+
 Hamonshu (2018-20)
 ``````````````````
 
@@ -64,7 +70,7 @@ Hamonshu (2018-20)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/775289290&color=ff5500&amp&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/775289290&color=ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -81,6 +87,100 @@ Hamonshu (2018-20)
         :title: Page 4 of Hamonshu,
                 by Gregory Rowland Evans.
 
+----
+
+( H A R M O N Y ) (2019)
+````````````````````````
+
+- For narrator & nine players.
+- Composed by `Trevor Bača`_.
+- Text by Paul Griffiths.
+- Dedicated to Jonathan Hepfer.
+- Commissioned by Los Angeles's Monday Evening Concerts.
+- Source available from https://github.com/trevorbaca/harmony/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/841246819&color=%23ff5500&show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-harmony-page-10.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 10 of ( H A R M O N Y ),
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-harmony-page-29.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 29 of ( H A R M O N Y ),
+                by Trevor Bača.
+
+----
+
+Fabergé Investigations (2016/19)
+````````````````````````````````
+
+- For eight players.
+- Composed by `Trevor Bača`_.
+- Written for ensemble recherche.
+- Source available from https://github.com/trevorbaca/faberge/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/837148120&color=%23ff5500&show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-faberge-page-1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of Fabergé Investigations,
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-faberge-page-36.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 36 of Fabergé Investigations,
+                by Trevor Bača.
+
+----
+
+Nähte (2018)
+````````````
+
+- For cello.
+- Composed by `Trevor Bača`_.
+- Written for Ashley Walters.
+- Source available from https://github.com/trevorbaca/naehte/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/652622003&color=%23ff5500&show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-naehte-page-1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of Nähte,
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-naehte-page-2.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 2 of Nähte,
+                by Trevor Bača.
+
+----
+
 GUERRERO (2018)
 ```````````````
 
@@ -92,7 +192,7 @@ GUERRERO (2018)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/610541151&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/610541151&color=%23ff5500&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -108,6 +208,38 @@ GUERRERO (2018)
         :group: gallery
         :title: Page 10 of GUERRERO,
                 by Gregory Rowland Evans.
+
+----
+
+Mráz (2017)
+```````````
+
+- For guitar.
+- Composed by `Trevor Bača`_.
+- Written for Jared Redmond.
+- Source available from https://github.com/trevorbaca/mraz/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/330435859&color=%23ff5500&show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-mraz-page-4.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 4 of Mráz,
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-mraz-page-5.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 5 of Mráz,
+                by Trevor Bača.
+
+----
 
 Demarest/Lloyd (2016)
 `````````````````````
@@ -131,3 +263,63 @@ Demarest/Lloyd (2016)
         :group: gallery
         :title: Page 28 of Demarest/Lloyd,
                 by Josiah Wolf Oberholtzer.
+
+----
+
+Spiel der Dornen (2016)
+```````````````````````
+
+- For guitar.
+- Composed by `Trevor Bača`_.
+- Written for Nico Couck.
+- Source available from https://github.com/trevorbaca/dornen/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/329499285&color=%23ff5500&show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-dornen-page-1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of Spiel der Dornen,
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-dornen-page-2.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 2 of Spiel der Dornen,
+                by Trevor Bača.
+
+----
+
+Ikribu (2016)
+`````````````
+
+- For bass clarinet, violin, viola and cello.
+- Composed by `Trevor Bača`_.
+- Written for Distractfold.
+- Source available from https://github.com/trevorbaca/ikribu/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/324342383&color=%23ff5500show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-ikribu-page-16.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 16 of Ikribu,
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-ikribu-page-17.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 17 of Ikribu,
+                by Trevor Bača.

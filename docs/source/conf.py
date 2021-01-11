@@ -45,12 +45,12 @@ project = "Abjad"
 release = abjad.__version__
 rst_epilog = """
 ..  _Bača: https://github.com/trevorbaca
-..  _Fredrik Wallberg: http://quesebifurcan.github.io/music/
-..  _Jeffrey Treviño: http://www.jeffreytrevino.com/
+..  _Fredrik Wallberg: http://quesebifurcan.github.io/music
+..  _Jeffrey Treviño: https://soundcloud.com/jefftrevino
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com
-..  _Gregory Rowland Evans: http://www.gregoryrowlandevans.com/
+..  _Gregory Rowland Evans: http://www.gregoryrowlandevans.com
 ..  _Oberholtzer: https://github.com/josiah-wolf-oberholtzer
-..  _Trevor Bača: http://www.trevorbaca.com/
+..  _Trevor Bača: http://www.trevorbaca.com
 """
 rst_prolog = """
 ..  role:: author
