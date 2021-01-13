@@ -44,12 +44,12 @@ Define appropriately invertible hexachords:
 
 ::
 
-    >>> source_hex = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])
-    >>> hexachord_permutations = [
-    ...     source_hex,
-    ...     source_hex.invert(),
-    ...     source_hex.retrograde().transpose((0 - source_hex[-1].number)),
-    ...     source_hex.retrograde().transpose((0 - source_hex[-1].number)).invert(),
+    >>> hexachord = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])
+    >>> permutations = [
+    ...     hexachord,
+    ...     hexachord.invert(),
+    ...     hexachord.retrograde().transpose((0 - hexachord[-1].number)),
+    ...     hexachord.retrograde().transpose((0 - hexachord[-1].number)).invert(),
     ... ]
     ...
 
@@ -57,28 +57,28 @@ Illustrate parallel-inverted collection from first hexachord permutation:
 
 ::
 
-    >>> file = illustrate_collection(hexachord_permutations[0], -24, 25)
+    >>> file = illustrate_collection(permutations[0], -24, 25)
     >>> abjad.show(file)
 
 Illustrate parallel-inverted collection from second hexachord permutation:
 
 ::
 
-    >>> file = illustrate_collection(hexachord_permutations[1], -24, 25)
+    >>> file = illustrate_collection(permutations[1], -24, 25)
     >>> abjad.show(file)
 
 Illustrate parallel-inverted collection from third hexachord permutation:
 
 ::
 
-    >>> file = illustrate_collection(hexachord_permutations[2], -24, 25)
+    >>> file = illustrate_collection(permutations[2], -24, 25)
     >>> abjad.show(file)
 
 Illustrate parallel-inverted collection from fourth hexachord permutation:
 
 ::
 
-    >>> file = illustrate_collection(hexachord_permutations[3], -24, 25)
+    >>> file = illustrate_collection(permutations[3], -24, 25)
     >>> abjad.show(file)
 
 :author:`[Evans (3.2)]`
