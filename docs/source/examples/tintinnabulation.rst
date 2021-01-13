@@ -1,5 +1,5 @@
-Score reproduction
-==================
+Tintinnabulation
+================
 
 ::
 
@@ -18,7 +18,7 @@ descents per instruments as there are pitches in its overall scale.
 
 ::
 
-    >>> def create_pitch_contour_reservoir():
+    >>> def make_scalar_descents():
     ...     string = """
     ...         a, b, c d e f g
     ...         a b c' d' e' f' g'
@@ -45,60 +45,74 @@ descents per instruments as there are pitches in its overall scale.
     ...         reservoir[name] = tuple(pitch_descents)
     ...     return reservoir
 
-Here's what the first 10 descents for the first violin look like:
+Here are the violin descents:
 
 ::
 
-    >>> reservoir = create_pitch_contour_reservoir()
-    >>> len(reservoir["Violin_1"])
-
-    >>> for i in range(10):
-    ...     descent = reservoir["Violin_1"][i]
-    ...     string = " ".join(str(x) for x in descent)
+    >>> voice_name_to_descents = make_scalar_descents()
+    >>> descents = voice_name_to_descents["Violin_1"]
+    >>> for descent in descents:
+    ...     string = " ".join(str(_) for _ in descent)
     ...     print(string)
-    ...
 
 Next we add dyads to all of the descents, except for the viola's. We'll use a dictionary
-as a lookup table, to tell us what interval to add below a given pitch class.
+as a lookup table, to tell us what interval to add below a given pitch class. Nonfinal
+descents are treated one way; the final descent in each reservoir is treated another way:
 
 ::
 
-    >>> def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
-    ...     shadow_pitch_lookup = {
-    ...         abjad.NamedPitchClass("a"): -5,  # add a P4 below
-    ...         abjad.NamedPitchClass("g"): -3,  # add a m3 below
-    ...         abjad.NamedPitchClass("f"): -1,  # add a m2 below
-    ...         abjad.NamedPitchClass("e"): -4,  # add a M3 below
-    ...         abjad.NamedPitchClass("d"): -2,  # add a M2 below
-    ...         abjad.NamedPitchClass("c"): -3,  # add a m3 below
-    ...         abjad.NamedPitchClass("b"): -2,  # add a M2 below
+    >>> def make_pitch_pair_descents(voice_to_scalar_descents):
+    ...     pc_to_shadow_interval = {
+    ...         "a": -5,  # add a P4 below
+    ...         "g": -3,  # add a m3 below
+    ...         "f": -1,  # add a m2 below
+    ...         "e": -4,  # add a M3 below
+    ...         "d": -2,  # add a M2 below
+    ...         "c": -3,  # add a m3 below
+    ...         "b": -2,  # add a M2 below
     ...     }
-    ...     shadowed_reservoir = {}
-    ...     for name, pitch_contours in pitch_contour_reservoir.items():
-    ...         # The viola does not receive any dyads
-    ...         if name == "Viola":
-    ...             shadowed_reservoir["Viola"] = pitch_contours
+    ...     voice_to_pitch_pair_descents = {}
+    ...     for voice_name, scalar_descents in voice_to_scalar_descents.items():
+    ...         if voice_name == "Viola":
+    ...             voice_to_pitch_pair_descents["Viola"] = scalar_descents
     ...             continue
-    ...         shadowed_pitch_contours = []
-    ...         for pitch_contour in pitch_contours[:-1]:
-    ...             shadowed_pitch_contour = []
-    ...             for pitch in pitch_contour:
-    ...                 pitch_class = pitch.pitch_class
-    ...                 shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
-    ...                 dyad = (shadow_pitch, pitch)
-    ...                 shadowed_pitch_contour.append(dyad)
-    ...             shadowed_pitch_contours.append(tuple(shadowed_pitch_contour))
-    ...         # treat the final contour differently: the last note does not become a dyad
-    ...         final_shadowed_pitch_contour = []
-    ...         for pitch in pitch_contours[-1][:-1]:
-    ...             pitch_class = pitch.pitch_class
-    ...             shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
-    ...             dyad = (shadow_pitch, pitch)
-    ...             final_shadowed_pitch_contour.append(dyad)
-    ...         final_shadowed_pitch_contour.append(pitch_contours[-1][-1])
-    ...         shadowed_pitch_contours.append(tuple(final_shadowed_pitch_contour))
-    ...         shadowed_reservoir[name] = tuple(shadowed_pitch_contours)
-    ...     return shadowed_reservoir
+    ...         pitch_pair_descents = []
+    ...         for scalar_descent in scalar_descents[:-1]:
+    ...             pitch_pair_descent = []
+    ...             for pitch in scalar_descent:
+    ...                 pitch_class = str(pitch.pitch_class)
+    ...                 shadow_pitch = pitch + pc_to_shadow_interval[pitch_class]
+    ...                 pitch_pair = (shadow_pitch, pitch)
+    ...                 pitch_pair_descent.append(pitch_pair)
+    ...             pitch_pair_descents.append(tuple(pitch_pair_descent))
+    ...         final_pitch_pair_descent = []
+    ...         for pitch in scalar_descents[-1][:-1]:
+    ...             pitch_class = str(pitch.pitch_class)
+    ...             shadow_pitch = pitch + pc_to_shadow_interval[pitch_class]
+    ...             pitch_pair = (shadow_pitch, pitch)
+    ...             final_pitch_pair_descent.append(pitch_pair)
+    ...         final_pitch_pair_descent.append(scalar_descents[-1][-1])
+    ...         pitch_pair_descents.append(tuple(final_pitch_pair_descent))
+    ...         voice_to_pitch_pair_descents[voice_name] = tuple(pitch_pair_descents)
+    ...     return voice_to_pitch_pair_descents
+
+Here's what's inside:
+
+::
+
+    >>> voice_to_descents = make_scalar_descents()
+    >>> voice_to_descents = make_pitch_pair_descents(voice_to_descents)
+    >>> descents = voice_to_descents["Violin_1"]
+    >>> for descent in descents[:7]:
+    ...     strings = []
+    ...     for item in descent:
+    ...         if isinstance(item, tuple):
+    ...             string = f"({str(item[0])}, {str(item[1])})"
+    ...         else:
+    ...             string = str(item)
+    ...         strings.append(string)
+    ...     string = " ".join(strings)
+    ...     print(string)
 
 Finally, we'll add rhythms to the pitch contours we've been constructing. Each string
 instrument plays twice as slow as the string instrument above it in the score.
@@ -107,11 +121,11 @@ their rhythms.
 
 ::
 
-    >>> def durate_pitch_contour_reservoir(pitch_contour_reservoir):
-    ...     names = ["Violin_1", "Violin_2", "Viola", "Cello", "Bass"]
-    ...     durated_reservoir = {}
-    ...     for i, name in enumerate(names):
-    ...         long_duration = abjad.Duration(1, 2) * pow(2, i)
+    >>> def make_chord_descents(voice_to_pitch_pair_descents):
+    ...     voice_names = ["Violin_1", "Violin_2", "Viola", "Cello", "Bass"]
+    ...     voice_to_descents = {}
+    ...     for i, voice_name in enumerate(voice_names):
+    ...         long_duration = abjad.Duration(1, 2) * (2 ** i)
     ...         short_duration = long_duration / 2
     ...         rest_duration = abjad.Multiplier(3, 2) * long_duration
     ...         div = rest_duration // abjad.Duration(3, 2)
@@ -120,97 +134,89 @@ their rhythms.
     ...         for i in range(div):
     ...             rest = abjad.MultimeasureRest((3, 2))
     ...             initial_rest.append(rest)
-    ...         maker = abjad.LeafMaker()
     ...         if mod:
-    ...             initial_rest += maker([None], mod)
-    ...         durated_contours = [tuple(initial_rest)]
-    ...         pitch_contours = pitch_contour_reservoir[name]
+    ...             rest = abjad.Rest(mod)
+    ...             initial_rest.append(rest)
+    ...         chord_descents = [tuple(initial_rest)]
+    ...         pitch_pair_descents = voice_to_pitch_pair_descents[voice_name]
     ...         durations = [long_duration, short_duration]
     ...         counter = 0
-    ...         maker = abjad.LeafMaker()
-    ...         for pitch_contour in pitch_contours:
-    ...             contour = []
-    ...             for pitch in pitch_contour:
-    ...                 leaves = maker([pitch], [durations[counter]])
-    ...                 contour.extend(leaves)
+    ...         for pitch_pair_descent in pitch_pair_descents:
+    ...             chord_descent = []
+    ...             for pitch in pitch_pair_descent:
+    ...                 duration = durations[counter]
+    ...                 if isinstance(pitch, tuple):
+    ...                     chord = abjad.Chord(pitch, duration)
+    ...                     chord_descent.append(chord)
+    ...                 else:
+    ...                     assert isinstance(pitch, abjad.NamedPitch)
+    ...                     note = abjad.Note(pitch, duration)
+    ...                     chord_descent.append(note)
     ...                 counter = (counter + 1) % 2
-    ...             durated_contours.append(tuple(contour))
-    ...         durated_reservoir[name] = tuple(durated_contours)
-    ...     return durated_reservoir
+    ...             chord_descents.append(tuple(chord_descent))
+    ...         voice_to_descents[voice_name] = tuple(chord_descents)
+    ...     return voice_to_descents
 
-Let's see what a few of those look like. First, we'll build the entire reservoir from
-scratch, to demonstrate the process:
-
-::
-
-    >>> reservoir = create_pitch_contour_reservoir()
-    >>> shadowed_reservoir = shadow_pitch_contour_reservoir(reservoir)
-    >>> durated_reservoir = durate_pitch_contour_reservoir(shadowed_reservoir)
-
-Then we'll grab the subreservoir for the first violins, taking the first ten descents
-(which includes the silences we've been adding as well). We'll label each descent with
-some markup, to distinguish them, throw them into a Staff and give them a 6/4 time
-signature, just so they line up properly.
+Let's see what a few of these look like. First we build everything:
 
 ::
 
-    >>> descents = durated_reservoir["Violin_1"][:10]
-    >>> for i, descent in enumerate(descents[1:], 1):
+    >>> voice_to_descents = make_scalar_descents()
+    >>> voice_to_descents = make_pitch_pair_descents(voice_to_descents)
+    >>> voice_to_descents = make_chord_descents(voice_to_descents)
+
+Here are the first ten violin 1 descents:
+
+::
+
+    >>> descents = voice_to_descents["Violin_1"][:10]
+    >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
     ...     markup = abjad.Markup(string, direction=abjad.Up, literal=True)
     ...     abjad.attach(markup, descent[0])
     ...
 
-..  book::
-    :lilypond/no-stylesheet:
-
-    >>> notes = abjad.sequence(descents).flatten()
-    >>> staff = abjad.Staff(notes)
+    >>> leaves = abjad.sequence(descents).flatten()
+    >>> staff = abjad.Staff(leaves)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select(staff).leaf(0)
     >>> abjad.attach(time_signature, leaf)
     >>> abjad.show(staff)
 
-Let's look at the second violins too:
+Here are the first ten violin 2 descents:
 
 ::
 
-    >>> descents = durated_reservoir["Violin_2"][:10]
-    >>> for i, descent in enumerate(descents[1:], 1):
+    >>> descents = voice_to_descents["Violin_2"][:10]
+    >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
     ...     markup = abjad.Markup(string, direction=abjad.Up, literal=True)
     ...     abjad.attach(markup, descent[0])
     ...
 
-..  book::
-    :lilypond/no-stylesheet:
-
-    >>> notes = abjad.sequence(descents).flatten()
-    >>> staff = abjad.Staff(notes)
+    >>> leaves = abjad.sequence(descents).flatten()
+    >>> staff = abjad.Staff(leaves)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select(staff).leaf(0)
     >>> abjad.attach(time_signature, leaf)
     >>> abjad.show(staff)
 
-And, last we'll take a peek at the violas. They have some longer notes, so we'll split
-their music cyclically every 3 half notes, just so nothing crosses the bar lines
-accidentally:
+Here are the first ten viola descents. They have some longer notes, so we'll split their
+music cyclically every 3 half notes, just so nothing crosses the bar lines accidentally:
 
-::
+..  book::
+    :lilypond/no-stylesheet:
 
-    >>> descents = durated_reservoir["Viola"][:10]
-    >>> for i, descent in enumerate(descents[1:], 1):
+    >>> descents = voice_to_descents["Viola"][:10]
+    >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
     ...     markup = abjad.Markup(string, direction=abjad.Up, literal=True)
     ...     abjad.attach(markup, descent[0])
     ...
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> notes = abjad.sequence(descents).flatten()
     >>> staff = abjad.Staff(notes)
-    >>> shards = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
+    >>> selections = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select(staff).leaf(0)
     >>> abjad.attach(time_signature, leaf)
@@ -219,175 +225,147 @@ accidentally:
 You can see how each part is twice as slow as the previous, and starts a little bit later
 too. 
 
-Now we'll attach dynamics, articulations, bow markings, markup, page breaks and rehearsal
+Now we'll attach dynamics, articulations, bow marks, markup, page breaks and rehearsal
 marks.
-
-We'll start with the bow marks. This involves creating a piece of custom markup. We then
-copy the markup and attach copies where we want them in the score. Why make copies of the
-markup?  An indicator can only be attached to one note at a time. If we attach the
-original markup to each note in turn, only the last note will receive the markup; the
-markup will be automatically detached from the preceding notes. We attach dynamics and
-expressive marks directly. We attach rehearsal marks and LilyPond line breaks to match
-the layout of the original.
 
 ::
 
-    >>> def make_bell_phrase():
-    ...     phrase = []
-    ...     for _ in range(3):
-    ...         measure = abjad.Container("r2. a'2.")
-    ...         abjad.attach(abjad.TimeSignature((6, 4)), measure[0])
-    ...         abjad.attach(abjad.LaissezVibrer(), measure[-1])
-    ...         phrase.append(measure)
-    ...         phrase.append(abjad.Container("R1."))
-    ...     for _ in range(2):
-    ...         phrase.append(abjad.Container("R1."))
-    ...     return phrase
-
-
-    >>> def add_bell_music_to_score(score):
+    >>> def add_bell_music(score):
     ...     bell_voice = score["Bell_Voice"]
-    ...     for _ in range(11):
-    ...         bell_voice.extend(make_bell_phrase())
-    ...     for _ in range(19):
-    ...         bell_voice.append(abjad.Container("R1."))
-    ...     measure = abjad.Container(r"a'1.")
-    ...     abjad.attach(abjad.LaissezVibrer(), measure[-1])
-    ...     bell_voice.append(measure)
+    ...     strings = 3 * [r"{ r2. a'2. \laissezVibrer }", "{ R1. }"]
+    ...     strings.extend(["{ R1. }", "{ R1. }"])
+    ...     strings = 11 * strings
+    ...     for string in strings:
+    ...         bell_voice.append(string)
+    ...     strings = 19 * ["{ R1. }"]
+    ...     for string in strings:
+    ...         bell_voice.append(string)
+    ...     bell_voice.append(r"{ a'1. \laissezVibrer }")
 
-
-    >>> def add_string_music_to_score(score):
-    ...     # generate some pitch and rhythm information
-    ...     pitch_contour_reservoir = create_pitch_contour_reservoir()
-    ...     shadowed_contour_reservoir = shadow_pitch_contour_reservoir(pitch_contour_reservoir)
-    ...     durated_reservoir = durate_pitch_contour_reservoir(shadowed_contour_reservoir)
-    ...     # add six dotted-whole notes and the durated contours to each string voice
-    ...     for name, descents in durated_reservoir.items():
-    ...         instrument_voice = score["%s_Voice" % name]
-    ...         instrument_voice.extend("R1. R1. R1. R1. R1. R1.")
-    ...         for descent in descents:
-    ...             instrument_voice.extend(descent)
-    ...     # apply instrument-specific edits
-    ...     edit_violin_1_voice(score, durated_reservoir)
-    ...     edit_violin_2_voice(score, durated_reservoir)
-    ...     edit_viola_voice(score, durated_reservoir)
-    ...     edit_cello_voice(score, durated_reservoir)
-    ...     edit_bass_voice(score, durated_reservoir)
-    ...     # chop all string parts into 6/4 measures
-    ...     strings_staff_group = score["Strings_Staff_Group"]
-    ...     # NOTE: this takes a long time:
-    ...     for voice in abjad.select(strings_staff_group).components(abjad.Voice):
-    ...         shards = abjad.mutate.split(voice[:], [(6, 4)], cyclic=True)
-    ...         for shard in shards:
-    ...             container = abjad.Container()
-    ...             abjad.mutate.wrap(shard, container)
-
-
-    >>> def edit_violin_1_voice(score, durated_reservoir):
+    >>> def edit_violin_1(score, voice_to_descents):
     ...     voice = score["Violin_1_Voice"]
-    ...     descents = durated_reservoir["Violin_1"]
-    ...     last_descent = abjad.Selection(descents[-1])
-    ...     copied_descent = abjad.mutate.copy(last_descent)
-    ...     voice.extend(copied_descent)
-    ...     final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
-    ...     maker = abjad.NoteMaker()
-    ...     final_sustain_notes = maker(["c'"], final_sustain_rhythm)
-    ...     voice.extend(final_sustain_notes)
-    ...     abjad.tie(final_sustain_notes)
-    ...     voice.extend("r4 r2.")
+    ...     descents = voice_to_descents["Violin_1"]
+    ...     container = abjad.Container(descents[-1])
+    ...     for duration in 43 * [(6, 4)]:
+    ...         note = abjad.Note("c'", duration)
+    ...         tie = abjad.Tie()
+    ...         abjad.attach(tie, note)
+    ...         container.append(note)
+    ...     container.extend("c'2 r4 r2.")
+    ...     voice.extend(container)
 
-
-    >>> def edit_violin_2_voice(score, durated_reservoir):
+    >>> def edit_violin_2(score, voice_to_descents):
     ...     voice = score["Violin_2_Voice"]
-    ...     descents = durated_reservoir["Violin_2"]
-    ...     last_descent = abjad.Selection(descents[-1])
-    ...     copied_descent = abjad.mutate.copy(last_descent)
-    ...     copied_descent = list(copied_descent)
-    ...     copied_descent[-1].written_duration = abjad.Duration(1, 1)
-    ...     copied_descent.append(abjad.Note("a2"))
-    ...     for leaf in copied_descent:
+    ...     descents = voice_to_descents["Violin_2"]
+    ...     container = abjad.Container(descents[-1])
+    ...     container[-1].written_duration = (1, 1)
+    ...     container.append("a2")
+    ...     for leaf in container:
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, leaf)
     ...         articulation = abjad.Articulation("tenuto")
     ...         abjad.attach(articulation, leaf)
-    ...     voice.extend(copied_descent)
-    ...     final_sustain = []
-    ...     for _ in range(32):
-    ...         final_sustain.append(abjad.Note("a1."))
-    ...     final_sustain.append(abjad.Note("a2"))
-    ...     final_sustain = abjad.Selection(final_sustain)
+    ...     voice.extend(container)
+    ...     string = " ".join(32 * ["a1."]) + " a2"
+    ...     container = abjad.Container(string)
     ...     articulation = abjad.Articulation("accent")
-    ...     abjad.attach(articulation, final_sustain[0])
+    ...     abjad.attach(articulation, container[0])
     ...     articulation = abjad.Articulation("tenuto")
-    ...     abjad.attach(articulation, final_sustain[0])
-    ...     voice.extend(final_sustain)
-    ...     abjad.tie(final_sustain)
-    ...     voice.extend("r4 r2.")
+    ...     abjad.attach(articulation, container[0])
+    ...     for leaf in container[:-1]:
+    ...         tie = abjad.Tie()
+    ...         abjad.attach(tie, leaf)
+    ...     container.extend("r4 r2.")
+    ...     voice.extend(container)
 
-
-    >>> def edit_viola_voice(score, durated_reservoir):
+    >>> def edit_viola(score, voice_to_descents):
     ...     voice = score["Viola_Voice"]
-    ...     descents = durated_reservoir["Viola"]
-    ...     for leaf in descents[-1]:
-    ...         articulation = abjad.Articulation("accent")
-    ...         abjad.attach(articulation, leaf)
-    ...         articulation = abjad.Articulation("tenuto")
-    ...         abjad.attach(articulation, leaf)
-    ...     last_descent = abjad.Selection(descents[-1])
-    ...     copied_descent = abjad.mutate.copy(last_descent)
-    ...     for leaf in copied_descent:
+    ...     descents = voice_to_descents["Viola"]
+    ...     container = abjad.Container(descents[-1])
+    ...     for leaf in container:
     ...         if leaf.written_duration == abjad.Duration(4, 4):
-    ...             leaf.written_duration = abjad.Duration(8, 4)
+    ...             leaf.written_duration = (8, 4)
     ...         else:
-    ...             leaf.written_duration = abjad.Duration(4, 4)
-    ...     voice.extend(copied_descent)
-    ...     bridge = abjad.Note("e1")
-    ...     articulation = abjad.Articulation("tenuto")
-    ...     abjad.attach(articulation, bridge)
-    ...     articulation = abjad.Articulation("accent")
-    ...     abjad.attach(articulation, bridge)
-    ...     voice.append(bridge)
-    ...     final_sustain_rhythm = [(6, 4)] * 21 + [(1, 2)]
-    ...     maker = abjad.NoteMaker()
-    ...     final_sustain_notes = maker(["e"], final_sustain_rhythm)
-    ...     articulation = abjad.Articulation("accent")
-    ...     abjad.attach(articulation, final_sustain_notes[0])
-    ...     articulation = abjad.Articulation("tenuto")
-    ...     abjad.attach(articulation, final_sustain_notes[0])
-    ...     voice.extend(final_sustain_notes)
-    ...     abjad.tie(final_sustain_notes)
-    ...     voice.extend("r4 r2.")
-
-
-    >>> def edit_cello_voice(score, durated_reservoir):
-    ...     voice = score["Cello_Voice"]
-    ...     descents = durated_reservoir["Cello"]
-    ...     logical_tie = abjad.select(voice[-1]).logical_tie()
-    ...     for leaf in logical_tie.leaves:
-    ...         parent = abjad.get.parentage(leaf).parent
-    ...         index = parent.index(leaf)
-    ...         parent[index] = abjad.Chord(["e,", "a,"], leaf.written_duration)
-    ...     selection = voice[-len(descents[-1]) :]
-    ...     unison_descent = abjad.mutate.copy(selection)
-    ...     voice.extend(unison_descent)
-    ...     for chord in unison_descent:
-    ...         index = abjad.get.parentage(chord).parent.index(chord)
-    ...         parent[index] = abjad.Note(chord.written_pitches[1], chord.written_duration)
+    ...             leaf.written_duration = (4, 4)
     ...         articulation = abjad.Articulation("accent")
-    ...         abjad.attach(articulation, parent[index])
+    ...         abjad.attach(articulation, leaf)
     ...         articulation = abjad.Articulation("tenuto")
-    ...         abjad.attach(articulation, parent[index])
+    ...         abjad.attach(articulation, leaf)
+    ...     container.append("e1")
+    ...     articulation = abjad.Articulation("tenuto")
+    ...     abjad.attach(articulation, container[-1])
+    ...     articulation = abjad.Articulation("accent")
+    ...     abjad.attach(articulation, container[-1])
+    ...     container.append("e1.")
+    ...     articulation = abjad.Articulation("accent")
+    ...     abjad.attach(articulation, container[-1])
+    ...     articulation = abjad.Articulation("tenuto")
+    ...     abjad.attach(articulation, container[-1])
+    ...     tie = abjad.Tie()
+    ...     abjad.attach(tie, container[-1])
+    ...     for duration in 20 * [(6, 4)]:
+    ...         note = abjad.Note("e", duration)
+    ...         tie = abjad.Tie()
+    ...         abjad.attach(tie, note)
+    ...         container.append(note)
+    ...     container.extend("e2 r4 r2.")
+    ...     voice.extend(container)
+
+    >>> def edit_cello(score, voice_to_descents):
+    ...     voice = score["Cello_Voice"]
+    ...     logical_tie = abjad.select(voice[-1]).logical_tie()
+    ...     for leaf in logical_tie:
+    ...         chord = abjad.Chord(["e,", "a,"], leaf.written_duration)
+    ...         abjad.mutate.replace(leaf, chord)
+    ...     descents = voice_to_descents["Cello"]
+    ...     descent = descents[-1]
+    ...     voice.extend(descent)
+    ...     for chord in descent:
+    ...         if isinstance(chord, abjad.Note):
+    ...             continue
+    ...         pitch = chord.written_pitches[1]
+    ...         note = abjad.Note(pitch, chord.written_duration)
+    ...         articulation = abjad.Articulation("accent")
+    ...         abjad.attach(articulation, note)
+    ...         articulation = abjad.Articulation("tenuto")
+    ...         abjad.attach(articulation, note)
+    ...         abjad.mutate.replace(chord, note)
     ...     voice.extend("a,1. ~ a,2")
     ...     voice.extend("b,1 ~ b,1. ~ b,1.")
     ...     voice.extend("a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,2")
     ...     voice.extend("r4 r2.")
 
-    >>> def edit_bass_voice(score, durated_reservoir):
+    >>> def edit_bass(score, voice_to_descents):
     ...     string = r"<e, e>1. ~ <e, e>1. ~ <e, e>1 ~ <e, e>2 ~"
     ...     string += r" <e, e>1. ~ <e, e>1. ~ <e, e>2"
     ...     string += r" <d, d>\longa <c, c>\maxima"
     ...     string += r" <b,>\longa <a,>\maxima r4 r2."
     ...     score["Bass_Voice"][-3:] = string
+
+
+    >>> def add_string_music(score):
+    ...     voice_to_descents = make_scalar_descents()
+    ...     voice_to_descents = make_pitch_pair_descents(voice_to_descents)
+    ...     voice_to_descents = make_chord_descents(voice_to_descents)
+    ...     for name, descents in voice_to_descents.items():
+    ...         instrument_voice = score["%s_Voice" % name]
+    ...         instrument_voice.extend("R1. R1. R1. R1. R1. R1.")
+    ...         for descent in descents:
+    ...             instrument_voice.extend(descent)
+    ...     extra_components = make_scalar_descents()
+    ...     extra_components = make_pitch_pair_descents(extra_components)
+    ...     extra_components = make_chord_descents(extra_components)
+    ...     edit_violin_1(score, extra_components)
+    ...     edit_violin_2(score, extra_components)
+    ...     edit_viola(score, extra_components)
+    ...     edit_cello(score, extra_components)
+    ...     edit_bass(score, extra_components)
+    ...     strings_staff_group = score["Strings_Staff_Group"]
+    ...     for voice in abjad.select(strings_staff_group).components(abjad.Voice):
+    ...         selections = abjad.mutate.split(voice[:], [(6, 4)], cyclic=True)
+    ...         for selection in selections:
+    ...             container = abjad.Container()
+    ...             abjad.mutate.wrap(selection, container)
 
     >>> rebow_string = r"""\markup \concat {
     ...     \musicglyph "scripts.downbow" \hspace #1 \musicglyph "scripts.upbow"
@@ -514,7 +492,7 @@ the layout of the original.
     ...     dynamic = abjad.Dynamic("fff")
     ...     abjad.attach(dynamic, voice[62][0])
 
-    >>> def attach_markup_commands(score, commands):
+    >>> def handle_markup_commands(score, commands):
     ...     for command in commands:
     ...         voice_name, measure_index, leaf_index, string = command[:4]
     ...         if len(command) == 5:
@@ -527,18 +505,11 @@ the layout of the original.
     ...         markup = abjad.Markup(string, direction=direction, literal=True)
     ...         abjad.attach(markup, voice[measure_index][leaf_index])
 
-    >>> def attach_final_bar_lines(score):
-    ...     last_leaf = abjad.select(score).leaf(-1)
-    ...     bar_line = abjad.BarLine("|.")
-    ...     abjad.attach(bar_line, last_leaf)
-
-
     >>> def attach_page_breaks(score, measure_indices):
     ...     bell_voice = score["Bell_Voice"]
     ...     for measure_index in measure_indices:
     ...         command = abjad.LilyPondLiteral(r"\break", "after")
     ...         abjad.attach(command, bell_voice[measure_index])
-
 
     >>> def attach_rehearsal_marks(score):
     ...     bell_voice = score["Bell_Voice"]
@@ -565,88 +536,72 @@ the layout of the original.
     ...         command = abjad.LilyPondLiteral(r"\mark \default", "before")
     ...         abjad.attach(command, bell_voice[measure_index])
 
-
-    >>> def configure_score(score):
-    ...     # configure bell staff
-    ...     bell_staff = score["Bell_Staff"]
-    ...     leaf = abjad.select(bell_staff).leaf(0)
+    >>> def attach_upper_context_indicators(score):
+    ...     leaf = abjad.select(score["Bell_Staff"]).leaf(0)
+    ...     metronome_mark = abjad.MetronomeMark((1, 4), (112, 120))
+    ...     abjad.attach(metronome_mark, leaf)
+    ...     time_signature = abjad.TimeSignature((6, 4))
+    ...     abjad.attach(time_signature, leaf)
+    ...     instrument = abjad.Instrument(pitch_range="[C4, C6]")
+    ...     abjad.attach(instrument, leaf)
+    ...     string = r'\markup "Campana (La)"'
+    ...     string = rf'\set Staff.instrumentName = {string}'
+    ...     literal = abjad.LilyPondLiteral(string)
+    ...     abjad.attach(literal, leaf)
+    ...     string = r'\markup \hcenter-in #8 "Camp."'
+    ...     string = rf'\set Staff.shortInstrumentName = {string}'
+    ...     literal = abjad.LilyPondLiteral(string)
+    ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("treble")
     ...     abjad.attach(clef, leaf)
-    ...     bells = abjad.Instrument(
-    ...         name="Campana in La", short_name="Camp.", pitch_range="[C4, C6]"
-    ...     )
-    ...     abjad.attach(bells, leaf)
-    ...     mark = abjad.MetronomeMark((1, 4), (112, 120))
-    ...     abjad.attach(mark, leaf)
-    ...     # time_signature = abjad.TimeSignature((6, 4))
-    ...     # abjad.attach(time_signature, leaf)
-    ...     # configure first violin staff
-    ...     violin_1_staff = score["Violin_1_Staff"]
-    ...     leaf = abjad.select(violin_1_staff).leaf(0)
+    ...     leaf = abjad.select(score["Violin_1_Staff"]).leaf(0)
+    ...     instrument = abjad.Violin()
+    ...     abjad.attach(instrument, leaf)
+    ...     string = r'\markup \hcenter-in #8 "Vn. I"'
+    ...     string = rf'\set Staff.shortInstrumentName = {string}'
+    ...     literal = abjad.LilyPondLiteral(string)
+    ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("treble")
     ...     abjad.attach(clef, leaf)
-    ...     violin = abjad.Violin(
-    ...         markup=abjad.Markup("Violin I"), short_markup=abjad.Markup("Vl. I")
-    ...     )
-    ...     abjad.attach(violin, leaf)
-    ...     # configure second violin staff
-    ...     violin_2_staff = score["Violin_2_Staff"]
-    ...     leaf = abjad.select(violin_2_staff).leaf(0)
+    ...     leaf = abjad.select(score["Violin_2_Staff"]).leaf(0)
+    ...     instrument = abjad.Violin()
+    ...     abjad.attach(instrument, leaf)
+    ...     string = r'\markup \hcenter-in #8 "Vn. II"'
+    ...     string = rf'\set Staff.shortInstrumentName = {string}'
+    ...     literal = abjad.LilyPondLiteral(string)
+    ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("treble")
     ...     abjad.attach(clef, leaf)
-    ...     violin = abjad.Violin(
-    ...         markup=abjad.Markup("Violin II"), short_markup=abjad.Markup("Vl. II")
-    ...     )
-    ...     abjad.attach(violin, leaf)
-    ...     # configure viola staff
     ...     leaf = abjad.select(score["Viola_Staff"]).leaf(0)
+    ...     instrument = abjad.Viola()
+    ...     abjad.attach(instrument, leaf)
+    ...     string = r'\markup \hcenter-in #8 "Va."'
+    ...     string = rf'\set Staff.shortInstrumentName = {string}'
+    ...     literal = abjad.LilyPondLiteral(string)
+    ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("alto")
     ...     abjad.attach(clef, leaf)
-    ...     viola = abjad.Viola()
-    ...     abjad.attach(viola, leaf)
-    ...     # configure cello staff
     ...     leaf = abjad.select(score["Cello_Staff"]).leaf(0)
+    ...     instrument = abjad.Cello()
+    ...     abjad.attach(instrument, leaf)
+    ...     string = r'\markup \hcenter-in #8 "Vc."'
+    ...     string = rf'\set Staff.shortInstrumentName = {string}'
+    ...     literal = abjad.LilyPondLiteral(string)
+    ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, leaf)
-    ...     cello = abjad.Cello()
-    ...     abjad.attach(cello, leaf)
-    ...     # configure bass staff
     ...     leaf = abjad.select(score["Bass_Staff"]).leaf(0)
+    ...     instrument = abjad.Contrabass()
+    ...     abjad.attach(instrument, leaf)
+    ...     string = r'\markup \hcenter-in #8 "Cb."'
+    ...     string = rf'\set Staff.shortInstrumentName = {string}'
+    ...     literal = abjad.LilyPondLiteral(string)
+    ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, leaf)
-    ...     contrabass = abjad.Contrabass(short_markup=abjad.Markup("Cb."))
-    ...     abjad.attach(contrabass, leaf)
-    ...     # configure score
-    ...     vector = abjad.SpacingVector(0, 0, 8, 0)
-    ...     abjad.override(score).vertical_axis_group.staff_staff_spacing = vector
-    ...     abjad.override(score).staff_grouper.staff_staff_spacing = vector
-    ...     abjad.override(score).staff_symbol.thickness = 0.5
-    ...     scheme = abjad.Scheme("format-mark-box-numbers")
-    ...     abjad.setting(score).mark_formatter = scheme
-
-::
-
-    >>> def configure_lilypond_file(lilypond_file):
-    ...     lilypond_file._global_staff_size = 8
-    ...     context_block = abjad.ContextBlock(source_lilypond_type=r"Staff \RemoveEmptyStaves")
-    ...     abjad.override(context_block).vertical_axis_group.remove_first = True
-    ...     lilypond_file.layout_block.items.append(context_block)
-    ...     lilypond_file.paper_block.system_separator_markup = "slashSeparator"
-    ...     bottom_margin = abjad.LilyPondDimension(0.5, "in")
-    ...     lilypond_file.paper_block.bottom_margin = bottom_margin
-    ...     top_margin = abjad.LilyPondDimension(0.5, "in")
-    ...     lilypond_file.paper_block.top_margin = top_margin
-    ...     left_margin = abjad.LilyPondDimension(0.75, "in")
-    ...     lilypond_file.paper_block.left_margin = left_margin
-    ...     right_margin = abjad.LilyPondDimension(0.5, "in")
-    ...     lilypond_file.paper_block.right_margin = right_margin
-    ...     paper_width = abjad.LilyPondDimension(5.25, "in")
-    ...     lilypond_file.paper_block.paper_width = paper_width
-    ...     paper_height = abjad.LilyPondDimension(7.25, "in")
-    ...     lilypond_file.paper_block.paper_height = paper_height
-    ...     lilypond_file.header_block.composer = abjad.Markup("Arvo Pärt")
-    ...     title = "Cantus in Memory of Benjamin Britten (1980)"
-    ...     lilypond_file.header_block.title = abjad.Markup(title)
+    ...     leaf = abjad.select(score["Bass_Staff"]).leaf(-1)
+    ...     bar_line = abjad.BarLine("|.")
+    ...     abjad.attach(bar_line, leaf)
 
 ::
 
@@ -672,20 +627,57 @@ the layout of the original.
 
 ::
 
-    >>> def make_lilypond_file(breaks, markup_commands):
+    >>> def make_lilypond_file(preamble, breaks, markup_commands):
     ...     score = make_empty_score()
-    ...     add_bell_music_to_score(score)
-    ...     add_string_music_to_score(score)
+    ...     add_bell_music(score)
+    ...     add_string_music(score)
     ...     attach_bow_marks(score)
     ...     attach_dynamics(score)
-    ...     attach_markup_commands(score, markup_commands)
+    ...     handle_markup_commands(score, markup_commands)
     ...     attach_page_breaks(score, breaks)
     ...     attach_rehearsal_marks(score)
-    ...     attach_final_bar_lines(score)
-    ...     configure_score(score)
-    ...     lilypond_file = abjad.LilyPondFile.new(score)
-    ...     configure_lilypond_file(lilypond_file)
+    ...     attach_upper_context_indicators(score)
+    ...     lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     ...     return lilypond_file
+    
+::
+
+    >>> preamble =r"""#(set-global-staff-size 8)
+    ... 
+    ... \header {
+    ...     tagline = ##f
+    ...     composer = \markup { "Arvo Pärt" }
+    ...     title = \markup { "Cantus in Memory of Benjamin Britten (1980)" }
+    ... }
+    ... 
+    ... \layout {
+    ...     \context {
+    ...         \Staff
+    ...         \RemoveEmptyStaves
+    ...         \override VerticalAxisGroup.remove-first = ##t
+    ...     }
+    ...     \context {
+    ...         \Score
+    ...         \override StaffGrouper.staff-staff-spacing = #'(
+    ...             (basic-distance . 0) (minimum-distance . 0)
+    ...             (padding . 8) (stretchability . 0))
+    ...         \override StaffSymbol.thickness = #0.5
+    ...         \override VerticalAxisGroup.staff-staff-spacing = #'(
+    ...             (basic-distance . 0) (minimum-distance . 0)
+    ...             (padding . 8) (stretchability . 0))
+    ...         markFormatter = #format-mark-box-numbers
+    ...     }
+    ... }
+    ... 
+    ... \paper {
+    ...     system-separator-markup = #slashSeparator
+    ...     bottom-margin = 0.5\in
+    ...     top-margin = 0.5\in
+    ...     left-margin = 0.75\in
+    ...     right-margin = 0.5\in
+    ...     paper-width = 5.25\in
+    ...     paper-height = 7.25\in
+    ... }"""
 
 Finally, we make commands and create the score:
 
@@ -727,7 +719,8 @@ Finally, we make commands and create the score:
     :lilypond/pages: 1-10
     :lilypond/with-columns: 2
 
-    >>> lilypond_file = make_lilypond_file(breaks, markup_commands)
+    >>> lilypond_file = make_lilypond_file(preamble, breaks, markup_commands)
     >>> abjad.show(lilypond_file)
 
-:author:`[Treviño (2.19), Bača (3.2)]`
+:author:`[Treviño (2.19), Bača (3.2). From Arvo Pärt's Cantus In Memoriam Benjamin
+Britten (1980).]`

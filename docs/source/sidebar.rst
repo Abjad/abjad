@@ -36,9 +36,9 @@
     examples/rotation_by_row_index
     examples/row_derivation_by_trichord
     examples/scale_derivation_by_sieve
-    examples/score_assembly_strings
     examples/score_fragment_piano
     examples/superimposition_of_partials
+    examples/tintinnabulation
     examples/tone_clock_tesselation
     examples/trichord_definition_by_ratio
 

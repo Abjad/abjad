@@ -1,7 +1,69 @@
 2011-15
 =======
 
-The following works were composed with Abjad. Click on any image to zoom in.
+The following works were composed with Abjad.
+
+----
+
+Akasha (2015)
+`````````````
+
+- For string quartet.
+- Composed by `Trevor Bača`_.
+- Written for JACK Quartet.
+- Source available from https://github.com/trevorbaca/akasha/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/283071039&color=%23ff5500g&show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-akasha-page-7.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 7 of Akasha,
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-akasha-page-8.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 8 of Akasha,
+                by Trevor Bača.
+
+----
+
+Myrkr (2015)
+````````````
+
+- For bass clarinet.
+- Composed by `Trevor Bača`_.
+- Written for Richard Haynes.
+- Source available from https://github.com/trevorbaca/myrkr/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230978922&color=%23ff5500g&show_comments=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-myrkr-page-1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of Myrkr,
+                by Trevor Bača.
+
+    ..  thumbnail:: gallery/baca-myrkr-page-2.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 2 of Myrkr,
+                by Trevor Bača.
+
+----
 
 Al-kitab al-khamr (2015)
 ````````````````````````
@@ -14,7 +76,7 @@ Al-kitab al-khamr (2015)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230978308&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230978308&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -31,6 +93,8 @@ Al-kitab al-khamr (2015)
         :title: Page 11 of Al-kitab al-khamr,
                 by Trevor Bača.
 
+----
+
 Invisible Cities (iii): Ersilia (2015)
 ``````````````````````````````````````
 
@@ -42,7 +106,7 @@ Invisible Cities (iii): Ersilia (2015)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/208631991&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/208631991&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -59,18 +123,21 @@ Invisible Cities (iii): Ersilia (2015)
         :title: Page 10 of Invisible Cities (iii): Ersilia,
                 by Josiah Wolf Oberholtzer.
 
+----
+
 Ins wasser eingeschrieben (2015)
 ````````````````````````````````
 
 - For two violas.
 - Composed by `Trevor Bača`_.
 - Written for John Pickford Richards and Elizabeth Weisser.
-- Source available from https://github.com/trevorbaca/ins-wasser/.
+
+..  - Source available from https://github.com/trevorbaca/ins-wasser/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230977561&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230977561&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -87,6 +154,8 @@ Ins wasser eingeschrieben (2015)
         :title: Page 4 of Ins wasser eingeschrieben,
                 by Trevor Bača.
 
+----
+
 Invisible Cities (ii): Armilla (2015)
 `````````````````````````````````````
 
@@ -98,7 +167,7 @@ Invisible Cities (ii): Armilla (2015)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/206082457&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/206082457&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -115,6 +184,8 @@ Invisible Cities (ii): Armilla (2015)
         :title: Page 9 of Invisible Cities (ii): Armilla,
                 by Josiah Wolf Oberholtzer.
 
+----
+
 Refrain (2014)
 ``````````````
 
@@ -126,7 +197,7 @@ Refrain (2014)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/176190951&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/176190951&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -143,6 +214,8 @@ Refrain (2014)
         :title: Page 2 of Refrain,
                 by Jeffrey Treviño.
 
+----
+
 Huitzil (2014)
 ``````````````
 
@@ -154,7 +227,7 @@ Huitzil (2014)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243890076&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243890076&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -171,6 +244,8 @@ Huitzil (2014)
         :title: Page 13 of Huitzil,
                 by Trevor Bača.
 
+----
+
 Invisible Cities (i): Zaira (2014)
 ``````````````````````````````````
 
@@ -182,7 +257,7 @@ Invisible Cities (i): Zaira (2014)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/172956857&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/172956857&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -199,6 +274,8 @@ Invisible Cities (i): Zaira (2014)
         :title: Page 17 of Invisible Cities (i): Zaira,
                 by Josiah Wolf Oberholtzer.
 
+----
+
 Krummzeit (2014)
 ````````````````
 
@@ -210,7 +287,7 @@ Krummzeit (2014)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230976447&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230976447&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -227,18 +304,20 @@ Krummzeit (2014)
         :title: Page 81 of Krummzeit,
                 by Trevor Bača.
 
+----
+
 Plague Water (2014)
 ```````````````````
 
 - For baritone saxophone, electric guitar, piano and percussion.
 - Composed by `Josiah Wolf Oberholtzer`_.
 - Written for Ensemble Nikel.
-- Source available from https://github.com/josiah-wolf-oberholtzer/plague-water/.
+- Source available from https://github.com/josiah-wolf-oberholtzer/plague_water/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/145543310&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/145543310&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -255,6 +334,8 @@ Plague Water (2014)
         :title: Page 13 of Plague Water,
                 by Josiah Wolf Oberholtzer.
 
+----
+
 The World All Around (2012-13)
 ``````````````````````````````
 
@@ -266,7 +347,7 @@ The World All Around (2012-13)
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/176197340&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/176197340&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -283,18 +364,21 @@ The World All Around (2012-13)
         :title: Page 2 of The World All Around,
                 by Jeffrey Treviño.
 
+----
+
 Traiettorie inargentate (2013)
 ``````````````````````````````
 
 - For cello.
 - Composed by `Trevor Bača`_.
 - Written for Séverine Ballon.
-- Source available from https://github.com/trevorbaca/traiettorie/.
+
+..  - Source available from https://github.com/trevorbaca/traiettorie/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230973560&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230973560&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
@@ -311,6 +395,8 @@ Traiettorie inargentate (2013)
         :title: Page 7 of Traiettorie inargentate,
                 by Trevor Bača.
 
+----
+
 Cartography (2013)
 ``````````````````
 
@@ -325,6 +411,8 @@ Cartography (2013)
         :group: gallery
         :title: Bass flute part for Cartography,
                 by Fredrik Wallberg.
+
+----
 
 Aurora (2011)
 `````````````
@@ -348,18 +436,21 @@ Aurora (2011)
         :title: Page 7 of Aurora,
                 by Josiah Wolf Oberholtzer.
 
+----
+
 L'archipel du corps (2011)
 ``````````````````````````
 
 - For flute, guitar, accordion and percussion.
 - Composed by `Trevor Bača`_.
 - Written for Carin Levine, Jürgen Ruck, Stefan Hussong and Marta Klimasara.
-- Source available from https://github.com/trevorbaca/archipel/.
+
+..  - Source available from https://github.com/trevorbaca/archipel/.
 
 ..  raw:: html
 
     <p>
-    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230779736&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230779736&color=ff5500g&show_comments=false"></iframe>
     </p>
 
 ..  container:: table-row
