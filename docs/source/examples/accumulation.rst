@@ -11,13 +11,11 @@ Ligeti's piano etudes. We'll model the first two systems of the score. We model 
 as two voices inside a simultaneous container. The top voice will hold the octave. The
 lower voice will hold the eighth-note run:
 
-.. image :: images/desordre.png
-
 The functions we'll use:
 
 ::
 
-    >>> def make_desordre_cell(pitches, hand):
+    >>> def make_cell(pitches, hand):
     ...     pitches = pitches.split()
     ...     notes = [abjad.Note(pitch, (1, 8)) for pitch in pitches]
     ...     rh_lower_voice = abjad.Voice(notes, name=f"{hand}_Lower_Voice")
@@ -49,12 +47,12 @@ The functions we'll use:
 
 ::
 
-    >>> def make_desordre_measure(pitches, hand):
+    >>> def make_measure(pitches, hand):
     ...     measure = abjad.Container()
     ...     duration = 0
     ...     sublists = pitches.split("|")
     ...     for sublist in sublists:
-    ...         container = make_desordre_cell(sublist, hand)
+    ...         container = make_cell(sublist, hand)
     ...         duration += abjad.get.duration(container)
     ...         measure.append(container)
     ...     duration = duration.with_denominator(8)
@@ -65,18 +63,18 @@ The functions we'll use:
 
 ::
 
-    >>> def make_desordre_staff(pitches, hand):
+    >>> def make_staff(pitches, hand):
     ...     staff = abjad.Staff(name=f"{hand}_Staff")
     ...     for sequence in pitches:
-    ...         measure = make_desordre_measure(sequence, hand)
+    ...         measure = make_measure(sequence, hand)
     ...         staff.append(measure)
     ...     return staff
 
 ::
 
-    >>> def make_desordre_score(rh_pitches, lh_pitches):
-    ...     rh_staff = make_desordre_staff(rh_pitches, "RH")
-    ...     lh_staff = make_desordre_staff(lh_pitches, "LH")
+    >>> def make_score(rh_pitches, lh_pitches):
+    ...     rh_staff = make_staff(rh_pitches, "RH")
+    ...     lh_staff = make_staff(lh_pitches, "LH")
     ...     leaves = abjad.select(lh_staff).leaves()
     ...     abjad.iterpitches.respell_with_sharps(leaves)
     ...     staves = [rh_staff, lh_staff]
@@ -91,56 +89,48 @@ The functions we'll use:
     ...     abjad.attach(key_signature, first_note)
     ...     return score
 
-
 ::
 
-    >>> def make_desordre_lilypond_file(score):
-    ...     lilypond_file = abjad.LilyPondFile.new(
-    ...         music=score,
-    ...         default_paper_size=("a4", "letter"),
-    ...         global_staff_size=10,
-    ...     )
-    ...     lilypond_file.layout_block.indent = 0
-    ...     lilypond_file.layout_block.ragged_right = True
-    ...     lilypond_file.layout_block.merge_differently_dotted = True
-    ...     lilypond_file.layout_block.merge_differently_headed = True
-    ...     context_block = abjad.ContextBlock(source_lilypond_type="Score")
-    ...     lilypond_file.layout_block.items.append(context_block)
-    ...     context_block.remove_commands.append("Bar_number_engraver")
-    ...     context_block.remove_commands.append("Default_bar_line_engraver")
-    ...     context_block.remove_commands.append("Timing_translator")
-    ...     abjad.override(context_block).beam.breakable = True
-    ...     abjad.override(context_block).glissando.breakable = True
-    ...     abjad.override(context_block).note_column.ignore_collision = True
-    ...     abjad.override(context_block).spacing_spanner.uniform_stretching = True
-    ...     abjad.override(context_block).text_script.staff_padding = 4
-    ...     abjad.override(context_block).text_spanner.breakable = True
-    ...     abjad.override(context_block).time_signature.stencil = False
-    ...     abjad.override(context_block).tuplet_bracket.bracket_visibility = True
-    ...     abjad.override(context_block).tuplet_bracket.minimum_length = 3
-    ...     abjad.override(context_block).tuplet_bracket.padding = 2
-    ...     scheme = abjad.Scheme("ly:spanner::set-spacing-rods")
-    ...     abjad.override(context_block).tuplet_bracket.springs_and_rods = scheme
-    ...     scheme = abjad.Scheme("tuplet-number::calc-fraction-text")
-    ...     abjad.override(context_block).tuplet_number.text = scheme
-    ...     abjad.setting(context_block).autoBeaming = False
-    ...     moment = abjad.SchemeMoment((1, 8))
-    ...     abjad.setting(context_block).proportionalNotationDuration = moment
-    ...     abjad.setting(context_block).tupletFullLength = True
-    ...     context_block = abjad.ContextBlock(source_lilypond_type="Staff")
-    ...     lilypond_file.layout_block.items.append(context_block)
-    ...     # LilyPond CAUTION: Timing_translator must appear
-    ...     #                   before Default_bar_line_engraver!
-    ...     context_block.consists_commands.append("Timing_translator")
-    ...     context_block.consists_commands.append("Default_bar_line_engraver")
-    ...     scheme = abjad.Scheme("'numbered")
-    ...     abjad.override(context_block).time_signature.style = scheme
-    ...     context_block = abjad.ContextBlock(source_lilypond_type="Voice")
-    ...     lilypond_file.layout_block.items.append(context_block)
-    ...     context_block.remove_commands.append("Forbid_line_break_engraver")
-    ...     return lilypond_file
-
-
+    >>> preamble = r"""#(set-default-paper-size "a4" 'letter)
+    ... #(set-global-staff-size 10)
+    ...
+    ... \layout {
+    ...     indent = #0
+    ...     ragged-right = ##t
+    ...     merge-differently-dotted = ##t
+    ...     merge-differently-headed = ##t
+    ...     \context {
+    ...         \Score
+    ...         \remove Bar_number_engraver
+    ...         \remove Default_bar_line_engraver
+    ...         \remove Timing_translator
+    ...         \override Beam.breakable = ##t
+    ...         \override Glissando.breakable = ##t
+    ...         \override NoteColumn.ignore-collision = ##t
+    ...         \override SpacingSpanner.uniform-stretching = ##t
+    ...         \override TextScript.staff-padding = #4
+    ...         \override TextSpanner.breakable = ##t
+    ...         \override TimeSignature.stencil = ##f
+    ...         \override TupletBracket.bracket-visibility = ##t
+    ...         \override TupletBracket.minimum-length = #3
+    ...         \override TupletBracket.padding = #2
+    ...         \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+    ...         \override TupletNumber.text = #tuplet-number::calc-fraction-text
+    ...         autoBeaming = ##f
+    ...         proportionalNotationDuration = #(ly:make-moment 1 8)
+    ...         tupletFullLength = ##t
+    ...     }
+    ...     \context {
+    ...         \Staff
+    ...         \consists Timing_translator
+    ...         \consists Default_bar_line_engraver
+    ...         \override TimeSignature.style = #'numbered
+    ...     }
+    ...     \context {
+    ...         \Voice
+    ...         \remove Forbid_line_break_engraver
+    ...     }
+    ... }"""
 
 Observe the following characteristics of the cell:
 
@@ -223,7 +213,7 @@ like so:
 ::
 
     >>> pitches = "c' e' g' | c' e' g' a' | e' g' a' c'"
-    >>> measure = make_desordre_measure(pitches, "RH")
+    >>> measure = make_measure(pitches, "RH")
     >>> staff = abjad.Staff([measure], name="RH_Staff")
     >>> abjad.show(staff)
 
@@ -235,9 +225,8 @@ create full measure sequences with this new function:
 
 ::
 
-    >>> pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
     >>> pitches = ["b e' f' | b e' f' g' a'", "c' g' a' | b e' f' g' a'"]
-    >>> staff = make_desordre_staff(pitches, "RH")
+    >>> staff = make_staff(pitches, "RH")
     >>> abjad.show(staff)
 
 Finally a function that will generate the score. The function creates a piano staff,
@@ -283,10 +272,11 @@ The final result:
     ...     "as, cs ds fs gs | as, cs ds",
     ... ]
 
-::
+..  book::
+    :lilypond/no-stylesheet:
 
-    >>> score = make_desordre_score(rh_pitches, lh_pitches)
-    >>> lilypond_file = make_desordre_lilypond_file(score)
+    >>> score = make_score(rh_pitches, lh_pitches)
+    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Adán (2.0), Bača (3.2)]`

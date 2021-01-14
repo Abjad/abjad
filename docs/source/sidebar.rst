@@ -21,13 +21,13 @@
     overview/indicators
     overview/working_with_tuplets
     overview/working_with_lilypond_files
-    overview/custom_context_creation
 
 ..  toctree::
     :caption: Examples
     :hidden:
 
     examples/accumulation
+    examples/commands
     examples/corpus_selection
     examples/enumeration
     examples/hexachordal_recombination_all_interval
@@ -38,7 +38,6 @@
     examples/scale_derivation_by_sieve
     examples/score_fragment_piano
     examples/superimposition_of_partials
-    examples/tintinnabulation
     examples/tone_clock_tesselation
     examples/trichord_definition_by_ratio
 

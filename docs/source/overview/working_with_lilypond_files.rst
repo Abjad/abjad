@@ -1,96 +1,56 @@
-LilyPond file assembly
-======================
+Formatting LilyPond files
+=========================
 
-Making LilyPond files
----------------------
-
-Make a basic LilyPond file with ``LilyPondFile.new()``:
+Abjad's LilyPond file class accepts a list of items. Many LilyPond files comprise just a
+score:
 
 ::
 
-    >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-    >>> lilypond_file = abjad.LilyPondFile.new(staff)
+    >>> voice = abjad.Voice("c'4 d'4 e'4 f'4", name="Violin_Voice")
+    >>> staff = abjad.Staff([voice], name="Violin_Staff")
+    >>> score = abjad.Score([staff], name="Score")
+    >>> lilypond_file = abjad.LilyPondFile(items=[score])
 
-::
-
-    >>> lilypond_file
-
-::
-
-    >>> print(format(lilypond_file))
-
-::
-
-    >>> abjad.show(lilypond_file)
-
-Getting header, layout and paper blocks
----------------------------------------
-
-Basic LilyPond files also come equipped with header, layout and paper blocks:
-
-::
-
-    >>> lilypond_file.header_block
-
-::
-
-    >>> lilypond_file.layout_block
-
-::
-
-    >>> lilypond_file.paper_block
-
-
-Setting global staff size and default paper size
-------------------------------------------------
-
-A LilyPondFile's global staff size and default paper size are immutable. Set them during
-instantiation, or by templating a new LilyPondFile via `new()`:
-
-Via templating:
-
-::
-
-    >>> lilypond_file = abjad.new(
-    ...     lilypond_file,
-    ...     global_staff_size=14,
-    ...     default_paper_size=("A7", "portrait"),
-    ... )
-
-When instantiating:
-
-::
-
-    >>> lilypond_file = abjad.LilyPondFile.new(
-    ...     staff,
-    ...     global_staff_size=14,
-    ...     default_paper_size=("A7", "portrait"),
-    ... )
-
-::
-
-    >>> print(format(lilypond_file))
-
-::
-
-    >>> abjad.show(lilypond_file)
-
-
-Setting title, subtitle and composer information
-------------------------------------------------
-
-Use the LilyPond file header block to set title, subtitle and composer information:
-
-::
-
-    >>> lilypond_file.header_block.title = abjad.Markup("Missa sexti tonus")
-    >>> lilypond_file.header_block.composer = abjad.Markup("Josquin")
+LilyPond version and language commands are inserted automatically:
 
 ::
 
     >>> string = abjad.lilypond(lilypond_file)
     >>> print(string)
 
+You can type all other LilyPond settings directly into a string:
+
 ::
+
+    >>> preamble = r"""#(set-global-staff-size 14)
+    ...
+    ... \header {
+    ...     composer = \markup { Josquin }
+    ...     subtitle = \markup { Agnus dei }
+    ...     title = \markup { Missa sexti toni }
+    ... }
+    ...
+    ... \layout {
+    ...     indent = 0
+    ... }"""
+
+Bundle the preamble and score like this:
+
+::
+
+    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+
+Then everything appears together:
+
+::
+
+    >>> string = abjad.lilypond(lilypond_file)
+    >>> print(string)
+
+Click on the image below. Abjad generates this same LilyPond input behind the scenes when
+you call show:
+
+..  book::
+    :lilypond/no-stylesheet:
 
     >>> abjad.show(lilypond_file)

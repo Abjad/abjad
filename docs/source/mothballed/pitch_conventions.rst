@@ -12,13 +12,7 @@ Abjad numbers pitches like this:
 
     >>> score, treble_staff, bass_staff = abjad.illustrators.make_piano_score()
     >>> duration = abjad.Duration(1, 32)
-
-::
-
     >>> pitches = range(-12, 12 + 1)
-
-::
-
     >>> for pitch in pitches:
     ...     note = abjad.Note(pitch, duration)
     ...     rest = abjad.Rest(duration)
@@ -32,24 +26,31 @@ Abjad numbers pitches like this:
     ...     markup = abjad.Markup(str(number), direction=abjad.Down)
     ...     abjad.attach(markup, bass_staff[-1])
     ...
+    >>> clef = abjad.Clef("bass")
+    >>> note = abjad.select(bass_staff).note(0)
+    >>> abjad.attach(clef, note)
 
 ::
 
-    >>> abjad.override(score).beam.transparent = True
-    >>> abjad.override(score).time_signature.stencil = False
-    >>> abjad.override(score).flag.transparent = True
-    >>> abjad.override(score).rest.transparent = True
-    >>> abjad.override(score).stem.stencil = False
-    >>> abjad.override(score).text_script.staff_padding = 6
-    >>> moment = abjad.SchemeMoment((1, 56))
-    >>> abjad.setting(score).proportional_notation_duration = moment
+    >>> preamble =r"""#(set-global-staff-size 15)
+    ...
+    ... \layout {
+    ...     \context {
+    ...         \Score
+    ...         \override Beam.transparent = ##t
+    ...         \override Flag.transparent = ##t
+    ...         \override Rest.transparent = ##t
+    ...         \override Stem.stencil = ##f
+    ...         \override TextScript.staff-padding = #6
+    ...         \override TimeSignature.stencil = ##f
+    ...         proportionalNotationDuration = #(ly:make-moment 1 56)
+    ...     }
+    ... }"""
 
-::
+..  book::
+    :lilypond/no-stylesheet:
 
-    >>> lilypond_file = abjad.LilyPondFile.new(
-    ...     score,
-    ...     global_staff_size=15,
-    ... )
+    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
 Diatonic pitch numbers
@@ -61,22 +62,13 @@ Abjad numbers diatonic pitches like this:
 
     >>> score, treble_staff, bass_staff = abjad.illustrators.make_piano_score()
     >>> duration = abjad.Duration(1, 32)
-
-::
-
     >>> pitches = []
     >>> diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
-
-::
-
     >>> pitches.extend([-24 + x for x in diatonic_pitches])
     >>> pitches.extend([-12 + x for x in diatonic_pitches])
     >>> pitches.extend([0 + x for x in diatonic_pitches])
     >>> pitches.extend([12 + x for x in diatonic_pitches])
     >>> pitches.append(24)
-
-::
-
     >>> for pitch in pitches:
     ...     note = abjad.Note(pitch, duration)
     ...     rest = abjad.Rest(duration)
@@ -90,24 +82,14 @@ Abjad numbers diatonic pitches like this:
     ...     markup = abjad.Markup(str(number), direction=abjad.Down)
     ...     abjad.attach(markup, bass_staff[-1])
     ...
+    >>> clef = abjad.Clef("bass")
+    >>> note = abjad.select(bass_staff).note(0)
+    >>> abjad.attach(clef, note)
 
-::
+..  book::
+    :lilypond/no-stylesheet:
 
-    >>> abjad.override(score).beam.transparent = True
-    >>> abjad.override(score).time_signature.stencil = False
-    >>> abjad.override(score).flag.transparent = True
-    >>> abjad.override(score).rest.transparent = True
-    >>> abjad.override(score).stem.stencil = False
-    >>> abjad.override(score).text_script.staff_padding = 6
-    >>> moment = abjad.SchemeMoment((1, 52))
-    >>> abjad.setting(score).proportional_notation_duration = moment
-
-::
-
-    >>> lilypond_file = abjad.LilyPondFile.new(
-    ...     score,
-    ...     global_staff_size=15,
-    ... )
+    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
 Accidental abbreviations
@@ -118,14 +100,14 @@ Abjad abbreviates accidentals like this:
     ======================         ============================
     accidental name                abbreviation
     ======================         ============================
-    quarter sharp                  'qs'
-    quarter flat                   'qf'
-    sharp                          's'
-    flat                           'f'
-    three-quarters sharp           'tqs'
-    three-quarters flat            'tqf'
-    double sharp                   'ss'
-    double flat                    'ff'
+    quarter sharp                  "qs"
+    quarter flat                   "qf"
+    sharp                          "s"
+    flat                           "f"
+    three-quarters sharp           "tqs"
+    three-quarters flat            "tqf"
+    double sharp                   "ss"
+    double flat                    "ff"
     ======================         ============================
 
 Octave designation
