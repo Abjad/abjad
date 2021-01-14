@@ -1,84 +1,200 @@
-Hexachordal recombination, all-interval
-=======================================
+Hexachord recombination, all-interval
+=====================================
 
-Elliott Carter's parallel-inverted all-interval collections.
+Defining a function to recombine all-interval hexachords
+--------------------------------------------------------
 
-----
-
-First we define functions to illustrate the examples that follow:
-
-::
-
-    >>> def illustrate_collection(hexachord, starting_pitch, moment_denominator):
-    ...     notes = []
-    ...     s1 = hexachord
-    ...     s2 = s1.invert().transpose(s1[-1].number + 6)
-    ...     full_sequence = abjad.PitchSegment(s1 + s2)
-    ...     transposed_sequence = full_sequence.transpose(starting_pitch)
-    ...     vertical_sequence = [full_sequence[0] + starting_pitch]
-    ...     for pitch in transposed_sequence[1:]:
-    ...         pitch_number = pitch.number
-    ...         while pitch_number < vertical_sequence[-1]:
-    ...             pitch_number += 12
-    ...         vertical_sequence.append(pitch_number)
-    ...     notes = [abjad.Note(_, (1, 16)) for _ in vertical_sequence]
-    ...     containers = abjad.illustrators.make_piano_score(notes)
-    ...     score, treble_staff, bass_staff = containers
-    ...     abjad.override(score).BarLine.stencil = False
-    ...     abjad.override(score).BarNumber.stencil = False
-    ...     abjad.override(score).Beam.stencil = False
-    ...     abjad.override(score).Flag.stencil = False
-    ...     abjad.override(score).Rest.stencil = False
-    ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
-    ...     abjad.override(score).SpanBar.stencil = False
-    ...     abjad.override(score).Stem.stencil = False
-    ...     abjad.override(score).TimeSignature.stencil = False
-    ...     moment = abjad.SchemeMoment((1, moment_denominator))
-    ...     abjad.setting(score).proportional_notation_duration = moment
-    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
-    ...     return lilypond_file
-
-----
-
-Define appropriately invertible hexachords:
+Consider the following hexachord:
 
 ::
 
     >>> hexachord = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])
-    >>> permutations = [
-    ...     hexachord,
-    ...     hexachord.invert(),
-    ...     hexachord.retrograde().transpose((0 - hexachord[-1].number)),
-    ...     hexachord.retrograde().transpose((0 - hexachord[-1].number)).invert(),
-    ... ]
-    ...
+    >>> abjad.show(hexachord)
 
-Illustrate parallel-inverted collection from first hexachord permutation:
+The final pitch-class in this hexachord is 5:
 
 ::
 
-    >>> file = illustrate_collection(permutations[0], -24, 25)
-    >>> abjad.show(file)
+    >>> hexachord[-1]
 
-Illustrate parallel-inverted collection from second hexachord permutation:
-
-::
-
-    >>> file = illustrate_collection(permutations[1], -24, 25)
-    >>> abjad.show(file)
-
-Illustrate parallel-inverted collection from third hexachord permutation:
+And the tritone transposition of this pitch-class is 11:
 
 ::
 
-    >>> file = illustrate_collection(permutations[2], -24, 25)
-    >>> abjad.show(file)
+    >>> hexachord[-1] + 6
 
-Illustrate parallel-inverted collection from fourth hexachord permutation:
+Then consider the inversion of this hexachord, transposed to start at pitch-class 11:
 
 ::
 
-    >>> file = illustrate_collection(permutations[3], -24, 25)
-    >>> abjad.show(file)
+    >>> abjad.show(hexachord.invert().transpose(11))
 
-:author:`[Evans (3.2)]`
+These two hexachords complement each other; together they complete the aggregate:
+
+::
+
+    >>> aggregate = hexachord + hexachord.invert().transpose(11)
+    >>> abjad.show(aggregate)
+
+We can define a function to recombine any hexachord  like the one above:
+
+::
+
+    >>> def recombine(hexachord):
+    ...     complement = hexachord.invert().transpose(hexachord[-1].number + 6)
+    ...     aggregate = hexachord + complement
+    ...     return aggregate
+
+----
+
+Up-voicing aggregates (as pitch segments)
+-----------------------------------------
+
+This type of hexachord recombination is due to Eliot Carter, who voiced the aggregates
+that result from this process upwards from a start pitch. We define a function to do
+this. Then we write some LilyPond code to beautify the example:
+
+::
+
+    >>> def voice(aggregate, start):
+    ...     pitches = []
+    ...     pitches.append(abjad.NumberedPitch(aggregate[0]))
+    ...     for pitch_class in aggregate[1:]:
+    ...         pitch = abjad.NumberedPitch(pitch_class)
+    ...         while pitch < pitches[-1]:
+    ...             pitch += 12
+    ...         pitches.append(pitch)
+    ...     segment = abjad.PitchSegment(pitches).transpose(start)
+    ...     return segment
+
+::
+
+    >>> preamble = r"""#(set-global-staff-size 16)
+    ... \layout {
+    ...     \context {
+    ...         \Score
+    ...         proportionalNotationDuration = #(ly:make-moment 1 16)
+    ...         \override SpacingSpanner.uniform-stretching = ##t
+    ...     }
+    ... }"""
+
+::
+
+    >>> aggregate = recombine(hexachord)
+    >>> segment = voice(aggregate, -24)
+    >>> lilypond_file = abjad.illustrate(segment)
+    >>> lilypond_file.items.insert(0, preamble)
+    >>> abjad.show(lilypond_file)
+
+----
+
+Up-voicing aggregates (as chords)
+---------------------------------
+
+Carter's preference in his sketches was to visualize aggregates as chords. We define a
+function to do the same:
+
+::
+
+    >>> def make_score(segment):
+    ...     treble_pitches, bass_pitches = [], []
+    ...     for pitch in segment:
+    ...         if pitch.number < 0:
+    ...             bass_pitches.append(pitch)
+    ...         else:
+    ...             treble_pitches.append(pitch)
+    ...     treble_chord = abjad.Chord(treble_pitches, (1, 1))
+    ...     bass_chord = abjad.Chord(bass_pitches, (1, 1))
+    ...     clef = abjad.Clef("bass")
+    ...     abjad.attach(clef, bass_chord)
+    ...     treble_staff = abjad.Staff([treble_chord], name="RH")
+    ...     bass_staff = abjad.Staff([bass_chord], name="LH")
+    ...     staves = [treble_staff, bass_staff]
+    ...     piano_staff = abjad.StaffGroup(staves, lilypond_type="PianoStaff")
+    ...     score = abjad.Score([piano_staff], name="Score")
+    ...     abjad.override(score).time_signature.transparent = True
+    ...     return score
+
+::
+
+    >>> aggregate = recombine(hexachord)
+    >>> segment = voice(aggregate, -24)
+    >>> score = make_score(segment)
+    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> abjad.show(lilypond_file)
+
+----
+
+Examples
+--------
+
+Now we recombine our source hexachord, followed by three transforms.
+
+**Example 1.** Source hexachord (repeated from above), recombined with its complement:
+
+::
+
+    >>> hexachord = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])
+    >>> abjad.show(hexachord)
+
+    >>> aggregate = recombine(hexachord)
+    >>> segment = voice(aggregate, -24)
+    >>> score = make_score(segment)
+    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> abjad.show(lilypond_file)
+
+----
+
+**Example 2.** Inversion of hexachord, recombined with its complement:
+
+::
+
+    >>> transform = hexachord.invert()
+    >>> abjad.show(transform)
+    
+    >>> aggregate = recombine(transform)
+    >>> segment = voice(aggregate, -24)
+    >>> score = make_score(segment)
+    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> abjad.show(lilypond_file)
+
+----
+
+**Example 3.** Transposed retrograde of source hexachord, recombined with its complement:
+
+::
+
+    >>> transform = hexachord.retrograde()
+    >>> transform = transform.transpose((0 - hexachord[-1].number))
+    >>> abjad.show(transform)
+
+::
+
+    >>> aggregate = recombine(transform)
+    >>> segment = voice(aggregate, -24)
+    >>> score = make_score(segment)
+    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> abjad.show(lilypond_file)
+
+----
+
+**Example 4.** Inverted-and-transposed retrograde of source hexachord, recombined with
+its complement:
+
+::
+
+    >>> transform = hexachord.retrograde()
+    >>> transform = transform.transpose((0 - hexachord[-1].number))
+    >>> transform = transform.invert()
+    >>> abjad.show(transform)
+
+::
+
+    >>> aggregate = recombine(transform)
+    >>> segment = voice(aggregate, -24)
+    >>> score = make_score(segment)
+    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> abjad.show(lilypond_file)
+
+:author:`[Evans (3.2). From Eliot Carter's concept of parallel-inverted all-interval
+collections. Hexachords appear in Carter's Harmony Book.]`
