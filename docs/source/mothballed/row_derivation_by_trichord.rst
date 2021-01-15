@@ -1,3 +1,5 @@
+:orphan:
+
 Row derivation, by trichord
 ===========================
 

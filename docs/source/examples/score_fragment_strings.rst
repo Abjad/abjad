@@ -1,5 +1,5 @@
-Commands, wrapper for
-=====================
+Score fragment, strings
+=======================
 
 This example models the first two pages of Arvo Pärt's *Cantus in Memory of Benjamin
 Britten*. First, we generate basic pitches and rhythms for the strings. Then we make
@@ -507,10 +507,6 @@ We define more functions:
     ...         command = abjad.LilyPondLiteral(r"\break", "after")
     ...         abjad.attach(command, bell_voice[measure_index])
 
-----
-
-We write LilyPond input for the preamble by hand:
-
 ::
 
     >>> preamble =r"""#(set-global-staff-size 8)
@@ -646,11 +642,11 @@ We define commands like this:
 
 ----
 
-We create the score like this:
+We create the score like this; only the first four pages are shown below:
 
 ..  book::
     :lilypond/no-stylesheet:
-    :lilypond/pages: 1-10
+    :lilypond/pages: 1-4
     :lilypond/with-columns: 2
 
     >>> lilypond_file = make_lilypond_file(
