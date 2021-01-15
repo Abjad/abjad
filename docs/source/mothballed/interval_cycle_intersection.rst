@@ -1,12 +1,12 @@
+:orphan:
+
 Interval cycle intersection
 ===========================
 
 Derived tone rows from inversionally related interval cycles in Milton Babbitt's
-`Partitions for Piano`.
+`Partitions for Piano` (1957).
 
 ----
-
-First we define functions to illustrate the examples that follow:
 
 ::
 
@@ -37,7 +37,12 @@ First we define functions to illustrate the examples that follow:
 
 ::
 
-    >>> def make_row(cyclic_interval, transposed_interval, hexachord_pattern, second_hex_transposition):
+    >>> def make_row(
+    ...     cyclic_interval,
+    ...     transposed_interval,
+    ...     hexachord_pattern,
+    ...     second_hex_transposition,
+    ... ):
     ...     first_cycle = perle_cyclic_set(
     ...         starting_pitch=0,
     ...         interval=cyclic_interval,
@@ -89,42 +94,25 @@ First we define functions to illustrate the examples that follow:
     ...     row = abjad.TwelveToneRow(intersection_1 + intersection_2)
     ...     return row
 
-::
-
-    >>> def illustrate_row(row, moment_denominator):
-    ...     notes = [abjad.Note(_, (1, 8)) for _ in row]
-    ...     containers = abjad.illustrators.make_piano_score(notes)
-    ...     score, treble_staff, bass_staff = containers
-    ...     abjad.override(treble_staff).BarLine.stencil = False
-    ...     abjad.override(treble_staff).BarNumber.stencil = False
-    ...     abjad.override(treble_staff).Beam.stencil = False
-    ...     abjad.override(treble_staff).Flag.stencil = False
-    ...     abjad.override(treble_staff).Rest.stencil = False
-    ...     abjad.override(treble_staff).SpacingSpanner.strict_note_spacing = True
-    ...     abjad.override(treble_staff).SpanBar.stencil = False
-    ...     abjad.override(treble_staff).Stem.stencil = False
-    ...     abjad.override(treble_staff).TimeSignature.stencil = False
-    ...     moment = abjad.SchemeMoment((1, moment_denominator))
-    ...     abjad.setting(treble_staff).proportional_notation_duration = moment
-    ...     lilypond_file = abjad.LilyPondFile(items=[treble_staff], global_staff_size=16)
-    ...     return lilypond_file
-
 ----
 
-Show score:
+Examples
+--------
+
+**Example 1.** What is this?
 
 ::
 
     >>> row = make_row(1, 9, [0, 2, 4], 5)
-    >>> file = illustrate_row(row, 25)
-    >>> abjad.show(file)
+    >>> abjad.show(row)
 
-Show score:
+----
+
+**Example 2.** What is this?
 
 ::
 
     >>> row = make_row(1, 3, [0, 1, 3], -1)
-    >>> file = illustrate_row(row, 25)
-    >>> abjad.show(file)
+    >>> abjad.show(row)
 
-:author:`[Evans (3.2)]`
+:author:`[Evans (3.2). From Milton Babbit's Partitions for Piano (1957).]`

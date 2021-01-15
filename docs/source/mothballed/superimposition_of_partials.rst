@@ -1,3 +1,5 @@
+:orphan:
+
 Superimposition of partials
 ===========================
 

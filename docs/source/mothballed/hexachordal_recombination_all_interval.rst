@@ -1,3 +1,5 @@
+:orphan:
+
 Hexachord recombination, all-interval
 =====================================
 
@@ -50,7 +52,7 @@ We can define a function to recombine any hexachord  like the one above:
 Up-voicing aggregates (as pitch segments)
 -----------------------------------------
 
-This type of hexachord recombination is due to Eliot Carter, who voiced the aggregates
+This type of hexachord recombination is due to Elliott Carter, who voiced the aggregates
 that result from this process upwards from a start pitch. We define a function to do
 this. Then we write some LilyPond code to beautify the example:
 
@@ -196,5 +198,5 @@ its complement:
     >>> lilypond_file = abjad.LilyPondFile(items=[score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2). From Eliot Carter's concept of parallel-inverted all-interval
+:author:`[Evans (3.2). From Elliott Carter's concept of parallel-inverted all-interval
 collections. Hexachords appear in Carter's Harmony Book.]`

@@ -10,6 +10,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.coverage",
+    "sphinx.ext.doctest",
     "sphinx.ext.graphviz",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
@@ -38,7 +39,7 @@ html_theme_options = {
     # navigation_depth=1 makes sidebar completely flat;
     # please leave flat navigation in place forever:
     "navigation_depth": 1,
-    "style_nav_header_background": "#dbc2ff",
+    "style_nav_header_background": "#cc3300",
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 project = "Abjad"

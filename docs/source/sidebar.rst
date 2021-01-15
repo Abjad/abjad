@@ -27,19 +27,11 @@
     :hidden:
 
     examples/accumulation
-    examples/commands
     examples/corpus_selection
+    examples/design_by_dyads
     examples/enumeration
-    examples/hexachordal_recombination_all_interval
-    examples/hexachordal_recombination_by_dyad
-    examples/interval_cycle_intersection
-    examples/rotation_by_row_index
-    examples/row_derivation_by_trichord
-    examples/scale_derivation_by_sieve
     examples/score_fragment_piano
-    examples/superimposition_of_partials
-    examples/tone_clock_tesselation
-    examples/trichord_definition_by_ratio
+    examples/score_fragment_strings
 
 ..  toctree::
     :caption: All classes & functions

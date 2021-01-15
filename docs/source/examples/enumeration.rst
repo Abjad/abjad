@@ -8,7 +8,7 @@ Enumeration, of rhythmic cells
 Mikhïal Malt analyzes Brian Ferneyhough's `Unsichtbare Farben` (1999) in `The OM
 Composer's Book 2`. Malt explains that Ferneyhough used OpenMusic to create an
 "exhaustive catalogue of rhythmic cells" such that two conditions are met. First,
-rhythmic cells are subdivided into two pulses, with proportions from 1/1 to 1/11. Second,
+rhythmic cells are subdivided into two pulses, with proportions from 1:1 to 1:11. Second,
 the second pulse of each cell is subdivided into 1, 2, 3, 4, 5, 6 parts. Malt adds that
 Ferneyhough later enumerates the retrograde of these cells.
 
@@ -63,33 +63,31 @@ The following functions recreate Malt's results in Abjad:
     ...         voice = abjad.Voice(tuplets, name=f"Row_{row_number}_Voice")
     ...         staff = abjad.Staff([voice], name=f"Row_{row_number}_Staff")
     ...         score.append(staff)
-    ...     abjad.override(score).bar_line.stencil = False
-    ...     abjad.override(score).clef.stencil = False
-    ...     abjad.override(score).staff_symbol.stencil = False
-    ...     abjad.override(score).system_start_bar.stencil = False
-    ...     abjad.override(score).text_script.color = "blue"
-    ...     abjad.override(score).text_script.staff_padding = 6
-    ...     abjad.override(score).time_signature.stencil = False
-    ...     string = "#tuplet-number::calc-fraction-text"
-    ...     abjad.override(score).tuplet_number.text = string
-    ...     string = "#(ly:make-moment 1 40)"
-    ...     abjad.setting(score).proportional_notation_duration = string
-    ...     abjad.setting(score).tuplet_full_length = True
     ...     return score
 
 ::
 
-    >>> def make_lilypond_file(row_count, column_count, retrograde=False):
-    ...     score = make_score(row_count, column_count, retrograde=retrograde)
-    ...     lilypond_file = abjad.LilyPondFile()
-    ...     string = "#(set-global-staff-size 12)"
-    ...     lilypond_file.items.append(string)
-    ...     string = "VerticalAxisGroup.staff-staff-spacing.minimum-distance = 20"
-    ...     string = rf"\override {string}"
-    ...     string = r"\layout { \context { \Staff " + string + " } }"
-    ...     lilypond_file.items.append(string)
-    ...     lilypond_file.items.append(score)
-    ...     return lilypond_file
+    >>> preamble =r"""#(set-global-staff-size 12)
+    ...
+    ... \layout {
+    ...     \context {
+    ...         \Staff
+    ...         \override VerticalAxisGroup.staff-staff-spacing.minimum-distance = 20
+    ...     }
+    ...     \context {
+    ...         \Score
+    ...         \override BarLine.stencil = ##f
+    ...         \override Clef.stencil = ##f
+    ...         \override StaffSymbol.stencil = ##f
+    ...         \override SystemStartBar.stencil = ##f
+    ...         \override TextScript.color = #blue
+    ...         \override TextScript.staff-padding = #6
+    ...         \override TimeSignature.stencil = ##f
+    ...         \override TupletNumber.text = #tuplet-number::calc-fraction-text
+    ...         proportionalNotationDuration = #(ly:make-moment 1 40)
+    ...         tupletFullLength = ##t
+    ...     }
+    ... }"""
 
 ----
 
@@ -97,7 +95,8 @@ Here are 11 rows and 6 columns:
 
 ::
 
-    >>> lilypond_file = make_lilypond_file(11, 6)
+    >>> score = make_score(11, 6)
+    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -106,7 +105,8 @@ Here's the rhythmic retrograde of the same:
 
 ::
 
-    >>> lilypond_file = make_lilypond_file(11, 6, retrograde=True)
+    >>> score = make_score(11, 6, retrograde=True)
+    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Bača (1.1, 3.2)]`
