@@ -30,6 +30,7 @@
     examples/corpus_selection
     examples/design_by_dyads
     examples/enumeration
+    examples/rotation_by_row_index
     examples/score_fragment_piano
     examples/score_fragment_strings
 
