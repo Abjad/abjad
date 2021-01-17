@@ -7,6 +7,7 @@ import abjad
 
 copyright = "2008-2020, Trevor Bača & Josiah Wolf Oberholtzer."
 extensions = [
+    "abjad.ext.sphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.coverage",
@@ -14,11 +15,10 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
-    # temporarily comment out when heavily editing docs;
+    # temporarily comment out sphinx.ext.viewcode when heavily editing docs;
     # prevents "highlighting module code ..." pass on every doc build;
-    # uncomment when building official release:
-    # "sphinx.ext.viewcode",
-    "abjad.ext.sphinx",
+    # uncomment sphinx.ext.viewcode when building official release:
+    "sphinx.ext.viewcode",
     "sphinx_autodoc_typehints",
     "uqbar.sphinx.api",
     "uqbar.sphinx.book",

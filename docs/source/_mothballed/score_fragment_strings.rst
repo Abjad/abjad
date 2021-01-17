@@ -1,3 +1,5 @@
+:orphan:
+
 Score fragment, strings
 =======================
 

@@ -19,19 +19,16 @@
     overview/container_names
     overview/setting_lilypond_type
     overview/indicators
-    overview/working_with_tuplets
     overview/working_with_lilypond_files
 
 ..  toctree::
     :caption: Examples
     :hidden:
 
-    examples/accumulation
     examples/corpus_selection
     examples/design_by_dyads
     examples/enumeration
     examples/score_fragment_piano
-    examples/score_fragment_strings
 
 ..  toctree::
     :caption: All classes & functions
@@ -49,7 +46,6 @@
     appendices/community
     appendices/configuration
     appendices/developer_installation
-    appendices/jupyter_notebooks
     appendices/lilypond_context_concatenation
     appendices/publications
     appendices/summer_workshop

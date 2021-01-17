@@ -1,11 +1,69 @@
 Changes
 =======
 
-Changes from Abjad 3.1 (2019-12-19) to Abjad 3.2 (2020-12-13).
+Changes to Abjad 3.2 (2021-01-17) since Abjad 3.1 (2019-12-19).
 
 ----
 
-**CHANGES.**
+`#1244 <https://github.com/Abjad/abjad/issues/1244>`_. Taught tuplets to preserve input
+ratios without reducing terms of fraction:
+
+::
+
+    NEW. Taught abjad.Tuplet to preserve tuplet ratio without reducing:
+
+        >>> tuplet = abjad.Tuplet("6:4", "c'4 d' e'")
+        >>> abjad.f(tuplet)
+        \times 4/6 {
+            c'4
+            d'4
+            e'4
+        }
+
+        >>> tuplet = abjad.Tuplet((4, 6), "c'4 d' e'")
+        >>> abjad.f(tuplet)
+        \times 4/6 {
+            c'4
+            d'4
+            e'4
+        }
+
+::
+
+    NEW. Taught Abjad about LilyPond \tuplet command:
+
+        >>> voice = abjad.Voice(r"\tuplet 6/4 { c'4 d' e' }")
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
+        \new Voice
+        {
+            \times 4/6 {
+                c'4
+                d'4
+                e'4
+            }
+        }
+
+::
+
+    Tuplet multiplier now returns a nonreduced fraction:
+
+        OLD: abjad.Tuplet.multiplier returns abjad.Multiplier
+        NEW: abjad.Tuplet.multiplier returns abjad.NonreducedFraction
+
+::
+
+    Tuplet interpreter representation now shows colon string:
+
+        OLD:
+
+            >>> abjad.Tuplet("6:4", "c'4 d' e'")
+            Tuplet(Multiplier(4, 6), "c'4 d'4 e'4")
+
+        NEW:
+
+            >>> abjad.Tuplet("6:4", "c'4 d' e'")
+            Tuplet('6:4', "c'4 d'4 e'4")
 
 `#1231 <https://github.com/Abjad/abjad/issues/1231>`_. Changed ``abjad.mathtools`` to
 ``abjad.math``.
