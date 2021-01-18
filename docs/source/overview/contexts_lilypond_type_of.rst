@@ -1,5 +1,5 @@
-LilyPond type of Abjad contexts
-===============================
+Contexts, LilyPond type of
+==========================
 
 Working with LilyPond means understanding LilyPond contexts. Abjad implements only four
 concrete contexts: voice, staff, staff group, score. But LilyPond comes preloaded with 20

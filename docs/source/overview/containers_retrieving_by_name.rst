@@ -1,5 +1,5 @@
-Retrieving containers by name
-=============================
+Containers, retrieving by name
+==============================
 
 ..
 

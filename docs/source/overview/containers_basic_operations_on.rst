@@ -1,5 +1,5 @@
-Basic operations on containers
-==============================
+Containers, basic operations on
+===============================
 
 Abjad containers work like Python lists.
 

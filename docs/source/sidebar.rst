@@ -13,13 +13,13 @@
     :maxdepth: 0
 
     overview/about_the_docs
-    overview/working_with_containers
-    overview/container_methods
-    overview/container_time_interpretation
-    overview/container_names
-    overview/setting_lilypond_type
+    overview/containers
+    overview/containers_basic_operations_on
+    overview/containers_retrieving_by_name
+    overview/containers_time_interpretation_of
+    overview/contexts_lilypond_type_of
     overview/indicators
-    overview/working_with_lilypond_files
+    overview/lilypond_files_preamble_of
 
 ..  toctree::
     :caption: Examples
@@ -40,7 +40,6 @@
     :caption: Appendices
     :hidden:
 
-    appendices/assignability
     appendices/best_practices
     appendices/changes
     appendices/community
@@ -48,7 +47,6 @@
     appendices/developer_installation
     appendices/lilypond_context_concatenation
     appendices/publications
-    appendices/summer_workshop
     appendices/virtual_environments
 
 ..  toctree::

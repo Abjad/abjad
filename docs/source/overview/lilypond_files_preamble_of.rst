@@ -1,5 +1,5 @@
-Formatting LilyPond files
-=========================
+LilyPond files, preamble of
+===========================
 
 Abjad's LilyPond file class accepts a list of items. Many LilyPond files comprise just a
 score:
