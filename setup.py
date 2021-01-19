@@ -39,7 +39,7 @@ local_dict: dict = {}
 exec(file_contents_string, None, local_dict)
 __version__ = local_dict["__version__"]
 
-description = "Abjad is a Python API for Formalized Score Control."
+description = "Abjad is a Python API for building LilyPond files."
 
 with open("README.rst", "r") as file_pointer:
     long_description = file_pointer.read()
@@ -77,9 +77,9 @@ extras_require = {
 }
 
 keywords = [
+    "music",
     "music composition",
     "music notation",
-    "formalized score control",
     "lilypond",
 ]
 
