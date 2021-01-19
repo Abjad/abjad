@@ -1,9 +1,9 @@
 Make sure LilyPond is installed: http://lilypond.org/development.html
 
-Install Abjad in a Python virtual environment.
+Create a Python 3 virtual environment for Abjad: https://docs.python.org/3/tutorial/venv.html 
 
-First create a virtual envrionment. Then install Abjad:
+Activate the virtual environment and then use pip to install Abjad:
 
 ::
 
-    ~$ pip install abjad
+    ~$ python -m pip install abjad

@@ -11,9 +11,7 @@ Abjad requires Python 3.6 or later:
 Check LilyPond
 --------------
 
-Make sure LilyPond is installed:
-
-http://lilypond.org/development.html
+Make sure LilyPond is installed: http://lilypond.org/development.html
 
 Make sure LilyPond is callable from the commandline:
 
@@ -35,9 +33,7 @@ Make sure LilyPond is callable from the commandline:
 Install Abjad in a Python 3 virtual environment
 -----------------------------------------------
 
-Create a Python 3 virtual environment for Abjad:
-
-https://docs.python.org/3/tutorial/venv.html
+Create a Python 3 virtual environment for Abjad: https://docs.python.org/3/tutorial/venv.html
 
 Activate the virtual environment and then use pip to install Abjad:
 
