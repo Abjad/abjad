@@ -47,7 +47,6 @@
     appendices/developer_installation
     appendices/lilypond_context_concatenation
     appendices/publications
-    appendices/virtual_environments
 
 ..  toctree::
     :caption: Score gallery

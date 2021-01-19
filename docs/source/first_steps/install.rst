@@ -1,21 +1,26 @@
-..  rubric:: Check your version of Python
+Check Python
+------------
 
 Abjad requires Python 3.6 or later:
 
-..  code-block:: bash
+..  code-block::
 
     ~$ python --version
     Python 3.9.0
 
-..  rubric:: Install LilyPond
+Check LilyPond
+--------------
 
-Make sure LilyPond is installed on your computer. If LilyPond is not callable from the
-commandline, add the location of the LilyPond executable to your path:
+Make sure LilyPond is installed:
+
+http://lilypond.org/development.html
+
+Make sure LilyPond is callable from the commandline:
 
 ..  code-block::
 
     ~$ lilypond --version
-    GNU LilyPond 2.21.80
+    GNU LilyPond 2.21.82
 
     Copyright (c) 1996--2020 by
     Han-Wen Nienhuys <hanwen@xs4all.nl>
@@ -27,12 +32,15 @@ commandline, add the location of the LilyPond executable to your path:
     under certain conditions.  Invoke as `lilypond --warranty' for more
     information.
 
-..  rubric:: Install Abjad
+Install Abjad in a Python 3 virtual environment
+-----------------------------------------------
 
-We recommend using :ref:`appendix-virtualenv` to install Abjad.
+Create a Python 3 virtual environment for Abjad:
 
-Create a virtual environment. Then install Abjad:
+https://docs.python.org/3/tutorial/venv.html
 
-..  code-block:: bash
+Activate the virtual environment and then use pip to install Abjad:
 
-    ~$ pip install abjad
+..  code-block::
+
+    ~$ python -m pip install abjad

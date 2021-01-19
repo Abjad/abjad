@@ -41,6 +41,6 @@ Your configuration file will look something like this the first time you open it
     text_editor = 
 
 Follow the basics of ``ini`` syntax when editing the Abjad configuration file. Background
-information is available at http://en.wikipedia.org/wiki/INI_file. Under MacOS you might
+information is available at http://en.wikipedia.org/wiki/INI_file. Under macOS you might
 want to set you ``midi_player`` to iTunes. Under Linux you might want to set your
 ``pdf_viewer`` to ``evince`` and your ``midi_player`` to ``tiMIDIty``, and so on.

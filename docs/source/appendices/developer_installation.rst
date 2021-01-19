@@ -22,7 +22,7 @@ Debian and Ubuntu:
 
     ~$ sudo apt-get install graphviz
 
-To install Graphviz on MacOS via Homebrew:
+To install Graphviz on macOS via Homebrew:
 
 ..  code-block:: bash
 
@@ -51,7 +51,7 @@ Then install `timidity`_. To install timidity on Debian or Ubuntu:
 
     ~$ apt-get install timidity
 
-To install timidity on MacOS via Homebrew:
+To install timidity on macOS via Homebrew:
 
 ..  code-block:: bash
 

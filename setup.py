@@ -44,7 +44,7 @@ description = "Abjad is a Python API for Formalized Score Control."
 with open("README.rst", "r") as file_pointer:
     long_description = file_pointer.read()
 
-author = ["Trevor Bača", "Josiah Wolf Oberholtzer", "Víctor Adán"]
+author = ["Trevor Bača", "Josiah Wolf Oberholtzer"]
 
 author_email = [
     "trevor.baca@gmail.com",
@@ -65,10 +65,8 @@ extras_require = {
     "ipython": ["abjad-ext-ipython>=3.1.0, <3.2.0"],
     "nauert": ["abjad-ext-nauert>=3.1.0, <3.2.0"],
     "rmakers": ["abjad-ext-rmakers>=3.1.0, <3.2.0"],
-    "tonality": ["abjad-ext-tonality>=3.1.0, <3.2.0"],
     "test": [
-        # "black==19.10b0",  # Trailing comma behavior in 20.x needs work
-        "black==20.8b1",  # Trailing comma behavior in 20.x is great!
+        "black==20.8b1",
         "flake8",
         "isort",
         "mypy>=0.770",
@@ -85,7 +83,7 @@ keywords = [
     "lilypond",
 ]
 
-install_requires = ["ply", "quicktions>=1.3", "roman", "uqbar>=0.4.4, <0.5.0"]
+install_requires = ["ply", "quicktions>=1.3", "roman", "six", "uqbar>=0.4.4, <0.5.0"]
 
 if __name__ == "__main__":
     setuptools.setup(
