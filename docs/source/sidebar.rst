@@ -28,6 +28,7 @@
     examples/corpus_selection
     examples/design_by_dyads
     examples/enumeration
+    examples/scales_diatonic
     examples/score_fragment_piano
 
 ..  toctree::

@@ -15,7 +15,7 @@ from .new import new
 from .ordereddict import OrderedDict
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch
-from .pitch.segments import PitchSegment, Segment
+from .pitch.segments import PitchClassSegment, PitchSegment
 from .pitch.sets import PitchClassSet, PitchSet
 from .scheme import Scheme, SchemeMoment
 from .spanners import glissando
@@ -139,7 +139,7 @@ def _illustrate_pitch_set(set_):
     return lilypond_file
 
 
-def _illustrate_segment(
+def _illustrate_pitch_class_segment(
     segment, markup_direction=enums.Up, figure_name=None, **keywords
 ):
     notes = []
@@ -212,7 +212,7 @@ _class_to_method = OrderedDict(
         (PitchRange, _illustrate_pitch_range),
         (PitchClassSet, _illustrate_pitch_class_set),
         (PitchSegment, _illustrate_pitch_segment),
-        (Segment, _illustrate_segment),
+        (PitchClassSegment, _illustrate_pitch_class_segment),
         (PitchSet, _illustrate_pitch_set),
         (_timespan.Timespan, _illustrate_timespan),
         (_timespan.TimespanList, _illustrate_markup_maker),
