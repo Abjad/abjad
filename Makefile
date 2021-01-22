@@ -74,7 +74,9 @@ jupyter-test:
 	jupyter nbconvert --to=html --ExecutePreprocessor.enabled=True tests/test.ipynb
 
 mypy:
-	mypy .
+	mypy abjad
+	# fix mypy errors and then run mypy over tests/ directory
+	# mypy tests
 
 project = abjad
 
