@@ -514,7 +514,7 @@ Changed ``strict=None`` keyword to ``align_tags=None``:
         abjad.persist.as_ly(argument, align_tags=None)
         abjad.persist.as_pdf(argument, align_tags=None)
 
-Moved accidental respell functions to top level:
+Moved accidental respell functions to new ``iterpitches`` module:
 
 ::
 
@@ -525,8 +525,8 @@ Moved accidental respell functions to top level:
 
     NEW:
 
-        abjad.respell_with_flats()
-        abjad.respell_with_sharps()
+        abjad.iterpitches.respell_with_flats()
+        abjad.iterpitches.respell_with_sharps()
 
 Moved logical-tie-to-tuplet functionality:
 
