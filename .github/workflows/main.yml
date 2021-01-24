@@ -33,11 +33,11 @@ jobs:
         python -m pip install --upgrade pip coverage
     - name: Install Abjad
       run: |
-      # install without development dependencies
+        # install without development dependencies
         pip install -e .
-      # echo the configuration file path to debug read-only-filesystem handling
+        # echo the configuration file path to debug read-only-filesystem handling
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
-      # prime the parser
+        # prime the parser
         scr/prime-parser-tables
     - name: Install dependencies
       run: |
