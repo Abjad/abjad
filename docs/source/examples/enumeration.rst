@@ -1,6 +1,10 @@
 Enumeration, of rhythmic cells
 ==============================
 
+..
+
+----
+
 ::
 
     >>> import  math

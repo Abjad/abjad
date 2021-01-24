@@ -10,9 +10,8 @@ halves. A sequence of two-note chords results. A first optional parameter flips 
 pitches in chords specified by index. A second optional parameter transposes chords,
 specified again by index. Two examples follow. The first operates on the regular
 structure of an ascending chromatic scale. The second successively tranforms a segment
-with greater intervallic variety. This page is included as an example of the pitch
-transformations possible in Abjad. The implementation given here generalizes a process
-due to Luigi Nono:
+with greater intervallic variety. The implementation given here generalizes a process due
+to Luigi Nono:
 
 ::
 

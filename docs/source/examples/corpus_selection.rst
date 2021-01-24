@@ -1,6 +1,10 @@
 Corpus, figure selection from
 =============================
 
+..
+
+----
+
 ::
 
     >>> import random
