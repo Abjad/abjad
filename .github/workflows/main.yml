@@ -48,6 +48,7 @@ jobs:
         mypy --version
         pip --version
         pytest --version
+        lilypond --version
     - name: Checks and Tests
       run: |
         make black-check
