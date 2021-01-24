@@ -28,7 +28,8 @@ jobs:
         lilypond_source=lilypond-2.20.0-1.linux-64.sh
         wget -q -O /tmp/lilypond $lilypond_url/$lilypond_source
         sh /tmp/lilypond --batch
-        export PATH=$PATH:/home/runner/bin
+        echo $HOME
+        echo "home/runner/bin" >> $GITHUB_PATH
     - name: Upgrade pip
       run: |
         python -m pip install --upgrade pip coverage
