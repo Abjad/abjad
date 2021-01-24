@@ -31,6 +31,9 @@ jobs:
     - name: Upgrade pip
       run: |
         python -m pip install --upgrade pip coverage
+    - name: Log environment variable(s)
+      run: |
+        echo $PATH
     - name: Install Abjad
       run: |
         # install without development dependencies
