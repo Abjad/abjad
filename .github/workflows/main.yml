@@ -25,7 +25,7 @@ jobs:
     - name: Install LilyPond
       run: |
         lilypond_url=http://lilypond.org/download/binaries/linux-64/
-        lilypond_source=lilypond-2.22.0-1.linux-64.sh
+        lilypond_source=lilypond-2.20.0-1.linux-64.sh
         wget -q -O /tmp/lilypond $lilypond_url/$lilypond_source
         sh /tmp/lilypond --batch
     - name: Upgrade pip
@@ -50,8 +50,6 @@ jobs:
         pytest --version
     - name: Checks and Tests
       run: |
-        export MYPYPATH=$MYPYPATH:/tmp/abjad
-        echo $MYPYPATH
         make black-check
         make flake8
         make isort-check
