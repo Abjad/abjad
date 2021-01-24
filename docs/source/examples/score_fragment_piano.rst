@@ -1,6 +1,10 @@
 Score fragment, piano
 =====================
 
+..
+
+----
+
 Here's one way of modeling piano music with a bit of polyphony in the left hand.
 
 Make an empty score:
