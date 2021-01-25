@@ -115,4 +115,4 @@ Examples
     >>> row = make_row(1, 3, [0, 1, 3], -1)
     >>> abjad.show(row)
 
-:author:`[Evans (3.2). From Milton Babbit's Partitions for Piano (1957).]`
+:author:`[Evans (3.2); ex. Milton Babbit, Partitions for Piano (1957).]`

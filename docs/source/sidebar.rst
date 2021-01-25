@@ -20,6 +20,7 @@
     overview/contexts_lilypond_type_of
     overview/indicators
     overview/lilypond_files_preamble_of
+    overview/lilypond_format_of_abjad_objects
 
 ..  toctree::
     :caption: Examples

@@ -445,4 +445,4 @@ can start building our score.
     >>> lilypond_file = abjad.LilyPondFile(items=[lilypond_preamble, subtitle, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Oberholtzer (2.19), Bača (3.2). Music attributed to W. A. Mozart.]`
+:author:`[Oberholtzer (2.19), Bača (3.2); attr. W. A. Mozart.]`

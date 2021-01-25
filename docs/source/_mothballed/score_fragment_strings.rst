@@ -656,5 +656,5 @@ We create the score like this; only the first four pages are shown below:
     ... )
     >>> abjad.show(lilypond_file)
 
-:author:`[Treviño (2.19), Bača (3.2). From Arvo Pärt's Cantus In Memoriam Benjamin
-Britten (1980).]`
+:author:`[Treviño (2.19), Bača (3.2); ex. Arvo Pärt, Cantus In Memoriam Benjamin Britten
+(1980).]`

@@ -93,4 +93,4 @@ The function returns a tuple of the indicators detached:
 
     >>> indicators
 
-:author:`[Music from Haydn's piano sonata number 42, Hob. XVI/27.]`
+:author:`[Ex. Joseph Haydn, Piano sonata 42, Hob. XVI/27.]`
