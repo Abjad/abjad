@@ -142,4 +142,4 @@ this?
     >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2). From Stravinsky's Abraham and Isaac (1962--63).]`
+:author:`[Evans (3.2); ex. Igor Stravinsky, Abraham and Isaac (1962--63).]`

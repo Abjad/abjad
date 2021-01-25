@@ -76,5 +76,4 @@ Override LilyPond's hairpin formatting:
     >>> abjad.override(note).hairpin.to_barline = False
     >>> abjad.show(score)
 
-:author:`[Adán (1.1), Bača (3.2). Music from Bartók's "Wandering," Mikrokosmos, vol.
-III]`
+:author:`[Adán (1.1), Bača (3.2); ex. Béla Bartók, "Wandering," Mikrokosmos, vol. III]`

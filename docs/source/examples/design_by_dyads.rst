@@ -162,4 +162,4 @@ selectively transposed:
     >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans, Bača (3.2). Generalized from Luigi Nono, example 1d, above.]`
+:author:`[Evans, Bača (3.2); generalized from Luigi Nono, example 1d, above.]`
