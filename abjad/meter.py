@@ -2418,7 +2418,9 @@ class Meter:
             meter = Meter(meter)
         boundary_depth = boundary_depth or meter.preferred_boundary_depth
         # Validate arguments.
-        assert Selection(components).are_contiguous_logical_voice()
+        assert Selection(components).are_contiguous_logical_voice(
+            ignore_before_after_grace=True
+        )
         if not isinstance(meter, Meter):
             meter = Meter(meter)
         if boundary_depth is not None:
