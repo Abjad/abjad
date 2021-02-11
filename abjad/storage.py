@@ -694,7 +694,9 @@ class StorageFormatManager:
         if as_storage_format:
             root_package_name = self.get_root_package_name()
             root_package = importlib.import_module(root_package_name)
-            parts = [root_package_name]
+            parts = []
+            if root_package_name != "abjadext":
+                parts.append(root_package_name)
             if class_name not in dir(root_package):
                 name = StorageFormatManager(self._client).get_tools_package_name()
                 parts.append(name)
@@ -814,7 +816,9 @@ class StorageFormatManager:
         Gets tools package name.
         """
         parts = self._get_module_path_parts(self._client)
-        if parts[0] in ("abjad", "abjadext", "ide"):
+        if parts[0] == "abjadext":
+            return parts[1]
+        if parts[0] in ("abjad", "ide"):
             for part in reversed(parts):
                 if part == parts[-1]:
                     continue
