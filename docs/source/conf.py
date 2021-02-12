@@ -103,6 +103,13 @@ try:
 except ImportError:
     pass
 
+try:
+    from abjadext import nauert  # noqa
+
+    uqbar_book_console_setup.append("from abjadext import nauert")
+except ImportError:
+    pass
+
 ### OTHER EXTENSIONS ###
 
 autodoc_member_order = "groupwise"
