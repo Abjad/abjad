@@ -18,7 +18,8 @@ class TimeSignature:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/8
@@ -38,7 +39,8 @@ class TimeSignature:
         Score-contexted time signatures format behind comments when no Abjad
         score container is found:
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             %%% \time 3/8 %%%
@@ -56,7 +58,8 @@ class TimeSignature:
         container is found:
 
         >>> score = abjad.Score([staff])
-        >>> abjad.f(score)
+        >>> string = abjad.lilypond(score)
+        >>> print(string)
         \new Score
         <<
             \new Staff
@@ -88,7 +91,8 @@ class TimeSignature:
         >>> score = abjad.Score([staff])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(score)
+        >>> string = abjad.lilypond(score)
+        >>> print(string)
         \new Score
         <<
             \new Staff
@@ -395,7 +399,8 @@ class TimeSignature:
             >>> abjad.attach(time_signature, tuplet[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
@@ -427,7 +432,8 @@ class TimeSignature:
             >>> abjad.attach(time_signature, staff[2])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 4/4

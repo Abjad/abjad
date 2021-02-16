@@ -18,7 +18,8 @@ class StemTremolo:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'4
             :16
 
@@ -33,7 +34,8 @@ class StemTremolo:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'4
             :32
 
@@ -49,7 +51,8 @@ class StemTremolo:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -62,7 +65,8 @@ class StemTremolo:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4

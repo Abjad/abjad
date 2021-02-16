@@ -22,7 +22,8 @@ def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -39,7 +40,8 @@ def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -88,7 +90,8 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -129,7 +132,8 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff

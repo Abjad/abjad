@@ -756,7 +756,8 @@ class Container(Component):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 e'4
@@ -781,7 +782,8 @@ class Container(Component):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 e'4
@@ -807,7 +809,8 @@ class Container(Component):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 e'4
@@ -832,7 +835,8 @@ class Container(Component):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 e'4
@@ -869,7 +873,8 @@ class Container(Component):
         >>> abjad.attach(abjad.StemTremolo(), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -961,7 +966,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     \times 4/6 {
@@ -990,7 +996,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     \times 2/3 {
@@ -1014,7 +1021,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(tuplet_1)
+                >>> string = abjad.lilypond(tuplet_1)
+                >>> print(string)
                 \times 4/6 {
                     c'4
                     d'4
@@ -1440,7 +1448,8 @@ class Container(Component):
             ...     )
             >>> abjad.show(container) # doctest: +SKIP
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {   %*% AB
                 c'4
                 d'4
@@ -1470,7 +1479,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     d'4
@@ -1496,7 +1506,8 @@ class Container(Component):
 
             Container name does not appear in LilyPond output:
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 d'4
@@ -1542,7 +1553,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     \new Voice
                     {
@@ -1570,7 +1582,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     \new Voice
                     {
@@ -1589,7 +1602,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 <<
                     \new Voice
                     {
@@ -1633,7 +1647,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     (
@@ -1647,7 +1662,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     (
@@ -1677,7 +1693,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     (
@@ -1692,7 +1709,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     (
@@ -1732,7 +1750,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     d'4
@@ -1772,7 +1791,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     fs16
                     _ (
@@ -1795,7 +1815,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     fs16
                     _ (
@@ -1836,7 +1857,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     (
@@ -1852,7 +1874,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     (
@@ -1880,7 +1903,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     d'4
@@ -1897,7 +1921,8 @@ class Container(Component):
 
             ..  docs::
 
-                >>> abjad.f(container)
+                >>> string = abjad.lilypond(container)
+                >>> print(string)
                 {
                     c'4
                     d'4
@@ -1928,7 +1953,8 @@ class AfterGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 #(define afterGraceFraction (cons 15 16))
@@ -1978,7 +2004,8 @@ class AfterGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 #(define afterGraceFraction (cons 15 16))
@@ -2012,7 +2039,8 @@ class AfterGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 #(define afterGraceFraction (cons 15 16))
@@ -2092,7 +2120,8 @@ class BeforeGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -2121,7 +2150,8 @@ class BeforeGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -2145,7 +2175,8 @@ class BeforeGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -2168,7 +2199,8 @@ class BeforeGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -2188,7 +2220,8 @@ class BeforeGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -2208,7 +2241,8 @@ class BeforeGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -2320,7 +2354,8 @@ class BeforeGraceContainer(Container):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -2342,7 +2377,8 @@ class BeforeGraceContainer(Container):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -2369,7 +2405,8 @@ class BeforeGraceContainer(Container):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -2395,7 +2432,8 @@ class BeforeGraceContainer(Container):
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     {
                         c'4
@@ -2424,7 +2462,8 @@ class BeforeGraceContainer(Container):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -2447,7 +2486,8 @@ class BeforeGraceContainer(Container):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -2474,7 +2514,8 @@ class BeforeGraceContainer(Container):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -2500,7 +2541,8 @@ class BeforeGraceContainer(Container):
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     {
                         c'4
@@ -2533,7 +2575,8 @@ class BeforeGraceContainer(Container):
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     {
                         c'4
@@ -2563,7 +2606,8 @@ class BeforeGraceContainer(Container):
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     {
                         c'4
@@ -2592,7 +2636,8 @@ class Chord(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <e' cs'' f''>4
 
     ..  container:: example
@@ -2604,7 +2649,8 @@ class Chord(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <e' cs'' f''>4 * 1/2
 
         >>> new_chord = abjad.Chord(chord)
@@ -2612,7 +2658,8 @@ class Chord(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(new_chord)
+            >>> string = abjad.lilypond(new_chord)
+            >>> print(string)
             <e' cs'' f''>4 * 1/2
 
     """
@@ -2792,7 +2839,8 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> abjad.f(chord.note_heads)
+            >>> string = abjad.storage(chord.note_heads)
+            >>> print(string)
             abjad.NoteHeadList(
                 [
                     abjad.NoteHead(
@@ -2819,7 +2867,8 @@ class Chord(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <c' d' fs'>4
 
         ..  container:: example
@@ -2834,7 +2883,8 @@ class Chord(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <e'' f'' g''>4
 
         Set note-heads with any iterable.
@@ -2909,7 +2959,8 @@ class Chord(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <f' b' d''>4
 
             >>> chord.written_pitches
@@ -2938,7 +2989,8 @@ class Cluster(Container):
 
         ..  docs::
 
-            >>> abjad.f(cluster)
+            >>> string = abjad.lilypond(cluster)
+            >>> print(string)
             \makeClusters {
                 c'8
                 <d' g'>8
@@ -2990,7 +3042,8 @@ class Context(Container):
 
         ..  docs::
 
-            >>> abjad.f(context)
+            >>> string = abjad.lilypond(context)
+            >>> print(string)
             \context GlobalContext = "Meter_Voice"
             {
             }
@@ -3228,7 +3281,8 @@ class Context(Container):
 
             >>> staff = abjad.Staff([])
             >>> staff.consists_commands.append('Horizontal_bracket_engraver')
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -3292,7 +3346,8 @@ class Context(Container):
 
             >>> staff = abjad.Staff([])
             >>> staff.remove_commands.append('Time_signature_engraver')
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -3318,7 +3373,8 @@ class Context(Container):
             ...     )
             >>> abjad.show(context) # doctest: +SKIP
 
-            >>> abjad.f(context, align_tags=20)
+            >>> string = abjad.lilypond(context)
+            >>> print(string)
             \new CustomContext  %! RED
             {                   %! RED
                 c'4
@@ -3347,7 +3403,8 @@ class MultimeasureRest(Leaf):
         >>> rest = abjad.MultimeasureRest(
         ...     'R1', tag=abjad.Tag('GLOBAL_MULTIMEASURE_REST')
         ... )
-        >>> abjad.f(rest)
+        >>> string = abjad.lilypond(rest)
+        >>> print(string)
         R1 %! GLOBAL_MULTIMEASURE_REST
 
     ..  container:: example
@@ -3359,7 +3416,8 @@ class MultimeasureRest(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/8
@@ -3415,7 +3473,8 @@ class MultimeasureRest(Leaf):
             ... )
             >>> rest.multiplier = (3, 8)
 
-            >>> abjad.f(rest)
+            >>> string = abjad.lilypond(rest)
+            >>> print(string)
             R1 * 3/8 %! MULTIMEASURE_REST
 
         """
@@ -3644,7 +3703,8 @@ class NoteHead:
             >>> note.note_head.alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, align_tags=50)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c''4                                              %! +PARTS
             %@% c''!4                                         %! -PARTS
 
@@ -3653,7 +3713,8 @@ class NoteHead:
             >>> note.written_pitch = 'D5'
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, align_tags=50)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             d''4                                              %! +PARTS
             %@% d''!4                                         %! -PARTS
 
@@ -3662,7 +3723,8 @@ class NoteHead:
             >>> note.note_head.alternative = None
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> abjad.f(note, align_tags=50)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             d''4
 
         ..  container:: example
@@ -3673,7 +3735,8 @@ class NoteHead:
             >>> chord.note_heads[0].alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> abjad.f(chord, align_tags=50)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <
                 c'                                            %! +PARTS
             %@% c'!                                           %! -PARTS
@@ -3686,7 +3749,8 @@ class NoteHead:
             >>> chord.note_heads[0].written_pitch = 'B3'
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> abjad.f(chord, align_tags=50)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <
                 b                                             %! +PARTS
             %@% b!                                            %! -PARTS
@@ -3697,7 +3761,8 @@ class NoteHead:
             Clear with none:
 
             >>> chord.note_heads[0].alternative = None
-            >>> abjad.f(chord, align_tags=50)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <b d' bf''>4
 
         """
@@ -3742,7 +3807,8 @@ class NoteHead:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c''?4
 
             >>> note = abjad.Note("cs''")
@@ -3751,7 +3817,8 @@ class NoteHead:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 cs''?4
 
         """
@@ -3776,7 +3843,8 @@ class NoteHead:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c''!4
 
             >>> note = abjad.Note("cs''")
@@ -3785,7 +3853,8 @@ class NoteHead:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 cs''!4
 
         """
@@ -3810,7 +3879,8 @@ class NoteHead:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 \parenthesize
                 c''4
 
@@ -3820,7 +3890,8 @@ class NoteHead:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 \parenthesize
                 cs''4
 
@@ -3862,7 +3933,8 @@ class NoteHead:
             >>> note_head.tweaks
             TweakInterface(('_literal', None), ('color', 'red'))
 
-            >>> abjad.f(note_head)
+            >>> string = abjad.lilypond(note_head)
+            >>> print(string)
             \tweak color #red
             cs''
 
@@ -3882,7 +3954,8 @@ class NoteHead:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <
                     \tweak color #red
                     \tweak thickness #2
@@ -3967,7 +4040,8 @@ class NoteHeadList(TypedList):
         ...     items=[11, 10, 9],
         ...     )
 
-        >>> abjad.f(note_heads)
+        >>> string = abjad.storage(note_heads)
+        >>> print(string)
         abjad.NoteHeadList(
             [
                 abjad.NoteHead(
@@ -4041,7 +4115,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <ef'>4
 
             >>> note_heads = []
@@ -4056,7 +4131,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <
                     ef'
                     \tweak color #blue
@@ -4086,7 +4162,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <
                     \tweak color #red
                     e'
@@ -4107,7 +4184,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <
                     \tweak color #red
                     e'
@@ -4148,7 +4226,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <ef' c'' f''>4
 
             >>> chord.note_heads.pop(1)
@@ -4158,7 +4237,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <ef' f''>4
 
         Returns note-head.
@@ -4176,7 +4256,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <ef' c'' f''>4
 
             >>> note_head = chord.note_heads[1]
@@ -4185,7 +4266,8 @@ class NoteHeadList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <ef' f''>4
 
         """
@@ -4256,7 +4338,8 @@ class Note(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             cs''8.
 
     ..  container:: example
@@ -4268,7 +4351,8 @@ class Note(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             cs''4 * 1
 
         >>> new_note = abjad.Note(note)
@@ -4276,7 +4360,8 @@ class Note(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(new_note)
+            >>> string = abjad.lilypond(new_note)
+            >>> print(string)
             cs''4 * 1
 
     ..  container:: example
@@ -4400,7 +4485,8 @@ class Note(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 cs''8.
 
             >>> note.note_head = 'D5'
@@ -4411,7 +4497,8 @@ class Note(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 d''8.
 
         """
@@ -4442,7 +4529,8 @@ class Note(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 cs''8.
 
             >>> note.written_duration = (1, 16)
@@ -4453,7 +4541,8 @@ class Note(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 cs''16
 
         """
@@ -4478,7 +4567,8 @@ class Note(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 cs''8.
 
             >>> note.written_pitch = 'D5'
@@ -4489,7 +4579,8 @@ class Note(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 d''8.
 
         """
@@ -4524,7 +4615,8 @@ class Note(Leaf):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 cs''8.
 
         """
@@ -4545,7 +4637,8 @@ class Rest(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/16
@@ -4610,7 +4703,8 @@ class Score(Context):
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -4676,7 +4770,8 @@ class Score(Context):
             >>> score = abjad.Score([staff], tag=abjad.Tag('GREEN'))
             >>> abjad.show(score) # doctest: +SKIP
 
-            >>> abjad.f(score, align_tags=20)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score          %! GREEN
             <<                  %! GREEN
                 \new Staff      %! BLUE
@@ -4707,7 +4802,8 @@ class Skip(Leaf):
 
         ..  docs::
 
-            >>> abjad.f(skip)
+            >>> string = abjad.lilypond(skip)
+            >>> print(string)
             s8.
 
     ..  container:: example
@@ -4715,7 +4811,8 @@ class Skip(Leaf):
         Skips can be tagged:
 
         >>> skip = abjad.Skip('s8.', tag=abjad.Tag('GLOBAL_SKIP'))
-        >>> abjad.f(skip)
+        >>> string = abjad.lilypond(skip)
+        >>> print(string)
         s8. %! GLOBAL_SKIP
 
     """
@@ -4778,7 +4875,8 @@ class Staff(Context):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -4800,7 +4898,8 @@ class Staff(Context):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 {
@@ -4883,7 +4982,8 @@ class StaffGroup(Context):
 
         ..  docs::
 
-            >>> abjad.f(staff_group)
+            >>> string = abjad.lilypond(staff_group)
+            >>> print(string)
             \new StaffGroup
             <<
                 \new Staff
@@ -4951,7 +5051,8 @@ class TremoloContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -5072,7 +5173,8 @@ class Tuplet(Container):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 4/6 {
                 c'8
                 d'8
@@ -5089,7 +5191,8 @@ class Tuplet(Container):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak edge-height #'(0.7 . 0)
             \times 4/6 {
                 c'8
@@ -5115,7 +5218,8 @@ class Tuplet(Container):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak edge-height #'(0.7 . 0)
             \times 4/6 {
                 c'8
@@ -5406,7 +5510,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'4
                     d'4
@@ -5436,7 +5541,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'8
                     d'8
@@ -5452,7 +5558,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'8
                     d'8
@@ -5464,7 +5571,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 4/6 {
                     c'8
                     d'8
@@ -5505,7 +5613,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 2/3 {
@@ -5539,7 +5648,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5572,7 +5682,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5611,7 +5722,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \override TupletNumber.text = \markup {
@@ -5681,7 +5793,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'8
                     d'8
@@ -5700,7 +5813,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 2/3 {
@@ -5720,7 +5834,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \scaleDurations #'(2 . 3) {
@@ -5801,7 +5916,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
@@ -5837,7 +5953,8 @@ class Tuplet(Container):
             ... )
             >>> abjad.show(tuplet) # doctest: +SKIP
 
-            >>> abjad.f(tuplet, align_tags=20)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 2/3 {        %! RED
                 c'4
                 d'4
@@ -5875,7 +5992,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \set tupletFullLength = ##t
@@ -5929,7 +6047,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'4
                     (
@@ -5943,7 +6062,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak edge-height #'(0.7 . 0)
                 \times 2/3 {
                     c'4
@@ -5963,7 +6083,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'4
                     (
@@ -5977,7 +6098,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 1/2 {
                     c'4
                     (
@@ -6092,7 +6214,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'4
                     (
@@ -6107,7 +6230,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak edge-height #'(0.7 . 0)
                 \times 2/3 {
                     c'4
@@ -6129,7 +6253,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'4
                     (
@@ -6144,7 +6269,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 4/7 {
                     c'4
                     (
@@ -6182,7 +6308,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'8
                     d'8
@@ -6210,7 +6337,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 1/3 {
                     c'4
                     d'4
@@ -6225,7 +6353,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'8
                     d'8
@@ -6242,7 +6371,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 8/3 {
                     c'32
@@ -6258,7 +6388,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'16
@@ -6276,7 +6407,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 5/12 {
                     c'4
@@ -6292,7 +6424,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 10/12 {
                     c'8
@@ -6329,7 +6462,8 @@ class Tuplet(Container):
 
             ..  container:: example
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/2 {
                     r4
@@ -6356,7 +6490,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'8.
@@ -6368,7 +6503,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/2 {
                     c'8
@@ -6384,7 +6520,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'8..
@@ -6396,7 +6533,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 7/4 {
                     c'8
@@ -6412,7 +6550,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'8.
@@ -6425,7 +6564,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'8.
@@ -6442,7 +6582,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/2 {
                     c'8
@@ -6455,7 +6596,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/2 {
                     c'8
@@ -6496,7 +6638,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'4
@@ -6511,7 +6654,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 6/10 {
                     c'4
@@ -6545,7 +6689,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
@@ -6558,7 +6703,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'4
                     d'4
@@ -6577,7 +6723,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \times 2/3 {
                     c'4
                     d'4
@@ -6589,7 +6736,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
@@ -6609,7 +6757,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'4
@@ -6622,7 +6771,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'4
@@ -6657,7 +6807,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'8
@@ -6679,7 +6830,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'8 * 3/2
@@ -6716,7 +6868,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     \time 3/8
@@ -6735,7 +6888,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 3/8
@@ -6754,7 +6908,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
@@ -6784,7 +6939,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
@@ -6819,7 +6975,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     c'2
@@ -6833,7 +6990,8 @@ class Tuplet(Container):
 
             ..  docs::
 
-                >>> abjad.f(tuplet)
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
                 \times 1/1 {
                     c'4.
@@ -6863,7 +7021,8 @@ class Voice(Context):
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'8
@@ -6899,7 +7058,8 @@ class Voice(Context):
 
         ..  docs::
 
-            >>> abjad.f(outer_red_voice)
+            >>> string = abjad.lilypond(outer_red_voice)
+            >>> print(string)
             \context Voice = "Red_Voice"
             \with
             {
@@ -6971,7 +7131,8 @@ class Voice(Context):
 
         ..  docs::
 
-            >>> abjad.f(outer_red_voice)
+            >>> string = abjad.lilypond(outer_red_voice)
+            >>> print(string)
             \context Voice = "Red_Voice"
             \with
             {
@@ -7043,7 +7204,8 @@ class Voice(Context):
 
         ..  docs::
 
-            >>> abjad.f(outer_red_voice)
+            >>> string = abjad.lilypond(outer_red_voice)
+            >>> print(string)
             \context Voice = "Red_Voice"
             \with
             {
@@ -7117,7 +7279,8 @@ class Voice(Context):
 
         ..  docs::
 
-            >>> abjad.f(outer_red_voice)
+            >>> string = abjad.lilypond(outer_red_voice)
+            >>> print(string)
             \context Voice = "Red_Voice"
             \with
             {
@@ -7217,7 +7380,8 @@ class Voice(Context):
             >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
             >>> abjad.show(voice) # doctest: +SKIP
 
-            >>> abjad.f(voice, align_tags=20)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice          %! RED
             {                   %! RED
                 c'4

@@ -429,7 +429,8 @@ def copy(argument, n=1):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "treble"
@@ -461,7 +462,8 @@ def copy(argument, n=1):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "treble"
@@ -490,7 +492,8 @@ def copy(argument, n=1):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 2/4
@@ -511,7 +514,8 @@ def copy(argument, n=1):
 
         ..  docs::
 
-            >>> abjad.f(new_staff)
+            >>> string = abjad.lilypond(new_staff)
+            >>> print(string)
             \new Staff
             {
                 e'8
@@ -554,7 +558,8 @@ def eject_contents(argument):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 ~
@@ -577,7 +582,8 @@ def eject_contents(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new RhythmicStaff
             {
                 c'4
@@ -624,7 +630,8 @@ def extract(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \tweak text #tuplet-number::calc-fraction-text
@@ -649,7 +656,8 @@ def extract(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/4
@@ -677,7 +685,8 @@ def extract(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \tweak text #tuplet-number::calc-fraction-text
@@ -704,7 +713,8 @@ def extract(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/4
@@ -727,7 +737,8 @@ def extract(argument):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/2 {
                 c'4
@@ -741,7 +752,8 @@ def extract(argument):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/2 {
                 c'4
@@ -770,7 +782,8 @@ def fuse(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -790,7 +803,8 @@ def fuse(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \times 2/3 {
@@ -816,7 +830,8 @@ def fuse(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \times 2/3 {
@@ -854,7 +869,8 @@ def fuse(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'8
@@ -873,7 +889,8 @@ def fuse(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'8..
@@ -910,7 +927,8 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -934,7 +952,8 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -969,7 +988,8 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1027,7 +1047,8 @@ def replace(argument, recipients, wrappers=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \times 2/3 {
@@ -1056,7 +1077,8 @@ def replace(argument, recipients, wrappers=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'16
@@ -1090,7 +1112,8 @@ def replace(argument, recipients, wrappers=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -1112,7 +1135,8 @@ def replace(argument, recipients, wrappers=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <d' e'>2
@@ -1142,7 +1166,8 @@ def replace(argument, recipients, wrappers=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -1164,7 +1189,8 @@ def replace(argument, recipients, wrappers=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -1194,7 +1220,8 @@ def replace(argument, recipients, wrappers=False):
         >>> tied_notes = maker(0, abjad.Duration(5, 8))
         >>> abjad.mutate.replace(staff[:1], tied_notes)
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'2
@@ -1258,7 +1285,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -1280,7 +1308,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/8
@@ -1297,7 +1326,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/8
@@ -1317,7 +1347,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'8
                 (
@@ -1332,7 +1363,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'8.
                 (
@@ -1356,7 +1388,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \times 4/5 {
@@ -1374,7 +1407,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \times 4/5 {
@@ -1396,7 +1430,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'8 * 1/2
 
         >>> abjad.mutate.scale(note, abjad.Multiplier(1, 2))
@@ -1404,7 +1439,8 @@ def scale(argument, multiplier) -> None:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'16 * 1/2
 
     """
@@ -1434,7 +1470,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1458,7 +1495,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1492,7 +1530,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1521,7 +1560,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1605,7 +1645,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <<
@@ -1648,7 +1689,8 @@ def split(argument, durations, cyclic=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             <<
@@ -1717,7 +1759,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1740,7 +1783,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -1770,7 +1814,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'2
@@ -1783,7 +1828,8 @@ def split(argument, durations, cyclic=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'32
@@ -1933,7 +1979,8 @@ def swap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 {
@@ -1962,7 +2009,8 @@ def swap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \times 4/6 {
@@ -2014,7 +2062,8 @@ def transpose(argument, interval):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 4/4
@@ -2033,7 +2082,8 @@ def transpose(argument, interval):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 4/4
@@ -2075,7 +2125,8 @@ def wrap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -2100,7 +2151,8 @@ def wrap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -2133,7 +2185,8 @@ def wrap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 2/3 {
                 c'8
                 d'8
@@ -2155,7 +2208,8 @@ def wrap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 {
@@ -2184,7 +2238,8 @@ def wrap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
@@ -2231,7 +2286,8 @@ def wrap(argument, container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 {

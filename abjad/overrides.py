@@ -27,7 +27,8 @@ class LilyPondLiteral:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \slurDotted
@@ -60,7 +61,8 @@ class LilyPondLiteral:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
             <BLANKLINE>
@@ -85,7 +87,8 @@ class LilyPondLiteral:
         >>> abjad.attach(literal, staff[0], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \slurDotted %! +PARTS
@@ -112,7 +115,8 @@ class LilyPondLiteral:
         >>> abjad.attach(literal, staff[2], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'8
@@ -136,7 +140,8 @@ class LilyPondLiteral:
         >>> literal = abjad.LilyPondLiteral("% text")
         >>> abjad.attach(literal, staff[0])
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             % text
@@ -279,7 +284,8 @@ class LilyPondLiteral:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -307,7 +313,8 @@ class LilyPondLiteral:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -355,7 +362,8 @@ class LilyPondLiteral:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -1326,7 +1334,8 @@ def override(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1349,7 +1358,8 @@ def override(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \once \override Staff.StaffSymbol.color = #blue
@@ -1399,7 +1409,8 @@ class SettingInterface(Interface):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -1533,7 +1544,8 @@ def setting(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1624,7 +1636,8 @@ class TweakInterface(Interface):
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1648,7 +1661,8 @@ class TweakInterface(Interface):
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1670,7 +1684,8 @@ class TweakInterface(Interface):
             >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff, align_tags=40)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1949,7 +1964,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1972,7 +1988,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1993,7 +2010,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2021,7 +2039,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2049,7 +2068,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2073,7 +2093,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2091,7 +2112,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2110,7 +2132,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "red"
         >>> abjad.attach(dynamic, staff[0])
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -2131,7 +2154,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> abjad.tweak(dynamic, tag=abjad.Tag("BLUE")).color = "blue"
         >>> abjad.attach(dynamic, staff[0])
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4

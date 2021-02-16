@@ -1230,17 +1230,18 @@ class Meter:
             Rewrites the contents of a measure in a staff using the default
             meter for that measure's time signature:
 
-            >>> string = "| 2/4 c'2 ~ |"
-            >>> string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
-            >>> string += "| 2/4 e'2 |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 2/4 c'2 ~ |"
+            >>> lily_string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
+            >>> lily_string += "| 2/4 e'2 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff[:] = container
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1276,7 +1277,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1305,14 +1307,15 @@ class Meter:
 
             Rewrites the contents of a measure in a staff using a custom meter:
 
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff[:] = container
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1351,7 +1354,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1379,15 +1383,16 @@ class Meter:
             Limit the maximum number of dots per leaf using
             ``maximum_dot_count``:
 
-            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1411,7 +1416,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1429,8 +1435,8 @@ class Meter:
 
             Constraining the ``maximum_dot_count`` to ``2``:
 
-            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
@@ -1447,7 +1453,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1467,8 +1474,8 @@ class Meter:
 
             Constraining the ``maximum_dot_count`` to ``1``:
 
-            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
@@ -1485,7 +1492,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1507,8 +1515,8 @@ class Meter:
 
             Constraining the ``maximum_dot_count`` to ``0``:
 
-            >>> string = "| 3/4 c'32 d'8 e'8 fs'4... |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
@@ -1525,7 +1533,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1578,15 +1587,16 @@ class Meter:
             We can establish that meter without specifying
             a ``boundary_depth``:
 
-            >>> string = "| 9/8 c'2 d'2 e'8 |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1607,7 +1617,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1625,8 +1636,8 @@ class Meter:
             tree - i.e.  ``0/8`` ``3/8`` ``6/8`` and ``9/8`` - which do not also
             begin and end at any of those offsets, will be split:
 
-            >>> string = "| 9/8 c'2 d'2 e'8 |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
@@ -1643,7 +1654,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1662,8 +1674,8 @@ class Meter:
             of ``2`` causes no change, as all logical ties already align to
             multiples of ``1/8``
 
-            >>> string = "| 9/8 c'2 d'2 e'8 |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> measure = staff[0]
@@ -1680,7 +1692,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -1725,7 +1738,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 \with
                 {
@@ -1827,7 +1841,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 \with
                 {
@@ -1933,7 +1948,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 \with
                 {
@@ -2035,17 +2051,18 @@ class Meter:
 
             Establishing meter recursively in measures with nested tuplets:
 
-            >>> string = "| 4/4 c'16 ~ c'4 d'8. ~ "
-            >>> string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
-            >>> string += "f'4 |"
-            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+            >>> lily_string = "| 4/4 c'16 ~ c'4 d'8. ~ "
+            >>> lily_string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
+            >>> lily_string += "f'4 |"
+            >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -2090,7 +2107,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     {
@@ -2133,7 +2151,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 6/8
@@ -2154,7 +2173,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 6/8
@@ -2180,7 +2200,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 6/8
@@ -2199,15 +2220,16 @@ class Meter:
 
             Rewrites notes and tuplets:
 
-            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
-            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-            >>> staff = abjad.Staff(string)
+            >>> lily_string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
+            >>> lily_string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+            >>> staff = abjad.Staff(lily_string)
             >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 6/4
@@ -2243,7 +2265,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 6/4
@@ -2272,15 +2295,16 @@ class Meter:
 
             Rewrites notes but not tuplets:
 
-            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
-            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
-            >>> staff = abjad.Staff(string)
+            >>> lily_string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
+            >>> lily_string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+            >>> staff = abjad.Staff(lily_string)
             >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 6/4
@@ -2317,7 +2341,8 @@ class Meter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 6/4
@@ -2497,7 +2522,8 @@ class MeterList(TypedList):
         ...     (3, 4), (5, 16), (7, 8),
         ...     ])
 
-        >>> abjad.f(meters)
+        >>> string = abjad.storage(meters)
+        >>> print(string)
         abjad.MeterList(
             [
                 abjad.Meter(
@@ -2535,7 +2561,8 @@ class MeterList(TypedList):
 
                 >>> lilypond_file = meters.__illustrate__()
                 >>> markup = lilypond_file.items[0]
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup {
                     \column
                         {
@@ -2918,7 +2945,8 @@ class MetricAccentKernel:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new Staff
@@ -3293,7 +3321,8 @@ class _MeterManager:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 {

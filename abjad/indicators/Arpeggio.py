@@ -20,7 +20,8 @@ class Arpeggio:
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <c' e' g' c''>4
             \arpeggio
 
@@ -35,7 +36,8 @@ class Arpeggio:
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             \arpeggioArrowDown
             <c' e' g' c''>4
             \arpeggio
@@ -116,7 +118,8 @@ class Arpeggio:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 <c' e' g' c''>4
                 - \tweak color #blue
                 \arpeggio

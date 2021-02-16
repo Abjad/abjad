@@ -189,7 +189,8 @@ class IntervalClassSet(Set):
 
             ..  docs::
 
-                >>> abjad.f(staff_group)
+                >>> string = abjad.lilypond(staff_group)
+                >>> print(string)
                 \new StaffGroup
                 <<
                     \new Staff
@@ -835,7 +836,8 @@ class PitchSet(Set):
         >>> set_
         PitchSet([-2, -1.5, 6, 7])
 
-        >>> abjad.f(set_)
+        >>> string = abjad.storage(set_)
+        >>> print(string)
         abjad.PitchSet(
             [-2, -1.5, 6, 7]
             )
@@ -851,7 +853,8 @@ class PitchSet(Set):
         >>> set_
         PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
 
-        >>> abjad.f(set_)
+        >>> string = abjad.storage(set_)
+        >>> print(string)
         abjad.PitchSet(
             ['bf,', 'aqs', 'bqf', "fs'", "g'"]
             )

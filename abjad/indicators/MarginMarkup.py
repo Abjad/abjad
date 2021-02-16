@@ -21,7 +21,8 @@ class MarginMarkup:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \set Staff.shortInstrumentName =
@@ -44,7 +45,8 @@ class MarginMarkup:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \set Staff.shortInstrumentName = \my_custom_instrument_name

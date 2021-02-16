@@ -422,7 +422,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -446,7 +447,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -475,7 +477,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -499,7 +502,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -568,7 +572,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -603,7 +608,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         c'8
@@ -643,7 +649,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -686,7 +693,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -742,7 +750,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -778,7 +787,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -826,7 +836,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         ef'8
@@ -863,7 +874,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         ef'8
@@ -921,7 +933,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     g'8
@@ -978,7 +991,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     af'8
@@ -1093,7 +1107,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1129,7 +1144,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1155,7 +1171,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -1184,7 +1201,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -1219,7 +1237,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -1249,7 +1268,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -1288,7 +1308,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -1318,7 +1339,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -1777,7 +1799,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         d'8
@@ -1808,7 +1831,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         d'8
@@ -1844,7 +1868,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -1879,7 +1904,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -1949,7 +1975,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -1980,7 +2007,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -2018,7 +2046,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         d'8
@@ -2049,7 +2078,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         d'8
@@ -2087,7 +2117,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -2118,7 +2149,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -2156,7 +2188,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         d'8
@@ -2187,7 +2220,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         d'8
@@ -2240,7 +2274,8 @@ class PitchClassSegment(Segment):
 
             ..  doctest:
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -2262,7 +2297,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     e'8
@@ -2294,7 +2330,8 @@ class PitchClassSegment(Segment):
 
             ..  doctest:
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     e'8
@@ -2356,7 +2393,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -2387,7 +2425,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -2423,7 +2462,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -2458,7 +2498,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -2534,7 +2575,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -2565,7 +2607,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         g'8
@@ -2603,7 +2646,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bqf'8
@@ -2634,7 +2678,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bqf'8
@@ -2672,7 +2717,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -2706,7 +2752,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -2748,7 +2795,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         c'8
@@ -2779,7 +2827,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         c'8
@@ -2838,7 +2887,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -2860,7 +2910,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -2890,7 +2941,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -2912,7 +2964,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -2947,7 +3000,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -2969,7 +3023,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -3011,7 +3066,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -3033,7 +3089,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -3096,7 +3153,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         b'8
@@ -3127,7 +3185,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         b'8
@@ -3165,7 +3224,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         a'8
@@ -3196,7 +3256,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         a'8
@@ -3234,7 +3295,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -3268,7 +3330,8 @@ class PitchClassSegment(Segment):
 
                 ..  docs::
 
-                    >>> abjad.f(lilypond_file[abjad.Voice])
+                    >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                    >>> print(string)
                     \new Voice
                     {
                         bf'8
@@ -3329,7 +3392,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 \with
                 {
@@ -3425,7 +3489,8 @@ class PitchClassSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 \with
                 {
@@ -3508,7 +3573,8 @@ class PitchSegment(Segment):
 
         ..  docs::
 
-            >>> abjad.f(lilypond_file[abjad.StaffGroup])
+            >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+            >>> print(string)
             \new PianoStaff
             <<
                 \context Staff = "Treble_Staff"
@@ -3547,7 +3613,8 @@ class PitchSegment(Segment):
 
         ..  docs::
 
-            >>> abjad.f(lilypond_file[abjad.StaffGroup])
+            >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+            >>> print(string)
             \new PianoStaff
             <<
                 \context Staff = "Treble_Staff"
@@ -3724,7 +3791,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -3770,7 +3838,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -3822,7 +3891,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -3882,7 +3952,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -3946,7 +4017,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -3981,7 +4053,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4024,7 +4097,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4059,7 +4133,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4102,7 +4177,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4137,7 +4213,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4179,7 +4256,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4214,7 +4292,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4264,7 +4343,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4299,7 +4379,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -4323,7 +4404,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4358,7 +4440,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -4392,7 +4475,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4427,7 +4511,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4463,7 +4548,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4498,7 +4584,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4540,7 +4627,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4575,7 +4663,8 @@ class PitchSegment(Segment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.StaffGroup])
+                >>> string = abjad.lilypond(lilypond_file[abjad.StaffGroup])
+                >>> print(string)
                 \new PianoStaff
                 <<
                     \context Staff = "Treble_Staff"
@@ -4690,7 +4779,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     af'8
@@ -4714,7 +4804,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -4739,7 +4830,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -4769,7 +4861,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     b'8
@@ -4794,7 +4887,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -4824,7 +4918,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     bf'8
@@ -4849,7 +4944,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     af'8
@@ -4902,7 +4998,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -4924,7 +5021,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     f'8
@@ -4969,7 +5067,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -5016,7 +5115,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -5076,7 +5176,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -5122,7 +5223,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -5427,7 +5529,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -5461,7 +5564,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -5492,7 +5596,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     b'8
@@ -5521,7 +5626,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     a'8
@@ -5576,7 +5682,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     f'8
@@ -5605,7 +5712,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     g'8
@@ -5634,7 +5742,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -5686,7 +5795,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -5715,7 +5825,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -5770,7 +5881,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -5799,7 +5911,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     b'8
@@ -5828,7 +5941,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8
@@ -5860,7 +5974,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -5912,7 +6027,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     d'8
@@ -5941,7 +6057,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -5970,7 +6087,8 @@ class TwelveToneRow(PitchClassSegment):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     cs'8

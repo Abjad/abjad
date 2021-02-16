@@ -29,7 +29,8 @@ class Markup:
 
         >>> string = r'\italic { "Allegro assai" }'
         >>> markup = abjad.Markup(string)
-        >>> abjad.f(markup)
+        >>> string = abjad.lilypond(markup)
+        >>> print(string)
         \markup {
             \italic
                 {
@@ -45,7 +46,8 @@ class Markup:
 
         >>> markup = abjad.Markup(r'\italic "Allegro assai"', direction=abjad.Up)
         >>> markup = abjad.Markup(markup, direction=abjad.Down)
-        >>> abjad.f(markup)
+        >>> string = abjad.lilypond(markup)
+        >>> print(string)
         _ \markup {
             \italic
                 "Allegro assai"
@@ -60,7 +62,8 @@ class Markup:
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> string = r'\italic { "Allegro assai" }'
         >>> markup = abjad.Markup(string, direction=abjad.Up)
-        >>> abjad.f(markup)
+        >>> string = abjad.lilypond(markup)
+        >>> print(string)
         ^ \markup {
             \italic
                 {
@@ -73,7 +76,8 @@ class Markup:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -103,7 +107,8 @@ class Markup:
         >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -130,7 +135,8 @@ class Markup:
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -155,7 +161,8 @@ class Markup:
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -260,7 +267,8 @@ class Markup:
             Adds markup to markup:
 
             >>> markup = abjad.Markup("Allegro") + abjad.Markup("assai")
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 Allegro
                 assai
@@ -274,7 +282,8 @@ class Markup:
 
             >>> markup = abjad.Markup(r"Allegro \hspace #0.75")
             >>> markup = markup + abjad.Markup("assai")
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 Allegro
                 \hspace
@@ -460,7 +469,8 @@ class Markup:
             Adds markup to markup:
 
             >>> markup = abjad.Markup("Allegro") + abjad.Markup("assai")
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 Allegro
                 assai
@@ -474,7 +484,8 @@ class Markup:
 
             >>> markup = abjad.Markup(r"Allegro \hspace #0.75")
             >>> markup = markup + abjad.Markup("assai")
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 Allegro
                 \hspace
@@ -626,7 +637,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 - \markup { Allegro }
 
@@ -639,7 +651,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 ^ \markup { Allegro }
 
@@ -653,7 +666,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 _ \markup { Allegro }
 
@@ -669,7 +683,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 - \tweak color #red
                 - \markup { Allegro }
@@ -688,14 +703,16 @@ class Markup:
 
             >>> string = r"\custom-function #1 #4"
             >>> markup = abjad.Markup(string, literal=True)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \custom-function #1 #4
 
             Works with normal initializer, too:
 
             >>> string = r"\custom-function #1 #4"
             >>> markup = abjad.Markup(string, literal=True)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \custom-function #1 #4
 
         ..  container:: example
@@ -708,7 +725,8 @@ class Markup:
             ...     direction=abjad.Up,
             ...     literal=True,
             ...     )
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \custom-function #1 #4
 
             Works with normal initialier, too:
@@ -719,7 +737,8 @@ class Markup:
             ...     direction=abjad.Up,
             ...     literal=True,
             ...     )
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \custom-function #1 #4
 
         ..  container:: example
@@ -732,7 +751,8 @@ class Markup:
             ...     direction=abjad.Up,
             ...     literal=True,
             ...     )
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup { \note {4} #1 }
 
             >>> note = abjad.Note("c'4")
@@ -741,7 +761,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 ^ \markup { \note {4} #1 }
 
@@ -760,7 +781,8 @@ class Markup:
             >>> abjad.tweak(markup).color = "blue"
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(markup, staff[0])
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -789,7 +811,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.bold()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \bold
                     "Allegro assai"
@@ -813,7 +836,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.box()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \box
                     "Allegro assai"
@@ -828,7 +852,8 @@ class Markup:
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.box()
             >>> markup = markup.override(("box-padding", 0.5))
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \override
                     #'(box-padding . 0.5)
@@ -854,7 +879,8 @@ class Markup:
 
                 >>> markup = abjad.Markup("Allegro assai")
                 >>> markup = markup.bracket()
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup {
                     \bracket
                         "Allegro assai"
@@ -876,7 +902,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.caps()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \caps
                     "Allegro assai"
@@ -900,7 +927,8 @@ class Markup:
             >>> markup_b = abjad.Markup("non").center_align()
             >>> markup_c = abjad.Markup("troppo")
             >>> markup = abjad.Markup.column([markup_a, markup_b, markup_c])
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \column
                     {
@@ -929,7 +957,8 @@ class Markup:
             >>> city = abjad.Markup("Los Angeles")
             >>> date = abjad.Markup("May - August 2014")
             >>> markup = abjad.Markup.center_column([city, date])
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \center-column
                     {
@@ -947,7 +976,8 @@ class Markup:
             >>> city = "Los Angeles"
             >>> date = "May - August 2014"
             >>> markup = abjad.Markup.center_column([city, date])
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \center-column
                     {
@@ -975,7 +1005,8 @@ class Markup:
             >>> markup = abjad.Markup.fraction(3, 5)
             >>> markup = markup.circle()
             >>> markup = markup.override(("circle-padding", 0.45))
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \override
                     #'(circle-padding . 0.45)
@@ -1003,7 +1034,8 @@ class Markup:
             >>> city = abjad.Markup("Los Angeles")
             >>> date = abjad.Markup("May - August 2014")
             >>> markup = abjad.Markup.column([city, date])
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \column
                     {
@@ -1033,7 +1065,8 @@ class Markup:
             >>> markup_two = abjad.Markup.draw_line(13, 0)
             >>> markup_list = [markup_one, markup_two]
             >>> markup = abjad.Markup.combine(markup_list, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \combine
                     "Allegro assai"
@@ -1065,7 +1098,8 @@ class Markup:
             >>> upbow = abjad.Markup.musicglyph("scripts.upbow")
             >>> markup_list = [downbow, hspace, upbow]
             >>> markup = abjad.Markup.concat(markup_list, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \concat
                     {
@@ -1097,7 +1131,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.draw_circle(10, 1.5, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \draw-circle
                     #10
@@ -1120,7 +1155,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.draw_line(5, -2.5, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \draw-line
                     #'(5 . -2.5)
@@ -1142,7 +1178,8 @@ class Markup:
 
             >>> markup = abjad.Markup("sffz")
             >>> markup = markup.dynamic()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \dynamic
                     sffz
@@ -1164,7 +1201,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.filled_box((0, 10), (2, 5), 1.5, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \filled-box
                     #'(0 . 10)
@@ -1190,7 +1228,8 @@ class Markup:
 
             >>> markup = abjad.Markup(1)
             >>> markup = markup.finger()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \finger
                     1
@@ -1212,7 +1251,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.flat(direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \flat
                 }
@@ -1232,7 +1272,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.fontsize(-3)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \fontsize
                     #-3
@@ -1259,7 +1300,8 @@ class Markup:
             Fraction with integer numerator and denominator:
 
             >>> markup = abjad.Markup.fraction(1, 4, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \fraction
                     1
@@ -1273,7 +1315,8 @@ class Markup:
             Fraction with string numerator and integer denominator:
 
             >>> markup = abjad.Markup.fraction("π", 4)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \fraction
                     π
@@ -1297,7 +1340,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.general_align("Y", direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \general-align
                     #Y
@@ -1313,7 +1357,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.general_align("Y", 0.75)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \general-align
                     #Y
@@ -1349,7 +1394,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.halign(0)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \halign
                     #0
@@ -1372,7 +1418,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.hcenter_in(12)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \hcenter-in
                     #12
@@ -1395,7 +1442,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.hspace(0.75, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \hspace
                     #0.75
@@ -1416,7 +1464,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.huge()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \huge
                     "Allegro assai"
@@ -1438,7 +1487,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.italic()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \italic
                     "Allegro assai"
@@ -1460,7 +1510,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.larger()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \larger
                     "Allegro assai"
@@ -1484,7 +1535,8 @@ class Markup:
             >>> city = abjad.Markup("Los Angeles")
             >>> date = abjad.Markup("May - August 2014")
             >>> markup = abjad.Markup.left_column([city, date])
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \left-column
                     {
@@ -1513,7 +1565,8 @@ class Markup:
             >>> markups = ["Allegro", "assai"]
             >>> markups = [abjad.Markup(_) for _ in markups]
             >>> markup = abjad.Markup.line(markups)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \line
                     {
@@ -1549,7 +1602,8 @@ class Markup:
             ...     quicktions.Fraction(6, 3),
             ...     direction=abjad.Up,
             ...     )
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup { 2 }
 
             >>> abjad.show(markup) # doctest: +SKIP
@@ -1561,7 +1615,8 @@ class Markup:
             >>> markup = abjad.Markup.make_improper_fraction_markup(
             ...     quicktions.Fraction(7, 3),
             ...     )
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 2
                 \tiny
@@ -1599,7 +1654,8 @@ class Markup:
             ...     "accidentals.sharp",
             ...     direction=abjad.Up,
             ...     )
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \musicglyph
                     #"accidentals.sharp"
@@ -1624,7 +1680,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.natural(direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \natural
                 }
@@ -1644,7 +1701,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.normal_text()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \normal-text
                     "Allegro assai"
@@ -1666,7 +1724,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.note_by_number(3, 2, 1, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \note-by-number
                     #3
@@ -1689,7 +1748,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.null()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \null
                 }
@@ -1711,7 +1771,8 @@ class Markup:
             >>> city = abjad.Markup("Los Angeles")
             >>> date = abjad.Markup("May - August 2014")
             >>> markup = abjad.Markup.overlay([city, date], direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \overlay
                     {
@@ -1739,7 +1800,8 @@ class Markup:
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.parenthesize()
             >>> markup = markup.override(("padding", 0.75))
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \override
                     #'(padding . 0.75)
@@ -1765,7 +1827,8 @@ class Markup:
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.pad_around(10)
             >>> markup = markup.box()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \box
                     \pad-around
@@ -1790,7 +1853,8 @@ class Markup:
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.pad_markup(10)
             >>> markup = markup.box()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \box
                     \pad-markup
@@ -1828,7 +1892,8 @@ class Markup:
             >>> up_postscript = up_postscript.setgray(0.75)
             >>> up_postscript = up_postscript.fill()
             >>> up_postscript_markup = up_postscript.as_markup()
-            >>> abjad.f(up_postscript_markup)
+            >>> string = abjad.lilypond(up_postscript_markup)
+            >>> print(string)
             \markup {
                 \postscript
                     #"
@@ -1887,7 +1952,8 @@ class Markup:
             >>> down_postscript = down_postscript.setgray(0.75)
             >>> down_postscript = down_postscript.fill()
             >>> down_postscript_markup = down_postscript.as_markup()
-            >>> abjad.f(down_postscript_markup)
+            >>> string = abjad.lilypond(down_postscript_markup)
+            >>> print(string)
             \markup {
                 \postscript
                     #"
@@ -1951,7 +2017,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.parenthesize()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \parenthesize
                     "Allegro assai"
@@ -1979,7 +2046,8 @@ class Markup:
             >>> postscript = postscript.lineto(3, -4)
             >>> postscript = postscript.stroke()
             >>> markup = abjad.Markup.postscript(postscript, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \postscript
                     #"
@@ -2009,7 +2077,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.raise_(0.35)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \raise
                     #0.35
@@ -2037,7 +2106,8 @@ class Markup:
             ...     [city, date],
             ...     direction=abjad.Up,
             ...     )
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \right-column
                     {
@@ -2064,7 +2134,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.rotate(45)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \rotate
                     #45
@@ -2087,7 +2158,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.sans()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \sans
                     "Allegro assai"
@@ -2109,7 +2181,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.scale((0.75, 0.75))
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \scale
                     #'(0.75 . 0.75)
@@ -2133,7 +2206,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.sharp(direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \sharp
                 }
@@ -2153,7 +2227,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.small()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \small
                     "Allegro assai"
@@ -2175,7 +2250,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.smaller()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \smaller
                     "Allegro assai"
@@ -2200,7 +2276,8 @@ class Markup:
             ...     abjad.Markup("j").sub(),
             ...     ]
             >>> markup = abjad.Markup.concat(markup_list)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \concat
                     {
@@ -2226,7 +2303,8 @@ class Markup:
 
             >>> string = rf"\concat {{ 1 \super st }}"
             >>> markup = abjad.Markup(string)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \concat
                     {
@@ -2252,7 +2330,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.tiny()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \tiny
                     "Allegro assai"
@@ -2274,7 +2353,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.translate((2, 1))
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \translate
                     #'(2 . 1)
@@ -2298,7 +2378,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.triangle(direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \triangle
                     ##t
@@ -2319,7 +2400,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.upright()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \upright
                     "Allegro assai"
@@ -2341,7 +2423,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.vcenter()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \vcenter
                     "Allegro assai"
@@ -2363,7 +2446,8 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup.vspace(0.75, direction=abjad.Up)
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             ^ \markup {
                 \vspace
                     #0.75
@@ -2384,7 +2468,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.whiteout()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \whiteout
                     "Allegro assai"
@@ -2406,7 +2491,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.with_color("blue")
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \with-color
                     #blue
@@ -2421,7 +2507,8 @@ class Markup:
 
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.with_color(abjad.SchemeColor("LimeGreen"))
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \with-color
                     #(x11-color 'LimeGreen)
@@ -2483,7 +2570,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(up_markup.box())
+                >>> string = abjad.lilypond(up_markup.box())
+                >>> print(string)
                 \markup {
                     \box
                         \postscript
@@ -2505,7 +2593,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(up_markup)
+                >>> string = abjad.lilypond(up_markup)
+                >>> print(string)
                 \markup {
                     \box
                         \with-dimensions
@@ -2531,7 +2620,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(up_markup)
+                >>> string = abjad.lilypond(up_markup)
+                >>> print(string)
                 \markup {
                     \box
                         \with-dimensions
@@ -2557,7 +2647,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(up_markup)
+                >>> string = abjad.lilypond(up_markup)
+                >>> print(string)
                 \markup {
                     \box
                         \with-dimensions
@@ -2616,7 +2707,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup {
                     \box
                         Allegro
@@ -2629,7 +2721,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup {
                     \box
                         \with-dimensions
@@ -2663,7 +2756,8 @@ class Markup:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'8
@@ -2696,7 +2790,8 @@ class Markup:
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.bold()
             >>> markup = markup.with_literal(r"\user-markup-command")
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \user-markup-command
                     \bold
@@ -2706,7 +2801,8 @@ class Markup:
             >>> markup = abjad.Markup("Allegro assai")
             >>> markup = markup.with_literal(r"\user-markup-command")
             >>> markup = markup.bold()
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \bold
                     \user-markup-command
@@ -2758,7 +2854,8 @@ class MarkupCommand:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'4
             - \markup {
                 \combine
@@ -2792,7 +2889,8 @@ class MarkupCommand:
         ...     [small_staff, layout_block],
         ...     )
 
-        >>> abjad.f(command)
+        >>> string = abjad.lilypond(command)
+        >>> print(string)
         \score
             {
                 \new Staff
@@ -2821,7 +2919,8 @@ class MarkupCommand:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3065,7 +3164,8 @@ class MarkupCommand:
             >>> command = abjad.MarkupCommand("column", lines)
             >>> markup = abjad.Markup(command)
 
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \column
                     {
@@ -3087,7 +3187,8 @@ class MarkupCommand:
                 >>> command.force_quotes = True
                 >>> markup = abjad.Markup(command)
 
-            >>> abjad.f(markup)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
             \markup {
                 \column
                     {
@@ -4299,7 +4400,8 @@ def abjad_metronome_mark(
         >>> markup = abjad.markups.abjad_metronome_mark(
         ...     2, 0, 1, 67.5, direction=abjad.Up,
         ... )
-        >>> abjad.f(markup)
+        >>> string = abjad.lilypond(markup)
+        >>> print(string)
         ^ \markup {
             \abjad-metronome-mark-markup #2 #0 #1 #"67.5"
             }

@@ -32,7 +32,8 @@ class ReducedLyParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 r8.
@@ -48,7 +49,8 @@ class ReducedLyParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 r8
@@ -68,7 +70,8 @@ class ReducedLyParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 d'4
@@ -82,7 +85,8 @@ class ReducedLyParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c'4
                 d'4
@@ -102,7 +106,8 @@ class ReducedLyParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
@@ -127,7 +132,8 @@ class ReducedLyParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 {
@@ -157,7 +163,8 @@ class ReducedLyParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c16
                 [

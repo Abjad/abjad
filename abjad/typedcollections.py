@@ -149,7 +149,8 @@ class TypedCounter(TypedCollection, collections.abc.MutableMapping):
         ...     item_class=abjad.NumberedPitch,
         ...     )
 
-        >>> abjad.f(counter)
+        >>> string = abjad.storage(counter)
+        >>> print(string)
         abjad.TypedCounter(
             {
                 abjad.NumberedPitch(0): 2,
@@ -624,7 +625,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         >>> list_.append((1, 2, 3))
         >>> list_.append(3.14159)
 
-        >>> abjad.f(list_)
+        >>> string = abjad.storage(list_)
+        >>> print(string)
         abjad.TypedList(
             [
                 23,
@@ -647,7 +649,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         >>> pitch_list.append(('e', 4))
         >>> pitch_list.append(abjad.NamedPitch("f'"))
 
-        >>> abjad.f(pitch_list)
+        >>> string = abjad.storage(pitch_list)
+        >>> print(string)
         abjad.TypedList(
             [
                 abjad.NamedPitch("c'"),
@@ -710,7 +713,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             >>> dynamic_list.append('ppp')
             >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
 
-            >>> abjad.f(dynamic_list)
+            >>> string = abjad.storage(dynamic_list)
+            >>> print(string)
             abjad.TypedList(
                 [
                     abjad.Dynamic('ppp'),
@@ -752,7 +756,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             >>> pitch_list.append(abjad.NamedPitch("f'"))
 
             >>> pitch_list[-1] = 'gqs,'
-            >>> abjad.f(pitch_list)
+            >>> string = abjad.storage(pitch_list)
+            >>> print(string)
             abjad.TypedList(
                 [
                     abjad.NamedPitch("c'"),
@@ -768,7 +773,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             Sets slice:
 
             >>> pitch_list[-1:] = ["f'", "g'", "a'", "b'", "c''"]
-            >>> abjad.f(pitch_list)
+            >>> string = abjad.storage(pitch_list)
+            >>> print(string)
             abjad.TypedList(
                 [
                     abjad.NamedPitch("c'"),

@@ -19,7 +19,8 @@ class LaissezVibrer:
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <c' e' g' c''>4
             \laissezVibrer
 
@@ -110,7 +111,8 @@ class LaissezVibrer:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 - \tweak color #blue
                 \laissezVibrer

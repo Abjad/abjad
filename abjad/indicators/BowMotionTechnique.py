@@ -10,7 +10,8 @@ class BowMotionTechnique:
         Jété:
 
         >>> bow_motion_technique = abjad.BowMotionTechnique('jete')
-        >>> abjad.f(bow_motion_technique)
+        >>> string = abjad.storage(bow_motion_technique)
+        >>> print(string)
         abjad.BowMotionTechnique(
             technique_name='jete',
             )
@@ -20,7 +21,8 @@ class BowMotionTechnique:
         Ordinario:
 
         >>> bow_motion_technique = abjad.BowMotionTechnique('ordinario')
-        >>> abjad.f(bow_motion_technique)
+        >>> string = abjad.storage(bow_motion_technique)
+        >>> print(string)
         abjad.BowMotionTechnique(
             technique_name='ordinario',
             )

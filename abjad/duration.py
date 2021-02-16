@@ -1125,7 +1125,8 @@ class Duration(quicktions.Fraction):
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 ^ \markup { 1'57'' }
 

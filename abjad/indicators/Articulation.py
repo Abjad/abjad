@@ -282,7 +282,8 @@ class Articulation:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 - \tweak color #blue
                 - \marcato

@@ -24,7 +24,8 @@ class PitchRange:
 
         ..  docs::
 
-            >>> abjad.f(pitch_range)
+            >>> string = abjad.storage(pitch_range)
+            >>> print(string)
             abjad.PitchRange('[C3, C7]')
 
     ..  container:: example
@@ -35,7 +36,8 @@ class PitchRange:
 
         ..  docs::
 
-            >>> abjad.f(lilypond_file[abjad.Score])
+            >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+            >>> print(string)
             \new Score
             \with
             {

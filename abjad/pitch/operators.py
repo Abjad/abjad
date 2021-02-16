@@ -81,7 +81,8 @@ class CompoundOperator:
             >>> str(operator_3)
             'IRIT1'
 
-            >>> abjad.f(operator_3)
+            >>> string = abjad.storage(operator_3)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Transposition(n=1),
@@ -339,7 +340,8 @@ class CompoundOperator:
 
             >>> operator = abjad.CompoundOperator()
             >>> operator = operator.duplicate(counts=1)
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Duplication(counts=1),
@@ -359,7 +361,8 @@ class CompoundOperator:
 
             >>> operator = abjad.CompoundOperator()
             >>> operator = operator.invert(axis=2)
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Inversion(axis=NamedPitch("d'")),
@@ -379,7 +382,8 @@ class CompoundOperator:
 
             >>> operator = abjad.CompoundOperator()
             >>> operator = operator.multiply(n=3)
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Multiplication(n=3),
@@ -399,7 +403,8 @@ class CompoundOperator:
 
             >>> operator = abjad.CompoundOperator()
             >>> operator = operator.retrograde()
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Retrograde(),
@@ -419,7 +424,8 @@ class CompoundOperator:
 
             >>> operator = abjad.CompoundOperator()
             >>> operator = operator.rotate(n=-1)
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Rotation(n=-1),
@@ -440,7 +446,8 @@ class CompoundOperator:
             >>> operator = abjad.CompoundOperator()
             >>> operator = operator.transpose(n=1)
 
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Transposition(n=1),
@@ -461,7 +468,8 @@ class Duplication:
 
         >>> operator_ = abjad.Duplication(counts=2, period=4)
 
-        >>> abjad.f(operator_)
+        >>> string = abjad.storage(operator_)
+        >>> print(string)
         abjad.Duplication(
             counts=2,
             period=4,
@@ -788,7 +796,8 @@ class Inversion:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     a'8
@@ -813,7 +822,8 @@ class Inversion:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     ef'8
@@ -828,7 +838,8 @@ class Inversion:
 
             Returns compound operator:
 
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Inversion(),
@@ -1073,7 +1084,8 @@ class Multiplication:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     ef'8
@@ -1098,7 +1110,8 @@ class Multiplication:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     ef'8
@@ -1296,7 +1309,8 @@ class Retrograde:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     af'8
@@ -1321,7 +1335,8 @@ class Retrograde:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     af'8
@@ -1336,7 +1351,8 @@ class Retrograde:
 
             Returns compound operator:
 
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Retrograde(),
@@ -1543,7 +1559,8 @@ class Rotation:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     f'8
@@ -1568,7 +1585,8 @@ class Rotation:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     f'8
@@ -1583,7 +1601,8 @@ class Rotation:
 
             Returns compound operator:
 
-            >>> abjad.f(operator)
+            >>> string = abjad.storage(operator)
+            >>> print(string)
             abjad.CompoundOperator(
                 operators=[
                     Rotation(n=-1),
@@ -1870,7 +1889,8 @@ class Transposition:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     e'8
@@ -1895,7 +1915,8 @@ class Transposition:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Voice])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> print(string)
                 \new Voice
                 {
                     e'8

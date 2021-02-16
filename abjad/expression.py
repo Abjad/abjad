@@ -328,7 +328,8 @@ class Expression:
 
             >>> expression = abjad.sequence()
             >>> expression = expression + [4, 5, 6]
-            >>> abjad.f(expression)
+            >>> string = abjad.storage(expression)
+            >>> print(string)
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(
@@ -1563,7 +1564,8 @@ class Expression:
 
             ..  docs::
 
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup {
                     \line
                         {
@@ -1790,7 +1792,8 @@ class Expression:
             >>> expression(abjad.Markup('Allegro assai'))
             [Markup(contents=['Allegro assai'])]
 
-            >>> abjad.f(expression)
+            >>> string = abjad.storage(expression)
+            >>> print(string)
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(

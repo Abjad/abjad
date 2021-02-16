@@ -22,7 +22,8 @@ class StartHairpin:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -201,7 +202,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -301,7 +303,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -328,7 +331,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -355,7 +359,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -383,7 +388,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -413,7 +419,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -440,7 +447,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -468,7 +476,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -496,7 +505,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -527,7 +537,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -592,7 +603,8 @@ class StartHairpin:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {

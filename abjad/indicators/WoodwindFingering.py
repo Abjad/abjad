@@ -81,7 +81,8 @@ class WoodwindFingering:
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <ds' fs''>4
             _ \markup {
                 \woodwind-diagram
@@ -131,7 +132,8 @@ class WoodwindFingering:
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <e' as' gqf''>1
             _ \markup {
                 \override
@@ -174,7 +176,8 @@ class WoodwindFingering:
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             <e' as' gqf''>1
             _ \markup {
                 \override

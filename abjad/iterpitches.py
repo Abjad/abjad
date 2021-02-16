@@ -22,7 +22,8 @@ def iterate_out_of_range(components) -> typing.Generator:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -58,7 +59,8 @@ def respell_with_flats(selection) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 cs'8
@@ -75,7 +77,8 @@ def respell_with_flats(selection) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 df'8
@@ -109,7 +112,8 @@ def respell_with_sharps(selection) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 cf'8
@@ -126,7 +130,8 @@ def respell_with_sharps(selection) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 b8
@@ -186,7 +191,8 @@ def transpose_from_sounding_pitch(argument) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <c' e' g'>4
@@ -200,7 +206,8 @@ def transpose_from_sounding_pitch(argument) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <d' fs' a'>4
@@ -239,7 +246,8 @@ def transpose_from_written_pitch(argument) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <c' e' g'>4
@@ -253,7 +261,8 @@ def transpose_from_written_pitch(argument) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <bf d' f'>4

@@ -37,7 +37,8 @@ class Clef:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "treble"
@@ -68,7 +69,8 @@ class Clef:
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \clef "treble" %! +PARTS
@@ -99,7 +101,8 @@ class Clef:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -374,7 +377,8 @@ class Clef:
             >>> abjad.attach(abjad.Clef('alto', hide=True), staff[2])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "treble"
@@ -702,7 +706,8 @@ class StaffPosition:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -763,7 +768,8 @@ class StaffPosition:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {

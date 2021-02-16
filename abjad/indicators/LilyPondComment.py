@@ -19,7 +19,8 @@ class LilyPondComment:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             % a comment
             c'4
 
@@ -34,7 +35,8 @@ class LilyPondComment:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             % yet another comment
             c'4
 

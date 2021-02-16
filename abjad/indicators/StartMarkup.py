@@ -19,7 +19,8 @@ class StartMarkup:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \set Staff.instrumentName =
@@ -38,7 +39,8 @@ class StartMarkup:
         >>> start_markup = abjad.StartMarkup(markup=r'\my_instrument_name')
         >>> abjad.attach(start_markup, staff[0])
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \set Staff.instrumentName = \my_instrument_name

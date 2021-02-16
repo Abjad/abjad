@@ -35,7 +35,8 @@ class OnBeatGraceContainer(Container):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -307,7 +308,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -366,7 +368,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -423,7 +426,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -483,7 +487,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -549,7 +554,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -612,7 +618,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -673,7 +680,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -737,7 +745,8 @@ def on_beat_grace_container(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"

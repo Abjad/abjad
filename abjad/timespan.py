@@ -35,7 +35,8 @@ class OffsetCounter(TypedCounter):
         >>> timespans = timespans - timespan_operand
         >>> offset_counter = abjad.OffsetCounter(timespans)
 
-        >>> abjad.f(offset_counter)
+        >>> string = abjad.storage(offset_counter)
+        >>> print(string)
         abjad.OffsetCounter(
             {
                 abjad.Offset((-2, 1)): 1,
@@ -94,7 +95,8 @@ class OffsetCounter(TypedCounter):
             ..  docs::
 
                 >>> markup = offset_counter._make_markup()
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup { \overlay {
                 \postscript #"
                 0.2 setlinewidth
@@ -496,7 +498,8 @@ class Timespan:
             >>> timespan_4 = abjad.Timespan(10, 20)
 
             >>> new_timespan = timespan_1 | timespan_2
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -507,7 +510,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_1 | timespan_3
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -518,7 +522,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_1 | timespan_4
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -529,7 +534,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_2 | timespan_3
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -544,7 +550,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_2 | timespan_4
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -555,7 +562,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_3 | timespan_4
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -728,7 +736,8 @@ class Timespan:
             >>> timespan_4 = abjad.Timespan(10, 20)
 
             >>> new_timespan = timespan_1 ^ timespan_2
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -743,7 +752,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_1 ^ timespan_3
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -758,7 +768,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_1 ^ timespan_4
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -773,7 +784,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_2 ^ timespan_3
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -788,7 +800,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_2 ^ timespan_4
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -803,7 +816,8 @@ class Timespan:
                 )
 
             >>> new_timespan = timespan_3 ^ timespan_4
-            >>> abjad.f(new_timespan)
+            >>> string = abjad.storage(new_timespan)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -1809,7 +1823,8 @@ class Timespan:
             >>> timespan = abjad.Timespan(0, 10)
 
             >>> result = timespan.split_at_offsets((1, 3, 7))
-            >>> abjad.f(result)
+            >>> string = abjad.storage(result)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -1834,7 +1849,8 @@ class Timespan:
             Otherwise return a timespan list containing a copy of timespan:
 
             >>> result = timespan.split_at_offsets((-100,))
-            >>> abjad.f(result)
+            >>> string = abjad.storage(result)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -2812,7 +2828,8 @@ class AnnotatedTimespan(Timespan):
         ...    start_offset=(1, 4),
         ...    stop_offset=(7, 8),
         ...    )
-        >>> abjad.f(annotated_timespan)
+        >>> string = abjad.storage(annotated_timespan)
+        >>> print(string)
         abjad.AnnotatedTimespan(
             start_offset=abjad.Offset((1, 4)),
             stop_offset=abjad.Offset((7, 8)),
@@ -2825,7 +2842,8 @@ class AnnotatedTimespan(Timespan):
 
         >>> left, right = annotated_timespan.split_at_offset((1, 2))
         >>> left.annotation.append('foo')
-        >>> abjad.f(right)
+        >>> string = abjad.storage(right)
+        >>> print(string)
         abjad.AnnotatedTimespan(
             start_offset=abjad.Offset((1, 2)),
             stop_offset=abjad.Offset((7, 8)),
@@ -2899,7 +2917,8 @@ class TimespanList(TypedList):
         ...     ])
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-        >>> abjad.f(timespans)
+        >>> string = abjad.storage(timespans)
+        >>> print(string)
         abjad.TimespanList(
             [
                 abjad.Timespan(
@@ -2930,7 +2949,8 @@ class TimespanList(TypedList):
         ...     ])
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-        >>> abjad.f(timespans)
+        >>> string = abjad.storage(timespans)
+        >>> print(string)
         abjad.TimespanList(
             [
                 abjad.Timespan(
@@ -2973,7 +2993,8 @@ class TimespanList(TypedList):
         ...     abjad.Timespan((3, 4), 1),
         ...     ])
 
-        >>> abjad.f(timespans)
+        >>> string = abjad.storage(timespans)
+        >>> print(string)
         abjad.TimespanList(
             [
                 abjad.Timespan(
@@ -3021,7 +3042,8 @@ class TimespanList(TypedList):
             >>> _ = timespans & timespan
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -3078,7 +3100,8 @@ class TimespanList(TypedList):
 
                 >>> lilypond_file = abjad.illustrate(timespans)
                 >>> markup = lilypond_file.items[-1]
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup \column {
                 \overlay {
                 \translate #'(1.0 . 1)
@@ -3208,7 +3231,8 @@ class TimespanList(TypedList):
                 ...     sort_callable=human_sorted_keys,
                 ...     )
                 >>> markup = lilypond_file.items[-1]
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup
                 \left-column {
                 \fontsize #-1 \sans \line { "voice 1:" }
@@ -3389,7 +3413,8 @@ class TimespanList(TypedList):
 
             >>> abjad.show(~timespans, range_=(-2, 30), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(~timespans)
+            >>> string = abjad.storage(~timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -3441,7 +3466,8 @@ class TimespanList(TypedList):
 
             >>> timespan = abjad.Timespan(5, 10)
             >>> _ = timespans - timespan
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4042,7 +4068,8 @@ class TimespanList(TypedList):
             ...     )
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(result)
+            >>> string = abjad.storage(result)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4071,7 +4098,8 @@ class TimespanList(TypedList):
             ...     )
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(result)
+            >>> string = abjad.storage(result)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4101,7 +4129,8 @@ class TimespanList(TypedList):
             ...     )
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(result)
+            >>> string = abjad.storage(result)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4132,7 +4161,8 @@ class TimespanList(TypedList):
             ...     )
             >>> abjad.show(result, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(result)
+            >>> string = abjad.storage(result)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4197,7 +4227,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_and()
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4220,7 +4251,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_and()
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4244,7 +4276,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_and()
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4296,7 +4329,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_or()
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4319,7 +4353,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_or()
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4343,7 +4378,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_or()
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4366,7 +4402,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_or()
             >>> abjad.show(timespans, range_=(-2, 20), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4420,7 +4457,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_xor()
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4445,7 +4483,8 @@ class TimespanList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(timespans)
+                >>> string = abjad.storage(timespans)
+                >>> print(string)
                 abjad.TimespanList(
                     [
                         abjad.Timespan(
@@ -4475,7 +4514,8 @@ class TimespanList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(timespans)
+                >>> string = abjad.storage(timespans)
+                >>> print(string)
                 abjad.TimespanList(
                     [
                         abjad.Timespan(
@@ -4508,7 +4548,8 @@ class TimespanList(TypedList):
 
             ..  docs::
 
-                >>> abjad.f(timespans)
+                >>> string = abjad.storage(timespans)
+                >>> print(string)
                 abjad.TimespanList(
                     [
                         abjad.Timespan(
@@ -4536,7 +4577,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.compute_logical_xor()
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4729,7 +4771,8 @@ class TimespanList(TypedList):
             ...     ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4772,7 +4815,8 @@ class TimespanList(TypedList):
             ...     ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -4874,7 +4918,8 @@ class TimespanList(TypedList):
             timespan_lists:
 
             >>> for exploded_timespan_list in timespans.explode():
-            ...     abjad.f(exploded_timespan_list)
+            ...     string = abjad.storage(exploded_timespan_list)
+            ...     print(string)
             ...
             abjad.TimespanList(
                 [
@@ -4944,7 +4989,8 @@ class TimespanList(TypedList):
 
             >>> for exploded_timespan_list in timespans.explode(
             ...     inventory_count=6):
-            ...     abjad.f(exploded_timespan_list)
+            ...     string = abjad.storage(exploded_timespan_list)
+            ...     print(string)
             ...
             abjad.TimespanList(
                 [
@@ -5136,7 +5182,8 @@ class TimespanList(TypedList):
             ...     time_relation)
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(result)
+            >>> string = abjad.storage(result)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5214,7 +5261,8 @@ class TimespanList(TypedList):
             ...     ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5233,7 +5281,8 @@ class TimespanList(TypedList):
                 )
 
             >>> for timespan_list in timespans.partition():
-            ...     abjad.f(timespan_list)
+            ...     string = abjad.storage(timespan_list)
+            ...     print(string)
             ...
             abjad.TimespanList(
                 [
@@ -5273,7 +5322,8 @@ class TimespanList(TypedList):
             ...     ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5300,7 +5350,8 @@ class TimespanList(TypedList):
                 )
 
             >>> for timespan_list in timespans.partition():
-            ...     abjad.f(timespan_list)
+            ...     string = abjad.storage(timespan_list)
+            ...     print(string)
             ...
             abjad.TimespanList(
                 [
@@ -5346,7 +5397,8 @@ class TimespanList(TypedList):
             >>> for timespan_list in timespans.partition(
             ...     include_tangent_timespans=True,
             ...     ):
-            ...     abjad.f(timespan_list)
+            ...     string = abjad.storage(timespan_list)
+            ...     print(string)
             ...
             abjad.TimespanList(
                 [
@@ -5408,7 +5460,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.reflect()
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5440,7 +5493,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.reflect(axis=abjad.Offset(15))
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5488,7 +5542,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.remove_degenerate_timespans()
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5526,7 +5581,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.repeat_to_stop_offset(15)
             >>> abjad.show(timespans, range_=(0, 15), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5587,7 +5643,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.rotate(-1)
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5619,7 +5676,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.rotate(1)
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5686,7 +5744,8 @@ class TimespanList(TypedList):
             >>> rounded_timespans = timespans.round_offsets(3)
             >>> abjad.show(rounded_timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(rounded_timespans)
+            >>> string = abjad.storage(rounded_timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5718,7 +5777,8 @@ class TimespanList(TypedList):
             >>> rounded_timespans = timespans.round_offsets(5)
             >>> abjad.show(rounded_timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(rounded_timespans)
+            >>> string = abjad.storage(rounded_timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5753,7 +5813,8 @@ class TimespanList(TypedList):
             ...     )
             >>> abjad.show(rounded_timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(rounded_timespans)
+            >>> string = abjad.storage(rounded_timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5788,7 +5849,8 @@ class TimespanList(TypedList):
             ...     must_be_wellformed=False,
             ...     )
 
-            >>> abjad.f(rounded_timespans)
+            >>> string = abjad.storage(rounded_timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5837,7 +5899,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.scale(2)
             >>> abjad.show(timespans, range_=(0, 14), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5869,7 +5932,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.scale(2, anchor=abjad.Right)
             >>> abjad.show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5914,7 +5978,8 @@ class TimespanList(TypedList):
             >>> left, right = timespans.split_at_offset(4)
 
             >>> abjad.show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
-            >>> abjad.f(left)
+            >>> string = abjad.storage(left)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5929,7 +5994,8 @@ class TimespanList(TypedList):
                 )
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
-            >>> abjad.f(right)
+            >>> string = abjad.storage(right)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5957,7 +6023,8 @@ class TimespanList(TypedList):
             >>> left, right = timespans.split_at_offset(6)
 
             >>> abjad.show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
-            >>> abjad.f(left)
+            >>> string = abjad.storage(left)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5972,7 +6039,8 @@ class TimespanList(TypedList):
                 )
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
-            >>> abjad.f(right)
+            >>> string = abjad.storage(right)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -5999,7 +6067,8 @@ class TimespanList(TypedList):
             TimespanList([])
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
-            >>> abjad.f(right)
+            >>> string = abjad.storage(right)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -6056,7 +6125,8 @@ class TimespanList(TypedList):
             >>> offsets = [-1, 3, 6, 12, 13]
             >>> for timespan_list in timespans.split_at_offsets(offsets):
             ...     abjad.show(timespan_list, range_=(0, 20), scale=0.5) # doctest: +SKIP
-            ...     abjad.f(timespan_list)
+            ...     string = abjad.storage(timespan_list)
+            ...     print(string)
             ...
 
         ..  container:: example
@@ -6097,7 +6167,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.stretch(2)
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -6129,7 +6200,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.stretch(2, anchor=abjad.Offset(8))
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -6176,7 +6248,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.translate(50)
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -6219,7 +6292,8 @@ class TimespanList(TypedList):
             >>> _ = timespans.translate_offsets(50, 50)
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(
@@ -6252,7 +6326,8 @@ class TimespanList(TypedList):
             ...     stop_offset_translation=20)
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
-            >>> abjad.f(timespans)
+            >>> string = abjad.storage(timespans)
+            >>> print(string)
             abjad.TimespanList(
                 [
                     abjad.Timespan(

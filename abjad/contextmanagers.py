@@ -182,7 +182,8 @@ class ForbidUpdate(ContextManager):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff {
                 <c' e'>8
                 <d' fs'>8

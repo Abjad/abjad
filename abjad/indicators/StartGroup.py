@@ -21,7 +21,8 @@ class StartGroup:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -131,13 +132,15 @@ class StartGroup:
             >>> import copy
             >>> start_group = abjad.StartGroup()
             >>> abjad.tweak(start_group).color = 'blue'
-            >>> abjad.f(start_group)
+            >>> string = abjad.storage(start_group)
+            >>> print(string)
             abjad.StartGroup(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_group_2 = copy.copy(start_group)
-            >>> abjad.f(start_group_2)
+            >>> string = abjad.storage(start_group_2)
+            >>> print(string)
             abjad.StartGroup(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )

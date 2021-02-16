@@ -19,7 +19,8 @@ class KeyCluster:
 
         ..  docs::
 
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             \once \override Accidental.stencil = ##f
             \once \override AccidentalCautionary.stencil = ##f
             \once \override Arpeggio.X-offset = #-2
@@ -140,7 +141,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -171,7 +173,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -204,7 +207,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -237,7 +241,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -274,7 +279,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -307,7 +313,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -344,7 +351,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -377,7 +385,8 @@ class KeyCluster:
 
             ..  docs::
 
-                >>> abjad.f(chord)
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
                 \once \override Accidental.stencil = ##f
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
@@ -410,7 +419,8 @@ class KeyCluster:
             >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
             >>> key_cluster = abjad.KeyCluster()
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.f(chord)
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
             \once \override Accidental.stencil = ##f
             \once \override AccidentalCautionary.stencil = ##f
             \once \override Arpeggio.X-offset = #-2

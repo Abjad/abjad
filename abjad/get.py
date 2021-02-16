@@ -41,7 +41,8 @@ def after_grace_container(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -129,7 +130,8 @@ def annotation(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -192,7 +194,8 @@ def annotation_wrappers(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -202,7 +205,8 @@ def annotation_wrappers(argument):
             }
 
         >>> for wrapper in abjad.get.annotation_wrappers(staff[0]):
-        ...     abjad.f(wrapper)
+        ...     string = abjad.storage(wrapper)
+        ...     print(string)
         ...
         abjad.Wrapper(
             annotation='default_instrument',
@@ -257,7 +261,8 @@ def bar_line_crossing(argument) -> bool:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/8
@@ -316,7 +321,8 @@ def before_grace_container(argument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -409,7 +415,8 @@ def contents(argument) -> typing.Optional["Selection"]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -522,7 +529,8 @@ def contents(argument) -> typing.Optional["Selection"]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -600,7 +608,8 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -767,7 +776,8 @@ def duration(argument, in_seconds: bool = None) -> Duration:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -847,7 +857,8 @@ def duration(argument, in_seconds: bool = None) -> Duration:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -884,7 +895,8 @@ def duration(argument, in_seconds: bool = None) -> Duration:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -932,7 +944,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -1014,7 +1027,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -1053,7 +1067,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -1084,7 +1099,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -1150,7 +1166,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -1199,7 +1216,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "treble"
@@ -1238,7 +1256,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 3/8
@@ -1273,7 +1292,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \new Voice
@@ -1329,7 +1349,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'8
@@ -1366,7 +1387,8 @@ def effective(
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Voice
@@ -1422,7 +1444,8 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -1534,7 +1557,8 @@ def effective_wrapper(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -1651,7 +1675,8 @@ def grace(argument) -> bool:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -1751,7 +1776,8 @@ def has_effective_indicator(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -1834,7 +1860,8 @@ def has_effective_indicator(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -1901,7 +1928,8 @@ def has_indicator(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -1983,7 +2011,8 @@ def has_indicator(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -2023,7 +2052,8 @@ def has_indicator(
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 \clef "treble"
@@ -2095,7 +2125,8 @@ def indicator(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -2177,7 +2208,8 @@ def indicator(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -2246,7 +2278,8 @@ def indicators(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -2340,7 +2373,8 @@ def indicators(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -2404,7 +2438,8 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \new Voice
@@ -2472,7 +2507,8 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -2580,7 +2616,8 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -2653,7 +2690,8 @@ def lineage(argument) -> "Lineage":
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -2857,7 +2895,8 @@ def logical_tie(argument) -> "LogicalTie":
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -2930,7 +2969,8 @@ def logical_tie(argument) -> "LogicalTie":
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -2966,7 +3006,8 @@ def logical_tie(argument) -> "LogicalTie":
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2989,7 +3030,8 @@ def logical_tie(argument) -> "LogicalTie":
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 r4
@@ -3045,7 +3087,8 @@ def measure_number(argument) -> int:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -3124,7 +3167,8 @@ def measure_number(argument) -> int:
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 \grace {
@@ -3160,7 +3204,8 @@ def measure_number(argument) -> int:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -3216,7 +3261,8 @@ def parentage(argument) -> "Parentage":
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -3360,7 +3406,8 @@ def parentage(argument) -> "Parentage":
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -3428,7 +3475,8 @@ def pitches(argument) -> typing.Optional[PitchSet]:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -3517,7 +3565,8 @@ def report_modifications(argument) -> str:
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 \override NoteHead.color = #red
                 \override NoteHead.style = #'harmonic
@@ -3551,7 +3600,8 @@ def report_modifications(argument) -> str:
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 \once \override NoteHead.color = #red
                 \once \override Stem.color = #red
@@ -3612,7 +3662,8 @@ def sounding_pitch(argument) -> NamedPitch:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'8
@@ -3649,7 +3700,8 @@ def sounding_pitches(argument) -> PitchSet:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <c' e'>4
@@ -3681,7 +3733,8 @@ def sustained(argument) -> bool:
 
         ..  container:: example
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/2 {
                 c'4
@@ -3732,7 +3785,8 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -3812,7 +3866,8 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \repeat tremolo 2 {
@@ -3849,7 +3904,8 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3894,7 +3950,8 @@ def wrapper(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -4012,7 +4069,8 @@ def wrappers(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \context Voice = "Music_Voice"
@@ -4119,7 +4177,8 @@ class Descendants(collections.abc.Sequence):
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \context Staff = "Treble_Staff"
@@ -4228,7 +4287,8 @@ class Descendants(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 2/3 {
@@ -4292,7 +4352,8 @@ class Lineage(collections.abc.Sequence):
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \context Staff = "Treble_Staff"

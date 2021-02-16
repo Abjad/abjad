@@ -11,7 +11,8 @@ class LilyPondContext:
     ..  container:: example
 
         >>> context = abjad.LilyPondContext('MensuralStaff')
-        >>> abjad.f(context)
+        >>> string = abjad.storage(context)
+        >>> print(string)
         abjad.LilyPondContext(
             name='MensuralStaff',
             )

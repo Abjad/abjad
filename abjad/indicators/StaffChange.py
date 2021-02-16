@@ -23,7 +23,8 @@ class StaffChange:
 
         ..  docs::
 
-            >>> abjad.f(staff_group)
+            >>> string = abjad.lilypond(staff_group)
+            >>> print(string)
             \new PianoStaff
             <<
                 \context Staff = "RHStaff"

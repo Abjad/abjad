@@ -35,7 +35,8 @@ class Parentage(collections.abc.Sequence):
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \context Staff = "Treble_Staff"
@@ -146,7 +147,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -239,7 +241,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -397,7 +400,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -490,7 +494,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -587,7 +592,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -687,7 +693,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -776,7 +783,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 2/3 {
@@ -835,7 +843,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(outer_red_voice)
+                >>> string = abjad.lilypond(outer_red_voice)
+                >>> print(string)
                 \context Voice = "Red_Voice"
                 \with
                 {
@@ -900,7 +909,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -1004,7 +1014,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(outer_red_voice)
+                >>> string = abjad.lilypond(outer_red_voice)
+                >>> print(string)
                 \context Voice = "Red_Voice"
                 \with
                 {
@@ -1154,7 +1165,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -1258,7 +1270,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \context Score = "Score"
                 <<
                     \context Staff = "Music_Staff"
@@ -1276,7 +1289,8 @@ class Parentage(collections.abc.Sequence):
             >>> note = voice[0]
             >>> parentage = abjad.get.parentage(note)
             >>> logical_voice = parentage.logical_voice()
-            >>> abjad.f(logical_voice)
+            >>> string = abjad.storage(logical_voice)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     ('score', "Score-'Score'"),
@@ -1299,7 +1313,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \context Voice = "Music_Voice"
                 {
                     c'4
@@ -1316,7 +1331,8 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> lv = abjad.get.parentage(voice).logical_voice()
-            >>> abjad.f(lv)
+            >>> string = abjad.storage(lv)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     ('score', ''),
@@ -1327,7 +1343,8 @@ class Parentage(collections.abc.Sequence):
                 )
 
             >>> lv = abjad.get.parentage(container_1).logical_voice()
-            >>> abjad.f(lv)
+            >>> string = abjad.storage(lv)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     ('score', ''),
@@ -1338,7 +1355,8 @@ class Parentage(collections.abc.Sequence):
                 )
 
             >>> lv = abjad.get.parentage(container_1[0]).logical_voice()
-            >>> abjad.f(lv)
+            >>> string = abjad.storage(lv)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     ('score', ''),
@@ -1349,7 +1367,8 @@ class Parentage(collections.abc.Sequence):
                 )
 
             >>> lv = abjad.get.parentage(container_2).logical_voice()
-            >>> abjad.f(lv)
+            >>> string = abjad.storage(lv)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     ('score', ''),
@@ -1360,7 +1379,8 @@ class Parentage(collections.abc.Sequence):
                 )
 
             >>> lv = abjad.get.parentage(container_2[0]).logical_voice()
-            >>> abjad.f(lv)
+            >>> string = abjad.storage(lv)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     ('score', ''),
@@ -1407,7 +1427,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new Staff
@@ -1459,7 +1480,8 @@ class Parentage(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"

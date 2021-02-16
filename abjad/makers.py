@@ -34,7 +34,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'4
@@ -56,7 +57,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <c' d' e'>2
@@ -77,7 +79,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new RhythmicStaff
             {
                 r4
@@ -99,7 +102,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <c' d' e'>4
@@ -121,7 +125,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 e''4
@@ -145,7 +150,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c''4.
@@ -168,7 +174,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c''4
@@ -191,7 +198,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \times 2/3 {
@@ -217,7 +225,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 13/16
@@ -242,7 +251,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 13/16
@@ -269,7 +279,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 5/4
@@ -304,7 +315,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \time 5/4
@@ -336,7 +348,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
@@ -371,7 +384,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new RhythmicStaff
             {
                 \time 3/8
@@ -393,7 +407,8 @@ class LeafMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 fs'2.
@@ -719,7 +734,8 @@ class LeafMaker:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     d'4 %! leaf_maker
@@ -757,7 +773,8 @@ class NoteMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'16
@@ -780,7 +797,8 @@ class NoteMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'16
@@ -801,7 +819,8 @@ class NoteMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'16
@@ -824,7 +843,8 @@ class NoteMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'2.
@@ -844,7 +864,8 @@ class NoteMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'16
@@ -864,7 +885,8 @@ class NoteMaker:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 bf8
@@ -990,7 +1012,8 @@ class NoteMaker:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'16 %! note_maker
@@ -1029,7 +1052,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'32.
@@ -1055,7 +1079,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 6/11 {
                 \time 3/16
@@ -1083,7 +1108,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 8/11 {
                 \time 3/16
                 c'16...
@@ -1109,7 +1135,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'32.
@@ -1136,7 +1163,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 8/11 {
                 \time 3/16
                 c'16...
@@ -1165,7 +1193,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'32.
@@ -1191,7 +1220,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 6/11 {
                 \time 3/16
@@ -1219,7 +1249,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 8/11 {
                 \time 3/16
                 c'16...
@@ -1245,7 +1276,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'32.
@@ -1271,7 +1303,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 8/11 {
                 \time 3/16
                 c'16...
@@ -1328,7 +1361,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
                 \time 3/16
@@ -1350,7 +1384,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
                 \time 3/16
@@ -1373,7 +1408,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'32.
@@ -1396,7 +1432,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 6/8 {
                 \time 3/16
@@ -1421,7 +1458,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 6/11 {
                 \time 3/16
@@ -1447,7 +1485,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'64
@@ -1473,7 +1512,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
                 \time 3/16
@@ -1495,7 +1535,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
                 \time 3/16
@@ -1518,7 +1559,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'32.
@@ -1541,7 +1583,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 6/8 {
                 \time 3/16
@@ -1566,7 +1609,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 6/11 {
                 \time 3/16
@@ -1592,7 +1636,8 @@ def tuplet_from_leaf_and_ratio(
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 4/5 {
                 \time 3/16
                 c'64
@@ -1648,7 +1693,8 @@ def tuplet_from_ratio_and_pair(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
                 \time 7/16
@@ -1668,7 +1714,8 @@ def tuplet_from_ratio_and_pair(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 7/6 {
                 \time 7/16
@@ -1689,7 +1736,8 @@ def tuplet_from_ratio_and_pair(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 1/1 {
                 \time 7/16
@@ -1711,7 +1759,8 @@ def tuplet_from_ratio_and_pair(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 7/8 {
                 \time 7/16
@@ -1734,7 +1783,8 @@ def tuplet_from_ratio_and_pair(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 7/10 {
                 \time 7/16
@@ -1758,7 +1808,8 @@ def tuplet_from_ratio_and_pair(
 
         ..  docs::
 
-            >>> abjad.f(staff[0])
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
             \times 1/2 {
                 \time 7/16
                 c'16

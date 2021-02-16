@@ -21,7 +21,8 @@ class Dynamic:
 
         ..  docs::
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'8
@@ -71,7 +72,8 @@ class Dynamic:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             <<
                 \new Voice
@@ -482,7 +484,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'2
@@ -500,7 +503,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'2
@@ -518,7 +522,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'2
@@ -538,7 +543,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'2
@@ -578,7 +584,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'2
@@ -636,7 +643,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 \with
                 {
@@ -713,7 +721,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 \with
                 {
@@ -801,7 +810,8 @@ class Dynamic:
             >>> abjad.attach(abjad.Dynamic('mf', hide=True), voice[2])
             >>> abjad.show(voice) # doctest: +SKIP
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -843,7 +853,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -873,7 +884,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -905,7 +917,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -934,7 +947,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -956,7 +970,8 @@ class Dynamic:
             >>> abjad.attach(dynamic, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 r4
@@ -1015,7 +1030,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 \with
                 {
@@ -1066,7 +1082,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 \with
                 {
@@ -1099,7 +1116,8 @@ class Dynamic:
             ``\appena_udibile`` shown here) are meant to be user-defined (and
             not included in Abjad):
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -1398,7 +1416,8 @@ class Dynamic:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 c'4
                 - \tweak color #blue
                 \f

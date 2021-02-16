@@ -119,7 +119,8 @@ class DurationInequality(Inequality):
     ..  container:: example
 
         >>> inequality = abjad.DurationInequality('<', (3, 4))
-        >>> abjad.f(inequality)
+        >>> string = abjad.storage(inequality)
+        >>> print(string)
         abjad.DurationInequality(
             operator_string='<',
             duration=abjad.Duration(3, 4),
@@ -207,7 +208,8 @@ class LengthInequality(Inequality):
     ..  container:: example
 
         >>> inequality = abjad.LengthInequality('<', 4)
-        >>> abjad.f(inequality)
+        >>> string = abjad.storage(inequality)
+        >>> print(string)
         abjad.LengthInequality(
             operator_string='<',
             length=4,
@@ -271,7 +273,8 @@ class PitchInequality:
     ..  container:: example
 
         >>> inequality = abjad.PitchInequality('&', 'C4 E4')
-        >>> abjad.f(inequality)
+        >>> string = abjad.storage(inequality)
+        >>> print(string)
         abjad.PitchInequality(
             operator_string='&',
             pitches=abjad.PitchSet(
@@ -437,7 +440,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -935,7 +939,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -967,7 +972,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     \afterGrace
@@ -1059,7 +1065,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'4
@@ -1091,7 +1098,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     \afterGrace
@@ -1230,7 +1238,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -1347,7 +1356,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -1460,7 +1470,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -1500,7 +1511,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -1562,7 +1574,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -1608,7 +1621,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -1662,7 +1676,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -1704,7 +1719,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -1758,7 +1774,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -1834,7 +1851,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -1891,7 +1909,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -1953,7 +1972,8 @@ class Selection(collections.abc.Sequence):
 
         ..  docs::
 
-            >>> abjad.f(staff, align_tags=89)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -2023,7 +2043,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2091,7 +2112,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2144,7 +2166,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2208,7 +2231,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2262,7 +2286,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2330,7 +2355,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2390,7 +2416,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2447,7 +2474,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2511,7 +2539,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2564,7 +2593,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2639,7 +2669,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -2745,7 +2776,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -2847,7 +2879,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2904,7 +2937,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -2967,7 +3001,8 @@ class Selection(collections.abc.Sequence):
 
         ..  docs::
 
-            >>> abjad.f(staff, align_tags=89)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -3038,7 +3073,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3114,7 +3150,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3210,7 +3247,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3278,7 +3316,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3343,7 +3382,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3410,7 +3450,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3489,7 +3530,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3592,7 +3634,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3675,7 +3718,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3764,7 +3808,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3833,7 +3878,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3903,7 +3949,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -3970,7 +4017,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4031,7 +4079,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4095,7 +4144,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4190,7 +4240,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4288,7 +4339,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -4417,7 +4469,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4493,7 +4546,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4573,7 +4627,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4658,7 +4713,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4744,7 +4800,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4822,7 +4879,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4892,7 +4950,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -4962,7 +5021,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5035,7 +5095,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5103,7 +5164,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5179,7 +5241,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5226,7 +5289,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -5282,7 +5346,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5328,7 +5393,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -5376,7 +5442,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5418,7 +5485,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -5466,7 +5534,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5591,7 +5660,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5656,7 +5726,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5720,7 +5791,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5786,7 +5858,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5867,7 +5940,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -5920,7 +5994,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -5976,7 +6051,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6022,7 +6098,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -6070,7 +6147,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6112,7 +6190,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -6160,7 +6239,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6223,7 +6303,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6286,7 +6367,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6368,7 +6450,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6440,7 +6523,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6510,7 +6594,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6579,7 +6664,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6651,7 +6737,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -6762,7 +6849,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -6875,7 +6963,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -6936,7 +7025,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7002,7 +7092,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7070,7 +7161,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7145,7 +7237,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7218,7 +7311,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7287,7 +7381,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7351,7 +7446,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7488,7 +7584,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7579,7 +7676,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7673,7 +7771,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7776,7 +7875,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7866,7 +7966,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -7955,7 +8056,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -8051,7 +8153,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -8146,7 +8249,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -8248,7 +8352,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -8342,7 +8447,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -8510,7 +8616,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -8576,7 +8683,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -8660,7 +8768,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -8765,7 +8874,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -8866,7 +8976,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -8975,7 +9086,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -9058,7 +9170,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -9135,7 +9248,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -9253,7 +9367,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -9340,7 +9455,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score], align_tags=89)
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -9418,7 +9534,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         \times 2/3 {
@@ -9460,7 +9577,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 2/3 {
@@ -9501,7 +9619,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         \times 2/3 {
@@ -9541,7 +9660,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 2/3 {
@@ -9582,7 +9702,8 @@ class Selection(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         \times 2/3 {
@@ -9622,7 +9743,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 2/3 {
@@ -9716,7 +9838,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -9780,7 +9903,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -9853,7 +9977,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -9909,7 +10034,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -9990,7 +10116,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -10102,7 +10229,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -10166,7 +10294,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 \with
                 {
@@ -10210,7 +10339,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -10292,7 +10422,8 @@ class Selection(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(staff, align_tags=89)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -10475,7 +10606,8 @@ def select(items=None, previous=None):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \once \override NoteHead.color = #red

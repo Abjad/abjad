@@ -27,7 +27,8 @@ class StartTextSpan:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -291,7 +292,8 @@ class StartTextSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -412,7 +414,8 @@ class StartTextSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -506,7 +509,8 @@ class StartTextSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -540,7 +544,8 @@ class StartTextSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -571,7 +576,8 @@ class StartTextSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -606,7 +612,8 @@ class StartTextSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -640,7 +647,8 @@ class StartTextSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -690,7 +698,8 @@ class StartTextSpan:
             ...     )
             >>> abjad.tweak(start_text_span).color = 'blue'
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
-            >>> abjad.f(start_text_span)
+            >>> string = abjad.storage(start_text_span)
+            >>> print(string)
             abjad.StartTextSpan(
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
@@ -699,7 +708,8 @@ class StartTextSpan:
                 )
 
             >>> start_text_span_2 = copy.copy(start_text_span)
-            >>> abjad.f(start_text_span_2)
+            >>> string = abjad.storage(start_text_span_2)
+            >>> print(string)
             abjad.StartTextSpan(
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
