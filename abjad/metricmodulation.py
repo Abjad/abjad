@@ -286,7 +286,8 @@ class MetricModulation:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -698,7 +699,8 @@ class MetricModulation:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new Staff

@@ -10,13 +10,15 @@ class BowPressure:
     ..  container:: example
 
         >>> bow_pressure = abjad.BowPressure('overpressure')
-        >>> abjad.f(bow_pressure)
+        >>> string = abjad.storage(bow_pressure)
+        >>> print(string)
         abjad.BowPressure(
             pressure='overpressure',
             )
 
         >>> bow_pressure = abjad.BowPressure('underpressure')
-        >>> abjad.f(bow_pressure)
+        >>> string = abjad.storage(bow_pressure)
+        >>> print(string)
         abjad.BowPressure(
             pressure='underpressure',
             )

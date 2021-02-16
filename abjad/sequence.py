@@ -132,7 +132,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \line
                             {
@@ -168,7 +169,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \line
                             {
@@ -206,7 +208,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \line
                             {
@@ -246,7 +249,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -327,7 +331,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -365,7 +370,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -404,7 +410,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -457,7 +464,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -547,7 +555,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \line
                             {
@@ -583,7 +592,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \line
                             {
@@ -619,7 +629,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \line
                             {
@@ -1029,7 +1040,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1068,7 +1080,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1107,7 +1120,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1146,7 +1160,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1441,7 +1456,8 @@ class Sequence(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup {
                     \concat
                         {
@@ -1511,7 +1527,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \line
                             {
@@ -1811,7 +1828,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1862,7 +1880,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1919,7 +1938,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -1974,7 +1994,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2025,7 +2046,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2078,7 +2100,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2137,7 +2160,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2194,7 +2218,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2245,7 +2270,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2298,7 +2324,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2357,7 +2384,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2414,7 +2442,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2467,7 +2496,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2522,7 +2552,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2583,7 +2614,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2642,7 +2674,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2696,7 +2729,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2755,7 +2789,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2806,7 +2841,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2866,7 +2902,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2928,7 +2965,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -2986,7 +3024,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -3027,7 +3066,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -3129,7 +3169,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -3175,7 +3216,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -3635,7 +3677,8 @@ class Sequence(collections.abc.Sequence):
 
             ..  docs::
 
-                >>> abjad.f(markup)
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup {
                     \concat
                         {
@@ -3792,7 +3835,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -3826,7 +3870,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -3860,7 +3905,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4264,7 +4310,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4312,7 +4359,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4370,7 +4418,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4409,7 +4458,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4448,7 +4498,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4543,7 +4594,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4645,7 +4697,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4727,7 +4780,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {
@@ -4765,7 +4819,8 @@ class Sequence(collections.abc.Sequence):
 
                 ..  docs::
 
-                    >>> abjad.f(markup)
+                    >>> string = abjad.lilypond(markup)
+                    >>> print(string)
                     \markup {
                         \concat
                             {

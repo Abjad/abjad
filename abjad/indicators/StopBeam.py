@@ -94,7 +94,8 @@ class StopBeam:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'8
@@ -118,7 +119,8 @@ class StopBeam:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'8

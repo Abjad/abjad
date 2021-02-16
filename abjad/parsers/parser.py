@@ -2407,7 +2407,8 @@ class LilyPondParser(Parser):
         >>> staff = parser(string)
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -2441,7 +2442,8 @@ class LilyPondParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -2493,7 +2495,8 @@ class LilyPondParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \context Staff = "Treble Staff"
@@ -2546,7 +2549,8 @@ class LilyPondParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(blocks) # doctest: +SKIP
+            >>> string = abjad.lilypond(blocks) # doctest: +SKIP
+            >>> print(string) # doctest: +SKIP
             % 2017-07-11 15:13
             <BLANKLINE>
             \version "2.19.63"
@@ -2602,7 +2606,8 @@ class LilyPondParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c32
@@ -2641,7 +2646,8 @@ class LilyPondParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(container)
+            >>> string = abjad.lilypond(container)
+            >>> print(string)
             {
                 c4
                 df4

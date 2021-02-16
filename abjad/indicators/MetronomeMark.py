@@ -36,7 +36,8 @@ class MetronomeMark:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -63,7 +64,8 @@ class MetronomeMark:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -91,7 +93,8 @@ class MetronomeMark:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -119,7 +122,8 @@ class MetronomeMark:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -145,7 +149,8 @@ class MetronomeMark:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff
@@ -822,7 +827,8 @@ class MetronomeMark:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new Staff
@@ -891,7 +897,8 @@ class MetronomeMark:
             >>> score = abjad.Score([staff])
             >>> abjad.show(score) # doctest: +SKIP
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             <<
                 \new Staff

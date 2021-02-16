@@ -48,7 +48,8 @@ class Block:
         >>> block
         <Block(name='paper')>
 
-        >>> abjad.f(block)
+        >>> string = abjad.lilypond(block)
+        >>> print(string)
         \paper {
             right-margin = 2\cm
             left-margin = 2\cm
@@ -62,7 +63,8 @@ class Block:
         >>> block
         <Block(name='score')>
 
-        >>> abjad.f(block)
+        >>> string = abjad.lilypond(block)
+        >>> print(string)
         \score {
             {
                 \markup { foo }
@@ -303,7 +305,8 @@ class Block:
             ... )
             >>> lilypond_file.items.append(score_block)
 
-            >>> abjad.f(lilypond_file)
+            >>> string = abjad.lilypond(lilypond_file)
+            >>> print(string)
             \score { %! abjad.LilyPondFile._get_formatted_blocks()
                 <<
                 { \include "layout.ly" }
@@ -1209,7 +1212,8 @@ class LilyPondFile:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \context Score = "Custom_Score"
                 <<
                     \context Staff = "Custom_Staff"
@@ -1277,7 +1281,8 @@ class LilyPondFile:
                 ... )
                 >>> del(lilypond_file.items[:3])
 
-                >>> abjad.f(lilypond_file)
+                >>> string = abjad.lilypond(lilypond_file)
+                >>> print(string)
                 \score { %! abjad.LilyPondFile._get_formatted_blocks()
                     <<
                         {
@@ -1625,7 +1630,8 @@ class LilyPondFile:
             >>> lilypond_file.items.append(string)
             >>> lilypond_file.items.append(score_block)
 
-            >>> abjad.f(lilypond_file)
+            >>> string = abjad.lilypond(lilypond_file)
+            >>> print(string)
             \customCommand
             <BLANKLINE>
             \score { %! abjad.LilyPondFile._get_formatted_blocks()
@@ -1780,7 +1786,8 @@ class LilyPondFile:
 
             ::
 
-                >>> abjad.f(lilypond_file) # doctest: +SKIP
+                >>> string = abjad.lilypond(lilypond_file) # doctest: +SKIP
+                >>> print(string) # doctest: +SKIP
                 \header {
                     composer = \markup { Josquin }
                     title = \markup { Missa sexti tonus }
@@ -1876,7 +1883,8 @@ class LilyPondFile:
             ..  docs::
 
                 >>> score = lilypond_file[abjad.Score]
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -1938,7 +1946,8 @@ class LilyPondFile:
             ..  docs::
 
                 >>> score = lilypond_file[abjad.Score]
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -2000,7 +2009,8 @@ class LilyPondFile:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext
@@ -2084,7 +2094,8 @@ class LilyPondFile:
 
             ..  docs::
 
-                >>> abjad.f(lilypond_file[abjad.Score])
+                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> print(string)
                 \new Score
                 <<
                     \new GlobalContext

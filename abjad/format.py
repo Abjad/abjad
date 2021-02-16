@@ -308,7 +308,8 @@ def f(argument, align_tags=None):
         >>> for leaf in staff:
         ...     abjad.attach(abjad.Articulation('.'), leaf)
         ...
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4

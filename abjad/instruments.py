@@ -39,7 +39,8 @@ class Instrument:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             <<
                 \new Voice
@@ -364,7 +365,8 @@ class StringNumber:
         String I:
 
         >>> indicator = abjad.StringNumber(1)
-        >>> abjad.f(indicator)
+        >>> string = abjad.storage(indicator)
+        >>> print(string)
         abjad.StringNumber(
             numbers=(1,),
             )
@@ -374,7 +376,8 @@ class StringNumber:
         Strings II and III:
 
         >>> indicator = abjad.StringNumber((2, 3))
-        >>> abjad.f(indicator)
+        >>> string = abjad.storage(indicator)
+        >>> print(string)
         abjad.StringNumber(
             numbers=(2, 3),
             )
@@ -487,7 +490,8 @@ class Tuning:
         Violin tuning:
 
         >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-        >>> abjad.f(indicator)
+        >>> string = abjad.storage(indicator)
+        >>> print(string)
         abjad.Tuning(
             pitches=abjad.PitchSegment(
                 (
@@ -579,7 +583,8 @@ class Tuning:
 
             >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
             >>> pitches = indicator.pitches
-            >>> abjad.f(pitches)
+            >>> string = abjad.storage(pitches)
+            >>> print(string)
             abjad.PitchSegment(
                 (
                     abjad.NamedPitch('g'),
@@ -779,7 +784,8 @@ class Accordion(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff_group)
+            >>> string = abjad.lilypond(staff_group)
+            >>> print(string)
             \new PianoStaff
             <<
                 \new Staff
@@ -844,7 +850,8 @@ class AltoFlute(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -899,7 +906,8 @@ class AltoSaxophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -958,7 +966,8 @@ class AltoTrombone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -1014,7 +1023,8 @@ class AltoVoice(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1071,7 +1081,8 @@ class BaritoneSaxophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1128,7 +1139,8 @@ class BaritoneVoice(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -1186,7 +1198,8 @@ class BassClarinet(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1241,7 +1254,8 @@ class BassFlute(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1296,7 +1310,8 @@ class BassSaxophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1353,7 +1368,8 @@ class BassTrombone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -1411,7 +1427,8 @@ class BassVoice(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -1471,7 +1488,8 @@ class Bassoon(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -1531,7 +1549,8 @@ class Cello(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -1608,7 +1627,8 @@ class ClarinetInA(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1663,7 +1683,8 @@ class ClarinetInBFlat(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1722,7 +1743,8 @@ class ClarinetInEFlat(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1779,7 +1801,8 @@ class Contrabass(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -1856,7 +1879,8 @@ class ContrabassClarinet(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1911,7 +1935,8 @@ class ContrabassFlute(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1966,7 +1991,8 @@ class ContrabassSaxophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2023,7 +2049,8 @@ class Contrabassoon(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -2079,7 +2106,8 @@ class EnglishHorn(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2134,7 +2162,8 @@ class Flute(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2152,7 +2181,8 @@ class Flute(Instrument):
         >>> abjad.attach(flute, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -2217,7 +2247,8 @@ class FrenchHorn(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2274,7 +2305,8 @@ class Glockenspiel(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2329,7 +2361,8 @@ class Guitar(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2408,7 +2441,8 @@ class Harp(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff_group)
+            >>> string = abjad.lilypond(staff_group)
+            >>> print(string)
             \new PianoStaff
             <<
                 \new Staff
@@ -2481,7 +2515,8 @@ class Harpsichord(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff_group)
+            >>> string = abjad.lilypond(staff_group)
+            >>> print(string)
             \new PianoStaff
             <<
                 \new Staff
@@ -2548,7 +2583,8 @@ class Marimba(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2604,7 +2640,8 @@ class MezzoSopranoVoice(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c''4
@@ -2662,7 +2699,8 @@ class Oboe(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2719,7 +2757,8 @@ class Percussion(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2833,7 +2872,8 @@ class Piano(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff_group)
+            >>> string = abjad.lilypond(staff_group)
+            >>> print(string)
             \new PianoStaff
             <<
                 \new Staff
@@ -2900,7 +2940,8 @@ class Piccolo(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2955,7 +2996,8 @@ class SopraninoSaxophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3010,7 +3052,8 @@ class SopranoSaxophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3065,7 +3108,8 @@ class SopranoVoice(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c''4
@@ -3124,7 +3168,8 @@ class TenorSaxophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3181,7 +3226,8 @@ class TenorTrombone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -3238,7 +3284,8 @@ class TenorVoice(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3297,7 +3344,8 @@ class Trumpet(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3356,7 +3404,8 @@ class Tuba(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "bass"
@@ -3414,7 +3463,8 @@ class Vibraphone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3471,7 +3521,8 @@ class Viola(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -3548,7 +3599,8 @@ class Violin(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -3624,7 +3676,8 @@ class Xylophone(Instrument):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4

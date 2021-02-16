@@ -414,7 +414,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         ...     children=[],
         ...     )
 
-        >>> abjad.f(container)
+        >>> string = abjad.storage(container)
+        >>> print(string)
         abjad.rhythmtrees.RhythmTreeContainer(
             children=(),
             preprolated_duration=abjad.Duration(1, 1),
@@ -429,7 +430,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         >>> leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1)
         >>> leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=2)
         >>> container.extend([leaf_a, leaf_b])
-        >>> abjad.f(container)
+        >>> string = abjad.storage(container)
+        >>> print(string)
         abjad.rhythmtrees.RhythmTreeContainer(
             children=(
                 abjad.rhythmtrees.RhythmTreeLeaf(
@@ -450,7 +452,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         ...     abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=3))
         >>> another_container.append(container[1])
         >>> container.append(another_container)
-        >>> abjad.f(container)
+        >>> string = abjad.storage(container)
+        >>> print(string)
         abjad.rhythmtrees.RhythmTreeContainer(
             children=(
                 abjad.rhythmtrees.RhythmTreeLeaf(
@@ -485,7 +488,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 2/3 {
                 c'8
                 \times 4/5 {
@@ -525,7 +529,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         >>> c.preprolated_duration
         Duration(3, 1)
 
-        >>> abjad.f(c)
+        >>> string = abjad.storage(c)
+        >>> print(string)
         abjad.rhythmtrees.RhythmTreeContainer(
             children=(
                 abjad.rhythmtrees.RhythmTreeLeaf(
@@ -583,7 +588,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \times 4/5 {
@@ -801,7 +807,8 @@ class RhythmTreeParser(Parser):
         >>> rhythm_tree_container.rtm_format
         '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
 
-        >>> abjad.f(rhythm_tree_container)
+        >>> string = abjad.storage(rhythm_tree_container)
+        >>> print(string)
         abjad.rhythmtrees.RhythmTreeContainer(
             children=(
                 abjad.rhythmtrees.RhythmTreeLeaf(
@@ -852,7 +859,8 @@ class RhythmTreeParser(Parser):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
                 c'2
@@ -1000,7 +1008,8 @@ def parse_rtm_syntax(rtm):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \times 2/3 {
                 c'8
                 c'16
@@ -1018,7 +1027,8 @@ def parse_rtm_syntax(rtm):
 
         ..  docs::
 
-            >>> abjad.f(tuplet)
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \times 9/17 {
                 c'8

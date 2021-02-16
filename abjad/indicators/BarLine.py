@@ -20,7 +20,8 @@ class BarLine:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -41,7 +42,8 @@ class BarLine:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -219,7 +221,8 @@ class BarLine:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'1

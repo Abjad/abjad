@@ -17,7 +17,8 @@ class BowContactPoint:
         Contact point exactly halfway from frog to tip of bow:
 
         >>> point = abjad.BowContactPoint((1, 2))
-        >>> abjad.f(point)
+        >>> string = abjad.storage(point)
+        >>> print(string)
         abjad.BowContactPoint(
             contact_point=abjad.Multiplier(1, 2),
             )
@@ -27,7 +28,8 @@ class BowContactPoint:
         Contact point 3/5 of the way from frog to tip of bow:
 
         >>> point = abjad.BowContactPoint((3, 5))
-        >>> abjad.f(point)
+        >>> string = abjad.storage(point)
+        >>> print(string)
         abjad.BowContactPoint(
             contact_point=abjad.Multiplier(3, 5),
             )

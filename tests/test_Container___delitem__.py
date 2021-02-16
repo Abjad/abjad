@@ -211,7 +211,8 @@ def test_Container___delitem___08():
     leaves = abjad.select(voice).leaves()
     abjad.glissando(leaves)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    string = abjad.lilypond(voice)
+    assert string == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -228,12 +229,13 @@ def test_Container___delitem___08():
             ]
         }
         """
-    ), abjad.f(voice)
+    ), print(string)
 
     leaf = leaves[1]
     del voice[1][0]
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    string = abjad.lilypond(voice)
+    assert string == abjad.String.normalize(
         r"""
         \new Voice
         {
@@ -248,7 +250,7 @@ def test_Container___delitem___08():
             ]
         }
         """
-    ), abjad.f(voice)
+    ), print(string)
 
     assert abjad.wf.wellformed(voice)
     assert abjad.wf.wellformed(leaf)

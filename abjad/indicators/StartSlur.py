@@ -23,7 +23,8 @@ class StartSlur:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -144,7 +145,8 @@ class StartSlur:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'8
@@ -172,7 +174,8 @@ class StartSlur:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'8
@@ -200,7 +203,8 @@ class StartSlur:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'8
@@ -273,13 +277,15 @@ class StartSlur:
             >>> import copy
             >>> start_slur = abjad.StartSlur()
             >>> abjad.tweak(start_slur).color = 'blue'
-            >>> abjad.f(start_slur)
+            >>> string = abjad.storage(start_slur)
+            >>> print(string)
             abjad.StartSlur(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_slur_2 = copy.copy(start_slur)
-            >>> abjad.f(start_slur_2)
+            >>> string = abjad.storage(start_slur_2)
+            >>> print(string)
             abjad.StartSlur(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )

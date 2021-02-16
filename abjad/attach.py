@@ -20,7 +20,8 @@ class Wrapper:
         >>> abjad.attach(articulation, component)
         >>> wrapper = abjad.get.wrapper(component)
 
-        >>> abjad.f(wrapper)
+        >>> string = abjad.storage(wrapper)
+        >>> print(string)
         abjad.Wrapper(
             indicator=abjad.Articulation('accent', Up),
             tag=abjad.Tag(),
@@ -38,7 +39,8 @@ class Wrapper:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             <<
                 \context Voice = "VoiceI"
@@ -181,7 +183,8 @@ class Wrapper:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> abjad.annotate(old_staff[0], 'bow_direction', abjad.Down)
-            >>> abjad.f(old_staff)
+            >>> string = abjad.lilypond(old_staff)
+            >>> print(string)
             \new Staff {
                 c'4
                 d'4
@@ -194,7 +197,8 @@ class Wrapper:
             Down
 
             >>> new_staff = abjad.mutate.copy(old_staff)
-            >>> abjad.f(new_staff)
+            >>> string = abjad.lilypond(new_staff)
+            >>> print(string)
             \new Staff {
                 c'4
                 d'4
@@ -213,7 +217,8 @@ class Wrapper:
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> clef = abjad.Clef("alto")
             >>> abjad.attach(clef, old_staff[0], tag=abjad.Tag("RED:M1"))
-            >>> abjad.f(old_staff)
+            >>> string = abjad.lilypond(old_staff)
+            >>> print(string)
             \new Staff {
                 \clef "alto" %! RED:M1
                 c'4
@@ -224,7 +229,8 @@ class Wrapper:
 
             >>> leaf = old_staff[0]
             >>> wrapper = abjad.get.wrapper(leaf)
-            >>> abjad.f(wrapper)
+            >>> string = abjad.storage(wrapper)
+            >>> print(string)
             abjad.Wrapper(
                 context='Staff',
                 indicator=abjad.Clef('alto'),
@@ -232,7 +238,8 @@ class Wrapper:
                 )
 
             >>> new_staff = abjad.mutate.copy(old_staff)
-            >>> abjad.f(new_staff)
+            >>> string = abjad.lilypond(new_staff)
+            >>> print(string)
             \new Staff {
                 \clef "alto" %! RED:M1
                 c'4
@@ -243,7 +250,8 @@ class Wrapper:
 
             >>> leaf = new_staff[0]
             >>> wrapper = abjad.get.wrapper(leaf)
-            >>> abjad.f(wrapper)
+            >>> string = abjad.storage(wrapper)
+            >>> print(string)
             abjad.Wrapper(
                 context='Staff',
                 indicator=abjad.Clef('alto'),
@@ -261,7 +269,8 @@ class Wrapper:
             ...     deactivate=True,
             ...     tag=abjad.Tag("RED:M1"),
             ...     )
-            >>> abjad.f(old_staff)
+            >>> string = abjad.lilypond(old_staff)
+            >>> print(string)
             \new Staff {
                 %@% \clef "alto" %! RED:M1
                 c'4
@@ -272,7 +281,8 @@ class Wrapper:
 
             >>> leaf = old_staff[0]
             >>> wrapper = abjad.get.wrapper(leaf)
-            >>> abjad.f(wrapper)
+            >>> string = abjad.storage(wrapper)
+            >>> print(string)
             abjad.Wrapper(
                 context='Staff',
                 deactivate=True,
@@ -281,7 +291,8 @@ class Wrapper:
                 )
 
             >>> new_staff = abjad.mutate.copy(old_staff)
-            >>> abjad.f(new_staff)
+            >>> string = abjad.lilypond(new_staff)
+            >>> print(string)
             \new Staff {
                 %@% \clef "alto" %! RED:M1
                 c'4
@@ -292,7 +303,8 @@ class Wrapper:
 
             >>> leaf = new_staff[0]
             >>> wrapper = abjad.get.wrapper(leaf)
-            >>> abjad.f(wrapper)
+            >>> string = abjad.storage(wrapper)
+            >>> print(string)
             abjad.Wrapper(
                 context='Staff',
                 deactivate=True,
@@ -597,7 +609,8 @@ class Wrapper:
             >>> abjad.attach(stop_text_span, voice[0])
             >>> abjad.show(voice) # doctest: +SKIP
 
-            >>> abjad.f(voice)
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'2
@@ -682,7 +695,8 @@ def annotate(component, annotation, indicator) -> None:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -738,7 +752,8 @@ def attach(  # noqa: 302
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -758,7 +773,8 @@ def attach(  # noqa: 302
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -779,7 +795,8 @@ def attach(  # noqa: 302
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \context Staff = "MusicStaff"
             {
                 \context Voice = "MusicVoice"
@@ -836,7 +853,8 @@ def attach(  # noqa: 302
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "treble"
@@ -874,7 +892,8 @@ def attach(  # noqa: 302
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
             %@% \clef "alto" %! +PARTS
@@ -909,7 +928,8 @@ def attach(  # noqa: 302
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> wrapper = abjad.attach(abjad.Clef('alto'), staff[0], wrapper=True)
-        >>> abjad.f(wrapper)
+        >>> string = abjad.storage(wrapper)
+        >>> print(string)
         abjad.Wrapper(
             context='Staff',
             indicator=abjad.Clef('alto'),
@@ -1021,7 +1041,8 @@ def detach(argument, target=None, by_id=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1037,7 +1058,8 @@ def detach(argument, target=None, by_id=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1080,7 +1102,8 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -1103,7 +1126,8 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -1131,7 +1155,8 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -1152,7 +1177,8 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -1174,7 +1200,8 @@ def detach(argument, target=None, by_id=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -1192,7 +1219,8 @@ def detach(argument, target=None, by_id=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1206,7 +1234,8 @@ def detach(argument, target=None, by_id=False):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "tenor"

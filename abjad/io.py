@@ -677,7 +677,8 @@ def show(illustrable, return_timing=False, **keywords):
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'4
 
     ..  container:: example
@@ -689,7 +690,8 @@ def show(illustrable, return_timing=False, **keywords):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4

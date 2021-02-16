@@ -20,7 +20,8 @@ class Iteration:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -95,7 +96,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -279,7 +281,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 2/8
@@ -319,7 +322,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -414,7 +418,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \time 2/8
@@ -514,7 +519,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -555,7 +561,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -681,7 +688,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -755,7 +763,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -827,7 +836,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(voice)
+                >>> string = abjad.lilypond(voice)
+                >>> print(string)
                 \new Voice
                 {
                     c'8
@@ -872,7 +882,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'8
@@ -970,7 +981,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new Staff
@@ -1031,7 +1043,8 @@ class Iteration:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \context Voice = "Music_Voice"
@@ -1140,7 +1153,8 @@ def iterate(client=None):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4

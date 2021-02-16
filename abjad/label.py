@@ -49,7 +49,8 @@ class Label:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -66,7 +67,8 @@ class Label:
 
             >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
             >>> expression = abjad.label().with_pitches(locale='us')
-            >>> abjad.f(expression)
+            >>> string = abjad.storage(expression)
+            >>> print(string)
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(
@@ -89,7 +91,8 @@ class Label:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -115,7 +118,8 @@ class Label:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -148,7 +152,8 @@ class Label:
 
             >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
             >>> expression = abjad.label().with_durations()
-            >>> abjad.f(expression)
+            >>> string = abjad.storage(expression)
+            >>> print(string)
             abjad.Expression(
                 callbacks=[
                     abjad.Expression(
@@ -171,7 +176,8 @@ class Label:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
@@ -312,7 +318,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -341,7 +348,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -390,7 +398,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         \abjad-color-music #'red
@@ -415,7 +424,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         \abjad-color-music #'red
@@ -456,7 +466,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(chord)
+                    >>> string = abjad.lilypond(chord)
+                    >>> print(string)
                     <
                         \tweak color #red
                         c''
@@ -482,7 +493,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(chord)
+                    >>> string = abjad.lilypond(chord)
+                    >>> print(string)
                     <
                         \tweak color #red
                         c''
@@ -508,7 +520,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(note)
+                    >>> string = abjad.lilypond(note)
+                    >>> print(string)
                     \once \override NoteHead.color = #red
                     c'4
 
@@ -521,7 +534,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(note)
+                    >>> string = abjad.lilypond(note)
+                    >>> print(string)
                     \once \override NoteHead.color = #red
                     c'4
 
@@ -552,7 +566,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         \once \override NoteHead.color = #(x11-color 'red)
@@ -592,7 +607,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         \once \override NoteHead.color = #(x11-color 'red)
@@ -677,7 +693,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'8
@@ -695,7 +712,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'8
@@ -713,7 +731,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'8
@@ -732,7 +751,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'8
@@ -770,7 +790,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -828,7 +849,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -891,7 +913,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -975,7 +998,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1062,7 +1086,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1144,7 +1169,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1229,7 +1255,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1308,7 +1335,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1390,7 +1418,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1469,7 +1498,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1551,7 +1581,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1615,7 +1646,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1682,7 +1714,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1756,7 +1789,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff_group)
+                    >>> string = abjad.lilypond(staff_group)
+                    >>> print(string)
                     \new StaffGroup
                     <<
                         \new Staff
@@ -1948,7 +1982,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'4.
@@ -1990,7 +2025,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'4.
@@ -2035,7 +2071,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'4.
@@ -2077,7 +2114,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     {
                         c'4.
@@ -2140,7 +2178,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2171,7 +2210,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2205,7 +2245,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2238,7 +2279,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2272,7 +2314,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2303,7 +2346,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2335,7 +2379,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2370,7 +2415,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2408,7 +2454,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2463,7 +2510,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2540,7 +2588,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2577,7 +2626,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2618,7 +2668,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2656,7 +2707,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2697,7 +2749,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2735,7 +2788,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2777,7 +2831,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2815,7 +2870,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2857,7 +2913,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2895,7 +2952,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2963,7 +3021,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -2991,7 +3050,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3022,7 +3082,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3050,7 +3111,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3082,7 +3144,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3118,7 +3181,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3157,7 +3221,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3193,7 +3258,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3238,7 +3304,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3279,7 +3346,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3324,7 +3392,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3366,7 +3435,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3412,7 +3482,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3454,7 +3525,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3569,7 +3641,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3624,7 +3697,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3684,7 +3758,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3740,7 +3815,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3799,7 +3875,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3855,7 +3932,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(voice)
+                    >>> string = abjad.lilypond(voice)
+                    >>> print(string)
                     \new Voice
                     \with
                     {
@@ -3949,7 +4027,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -3985,7 +4064,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(staff)
+                    >>> string = abjad.lilypond(staff)
+                    >>> print(string)
                     \new Staff
                     \with
                     {
@@ -4026,7 +4106,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(score)
+                    >>> string = abjad.lilypond(score)
+                    >>> print(string)
                     \new Score
                     <<
                         \new Staff
@@ -4064,7 +4145,8 @@ class Label:
 
                 ..  docs::
 
-                    >>> abjad.f(score)
+                    >>> string = abjad.lilypond(score)
+                    >>> print(string)
                     \new Score
                     <<
                         \new Staff
@@ -4106,7 +4188,8 @@ class Label:
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new Staff
@@ -4144,7 +4227,8 @@ class Label:
                 >>> abjad.override(staff).text_script.staff_padding = 4
                 >>> abjad.override(staff).tuplet_bracket.staff_padding = 0
 
-                >>> abjad.f(score)
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
                 \new Score
                 <<
                     \new Staff
@@ -4221,7 +4305,8 @@ class ColorMap:
         ...     ],
         ... )
 
-        >>> abjad.f(color_map)
+        >>> string = abjad.storage(color_map)
+        >>> print(string)
         abjad.ColorMap(
             colors=['red', 'green', 'blue'],
             pitch_iterables=[
@@ -4486,7 +4571,8 @@ def label(client=None, deactivate=None, tag=None):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -4539,7 +4625,8 @@ def label(client=None, deactivate=None, tag=None):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {

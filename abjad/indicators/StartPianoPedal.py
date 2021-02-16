@@ -37,7 +37,8 @@ class StartPianoPedal:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -204,13 +205,15 @@ class StartPianoPedal:
             >>> import copy
             >>> start_piano_pedal = abjad.StartPianoPedal()
             >>> abjad.tweak(start_piano_pedal).color = 'blue'
-            >>> abjad.f(start_piano_pedal)
+            >>> string = abjad.storage(start_piano_pedal)
+            >>> print(string)
             abjad.StartPianoPedal(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
-            >>> abjad.f(start_piano_pedal_2)
+            >>> string = abjad.storage(start_piano_pedal_2)
+            >>> print(string)
             abjad.StartPianoPedal(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )

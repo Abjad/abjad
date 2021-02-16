@@ -18,7 +18,8 @@ def new(argument, *arguments, **keywords):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -38,7 +39,8 @@ def new(argument, *arguments, **keywords):
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -57,14 +59,16 @@ def new(argument, *arguments, **keywords):
         REGRESSION. Can be used to set existing properties to none:
 
         >>> markup = abjad.Markup(r'\italic "Andante assai"', direction=abjad.Up)
-        >>> abjad.f(markup)
+        >>> string = abjad.lilypond(markup)
+        >>> print(string)
         ^ \markup {
             \italic
                 "Andante assai"
             }
 
         >>> markup = abjad.new(markup, direction=None)
-        >>> abjad.f(markup)
+        >>> string = abjad.lilypond(markup)
+        >>> print(string)
         \markup {
             \italic
                 "Andante assai"

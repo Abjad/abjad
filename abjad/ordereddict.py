@@ -16,7 +16,8 @@ class OrderedDict(collections.abc.MutableMapping):
         ...     ('directive', abjad.Markup(r'\italic Allegretto')),
         ...     ])
 
-        >>> abjad.f(dictionary)
+        >>> string = abjad.storage(dictionary)
+        >>> print(string)
         abjad.OrderedDict(
             [
                 ('color', 'red'),
@@ -46,7 +47,8 @@ class OrderedDict(collections.abc.MutableMapping):
         ...     dictionary
         ...     )
 
-        >>> abjad.f(dictionary)
+        >>> string = abjad.storage(dictionary)
+        >>> print(string)
         abjad.OrderedDict(
             [
                 ('color', 'red'),
@@ -76,7 +78,8 @@ class OrderedDict(collections.abc.MutableMapping):
         ...     dictionary_1
         ...     )
 
-        >>> abjad.f(dictionary_2)
+        >>> string = abjad.storage(dictionary_2)
+        >>> print(string)
         abjad.OrderedDict(
             [
                 ('color', 'red'),
@@ -352,7 +355,8 @@ class OrderedDict(collections.abc.MutableMapping):
             >>> dictionary['colors']['red'] = 3
             >>> dictionary['colors']['green'] = 2
             >>> dictionary['colors']['blue'] = 1
-            >>> abjad.f(dictionary)
+            >>> string = abjad.storage(dictionary)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     ('flavor', 'cherry'),
@@ -370,7 +374,8 @@ class OrderedDict(collections.abc.MutableMapping):
                 )
 
             >>> dictionary.sort()
-            >>> abjad.f(dictionary)
+            >>> string = abjad.storage(dictionary)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     (
@@ -388,7 +393,8 @@ class OrderedDict(collections.abc.MutableMapping):
                 )
 
             >>> dictionary.sort(recurse=True)
-            >>> abjad.f(dictionary)
+            >>> string = abjad.storage(dictionary)
+            >>> print(string)
             abjad.OrderedDict(
                 [
                     (

@@ -22,7 +22,8 @@ class StartBeam:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -180,13 +181,15 @@ class StartBeam:
             >>> import copy
             >>> start_beam = abjad.StartBeam()
             >>> abjad.tweak(start_beam).color = 'blue'
-            >>> abjad.f(start_beam)
+            >>> string = abjad.storage(start_beam)
+            >>> print(string)
             abjad.StartBeam(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_beam_2 = copy.copy(start_beam)
-            >>> abjad.f(start_beam_2)
+            >>> string = abjad.storage(start_beam_2)
+            >>> print(string)
             abjad.StartBeam(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )

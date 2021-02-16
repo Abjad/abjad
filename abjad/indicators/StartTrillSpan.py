@@ -23,7 +23,8 @@ class StartTrillSpan:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -145,7 +146,8 @@ class StartTrillSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \pitchedTrill
@@ -206,7 +208,8 @@ class StartTrillSpan:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \pitchedTrill
@@ -247,13 +250,15 @@ class StartTrillSpan:
             >>> import copy
             >>> start_trill_span = abjad.StartTrillSpan()
             >>> abjad.tweak(start_trill_span).color = 'blue'
-            >>> abjad.f(start_trill_span)
+            >>> string = abjad.storage(start_trill_span)
+            >>> print(string)
             abjad.StartTrillSpan(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_trill_span_2 = copy.copy(start_trill_span)
-            >>> abjad.f(start_trill_span_2)
+            >>> string = abjad.storage(start_trill_span_2)
+            >>> print(string)
             abjad.StartTrillSpan(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )

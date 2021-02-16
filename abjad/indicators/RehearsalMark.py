@@ -24,7 +24,8 @@ class RehearsalMark:
 
         ..  docs::
 
-            >>> abjad.f(score)
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
             \new Score
             \with
             {
@@ -85,7 +86,8 @@ class RehearsalMark:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \tweak color #red
@@ -103,7 +105,8 @@ class RehearsalMark:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \tweak color #red
@@ -156,7 +159,8 @@ class RehearsalMark:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \mark #1
@@ -221,7 +225,8 @@ class RehearsalMark:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     \mark \markup {
@@ -270,7 +275,8 @@ class RehearsalMark:
 
             ..  docs::
 
-                >>> abjad.f(note)
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
                 \tweak color #blue
                 \mark A
                 c'4

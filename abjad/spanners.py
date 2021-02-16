@@ -86,7 +86,8 @@ def beam(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -325,7 +326,8 @@ def bow_contact_spanner(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -444,7 +446,8 @@ def bow_contact_spanner(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -555,7 +558,8 @@ def bow_contact_spanner(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -751,7 +755,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -775,7 +780,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -800,7 +806,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 a8
@@ -831,7 +838,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 a8
@@ -865,7 +873,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 a8
@@ -904,7 +913,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 a8
@@ -941,7 +951,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 a8
@@ -976,7 +987,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -1009,7 +1021,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -1047,7 +1060,8 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'8
@@ -1075,7 +1089,8 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'8
@@ -1109,7 +1124,8 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'8
@@ -1146,7 +1162,8 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> abjad.f(staff, align_tags=50)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \hide NoteHead                                %! abjad.glissando(2):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
@@ -1180,7 +1197,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -1213,7 +1231,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'8
@@ -1251,7 +1270,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8.
@@ -1290,7 +1310,8 @@ def glissando(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'4
@@ -1536,7 +1557,8 @@ def hairpin(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \once \override DynamicLineSpanner.staff-padding = #4
@@ -1560,7 +1582,8 @@ def hairpin(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \once \override DynamicLineSpanner.staff-padding = #4
@@ -1587,7 +1610,8 @@ def hairpin(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \once \override DynamicLineSpanner.staff-padding = #4
@@ -1689,7 +1713,8 @@ def horizontal_bracket(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1731,7 +1756,8 @@ def ottava(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \ottava 1
@@ -1773,7 +1799,8 @@ def phrasing_slur(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1820,7 +1847,8 @@ def piano_pedal(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -1867,7 +1895,8 @@ def slur(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -1918,7 +1947,8 @@ def text_spanner(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \once \override TextSpanner.staff-padding = #4
@@ -1958,7 +1988,8 @@ def text_spanner(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -2002,7 +2033,8 @@ def text_spanner(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             \with
             {
@@ -2057,7 +2089,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2079,7 +2112,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2101,7 +2135,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2124,7 +2159,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 <c'>4
@@ -2144,7 +2180,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -2166,7 +2203,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'4.
@@ -2187,7 +2225,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'2
@@ -2206,7 +2245,8 @@ def tie(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 d'2
@@ -2273,7 +2313,8 @@ def trill_spanner(
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4

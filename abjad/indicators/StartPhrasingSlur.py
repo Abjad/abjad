@@ -22,7 +22,8 @@ class StartPhrasingSlur:
 
         ..  docs::
 
-            >>> abjad.f(staff)
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'4
@@ -184,13 +185,15 @@ class StartPhrasingSlur:
             >>> import copy
             >>> start_phrasing_slur = abjad.StartPhrasingSlur()
             >>> abjad.tweak(start_phrasing_slur).color = 'blue'
-            >>> abjad.f(start_phrasing_slur)
+            >>> string = abjad.storage(start_phrasing_slur)
+            >>> print(string)
             abjad.StartPhrasingSlur(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )
 
             >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
-            >>> abjad.f(start_phrasing_slur_2)
+            >>> string = abjad.storage(start_phrasing_slur_2)
+            >>> print(string)
             abjad.StartPhrasingSlur(
                 tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
                 )

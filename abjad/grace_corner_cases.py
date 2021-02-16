@@ -18,7 +18,8 @@ r"""
 
     ..  docs::
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \context Voice = "Music_Voice"
@@ -75,7 +76,8 @@ r"""
 
     ..  docs::
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \context Voice = "Music_Voice"
@@ -133,7 +135,8 @@ r"""
 
     ..  docs::
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \context Voice = "Music_Voice"
@@ -190,7 +193,8 @@ r"""
 
     ..  docs::
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \context Voice = "Music_Voice"
@@ -239,7 +243,8 @@ r"""
 
     ..  docs::
 
-        >>> abjad.f(staff)
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             \context Voice = "Music_Voice"

@@ -201,7 +201,8 @@ class Pattern:
             >>> pattern_2 = abjad.index_last(3)
             >>> pattern = pattern_1 & pattern_2
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='and',
                 patterns=(
@@ -219,7 +220,8 @@ class Pattern:
             >>> pattern_3 = abjad.index([0], 2)
             >>> pattern = pattern_1 & pattern_2 & pattern_3
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='and',
                 patterns=(
@@ -241,7 +243,8 @@ class Pattern:
             >>> pattern_3 = abjad.index([0], 2)
             >>> pattern = pattern_1 & pattern_2 | pattern_3
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -266,7 +269,8 @@ class Pattern:
             >>> pattern = abjad.index_first(3)
             >>> pattern &= abjad.index_last(3)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='and',
                 patterns=(
@@ -295,18 +299,21 @@ class Pattern:
         ..  container:: example
 
             >>> pattern = abjad.index_first(3)
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index_first(3)
 
             >>> pattern = ~pattern
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 indices=[0, 1, 2],
                 inverted=True,
                 )
 
             >>> pattern = ~pattern
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 indices=[0, 1, 2],
                 inverted=False,
@@ -323,7 +330,8 @@ class Pattern:
             >>> pattern_2 = abjad.index_last(3)
             >>> pattern = pattern_1 | pattern_2
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -341,7 +349,8 @@ class Pattern:
             (one of the last three indices):
 
             >>> pattern = ~pattern
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 inverted=True,
                 operator='or',
@@ -433,7 +442,8 @@ class Pattern:
             >>> pattern_2 = abjad.index_last(3)
             >>> pattern = pattern_1 | pattern_2
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -451,7 +461,8 @@ class Pattern:
             >>> pattern_3 = abjad.index([0], 2)
             >>> pattern = pattern_1 | pattern_2 | pattern_3
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -473,7 +484,8 @@ class Pattern:
             >>> pattern_3 = abjad.index([0], 2)
             >>> pattern = pattern_1 | pattern_2 & pattern_3
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -498,7 +510,8 @@ class Pattern:
             >>> pattern = abjad.index_first(3)
             >>> pattern |= abjad.index_last(3)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -536,7 +549,8 @@ class Pattern:
             >>> pattern_2 = abjad.index_last(3)
             >>> pattern = pattern_1 ^ pattern_2
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='xor',
                 patterns=(
@@ -554,7 +568,8 @@ class Pattern:
             >>> pattern_3 = abjad.index([0], 2)
             >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='xor',
                 patterns=(
@@ -576,7 +591,8 @@ class Pattern:
             >>> pattern_3 = abjad.index([0], 2)
             >>> pattern = pattern_1 ^ pattern_2 & pattern_3
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='xor',
                 patterns=(
@@ -601,7 +617,8 @@ class Pattern:
             >>> pattern = abjad.index_first(3)
             >>> pattern ^= abjad.index_last(3)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='xor',
                 patterns=(
@@ -959,7 +976,8 @@ class Pattern:
             >>> pattern_2 = abjad.Pattern([0], period=5)
             >>> pattern = pattern_1 | pattern_2
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -986,7 +1004,8 @@ class Pattern:
             >>> pattern_2 = abjad.Pattern([0])
             >>> pattern = pattern_1 | pattern_2
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -1124,7 +1143,8 @@ class Pattern:
 
             >>> pattern = [1, 0, 0, 1, 1]
             >>> pattern = abjad.Pattern.from_vector(pattern)
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 indices=[0, 3, 4],
                 period=5,
@@ -1152,7 +1172,8 @@ class Pattern:
 
             >>> pattern = [1, 0, 0, 1, 1, 0]
             >>> pattern = abjad.Pattern.from_vector(pattern)
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 indices=[0, 3, 4],
                 period=6,
@@ -1326,7 +1347,8 @@ class Pattern:
             >>> pattern_2 = abjad.Pattern([0], period=5)
             >>> pattern = pattern_1 | pattern_2
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -1424,7 +1446,8 @@ class Pattern:
 
             >>> pattern = abjad.index([2])
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index([2])
 
         ..  container:: example
@@ -1433,7 +1456,8 @@ class Pattern:
 
             >>> pattern = abjad.index([2, 3, 5])
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index([2, 3, 5])
 
         Returns pattern.
@@ -1459,7 +1483,8 @@ class Pattern:
 
             >>> pattern = abjad.index_all()
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index_all()
 
         Returns pattern.
@@ -1478,7 +1503,8 @@ class Pattern:
 
             >>> pattern = abjad.index_first(1)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index_first(1)
 
         ..  container:: example
@@ -1487,7 +1513,8 @@ class Pattern:
 
             >>> pattern = abjad.index_first(2)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index_first(2)
 
         ..  container:: example
@@ -1496,7 +1523,8 @@ class Pattern:
 
             >>> pattern = abjad.index_first(0)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index_first(0)
 
         Returns pattern.
@@ -1520,7 +1548,8 @@ class Pattern:
 
             >>> pattern = abjad.index_last(2)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index_last(2)
 
         ..  container:: example
@@ -1529,7 +1558,8 @@ class Pattern:
 
             >>> pattern = abjad.index_last(0)
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.index_last(0)
 
         Returns pattern.
@@ -2223,7 +2253,8 @@ class Pattern:
             ...         ],
             ...     )
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='or',
                 patterns=(
@@ -2392,7 +2423,8 @@ class Pattern:
             ...     )
 
             >>> pattern = pattern.reverse()
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 indices=[-1, -2, -8],
                 period=8,
@@ -2439,7 +2471,8 @@ class Pattern:
             ...         ],
             ...     )
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='and',
                 patterns=(
@@ -2457,7 +2490,8 @@ class Pattern:
             Reverses pattern:
 
             >>> pattern = pattern.reverse()
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='and',
                 patterns=(
@@ -2526,7 +2560,8 @@ class Pattern:
             ...     )
 
             >>> pattern = pattern.rotate(n=2)
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 indices=[2, 3, 9],
                 period=8,
@@ -2593,7 +2628,8 @@ class Pattern:
             ...     )
 
             >>> pattern = pattern.rotate(n=2)
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 indices=[-1, 0, 1],
                 period=8,
@@ -2640,7 +2676,8 @@ class Pattern:
             ...         ],
             ...     )
 
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='and',
                 patterns=(
@@ -2658,7 +2695,8 @@ class Pattern:
             Rotates pattern two elements to the right:
 
             >>> pattern = pattern.rotate(n=2)
-            >>> abjad.f(pattern)
+            >>> string = abjad.storage(pattern)
+            >>> print(string)
             abjad.Pattern(
                 operator='and',
                 patterns=(
@@ -2707,7 +2745,8 @@ class PatternTuple(TypedTuple):
         ...         ),
         ...     ])
 
-        >>> abjad.f(patterns)
+        >>> string = abjad.storage(patterns)
+        >>> print(string)
         abjad.PatternTuple(
             (
                 abjad.Pattern(
@@ -2738,7 +2777,8 @@ class PatternTuple(TypedTuple):
         ...         ),
         ...     ])
 
-        >>> abjad.f(patterns)
+        >>> string = abjad.storage(patterns)
+        >>> print(string)
         abjad.PatternTuple(
             (
                 abjad.Pattern(

@@ -21,7 +21,8 @@ class BendAfter:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'4
             - \bendAfter #'-4
 
@@ -36,7 +37,8 @@ class BendAfter:
 
         ..  docs::
 
-            >>> abjad.f(note)
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
             c'4
             - \bendAfter #'2
 
@@ -138,7 +140,8 @@ class BendAfter:
 
             ..  docs::
 
-                >>> abjad.f(staff)
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
                 \new Staff
                 {
                     c'4
