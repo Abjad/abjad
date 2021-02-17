@@ -95,7 +95,7 @@ Define helper functions:
 
 ::
 
-    >>> def illustrate_trichords(trichords, fundamental, moment_denominator):
+    >>> def illustrate_trichords(trichords, fundamental):
     ...     staff_1 = abjad.Staff(name="Staff_1")
     ...     staff_2 = abjad.Staff(name="Staff_2")
     ...     staff_3 = abjad.Staff(name="Staff_3")
@@ -130,11 +130,10 @@ Define helper functions:
     ...     abjad.override(score).Rest.stencil = False
     ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
     ...     abjad.override(score).TimeSignature.stencil = False
-    ...     moment = abjad.SchemeMoment((1, moment_denominator))
-    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 5)"
     ...     items= [score, abjad.Block(name="layout"), abjad.Block(name="paper")]
     ...     lilypond_file = abjad.LilyPondFile(items=items, global_staff_size=16)
-    ...     lilypond_file.layout_block.items.append("indent = 0")
+    ...     lilypond_file.layout_block.indent = "#0"
     ...     space = "system-system-spacing = #'((basic-distance . 13)"
     ...     space += " (minimum-distance . 13) (padding . 4))"
     ...     lilypond_file.paper_block.items.append(space)
@@ -193,7 +192,6 @@ Create list of triad sequences written as ratios:
     >>> file = illustrate_trichords(
     ...     triadic_sequences,
     ...     0,
-    ...     5,
     ... )
     ...
     >>> abjad.show(file)

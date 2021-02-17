@@ -2,7 +2,6 @@ import collections
 import typing
 
 from ..markups import MarkupCommand
-from ..scheme import Scheme, SchemePair
 from ..storage import StorageFormatManager
 
 
@@ -55,18 +54,8 @@ class WoodwindFingering:
         >>> print(abjad.storage(fingering_command))
         abjad.MarkupCommand(
             'woodwind-diagram',
-            abjad.Scheme(
-                'clarinet',
-                quoting="'",
-                ),
-            abjad.Scheme(
-                [
-                    abjad.SchemePair(('cc', ('one', 'two', 'three', 'five'))),
-                    abjad.SchemePair(('lh', ('R', 'thumb'))),
-                    abjad.SchemePair(('rh', ('e',))),
-                    ],
-                quoting="'",
-                )
+            "#'clarinet",
+            "#'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))"
             )
 
     ..  container:: example
@@ -123,7 +112,7 @@ class WoodwindFingering:
         >>> diagram = fingering()
         >>> not_graphical = abjad.MarkupCommand(
         ...     'override',
-        ...     abjad.SchemePair(('graphical', False)),
+        ...     "#'(graphical . #f)",
         ...     )
         >>> markup = abjad.Markup(contents=
         ...     [not_graphical, diagram], direction=abjad.Down)
@@ -157,15 +146,15 @@ class WoodwindFingering:
         >>> diagram = fingering()
         >>> not_graphical = abjad.MarkupCommand(
         ...     'override',
-        ...     abjad.SchemePair(('graphical', False)),
+        ...     "#'(graphical . #f)",
         ...     )
         >>> size = abjad.MarkupCommand(
         ...     'override',
-        ...     abjad.SchemePair(('size', .5)),
+        ...     "#'(size . 0.5)",
         ...     )
         >>> thickness = abjad.MarkupCommand(
         ...     'override',
-        ...     abjad.SchemePair(('thickness', .4)),
+        ...     "#'(thickness . 0.4)",
         ...     )
         >>> markup = abjad.Markup(
         ...     contents=[not_graphical, size, thickness, diagram],
@@ -246,15 +235,20 @@ class WoodwindFingering:
         """
         Calls woodwind fingering.
         """
-        key_groups_as_scheme = []
-        cc_scheme_pair = SchemePair(("cc", self._center_column))
-        key_groups_as_scheme.append(cc_scheme_pair)
-        lh_scheme_pair = SchemePair(("lh", self._left_hand))
-        key_groups_as_scheme.append(lh_scheme_pair)
-        rh_scheme_pair = SchemePair(("rh", self._right_hand))
-        key_groups_as_scheme.append(rh_scheme_pair)
-        key_groups_as_scheme_ = Scheme(key_groups_as_scheme, quoting="'")
-        instrument_as_scheme = Scheme(self._name, quoting="'")
+        strings = []
+        string = " ".join(self._center_column)
+        string = f"(cc . ({string}))"
+        strings.append(string)
+        string = " ".join(self._left_hand)
+        string = f"(lh . ({string}))"
+        strings.append(string)
+        string = " ".join(self._right_hand)
+        string = f"(rh . ({string}))"
+        strings.append(string)
+        string = " ".join(strings)
+        string = f"#'({string})"
+        key_groups_as_scheme_ = string
+        instrument_as_scheme = f"#'{self.name}"
         return MarkupCommand(
             "woodwind-diagram", instrument_as_scheme, key_groups_as_scheme_
         )

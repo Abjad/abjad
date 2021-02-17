@@ -9,7 +9,7 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
 
 ::
 
-    >>> def illustrate_trichords(trichords, moment_denominator):
+    >>> def illustrate_trichords(trichords):
     ...     group = abjad.StaffGroup([abjad.Staff(), abjad.Staff(), abjad.Staff()])
     ...     score = abjad.Score([group])
     ...     for triad in trichords:
@@ -23,8 +23,7 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
     ...     abjad.override(score).BarLine.stencil = False
     ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).SpanBar.stencil = False
-    ...     moment = abjad.SchemeMoment((1, moment_denominator))
-    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 5)"
     ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
     ...     return lilypond_file
     ...
@@ -61,7 +60,7 @@ Trichord reservoir in Jenny McLeod's **Tone Clock Piece I**:
     ...     [False, True, False, True],
     ... )
     ...
-    >>> file = illustrate_trichords(tesselation, 5)
+    >>> file = illustrate_trichords(tesselation)
     >>> abjad.show(file)
 
 Alternate reservoir:
@@ -76,7 +75,7 @@ Alternate reservoir:
     ...     [False, False, True, True],
     ... )
     ...
-    >>> file = illustrate_trichords(tesselation, 5)
+    >>> file = illustrate_trichords(tesselation)
     >>> abjad.show(file)
 
 :author:`[Evans (3.2)]`

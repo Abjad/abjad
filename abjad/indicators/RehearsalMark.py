@@ -18,7 +18,7 @@ class RehearsalMark:
         >>> score = abjad.Score([staff])
         >>> mark = abjad.RehearsalMark(number=1)
         >>> abjad.attach(mark, staff[0])
-        >>> scheme = abjad.Scheme('format-mark-box-alphabet')
+        >>> scheme = "#format-mark-box-alphabet"
         >>> abjad.setting(score).markFormatter = scheme
         >>> abjad.show(score) # doctest: +SKIP
 

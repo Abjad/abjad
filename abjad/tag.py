@@ -637,7 +637,8 @@ def activate(text, tag, skipped=False):
         input:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r"\with-color #red Allegro")
+        >>> string = r"\markup { \with-color #red Allegro }"
+        >>> markup = abjad.Markup(string, literal=True)
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
@@ -650,11 +651,7 @@ def activate(text, tag, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-        %@% - \markup {         %! RED_MARKUP
-        %@%     \with-color     %! RED_MARKUP
-        %@%         #red        %! RED_MARKUP
-        %@%         Allegro     %! RED_MARKUP
-        %@%     }               %! RED_MARKUP
+        %@% - \markup { \with-color #red Allegro }               %! RED_MARKUP
             d'4
             e'4
             f'4
@@ -668,11 +665,7 @@ def activate(text, tag, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-            - \markup {         %! RED_MARKUP %@%
-                \with-color     %! RED_MARKUP %@%
-                    #red        %! RED_MARKUP %@%
-                    Allegro     %! RED_MARKUP %@%
-                }               %! RED_MARKUP %@%
+            - \markup { \with-color #red Allegro }               %! RED_MARKUP %@%
             d'4
             e'4
             f'4
@@ -688,11 +681,7 @@ def activate(text, tag, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-        %@% - \markup {         %! RED_MARKUP
-        %@%     \with-color     %! RED_MARKUP
-        %@%         #red        %! RED_MARKUP
-        %@%         Allegro     %! RED_MARKUP
-        %@%     }               %! RED_MARKUP
+            %@% - \markup { \with-color #red Allegro }               %! RED_MARKUP
             d'4
             e'4
             f'4
@@ -708,11 +697,7 @@ def activate(text, tag, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-            - \markup {         %! RED_MARKUP  %@%
-                \with-color     %! RED_MARKUP  %@%
-                    #red        %! RED_MARKUP  %@%
-                    Allegro     %! RED_MARKUP  %@%
-                }               %! RED_MARKUP  %@%
+            - \markup { \with-color #red Allegro }               %! RED_MARKUP %@%
             d'4
             e'4
             f'4
@@ -779,7 +764,8 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         Writes (active) tag into LilyPond input:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r"\with-color #red Allegro")
+        >>> string = r"\markup { \with-color #red Allegro }"
+        >>> markup = abjad.Markup(string, literal=True)
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
@@ -791,11 +777,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-            - \markup {     %! RED_MARKUP
-                \with-color %! RED_MARKUP
-                    #red    %! RED_MARKUP
-                    Allegro %! RED_MARKUP
-                }           %! RED_MARKUP
+            - \markup { \with-color #red Allegro }               %! RED_MARKUP
             d'4
             e'4
             f'4
@@ -810,11 +792,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-        %%% - \markup {     %! RED_MARKUP
-        %%%     \with-color %! RED_MARKUP
-        %%%         #red    %! RED_MARKUP
-        %%%         Allegro %! RED_MARKUP
-        %%%     }           %! RED_MARKUP
+            %%% - \markup { \with-color #red Allegro }               %! RED_MARKUP
             d'4
             e'4
             f'4
@@ -830,11 +808,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-            - \markup {     %! RED_MARKUP
-                \with-color %! RED_MARKUP
-                    #red    %! RED_MARKUP
-                    Allegro %! RED_MARKUP
-                }           %! RED_MARKUP
+            - \markup { \with-color #red Allegro }               %! RED_MARKUP
             d'4
             e'4
             f'4
@@ -850,11 +824,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         >>> print(text)
         \new Staff {
             c'4
-        %%% - \markup {     %! RED_MARKUP
-        %%%     \with-color %! RED_MARKUP
-        %%%         #red    %! RED_MARKUP
-        %%%         Allegro %! RED_MARKUP
-        %%%     }           %! RED_MARKUP
+            %%% - \markup { \with-color #red Allegro }               %! RED_MARKUP
             d'4
             e'4
             f'4

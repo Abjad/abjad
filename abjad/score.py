@@ -5766,7 +5766,7 @@ class Tuplet(Container):
                                     }
                                 >>
                                 \layout {
-                                    indent = #0
+                                    indent = 0
                                     ragged-right = ##t
                                 }
                             }

@@ -218,9 +218,7 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 ::
 
-    >>> string = "tuplet-number::calc-fraction-text"
-    >>> scheme = abjad.Scheme(string)
-    >>> abjad.override(tuplet).tuplet_number.text = scheme
+    >>> abjad.override(tuplet).tuplet_number.text = "#tuplet-number::calc-fraction-text"
     >>> abjad.override(tuplet).tuplet_number.color = "red"
     >>> staff = abjad.Staff([tuplet])
     >>> abjad.show(staff)

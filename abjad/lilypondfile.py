@@ -22,7 +22,6 @@ from .lilypond import lilypond
 from .markups import Markup
 from .overrides import LilyPondLiteral, override, setting
 from .pitch.pitches import NamedPitch
-from .scheme import Scheme, SpacingVector
 from .score import Component, Container, Context, Leaf, Score, Skip, Staff, Voice
 from .select import Selection
 from .sequence import Sequence
@@ -240,15 +239,9 @@ class Block:
 
     def _get_formatted_user_attributes(self):
         result = []
-        prototype = Scheme
-        for value in self.items:
-            if isinstance(value, prototype):
-                result.append(lilypond(value))
-        prototype = (LilyPondDimension, Scheme)
         for key in self._public_attribute_names:
             assert not key.startswith("_"), repr(key)
             value = getattr(self, key)
-            # format subkeys via double underscore
             formatted_key = key.split("__")
             for i, k in enumerate(formatted_key):
                 formatted_key[i] = k.replace("_", "-")
@@ -256,15 +249,13 @@ class Block:
                     string = f"#'{formatted_key[i]}"
                     formatted_key[i] = string
             formatted_key = " ".join(formatted_key)
-            # format value
             if isinstance(value, Markup):
                 formatted_value = value._get_format_pieces()
-            elif isinstance(value, prototype):
+            elif isinstance(value, LilyPondDimension):
                 formatted_value = [lilypond(value)]
             else:
-                formatted_value = Scheme(value)
-                formatted_value = lilypond(formatted_value)
-                formatted_value = [formatted_value]
+                assert isinstance(value, (int, str, float)), repr((self, key, value))
+                formatted_value = [str(value)]
             setting = f"{formatted_key!s} = {formatted_value[0]!s}"
             result.append(setting)
             result.extend(formatted_value[1:])
@@ -1078,8 +1069,8 @@ class LilyPondFile:
             }
 
             \layout {
-                indent = #0
-                left-margin = #15
+                indent = 0
+                left-margin = 15
             }
 
             \paper {
@@ -1495,17 +1486,15 @@ class LilyPondFile:
         block.consists_commands.append("Time_signature_engraver")
         time_signature_grob = override(block).time_signature
         time_signature_grob.X_extent = (0, 0)
-        time_signature_grob.X_offset = Scheme(
-            "ly:self-alignment-interface::x-aligned-on-self"
-        )
+        time_signature_grob.X_offset = "#ly:self-alignment-interface::x-aligned-on-self"
         time_signature_grob.Y_extent = (0, 0)
         time_signature_grob.break_align_symbol = False
-        time_signature_grob.break_visibility = Scheme("end-of-line-invisible")
+        time_signature_grob.break_visibility = "#end-of-line-invisible"
         time_signature_grob.font_size = font_size
-        time_signature_grob.self_alignment_X = Scheme("center")
-        spacing_vector = SpacingVector(0, minimum_distance, padding, 0)
+        time_signature_grob.self_alignment_X = "#center"
         grob = override(block).vertical_axis_group
-        grob.default_staff_staff_spacing = spacing_vector
+        string = "#'((basic-distance . 0) (minimum-distance . {minimum_distance}) (padding . {padding}) (stretchability . 0))"
+        grob.default_staff_staff_spacing = string
         return block
 
     ### PUBLIC PROPERTIES ###
@@ -1794,12 +1783,12 @@ class LilyPondFile:
                 }
 
                 \layout {
-                    indent = #0
+                    indent = 0
                 }
 
                 \paper {
-                    left-margin = #15
-                    top-margin = #15
+                    left-margin = 15
+                    top-margin = 15
                 }
 
                 \score {
@@ -1840,7 +1829,7 @@ class LilyPondFile:
             use_relative_includes=use_relative_includes,
         )
         assert lilypond_file.header_block is not None
-        lilypond_file.header_block.tagline = False
+        lilypond_file.header_block.tagline = "##f"
         if music is not None:
             assert lilypond_file.score_block is not None
             lilypond_file.score_block.items.append(music)

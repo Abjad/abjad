@@ -1,6 +1,5 @@
 from .. import enums
 from ..bundle import LilyPondFormatBundle
-from ..scheme import Scheme
 from ..storage import StorageFormatManager
 
 
@@ -112,7 +111,7 @@ class StaffChange:
         """
         if self.staff is None:
             return r"\change Staff = ##f"
-        value = Scheme.format_scheme_value(self.staff)
+        value = str(self.staff)
         return rf"\change Staff = {value}"
 
     ### PRIVATE METHODS ###

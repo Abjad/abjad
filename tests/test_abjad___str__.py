@@ -10,7 +10,6 @@ _allowed_to_be_empty_string = (
     abjad.CompoundOperator,
     abjad.Line,
     abjad.Postscript,
-    abjad.SchemeColor,
     abjad.String,
     abjad.Tag,
 )

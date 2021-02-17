@@ -10,11 +10,11 @@ import quicktions
 from . import enums, math
 from . import tag as _tag
 from .bundle import LilyPondFormatBundle
+from .fsv import format_scheme_value
 from .lyconst import colors
 from .lyenv import music_glyphs
 from .new import new
 from .overrides import TweakInterface
-from .scheme import Scheme, SchemeColor, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
 from .string import String
 
@@ -550,7 +550,6 @@ class Markup:
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
             if not self.literal:
-                content = Scheme.format_scheme_value(content)
                 if content:
                     content = rf"\markup {{ {content} }}"
                 else:
@@ -567,7 +566,6 @@ class Markup:
             pieces = [r"\markup {"]
         for content in self.contents:
             if isinstance(content, str):
-                content = Scheme.format_scheme_value(content)
                 pieces.append(f"{indent}{content}")
             else:
                 pieces_ = content._get_format_pieces()
@@ -1166,7 +1164,7 @@ class Markup:
 
         Returns new markup
         """
-        pair = SchemePair((x, y))
+        pair = f"#'({x} . {y})"
         command = MarkupCommand("draw-line", pair)
         return class_(contents=command, direction=direction)
 
@@ -1214,8 +1212,8 @@ class Markup:
 
         Returns new markup.
         """
-        x_extent = SchemePair(x_extent)
-        y_extent = SchemePair(y_extent)
+        x_extent = f"#'({x_extent[0]} . {x_extent[1]})"
+        y_extent = f"#'({y_extent[0]} . {y_extent[1]})"
         blot = float(blot)
         command = MarkupCommand("filled-box", x_extent, y_extent, blot)
         return class_(command, direction=direction)
@@ -1371,16 +1369,15 @@ class Markup:
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        axis = Scheme(axis)
-        # TODO: make Scheme(Up) work
+        axis = f"#{axis}"
         if direction is enums.Up:
-            direction = Scheme("UP")
+            direction = "#UP"
         elif direction is enums.Down:
-            direction = Scheme("DOWN")
+            direction = "#DOWN"
         elif direction is enums.Center:
-            direction = Scheme("CENTER")
+            direction = "#CENTER"
         elif isinstance(direction, numbers.Number):
-            direction = Scheme(str(direction))
+            direction = f"#{direction}"
         else:
             raise ValueError(f"unknown direction: {direction!r}.")
         command = MarkupCommand("general-align", axis, direction, contents)
@@ -1668,8 +1665,7 @@ class Markup:
         glyph_name = glyph_name or "accidentals.sharp"
         message = "not a valid LilyPond glyph name."
         assert glyph_name in music_glyphs, message
-        glyph_scheme = Scheme(glyph_name, force_quotes=True)
-        command = MarkupCommand("musicglyph", glyph_scheme)
+        command = MarkupCommand(rf'musicglyph #"{glyph_name}"')
         return class_(contents=command, direction=direction)
 
     @classmethod
@@ -1814,7 +1810,7 @@ class Markup:
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        pair = SchemePair(pair)
+        pair = f"#'({pair[0]} . {pair[1]})"
         command = MarkupCommand("override", pair, contents)
         return new(self, contents=command)
 
@@ -2004,8 +2000,8 @@ class Markup:
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        x_extent = SchemePair(x_extent)
-        y_extent = SchemePair(y_extent)
+        x_extent = f"#'({x_extent[0]} . {x_extent[1]})"
+        y_extent = f"#'({y_extent[0]} . {y_extent[1]})"
         command = MarkupCommand("pad-to-box", x_extent, y_extent, contents)
         return new(self, contents=command)
 
@@ -2194,7 +2190,7 @@ class Markup:
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        factor_pair = SchemePair(factor_pair)
+        factor_pair = f"#'({factor_pair[0]} . {factor_pair[1]})"
         command = MarkupCommand("scale", factor_pair, contents)
         return new(self, contents=command)
 
@@ -2366,7 +2362,7 @@ class Markup:
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        offset_pair = SchemePair(offset_pair)
+        offset_pair = f"#'({offset_pair[0]} . {offset_pair[1]})"
         command = MarkupCommand("translate", offset_pair, contents)
         return new(self, contents=command)
 
@@ -2501,44 +2497,13 @@ class Markup:
 
             >>> abjad.show(markup) # doctest: +SKIP
 
-        ..  container:: example
-
-            X-11 colors are supported:
-
-            >>> markup = abjad.Markup("Allegro assai")
-            >>> markup = markup.with_color(abjad.SchemeColor("LimeGreen"))
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup {
-                \with-color
-                    #(x11-color 'LimeGreen)
-                    "Allegro assai"
-                }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        ..  container:: example
-
-            Raises exception on unknown color:
-
-            >>> markup = abjad.Markup("Allegro assai")
-            >>> markup = markup.with_color(abjad.SchemeColor("SavannahGreen"))
-            Traceback (most recent call last):
-                ...
-            Exception: 'SavannahGreen' is not a LilyPond color.
-
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
         if isinstance(color, str):
             if color not in colors:
                 raise Exception(f"{repr(color)} is not a LilyPond color.")
-            color = Scheme(color)
-        elif isinstance(color, SchemeColor):
-            _, string = str(color).split()
-            string = string.strip("'").strip(")")
-            if string not in colors:
-                raise Exception(f"{repr(string)} is not a LilyPond color.")
+            color = f"#{color}"
         else:
             raise TypeError(color)
         command = MarkupCommand("with-color", color, contents)
@@ -2734,8 +2699,8 @@ class Markup:
         Returns new markup.
         """
         contents = self._parse_markup_command_argument(self)
-        x_extent = SchemePair(x_extent)
-        y_extent = SchemePair(y_extent)
+        x_extent = f"#'({x_extent[0]} . {x_extent[1]})"
+        y_extent = f"#'({y_extent[0]} . {y_extent[1]})"
         command = MarkupCommand("with-dimensions", x_extent, y_extent, contents)
         return new(self, contents=command)
 
@@ -2883,7 +2848,7 @@ class MarkupCommand:
         >>> abjad.setting(small_staff).font_size = -3
         >>> layout_block = abjad.Block(name="layout")
         >>> layout_block.indent = 0
-        >>> layout_block.ragged_right = True
+        >>> layout_block.ragged_right = "##t"
         >>> command = abjad.MarkupCommand(
         ...     "score",
         ...     [small_staff, layout_block],
@@ -2907,7 +2872,7 @@ class MarkupCommand:
                     b'16
                 }
                 \layout {
-                    indent = #0
+                    indent = 0
                     ragged-right = ##t
                 }
             }
@@ -2941,7 +2906,7 @@ class MarkupCommand:
                                 b'16
                             }
                             \layout {
-                                indent = #0
+                                indent = 0
                                 ragged-right = ##t
                             }
                         }
@@ -2955,7 +2920,8 @@ class MarkupCommand:
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_arguments", "_deactivate", "_force_quotes", "_name", "_tag")
+    # __slots__ = ("_arguments", "_deactivate", "_force_quotes", "_name", "_tag")
+    __slots__ = ("_arguments", "_deactivate", "_name", "_tag")
 
     ### INITIALIZER ###
 
@@ -2966,7 +2932,7 @@ class MarkupCommand:
             assert len(arguments) == 0
         self._arguments = tuple(arguments)
         self._deactivate = None
-        self._force_quotes = False
+        # self._force_quotes = False
         assert isinstance(name, str) and len(name)
         self._name = name
         self._tag = None
@@ -3082,8 +3048,6 @@ class MarkupCommand:
                     result.append("{")
                     result.extend(recurse(item))
                     result.append("}")
-                elif isinstance(item, Scheme):
-                    result.append(item._get_lilypond_format())
                 elif hasattr(item, "_get_format_pieces"):
                     result.extend(item._get_format_pieces())
                 elif isinstance(item, str) and "\n" in item:
@@ -3091,13 +3055,13 @@ class MarkupCommand:
                     result.extend(item.splitlines())
                     result.append('"')
                 else:
-                    formatted = Scheme.format_scheme_value(
-                        item, force_quotes=self.force_quotes
-                    )
+                    formatted = format_scheme_value(item)
                     if isinstance(item, str):
                         result.append(formatted)
+                        # result.append(item)
                     else:
                         result.append(f"#{formatted}")
+                        # result.append(f"#{item}")
             return [f"{indent}{item}" for item in result]
 
         indent = LilyPondFormatBundle.indent
@@ -3150,68 +3114,68 @@ class MarkupCommand:
             argument = bool(argument)
         self._deactivate = argument
 
-    @property
-    def force_quotes(self):
-        r"""
-        Is true when markup command should force quotes around arguments.
-
-        ..  container:: example
-
-            Here's a markup command formatted in the usual way without forced
-            quotes:
-
-            >>> lines = ["foo", "bar blah", "baz"]
-            >>> command = abjad.MarkupCommand("column", lines)
-            >>> markup = abjad.Markup(command)
-
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup {
-                \column
-                    {
-                        foo
-                        "bar blah"
-                        baz
-                    }
-                }
-
-            The markup command forces quotes around only the spaced string
-            ``"bar blah"``.
-
-        ..  container:: example
-
-            Here's the same markup command with forced quotes:
-
-                >>> lines = ["foo", "bar blah", "baz"]
-                >>> command = abjad.MarkupCommand("column", lines)
-                >>> command.force_quotes = True
-                >>> markup = abjad.Markup(command)
-
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup {
-                \column
-                    {
-                        "foo"
-                        "bar blah"
-                        "baz"
-                    }
-                }
-
-            The markup command forces quotes around all strings.
-
-        The rendered result of forced and unforced quotes is the same.
-
-        Defaults to false.
-
-        Returns true or false.
-        """
-        return self._force_quotes
-
-    @force_quotes.setter
-    def force_quotes(self, argument):
-        assert isinstance(argument, bool), repr(argument)
-        self._force_quotes = argument
+    #    @property
+    #    def force_quotes(self):
+    #        r"""
+    #        Is true when markup command should force quotes around arguments.
+    #
+    #        ..  container:: example
+    #
+    #            Here's a markup command formatted in the usual way without forced
+    #            quotes:
+    #
+    #            >>> lines = ["foo", "bar blah", "baz"]
+    #            >>> command = abjad.MarkupCommand("column", lines)
+    #            >>> markup = abjad.Markup(command)
+    #
+    #            >>> string = abjad.lilypond(markup)
+    #            >>> print(string)
+    #            \markup {
+    #                \column
+    #                    {
+    #                        foo
+    #                        "bar blah"
+    #                        baz
+    #                    }
+    #                }
+    #
+    #            The markup command forces quotes around only the spaced string
+    #            ``"bar blah"``.
+    #
+    #        ..  container:: example
+    #
+    #            Here's the same markup command with forced quotes:
+    #
+    #                >>> lines = ["foo", "bar blah", "baz"]
+    #                >>> command = abjad.MarkupCommand("column", lines)
+    #                >>> command.force_quotes = True
+    #                >>> markup = abjad.Markup(command)
+    #
+    #            >>> string = abjad.lilypond(markup)
+    #            >>> print(string)
+    #            \markup {
+    #                \column
+    #                    {
+    #                        "foo"
+    #                        "bar blah"
+    #                        "baz"
+    #                    }
+    #                }
+    #
+    #            The markup command forces quotes around all strings.
+    #
+    #        The rendered result of forced and unforced quotes is the same.
+    #
+    #        Defaults to false.
+    #
+    #        Returns true or false.
+    #        """
+    #        return self._force_quotes
+    #
+    #    @force_quotes.setter
+    #    def force_quotes(self, argument):
+    #        assert isinstance(argument, bool), repr(argument)
+    #        self._force_quotes = argument
 
     @property
     def name(self):

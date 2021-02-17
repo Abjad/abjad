@@ -24,7 +24,6 @@ from .pitch.pitches import NamedPitch, NumberedPitch
 from .pitch.segments import PitchSegment
 from .pitch.sets import PitchClassSet
 from .pitch.vectors import IntervalClassVector
-from .scheme import SchemeColor
 from .score import Chord, Component, Note, Skip
 from .select import Selection
 from .storage import StorageFormatManager
@@ -215,19 +214,19 @@ class Label:
     __slots__ = ("_client", "_deactivate", "_expression", "_tag")
 
     _pc_number_to_color = {
-        0: SchemeColor("red"),
-        1: SchemeColor("MediumBlue"),
-        2: SchemeColor("orange"),
-        3: SchemeColor("LightSlateBlue"),
-        4: SchemeColor("ForestGreen"),
-        5: SchemeColor("MediumOrchid"),
-        6: SchemeColor("firebrick"),
-        7: SchemeColor("DeepPink"),
-        8: SchemeColor("DarkOrange"),
-        9: SchemeColor("IndianRed"),
-        10: SchemeColor("CadetBlue"),
-        11: SchemeColor("SeaGreen"),
-        12: SchemeColor("LimeGreen"),
+        0: "#(x11-color 'red)",
+        1: "#(x11-color 'MediumBlue)",
+        2: "#(x11-color 'orange)",
+        3: "#(x11-color 'LightSlateBlue)",
+        4: "#(x11-color 'ForestGreen)",
+        5: "#(x11-color 'MediumOrchid)",
+        6: "#(x11-color 'firebrick)",
+        7: "#(x11-color 'DeepPink)",
+        8: "#(x11-color 'DarkOrange)",
+        9: "#(x11-color 'IndianRed)",
+        10: "#(x11-color 'CadetBlue)",
+        11: "#(x11-color 'SeaGreen)",
+        12: "#(x11-color 'LimeGreen)",
     }
 
     ### INITIALIZER ###

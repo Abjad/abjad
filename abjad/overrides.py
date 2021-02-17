@@ -4,11 +4,19 @@ import typing
 from . import enums
 from . import tag as _tag
 from .bundle import LilyPondFormatBundle
+from .fsv import format_scheme_value
 from .lyconst import colors
 from .lyenv import contexts, grob_interfaces
-from .scheme import Scheme, SchemePair
+from .scheme import Scheme
 from .storage import FormatSpecification, StorageFormatManager
 from .string import String
+
+
+def format_embedded_scheme_value(value):
+    result = format_scheme_value(value)
+    if isinstance(value, bool):
+        result = "#" + result
+    return result
 
 
 class LilyPondLiteral:
@@ -667,7 +675,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.grob_name
             'Glissando'
@@ -685,7 +693,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> bool(override.is_revert)
             False
@@ -725,7 +733,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.lilypond_type is None
             True
@@ -757,7 +765,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> bool(override.once)
             False
@@ -801,7 +809,8 @@ class LilyPondOverride:
         result.append(r"\override")
         result.append(self._override_property_path_string())
         result.append("=")
-        string = Scheme.format_embedded_scheme_value(self.value)
+        string = format_embedded_scheme_value(self.value)
+        # string = str(self.value)
         value_pieces = string.split("\n")
         result.append(value_pieces[0])
         result[:] = [" ".join(result)]
@@ -818,7 +827,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.override_string
             "\\override Glissando.style = #'zigzag"
@@ -860,7 +869,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.revert_format_pieces
             ('\\revert Glissando.style',)
@@ -879,7 +888,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.revert_string
             '\\revert Glissando.style'
@@ -922,7 +931,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.tweak_string()
             "- \\tweak style #'zigzag"
@@ -932,7 +941,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="RehearsalMark",
             ...     property_path="color",
-            ...     value="red",
+            ...     value="#red",
             ...     )
             >>> override.tweak_string(directed=False)
             '\\tweak color #red'
@@ -964,7 +973,8 @@ class LilyPondOverride:
             assert isinstance(self.value.argument, str)
             string = self.value.argument
         else:
-            string = Scheme.format_embedded_scheme_value(self.value)
+            string = format_embedded_scheme_value(self.value)
+            # string = str(self.value)
         result.append(string)
         return " ".join(result)
 
@@ -1061,7 +1071,7 @@ class LilyPondSetting:
         else:
             result.append(self.context_property)
         result.append("=")
-        string = Scheme.format_embedded_scheme_value(self.value)
+        string = format_embedded_scheme_value(self.value)
         value_pieces = string.split("\n")
         result.append(value_pieces[0])
         result[:] = [" ".join(result)]
@@ -1256,12 +1266,12 @@ class OverrideInterface(Interface):
         elif argument in Scheme.lilypond_color_constants:
             argument = Scheme(argument)
         elif isinstance(argument, str) and argument.startswith("#"):
-            # argument = Scheme(argument)
             return argument
         elif isinstance(argument, str) and "::" in argument:
             argument = Scheme(argument)
         elif isinstance(argument, tuple) and len(argument) == 2:
-            argument = SchemePair(argument)
+            string = f"#'({argument[0]} . {argument[1]})"
+            argument = Scheme(string)
         elif isinstance(argument, str) and " " not in argument:
             argument = Scheme(argument, quoting="'")
         elif isinstance(argument, str) and " " in argument:
@@ -1414,7 +1424,7 @@ class SettingInterface(Interface):
                 \new Staff
                 \with
                 {
-                    instrumentName = \markup { "Vn. I" }
+                    instrumentName = \markup { Vn. I }
                 }
                 {
                     c'4
@@ -1549,7 +1559,7 @@ def setting(argument):
             \new Staff
             \with
             {
-                instrumentName = \markup { "Vn. I" }
+                instrumentName = \markup { Vn. I }
             }
             {
                 c'4
@@ -1970,7 +1980,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai" }
+                ^ \markup { Allegro assai }
                 d'4
                 e'4
                 f'4
@@ -1994,7 +2004,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai" }
+                ^ \markup { Allegro assai }
                 d'4
                 e'4
                 f'4
@@ -2045,10 +2055,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai ..." }
+                ^ \markup { Allegro assai ... }
                 - \tweak color #blue
                 - \tweak staff-padding #4
-                _ \markup { "... ma non troppo" }
+                _ \markup { ... ma non troppo }
                 d'4
                 e'4
                 f'4
@@ -2074,10 +2084,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai ..." }
+                ^ \markup { Allegro assai ... }
                 - \tweak color #blue
                 - \tweak staff-padding #4
-                ^ \markup { "... ma non troppo" }
+                ^ \markup { ... ma non troppo }
                 d'4
                 e'4
                 f'4

@@ -1,7 +1,7 @@
 from ply import lex
 
 from .. import exceptions
-from ..scheme import Scheme, SchemePair
+from ..scheme import Scheme
 from .base import Parser
 
 
@@ -639,7 +639,7 @@ class SchemeParser(Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         result = p[2] + [p[3]] + [p[5]]
         if len(result) == 2:
-            p[0] = SchemePair(tuple(result))
+            p[0] = Scheme(f"({result[0]} . {result[1]})", verbatim=True)
         else:
             p[0] = Scheme(result)
         self.expression_depth -= 1

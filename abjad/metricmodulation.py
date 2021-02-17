@@ -122,7 +122,7 @@ class MetricModulation:
                             }
                         >>
                         \layout {
-                            indent = #0
+                            indent = 0
                             ragged-right = ##t
                         }
                     }
@@ -162,7 +162,7 @@ class MetricModulation:
                             }
                         >>
                         \layout {
-                            indent = #0
+                            indent = 0
                             ragged-right = ##t
                         }
                     }
@@ -217,7 +217,7 @@ class MetricModulation:
                             }
                         >>
                         \layout {
-                            indent = #0
+                            indent = 0
                             ragged-right = ##t
                         }
                     }
@@ -260,7 +260,7 @@ class MetricModulation:
                             }
                         >>
                         \layout {
-                            indent = #0
+                            indent = 0
                             ragged-right = ##t
                         }
                     }

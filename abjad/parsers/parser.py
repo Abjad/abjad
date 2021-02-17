@@ -60,7 +60,6 @@ from ..pitch.Accidental import Accidental
 from ..pitch.Octave import Octave
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
-from ..scheme import Scheme
 from ..score import (
     BeforeGraceContainer,
     Chord,
@@ -2531,9 +2530,8 @@ class LilyPondParser(Parser):
 
         >>> string = r'''
         ... \header {
-        ...     composername = "Foo von Bar"
-        ...     composer = \markup { by \bold \composername }
-        ...     title = \markup { The ballad of \composername }
+        ...     composer = \markup { by \bold "Foo von Bar" }
+        ...     title = \markup { The ballad of Foo von Bar }
         ...     tagline = \markup { "" }
         ... }
         ... \score {
@@ -2557,7 +2555,11 @@ class LilyPondParser(Parser):
             \language "english"
             <BLANKLINE>
             \header {
-                composername = #"Foo von Bar"
+                composername = \markup {
+                    Foo
+                    van
+                    Bar
+                    }
                 composer = \markup {
                     by
                     \bold
@@ -6312,10 +6314,11 @@ class LilyPondSyntacticalDefinition:
         "simple_markup : STRING_IDENTIFIER"
         p[0] = p[1]
 
-    def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
-        "simple_markup : markup_scm MARKUP_IDENTIFIER"
-        if isinstance(p[2], str):
-            p[0] = Scheme.format_scheme_value(p[2])
+    # looks unused
+    # def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
+    #    "simple_markup : markup_scm MARKUP_IDENTIFIER"
+    #    if isinstance(p[2], str):
+    #        p[0] = Scheme.format_scheme_value(p[2])
 
     ### simple_music ###
 

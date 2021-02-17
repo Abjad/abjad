@@ -16,7 +16,7 @@
 
 \version "2.19"
 
-%% Incorporating some code from the rewrite in Scheme of
+%% Incorporating some code from the rewrite in scheme of
 %% Text_spanner_engraver in input/regression/scheme-text-spanner.ly
 
 #(define (add-bound-item spanner item)

@@ -11,7 +11,7 @@ First we define functions to illustrate the examples that follow:
 
 ::
 
-    >>> def illustrate_row(row, moment_denominator):
+    >>> def illustrate_row(row):
     ...     notes = [abjad.Note(_, (1, 8)) for _ in row]
     ...     containers = abjad.illustrators.make_piano_score(notes)
     ...     score, treble_staff, bass_staff = containers
@@ -24,8 +24,8 @@ First we define functions to illustrate the examples that follow:
     ...     abjad.override(treble_staff).SpanBar.stencil = False
     ...     abjad.override(treble_staff).Stem.stencil = False
     ...     abjad.override(treble_staff).TimeSignature.stencil = False
-    ...     moment = abjad.SchemeMoment((1, moment_denominator))
-    ...     abjad.setting(treble_staff).proportional_notation_duration = moment
+    ...     string = "#(ly:make-moment 1 25)"
+    ...     abjad.setting(treble_staff).proportionalNotationDuration = string
     ...     lilypond_file = abjad.LilyPondFile(items=[treble_staff], global_staff_size=16)
     ...     return lilypond_file
 
@@ -47,28 +47,28 @@ Show prime form:
 
 ::
 
-    >>> file = illustrate_row(row, 25)
+    >>> file = illustrate_row(row)
     >>> abjad.show(file)
 
 Show retrograde:
 
 ::
 
-    >>> file = illustrate_row(row.retrograde(), 25)
+    >>> file = illustrate_row(row.retrograde())
     >>> abjad.show(file)
 
 Show inversion:
 
 ::
 
-    >>> file = illustrate_row(row.invert(), 25)
+    >>> file = illustrate_row(row.invert())
     >>> abjad.show(file)
 
 Show retrograde inversion:
 
 ::
 
-    >>> file = illustrate_row(row.invert().retrograde(), 25)
+    >>> file = illustrate_row(row.invert().retrograde())
     >>> abjad.show(file)
 
 :author:`[Evans (3.2)]`

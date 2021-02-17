@@ -260,17 +260,7 @@ from .pitch.vectors import (
     Vector,
 )
 from .ratio import NonreducedRatio, Ratio
-from .scheme import (
-    Scheme,
-    SchemeAssociativeList,
-    SchemeColor,
-    SchemeMoment,
-    SchemePair,
-    SchemeSymbol,
-    SchemeVector,
-    SchemeVectorConstant,
-    SpacingVector,
-)
+from .scheme import Scheme
 from .score import (
     AfterGraceContainer,
     BeforeGraceContainer,
@@ -579,14 +569,7 @@ __all__ = [
     "Right",
     "Rotation",
     "Scheme",
-    "SchemeAssociativeList",
-    "SchemeColor",
-    "SchemeMoment",
-    "SchemePair",
     "SchemeParserFinishedError",
-    "SchemeSymbol",
-    "SchemeVector",
-    "SchemeVectorConstant",
     "Score",
     "ScoreTemplate",
     "Segment",
@@ -602,7 +585,6 @@ __all__ = [
     "SopraninoSaxophone",
     "SopranoSaxophone",
     "SopranoVoice",
-    "SpacingVector",
     "Staff",
     "StaffChange",
     "StaffGroup",

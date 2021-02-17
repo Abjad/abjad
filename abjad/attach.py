@@ -1108,8 +1108,8 @@ def detach(argument, target=None, by_id=False):
         {
             c'4
             ^ \markup { tutti }                           %! +SCORE
-        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_1
-        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
+        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_1
+        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_2
             d'4
             e'4
             f'4
@@ -1161,8 +1161,8 @@ def detach(argument, target=None, by_id=False):
         {
             c'4
             ^ \markup { tutti }                           %! +SCORE
-        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_1
-        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
+        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_1
+        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_2
             d'4
             e'4
             f'4
@@ -1183,7 +1183,7 @@ def detach(argument, target=None, by_id=False):
         {
             c'4
             ^ \markup { tutti }                           %! +SCORE
-        %@% ^ \markup { "with the others" }               %! +PARTS_VIOLIN_2
+        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_2
             d'4
             e'4
             f'4

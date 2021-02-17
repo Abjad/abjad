@@ -35,7 +35,6 @@ from .indicators.Tie import Tie
 from .iterate import Iteration
 from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, tweak
 from .parentage import Parentage
-from .scheme import SchemeSymbol
 from .score import Chord, Component, MultimeasureRest, Note, Rest, Skip, Staff
 from .select import DurationInequality, Selection, select
 from .sequence import Sequence
@@ -716,7 +715,7 @@ def bow_contact_spanner(
             return
         glissando = Glissando()
         if bow_motion_technique is not None:
-            style = SchemeSymbol(bow_motion_technique.glissando_style)
+            style = f"#'{bow_motion_technique.glissando_style}"
             tweak(glissando).style = style
         attach(glissando, leaf, tag=tag)
         if not omit_bow_changes:

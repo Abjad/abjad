@@ -28,7 +28,9 @@ def test_LilyPondParser__indicators__Markup_01():
 def test_LilyPondParser__indicators__Markup_02():
 
     target = abjad.Staff([abjad.Note(0, (1, 4))])
-    markup = abjad.Markup(["X", "Y", "Z", "a b c"], direction=abjad.Down)
+    markup = abjad.Markup(
+        r'\markup { X Y Z "a b c" }', direction=abjad.Down, literal=True
+    )
     abjad.attach(markup, target[0])
 
     assert abjad.lilypond(target) == abjad.String.normalize(
@@ -36,22 +38,10 @@ def test_LilyPondParser__indicators__Markup_02():
         \new Staff
         {
             c'4
-            _ \markup {
-                X
-                Y
-                Z
-                "a b c"
-                }
+            _ \markup { X Y Z "a b c" }
         }
         """
-    )
-
-    string = r"""\new Staff { c' _ \markup { X Y Z "a b c" } }"""
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    assert 1 == len(abjad.get.markup(result[0]))
+    ), repr(target)
 
 
 def test_LilyPondParser__indicators__Markup_03():
