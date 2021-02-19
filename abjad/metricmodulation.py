@@ -491,15 +491,16 @@ class MetricModulation:
         if string is not None:
             markup = Markup(rf"\markup {string}", literal=True)
             return markup
-        if self.left_markup is not None:
-            left_markup = self.left_markup
-        left_markup = illustrators.selection_to_score_markup(self.left_rhythm)
-        equal = Markup("=")
-        right_space = Markup(r"\hspace #-0.5")
-        if self.right_markup is not None:
-            right_markup = self.right_markup
-        right_markup = illustrators.selection_to_score_markup(self.right_rhythm)
-        markup = left_markup + equal + right_space + right_markup
+        strings = []
+        string = illustrators.selection_to_score_markup_string(self.left_rhythm)
+        strings.extend(string.split("\n"))
+        strings.append("=")
+        strings.append(r"\hspace #-0.5")
+        string = illustrators.selection_to_score_markup_string(self.right_rhythm)
+        strings.extend(string.split("\n"))
+        string = "\n".join(strings)
+        string = rf"\markup {{ {string} }}"
+        markup = Markup(string, literal=True)
         return markup
 
     def _get_markup_arguments(self):

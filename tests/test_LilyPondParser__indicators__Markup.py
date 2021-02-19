@@ -78,12 +78,18 @@ def test_LilyPondParser__indicators__Markup_03():
 
 def test_LilyPondParser__indicators__Markup_04():
 
-    command1 = abjad.MarkupCommand("bold", ["A", "B", "C"])
-    command2 = abjad.MarkupCommand("italic", "123")
-    markup = abjad.Markup((command1, command2))
+    string_1 = r"""\markup {
+    \bold
+        {
+            A
+            B
+            C
+        }
+    \italic
+        123
+    }"""
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(markup))
-
-    assert isinstance(result, abjad.Markup)
-    assert abjad.lilypond(result) == abjad.lilypond(markup)
+    markup = parser(string_1)
+    string_2 = abjad.lilypond(markup)
+    assert string_1 == string_2

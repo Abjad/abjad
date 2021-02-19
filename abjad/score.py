@@ -5723,7 +5723,9 @@ class Tuplet(Container):
             >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
             >>> duration = abjad.get.duration(tuplet)
             >>> note = abjad.Note.from_pitch_and_duration(0, duration)
-            >>> markup = abjad.illustrators.selection_to_score_markup([note])
+            >>> string = abjad.illustrators.selection_to_score_markup_string([note])
+            >>> string = rf"\markup {{ {string} }}"
+            >>> markup = abjad.Markup(string, literal=True)
             >>> abjad.override(tuplet).tuplet_number.text = markup
             >>> staff = abjad.Staff([tuplet])
             >>> abjad.show(staff) # doctest: +SKIP

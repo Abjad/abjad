@@ -140,7 +140,7 @@ class OffsetCounter(TypedCounter):
 
         """
         if not self:
-            return Markup.null()
+            return Markup(r"\markup \null", literal=True)
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -3344,7 +3344,7 @@ class TimespanList(TypedList):
         Returns markup.
         """
         if not self:
-            return Markup.null()
+            return Markup(r"\markup \null", literal=True)
         maximum: typing.Union[Offset, math.Infinity]
         minimum: typing.Union[Offset, math.NegativeInfinity]
         if isinstance(range_, Timespan):

@@ -7,9 +7,10 @@ from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.StaffChange import StaffChange
 from .iterate import Iteration
+from .lilypond import lilypond
 from .lilypondfile import Block, LilyPondFile
 from .makers import NoteMaker
-from .markups import Markup, MarkupCommand, Postscript
+from .markups import Markup, Postscript
 from .metricmodulation import MetricModulation
 from .new import new
 from .ordereddict import OrderedDict
@@ -284,9 +285,9 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
     return score_, treble_staff, bass_staff
 
 
-def selection_to_score_markup(selection):
+def selection_to_score_markup_string(selection):
     """
-    Changes ``selection`` to score markup.
+    Changes ``selection`` to score markup string.
     """
     selection = copy.deepcopy(selection)
     staff = score.Staff(selection)
@@ -312,6 +313,10 @@ def selection_to_score_markup(selection):
     score_ = score.Score([staff])
     overrides.override(score_).spacing_spanner.spacing_increment = 0.5
     overrides.setting(score_).proportional_notation_duration = False
-    command = MarkupCommand("score", [score_, layout_block])
-    markup = Markup(command)
-    return markup
+    indent = 4 * " "
+    strings = [r"\score", indent + "{"]
+    strings.extend([2 * indent + _ for _ in lilypond(score_).split("\n")])
+    strings.extend([2 * indent + _ for _ in lilypond(layout_block).split("\n")])
+    strings.append(indent + "}")
+    string = "\n".join(strings)
+    return string

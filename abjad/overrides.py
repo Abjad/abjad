@@ -912,10 +912,10 @@ class LilyPondOverride:
             ...        "left",
             ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r"\bold { over pressure }"),
+            ...    value=abjad.Markup(r"\markup \bold { over pressure }", literal=True),
             ...    )
             >>> override.value
-            Markup(contents=[MarkupCommand('bold', ['over', 'pressure'])])
+            Markup(contents=['\\markup \\bold { over pressure }'], literal=True)
 
         """
         return self._value

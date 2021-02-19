@@ -9,7 +9,7 @@ from .duration import Duration, NonreducedFraction
 from .expression import Expression
 from .indicators.LilyPondComment import LilyPondComment
 from .iterate import Iteration
-from .markups import Markup, MarkupCommand
+from .markups import Markup
 from .new import new
 from .overrides import LilyPondLiteral, override, tweak
 from .pitch.SetClass import SetClass
@@ -1720,50 +1720,20 @@ class Label:
                         \new Staff
                         {
                             c'8
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(2-5){0, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(2-5){0, 5}" }
                             d'4
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-9){0, 2, 7}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(3-9){0, 2, 7}" }
                             e'16
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-4){0, 1, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(3-4){0, 1, 5}" }
                             f'16
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(2-5){0, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(2-5){0, 5}" }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-7){0, 2, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(3-7){0, 2, 5}" }
                         }
                         \new Staff
                         {
@@ -1795,50 +1765,20 @@ class Label:
                         \new Staff
                         {
                             c'8
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(2-5){0, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(2-5){0, 5}" }
                             d'4
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-9){0, 2, 7}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(3-9){0, 2, 7}" }
                             e'16
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-4){0, 1, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(3-4){0, 1, 5}" }
                             f'16
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(2-5){0, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(2-5){0, 5}" }
                         }
                         \new Staff
                         {
                             \clef "alto"
                             g4
                             f4
-                            ^ \markup {
-                                \tiny
-                                    \line
-                                        {
-                                            "SC(3-7){0, 2, 5}"
-                                        }
-                                }
+                            ^ \markup \tiny \line { "SC(3-7){0, 2, 5}" }
                         }
                         \new Staff
                         {
@@ -1856,7 +1796,7 @@ class Label:
         prototype = prototype or int
         vertical_moments = iterate_vertical_moments(self.client)
         for index, vertical_moment in enumerate(vertical_moments):
-            label = None
+            label, string = None, None
             if prototype is int:
                 label = Markup(index, direction=direction)
             elif prototype is NumberedPitch:
@@ -1950,13 +1890,20 @@ class Label:
                     transposition_only=prototype.transposition_only,
                 )
                 string = str(set_class)
-                command = MarkupCommand("line", [string])
-                label = Markup(command, direction=direction)
+                string = rf'\line {{ "{string}" }}'
             else:
                 raise TypeError(f"unknown prototype {prototype!r}.")
             if label is not None:
                 assert len(label.contents) == 1, repr(label)
                 label = Markup(rf"\tiny {label.contents[0]}", direction=label.direction)
+                if direction is enums.Up:
+                    leaf = vertical_moment.start_leaves[0]
+                else:
+                    leaf = vertical_moment.start_leaves[-1]
+                self._attach(label, leaf)
+            elif string is not None:
+                string = rf"\markup \tiny {string}"
+                label = Markup(string, direction=direction, literal=True)
                 if direction is enums.Up:
                     leaf = vertical_moment.start_leaves[0]
                 else:
@@ -3651,13 +3598,7 @@ class Label:
                     }
                     {
                         df''8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-3){0, 1, 3, 4}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-3){0, 1, 3, 4}" }
                         \startGroup
                         c''8
                         bf'8
@@ -3665,13 +3606,7 @@ class Label:
                         \stopGroup
                         f'4.
                         fs'8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-20){0, 1, 5, 8}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-20){0, 1, 5, 8}" }
                         \startGroup
                         g'8
                         b'8
@@ -3707,13 +3642,7 @@ class Label:
                     }
                     {
                         df''8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-3){0, 1, 3, 4}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-3){0, 1, 3, 4}" }
                         \startGroup
                         c''8
                         bf'8
@@ -3721,13 +3650,7 @@ class Label:
                         \stopGroup
                         f'4.
                         fs'8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-20){0, 1, 5, 8}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-20){0, 1, 5, 8}" }
                         \startGroup
                         g'8
                         b'8
@@ -3768,13 +3691,7 @@ class Label:
                     }
                     {
                         df''8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-6){0, 1, 3, 4}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-6){0, 1, 3, 4}" }
                         \startGroup
                         c''8
                         bf'8
@@ -3782,13 +3699,7 @@ class Label:
                         \stopGroup
                         f'4.
                         fs'8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-16){0, 1, 5, 8}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-16){0, 1, 5, 8}" }
                         \startGroup
                         g'8
                         b'8
@@ -3825,13 +3736,7 @@ class Label:
                     }
                     {
                         df''8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-6){0, 1, 3, 4}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-6){0, 1, 3, 4}" }
                         \startGroup
                         c''8
                         bf'8
@@ -3839,13 +3744,7 @@ class Label:
                         \stopGroup
                         f'4.
                         fs'8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-16){0, 1, 5, 8}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-16){0, 1, 5, 8}" }
                         \startGroup
                         g'8
                         b'8
@@ -3885,13 +3784,7 @@ class Label:
                     }
                     {
                         df''8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-6){0, 1, 3, 4}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-6){0, 1, 3, 4}" }
                         \startGroup
                         c''8
                         bf'8
@@ -3899,13 +3792,7 @@ class Label:
                         \stopGroup
                         f'4.
                         fs'8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-16){0, 1, 5, 8}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-16){0, 1, 5, 8}" }
                         \startGroup
                         g'8
                         b'8
@@ -3942,13 +3829,7 @@ class Label:
                     }
                     {
                         df''8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-6){0, 1, 3, 4}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-6){0, 1, 3, 4}" }
                         \startGroup
                         c''8
                         bf'8
@@ -3956,13 +3837,7 @@ class Label:
                         \stopGroup
                         f'4.
                         fs'8
-                        ^ \markup {
-                            \tiny
-                                \line
-                                    {
-                                        "SC(4-16){0, 1, 5, 8}"
-                                    }
-                            }
+                        ^ \markup \tiny \line { "SC(4-16){0, 1, 5, 8}" }
                         \startGroup
                         g'8
                         b'8
@@ -3988,15 +3863,10 @@ class Label:
                 transposition_only=prototype.transposition_only,
             )
             string = str(set_class)
-            command = MarkupCommand("line", [string])
-            label = Markup(command, direction=direction)
-            if label is not None:
-                label = Markup(
-                    rf"\tiny {label.contents[0]}",
-                    direction=label.direction,
-                )
-                leaf = selection[0]
-                self._attach(label, leaf)
+            string = rf'\markup \tiny \line {{ "{string}" }}'
+            label = Markup(string, direction=direction, literal=True)
+            leaf = selection[0]
+            self._attach(label, leaf)
 
     def with_start_offsets(
         self,
