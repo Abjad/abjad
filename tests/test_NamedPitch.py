@@ -1,8 +1,10 @@
+import typing
+
 import pytest
 
 import abjad
 
-values = []
+values: typing.List[typing.Tuple] = []
 values.extend((x / 2, x / 2) for x in range(-48, 49))
 values.extend(
     [

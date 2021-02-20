@@ -1,8 +1,10 @@
+import typing
+
 import pytest
 
 import abjad
 
-values = []
+values: typing.List[typing.Tuple] = []
 
 values.extend((x, x) for x in range(-48, 49))
 
