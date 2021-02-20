@@ -1,19 +1,65 @@
+import typing
+
 from ply import lex
 
 from .. import exceptions
-from ..scheme import Scheme
+from ..storage import StorageFormatManager
 from .base import Parser
+
+
+class Scheme:
+    """
+    Abjad model of Scheme code.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_value",)
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        value: typing.Any = None,
+    ) -> None:
+        self._value = value
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when all initialization values of Abjad value object equal the
+        initialization values of ``argument``.
+
+        Returns true or false.
+        """
+        return StorageFormatManager.compare_objects(self, argument)
+
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation.
+        """
+        return StorageFormatManager(self).get_repr_format()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def value(self) -> typing.Any:
+        """
+        Gets value.
+        """
+        return self._value
 
 
 class SchemeParser(Parser):
     """
-    SchemeParser` mimics how LilyPond's embedded Scheme parser behaves.
+    ``SchemeParser`` mimics how LilyPond's embedded Scheme parser behaves.
 
-    It parses a single Scheme expression and then stops,
-    by raising a ``SchemeParserFinishedError``.
+    It parses a single Scheme expression and then stops, by raising a
+    ``SchemeParserFinishedError``.
 
-    The parsed expression and its exact length in characters
-    are cached on the ``SchemeParser`` instance.
+    The parsed expression and its exact length in characters are cached on the
+    ``SchemeParser`` instance.
 
     It is intended to be used only in conjunction with ``LilyPondParser``.
     """
@@ -57,7 +103,7 @@ class SchemeParser(Parser):
     SUBSEQUENT = r"({}|{}|\.|\+|-)".format(INITIAL, N)
     # IDENTIFIER = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
 
-    # this has been rewritten to prevent Sphinx from complaining that it looks like bad ReST
+    # has been rewritten to prevent Sphinx from complaining that it looks like bad ReST
     IDENTIFIER = (
         r"([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=\.\+-]*|[\+-]|\.\.\.)"
     )
@@ -326,6 +372,7 @@ class SchemeParser(Parser):
         # print 'variable : IDENTIFIER'
         # print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
+        raise Exception(p, "AAA")
         p[0] = Scheme(p[1])
 
     ### body ###
@@ -379,14 +426,7 @@ class SchemeParser(Parser):
         # print p[2]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         datum = p[2]
-        if isinstance(datum, Scheme):
-            if datum._quoting:
-                datum._quoting = "'" + datum._quoting
-            else:
-                datum._quoting = "'"
-            p[0] = datum
-        else:
-            p[0] = Scheme(datum, quoting="'")
+        p[0] = Scheme(datum)
 
     def p_expression__constant(self, p):
         """
@@ -639,8 +679,10 @@ class SchemeParser(Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         result = p[2] + [p[3]] + [p[5]]
         if len(result) == 2:
+            raise Exception(result, "CCC")
             p[0] = Scheme(f"({result[0]} . {result[1]})", verbatim=True)
         else:
+            raise Exception(result, "DDD")
             p[0] = Scheme(result)
         self.expression_depth -= 1
 

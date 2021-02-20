@@ -260,7 +260,6 @@ from .pitch.vectors import (
     Vector,
 )
 from .ratio import NonreducedRatio, Ratio
-from .scheme import Scheme
 from .score import (
     AfterGraceContainer,
     BeforeGraceContainer,
@@ -567,7 +566,6 @@ __all__ = [
     "Retrograde",
     "Right",
     "Rotation",
-    "Scheme",
     "SchemeParserFinishedError",
     "Score",
     "ScoreTemplate",

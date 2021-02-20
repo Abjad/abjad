@@ -803,6 +803,7 @@ class Markup:
         LilyPond ``\postscript`` markup command.
 
         ..  container:: example
+
             >>> postscript = abjad.Postscript()
             >>> postscript = postscript.moveto(1, 1)
             >>> postscript = postscript.setlinewidth(2.5)
@@ -970,7 +971,6 @@ class MarkupCommand:
 
     ### CLASS VARIABLES ###
 
-    # __slots__ = ("_arguments", "_deactivate", "_force_quotes", "_name", "_tag")
     __slots__ = ("_arguments", "_deactivate", "_name", "_tag")
 
     ### INITIALIZER ###
@@ -982,7 +982,6 @@ class MarkupCommand:
             assert len(arguments) == 0
         self._arguments = tuple(arguments)
         self._deactivate = None
-        # self._force_quotes = False
         assert isinstance(name, str) and len(name)
         self._name = name
         self._tag = None
@@ -1068,7 +1067,6 @@ class MarkupCommand:
             >>> line = abjad.markups.MarkupCommand("line", [square, "wow!"])
             >>> rotate = abjad.markups.MarkupCommand("rotate", 60, line)
             >>> combine = abjad.markups.MarkupCommand("combine", rotate, circle)
-
             >>> print(str(combine))
             \combine
                 \rotate
@@ -1163,69 +1161,6 @@ class MarkupCommand:
         if argument is not None:
             argument = bool(argument)
         self._deactivate = argument
-
-    #    @property
-    #    def force_quotes(self):
-    #        r"""
-    #        Is true when markup command should force quotes around arguments.
-    #
-    #        ..  container:: example
-    #
-    #            Here's a markup command formatted in the usual way without forced
-    #            quotes:
-    #
-    #            >>> lines = ["foo", "bar blah", "baz"]
-    #            >>> command = abjad.markups.MarkupCommand("column", lines)
-    #            >>> markup = abjad.Markup(command)
-    #
-    #            >>> string = abjad.lilypond(markup)
-    #            >>> print(string)
-    #            \markup {
-    #                \column
-    #                    {
-    #                        foo
-    #                        "bar blah"
-    #                        baz
-    #                    }
-    #                }
-    #
-    #            The markup command forces quotes around only the spaced string
-    #            ``"bar blah"``.
-    #
-    #        ..  container:: example
-    #
-    #            Here's the same markup command with forced quotes:
-    #
-    #                >>> lines = ["foo", "bar blah", "baz"]
-    #                >>> command = abjad.markups.MarkupCommand("column", lines)
-    #                >>> command.force_quotes = True
-    #                >>> markup = abjad.Markup(command)
-    #
-    #            >>> string = abjad.lilypond(markup)
-    #            >>> print(string)
-    #            \markup {
-    #                \column
-    #                    {
-    #                        "foo"
-    #                        "bar blah"
-    #                        "baz"
-    #                    }
-    #                }
-    #
-    #            The markup command forces quotes around all strings.
-    #
-    #        The rendered result of forced and unforced quotes is the same.
-    #
-    #        Defaults to false.
-    #
-    #        Returns true or false.
-    #        """
-    #        return self._force_quotes
-    #
-    #    @force_quotes.setter
-    #    def force_quotes(self, argument):
-    #        assert isinstance(argument, bool), repr(argument)
-    #        self._force_quotes = argument
 
     @property
     def name(self):

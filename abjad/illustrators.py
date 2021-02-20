@@ -22,7 +22,9 @@ from .spanners import glissando
 
 
 def _illustrate_component(component):
-    lilypond_file = LilyPondFile.new(component)
+    block = Block(name="score")
+    block.items.append(component)
+    lilypond_file = LilyPondFile(items=[block])
     return lilypond_file
 
 
@@ -55,7 +57,7 @@ def _illustrate_pitch_class_set(set_):
     voice = score.Voice([chord])
     staff = score.Staff([voice])
     score_ = score.Score([staff])
-    lilypond_file = LilyPondFile.new(score_)
+    lilypond_file = LilyPondFile(items=[score_])
     return lilypond_file
 
 

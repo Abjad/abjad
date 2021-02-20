@@ -6314,12 +6314,6 @@ class LilyPondSyntacticalDefinition:
         "simple_markup : STRING_IDENTIFIER"
         p[0] = p[1]
 
-    # looks unused
-    # def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
-    #    "simple_markup : markup_scm MARKUP_IDENTIFIER"
-    #    if isinstance(p[2], str):
-    #        p[0] = Scheme.format_scheme_value(p[2])
-
     ### simple_music ###
 
     def p_simple_music__context_change(self, p):
