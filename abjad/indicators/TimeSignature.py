@@ -113,7 +113,7 @@ class TimeSignature:
 
     __slots__ = (
         "_denominator",
-        "_has_non_power_of_two_denominator",
+        "_is_non_dyadic_rational",
         "_hide",
         "_multiplier",
         "_numerator",
@@ -157,7 +157,7 @@ class TimeSignature:
         self._multiplier = self.implied_prolation
         result = math.is_nonnegative_integer_power_of_two(self.denominator)
         assert isinstance(result, bool)
-        self._has_non_power_of_two_denominator: bool = not (result)
+        self._is_non_dyadic_rational: bool = not (result)
 
     ### SPECIAL METHODS ###
 
@@ -311,7 +311,7 @@ class TimeSignature:
         result = []
         if self.hide:
             return result
-        if self.has_non_power_of_two_denominator:
+        if self.is_non_dyadic_rational:
             string = '#(ly:expect-warning "strange time signature found")'
             result.append(string)
         if self.partial is None:
@@ -369,7 +369,7 @@ class TimeSignature:
         return Duration(self.numerator, self.denominator)
 
     @property
-    def has_non_power_of_two_denominator(self) -> bool:
+    def is_non_dyadic_rational(self) -> bool:
         r"""
         Is true when time signature has non-power-of-two denominator.
 
@@ -378,7 +378,7 @@ class TimeSignature:
             With non-power-of-two denominator:
 
             >>> time_signature = abjad.TimeSignature((7, 12))
-            >>> time_signature.has_non_power_of_two_denominator
+            >>> time_signature.is_non_dyadic_rational
             True
 
         ..  container:: example
@@ -386,7 +386,7 @@ class TimeSignature:
             With power-of-two denominator:
 
             >>> time_signature = abjad.TimeSignature((3, 8))
-            >>> time_signature.has_non_power_of_two_denominator
+            >>> time_signature.is_non_dyadic_rational
             False
 
         ..  container::
@@ -415,7 +415,7 @@ class TimeSignature:
             }
 
         """
-        return self._has_non_power_of_two_denominator
+        return self._is_non_dyadic_rational
 
     @property
     def hide(self) -> typing.Optional[bool]:
@@ -562,7 +562,7 @@ class TimeSignature:
         numerator, denominator = numbers
         return TimeSignature((numerator, denominator))
 
-    def with_power_of_two_denominator(self, contents_multiplier=1) -> "TimeSignature":
+    def is_dyadic_rational(self, contents_multiplier=1) -> "TimeSignature":
         """
         Makes new time signature equivalent to current time signature with
         power-of-two denominator.
@@ -572,7 +572,7 @@ class TimeSignature:
             Non-power-of-two denominator with power-of-two denominator:
 
             >>> time_signature = abjad.TimeSignature((3, 12))
-            >>> time_signature.with_power_of_two_denominator()
+            >>> time_signature.is_dyadic_rational()
             TimeSignature((2, 8))
 
         """
@@ -587,9 +587,9 @@ class TimeSignature:
             power_of_two_denominator = math.greatest_power_of_two_less_equal(
                 non_power_of_two_denominator, 1
             )
-        non_power_of_two_pair = NonreducedFraction(self.pair)
-        power_of_two_fraction = non_power_of_two_pair.with_denominator(
+        non_dyadic_rational_pair = NonreducedFraction(self.pair)
+        dyadic_rational = non_dyadic_rational_pair.with_denominator(
             power_of_two_denominator
         )
-        power_of_two_pair = power_of_two_fraction.pair
-        return type(self)(power_of_two_pair)
+        dyadic_rational_pair = dyadic_rational.pair
+        return type(self)(dyadic_rational_pair)
