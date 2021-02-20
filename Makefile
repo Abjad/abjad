@@ -75,8 +75,7 @@ jupyter-test:
 
 mypy:
 	mypy abjad
-	# fix mypy errors and then run mypy over tests/ directory
-	# mypy tests
+	mypy tests
 
 project = abjad
 

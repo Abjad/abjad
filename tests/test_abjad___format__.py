@@ -4,11 +4,11 @@ import pytest
 
 import abjad
 
-ignored_classes = (
+ignored_classes = [
     abjad.FormatSpecification,
     abjad.MetricModulation,
     abjad.StorageFormatManager,
-)
+]
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
@@ -32,12 +32,12 @@ def test_abjad___format___01(class_):
     assert not instance_format == ""
 
 
-ignored_classes = (
+ignored_classes = [
     abjad.FormatSpecification,
     abjad.Meter,
     abjad.MetricModulation,
     abjad.StorageFormatManager,
-)
+]
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
@@ -65,10 +65,10 @@ def test_abjad___format___02(class_):
     assert instance_one_format == instance_two_format
 
 
-ignored_classes = (
+ignored_classes = [
     abjad.MetricModulation,
     abjad.parser.SyntaxNode,
-)
+]
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
