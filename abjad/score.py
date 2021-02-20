@@ -5374,7 +5374,7 @@ class Tuplet(Container):
             return ""
         if (
             self.augmentation()
-            or not self._get_power_of_two_denominator()
+            or not self._is_dyadic_rational()
             or self.multiplier.denominator == 1
             or self.force_fraction
         ):
@@ -5452,7 +5452,7 @@ class Tuplet(Container):
             denominator = self.multiplier.denominator
         return f"{numerator}/{denominator}"
 
-    def _get_power_of_two_denominator(self):
+    def _is_dyadic_rational(self):
         if self.multiplier:
             numerator = self.multiplier.numerator
             return _math.is_nonnegative_integer_power_of_two(numerator)

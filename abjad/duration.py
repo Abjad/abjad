@@ -817,7 +817,7 @@ class Duration(quicktions.Fraction):
         return max(count, 0)
 
     @property
-    def has_power_of_two_denominator(self) -> bool:
+    def is_dyadic_rational(self) -> bool:
         r"""
         Is true when duration is an integer power of two.
 
@@ -827,7 +827,7 @@ class Duration(quicktions.Fraction):
 
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(1, n)
-            ...     result = duration.has_power_of_two_denominator
+            ...     result = duration.is_dyadic_rational
             ...     print(f"{duration!s}\t{result}")
             ...
             1       True
