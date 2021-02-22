@@ -156,3 +156,22 @@ def test_Note___copy___06():
     assert abjad.lilypond(abjad.get.parentage(note).parent) == abjad.lilypond(
         abjad.get.parentage(new_note).parent
     )
+
+
+def test_Note___copy___07():
+    """
+    Copy note with tweaks in notehead.
+    """
+
+    note = abjad.Note("c'4")
+    abjad.tweak(note.note_head).color = "red"
+    abjad.tweak(note.note_head).Accidental.color = "red"
+    copied_note = copy.copy(note)
+    string = abjad.lilypond(copied_note)
+    assert string == abjad.String.normalize(
+        r"""
+        \tweak Accidental.color #red
+        \tweak color #red
+        c'4
+        """
+    ), print(string)

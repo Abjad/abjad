@@ -4449,6 +4449,14 @@ class Note(Leaf):
 
     ### SPECIAL METHODS ###
 
+    def __copy__(self, *arguments) -> "Note":
+        """
+        Copies note.
+        """
+        new_note = Leaf.__copy__(self, *arguments)
+        new_note.note_head = copy.copy(self.note_head)
+        return new_note
+
     def __getnewargs__(self) -> typing.Tuple:
         """
         Gets new arguments.

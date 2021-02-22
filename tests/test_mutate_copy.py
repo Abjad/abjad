@@ -582,3 +582,29 @@ def test_mutate_copy_08():
         """
     )
     assert abjad.wf.wellformed(staff)
+
+
+def test_mutate_copy_09():
+    """
+    Copies tweaks.
+    """
+    staff = abjad.Staff("c'4 cs' d' ds'")
+    abjad.tweak(staff[1].note_head).color = "red"
+    abjad.tweak(staff[1].note_head).Accidental.color = "red"
+    copied_staff = abjad.mutate.copy(staff)
+    string = abjad.lilypond(copied_staff)
+
+    assert string == abjad.String.normalize(
+        r"""
+        \new Staff
+        {
+            c'4
+            \tweak Accidental.color #red
+            \tweak color #red
+            cs'4
+            d'4
+            ds'4
+        }
+        """
+    ), print(string)
+    assert abjad.wf.wellformed(staff)
