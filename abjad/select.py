@@ -4176,6 +4176,23 @@ class Selection(collections.abc.Sequence):
                     g'8
                 }
 
+        ..  container:: example
+
+            REGRESSION: works for pickup measure:
+
+            ..  container:: example
+
+                >>> staff = abjad.Staff(r"c'4 | d'4 e'4 f'4 | g'4 a'4 b'4")
+                >>> time_signature = abjad.TimeSignature((3, 4), partial=(1, 4))
+                >>> abjad.attach(time_signature, staff[0])
+
+                >>> for measure in abjad.select(staff).leaves().group_by_measure():
+                ...     print(measure)
+                ...
+                Selection([Note("c'4")])
+                Selection([Note("d'4"), Note("e'4"), Note("f'4")])
+                Selection([Note("g'4"), Note("a'4"), Note("b'4")])
+
         """
         if self._expression:
             return self._update_expression(inspect.currentframe())

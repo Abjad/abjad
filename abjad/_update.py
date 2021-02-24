@@ -90,12 +90,18 @@ def _get_measure_start_offsets(component):
     dummy_last_pair = (score_stop_offset, None)
     pairs.append(dummy_last_pair)
     measure_start_offsets = []
+    at_first_measure = True
     for current_pair, next_pair in Sequence(pairs).nwise():
         current_start_offset, current_time_signature = current_pair
         next_start_offset, next_time_signature = next_pair
         measure_start_offset = current_start_offset
         while measure_start_offset < next_start_offset:
             measure_start_offsets.append(measure_start_offset)
+            partial = current_time_signature.partial
+            if at_first_measure and partial is not None:
+                measure_start_offset += partial
+                measure_start_offsets.append(measure_start_offset)
+                at_first_measure = False
             measure_start_offset += current_time_signature.duration
     return measure_start_offsets
 
