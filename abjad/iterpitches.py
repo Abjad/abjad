@@ -1,6 +1,8 @@
 import typing
 
 from . import _inspect
+from . import get as _get
+from .indicators.StartTrillSpan import StartTrillSpan
 from .instruments import Instrument
 from .iterate import Iteration
 from .pitch.PitchRange import PitchRange
@@ -231,6 +233,11 @@ def transpose_from_sounding_pitch(argument) -> None:
         elif hasattr(leaf, "written_pitches"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             leaf.written_pitches = pitches
+        start_trill_span = _get.indicator(leaf, StartTrillSpan)
+        if start_trill_span is not None:
+            pitch = start_trill_span.pitch
+            pitch = interval.transpose(pitch)
+            start_trill_span._pitch = pitch
 
 
 def transpose_from_written_pitch(argument) -> None:
@@ -285,3 +292,8 @@ def transpose_from_written_pitch(argument) -> None:
         elif hasattr(leaf, "written_pitches"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             leaf.written_pitches = pitches
+        start_trill_span = _get.indicator(leaf, StartTrillSpan)
+        if start_trill_span is not None:
+            pitch = start_trill_span.pitch
+            pitch = interval.transpose(pitch)
+            start_trill_span._pitch = pitch
