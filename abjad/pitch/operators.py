@@ -796,7 +796,8 @@ class Inversion:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -822,7 +823,8 @@ class Inversion:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1084,7 +1086,8 @@ class Multiplication:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1110,7 +1113,8 @@ class Multiplication:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1309,7 +1313,8 @@ class Retrograde:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1335,7 +1340,8 @@ class Retrograde:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1559,7 +1565,8 @@ class Rotation:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1585,7 +1592,8 @@ class Rotation:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1889,7 +1897,8 @@ class Transposition:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {
@@ -1915,7 +1924,8 @@ class Transposition:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Voice])
+                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
                 \new Voice
                 {

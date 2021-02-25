@@ -97,7 +97,7 @@ def _illustrate_pitch_range(pitch_range):
     overrides.override(score_).span_bar.stencil = False
     overrides.override(score_).glissando.thickness = 2
     overrides.override(score_).time_signature.stencil = False
-    lilypond_file = LilyPondFile.new(score_)
+    lilypond_file = LilyPondFile(items=[score_])
     return lilypond_file
 
 
@@ -110,7 +110,7 @@ def _illustrate_pitch_segment(segment):
     for leaf in Iteration(score_).leaves():
         leaf.multiplier = (1, 8)
     overrides.override(score_).rest.transparent = True
-    lilypond_file = LilyPondFile.new(score_)
+    lilypond_file = LilyPondFile(items=[score_])
     return lilypond_file
 
 
@@ -137,12 +137,12 @@ def _illustrate_pitch_set(set_):
         [upper_staff, lower_staff], lilypond_type="PianoStaff"
     )
     score_ = score.Score([staff_group])
-    lilypond_file = LilyPondFile.new(score_)
+    lilypond_file = LilyPondFile(items=[score_])
     return lilypond_file
 
 
 def _illustrate_pitch_class_segment(
-    segment, markup_direction=enums.Up, figure_name=None, **keywords
+    segment, markup_direction=enums.Up, figure_name=None
 ):
     notes = []
     for item in segment:
@@ -162,39 +162,32 @@ def _illustrate_pitch_class_segment(
     voice = score.Voice(notes)
     staff = score.Staff([voice])
     score_ = score.Score([staff])
+    preamble = r"""\layout {
+    \accidentalStyle forget
+    indent = 0
+    \context {
+        \Score
+        \override BarLine.transparent = ##t
+        \override BarNumber.stencil = ##f
+        \override Beam.stencil = ##f
+        \override Flag.stencil = ##f
+        \override Stem.stencil = ##f
+        \override TimeSignature.stencil = ##f
+        proportionalNotationDuration = #(ly:make-moment 1 12)
+    }
+}
+
+\paper {
+    markup-system-spacing.padding = 8
+    system-system-spacing.padding = 10
+    top-markup-spacing.padding = 4
+}"""
     deprecated.add_final_bar_line(score_)
-    overrides.override(score_).bar_line.transparent = True
-    overrides.override(score_).bar_number.stencil = False
-    overrides.override(score_).beam.stencil = False
-    overrides.override(score_).flag.stencil = False
-    overrides.override(score_).stem.stencil = False
-    overrides.override(score_).time_signature.stencil = False
     string = r"\override Score.BarLine.transparent = ##f"
     command = overrides.LilyPondLiteral(string, "after")
     last_leaf = select.Selection(score_).leaves()[-1]
     attach(command, last_leaf)
-    overrides.setting(score_).proportionalNotationDuration = "#(ly:make-moment 1 12)"
-    lilypond_file = LilyPondFile.new(music=score_)
-    if "title" in keywords:
-        title = keywords.get("title")
-        if not isinstance(title, Markup):
-            title = Markup(title)
-        lilypond_file.header_block.title = title
-    if "subtitle" in keywords:
-        markup = Markup(keywords.get("subtitle"))
-        lilypond_file.header_block.subtitle = markup
-    command = overrides.LilyPondLiteral(r"\accidentalStyle forget")
-    lilypond_file.layout_block.items.append(command)
-    lilypond_file.layout_block.indent = 0
-    string = "markup-system-spacing.padding = 8"
-    command = overrides.LilyPondLiteral(string)
-    lilypond_file.paper_block.items.append(command)
-    string = "system-system-spacing.padding = 10"
-    command = overrides.LilyPondLiteral(string)
-    lilypond_file.paper_block.items.append(command)
-    string = "top-markup-spacing.padding = 4"
-    command = overrides.LilyPondLiteral(string)
-    lilypond_file.paper_block.items.append(command)
+    lilypond_file = LilyPondFile(items=[preamble, score_])
     return lilypond_file
 
 
