@@ -269,7 +269,7 @@ class LilyPondExtension(Extension):
             block = Block(name="midi")
             illustration.score_block.items.append(block)
         if illustration.header_block:
-            if getattr(illustration.header_block, "tagline") is False:
+            if getattr(illustration.header_block, "tagline") == "##f":
                 # default.ily stylesheet already sets tagline = ##f
                 delattr(illustration.header_block, "tagline")
             if illustration.header_block.empty():

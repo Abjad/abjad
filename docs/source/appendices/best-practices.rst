@@ -85,8 +85,7 @@ than defining them with Abjad.
 
     Not so good: ::
 
-        duration = abjad.SchemeDuration((1, 32))
-        abjad.setting(score).proportional_notation_duration = duration
+        abjad.setting(score).proportional_notation_duration = "#(ly:make-moment 1 32)"
         abjad.setting(score).spacing_spanner.strict_grace_spacing = True
         abjad.setting(score).spacing_spanner.strict_note_spacing = True
         abjad.setting(score).spacing_spanner.uniform_stretching = True

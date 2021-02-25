@@ -1,8 +1,7 @@
 import collections
 import typing
 
-from ..markups import MarkupCommand
-from ..scheme import Scheme, SchemePair
+from ..markups import Markup
 from ..storage import StorageFormatManager
 
 
@@ -25,7 +24,8 @@ class WoodwindFingering:
         ...     right_hand=right_hand,
         ...     )
 
-        >>> print(abjad.storage(woodwind_fingering))
+        >>> string = abjad.storage(woodwind_fingering)
+        >>> print(string)
         abjad.WoodwindFingering(
             name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -35,11 +35,11 @@ class WoodwindFingering:
 
     ..  container:: example
 
-        Initializes a WoodwindFingering from another WoodwindFingering:
+        Initializes a woodwind fingering from another woodwind fingering:
 
-        >>> woodwind_fingering_2 = abjad.WoodwindFingering(
-        ...     woodwind_fingering)
-        >>> print(abjad.storage(woodwind_fingering_2))
+        >>> woodwind_fingering_2 = abjad.WoodwindFingering(woodwind_fingering)
+        >>> string = abjad.storage(woodwind_fingering_2)
+        >>> print(string)
         abjad.WoodwindFingering(
             name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -49,32 +49,22 @@ class WoodwindFingering:
 
     ..  container:: exmaple
 
-        Calls Woodwind fingering to create woodwind diagram markup command:
+        Calls Woodwind fingering to create woodwind diagram markup:
 
-        >>> fingering_command = woodwind_fingering()
-        >>> print(abjad.storage(fingering_command))
-        abjad.MarkupCommand(
-            'woodwind-diagram',
-            abjad.Scheme(
-                'clarinet',
-                quoting="'",
-                ),
-            abjad.Scheme(
-                [
-                    abjad.SchemePair(('cc', ('one', 'two', 'three', 'five'))),
-                    abjad.SchemePair(('lh', ('R', 'thumb'))),
-                    abjad.SchemePair(('rh', ('e',))),
-                    ],
-                quoting="'",
-                )
-            )
+        >>> markup = woodwind_fingering()
+        >>> string = abjad.lilypond(markup)
+        >>> print(string)
+        \markup {
+            \woodwind-diagram
+            #'clarinet
+            #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
+            }
 
     ..  container:: example
 
-        Attaches the MarkupCommand to score components, such as a chord
-        representing a multiphonic sound:
+        Attaches markup to a note or chord:
 
-        >>> markup = abjad.Markup(contents=fingering_command, direction=abjad.Down)
+        >>> markup = abjad.Markup(markup, direction=abjad.Down)
         >>> chord = abjad.Chord("<ds' fs''>4")
         >>> abjad.attach(markup, chord)
         >>> abjad.show(chord) # doctest: +SKIP
@@ -86,17 +76,23 @@ class WoodwindFingering:
             <ds' fs''>4
             _ \markup {
                 \woodwind-diagram
-                    #'clarinet
-                    #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
+                #'clarinet
+                #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
                 }
 
     ..  container:: example
 
-        Initializes fingerings for eight different woodwind instruments:
+        Initializes fingerings for eight different instruments:
 
         >>> names = [
-        ...     'piccolo', 'flute', 'oboe', 'clarinet', 'bass-clarinet',
-        ...     'saxophone', 'bassoon', 'contrabassoon',
+        ...     'piccolo',
+        ...     'flute',
+        ...     'oboe',
+        ...     'clarinet',
+        ...     'bass-clarinet',
+        ...     'saxophone',
+        ...     'bassoon',
+        ...     'contrabassoon',
         ...     ]
         >>> for name in names:
         ...    abjad.WoodwindFingering(name)
@@ -119,14 +115,11 @@ class WoodwindFingering:
         ...     'clarinet',
         ...     center_column=['one', 'two', 'three', 'four'],
         ...     left_hand=['R','cis'],
-        ...     right_hand=['fis'])
-        >>> diagram = fingering()
-        >>> not_graphical = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair(('graphical', False)),
-        ...     )
-        >>> markup = abjad.Markup(contents=
-        ...     [not_graphical, diagram], direction=abjad.Down)
+        ...     right_hand=['fis'],
+        ... )
+        >>> string = r"\override #'(graphical . #f)"
+        >>> diagram = fingering([string])
+        >>> markup = abjad.Markup([diagram], direction=abjad.Down)
         >>> abjad.attach(markup, chord)
         >>> abjad.show(chord) # doctest: +SKIP
 
@@ -136,11 +129,10 @@ class WoodwindFingering:
             >>> print(string)
             <e' as' gqf''>1
             _ \markup {
-                \override
-                    #'(graphical . #f)
+                \override #'(graphical . #f)
                 \woodwind-diagram
-                    #'clarinet
-                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                #'clarinet
+                #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
                 }
 
     ..  container:: example
@@ -154,23 +146,13 @@ class WoodwindFingering:
         ...     left_hand=('R', 'cis'),
         ...     right_hand=('fis',),
         ...     )
-        >>> diagram = fingering()
-        >>> not_graphical = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair(('graphical', False)),
-        ...     )
-        >>> size = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair(('size', .5)),
-        ...     )
-        >>> thickness = abjad.MarkupCommand(
-        ...     'override',
-        ...     abjad.SchemePair(('thickness', .4)),
-        ...     )
-        >>> markup = abjad.Markup(
-        ...     contents=[not_graphical, size, thickness, diagram],
-        ...     direction=abjad.Down,
-        ...     )
+        >>> strings = [
+        ...     r"\override #'(graphical . #f)",
+        ...     r"\override #'(size . 0.5)",
+        ...     r"\override #'(thickness . 0.4)",
+        ... ]
+        >>> markup = fingering(strings)
+        >>> markup = abjad.Markup(markup, direction=abjad.Down)
         >>> abjad.attach(markup, chord)
         >>> abjad.show(chord) # doctest: +SKIP
 
@@ -180,15 +162,12 @@ class WoodwindFingering:
             >>> print(string)
             <e' as' gqf''>1
             _ \markup {
-                \override
-                    #'(graphical . #f)
-                \override
-                    #'(size . 0.5)
-                \override
-                    #'(thickness . 0.4)
+                \override #'(graphical . #f)
+                \override #'(size . 0.5)
+                \override #'(thickness . 0.4)
                 \woodwind-diagram
-                    #'clarinet
-                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                #'clarinet
+                #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
                 }
 
     Inspired by Mike Solomon's LilyPond woodwind diagrams.
@@ -242,22 +221,32 @@ class WoodwindFingering:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self) -> MarkupCommand:
+    def __call__(self, overrides=None) -> Markup:
         """
         Calls woodwind fingering.
         """
-        key_groups_as_scheme = []
-        cc_scheme_pair = SchemePair(("cc", self._center_column))
-        key_groups_as_scheme.append(cc_scheme_pair)
-        lh_scheme_pair = SchemePair(("lh", self._left_hand))
-        key_groups_as_scheme.append(lh_scheme_pair)
-        rh_scheme_pair = SchemePair(("rh", self._right_hand))
-        key_groups_as_scheme.append(rh_scheme_pair)
-        key_groups_as_scheme_ = Scheme(key_groups_as_scheme, quoting="'")
-        instrument_as_scheme = Scheme(self._name, quoting="'")
-        return MarkupCommand(
-            "woodwind-diagram", instrument_as_scheme, key_groups_as_scheme_
-        )
+        strings = []
+        if overrides is not None:
+            assert isinstance(overrides, list), repr(overrides)
+            assert all(isinstance(_, str) for _ in overrides), repr(overrides)
+            strings.extend(overrides)
+        strings.append(r"\woodwind-diagram")
+        string = f"#'{self.name}"
+        strings.append(string)
+        keys = []
+        string = " ".join(self._center_column)
+        string = f"(cc . ({string}))"
+        keys.append(string)
+        string = " ".join(self._left_hand)
+        string = f"(lh . ({string}))"
+        keys.append(string)
+        string = " ".join(self._right_hand)
+        string = f"(rh . ({string}))"
+        keys.append(string)
+        string = " ".join(keys)
+        string = f"#'({string})"
+        strings.append(string)
+        return Markup(strings)
 
     def __repr__(self) -> str:
         """

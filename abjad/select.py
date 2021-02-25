@@ -4051,8 +4051,8 @@ class Selection(collections.abc.Sequence):
                 >>> staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
                 >>> abjad.setting(staff).auto_beaming = False
                 >>> score = abjad.Score([staff])
-                >>> scheme = abjad.SchemeMoment((1, 16))
-                >>> abjad.setting(score).proportional_notation_duration = scheme
+                >>> string = "#(ly:make-moment 1 16)"
+                >>> abjad.setting(score).proportionalNotationDuration = string
                 >>> abjad.show(score) # doctest: +SKIP
 
                 >>> result = abjad.select(score).leaves()

@@ -11,9 +11,11 @@ class OrderedDict(collections.abc.MutableMapping):
 
         Initializes from list of pairs:
 
+        >>> string = r"\markup \italic Allegretto"
+        >>> markup = abjad.Markup(string, literal=True)
         >>> dictionary = abjad.OrderedDict([
         ...     ('color', 'red'),
-        ...     ('directive', abjad.Markup(r'\italic Allegretto')),
+        ...     ('directive', markup),
         ...     ])
 
         >>> string = abjad.storage(dictionary)
@@ -24,12 +26,8 @@ class OrderedDict(collections.abc.MutableMapping):
                 (
                     'directive',
                     abjad.Markup(
-                        contents=[
-                            abjad.MarkupCommand(
-                                'italic',
-                                'Allegretto'
-                                ),
-                            ],
+                        contents=['\\markup \\italic Allegretto'],
+                        literal=True,
                         ),
                     ),
                 ]
@@ -39,9 +37,11 @@ class OrderedDict(collections.abc.MutableMapping):
 
         Initializes from built-in dictionary:
 
+        >>> string = r"\markup \italic Allegretto"
+        >>> markup = abjad.Markup(string, literal=True)
         >>> dictionary = {
         ...     'color': 'red',
-        ...     'directive': abjad.Markup(r'\italic Allegretto'),
+        ...     'directive': markup,
         ...     }
         >>> dictionary = abjad.OrderedDict(
         ...     dictionary
@@ -55,12 +55,8 @@ class OrderedDict(collections.abc.MutableMapping):
                 (
                     'directive',
                     abjad.Markup(
-                        contents=[
-                            abjad.MarkupCommand(
-                                'italic',
-                                'Allegretto'
-                                ),
-                            ],
+                        contents=['\\markup \\italic Allegretto'],
+                        literal=True,
                         ),
                     ),
                 ]
@@ -70,9 +66,11 @@ class OrderedDict(collections.abc.MutableMapping):
 
         Initializes from other ordered dictionary:
 
+        >>> string = r"\markup \italic Allegretto"
+        >>> markup = abjad.Markup(string, literal=True)
         >>> dictionary_1 = abjad.OrderedDict([
         ...     ('color', 'red'),
-        ...     ('directive', abjad.Markup(r'\italic Allegretto')),
+        ...     ('directive', markup),
         ...     ])
         >>> dictionary_2 = abjad.OrderedDict(
         ...     dictionary_1
@@ -86,12 +84,8 @@ class OrderedDict(collections.abc.MutableMapping):
                 (
                     'directive',
                     abjad.Markup(
-                        contents=[
-                            abjad.MarkupCommand(
-                                'italic',
-                                'Allegretto'
-                                ),
-                            ],
+                        contents=['\\markup \\italic Allegretto'],
+                        literal=True,
                         ),
                     ),
                 ]

@@ -46,7 +46,6 @@ First we define functions to illustrate the examples that follow:
     >>> def illustrate_partials(
     ...     fundamental,
     ...     ratio_sequence,
-    ...     moment_denominator,
     ...     with_quarter_tones=False,
     ... ):
     ...     notes = []
@@ -65,8 +64,7 @@ First we define functions to illustrate the examples that follow:
     ...     abjad.override(score).SpanBar.stencil = False
     ...     abjad.override(score).Stem.stencil = False
     ...     abjad.override(score).TimeSignature.stencil = False
-    ...     moment = abjad.SchemeMoment((1, moment_denominator))
-    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 25)"
     ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
     ...     return lilypond_file
 
@@ -77,7 +75,7 @@ Illustrate harmonic series approximated to semitones:
 ::
 
     >>> sequence = [_ + 1 for _ in range(31)]
-    >>> file = illustrate_partials("a,,", sequence, 25)
+    >>> file = illustrate_partials("a,,", sequence)
     >>> abjad.show(file)
 
 Illustrate harmonic series approximated to quarter tones:
@@ -85,7 +83,7 @@ Illustrate harmonic series approximated to quarter tones:
 ::
 
     >>> sequence = [_ + 1 for _ in range(31)]
-    >>> file = illustrate_partials("a,,", sequence, 25, with_quarter_tones=True)
+    >>> file = illustrate_partials("a,,", sequence, with_quarter_tones=True)
     >>> abjad.show(file)
 
 Illustrate re-octavated harmonics:
@@ -98,7 +96,7 @@ Illustrate re-octavated harmonics:
     ...     "5/2",
     ... ]
     ...
-    >>> file = illustrate_partials("a'", sequence, 25, with_quarter_tones=True)
+    >>> file = illustrate_partials("a'", sequence, with_quarter_tones=True)
     >>> abjad.show(file)
 
 Illustrate sonority of Du Cristal:
@@ -120,7 +118,7 @@ Illustrate sonority of Du Cristal:
     ...     20,
     ... ]
     ...
-    >>> file = illustrate_partials("df,", sequence, 25)
+    >>> file = illustrate_partials("df,", sequence)
     >>> abjad.show(file)
 
 :author:`[Evans (3.2)]`

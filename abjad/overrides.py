@@ -4,11 +4,152 @@ import typing
 from . import enums
 from . import tag as _tag
 from .bundle import LilyPondFormatBundle
+from .fsv import format_scheme_value
 from .lyconst import colors
 from .lyenv import contexts, grob_interfaces
-from .scheme import Scheme, SchemePair
 from .storage import FormatSpecification, StorageFormatManager
 from .string import String
+
+
+def format_embedded_scheme_value(value):
+    result = format_scheme_value(value)
+    if isinstance(value, bool):
+        result = "#" + result
+    return result
+
+
+def format_lilypond_attribute(attribute) -> str:
+    assert isinstance(attribute, str), repr(attribute)
+    attribute = attribute.replace("__", ".")
+    result = attribute.replace("_", "-")
+    return result
+
+
+lilypond_color_constants = (
+    "black",
+    "blue",
+    "center",
+    "cyan",
+    "darkblue",
+    "darkcyan",
+    "darkgreen",
+    "darkmagenta",
+    "darkred",
+    "darkyellow",
+    "down",
+    "green",
+    "grey",
+    "left",
+    "magenta",
+    "red",
+    "right",
+    "up",
+    "white",
+    "yellow",
+)
+
+
+def format_lilypond_value(argument) -> str:
+    if "_get_lilypond_format" in dir(argument) and not isinstance(argument, str):
+        return argument._get_lilypond_format()
+    if argument is True:
+        return "##t"
+    if argument is False:
+        return "##f"
+    if argument in (
+        enums.Up,
+        enums.Down,
+        enums.Left,
+        enums.Right,
+        enums.Center,
+    ):
+        return rf"#{repr(argument).lower()}"
+    if isinstance(argument, int) or isinstance(argument, float):
+        return rf"#{argument}"
+    if argument in lilypond_color_constants:
+        return rf"#{argument}"
+    if isinstance(argument, str) and argument.startswith("#"):
+        return argument
+    if isinstance(argument, str) and "::" in argument:
+        return rf"#{argument}"
+    if isinstance(argument, tuple) and len(argument) == 2:
+        return f"#'({argument[0]} . {argument[1]})"
+    if isinstance(argument, str) and " " not in argument:
+        return rf"#'{argument}"
+    if isinstance(argument, str) and " " in argument:
+        return rf"#{argument}"
+    raise Exception(argument)
+
+
+def make_lilypond_override_string(
+    grob, attribute, value, context=None, once=False
+) -> str:
+    grob = String(grob).to_upper_camel_case()
+    attribute = format_lilypond_attribute(attribute)
+    value = format_lilypond_value(value)
+    if context is not None:
+        context = String(context).capitalize_start() + "."
+    else:
+        context = ""
+    if once is True:
+        once = r"\once "
+    else:
+        once = ""
+    result = rf"{once}\override {context}{grob}.{attribute} = {value}"
+    return result
+
+
+def make_lilypond_revert_string(grob, attribute, context=None) -> str:
+    grob = String(grob).to_upper_camel_case()
+    dotted = format_lilypond_attribute(attribute)
+    if context is not None:
+        context = String(context).to_upper_camel_case()
+        context += "."
+    else:
+        context = ""
+    result = rf"\revert {context}{grob}.{dotted}"
+    return result
+
+
+def make_lilypond_tweak_string(
+    attribute, value, *, directed=True, grob=None, literal=None
+) -> str:
+    if grob is not None:
+        grob = String(grob).to_upper_camel_case()
+        grob += "."
+    else:
+        grob = ""
+    attribute = format_lilypond_attribute(attribute)
+    if not literal:
+        value = format_lilypond_value(value)
+    string = rf"\tweak {grob}{attribute} {value}"
+    if directed:
+        string = "- " + string
+    return string
+
+
+lilypond_color_constants = (
+    "black",
+    "blue",
+    "center",
+    "cyan",
+    "darkblue",
+    "darkcyan",
+    "darkgreen",
+    "darkmagenta",
+    "darkred",
+    "darkyellow",
+    "down",
+    "green",
+    "grey",
+    "left",
+    "magenta",
+    "red",
+    "right",
+    "up",
+    "white",
+    "yellow",
+)
 
 
 class LilyPondLiteral:
@@ -377,28 +518,6 @@ class LilyPondLiteral:
         """
         return self._tweaks
 
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def list_allowable_format_slots() -> typing.Tuple[str, ...]:
-        """
-        Lists allowable format slots.
-
-        ..  container:: example
-
-            >>> for slot in abjad.LilyPondLiteral.list_allowable_format_slots():
-            ...     slot
-            ...
-            'absolute_after'
-            'absolute_before'
-            'after'
-            'before'
-            'closing'
-            'opening'
-
-        """
-        return LilyPondLiteral._allowable_format_slots
-
 
 class Interface:
     """
@@ -667,7 +786,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.grob_name
             'Glissando'
@@ -685,7 +804,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> bool(override.is_revert)
             False
@@ -725,7 +844,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.lilypond_type is None
             True
@@ -757,7 +876,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> bool(override.once)
             False
@@ -801,7 +920,8 @@ class LilyPondOverride:
         result.append(r"\override")
         result.append(self._override_property_path_string())
         result.append("=")
-        string = Scheme.format_embedded_scheme_value(self.value)
+        string = format_embedded_scheme_value(self.value)
+        # string = str(self.value)
         value_pieces = string.split("\n")
         result.append(value_pieces[0])
         result[:] = [" ".join(result)]
@@ -818,7 +938,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.override_string
             "\\override Glissando.style = #'zigzag"
@@ -860,7 +980,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.revert_format_pieces
             ('\\revert Glissando.style',)
@@ -879,7 +999,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.revert_string
             '\\revert Glissando.style'
@@ -903,10 +1023,10 @@ class LilyPondOverride:
             ...        "left",
             ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r"\bold { over pressure }"),
+            ...    value=abjad.Markup(r"\markup \bold { over pressure }", literal=True),
             ...    )
             >>> override.value
-            Markup(contents=[MarkupCommand('bold', ['over', 'pressure'])])
+            Markup(contents=['\\markup \\bold { over pressure }'], literal=True)
 
         """
         return self._value
@@ -922,7 +1042,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     property_path="style",
-            ...     value=abjad.SchemeSymbol("zigzag"),
+            ...     value="#'zigzag",
             ...     )
             >>> override.tweak_string()
             "- \\tweak style #'zigzag"
@@ -932,7 +1052,7 @@ class LilyPondOverride:
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="RehearsalMark",
             ...     property_path="color",
-            ...     value="red",
+            ...     value="#red",
             ...     )
             >>> override.tweak_string(directed=False)
             '\\tweak color #red'
@@ -964,7 +1084,8 @@ class LilyPondOverride:
             assert isinstance(self.value.argument, str)
             string = self.value.argument
         else:
-            string = Scheme.format_embedded_scheme_value(self.value)
+            string = format_embedded_scheme_value(self.value)
+            # string = str(self.value)
         result.append(string)
         return " ".join(result)
 
@@ -1061,7 +1182,7 @@ class LilyPondSetting:
         else:
             result.append(self.context_property)
         result.append("=")
-        string = Scheme.format_embedded_scheme_value(self.value)
+        string = format_embedded_scheme_value(self.value)
         value_pieces = string.split("\n")
         result.append(value_pieces[0])
         result[:] = [" ".join(result)]
@@ -1209,111 +1330,16 @@ class OverrideInterface(Interface):
             else:
                 raise ValueError(f"invalid attribute tuple: {attribute_tuple!r}.")
             if contribution_type == "override":
-                override_string = OverrideInterface.make_lilypond_override_string(
+                override_string = make_lilypond_override_string(
                     grob, attribute, value, context=context, once=once
                 )
                 result.append(override_string)
             else:
-                revert_string = OverrideInterface.make_lilypond_revert_string(
+                revert_string = make_lilypond_revert_string(
                     grob, attribute, context=context
                 )
                 result.append(revert_string)
         result.sort()
-        return result
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def format_lilypond_attribute(attribute) -> str:
-        """
-        Formats LilyPond attribute according to Scheme formatting conventions.
-        """
-        assert isinstance(attribute, str), repr(attribute)
-        attribute = attribute.replace("__", ".")
-        result = attribute.replace("_", "-")
-        return result
-
-    @staticmethod
-    def format_lilypond_value(argument) -> str:
-        """
-        Formats LilyPond ``argument`` according to Scheme formatting
-        conventions.
-        """
-        if "_get_lilypond_format" in dir(argument) and not isinstance(argument, str):
-            pass
-        elif argument in (True, False):
-            argument = Scheme(argument)
-        elif argument in (
-            enums.Up,
-            enums.Down,
-            enums.Left,
-            enums.Right,
-            enums.Center,
-        ):
-            argument = Scheme(repr(argument).lower())
-        elif isinstance(argument, int) or isinstance(argument, float):
-            argument = Scheme(argument)
-        elif argument in Scheme.lilypond_color_constants:
-            argument = Scheme(argument)
-        elif isinstance(argument, str) and argument.startswith("#"):
-            # argument = Scheme(argument)
-            return argument
-        elif isinstance(argument, str) and "::" in argument:
-            argument = Scheme(argument)
-        elif isinstance(argument, tuple) and len(argument) == 2:
-            argument = SchemePair(argument)
-        elif isinstance(argument, str) and " " not in argument:
-            argument = Scheme(argument, quoting="'")
-        elif isinstance(argument, str) and " " in argument:
-            argument = Scheme(argument)
-        else:
-            argument = Scheme(argument, quoting="'")
-        result = argument._get_lilypond_format()
-        return result
-
-    @staticmethod
-    def make_lilypond_override_string(
-        grob, attribute, value, context=None, once=False
-    ) -> str:
-        """
-        Makes Lilypond override string.
-        """
-        grob = String(grob).to_upper_camel_case()
-        attribute = OverrideInterface.format_lilypond_attribute(attribute)
-        value = OverrideInterface.format_lilypond_value(value)
-        if context is not None:
-            context = String(context).capitalize_start() + "."
-        else:
-            context = ""
-        if once is True:
-            once = r"\once "
-        else:
-            once = ""
-        result = rf"{once}\override {context}{grob}.{attribute} = {value}"
-        return result
-
-    @staticmethod
-    def make_lilypond_revert_string(grob, attribute, context=None) -> str:
-        r"""
-        Makes LilyPond revert string.
-
-        ..  container:: example
-
-            >>> abjad.OverrideInterface.make_lilypond_revert_string(
-            ...     "glissando",
-            ...     "bound_details__right__arrow",
-            ...     )
-            '\\revert Glissando.bound-details.right.arrow'
-
-        """
-        grob = String(grob).to_upper_camel_case()
-        dotted = OverrideInterface.format_lilypond_attribute(attribute)
-        if context is not None:
-            context = String(context).to_upper_camel_case()
-            context += "."
-        else:
-            context = ""
-        result = rf"\revert {context}{grob}.{dotted}"
         return result
 
 
@@ -1414,7 +1440,7 @@ class SettingInterface(Interface):
                 \new Staff
                 \with
                 {
-                    instrumentName = \markup { "Vn. I" }
+                    instrumentName = \markup { Vn. I }
                 }
                 {
                     c'4
@@ -1464,7 +1490,7 @@ class SettingInterface(Interface):
             rest = [x.title() for x in rest]
             name = first + rest
             string = "".join(name)
-            value = OverrideInterface.format_lilypond_value(value)
+            value = format_lilypond_value(value)
             value_parts = value.split("\n")
             result = rf"{string!s} = {value_parts[0]!s}"
             pieces = [result]
@@ -1497,7 +1523,7 @@ class SettingInterface(Interface):
         rest = [x.title() for x in rest]
         name = first + rest
         name = "".join(name)
-        value = OverrideInterface.format_lilypond_value(value)
+        value = format_lilypond_value(value)
         if context is not None:
             context_string = context[1:]
             context_string = context_string.split("_")
@@ -1549,7 +1575,7 @@ def setting(argument):
             \new Staff
             \with
             {
-                instrumentName = \markup { "Vn. I" }
+                instrumentName = \markup { Vn. I }
             }
             {
                 c'4
@@ -1852,7 +1878,7 @@ class TweakInterface(Interface):
                 value = value[1]
             else:
                 tag = None
-            string = self.make_lilypond_tweak_string(
+            string = make_lilypond_tweak_string(
                 attribute,
                 value,
                 directed=directed,
@@ -1869,26 +1895,7 @@ class TweakInterface(Interface):
 
     ### PUBLIC METHODS ###
 
-    @staticmethod
-    def make_lilypond_tweak_string(
-        attribute, value, *, directed=True, grob=None, literal=None
-    ) -> str:
-        r"""
-        Makes Lilypond \tweak string.
-        """
-        if grob is not None:
-            grob = String(grob).to_upper_camel_case()
-            grob += "."
-        else:
-            grob = ""
-        attribute = OverrideInterface.format_lilypond_attribute(attribute)
-        if not literal:
-            value = OverrideInterface.format_lilypond_value(value)
-        string = rf"\tweak {grob}{attribute} {value}"
-        if directed:
-            string = "- " + string
-        return string
-
+    # TODO: move this somewhere clearer
     @staticmethod
     def set_tweaks(
         argument, manager: typing.Optional["TweakInterface"]
@@ -1970,7 +1977,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai" }
+                ^ \markup { Allegro assai }
                 d'4
                 e'4
                 f'4
@@ -1994,7 +2001,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai" }
+                ^ \markup { Allegro assai }
                 d'4
                 e'4
                 f'4
@@ -2045,10 +2052,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai ..." }
+                ^ \markup { Allegro assai ... }
                 - \tweak color #blue
                 - \tweak staff-padding #4
-                _ \markup { "... ma non troppo" }
+                _ \markup { ... ma non troppo }
                 d'4
                 e'4
                 f'4
@@ -2074,10 +2081,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { "Allegro assai ..." }
+                ^ \markup { Allegro assai ... }
                 - \tweak color #blue
                 - \tweak staff-padding #4
-                ^ \markup { "... ma non troppo" }
+                ^ \markup { ... ma non troppo }
                 d'4
                 e'4
                 f'4
@@ -2193,7 +2200,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         raise Exception(f"must be be tag: {repr(tag)}")
 
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)
-    prototype = (bool, int, float, str, tuple, Scheme)
+    prototype = (bool, int, float, str, tuple)
     if expression is True or argument in constants or isinstance(argument, prototype):
         interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
         interface._pending_value = argument

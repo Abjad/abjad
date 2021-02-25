@@ -66,6 +66,9 @@ htmlcov
 .tox
 nosetests.xml
 
+# Vim
+*.swp
+
 # Virtual Environments
 venv/
 Envs/

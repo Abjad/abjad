@@ -10,7 +10,7 @@ def test_setting_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     score = abjad.Score([staff])
-    abjad.setting(score).tempo_wholes_per_minute = abjad.SchemeMoment(24)
+    abjad.setting(score).tempo_wholes_per_minute = "#(ly:make-moment 24 1)"
 
     assert abjad.lilypond(score) == abjad.String.normalize(
         r"""
@@ -41,9 +41,8 @@ def test_setting_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     score = abjad.Score([staff])
-    moment = abjad.SchemeMoment(24)
     leaves = abjad.select(score).leaves()
-    abjad.setting(leaves[1]).score.tempo_wholes_per_minute = moment
+    abjad.setting(leaves[1]).score.tempo_wholes_per_minute = "#(ly:make-moment 24 1)"
 
     assert abjad.lilypond(score) == abjad.String.normalize(
         r"""

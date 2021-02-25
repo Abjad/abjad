@@ -11,7 +11,7 @@ First we define a function to illustrate the examples that follow:
 
 ::
 
-    >>> def illustrate_scale(pattern, length, transposition, moment_denominator):
+    >>> def illustrate_scale(pattern, length, transposition):
     ...     pitches = abjad.sequence(range(length))
     ...     pitches = pitches.retain_pattern(pattern)
     ...     notes = [abjad.Note(_ + transposition, (1, 16)) for _ in pitches]
@@ -26,8 +26,7 @@ First we define a function to illustrate the examples that follow:
     ...     abjad.override(score).SpanBar.stencil = False
     ...     abjad.override(score).Stem.stencil = False
     ...     abjad.override(score).TimeSignature.stencil = False
-    ...     moment = abjad.SchemeMoment((1, moment_denominator))
-    ...     abjad.setting(score).proportional_notation_duration = moment
+    ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 25)"
     ...     lilypond_file = abjad.LilyPondFile(
     ...         items=[
     ...             score,
@@ -35,7 +34,7 @@ First we define a function to illustrate the examples that follow:
     ...         ],
     ...         global_staff_size=16,
     ...     )
-    ...     lilypond_file.layout_block.items.append("indent = 0")
+    ...     lilypond_file.layout_block.indent = "#0"
     ...     return lilypond_file
 
 ----
@@ -48,7 +47,7 @@ First three elements of sieve:
 ::
 
     >>> first_half = abjad.Pattern(indices=[0, 1, 4], period=17)
-    >>> lilypond_file = illustrate_scale(first_half, 56, -15, 25)
+    >>> lilypond_file = illustrate_scale(first_half, 56, -15)
     >>> abjad.show(lilypond_file)
 
 Remainder of sieve:
@@ -56,7 +55,7 @@ Remainder of sieve:
 ::
 
     >>> second_half = abjad.Pattern(indices=[5, 7, 11, 12, 16], period=17)
-    >>> lilypond_file = illustrate_scale(second_half, 56, -15, 25)
+    >>> lilypond_file = illustrate_scale(second_half, 56, -15)
     >>> abjad.show(lilypond_file)
 
 Complete sieve:
@@ -64,7 +63,7 @@ Complete sieve:
 ::
 
     >>> sieve = first_half | second_half
-    >>> lilypond_file = illustrate_scale(sieve, 56, -15, 25)
+    >>> lilypond_file = illustrate_scale(sieve, 56, -15)
     >>> abjad.show(lilypond_file)
 
 Non-octave scale in Joel Hoffman's **Piano Concerto**:
@@ -72,7 +71,7 @@ Non-octave scale in Joel Hoffman's **Piano Concerto**:
 ::
 
     >>> scale = abjad.Pattern(indices=[0, 2, 3, 4, 5, 6, 8, 9, 10, 11, 13], period=14)
-    >>> lilypond_file = illustrate_scale(scale, 84, -37, 25)
+    >>> lilypond_file = illustrate_scale(scale, 84, -37)
     >>> abjad.show(lilypond_file)
 
 :author:`[Evans (3.2)]`

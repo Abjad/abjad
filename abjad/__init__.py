@@ -186,7 +186,7 @@ from .lyproxy import (
     LilyPondGrobInterface,
 )
 from .makers import LeafMaker, NoteMaker
-from .markups import Markup, MarkupCommand, Postscript, PostscriptOperator
+from .markups import Markup, Postscript, PostscriptOperator
 from .math import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
 from .metricmodulation import MetricModulation
@@ -260,17 +260,6 @@ from .pitch.vectors import (
     Vector,
 )
 from .ratio import NonreducedRatio, Ratio
-from .scheme import (
-    Scheme,
-    SchemeAssociativeList,
-    SchemeColor,
-    SchemeMoment,
-    SchemePair,
-    SchemeSymbol,
-    SchemeVector,
-    SchemeVectorConstant,
-    SpacingVector,
-)
 from .score import (
     AfterGraceContainer,
     BeforeGraceContainer,
@@ -499,7 +488,6 @@ __all__ = [
     "MarginMarkup",
     "Marimba",
     "Markup",
-    "MarkupCommand",
     "Meter",
     "MeterList",
     "MetricAccentKernel",
@@ -578,15 +566,7 @@ __all__ = [
     "Retrograde",
     "Right",
     "Rotation",
-    "Scheme",
-    "SchemeAssociativeList",
-    "SchemeColor",
-    "SchemeMoment",
-    "SchemePair",
     "SchemeParserFinishedError",
-    "SchemeSymbol",
-    "SchemeVector",
-    "SchemeVectorConstant",
     "Score",
     "ScoreTemplate",
     "Segment",
@@ -602,7 +582,6 @@ __all__ = [
     "SopraninoSaxophone",
     "SopranoSaxophone",
     "SopranoVoice",
-    "SpacingVector",
     "Staff",
     "StaffChange",
     "StaffGroup",

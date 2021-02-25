@@ -28,7 +28,9 @@ def test_LilyPondParser__indicators__Markup_01():
 def test_LilyPondParser__indicators__Markup_02():
 
     target = abjad.Staff([abjad.Note(0, (1, 4))])
-    markup = abjad.Markup(["X", "Y", "Z", "a b c"], direction=abjad.Down)
+    markup = abjad.Markup(
+        r'\markup { X Y Z "a b c" }', direction=abjad.Down, literal=True
+    )
     abjad.attach(markup, target[0])
 
     assert abjad.lilypond(target) == abjad.String.normalize(
@@ -36,22 +38,10 @@ def test_LilyPondParser__indicators__Markup_02():
         \new Staff
         {
             c'4
-            _ \markup {
-                X
-                Y
-                Z
-                "a b c"
-                }
+            _ \markup { X Y Z "a b c" }
         }
         """
-    )
-
-    string = r"""\new Staff { c' _ \markup { X Y Z "a b c" } }"""
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    assert 1 == len(abjad.get.markup(result[0]))
+    ), repr(target)
 
 
 def test_LilyPondParser__indicators__Markup_03():
@@ -88,12 +78,18 @@ def test_LilyPondParser__indicators__Markup_03():
 
 def test_LilyPondParser__indicators__Markup_04():
 
-    command1 = abjad.MarkupCommand("bold", ["A", "B", "C"])
-    command2 = abjad.MarkupCommand("italic", "123")
-    markup = abjad.Markup((command1, command2))
+    string_1 = r"""\markup {
+    \bold
+        {
+            A
+            B
+            C
+        }
+    \italic
+        123
+    }"""
 
     parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(markup))
-
-    assert isinstance(result, abjad.Markup)
-    assert abjad.lilypond(result) == abjad.lilypond(markup)
+    markup = parser(string_1)
+    string_2 = abjad.lilypond(markup)
+    assert string_1 == string_2

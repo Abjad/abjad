@@ -199,8 +199,9 @@ class ColorFingering:
         """
         if self.number is None:
             return None
-        string = fr"\override #'(circle-padding . 0.25) \circle \finger {self.number}"
-        markup = Markup(string)
+        string = rf"\override #'(circle-padding . 0.25) \circle \finger {self.number}"
+        string = rf"\markup {{ {string} }}"
+        markup = Markup(string, literal=True)
         return markup
 
     @property

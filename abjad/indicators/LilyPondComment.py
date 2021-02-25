@@ -1,5 +1,3 @@
-import typing
-
 from ..bundle import LilyPondFormatBundle
 from ..storage import StorageFormatManager
 
@@ -181,24 +179,3 @@ class LilyPondComment:
         Are not implemented on LilyPond comment.
         """
         pass
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def list_allowable_format_slots() -> typing.Tuple[str, ...]:
-        """
-        Lists allowable format slots.
-
-        ..  container:: example
-
-            >>> commands = abjad.LilyPondComment.list_allowable_format_slots()
-            >>> for command in commands:
-            ...     command
-            ...
-            'after'
-            'before'
-            'closing'
-            'opening'
-
-        """
-        return LilyPondComment._allowable_format_slots

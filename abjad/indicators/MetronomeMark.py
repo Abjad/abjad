@@ -13,7 +13,6 @@ from ..bundle import LilyPondFormatBundle
 from ..duration import Duration, Multiplier, NonreducedFraction
 from ..new import new
 from ..ratio import Ratio
-from ..scheme import Scheme
 from ..sequence import Sequence
 from ..storage import FormatSpecification, StorageFormatManager
 
@@ -728,7 +727,9 @@ class MetronomeMark:
         text, equation = None, None
         if self.textual_indication is not None:
             text = self.textual_indication
-            text = Scheme.format_scheme_value(text)
+            assert isinstance(text, str)
+            if " " in text:
+                text = f'"{text}"'
         if self.reference_duration is not None and self.units_per_minute is not None:
             equation = self._equation
         if self.custom_markup is not None:

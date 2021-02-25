@@ -7,9 +7,10 @@ from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.StaffChange import StaffChange
 from .iterate import Iteration
+from .lilypond import lilypond
 from .lilypondfile import Block, LilyPondFile
 from .makers import NoteMaker
-from .markups import Markup, MarkupCommand, Postscript
+from .markups import Markup, Postscript
 from .metricmodulation import MetricModulation
 from .new import new
 from .ordereddict import OrderedDict
@@ -17,12 +18,13 @@ from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchClassSegment, PitchSegment
 from .pitch.sets import PitchClassSet, PitchSet
-from .scheme import Scheme, SchemeMoment
 from .spanners import glissando
 
 
 def _illustrate_component(component):
-    lilypond_file = LilyPondFile.new(component)
+    block = Block(name="score")
+    block.items.append(component)
+    lilypond_file = LilyPondFile(items=[block])
     return lilypond_file
 
 
@@ -55,7 +57,7 @@ def _illustrate_pitch_class_set(set_):
     voice = score.Voice([chord])
     staff = score.Staff([voice])
     score_ = score.Score([staff])
-    lilypond_file = LilyPondFile.new(score_)
+    lilypond_file = LilyPondFile(items=[score_])
     return lilypond_file
 
 
@@ -171,8 +173,7 @@ def _illustrate_pitch_class_segment(
     command = overrides.LilyPondLiteral(string, "after")
     last_leaf = select.Selection(score_).leaves()[-1]
     attach(command, last_leaf)
-    moment = SchemeMoment((1, 12))
-    overrides.setting(score_).proportional_notation_duration = moment
+    overrides.setting(score_).proportionalNotationDuration = "#(ly:make-moment 1 12)"
     lilypond_file = LilyPondFile.new(music=score_)
     if "title" in keywords:
         title = keywords.get("title")
@@ -286,9 +287,9 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
     return score_, treble_staff, bass_staff
 
 
-def selection_to_score_markup(selection):
+def selection_to_score_markup_string(selection):
     """
-    Changes ``selection`` to score markup.
+    Changes ``selection`` to score markup string.
     """
     selection = copy.deepcopy(selection)
     staff = score.Staff(selection)
@@ -302,18 +303,22 @@ def selection_to_score_markup(selection):
     overrides.override(staff).tuplet_bracket.minimum_length = 4
     overrides.override(staff).tuplet_bracket.padding = 1.25
     overrides.override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
-    scheme = Scheme("ly:spanner::set-spacing-rods")
+    scheme = "#ly:spanner::set-spacing-rods"
     overrides.override(staff).tuplet_bracket.springs_and_rods = scheme
     overrides.override(staff).tuplet_number.font_size = 0
-    scheme = Scheme("tuplet-number::calc-fraction-text")
+    scheme = "#tuplet-number::calc-fraction-text"
     overrides.override(staff).tuplet_number.text = scheme
     overrides.setting(staff).tuplet_full_length = True
     layout_block = Block(name="layout")
     layout_block.indent = 0
-    layout_block.ragged_right = True
+    layout_block.ragged_right = "##t"
     score_ = score.Score([staff])
     overrides.override(score_).spacing_spanner.spacing_increment = 0.5
     overrides.setting(score_).proportional_notation_duration = False
-    command = MarkupCommand("score", [score_, layout_block])
-    markup = Markup(command)
-    return markup
+    indent = 4 * " "
+    strings = [r"\score", indent + "{"]
+    strings.extend([2 * indent + _ for _ in lilypond(score_).split("\n")])
+    strings.extend([2 * indent + _ for _ in lilypond(layout_block).split("\n")])
+    strings.append(indent + "}")
+    string = "\n".join(strings)
+    return string
