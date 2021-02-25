@@ -228,7 +228,7 @@ class LilyPondLiteral:
         >>> abjad.attach(literal, staff[0], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -256,7 +256,7 @@ class LilyPondLiteral:
         >>> abjad.attach(literal, staff[2], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1662,7 +1662,7 @@ class TweakInterface(Interface):
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(staff, tags=True)
             >>> print(string)
             \new Staff
             {
@@ -1687,7 +1687,7 @@ class TweakInterface(Interface):
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(staff, tags=True)
             >>> print(string)
             \new Staff
             {
@@ -1710,7 +1710,7 @@ class TweakInterface(Interface):
             >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
             >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(staff, tags=True)
             >>> print(string)
             \new Staff
             {
@@ -2139,7 +2139,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "red"
         >>> abjad.attach(dynamic, staff[0])
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -2161,7 +2161,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> abjad.tweak(dynamic, tag=abjad.Tag("BLUE")).color = "blue"
         >>> abjad.attach(dynamic, staff[0])
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {

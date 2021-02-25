@@ -59,7 +59,7 @@ class PitchRange:
                     {
                         \clef "bass"
                         c1 * 1/4
-                        \glissando %! abjad.glissando(7)
+                        \glissando
                         \change Staff = Treble_Staff
                         c''''1 * 1/4
                     }

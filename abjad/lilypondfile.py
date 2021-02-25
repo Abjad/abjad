@@ -298,7 +298,7 @@ class Block:
 
             >>> string = abjad.lilypond(lilypond_file)
             >>> print(string)
-            \score { %! abjad.LilyPondFile._get_formatted_blocks()
+            \score {
                 <<
                 { \include "layout.ly" }
                 \new Staff
@@ -309,7 +309,7 @@ class Block:
                     f'4
                 }
                 >>
-            } %! abjad.LilyPondFile._get_formatted_blocks()
+            }
 
         Returns list.
         """
@@ -1048,14 +1048,14 @@ class LilyPondFile:
             % File construct as an example.
             % Parts shown here for positioning.
             <BLANKLINE>
-            \version "2.23.0"   %! abjad.LilyPondFile._get_format_pieces()
-            \language "english" %! abjad.LilyPondFile._get_format_pieces()
+            \version "2.23.0"
+            \language "english"
             <BLANKLINE>
-            \include "external-settings-file-1.ily" %! abjad.LilyPondFile._get_formatted_includes()
-            \include "external-settings-file-2.ily" %! abjad.LilyPondFile._get_formatted_includes()
+            \include "external-settings-file-1.ily"
+            \include "external-settings-file-2.ily"
             <BLANKLINE>
-            #(set-default-paper-size "a5" 'portrait) %! abjad.LilyPondFile._get_formatted_scheme_settings()
-            #(set-global-staff-size 16)              %! abjad.LilyPondFile._get_formatted_scheme_settings()
+            #(set-default-paper-size "a5" 'portrait)
+            #(set-global-staff-size 16)
             <BLANKLINE>
             \new Staff
             {
@@ -1249,7 +1249,7 @@ class LilyPondFile:
                 ... )
                 >>> string = abjad.lilypond(lilypond_file)
                 >>> print(string)
-                \score { %! abjad.LilyPondFile._get_formatted_blocks()
+                \score {
                     <<
                         {
                             \include "layout.ly"
@@ -1262,7 +1262,7 @@ class LilyPondFile:
                             f'4
                         }
                     >>
-                } %! abjad.LilyPondFile._get_formatted_blocks()
+                }
 
                 >>> lilypond_file[abjad.Staff]
                 Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')
@@ -1594,7 +1594,7 @@ class LilyPondFile:
             >>> print(string)
             \customCommand
             <BLANKLINE>
-            \score { %! abjad.LilyPondFile._get_formatted_blocks()
+            \score {
                 \new Staff
                 {
                     c'4
@@ -1602,7 +1602,7 @@ class LilyPondFile:
                     e'4
                     f'4
                 }
-            } %! abjad.LilyPondFile._get_formatted_blocks()
+            }
 
         """
         return self._items

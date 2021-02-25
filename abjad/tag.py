@@ -646,7 +646,7 @@ def activate(text, tag, skipped=False):
         ...     tag=abjad.Tag("RED_MARKUP"),
         ...     )
 
-        >>> text = abjad.lilypond(staff)
+        >>> text = abjad.lilypond(staff, tags=True)
         >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
         >>> print(text)
         \new Staff {
@@ -775,7 +775,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         ...     tag=abjad.Tag("RED_MARKUP"),
         ...     )
 
-        >>> text = abjad.lilypond(staff)
+        >>> text = abjad.lilypond(staff, tags=True)
         >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
         >>> print(text)
         \new Staff {
@@ -790,7 +790,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         Deactivates tag:
 
-        >>> text = abjad.lilypond(staff)
+        >>> text = abjad.lilypond(staff, tags=True)
         >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff {

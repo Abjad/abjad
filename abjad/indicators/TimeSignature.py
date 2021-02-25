@@ -91,7 +91,7 @@ class TimeSignature:
         >>> score = abjad.Score([staff])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(score)
+        >>> string = abjad.lilypond(score, tags=True)
         >>> print(string)
         \new Score
         <<

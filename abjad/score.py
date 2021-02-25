@@ -3373,7 +3373,7 @@ class Context(Container):
             ...     )
             >>> abjad.show(context) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(context)
+            >>> string = abjad.lilypond(context, tags=True)
             >>> print(string)
             \new CustomContext  %! RED
             {                   %! RED
@@ -3403,7 +3403,7 @@ class MultimeasureRest(Leaf):
         >>> rest = abjad.MultimeasureRest(
         ...     'R1', tag=abjad.Tag('GLOBAL_MULTIMEASURE_REST')
         ... )
-        >>> string = abjad.lilypond(rest)
+        >>> string = abjad.lilypond(rest, tags=True)
         >>> print(string)
         R1 %! GLOBAL_MULTIMEASURE_REST
 
@@ -3473,7 +3473,7 @@ class MultimeasureRest(Leaf):
             ... )
             >>> rest.multiplier = (3, 8)
 
-            >>> string = abjad.lilypond(rest)
+            >>> string = abjad.lilypond(rest, tags=True)
             >>> print(string)
             R1 * 3/8 %! MULTIMEASURE_REST
 
@@ -3703,7 +3703,7 @@ class NoteHead:
             >>> note.note_head.alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(note)
+            >>> string = abjad.lilypond(note, tags=True)
             >>> print(string)
             c''4                                              %! +PARTS
             %@% c''!4                                         %! -PARTS
@@ -3713,7 +3713,7 @@ class NoteHead:
             >>> note.written_pitch = 'D5'
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(note)
+            >>> string = abjad.lilypond(note, tags=True)
             >>> print(string)
             d''4                                              %! +PARTS
             %@% d''!4                                         %! -PARTS
@@ -3723,7 +3723,7 @@ class NoteHead:
             >>> note.note_head.alternative = None
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(note)
+            >>> string = abjad.lilypond(note, tags=True)
             >>> print(string)
             d''4
 
@@ -3735,7 +3735,7 @@ class NoteHead:
             >>> chord.note_heads[0].alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(chord)
+            >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <
                 c'                                            %! +PARTS
@@ -3749,7 +3749,7 @@ class NoteHead:
             >>> chord.note_heads[0].written_pitch = 'B3'
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(chord)
+            >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <
                 b                                             %! +PARTS
@@ -3761,7 +3761,7 @@ class NoteHead:
             Clear with none:
 
             >>> chord.note_heads[0].alternative = None
-            >>> string = abjad.lilypond(chord)
+            >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <b d' bf''>4
 
@@ -4778,7 +4778,7 @@ class Score(Context):
             >>> score = abjad.Score([staff], tag=abjad.Tag('GREEN'))
             >>> abjad.show(score) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(score)
+            >>> string = abjad.lilypond(score, tags=True)
             >>> print(string)
             \new Score          %! GREEN
             <<                  %! GREEN
@@ -4819,7 +4819,7 @@ class Skip(Leaf):
         Skips can be tagged:
 
         >>> skip = abjad.Skip('s8.', tag=abjad.Tag('GLOBAL_SKIP'))
-        >>> string = abjad.lilypond(skip)
+        >>> string = abjad.lilypond(skip, tags=True)
         >>> print(string)
         s8. %! GLOBAL_SKIP
 
@@ -5963,7 +5963,7 @@ class Tuplet(Container):
             ... )
             >>> abjad.show(tuplet) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(tuplet)
+            >>> string = abjad.lilypond(tuplet, tags=True)
             >>> print(string)
             \times 2/3 {        %! RED
                 c'4
@@ -7390,7 +7390,7 @@ class Voice(Context):
             >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
             >>> abjad.show(voice) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(voice)
+            >>> string = abjad.lilypond(voice, tags=True)
             >>> print(string)
             \new Voice          %! RED
             {                   %! RED

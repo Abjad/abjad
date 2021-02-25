@@ -217,7 +217,7 @@ class Wrapper:
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> clef = abjad.Clef("alto")
             >>> abjad.attach(clef, old_staff[0], tag=abjad.Tag("RED:M1"))
-            >>> string = abjad.lilypond(old_staff)
+            >>> string = abjad.lilypond(old_staff, tags=True)
             >>> print(string)
             \new Staff {
                 \clef "alto" %! RED:M1
@@ -238,7 +238,7 @@ class Wrapper:
                 )
 
             >>> new_staff = abjad.mutate.copy(old_staff)
-            >>> string = abjad.lilypond(new_staff)
+            >>> string = abjad.lilypond(new_staff, tags=True)
             >>> print(string)
             \new Staff {
                 \clef "alto" %! RED:M1
@@ -269,7 +269,7 @@ class Wrapper:
             ...     deactivate=True,
             ...     tag=abjad.Tag("RED:M1"),
             ...     )
-            >>> string = abjad.lilypond(old_staff)
+            >>> string = abjad.lilypond(old_staff, tags=True)
             >>> print(string)
             \new Staff {
                 %@% \clef "alto" %! RED:M1
@@ -291,7 +291,7 @@ class Wrapper:
                 )
 
             >>> new_staff = abjad.mutate.copy(old_staff)
-            >>> string = abjad.lilypond(new_staff)
+            >>> string = abjad.lilypond(new_staff, tags=True)
             >>> print(string)
             \new Staff {
                 %@% \clef "alto" %! RED:M1
@@ -853,7 +853,7 @@ def attach(  # noqa: 302
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(staff, tags=True)
             >>> print(string)
             \new Staff
             {
@@ -892,7 +892,7 @@ def attach(  # noqa: 302
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(staff, tags=True)
             >>> print(string)
             \new Staff
             {
@@ -1102,7 +1102,7 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1126,7 +1126,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1155,7 +1155,7 @@ def detach(argument, target=None, by_id=False):
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1177,7 +1177,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {

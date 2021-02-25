@@ -218,12 +218,12 @@ def test_Container___delitem___08():
         {
             c'8
             [
-            \glissando %! abjad.glissando(7)
+            \glissando
             {
                 d'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 e'8
-                \glissando %! abjad.glissando(7)
+                \glissando
             }
             f'8
             ]
@@ -241,10 +241,10 @@ def test_Container___delitem___08():
         {
             c'8
             [
-            \glissando %! abjad.glissando(7)
+            \glissando
             {
                 e'8
-                \glissando %! abjad.glissando(7)
+                \glissando
             }
             f'8
             ]

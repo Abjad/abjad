@@ -805,7 +805,7 @@ class Inversion:
                     g'8
                     f'8
                     e'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -832,7 +832,7 @@ class Inversion:
                     cs'8
                     b'8
                     bf'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1095,7 +1095,7 @@ class Multiplication:
                     cs'8
                     b'8
                     e'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1122,7 +1122,7 @@ class Multiplication:
                     cs'8
                     b'8
                     e'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1322,7 +1322,7 @@ class Retrograde:
                     g'8
                     f'8
                     ef'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1349,7 +1349,7 @@ class Retrograde:
                     g'8
                     f'8
                     ef'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1574,7 +1574,7 @@ class Rotation:
                     g'8
                     af'8
                     ef'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1601,7 +1601,7 @@ class Rotation:
                     g'8
                     af'8
                     ef'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1906,7 +1906,7 @@ class Transposition:
                     fs'8
                     af'8
                     a'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 
@@ -1933,7 +1933,7 @@ class Transposition:
                     fs'8
                     af'8
                     a'8
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
 

@@ -50,7 +50,7 @@ def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine
                     d'4
                     e'4
                     f'4
-                    \bar "|." %! SCORE_1
+                    \bar "|."
                 }
             >>
 
@@ -101,14 +101,14 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
                     e'4
                     \once \override TextScript.extra-offset = #'(0.5 . -2)
                     f'4
-                    _ \markup {                             %! SCORE_2
-                        \italic                             %! SCORE_2
-                            \right-column                   %! SCORE_2
-                                {                           %! SCORE_2
-                                    "Bremen - Boston - LA." %! SCORE_2
-                                    "July 2010 - May 2011." %! SCORE_2
-                                }                           %! SCORE_2
-                        }                                   %! SCORE_2
+                    _ \markup {
+                        \italic
+                            \right-column
+                                {
+                                    "Bremen - Boston - LA."
+                                    "July 2010 - May 2011."
+                                }
+                        }
                 }
             >>
 
@@ -144,14 +144,14 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
                     f'4
                     \once \override MultiMeasureRestText.extra-offset = #'(14.5 . -2)
                     R1
-                    _ \markup {                             %! SCORE_2
-                        \italic                             %! SCORE_2
-                            \right-column                   %! SCORE_2
-                                {                           %! SCORE_2
-                                    "Bremen - Boston - LA." %! SCORE_2
-                                    "July 2010 - May 2011." %! SCORE_2
-                                }                           %! SCORE_2
-                        }                                   %! SCORE_2
+                    _ \markup {
+                        \italic
+                            \right-column
+                                {
+                                    "Bremen - Boston - LA."
+                                    "July 2010 - May 2011."
+                                }
+                        }
                 }
             >>
 

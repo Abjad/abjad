@@ -161,9 +161,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -181,11 +181,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -255,9 +255,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -275,11 +275,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -414,9 +414,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -434,11 +434,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -508,9 +508,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -528,11 +528,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -610,9 +610,9 @@ class Parentage(collections.abc.Sequence):
                             <<
                                 \context Voice = "On_Beat_Grace_Container"
                                 {
-                                    \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                    \slash %! abjad.on_beat_grace_container(2)
-                                    \voiceOne %! abjad.on_beat_grace_container(3)
+                                    \set fontSize = #-3
+                                    \slash
+                                    \voiceOne
                                     <
                                         \tweak font-size #0
                                         \tweak transparent ##t
@@ -627,11 +627,11 @@ class Parentage(collections.abc.Sequence):
                                 }
                                 \context Voice = "Music_Voice"
                                 {
-                                    \voiceTwo %! abjad.on_beat_grace_container(4)
+                                    \voiceTwo
                                     f'4
                                 }
                             >>
-                            \oneVoice %! abjad.on_beat_grace_container(5)
+                            \oneVoice
                             g'4
                             \afterGrace
                             a'4
@@ -707,9 +707,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -727,11 +727,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -923,9 +923,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -943,11 +943,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -1179,9 +1179,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1199,11 +1199,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -1494,9 +1494,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -1514,11 +1514,11 @@ class Parentage(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {

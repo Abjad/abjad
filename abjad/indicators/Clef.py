@@ -69,7 +69,7 @@ class Clef:
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
