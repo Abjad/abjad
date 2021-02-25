@@ -62,7 +62,7 @@ from .exceptions import (
     WellformednessError,
 )
 from .expression import Expression, Signature
-from .format import LilyPondFormatManager, f
+from .format import LilyPondFormatManager
 from .get import Descendants, Lineage
 from .illustrators import illustrate
 from .indicators.Arpeggio import Arpeggio
@@ -661,7 +661,6 @@ __all__ = [
     "deprecated",
     "detach",
     "enumerate",
-    "f",
     "glissando",
     "graph",
     "hairpin",
