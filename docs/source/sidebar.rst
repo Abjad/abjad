@@ -12,26 +12,26 @@
     :hidden:
     :maxdepth: 0
 
-    overview/about_the_docs
+    overview/about-the-docs
     overview/containers
-    overview/containers_basic_operations_on
-    overview/containers_retrieving_by_name
-    overview/containers_time_interpretation_of
-    overview/contexts_lilypond_type_of
+    overview/containers-basic-operations-on
+    overview/containers-retrieving-by-name
+    overview/containers-time-interpretation-of
+    overview/contexts-lilypond-type-of
     overview/indicators
-    overview/lilypond_files_preamble_of
-    overview/lilypond_format_of_abjad_objects
+    overview/lilypond-files-preamble-of
+    overview/lilypond-format-of-abjad-objects
 
 ..  toctree::
     :caption: Examples
     :hidden:
 
-    examples/corpus_selection
-    examples/design_by_dyads
+    examples/corpus-selection
+    examples/design-by-dyads
     examples/enumeration
-    examples/magic_square_from_twelve_tone_row
-    examples/scales_diatonic
-    examples/score_fragment_piano
+    examples/magic-square-from-twelve-tone-row
+    examples/scales-diatonic
+    examples/score-fragment-piano
 
 ..  toctree::
     :caption: All classes & functions
@@ -43,18 +43,18 @@
     :caption: Appendices
     :hidden:
 
-    appendices/best_practices
+    appendices/best-practices
     appendices/changes
     appendices/community
     appendices/configuration
-    appendices/developer_installation
-    appendices/lilypond_context_concatenation
+    appendices/developer-installation
+    appendices/lilypond-context-concatenation
     appendices/publications
 
 ..  toctree::
     :caption: Score gallery
     :hidden:
 
-    gallery_2020
-    gallery_2015
-    gallery_2010
+    gallery-2020
+    gallery-2015
+    gallery-2010
