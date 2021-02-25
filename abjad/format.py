@@ -223,6 +223,7 @@ class LilyPondFormatManager:
 
     ### PUBLIC METHODS ###
 
+    # TODO: make top-level function
     @staticmethod
     def align_tags(string: str, n: int) -> str:
         """
@@ -291,56 +292,3 @@ class LilyPondFormatManager:
         if realign is not None:
             text = LilyPondFormatManager.align_tags(text, n=realign)
         return text
-
-
-### FUNCTIONS ###
-
-
-def f(argument, align_tags=None):
-    r"""
-    Formats ``argument`` and prints result.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> string = r'\markup { \with-color #blue Allegro }'
-        >>> markup = abjad.Markup(string, direction=abjad.Up, literal=True)
-        >>> abjad.attach(markup, staff[0])
-        >>> for leaf in staff:
-        ...     abjad.attach(abjad.Articulation('.'), leaf)
-        ...
-        >>> string = abjad.lilypond(staff)
-        >>> print(string)
-        \new Staff
-        {
-            c'4
-            - \staccato
-            ^ \markup {
-                \with-color
-                    #blue
-                    Allegro
-                }
-            d'4
-            - \staccato
-            e'4
-            - \staccato
-            f'4
-            - \staccato
-        }
-
-        >>> abjad.show(staff) # doctest: +SKIP
-
-    """
-    if align_tags is not None:
-        assert isinstance(align_tags, int), repr(align_tags)
-    if hasattr(argument, "_get_lilypond_format"):
-        string = argument._get_lilypond_format()
-    else:
-        string = storage.storage(argument)
-    assert isinstance(string, str), repr(string)
-    realign = None
-    if isinstance(align_tags, int):
-        string = LilyPondFormatManager.align_tags(string, align_tags)
-        realign = align_tags
-    string = LilyPondFormatManager.left_shift_tags(string, realign=realign)
-    print(string)
