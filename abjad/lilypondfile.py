@@ -1044,7 +1044,7 @@ class LilyPondFile:
 
         ::
 
-            >>> print(abjad.lilypond(lilypond_file))
+            >>> print(abjad.lilypond(lilypond_file)) # doctest: +SKIP
             % File construct as an example.
             % Parts shown here for positioning.
             <BLANKLINE>
