@@ -734,7 +734,7 @@ class LeafMaker:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(staff)
+                >>> string = abjad.lilypond(staff, tags=True)
                 >>> print(string)
                 \new Staff
                 {
@@ -1012,7 +1012,7 @@ class NoteMaker:
 
             ..  docs::
 
-                >>> string = abjad.lilypond(staff)
+                >>> string = abjad.lilypond(staff, tags=True)
                 >>> print(string)
                 \new Staff
                 {

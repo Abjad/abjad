@@ -55,9 +55,9 @@ def after_grace_container(argument):
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -75,11 +75,11 @@ def after_grace_container(argument):
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -335,9 +335,9 @@ def before_grace_container(argument):
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -355,11 +355,11 @@ def before_grace_container(argument):
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -429,9 +429,9 @@ def contents(argument) -> typing.Optional["Selection"]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -449,11 +449,11 @@ def contents(argument) -> typing.Optional["Selection"]:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -622,9 +622,9 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -642,11 +642,11 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -790,9 +790,9 @@ def duration(argument, in_seconds: bool = None) -> Duration:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -810,11 +810,11 @@ def duration(argument, in_seconds: bool = None) -> Duration:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -958,10 +958,10 @@ def effective(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -979,11 +979,11 @@ def effective(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -1458,9 +1458,9 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -1478,11 +1478,11 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -1571,10 +1571,10 @@ def effective_wrapper(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -1592,11 +1592,11 @@ def effective_wrapper(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -1689,9 +1689,9 @@ def grace(argument) -> bool:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -1709,11 +1709,11 @@ def grace(argument) -> bool:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -1790,10 +1790,10 @@ def has_effective_indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -1811,11 +1811,11 @@ def has_effective_indicator(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -1942,10 +1942,10 @@ def has_indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -1963,11 +1963,11 @@ def has_indicator(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -2139,10 +2139,10 @@ def indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -2160,11 +2160,11 @@ def indicator(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -2295,10 +2295,10 @@ def indicators(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -2319,12 +2319,12 @@ def indicators(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                             - \staccato
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     - \staccato
@@ -2521,10 +2521,10 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -2542,11 +2542,11 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -2704,9 +2704,9 @@ def lineage(argument) -> "Lineage":
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -2724,11 +2724,11 @@ def lineage(argument) -> "Lineage":
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -2909,9 +2909,9 @@ def logical_tie(argument) -> "LogicalTie":
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -2929,11 +2929,11 @@ def logical_tie(argument) -> "LogicalTie":
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -3101,9 +3101,9 @@ def measure_number(argument) -> int:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -3121,11 +3121,11 @@ def measure_number(argument) -> int:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -3275,9 +3275,9 @@ def parentage(argument) -> "Parentage":
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -3295,11 +3295,11 @@ def parentage(argument) -> "Parentage":
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -3489,9 +3489,9 @@ def pitches(argument) -> typing.Optional[PitchSet]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -3509,11 +3509,11 @@ def pitches(argument) -> typing.Optional[PitchSet]:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -3799,9 +3799,9 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -3819,11 +3819,11 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     {
@@ -3967,10 +3967,10 @@ def wrapper(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -3991,12 +3991,12 @@ def wrapper(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                             - \staccato
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     - \staccato
@@ -4086,10 +4086,10 @@ def wrappers(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
+                            \set fontSize = #-3
                             \clef "alto"
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -4110,12 +4110,12 @@ def wrappers(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             e'4
                             - \staccato
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     \afterGrace
                     f'4
                     - \staccato

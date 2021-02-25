@@ -184,82 +184,83 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         ..  docs::
 
-            >>> string = abjad.lilypond(template_1.__illustrate__()[abjad.Score])
+            >>> score = template_1.__illustrate__()[abjad.Score]
+            >>> string = abjad.lilypond(score)
             >>> print(string)
-            \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_1"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_3"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context RhythmicStaff = "Staff_4"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_4"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            \clef "percussion"                          %! abjad.ScoreTemplate.attach_defaults(3)
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            \context Score = "Grouped_Rhythmic_Staves_Score"
+            <<
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group"
+                <<
+                    \context RhythmicStaff = "Staff_1"
+                    {
+                        \context Voice = "Voice_1"
+                        {
+                            \clef "percussion"
+                            s1
+                        }
+                    }
+                    \context RhythmicStaff = "Staff_2"
+                    {
+                        \context Voice = "Voice_2"
+                        {
+                            \clef "percussion"
+                            s1
+                        }
+                    }
+                    \context RhythmicStaff = "Staff_3"
+                    {
+                        \context Voice = "Voice_3"
+                        {
+                            \clef "percussion"
+                            s1
+                        }
+                    }
+                    \context RhythmicStaff = "Staff_4"
+                    {
+                        \context Voice = "Voice_4"
+                        {
+                            \clef "percussion"
+                            s1
+                        }
+                    }
+                >>
+            >>
 
         >>> score = template_1()
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> string = abjad.lilypond(score)
         >>> print(string)
-        \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-        <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_1"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_3"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context RhythmicStaff = "Staff_4"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_4"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-        >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+        \context Score = "Grouped_Rhythmic_Staves_Score"
+        <<
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group"
+            <<
+                \context RhythmicStaff = "Staff_1"
+                {
+                    \context Voice = "Voice_1"
+                    {
+                    }
+                }
+                \context RhythmicStaff = "Staff_2"
+                {
+                    \context Voice = "Voice_2"
+                    {
+                    }
+                }
+                \context RhythmicStaff = "Staff_3"
+                {
+                    \context Voice = "Voice_3"
+                    {
+                    }
+                }
+                \context RhythmicStaff = "Staff_4"
+                {
+                    \context Voice = "Voice_4"
+                    {
+                    }
+                }
+            >>
+        >>
 
     ..  container:: example
 
@@ -272,77 +273,77 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
             >>> string = abjad.lilypond(template_2.__illustrate__()[abjad.Score])
             >>> print(string)
-            \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_1_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_1_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_3_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_3_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+            \context Score = "Grouped_Rhythmic_Staves_Score"
+            <<
+                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group"
+                <<
+                    \context RhythmicStaff = "Staff_1"
+                    <<
+                        \context Voice = "Voice_1_1"
+                        {
+                            s1
+                        }
+                        \context Voice = "Voice_1_2"
+                        {
+                            s1
+                        }
+                    >>
+                    \context RhythmicStaff = "Staff_2"
+                    {
+                        \context Voice = "Voice_2"
+                        {
+                            s1
+                        }
+                    }
+                    \context RhythmicStaff = "Staff_3"
+                    <<
+                        \context Voice = "Voice_3_1"
+                        {
+                            s1
+                        }
+                        \context Voice = "Voice_3_2"
+                        {
+                            s1
+                        }
+                    >>
+                >>
+            >>
 
         >>> score = template_2()
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> string = abjad.lilypond(score)
         >>> print(string)
-        \context Score = "Grouped_Rhythmic_Staves_Score"            %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-        <<                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group" %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            <<                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context RhythmicStaff = "Staff_1"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_1_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_1_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context RhythmicStaff = "Staff_2"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_2"                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                \context RhythmicStaff = "Staff_3"                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                <<                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_3_1"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_3_2"                    %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-                >>                                                  %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-            >>                                                      %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
-        >>                                                          %! abjad.GroupedRhythmicStavesScoreTemplate.__call__()
+        \context Score = "Grouped_Rhythmic_Staves_Score"
+        <<
+            \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group"
+            <<
+                \context RhythmicStaff = "Staff_1"
+                <<
+                    \context Voice = "Voice_1_1"
+                    {
+                    }
+                    \context Voice = "Voice_1_2"
+                    {
+                    }
+                >>
+                \context RhythmicStaff = "Staff_2"
+                {
+                    \context Voice = "Voice_2"
+                    {
+                    }
+                }
+                \context RhythmicStaff = "Staff_3"
+                <<
+                    \context Voice = "Voice_3_1"
+                    {
+                    }
+                    \context Voice = "Voice_3_2"
+                    {
+                    }
+                >>
+            >>
+        >>
 
     """
 
@@ -460,74 +461,74 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
             >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
             >>> print(string)
-            \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
-            <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
-                <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                        \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                        {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                            s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                        }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
-            >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+            \context Score = "Grouped_Staves_Score"
+            <<
+                \context StaffGroup = "Grouped_Staves_Staff_Group"
+                <<
+                    \context Staff = "Staff_1"
+                    {
+                        \context Voice = "Voice_1"
+                        {
+                            s1
+                        }
+                    }
+                    \context Staff = "Staff_2"
+                    {
+                        \context Voice = "Voice_2"
+                        {
+                            s1
+                        }
+                    }
+                    \context Staff = "Staff_3"
+                    {
+                        \context Voice = "Voice_3"
+                        {
+                            s1
+                        }
+                    }
+                    \context Staff = "Staff_4"
+                    {
+                        \context Voice = "Voice_4"
+                        {
+                            s1
+                        }
+                    }
+                >>
+            >>
 
         >>> score = template()
         >>> string = abjad.lilypond(score)
         >>> print(string)
-        \context Score = "Grouped_Staves_Score"                     %! abjad.GroupedStavesScoreTemplate.__call__()
-        <<                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
-            \context StaffGroup = "Grouped_Staves_Staff_Group"      %! abjad.GroupedStavesScoreTemplate.__call__()
-            <<                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                \context Staff = "Staff_1"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_1"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                \context Staff = "Staff_2"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_2"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                \context Staff = "Staff_3"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_3"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                \context Staff = "Staff_4"                          %! abjad.GroupedStavesScoreTemplate.__call__()
-                {                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-                    \context Voice = "Voice_4"                      %! abjad.GroupedStavesScoreTemplate.__call__()
-                    {                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                    }                                               %! abjad.GroupedStavesScoreTemplate.__call__()
-                }                                                   %! abjad.GroupedStavesScoreTemplate.__call__()
-            >>                                                      %! abjad.GroupedStavesScoreTemplate.__call__()
-        >>                                                          %! abjad.GroupedStavesScoreTemplate.__call__()
+        \context Score = "Grouped_Staves_Score"
+        <<
+            \context StaffGroup = "Grouped_Staves_Staff_Group"
+            <<
+                \context Staff = "Staff_1"
+                {
+                    \context Voice = "Voice_1"
+                    {
+                    }
+                }
+                \context Staff = "Staff_2"
+                {
+                    \context Voice = "Voice_2"
+                    {
+                    }
+                }
+                \context Staff = "Staff_3"
+                {
+                    \context Voice = "Voice_3"
+                    {
+                    }
+                }
+                \context Staff = "Staff_4"
+                {
+                    \context Voice = "Voice_4"
+                    {
+                    }
+                }
+            >>
+        >>
 
     """
 
@@ -606,313 +607,313 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
         >>> print(string)
-        \context Score = "Score"                                                                 %! abjad.StringOrchestraScoreTemplate.__call__()
-        <<                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
-            \tag #'(Violin_1 Violin_2 Violin_3 Violin_4 Violin_5 Violin_6 Viola_1 Viola_2 Viola_3 Viola_4 Cello_1 Cello_2 Cello_3 Contrabass_1 Contrabass_2) %! abjad.StringOrchestraScoreTemplate.__call__()
-            \context GlobalContext = "Global_Context"                                            %! abjad.StringOrchestraScoreTemplate.__call__()
-            {                                                                                    %! abjad.StringOrchestraScoreTemplate.__call__()
-            }                                                                                    %! abjad.StringOrchestraScoreTemplate.__call__()
-            \context StaffGroup = "Outer_Staff_Group"                                            %! abjad.StringOrchestraScoreTemplate.__call__()
-            <<                                                                                   %! abjad.StringOrchestraScoreTemplate.__call__()
-                \context ViolinStaffGroup = "Violin_Staff_Group"                                 %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Violin_1                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_1_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_1_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_1_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_1_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_1_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Violin_2                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_2_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_2_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_2_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_2_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_2_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Violin_3                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_3_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_3_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_3_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_3_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_3_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Violin_4                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_4_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_4_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_4_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_4_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_4_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Violin_5                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_5_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_5_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_5_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_5_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_5_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Violin_6                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_6_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_6_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_6_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_6_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_6_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                \context ViolaStaffGroup = "Viola_Staff_Group"                                   %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Viola_1                                                               %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Viola_1_Staff_Group"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Viola_1_Bowing_Staff"                            %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Viola_1_Bowing_Voice"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Viola_1_Fingering_Staff"                      %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Viola_1_Fingering_Voice"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "alto"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Viola_2                                                               %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Viola_2_Staff_Group"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Viola_2_Bowing_Staff"                            %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Viola_2_Bowing_Voice"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Viola_2_Fingering_Staff"                      %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Viola_2_Fingering_Voice"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "alto"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Viola_3                                                               %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Viola_3_Staff_Group"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Viola_3_Bowing_Staff"                            %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Viola_3_Bowing_Voice"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Viola_3_Fingering_Staff"                      %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Viola_3_Fingering_Voice"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "alto"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Viola_4                                                               %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Viola_4_Staff_Group"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Viola_4_Bowing_Staff"                            %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Viola_4_Bowing_Voice"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Viola_4_Fingering_Staff"                      %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Viola_4_Fingering_Voice"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "alto"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                \context CelloStaffGroup = "Cello_Staff_Group"                                   %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Cello_1                                                               %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Cello_1_Staff_Group"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Cello_1_Bowing_Staff"                            %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Cello_1_Bowing_Voice"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Cello_1_Fingering_Staff"                      %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Cello_1_Fingering_Voice"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "bass"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Cello_2                                                               %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Cello_2_Staff_Group"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Cello_2_Bowing_Staff"                            %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Cello_2_Bowing_Voice"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Cello_2_Fingering_Staff"                      %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Cello_2_Fingering_Voice"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "bass"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Cello_3                                                               %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Cello_3_Staff_Group"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Cello_3_Bowing_Staff"                            %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Cello_3_Bowing_Voice"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Cello_3_Fingering_Staff"                      %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Cello_3_Fingering_Voice"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "bass"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                \context ContrabassStaffGroup = "Contrabass_Staff_Group"                         %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Contrabass_1                                                          %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Contrabass_1_Staff_Group"              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Contrabass_1_Bowing_Staff"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Contrabass_1_Bowing_Voice"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Contrabass_1_Fingering_Staff"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Contrabass_1_Fingering_Voice"             %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "bass_8"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Contrabass_2                                                          %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Contrabass_2_Staff_Group"              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Contrabass_2_Bowing_Staff"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Contrabass_2_Bowing_Voice"                   %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Contrabass_2_Fingering_Staff"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Contrabass_2_Fingering_Voice"             %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "bass_8"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-            >>                                                                                   %! abjad.StringOrchestraScoreTemplate.__call__()
-        >>                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
+        \context Score = "Score"
+        <<
+            \tag #'(Violin_1 Violin_2 Violin_3 Violin_4 Violin_5 Violin_6 Viola_1 Viola_2 Viola_3 Viola_4 Cello_1 Cello_2 Cello_3 Contrabass_1 Contrabass_2)
+            \context GlobalContext = "Global_Context"
+            {
+            }
+            \context StaffGroup = "Outer_Staff_Group"
+            <<
+                \context ViolinStaffGroup = "Violin_Staff_Group"
+                <<
+                    \tag #'Violin_1
+                    \context StringPerformerStaffGroup = "Violin_1_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_1_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_1_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_1_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_1_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Violin_2
+                    \context StringPerformerStaffGroup = "Violin_2_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_2_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_2_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_2_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_2_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Violin_3
+                    \context StringPerformerStaffGroup = "Violin_3_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_3_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_3_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_3_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_3_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Violin_4
+                    \context StringPerformerStaffGroup = "Violin_4_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_4_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_4_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_4_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_4_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Violin_5
+                    \context StringPerformerStaffGroup = "Violin_5_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_5_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_5_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_5_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_5_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Violin_6
+                    \context StringPerformerStaffGroup = "Violin_6_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_6_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_6_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_6_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_6_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+                \context ViolaStaffGroup = "Viola_Staff_Group"
+                <<
+                    \tag #'Viola_1
+                    \context StringPerformerStaffGroup = "Viola_1_Staff_Group"
+                    <<
+                        \context BowingStaff = "Viola_1_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Viola_1_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Viola_1_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Viola_1_Fingering_Voice"
+                            {
+                                \clef "alto"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Viola_2
+                    \context StringPerformerStaffGroup = "Viola_2_Staff_Group"
+                    <<
+                        \context BowingStaff = "Viola_2_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Viola_2_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Viola_2_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Viola_2_Fingering_Voice"
+                            {
+                                \clef "alto"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Viola_3
+                    \context StringPerformerStaffGroup = "Viola_3_Staff_Group"
+                    <<
+                        \context BowingStaff = "Viola_3_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Viola_3_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Viola_3_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Viola_3_Fingering_Voice"
+                            {
+                                \clef "alto"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Viola_4
+                    \context StringPerformerStaffGroup = "Viola_4_Staff_Group"
+                    <<
+                        \context BowingStaff = "Viola_4_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Viola_4_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Viola_4_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Viola_4_Fingering_Voice"
+                            {
+                                \clef "alto"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+                \context CelloStaffGroup = "Cello_Staff_Group"
+                <<
+                    \tag #'Cello_1
+                    \context StringPerformerStaffGroup = "Cello_1_Staff_Group"
+                    <<
+                        \context BowingStaff = "Cello_1_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Cello_1_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Cello_1_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Cello_1_Fingering_Voice"
+                            {
+                                \clef "bass"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Cello_2
+                    \context StringPerformerStaffGroup = "Cello_2_Staff_Group"
+                    <<
+                        \context BowingStaff = "Cello_2_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Cello_2_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Cello_2_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Cello_2_Fingering_Voice"
+                            {
+                                \clef "bass"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Cello_3
+                    \context StringPerformerStaffGroup = "Cello_3_Staff_Group"
+                    <<
+                        \context BowingStaff = "Cello_3_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Cello_3_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Cello_3_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Cello_3_Fingering_Voice"
+                            {
+                                \clef "bass"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+                \context ContrabassStaffGroup = "Contrabass_Staff_Group"
+                <<
+                    \tag #'Contrabass_1
+                    \context StringPerformerStaffGroup = "Contrabass_1_Staff_Group"
+                    <<
+                        \context BowingStaff = "Contrabass_1_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Contrabass_1_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Contrabass_1_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Contrabass_1_Fingering_Voice"
+                            {
+                                \clef "bass_8"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Contrabass_2
+                    \context StringPerformerStaffGroup = "Contrabass_2_Staff_Group"
+                    <<
+                        \context BowingStaff = "Contrabass_2_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Contrabass_2_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Contrabass_2_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Contrabass_2_Fingering_Voice"
+                            {
+                                \clef "bass_8"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+            >>
+        >>
 
     ..  container:: example
 
@@ -928,101 +929,101 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
         >>> print(string)
-        \context Score = "Score"                                                                 %! abjad.StringOrchestraScoreTemplate.__call__()
-        <<                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
-            \tag #'(Violin_1 Violin_2 Viola Cello)                                               %! abjad.StringOrchestraScoreTemplate.__call__()
-            \context GlobalContext = "Global_Context"                                            %! abjad.StringOrchestraScoreTemplate.__call__()
-            {                                                                                    %! abjad.StringOrchestraScoreTemplate.__call__()
-            }                                                                                    %! abjad.StringOrchestraScoreTemplate.__call__()
-            \context StaffGroup = "Outer_Staff_Group"                                            %! abjad.StringOrchestraScoreTemplate.__call__()
-            <<                                                                                   %! abjad.StringOrchestraScoreTemplate.__call__()
-                \context ViolinStaffGroup = "Violin_Staff_Group"                                 %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Violin_1                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_1_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_1_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_1_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_1_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_1_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \tag #'Violin_2                                                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Violin_2_Staff_Group"                  %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Violin_2_Bowing_Staff"                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Violin_2_Bowing_Voice"                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Violin_2_Fingering_Staff"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Violin_2_Fingering_Voice"                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "treble"                                                   %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                \context ViolaStaffGroup = "Viola_Staff_Group"                                   %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Viola                                                                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Viola_Staff_Group"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Viola_Bowing_Staff"                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Viola_Bowing_Voice"                          %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Viola_Fingering_Staff"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Viola_Fingering_Voice"                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "alto"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                \context CelloStaffGroup = "Cello_Staff_Group"                                   %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Cello                                                                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Cello_Staff_Group"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Cello_Bowing_Staff"                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Cello_Bowing_Voice"                          %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Cello_Fingering_Staff"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Cello_Fingering_Voice"                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "bass"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-            >>                                                                                   %! abjad.StringOrchestraScoreTemplate.__call__()
-        >>                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
+        \context Score = "Score"
+        <<
+            \tag #'(Violin_1 Violin_2 Viola Cello)
+            \context GlobalContext = "Global_Context"
+            {
+            }
+            \context StaffGroup = "Outer_Staff_Group"
+            <<
+                \context ViolinStaffGroup = "Violin_Staff_Group"
+                <<
+                    \tag #'Violin_1
+                    \context StringPerformerStaffGroup = "Violin_1_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_1_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_1_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_1_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_1_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                    \tag #'Violin_2
+                    \context StringPerformerStaffGroup = "Violin_2_Staff_Group"
+                    <<
+                        \context BowingStaff = "Violin_2_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Violin_2_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Violin_2_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Violin_2_Fingering_Voice"
+                            {
+                                \clef "treble"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+                \context ViolaStaffGroup = "Viola_Staff_Group"
+                <<
+                    \tag #'Viola
+                    \context StringPerformerStaffGroup = "Viola_Staff_Group"
+                    <<
+                        \context BowingStaff = "Viola_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Viola_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Viola_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Viola_Fingering_Voice"
+                            {
+                                \clef "alto"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+                \context CelloStaffGroup = "Cello_Staff_Group"
+                <<
+                    \tag #'Cello
+                    \context StringPerformerStaffGroup = "Cello_Staff_Group"
+                    <<
+                        \context BowingStaff = "Cello_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Cello_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Cello_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Cello_Fingering_Voice"
+                            {
+                                \clef "bass"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+            >>
+        >>
 
     ..  container:: example
 
@@ -1038,38 +1039,38 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
         >>> print(string)
-        \context Score = "Score"                                                                 %! abjad.StringOrchestraScoreTemplate.__call__()
-        <<                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
-            \tag #'(Cello)                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
-            \context GlobalContext = "Global_Context"                                            %! abjad.StringOrchestraScoreTemplate.__call__()
-            {                                                                                    %! abjad.StringOrchestraScoreTemplate.__call__()
-            }                                                                                    %! abjad.StringOrchestraScoreTemplate.__call__()
-            \context StaffGroup = "Outer_Staff_Group"                                            %! abjad.StringOrchestraScoreTemplate.__call__()
-            <<                                                                                   %! abjad.StringOrchestraScoreTemplate.__call__()
-                \context CelloStaffGroup = "Cello_Staff_Group"                                   %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                <<                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-                    \tag #'Cello                                                                 %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    \context StringPerformerStaffGroup = "Cello_Staff_Group"                     %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    <<                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context BowingStaff = "Cello_Bowing_Staff"                              %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context BowingVoice = "Cello_Bowing_Voice"                          %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        \context FingeringStaff = "Cello_Fingering_Staff"                        %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        <<                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            \context FingeringVoice = "Cello_Fingering_Voice"                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                            {                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                                \clef "bass"                                                     %! abjad.ScoreTemplate.attach_defaults(3)
-                                s1                                                               %! abjad.ScoreTemplate.__illustrate__()
-                            }                                                                    %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                        >>                                                                       %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                    >>                                                                           %! StringOrchestraScoreTemplate._make_performer_staff_group()
-                >>                                                                               %! abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()
-            >>                                                                                   %! abjad.StringOrchestraScoreTemplate.__call__()
-        >>                                                                                       %! abjad.StringOrchestraScoreTemplate.__call__()
+        \context Score = "Score"
+        <<
+            \tag #'(Cello)
+            \context GlobalContext = "Global_Context"
+            {
+            }
+            \context StaffGroup = "Outer_Staff_Group"
+            <<
+                \context CelloStaffGroup = "Cello_Staff_Group"
+                <<
+                    \tag #'Cello
+                    \context StringPerformerStaffGroup = "Cello_Staff_Group"
+                    <<
+                        \context BowingStaff = "Cello_Bowing_Staff"
+                        <<
+                            \context BowingVoice = "Cello_Bowing_Voice"
+                            {
+                                s1
+                            }
+                        >>
+                        \context FingeringStaff = "Cello_Fingering_Staff"
+                        <<
+                            \context FingeringVoice = "Cello_Fingering_Voice"
+                            {
+                                \clef "bass"
+                                s1
+                            }
+                        >>
+                    >>
+                >>
+            >>
+        >>
 
     """
 
@@ -1378,48 +1379,48 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
         >>> print(string)
-        \context Score = "String_Quartet_Score"                     %! abjad.StringQuartetScoreTemplate.__call__()
-        <<                                                          %! abjad.StringQuartetScoreTemplate.__call__()
-            \context StaffGroup = "String_Quartet_Staff_Group"      %! abjad.StringQuartetScoreTemplate.__call__()
-            <<                                                      %! abjad.StringQuartetScoreTemplate.__call__()
+        \context Score = "String_Quartet_Score"
+        <<
+            \context StaffGroup = "String_Quartet_Staff_Group"
+            <<
                 \tag #'first-violin
-                \context Staff = "First_Violin_Staff"               %! abjad.StringQuartetScoreTemplate.__call__()
-                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
-                    \context Voice = "First_Violin_Voice"           %! abjad.StringQuartetScoreTemplate.__call__()
-                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                        \clef "treble"                              %! abjad.ScoreTemplate.attach_defaults(3)
-                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                \context Staff = "First_Violin_Staff"
+                {
+                    \context Voice = "First_Violin_Voice"
+                    {
+                        \clef "treble"
+                        s1
+                    }
+                }
                 \tag #'second-violin
-                \context Staff = "Second_Violin_Staff"              %! abjad.StringQuartetScoreTemplate.__call__()
-                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
-                    \context Voice = "Second_Violin_Voice"          %! abjad.StringQuartetScoreTemplate.__call__()
-                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                        \clef "treble"                              %! abjad.ScoreTemplate.attach_defaults(3)
-                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                \context Staff = "Second_Violin_Staff"
+                {
+                    \context Voice = "Second_Violin_Voice"
+                    {
+                        \clef "treble"
+                        s1
+                    }
+                }
                 \tag #'viola
-                \context Staff = "Viola_Staff"                      %! abjad.StringQuartetScoreTemplate.__call__()
-                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
-                    \context Voice = "Viola_Voice"                  %! abjad.StringQuartetScoreTemplate.__call__()
-                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                        \clef "alto"                                %! abjad.ScoreTemplate.attach_defaults(3)
-                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
+                \context Staff = "Viola_Staff"
+                {
+                    \context Voice = "Viola_Voice"
+                    {
+                        \clef "alto"
+                        s1
+                    }
+                }
                 \tag #'cello
-                \context Staff = "Cello_Staff"                      %! abjad.StringQuartetScoreTemplate.__call__()
-                {                                                   %! abjad.StringQuartetScoreTemplate.__call__()
-                    \context Voice = "Cello_Voice"                  %! abjad.StringQuartetScoreTemplate.__call__()
-                    {                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                        \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults(3)
-                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                    }                                               %! abjad.StringQuartetScoreTemplate.__call__()
-                }                                                   %! abjad.StringQuartetScoreTemplate.__call__()
-            >>                                                      %! abjad.StringQuartetScoreTemplate.__call__()
-        >>                                                          %! abjad.StringQuartetScoreTemplate.__call__()
+                \context Staff = "Cello_Staff"
+                {
+                    \context Voice = "Cello_Voice"
+                    {
+                        \clef "bass"
+                        s1
+                    }
+                }
+            >>
+        >>
 
     Returns score template.
     """
@@ -1525,36 +1526,36 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
         >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
         >>> print(string)
-        \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__()
-        <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
-            \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context()
-            <<                                                      %! abjad.ScoreTemplate._make_global_context()
-                \context GlobalRests = "Global_Rests"               %! abjad.ScoreTemplate._make_global_context()
-                {                                                   %! abjad.ScoreTemplate._make_global_context()
-                }                                                   %! abjad.ScoreTemplate._make_global_context()
-                \context GlobalSkips = "Global_Skips"               %! abjad.ScoreTemplate._make_global_context()
-                {                                                   %! abjad.ScoreTemplate._make_global_context()
-                }                                                   %! abjad.ScoreTemplate._make_global_context()
-            >>                                                      %! abjad.ScoreTemplate._make_global_context()
-            \context PianoStaff = "Piano_Staff"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
-            <<                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                \context Staff = "RH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                    \context Voice = "RH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                    {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                    }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                \context Staff = "LH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                    \context Voice = "LH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                    {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        \clef "bass"                                %! abjad.ScoreTemplate.attach_defaults(3)
-                        s1                                          %! abjad.ScoreTemplate.__illustrate__()
-                    }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-            >>                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
-        >>                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
+        \context Score = "Two_Staff_Piano_Score"
+        <<
+            \context GlobalContext = "Global_Context"
+            <<
+                \context GlobalRests = "Global_Rests"
+                {
+                }
+                \context GlobalSkips = "Global_Skips"
+                {
+                }
+            >>
+            \context PianoStaff = "Piano_Staff"
+            <<
+                \context Staff = "RH_Staff"
+                {
+                    \context Voice = "RH_Voice"
+                    {
+                        s1
+                    }
+                }
+                \context Staff = "LH_Staff"
+                {
+                    \context Voice = "LH_Voice"
+                    {
+                        \clef "bass"
+                        s1
+                    }
+                }
+            >>
+        >>
 
     Returns score template.
     """
@@ -1594,35 +1595,35 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
                 >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \context Score = "Two_Staff_Piano_Score"                    %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                <<                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                    \context GlobalContext = "Global_Context"               %! abjad.ScoreTemplate._make_global_context()
-                    <<                                                      %! abjad.ScoreTemplate._make_global_context()
-                        \context GlobalRests = "Global_Rests"               %! abjad.ScoreTemplate._make_global_context()
-                        {                                                   %! abjad.ScoreTemplate._make_global_context()
-                        }                                                   %! abjad.ScoreTemplate._make_global_context()
-                        \context GlobalSkips = "Global_Skips"               %! abjad.ScoreTemplate._make_global_context()
-                        {                                                   %! abjad.ScoreTemplate._make_global_context()
-                        }                                                   %! abjad.ScoreTemplate._make_global_context()
-                    >>                                                      %! abjad.ScoreTemplate._make_global_context()
-                    \context PianoStaff = "Piano_Staff"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                    <<                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        \context Staff = "RH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                            \context Voice = "RH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                            {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                \context Score = "Two_Staff_Piano_Score"
+                <<
+                    \context GlobalContext = "Global_Context"
+                    <<
+                        \context GlobalRests = "Global_Rests"
+                        {
+                        }
+                        \context GlobalSkips = "Global_Skips"
+                        {
+                        }
+                    >>
+                    \context PianoStaff = "Piano_Staff"
+                    <<
+                        \context Staff = "RH_Staff"
+                        {
+                            \context Voice = "RH_Voice"
+                            {
                                 g'4
-                            }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        \context Staff = "LH_Staff"                         %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        {                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                            \context Voice = "LH_Voice"                     %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                            {                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                            }
+                        }
+                        \context Staff = "LH_Staff"
+                        {
+                            \context Voice = "LH_Voice"
+                            {
                                 c4
-                            }                                               %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                        }                                                   %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                    >>                                                      %! abjad.TwoStaffPianoScoreTemplate.__call__()
-                >>                                                          %! abjad.TwoStaffPianoScoreTemplate.__call__()
+                            }
+                        }
+                    >>
+                >>
 
         """
         site = "abjad.TwoStaffPianoScoreTemplate.__call__()"

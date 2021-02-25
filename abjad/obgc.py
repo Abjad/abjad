@@ -45,9 +45,9 @@ class OnBeatGraceContainer(Container):
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -72,12 +72,12 @@ class OnBeatGraceContainer(Container):
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             d'4
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     f'4
                 }
             }
@@ -318,9 +318,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -344,12 +344,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             d'4
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     f'4
                 }
             }
@@ -378,9 +378,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -404,12 +404,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             <b d'>4
                             <c' e'>4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     <d' f'>4
                 }
             }
@@ -436,9 +436,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -463,12 +463,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             d'4
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     f'4
                 }
             }
@@ -497,9 +497,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceOne %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
                             <
                                 \tweak font-size #0
                                 \tweak transparent ##t
@@ -524,12 +524,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo %! abjad.on_beat_grace_container(4)
+                            \voiceTwo
                             <b d'>4
                             <c' e'>4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     <d' f'>4
                 }
             }
@@ -564,9 +564,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceTwo %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
                             <
                                 g
                                 \tweak font-size #0
@@ -590,12 +590,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceOne %! abjad.on_beat_grace_container(4)
+                            \voiceOne
                             d'4
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     f'4
                 }
             }
@@ -628,9 +628,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceTwo %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
                             <
                                 g
                                 \tweak font-size #0
@@ -654,12 +654,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceOne %! abjad.on_beat_grace_container(4)
+                            \voiceOne
                             <d' f'>4
                             <e' g'>4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     <f' a'>4
                 }
             }
@@ -690,9 +690,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceTwo %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
                             <
                                 e
                                 g
@@ -717,12 +717,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceOne %! abjad.on_beat_grace_container(4)
+                            \voiceOne
                             d'4
                             e'4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     f'4
                 }
             }
@@ -755,9 +755,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                            \slash %! abjad.on_beat_grace_container(2)
-                            \voiceTwo %! abjad.on_beat_grace_container(3)
+                            \set fontSize = #-3
+                            \slash
+                            \voiceTwo
                             <
                                 e
                                 g
@@ -782,12 +782,12 @@ def on_beat_grace_container(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceOne %! abjad.on_beat_grace_container(4)
+                            \voiceOne
                             <d' f'>4
                             <e' g'>4
                         }
                     >>
-                    \oneVoice %! abjad.on_beat_grace_container(5)
+                    \oneVoice
                     <f' a'>4
                 }
             }

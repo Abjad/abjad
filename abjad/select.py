@@ -9204,9 +9204,9 @@ class Selection(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -9224,12 +9224,12 @@ class Selection(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                                 r8
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'8
                         {
@@ -9287,9 +9287,9 @@ class Selection(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3                                                      %! abjad.on_beat_grace_container(1)
-                                \slash                                                                   %! abjad.on_beat_grace_container(2)
-                                \voiceOne                                                                %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 \abjad-color-music #'blue
                                 <
                                     \tweak font-size #0
@@ -9311,13 +9311,13 @@ class Selection(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo                                                                %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 \abjad-color-music #'blue
                                 e'4
                                 r8
                             }
                         >>
-                        \oneVoice                                                                        %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \abjad-color-music #'red
                         \afterGrace
                         f'8
@@ -10065,9 +10065,9 @@ class Selection(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -10085,11 +10085,11 @@ class Selection(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -10149,9 +10149,9 @@ class Selection(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3                                                      %! abjad.on_beat_grace_container(1)
-                                \slash                                                                   %! abjad.on_beat_grace_container(2)
-                                \voiceOne                                                                %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 \abjad-color-music #'blue
                                 <
                                     \tweak font-size #0
@@ -10173,12 +10173,12 @@ class Selection(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo                                                                %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 \abjad-color-music #'blue
                                 e'4
                             }
                         >>
-                        \oneVoice                                                                        %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -10370,9 +10370,9 @@ class Selection(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3 %! abjad.on_beat_grace_container(1)
-                                \slash %! abjad.on_beat_grace_container(2)
-                                \voiceOne %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 <
                                     \tweak font-size #0
                                     \tweak transparent ##t
@@ -10390,11 +10390,11 @@ class Selection(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \afterGrace
                         f'4
                         {
@@ -10456,9 +10456,9 @@ class Selection(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
-                                \set fontSize = #-3                                                      %! abjad.on_beat_grace_container(1)
-                                \slash                                                                   %! abjad.on_beat_grace_container(2)
-                                \voiceOne                                                                %! abjad.on_beat_grace_container(3)
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
                                 \abjad-color-music #'blue
                                 <
                                     \tweak font-size #0
@@ -10480,11 +10480,11 @@ class Selection(collections.abc.Sequence):
                             }
                             \context Voice = "Music_Voice"
                             {
-                                \voiceTwo                                                                %! abjad.on_beat_grace_container(4)
+                                \voiceTwo
                                 e'4
                             }
                         >>
-                        \oneVoice                                                                        %! abjad.on_beat_grace_container(5)
+                        \oneVoice
                         \abjad-color-music #'red
                         \afterGrace
                         f'4

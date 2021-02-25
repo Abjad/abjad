@@ -759,11 +759,11 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 e'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 f'8
             }
 
@@ -784,11 +784,11 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
                 - \bendAfter #'-4
                 e'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 f'8
             }
 
@@ -811,14 +811,14 @@ def glissando(
             {
                 a8
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 b8
                 ~
                 b8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 c'8
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
                 ~
                 d'8
@@ -842,17 +842,17 @@ def glissando(
             \new Staff
             {
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 b8
                 ~
                 b8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
                 ~
                 d'8
@@ -877,21 +877,21 @@ def glissando(
             \new Staff
             {
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 b8
                 ~
-                \glissando %! abjad.glissando(7)
+                \glissando
                 b8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
                 ~
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
             }
 
@@ -917,20 +917,20 @@ def glissando(
             \new Staff
             {
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 \parenthesize
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 b8
                 ~
                 \parenthesize
                 b8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 \parenthesize
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
                 ~
                 \parenthesize
@@ -957,16 +957,16 @@ def glissando(
                 a8
                 \parenthesize
                 a8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 b8
                 ~
                 \parenthesize
                 b8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 c'8
                 \parenthesize
                 c'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
                 ~
                 \parenthesize
@@ -991,17 +991,17 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando %! abjad.glissando(7)
-                \hide NoteHead                            %! abjad.glissando(1)
-                \override Accidental.stencil = ##f        %! abjad.glissando(1)
-                \override NoteColumn.glissando-skip = ##t %! abjad.glissando(1)
-                \override NoteHead.no-ledgers = ##t       %! abjad.glissando(1)
+                \glissando
+                \hide NoteHead
+                \override Accidental.stencil = ##f
+                \override NoteColumn.glissando-skip = ##t
+                \override NoteHead.no-ledgers = ##t
                 d'8
                 e'8
-                \revert Accidental.stencil        %! abjad.glissando(6)
-                \revert NoteColumn.glissando-skip %! abjad.glissando(6)
-                \revert NoteHead.no-ledgers       %! abjad.glissando(6)
-                \undo \hide NoteHead              %! abjad.glissando(6)
+                \revert Accidental.stencil
+                \revert NoteColumn.glissando-skip
+                \revert NoteHead.no-ledgers
+                \undo \hide NoteHead
                 f'8
             }
 
@@ -1025,21 +1025,21 @@ def glissando(
             \new Staff
             {
                 c'8
-                \glissando %! abjad.glissando(7)
-                \hide NoteHead                            %! abjad.glissando(1)
-                \override Accidental.stencil = ##f        %! abjad.glissando(1)
-                \override NoteColumn.glissando-skip = ##t %! abjad.glissando(1)
-                \override NoteHead.no-ledgers = ##t       %! abjad.glissando(1)
-                \override Dots.transparent = ##t          %! abjad.glissando(1)
-                \override Stem.transparent = ##t          %! abjad.glissando(1)
+                \glissando
+                \hide NoteHead
+                \override Accidental.stencil = ##f
+                \override NoteColumn.glissando-skip = ##t
+                \override NoteHead.no-ledgers = ##t
+                \override Dots.transparent = ##t
+                \override Stem.transparent = ##t
                 d'8
                 e'8
-                \revert Accidental.stencil        %! abjad.glissando(6)
-                \revert NoteColumn.glissando-skip %! abjad.glissando(6)
-                \revert NoteHead.no-ledgers       %! abjad.glissando(6)
-                \undo \hide NoteHead              %! abjad.glissando(6)
-                \revert Dots.transparent          %! abjad.glissando(6)
-                \revert Stem.transparent          %! abjad.glissando(6)
+                \revert Accidental.stencil
+                \revert NoteColumn.glissando-skip
+                \revert NoteHead.no-ledgers
+                \undo \hide NoteHead
+                \revert Dots.transparent
+                \revert Stem.transparent
                 f'8
             }
 
@@ -1059,7 +1059,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1088,7 +1088,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1123,7 +1123,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1161,7 +1161,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -1201,14 +1201,14 @@ def glissando(
             \new Staff
             {
                 c'8
-                - \tweak style #'trill %! abjad.glissando(7)
-                \glissando             %! abjad.glissando(7)
+                - \tweak style #'trill
+                \glissando
                 d'8
-                - \tweak style #'trill %! abjad.glissando(7)
-                \glissando             %! abjad.glissando(7)
+                - \tweak style #'trill
+                \glissando
                 e'8
-                - \tweak style #'trill %! abjad.glissando(7)
-                \glissando             %! abjad.glissando(7)
+                - \tweak style #'trill
+                \glissando
                 f'8
             }
 
@@ -1235,18 +1235,18 @@ def glissando(
             \new Staff
             {
                 d'8
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4.
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4.
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'8
@@ -1274,18 +1274,18 @@ def glissando(
             \new Staff
             {
                 c'8.
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'8.
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 e'8.
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                \glissando
                 f'8.
             }
 
@@ -1314,20 +1314,20 @@ def glissando(
             \new Staff
             {
                 d'4
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                - \tweak color #red             %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                - \tweak color #red
+                \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4
-                - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                - \tweak color #red             %! abjad.glissando(7)
-                \glissando                      %! abjad.glissando(7)
+                - \abjad-zero-padding-glissando
+                - \tweak color #red
+                \glissando
                 d'4
             }
 

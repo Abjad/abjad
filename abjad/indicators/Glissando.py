@@ -218,18 +218,18 @@ class Glissando:
                 \new Staff
                 {
                     d'8
-                    - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                    \glissando                      %! abjad.glissando(7)
+                    - \abjad-zero-padding-glissando
+                    \glissando
                     \once \override NoteHead.X-extent = #'(0 . 0)
                     \once \override NoteHead.transparent = ##t
                     d'4.
-                    - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                    \glissando                      %! abjad.glissando(7)
+                    - \abjad-zero-padding-glissando
+                    \glissando
                     \once \override NoteHead.X-extent = #'(0 . 0)
                     \once \override NoteHead.transparent = ##t
                     d'4.
-                    - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                    \glissando                      %! abjad.glissando(7)
+                    - \abjad-zero-padding-glissando
+                    \glissando
                     \once \override NoteHead.X-extent = #'(0 . 0)
                     \once \override NoteHead.transparent = ##t
                     d'8
@@ -255,18 +255,18 @@ class Glissando:
                 \new Staff
                 {
                     c'8.
-                    - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                    \glissando                      %! abjad.glissando(7)
+                    - \abjad-zero-padding-glissando
+                    \glissando
                     \once \override NoteHead.X-extent = #'(0 . 0)
                     \once \override NoteHead.transparent = ##t
                     d'8.
-                    - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                    \glissando                      %! abjad.glissando(7)
+                    - \abjad-zero-padding-glissando
+                    \glissando
                     \once \override NoteHead.X-extent = #'(0 . 0)
                     \once \override NoteHead.transparent = ##t
                     e'8.
-                    - \abjad-zero-padding-glissando %! abjad.glissando(7)
-                    \glissando                      %! abjad.glissando(7)
+                    - \abjad-zero-padding-glissando
+                    \glissando
                     f'8.
                 }
 

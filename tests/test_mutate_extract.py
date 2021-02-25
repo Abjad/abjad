@@ -16,11 +16,11 @@ def test_mutate_extract_01():
         {
             c'8
             [
-            \glissando %! abjad.glissando(7)
+            \glissando
             d'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             e'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             f'8
             ]
         }
@@ -36,9 +36,9 @@ def test_mutate_extract_01():
         {
             c'8
             [
-            \glissando %! abjad.glissando(7)
+            \glissando
             e'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             f'8
             ]
         }
@@ -64,11 +64,11 @@ def test_mutate_extract_02():
         {
             c'8
             [
-            \glissando %! abjad.glissando(7)
+            \glissando
             d'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             e'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             f'8
             ]
         }
@@ -84,7 +84,7 @@ def test_mutate_extract_02():
         \new Voice
         {
             e'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             f'8
             ]
         }
@@ -169,19 +169,19 @@ def test_mutate_extract_04():
             {
                 c'8
                 [
-                \glissando %! abjad.glissando(7)
+                \glissando
                 d'8
-                \glissando %! abjad.glissando(7)
+                \glissando
             }
             {
                 e'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 f'8
-                \glissando %! abjad.glissando(7)
+                \glissando
             }
             {
                 g'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 a'8
                 ]
             }
@@ -199,16 +199,16 @@ def test_mutate_extract_04():
         {
             c'8
             [
-            \glissando %! abjad.glissando(7)
+            \glissando
             d'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             e'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             f'8
-            \glissando %! abjad.glissando(7)
+            \glissando
             {
                 g'8
-                \glissando %! abjad.glissando(7)
+                \glissando
                 a'8
                 ]
             }

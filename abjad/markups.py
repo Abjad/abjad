@@ -102,7 +102,7 @@ class Markup:
         >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {
@@ -130,7 +130,7 @@ class Markup:
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(staff, tags=True)
         >>> print(string)
         \new Staff
         {

@@ -4,6 +4,23 @@ from . import tag as _tag
 from .new import new
 
 
+def remove_tags(string) -> str:
+    """
+    Removes all tags from ``string``.
+    """
+    lines = []
+    for line in string.split("\n"):
+        if "%!" not in line:
+            lines.append(line)
+            continue
+        tag_start = line.find("%!")
+        line = line[:tag_start]
+        line = line.rstrip()
+        lines.append(line)
+    string = "\n".join(lines)
+    return string
+
+
 class LilyPondFormatManager:
     """
     Manages LilyPond formatting logic.
