@@ -1032,51 +1032,33 @@ class LilyPondFile:
         ...     "external-settings-file-1.ily",
         ...     "external-settings-file-2.ily",
         ... ]
-        >>> lilypond_file = abjad.LilyPondFile.new(
-        ...     music=staff,
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     items=[staff],
         ...     default_paper_size=("a5", "portrait"),
         ...     comments=comments,
         ...     includes=includes,
         ...     global_staff_size=16,
         ... )
 
-        >>> lilypond_file.header_block.composer = abjad.Markup("Josquin")
-        >>> lilypond_file.header_block.title = abjad.Markup("Missa sexti tonus")
-        >>> lilypond_file.layout_block.indent = 0
-        >>> lilypond_file.layout_block.left_margin = 15
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ::
 
-            >>> print(abjad.lilypond(lilypond_file)) # doctest: +SKIP
-            % 2004-01-14 17:29
-
+            >>> print(abjad.lilypond(lilypond_file))
             % File construct as an example.
             % Parts shown here for positioning.
-
-            \version "2.19.0"
-            \language "english"
-
-            \include "external-settings-file-1.ily"
-            \include "external-settings-file-2.ily"
-
-            #(set-default-paper-size "a5" 'portrait)
-            #(set-global-staff-size 16)
-
-            \header {
-                composer = \markup { Josquin }
-                title = \markup { Missa sexti toni }
-            }
-
-            \layout {
-                indent = 0
-                left-margin = 15
-            }
-
-            \paper {
-            }
-
-            \new Staff {
+            <BLANKLINE>
+            \version "2.23.0"   %! abjad.LilyPondFile._get_format_pieces()
+            \language "english" %! abjad.LilyPondFile._get_format_pieces()
+            <BLANKLINE>
+            \include "external-settings-file-1.ily" %! abjad.LilyPondFile._get_formatted_includes()
+            \include "external-settings-file-2.ily" %! abjad.LilyPondFile._get_formatted_includes()
+            <BLANKLINE>
+            #(set-default-paper-size "a5" 'portrait) %! abjad.LilyPondFile._get_formatted_scheme_settings()
+            #(set-global-staff-size 16)              %! abjad.LilyPondFile._get_formatted_scheme_settings()
+            <BLANKLINE>
+            \new Staff
+            {
                 c'8
                 d'8
                 e'8
@@ -1148,7 +1130,7 @@ class LilyPondFile:
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> lilypond_file = abjad.LilyPondFile.new(staff)
+            >>> lilypond_file = abjad.LilyPondFile(items=[staff])
 
             >>> staff in lilypond_file
             True
@@ -1175,15 +1157,6 @@ class LilyPondFile:
 
         ..  container:: example
 
-            Gets header block:
-
-            >>> lilypond_file = abjad.LilyPondFile.new()
-
-            >>> lilypond_file["header"]
-            <Block(name='header')>
-
-        ..  container:: example
-
             Searches score:
 
             >>> voice_1 = abjad.Voice("c''4 b' a' g'", name="Custom_Voice_1")
@@ -1198,7 +1171,9 @@ class LilyPondFile:
             ...     name="Custom_Staff",
             ... )
             >>> score = abjad.Score([staff], name="Custom_Score")
-            >>> lilypond_file = abjad.LilyPondFile.new(score)
+            >>> block = abjad.Block(name="score")
+            >>> block.items.append(score)
+            >>> lilypond_file = abjad.LilyPondFile(items=[block])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -1265,13 +1240,13 @@ class LilyPondFile:
                 ...     [include_container, staff],
                 ...     simultaneous=True,
                 ... )
-                >>> lilypond_file = abjad.LilyPondFile.new(
-                ...     container,
+                >>> block = abjad.Block(name="score")
+                >>> block.items.append(container)
+                >>> lilypond_file = abjad.LilyPondFile(
+                ...     items=[block],
                 ...     lilypond_language_token=False,
                 ...     lilypond_version_token=False,
                 ... )
-                >>> del(lilypond_file.items[:3])
-
                 >>> string = abjad.lilypond(lilypond_file)
                 >>> print(string)
                 \score { %! abjad.LilyPondFile._get_formatted_blocks()
@@ -1506,7 +1481,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile()
             >>> lilypond_file.comments
             []
 
@@ -1520,7 +1495,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new(date_time_token=True)
+            >>> lilypond_file = abjad.LilyPondFile(date_time_token=True)
             >>> lilypond_file.date_time_token
             DateTimeToken()
 
@@ -1534,7 +1509,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile()
             >>> lilypond_file.default_paper_size is None
             True
 
@@ -1549,7 +1524,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile()
             >>> lilypond_file.global_staff_size is None
             True
 
@@ -1563,7 +1538,8 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> block = abjad.Block(name="header")
+            >>> lilypond_file = abjad.LilyPondFile(items=[block])
             >>> lilypond_file.header_block
             <Block(name='header')>
 
@@ -1581,7 +1557,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile()
             >>> lilypond_file.includes
             []
 
@@ -1595,14 +1571,9 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
-            >>> for item in lilypond_file.items:
-            ...     item
-            ...
-            <Block(name='header')>
-            <Block(name='layout')>
-            <Block(name='paper')>
-            <Block(name='score')>
+            >>> lilypond_file = abjad.LilyPondFile()
+            >>> lilypond_file.items
+            []
 
         ..  container:: example
 
@@ -1643,7 +1614,8 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> block = abjad.Block(name="layout")
+            >>> lilypond_file = abjad.LilyPondFile(items=[block])
             >>> lilypond_file.layout_block
             <Block(name='layout')>
 
@@ -1661,7 +1633,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile()
             >>> lilypond_file.lilypond_language_token
             LilyPondLanguageToken()
 
@@ -1675,7 +1647,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile()
             >>> lilypond_file.lilypond_version_token # doctest: +SKIP
             LilyPondVersionToken('2.19.35')
 
@@ -1691,7 +1663,8 @@ class LilyPondFile:
 
             Gets paper block:
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> block = abjad.Block(name="paper")
+            >>> lilypond_file = abjad.LilyPondFile(items=[block])
             >>> lilypond_file.paper_block
             <Block(name='paper')>
 
@@ -1709,7 +1682,8 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> block = abjad.Block(name="score")
+            >>> lilypond_file = abjad.LilyPondFile(items=[block])
             >>> lilypond_file.score_block
             <Block(name='score')>
 
@@ -1727,7 +1701,7 @@ class LilyPondFile:
 
         ..  container:: example
 
-            >>> lilypond_file = abjad.LilyPondFile.new()
+            >>> lilypond_file = abjad.LilyPondFile()
             >>> lilypond_file.use_relative_includes is None
             True
 
@@ -1743,97 +1717,6 @@ class LilyPondFile:
         tag = _tag.Tag(self._tag)
         tag = tag.append(site)
         return tag
-
-    @classmethod
-    def new(
-        class_,
-        music=None,
-        date_time_token=None,
-        default_paper_size=None,
-        comments=None,
-        includes=None,
-        global_staff_size=None,
-        lilypond_language_token=None,
-        lilypond_version_token=None,
-        tag: _tag.Tag = None,
-        use_relative_includes=None,
-    ) -> "LilyPondFile":
-        r"""
-        Makes basic LilyPond file.
-
-        ..  container:: example
-
-            Makes basic LilyPond file:
-
-            >>> score = abjad.Score([abjad.Staff("c'8 d'8 e'8 f'8")])
-            >>> lilypond_file = abjad.LilyPondFile.new(score)
-            >>> lilypond_file.header_block.title = abjad.Markup("Missa sexti tonus")
-            >>> lilypond_file.header_block.composer = abjad.Markup("Josquin")
-            >>> lilypond_file.layout_block.indent = 0
-            >>> lilypond_file.paper_block.top_margin = 15
-            >>> lilypond_file.paper_block.left_margin = 15
-
-            ::
-
-                >>> string = abjad.lilypond(lilypond_file) # doctest: +SKIP
-                >>> print(string) # doctest: +SKIP
-                \header {
-                    composer = \markup { Josquin }
-                    title = \markup { Missa sexti tonus }
-                }
-
-                \layout {
-                    indent = 0
-                }
-
-                \paper {
-                    left-margin = 15
-                    top-margin = 15
-                }
-
-                \score {
-                    \new Score <<
-                        \new Staff {
-                            c'8
-                            d'8
-                            e'8
-                            f'8
-                        }
-                    >>
-                }
-
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        Wraps ``music`` in LilyPond ``\score`` block.
-
-        Adds LilyPond ``\header``, ``\layout``, ``\paper`` and ``\score`` blocks to
-        LilyPond file.
-        """
-        if isinstance(music, LilyPondFile):
-            return music
-        lilypond_file = class_(
-            date_time_token=date_time_token,
-            default_paper_size=default_paper_size,
-            comments=comments,
-            includes=includes,
-            items=[
-                Block(name="header"),
-                Block(name="layout"),
-                Block(name="paper"),
-                Block(name="score"),
-            ],
-            global_staff_size=global_staff_size,
-            lilypond_language_token=lilypond_language_token,
-            lilypond_version_token=lilypond_version_token,
-            tag=tag,
-            use_relative_includes=use_relative_includes,
-        )
-        assert lilypond_file.header_block is not None
-        lilypond_file.header_block.tagline = "##f"
-        if music is not None:
-            assert lilypond_file.score_block is not None
-            lilypond_file.score_block.items.append(music)
-        return lilypond_file
 
     @classmethod
     def rhythm(
@@ -2180,9 +2063,19 @@ class LilyPondFile:
         else:
             raise TypeError(f"must be list or dictionary: {selections!r}.")
         score = Score()
-        lilypond_file = LilyPondFile.new(
-            score, includes=["default.ily", "rhythm-maker-docs.ily"]
+        lilypond_file = class_(
+            includes=["default.ily", "rhythm-maker-docs.ily"],
+            items=[
+                Block(name="header"),
+                Block(name="layout"),
+                Block(name="paper"),
+                Block(name="score"),
+            ],
         )
+        assert lilypond_file.header_block is not None
+        lilypond_file.header_block.tagline = "##f"
+        assert lilypond_file.score_block is not None
+        lilypond_file.score_block.items.append(score)
         if pitched_staff is None:
             if isinstance(selections, (list, Selection)):
                 selections_ = selections
