@@ -3559,8 +3559,8 @@ def report_modifications(argument) -> str:
         Reports container modifications:
 
         >>> container = abjad.Container("c'8 d'8 e'8 f'8")
-        >>> abjad.override(container).note_head.color = 'red'
-        >>> abjad.override(container).note_head.style = 'harmonic'
+        >>> abjad.override(container).note_head.color = "#red"
+        >>> abjad.override(container).note_head.style = "harmonic"
         >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
@@ -3594,8 +3594,8 @@ def report_modifications(argument) -> str:
 
         >>> container = abjad.Container("c'8 d'8 e'8 f'8")
         >>> abjad.attach(abjad.Clef('alto'), container[0])
-        >>> abjad.override(container[0]).note_head.color = 'red'
-        >>> abjad.override(container[0]).stem.color = 'red'
+        >>> abjad.override(container[0]).note_head.color = "#red"
+        >>> abjad.override(container[0]).stem.color = "#red"
         >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::

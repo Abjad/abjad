@@ -267,7 +267,7 @@ class StartTextSpan:
             ...     right_text=abjad.Markup(r"\upright tasto"),
             ...     style="dashed-line-with-arrow",
             ...     )
-            >>> abjad.tweak(start_text_span).color = "blue"
+            >>> abjad.tweak(start_text_span).color = "#blue"
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -279,7 +279,7 @@ class StartTextSpan:
             ...     right_text=abjad.Markup(r"\upright B"),
             ...     style="dashed-line-with-arrow",
             ...     )
-            >>> abjad.tweak(start_text_span).color = "red"
+            >>> abjad.tweak(start_text_span).color = "#red"
             >>> abjad.tweak(start_text_span).staff_padding = 6
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan(command=r"\stopTextSpanOne")
@@ -696,7 +696,7 @@ class StartTextSpan:
             >>> start_text_span = abjad.StartTextSpan(
             ...     style='dashed-line-with-arrow',
             ...     )
-            >>> abjad.tweak(start_text_span).color = 'blue'
+            >>> abjad.tweak(start_text_span).color = "#blue"
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> string = abjad.storage(start_text_span)
             >>> print(string)
@@ -704,7 +704,7 @@ class StartTextSpan:
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
                 style='dashed-line-with-arrow',
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)),
                 )
 
             >>> start_text_span_2 = copy.copy(start_text_span)
@@ -714,7 +714,7 @@ class StartTextSpan:
                 command='\\startTextSpan',
                 concat_hspace_left=0.5,
                 style='dashed-line-with-arrow',
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue'), ('staff_padding', 2.5)),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)),
                 )
 
         """

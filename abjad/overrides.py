@@ -5,7 +5,6 @@ from . import enums
 from . import tag as _tag
 from .bundle import LilyPondFormatBundle
 from .fsv import format_scheme_value
-from .lyconst import colors
 from .lyenv import contexts, grob_interfaces
 from .storage import FormatSpecification, StorageFormatManager
 from .string import String
@@ -418,7 +417,7 @@ class LilyPondLiteral:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-            >>> abjad.tweak(literal).color = "blue"
+            >>> abjad.tweak(literal).color = "#blue"
             >>> abjad.tweak(literal).dynamic_line_spanner.staff_padding = 5
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -448,7 +447,7 @@ class LilyPondLiteral:
             ...     "after",
             ...     directed=False,
             ...     )
-            >>> abjad.tweak(literal).color = "blue"
+            >>> abjad.tweak(literal).color = "#blue"
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -497,7 +496,7 @@ class LilyPondLiteral:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-            >>> abjad.tweak(literal).color = "blue"
+            >>> abjad.tweak(literal).color = "#blue"
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -574,15 +573,15 @@ class Interface:
         ..  container:: example
 
             >>> note_1 = abjad.Note("c'4")
-            >>> abjad.override(note_1).note_head.color = "red"
-            >>> abjad.override(note_1).stem.color = "red"
+            >>> abjad.override(note_1).note_head.color = "#red"
+            >>> abjad.override(note_1).stem.color = "#red"
 
             >>> note_2 = abjad.Note("c'4")
-            >>> abjad.override(note_2).note_head.color = "red"
-            >>> abjad.override(note_2).stem.color = "red"
+            >>> abjad.override(note_2).note_head.color = "#red"
+            >>> abjad.override(note_2).stem.color = "#red"
 
             >>> note_3 = abjad.Note("c'4")
-            >>> abjad.override(note_3).note_head.color = "red"
+            >>> abjad.override(note_3).note_head.color = "#red"
 
             >>> override_1 = abjad.override(note_1)
             >>> override_2 = abjad.override(note_2)
@@ -704,7 +703,7 @@ class LilyPondOverride:
         once: bool = None,
         is_revert: bool = None,
         property_path: typing.Union[str, typing.Iterable[str]] = "color",
-        value: typing.Any = "red",
+        value: typing.Any = "#red",
     ) -> None:
         if lilypond_type is not None:
             lilypond_type = str(lilypond_type)
@@ -1355,7 +1354,7 @@ def override(argument):
         Overrides staff symbol color:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff).staff_symbol.color = "red"
+        >>> abjad.override(staff).staff_symbol.color = "#red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1379,7 +1378,7 @@ def override(argument):
         Specify grob context like this:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff[0]).staff.staff_symbol.color = "blue"
+        >>> abjad.override(staff[0]).staff.staff_symbol.color = "#blue"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1611,17 +1610,17 @@ class TweakInterface(Interface):
 
         Set an attribute like this:
 
-        >>> abjad.tweak(markup).color = "red"
+        >>> abjad.tweak(markup).color = "#red"
 
         The state of the tweak manager has changed:
 
         >>> abjad.tweak(markup)
-        TweakInterface(('_literal', None), ('color', 'red'))
+        TweakInterface(('_literal', None), ('color', '#red'))
 
         And the value of the attribute just set is available like this:
 
         >>> abjad.tweak(markup).color
-        'red'
+        '#red'
 
         Trying to get an attribute that has not yet been set raises an
         attribute error:
@@ -1658,7 +1657,7 @@ class TweakInterface(Interface):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
-            >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "red"
+            >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1683,7 +1682,7 @@ class TweakInterface(Interface):
             >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
             >>> abjad.tweak(
             ...     markup, deactivate=True, tag=abjad.Tag("+PARTS")
-            ... ).color = "red"
+            ... ).color = "#red"
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1706,7 +1705,7 @@ class TweakInterface(Interface):
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
-            >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "red"
+            >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
             >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1730,20 +1729,20 @@ class TweakInterface(Interface):
             Preloaded tweak managers can be made like this:
 
             >>> tweaks = abjad.TweakInterface()
-            >>> tweaks.color = "red"
+            >>> tweaks.color = "#red"
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            TweakInterface(('Y_offset', 6), ('_literal', None), ('color', 'red'))
+            TweakInterface(('Y_offset', 6), ('_literal', None), ('color', '#red'))
 
             Use the ``abjad.tweak()`` factory function for a shortcut:
 
-            >>> tweaks = abjad.tweak("red").color
+            >>> tweaks = abjad.tweak("#red").color
             >>> tweaks
-            TweakInterface(('_literal', None), ('color', 'red'))
+            TweakInterface(('_literal', None), ('color', '#red'))
 
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            TweakInterface(('Y_offset', 6), ('_literal', None), ('color', 'red'))
+            TweakInterface(('Y_offset', 6), ('_literal', None), ('color', '#red'))
 
         ..  container:: example
 
@@ -1799,12 +1798,8 @@ class TweakInterface(Interface):
             >>> abjad.tweak(string).color
             TweakInterface(('_literal', None), ('color', "#(x11-color 'blue)"))
 
-            Raises exception on unknown color:
-
-            >>> abjad.tweak("SavannahGreen").color
-            Traceback (most recent call last):
-                ...
-            Exception: 'SavannahGreen' is not a LilyPond color.
+            >>> abjad.tweak("#(x11-color 'SavannahGreen)").color
+            TweakInterface(('_literal', None), ('color', "#(x11-color 'SavannahGreen)"))
 
         """
         if name == "color":
@@ -1813,8 +1808,8 @@ class TweakInterface(Interface):
                 color = color.strip("'").strip(")")
             else:
                 color = value
-            if color not in colors:
-                raise Exception(f"{repr(value)} is not a LilyPond color.")
+            # if color not in colors:
+            #     raise Exception(f"{repr(value)} is not a LilyPond color.")
         tag = getattr(self, "_currently_tagging", None)
         deactivate = getattr(self, "_currently_deactivated", None)
         if tag is not None:
@@ -1965,7 +1960,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup("Allegro assai", direction=abjad.Up)
-        >>> abjad.tweak(markup).color = "red"
+        >>> abjad.tweak(markup).color = "#red"
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1988,7 +1983,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> import copy
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup_1 = abjad.Markup("Allegro assai", direction=abjad.Up)
-        >>> abjad.tweak(markup_1).color = "red"
+        >>> abjad.tweak(markup_1).color = "#red"
         >>> markup_2 = copy.copy(markup_1)
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2011,7 +2006,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r'\italic "Allegro assai"', direction=abjad.Up)
-        >>> abjad.tweak(markup).color = "red"
+        >>> abjad.tweak(markup).color = "#red"
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2036,10 +2031,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup_1 = abjad.Markup("Allegro assai ...", direction=abjad.Up)
-        >>> abjad.tweak(markup_1).color = "red"
+        >>> abjad.tweak(markup_1).color = "#red"
         >>> abjad.attach(markup_1, staff[0])
         >>> markup_2 = abjad.Markup("... ma non troppo", direction=abjad.Down)
-        >>> abjad.tweak(markup_2).color = "blue"
+        >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2065,10 +2060,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup_1 = abjad.Markup("Allegro assai ...", direction=abjad.Up)
-        >>> abjad.tweak(markup_1).color = "red"
+        >>> abjad.tweak(markup_1).color = "#red"
         >>> abjad.attach(markup_1, staff[0])
         >>> markup_2 = abjad.Markup("... ma non troppo", direction=abjad.Up)
-        >>> abjad.tweak(markup_2).color = "blue"
+        >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2095,7 +2090,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks note-head:
 
         >>> staff = abjad.Staff("c'4 cs' d' ds'")
-        >>> abjad.tweak(staff[1].note_head).color = "red"
+        >>> abjad.tweak(staff[1].note_head).color = "#red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2114,7 +2109,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks grob aggregated to note-head:
 
         >>> staff = abjad.Staff("c'4 cs' d' ds'")
-        >>> abjad.tweak(staff[1].note_head).accidental.color = "red"
+        >>> abjad.tweak(staff[1].note_head).accidental.color = "#red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2136,7 +2131,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> dynamic = abjad.Dynamic("f")
-        >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "red"
+        >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "#red"
         >>> abjad.attach(dynamic, staff[0])
 
         >>> string = abjad.lilypond(staff, tags=True)
@@ -2157,8 +2152,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> dynamic = abjad.Dynamic("f")
-        >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "red"
-        >>> abjad.tweak(dynamic, tag=abjad.Tag("BLUE")).color = "blue"
+        >>> abjad.tweak(dynamic, tag=abjad.Tag("RED")).color = "#red"
+        >>> abjad.tweak(dynamic, tag=abjad.Tag("BLUE")).color = "#blue"
         >>> abjad.attach(dynamic, staff[0])
 
         >>> string = abjad.lilypond(staff, tags=True)
@@ -2180,14 +2175,14 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Returns LilyPond tweak manager:
 
         >>> abjad.tweak(markup_1)
-        TweakInterface(('_literal', None), ('color', 'red'))
+        TweakInterface(('_literal', None), ('color', '#red'))
 
     ..  container:: example
 
         Tweak expressions work like this:
 
-        >>> abjad.tweak("red").color
-        TweakInterface(('_literal', None), ('color', 'red'))
+        >>> abjad.tweak("#red").color
+        TweakInterface(('_literal', None), ('color', '#red'))
 
         >>> abjad.tweak(6).Y_offset
         TweakInterface(('Y_offset', 6), ('_literal', None))

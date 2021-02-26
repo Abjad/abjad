@@ -237,7 +237,7 @@ class ColorFingering:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> fingering = abjad.ColorFingering(1)
-            >>> abjad.tweak(fingering).color = 'blue'
+            >>> abjad.tweak(fingering).color = "#blue"
             >>> abjad.attach(fingering, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

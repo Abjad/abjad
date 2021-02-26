@@ -105,7 +105,7 @@ class LaissezVibrer:
 
             >>> note = abjad.Note("c'4")
             >>> lv = abjad.LaissezVibrer()
-            >>> abjad.tweak(lv).color = 'blue'
+            >>> abjad.tweak(lv).color = "#blue"
             >>> abjad.attach(lv, note)
             >>> abjad.show(note) # doctest: +SKIP
 

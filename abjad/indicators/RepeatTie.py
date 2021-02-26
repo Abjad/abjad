@@ -15,7 +15,7 @@ class RepeatTie:
 
         >>> staff = abjad.Staff("c'4 c' d' d'")
         >>> repeat_tie = abjad.RepeatTie()
-        >>> abjad.tweak(repeat_tie).color = 'blue'
+        >>> abjad.tweak(repeat_tie).color = "#blue"
         >>> abjad.attach(repeat_tie, staff[1])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -143,10 +143,10 @@ class RepeatTie:
 
             >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
             >>> tie = abjad.RepeatTie()
-            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.tweak(tie).color = "#blue"
             >>> abjad.attach(tie, staff[1])
             >>> tie = abjad.RepeatTie()
-            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.tweak(tie).color = "#blue"
             >>> abjad.attach(tie, staff[3])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -170,10 +170,10 @@ class RepeatTie:
 
             >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
             >>> tie = abjad.RepeatTie(direction=abjad.Up)
-            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.tweak(tie).color = "#blue"
             >>> abjad.attach(tie, staff[1])
             >>> tie = abjad.RepeatTie(direction=abjad.Up)
-            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.tweak(tie).color = "#blue"
             >>> abjad.attach(tie, staff[3])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -199,10 +199,10 @@ class RepeatTie:
 
             >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
             >>> tie = abjad.RepeatTie(direction=abjad.Down)
-            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.tweak(tie).color = "#blue"
             >>> abjad.attach(tie, staff[1])
             >>> tie = abjad.RepeatTie(direction=abjad.Down)
-            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.tweak(tie).color = "#blue"
             >>> abjad.attach(tie, staff[3])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -250,7 +250,7 @@ class RepeatTie:
 
             >>> staff = abjad.Staff("c'4 c' d' d'")
             >>> repeat_tie = abjad.RepeatTie()
-            >>> abjad.tweak(repeat_tie).color = 'blue'
+            >>> abjad.tweak(repeat_tie).color = "#blue"
             >>> abjad.attach(repeat_tie, staff[1])
             >>> abjad.show(staff) # doctest: +SKIP
 

@@ -13,20 +13,20 @@ class StartPianoPedal:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal).color = 'blue'
+        >>> abjad.tweak(start_piano_pedal).color = "#blue"
         >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.Center
         >>> abjad.attach(start_piano_pedal, staff[0])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[1])
 
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal).color = 'red'
+        >>> abjad.tweak(start_piano_pedal).color = "#red"
         >>> abjad.attach(start_piano_pedal, staff[1])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[2])
 
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal).color = 'green'
+        >>> abjad.tweak(start_piano_pedal).color = "#green"
         >>> abjad.attach(start_piano_pedal, staff[2])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[3])
@@ -204,18 +204,18 @@ class StartPianoPedal:
 
             >>> import copy
             >>> start_piano_pedal = abjad.StartPianoPedal()
-            >>> abjad.tweak(start_piano_pedal).color = 'blue'
+            >>> abjad.tweak(start_piano_pedal).color = "#blue"
             >>> string = abjad.storage(start_piano_pedal)
             >>> print(string)
             abjad.StartPianoPedal(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
             >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
             >>> string = abjad.storage(start_piano_pedal_2)
             >>> print(string)
             abjad.StartPianoPedal(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
         """

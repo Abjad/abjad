@@ -669,7 +669,7 @@ class Markup:
             REGRESSSION #806. Markup preserves tweaks when ``direction=None``:
 
             >>> markup = abjad.Markup("Allegro")
-            >>> abjad.tweak(markup).color = "red"
+            >>> abjad.tweak(markup).color = "#red"
             >>> note = abjad.Note("c'4")
             >>> abjad.attach(markup, note)
             >>> abjad.show(note) # doctest: +SKIP
@@ -771,7 +771,7 @@ class Markup:
         ..  container:: example
 
             >>> markup = abjad.Markup(r'\bold "Allegro assai"', direction=abjad.Up)
-            >>> abjad.tweak(markup).color = "blue"
+            >>> abjad.tweak(markup).color = "#blue"
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(markup, staff[0])
             >>> string = abjad.lilypond(staff)

@@ -86,7 +86,7 @@ class StopBeam:
 
             >>> staff = abjad.Staff("c'8 d' e' r")
             >>> start_beam = abjad.StartBeam()
-            >>> abjad.tweak(start_beam).color = 'blue'
+            >>> abjad.tweak(start_beam).color = "#blue"
             >>> abjad.attach(start_beam, staff[0])
             >>> stop_beam = abjad.StopBeam()
             >>> abjad.attach(stop_beam, staff[-2])
@@ -111,7 +111,7 @@ class StopBeam:
 
             >>> staff = abjad.Staff("c'8 d' e' r")
             >>> command = abjad.StartBeam()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopBeam(leak=True)
             >>> abjad.attach(command, staff[-2])

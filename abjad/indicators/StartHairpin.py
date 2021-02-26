@@ -595,7 +595,7 @@ class StartHairpin:
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
             >>> start_hairpin = abjad.StartHairpin('<')
-            >>> abjad.tweak(start_hairpin).color = 'blue'
+            >>> abjad.tweak(start_hairpin).color = "#blue"
             >>> abjad.attach(start_hairpin, staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
             >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5

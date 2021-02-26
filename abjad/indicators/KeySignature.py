@@ -289,7 +289,7 @@ class KeySignature:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> key = abjad.KeySignature('e', 'minor')
-            >>> abjad.tweak(key).color = 'blue'
+            >>> abjad.tweak(key).color = "#blue"
             >>> abjad.attach(key, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

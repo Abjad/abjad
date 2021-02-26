@@ -966,7 +966,7 @@ class Dynamic:
 
             >>> staff = abjad.Staff("r4 d' e' f'")
             >>> dynamic = abjad.Dynamic('f', leak=True)
-            >>> abjad.tweak(dynamic).color = 'blue'
+            >>> abjad.tweak(dynamic).color = "#blue"
             >>> abjad.attach(dynamic, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1410,7 +1410,7 @@ class Dynamic:
 
             >>> note = abjad.Note("c'4")
             >>> dynamic = abjad.Dynamic('f')
-            >>> abjad.tweak(dynamic).color = 'blue'
+            >>> abjad.tweak(dynamic).color = "#blue"
             >>> abjad.attach(dynamic, note)
             >>> abjad.show(note) # doctest: +SKIP
 

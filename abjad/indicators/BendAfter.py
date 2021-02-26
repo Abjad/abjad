@@ -134,7 +134,7 @@ class BendAfter:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> bend_after = abjad.BendAfter(-4)
-            >>> abjad.tweak(bend_after).color = 'blue'
+            >>> abjad.tweak(bend_after).color = "#blue"
             >>> abjad.attach(bend_after, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

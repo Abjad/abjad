@@ -831,10 +831,10 @@ class Parentage(collections.abc.Sequence):
             ... )
             >>> outer_red_voice.append(container)
             >>> outer_red_voice.extend("d''8")
-            >>> abjad.override(outer_red_voice).note_head.color = "red"
+            >>> abjad.override(outer_red_voice).note_head.color = "#red"
             >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
             >>> abjad.attach(literal, outer_red_voice[0])
-            >>> abjad.override(inner_blue_voice).note_head.color = "blue"
+            >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
             >>> literal = abjad.LilyPondLiteral(r"\voiceTwo")
             >>> abjad.attach(literal, inner_blue_voice[0])
             >>> dynamic = abjad.Dynamic("f")
@@ -1002,10 +1002,10 @@ class Parentage(collections.abc.Sequence):
             ... )
             >>> outer_red_voice.append(container)
             >>> outer_red_voice.extend("d''8")
-            >>> abjad.override(outer_red_voice).note_head.color = "red"
+            >>> abjad.override(outer_red_voice).note_head.color = "#red"
             >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
             >>> abjad.attach(literal, outer_red_voice[0])
-            >>> abjad.override(inner_blue_voice).note_head.color = "blue"
+            >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
             >>> literal = abjad.LilyPondLiteral(r"\voiceTwo")
             >>> abjad.attach(literal, inner_blue_voice[0])
             >>> dynamic = abjad.Dynamic("f")

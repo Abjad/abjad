@@ -276,7 +276,7 @@ class Articulation:
 
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation('marcato')
-            >>> abjad.tweak(articulation).color = 'blue'
+            >>> abjad.tweak(articulation).color = "#blue"
             >>> abjad.attach(articulation, note)
             >>> abjad.show(note) # doctest: +SKIP
 

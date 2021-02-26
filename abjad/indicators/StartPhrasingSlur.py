@@ -14,7 +14,7 @@ class StartPhrasingSlur:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(start_phrasing_slur).color = 'blue'
+        >>> abjad.tweak(start_phrasing_slur).color = "#blue"
         >>> abjad.attach(start_phrasing_slur, staff[0])
         >>> stop_phrasing_slur = abjad.StopPhrasingSlur()
         >>> abjad.attach(stop_phrasing_slur, staff[-1])
@@ -184,18 +184,18 @@ class StartPhrasingSlur:
 
             >>> import copy
             >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-            >>> abjad.tweak(start_phrasing_slur).color = 'blue'
+            >>> abjad.tweak(start_phrasing_slur).color = "#blue"
             >>> string = abjad.storage(start_phrasing_slur)
             >>> print(string)
             abjad.StartPhrasingSlur(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
             >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
             >>> string = abjad.storage(start_phrasing_slur_2)
             >>> print(string)
             abjad.StartPhrasingSlur(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
         """

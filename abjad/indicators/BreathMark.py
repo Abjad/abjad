@@ -158,7 +158,7 @@ class BreathMark:
 
             >>> note = abjad.Note("c'4")
             >>> breath = abjad.BreathMark()
-            >>> abjad.tweak(breath).color = 'blue'
+            >>> abjad.tweak(breath).color = "#blue"
             >>> abjad.attach(breath, note)
             >>> abjad.show(note) # doctest: +SKIP
 

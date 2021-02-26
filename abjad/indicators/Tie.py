@@ -15,7 +15,7 @@ class Tie:
 
         >>> staff = abjad.Staff("c'4 c' d' d'")
         >>> tie = abjad.Tie()
-        >>> abjad.tweak(tie).color = 'blue'
+        >>> abjad.tweak(tie).color = "#blue"
         >>> abjad.attach(tie, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -230,7 +230,7 @@ class Tie:
 
             >>> staff = abjad.Staff("c'4 c' d' d'")
             >>> tie = abjad.Tie()
-            >>> abjad.tweak(tie).color = 'blue'
+            >>> abjad.tweak(tie).color = "#blue"
             >>> abjad.attach(tie, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

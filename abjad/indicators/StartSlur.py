@@ -15,7 +15,7 @@ class StartSlur:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_slur = abjad.StartSlur()
-        >>> abjad.tweak(start_slur).color = 'blue'
+        >>> abjad.tweak(start_slur).color = "#blue"
         >>> abjad.attach(start_slur, staff[0])
         >>> stop_slur = abjad.StopSlur()
         >>> abjad.attach(stop_slur, staff[-1])
@@ -276,18 +276,18 @@ class StartSlur:
 
             >>> import copy
             >>> start_slur = abjad.StartSlur()
-            >>> abjad.tweak(start_slur).color = 'blue'
+            >>> abjad.tweak(start_slur).color = "#blue"
             >>> string = abjad.storage(start_slur)
             >>> print(string)
             abjad.StartSlur(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
             >>> start_slur_2 = copy.copy(start_slur)
             >>> string = abjad.storage(start_slur_2)
             >>> print(string)
             abjad.StartSlur(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
         """

@@ -14,7 +14,7 @@ class StartBeam:
 
         >>> staff = abjad.Staff("c'8 d' e' f'")
         >>> start_beam = abjad.StartBeam()
-        >>> abjad.tweak(start_beam).color = 'blue'
+        >>> abjad.tweak(start_beam).color = "#blue"
         >>> abjad.attach(start_beam, staff[0])
         >>> stop_beam = abjad.StopBeam()
         >>> abjad.attach(stop_beam, staff[-1])
@@ -180,18 +180,18 @@ class StartBeam:
 
             >>> import copy
             >>> start_beam = abjad.StartBeam()
-            >>> abjad.tweak(start_beam).color = 'blue'
+            >>> abjad.tweak(start_beam).color = "#blue"
             >>> string = abjad.storage(start_beam)
             >>> print(string)
             abjad.StartBeam(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
             >>> start_beam_2 = copy.copy(start_beam)
             >>> string = abjad.storage(start_beam_2)
             >>> print(string)
             abjad.StartBeam(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
         """
