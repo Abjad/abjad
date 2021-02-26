@@ -37,9 +37,9 @@ def test_Rest___copy___03():
     """
 
     rest_1 = abjad.Rest((1, 4))
-    abjad.override(rest_1).staff.note_head.color = "#red"
-    abjad.override(rest_1).accidental.color = "#red"
-    abjad.setting(rest_1).tuplet_full_length = True
+    abjad.override(rest_1).Staff.NoteHead.color = "#red"
+    abjad.override(rest_1).Accidental.color = "#red"
+    abjad.setting(rest_1).tupletFullLength = True
     rest_2 = copy.copy(rest_1)
 
     assert isinstance(rest_1, abjad.Rest)

@@ -49,7 +49,7 @@ class OnBeatGraceContainer(Container):
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 d'
                                 g'
@@ -322,7 +322,7 @@ def on_beat_grace_container(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 d'
                                 g'
@@ -382,7 +382,7 @@ def on_beat_grace_container(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 d'
                                 g'
@@ -440,7 +440,7 @@ def on_beat_grace_container(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 d'
                                 g'
@@ -501,7 +501,7 @@ def on_beat_grace_container(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 d'
                                 g'
@@ -569,7 +569,7 @@ def on_beat_grace_container(
                             \voiceTwo
                             <
                                 g
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 d'
                             >8 * 4/15
@@ -633,7 +633,7 @@ def on_beat_grace_container(
                             \voiceTwo
                             <
                                 g
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 f'
                             >8 * 4/15
@@ -696,7 +696,7 @@ def on_beat_grace_container(
                             <
                                 e
                                 g
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 d'
                             >8 * 4/15
@@ -761,7 +761,7 @@ def on_beat_grace_container(
                             <
                                 e
                                 g
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 f'
                             >8 * 4/15

@@ -122,7 +122,7 @@ class StopTextSpan:
                         \upright
                             tasto
                         }
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4
@@ -158,7 +158,7 @@ class StopTextSpan:
                         \upright
                             tasto
                         }
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4

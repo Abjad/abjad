@@ -62,7 +62,7 @@ class Dynamic:
         >>> abjad.attach(abjad.Dynamic('f'), voice_1[0], context='Voice')
         >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
         >>> abjad.attach(literal, voice_1)
-        >>> abjad.override(voice_1).dynamic_line_spanner.direction = abjad.Up
+        >>> abjad.override(voice_1).DynamicLineSpanner.direction = abjad.Up
         >>> voice_2 = abjad.Voice("c'2")
         >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
         >>> abjad.attach(literal, voice_2)
@@ -638,7 +638,7 @@ class Dynamic:
             >>> abjad.attach(abjad.Dynamic('"mp"'), voice[2])
             >>> abjad.attach(abjad.Dynamic('"mf"'), voice[4])
             >>> abjad.attach(abjad.Dynamic('"ff"'), voice[6])
-            >>> abjad.override(voice).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
             >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -648,7 +648,7 @@ class Dynamic:
                 \new Voice
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4
+                    \override DynamicLineSpanner.staff-padding = 4
                 }
                 {
                     c'4
@@ -716,7 +716,7 @@ class Dynamic:
             >>> abjad.attach(abjad.Dynamic('"sfz"'), voice[2])
             >>> abjad.attach(abjad.Dynamic('"rf"'), voice[4])
             >>> abjad.attach(abjad.Dynamic('"rfz"'), voice[6])
-            >>> abjad.override(voice).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
             >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -726,7 +726,7 @@ class Dynamic:
                 \new Voice
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4
+                    \override DynamicLineSpanner.staff-padding = 4
                 }
                 {
                     c'4
@@ -848,7 +848,7 @@ class Dynamic:
             >>> abjad.attach(start_dynamic, staff[0])
             >>> abjad.attach(start_hairpin, staff[0])
             >>> abjad.attach(stop_dynamic, staff[-2])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -858,7 +858,7 @@ class Dynamic:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4
+                    \override DynamicLineSpanner.staff-padding = 4
                 }
                 {
                     c'4
@@ -879,7 +879,7 @@ class Dynamic:
             >>> abjad.attach(start_dynamic, staff[0])
             >>> abjad.attach(start_hairpin, staff[0])
             >>> abjad.attach(stop_dynamic, staff[-2])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -889,7 +889,7 @@ class Dynamic:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4
+                    \override DynamicLineSpanner.staff-padding = 4
                 }
                 {
                     c'4
@@ -897,7 +897,8 @@ class Dynamic:
                     \>
                     d'4
                     e'4
-                    <> \pp
+                    <>
+                    \pp
                     r4
                 }
 
@@ -912,7 +913,7 @@ class Dynamic:
             >>> abjad.attach(start_dynamic, staff[0])
             >>> abjad.attach(start_hairpin, staff[0])
             >>> abjad.attach(stop_dynamic, staff[-2])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -922,7 +923,7 @@ class Dynamic:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4
+                    \override DynamicLineSpanner.staff-padding = 4
                 }
                 {
                     c'8
@@ -932,7 +933,8 @@ class Dynamic:
                     d'8
                     e'8
                     ]
-                    <> \pp
+                    <>
+                    \pp
                     f'8
                 }
 
@@ -1025,7 +1027,7 @@ class Dynamic:
             >>> abjad.attach(abjad.Dynamic('p'), voice[0])
             >>> abjad.attach(abjad.Dynamic('niente'), voice[1])
             >>> abjad.attach(abjad.Dynamic('p'), voice[3])
-            >>> abjad.override(voice).dynamic_line_spanner.staff_padding = 4
+            >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
             >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -1035,7 +1037,7 @@ class Dynamic:
                 \new Voice
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4
+                    \override DynamicLineSpanner.staff-padding = 4
                 }
                 {
                     c'4
@@ -1075,9 +1077,9 @@ class Dynamic:
             >>> voice = abjad.Voice("c'4 d' e' f'")
             >>> dynamic = abjad.Dynamic('appena udibile', name_is_textual=True)
             >>> abjad.attach(dynamic, voice[0])
-            >>> abjad.override(voice).dynamic_line_spanner.staff_padding = 4
-            >>> abjad.override(voice).dynamic_text.X_extent = (0, 0)
-            >>> abjad.override(voice).dynamic_text.self_alignment_X = abjad.Left
+            >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
+            >>> abjad.override(voice).DynamicText.X_extent = "#'(0 . 0)"
+            >>> abjad.override(voice).DynamicText.self_alignment_X = abjad.Left
             >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
@@ -1087,7 +1089,7 @@ class Dynamic:
                 \new Voice
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4
+                    \override DynamicLineSpanner.staff-padding = 4
                     \override DynamicText.X-extent = #'(0 . 0)
                     \override DynamicText.self-alignment-X = #left
                 }

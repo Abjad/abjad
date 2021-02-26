@@ -307,18 +307,18 @@ def bow_contact_spanner(
         >>> abjad.attach(abjad.BowContactPoint((0, 1)), leaves[4])
 
         >>> abjad.attach(abjad.Clef("percussion"), leaves[0])
-        >>> abjad.override(staff).bar_line.transparent = True
-        >>> abjad.override(staff).dots.staff_position = -8
-        >>> abjad.override(staff).flag.Y_offset = -8.5
-        >>> abjad.override(staff).glissando.bound_details__left__padding = 1.5
-        >>> abjad.override(staff).glissando.bound_details__right__padding = 1.5
-        >>> abjad.override(staff).glissando.thickness = 2
-        >>> abjad.override(staff).script.staff_padding = 3
-        >>> abjad.override(staff).staff_symbol.transparent = True
-        >>> abjad.override(staff).stem.direction = abjad.Down
-        >>> abjad.override(staff).stem.length = 8
-        >>> abjad.override(staff).stem.stem_begin_position = -9
-        >>> abjad.override(staff).time_signature.stencil = False
+        >>> abjad.override(staff).BarLine.transparent = True
+        >>> abjad.override(staff).Dots.staff_position = -8
+        >>> abjad.override(staff).Flag.Y_offset = -8.5
+        >>> abjad.override(staff).Glissando.bound_details__left__padding = 1.5
+        >>> abjad.override(staff).Glissando.bound_details__right__padding = 1.5
+        >>> abjad.override(staff).Glissando.thickness = 2
+        >>> abjad.override(staff).Script.staff_padding = 3
+        >>> abjad.override(staff).StaffSymbol.transparent = True
+        >>> abjad.override(staff).Stem.direction = abjad.Down
+        >>> abjad.override(staff).Stem.length = 8
+        >>> abjad.override(staff).Stem.stem_begin_position = -9
+        >>> abjad.override(staff).TimeSignature.stencil = False
 
         >>> abjad.bow_contact_spanner(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -331,21 +331,21 @@ def bow_contact_spanner(
             \with
             {
                 \override BarLine.transparent = ##t
-                \override Dots.staff-position = #-8
-                \override Flag.Y-offset = #-8.5
-                \override Glissando.bound-details.left.padding = #1.5
-                \override Glissando.bound-details.right.padding = #1.5
-                \override Glissando.thickness = #2
-                \override Script.staff-padding = #3
+                \override Dots.staff-position = -8
+                \override Flag.Y-offset = -8.5
+                \override Glissando.bound-details.left.padding = 1.5
+                \override Glissando.bound-details.right.padding = 1.5
+                \override Glissando.thickness = 2
+                \override Script.staff-padding = 3
                 \override StaffSymbol.transparent = ##t
                 \override Stem.direction = #down
-                \override Stem.length = #8
-                \override Stem.stem-begin-position = #-9
+                \override Stem.length = 8
+                \override Stem.stem-begin-position = -9
                 \override TimeSignature.stencil = ##f
             }
             {
                 \clef "percussion"
-                \tweak Y-offset #-1.0
+                \tweak Y-offset -1.0
                 \tweak stencil #ly:text-interface::print
                 \tweak text \markup {
                     \center-align
@@ -358,7 +358,7 @@ def bow_contact_spanner(
                 - \tweak style #'dotted-line
                 \glissando
                 ^ \downbow
-                \tweak Y-offset #1.0
+                \tweak Y-offset 1.0
                 \tweak stencil #ly:text-interface::print
                 \tweak text \markup {
                     \center-align
@@ -371,7 +371,7 @@ def bow_contact_spanner(
                 \glissando
                 ^ \upbow
                 \times 2/3 {
-                    \tweak Y-offset #0.0
+                    \tweak Y-offset 0.0
                     \tweak stencil #ly:text-interface::print
                     \tweak text \markup {
                         \center-align
@@ -383,7 +383,7 @@ def bow_contact_spanner(
                     c'4
                     \glissando
                     ^ \downbow
-                    \tweak Y-offset #2.0
+                    \tweak Y-offset 2.0
                     \tweak stencil #ly:text-interface::print
                     \tweak text \markup {
                         \center-align
@@ -396,7 +396,7 @@ def bow_contact_spanner(
                     - \tweak style #'zigzag
                     \glissando
                     ^ \upbow
-                    \tweak Y-offset #-2.0
+                    \tweak Y-offset -2.0
                     \tweak stencil #ly:text-interface::print
                     \tweak text \markup {
                         \center-align
@@ -427,18 +427,18 @@ def bow_contact_spanner(
         >>> abjad.attach(abjad.BowContactPoint((0, 1)), leaves[4])
 
         >>> abjad.attach(abjad.Clef("percussion"), leaves[0])
-        >>> abjad.override(staff).bar_line.transparent = True
-        >>> abjad.override(staff).dots.staff_position = -8
-        >>> abjad.override(staff).flag.Y_offset = -8.5
-        >>> abjad.override(staff).glissando.bound_details__left__padding = 1.5
-        >>> abjad.override(staff).glissando.bound_details__right__padding = 1.5
-        >>> abjad.override(staff).glissando.thickness = 2
-        >>> abjad.override(staff).script.staff_padding = 3
-        >>> abjad.override(staff).staff_symbol.transparent = True
-        >>> abjad.override(staff).stem.direction = abjad.Down
-        >>> abjad.override(staff).stem.length = 8
-        >>> abjad.override(staff).stem.stem_begin_position = -9
-        >>> abjad.override(staff).time_signature.stencil = False
+        >>> abjad.override(staff).BarLine.transparent = True
+        >>> abjad.override(staff).Dots.staff_position = -8
+        >>> abjad.override(staff).Flag.Y_offset = -8.5
+        >>> abjad.override(staff).Glissando.bound_details__left__padding = 1.5
+        >>> abjad.override(staff).Glissando.bound_details__right__padding = 1.5
+        >>> abjad.override(staff).Glissando.thickness = 2
+        >>> abjad.override(staff).Script.staff_padding = 3
+        >>> abjad.override(staff).StaffSymbol.transparent = True
+        >>> abjad.override(staff).Stem.direction = abjad.Down
+        >>> abjad.override(staff).Stem.length = 8
+        >>> abjad.override(staff).Stem.stem_begin_position = -9
+        >>> abjad.override(staff).TimeSignature.stencil = False
 
         >>> abjad.bow_contact_spanner(leaves, omit_bow_changes=True)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -451,21 +451,21 @@ def bow_contact_spanner(
             \with
             {
                 \override BarLine.transparent = ##t
-                \override Dots.staff-position = #-8
-                \override Flag.Y-offset = #-8.5
-                \override Glissando.bound-details.left.padding = #1.5
-                \override Glissando.bound-details.right.padding = #1.5
-                \override Glissando.thickness = #2
-                \override Script.staff-padding = #3
+                \override Dots.staff-position = -8
+                \override Flag.Y-offset = -8.5
+                \override Glissando.bound-details.left.padding = 1.5
+                \override Glissando.bound-details.right.padding = 1.5
+                \override Glissando.thickness = 2
+                \override Script.staff-padding = 3
                 \override StaffSymbol.transparent = ##t
                 \override Stem.direction = #down
-                \override Stem.length = #8
-                \override Stem.stem-begin-position = #-9
+                \override Stem.length = 8
+                \override Stem.stem-begin-position = -9
                 \override TimeSignature.stencil = ##f
             }
             {
                 \clef "percussion"
-                \tweak Y-offset #-1.0
+                \tweak Y-offset -1.0
                 \tweak stencil #ly:text-interface::print
                 \tweak text \markup {
                     \center-align
@@ -477,7 +477,7 @@ def bow_contact_spanner(
                 c'4.
                 - \tweak style #'dotted-line
                 \glissando
-                \tweak Y-offset #1.0
+                \tweak Y-offset 1.0
                 \tweak stencil #ly:text-interface::print
                 \tweak text \markup {
                     \center-align
@@ -489,7 +489,7 @@ def bow_contact_spanner(
                 c'8
                 \glissando
                 \times 2/3 {
-                    \tweak Y-offset #0.0
+                    \tweak Y-offset 0.0
                     \tweak stencil #ly:text-interface::print
                     \tweak text \markup {
                         \center-align
@@ -500,7 +500,7 @@ def bow_contact_spanner(
                         }
                     c'4
                     \glissando
-                    \tweak Y-offset #2.0
+                    \tweak Y-offset 2.0
                     \tweak stencil #ly:text-interface::print
                     \tweak text \markup {
                         \center-align
@@ -512,7 +512,7 @@ def bow_contact_spanner(
                     c'4
                     - \tweak style #'zigzag
                     \glissando
-                    \tweak Y-offset #-2.0
+                    \tweak Y-offset -2.0
                     \tweak stencil #ly:text-interface::print
                     \tweak text \markup {
                         \center-align
@@ -539,18 +539,18 @@ def bow_contact_spanner(
         >>> abjad.attach(abjad.BowContactPoint(None), leaves[3])
 
         >>> abjad.attach(abjad.Clef("percussion"), staff[0])
-        >>> abjad.override(staff).bar_line.transparent = True
-        >>> abjad.override(staff).dots.staff_position = -8
-        >>> abjad.override(staff).flag.Y_offset = -8.5
-        >>> abjad.override(staff).glissando.bound_details__left__padding = 1.5
-        >>> abjad.override(staff).glissando.bound_details__right__padding = 1.5
-        >>> abjad.override(staff).glissando.thickness = 2
-        >>> abjad.override(staff).script.staff_padding = 3
-        >>> abjad.override(staff).staff_symbol.transparent = True
-        >>> abjad.override(staff).stem.direction =abjad.Down
-        >>> abjad.override(staff).stem.length = 8
-        >>> abjad.override(staff).stem.stem_begin_position = -9
-        >>> abjad.override(staff).time_signature.stencil = False
+        >>> abjad.override(staff).BarLine.transparent = True
+        >>> abjad.override(staff).Dots.staff_position = -8
+        >>> abjad.override(staff).Flag.Y_offset = -8.5
+        >>> abjad.override(staff).Glissando.bound_details__left__padding = 1.5
+        >>> abjad.override(staff).Glissando.bound_details__right__padding = 1.5
+        >>> abjad.override(staff).Glissando.thickness = 2
+        >>> abjad.override(staff).Script.staff_padding = 3
+        >>> abjad.override(staff).StaffSymbol.transparent = True
+        >>> abjad.override(staff).Stem.direction =abjad.Down
+        >>> abjad.override(staff).Stem.length = 8
+        >>> abjad.override(staff).Stem.stem_begin_position = -9
+        >>> abjad.override(staff).TimeSignature.stencil = False
 
         >>> abjad.bow_contact_spanner(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -563,23 +563,23 @@ def bow_contact_spanner(
             \with
             {
                 \override BarLine.transparent = ##t
-                \override Dots.staff-position = #-8
-                \override Flag.Y-offset = #-8.5
-                \override Glissando.bound-details.left.padding = #1.5
-                \override Glissando.bound-details.right.padding = #1.5
-                \override Glissando.thickness = #2
-                \override Script.staff-padding = #3
+                \override Dots.staff-position = -8
+                \override Flag.Y-offset = -8.5
+                \override Glissando.bound-details.left.padding = 1.5
+                \override Glissando.bound-details.right.padding = 1.5
+                \override Glissando.thickness = 2
+                \override Script.staff-padding = 3
                 \override StaffSymbol.transparent = ##t
                 \override Stem.direction = #down
-                \override Stem.length = #8
-                \override Stem.stem-begin-position = #-9
+                \override Stem.length = 8
+                \override Stem.stem-begin-position = -9
                 \override TimeSignature.stencil = ##f
             }
             {
                 \clef "percussion"
                 \tweak style #'cross
                 c'4
-                \tweak Y-offset #1.0
+                \tweak Y-offset 1.0
                 \tweak stencil #ly:text-interface::print
                 \tweak text \markup {
                     \center-align
@@ -591,7 +591,7 @@ def bow_contact_spanner(
                 c'4
                 \glissando
                 ^ \upbow
-                \tweak Y-offset #0.0
+                \tweak Y-offset 0.0
                 \tweak stencil #ly:text-interface::print
                 \tweak text \markup {
                     \center-align
@@ -621,7 +621,7 @@ def bow_contact_spanner(
     def _make_bow_contact_point_tweaks(leaf, bow_contact_point):
         if bow_contact_point is None:
             return
-        tweak(leaf.note_head).stencil = "ly:text-interface::print"
+        tweak(leaf.note_head).stencil = "#ly:text-interface::print"
         tweak(leaf.note_head).text = bow_contact_point.markup
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
         tweak(leaf.note_head).Y_offset = y_offset
@@ -706,7 +706,7 @@ def bow_contact_spanner(
         if bow_contact_point is None:
             return
         if bow_contact_point.contact_point is None:
-            tweak(leaf.note_head).style = "cross"
+            tweak(leaf.note_head).style = "#'cross"
             return
         if len(leaves) == 1:
             return
@@ -1190,7 +1190,7 @@ def glissando(
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
         ...     staff[:],
-        ...     abjad.tweak("trill").style,
+        ...     abjad.tweak("#'trill").style,
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1223,8 +1223,8 @@ def glissando(
         ...     zero_padding=True,
         ...     )
         >>> for note in staff[1:]:
-        ...     abjad.override(note).note_head.transparent = True
-        ...     abjad.override(note).note_head.X_extent = (0, 0)
+        ...     abjad.override(note).NoteHead.transparent = True
+        ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1262,8 +1262,8 @@ def glissando(
         ...     zero_padding=True,
         ...     )
         >>> for note in staff[1:-1]:
-        ...     abjad.override(note).note_head.transparent = True
-        ...     abjad.override(note).note_head.X_extent = (0, 0)
+        ...     abjad.override(note).NoteHead.transparent = True
+        ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1302,8 +1302,8 @@ def glissando(
         ...     zero_padding=True,
         ...     )
         >>> for note in staff[1:-1]:
-        ...     abjad.override(note).note_head.transparent = True
-        ...     abjad.override(note).note_head.X_extent = (0, 0)
+        ...     abjad.override(note).NoteHead.transparent = True
+        ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1551,7 +1551,7 @@ def hairpin(
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.hairpin("p < f", staff[:])
-        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1560,7 +1560,7 @@ def hairpin(
             >>> print(string)
             \new Staff
             {
-                \once \override DynamicLineSpanner.staff-padding = #4
+                \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
                 \p
                 \<
@@ -1576,7 +1576,7 @@ def hairpin(
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.hairpin("< !", staff[:])
-        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1585,7 +1585,7 @@ def hairpin(
             >>> print(string)
             \new Staff
             {
-                \once \override DynamicLineSpanner.staff-padding = #4
+                \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
                 \<
                 d'4
@@ -1604,7 +1604,7 @@ def hairpin(
         >>> abjad.tweak(start_hairpin).color = "#blue"
         >>> stop_dynamic = abjad.Dynamic('"f"')
         >>> abjad.hairpin([start_dynamic, start_hairpin, stop_dynamic], staff[:])
-        >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4
+        >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1613,7 +1613,7 @@ def hairpin(
             >>> print(string)
             \new Staff
             {
-                \once \override DynamicLineSpanner.staff-padding = #4
+                \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
                 \!
                 - \tweak color #blue
@@ -1840,8 +1840,8 @@ def piano_pedal(
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.piano_pedal(staff[:])
-        >>> abjad.setting(staff).pedal_sustain_style = "#'mixed"
-        >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 5
+        >>> abjad.setting(staff).pedalSustainStyle = "#'mixed"
+        >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1851,7 +1851,7 @@ def piano_pedal(
             \new Staff
             \with
             {
-                \override SustainPedalLineSpanner.staff-padding = #5
+                \override SustainPedalLineSpanner.staff-padding = 5
                 pedalSustainStyle = #'mixed
             }
             {
@@ -1941,7 +1941,7 @@ def text_spanner(
         ...     style="solid-line-with-arrow",
         ...     )
         >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
-        >>> abjad.override(staff[0]).text_spanner.staff_padding = 4
+        >>> abjad.override(staff[0]).TextSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1950,7 +1950,7 @@ def text_spanner(
             >>> print(string)
             \new Staff
             {
-                \once \override TextSpanner.staff-padding = #4
+                \once \override TextSpanner.staff-padding = 4
                 c'4
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright
@@ -1982,7 +1982,7 @@ def text_spanner(
         ...     style="dashed-line-with-arrow",
         ...     )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
-        >>> abjad.override(staff).text_spanner.staff_padding = 4
+        >>> abjad.override(staff).TextSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1992,7 +1992,7 @@ def text_spanner(
             \new Staff
             \with
             {
-                \override TextSpanner.staff-padding = #4
+                \override TextSpanner.staff-padding = 4
             }
             {
                 c'4
@@ -2027,7 +2027,7 @@ def text_spanner(
         ...     style="solid-line-with-hook",
         ...     )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
-        >>> abjad.override(staff).text_spanner.staff_padding = 4
+        >>> abjad.override(staff).TextSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2037,7 +2037,7 @@ def text_spanner(
             \new Staff
             \with
             {
-                \override TextSpanner.staff-padding = #4
+                \override TextSpanner.staff-padding = 4
             }
             {
                 c'4

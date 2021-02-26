@@ -17,7 +17,7 @@ def test_Rest___init___02():
     """
 
     rest_1 = abjad.Rest("r4", multiplier=(1, 2))
-    abjad.override(rest_1).staff.note_head.color = "#red"
+    abjad.override(rest_1).Staff.NoteHead.color = "#red"
     rest_2 = abjad.Rest(rest_1)
 
     assert isinstance(rest_1, abjad.Rest)

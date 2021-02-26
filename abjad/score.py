@@ -2034,7 +2034,7 @@ class AfterGraceContainer(Container):
         >>> abjad.attach(literal, voice[0])
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
-        >>> abjad.override(voice[1]).note_head.color = "#red"
+        >>> abjad.override(voice[1]).NoteHead.color = "#red"
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -3958,10 +3958,10 @@ class NoteHead:
                 >>> print(string)
                 <
                     \tweak color #red
-                    \tweak thickness #2
+                    \tweak thickness 2
                     c'
                     \tweak color #red
-                    \tweak thickness #2
+                    \tweak thickness 2
                     d'
                     \tweak color #blue
                     bf'
@@ -5378,7 +5378,7 @@ class Tuplet(Container):
     def _format_lilypond_fraction_command_string(self):
         if self.hide:
             return ""
-        if "text" in vars(override(self).tuplet_number):
+        if "text" in vars(override(self).TupletNumber):
             return ""
         if (
             self.augmentation()
@@ -5650,8 +5650,8 @@ class Tuplet(Container):
             >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
             >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
             >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> string = 'tuplet-number::calc-denominator-text'
-            >>> abjad.override(staff).tuplet_number.text = string
+            >>> string = '#tuplet-number::calc-denominator-text'
+            >>> abjad.override(staff).TupletNumber.text = string
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5726,7 +5726,7 @@ class Tuplet(Container):
             >>> string = abjad.illustrators.selection_to_score_markup_string([note])
             >>> string = rf"\markup {{ {string} }}"
             >>> markup = abjad.Markup(string, literal=True)
-            >>> abjad.override(tuplet).tuplet_number.text = markup
+            >>> abjad.override(tuplet).TupletNumber.text = markup
             >>> staff = abjad.Staff([tuplet])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -5736,43 +5736,41 @@ class Tuplet(Container):
                 >>> print(string)
                 \new Staff
                 {
-                    \override TupletNumber.text = \markup {
-                        \score
+                    \override TupletNumber.text = \markup { \score
+                        {
+                            \new Score
+                            \with
                             {
-                                \new Score
+                                \override SpacingSpanner.spacing-increment = 0.5
+                                proportionalNotationDuration = ##f
+                            }
+                            <<
+                                \new RhythmicStaff
                                 \with
                                 {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem.direction = #up
+                                    \override Stem.length = 5
+                                    \override TupletBracket.bracket-visibility = ##t
+                                    \override TupletBracket.direction = #up
+                                    \override TupletBracket.minimum-length = 4
+                                    \override TupletBracket.padding = 1.25
+                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                                    \override TupletNumber.font-size = 0
+                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                    tupletFullLength = ##t
                                 }
-                                <<
-                                    \new RhythmicStaff
-                                    \with
-                                    {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.minimum-length = #4
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                        \override TupletNumber.font-size = #0
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    }
-                                    {
-                                        c'4
-                                    }
-                                >>
-                                \layout {
-                                    indent = 0
-                                    ragged-right = ##t
+                                {
+                                    c'4
                                 }
+                            >>
+                            \layout {
+                                indent = 0
+                                ragged-right = ##t
                             }
-                        }
+                        } }
                     \times 2/3 {
                         c'8
                         d'8
@@ -6009,10 +6007,10 @@ class Tuplet(Container):
                     \set tupletFullLength = ##t
                     \tweak text #tuplet-number::calc-fraction-text
                     \tweak color #blue
-                    \tweak staff-padding #4
+                    \tweak staff-padding 4
                     \times 5/4 {
                         \tweak color #red
-                        \tweak staff-padding #2
+                        \tweak staff-padding 2
                         \times 2/3 {
                             \time 5/4
                             c'4
@@ -6022,7 +6020,7 @@ class Tuplet(Container):
                             )
                         }
                         \tweak color #green
-                        \tweak staff-padding #2
+                        \tweak staff-padding 2
                         \times 2/3 {
                             c'4
                             (
@@ -7056,10 +7054,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = "#red"
+        >>> abjad.override(outer_red_voice).NoteHead.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
+        >>> abjad.override(inner_blue_voice).NoteHead.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('f')
@@ -7129,10 +7127,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = "#red"
+        >>> abjad.override(outer_red_voice).NoteHead.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
+        >>> abjad.override(inner_blue_voice).NoteHead.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('p')
@@ -7202,10 +7200,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = "#red"
+        >>> abjad.override(outer_red_voice).NoteHead.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
+        >>> abjad.override(inner_blue_voice).NoteHead.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('mf')
@@ -7275,10 +7273,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = "#red"
+        >>> abjad.override(outer_red_voice).NoteHead.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
+        >>> abjad.override(inner_blue_voice).NoteHead.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('mf')

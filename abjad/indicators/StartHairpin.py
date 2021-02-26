@@ -17,7 +17,7 @@ class StartHairpin:
         >>> abjad.attach(abjad.Dynamic('p'), staff[0])
         >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
         >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-        >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -27,7 +27,7 @@ class StartHairpin:
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #4.5
+                \override DynamicLineSpanner.staff-padding = 4.5
             }
             {
                 c'4
@@ -298,7 +298,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
             >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -308,7 +308,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -326,7 +326,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('niente', hide=True), staff[0])
             >>> abjad.attach(abjad.StartHairpin('o<'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -336,7 +336,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -354,7 +354,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
             >>> abjad.attach(abjad.StartHairpin('<|'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -364,7 +364,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -383,7 +383,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('niente', hide=True), staff[0])
             >>> abjad.attach(abjad.StartHairpin('o<|'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -393,7 +393,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -414,7 +414,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
             >>> abjad.attach(abjad.StartHairpin('>'), staff[0])
             >>> abjad.attach(abjad.Dynamic('p'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -424,7 +424,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -442,7 +442,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
             >>> abjad.attach(abjad.StartHairpin('>o'), staff[0])
             >>> abjad.attach(abjad.Dynamic('niente', command=r'\!'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -452,7 +452,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -471,7 +471,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
             >>> abjad.attach(abjad.StartHairpin('|>'), staff[0])
             >>> abjad.attach(abjad.Dynamic('p'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -481,7 +481,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -500,7 +500,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('f'), staff[0])
             >>> abjad.attach(abjad.StartHairpin('|>o'), staff[0])
             >>> abjad.attach(abjad.Dynamic('niente', command=r'\!'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -510,7 +510,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -532,7 +532,7 @@ class StartHairpin:
             >>> abjad.attach(abjad.Dynamic('p'), staff[0])
             >>> abjad.attach(abjad.StartHairpin('--'), staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -542,7 +542,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4
@@ -598,7 +598,7 @@ class StartHairpin:
             >>> abjad.tweak(start_hairpin).color = "#blue"
             >>> abjad.attach(start_hairpin, staff[0])
             >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-            >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 4.5
+            >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -608,7 +608,7 @@ class StartHairpin:
                 \new Staff
                 \with
                 {
-                    \override DynamicLineSpanner.staff-padding = #4.5
+                    \override DynamicLineSpanner.staff-padding = 4.5
                 }
                 {
                     c'4

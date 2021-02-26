@@ -42,7 +42,7 @@ class PitchRange:
             \with
             {
                 \override BarLine.stencil = ##f
-                \override Glissando.thickness = #2
+                \override Glissando.thickness = 2
                 \override SpanBar.stencil = ##f
                 \override TimeSignature.stencil = ##f
             }

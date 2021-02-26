@@ -34,9 +34,9 @@ def test_Chord___copy___03():
     """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
-    abjad.override(chord_1).staff.note_head.color = "#red"
-    abjad.override(chord_1).accidental.color = "#red"
-    abjad.setting(chord_1).tuplet_full_length = True
+    abjad.override(chord_1).Staff.NoteHead.color = "#red"
+    abjad.override(chord_1).Accidental.color = "#red"
+    abjad.setting(chord_1).tupletFullLength = True
     chord_2 = copy.copy(chord_1)
 
     assert isinstance(chord_1, abjad.Chord)

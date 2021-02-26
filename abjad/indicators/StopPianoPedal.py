@@ -117,7 +117,7 @@ class StopPianoPedal:
             >>> abjad.tweak(stop_piano_pedal).color = "#red"
             >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.Center
             >>> abjad.attach(stop_piano_pedal, staff[-2])
-            >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 5
+            >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -127,7 +127,7 @@ class StopPianoPedal:
                 \new Staff
                 \with
                 {
-                    \override SustainPedalLineSpanner.staff-padding = #5
+                    \override SustainPedalLineSpanner.staff-padding = 5
                 }
                 {
                     c'4
@@ -153,7 +153,7 @@ class StopPianoPedal:
             >>> abjad.tweak(stop_piano_pedal).color = "#red"
             >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.Center
             >>> abjad.attach(stop_piano_pedal, staff[-2])
-            >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 5
+            >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -163,7 +163,7 @@ class StopPianoPedal:
                 \new Staff
                 \with
                 {
-                    \override SustainPedalLineSpanner.staff-padding = #5
+                    \override SustainPedalLineSpanner.staff-padding = 5
                 }
                 {
                     c'4

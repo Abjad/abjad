@@ -59,7 +59,7 @@ def after_grace_container(argument):
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -339,7 +339,7 @@ def before_grace_container(argument):
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -433,7 +433,7 @@ def contents(argument) -> typing.Optional["Selection"]:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -626,7 +626,7 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -794,7 +794,7 @@ def duration(argument, in_seconds: bool = None) -> Duration:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -963,7 +963,7 @@ def effective(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -1462,7 +1462,7 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -1576,7 +1576,7 @@ def effective_wrapper(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -1693,7 +1693,7 @@ def grace(argument) -> bool:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -1795,7 +1795,7 @@ def has_effective_indicator(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -1947,7 +1947,7 @@ def has_indicator(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -2144,7 +2144,7 @@ def indicator(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -2300,7 +2300,7 @@ def indicators(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -2526,7 +2526,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -2708,7 +2708,7 @@ def lineage(argument) -> "Lineage":
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -2913,7 +2913,7 @@ def logical_tie(argument) -> "LogicalTie":
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -3105,7 +3105,7 @@ def measure_number(argument) -> int:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -3279,7 +3279,7 @@ def parentage(argument) -> "Parentage":
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -3493,7 +3493,7 @@ def pitches(argument) -> typing.Optional[PitchSet]:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -3559,8 +3559,8 @@ def report_modifications(argument) -> str:
         Reports container modifications:
 
         >>> container = abjad.Container("c'8 d'8 e'8 f'8")
-        >>> abjad.override(container).note_head.color = "#red"
-        >>> abjad.override(container).note_head.style = "harmonic"
+        >>> abjad.override(container).NoteHead.color = "#red"
+        >>> abjad.override(container).NoteHead.style = "#'harmonic"
         >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
@@ -3594,8 +3594,8 @@ def report_modifications(argument) -> str:
 
         >>> container = abjad.Container("c'8 d'8 e'8 f'8")
         >>> abjad.attach(abjad.Clef('alto'), container[0])
-        >>> abjad.override(container[0]).note_head.color = "#red"
-        >>> abjad.override(container[0]).stem.color = "#red"
+        >>> abjad.override(container[0]).NoteHead.color = "#red"
+        >>> abjad.override(container[0]).Stem.color = "#red"
         >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
@@ -3803,7 +3803,7 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -3972,7 +3972,7 @@ def wrapper(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'
@@ -4091,7 +4091,7 @@ def wrappers(
                             \slash
                             \voiceOne
                             <
-                                \tweak font-size #0
+                                \tweak font-size 0
                                 \tweak transparent ##t
                                 e'
                                 g'

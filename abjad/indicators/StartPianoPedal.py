@@ -31,8 +31,8 @@ class StartPianoPedal:
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[3])
 
-        >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 5
-        >>> abjad.setting(staff).pedal_sustain_style = "#'mixed"
+        >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
+        >>> abjad.setting(staff).pedalSustainStyle = "#'mixed"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -42,7 +42,7 @@ class StartPianoPedal:
             \new Staff
             \with
             {
-                \override SustainPedalLineSpanner.staff-padding = #5
+                \override SustainPedalLineSpanner.staff-padding = 5
                 pedalSustainStyle = #'mixed
             }
             {

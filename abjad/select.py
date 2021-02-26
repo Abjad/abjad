@@ -361,7 +361,7 @@ class Selection(collections.abc.Sequence):
 
         >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
         >>> staff = abjad.Staff(string)
-        >>> abjad.setting(staff).auto_beaming = False
+        >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> result = abjad.select(staff).runs()
@@ -407,7 +407,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> left = abjad.select(staff).leaves()[:2]
@@ -1215,9 +1215,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).chord(-1)
@@ -1251,7 +1251,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -1315,9 +1315,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).chords()
@@ -1369,7 +1369,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -1437,7 +1437,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).components(abjad.Note)
@@ -1506,7 +1506,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1616,7 +1616,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1714,7 +1714,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -1824,7 +1824,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> for leaf in abjad.select(staff).leaves().exclude([0], 2):
@@ -1884,7 +1884,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> selection = abjad.select(staff).logical_ties(pitched=True)
@@ -1940,7 +1940,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select().leaves().exclude([1])
@@ -2019,7 +2019,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> inequality = abjad.DurationInequality('==', (2, 8))
@@ -2087,7 +2087,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs()
@@ -2139,7 +2139,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs()
@@ -2206,7 +2206,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs().filter_length('>', 1)
@@ -2261,7 +2261,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs().filter_length('<', 3)
@@ -2325,7 +2325,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2384,7 +2384,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2446,7 +2446,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 ~ d'8 e'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2514,7 +2514,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs()
@@ -2566,7 +2566,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs()
@@ -2640,9 +2640,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> getter = abjad.select().leaves()[:2]
@@ -2682,7 +2682,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -2740,9 +2740,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> getter = abjad.select().leaves()[:2]
@@ -2789,7 +2789,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -2852,7 +2852,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> for leaf in abjad.select(staff).leaves().get([0], 2):
@@ -2912,7 +2912,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> selection = abjad.select(staff).logical_ties(pitched=True)
@@ -2969,7 +2969,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select().leaves().get([1])
@@ -3050,7 +3050,7 @@ class Selection(collections.abc.Sequence):
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     ''')
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff, align_tags=89) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(pitched=True).group()
@@ -3126,7 +3126,7 @@ class Selection(collections.abc.Sequence):
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(pitched=True)
@@ -3215,7 +3215,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3287,7 +3287,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'4 d'16 d' d' d' e'4 f'16 f' f' f'")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -3352,7 +3352,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties()
@@ -3414,7 +3414,7 @@ class Selection(collections.abc.Sequence):
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(pitched=True)
@@ -3495,7 +3495,7 @@ class Selection(collections.abc.Sequence):
                 ...     c'8 ~ c'16 c'16 r8 c'16 c'16
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select().group_by_pitch()
@@ -3600,7 +3600,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = "c'4 ~ c'16 d' ~ d' d' e'4 ~ e'16 f' ~ f' f'"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties()
@@ -3689,7 +3689,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = "c'4 ~ c'16 d' ~ d' d' e'4 ~ e'16 f' ~ f' f'"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties().group_by_length()
@@ -3774,7 +3774,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
                 >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
@@ -3844,7 +3844,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
                 >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
@@ -3914,7 +3914,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
                 >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
@@ -3981,7 +3981,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
                 >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
@@ -4049,7 +4049,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> score = abjad.Score([staff])
                 >>> string = "#(ly:make-moment 1 16)"
                 >>> abjad.setting(score).proportionalNotationDuration = string
@@ -4112,7 +4112,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' ~ d' e' ~ e' f' g' ~ g'")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
                 >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
                 >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
@@ -4228,7 +4228,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = "c'4 ~ c'16 d' ~ d' d' e'4 ~ e'16 f' ~ f' f'"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties().group_by_pitch()
@@ -4333,9 +4333,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaf(-1)
@@ -4369,7 +4369,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -4445,7 +4445,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -4530,7 +4530,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(pitched=True)
@@ -4605,7 +4605,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(trim=True)
@@ -4689,7 +4689,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(trim=abjad.Left)
@@ -4776,7 +4776,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { c'8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' c' }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(trim=True)
@@ -4861,7 +4861,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).components(abjad.Tuplet)
@@ -4936,7 +4936,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).components(abjad.Tuplet)
@@ -5007,7 +5007,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { c'8 d' ~ d' } e' r
                 ...     r e' \times 2/3 { d' ~ d' c' }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).components(abjad.Tuplet)
@@ -5080,7 +5080,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { c'8 d' ~ d' } e' r
                 ...     r e' \times 2/3 { d' ~ d' c' }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).components(abjad.Tuplet)
@@ -5154,7 +5154,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { <c' e' g'>8 ~ <c' e' g'> d' } e' r
                 ...     r <g d' fs'> \times 2/3 { e' <c' d'> ~ <c' d'> }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).components(abjad.Tuplet)
@@ -5221,7 +5221,7 @@ class Selection(collections.abc.Sequence):
                 ...     """)
                 >>> abjad.attach("HIDDEN", staff[-1][-2])
                 >>> abjad.attach("HIDDEN", staff[-1][-1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(exclude="HIDDEN")
@@ -5301,7 +5301,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -5405,7 +5405,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -5497,7 +5497,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -5644,7 +5644,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties()
@@ -5714,7 +5714,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties(pitched=True)
@@ -5778,7 +5778,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties(
@@ -5845,7 +5845,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { f' g' a' ~ } a' b' ~
                 ...     \times 2/3 { b' c'' d'' }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select().logical_ties(pitched=True)
@@ -5929,7 +5929,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { f' g' a' ~ } a' b' ~
                 ...     \times 2/3 { b' c'' d'' }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select().logical_ties(pitched=True)
@@ -6006,7 +6006,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -6110,7 +6110,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -6202,7 +6202,7 @@ class Selection(collections.abc.Sequence):
                 >>> abjad.attach(container, staff[1])
                 >>> container = abjad.AfterGraceContainer("af'16 gf'16")
                 >>> abjad.attach(container, staff[1])
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -6293,7 +6293,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties()
@@ -6352,7 +6352,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> logical_ties = abjad.select(staff).logical_ties()
@@ -6440,7 +6440,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).components(abjad.Tuplet)
@@ -6507,7 +6507,7 @@ class Selection(collections.abc.Sequence):
                 ...     \times 2/3 { r8 d' e' } f' r
                 ...     r f' \times 2/3 { e' d' r8 }
                 ...     """)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = staff[:].map(abjad.select().leaves())
@@ -6582,7 +6582,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs()
@@ -6656,7 +6656,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs().nontrivial()
@@ -6731,9 +6731,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).note(-1)
@@ -6767,7 +6767,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -6831,9 +6831,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).notes()
@@ -6879,7 +6879,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -6947,7 +6947,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -7009,7 +7009,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_counts(
@@ -7074,7 +7074,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_counts(
@@ -7143,7 +7143,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_counts(
@@ -7213,7 +7213,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = "c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_counts(
@@ -7297,7 +7297,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = "c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_counts(
@@ -7363,7 +7363,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = "c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_counts(
@@ -7432,7 +7432,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = "c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_counts(
@@ -7562,7 +7562,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().partition_by_durations(
@@ -7656,7 +7656,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -7743,7 +7743,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -7843,7 +7843,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -7946,7 +7946,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -8031,7 +8031,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
@@ -8127,7 +8127,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
@@ -8226,7 +8226,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
@@ -8317,7 +8317,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
@@ -8424,7 +8424,7 @@ class Selection(collections.abc.Sequence):
                 ...     time_signature = abjad.TimeSignature((2, 8))
                 ...     abjad.attach(time_signature, container[0])
                 ...
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> leaf = abjad.get.leaf(staff, 0)
                 >>> abjad.attach(mark, leaf, context='Staff')
@@ -8606,7 +8606,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -8671,7 +8671,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves()
@@ -8762,9 +8762,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).rest(-1)
@@ -8798,7 +8798,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -8862,9 +8862,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).rests()
@@ -8904,7 +8904,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -8970,9 +8970,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).run(-1)
@@ -9006,7 +9006,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -9074,9 +9074,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs()
@@ -9116,7 +9116,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -9208,7 +9208,7 @@ class Selection(collections.abc.Sequence):
                                 \slash
                                 \voiceOne
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -9292,7 +9292,7 @@ class Selection(collections.abc.Sequence):
                                 \voiceOne
                                 \abjad-color-music #'blue
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -9349,7 +9349,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves().top()
@@ -9449,9 +9449,9 @@ class Selection(collections.abc.Sequence):
                 >>> tuplets = [abjad.select(tuplets)]
                 >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
                 >>> staff = lilypond_file[abjad.Staff]
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.override(staff).tuplet_bracket.direction = abjad.Up
-                >>> abjad.override(staff).tuplet_bracket.staff_padding = 3
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+                >>> abjad.override(staff).TupletBracket.staff_padding = 3
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).tuplet(-1)
@@ -9485,7 +9485,7 @@ class Selection(collections.abc.Sequence):
                     \with
                     {
                         \override TupletBracket.direction = #up
-                        \override TupletBracket.staff-padding = #3
+                        \override TupletBracket.staff-padding = 3
                         autoBeaming = ##f
                     }
                     {
@@ -9826,7 +9826,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).runs()
@@ -9888,7 +9888,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select()[-1:].with_next_leaf()
@@ -9957,8 +9957,8 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
-                >>> abjad.setting(staff).auto_beaming = False
-                >>> abjad.setting(staff).pedal_sustain_style = "#'mixed"
+                >>> abjad.setting(staff).autoBeaming = False
+                >>> abjad.setting(staff).pedalSustainStyle = "#'mixed"
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).logical_ties(pitched=True)
@@ -9989,7 +9989,7 @@ class Selection(collections.abc.Sequence):
                 ...
 
                 >>> abjad.label(result).by_selector(selector)
-                >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 6
+                >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 6
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9999,7 +9999,7 @@ class Selection(collections.abc.Sequence):
                 \new Staff
                 \with
                 {
-                    \override SustainPedalLineSpanner.staff-padding = #6
+                    \override SustainPedalLineSpanner.staff-padding = 6
                     autoBeaming = ##f
                     pedalSustainStyle = #'mixed
                 }
@@ -10069,7 +10069,7 @@ class Selection(collections.abc.Sequence):
                                 \slash
                                 \voiceOne
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -10154,7 +10154,7 @@ class Selection(collections.abc.Sequence):
                                 \voiceOne
                                 \abjad-color-music #'blue
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -10218,7 +10218,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select().with_previous_leaf()
@@ -10279,7 +10279,7 @@ class Selection(collections.abc.Sequence):
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
-                >>> abjad.setting(staff).auto_beaming = False
+                >>> abjad.setting(staff).autoBeaming = False
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> getter = abjad.select()[:1].with_previous_leaf()
@@ -10374,7 +10374,7 @@ class Selection(collections.abc.Sequence):
                                 \slash
                                 \voiceOne
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -10461,7 +10461,7 @@ class Selection(collections.abc.Sequence):
                                 \voiceOne
                                 \abjad-color-music #'blue
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -10617,7 +10617,7 @@ def select(items=None, previous=None):
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> selection = abjad.select(staff[:2]).leaves(pitched=True)
         >>> for note in selection:
-        ...     abjad.override(note).note_head.color = "#red"
+        ...     abjad.override(note).NoteHead.color = "#red"
 
         >>> abjad.show(staff) # doctest: +SKIP
 

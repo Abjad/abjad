@@ -896,7 +896,7 @@ class MarkupCommand:
         >>> small_staff = abjad.Staff("fs'16 gs'16 as'16 b'16")
         >>> small_staff.remove_commands.append("Clef_engraver")
         >>> small_staff.remove_commands.append("Time_signature_engraver")
-        >>> abjad.setting(small_staff).font_size = -3
+        >>> abjad.setting(small_staff).fontSize = -3
         >>> layout_block = abjad.Block(name="layout")
         >>> layout_block.indent = 0
         >>> layout_block.ragged_right = "##t"
@@ -914,7 +914,7 @@ class MarkupCommand:
                 {
                     \remove Clef_engraver
                     \remove Time_signature_engraver
-                    fontSize = #-3
+                    fontSize = -3
                 }
                 {
                     fs'16
@@ -948,7 +948,7 @@ class MarkupCommand:
                             {
                                 \remove Clef_engraver
                                 \remove Time_signature_engraver
-                                fontSize = #-3
+                                fontSize = -3
                             }
                             {
                                 fs'16

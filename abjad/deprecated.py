@@ -84,7 +84,7 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
         >>> markup = abjad.deprecated.add_final_markup(
         ...     score,
         ...     markup,
-        ...     extra_offset=(0.5, -2),
+        ...     extra_offset="#'(0.5 . -2)",
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -126,7 +126,7 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
         >>> markup = abjad.deprecated.add_final_markup(
         ...     score,
         ...     markup,
-        ...     extra_offset=(14.5, -2),
+        ...     extra_offset="#'(14.5 . -2)",
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -162,8 +162,8 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
     attach(markup, last_leaf, tag=_tag.Tag("SCORE_2"))
     if extra_offset is not None:
         if isinstance(last_leaf, _score.MultimeasureRest):
-            grob_proxy = override(last_leaf).multi_measure_rest_text
+            grob_proxy = override(last_leaf).MultiMeasureRestText
         else:
-            grob_proxy = override(last_leaf).text_script
+            grob_proxy = override(last_leaf).TextScript
         grob_proxy.extra_offset = extra_offset
     return markup

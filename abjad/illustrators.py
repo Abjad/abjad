@@ -93,10 +93,10 @@ def _illustrate_pitch_range(pitch_range):
         attach(Clef("bass"), bass_staff[0])
     for leaf in Iteration(score_).leaves():
         leaf.multiplier = (1, 4)
-    overrides.override(score_).bar_line.stencil = False
-    overrides.override(score_).span_bar.stencil = False
-    overrides.override(score_).glissando.thickness = 2
-    overrides.override(score_).time_signature.stencil = False
+    overrides.override(score_).BarLine.stencil = False
+    overrides.override(score_).SpanBar.stencil = False
+    overrides.override(score_).Glissando.thickness = 2
+    overrides.override(score_).TimeSignature.stencil = False
     lilypond_file = LilyPondFile(items=[score_])
     return lilypond_file
 
@@ -109,7 +109,7 @@ def _illustrate_pitch_segment(segment):
     score_, treble_staff, bass_staff = result
     for leaf in Iteration(score_).leaves():
         leaf.multiplier = (1, 8)
-    overrides.override(score_).rest.transparent = True
+    overrides.override(score_).Rest.transparent = True
     lilypond_file = LilyPondFile(items=[score_])
     return lilypond_file
 
@@ -273,10 +273,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3", sketch=False):
     if 0 < len(bass_staff):
         attach(Clef("bass"), bass_staff[0])
     if sketch:
-        overrides.override(score_).time_signature.stencil = False
-        overrides.override(score_).bar_number.transparent = True
-        overrides.override(score_).bar_line.stencil = False
-        overrides.override(score_).span_bar.stencil = False
+        overrides.override(score_).TimeSignature.stencil = False
+        overrides.override(score_).BarNumber.transparent = True
+        overrides.override(score_).BarLine.stencil = False
+        overrides.override(score_).SpanBar.stencil = False
     return score_, treble_staff, bass_staff
 
 
@@ -289,25 +289,25 @@ def selection_to_score_markup_string(selection):
     staff.lilypond_type = "RhythmicStaff"
     staff.remove_commands.append("Time_signature_engraver")
     staff.remove_commands.append("Staff_symbol_engraver")
-    overrides.override(staff).stem.direction = enums.Up
-    overrides.override(staff).stem.length = 5
-    overrides.override(staff).tuplet_bracket.bracket_visibility = True
-    overrides.override(staff).tuplet_bracket.direction = enums.Up
-    overrides.override(staff).tuplet_bracket.minimum_length = 4
-    overrides.override(staff).tuplet_bracket.padding = 1.25
-    overrides.override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
+    overrides.override(staff).Stem.direction = enums.Up
+    overrides.override(staff).Stem.length = 5
+    overrides.override(staff).TupletBracket.bracket_visibility = True
+    overrides.override(staff).TupletBracket.direction = enums.Up
+    overrides.override(staff).TupletBracket.minimum_length = 4
+    overrides.override(staff).TupletBracket.padding = 1.25
+    overrides.override(staff).TupletBracket.shorten_pair = "#'(-1 . -1.5)"
     scheme = "#ly:spanner::set-spacing-rods"
-    overrides.override(staff).tuplet_bracket.springs_and_rods = scheme
-    overrides.override(staff).tuplet_number.font_size = 0
+    overrides.override(staff).TupletBracket.springs_and_rods = scheme
+    overrides.override(staff).TupletNumber.font_size = 0
     scheme = "#tuplet-number::calc-fraction-text"
-    overrides.override(staff).tuplet_number.text = scheme
-    overrides.setting(staff).tuplet_full_length = True
+    overrides.override(staff).TupletNumber.text = scheme
+    overrides.setting(staff).tupletFullLength = True
     layout_block = Block(name="layout")
     layout_block.indent = 0
     layout_block.ragged_right = "##t"
     score_ = score.Score([staff])
-    overrides.override(score_).spacing_spanner.spacing_increment = 0.5
-    overrides.setting(score_).proportional_notation_duration = False
+    overrides.override(score_).SpacingSpanner.spacing_increment = 0.5
+    overrides.setting(score_).proportionalNotationDuration = False
     indent = 4 * " "
     strings = [r"\score", indent + "{"]
     strings.extend([2 * indent + _ for _ in lilypond(score_).split("\n")])

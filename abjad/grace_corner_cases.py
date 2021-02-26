@@ -32,7 +32,7 @@ r"""
                         \slash
                         \voiceOne
                         <
-                            \tweak font-size #0
+                            \tweak font-size 0
                             \tweak transparent ##t
                             d'
                             a'
@@ -90,7 +90,7 @@ r"""
                         \slash
                         \voiceOne
                         <
-                            \tweak font-size #0
+                            \tweak font-size 0
                             \tweak transparent ##t
                             d'
                             a'
@@ -149,7 +149,7 @@ r"""
                         \slash
                         \voiceOne
                         <
-                            \tweak font-size #0
+                            \tweak font-size 0
                             \tweak transparent ##t
                             d'
                             a'
@@ -261,7 +261,7 @@ r"""
                         \slash
                         \voiceOne
                         <
-                            \tweak font-size #0
+                            \tweak font-size 0
                             \tweak transparent ##t
                             d'
                             a'

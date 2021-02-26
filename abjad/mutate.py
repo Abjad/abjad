@@ -920,7 +920,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
         >>> abjad.attach(abjad.Dynamic('p'), staff[0])
         >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
         >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
-        >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
         >>> time_signature = abjad.TimeSignature((9, 16))
         >>> abjad.attach(time_signature, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -932,7 +932,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #3
+                \override DynamicLineSpanner.staff-padding = 3
             }
             {
                 \time 9/16
@@ -957,7 +957,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #3
+                \override DynamicLineSpanner.staff-padding = 3
             }
             {
                 \time 9/16
@@ -981,7 +981,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
 
         >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
         >>> abjad.hairpin('p < f', staff[:])
-        >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
         >>> time_signature = abjad.TimeSignature((7, 16))
         >>> abjad.attach(time_signature, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -993,7 +993,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #3
+                \override DynamicLineSpanner.staff-padding = 3
             }
             {
                 \time 7/16
@@ -1465,7 +1465,7 @@ def split(argument, durations, cyclic=False):
 
         >>> staff = abjad.Staff("c'1 d'1")
         >>> abjad.hairpin('p < f', staff[:])
-        >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1475,7 +1475,7 @@ def split(argument, durations, cyclic=False):
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #3
+                \override DynamicLineSpanner.staff-padding = 3
             }
             {
                 c'1
@@ -1500,7 +1500,7 @@ def split(argument, durations, cyclic=False):
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #3
+                \override DynamicLineSpanner.staff-padding = 3
             }
             {
                 c'2.
@@ -1525,7 +1525,7 @@ def split(argument, durations, cyclic=False):
         ...     )
         >>> staff = abjad.Staff([voice])
         >>> abjad.hairpin('p < f', voice[:])
-        >>> abjad.override(staff).dynamic_line_spanner.staff_padding = 3
+        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1535,7 +1535,7 @@ def split(argument, durations, cyclic=False):
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #3
+                \override DynamicLineSpanner.staff-padding = 3
             }
             {
                 \context CustomVoice = "1"
@@ -1565,7 +1565,7 @@ def split(argument, durations, cyclic=False):
             \new Staff
             \with
             {
-                \override DynamicLineSpanner.staff-padding = #3
+                \override DynamicLineSpanner.staff-padding = 3
             }
             {
                 \context CustomVoice = "1"
@@ -1633,13 +1633,13 @@ def split(argument, durations, cyclic=False):
         ...     r"c'4 \p \< cs' d' ds' \f",
         ...     name='Voice_2',
         ...     )
-        >>> abjad.override(voice_1).stem.direction = abjad.Up
-        >>> abjad.override(voice_1).slur.direction = abjad.Up
+        >>> abjad.override(voice_1).Stem.direction = abjad.Up
+        >>> abjad.override(voice_1).Slur.direction = abjad.Up
         >>> container = abjad.Container(
         ...     [voice_1, voice_2],
         ...     simultaneous=True,
         ...     )
-        >>> abjad.override(voice_2).stem.direction = abjad.Down
+        >>> abjad.override(voice_2).Stem.direction = abjad.Down
         >>> staff = abjad.Staff([container])
         >>> abjad.show(staff) # doctest: +SKIP
 

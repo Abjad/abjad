@@ -206,8 +206,8 @@ class Glissando:
             ...     zero_padding=True,
             ...     )
             >>> for note in staff[1:]:
-            ...     abjad.override(note).note_head.transparent = True
-            ...     abjad.override(note).note_head.X_extent = (0, 0)
+            ...     abjad.override(note).NoteHead.transparent = True
+            ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
             ...
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -243,8 +243,8 @@ class Glissando:
             ...     zero_padding=True,
             ...     )
             >>> for note in staff[1:-1]:
-            ...     abjad.override(note).note_head.transparent = True
-            ...     abjad.override(note).note_head.X_extent = (0, 0)
+            ...     abjad.override(note).NoteHead.transparent = True
+            ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
             ...
             >>> abjad.show(staff) # doctest: +SKIP
 

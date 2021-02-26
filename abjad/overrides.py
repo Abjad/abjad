@@ -49,7 +49,7 @@ lilypond_color_constants = (
 
 
 def format_lilypond_value(argument) -> str:
-    if "_get_lilypond_format" in dir(argument) and not isinstance(argument, str):
+    if "_get_lilypond_format" in dir(argument):
         return argument._get_lilypond_format()
     if argument is True:
         return "##t"
@@ -63,26 +63,18 @@ def format_lilypond_value(argument) -> str:
         enums.Center,
     ):
         return rf"#{repr(argument).lower()}"
-    if isinstance(argument, int) or isinstance(argument, float):
-        return rf"#{argument}"
     if argument in lilypond_color_constants:
-        return rf"#{argument}"
-    if isinstance(argument, str) and argument.startswith("#"):
-        return argument
-    if isinstance(argument, str) and "::" in argument:
         return rf"#{argument}"
     if isinstance(argument, tuple) and len(argument) == 2:
         return f"#'({argument[0]} . {argument[1]})"
-    if isinstance(argument, str) and " " not in argument:
-        return rf"#'{argument}"
-    if isinstance(argument, str) and " " in argument:
-        return rf"#{argument}"
-    raise Exception(argument)
+    return str(argument)
 
 
 def make_lilypond_override_string(
     grob, attribute, value, context=None, once=False
 ) -> str:
+    # camel_name = String(grob).to_upper_camel_case()
+    # assert grob == camel_name, repr((grob, camel_name))
     grob = String(grob).to_upper_camel_case()
     attribute = format_lilypond_attribute(attribute)
     value = format_lilypond_value(value)
@@ -99,9 +91,13 @@ def make_lilypond_override_string(
 
 
 def make_lilypond_revert_string(grob, attribute, context=None) -> str:
+    # camel_name = String(grob).to_upper_camel_case()
+    # assert grob == camel_name, repr((grob, camel_name))
     grob = String(grob).to_upper_camel_case()
     dotted = format_lilypond_attribute(attribute)
     if context is not None:
+        # camel_name = String(context).to_upper_camel_case()
+        # assert context == camel_name, repr((context, camel_name))
         context = String(context).to_upper_camel_case()
         context += "."
     else:
@@ -114,6 +110,8 @@ def make_lilypond_tweak_string(
     attribute, value, *, directed=True, grob=None, literal=None
 ) -> str:
     if grob is not None:
+        # camel_name = String(grob).to_upper_camel_case()
+        # assert grob == camel_name, repr((grob, camel_name))
         grob = String(grob).to_upper_camel_case()
         grob += "."
     else:
@@ -125,30 +123,6 @@ def make_lilypond_tweak_string(
     if directed:
         string = "- " + string
     return string
-
-
-lilypond_color_constants = (
-    "black",
-    "blue",
-    "center",
-    "cyan",
-    "darkblue",
-    "darkcyan",
-    "darkgreen",
-    "darkmagenta",
-    "darkred",
-    "darkyellow",
-    "down",
-    "green",
-    "grey",
-    "left",
-    "magenta",
-    "red",
-    "right",
-    "up",
-    "white",
-    "yellow",
-)
 
 
 class LilyPondLiteral:
@@ -418,7 +392,7 @@ class LilyPondLiteral:
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
             >>> abjad.tweak(literal).color = "#blue"
-            >>> abjad.tweak(literal).dynamic_line_spanner.staff_padding = 5
+            >>> abjad.tweak(literal).DynamicLineSpanner.staff_padding = 5
             >>> abjad.attach(literal, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -429,7 +403,7 @@ class LilyPondLiteral:
                 \new Staff
                 {
                     c'4
-                    - \tweak DynamicLineSpanner.staff-padding #5
+                    - \tweak DynamicLineSpanner.staff-padding 5
                     - \tweak color #blue
                     \f
                     d'4
@@ -535,15 +509,15 @@ class Interface:
         ..  container:: example
 
             >>> note_1 = abjad.Note("c'4")
-            >>> abjad.setting(note_1).voice.auto_beaming = False
-            >>> abjad.setting(note_1).staff.tuplet_full_length = True
+            >>> abjad.setting(note_1).Voice.auto_beaming = False
+            >>> abjad.setting(note_1).Staff.tupletFullLength = True
 
             >>> note_2 = abjad.Note("c'4")
-            >>> abjad.setting(note_2).voice.auto_beaming = False
-            >>> abjad.setting(note_2).staff.tuplet_full_length = True
+            >>> abjad.setting(note_2).Voice.auto_beaming = False
+            >>> abjad.setting(note_2).Staff.tupletFullLength = True
 
             >>> note_3 = abjad.Note("c'4")
-            >>> abjad.setting(note_3).voice.auto_beaming = True
+            >>> abjad.setting(note_3).Voice.auto_beaming = True
 
             >>> setting_1 = abjad.setting(note_1)
             >>> setting_2 = abjad.setting(note_2)
@@ -573,15 +547,15 @@ class Interface:
         ..  container:: example
 
             >>> note_1 = abjad.Note("c'4")
-            >>> abjad.override(note_1).note_head.color = "#red"
-            >>> abjad.override(note_1).stem.color = "#red"
+            >>> abjad.override(note_1).NoteHead.color = "#red"
+            >>> abjad.override(note_1).Stem.color = "#red"
 
             >>> note_2 = abjad.Note("c'4")
-            >>> abjad.override(note_2).note_head.color = "#red"
-            >>> abjad.override(note_2).stem.color = "#red"
+            >>> abjad.override(note_2).NoteHead.color = "#red"
+            >>> abjad.override(note_2).Stem.color = "#red"
 
             >>> note_3 = abjad.Note("c'4")
-            >>> abjad.override(note_3).note_head.color = "#red"
+            >>> abjad.override(note_3).NoteHead.color = "#red"
 
             >>> override_1 = abjad.override(note_1)
             >>> override_2 = abjad.override(note_2)
@@ -1098,7 +1072,7 @@ class LilyPondSetting:
         >>> context_setting = abjad.LilyPondSetting(
         ...    lilypond_type="Score",
         ...    context_property="autoBeaming",
-        ...    value=False,
+        ...    value="##f",
         ...    )
 
         >>> print("\n".join(context_setting.format_pieces))
@@ -1182,6 +1156,7 @@ class LilyPondSetting:
             result.append(self.context_property)
         result.append("=")
         string = format_embedded_scheme_value(self.value)
+        # assert string == str(self.value), repr((str(self.value), string))
         value_pieces = string.split("\n")
         result.append(value_pieces[0])
         result[:] = [" ".join(result)]
@@ -1237,26 +1212,26 @@ class OverrideInterface(Interface):
             Interface:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.override(staff[0]).note_head
+            >>> abjad.override(staff[0]).NoteHead
             Interface()
 
-            While getting a context name returns a OverrideInterface:
+            While getting a context name returns an override interface:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.override(staff[0]).staff
+            >>> abjad.override(staff[0]).Staff
             OverrideInterface()
 
-            Which can then be deferenced to get a Interface:
+            Which can then be deferenced to get an interface:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.override(staff[0]).staff.note_head
+            >>> abjad.override(staff[0]).Staff.NoteHead
             Interface()
 
-        Note that the dot-chained user syntax is unproblematic. But the class
-        of each manager returned in the chain is likely to be surprising at
-        first encounter.
+        Note that the dot-chained user syntax is unproblematic. But the class of each
+        manager returned in the chain is likely to be surprising at first encounter.
         """
         camel_name = String(name).to_upper_camel_case()
+        # assert name == camel_name, repr((name, camel_name))
         if name.startswith("_"):
             try:
                 return vars(self)[name]
@@ -1289,7 +1264,6 @@ class OverrideInterface(Interface):
         """
         Sets attribute ``attribute`` of grob name manager to ``value``.
         """
-        # make sure attribute name is valid grob name before setting value
         object.__setattr__(self, attribute, value)
 
     ### PRIVATE METHODS ###
@@ -1354,7 +1328,7 @@ def override(argument):
         Overrides staff symbol color:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff).staff_symbol.color = "#red"
+        >>> abjad.override(staff).StaffSymbol.color = "#red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1378,7 +1352,7 @@ def override(argument):
         Specify grob context like this:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff[0]).staff.staff_symbol.color = "#blue"
+        >>> abjad.override(staff[0]).Staff.StaffSymbol.color = "#blue"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1429,7 +1403,7 @@ class SettingInterface(Interface):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.setting(staff).instrument_name = abjad.Markup("Vn. I")
+            >>> abjad.setting(staff).instrumentName = abjad.Markup("Vn. I")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1452,11 +1426,12 @@ class SettingInterface(Interface):
 
             Returns arbitrary object keyed to ``name``:
 
-            >>> abjad.setting(staff).instrument_name
+            >>> abjad.setting(staff).instrumentName
             Markup(contents=['Vn. I'])
 
         """
         camel_name = String(name).to_upper_camel_case()
+        # assert name == camel_name, repr((name, camel_name))
         if name.startswith("_"):
             try:
                 return vars(self)[name]
@@ -1489,6 +1464,7 @@ class SettingInterface(Interface):
             rest = [x.title() for x in rest]
             name = first + rest
             string = "".join(name)
+            # assert key == string, repr((key, string))
             value = format_lilypond_value(value)
             value_parts = value.split("\n")
             result = rf"{string!s} = {value_parts[0]!s}"
@@ -1563,7 +1539,7 @@ def setting(argument):
         Sets instrument name:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.setting(staff).instrument_name = abjad.Markup("Vn. I")
+        >>> abjad.setting(staff).instrumentName = abjad.Markup("Vn. I")
         >>> abjad.show(staff) # doctest: +SKIP
 
 
@@ -1588,7 +1564,7 @@ def setting(argument):
         Returns LilyPond setting name manager:
 
         >>> abjad.setting(staff)
-        SettingInterface(('instrument_name', Markup(contents=['Vn. I'])))
+        SettingInterface(('instrumentName', Markup(contents=['Vn. I'])))
 
     """
     if getattr(argument, "_lilypond_setting_name_manager", None) is None:
@@ -1625,10 +1601,10 @@ class TweakInterface(Interface):
         Trying to get an attribute that has not yet been set raises an
         attribute error:
 
-        >>> abjad.tweak(markup).foo
+        >>> abjad.tweak(markup).Foo
         Traceback (most recent call last):
             ...
-        AttributeError: TweakInterface object has no attribute 'foo'.
+        AttributeError: TweakInterface object has no attribute 'Foo'.
 
     """
 
@@ -1764,6 +1740,7 @@ class TweakInterface(Interface):
             delattr(self, "_pending_value")
             return self
         camel_name = String(name).to_upper_camel_case()
+        # assert name == camel_name, repr((name, camel_name))
         if name.startswith("_"):
             try:
                 return vars(self)[name]
@@ -1791,25 +1768,13 @@ class TweakInterface(Interface):
 
             Allows LilyPond colors:
 
-            >>> abjad.tweak("ForestGreen").color
-            TweakInterface(('_literal', None), ('color', 'ForestGreen'))
+            >>> abjad.tweak("#blue").color
+            TweakInterface(('_literal', None), ('color', '#blue'))
 
-            >>> string = "#(x11-color 'blue)"
-            >>> abjad.tweak(string).color
-            TweakInterface(('_literal', None), ('color', "#(x11-color 'blue)"))
-
-            >>> abjad.tweak("#(x11-color 'SavannahGreen)").color
-            TweakInterface(('_literal', None), ('color', "#(x11-color 'SavannahGreen)"))
+            >>> abjad.tweak("#(x11-color 'ForestGreen)").color
+            TweakInterface(('_literal', None), ('color', "#(x11-color 'ForestGreen)"))
 
         """
-        if name == "color":
-            if "x11-color" in value:
-                _, color = value.split()
-                color = color.strip("'").strip(")")
-            else:
-                color = value
-            # if color not in colors:
-            #     raise Exception(f"{repr(value)} is not a LilyPond color.")
         tag = getattr(self, "_currently_tagging", None)
         deactivate = getattr(self, "_currently_deactivated", None)
         if tag is not None:
@@ -2049,7 +2014,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
                 - \tweak color #red
                 ^ \markup { Allegro assai ... }
                 - \tweak color #blue
-                - \tweak staff-padding #4
+                - \tweak staff-padding 4
                 _ \markup { ... ma non troppo }
                 d'4
                 e'4
@@ -2078,7 +2043,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
                 - \tweak color #red
                 ^ \markup { Allegro assai ... }
                 - \tweak color #blue
-                - \tweak staff-padding #4
+                - \tweak staff-padding 4
                 ^ \markup { ... ma non troppo }
                 d'4
                 e'4
@@ -2109,7 +2074,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks grob aggregated to note-head:
 
         >>> staff = abjad.Staff("c'4 cs' d' ds'")
-        >>> abjad.tweak(staff[1].note_head).accidental.color = "#red"
+        >>> abjad.tweak(staff[1].note_head).Accidental.color = "#red"
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

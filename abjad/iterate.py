@@ -114,7 +114,7 @@ class Iteration:
                                 \slash
                                 \voiceOne
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -340,7 +340,7 @@ class Iteration:
                                 \slash
                                 \voiceOne
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -579,7 +579,7 @@ class Iteration:
                                 \slash
                                 \voiceOne
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'
@@ -1061,7 +1061,7 @@ class Iteration:
                                 \slash
                                 \voiceOne
                                 <
-                                    \tweak font-size #0
+                                    \tweak font-size 0
                                     \tweak transparent ##t
                                     e'
                                     g'

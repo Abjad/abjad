@@ -701,7 +701,7 @@ class StaffPosition:
             ...     markup = abjad.Markup(staff_position.number)
             ...     abjad.attach(markup, note)
             ...
-            >>> abjad.override(staff).text_script.staff_padding = 5
+            >>> abjad.override(staff).TextScript.staff_padding = 5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -711,7 +711,7 @@ class StaffPosition:
                 \new Staff
                 \with
                 {
-                    \override TextScript.staff-padding = #5
+                    \override TextScript.staff-padding = 5
                 }
                 {
                     g16
@@ -763,7 +763,7 @@ class StaffPosition:
             ...     abjad.attach(markup, note)
             ...
             >>> abjad.attach(abjad.Clef("bass"), staff[0])
-            >>> abjad.override(staff).text_script.staff_padding = 5
+            >>> abjad.override(staff).TextScript.staff_padding = 5
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -773,7 +773,7 @@ class StaffPosition:
                 \new Staff
                 \with
                 {
-                    \override TextScript.staff-padding = #5
+                    \override TextScript.staff-padding = 5
                 }
                 {
                     \clef "bass"

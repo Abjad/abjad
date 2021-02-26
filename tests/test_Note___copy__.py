@@ -33,13 +33,13 @@ def test_Note___copy___02():
 
 def test_Note___copy___03():
     """
-    Copy note with LilyPond grob abjad.overrides and LilyPond context settings.
+    Copy note with LilyPond grob overrides and LilyPond context settings.
     """
 
     note_1 = abjad.Note(12, (1, 4))
-    abjad.override(note_1).staff.note_head.color = "#red"
-    abjad.override(note_1).accidental.color = "#red"
-    abjad.setting(note_1).tuplet_full_length = True
+    abjad.override(note_1).Staff.NoteHead.color = "#red"
+    abjad.override(note_1).Accidental.color = "#red"
+    abjad.setting(note_1).tupletFullLength = True
     note_2 = copy.copy(note_1)
 
     assert isinstance(note_1, abjad.Note)
@@ -95,7 +95,7 @@ def test_Note___copy___05():
     abjad.attach(articulation, note)
     grace = abjad.BeforeGraceContainer("d'16")
     abjad.attach(grace, note)
-    abjad.override(note).note_head.color = "#red"
+    abjad.override(note).NoteHead.color = "#red"
 
     assert abjad.lilypond(note) == abjad.String.normalize(
         r"""
@@ -125,7 +125,7 @@ def test_Note___copy___06():
     abjad.attach(articulation, note)
     grace = abjad.BeforeGraceContainer("d'16")
     abjad.attach(grace, note)
-    abjad.override(note).note_head.color = "#red"
+    abjad.override(note).NoteHead.color = "#red"
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""

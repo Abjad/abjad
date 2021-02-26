@@ -39,7 +39,7 @@ class StartTextSpan:
                     \upright
                         tasto
                     }
-                - \tweak staff-padding #2.5
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -307,7 +307,7 @@ class StartTextSpan:
                             tasto
                         }
                     - \tweak color #blue
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     - \abjad-dashed-line-with-arrow
                     - \tweak bound-details.left.text \markup \concat { \upright
@@ -317,7 +317,7 @@ class StartTextSpan:
                             B
                         }
                     - \tweak color #red
-                    - \tweak staff-padding #6
+                    - \tweak staff-padding 6
                     \startTextSpanOne
                     d'4
                     e'4
@@ -422,7 +422,7 @@ class StartTextSpan:
                     - \abjad-solid-line-with-arrow
                     - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                     - \tweak bound-details.right.text \markup \upright tasto
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4
@@ -521,7 +521,7 @@ class StartTextSpan:
                         \upright
                             tasto
                         }
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4
@@ -552,7 +552,7 @@ class StartTextSpan:
                     - \abjad-dashed-line-with-hook
                     - \tweak bound-details.left.text \markup \concat { \upright
                         pont. \hspace #0.5 }
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4
@@ -588,7 +588,7 @@ class StartTextSpan:
                         \upright
                             tasto
                         }
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4
@@ -624,7 +624,7 @@ class StartTextSpan:
                         \upright
                             tasto
                         }
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4
@@ -655,7 +655,7 @@ class StartTextSpan:
                     - \abjad-solid-line-with-hook
                     - \tweak bound-details.left.text \markup \concat { \upright
                         pont. \hspace #0.5 }
-                    - \tweak staff-padding #2.5
+                    - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
                     e'4

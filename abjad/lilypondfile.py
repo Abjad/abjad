@@ -360,10 +360,10 @@ class ContextBlock(Block):
         >>> block.accepts_commands.append("FluteUpperVoice")
         >>> block.accepts_commands.append("FluteLowerVoice")
         >>> block.items.append(r"\accidentalStyle dodecaphonic")
-        >>> abjad.override(block).beam.positions = (-4, -4)
-        >>> abjad.override(block).stem.stem_end_position = -6
-        >>> abjad.setting(block).auto_beaming = False
-        >>> abjad.setting(block).tuplet_full_length = True
+        >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+        >>> abjad.override(block).Stem.stem_end_position = -6
+        >>> abjad.setting(block).autoBeaming = False
+        >>> abjad.setting(block).tupletFullLength = True
         >>> block
         <ContextBlock(source_lilypond_type='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 
@@ -378,7 +378,7 @@ class ContextBlock(Block):
             \accepts FluteUpperVoice
             \accepts FluteLowerVoice
             \override Beam.positions = #'(-4 . -4)
-            \override Stem.stem-end-position = #-6
+            \override Stem.stem-end-position = -6
             autoBeaming = ##f
             tupletFullLength = ##t
             \accidentalStyle dodecaphonic
@@ -473,10 +473,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.accepts_commands
             ['FluteUpperVoice', 'FluteLowerVoice']
@@ -502,10 +502,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.alias
             'Staff'
@@ -531,10 +531,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.consists_commands
             ['Horizontal_bracket_engraver']
@@ -560,10 +560,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.items
             ['\\accidentalStyle dodecaphonic']
@@ -589,10 +589,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.name
             'FluteStaff'
@@ -618,10 +618,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.remove_commands
             ['Forbid_line_break_engraver']
@@ -647,10 +647,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.source_lilypond_type
             'Staff'
@@ -676,10 +676,10 @@ class ContextBlock(Block):
             >>> block.accepts_commands.append("FluteUpperVoice")
             >>> block.accepts_commands.append("FluteLowerVoice")
             >>> block.items.append(r"\accidentalStyle dodecaphonic")
-            >>> abjad.override(block).beam.positions = (-4, -4)
-            >>> abjad.override(block).stem.stem_end_position = -6
-            >>> abjad.setting(block).auto_beaming = False
-            >>> abjad.setting(block).tuplet_full_length = True
+            >>> abjad.override(block).Beam.positions = "#'(-4 . -4)"
+            >>> abjad.override(block).Stem.stem_end_position = -6
+            >>> abjad.setting(block).autoBeaming = False
+            >>> abjad.setting(block).tupletFullLength = True
 
             >>> block.type_
             'Engraver_group'
