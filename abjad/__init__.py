@@ -112,7 +112,6 @@ from .indicators.StopTrillSpan import StopTrillSpan
 from .indicators.StringContactPoint import StringContactPoint
 from .indicators.Tie import Tie
 from .indicators.TimeSignature import TimeSignature
-from .indicators.WoodwindFingering import WoodwindFingering
 from .instruments import (
     Accordion,
     AltoFlute,
@@ -647,7 +646,6 @@ __all__ = [
     "Violin",
     "Voice",
     "WellformednessError",
-    "WoodwindFingering",
     "Wrapper",
     "Xylophone",
     "__version__",
