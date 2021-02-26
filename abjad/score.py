@@ -4121,10 +4121,10 @@ class NoteHeadList(TypedList):
 
             >>> note_heads = []
             >>> note_head = abjad.NoteHead("cs''")
-            >>> abjad.tweak(note_head).color = 'blue'
+            >>> abjad.tweak(note_head).color = "#blue"
             >>> note_heads.append(note_head)
             >>> note_head = abjad.NoteHead("f''")
-            >>> abjad.tweak(note_head).color = 'green'
+            >>> abjad.tweak(note_head).color = "#green"
             >>> note_heads.append(note_head)
             >>> chord.note_heads.extend(note_heads)
             >>> abjad.show(chord) # doctest: +SKIP

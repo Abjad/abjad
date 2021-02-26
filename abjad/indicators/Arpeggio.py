@@ -112,7 +112,7 @@ class Arpeggio:
 
             >>> chord = abjad.Chord("<c' e' g' c''>4")
             >>> arpeggio = abjad.Arpeggio()
-            >>> abjad.tweak(arpeggio).color = 'blue'
+            >>> abjad.tweak(arpeggio).color = "#blue"
             >>> abjad.attach(arpeggio, chord)
             >>> abjad.show(chord) # doctest: +SKIP
 

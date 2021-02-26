@@ -13,7 +13,7 @@ class Glissando:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> glissando = abjad.Glissando()
-        >>> abjad.tweak(glissando).color = 'blue'
+        >>> abjad.tweak(glissando).color = "#blue"
         >>> abjad.attach(glissando, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -170,7 +170,7 @@ class Glissando:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> glissando = abjad.Glissando()
-            >>> abjad.tweak(glissando).color = 'blue'
+            >>> abjad.tweak(glissando).color = "#blue"
             >>> abjad.attach(glissando, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

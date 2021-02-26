@@ -15,7 +15,7 @@ class StartTrillSpan:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_trill_span = abjad.StartTrillSpan()
-        >>> abjad.tweak(start_trill_span).color = 'blue'
+        >>> abjad.tweak(start_trill_span).color = "#blue"
         >>> abjad.attach(start_trill_span, staff[0])
         >>> stop_trill_span = abjad.StopTrillSpan()
         >>> abjad.attach(stop_trill_span, staff[-1])
@@ -138,7 +138,7 @@ class StartTrillSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_trill_span = abjad.StartTrillSpan(interval='M2')
-            >>> abjad.tweak(start_trill_span).color = 'blue'
+            >>> abjad.tweak(start_trill_span).color = "#blue"
             >>> abjad.attach(start_trill_span, staff[0])
             >>> stop_trill_span = abjad.StopTrillSpan()
             >>> abjad.attach(stop_trill_span, staff[-1])
@@ -200,7 +200,7 @@ class StartTrillSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_trill_span = abjad.StartTrillSpan(pitch='C#4')
-            >>> abjad.tweak(start_trill_span).color = 'blue'
+            >>> abjad.tweak(start_trill_span).color = "#blue"
             >>> abjad.attach(start_trill_span, staff[0])
             >>> stop_trill_span = abjad.StopTrillSpan()
             >>> abjad.attach(stop_trill_span, staff[-1])
@@ -249,18 +249,18 @@ class StartTrillSpan:
 
             >>> import copy
             >>> start_trill_span = abjad.StartTrillSpan()
-            >>> abjad.tweak(start_trill_span).color = 'blue'
+            >>> abjad.tweak(start_trill_span).color = "#blue"
             >>> string = abjad.storage(start_trill_span)
             >>> print(string)
             abjad.StartTrillSpan(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
             >>> start_trill_span_2 = copy.copy(start_trill_span)
             >>> string = abjad.storage(start_trill_span_2)
             >>> print(string)
             abjad.StartTrillSpan(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
         """

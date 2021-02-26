@@ -64,7 +64,7 @@ class StopGroup:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartGroup()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopGroup()
             >>> abjad.attach(command, staff[-2])
@@ -89,7 +89,7 @@ class StopGroup:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartGroup()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopGroup(leak=True)
             >>> abjad.attach(command, staff[-2])
@@ -118,7 +118,7 @@ class StopGroup:
             >>> staff = abjad.Staff("c'8 d' e' f' r2")
             >>> abjad.beam(staff[:4])
             >>> command = abjad.StartGroup()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopGroup(leak=True)
             >>> abjad.attach(command, staff[3])

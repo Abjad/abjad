@@ -234,18 +234,18 @@ class StopPianoPedal:
 
             >>> import copy
             >>> stop_piano_pedal = abjad.StopPianoPedal()
-            >>> abjad.tweak(stop_piano_pedal).color = 'blue'
+            >>> abjad.tweak(stop_piano_pedal).color = "#blue"
             >>> string = abjad.storage(stop_piano_pedal)
             >>> print(string)
             abjad.StopPianoPedal(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
             >>> stop_piano_pedal_2 = copy.copy(stop_piano_pedal)
             >>> string = abjad.storage(stop_piano_pedal_2)
             >>> print(string)
             abjad.StopPianoPedal(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
         """

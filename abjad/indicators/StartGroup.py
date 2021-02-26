@@ -13,7 +13,7 @@ class StartGroup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_group = abjad.StartGroup()
-        >>> abjad.tweak(start_group).color = 'blue'
+        >>> abjad.tweak(start_group).color = "#blue"
         >>> abjad.attach(start_group, staff[0])
         >>> stop_group = abjad.StopGroup()
         >>> abjad.attach(stop_group, staff[-1])
@@ -131,18 +131,18 @@ class StartGroup:
 
             >>> import copy
             >>> start_group = abjad.StartGroup()
-            >>> abjad.tweak(start_group).color = 'blue'
+            >>> abjad.tweak(start_group).color = "#blue"
             >>> string = abjad.storage(start_group)
             >>> print(string)
             abjad.StartGroup(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
             >>> start_group_2 = copy.copy(start_group)
             >>> string = abjad.storage(start_group_2)
             >>> print(string)
             abjad.StartGroup(
-                tweaks=TweakInterface(('_literal', None), ('color', 'blue')),
+                tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
                 )
 
         """

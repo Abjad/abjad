@@ -84,7 +84,7 @@ class StopSlur:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartSlur()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopSlur()
             >>> abjad.attach(command, staff[-2])
@@ -109,7 +109,7 @@ class StopSlur:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartSlur()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopSlur(leak=True)
             >>> abjad.attach(command, staff[-2])
@@ -138,7 +138,7 @@ class StopSlur:
             >>> staff = abjad.Staff("c'8 d' e' f' r2")
             >>> abjad.beam(staff[:4])
             >>> command = abjad.StartSlur()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopSlur(leak=True)
             >>> abjad.attach(command, staff[3])

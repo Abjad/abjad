@@ -84,7 +84,7 @@ class StopTrillSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartTrillSpan()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopTrillSpan()
             >>> abjad.attach(command, staff[-2])
@@ -109,7 +109,7 @@ class StopTrillSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartTrillSpan()
-            >>> abjad.tweak(command).color = 'blue'
+            >>> abjad.tweak(command).color = "#blue"
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopTrillSpan(leak=True)
             >>> abjad.attach(command, staff[-2])

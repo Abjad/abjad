@@ -1601,7 +1601,7 @@ def hairpin(
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_dynamic = abjad.Dynamic("niente", command=r"\!")
         >>> start_hairpin = abjad.StartHairpin("o<|")
-        >>> abjad.tweak(start_hairpin).color = "blue"
+        >>> abjad.tweak(start_hairpin).color = "#blue"
         >>> stop_dynamic = abjad.Dynamic('"f"')
         >>> abjad.hairpin([start_dynamic, start_hairpin, stop_dynamic], staff[:])
         >>> abjad.override(staff[0]).dynamic_line_spanner.staff_padding = 4

@@ -267,7 +267,7 @@ class Fermata:
 
             >>> note = abjad.Note("c'4")
             >>> fermata = abjad.Fermata()
-            >>> abjad.tweak(fermata).color = 'blue'
+            >>> abjad.tweak(fermata).color = "#blue"
             >>> abjad.attach(fermata, note)
             >>> abjad.show(note) # doctest: +SKIP
 

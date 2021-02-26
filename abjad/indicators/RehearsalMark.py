@@ -269,7 +269,7 @@ class RehearsalMark:
 
             >>> note = abjad.Note("c'4")
             >>> mark = abjad.RehearsalMark(markup='A')
-            >>> abjad.tweak(mark).color = 'blue'
+            >>> abjad.tweak(mark).color = "#blue"
             >>> abjad.attach(mark, note)
             >>> abjad.show(note) # doctest: +SKIP
 
