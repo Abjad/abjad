@@ -255,10 +255,12 @@ class Label:
 
     def _color_leaf(self, leaf, color):
         if isinstance(leaf, Skip):
+            color = color[1:]
             comment = LilyPondComment(color)
             self._attach(comment, leaf)
         else:
-            string = fr"\abjad-color-music #'{color}"
+            assert color.startswith("#")
+            string = fr"\abjad-color-music #'{color[1:]}"
             literal = LilyPondLiteral(string)
             self._attach(literal, leaf)
         return leaf
@@ -300,7 +302,7 @@ class Label:
 
     ### PUBLIC METHODS ###
 
-    def color_container(self, color="red"):
+    def color_container(self, color="#red"):
         r"""
         Colors contents of ``container``.
 
@@ -312,7 +314,7 @@ class Label:
 
                 >>> staff = abjad.Staff("c'8 d'8")
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
-                >>> abjad.label(staff).color_container('red')
+                >>> abjad.label(staff).color_container("#red")
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -341,7 +343,7 @@ class Label:
 
                 >>> staff = abjad.Staff("c'8 d'8")
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
-                >>> expression = abjad.label().color_container('red')
+                >>> expression = abjad.label().color_container("#red")
                 >>> expression(staff)
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -380,7 +382,7 @@ class Label:
         override(self.client).tuplet_bracket.color = color
         override(self.client).tuplet_number.color = color
 
-    def color_leaves(self, color="red"):
+    def color_leaves(self, color="#red"):
         r"""
         Colors leaves.
 
@@ -392,7 +394,7 @@ class Label:
 
                 >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
                 >>> abjad.beam(staff[:])
-                >>> abjad.label(staff).color_leaves('red')
+                >>> abjad.label(staff).color_leaves("#red")
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -417,7 +419,7 @@ class Label:
 
                 >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
                 >>> abjad.beam(staff[:])
-                >>> expression = abjad.label().color_leaves('red')
+                >>> expression = abjad.label().color_leaves("#red")
                 >>> expression(staff)
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -458,7 +460,7 @@ class Label:
 
                 >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                 >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
-                >>> colors = ['red', 'blue', 'green']
+                >>> colors = ["#red", "#blue", "#green"]
                 >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
                 >>> abjad.label(chord).color_note_heads(color_map)
                 >>> abjad.show(chord) # doctest: +SKIP
@@ -484,7 +486,7 @@ class Label:
 
                 >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
                 >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
-                >>> colors = ['red', 'blue', 'green']
+                >>> colors = ["#red", "#blue", "#green"]
                 >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
                 >>> expression = abjad.label().color_note_heads(color_map)
                 >>> expression(chord)
@@ -666,11 +668,11 @@ class Label:
         if self._expression:
             return self._update_expression(inspect.currentframe())
         if selector._is_singular_get_item():
-            colors = colors or ["green"]
+            colors = colors or ["#green"]
             color = colors[0]
             self.color_leaves(color=color)
         else:
-            colors = colors or ["red", "blue"]
+            colors = colors or ["#red", "#blue"]
             colors = CyclicTuple(colors)
             for i, item in enumerate(self.client):
                 color = colors[i]
@@ -4166,7 +4168,7 @@ class ColorMap:
         Maps pitch-classes to red, green and blue:
 
         >>> color_map = abjad.ColorMap(
-        ...     colors=["red", "green", "blue"],
+        ...     colors=["#red", "#green", "#blue"],
         ...     pitch_iterables=[
         ...         [-8, 2, 10, 21],
         ...         [0, 11, 32, 41],
@@ -4177,7 +4179,7 @@ class ColorMap:
         >>> string = abjad.storage(color_map)
         >>> print(string)
         abjad.ColorMap(
-            colors=['red', 'green', 'blue'],
+            colors=['#red', '#green', '#blue'],
             pitch_iterables=[
                 [-8, 2, 10, 21],
                 [0, 11, 32, 41],
@@ -4218,7 +4220,7 @@ class ColorMap:
         ..  container:: example
 
             >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
+            ...     colors=["#red", "#green", "#blue"],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
             ...         [0, 11, 32, 41],
@@ -4227,7 +4229,7 @@ class ColorMap:
             ... )
 
             >>> color_map[11]
-            'green'
+            '#green'
 
         """
         pitch_class = NumberedPitchClass(pitch_class)
@@ -4272,7 +4274,7 @@ class ColorMap:
         ..  container:: example
 
             >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
+            ...     colors=["#red", "#green", "#blue"],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
             ...         [0, 11, 32, 41],
@@ -4281,7 +4283,7 @@ class ColorMap:
             ... )
 
             >>> color_map.colors
-            ['red', 'green', 'blue']
+            ['#red', '#green', '#blue']
 
         """
         return self._colors
@@ -4294,7 +4296,7 @@ class ColorMap:
         ..  container:: example
 
             >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
+            ...     colors=["#red", "#green", "#blue"],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
             ...         [0, 11, 32, 41],
@@ -4317,7 +4319,7 @@ class ColorMap:
         ..  container:: example
 
             >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
+            ...     colors=["#red", "#green", "#blue"],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
             ...         [0, 11, 32, 41],
@@ -4341,7 +4343,7 @@ class ColorMap:
         ..  container:: example
 
             >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
+            ...     colors=["#red", "#green", "#blue"],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
             ...         [0, 11, 32, 41],
@@ -4352,18 +4354,18 @@ class ColorMap:
             >>> for pair in color_map.pairs:
             ...     pair
             ...
-            (0, 'green')
-            (1, 'blue')
-            (2, 'red')
-            (3, 'blue')
-            (4, 'red')
-            (5, 'green')
-            (6, 'blue')
-            (7, 'blue')
-            (8, 'green')
-            (9, 'red')
-            (10, 'red')
-            (11, 'green')
+            (0, '#green')
+            (1, '#blue')
+            (2, '#red')
+            (3, '#blue')
+            (4, '#red')
+            (5, '#green')
+            (6, '#blue')
+            (7, '#blue')
+            (8, '#green')
+            (9, '#red')
+            (10, '#red')
+            (11, '#green')
 
         """
         items = list(self._color_dictionary.items())
@@ -4377,7 +4379,7 @@ class ColorMap:
         ..  container:: example
 
             >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
+            ...     colors=["#red", "#green", "#blue"],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
             ...         [0, 11, 32, 41],
@@ -4400,7 +4402,7 @@ class ColorMap:
         ..  container:: example
 
             >>> color_map = abjad.ColorMap(
-            ...     colors=["red", "green", "blue"],
+            ...     colors=["#red", "#green", "#blue"],
             ...     pitch_iterables=[
             ...         [-8, 2, 10, 21],
             ...         [0, 11, 32, 41],
@@ -4409,7 +4411,7 @@ class ColorMap:
             ... )
 
             >>> color_map.get(11)
-            'green'
+            '#green'
 
         Returns ``alternative`` when ``key`` is not found.
         """

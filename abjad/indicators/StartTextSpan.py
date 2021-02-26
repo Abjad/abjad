@@ -267,7 +267,7 @@ class StartTextSpan:
             ...     right_text=abjad.Markup(r"\upright tasto"),
             ...     style="dashed-line-with-arrow",
             ...     )
-            >>> abjad.tweak(start_text_span).color = "blue"
+            >>> abjad.tweak(start_text_span).color = "#blue"
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -279,7 +279,7 @@ class StartTextSpan:
             ...     right_text=abjad.Markup(r"\upright B"),
             ...     style="dashed-line-with-arrow",
             ...     )
-            >>> abjad.tweak(start_text_span).color = "red"
+            >>> abjad.tweak(start_text_span).color = "#red"
             >>> abjad.tweak(start_text_span).staff_padding = 6
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan(command=r"\stopTextSpanOne")

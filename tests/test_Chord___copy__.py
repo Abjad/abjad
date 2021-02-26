@@ -34,8 +34,8 @@ def test_Chord___copy___03():
     """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
-    abjad.override(chord_1).staff.note_head.color = "red"
-    abjad.override(chord_1).accidental.color = "red"
+    abjad.override(chord_1).staff.note_head.color = "#red"
+    abjad.override(chord_1).accidental.color = "#red"
     abjad.setting(chord_1).tuplet_full_length = True
     chord_2 = copy.copy(chord_1)
 
@@ -51,7 +51,7 @@ def test_Chord___copy___04():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.note_heads[0]).color = "red"
+    abjad.tweak(chord_1.note_heads[0]).color = "#red"
     chord_2 = copy.copy(chord_1)
 
     assert abjad.lilypond(chord_1) == abjad.String.normalize(

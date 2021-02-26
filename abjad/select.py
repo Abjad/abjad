@@ -7249,7 +7249,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("a'8"), Note("b'8")])
                 Selection([Rest('r8'), Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector, ["red", "blue", "cyan"])
+                >>> abjad.label(result).by_selector(selector, ["#red", "#blue", "#cyan"])
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8695,7 +8695,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("e'8"), Rest('r8'), Note("f'8")])
                 Selection([Note("g'8"), Note("a'8"), Rest('r8')])
 
-                >>> abjad.label(result).by_selector(selector, ["red", "blue", "cyan"])
+                >>> abjad.label(result).by_selector(selector, ["#red", "#blue", "#cyan"])
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -10617,7 +10617,7 @@ def select(items=None, previous=None):
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> selection = abjad.select(staff[:2]).leaves(pitched=True)
         >>> for note in selection:
-        ...     abjad.override(note).note_head.color = 'red'
+        ...     abjad.override(note).note_head.color = "#red"
 
         >>> abjad.show(staff) # doctest: +SKIP
 

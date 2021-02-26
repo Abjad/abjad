@@ -110,11 +110,11 @@ class StopPianoPedal:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> start_piano_pedal = abjad.StartPianoPedal()
-            >>> abjad.tweak(start_piano_pedal).color = 'blue'
+            >>> abjad.tweak(start_piano_pedal).color = "#blue"
             >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.Center
             >>> abjad.attach(start_piano_pedal, staff[0])
             >>> stop_piano_pedal = abjad.StopPianoPedal()
-            >>> abjad.tweak(stop_piano_pedal).color = 'red'
+            >>> abjad.tweak(stop_piano_pedal).color = "#red"
             >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.Center
             >>> abjad.attach(stop_piano_pedal, staff[-2])
             >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 5
@@ -146,11 +146,11 @@ class StopPianoPedal:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> start_piano_pedal = abjad.StartPianoPedal()
-            >>> abjad.tweak(start_piano_pedal).color = 'blue'
+            >>> abjad.tweak(start_piano_pedal).color = "#blue"
             >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.Center
             >>> abjad.attach(start_piano_pedal, staff[0])
             >>> stop_piano_pedal = abjad.StopPianoPedal(leak=True)
-            >>> abjad.tweak(stop_piano_pedal).color = 'red'
+            >>> abjad.tweak(stop_piano_pedal).color = "#red"
             >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.Center
             >>> abjad.attach(stop_piano_pedal, staff[-2])
             >>> abjad.override(staff).sustain_pedal_line_spanner.staff_padding = 5

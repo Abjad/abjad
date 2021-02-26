@@ -79,7 +79,7 @@ class RehearsalMark:
             Preserves tweaks:
 
             >>> mark = abjad.RehearsalMark(number=1)
-            >>> abjad.tweak(mark).color = 'red'
+            >>> abjad.tweak(mark).color = "#red"
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(mark, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP

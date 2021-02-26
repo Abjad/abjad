@@ -2034,7 +2034,7 @@ class AfterGraceContainer(Container):
         >>> abjad.attach(literal, voice[0])
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
-        >>> abjad.override(voice[1]).note_head.color = "red"
+        >>> abjad.override(voice[1]).note_head.color = "#red"
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -3929,9 +3929,9 @@ class NoteHead:
             >>> note_head.tweaks is None
             True
 
-            >>> abjad.tweak(note_head).color = 'red'
+            >>> abjad.tweak(note_head).color = "#red"
             >>> note_head.tweaks
-            TweakInterface(('_literal', None), ('color', 'red'))
+            TweakInterface(('_literal', None), ('color', '#red'))
 
             >>> string = abjad.lilypond(note_head)
             >>> print(string)
@@ -3942,13 +3942,13 @@ class NoteHead:
 
             >>> chord = abjad.Chord([0, 2, 10], (1, 4))
 
-            >>> abjad.tweak(chord.note_heads[0]).color = 'red'
+            >>> abjad.tweak(chord.note_heads[0]).color = "#red"
             >>> abjad.tweak(chord.note_heads[0]).thickness = 2
 
-            >>> abjad.tweak(chord.note_heads[1]).color = 'red'
+            >>> abjad.tweak(chord.note_heads[1]).color = "#red"
             >>> abjad.tweak(chord.note_heads[1]).thickness = 2
 
-            >>> abjad.tweak(chord.note_heads[2]).color = 'blue'
+            >>> abjad.tweak(chord.note_heads[2]).color = "#blue"
 
             >>> abjad.show(chord) # doctest: +SKIP
 
@@ -4157,7 +4157,7 @@ class NoteHeadList(TypedList):
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> note_head = chord.note_heads.get("e'")
-            >>> abjad.tweak(note_head).color = 'red'
+            >>> abjad.tweak(note_head).color = "#red"
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -4179,7 +4179,7 @@ class NoteHeadList(TypedList):
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> note_head = chord.note_heads.get(4)
-            >>> abjad.tweak(note_head).color = 'red'
+            >>> abjad.tweak(note_head).color = "#red"
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -5982,15 +5982,15 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
-            >>> abjad.tweak(tuplet_1).color = 'red'
+            >>> abjad.tweak(tuplet_1).color = "#red"
             >>> abjad.tweak(tuplet_1).staff_padding = 2
 
             >>> tuplet_2 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
-            >>> abjad.tweak(tuplet_2).color = 'green'
+            >>> abjad.tweak(tuplet_2).color = "#green"
             >>> abjad.tweak(tuplet_2).staff_padding = 2
 
             >>> tuplet_3 = abjad.Tuplet((5, 4), [tuplet_1, tuplet_2])
-            >>> abjad.tweak(tuplet_3).color = 'blue'
+            >>> abjad.tweak(tuplet_3).color = "#blue"
             >>> abjad.tweak(tuplet_3).staff_padding = 4
 
             >>> staff = abjad.Staff([tuplet_3])
@@ -7056,10 +7056,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = 'red'
+        >>> abjad.override(outer_red_voice).note_head.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = 'blue'
+        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('f')
@@ -7129,10 +7129,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = 'red'
+        >>> abjad.override(outer_red_voice).note_head.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = 'blue'
+        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('p')
@@ -7202,10 +7202,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = 'red'
+        >>> abjad.override(outer_red_voice).note_head.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = 'blue'
+        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('mf')
@@ -7275,10 +7275,10 @@ class Voice(Context):
         ...     )
         >>> outer_red_voice.append(container)
         >>> outer_red_voice.extend("d''8")
-        >>> abjad.override(outer_red_voice).note_head.color = 'red'
+        >>> abjad.override(outer_red_voice).note_head.color = "#red"
         >>> literal = abjad.LilyPondLiteral(r'\voiceOne')
         >>> abjad.attach(literal, outer_red_voice[0])
-        >>> abjad.override(inner_blue_voice).note_head.color = 'blue'
+        >>> abjad.override(inner_blue_voice).note_head.color = "#blue"
         >>> literal = abjad.LilyPondLiteral(r'\voiceTwo')
         >>> abjad.attach(literal, inner_blue_voice[0])
         >>> dynamic = abjad.Dynamic('mf')

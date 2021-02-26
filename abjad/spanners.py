@@ -1296,8 +1296,8 @@ def glissando(
         >>> staff = abjad.Staff("d'4 d' d' d'")
         >>> abjad.glissando(
         ...     staff[:],
-        ...     (abjad.tweak("red").color, 0),
-        ...     (abjad.tweak("red").color, -1),
+        ...     (abjad.tweak("#red").color, 0),
+        ...     (abjad.tweak("#red").color, -1),
         ...     allow_repeats=True,
         ...     zero_padding=True,
         ...     )

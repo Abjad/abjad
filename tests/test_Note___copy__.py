@@ -37,8 +37,8 @@ def test_Note___copy___03():
     """
 
     note_1 = abjad.Note(12, (1, 4))
-    abjad.override(note_1).staff.note_head.color = "red"
-    abjad.override(note_1).accidental.color = "red"
+    abjad.override(note_1).staff.note_head.color = "#red"
+    abjad.override(note_1).accidental.color = "#red"
     abjad.setting(note_1).tuplet_full_length = True
     note_2 = copy.copy(note_1)
 
@@ -95,7 +95,7 @@ def test_Note___copy___05():
     abjad.attach(articulation, note)
     grace = abjad.BeforeGraceContainer("d'16")
     abjad.attach(grace, note)
-    abjad.override(note).note_head.color = "red"
+    abjad.override(note).note_head.color = "#red"
 
     assert abjad.lilypond(note) == abjad.String.normalize(
         r"""
@@ -125,7 +125,7 @@ def test_Note___copy___06():
     abjad.attach(articulation, note)
     grace = abjad.BeforeGraceContainer("d'16")
     abjad.attach(grace, note)
-    abjad.override(note).note_head.color = "red"
+    abjad.override(note).note_head.color = "#red"
 
     assert abjad.lilypond(staff) == abjad.String.normalize(
         r"""
@@ -164,8 +164,8 @@ def test_Note___copy___07():
     """
 
     note = abjad.Note("c'4")
-    abjad.tweak(note.note_head).color = "red"
-    abjad.tweak(note.note_head).Accidental.color = "red"
+    abjad.tweak(note.note_head).color = "#red"
+    abjad.tweak(note.note_head).Accidental.color = "#red"
     copied_note = copy.copy(note)
     string = abjad.lilypond(copied_note)
     assert string == abjad.String.normalize(

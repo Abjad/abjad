@@ -9,7 +9,7 @@ def test_Chord___deepcopy___01():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.note_heads[0]).color = "red"
+    abjad.tweak(chord_1.note_heads[0]).color = "#red"
     chord_2 = copy.deepcopy(chord_1)
 
     assert abjad.lilypond(chord_1) == abjad.String.normalize(

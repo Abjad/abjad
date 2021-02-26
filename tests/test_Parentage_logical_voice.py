@@ -69,7 +69,7 @@ def test_Parentage_logical_voice_04():
         """
     )
 
-    abjad.override(voice).note_head.color = "red"
+    abjad.override(voice).note_head.color = "#red"
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
         r"""
@@ -138,7 +138,7 @@ def test_Parentage_logical_voice_05():
         """
     )
 
-    abjad.override(voice).note_head.color = "red"
+    abjad.override(voice).note_head.color = "#red"
     voice.name = "foo"
 
     assert abjad.lilypond(voice) == abjad.String.normalize(
@@ -272,8 +272,8 @@ def test_Parentage_logical_voice_07():
         """
     )
 
-    abjad.override(container[1][1]).note_head.color = "red"
-    abjad.override(container[2][1]).note_head.color = "red"
+    abjad.override(container[1][1]).note_head.color = "#red"
+    abjad.override(container[2][1]).note_head.color = "#red"
 
     assert abjad.lilypond(container) == abjad.String.normalize(
         r"""
