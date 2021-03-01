@@ -62,28 +62,31 @@ classifiers = [
 ]
 
 extras_require = {
-    "ipython": ["abjad-ext-ipython>=3.1.0, <3.2.0"],
-    "nauert": ["abjad-ext-nauert>=3.1.0, <3.2.0"],
-    "rmakers": ["abjad-ext-rmakers>=3.1.0, <3.2.0"],
-    "test": [
-        "black==20.8b1",
-        "flake8",
-        "isort",
-        "mypy>=0.770",
-        "pytest>=5.4.3",
-        "pytest-cov>=2.7.1",
-        "sphinx-autodoc-typehints",
-    ],
+    "ipython": ["abjad-ext-ipython>=3.2"],
+    "nauert": ["abjad-ext-nauert==3.3"],
+    "rmakers": ["abjad-ext-rmaker==3.3"],
 }
 
 keywords = [
-    "music",
     "music composition",
     "music notation",
     "lilypond",
 ]
 
-install_requires = ["ply", "quicktions>=1.3", "roman", "six", "uqbar>=0.4.4, <0.5.0"]
+install_requires = [
+    "black>=20.8b1",
+    "flake8",
+    "isort",
+    "mypy>=0.770",
+    "ply",
+    "pytest>=5.4.3",
+    "pytest-cov>=2.7.1",
+    "quicktions>=1.3",
+    "roman",
+    "six",
+    "sphinx-autodoc-typehints",
+    "uqbar>=0.4.4, <0.5.0",
+]
 
 if __name__ == "__main__":
     setuptools.setup(
@@ -98,7 +101,7 @@ if __name__ == "__main__":
         license="MIT",
         long_description=long_description,
         long_description_content_type="text/x-rst",
-        name="Abjad",
+        name="abjad",
         packages=["abjad"],
         platforms="Any",
         url="https://abjad.github.io",
