@@ -1,9 +1,161 @@
 Changes
 =======
 
-Changes to Abjad 3.2 (2021-01-17) since Abjad 3.1 (2019-12-19).
+..
 
 ----
+
+Changed in Abjad 3.3
+--------------------
+
+Changes to Abjad 3.3 (2021-03-01) since Abjad 3.2 (2021-01-19).
+
+`#1328 <https://github.com/Abjad/abjad/issues/1328>`_. Removed ``abjad.WoodwindFingering``. Use LilyPond ``\woodwind-fingering`` instead.
+
+`#1323 <https://github.com/Abjad/abjad/issues/1323>`_. Removed ``abjad.f()``. Use
+``abjad.lilypond()`` instead:
+
+::
+
+    OLD:
+
+        >>> abjad.f(score)
+
+    NEW:
+
+        >>> string = abjad.lilypond(score)
+        >>> print(string)
+
+`#1293 <https://github.com/Abjad/abjad/issues/1293>`_. Removed ``abjad.LilyPondFile.new()`` constructor. Use ``abjad.LilyPondFile`` initializer instead:
+
+::
+
+    OLD:
+
+        >>> abjad.LilyPondFile.new(score)
+
+    NEW:
+
+        >>> block = abjad.Block(name="score")
+        >>> block.items.append(score)
+        >>> abjad.LilyPondFile(items=[block])
+
+`#1086 <https://github.com/Abjad/abjad/issues/1086>`_. Gutted markup interface.
+Externalize markup in a LilyPond stylesheet and set ``literal=True`` instead:
+
+::
+
+    REMOVED:
+
+        abjad.Markup.bold()
+        abjad.Markup.center_column()
+        abjad.Markup.hcenter_in()
+        abjad.Markup.italic()
+        abjad.Markup.with_dimensions()
+        ...
+
+    OLD:
+
+        >>> markup = abjad.Markup("Allegro assai")
+        >>> markup = markup.bold()
+
+    NEW:
+
+        Create a markup library in an external LilyPond file;
+        assign each new piece of markup to a LilyPond variable:
+
+            allegro-assai = \markup \bold { Allegro assai }
+
+        Then initialize in Abjad like this:
+
+            >>> abjad.Markup(r"\allegro-assai", literal=True)
+
+        Markup can still be initialized locally in Abjad;
+        type markup exactly as in LilyPond:
+
+        >>> string = r"\markup \bold { Allegro assai }"
+        >>> abjad.Markup(string, literal=True)
+
+(The ``literal=True`` keyword will be removed in a future release of Abjad. All markup
+will then initialize as though ``literal=True``.)
+
+`#1086 <https://github.com/Abjad/abjad/issues/1086>`_. Removed Scheme proxy classes. Type
+Scheme settings as literal LilyPond code instead:
+
+::
+
+    REMOVED:
+
+        abjad.SchemeMoment
+        abjad.SchemeAssociativeList
+        abjad.SchemeColor
+        abjad.SchemePair
+        abjad.SpacingVector
+        abjad.SchemeSymbol
+        abjad.SchemeVector
+        abjad.SchemeVectorConstant
+
+    CHANGED:
+
+        >>> scheme_moment = abjad.SchemeMoment((1, 24))
+        >>> abjad.override(score).proportional_notation_duration = scheme_moment
+
+        >>> abjad.override(score).proportionalNotationDuration = "#(ly:make-moment 1 24)"
+
+    CHANGED:
+
+        >>> abjad.override(voice).note_head.color = abjad.SchemeColor("red")
+
+        >>> abjad.override(voice).NoteHead.color = "#red"
+
+    CHANGED:
+
+        >>> abjad.override(voice).note_head.style = abjad.SchemeSymbol("harmonic")
+
+        >>> abjad.override(voice).NoteHead.style = "#'harmonic"
+
+    CHANGED:
+
+        >>> spacing_vector = abjad.SpacingVector(0, 10, 10, 0)
+        >>> abjad.override(score).staff_grouper.staff_staff_spacing = spacing_vector
+
+        >>> string = "#'((basic-distance . 10) (minimum-distance . 10))
+        >>> abjad.override(score).StaffGrouper.staff_staff_spacing = string
+
+    CHANGED:
+
+        >>> string = "tuplet-number::calc-denominator-text"
+        >>> abjad.override(score).tuplet_number.text = string
+    
+        >>> string = "#tuplet-number::calc-denominator-text"
+        >>> abjad.override(score).TupletNumber.text = string
+
+----
+
+Fixed in Abjad 3.3
+------------------
+
+`#1319 <https://github.com/Abjad/abjad/issues/1319>`_. Taught the auxilliary note in
+pitched trills to transpose. (`Tsz Kiu Pang <https://nivlekp.github.io/>`_).
+
+`#1309 <https://github.com/Abjad/abjad/issues/1309>`_. Taught
+``abjad.Meter.rewrite_meter()`` more about handling grace notes. (`Tsz Kiu Pang
+<https://nivlekp.github.io/>`_).
+
+`#1129 <https://github.com/Abjad/abjad/issues/1129>`_. Taught tweaked note heads to
+copy correctly. (`Tsz Kiu Pang <https://nivlekp.github.io/>`_).
+
+`#1174 <https://github.com/Abjad/abjad/issues/1174>`_. Taught
+``abjad.Selection.group_by_measure()`` to respect pick-measures created at the beginning
+of a score with `abjad.TimeSignature.partial`. (`Tsz Kiu Pang
+<https://nivlekp.github.io/>`_).
+
+----
+
+Changed in Abjad 3.2
+--------------------
+
+Changes to Abjad 3.2 (2021-01-19) since Abjad 3.1 (2019-12-19).
 
 `#1244 <https://github.com/Abjad/abjad/issues/1244>`_. Taught tuplets to preserve input
 ratios without reducing terms of fraction:
@@ -671,7 +823,8 @@ Removed RTM parsing from containers:
 
 ----
 
-**DEPRECATED.**
+Deprecated in Abjad 3.2
+-----------------------
 
 ``format()`` and ``abjad.f()`` are both deprecated. Removed ``__format__()``
 definitions and corresponding use of ``format()`` from Abjad in this release. Removal of
@@ -719,7 +872,8 @@ in a score:
 
 ----
 
-**FIXES.**
+Fixes in Abjad 3.2
+------------------
 
 `#1245 <https://github.com/Abjad/abjad/issues/1245>`_, `#1247
 <https://github.com/Abjad/abjad/pull/1247>`_. Removed duplicate indicators when
@@ -729,14 +883,14 @@ fusing leaves. (`Tsz Kiu Pang <https://nivlekp.github.io/>`_).
 
 ----
 
-**PACKAGE CLEANUP.**
+Cleanup in Abjad 3.2
+--------------------
 
-* Alphabetized Abjad initializer
-* Emptied subpackage initializers
-* Removed ``import *`` statements
-
-----
-
+* Activated Sphinx's ``sphinx.ext.viewcode`` extension in the docs
+  as suggested by `jgarte <https://github.com/jgarte>`_
+* `#1225 <https://github.com/Abjad/abjad/issues/1225>`_.
+  Adjusted ``collections.abc`` imports to mollify mypy
+  (`Oberholtzer <https://github.com/josiah-wolf-oberholtzer>`_)
 * Added private ``_iterate.py`` module
 * Added private ``_update.py`` module
 * Added ``attach.py`` module
@@ -761,61 +915,33 @@ fusing leaves. (`Tsz Kiu Pang <https://nivlekp.github.io/>`_).
 * Added ``storage.py`` module
 * Added ``typedcollections.py`` module
 * Added ``verticalmoment.py`` module
-* Removed ``tags.py`` module
-* Removed ``top.py`` module
-
-----
-
 * Added ``pitch/operators.py`` module
 * Added ``pitch/pitches.py`` module
 * Added ``pitch/segments.py`` module
 * Added ``pitch/sets.py`` module
 * Added ``pitch/pitchclasses.py`` module
 * Added ``pitch/intervalclasses.py`` module
+* Alphabetized Abjad initializer
+* Changed single backticks to double backticks in Sphinx docstring markup
+* Cleaned up ``abjad.Configuration._make_missing_directories()``
+* Cleaned up exception messaging
+* Cleaned up f-strings
+* Defined ``abjad.Duration.__ne()__`` explicitly
+* Emptied subpackage initializers
+* Moved LilyPond scrape scripts to ``ly/`` in wrapper directory
+* Moved ``yield_all_modules()`` to ``configuration.py`` module
+* Reformatted with black 20.8b1
 * Removed ``__illustrate__()`` method from pitches
 * Removed abstract decorators from pitch and interval classes
-
-----
-
-**OTHER CLEANUP.**
-
-* `#1225 <https://github.com/Abjad/abjad/issues/1225>`_.
-  Adjusted ``collections.abc`` imports to mollify mypy.
-  (`Oberholtzer <https://github.com/josiah-wolf-oberholtzer>`_)
-
 * `#1218 <https://github.com/Abjad/abjad/issues/1218>`_.
   Removed ``abjad/etc/`` directory
-
+* Removed ``const.py`` module
+* Removed ``import *`` statements
+* Removed ``scr/devel/`` directory; use ``scr/`` instead
+* Removed ``tags.py`` module
+* Removed ``top.py`` module
+* Removed ties from ``abjad.Note``, ``abjad.Chord`` reprs
 * `#1210 <https://github.com/Abjad/abjad/issues/1210>`_.
   Reran LilyPond scrape scripts with LilyPond 2.19.84
 
-* Cleaned up ``abjad.Configuration._make_missing_directories()``
-
-* Cleaned up exception messaging
-
-* Cleaned up f-strings
-
-* Defined ``abjad.Duration.__ne()__`` explicitly
-
-* Moved LilyPond scrape scripts to ``ly/`` in wrapper directory
-
-* Moved ``yield_all_modules()`` to ``configuration.py`` module
-
-* Reformatted with black 20.8b1
-
-* Removed ``const.py`` module
-
-* Removed ``scr/devel/`` directory. Use ``scr/`` instead
-
-* Removed ties from ``abjad.Note``, ``abjad.Chord`` reprs
-
-----
-
-**DOCS.**
-
-Activated Sphinx's ``sphinx.ext.viewcode`` extension in the docs.
-As suggested by `jgarte <https://github.com/jgarte>`_.
-
-Changed single backticks to double backticks in Sphinx docstring markup.
-
-:author:`[Bača (3.2)]`
+:author:`[Bača (3.2-3)]`
