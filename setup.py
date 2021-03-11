@@ -64,7 +64,7 @@ classifiers = [
 extras_require = {
     "ipython": ["abjad-ext-ipython>=3.2"],
     "nauert": ["abjad-ext-nauert==3.3"],
-    "rmakers": ["abjad-ext-rmaker==3.3"],
+    "rmakers": ["abjad-ext-rmakers==3.3"],
 }
 
 keywords = [
