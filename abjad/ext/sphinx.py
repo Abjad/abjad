@@ -26,6 +26,7 @@ from uqbar.strings import normalize
 
 from ..configuration import Configuration
 from ..contextmanagers import TemporaryDirectoryChange
+from ..format import remove_tags
 from ..illustrators import illustrate
 from ..io import Illustrator, LilyPondIO, Player
 from ..lilypondfile import Block, LilyPondVersionToken
@@ -288,6 +289,10 @@ class LilyPondExtension(Extension):
             includes = [stylesheet]
             illustration._includes = tuple(includes)
         code = illustration._get_lilypond_format()
+
+        # code += "% FLAMINGO"
+        code = remove_tags(code)
+
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
         node["no-stylesheet"] = self.no_stylesheet
