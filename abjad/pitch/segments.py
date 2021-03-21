@@ -1515,9 +1515,7 @@ class PitchClassSegment(Segment):
         return argument == new_pitch_classes
 
     @staticmethod
-    def _make_rotate_method_name(n=0, stravinsky=False):
-        if stravinsky:
-            return "rs"
+    def _make_rotate_method_name(n=0):
         return "r"
 
     def _transpose_to_zero(self):
@@ -2580,10 +2578,10 @@ class PitchClassSegment(Segment):
 
     @Signature(
         is_operator=True,
-        method_name_callback="_make_rotate_method_name",
+        method_name="r",
         subscript="n",
     )
-    def rotate(self, n=0, stravinsky=False):
+    def rotate(self, n=0):
         r"""
         Rotates segment by index ``n``.
 
@@ -2826,80 +2824,6 @@ class PitchClassSegment(Segment):
 
         ..  container:: example
 
-            Stravinsky-style rotation back-transposes segment to
-            begin at zero:
-
-            ..  container:: example
-
-                >>> J.rotate(n=1, stravinsky=True)
-                PitchClassSegment([0, 3, 3.5, 11, 0, 3.5])
-
-                >>> segment = J.rotate(n=1, stravinsky=True)
-                >>> lilypond_file = abjad.illustrate(segment)
-                >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> voice = lilypond_file[abjad.Score][0][0]
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    {
-                        c'8
-                        ef'8
-                        eqf'8
-                        b'8
-                        c'8
-                        eqf'8
-                        \bar "|."
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-            ..  container:: example expression
-
-                >>> expression = abjad.pitch_class_segment(name="J")
-                >>> expression = expression.rotate(n=1, stravinsky=True)
-
-                >>> expression([-2, -1.5, 6, 7, -1.5, 7])
-                PitchClassSegment([0, 3, 3.5, 11, 0, 3.5])
-
-                >>> expression.get_string()
-                'rs1(J)'
-
-                >>> segment = expression([-2, -1.5, 6, 7, -1.5, 7])
-                >>> markup = expression.get_markup()
-                >>> lilypond_file = abjad.illustrate(segment, figure_name=markup)
-                >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> voice = lilypond_file[abjad.Score][0][0]
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    {
-                        c'8
-                        ^ \markup {
-                            \concat
-                                {
-                                    rs
-                                    \sub
-                                        1
-                                    \bold
-                                        J
-                                }
-                            }
-                        ef'8
-                        eqf'8
-                        b'8
-                        c'8
-                        eqf'8
-                        \bar "|."
-                        \override Score.BarLine.transparent = ##f
-                    }
-
-        ..  container:: example
-
             Returns pitch-class segment:
 
             >>> isinstance(segment, abjad.PitchClassSegment)
@@ -2909,11 +2833,6 @@ class PitchClassSegment(Segment):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         items = Sequence(self._collection).rotate(n=n)
-        if stravinsky:
-            n = 0 - float(items[0].number)
-            segment = new(self, items=items)
-            segment = segment.transpose(n=n)
-            items = segment.items[:]
         return type(self)(items=items)
 
     def to_pitch_classes(self):
@@ -4318,7 +4237,7 @@ class PitchSegment(Segment):
         """
         return new(self, items=reversed(self))
 
-    def rotate(self, n=0, stravinsky=False):
+    def rotate(self, n=0):
         r"""
         Rotates pitch segment by index ``n``.
 
@@ -4399,10 +4318,6 @@ class PitchSegment(Segment):
         """
         rotated_pitches = Sequence(self._collection).rotate(n=n)
         new_segment = new(self, items=rotated_pitches)
-        if stravinsky:
-            if self[0] != new_segment[0]:
-                interval = new_segment[0] - self[0]
-                new_segment = new_segment.transpose(interval)
         return new_segment
 
     def to_pitch_classes(self):
@@ -5967,7 +5882,7 @@ class TwelveToneRow(PitchClassSegment):
         """
         return super().retrograde()
 
-    def rotate(self, n=0, stravinsky=False):
+    def rotate(self, n=0):
         r"""
         Rotates row by index ``n``.
 
@@ -6078,44 +5993,13 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Stravinsky-style rotation back-transposes row to zero:
-
-            >>> rotation = row.rotate(n=-1, stravinsky=True)
-            >>> lilypond_file = abjad.illustrate(rotation)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file[abjad.Score][0][0]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \new Voice
-                {
-                    c'8
-                    bf'8
-                    e'8
-                    g'8
-                    af'8
-                    fs'8
-                    f'8
-                    b'8
-                    ef'8
-                    a'8
-                    cs'8
-                    d'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
             Returns row:
 
             >>> rotation
-            TwelveToneRow([0, 10, 4, 7, 8, 6, 5, 11, 3, 9, 1, 2])
+            TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
 
         """
-        return super().rotate(n=n, stravinsky=stravinsky)
+        return super().rotate(n=n)
 
     def transpose(self, n=0):
         r"""
