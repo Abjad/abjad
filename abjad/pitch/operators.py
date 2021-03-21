@@ -21,15 +21,15 @@ class CompoundOperator:
         Rotation followed by transposition:
 
         >>> operator = abjad.CompoundOperator()
-        >>> operator = operator.rotate(n=1, stravinsky=True)
+        >>> operator = operator.rotate(n=1)
         >>> operator = operator.transpose(n=2)
 
         >>> str(operator)
-        'T2rs1'
+        'T2r1'
 
         >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
         >>> operator(pitch_classes)
-        PitchClassSegment([2, 7, 8, 11])
+        PitchClassSegment([9, 2, 3, 6])
 
     """
 
@@ -111,10 +111,10 @@ class CompoundOperator:
         ..  container:: example
 
             >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.rotate(n=1, stravinsky=True)
+            >>> operator = operator.rotate(n=1)
             >>> operator = operator.transpose(n=2)
             >>> str(operator)
-            'T2rs1'
+            'T2r1'
 
             >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
             >>> lilypond_file = abjad.illustrate(segment)
@@ -125,7 +125,7 @@ class CompoundOperator:
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> transform
-            PitchClassSegment([2, 7, 8, 11])
+            PitchClassSegment([9, 2, 3, 6])
 
         Returns new object with type equal to that of ``argument``.
         """
@@ -416,7 +416,7 @@ class CompoundOperator:
         operator = Retrograde(period=period)
         return self._with_operator(operator)
 
-    def rotate(self, n=0, period=None, stravinsky=None):
+    def rotate(self, n=0, period=None):
         """
         Configures compound operator to rotate pitches by index ``n``.
 
@@ -434,7 +434,7 @@ class CompoundOperator:
 
         Returns new compound operator.
         """
-        operator = Rotation(n=n, period=period, stravinsky=stravinsky)
+        operator = Rotation(n=n, period=period)
         return self._with_operator(operator)
 
     def transpose(self, n=0):
@@ -1518,18 +1518,16 @@ class Rotation:
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_n", "_period", "_stravinsky")
+    __slots__ = ("_n", "_period")
 
     ### INITIALIZER ###
 
-    def __init__(self, *, n=0, period=None, stravinsky=None):
+    def __init__(self, *, n=0, period=None):
         self._n = int(n)
         if period is not None:
             period = abs(int(period))
             assert 0 < period
         self._period = period
-        assert isinstance(stravinsky, (bool, type(None))), repr(stravinsky)
-        self._stravinsky = stravinsky
 
     ### SPECIAL METHODS ###
 
@@ -1636,16 +1634,6 @@ class Rotation:
 
         ..  container:: example
 
-            Rotates pitch classes with Stravinsky-style back-transposition to
-            zero:
-
-            >>> rotation = abjad.Rotation(n=1, stravinsky=True)
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-            >>> rotation(pitch_classes)
-            PitchClassSegment([0, 5, 6, 9])
-
-        ..  container:: example
-
             Does not rotate single pitches or pitch-classes:
 
             >>> rotation = abjad.Rotation(n=1)
@@ -1664,21 +1652,6 @@ class Rotation:
             >>> rotation(pitches)
             PitchSegment("e' c' d' a' f' g' c'' b'")
 
-        ..  container:: example
-
-            Stravinsky-style periodic rotation:
-
-            ..  todo:: Deprecated.
-
-            >>> rotation = abjad.Rotation(
-            ...     n=1,
-            ...     period=3,
-            ...     stravinsky=True,
-            ...     )
-            >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
-            >>> rotation(pitches)
-            PitchSegment("c' af bf f' df' ef' b' as'")
-
         Returns new object with type equal to that of ``argument``.
         """
         if isinstance(argument, (Pitch, PitchClass)):
@@ -1686,13 +1659,13 @@ class Rotation:
         if not isinstance(argument, (PitchSegment, PitchClassSegment)):
             argument = PitchSegment(argument)
         if not self.period:
-            return argument.rotate(self.n, stravinsky=self.stravinsky)
+            return argument.rotate(self.n)
         result = new(argument, items=())
         for shard in Sequence(argument).partition_by_counts(
             [self.period], cyclic=True, overhang=True
         ):
             shard = type(argument)(shard)
-            shard = shard.rotate(self.n, stravinsky=self.stravinsky)
+            shard = shard.rotate(self.n)
             result = result + shard
         return result
 
@@ -1750,21 +1723,8 @@ class Rotation:
             >>> str(abjad.Rotation(n=1))
             'r1'
 
-        ..  container:: example
-
-            >>> str(abjad.Rotation(stravinsky=True))
-            'rs0'
-
-        ..  container:: example
-
-            >>> str(abjad.Rotation(n=1, stravinsky=True))
-            'rs1'
-
         """
-        if self.stravinsky:
-            string = f"rs{self.n}"
-        else:
-            string = f"r{self.n}"
+        string = f"r{self.n}"
         return string
 
     ### PRIVATE METHODS ###
@@ -1820,21 +1780,6 @@ class Rotation:
         Returns integer or none.
         """
         return self._period
-
-    @property
-    def stravinsky(self):
-        """
-        Is true when rotation uses Stravinsky-style back-transposition to zero.
-
-        ..  container:: example
-
-            >>> rotation = abjad.Rotation(n=2, stravinsky=False)
-            >>> rotation.stravinsky
-            False
-
-        Returns true or false.
-        """
-        return self._stravinsky
 
 
 class Transposition:

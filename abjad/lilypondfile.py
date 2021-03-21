@@ -1364,7 +1364,10 @@ class LilyPondFile:
         postincludes.extend(self._get_formatted_includes())
         postincludes.extend(self._get_formatted_scheme_settings())
         result.extend(postincludes)
-        result.extend(self._get_formatted_blocks())
+        strings = self._get_formatted_blocks()
+        if strings:
+            result.append("")
+        result.extend(strings)
         return result
 
     ### PRIVATE METHODS ###
@@ -1443,7 +1446,8 @@ class LilyPondFile:
         return result
 
     def _get_lilypond_format(self):
-        string = "\n\n".join(self._get_format_pieces())
+        strings = self._get_format_pieces()
+        string = "\n".join(strings)
         lines = []
         for line in string.split("\n"):
             if line.isspace():
