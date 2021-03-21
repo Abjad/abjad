@@ -81,6 +81,7 @@ install_requires = [
     "ply",
     "pytest>=5.4.3",
     "pytest-cov>=2.7.1",
+    "pytest-helpers-namespace",
     "quicktions>=1.3",
     "roman",
     "six",
