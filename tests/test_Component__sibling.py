@@ -29,7 +29,8 @@ def test_Component__sibling_03():
         \new Staff
         {
             c'4
-            \times 2/3 {
+            \times 2/3
+            {
                 d'8
                 e'8
                 f'8

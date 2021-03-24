@@ -165,7 +165,8 @@ def test_Container___setitem___04():
                 [
                 d'8
             }
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 d'8
                 e'8

@@ -114,14 +114,16 @@ def test_mutate__split_container_by_duration_02():
                 [
                 (
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5 {
+                \times 4/5
+                {
                     d'16.
                     ~
                 }
             }
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5 {
+                \times 4/5
+                {
                     d'16
                     ]
                 }

@@ -44,7 +44,8 @@ def test_Selection_are_logical_voice_03():
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
     r"""
-    \times 2/3 {
+    \times 2/3
+    {
         c'8
         d'8
         e'8
@@ -144,12 +145,14 @@ def test_Selection_are_logical_voice_07():
 
     voice = abjad.Voice(
         r"""
-        \times 2/3 {
+        \times 2/3
+        {
             c'8
             d'8
             e'8
         }
-        \times 2/3 {
+        \times 2/3
+        {
             f'8
             g'8
             a'8
@@ -161,12 +164,14 @@ def test_Selection_are_logical_voice_07():
         r"""
         \new Voice
         {
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 d'8
                 e'8
             }
-            \times 2/3 {
+            \times 2/3
+            {
                 f'8
                 g'8
                 a'8

@@ -5394,10 +5394,8 @@ class Tuplet(Container):
         if self.multiplier:
             if self.hide:
                 contributor = (self, "hide")
-                scale_durations_command_string = (
-                    self._get_scale_durations_command_string()
-                )
-                contributions = [scale_durations_command_string]
+                string = self._get_scale_durations_command_string()
+                contributions = [string, "{"]
             else:
                 contributor = ("self_brackets", "open")
                 contributions = []
@@ -5413,6 +5411,7 @@ class Tuplet(Container):
                 contributions.extend(strings)
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
+                contributions.append("{")
             if self.tag is not None:
                 contributions = _tag.tag(contributions, tag=self.tag)
             result.append([contributor, contributions])
@@ -5484,7 +5483,7 @@ class Tuplet(Container):
         multiplier = Multiplier(self.multiplier)
         numerator = multiplier.numerator
         denominator = multiplier.denominator
-        string = rf"\scaleDurations #'({numerator} . {denominator}) {{"
+        string = rf"\scaleDurations #'({numerator} . {denominator})"
         return string
 
     def _get_summary(self):
@@ -5494,7 +5493,7 @@ class Tuplet(Container):
             return ""
 
     def _get_times_command_string(self):
-        string = rf"\times {self._get_multiplier_fraction_string()} {{"
+        string = rf"\times {self._get_multiplier_fraction_string()}"
         return string
 
     def _scale(self, multiplier):
@@ -5963,7 +5962,8 @@ class Tuplet(Container):
 
             >>> string = abjad.lilypond(tuplet, tags=True)
             >>> print(string)
-            \times 2/3 {        %! RED
+            \times 2/3          %! RED
+            {                   %! RED
                 c'4
                 d'4
                 e'4

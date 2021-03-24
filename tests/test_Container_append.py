@@ -42,7 +42,8 @@ def test_Container_append_02():
 
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
-        \times 4/7 {
+        \times 4/7
+        {
             c'8
             [
             d'8

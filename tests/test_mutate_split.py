@@ -480,18 +480,21 @@ def test_mutate_split_07():
         r"""
         \new Voice
         {
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 [
                 d'8
                 e'8
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3 {
+            \times 2/3
+            {
                 f'8
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3 {
+            \times 2/3
+            {
                 g'8
                 a'8
                 ]
@@ -742,7 +745,8 @@ def test_mutate_split_12():
     assert abjad.lilypond(left) == abjad.String.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
-        \times 4/5 {
+        \times 4/5
+        {
             c'8
             [
             c'8
@@ -753,7 +757,8 @@ def test_mutate_split_12():
     assert abjad.lilypond(right) == abjad.String.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
-        \times 4/5 {
+        \times 4/5
+        {
             c'8
             c'8
             c'8
@@ -764,7 +769,8 @@ def test_mutate_split_12():
 
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
-        \times 4/5 {
+        \times 4/5
+        {
         }
         """
     ), print(abjad.lilypond(tuplet))
@@ -774,13 +780,15 @@ def test_mutate_split_12():
         \new Voice
         {
             \tweak edge-height #'(0.7 . 0)
-            \times 4/5 {
+            \times 4/5
+            {
                 c'8
                 [
                 c'8
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 4/5 {
+            \times 4/5
+            {
                 c'8
                 c'8
                 c'8
@@ -797,13 +805,15 @@ def test_mutate_split_12():
             \new Voice
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5 {
+                \times 4/5
+                {
                     c'8
                     [
                     c'8
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5 {
+                \times 4/5
+                {
                     c'8
                     c'8
                     c'8
@@ -955,7 +965,8 @@ def test_mutate_split_15():
         r"""
         \new Staff
         {
-            \times 2/3 {
+            \times 2/3
+            {
                 c'4
                 ~
                 c'16
