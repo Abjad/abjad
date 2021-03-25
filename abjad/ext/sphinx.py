@@ -289,10 +289,7 @@ class LilyPondExtension(Extension):
             includes = [stylesheet]
             illustration._includes = tuple(includes)
         code = illustration._get_lilypond_format()
-
-        # code += "% FLAMINGO"
         code = remove_tags(code)
-
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
         node["no-stylesheet"] = self.no_stylesheet

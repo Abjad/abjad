@@ -18,7 +18,8 @@ def test_Tuplet_get_timespan_01():
                 \tempo 4=60
                 c'4
                 d'4
-                \times 2/3 {
+                \times 2/3
+                {
                     e'4
                     f'4
                     g'4

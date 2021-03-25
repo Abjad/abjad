@@ -207,11 +207,10 @@ class Block:
             string = f"{self._escaped_name} {{}}"
             result.append(string)
             return result
-        string = f"{self._escaped_name} {{"
+        strings = [f"{self._escaped_name}", "{"]
         if tag is not None:
-            strings = _tag.tag([string], tag=tag)
-            string = strings[0]
-        result.append(string)
+            strings = _tag.tag(strings, tag=tag)
+        result.extend(strings)
         for item in self.items:
             if isinstance(item, ContextBlock):
                 continue

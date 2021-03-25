@@ -190,7 +190,8 @@ def test_Container___delitem___07():
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
-        \times 2/3 {
+        \times 2/3
+        {
             c'8
             [
             e'8

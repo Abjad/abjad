@@ -192,7 +192,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_07():
         {
             \new Voice
             {
-                \times 8/13 {
+                \times 8/13
+                {
                     \time 4/4
                     c'4
                     ~

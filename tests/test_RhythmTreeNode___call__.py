@@ -24,9 +24,11 @@ def test_RhythmTreeNode___call___02():
     assert len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.String.normalize(
         r"""
-        \times 4/5 {
+        \times 4/5
+        {
             c'16
-            \times 2/3 {
+            \times 2/3
+            {
                 c'16
                 c'16
                 c'16
@@ -45,7 +47,8 @@ def test_RhythmTreeNode___call___03():
 
     assert abjad.lilypond(result[0]) == abjad.String.normalize(
         r"""
-        \times 4/5 {
+        \times 4/5
+        {
             c'16
             c'32
             c'32

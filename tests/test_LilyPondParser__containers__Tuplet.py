@@ -9,7 +9,8 @@ def test_LilyPondParser__containers__Tuplet_01():
 
     assert abjad.lilypond(target) == abjad.String.normalize(
         r"""
-        \times 2/3 {
+        \times 2/3
+        {
             c'8
             d'8
             e'8

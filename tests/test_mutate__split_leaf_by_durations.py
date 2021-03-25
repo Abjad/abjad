@@ -62,8 +62,10 @@ def test_mutate__split_leaf_by_durations_02():
         r"""
         \new Staff
         {
-            \times 2/3 {
-                \times 4/5 {
+            \times 2/3
+            {
+                \times 4/5
+                {
                     c'16.
                     [
                     ~

@@ -11,7 +11,8 @@ def test_Tuplet___copy___01():
     assert abjad.lilypond(tuplet_1) == abjad.String.normalize(
         r"""
         \override NoteHead.color = #red
-        \times 2/3 {
+        \times 2/3
+        {
             c'8
             d'8
             e'8
@@ -25,7 +26,8 @@ def test_Tuplet___copy___01():
     assert abjad.lilypond(tuplet_2) == abjad.String.normalize(
         r"""
         \override NoteHead.color = #red
-        \times 2/3 {
+        \times 2/3
+        {
         }
         \revert NoteHead.color
         """

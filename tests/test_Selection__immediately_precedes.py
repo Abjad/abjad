@@ -74,12 +74,14 @@ def test_Selection__immediately_precedes_06():
         r"""
         \new Voice
         {
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 d'8
                 e'8
             }
-            \times 2/3 {
+            \times 2/3
+            {
                 f'8
                 e'8
                 d'8

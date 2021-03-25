@@ -9,7 +9,8 @@ def test_Tuplet_set_minimum_denominator_01():
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 6/10 {
+        \times 6/10
+        {
             c'4
             d'8
             e'8
@@ -30,7 +31,8 @@ def test_Tuplet_set_minimum_denominator_02():
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 12/20 {
+        \times 12/20
+        {
             c'4
             d'8
             e'8
@@ -51,7 +53,8 @@ def test_Tuplet_set_minimum_denominator_03():
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 3/5 {
+        \times 3/5
+        {
             c'4
             d'8
             e'8

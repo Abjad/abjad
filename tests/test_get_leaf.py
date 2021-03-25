@@ -133,7 +133,8 @@ def test_get_leaf_05():
 
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
-        \times 2/3 {
+        \times 2/3
+        {
             c'8
             cs'8
             d'8
@@ -203,12 +204,14 @@ def test_get_leaf_07():
         r"""
         \new Voice
         {
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 cs'8
                 d'8
             }
-            \times 2/3 {
+            \times 2/3
+            {
                 ef'8
                 e'8
                 f'8
@@ -659,13 +662,15 @@ def test_get_leaf_17():
         r"""
         \new Voice
         {
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 cs'8
                 d'8
             }
             ef'8
-            \times 2/3 {
+            \times 2/3
+            {
                 e'8
                 f'8
                 fs'8
@@ -692,9 +697,11 @@ def test_get_leaf_18():
 
     assert abjad.lilypond(tuplet) == abjad.String.normalize(
         r"""
-        \times 2/3 {
+        \times 2/3
+        {
             c'4
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 c'8
                 c'8

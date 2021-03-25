@@ -10,16 +10,20 @@ def test_parse_rtm_syntax_01():
     assert abjad.lilypond(result) == abjad.String.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 3/4 {
+        \times 3/4
+        {
             c'4
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4 {
+            \times 3/4
+            {
                 c'4
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/4 {
+                \times 3/4
+                {
                     c'4
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/4 {
+                    \times 3/4
+                    {
                         c'4
                         c'4
                         c'4
