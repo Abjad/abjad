@@ -1064,13 +1064,18 @@ def glissando(
         \new Staff
         {
             c'8
-            \glissando                                    %! abjad.glissando(7)
+            %! abjad.glissando(7)
+            \glissando
             d'8
-            \glissando                                    %! abjad.glissando(7)
+            %! abjad.glissando(7)
+            \glissando
             e'8
-            \glissando                                    %! abjad.glissando(7)
+            %! abjad.glissando(7)
+            \glissando
             f'8
-        %@% \glissando                                    %! abjad.glissando(7):SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! abjad.glissando(7)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %@% \glissando
         }
 
     ..  container:: example
@@ -1093,17 +1098,42 @@ def glissando(
         \new Staff
         {
             c'8
-            \glissando                                    %! abjad.glissando(7)
-            \hide NoteHead                                %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \override Accidental.stencil = ##f            %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \override NoteColumn.glissando-skip = ##t     %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \override NoteHead.no-ledgers = ##t           %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            %! abjad.glissando(7)
+            \glissando
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \hide NoteHead
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \override Accidental.stencil = ##f
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \override NoteColumn.glissando-skip = ##t
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \override NoteHead.no-ledgers = ##t
             d'8
             e'8
-            \revert Accidental.stencil                    %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \revert NoteColumn.glissando-skip             %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \revert NoteHead.no-ledgers                   %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \undo \hide NoteHead                          %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \revert Accidental.stencil
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \revert NoteColumn.glissando-skip
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \revert NoteHead.no-ledgers
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \undo \hide NoteHead
             f'8
         }
 
@@ -1128,22 +1158,59 @@ def glissando(
         \new Staff
         {
             c'8
-            \glissando                                    %! abjad.glissando(7)
-            \hide NoteHead                                %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \override Accidental.stencil = ##f            %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \override NoteColumn.glissando-skip = ##t     %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \override NoteHead.no-ledgers = ##t           %! abjad.glissando(0):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            %! abjad.glissando(7)
+            \glissando
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \hide NoteHead
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \override Accidental.stencil = ##f
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \override NoteColumn.glissando-skip = ##t
+            %! abjad.glissando(0)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \override NoteHead.no-ledgers = ##t
             d'8
             e'8
-            \revert Accidental.stencil                    %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \revert NoteColumn.glissando-skip             %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \revert NoteHead.no-ledgers                   %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
-            \undo \hide NoteHead                          %! abjad.glissando(4):HIDE_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \revert Accidental.stencil
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \revert NoteColumn.glissando-skip
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \revert NoteHead.no-ledgers
+            %! abjad.glissando(4)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN
+            \undo \hide NoteHead
             f'8
-        %@% \revert Accidental.stencil                    %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
-        %@% \revert NoteColumn.glissando-skip             %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
-        %@% \revert NoteHead.no-ledgers                   %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
-        %@% \undo \hide NoteHead                          %! abjad.glissando(5):SHOW_TO_JOIN_BROKEN_SPANNERS:RIGHT_BROKEN_SHOW_NEXT
+            %! abjad.glissando(5)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN_SHOW_NEXT
+            %@% \revert Accidental.stencil
+            %! abjad.glissando(5)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN_SHOW_NEXT
+            %@% \revert NoteColumn.glissando-skip
+            %! abjad.glissando(5)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN_SHOW_NEXT
+            %@% \revert NoteHead.no-ledgers
+            %! abjad.glissando(5)
+            %! SHOW_TO_JOIN_BROKEN_SPANNERS
+            %! RIGHT_BROKEN_SHOW_NEXT
+            %@% \undo \hide NoteHead
         }
 
     ..  container:: example
@@ -1165,18 +1232,35 @@ def glissando(
         >>> print(string)
         \new Staff
         {
-            \hide NoteHead                                %! abjad.glissando(2):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
-            \override Accidental.stencil = ##f            %! abjad.glissando(2):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
-            \override NoteHead.no-ledgers = ##t           %! abjad.glissando(2):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
+            %! abjad.glissando(2)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! LEFT_BROKEN
+            \hide NoteHead
+            %! abjad.glissando(2)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! LEFT_BROKEN
+            \override Accidental.stencil = ##f
+            %! abjad.glissando(2)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! LEFT_BROKEN
+            \override NoteHead.no-ledgers = ##t
             c'8
-            \glissando                                    %! abjad.glissando(7)
-            \override NoteColumn.glissando-skip = ##t     %! abjad.glissando(3):HIDE_TO_JOIN_BROKEN_SPANNERS:LEFT_BROKEN
+            %! abjad.glissando(7)
+            \glissando
+            %! abjad.glissando(3)
+            %! HIDE_TO_JOIN_BROKEN_SPANNERS
+            %! LEFT_BROKEN
+            \override NoteColumn.glissando-skip = ##t
             d'8
             e'8
-            \revert Accidental.stencil                    %! abjad.glissando(6)
-            \revert NoteColumn.glissando-skip             %! abjad.glissando(6)
-            \revert NoteHead.no-ledgers                   %! abjad.glissando(6)
-            \undo \hide NoteHead                          %! abjad.glissando(6)
+            %! abjad.glissando(6)
+            \revert Accidental.stencil
+            %! abjad.glissando(6)
+            \revert NoteColumn.glissando-skip
+            %! abjad.glissando(6)
+            \revert NoteHead.no-ledgers
+            %! abjad.glissando(6)
+            \undo \hide NoteHead
             f'8
         }
 

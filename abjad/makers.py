@@ -738,10 +738,14 @@ class LeafMaker:
                 >>> print(string)
                 \new Staff
                 {
-                    d'4 %! leaf_maker
-                    e'4 %! leaf_maker
-                    fs''4 %! leaf_maker
-                    gs''4 %! leaf_maker
+                    %! leaf_maker
+                    d'4
+                    %! leaf_maker
+                    e'4
+                    %! leaf_maker
+                    fs''4
+                    %! leaf_maker
+                    gs''4
                 }
 
         """
@@ -1016,9 +1020,12 @@ class NoteMaker:
                 >>> print(string)
                 \new Staff
                 {
-                    c'16 %! note_maker
-                    c'8 %! note_maker
-                    c'8 %! note_maker
+                    %! note_maker
+                    c'16
+                    %! note_maker
+                    c'8
+                    %! note_maker
+                    c'8
                 }
 
         """

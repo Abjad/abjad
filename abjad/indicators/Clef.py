@@ -73,7 +73,8 @@ class Clef:
         >>> print(string)
         \new Staff
         {
-            \clef "treble" %! +PARTS
+            %! +PARTS
+            \clef "treble"
             c'4
             d'4
             e'4

@@ -5,7 +5,6 @@ import tempfile
 
 from . import io
 from .contextmanagers import Timer
-from .format import LilyPondFormatManager
 from .illustrators import illustrate
 
 
@@ -14,7 +13,6 @@ def as_ly(
     ly_file_path,
     *,
     illustrate_function=None,
-    align_tags=None,
     **keywords,
 ):
     """
@@ -22,8 +20,6 @@ def as_ly(
 
     Returns output path and elapsed formatting time when LilyPond output is written.
     """
-    if align_tags is not None:
-        assert isinstance(align_tags, int), repr(align_tags)
     if illustrate_function is not None:
         lilypond_file = illustrate_function(**keywords)
     elif hasattr(argument, "__illustrate__"):
@@ -37,8 +33,6 @@ def as_ly(
     timer = Timer()
     with timer:
         string = lilypond_file._get_lilypond_format()
-        if isinstance(align_tags, int):
-            string = LilyPondFormatManager.align_tags(string, align_tags)
     abjad_formatting_time = timer.elapsed_time
     directory = os.path.dirname(ly_file_path)
     io._ensure_directory_existence(directory)
@@ -93,7 +87,6 @@ def as_pdf(
     *,
     illustrate_function=None,
     remove_ly=False,
-    align_tags=None,
     **keywords,
 ):
     """
@@ -102,8 +95,6 @@ def as_pdf(
     Returns output path, elapsed formatting time and elapsed rendering time when PDF
     output is written.
     """
-    if align_tags is not None:
-        assert isinstance(align_tags, int), repr(align_tags)
     if pdf_file_path is not None:
         pdf_file_path = str(pdf_file_path)
         pdf_file_path = os.path.expanduser(pdf_file_path)
@@ -115,7 +106,6 @@ def as_pdf(
         argument,
         ly_file_path,
         illustrate_function=illustrate_function,
-        align_tags=align_tags,
         **keywords,
     )
     ly_file_path, abjad_formatting_time = result

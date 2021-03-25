@@ -107,10 +107,18 @@ class Markup:
         \new Staff
         {
             c'4
-            ^ \markup { %! RED:M1
-                \italic %! RED:M1
-                    Allegro %! RED:M1
-                } %! RED:M1
+            %! RED
+            %! M1
+            ^ \markup {
+            %! RED
+            %! M1
+                \italic
+            %! RED
+            %! M1
+                    Allegro
+            %! RED
+            %! M1
+                }
             d'4
             e'4
             f'4
@@ -135,10 +143,18 @@ class Markup:
         \new Staff
         {
             c'4
-        %@% ^ \markup { %! RED:M1
-        %@%     \italic %! RED:M1
-        %@%         Allegro %! RED:M1
-        %@%     } %! RED:M1
+            %! RED
+            %! M1
+            %@% ^ \markup {
+            %! RED
+            %! M1
+            %@%     \italic
+            %! RED
+            %! M1
+            %@%         Allegro
+            %! RED
+            %! M1
+            %@%     }
             d'4
             e'4
             f'4
@@ -1115,7 +1131,7 @@ class MarkupCommand:
         indent = LilyPondFormatBundle.indent
         parts = [rf"\{self.name}"]
         parts.extend(recurse(self.arguments))
-        parts = _tag.tag(parts, self.tag, deactivate=self.deactivate)
+        parts = _tag.double_tag(parts, self.tag, deactivate=self.deactivate)
         return parts
 
     def _get_format_specification(self):
