@@ -31,7 +31,7 @@ def make_score_with_indicators_01(self):
 
     """
     staff = abjad.Staff(200 * abjad.Note("c'16"))
-    for part in abjad.sequence(staff[:]).partition_by_counts([20], cyclic=True):
+    for part in abjad.Sequence(staff[:]).partition_by_counts([20], cyclic=True):
         dynamic = abjad.Dynamic("f")
         abjad.attach(dynamic, part[0])
     return staff
@@ -51,7 +51,7 @@ def make_score_with_indicators_02(self):
 
     """
     staff = abjad.Staff(200 * abjad.Note("c'16"))
-    for part in abjad.sequence(staff[:]).partition_by_counts([4], cyclic=True):
+    for part in abjad.Sequence(staff[:]).partition_by_counts([4], cyclic=True):
         dynamic = abjad.Dynamic("f")
         abjad.attach(dynamic, part[0])
     return staff

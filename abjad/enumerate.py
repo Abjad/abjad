@@ -60,7 +60,7 @@ def _partition_by_rgf(sequence, rgf):
     """
     Partitions ``sequence`` by restricted growth function ``rgf``.
 
-    >>> sequence = abjad.sequence(range(10))
+    >>> sequence = abjad.Sequence(range(10))
     >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
 
     >>> abjad.enumerate._partition_by_rgf(sequence, rgf)
@@ -140,7 +140,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
 
     ..  container:: example
 
-        >>> sequence = abjad.sequence([1, 2, 3, 4])
+        >>> sequence = abjad.Sequence([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(sequence):
         ...     combination
         Sequence([])
@@ -162,7 +162,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
 
     ..  container:: example
 
-        >>> sequence = abjad.sequence([1, 2, 3, 4])
+        >>> sequence = abjad.Sequence([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     minimum_length=3,
@@ -176,7 +176,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
 
     ..  container:: example
 
-        >>> sequence = abjad.sequence([1, 2, 3, 4])
+        >>> sequence = abjad.Sequence([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     maximum_length=2,
@@ -196,7 +196,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
 
     ..  container:: example
 
-        >>> sequence = abjad.sequence([1, 2, 3, 4])
+        >>> sequence = abjad.Sequence([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     minimum_length=2,
@@ -212,7 +212,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
 
     ..  container:: example
 
-        >>> sequence = abjad.sequence("text")
+        >>> sequence = abjad.Sequence("text")
         >>> for combination in abjad.enumerate.yield_combinations(sequence):
         ...     ''.join([str(_) for _ in combination])
         ''
@@ -264,7 +264,7 @@ def yield_outer_product(argument):
 
     ..  container:: example
 
-        >>> sequences = [abjad.sequence([1, 2, 3]), abjad.sequence(['a', 'b'])]
+        >>> sequences = [abjad.Sequence([1, 2, 3]), abjad.Sequence(['a', 'b'])]
         >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
         ...     sequence_
         ...
@@ -278,7 +278,7 @@ def yield_outer_product(argument):
     ..  container:: example
 
         >>> sequences = [[1, 2, 3], ['a', 'b'], ['X', 'Y']]
-        >>> sequences = [abjad.sequence(_) for _ in sequences]
+        >>> sequences = [abjad.Sequence(_) for _ in sequences]
         >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
         ...     sequence_
         ...
@@ -298,7 +298,7 @@ def yield_outer_product(argument):
     ..  container:: example
 
         >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
-        >>> sequences = [abjad.sequence(_) for _ in sequences]
+        >>> sequences = [abjad.Sequence(_) for _ in sequences]
         >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
         ...     sequence_
         ...

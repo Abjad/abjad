@@ -1,12 +1,10 @@
 import collections
-import inspect
 import typing
 
 from . import _inspect, _iterate, enums
 from .attach import attach, detach
 from .cyclictuple import CyclicTuple
 from .duration import Duration, NonreducedFraction
-from .expression import Expression
 from .indicators.LilyPondComment import LilyPondComment
 from .iterate import Iteration
 from .markups import Markup
@@ -42,50 +40,8 @@ class Label:
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> abjad.label(staff).with_pitches(locale='us')
+            >>> abjad.Label(staff).with_pitches(locale='us')
 
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    c'4
-                    ^ \markup { C4 }
-                    e'4
-                    ^ \markup { E4 }
-                    d'4
-                    ^ \markup { D4 }
-                    f'4
-                    ^ \markup { F4 }
-                }
-
-        ..  container:: example expression
-
-            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> expression = abjad.label().with_pitches(locale='us')
-            >>> string = abjad.storage(expression)
-            >>> print(string)
-            abjad.Expression(
-                callbacks=[
-                    abjad.Expression(
-                        evaluation_template='abjad.Label',
-                        is_initializer=True,
-                        keywords={
-                            'tag': None,
-                            },
-                        ),
-                    abjad.Expression(
-                        evaluation_template="{}.with_pitches(locale='us')",
-                        qualified_method_name='abjad.Label.with_pitches',
-                        ),
-                    ],
-                proxy_class=abjad.Label,
-                )
-
-            >>> expression(staff)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -111,66 +67,8 @@ class Label:
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> abjad.label(staff).with_durations()
+            >>> abjad.Label(staff).with_durations()
 
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    c'4
-                    ^ \markup {
-                        \fraction
-                            1
-                            4
-                        }
-                    e'4
-                    ^ \markup {
-                        \fraction
-                            1
-                            4
-                        }
-                    d'4
-                    ^ \markup {
-                        \fraction
-                            1
-                            4
-                        }
-                    f'4
-                    ^ \markup {
-                        \fraction
-                            1
-                            4
-                        }
-                }
-
-        ..  container:: example expression
-
-            >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-            >>> expression = abjad.label().with_durations()
-            >>> string = abjad.storage(expression)
-            >>> print(string)
-            abjad.Expression(
-                callbacks=[
-                    abjad.Expression(
-                        evaluation_template='abjad.Label',
-                        is_initializer=True,
-                        keywords={
-                            'tag': None,
-                            },
-                        ),
-                    abjad.Expression(
-                        evaluation_template='{}.with_durations()',
-                        qualified_method_name='abjad.Label.with_durations',
-                        ),
-                    ],
-                proxy_class=abjad.Label,
-                )
-
-            >>> expression(staff)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -265,10 +163,6 @@ class Label:
             self._attach(literal, leaf)
         return leaf
 
-    def _update_expression(self, frame):
-        callback = Expression._frame_to_callback(frame)
-        return self._expression.append_callback(callback)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -314,37 +208,7 @@ class Label:
 
                 >>> staff = abjad.Staff("c'8 d'8")
                 >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
-                >>> abjad.label(staff).color_container("#red")
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override Accidental.color = #red
-                        \override Beam.color = #red
-                        \override Dots.color = #red
-                        \override NoteHead.color = #red
-                        \override Rest.color = #red
-                        \override Stem.color = #red
-                        \override TupletBracket.color = #red
-                        \override TupletNumber.color = #red
-                    }
-                    {
-                        \time 2/8
-                        c'8
-                        d'8
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("c'8 d'8")
-                >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
-                >>> expression = abjad.label().color_container("#red")
-                >>> expression(staff)
+                >>> abjad.Label(staff).color_container("#red")
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -371,8 +235,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         override(self.client).Accidental.color = color
         override(self.client).Beam.color = color
         override(self.client).Dots.color = color
@@ -394,33 +256,7 @@ class Label:
 
                 >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
                 >>> abjad.beam(staff[:])
-                >>> abjad.label(staff).color_leaves("#red")
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    {
-                        \abjad-color-music #'red
-                        cs'8.
-                        [
-                        \abjad-color-music #'red
-                        r8.
-                        % red
-                        s8.
-                        \abjad-color-music #'red
-                        <c' cs' a'>8.
-                        ]
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
-                >>> abjad.beam(staff[:])
-                >>> expression = abjad.label().color_leaves("#red")
-                >>> expression(staff)
+                >>> abjad.Label(staff).color_leaves("#red")
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -443,8 +279,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         for leaf in Iteration(self.client).leaves():
             self._color_leaf(leaf, color)
 
@@ -462,34 +296,7 @@ class Label:
                 >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
                 >>> colors = ["#red", "#blue", "#green"]
                 >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
-                >>> abjad.label(chord).color_note_heads(color_map)
-                >>> abjad.show(chord) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(chord)
-                    >>> print(string)
-                    <
-                        \tweak color #red
-                        c''
-                        \tweak color #red
-                        d''
-                        \tweak color #green
-                        fs''
-                        \tweak color #green
-                        a''
-                        \tweak color #blue
-                        b''
-                    >4
-
-            ..  container:: example expression
-
-                >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
-                >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
-                >>> colors = ["#red", "#blue", "#green"]
-                >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
-                >>> expression = abjad.label().color_note_heads(color_map)
-                >>> expression(chord)
+                >>> abjad.Label(chord).color_note_heads(color_map)
                 >>> abjad.show(chord) # doctest: +SKIP
 
                 ..  docs::
@@ -516,21 +323,7 @@ class Label:
             ..  container:: example
 
                 >>> note = abjad.Note("c'4")
-                >>> abjad.label(note).color_note_heads(color_map)
-                >>> abjad.show(note) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(note)
-                    >>> print(string)
-                    \once \override NoteHead.color = #red
-                    c'4
-
-            ..  container:: example expression
-
-                >>> note = abjad.Note("c'4")
-                >>> expression = abjad.label().color_note_heads(color_map)
-                >>> expression(note)
+                >>> abjad.Label(note).color_note_heads(color_map)
                 >>> abjad.show(note) # doctest: +SKIP
 
                 ..  docs::
@@ -547,13 +340,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff()
-                >>> abjad.label(staff).color_note_heads(color_map)
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff()
-                >>> expression = abjad.label().color_note_heads(color_map)
-                >>> expression(staff)
+                >>> abjad.Label(staff).color_note_heads(color_map)
 
         ..  container:: example
 
@@ -562,48 +349,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
-                >>> abjad.label(staff).color_note_heads()
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    {
-                        \once \override NoteHead.color = #(x11-color 'red)
-                        c'8
-                        \once \override NoteHead.color = #(x11-color 'MediumBlue)
-                        cs'8
-                        \once \override NoteHead.color = #(x11-color 'orange)
-                        d'8
-                        \once \override NoteHead.color = #(x11-color 'LightSlateBlue)
-                        ds'8
-                        \once \override NoteHead.color = #(x11-color 'ForestGreen)
-                        e'8
-                        \once \override NoteHead.color = #(x11-color 'MediumOrchid)
-                        f'8
-                        \once \override NoteHead.color = #(x11-color 'firebrick)
-                        fs'8
-                        \once \override NoteHead.color = #(x11-color 'DeepPink)
-                        g'8
-                        \once \override NoteHead.color = #(x11-color 'DarkOrange)
-                        gs'8
-                        \once \override NoteHead.color = #(x11-color 'IndianRed)
-                        a'8
-                        \once \override NoteHead.color = #(x11-color 'CadetBlue)
-                        as'8
-                        \once \override NoteHead.color = #(x11-color 'SeaGreen)
-                        b'8
-                        \once \override NoteHead.color = #(x11-color 'red)
-                        c''8
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("c'8 cs'8 d'8 ds'8 e'8 f'8 fs'8 g'8 gs'8 a'8 as'8 b'8 c''8")
-                >>> expression = abjad.label().color_note_heads()
-                >>> expression(staff)
+                >>> abjad.Label(staff).color_note_heads()
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -642,8 +388,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         color_map = color_map or self._pc_number_to_color
         for leaf in Iteration(self.client).leaves():
             if isinstance(leaf, Chord):
@@ -665,8 +409,6 @@ class Label:
         """
         Colors client by ``selector``.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         if selector._is_singular_get_item():
             colors = colors or ["#green"]
             color = colors[0]
@@ -689,7 +431,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> abjad.label(staff).with_pitches()
+                >>> abjad.Label(staff).with_pitches()
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -708,46 +450,7 @@ class Label:
                         ^ \markup { f' }
                     }
 
-                >>> abjad.label(staff).remove_markup()
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-                >>> expression = abjad.label().with_pitches()
-                >>> expression(staff)
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    {
-                        c'8
-                        ^ \markup { c' }
-                        d'8
-                        ^ \markup { d' }
-                        e'8
-                        ^ \markup { e' }
-                        f'8
-                        ^ \markup { f' }
-                    }
-
-                >>> expression = abjad.label().remove_markup()
-                >>> expression(staff)
+                >>> abjad.Label(staff).remove_markup()
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -764,8 +467,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         for leaf in Iteration(self.client).leaves():
             detach(Markup, leaf)
 
@@ -786,66 +487,7 @@ class Label:
                 >>> staff_group.append(staff)
                 >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                 >>> staff_group.append(staff)
-                >>> abjad.label(staff_group).vertical_moments()
-                >>> abjad.show(staff_group) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff_group)
-                    >>> print(string)
-                    \new StaffGroup
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            ^ \markup {
-                                \tiny
-                                    0
-                                }
-                            d'4
-                            ^ \markup {
-                                \tiny
-                                    1
-                                }
-                            e'16
-                            ^ \markup {
-                                \tiny
-                                    3
-                                }
-                            f'16
-                            ^ \markup {
-                                \tiny
-                                    4
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "alto"
-                            g4
-                            f4
-                            ^ \markup {
-                                \tiny
-                                    2
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            c,2
-                        }
-                    >>
-
-            ..  container:: example expression
-
-                >>> staff_group = abjad.StaffGroup([])
-                >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-                >>> expression = abjad.label().vertical_moments()
-                >>> expression(staff_group)
+                >>> abjad.Label(staff_group).vertical_moments()
                 >>> abjad.show(staff_group) # doctest: +SKIP
 
                 ..  docs::
@@ -907,94 +549,9 @@ class Label:
                 >>> staff_group.append(staff)
                 >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                 >>> staff_group.append(staff)
-                >>> abjad.label(staff_group).vertical_moments(
+                >>> abjad.Label(staff_group).vertical_moments(
                 ...     prototype=abjad.NumberedPitch,
                 ...     )
-                >>> abjad.show(staff_group) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff_group)
-                    >>> print(string)
-                    \new StaffGroup
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            0
-                                            -5
-                                            -24
-                                        }
-                                }
-                            d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            -5
-                                            -24
-                                        }
-                                }
-                            e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            4
-                                            -7
-                                            -24
-                                        }
-                                }
-                            f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            -7
-                                            -24
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "alto"
-                            g4
-                            f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            -7
-                                            -24
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            c,2
-                        }
-                    >>
-
-            ..  container:: example expression
-
-                >>> staff_group = abjad.StaffGroup([])
-                >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-                >>> prototype = abjad.NumberedPitch
-                >>> expression = abjad.label().vertical_moments(prototype=prototype)
-                >>> expression(staff_group)
                 >>> abjad.show(staff_group) # doctest: +SKIP
 
                 ..  docs::
@@ -1082,90 +639,7 @@ class Label:
                 >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                 >>> staff_group.append(staff)
                 >>> prototype = abjad.NumberedPitchClass
-                >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
-                >>> abjad.show(staff_group) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff_group)
-                    >>> print(string)
-                    \new StaffGroup
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            7
-                                            0
-                                        }
-                                }
-                            d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            7
-                                            2
-                                            0
-                                        }
-                                }
-                            e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            4
-                                            0
-                                        }
-                                }
-                            f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            0
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "alto"
-                            g4
-                            f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            2
-                                            0
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            c,2
-                        }
-                    >>
-
-            ..  container:: example expression
-
-                >>> staff_group = abjad.StaffGroup([])
-                >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-                >>> prototype = abjad.NumberedPitchClass
-                >>> expression = abjad.label().vertical_moments(prototype=prototype)
-                >>> expression(staff_group)
+                >>> abjad.Label(staff_group).vertical_moments(prototype=prototype)
                 >>> abjad.show(staff_group) # doctest: +SKIP
 
                 ..  docs::
@@ -1251,87 +725,7 @@ class Label:
                 >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                 >>> staff_group.append(staff)
                 >>> prototype = abjad.NumberedInterval
-                >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
-                >>> abjad.show(staff_group) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff_group)
-                    >>> print(string)
-                    \new StaffGroup
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            15
-                                            12
-                                        }
-                                }
-                            d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            16
-                                            12
-                                        }
-                                }
-                            e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            17
-                                            11
-                                        }
-                                }
-                            f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            18
-                                            11
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "alto"
-                            g4
-                            f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            16
-                                            11
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            c,2
-                        }
-                    >>
-
-            ..  container:: example expression
-
-                >>> staff_group = abjad.StaffGroup([])
-                >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-                >>> prototype = abjad.NumberedInterval
-                >>> expression = abjad.label().vertical_moments(prototype=prototype)
-                >>> expression(staff_group)
+                >>> abjad.Label(staff_group).vertical_moments(prototype=prototype)
                 >>> abjad.show(staff_group) # doctest: +SKIP
 
                 ..  docs::
@@ -1414,87 +808,7 @@ class Label:
                 >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                 >>> staff_group.append(staff)
                 >>> prototype = abjad.NumberedIntervalClass
-                >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
-                >>> abjad.show(staff_group) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff_group)
-                    >>> print(string)
-                    \new StaffGroup
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            12
-                                            7
-                                        }
-                                }
-                            d'4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            7
-                                        }
-                                }
-                            e'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            4
-                                            5
-                                        }
-                                }
-                            f'16
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            5
-                                            5
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "alto"
-                            g4
-                            f4
-                            ^ \markup {
-                                \tiny
-                                    \column
-                                        {
-                                            2
-                                            5
-                                        }
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            c,2
-                        }
-                    >>
-
-            ..  container:: example expression
-
-                >>> staff_group = abjad.StaffGroup([])
-                >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-                >>> prototype = abjad.NumberedIntervalClass
-                >>> expression = abjad.label().vertical_moments(prototype=prototype)
-                >>> expression(staff_group)
+                >>> abjad.Label(staff_group).vertical_moments(prototype=prototype)
                 >>> abjad.show(staff_group) # doctest: +SKIP
 
                 ..  docs::
@@ -1577,72 +891,7 @@ class Label:
                 >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                 >>> staff_group.append(staff)
                 >>> prototype = abjad.IntervalClassVector
-                >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
-                >>> abjad.show(staff_group) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff_group)
-                    >>> print(string)
-                    \new StaffGroup
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            ^ \markup {
-                                \tiny
-                                    \tiny
-                                        1000020
-                                }
-                            d'4
-                            ^ \markup {
-                                \tiny
-                                    \tiny
-                                        0010020
-                                }
-                            e'16
-                            ^ \markup {
-                                \tiny
-                                    \tiny
-                                        0100110
-                                }
-                            f'16
-                            ^ \markup {
-                                \tiny
-                                    \tiny
-                                        1000020
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "alto"
-                            g4
-                            f4
-                            ^ \markup {
-                                \tiny
-                                    \tiny
-                                        0011010
-                                }
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            c,2
-                        }
-                    >>
-
-            ..  container:: example expression
-
-                >>> staff_group = abjad.StaffGroup([])
-                >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-                >>> prototype = abjad.IntervalClassVector
-                >>> expression = abjad.label().vertical_moments(prototype=prototype)
-                >>> expression(staff_group)
+                >>> abjad.Label(staff_group).vertical_moments(prototype=prototype)
                 >>> abjad.show(staff_group) # doctest: +SKIP
 
                 ..  docs::
@@ -1710,52 +959,7 @@ class Label:
                 >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
                 >>> staff_group.append(staff)
                 >>> prototype = abjad.SetClass()
-                >>> abjad.label(staff_group).vertical_moments(prototype=prototype)
-                >>> abjad.show(staff_group) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff_group)
-                    >>> print(string)
-                    \new StaffGroup
-                    <<
-                        \new Staff
-                        {
-                            c'8
-                            ^ \markup \tiny \line { "SC(2-5){0, 5}" }
-                            d'4
-                            ^ \markup \tiny \line { "SC(3-9){0, 2, 7}" }
-                            e'16
-                            ^ \markup \tiny \line { "SC(3-4){0, 1, 5}" }
-                            f'16
-                            ^ \markup \tiny \line { "SC(2-5){0, 5}" }
-                        }
-                        \new Staff
-                        {
-                            \clef "alto"
-                            g4
-                            f4
-                            ^ \markup \tiny \line { "SC(3-7){0, 2, 5}" }
-                        }
-                        \new Staff
-                        {
-                            \clef "bass"
-                            c,2
-                        }
-                    >>
-
-            ..  container:: example expression
-
-                >>> staff_group = abjad.StaffGroup([])
-                >>> staff = abjad.Staff("c'8 d'4 e'16 f'16")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "alto" g4 f4""")
-                >>> staff_group.append(staff)
-                >>> staff = abjad.Staff(r"""\clef "bass" c,2""")
-                >>> staff_group.append(staff)
-                >>> prototype = abjad.SetClass()
-                >>> expression = abjad.label().vertical_moments(prototype=prototype)
-                >>> expression(staff_group)
+                >>> abjad.Label(staff_group).vertical_moments(prototype=prototype)
                 >>> abjad.show(staff_group) # doctest: +SKIP
 
                 ..  docs::
@@ -1793,8 +997,6 @@ class Label:
 
         Returns none.
         '''
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         prototype = prototype or int
         vertical_moments = iterate_vertical_moments(self.client)
         for index, vertical_moment in enumerate(vertical_moments):
@@ -1925,50 +1127,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> abjad.label(staff).with_durations()
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    {
-                        c'4.
-                        ^ \markup {
-                            \fraction
-                                3
-                                8
-                            }
-                        d'8
-                        ^ \markup {
-                            \fraction
-                                4
-                                8
-                            }
-                        ~
-                        d'4.
-                        e'16
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
-                        [
-                        ef'16
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
-                        ]
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> expression = abjad.label().with_durations()
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_durations()
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -2014,50 +1173,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> abjad.label(staff).with_durations(denominator=16)
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    {
-                        c'4.
-                        ^ \markup {
-                            \fraction
-                                6
-                                16
-                            }
-                        d'8
-                        ^ \markup {
-                            \fraction
-                                8
-                                16
-                            }
-                        ~
-                        d'4.
-                        e'16
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
-                        [
-                        ef'16
-                        ^ \markup {
-                            \fraction
-                                1
-                                16
-                            }
-                        ]
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
-                >>> expression = abjad.label().with_durations(denominator=16)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_durations(denominator=16)
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 ..  docs::
@@ -2098,8 +1214,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         for logical_tie in Iteration(self.client).logical_ties():
             duration = _inspect._get_duration(logical_tie, in_seconds=in_seconds)
             if denominator is not None:
@@ -2120,39 +1234,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> abjad.label(staff).with_indices()
-                >>> abjad.override(staff).TextScript.staff_padding = 2
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        <c' bf'>8
-                        ^ \markup { 0 }
-                        <g' a'>4
-                        ^ \markup { 1 }
-                        af'8
-                        ^ \markup { 2 }
-                        ~
-                        af'8
-                        gf'8
-                        ^ \markup { 3 }
-                        ~
-                        gf'4
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> expression = abjad.label().with_indices()
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_indices()
                 >>> abjad.override(staff).TextScript.staff_padding = 2
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2187,41 +1269,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> abjad.label(staff).with_indices(prototype=abjad.Note)
-                >>> abjad.override(staff).TextScript.staff_padding = 2
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        <c' bf'>8
-                        <g' a'>4
-                        af'8
-                        ^ \markup { 0 }
-                        ~
-                        af'8
-                        ^ \markup { 1 }
-                        gf'8
-                        ^ \markup { 2 }
-                        ~
-                        gf'4
-                        ^ \markup { 3 }
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> expression = abjad.label().with_indices(
-                ...     prototype=abjad.Note,
-                ...     )
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_indices(prototype=abjad.Note)
                 >>> abjad.override(staff).TextScript.staff_padding = 2
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2256,39 +1304,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> abjad.label(staff).with_indices(prototype=abjad.Chord)
-                >>> abjad.override(staff).TextScript.staff_padding = 2
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        <c' bf'>8
-                        ^ \markup { 0 }
-                        <g' a'>4
-                        ^ \markup { 1 }
-                        af'8
-                        ~
-                        af'8
-                        gf'8
-                        ~
-                        gf'4
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> expression = abjad.label().with_indices(
-                ...     prototype=abjad.Chord,
-                ...     )
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_indices(prototype=abjad.Chord)
                 >>> abjad.override(staff).TextScript.staff_padding = 2
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2321,43 +1337,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> abjad.label(staff).with_indices(prototype=abjad.Leaf)
-                >>> abjad.override(staff).TextScript.staff_padding = 2
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        <c' bf'>8
-                        ^ \markup { 0 }
-                        <g' a'>4
-                        ^ \markup { 1 }
-                        af'8
-                        ^ \markup { 2 }
-                        ~
-                        af'8
-                        ^ \markup { 3 }
-                        gf'8
-                        ^ \markup { 4 }
-                        ~
-                        gf'4
-                        ^ \markup { 5 }
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
-                >>> expression = abjad.label().with_indices(
-                ...     prototype=abjad.Leaf,
-                ...     )
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_indices(prototype=abjad.Leaf)
                 >>> abjad.override(staff).TextScript.staff_padding = 2
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2396,63 +1376,7 @@ class Label:
                 >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
                 >>> tuplets = abjad.mutate.copy(tuplet, 4)
                 >>> staff = abjad.Staff(tuplets)
-                >>> abjad.label(staff).with_indices(prototype=abjad.Tuplet)
-                >>> abjad.override(staff).TextScript.staff_padding = 2
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        \times 2/3 {
-                            c'8
-                            ^ \markup { 0 }
-                            [
-                            d'8
-                            e'8
-                            ]
-                        }
-                        \times 2/3 {
-                            c'8
-                            ^ \markup { 1 }
-                            [
-                            d'8
-                            e'8
-                            ]
-                        }
-                        \times 2/3 {
-                            c'8
-                            ^ \markup { 2 }
-                            [
-                            d'8
-                            e'8
-                            ]
-                        }
-                        \times 2/3 {
-                            c'8
-                            ^ \markup { 3 }
-                            [
-                            d'8
-                            e'8
-                            ]
-                        }
-                    }
-
-            ..  container:: example expression
-
-                >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
-                >>> tuplets = abjad.mutate.copy(tuplet, 4)
-                >>> staff = abjad.Staff(tuplets)
-                >>> expression = abjad.label().with_indices(
-                ...     prototype=abjad.Tuplet,
-                ...     )
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_indices(prototype=abjad.Tuplet)
                 >>> abjad.override(staff).TextScript.staff_padding = 2
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2502,8 +1426,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         if prototype is None:
             items = Iteration(self.client).logical_ties()
         else:
@@ -2530,45 +1452,7 @@ class Label:
                 >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
                 >>> notes = maker(pitch_numbers, [(1, 4)])
                 >>> staff = abjad.Staff(notes)
-                >>> abjad.label(staff).with_intervals(prototype=None)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        c'4
-                        ^ \markup { +A15 }
-                        cs'''4
-                        ^ \markup { -M9 }
-                        b'4
-                        ^ \markup { -A9 }
-                        af4
-                        ^ \markup { -m7 }
-                        bf,4
-                        ^ \markup { +A1 }
-                        b,4
-                        ^ \markup { +m14 }
-                        a'4
-                        ^ \markup { +m2 }
-                        bf'4
-                    }
-
-            ..  container:: example expression
-
-                >>> maker = abjad.NoteMaker()
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = maker(pitch_numbers, [(1, 4)])
-                >>> staff = abjad.Staff(notes)
-                >>> expression = abjad.label().with_intervals(prototype=None)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_intervals(prototype=None)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2610,46 +1494,7 @@ class Label:
                 >>> notes = maker(pitch_numbers, [(1, 4)])
                 >>> staff = abjad.Staff(notes)
                 >>> prototype = abjad.NamedIntervalClass
-                >>> abjad.label(staff).with_intervals(prototype=prototype)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        c'4
-                        ^ \markup { +A1 }
-                        cs'''4
-                        ^ \markup { -M2 }
-                        b'4
-                        ^ \markup { -A2 }
-                        af4
-                        ^ \markup { -m7 }
-                        bf,4
-                        ^ \markup { +A1 }
-                        b,4
-                        ^ \markup { +m7 }
-                        a'4
-                        ^ \markup { +m2 }
-                        bf'4
-                    }
-
-            ..  container:: example expression
-
-                >>> maker = abjad.NoteMaker()
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = maker(pitch_numbers, [(1, 4)])
-                >>> staff = abjad.Staff(notes)
-                >>> prototype = abjad.NamedIntervalClass
-                >>> expression = abjad.label().with_intervals(prototype=prototype)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_intervals(prototype=prototype)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2691,7 +1536,7 @@ class Label:
                 >>> notes = maker(pitch_numbers, [(1, 4)])
                 >>> staff = abjad.Staff(notes)
                 >>> prototype = abjad.NumberedInterval
-                >>> abjad.label(staff).with_intervals(prototype=prototype)
+                >>> abjad.Label(staff).with_intervals(prototype=prototype)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2721,46 +1566,6 @@ class Label:
                         ^ \markup { +1 }
                         bf'4
                     }
-
-            ..  container:: example expression
-
-                >>> maker = abjad.NoteMaker()
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = maker(pitch_numbers, [(1, 4)])
-                >>> staff = abjad.Staff(notes)
-                >>> prototype = abjad.NumberedInterval
-                >>> expression = abjad.label().with_intervals(prototype=prototype)
-                >>> expression(staff)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        c'4
-                        ^ \markup { +25 }
-                        cs'''4
-                        ^ \markup { -14 }
-                        b'4
-                        ^ \markup { -15 }
-                        af4
-                        ^ \markup { -10 }
-                        bf,4
-                        ^ \markup { +1 }
-                        b,4
-                        ^ \markup { +22 }
-                        a'4
-                        ^ \markup { +1 }
-                        bf'4
-                    }
-
 
         ..  container:: example
 
@@ -2773,46 +1578,7 @@ class Label:
                 >>> notes = maker(pitch_numbers, [(1, 4)])
                 >>> staff = abjad.Staff(notes)
                 >>> prototype = abjad.NumberedIntervalClass
-                >>> abjad.label(staff).with_intervals(prototype=prototype)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        c'4
-                        ^ \markup { +1 }
-                        cs'''4
-                        ^ \markup { -2 }
-                        b'4
-                        ^ \markup { -3 }
-                        af4
-                        ^ \markup { -10 }
-                        bf,4
-                        ^ \markup { +1 }
-                        b,4
-                        ^ \markup { +10 }
-                        a'4
-                        ^ \markup { +1 }
-                        bf'4
-                    }
-
-            ..  container:: example expression
-
-                >>> maker = abjad.NoteMaker()
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = maker(pitch_numbers, [(1, 4)])
-                >>> staff = abjad.Staff(notes)
-                >>> prototype = abjad.NumberedIntervalClass
-                >>> expression = abjad.label().with_intervals(prototype=prototype)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_intervals(prototype=prototype)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2855,46 +1621,7 @@ class Label:
                 >>> notes = maker(pitch_numbers, [(1, 4)])
                 >>> staff = abjad.Staff(notes)
                 >>> prototype = abjad.NumberedInversionEquivalentIntervalClass
-                >>> abjad.label(staff).with_intervals(prototype=prototype)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        c'4
-                        ^ \markup { 1 }
-                        cs'''4
-                        ^ \markup { 2 }
-                        b'4
-                        ^ \markup { 3 }
-                        af4
-                        ^ \markup { 2 }
-                        bf,4
-                        ^ \markup { 1 }
-                        b,4
-                        ^ \markup { 2 }
-                        a'4
-                        ^ \markup { 1 }
-                        bf'4
-                    }
-
-            ..  container:: example expression
-
-                >>> maker = abjad.NoteMaker()
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = maker(pitch_numbers, [(1, 4)])
-                >>> staff = abjad.Staff(notes)
-                >>> prototype = abjad.NumberedInversionEquivalentIntervalClass
-                >>> expression = abjad.label().with_intervals(prototype=prototype)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_intervals(prototype=prototype)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2927,8 +1654,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         prototype = prototype or NamedInterval
         for note in Iteration(self.client).leaves(Note):
             label = None
@@ -2963,36 +1688,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> abjad.label(staff).with_pitches(prototype=None)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        <a d' fs'>4
-                        ^ \markup \column { "fs'" "d'" "a" }
-                        g'4
-                        ^ \markup { g' }
-                        ~
-                        g'8
-                        r8
-                        fs''4
-                        ^ \markup { fs'' }
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> expression = abjad.label().with_pitches(prototype=None)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_pitches(prototype=None)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3024,36 +1720,7 @@ class Label:
             ..  container:: example
 
                 >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> abjad.label(staff).with_pitches(locale='us', prototype=None)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        <a d' fs'>4
-                        ^ \markup \column { "F#4" "D4" "A3" }
-                        g'4
-                        ^ \markup { G4 }
-                        ~
-                        g'8
-                        r8
-                        fs''4
-                        ^ \markup { "F#5" }
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> expression = abjad.label().with_pitches(locale='us', prototype=None)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_pitches(locale='us', prototype=None)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3086,44 +1753,7 @@ class Label:
 
                 >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
                 >>> prototype = abjad.NumberedPitch
-                >>> abjad.label(staff).with_pitches(prototype=prototype)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        <a d' fs'>4
-                        ^ \markup {
-                            \column
-                                {
-                                    6
-                                    2
-                                    -3
-                                }
-                            }
-                        g'4
-                        ^ \markup { 7 }
-                        ~
-                        g'8
-                        r8
-                        fs''4
-                        ^ \markup { 18 }
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> prototype = abjad.NumberedPitch
-                >>> expression = abjad.label().with_pitches(prototype=prototype)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_pitches(prototype=prototype)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3163,44 +1793,7 @@ class Label:
 
                 >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
                 >>> prototype = abjad.NumberedPitchClass
-                >>> abjad.label(staff).with_pitches(prototype=prototype)
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                    }
-                    {
-                        <a d' fs'>4
-                        ^ \markup {
-                            \column
-                                {
-                                    6
-                                    2
-                                    9
-                                }
-                            }
-                        g'4
-                        ^ \markup { 7 }
-                        ~
-                        g'8
-                        r8
-                        fs''4
-                        ^ \markup { 6 }
-                    }
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> prototype = abjad.NumberedPitchClass
-                >>> expression = abjad.label().with_pitches(prototype=prototype)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_pitches(prototype=prototype)
                 >>> abjad.override(staff).TextScript.staff_padding = 4
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3245,49 +1838,7 @@ class Label:
                 >>> for selection in selections:
                 ...     abjad.horizontal_bracket(selection)
                 ...
-                >>> abjad.label(selections).with_pitches()
-                >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
-                >>> abjad.override(voice).TextScript.staff_padding = 2
-                >>> abjad.show(voice) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    \with
-                    {
-                        \consists Horizontal_bracket_engraver
-                        \override HorizontalBracket.staff-padding = 3
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        df''4
-                        ^ \markup { df'' }
-                        \startGroup
-                        c''4
-                        ^ \markup { c'' }
-                        \stopGroup
-                        f'4
-                        fs'4
-                        d''4
-                        ^ \markup { d'' }
-                        \startGroup
-                        ds''4
-                        ^ \markup { ds'' }
-                        \stopGroup
-                    }
-
-            ..  container:: example expression
-
-                >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:2], voice[-2:]]
-                >>> for selection in selections:
-                ...     abjad.horizontal_bracket(selection)
-                ...
-                >>> expression = abjad.label().with_pitches()
-                >>> expression(selections)
+                >>> abjad.Label(selections).with_pitches()
                 >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
                 >>> abjad.override(voice).TextScript.staff_padding = 2
                 >>> abjad.show(voice) # doctest: +SKIP
@@ -3333,50 +1884,7 @@ class Label:
                 ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.NumberedPitch
-                >>> abjad.label(selections).with_pitches(prototype=prototype)
-                >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
-                >>> abjad.override(voice).TextScript.staff_padding = 2
-                >>> abjad.show(voice) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    \with
-                    {
-                        \consists Horizontal_bracket_engraver
-                        \override HorizontalBracket.staff-padding = 3
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        df''4
-                        ^ \markup { 13 }
-                        \startGroup
-                        c''4
-                        ^ \markup { 12 }
-                        \stopGroup
-                        f'4
-                        fs'4
-                        d''4
-                        ^ \markup { 14 }
-                        \startGroup
-                        ds''4
-                        ^ \markup { 15 }
-                        \stopGroup
-                    }
-
-            ..  container:: example expression
-
-                >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:2], voice[-2:]]
-                >>> for selection in selections:
-                ...     abjad.horizontal_bracket(selection)
-                ...
-                >>> prototype = abjad.NumberedPitch
-                >>> expression = abjad.label().with_pitches(prototype=prototype)
-                >>> expression(selections)
+                >>> abjad.Label(selections).with_pitches(prototype=prototype)
                 >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
                 >>> abjad.override(voice).TextScript.staff_padding = 2
                 >>> abjad.show(voice) # doctest: +SKIP
@@ -3423,50 +1931,7 @@ class Label:
                 ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.NumberedPitchClass
-                >>> abjad.label(selections).with_pitches(prototype=prototype)
-                >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
-                >>> abjad.override(voice).TextScript.staff_padding = 2
-                >>> abjad.show(voice) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    \with
-                    {
-                        \consists Horizontal_bracket_engraver
-                        \override HorizontalBracket.staff-padding = 3
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        df''4
-                        ^ \markup { 1 }
-                        \startGroup
-                        c''4
-                        ^ \markup { 0 }
-                        \stopGroup
-                        f'4
-                        fs'4
-                        d''4
-                        ^ \markup { 2 }
-                        \startGroup
-                        ds''4
-                        ^ \markup { 3 }
-                        \stopGroup
-                    }
-
-            ..  container:: example expression
-
-                >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:2], voice[-2:]]
-                >>> for selection in selections:
-                ...     abjad.horizontal_bracket(selection)
-                ...
-                >>> prototype = abjad.NumberedPitchClass
-                >>> expression = abjad.label().with_pitches(prototype=prototype)
-                >>> expression(selections)
+                >>> abjad.Label(selections).with_pitches(prototype=prototype)
                 >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
                 >>> abjad.override(voice).TextScript.staff_padding = 2
                 >>> abjad.show(voice) # doctest: +SKIP
@@ -3501,8 +1966,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         prototype = prototype or NamedPitch
         logical_ties = Iteration(self.client).logical_ties()
         for logical_tie in logical_ties:
@@ -3582,51 +2045,7 @@ class Label:
                 >>> for selection in selections:
                 ...     abjad.horizontal_bracket(selection)
                 ...
-                >>> abjad.label(selections).with_set_classes()
-                >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
-                >>> abjad.override(voice).TextScript.staff_padding = 2
-                >>> abjad.show(voice) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    \with
-                    {
-                        \consists Horizontal_bracket_engraver
-                        \override HorizontalBracket.staff-padding = 3
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        df''8
-                        ^ \markup \tiny \line { "SC(4-3){0, 1, 3, 4}" }
-                        \startGroup
-                        c''8
-                        bf'8
-                        a'8
-                        \stopGroup
-                        f'4.
-                        fs'8
-                        ^ \markup \tiny \line { "SC(4-20){0, 1, 5, 8}" }
-                        \startGroup
-                        g'8
-                        b'8
-                        d''2.
-                        \stopGroup
-                    }
-
-            ..  container:: example expression
-
-                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                >>> voice = abjad.Voice(string)
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:4], voice[-4:]]
-                >>> for selection in selections:
-                ...     abjad.horizontal_bracket(selection)
-                ...
-                >>> expression = abjad.label().with_set_classes()
-                >>> expression(selections)
+                >>> abjad.Label(selections).with_set_classes()
                 >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
                 >>> abjad.override(voice).TextScript.staff_padding = 2
                 >>> abjad.show(voice) # doctest: +SKIP
@@ -3675,52 +2094,7 @@ class Label:
                 ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.SetClass(lex_rank=True)
-                >>> abjad.label(selections).with_set_classes(prototype=prototype)
-                >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
-                >>> abjad.override(voice).TextScript.staff_padding = 2
-                >>> abjad.show(voice) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    \with
-                    {
-                        \consists Horizontal_bracket_engraver
-                        \override HorizontalBracket.staff-padding = 3
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        df''8
-                        ^ \markup \tiny \line { "SC(4-6){0, 1, 3, 4}" }
-                        \startGroup
-                        c''8
-                        bf'8
-                        a'8
-                        \stopGroup
-                        f'4.
-                        fs'8
-                        ^ \markup \tiny \line { "SC(4-16){0, 1, 5, 8}" }
-                        \startGroup
-                        g'8
-                        b'8
-                        d''2.
-                        \stopGroup
-                    }
-
-            ..  container:: example expression
-
-                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                >>> voice = abjad.Voice(string)
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:4], voice[-4:]]
-                >>> for selection in selections:
-                ...     abjad.horizontal_bracket(selection)
-                ...
-                >>> prototype = abjad.SetClass(lex_rank=True)
-                >>> expression = abjad.label().with_set_classes(prototype=prototype)
-                >>> expression(selections)
+                >>> abjad.Label(selections).with_set_classes(prototype=prototype)
                 >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
                 >>> abjad.override(voice).TextScript.staff_padding = 2
                 >>> abjad.show(voice) # doctest: +SKIP
@@ -3768,52 +2142,7 @@ class Label:
                 ...     abjad.horizontal_bracket(selection)
                 ...
                 >>> prototype = abjad.SetClass(transposition_only=True)
-                >>> abjad.label(selections).with_set_classes(prototype=prototype)
-                >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
-                >>> abjad.override(voice).TextScript.staff_padding = 2
-                >>> abjad.show(voice) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(voice)
-                    >>> print(string)
-                    \new Voice
-                    \with
-                    {
-                        \consists Horizontal_bracket_engraver
-                        \override HorizontalBracket.staff-padding = 3
-                        \override TextScript.staff-padding = 2
-                    }
-                    {
-                        df''8
-                        ^ \markup \tiny \line { "SC(4-6){0, 1, 3, 4}" }
-                        \startGroup
-                        c''8
-                        bf'8
-                        a'8
-                        \stopGroup
-                        f'4.
-                        fs'8
-                        ^ \markup \tiny \line { "SC(4-16){0, 1, 5, 8}" }
-                        \startGroup
-                        g'8
-                        b'8
-                        d''2.
-                        \stopGroup
-                    }
-
-            ..  container:: example expression
-
-                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
-                >>> voice = abjad.Voice(string)
-                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-                >>> selections = [voice[:4], voice[-4:]]
-                >>> for selection in selections:
-                ...     abjad.horizontal_bracket(selection)
-                ...
-                >>> prototype = abjad.SetClass(transposition_only=True)
-                >>> expression = abjad.label().with_set_classes(prototype=prototype)
-                >>> expression(selections)
+                >>> abjad.Label(selections).with_set_classes(prototype=prototype)
                 >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
                 >>> abjad.override(voice).TextScript.staff_padding = 2
                 >>> abjad.show(voice) # doctest: +SKIP
@@ -3849,8 +2178,6 @@ class Label:
 
         Returns none.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         prototype = prototype or SetClass()
         if prototype is SetClass:
             prototype = prototype()
@@ -3889,44 +2216,7 @@ class Label:
 
                 >>> string = r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4"
                 >>> staff = abjad.Staff(string)
-                >>> abjad.label(staff).with_start_offsets(direction=abjad.Up)
-                Duration(1, 1)
-
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.override(staff).TupletBracket.staff_padding = 0
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(staff)
-                    >>> print(string)
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                        \override TupletBracket.staff-padding = 0
-                    }
-                    {
-                        \times 2/3 {
-                            c'4
-                            ^ \markup { 0 }
-                            d'4
-                            ^ \markup { 1/6 }
-                            e'4
-                            ^ \markup { 1/3 }
-                            ~
-                        }
-                        e'4
-                        ef'4
-                        ^ \markup { 3/4 }
-                    }
-
-            ..  container:: example expression
-
-                >>> string = r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4"
-                >>> staff = abjad.Staff(string)
-                >>> expression = abjad.label().with_start_offsets()
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_start_offsets(direction=abjad.Up)
                 Duration(1, 1)
 
                 >>> abjad.override(staff).TextScript.staff_padding = 4
@@ -3968,46 +2258,7 @@ class Label:
                 >>> score = abjad.Score([staff])
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> abjad.attach(mark, staff[0])
-                >>> abjad.label(staff).with_start_offsets(clock_time=True)
-                Duration(8, 1)
-
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.override(staff).TupletBracket.staff_padding = 0
-                >>> abjad.show(score) # doctest: +SKIP
-
-                ..  docs::
-
-                    >>> string = abjad.lilypond(score)
-                    >>> print(string)
-                    \new Score
-                    <<
-                        \new Staff
-                        \with
-                        {
-                            \override TextScript.staff-padding = 4
-                            \override TupletBracket.staff-padding = 0
-                        }
-                        {
-                            \tempo 4=60
-                            c'2
-                            ^ \markup { 0'00'' }
-                            d'2
-                            ^ \markup { 0'02'' }
-                            e'2
-                            ^ \markup { 0'04'' }
-                            f'2
-                            ^ \markup { 0'06'' }
-                        }
-                    >>
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff(r"c'2 d' e' f'")
-                >>> score = abjad.Score([staff])
-                >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> abjad.attach(mark, staff[0])
-                >>> expression = abjad.label().with_start_offsets(clock_time=True)
-                >>> expression(staff)
+                >>> abjad.Label(staff).with_start_offsets(clock_time=True)
                 Duration(8, 1)
 
                 >>> abjad.override(staff).TextScript.staff_padding = 4
@@ -4050,49 +2301,10 @@ class Label:
                 >>> score = abjad.Score([staff])
                 >>> mark = abjad.MetronomeMark((1, 4), 60)
                 >>> abjad.attach(mark, staff[0])
-                >>> abjad.label(staff).with_start_offsets(
+                >>> abjad.Label(staff).with_start_offsets(
                 ...     clock_time=True,
                 ...     markup_command=r'\dark_cyan_markup',
                 ...     )
-                Duration(8, 1)
-
-                >>> abjad.override(staff).TextScript.staff_padding = 4
-                >>> abjad.override(staff).TupletBracket.staff_padding = 0
-
-                >>> string = abjad.lilypond(score)
-                >>> print(string)
-                \new Score
-                <<
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 4
-                        \override TupletBracket.staff-padding = 0
-                    }
-                    {
-                        \tempo 4=60
-                        c'2
-                        ^ \dark_cyan_markup "0'00''"
-                        d'2
-                        ^ \dark_cyan_markup "0'02''"
-                        e'2
-                        ^ \dark_cyan_markup "0'04''"
-                        f'2
-                        ^ \dark_cyan_markup "0'06''"
-                    }
-                >>
-
-            ..  container:: example expression
-
-                >>> staff = abjad.Staff(r"c'2 d' e' f'")
-                >>> score = abjad.Score([staff])
-                >>> mark = abjad.MetronomeMark((1, 4), 60)
-                >>> abjad.attach(mark, staff[0])
-                >>> expression = abjad.label().with_start_offsets(
-                ...     clock_time=True,
-                ...     markup_command=r'\dark_cyan_markup',
-                ...     )
-                >>> expression(staff)
                 Duration(8, 1)
 
                 >>> abjad.override(staff).TextScript.staff_padding = 4
@@ -4123,8 +2335,6 @@ class Label:
 
         Returns total duration.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         direction = direction or enums.Up
         if global_offset is not None:
             assert isinstance(global_offset, Duration)
@@ -4419,115 +2629,3 @@ class ColorMap:
             return self[key]
         except (KeyError, TypeError, ValueError):
             return alternative
-
-
-### FUNCTIONS ###
-
-
-def label(client=None, deactivate=None, tag=None):
-    r"""
-    Makes label agent or label expression.
-
-    ..  container:: example
-
-        Labels logical ties with start offsets:
-
-        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-        >>> abjad.label(staff).with_start_offsets(direction=abjad.Up)
-        Duration(1, 1)
-
-        >>> abjad.override(staff).TextScript.staff_padding = 4
-        >>> abjad.override(staff).TupletBracket.staff_padding = 0
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            \with
-            {
-                \override TextScript.staff-padding = 4
-                \override TupletBracket.staff-padding = 0
-            }
-            {
-                \times 2/3 {
-                    c'4
-                    ^ \markup { 0 }
-                    d'4
-                    ^ \markup { 1/6 }
-                    e'4
-                    ^ \markup { 1/3 }
-                    ~
-                }
-                e'4
-                ef'4
-                ^ \markup { 3/4 }
-            }
-
-        See the ``Label`` API entry for many more examples.
-
-    ..  container:: example expression
-
-        Initializes positionally:
-
-        >>> expression = abjad.label()
-        >>> expression(staff)
-        Label(client=<Staff{3}>)
-
-        Initializes from keyword:
-
-        >>> expression = abjad.label()
-        >>> expression(client=staff)
-        Label(client=<Staff{3}>)
-
-        Makes label expression:
-
-            >>> expression = abjad.label()
-            >>> expression = expression.with_start_offsets()
-
-        >>> staff = abjad.Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-        >>> expression(staff)
-        Duration(1, 1)
-
-        >>> abjad.override(staff).TextScript.staff_padding = 4
-        >>> abjad.override(staff).TupletBracket.staff_padding = 0
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            \with
-            {
-                \override TextScript.staff-padding = 4
-                \override TupletBracket.staff-padding = 0
-            }
-            {
-                \times 2/3 {
-                    c'4
-                    ^ \markup { 0 }
-                    d'4
-                    ^ \markup { 1/6 }
-                    e'4
-                    ^ \markup { 1/3 }
-                    ~
-                }
-                e'4
-                ef'4
-                ^ \markup { 3/4 }
-            }
-
-        See the ``Label`` API entry for many more examples.
-
-    Returns label agent when ``client`` is not none.
-
-    Returns label expression when ``client`` is none.
-    """
-    if client is not None:
-        return Label(client=client, deactivate=deactivate, tag=tag)
-    expression = Expression(proxy_class=Label)
-    callback = Expression._make_initializer_callback(Label, tag=tag)
-    expression = expression.append_callback(callback)
-    return expression

@@ -2110,9 +2110,9 @@ class LilyPondFile:
             voices = []
             for voice_name in sorted(selections):
                 selections_ = selections[voice_name]
-                selections_ = Sequence(selections_).flatten(depth=-1)
-                selections_ = copy.deepcopy(selections_)
-                voice = Voice(selections_, name=voice_name)
+                selections__ = Sequence(selections_).flatten(depth=-1)
+                selections__ = copy.deepcopy(selections__)
+                voice = Voice(selections__, name=voice_name)
                 if attach_lilypond_voice_commands:
                     voice_name_to_command_string = {
                         "Voice_1": "voiceOne",
