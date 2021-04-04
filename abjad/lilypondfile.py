@@ -209,7 +209,7 @@ class Block:
             return result
         strings = [f"{self._escaped_name}", "{"]
         if tag is not None:
-            strings = _tag.tag(strings, tag=tag)
+            strings = _tag.double_tag(strings, tag)
         result.extend(strings)
         for item in self.items:
             if isinstance(item, ContextBlock):
@@ -224,10 +224,10 @@ class Block:
         formatted_context_blocks = [indent + _ for _ in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         string = "}"
+        strings = [string]
         if tag is not None:
-            strings = _tag.tag([string], tag=tag)
-            string = strings[0]
-        result.append(string)
+            strings = _tag.double_tag(strings, tag)
+        result.extend(strings)
 
         return result
 
@@ -1352,7 +1352,7 @@ class LilyPondFile:
             string = f"{self.lilypond_language_token._get_lilypond_format()}"
             includes.append(string)
         tag = _tag.Tag("abjad.LilyPondFile._get_format_pieces()")
-        includes = _tag.tag(includes, tag=self.get_tag(tag))
+        includes = _tag.double_tag(includes, self.get_tag(tag))
         includes = "\n".join(includes)
         if includes:
             result.append(includes)
@@ -1422,7 +1422,7 @@ class LilyPondFile:
             else:
                 result.append(include._get_lilypond_format())
         if result:
-            result = _tag.tag(result, tag=tag)
+            result = _tag.double_tag(result, tag)
             result = ["\n".join(result)]
         return result
 
@@ -1440,7 +1440,7 @@ class LilyPondFile:
             string = f"#(set-global-staff-size {global_staff_size})"
             result.append(string)
         if result:
-            result = _tag.tag(result, tag=tag)
+            result = _tag.double_tag(result, tag)
             result = ["\n".join(result)]
         return result
 

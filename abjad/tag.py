@@ -627,6 +627,14 @@ class Line:
 ### FUNCTIONS ###
 
 
+def _match_line(line, tag, current_tags):
+    if tag in current_tags:
+        return True
+    if callable(tag):
+        return tag(current_tags)
+    return False
+
+
 def activate(text, tag, skipped=False):
     r"""
     Activates ``tag`` in ``text``.
@@ -644,14 +652,16 @@ def activate(text, tag, skipped=False):
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("RED_MARKUP"),
-        ...     )
+        ... )
 
         >>> text = abjad.lilypond(staff, tags=True)
         >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-        %@% - \markup { \with-color #red Allegro }               %! RED_MARKUP
+            %! RED_MARKUP
+            %@% - \markup { \with-color #red Allegro }
             d'4
             e'4
             f'4
@@ -663,9 +673,11 @@ def activate(text, tag, skipped=False):
 
         >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-            - \markup { \with-color #red Allegro }               %! RED_MARKUP %@%
+            %! RED_MARKUP
+                - \markup { \with-color #red Allegro } %@%
             d'4
             e'4
             f'4
@@ -680,9 +692,11 @@ def activate(text, tag, skipped=False):
 
         >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-            %@% - \markup { \with-color #red Allegro }               %! RED_MARKUP
+            %! RED_MARKUP
+            %@% - \markup { \with-color #red Allegro }
             d'4
             e'4
             f'4
@@ -697,9 +711,11 @@ def activate(text, tag, skipped=False):
 
         >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-            - \markup { \with-color #red Allegro }               %! RED_MARKUP %@%
+            %! RED_MARKUP
+                - \markup { \with-color #red Allegro } %@%
             d'4
             e'4
             f'4
@@ -723,14 +739,21 @@ def activate(text, tag, skipped=False):
     text_lines = text.split("\n")
     text_lines = [_ + "\n" for _ in text_lines[:-1]] + text_lines[-1:]
     lines = []
+    current_tags = []
     for line in text_lines:
-        first_nonwhitespace_index = len(line) - len(line.lstrip())
-        index = first_nonwhitespace_index
-        if not Line(line).match(tag):
+        if line.lstrip().startswith("%! "):
+            lines.append(line)
+            current_tag = Tag(line.strip()[3:])
+            current_tags.append(current_tag)
+            continue
+        if not _match_line(line, tag, current_tags):
             lines.append(line)
             treated_last_line = False
             found_already_active_on_last_line = False
+            current_tags = []
             continue
+        first_nonwhitespace_index = len(line) - len(line.lstrip())
+        index = first_nonwhitespace_index
         if line[index : index + 4] in ("%%% ", "%@% "):
             if "%@% " in line:
                 line = line.replace("%@%", "   ")
@@ -751,6 +774,7 @@ def activate(text, tag, skipped=False):
             found_already_active_on_last_line = True
             treated_last_line = False
         lines.append(line)
+        current_tags = []
     text = "".join(lines)
     if skipped is True:
         return text, count, skipped_count
@@ -778,9 +802,11 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         >>> text = abjad.lilypond(staff, tags=True)
         >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-            - \markup { \with-color #red Allegro }               %! RED_MARKUP
+            %! RED_MARKUP
+            - \markup { \with-color #red Allegro }
             d'4
             e'4
             f'4
@@ -793,9 +819,11 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         >>> text = abjad.lilypond(staff, tags=True)
         >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-            %%% - \markup { \with-color #red Allegro }               %! RED_MARKUP
+            %! RED_MARKUP
+        %%% - \markup { \with-color #red Allegro }
             d'4
             e'4
             f'4
@@ -810,9 +838,11 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-            - \markup { \with-color #red Allegro }               %! RED_MARKUP
+            %! RED_MARKUP
+            - \markup { \with-color #red Allegro }
             d'4
             e'4
             f'4
@@ -827,9 +857,11 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
-        \new Staff {
+        \new Staff
+        {
             c'4
-            %%% - \markup { \with-color #red Allegro }               %! RED_MARKUP
+            %! RED_MARKUP
+        %%% - \markup { \with-color #red Allegro }
             d'4
             e'4
             f'4
@@ -854,14 +886,21 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
     text_lines = [_ + "\n" for _ in text_lines[:-1]] + text_lines[-1:]
     lines = []
     previous_line_was_tweak = False
+    current_tags = []
     for line in text_lines:
-        first_nonwhitespace_index = len(line) - len(line.lstrip())
-        index = first_nonwhitespace_index
-        if not Line(line).match(tag):
+        if line.lstrip().startswith("%! "):
+            lines.append(line)
+            current_tag = Tag(line.strip()[3:])
+            current_tags.append(current_tag)
+            continue
+        if not _match_line(line, tag, current_tags):
             lines.append(line)
             treated_last_line, last_index = False, None
             found_already_deactivated_on_last_line = False
+            current_tags = []
             continue
+        first_nonwhitespace_index = len(line) - len(line.lstrip())
+        index = first_nonwhitespace_index
         if line[index] != "%":
             if last_index is None:
                 last_index = index
@@ -888,6 +927,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
             treated_last_line = False
         lines.append(line)
         previous_line_was_tweak = "tweak" in line
+        current_tags = []
     text = "".join(lines)
     if skipped is True:
         return text, count, skipped_count
@@ -895,29 +935,21 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         return text, count
 
 
-def tag(strings, tag, deactivate=None) -> typing.List[str]:
-    """
-    Tags ``strings`` with ``tag``.
-    """
-    if not tag:
-        return strings
-    if not strings:
-        return strings
-    if deactivate is not None:
-        assert isinstance(deactivate, type(True)), repr(deactivate)
-    length = max([len(_) for _ in strings])
-    strings_ = []
-    for string in strings:
-        if "%!" in string and r"\tweak" in string:
-            strings_.append(string)
-            continue
-        if "%!" not in string:
-            pad = length - len(string)
-        else:
-            pad = 0
-        tag_ = pad * " " + " " + "%!" + " " + str(tag)
-        string = string + tag_
-        strings_.append(string)
+def double_tag(strings, tag_, deactivate=None):
+    before_tags = []
+    if tag_:
+        line = str(tag_)
+        lines = line.split(":")
+        lines = ["%! " + _ for _ in lines]
+        before_tags.extend(lines)
+    right_tagged_lines = strings
     if deactivate is True:
-        strings_ = ["%@% " + _ for _ in strings_]
-    return strings_
+        right_tagged_lines = ["%@% " + _ for _ in right_tagged_lines]
+    result = []
+    for right_tagged_line in right_tagged_lines:
+        if right_tagged_line.strip().startswith("%!"):
+            result.append(right_tagged_line)
+            continue
+        result.extend(before_tags)
+        result.append(right_tagged_line)
+    return result

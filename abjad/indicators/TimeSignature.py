@@ -97,7 +97,8 @@ class TimeSignature:
         <<
             \new Staff
             {
-                \time 3/8 %! +PARTS
+                %! +PARTS
+                \time 3/8
                 c'8
                 d'8
                 e'8

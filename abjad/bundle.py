@@ -107,9 +107,9 @@ class LilyPondFormatBundle:
         self.after.tag(tag, deactivate)
         self.opening.tag(tag, deactivate)
         self.closing.tag(tag, deactivate)
-        self._context_settings = _tag.tag(self.context_settings, tag, deactivate)
-        self._grob_overrides = _tag.tag(self.grob_overrides, tag, deactivate)
-        self._grob_reverts = _tag.tag(self.grob_reverts, tag, deactivate)
+        self._context_settings = _tag.double_tag(self.context_settings, tag, deactivate)
+        self._grob_overrides = _tag.double_tag(self.grob_overrides, tag, deactivate)
+        self._grob_reverts = _tag.double_tag(self.grob_reverts, tag, deactivate)
 
     def update(self, format_bundle):
         """
@@ -393,20 +393,20 @@ class SlotContributions:
         """
         Tags contributions.
         """
-        self._articulations = _tag.tag(self.articulations, tag, deactivate)
-        self._commands = _tag.tag(self.commands, tag, deactivate)
-        self._comments = _tag.tag(self.comments, tag, deactivate)
-        self._indicators = _tag.tag(self.indicators, tag, deactivate)
-        self._leaks = _tag.tag(self.leaks, tag, deactivate)
-        self._markup = _tag.tag(self.markup, tag, deactivate)
-        self._spanners = _tag.tag(self.spanners, tag, deactivate)
+        self._articulations = _tag.double_tag(self.articulations, tag, deactivate)
+        self._commands = _tag.double_tag(self.commands, tag, deactivate)
+        self._comments = _tag.double_tag(self.comments, tag, deactivate)
+        self._indicators = _tag.double_tag(self.indicators, tag, deactivate)
+        self._leaks = _tag.double_tag(self.leaks, tag, deactivate)
+        self._markup = _tag.double_tag(self.markup, tag, deactivate)
+        self._spanners = _tag.double_tag(self.spanners, tag, deactivate)
         strings = []
         # make sure each line of multiline markup is tagged
         for string in self.spanner_starts:
             strings.extend(string.split("\n"))
-        self._spanner_starts = _tag.tag(strings, tag, deactivate)
-        self._spanner_stops = _tag.tag(self.spanner_stops, tag, deactivate)
-        self._stem_tremolos = _tag.tag(self.stem_tremolos, tag, deactivate)
+        self._spanner_starts = _tag.double_tag(strings, tag, deactivate)
+        self._spanner_stops = _tag.double_tag(self.spanner_stops, tag, deactivate)
+        self._stem_tremolos = _tag.double_tag(self.stem_tremolos, tag, deactivate)
 
     def update(self, slot_contributions):
         """

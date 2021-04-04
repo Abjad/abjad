@@ -444,7 +444,9 @@ class Component:
                 return sibling
 
     def _tag_strings(self, strings):
-        return _tag.tag(strings, tag=self.tag)
+        if self.tag is not None:
+            strings = _tag.double_tag(strings, self.tag)
+        return strings
 
     def _update_later(self, offsets=False, offsets_in_seconds=False):
         assert offsets or offsets_in_seconds
@@ -476,6 +478,8 @@ class Component:
         """
         Gets component tag.
         """
+        if self._tag is not None:
+            assert isinstance(self._tag, _tag.Tag), repr(self._tag)
         return self._tag
 
 
@@ -629,8 +633,7 @@ class Leaf(Component):
     def _format_leaf_nucleus(self):
         strings = self._get_body()
         if self.tag:
-            tag = _tag.Tag(self.tag)
-            strings = _tag.tag(strings, tag=tag)
+            strings = _tag.double_tag(strings, self.tag)
         return strings
 
     def _format_opening_slot(self, bundle):
@@ -1158,19 +1161,21 @@ class Container(Component):
 
     def _format_close_brackets_slot(self, bundle):
         result = []
+        strings = []
         if self.simultaneous:
             if self.identifier:
-                brackets_close = [f">>  {self.identifier}"]
+                string = f">>  {self.identifier}"
             else:
-                brackets_close = [">>"]
+                string = ">>"
         else:
             if self.identifier:
-                brackets_close = [f"}}   {self.identifier}"]
+                string = f"}}   {self.identifier}"
             else:
-                brackets_close = ["}"]
+                string = "}"
+        strings.append(string)
         if self.tag is not None:
-            brackets_close = _tag.tag(brackets_close, tag=self.tag)
-        result.append([("close brackets", ""), brackets_close])
+            strings = _tag.double_tag(strings, self.tag)
+        result.append([("close brackets", ""), strings])
         return tuple(result)
 
     def _format_closing_slot(self, bundle):
@@ -1200,19 +1205,21 @@ class Container(Component):
 
     def _format_open_brackets_slot(self, bundle):
         result = []
+        strings = []
         if self.simultaneous:
             if self.identifier:
-                brackets_open = [f"<<  {self.identifier}"]
+                string = f"<<  {self.identifier}"
             else:
-                brackets_open = ["<<"]
+                string = "<<"
         else:
             if self.identifier:
-                brackets_open = [f"{{   {self.identifier}"]
+                string = f"{{   {self.identifier}"
             else:
-                brackets_open = ["{"]
+                string = "{"
+        strings.append(string)
         if self.tag is not None:
-            brackets_open = _tag.tag(brackets_open, tag=self.tag)
-        result.append([("open brackets", ""), brackets_open])
+            strings = _tag.double_tag(strings, self.tag)
+        result.append([("open brackets", ""), strings])
         return tuple(result)
 
     def _format_opening_slot(self, bundle):
@@ -3375,13 +3382,16 @@ class Context(Container):
 
             >>> string = abjad.lilypond(context, tags=True)
             >>> print(string)
-            \new CustomContext  %! RED
-            {                   %! RED
+            %! RED
+            \new CustomContext
+            %! RED
+            {
                 c'4
                 d'4
                 e'4
                 f'4
-            }                   %! RED
+            %! RED
+            }
 
         """
         return super().tag
@@ -3405,7 +3415,8 @@ class MultimeasureRest(Leaf):
         ... )
         >>> string = abjad.lilypond(rest, tags=True)
         >>> print(string)
-        R1 %! GLOBAL_MULTIMEASURE_REST
+        %! GLOBAL_MULTIMEASURE_REST
+        R1
 
     ..  container:: example
 
@@ -3475,7 +3486,8 @@ class MultimeasureRest(Leaf):
 
             >>> string = abjad.lilypond(rest, tags=True)
             >>> print(string)
-            R1 * 3/8 %! MULTIMEASURE_REST
+            %! MULTIMEASURE_REST
+            R1 * 3/8
 
         """
         return super().tag
@@ -3679,11 +3691,11 @@ class NoteHead:
         if duration is not None:
             pieces[-1] = pieces[-1] + duration
         if self.alternative:
-            pieces = _tag.tag(pieces, tag=self.alternative[2])
+            pieces = _tag.double_tag(pieces, self.alternative[2])
             pieces_ = self.alternative[0]._get_format_pieces()
             if duration is not None:
                 pieces_[-1] = pieces_[-1] + duration
-            pieces_ = _tag.tag(pieces_, deactivate=True, tag=self.alternative[1])
+            pieces_ = _tag.double_tag(pieces_, self.alternative[1], deactivate=True)
             pieces.extend(pieces_)
         result = "\n".join(pieces)
         return result
@@ -3705,8 +3717,10 @@ class NoteHead:
 
             >>> string = abjad.lilypond(note, tags=True)
             >>> print(string)
-            c''4                                              %! +PARTS
-            %@% c''!4                                         %! -PARTS
+            %! +PARTS
+            c''4
+            %! -PARTS
+            %@% c''!4
 
             Survives pitch reassignment:
 
@@ -3715,8 +3729,10 @@ class NoteHead:
 
             >>> string = abjad.lilypond(note, tags=True)
             >>> print(string)
-            d''4                                              %! +PARTS
-            %@% d''!4                                         %! -PARTS
+            %! +PARTS
+            d''4
+            %! -PARTS
+            %@% d''!4
 
             Clear with none:
 
@@ -3738,8 +3754,10 @@ class NoteHead:
             >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <
-                c'                                            %! +PARTS
-            %@% c'!                                           %! -PARTS
+                %! +PARTS
+                c'
+                %! -PARTS
+                %@% c'!
                 d'
                 bf''
             >4
@@ -3752,8 +3770,10 @@ class NoteHead:
             >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <
-                b                                             %! +PARTS
-            %@% b!                                            %! -PARTS
+                %! +PARTS
+                b
+                %! -PARTS
+                %@% b!
                 d'
                 bf''
             >4
@@ -4780,19 +4800,28 @@ class Score(Context):
 
             >>> string = abjad.lilypond(score, tags=True)
             >>> print(string)
-            \new Score          %! GREEN
-            <<                  %! GREEN
-                \new Staff      %! BLUE
-                {               %! BLUE
-                    \new Voice  %! RED
-                    {           %! RED
+            %! GREEN
+            \new Score
+            %! GREEN
+            <<
+                %! BLUE
+                \new Staff
+                %! BLUE
+                {
+                    %! RED
+                    \new Voice
+                    %! RED
+                    {
                         c'4
                         d'4
                         e'4
                         f'4
-                    }           %! RED
-                }               %! BLUE
-            >>                  %! GREEN
+                    %! RED
+                    }
+                %! BLUE
+                }
+            %! GREEN
+            >>
 
         """
         return super().tag
@@ -4821,7 +4850,8 @@ class Skip(Leaf):
         >>> skip = abjad.Skip('s8.', tag=abjad.Tag('GLOBAL_SKIP'))
         >>> string = abjad.lilypond(skip, tags=True)
         >>> print(string)
-        s8. %! GLOBAL_SKIP
+        %! GLOBAL_SKIP
+        s8.
 
     """
 
@@ -5365,7 +5395,7 @@ class Tuplet(Container):
         if self.multiplier:
             strings = ["}"]
             if self.tag is not None:
-                strings = _tag.tag(strings, tag=self.tag)
+                strings = _tag.double_tag(strings, self.tag)
             result.append([("self_brackets", "close"), strings])
         return tuple(result)
 
@@ -5413,7 +5443,7 @@ class Tuplet(Container):
                 contributions.append(times_command_string)
                 contributions.append("{")
             if self.tag is not None:
-                contributions = _tag.tag(contributions, tag=self.tag)
+                contributions = _tag.double_tag(contributions, self.tag)
             result.append([contributor, contributions])
         return tuple(result)
 
@@ -5962,12 +5992,15 @@ class Tuplet(Container):
 
             >>> string = abjad.lilypond(tuplet, tags=True)
             >>> print(string)
-            \times 2/3          %! RED
-            {                   %! RED
+            %! RED
+            \times 2/3
+            %! RED
+            {
                 c'4
                 d'4
                 e'4
-            }                   %! RED
+            %! RED
+            }
 
         """
         return super().tag
@@ -7390,13 +7423,16 @@ class Voice(Context):
 
             >>> string = abjad.lilypond(voice, tags=True)
             >>> print(string)
-            \new Voice          %! RED
-            {                   %! RED
+            %! RED
+            \new Voice
+            %! RED
+            {
                 c'4
                 d'4
                 e'4
                 f'4
-            }                   %! RED
+            %! RED
+            }
 
         """
         return super().tag

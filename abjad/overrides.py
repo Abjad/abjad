@@ -205,7 +205,8 @@ class LilyPondLiteral:
         >>> print(string)
         \new Staff
         {
-            \slurDotted %! +PARTS
+            %! +PARTS
+            \slurDotted
             c'8
             (
             d'8
@@ -236,9 +237,12 @@ class LilyPondLiteral:
             c'8
             (
             d'8
-            \stopStaff %! +PARTS
-            \startStaff %! +PARTS
-            \once \override Staff.StaffSymbol.color = #red %! +PARTS
+            %! +PARTS
+            \stopStaff
+            %! +PARTS
+            \startStaff
+            %! +PARTS
+            \once \override Staff.StaffSymbol.color = #red
             e'8
             f'8
             )
@@ -1284,6 +1288,7 @@ class OverrideInterface(Interface):
                     for attribute, value in pairs:
                         quadruple = (context, grob, attribute, value)
                         result.append(quadruple)
+        result.sort()
         return tuple(result)
 
     def _list_format_contributions(self, contribution_type, once=False):
@@ -1524,6 +1529,7 @@ class SettingInterface(Interface):
             else:
                 attribute_name, attribute_value = name, value
                 result.append((attribute_name, attribute_value))
+        result.sort()
         return result
 
 
@@ -1642,7 +1648,8 @@ class TweakInterface(Interface):
             \new Staff
             {
                 c'4
-                - \tweak color #red %! +PARTS
+                %! +PARTS
+                - \tweak color #red
                 ^ \markup {
                     \italic
                         Allegro
@@ -1667,7 +1674,8 @@ class TweakInterface(Interface):
             \new Staff
             {
                 c'4
-                - \tweak color #red %! +PARTS
+                %! +PARTS
+                - \tweak color #red
                 ^ \markup {
                     \italic
                         Allegro
@@ -1690,11 +1698,22 @@ class TweakInterface(Interface):
             \new Staff
             {
                 c'4
-                - \tweak color #red                 %! +PARTS
-                ^ \markup {                         %! RED:M1
-                    \italic                         %! RED:M1
-                        Allegro                     %! RED:M1
-                    }                               %! RED:M1
+                %! +PARTS
+                %! RED
+                %! M1
+                - \tweak color #red
+                %! RED
+                %! M1
+                ^ \markup {
+                %! RED
+                %! M1
+                    \italic
+                %! RED
+                %! M1
+                        Allegro
+                %! RED
+                %! M1
+                    }
                 d'4
                 e'4
                 f'4
@@ -1815,6 +1834,7 @@ class TweakInterface(Interface):
                 attribute_value = value
                 pair = (attribute_name, attribute_value)
                 result.append(pair)
+        result.sort()
         return result
 
     def _list_format_contributions(self, directed=True):
@@ -1845,12 +1865,10 @@ class TweakInterface(Interface):
                 grob=grob,
                 literal=self._literal,
             )
+            strings = [string]
             if tag is not None:
-                strings = [string]
-                strings = _tag.tag(strings, deactivate=deactivate, tag=tag)
-                string = strings[0]
-            result.append(string)
-        result.sort()
+                strings = _tag.double_tag(strings, tag, deactivate=deactivate)
+            result.extend(strings)
         return result
 
     ### PUBLIC METHODS ###
@@ -2104,7 +2122,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         \new Staff
         {
             c'4
-            - \tweak color #red %! RED
+            %! RED
+            - \tweak color #red
             \f
             d'4
             e'4
@@ -2126,7 +2145,8 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         \new Staff
         {
             c'4
-            - \tweak color #blue %! BLUE
+            %! BLUE
+            - \tweak color #blue
             \f
             d'4
             e'4

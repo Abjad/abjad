@@ -3051,7 +3051,7 @@ class Selection(collections.abc.Sequence):
                 ...     d'8 ~ d'16 d'16 r8 d'16 d'16
                 ...     ''')
                 >>> abjad.setting(staff).autoBeaming = False
-                >>> abjad.show(staff, align_tags=89) # doctest: +SKIP
+                >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> result = abjad.select(staff).leaves(pitched=True).group()
 
@@ -3069,7 +3069,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])])
 
                 >>> abjad.label(result).by_selector(selector)
-                >>> abjad.show(staff, align_tags=89) # doctest: +SKIP
+                >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 

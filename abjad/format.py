@@ -16,7 +16,8 @@ def remove_tags(string) -> str:
         tag_start = line.find("%!")
         line = line[:tag_start]
         line = line.rstrip()
-        lines.append(line)
+        if line:
+            lines.append(line)
     string = "\n".join(lines)
     return string
 
@@ -188,7 +189,7 @@ class LilyPondFormatManager:
                 else:
                     markup = wrapper.indicator
                 format_pieces = markup._get_format_pieces()
-                format_pieces = _tag.tag(
+                format_pieces = _tag.double_tag(
                     format_pieces, wrapper.tag, deactivate=wrapper.deactivate
                 )
                 bundle.after.markup.extend(format_pieces)
@@ -240,30 +241,6 @@ class LilyPondFormatManager:
 
     ### PUBLIC METHODS ###
 
-    # TODO: make top-level function
-    @staticmethod
-    def align_tags(string: str, n: int) -> str:
-        """
-        Line-breaks ``string`` and aligns tags starting a column ``n``.
-        """
-        if not isinstance(n, int):
-            raise Exception(f"must be integer:\n    {repr(n)}")
-        lines = []
-        for line in string.split("\n"):
-            if "%!" not in line:
-                lines.append(line)
-                continue
-            location = line.find("%!")
-            left = line[:location].rstrip()
-            right = line[location:]
-            pad = n - len(left)
-            if pad < 1:
-                pad = 1
-            line = left + pad * " " + right
-            lines.append(line)
-        string = "\n".join(lines)
-        return string
-
     @staticmethod
     def bundle_format_contributions(component) -> "_bundle.LilyPondFormatBundle":
         """
@@ -306,6 +283,4 @@ class LilyPondFormatManager:
             string_ = "".join(string_)
             strings_.append(string_)
         text = "\n".join(strings_)
-        if realign is not None:
-            text = LilyPondFormatManager.align_tags(text, n=realign)
         return text

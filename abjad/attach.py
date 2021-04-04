@@ -219,8 +219,11 @@ class Wrapper:
             >>> abjad.attach(clef, old_staff[0], tag=abjad.Tag("RED:M1"))
             >>> string = abjad.lilypond(old_staff, tags=True)
             >>> print(string)
-            \new Staff {
-                \clef "alto" %! RED:M1
+            \new Staff
+            {
+                %! RED
+                %! M1
+                \clef "alto"
                 c'4
                 d'4
                 e'4
@@ -240,8 +243,11 @@ class Wrapper:
             >>> new_staff = abjad.mutate.copy(old_staff)
             >>> string = abjad.lilypond(new_staff, tags=True)
             >>> print(string)
-            \new Staff {
-                \clef "alto" %! RED:M1
+            \new Staff
+            {
+                %! RED
+                %! M1
+                \clef "alto"
                 c'4
                 d'4
                 e'4
@@ -271,8 +277,11 @@ class Wrapper:
             ...     )
             >>> string = abjad.lilypond(old_staff, tags=True)
             >>> print(string)
-            \new Staff {
-                %@% \clef "alto" %! RED:M1
+            \new Staff
+            {
+                %! RED
+                %! M1
+                %@% \clef "alto"
                 c'4
                 d'4
                 e'4
@@ -293,8 +302,11 @@ class Wrapper:
             >>> new_staff = abjad.mutate.copy(old_staff)
             >>> string = abjad.lilypond(new_staff, tags=True)
             >>> print(string)
-            \new Staff {
-                %@% \clef "alto" %! RED:M1
+            \new Staff
+            {
+                %! RED
+                %! M1
+                %@% \clef "alto"
                 c'4
                 d'4
                 e'4
@@ -430,7 +442,7 @@ class Wrapper:
         if isinstance(lilypond_format, str):
             lilypond_format = [lilypond_format]
         assert isinstance(lilypond_format, (tuple, list))
-        lilypond_format = _tag.tag(
+        lilypond_format = _tag.double_tag(
             lilypond_format, self.tag, deactivate=self.deactivate
         )
         result.extend(lilypond_format)
@@ -858,8 +870,10 @@ def attach(  # noqa: 302
             \new Staff
             {
                 \clef "treble"
-            %@% \clef "alto" %! +PARTS
-            %@% \clef "tenor" %! +PARTS
+                %! +PARTS
+                %@% \clef "alto"
+                %! +PARTS
+                %@% \clef "tenor"
                 c'4
                 d'4
                 e'4
@@ -896,7 +910,8 @@ def attach(  # noqa: 302
             >>> print(string)
             \new Staff
             {
-            %@% \clef "alto" %! +PARTS
+                %! +PARTS
+                %@% \clef "alto"
                 c'4
                 d'4
                 e'4
@@ -1107,9 +1122,12 @@ def detach(argument, target=None, by_id=False):
         \new Staff
         {
             c'4
-            ^ \markup { tutti }                           %! +SCORE
-        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_1
-        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_2
+            %! +SCORE
+            ^ \markup { tutti }
+            %! +PARTS_VIOLIN_1
+            %@% ^ \markup { with the others }
+            %! +PARTS_VIOLIN_2
+            %@% ^ \markup { with the others }
             d'4
             e'4
             f'4
@@ -1131,7 +1149,8 @@ def detach(argument, target=None, by_id=False):
         \new Staff
         {
             c'4
-            ^ \markup { tutti }                           %! +SCORE
+            %! +SCORE
+            ^ \markup { tutti }
             d'4
             e'4
             f'4
@@ -1160,9 +1179,12 @@ def detach(argument, target=None, by_id=False):
         \new Staff
         {
             c'4
-            ^ \markup { tutti }                           %! +SCORE
-        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_1
-        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_2
+            %! +SCORE
+            ^ \markup { tutti }
+            %! +PARTS_VIOLIN_1
+            %@% ^ \markup { with the others }
+            %! +PARTS_VIOLIN_2
+            %@% ^ \markup { with the others }
             d'4
             e'4
             f'4
@@ -1182,8 +1204,10 @@ def detach(argument, target=None, by_id=False):
         \new Staff
         {
             c'4
-            ^ \markup { tutti }                           %! +SCORE
-        %@% ^ \markup { with the others }                 %! +PARTS_VIOLIN_2
+            %! +SCORE
+            ^ \markup { tutti }
+            %! +PARTS_VIOLIN_2
+            %@% ^ \markup { with the others }
             d'4
             e'4
             f'4
