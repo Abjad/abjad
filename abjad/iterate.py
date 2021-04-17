@@ -1,7 +1,6 @@
 import typing
 
 from . import _iterate, score
-from .expression import Expression
 from .ordereddict import OrderedDict
 from .pitch.pitches import NamedPitch, Pitch
 from .pitch.sets import PitchSet
@@ -1172,8 +1171,4 @@ def iterate(client=None):
         Note("f'4")
 
     """
-    if client is not None:
-        return Iteration(client=client)
-    expression = Expression()
-    expression = expression.iterate()
-    return expression
+    return Iteration(client=client)

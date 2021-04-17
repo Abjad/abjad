@@ -4,7 +4,6 @@ import copy
 import types
 
 from .. import enumerate
-from ..expression import Expression
 from ..new import new
 from ..sequence import Sequence
 from ..storage import FormatSpecification
@@ -1160,21 +1159,3 @@ class PitchSet(Set):
         """
         items = (pitch.transpose(n=n) for pitch in self)
         return new(self, items=items)
-
-
-### FUNCTIONS ###
-
-
-def pitch_set(items=None, item_class=None, **keywords):
-    """
-    Makes pitch set or pitch set expression.
-    """
-    if items is not None:
-        return PitchSet(items=items, item_class=item_class)
-    name = keywords.pop("name", None)
-    expression = Expression(name=name, proxy_class=PitchSet)
-    callback = Expression._make_initializer_callback(
-        PitchSet, string_template="{}", **keywords
-    )
-    expression = expression.append_callback(callback)
-    return expression

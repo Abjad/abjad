@@ -164,7 +164,7 @@ Let's see what a few of these look like. Here are the first ten violin 1 descent
     ...     abjad.attach(markup, descent[0])
     ...
 
-    >>> leaves = abjad.sequence(descents).flatten()
+    >>> leaves = abjad.Sequence(descents).flatten()
     >>> staff = abjad.Staff(leaves)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select(staff).leaf(0)
@@ -182,7 +182,7 @@ Here are the first ten violin 2 descents:
     ...     abjad.attach(markup, descent[0])
     ...
 
-    >>> leaves = abjad.sequence(descents).flatten()
+    >>> leaves = abjad.Sequence(descents).flatten()
     >>> staff = abjad.Staff(leaves)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select(staff).leaf(0)
@@ -204,7 +204,7 @@ too:
     ...     abjad.attach(markup, descent[0])
     ...
 
-    >>> notes = abjad.sequence(descents).flatten()
+    >>> notes = abjad.Sequence(descents).flatten()
     >>> staff = abjad.Staff(notes)
     >>> selections = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))

@@ -1486,7 +1486,7 @@ class Retrograde:
         """
         Gets optional period of retrograde.
 
-        ..  todo:: Deprecated. Use Expression followed by Retrograde instead.
+        ..  todo:: Deprecated.
 
         ..  container:: example
 

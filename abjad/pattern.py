@@ -1,9 +1,7 @@
 import collections
-import inspect
 import operator
 
 from . import math
-from .expression import Expression
 from .new import new
 from .sequence import Sequence
 from .storage import FormatSpecification, StorageFormatManager
@@ -145,7 +143,6 @@ class Pattern:
         "_patterns",
         "_payload",
         "_period",
-        "_template",
     )
 
     _name_to_operator = {
@@ -165,7 +162,6 @@ class Pattern:
         patterns=None,
         payload=None,
         period=None,
-        template=None,
     ):
         if indices is not None:
             assert all(isinstance(_, int) for _ in indices), repr(indices)
@@ -185,7 +181,6 @@ class Pattern:
         self._patterns = patterns
         self._payload = payload
         self._period = period
-        self._template = template
 
     ### SPECIAL METHODS ###
 
@@ -206,8 +201,12 @@ class Pattern:
             abjad.Pattern(
                 operator='and',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -225,9 +224,16 @@ class Pattern:
             abjad.Pattern(
                 operator='and',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
-                    abjad.index([0], period=2),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
+                    abjad.Pattern(
+                        indices=[0],
+                        period=2,
+                        ),
                     ),
                 )
 
@@ -251,11 +257,18 @@ class Pattern:
                     abjad.Pattern(
                         operator='and',
                         patterns=(
-                            abjad.index_first(3),
-                            abjad.index_last(3),
+                            abjad.Pattern(
+                                indices=[0, 1, 2],
+                                ),
+                            abjad.Pattern(
+                                indices=[-3, -2, -1],
+                                ),
                             ),
                         ),
-                    abjad.index([0], period=2),
+                    abjad.Pattern(
+                        indices=[0],
+                        period=2,
+                        ),
                     ),
                 )
 
@@ -274,8 +287,12 @@ class Pattern:
             abjad.Pattern(
                 operator='and',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -301,7 +318,9 @@ class Pattern:
             >>> pattern = abjad.index_first(3)
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index_first(3)
+            abjad.Pattern(
+                indices=[0, 1, 2],
+                )
 
             >>> pattern = ~pattern
             >>> string = abjad.storage(pattern)
@@ -335,8 +354,12 @@ class Pattern:
             abjad.Pattern(
                 operator='or',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -355,8 +378,12 @@ class Pattern:
                 inverted=True,
                 operator='or',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -366,7 +393,7 @@ class Pattern:
         Returns new pattern.
         """
         inverted = not self.inverted
-        return new(self, inverted=inverted, template=None)
+        return new(self, inverted=inverted)
 
     def __len__(self):
         """
@@ -447,8 +474,12 @@ class Pattern:
             abjad.Pattern(
                 operator='or',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -466,9 +497,16 @@ class Pattern:
             abjad.Pattern(
                 operator='or',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
-                    abjad.index([0], period=2),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
+                    abjad.Pattern(
+                        indices=[0],
+                        period=2,
+                        ),
                     ),
                 )
 
@@ -489,12 +527,19 @@ class Pattern:
             abjad.Pattern(
                 operator='or',
                 patterns=(
-                    abjad.index_first(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
                     abjad.Pattern(
                         operator='and',
                         patterns=(
-                            abjad.index_last(3),
-                            abjad.index([0], period=2),
+                            abjad.Pattern(
+                                indices=[-3, -2, -1],
+                                ),
+                            abjad.Pattern(
+                                indices=[0],
+                                period=2,
+                                ),
                             ),
                         ),
                     ),
@@ -515,8 +560,12 @@ class Pattern:
             abjad.Pattern(
                 operator='or',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -554,8 +603,12 @@ class Pattern:
             abjad.Pattern(
                 operator='xor',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -573,9 +626,16 @@ class Pattern:
             abjad.Pattern(
                 operator='xor',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
-                    abjad.index([0], period=2),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
+                    abjad.Pattern(
+                        indices=[0],
+                        period=2,
+                        ),
                     ),
                 )
 
@@ -596,12 +656,19 @@ class Pattern:
             abjad.Pattern(
                 operator='xor',
                 patterns=(
-                    abjad.index_first(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
                     abjad.Pattern(
                         operator='and',
                         patterns=(
-                            abjad.index_last(3),
-                            abjad.index([0], period=2),
+                            abjad.Pattern(
+                                indices=[-3, -2, -1],
+                                ),
+                            abjad.Pattern(
+                                indices=[0],
+                                period=2,
+                                ),
                             ),
                         ),
                     ),
@@ -622,8 +689,12 @@ class Pattern:
             abjad.Pattern(
                 operator='xor',
                 patterns=(
-                    abjad.index_first(3),
-                    abjad.index_last(3),
+                    abjad.Pattern(
+                        indices=[0, 1, 2],
+                        ),
+                    abjad.Pattern(
+                        indices=[-3, -2, -1],
+                        ),
                     ),
                 )
 
@@ -654,27 +725,7 @@ class Pattern:
         return False
 
     def _get_format_specification(self):
-        if self.template is None:
-            return FormatSpecification(client=self)
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
-            storage_format_args_values=[self.template],
-            storage_format_forced_override=self.template,
-            storage_format_keyword_names=(),
-        )
-
-    @staticmethod
-    def _get_template(frame):
-        try:
-            frame_info = inspect.getframeinfo(frame)
-            function_name = frame_info.function
-            arguments = Expression._wrap_arguments(frame, static_class=Pattern)
-            template = f"abjad.{function_name}({arguments})"
-        finally:
-            del frame
-        return template
+        return FormatSpecification(client=self)
 
     def _make_subscript_string(self):
         return str(self)
@@ -1034,17 +1085,6 @@ class Pattern:
             periods = [_.period for _ in self.patterns]
             if None not in periods:
                 return math.least_common_multiple(*periods)
-
-    @property
-    def template(self):
-        """
-        Get pattern template.
-
-        Set to string or none.
-
-        Returns string or none.
-        """
-        return self._template
 
     @property
     def weight(self):
@@ -1448,7 +1488,9 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index([2])
+            abjad.Pattern(
+                indices=[2],
+                )
 
         ..  container:: example
 
@@ -1458,18 +1500,18 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index([2, 3, 5])
+            abjad.Pattern(
+                indices=[2, 3, 5],
+                )
 
         Returns pattern.
         """
         assert all(isinstance(_, int) for _ in indices), repr(indices)
         indices = indices or []
-        template = Pattern._get_template(inspect.currentframe())
         return Pattern(
             indices=indices,
             inverted=inverted,
             period=period,
-            template=template,
         )
 
     @staticmethod
@@ -1485,12 +1527,14 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index_all()
+            abjad.Pattern(
+                indices=[0],
+                period=1,
+                )
 
         Returns pattern.
         """
-        template = Pattern._get_template(inspect.currentframe())
-        return Pattern(indices=[0], inverted=inverted, period=1, template=template)
+        return Pattern(indices=[0], inverted=inverted, period=1)
 
     @staticmethod
     def index_first(n, inverted=None):
@@ -1505,7 +1549,9 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index_first(1)
+            abjad.Pattern(
+                indices=[0],
+                )
 
         ..  container:: example
 
@@ -1515,7 +1561,9 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index_first(2)
+            abjad.Pattern(
+                indices=[0, 1],
+                )
 
         ..  container:: example
 
@@ -1525,7 +1573,7 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index_first(0)
+            abjad.Pattern()
 
         Returns pattern.
         """
@@ -1534,8 +1582,7 @@ class Pattern:
             indices = list(range(n))
         else:
             indices = None
-        template = Pattern._get_template(inspect.currentframe())
-        return Pattern(indices=indices, inverted=inverted, template=template)
+        return Pattern(indices=indices, inverted=inverted)
 
     @staticmethod
     def index_last(n, inverted=None):
@@ -1550,7 +1597,9 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index_last(2)
+            abjad.Pattern(
+                indices=[-2, -1],
+                )
 
         ..  container:: example
 
@@ -1560,7 +1609,7 @@ class Pattern:
 
             >>> string = abjad.storage(pattern)
             >>> print(string)
-            abjad.index_last(0)
+            abjad.Pattern()
 
         Returns pattern.
         """
@@ -1572,8 +1621,7 @@ class Pattern:
             indices = list(reversed(range(start, stop, stride)))
         else:
             indices = None
-        template = Pattern._get_template(inspect.currentframe())
-        return Pattern(indices=indices, inverted=inverted, template=template)
+        return Pattern(indices=indices, inverted=inverted)
 
     def matches_index(self, index, total_length, rotation=None):
         """

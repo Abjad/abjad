@@ -61,7 +61,7 @@ from .exceptions import (
     UnboundedTimeIntervalError,
     WellformednessError,
 )
-from .expression import Expression, Signature
+from .expression import Expression
 from .format import LilyPondFormatManager
 from .get import Descendants, Lineage
 from .illustrators import illustrate
@@ -166,7 +166,7 @@ from .instruments import (
 )
 from .io import graph, play, show
 from .iterate import Iteration, iterate
-from .label import ColorMap, Label, label
+from .label import ColorMap, Label
 from .lilypond import lilypond
 from .lilypondfile import (
     Block,
@@ -241,16 +241,8 @@ from .pitch.segments import (
     PitchSegment,
     Segment,
     TwelveToneRow,
-    pitch_class_segment,
 )
-from .pitch.sets import (
-    IntervalClassSet,
-    IntervalSet,
-    PitchClassSet,
-    PitchSet,
-    Set,
-    pitch_set,
-)
+from .pitch.sets import IntervalClassSet, IntervalSet, PitchClassSet, PitchSet, Set
 from .pitch.vectors import (
     IntervalClassVector,
     IntervalVector,
@@ -292,7 +284,7 @@ from .select import (
     Selection,
     select,
 )
-from .sequence import Sequence, sequence
+from .sequence import Sequence
 from .spanners import (
     beam,
     bow_contact_spanner,
@@ -323,7 +315,7 @@ from .templates import (
     StringQuartetScoreTemplate,
     TwoStaffPianoScoreTemplate,
 )
-from .timespan import AnnotatedTimespan, Timespan, TimespanList, timespan
+from .timespan import AnnotatedTimespan, Timespan, TimespanList
 from .typedcollections import (
     TypedCollection,
     TypedCounter,
@@ -575,7 +567,6 @@ __all__ = [
     "Set",
     "SetClass",
     "SettingInterface",
-    "Signature",
     "Skip",
     "SlotContributions",
     "SopraninoSaxophone",
@@ -676,7 +667,6 @@ __all__ = [
     "iterate_pitch_pairs",
     "iterate_vertical_moments",
     "iterpitches",
-    "label",
     "lilypond",
     "list_all_classes",
     "list_all_functions",
@@ -694,17 +684,14 @@ __all__ = [
     "phrasing_slur",
     "piano_pedal",
     "pitch_class_segment",
-    "pitch_set",
     "play",
     "select",
-    "sequence",
     "setting",
     "show",
     "slur",
     "storage",
     "text_spanner",
     "tie",
-    "timespan",
     "trill_spanner",
     "tweak",
     "wf",

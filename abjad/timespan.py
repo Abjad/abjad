@@ -3,12 +3,10 @@ Tools for modeling and manipulating timespans.
 """
 import collections
 import copy
-import inspect
 import typing
 
 from . import enums, math
 from .duration import Duration, Multiplier, Offset
-from .expression import Expression, Signature
 from .markups import Markup, Postscript
 from .new import new
 from .ratio import Ratio
@@ -277,7 +275,7 @@ class Timespan:
 
             Works with offsets:
 
-            >>> timespan = abjad.timespan(0, (1, 4))
+            >>> timespan = abjad.Timespan(0, (1, 4))
 
             >>> -1 in timespan
             False
@@ -298,15 +296,15 @@ class Timespan:
 
             Works with other timespans:
 
-            >>> timespan = abjad.timespan(0, (1, 4))
+            >>> timespan = abjad.Timespan(0, (1, 4))
 
-            >>> abjad.timespan(0, (1, 4)) in timespan
+            >>> abjad.Timespan(0, (1, 4)) in timespan
             True
 
-            >>> abjad.timespan((1, 16), (2, 16)) in timespan
+            >>> abjad.Timespan((1, 16), (2, 16)) in timespan
             True
 
-            >>> abjad.timespan(0, (1, 2)) in timespan
+            >>> abjad.Timespan(0, (1, 2)) in timespan
             False
 
         """
@@ -955,14 +953,6 @@ class Timespan:
             return offset
         return Offset(offset)
 
-    def _update_expression(self, frame, evaluation_template=None, map_operand=None):
-        callback = Expression._frame_to_callback(
-            frame,
-            evaluation_template=evaluation_template,
-            map_operand=map_operand,
-        )
-        return self._expression.append_callback(callback)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -1045,7 +1035,6 @@ class Timespan:
 
     ### PUBLIC METHODS ###
 
-    @Signature()
     def contains_timespan_improperly(self, timespan) -> bool:
         """
         Is true when timespan contains ``timespan`` improperly.
@@ -1064,22 +1053,7 @@ class Timespan:
             >>> timespan_2.contains_timespan_improperly(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 5)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.contains_timespan_improperly(timespan)
-
-            >>> expression(-5, 5)
-            True
-            >>> expression(0, 5)
-            True
-            >>> expression(5, 10)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1087,7 +1061,6 @@ class Timespan:
             and expr_stop_offset <= self_stop_offset
         )
 
-    @Signature()
     def curtails_timespan(self, timespan) -> bool:
         """
         Is true when timespan curtails ``timespan``.
@@ -1106,21 +1079,7 @@ class Timespan:
             >>> timespan_2.curtails_timespan(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan().curtails_timespan(timespan)
-
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 10)
-            True
-            >>> expression(15, 25)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1129,7 +1088,6 @@ class Timespan:
             and expr_stop_offset <= self_stop_offset
         )
 
-    @Signature()
     def delays_timespan(self, timespan) -> bool:
         """
         Is true when timespan delays ``timespan``.
@@ -1145,21 +1103,7 @@ class Timespan:
             >>> timespan_2.delays_timespan(timespan_3)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(5, 15)
-            >>> expression = abjad.timespan().delays_timespan(timespan)
-
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            True
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1242,7 +1186,6 @@ class Timespan:
             return result
         return None
 
-    @Signature()
     def happens_during_timespan(self, timespan) -> bool:
         """
         Is true when timespan happens during ``timespan``.
@@ -1261,21 +1204,7 @@ class Timespan:
             >>> timespan_2.happens_during_timespan(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan().happens_during_timespan(timespan)
-
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 10)
-            True
-            >>> expression(5, 15)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1283,7 +1212,6 @@ class Timespan:
             and self_stop_offset <= expr_stop_offset
         )
 
-    @Signature()
     def intersects_timespan(self, timespan) -> bool:
         """
         Is true when timespan intersects ``timespan``.
@@ -1301,21 +1229,7 @@ class Timespan:
             >>> timespan_1.intersects_timespan(timespan_3)
             False
 
-        ..  container:: example
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan().intersects_timespan(timespan)
-
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            True
-            >>> expression(10, 15)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1326,7 +1240,6 @@ class Timespan:
             and expr_start_offset < self_stop_offset
         )
 
-    @Signature()
     def is_congruent_to_timespan(self, timespan) -> bool:
         """
         Is true when timespan is congruent to ``timespan``.
@@ -1345,19 +1258,7 @@ class Timespan:
             >>> timespan_2.is_congruent_to_timespan(timespan_2)
             True
 
-        ..  container:: example
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan().is_congruent_to_timespan(timespan)
-
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1391,7 +1292,6 @@ class Timespan:
             or expr_stop_offset == self_start_offset
         )
 
-    @Signature()
     def overlaps_all_of_timespan(self, timespan) -> bool:
         """
         Is true when timespan overlaps all of ``timespan``.
@@ -1409,22 +1309,7 @@ class Timespan:
             >>> timespan_1.overlaps_all_of_timespan(timespan_3)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(5, 6)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.overlaps_all_of_timespan(timespan)
-
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 6)
-            False
-            >>> expression(5, 10)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1432,7 +1317,6 @@ class Timespan:
             and expr_stop_offset < self_stop_offset
         )
 
-    @Signature()
     def overlaps_only_start_of_timespan(self, timespan) -> bool:
         """
         Is true when timespan overlaps only start of ``timespan``.
@@ -1453,24 +1337,7 @@ class Timespan:
             >>> timespan_1.overlaps_only_start_of_timespan(timespan_4)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.overlaps_only_start_of_timespan(timespan)
-
-            >>> expression(0, 10)
-            False
-            >>> expression(-5, 5)
-            True
-            >>> expression(4, 6)
-            False
-            >>> expression(5, 15)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1479,7 +1346,6 @@ class Timespan:
             and self_stop_offset <= expr_stop_offset
         )
 
-    @Signature()
     def overlaps_only_stop_of_timespan(self, timespan) -> bool:
         """
         Is true when timespan overlaps only stop of ``timespan``.
@@ -1500,24 +1366,7 @@ class Timespan:
             >>> timespan_1.overlaps_only_stop_of_timespan(timespan_4)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.overlaps_only_stop_of_timespan(timespan)
-
-            >>> expression(0, 10)
-            False
-            >>> expression(-5, 5)
-            False
-            >>> expression(4, 6)
-            False
-            >>> expression(5, 15)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1526,7 +1375,6 @@ class Timespan:
             and expr_stop_offset < self_stop_offset
         )
 
-    @Signature()
     def overlaps_start_of_timespan(self, timespan) -> bool:
         """
         Is true when timespan overlaps start of ``timespan``.
@@ -1547,24 +1395,7 @@ class Timespan:
             >>> timespan_1.overlaps_start_of_timespan(timespan_4)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.overlaps_start_of_timespan(timespan)
-
-            >>> expression(0, 10)
-            False
-            >>> expression(-5, 5)
-            True
-            >>> expression(4, 6)
-            False
-            >>> expression(5, 15)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1572,7 +1403,6 @@ class Timespan:
             and expr_start_offset < self_stop_offset
         )
 
-    @Signature()
     def overlaps_stop_of_timespan(self, timespan) -> bool:
         """
         Is true when timespan overlaps start of ``timespan``.
@@ -1593,24 +1423,7 @@ class Timespan:
             >>> timespan_1.overlaps_stop_of_timespan(timespan_4)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.overlaps_stop_of_timespan(timespan)
-
-            >>> expression(0, 10)
-            False
-            >>> expression(-5, 5)
-            False
-            >>> expression(4, 6)
-            False
-            >>> expression(5, 15)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -1895,7 +1708,6 @@ class Timespan:
         offset = Offset(offset)
         return offset < self._start_offset
 
-    @Signature()
     def starts_after_timespan_starts(self, timespan) -> bool:
         """
         Is true when timespan starts after ``timespan`` starts.
@@ -1914,25 +1726,11 @@ class Timespan:
             >>> timespan_2.starts_after_timespan_starts(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.starts_after_timespan_starts(timespan)
-
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_start_offset < self_start_offset
 
-    @Signature()
     def starts_after_timespan_stops(self, timespan) -> bool:
         """
         Is true when timespan starts after ``timespan`` stops.
@@ -1953,25 +1751,7 @@ class Timespan:
             >>> timespan_4.starts_after_timespan_stops(timespan_1)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.starts_after_timespan_stops(timespan)
-
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            False
-
-        ..  todo:: Is this wrong?
-
-            >>> expression(10, 20)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_stop_offset <= self_start_offset
@@ -2052,7 +1832,6 @@ class Timespan:
         offset = Offset(offset)
         return self._start_offset <= offset
 
-    @Signature()
     def starts_before_timespan_starts(self, timespan) -> bool:
         """
         Is true when timespan starts before ``timespan`` starts.
@@ -2071,27 +1850,11 @@ class Timespan:
             >>> timespan_2.starts_before_timespan_starts(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.starts_before_timespan_starts(timespan)
-
-            >>> expression(-5, 10)
-            True
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_start_offset < expr_start_offset
 
-    @Signature()
     def starts_before_timespan_stops(self, timespan) -> bool:
         """
         Is true when timespan starts before ``timespan`` stops.
@@ -2110,29 +1873,11 @@ class Timespan:
             >>> timespan_2.starts_before_timespan_stops(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.starts_before_timespan_stops(timespan)
-
-            >>> expression(-5, 10)
-            True
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            True
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_start_offset < expr_stop_offset
 
-    @Signature()
     def starts_during_timespan(self, timespan) -> bool:
         """
         Is true when timespan starts during ``timespan``.
@@ -2151,24 +1896,7 @@ class Timespan:
             >>> timespan_2.starts_during_timespan(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.starts_during_timespan(timespan)
-
-            >>> expression(-5, 10)
-            False
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            True
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -2176,7 +1904,6 @@ class Timespan:
             and self_start_offset < expr_stop_offset
         )
 
-    @Signature()
     def starts_when_timespan_starts(self, timespan) -> bool:
         """
         Is true when timespan starts when ``timespan`` starts.
@@ -2195,29 +1922,11 @@ class Timespan:
             >>> timespan_2.starts_when_timespan_starts(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.starts_when_timespan_starts(timespan)
-
-            >>> expression(-5, 10)
-            False
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_start_offset == self_start_offset
 
-    @Signature()
     def starts_when_timespan_stops(self, timespan) -> bool:
         """
         Is true when timespan starts when ``timespan`` stops.
@@ -2236,24 +1945,7 @@ class Timespan:
             >>> timespan_2.starts_when_timespan_stops(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.starts_when_timespan_stops(timespan)
-
-            >>> expression(-5, 10)
-            False
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_start_offset == expr_stop_offset
@@ -2277,7 +1969,6 @@ class Timespan:
         offset = Offset(offset)
         return offset < self._stop_offset
 
-    @Signature()
     def stops_after_timespan_starts(self, timespan) -> bool:
         """
         Is true when timespan stops when ``timespan`` starts.
@@ -2296,31 +1987,11 @@ class Timespan:
             >>> timespan_2.stops_after_timespan_starts(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.stops_after_timespan_starts(timespan)
-
-            >>> expression(-10, 0)
-            False
-            >>> expression(-5, 5)
-            True
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            True
-            >>> expression(10, 20)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_start_offset < self_stop_offset
 
-    @Signature()
     def stops_after_timespan_stops(self, timespan) -> bool:
         """
         Is true when timespan stops when ``timespan`` stops.
@@ -2339,26 +2010,7 @@ class Timespan:
             >>> timespan_2.stops_after_timespan_stops(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.stops_after_timespan_stops(timespan)
-
-            >>> expression(-10, 0)
-            False
-            >>> expression(-5, 5)
-            False
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            True
-            >>> expression(10, 20)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return expr_stop_offset < self_stop_offset
@@ -2439,7 +2091,6 @@ class Timespan:
         offset = Offset(offset)
         return self._stop_offset <= offset
 
-    @Signature()
     def stops_before_timespan_starts(self, timespan) -> bool:
         """
         Is true when timespan stops before ``timespan`` starts.
@@ -2458,33 +2109,11 @@ class Timespan:
             >>> timespan_2.stops_before_timespan_starts(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.stops_before_timespan_starts(timespan)
-
-            >>> expression(-15, -5)
-            True
-            >>> expression(-10, 0)
-            False
-            >>> expression(-5, 5)
-            False
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset < expr_start_offset
 
-    @Signature()
     def stops_before_timespan_stops(self, timespan) -> bool:
         """
         Is true when timespan stops before ``timespan`` stops.
@@ -2503,33 +2132,11 @@ class Timespan:
             >>> timespan_2.stops_before_timespan_stops(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.stops_before_timespan_stops(timespan)
-
-            >>> expression(-15, -5)
-            True
-            >>> expression(-10, 0)
-            True
-            >>> expression(-5, 5)
-            True
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset < expr_stop_offset
 
-    @Signature()
     def stops_during_timespan(self, timespan) -> bool:
         """
         Is true when timespan stops during ``timespan``.
@@ -2548,32 +2155,7 @@ class Timespan:
             >>> timespan_2.stops_during_timespan(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.stops_during_timespan(timespan)
-
-            >>> expression(-15, -5)
-            False
-            >>> expression(-10, 0)
-            False
-            >>> expression(-5, 5)
-            True
-
-            TODO: is this one wrong:
-
-            >>> expression(0, 10)
-            True
-
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -2581,7 +2163,6 @@ class Timespan:
             and self_stop_offset <= expr_stop_offset
         )
 
-    @Signature()
     def stops_when_timespan_starts(self, timespan) -> bool:
         """
         Is true when timespan stops when ``timespan`` starts.
@@ -2600,33 +2181,11 @@ class Timespan:
             >>> timespan_2.stops_when_timespan_starts(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.stops_when_timespan_starts(timespan)
-
-            >>> expression(-15, -5)
-            False
-            >>> expression(-10, 0)
-            True
-            >>> expression(-5, 5)
-            False
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset == expr_start_offset
 
-    @Signature()
     def stops_when_timespan_stops(self, timespan) -> bool:
         """
         Is true when timespan stops when ``timespan`` stops.
@@ -2645,28 +2204,7 @@ class Timespan:
             >>> timespan_2.stops_when_timespan_stops(timespan_2)
             True
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.stops_when_timespan_stops(timespan)
-
-            >>> expression(-15, -5)
-            False
-            >>> expression(-10, 0)
-            False
-            >>> expression(-5, 5)
-            False
-            >>> expression(0, 10)
-            True
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            False
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return self_stop_offset == expr_stop_offset
@@ -2765,7 +2303,6 @@ class Timespan:
         new_stop_offset = self._stop_offset + stop_offset_translation
         return new(self, start_offset=new_start_offset, stop_offset=new_stop_offset)
 
-    @Signature()
     def trisects_timespan(self, timespan) -> bool:
         """
         Is true when timespan trisects ``timespan``.
@@ -2784,31 +2321,7 @@ class Timespan:
             >>> timespan_2.trisects_timespan(timespan_2)
             False
 
-        ..  container:: example expression
-
-            >>> timespan = abjad.timespan(0, 10)
-            >>> expression = abjad.timespan()
-            >>> expression = expression.trisects_timespan(timespan)
-
-            >>> expression(-15, -5)
-            False
-            >>> expression(-10, 0)
-            False
-            >>> expression(-5, 5)
-            False
-            >>> expression(0, 10)
-            False
-            >>> expression(5, 15)
-            False
-            >>> expression(10, 20)
-            False
-
-            >>> expression(4, 6)
-            True
-
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         self_start_offset, self_stop_offset = self.offsets
         expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
         return (
@@ -4711,8 +4224,9 @@ class TimespanList(TypedList):
         """
         if timespan is None:
             timespan = self.timespan
-        expression = _timespan_constructor().intersects_timespan(timespan)
-        timespans = self.get_timespans_that_satisfy_time_relation(expression)
+        timespans = self.get_timespans_that_satisfy_time_relation(
+            lambda _: _.intersects_timespan(timespan)
+        )
         total_overlap = Duration(
             sum(x.get_overlap_with_timespan(timespan) for x in timespans)
         )
@@ -5133,11 +4647,10 @@ class TimespanList(TypedList):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 5)
-            >>> time_relation = abjad.timespan()
-            >>> time_relation = time_relation.starts_during_timespan(timespan)
-
+            >>> time_relation = lambda _: _.starts_during_timespan(timespan)
             >>> timespan = timespans.get_timespan_that_satisfies_time_relation(
-            ...     time_relation)
+            ...     time_relation
+            ... )
             >>> abjad.show(timespan, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> timespan
@@ -5176,8 +4689,7 @@ class TimespanList(TypedList):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 8)
-            >>> time_relation = abjad.timespan()
-            >>> time_relation = time_relation.starts_during_timespan(timespan)
+            >>> time_relation = lambda _: _.starts_during_timespan(timespan)
             >>> result = timespans.get_timespans_that_satisfy_time_relation(
             ...     time_relation)
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
@@ -5200,11 +4712,8 @@ class TimespanList(TypedList):
         """
         result = []
         for timespan in self:
-            if isinstance(time_relation, Expression):
-                if time_relation(*timespan.offsets):
-                    result.append(timespan)
-            else:
-                raise ValueError(f"unknown time relation: {time_relation!r}.")
+            if time_relation(timespan):
+                result.append(timespan)
         return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation) -> bool:
@@ -5223,8 +4732,7 @@ class TimespanList(TypedList):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 8)
-            >>> time_relation = abjad.timespan()
-            >>> time_relation = time_relation.starts_during_timespan(timespan)
+            >>> time_relation = lambda _: _.starts_during_timespan(timespan)
             >>> timespans.has_timespan_that_satisfies_time_relation(
             ...     time_relation)
             True
@@ -5234,8 +4742,7 @@ class TimespanList(TypedList):
             Is false when list does not have matching timespan:
 
             >>> timespan = abjad.Timespan(10, 20)
-            >>> time_relation = abjad.timespan()
-            >>> time_relation = time_relation.starts_during_timespan(timespan)
+            >>> time_relation = lambda _: _.starts_during_timespan(timespan)
 
             >>> timespans.has_timespan_that_satisfies_time_relation(
             ...     time_relation)
@@ -6355,36 +5862,3 @@ class TimespanList(TypedList):
             timespans.append(timespan)
         self[:] = timespans
         return self
-
-
-### EXPRESSION CONSTRUCTOR ###
-
-
-def timespan(start_offset=None, stop_offset=None, **keywords):
-    """
-    Makes timespan or timespan expression.
-
-    ..  container:: example
-
-        >>> abjad.timespan(0, (1, 4))
-        Timespan(Offset((0, 1)), Offset((1, 4)))
-
-    ..  container:: example expression
-
-        >>> expression = abjad.timespan()
-        >>> expression(0, (1, 4))
-        Timespan(Offset((0, 1)), Offset((1, 4)))
-
-    """
-    if start_offset is not None or stop_offset is not None:
-        return Timespan(start_offset=start_offset, stop_offset=stop_offset)
-    name = keywords.pop("name", None)
-    expression = Expression(name=name, proxy_class=Timespan)
-    callback = Expression._make_initializer_callback(
-        Timespan, string_template="{}", **keywords
-    )
-    expression = expression.append_callback(callback)
-    return expression
-
-
-_timespan_constructor = timespan

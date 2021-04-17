@@ -12,7 +12,7 @@ First we define a function to illustrate the examples that follow:
 ::
 
     >>> def illustrate_scale(pattern, length, transposition):
-    ...     pitches = abjad.sequence(range(length))
+    ...     pitches = abjad.Sequence(range(length))
     ...     pitches = pitches.retain_pattern(pattern)
     ...     notes = [abjad.Note(_ + transposition, (1, 16)) for _ in pitches]
     ...     containers = abjad.illustrators.make_piano_score(notes)

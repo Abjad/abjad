@@ -422,46 +422,6 @@ class Selection(collections.abc.Sequence):
                 Note("g'8")
                 Note("a'8")
 
-            ..  container:: example expression
-
-                >>> left = abjad.select().leaves()[:2]
-                >>> right = abjad.select().leaves()[-2:]
-                >>> selector = left + right
-                >>> result = selector(staff)
-
-                >>> selector.print(result)
-                Note("c'8")
-                Rest('r8')
-                Note("g'8")
-                Note("a'8")
-
-                >>> abjad.label(result).by_selector(selector)
-                >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                \with
-                {
-                    autoBeaming = ##f
-                }
-                {
-                    \abjad-color-music #'red
-                    c'8
-                    \abjad-color-music #'blue
-                    r8
-                    d'8
-                    e'8
-                    r8
-                    f'8
-                    \abjad-color-music #'red
-                    g'8
-                    \abjad-color-music #'blue
-                    a'8
-                }
-
         """
         assert isinstance(argument, collections.abc.Iterable)
         items = self.items + tuple(argument)
@@ -502,16 +462,9 @@ class Selection(collections.abc.Sequence):
             template = method(argument)
             template = template.format(self._expression.template)
             return self._update_expression(inspect.currentframe(), template=template)
-        if isinstance(argument, Pattern):
-            raise Exception("use abjad.Selection.get() instead.")
-            argument = argument.advance(self._previous)
-            self._previous = None
-            items = Sequence(self.items).retain_pattern(argument)
-            result = type(self)(items, previous=self._previous)
-        else:
-            result = self.items.__getitem__(argument)
-            if isinstance(result, tuple):
-                result = type(self)(result, previous=self._previous)
+        result = self.items.__getitem__(argument)
+        if isinstance(result, tuple):
+            result = type(self)(result, previous=self._previous)
         return result
 
     def __getstate__(self) -> dict:
@@ -1233,7 +1186,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Chord("<fs' gs'>16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1351,7 +1304,7 @@ class Selection(collections.abc.Sequence):
                 Chord("<fs' gs'>4")
                 Chord("<fs' gs'>16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1457,7 +1410,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector = abjad.select().components(abjad.Note)
                 >>> result = selector(staff)
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> selector.print(result)
@@ -1569,7 +1522,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("f'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1671,7 +1624,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("f'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1769,7 +1722,7 @@ class Selection(collections.abc.Sequence):
                 Note("af'16")
                 Note("gf'16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1846,7 +1799,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("f'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1904,7 +1857,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("d'8"), Note("d'8")])
                 LogicalTie([Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1967,7 +1920,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("e'8"), Note("e'8")])
                 Selection([Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2035,7 +1988,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector = abjad.select().runs().filter(inequality)
                 >>> result = selector(staff)
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
                 >>> selector.print(result)
@@ -2107,7 +2060,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("d'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2161,7 +2114,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8")])
                 Selection([Note("d'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2226,7 +2179,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'8"), Note("e'8")])
                 Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2281,7 +2234,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8")])
                 Selection([Note("d'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2350,7 +2303,7 @@ class Selection(collections.abc.Sequence):
                 Chord("<c' e' g'>8")
                 Chord("<c' e' g'>4")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2411,7 +2364,7 @@ class Selection(collections.abc.Sequence):
                 Chord("<c' e' g'>8")
                 Chord("<c' e' g'>4")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2469,7 +2422,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("c'8")])
                 LogicalTie([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2534,7 +2487,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("d'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2588,7 +2541,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8")])
                 Selection([Note("d'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2664,7 +2617,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Rest('r16'), Note("bf'16")])
                 Selection([Rest('r16'), Note("bf'16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2771,7 +2724,7 @@ class Selection(collections.abc.Sequence):
                 Rest('r16')
                 Note("bf'16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2874,7 +2827,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Rest('r8')
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2932,7 +2885,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("c'8")])
                 LogicalTie([Note("e'8"), Note("e'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2996,7 +2949,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("e'8")])
                 Selection(items=())
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3068,7 +3021,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3145,7 +3098,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3242,7 +3195,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("f'8"), Note("g'8"), Note("a'8")])
                 Selection([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3311,7 +3264,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
                 Selection([Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3377,7 +3330,7 @@ class Selection(collections.abc.Sequence):
                 Note("d'8")
                 Note("g'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3445,7 +3398,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'8"), Note("d'16"), Note("d'16")])
                 Selection([Note("d'16"), Note("d'16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3525,7 +3478,7 @@ class Selection(collections.abc.Sequence):
                 Selection([LogicalTie([Note("d'8"), Note("d'16")]), LogicalTie([Note("d'16")])])
                 Selection([LogicalTie([Note("d'16")]), LogicalTie([Note("d'16")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3629,7 +3582,7 @@ class Selection(collections.abc.Sequence):
                 Selection([LogicalTie([Note("f'16"), Note("f'16")])])
                 Selection([LogicalTie([Note("f'16")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3713,7 +3666,7 @@ class Selection(collections.abc.Sequence):
                 Selection([LogicalTie([Note("e'4"), Note("e'16")]), LogicalTie([Note("f'16"), Note("f'16")])])
                 Selection([LogicalTie([Note("f'16")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3803,7 +3756,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("g'8"), Note("a'8"), Note("b'8")])
                 Selection([Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3873,7 +3826,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")])
                 Selection([Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3944,7 +3897,7 @@ class Selection(collections.abc.Sequence):
                 Note("g'8")
                 Note("c''8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4012,7 +3965,7 @@ class Selection(collections.abc.Sequence):
                 Note("b'8")
                 Note("c''8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4074,7 +4027,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
                 Selection([Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4139,7 +4092,7 @@ class Selection(collections.abc.Sequence):
                 Selection([LogicalTie([Note("e'8"), Note("e'8")])])
                 Selection([LogicalTie([Note("f'8")]), LogicalTie([Note("g'8"), Note("g'8")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4252,7 +4205,7 @@ class Selection(collections.abc.Sequence):
                 Selection([LogicalTie([Note("e'4"), Note("e'16")])])
                 Selection([LogicalTie([Note("f'16"), Note("f'16")]), LogicalTie([Note("f'16")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4351,7 +4304,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Chord("<fs' gs'>16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4481,7 +4434,7 @@ class Selection(collections.abc.Sequence):
                 Note("d'8")
                 Rest('r8')
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4558,7 +4511,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("d'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4639,7 +4592,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> abjad.ottava(result)
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4725,7 +4678,7 @@ class Selection(collections.abc.Sequence):
 
                 >>> abjad.ottava(result)
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4812,7 +4765,7 @@ class Selection(collections.abc.Sequence):
                 Note("d'8")
                 Note("c'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4891,7 +4844,7 @@ class Selection(collections.abc.Sequence):
                 Note("d'8")
                 Rest('r8')
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -4962,7 +4915,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("d'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5033,7 +4986,7 @@ class Selection(collections.abc.Sequence):
                 Note("d'8")
                 Note("c'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5107,7 +5060,7 @@ class Selection(collections.abc.Sequence):
                 Note("d'8")
                 Note("c'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5176,7 +5129,7 @@ class Selection(collections.abc.Sequence):
                 Chord("<c' e' g'>8")
                 Chord("<c' d'>8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5253,7 +5206,7 @@ class Selection(collections.abc.Sequence):
                 Note("f'8")
                 Note("e'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5358,7 +5311,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("f'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5454,7 +5407,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("f'8")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5546,7 +5499,7 @@ class Selection(collections.abc.Sequence):
                 Note("af'16")
                 Note("gf'16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5672,7 +5625,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("f'8"), Note("f'8")])
                 LogicalTie([Rest('r8')])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5738,7 +5691,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("e'8")])
                 LogicalTie([Note("f'8"), Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5803,7 +5756,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("d'8"), Note("d'8")])
                 LogicalTie([Note("f'8"), Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5870,7 +5823,7 @@ class Selection(collections.abc.Sequence):
                 Selection([LogicalTie([Note("g'8")]), LogicalTie([Note("a'8"), Note("a'8")])])
                 Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -5952,7 +5905,7 @@ class Selection(collections.abc.Sequence):
                 Selection([LogicalTie([Note("g'8")]), LogicalTie([Note("a'8"), Note("a'8")])])
                 Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6063,7 +6016,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("e'8")])
                 LogicalTie([Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6159,7 +6112,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("e'8")])
                 LogicalTie([Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6251,7 +6204,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("af'16")])
                 LogicalTie([Note("gf'16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6315,7 +6268,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("f'8"), Note("f'8")])
                 LogicalTie([Rest('r8')])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6379,7 +6332,7 @@ class Selection(collections.abc.Sequence):
                 LogicalTie([Note("c'8")])
                 LogicalTie([Note("d'8"), Note("d'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6462,7 +6415,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Tuplet('3:2', "r8 d'8 e'8")])
                 Selection([Tuplet('3:2', "e'8 d'8 r8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6535,7 +6488,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("f'8")])
                 Selection([Note("e'8"), Note("d'8"), Rest('r8')])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6606,7 +6559,7 @@ class Selection(collections.abc.Sequence):
                 Note("e'8")
                 Note("f'16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6676,7 +6629,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'8"), Note("e'8")])
                 Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6749,7 +6702,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Note("e'16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6861,7 +6814,7 @@ class Selection(collections.abc.Sequence):
                 Note("bf'16")
                 Note("e'16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6975,7 +6928,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("c'8"), Rest('r8'), Note("d'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7037,7 +6990,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8"), Rest('r8'), Note("d'8")])
                 Selection([Note("e'8"), Rest('r8'), Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7104,7 +7057,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("e'8"), Rest('r8'), Note("f'8")])
                 Selection([Note("g'8"), Note("a'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7173,7 +7126,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8"), Rest('r8'), Note("d'8")])
                 Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7249,7 +7202,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("a'8"), Note("b'8")])
                 Selection([Rest('r8'), Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector, ["#red", "#blue", "#cyan"])
+                >>> abjad.Label(result).by_selector(selector, ["#red", "#blue", "#cyan"])
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7323,7 +7276,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8"), Rest('r8')])
                 Selection([Note("f'8"), Note("g'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7393,7 +7346,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("f'8"), Note("g'8")])
                 Selection([Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7458,7 +7411,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8"), Rest('r8'), Note("d'8")])
                 Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7499,13 +7452,13 @@ class Selection(collections.abc.Sequence):
         if self._expression:
             return self._update_expression(inspect.currentframe())
         result = []
-        groups = Sequence(self).partition_by_counts(
+        groups_ = Sequence(self).partition_by_counts(
             [abs(_) for _ in counts],
             cyclic=cyclic,
             enchain=enchain,
             overhang=overhang,
         )
-        groups = list(groups)
+        groups = list(groups_)
         total = len(groups)
         if overhang and fuse_overhang and 1 < len(groups):
             last_count = counts[(len(groups) - 1) % len(counts)]
@@ -7596,7 +7549,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("f'8"), Note("g'8"), Note("a'8")])
                 Selection([Note("b'8"), Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7688,7 +7641,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("c'8"), Note("d'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7783,7 +7736,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("a'8")])
                 Selection([Note("b'8"), Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7887,7 +7840,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("a'8")])
                 Selection([Note("b'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -7978,7 +7931,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("c'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8068,7 +8021,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8"), Note("d'8"), Note("e'8")])
                 Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8165,7 +8118,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("f'8"), Note("g'8"), Note("a'8")])
                 Selection([Note("b'8"), Note("c''8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8261,7 +8214,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("c'8"), Note("d'8"), Note("e'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8364,7 +8317,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("a'8")])
                 Selection([Note("b'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8459,7 +8412,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("c'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8628,7 +8581,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8')])
                 Selection([Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8695,7 +8648,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("e'8"), Rest('r8'), Note("f'8")])
                 Selection([Note("g'8"), Note("a'8"), Rest('r8')])
 
-                >>> abjad.label(result).by_selector(selector, ["#red", "#blue", "#cyan"])
+                >>> abjad.Label(result).by_selector(selector, ["#red", "#blue", "#cyan"])
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -8780,7 +8733,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Rest('r16')
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -8886,7 +8839,7 @@ class Selection(collections.abc.Sequence):
                 Rest('r16')
                 Rest('r16')
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -8988,7 +8941,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -9098,7 +9051,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
                 Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -9260,7 +9213,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("cs'16"), Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
                 Selection([Note("f'8"), Note("fs'16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9379,7 +9332,7 @@ class Selection(collections.abc.Sequence):
                 Note("a'8")
                 Rest('r8')
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9467,7 +9420,7 @@ class Selection(collections.abc.Sequence):
                 >>> selector.print(result)
                 Tuplet('9:10', "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -9589,7 +9542,7 @@ class Selection(collections.abc.Sequence):
                 Tuplet('3:2', "d'8 e'8 f'8")
                 Tuplet('3:2', "c'4 d'4 e'4")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9672,7 +9625,7 @@ class Selection(collections.abc.Sequence):
                 Tuplet('3:2', "d'8 e'8 f'8")
                 Tuplet('3:2', "c'4 d'4 e'4")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9755,7 +9708,7 @@ class Selection(collections.abc.Sequence):
                 Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
                 Tuplet('3:2', "c'4 d'4 e'4")
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9850,7 +9803,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'8"), Note("e'8"), Rest('r8')])
                 Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9915,7 +9868,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("e'8"), Rest('r8')])
                 Selection([Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -9988,7 +9941,7 @@ class Selection(collections.abc.Sequence):
                 ...     abjad.piano_pedal(item)
                 ...
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 6
                 >>> abjad.show(staff) # doctest: +SKIP
 
@@ -10128,7 +10081,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
                 Selection([Note("fs'16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -10241,7 +10194,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Rest('r8'), Note("d'8"), Note("e'8")])
                 Selection([Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -10306,7 +10259,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'8"), Note("e'8")])
                 Selection([Rest('r8'), Note("f'8")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -10434,7 +10387,7 @@ class Selection(collections.abc.Sequence):
                 Selection([Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16")])
                 Selection([Note("f'4"), Note("fs'16")])
 
-                >>> abjad.label(result).by_selector(selector)
+                >>> abjad.Label(result).by_selector(selector)
                 >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
