@@ -1,6 +1,6 @@
 import copy
 
-from . import deprecated, enums, overrides, score, select
+from . import deprecated, enums, get, overrides, score, select
 from . import timespan as _timespan
 from .attach import attach
 from .duration import Duration
@@ -215,6 +215,29 @@ _class_to_method = OrderedDict(
 
 
 ### PUBLIC FUNCTIONS ###
+
+
+def attach_markup_struts(lilypond_file):
+    """
+    LilyPond workaround.
+
+    LilyPond's multisystem cropping currently removes intersystem whitespace.
+
+    These transparent markup struts force LilyPond's cropping to preserve whitespace.
+    """
+    rhythmic_staff = lilypond_file[score.Score][-1]
+    first_leaf = get.leaf(rhythmic_staff, 0)
+    markup = Markup(r"\markup I", direction=enums.Up, literal=True)
+    attach(markup, first_leaf)
+    overrides.tweak(markup).staff_padding = 11
+    overrides.tweak(markup).transparent = "##t"
+    duration = get.duration(rhythmic_staff)
+    if Duration(6, 4) < duration:
+        last_leaf = get.leaf(rhythmic_staff, -1)
+        markup = Markup(r"\markup I", direction=enums.Up, literal=True)
+        attach(markup, last_leaf)
+        overrides.tweak(markup).staff_padding = 18
+        overrides.tweak(markup).transparent = "##t"
 
 
 def illustrate(item, **keywords):

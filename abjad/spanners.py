@@ -67,7 +67,7 @@ def beam(
     beam_lone_notes: bool = None,
     beam_rests: typing.Optional[bool] = True,
     durations: typing.Sequence[Duration] = None,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     span_beam_count: int = None,
     start_beam: StartBeam = None,
     stemlet_length: typings.Number = None,
@@ -98,7 +98,7 @@ def beam(
             }
 
     """
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     original_leaves = Iteration(argument).leaves()
     original_leaves = list(original_leaves)
@@ -1623,7 +1623,7 @@ def hairpin(
     descriptor: str,
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     tag: Tag = None,
 ) -> None:
     r"""
@@ -1763,7 +1763,7 @@ def hairpin(
     if start_dynamic is not None:
         assert isinstance(start_dynamic, Dynamic), repr(start_dynamic)
 
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
@@ -1780,7 +1780,7 @@ def hairpin(
 def horizontal_bracket(
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     start_group: StartGroup = None,
     stop_group: StopGroup = None,
     tag: Tag = None,
@@ -1811,7 +1811,7 @@ def horizontal_bracket(
     """
     start_group = start_group or StartGroup()
     stop_group = stop_group or StopGroup()
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
@@ -1823,7 +1823,7 @@ def horizontal_bracket(
 def ottava(
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     start_ottava: Ottava = Ottava(n=1),
     stop_ottava: Ottava = Ottava(n=0, format_slot="after"),
     tag: Tag = None,
@@ -1854,7 +1854,7 @@ def ottava(
     """
     assert isinstance(start_ottava, Ottava), repr(start_ottava)
     assert isinstance(stop_ottava, Ottava), repr(stop_ottava)
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
@@ -1866,7 +1866,7 @@ def ottava(
 def phrasing_slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     start_phrasing_slur: StartPhrasingSlur = None,
     stop_phrasing_slur: StopPhrasingSlur = None,
     tag: Tag = None,
@@ -1898,7 +1898,7 @@ def phrasing_slur(
     """
     start_phrasing_slur = StartPhrasingSlur()
     stop_phrasing_slur = StopPhrasingSlur()
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
@@ -1912,7 +1912,7 @@ def phrasing_slur(
 def piano_pedal(
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     start_piano_pedal: StartPianoPedal = None,
     stop_piano_pedal: StopPianoPedal = None,
     tag: Tag = None,
@@ -1950,7 +1950,7 @@ def piano_pedal(
     """
     start_piano_pedal = start_piano_pedal or StartPianoPedal()
     stop_piano_pedal = stop_piano_pedal or StopPianoPedal()
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
@@ -1962,7 +1962,7 @@ def piano_pedal(
 def slur(
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     start_slur: StartSlur = None,
     stop_slur: StopSlur = None,
     tag: Tag = None,
@@ -1994,7 +1994,7 @@ def slur(
     """
     start_slur = start_slur or StartSlur()
     stop_slur = stop_slur or StopSlur()
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
@@ -2006,7 +2006,7 @@ def slur(
 def text_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     start_text_span: StartTextSpan = None,
     stop_text_span: StopTextSpan = None,
     tag: Tag = None,
@@ -2144,7 +2144,7 @@ def text_spanner(
     """
     start_text_span = start_text_span or StartTextSpan()
     stop_text_span = stop_text_span or StopTextSpan()
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
@@ -2158,7 +2158,7 @@ def tie(
     *,
     direction: enums.VerticalAlignment = None,
     repeat: typing.Union[bool, typings.IntegerPair, DurationInequality] = None,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     tag: Tag = None,
 ) -> None:
     r"""
@@ -2354,7 +2354,7 @@ def tie(
         assert isinstance(repeat, tuple) and len(repeat) == 2, repr(repeat)
         inequality = DurationInequality(">=", repeat)
     assert isinstance(inequality, DurationInequality), repr(inequality)
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     assert isinstance(leaves, Selection), repr(leaves)
@@ -2380,7 +2380,7 @@ def tie(
 def trill_spanner(
     argument: typing.Union[Component, Selection],
     *,
-    selector: Expression = select().leaves(),
+    selector=lambda _: select(_).leaves(),
     start_trill_span: StartTrillSpan = None,
     stop_trill_span: StopTrillSpan = None,
     tag: Tag = None,
@@ -2411,7 +2411,7 @@ def trill_spanner(
     """
     start_trill_span = start_trill_span or StartTrillSpan()
     stop_trill_span = stop_trill_span or StopTrillSpan()
-    assert isinstance(selector, Expression)
+    assert callable(selector)
     argument = selector(argument)
     leaves = Selection(argument).leaves()
     start_leaf = leaves[0]
