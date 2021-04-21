@@ -87,7 +87,7 @@ Examples
     >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 1c.** Starting segment; partitioned; chords 1, 2, 4, 5 flipped:
+**Example 1c.** Starting segment; partitioned; chords at indexes 1, 2, 4, 5 flipped:
 
 ::
 
@@ -98,7 +98,7 @@ Examples
     >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 1d.** Starting segment; partitioned; chords 1, 2, 4, 5 flipped; chords 2, 3,
+**Example 1d.** Starting segment; partitioned; chords 1, 2, 4, 5 flipped; chords at indexes 2, 3,
 4, 5 selectively transposed:
 
 ::
@@ -138,7 +138,7 @@ Diotima* (1980).
     >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 2c.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped:
+**Example 2c.** Starting segment; partitioned; chords at indexes 0, 1, 2, 4 flipped:
 
 ::
 
@@ -149,7 +149,7 @@ Diotima* (1980).
     >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 2d.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped; chords 0, 1
+**Example 2d.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped; chords at indexes 0, 1
 selectively transposed:
 
 ::
