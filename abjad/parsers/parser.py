@@ -1760,7 +1760,7 @@ class LilyPondLexicalDefinition:
     # lexer.ll:227
     # <INITIAL,notes,figures,chords,markup>\"
     def t_INITIAL_markup_notes_227(self, t):
-        r"\""
+        r"\" "
         t.lexer.push_state("quote")
         self.string_accumulator = ""
         pass
@@ -2018,7 +2018,7 @@ class LilyPondLexicalDefinition:
     # lexer.ll:446
     # <quote,lyric_quote>\"
     def t_quote_446(self, t):
-        r"\""
+        r"\" "
         t.lexer.pop_state()
         t.type = "STRING"
         t.value = self.string_accumulator
@@ -4093,7 +4093,7 @@ class LilyPondSyntacticalDefinition:
     ### chord_body_elements ###
 
     def p_chord_body_elements__Empty(self, p):
-        "chord_body_elements : "
+        "chord_body_elements :"
         p[0] = []
 
     def p_chord_body_elements__chord_body_elements__chord_body_element(self, p):
@@ -4294,7 +4294,7 @@ class LilyPondSyntacticalDefinition:
         p[0] = SyntaxNode("context_def_spec_body", p.__getslice__(1, None))
 
     def p_context_def_spec_body__Empty(self, p):
-        "context_def_spec_body : "
+        "context_def_spec_body :"
         p[0] = SyntaxNode("context_def_spec_body", p.__getslice__(1, None))
 
     def p_context_def_spec_body__context_def_spec_body__context_mod(self, p):
@@ -4326,7 +4326,7 @@ class LilyPondSyntacticalDefinition:
     ### context_mod_list ###
 
     def p_context_mod_list__Empty(self, p):
-        "context_mod_list : "
+        "context_mod_list :"
         p[0] = []
 
     def p_context_mod_list__context_mod_list__CONTEXT_MOD_IDENTIFIER(self, p):
@@ -4457,7 +4457,7 @@ class LilyPondSyntacticalDefinition:
     ### dots ###
 
     def p_dots__Empty(self, p):
-        "dots : "
+        "dots :"
         p[0] = SyntaxNode("dots", 0)
 
     def p_dots__dots__Chr46(self, p):
@@ -4679,7 +4679,7 @@ class LilyPondSyntacticalDefinition:
     ### exclamations ###
 
     def p_exclamations__Empty(self, p):
-        "exclamations : "
+        "exclamations :"
         p[0] = 0
 
     def p_exclamations__exclamations__Chr33(self, p):
@@ -5318,7 +5318,7 @@ class LilyPondSyntacticalDefinition:
     ### lilypond ###
 
     def p_lilypond__Empty(self, p):
-        "lilypond : "
+        "lilypond :"
         p[0] = []
 
     #    def p_lilypond__lilypond__INVALID(self, p):
@@ -5349,7 +5349,7 @@ class LilyPondSyntacticalDefinition:
     ### lilypond_header_body ###
 
     def p_lilypond_header_body__Empty(self, p):
-        "lilypond_header_body : "
+        "lilypond_header_body :"
         self.client._push_variable_scope()
         p[0] = Block(name="header")
 
@@ -5428,7 +5428,7 @@ class LilyPondSyntacticalDefinition:
     ### markup_braced_list_body ###
 
     def p_markup_braced_list_body__Empty(self, p):
-        "markup_braced_list_body : "
+        "markup_braced_list_body :"
         p[0] = []
 
     def p_markup_braced_list_body__markup_braced_list_body__markup(self, p):
@@ -5712,7 +5712,7 @@ class LilyPondSyntacticalDefinition:
     ### music_list ###
 
     def p_music_list__Empty(self, p):
-        "music_list : "
+        "music_list :"
         p[0] = []
 
     def p_music_list__music_list__embedded_scm(self, p):
@@ -5827,13 +5827,13 @@ class LilyPondSyntacticalDefinition:
         p[0] = SyntaxNode("octave_check", p.__getslice__(1, None))
 
     def p_octave_check__Empty(self, p):
-        "octave_check : "
+        "octave_check :"
         p[0] = SyntaxNode("octave_check", p.__getslice__(1, None))
 
     ### optional_context_mod ###
 
     def p_optional_context_mod__Empty(self, p):
-        "optional_context_mod : "
+        "optional_context_mod :"
         p[0] = []
 
     def p_optional_context_mod__context_modification(self, p):
@@ -5847,13 +5847,13 @@ class LilyPondSyntacticalDefinition:
         p[0] = p[2]
 
     def p_optional_id__Empty(self, p):
-        "optional_id : "
+        "optional_id :"
         p[0] = None
 
     ### optional_notemode_duration ###
 
     def p_optional_notemode_duration__Empty(self, p):
-        "optional_notemode_duration : "
+        "optional_notemode_duration :"
         p[0] = self.client._default_duration
 
     def p_optional_notemode_duration__multiplied_duration(self, p):
@@ -5864,7 +5864,7 @@ class LilyPondSyntacticalDefinition:
     ### optional_rest ###
 
     def p_optional_rest__Empty(self, p):
-        "optional_rest : "
+        "optional_rest :"
         p[0] = False
 
     def p_optional_rest__REST(self, p):
@@ -6023,7 +6023,7 @@ class LilyPondSyntacticalDefinition:
     ### post_events ###
 
     def p_post_events__Empty(self, p):
-        "post_events : "
+        "post_events :"
         p[0] = []
 
     def p_post_events__post_events__post_event(self, p):
@@ -6079,7 +6079,7 @@ class LilyPondSyntacticalDefinition:
     ### questions ###
 
     def p_questions__Empty(self, p):
-        "questions : "
+        "questions :"
         p[0] = 0
 
     def p_questions__questions__Chr63(self, p):
