@@ -71,8 +71,7 @@ def make_score_with_indicators_03(self):
 
     """
     staff = abjad.Staff(200 * abjad.Note("c'16"))
-    selector = abjad.select().leaves()
-    for note in selector(staff):
+    for note in abjad.select(staff).leaves():
         dynamic = abjad.Dynamic("f")
         abjad.attach(dynamic, note)
     return staff

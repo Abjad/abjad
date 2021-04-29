@@ -201,7 +201,7 @@ class SchemeParser(Parser):
         return t
 
     def t_quote(self, t):
-        r"\""
+        r"\" "
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         t.lexer.push_state("quote")
@@ -223,7 +223,7 @@ class SchemeParser(Parser):
         pass
 
     def t_quote_446(self, t):
-        r"\""
+        r"\" "
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         t.lexer.pop_state()

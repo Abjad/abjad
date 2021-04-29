@@ -405,11 +405,14 @@ class Label:
                 if color is not None:
                     override(leaf).NoteHead.color = color
 
-    def by_selector(self, selector, colors=None) -> None:
+    def by_selector(self, selector=None, colors=None, lone=False) -> None:
         """
         Colors client by ``selector``.
         """
-        if selector._is_singular_get_item():
+        if lone is True or (
+            hasattr(selector, "_is_singular_get_item")
+            and selector._is_singular_get_item()
+        ):
             colors = colors or ["#green"]
             color = colors[0]
             self.color_leaves(color=color)

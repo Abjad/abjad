@@ -1753,6 +1753,7 @@ class LilyPondFile:
             ...     selections,
             ...     divisions,
             ...     )
+            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1774,6 +1775,9 @@ class LilyPondFile:
                     \new RhythmicStaff
                     {
                         c'8
+                        - \tweak staff-padding 11
+                        - \tweak transparent ##t
+                        ^ \markup I
                         [
                         c'8
                         c'8
@@ -1816,6 +1820,7 @@ class LilyPondFile:
             ...     selections,
             ...     [(6, 8), (4, 8), (2, 8)],
             ... )
+            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1837,6 +1842,9 @@ class LilyPondFile:
                     \new RhythmicStaff
                     {
                         c'8
+                        - \tweak staff-padding 11
+                        - \tweak transparent ##t
+                        ^ \markup I
                         [
                         c'8
                         c'8
@@ -1880,6 +1888,7 @@ class LilyPondFile:
             ...     divisions,
             ...     pitched_staff=True,
             ... )
+            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1900,6 +1909,9 @@ class LilyPondFile:
                     \new Staff
                     {
                         c'8
+                        - \tweak staff-padding 11
+                        - \tweak transparent ##t
+                        ^ \markup I
                         [
                         c'8
                         c'8
@@ -1959,6 +1971,7 @@ class LilyPondFile:
             ...     selections,
             ...     divisions,
             ... )
+            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
             >>> voice_1 = lilypond_file["Voice_1"]
             >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
             >>> abjad.attach(literal, voice_1)
@@ -1985,6 +1998,9 @@ class LilyPondFile:
                         {
                             \voiceOne
                             e'8
+                            - \tweak staff-padding 11
+                            - \tweak transparent ##t
+                            ^ \markup I
                             [
                             e'8
                             e'8
