@@ -5,6 +5,78 @@ Changes
 
 ----
 
+Changed in Abjad 3.4
+--------------------
+
+Changes to Abjad 3.4 (2021-05-01) since Abjad 3.3 (2021-03-01).
+
+Removed support for IPython.
+
+`#1338 <https://github.com/Abjad/abjad/issues/1338>`_. Cleaned up tuplet formatting and
+block formatting. Opening brace now appears on its own line in LilyPond output:
+
+OLD:
+
+    >>> tuplet = abjad.Tuplet("3:2", "c'4 d' e'")
+    >>> string = abjad.lilypond(tuplet)
+    >>> print(string)
+    \times 2/3 {
+        c'4
+        d'4
+        e'4
+    }
+
+    >>> staff = abjad.Staff("c'4 d' e' f'")
+    >>> block = abjad.Block(name="score")
+    >>> block.items.append(staff)
+    >>> string = abjad.lilypond(block)
+    >>> print(string)
+    \score {
+        \new Staff
+        {
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+    }
+
+NEW:
+
+    >>> tuplet = abjad.Tuplet("3:2", "c'4 d' e'")
+    >>> string = abjad.lilypond(tuplet)
+    >>> print(string)
+    \times 2/3
+    {
+        c'4
+        d'4
+        e'4
+    }
+
+    >>> staff = abjad.Staff("c'4 d' e' f'")
+    >>> block = abjad.Block(name="score")
+    >>> block.items.append(staff)
+    >>> string = abjad.lilypond(block)
+    >>> print(string)
+    \score
+    {
+        \new Staff
+        {
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+    }
+
+`#1299 <https://github.com/Abjad/abjad/issues/1299>`_. Removed deprecated ``stravinsky``
+keyword from pitch classes. The function of the keyword was to transpose sets and
+segments such that the first element was set equal to 0 (after operations like inversion
+or rotation). Transpose sets and segments separately (after inversion or rotation) when
+required instead.
+
+----
+
 Changed in Abjad 3.3
 --------------------
 
