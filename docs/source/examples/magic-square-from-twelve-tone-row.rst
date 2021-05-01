@@ -38,7 +38,9 @@ example:
     ...         abjad.attach(start_markup, notes[0])
     ...     for note in score["Voice_0"]:
     ...         number = note.written_pitch.number
-    ...         string = rf"\markup \larger {{ IT \hspace #-0.75 \sub {number} }}"
+    ...         string = r"\markup \larger { IT \hspace #-0.75 \sub "
+    ...         string += str(number)
+    ...         string += " }"
     ...         markup = abjad.Markup(string, direction=abjad.Up, literal=True)
     ...         abjad.attach(markup, note)
     ...     note = abjad.select(score).note(0)
