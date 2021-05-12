@@ -2326,13 +2326,13 @@ class Label:
                     {
                         \tempo 4=60
                         c'2
-                        ^ \dark_cyan_markup "0'00''"
+                        ^ \dark_cyan_markup { 0'00'' }
                         d'2
-                        ^ \dark_cyan_markup "0'02''"
+                        ^ \dark_cyan_markup { 0'02'' }
                         e'2
-                        ^ \dark_cyan_markup "0'04''"
+                        ^ \dark_cyan_markup { 0'04'' }
                         f'2
-                        ^ \dark_cyan_markup "0'06''"
+                        ^ \dark_cyan_markup { 0'06'' }
                     }
                 >>
 
@@ -2348,23 +2348,20 @@ class Label:
                 if global_offset is not None:
                     start_offset += global_offset
                 string = start_offset.to_clock_string()
-                if brackets:
-                    string = f'"[{string}]"'
-                else:
-                    string = f'"{string}"'
             else:
                 timespan = logical_tie.head._get_timespan()
                 start_offset = timespan.start_offset
                 if global_offset is not None:
                     start_offset += global_offset
                 string = str(start_offset)
-                if brackets:
-                    string = "[" + string + "]"
+            if brackets:
+                string = f"[{string}]"
             if markup_command is not None:
-                string = f"{markup_command} {string}"
+                string = rf"{markup_command} {{ {string} }}"
                 label = Markup(string, direction=direction, literal=True)
             else:
-                label = Markup(string, direction=direction)
+                string = rf"\markup {{ {string} }}"
+                label = Markup(string, direction=direction, literal=True)
             self._attach(label, logical_tie.head)
         total_duration = Duration(timespan.stop_offset)
         if global_offset is not None:
