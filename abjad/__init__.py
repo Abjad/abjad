@@ -683,7 +683,6 @@ __all__ = [
     "persist",
     "phrasing_slur",
     "piano_pedal",
-    "pitch_class_segment",
     "play",
     "select",
     "setting",
