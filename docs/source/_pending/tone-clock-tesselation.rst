@@ -24,7 +24,7 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
     ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).SpanBar.stencil = False
     ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 5)"
-    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     lilypond_file = abjad.LilyPondFile([score], global_staff_size=16)
     ...     return lilypond_file
     ...
 

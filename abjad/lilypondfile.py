@@ -1085,12 +1085,13 @@ class LilyPondFile:
 
     def __init__(
         self,
+        items=None,
+        *,
         comments=None,
         date_time_token=None,
         default_paper_size=None,
         global_staff_size=None,
         includes=None,
-        items=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
         tag: _tag.Tag = None,
@@ -1129,7 +1130,7 @@ class LilyPondFile:
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> lilypond_file = abjad.LilyPondFile(items=[staff])
+            >>> lilypond_file = abjad.LilyPondFile([staff])
 
             >>> staff in lilypond_file
             True
@@ -1172,7 +1173,7 @@ class LilyPondFile:
             >>> score = abjad.Score([staff], name="Custom_Score")
             >>> block = abjad.Block(name="score")
             >>> block.items.append(score)
-            >>> lilypond_file = abjad.LilyPondFile(items=[block])
+            >>> lilypond_file = abjad.LilyPondFile([block])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -1542,7 +1543,7 @@ class LilyPondFile:
         ..  container:: example
 
             >>> block = abjad.Block(name="header")
-            >>> lilypond_file = abjad.LilyPondFile(items=[block])
+            >>> lilypond_file = abjad.LilyPondFile([block])
             >>> lilypond_file.header_block
             <Block(name='header')>
 
@@ -1618,7 +1619,7 @@ class LilyPondFile:
         ..  container:: example
 
             >>> block = abjad.Block(name="layout")
-            >>> lilypond_file = abjad.LilyPondFile(items=[block])
+            >>> lilypond_file = abjad.LilyPondFile([block])
             >>> lilypond_file.layout_block
             <Block(name='layout')>
 
@@ -1667,7 +1668,7 @@ class LilyPondFile:
             Gets paper block:
 
             >>> block = abjad.Block(name="paper")
-            >>> lilypond_file = abjad.LilyPondFile(items=[block])
+            >>> lilypond_file = abjad.LilyPondFile([block])
             >>> lilypond_file.paper_block
             <Block(name='paper')>
 
@@ -1686,7 +1687,7 @@ class LilyPondFile:
         ..  container:: example
 
             >>> block = abjad.Block(name="score")
-            >>> lilypond_file = abjad.LilyPondFile(items=[block])
+            >>> lilypond_file = abjad.LilyPondFile([block])
             >>> lilypond_file.score_block
             <Block(name='score')>
 

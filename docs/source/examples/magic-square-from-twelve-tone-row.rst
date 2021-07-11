@@ -80,7 +80,7 @@ example:
 
     >>> row = abjad.TwelveToneRow([7, 3, 8, 5, 4, 6, 0, 10, 11, 2, 9, 1])
     >>> score = make_score(row)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 From the opening measure of Karlheinz Stockhausen's `Grüppen` (1955-57) for three
@@ -95,7 +95,7 @@ orchestras.
 
     >>> row = abjad.TwelveToneRow([3, 5, 2, 1, 10, 11, 9, 0, 8, 4, 7, 6])
     >>> score = make_score(row)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 From Koblyakov's analysis of Pierre Boulez's `Marteau sans maître` (1955).
@@ -109,7 +109,7 @@ From Koblyakov's analysis of Pierre Boulez's `Marteau sans maître` (1955).
 
     >>> row = abjad.TwelveToneRow([9, 2, 11, 4, 1, 6, 8, 3, 5, 10, 7, 0])
     >>> score = make_score(row)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 From Benjamin Britten's `The Turn of the Screw` (1954).

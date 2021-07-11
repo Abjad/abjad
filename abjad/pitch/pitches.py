@@ -90,16 +90,19 @@ class Pitch:
         """
         return float(self.number)
 
+    # TODO: using StorageFormatManager here is very expensive;
+    #       scan the rest of the codebase and replace any similar uses
     def __hash__(self) -> int:
         """
         Hashes Abjad value object.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        #        hash_values = StorageFormatManager(self).get_hash_values()
+        #        try:
+        #            result = hash(hash_values)
+        #        except TypeError:
+        #            raise TypeError(f"unhashable type: {self}")
+        #        return result
+        return hash(str(self))
 
     def __lt__(self, argument):
         """

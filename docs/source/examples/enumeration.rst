@@ -100,7 +100,7 @@ Here are 11 rows and 6 columns:
 ::
 
     >>> score = make_score(11, 6)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -110,7 +110,7 @@ Here's the rhythmic retrograde of the same:
 ::
 
     >>> score = make_score(11, 6, retrograde=True)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Bača (1.1, 3.2)]`

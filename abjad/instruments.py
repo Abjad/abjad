@@ -761,7 +761,7 @@ class Tuning:
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            subresult = enumerate.yield_outer_product(sequences)
+            subresult = enumerate.outer_product(sequences)
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
         result.sort()

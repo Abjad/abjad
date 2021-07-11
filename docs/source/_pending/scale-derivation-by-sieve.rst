@@ -15,8 +15,8 @@ First we define a function to illustrate the examples that follow:
     ...     pitches = abjad.Sequence(range(length))
     ...     pitches = pitches.retain_pattern(pattern)
     ...     notes = [abjad.Note(_ + transposition, (1, 16)) for _ in pitches]
-    ...     containers = abjad.illustrators.make_piano_score(notes)
-    ...     score, treble_staff, bass_staff = containers
+    ...     score = abjad.illustrators.make_piano_score(notes)
+    ...     treble_staff = score["Treble_Staff"]
     ...     abjad.override(score).BarLine.stencil = False
     ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).Beam.stencil = False

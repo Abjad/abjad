@@ -230,7 +230,7 @@ We define more functions:
     ...     handle_markup_commands(score, markup_commands)
     ...     attach_page_breaks(score, breaks)
     ...     attach_rehearsal_marks(score, rehearsal_marks)
-    ...     lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    ...     lilypond_file = abjad.LilyPondFile([preamble, score])
     ...     return lilypond_file
     
     >>> def make_empty_score():

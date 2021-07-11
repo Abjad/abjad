@@ -6,7 +6,6 @@ import typing
 from . import _inspect, _iterate, enums, typings
 from .attach import attach, detach
 from .duration import Duration
-from .expression import Expression
 from .indicators.BeamCount import BeamCount
 from .indicators.BendAfter import BendAfter
 from .indicators.BowContactPoint import BowContactPoint
@@ -734,7 +733,7 @@ def glissando(
     allow_ties: bool = None,
     hide_middle_note_heads: bool = None,
     hide_middle_stems: bool = None,
-    hide_stem_selector: Expression = None,
+    hide_stem_selector: typing.Callable = None,
     left_broken: bool = None,
     parenthesize_repeats: bool = None,
     right_broken: bool = None,

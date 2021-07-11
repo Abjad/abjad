@@ -60,13 +60,11 @@ class Sequence(collections.abc.Sequence):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ("_equivalence_markup", "_expression", "_items")
+    __slots__ = ("_items",)
 
     ### INITIALIZER ###
 
     def __init__(self, items=None):
-        self._equivalence_markup = None
-        self._expression = None
         if items is None:
             items = ()
         if not isinstance(items, collections.abc.Iterable):

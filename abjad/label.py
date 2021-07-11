@@ -109,7 +109,7 @@ class Label:
 
     __documentation_section__ = "Collaborators"
 
-    __slots__ = ("_client", "_deactivate", "_expression", "_tag")
+    __slots__ = ("_client", "_deactivate", "_tag")
 
     _pc_number_to_color = {
         0: "#(x11-color 'red)",
@@ -135,7 +135,6 @@ class Label:
             raise TypeError(f"must be component, iterable or none: {client!r}.")
         self._client = client
         self._deactivate = deactivate
-        self._expression = None
         self._tag = tag
 
     ### SPECIAL METHODS ###
@@ -304,14 +303,19 @@ class Label:
                     >>> string = abjad.lilypond(chord)
                     >>> print(string)
                     <
+                        \tweak Accidental.color #red
                         \tweak color #red
                         c''
+                        \tweak Accidental.color #red
                         \tweak color #red
                         d''
+                        \tweak Accidental.color #green
                         \tweak color #green
                         fs''
+                        \tweak Accidental.color #green
                         \tweak color #green
                         a''
+                        \tweak Accidental.color #blue
                         \tweak color #blue
                         b''
                     >4
@@ -330,7 +334,8 @@ class Label:
 
                     >>> string = abjad.lilypond(note)
                     >>> print(string)
-                    \once \override NoteHead.color = #red
+                    \tweak Accidental.color #red
+                    \tweak color #red
                     c'4
 
         ..  container:: example
@@ -358,31 +363,44 @@ class Label:
                     >>> print(string)
                     \new Staff
                     {
-                        \once \override NoteHead.color = #(x11-color 'red)
+                        \tweak Accidental.color #(x11-color 'red)
+                        \tweak color #(x11-color 'red)
                         c'8
-                        \once \override NoteHead.color = #(x11-color 'MediumBlue)
+                        \tweak Accidental.color #(x11-color 'MediumBlue)
+                        \tweak color #(x11-color 'MediumBlue)
                         cs'8
-                        \once \override NoteHead.color = #(x11-color 'orange)
+                        \tweak Accidental.color #(x11-color 'orange)
+                        \tweak color #(x11-color 'orange)
                         d'8
-                        \once \override NoteHead.color = #(x11-color 'LightSlateBlue)
+                        \tweak Accidental.color #(x11-color 'LightSlateBlue)
+                        \tweak color #(x11-color 'LightSlateBlue)
                         ds'8
-                        \once \override NoteHead.color = #(x11-color 'ForestGreen)
+                        \tweak Accidental.color #(x11-color 'ForestGreen)
+                        \tweak color #(x11-color 'ForestGreen)
                         e'8
-                        \once \override NoteHead.color = #(x11-color 'MediumOrchid)
+                        \tweak Accidental.color #(x11-color 'MediumOrchid)
+                        \tweak color #(x11-color 'MediumOrchid)
                         f'8
-                        \once \override NoteHead.color = #(x11-color 'firebrick)
+                        \tweak Accidental.color #(x11-color 'firebrick)
+                        \tweak color #(x11-color 'firebrick)
                         fs'8
-                        \once \override NoteHead.color = #(x11-color 'DeepPink)
+                        \tweak Accidental.color #(x11-color 'DeepPink)
+                        \tweak color #(x11-color 'DeepPink)
                         g'8
-                        \once \override NoteHead.color = #(x11-color 'DarkOrange)
+                        \tweak Accidental.color #(x11-color 'DarkOrange)
+                        \tweak color #(x11-color 'DarkOrange)
                         gs'8
-                        \once \override NoteHead.color = #(x11-color 'IndianRed)
+                        \tweak Accidental.color #(x11-color 'IndianRed)
+                        \tweak color #(x11-color 'IndianRed)
                         a'8
-                        \once \override NoteHead.color = #(x11-color 'CadetBlue)
+                        \tweak Accidental.color #(x11-color 'CadetBlue)
+                        \tweak color #(x11-color 'CadetBlue)
                         as'8
-                        \once \override NoteHead.color = #(x11-color 'SeaGreen)
+                        \tweak Accidental.color #(x11-color 'SeaGreen)
+                        \tweak color #(x11-color 'SeaGreen)
                         b'8
-                        \once \override NoteHead.color = #(x11-color 'red)
+                        \tweak Accidental.color #(x11-color 'red)
+                        \tweak color #(x11-color 'red)
                         c''8
                     }
 
@@ -396,6 +414,7 @@ class Label:
                     pc = NumberedPitchClass(number)
                     color = color_map.get(pc, None)
                     if color is not None:
+                        tweak(note_head, literal=True).Accidental.color = color
                         tweak(note_head).color = color
             elif isinstance(leaf, Note):
                 note_head = leaf.note_head
@@ -403,7 +422,8 @@ class Label:
                 pc = NumberedPitchClass(number)
                 color = color_map[pc.number]
                 if color is not None:
-                    override(leaf).NoteHead.color = color
+                    tweak(leaf.note_head, literal=True).Accidental.color = color
+                    tweak(leaf.note_head).color = color
 
     def by_selector(self, selector=None, colors=None, lone=False) -> None:
         """
