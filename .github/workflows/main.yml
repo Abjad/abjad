@@ -44,9 +44,7 @@ jobs:
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         # prime the parser
         scr/prime-parser-tables
-    - name: Install dependencies
-      run: |
-        python -m pip install -e .[test]
+        # print versions
         black --version
         flake8 --version
         isort --version

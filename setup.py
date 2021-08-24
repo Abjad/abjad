@@ -85,6 +85,7 @@ install_requires = [
     "roman",
     "six",
     "sphinx-autodoc-typehints",
+    "types-six",
     "uqbar>=0.4.4, <0.5.0",
 ]
 
