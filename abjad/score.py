@@ -3599,8 +3599,6 @@ class NoteHead:
     def __hash__(self) -> int:
         """
         Hashes note-head.
-
-        Redefined in tandem with __eq__.
         """
         return super().__hash__()
 

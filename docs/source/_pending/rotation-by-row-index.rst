@@ -35,7 +35,7 @@ Rotation, by row index
     ...             abjad.PitchClassSegment(hexachords[0]).rotate(r),
     ...             abjad.PitchClassSegment(hexachords[1]).rotate(r),
     ...             abjad.PitchClassSegment(hexachords[0]).rotate(r)
-    ...             .transpose(-int(hexcahords[0][0]))
+    ...             .transpose(-int(hexachords[0][0]))
     ...             .transpose(hexachords[0][0]),
     ...             abjad.PitchClassSegment(hexachords[1]).rotate(r)
     ...             .transpose(-int(hexachords[1][0]))

@@ -176,7 +176,7 @@ class Tag:
             True
 
         """
-        return hash(str(self))
+        return hash(self.__class__.__name__ + str(self))
 
     def __iter__(self):
         """

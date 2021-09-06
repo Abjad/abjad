@@ -53,8 +53,6 @@ class TypedCollection:
     def __hash__(self):
         """
         Hashes typed collection.
-
-        Redefined in tandem with __eq__.
         """
         return object.__hash__(self)
 
@@ -470,12 +468,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
 
         Returns integer.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __le__(self, argument):
         """
@@ -1108,12 +1101,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns integer.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __mul__(self, argument):
         """

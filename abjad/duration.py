@@ -255,8 +255,6 @@ class Duration(quicktions.Fraction):
     def __hash__(self) -> int:
         """
         Hashes duration.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
         return super().__hash__()
 
@@ -1692,8 +1690,6 @@ class Offset(Duration):
     def __hash__(self) -> int:
         """
         Hashes offset.
-
-        Redefined in tandem with __eq__.
         """
         return super().__hash__()
 
@@ -2214,8 +2210,6 @@ class NonreducedFraction(quicktions.Fraction):
     def __hash__(self) -> int:
         """
         Hashes nonreduced fraction.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
         return super().__hash__()
 

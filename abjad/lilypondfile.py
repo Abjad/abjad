@@ -1729,6 +1729,7 @@ class LilyPondFile:
         divisions=None,
         attach_lilypond_voice_commands=None,
         implicit_scaling=None,
+        includes=("default.ily", "rhythm-maker-docs.ily"),
         pitched_staff=None,
         simultaneous_selections=None,
         time_signatures=None,
@@ -2084,7 +2085,7 @@ class LilyPondFile:
             raise TypeError(f"must be list or dictionary: {selections!r}.")
         score = Score()
         lilypond_file = class_(
-            includes=["default.ily", "rhythm-maker-docs.ily"],
+            includes=includes,
             items=[
                 Block(name="header"),
                 Block(name="layout"),

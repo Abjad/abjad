@@ -321,14 +321,9 @@ class LilyPondLiteral:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes LilyPond literal.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """
@@ -602,8 +597,6 @@ class Interface:
     def __hash__(self) -> int:
         """
         Hashes LilyPond name manager.
-
-        Redefined in tandem with __eq__.
         """
         return super().__hash__()
 
@@ -716,8 +709,6 @@ class LilyPondOverride:
     def __hash__(self) -> int:
         """
         Hashes LilyPond grob override.
-
-        Redefined in tandem with __eq__.
         """
         return super().__hash__()
 
@@ -1121,8 +1112,6 @@ class LilyPondSetting:
     def __hash__(self) -> int:
         """
         Hashes LilyPond context setting.
-
-        Redefined in tandem with __eq__.
         """
         return super().__hash__()
 

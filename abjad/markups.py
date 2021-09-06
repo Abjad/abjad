@@ -442,12 +442,7 @@ class Markup:
             True
 
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __lt__(self, argument):
         """
@@ -1046,15 +1041,8 @@ class MarkupCommand:
     def __hash__(self):
         """
         Hashes markup command.
-
-        Redefined in tandem with __eq__.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self):
         r"""
@@ -1317,14 +1305,9 @@ class Postscript:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes postscript.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __radd__(self, argument):
         """
@@ -2280,14 +2263,9 @@ class PostscriptOperator:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes postscript operator.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """

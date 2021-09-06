@@ -144,14 +144,9 @@ class CompoundOperator:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes compound operator.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __radd__(self, operator):
         """
@@ -668,14 +663,9 @@ class Duplication:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes duplication.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """
@@ -936,14 +926,9 @@ class Inversion:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes inversion.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __radd__(self, operator):
         """
@@ -1169,14 +1154,9 @@ class Multiplication:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes multiplication.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __radd__(self, operator):
         """
@@ -1428,14 +1408,9 @@ class Retrograde:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes retrograde.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __radd__(self, operator):
         """
@@ -1678,14 +1653,9 @@ class Rotation:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes rotation.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __radd__(self, operator):
         """
@@ -1940,14 +1910,9 @@ class Transposition:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes transposition.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __radd__(self, operator):
         """

@@ -104,8 +104,6 @@ class CyclicTuple:
     def __hash__(self) -> int:
         """
         Hashes cyclic tuple.
-
-        Redefined in tandem with __eq__.
         """
         return super().__hash__()
 
