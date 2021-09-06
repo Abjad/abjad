@@ -95,14 +95,9 @@ class StartPianoPedal:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes start piano pedal.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """

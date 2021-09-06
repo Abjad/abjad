@@ -2851,8 +2851,6 @@ class MetricAccentKernel:
         """
         Hashes metric accent kernel.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
         Returns integer.
         """
         return super().__hash__()

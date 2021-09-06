@@ -85,14 +85,9 @@ class Inequality:
 
     def __hash__(self) -> int:
         """
-        Hashes object.
+        Hashes inequality.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """
@@ -481,15 +476,8 @@ class Selection(collections.abc.Sequence):
     def __hash__(self) -> int:
         """
         Hashes selection.
-
-        Redefined in tandem with __eq__.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __len__(self) -> int:
         """

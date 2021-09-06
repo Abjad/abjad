@@ -166,7 +166,7 @@ class Articulation:
 
     def __hash__(self):
         """
-        Redefined with ``__eq__()``.
+        Hashes articulation.
         """
         return super().__hash__()
 

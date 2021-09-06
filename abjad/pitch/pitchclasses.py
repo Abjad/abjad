@@ -68,14 +68,9 @@ class PitchClass:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes pitch-class.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __lt__(self, argument):
         """
@@ -343,8 +338,6 @@ class NamedPitchClass(PitchClass):
     def __hash__(self):
         """
         Hashes named pitch-class.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         """
@@ -772,8 +765,6 @@ class NumberedPitchClass(PitchClass):
     def __hash__(self):
         """
         Hashes numbered pitch-class.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         """

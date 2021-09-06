@@ -88,8 +88,6 @@ class NonreducedRatio(collections.abc.Sequence):
         """
         Hashes non-reduced ratio.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
         Returns integer.
         """
         return super().__hash__()
@@ -348,8 +346,6 @@ class Ratio(NonreducedRatio):
     def __hash__(self):
         """
         Hashes ratio.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         """

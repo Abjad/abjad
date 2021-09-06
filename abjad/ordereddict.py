@@ -184,9 +184,7 @@ class OrderedDict(collections.abc.MutableMapping):
 
     def __hash__(self):
         """
-        Hashes typed collection.
-
-        Redefined in tandem with __eq__.
+        Hashes ordered dict.
         """
         return object.__hash__(self)
 

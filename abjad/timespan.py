@@ -398,8 +398,6 @@ class Timespan:
     def __hash__(self) -> int:
         """
         Hashes timespan.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
         return super().__hash__()
 

@@ -159,14 +159,9 @@ class Instrument:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes instrument.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """
@@ -413,14 +408,9 @@ class StringNumber:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes string number.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     ### PUBLIC PROPERTIES ###
 
@@ -530,14 +520,9 @@ class Tuning:
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes tuning.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """
