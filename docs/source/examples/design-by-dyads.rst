@@ -72,8 +72,8 @@ Examples
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> segment = abjad.PitchSegment(string)
     >>> notes = [abjad.Note(_, (1, 4)) for _ in segment]
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(notes)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(notes)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 **Example 1b.** Starting segment; partitioned:
@@ -83,8 +83,8 @@ Examples
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> segment = abjad.PitchSegment(string)
     >>> chords = partition(segment)
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(chords)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(chords)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 **Example 1c.** Starting segment; partitioned; chords at indexes 1, 2, 4, 5 flipped:
@@ -94,12 +94,12 @@ Examples
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> segment = abjad.PitchSegment(string)
     >>> chords = partition(segment, flip=[1, 2, 4, 5])
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(chords)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(chords)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 1d.** Starting segment; partitioned; chords 1, 2, 4, 5 flipped; chords at indexes 2, 3,
-4, 5 selectively transposed:
+**Example 1d.** Starting segment; partitioned; chords 1, 2, 4, 5 flipped; chords at
+indexes 2, 3, 4, 5 selectively transposed:
 
 ::
 
@@ -107,8 +107,8 @@ Examples
     >>> segment = abjad.PitchSegment(string)
     >>> transpositions = [(2, "+12"), (3, "+12"), (4, "-12"), (5, "-24")]
     >>> chords = partition(segment, flip=[1, 2, 4, 5], transpositions=transpositions)
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(chords)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(chords)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 This example reproduces violin double stops in Luigi Nono's *Fragment --- Stille, an
@@ -123,8 +123,8 @@ Diotima* (1980).
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> segment = abjad.PitchSegment(string)
     >>> notes = [abjad.Note(_, (1, 4)) for _ in segment]
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(notes)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(notes)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 **Example 2b.** Starting segment; partitioned:
@@ -134,8 +134,8 @@ Diotima* (1980).
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> segment = abjad.PitchSegment(string)
     >>> chords = partition(segment)
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(chords)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(chords)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 **Example 2c.** Starting segment; partitioned; chords at indexes 0, 1, 2, 4 flipped:
@@ -145,12 +145,12 @@ Diotima* (1980).
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> segment = abjad.PitchSegment(string)
     >>> chords = partition(segment, flip=[0, 1, 2, 4])
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(chords)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(chords)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 2d.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped; chords at indexes 0, 1
-selectively transposed:
+**Example 2d.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped; chords at
+indexes 0, 1 selectively transposed:
 
 ::
 
@@ -158,8 +158,8 @@ selectively transposed:
     >>> segment = abjad.PitchSegment(string)
     >>> transpositions = [(0, "-36"), (1, "-24")]
     >>> chords = partition(segment, flip=[0, 1, 2, 4], transpositions=transpositions)
-    >>> score, rh, lh = abjad.illustrators.make_piano_score(chords)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> score = abjad.illustrators.make_piano_score(chords)
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Evans, Bača (3.2); generalized from Luigi Nono, example 1d, above.]`

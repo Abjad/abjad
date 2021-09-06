@@ -726,7 +726,7 @@ def iterate_leaf_pairs(components):
         for pair in enumerate.yield_pairs(moment_1.start_leaves):
             yield Selection(pair)
         sequences = [moment_1.leaves, moment_2.start_leaves]
-        for pair in enumerate.yield_outer_product(sequences):
+        for pair in enumerate.outer_product(sequences):
             yield Selection(pair)
     else:
         for pair in enumerate.yield_pairs(moment_2.start_leaves):
@@ -832,7 +832,7 @@ def iterate_pitch_pairs(components):
             pitches_1 = sorted(Iteration(leaf_pair[0]).pitches())
             pitches_2 = sorted(Iteration(leaf_pair[1]).pitches())
             sequences = [pitches_1, pitches_2]
-            for pair in enumerate.yield_outer_product(sequences):
+            for pair in enumerate.outer_product(sequences):
                 yield PitchSegment(pair)
         pitches = sorted(Iteration(leaf_pair[1]).pitches())
         for pair in enumerate.yield_pairs(pitches):

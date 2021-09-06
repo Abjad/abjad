@@ -10,7 +10,8 @@ Abjad numbers pitches like this:
 
 ::
 
-    >>> score, treble_staff, bass_staff = abjad.illustrators.make_piano_score()
+    >>> score = abjad.illustrators.make_piano_score()
+    >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
     >>> duration = abjad.Duration(1, 32)
     >>> pitches = range(-12, 12 + 1)
     >>> for pitch in pitches:
@@ -50,7 +51,7 @@ Abjad numbers pitches like this:
 ..  book::
     :lilypond/no-stylesheet:
 
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 Diatonic pitch numbers
@@ -60,7 +61,8 @@ Abjad numbers diatonic pitches like this:
 
 ::
 
-    >>> score, treble_staff, bass_staff = abjad.illustrators.make_piano_score()
+    >>> score = abjad.illustrators.make_piano_score()
+    >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
     >>> duration = abjad.Duration(1, 32)
     >>> pitches = []
     >>> diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
@@ -89,7 +91,7 @@ Abjad numbers diatonic pitches like this:
 ..  book::
     :lilypond/no-stylesheet:
 
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 Accidental abbreviations

@@ -1170,7 +1170,7 @@ class MetronomeMark:
         allowable_numerators = range(1, maximum_numerator + 1)
         allowable_denominators = range(1, maximum_denominator + 1)
         numbers = [allowable_numerators, allowable_denominators]
-        pairs = _enumerate.yield_outer_product(numbers)
+        pairs = _enumerate.outer_product(numbers)
         multipliers = [Multiplier(_) for _ in pairs]
         multipliers = [
             _

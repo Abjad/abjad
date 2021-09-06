@@ -167,8 +167,9 @@ class LilyPondIO:
         directories.append(directory)
         if "sphinx_stylesheets_directory" in configuration:
             string = configuration["sphinx_stylesheets_directory"]
-            directory = pathlib.Path(string)
-            directories.append(directory)
+            for path in string.split(":"):
+                directory = pathlib.Path(path)
+                directories.append(directory)
         return directories
 
     def migrate_assets(
@@ -484,7 +485,6 @@ def count_function_calls(
             last_result = current_result
             string = profile(
                 argument,
-                print_to_terminal=False,
                 global_context=global_context,
                 local_context=local_context,
             )
@@ -493,7 +493,6 @@ def count_function_calls(
         return current_result
     result = profile(
         argument,
-        print_to_terminal=False,
         global_context=global_context,
         local_context=local_context,
     )
@@ -928,77 +927,63 @@ def open_last_log() -> None:
 
 
 def profile(
-    argument: str,
+    string: str,
     *,
     global_context: dict = None,
     line_count: int = 12,
     local_context: dict = None,
     print_callers: bool = False,
     print_callees: bool = False,
-    print_to_terminal: bool = True,
     sort_by: str = "cumulative",
     strip_dirs: bool = True,
 ) -> typing.Optional[str]:
     """
-    Profiles ``argument``.
+    Profiles ``string``.
 
     ..  container:: example
 
         ::
 
-            >>> argument = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-            >>> abjad.io.profile(
-            ...     argument,
-            ...     global_context=globals(),
-            ...     ) # doctest: +SKIP
-            Tue Apr  5 20:32:40 2011    _tmp_abj_profile
+            >>> string = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
+            >>> result = abjad.io.profile(string, global_context=globals())
+            >>> print(result) # doctest: +SKIP
+            Fri Sep 03 12:53:36 2021
 
-                    2852 function calls (2829 primitive calls) in 0.006 CPU seconds
+                    62795 function calls (61272 primitive calls) in 0.043 seconds
 
             Ordered by: cumulative time
-            List reduced from 118 to 12 due to restriction <12>
+            List reduced from 453 to 12 due to restriction <12>
 
             ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-                    1    0.000    0.000    0.006    0.006 <string>:1(<module>)
-                    1    0.001    0.001    0.003    0.003 make_notes.py:12(make_not
-                    1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
-                    1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
-                    1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
-                    1    0.000    0.000    0.003    0.003 Container.py:271(_initial
-                    2    0.000    0.000    0.002    0.001 all_are_logical_voice_con
-                52    0.001    0.000    0.002    0.000 component_to_logical_voic
-                    1    0.000    0.000    0.002    0.002 _construct_unprolated_not
-                    8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_
-                    8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_
+                 1    0.000    0.000    0.043    0.043 {built-in method builtins.exec}
+                 1    0.000    0.000    0.043    0.043 <string>:1(<module>)
+                 1    0.000    0.000    0.043    0.043 score.py:4989(__init__)
+                 1    0.000    0.000    0.043    0.043 score.py:3099(__init__)
+               2/1    0.000    0.000    0.043    0.043 score.py:918(__init__)
+               2/1    0.000    0.000    0.043    0.043 score.py:1343(_initialize_componen
+                 1    0.000    0.000    0.042    0.042 score.py:1378(_parse_string)
+                 1    0.000    0.000    0.042    0.042 score.py:57(_parse_lilypond_string
+                 1    0.000    0.000    0.042    0.042 parse.py:9(parse)
+                 1    0.000    0.000    0.035    0.035 parser.py:2728(__init__)
+                 1    0.000    0.000    0.035    0.035 base.py:34(__init__)
+                 1    0.000    0.000    0.023    0.023 lex.py:862(lex)
 
-    Wraps the built-in Python ``cProfile`` module.
-
-    Set ``argument`` to any string of Abjad input.
+    Wraps Python's built-in ``cProfile`` module.
 
     Set ``sort_by`` to ``'cumulative'``, ``'time'`` or ``'calls'``.
 
-    Set ``line_count`` to any nonnegative integer.
-
-    Set ``strip_dirs`` to true to strip directory names from output lines.
-
-    See the `Python docs <http://docs.python.org/library/profile.html>`_
-    for more information on the Python profilers.
-
-    Returns none when ``print_to_terminal`` is false.
-
-    Returns string when ``print_to_terminal`` is true.
+    See `Python's docs <https://docs.python.org/3/library/profile.html>`_ for more
+    information.
     """
     now_string = datetime.datetime.today().strftime("%a %b %d %H:%M:%S %Y")
     profile = cProfile.Profile()
     local_context = local_context or locals()
     if global_context is None:
-        profile = profile.run(argument)
+        profile = profile.run(string)
     else:
-        profile = profile.runctx(argument, global_context, local_context)
+        profile = profile.runctx(string, global_context, local_context)
     stats_stream = io.StringIO()
     stats = pstats.Stats(profile, stream=stats_stream)
-    if sort_by == "cum":
-        sort_by = "cumulative"
     if strip_dirs:
         stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
     else:
@@ -1009,9 +994,6 @@ def profile(
         stats.sort_stats(sort_by).print_callees(line_count)
     result = now_string + "\n\n" + stats_stream.getvalue()
     stats_stream.close()
-    if print_to_terminal:
-        print(result)
-        return None
     return result
 
 
@@ -1030,38 +1012,30 @@ def run_command(command: str) -> typing.List[str]:
 def run_lilypond(
     ly_path: str,
     *,
-    flags: str = None,
+    flags: str = "",
     lilypond_log_file_path: pathlib.Path = None,
-) -> bool:
+) -> int:
     """
     Runs LilyPond on ``ly_path``.
 
-    Writes redirected output of Unix ``date`` to top line of LilyPond log
-    file.
+    Writes redirected output of Unix ``date`` to top line of LilyPond log file.
 
-    Then appends redirected output of LilyPond output to the LilyPond log
-    file.
+    Then appends redirected output of LilyPond output to the LilyPond log file.
     """
-    ly_path = str(ly_path)
-    lilypond_path_ = configuration.get("lilypond_path")
-    if lilypond_path_ is not None:
-        assert isinstance(lilypond_path_, str), repr(lilypond_path_)
-    if not lilypond_path_:
+    lilypond_path = configuration.get("lilypond_path")
+    if lilypond_path is not None:
+        assert isinstance(lilypond_path, str), repr(lilypond_path)
+    if not lilypond_path:
         lilypond_paths = find_executable("lilypond")
         if lilypond_paths:
-            lilypond_path_ = str(lilypond_paths[0])
+            lilypond_path = str(lilypond_paths[0])
         else:
-            lilypond_path_ = "lilypond"
-    lilypond_base, extension = os.path.splitext(ly_path)
-    flags = flags or ""
-    date = datetime.datetime.now().strftime("%c")
+            lilypond_path = "lilypond"
     if lilypond_log_file_path is None:
-        log_file_path = configuration.lilypond_log_file_path
-    else:
-        log_file_path = lilypond_log_file_path
-    command = "{} {} -dno-point-and-click -o {} {}".format(
-        lilypond_path_, flags, lilypond_base, ly_path
-    )
+        lilypond_log_file_path = configuration.lilypond_log_file_path
+    ly_path_ = pathlib.Path(ly_path)
+    command = "{} {} -dno-point-and-click --output={} {}"
+    command = command.format(lilypond_path, flags, ly_path_.with_suffix(""), ly_path)
     process = subprocess.Popen(
         command,
         shell=True,
@@ -1071,18 +1045,14 @@ def run_lilypond(
     subprocess_output, _ = process.communicate()
     subprocess_output_string = subprocess_output.decode(errors="ignore")
     exit_code = process.returncode
-    with open(log_file_path, "w") as file_pointer:
-        file_pointer.write(date + "\n")
-        file_pointer.write(subprocess_output_string)
-    postscript_path = ly_path.replace(".ly", ".ps")
-    try:
-        os.remove(postscript_path)
-    except OSError:
-        pass
-    # TODO: maybe just 'return exit_code'?
-    if exit_code:
-        return False
-    return True
+    date = datetime.datetime.now().strftime("%c")
+    with open(lilypond_log_file_path, "w") as file_pointer:
+        print(date, file=file_pointer)
+        print(subprocess_output_string, file=file_pointer)
+    postscript_path = ly_path_.with_suffix(".ps")
+    if postscript_path.is_file():
+        postscript_path.unlink()
+    return exit_code
 
 
 def spawn_subprocess(command: str) -> int:

@@ -26,9 +26,7 @@ class Segment(TypedTuple):
     Abstract segment.
     """
 
-    ### CLASS VARIABLES ##
-
-    __slots__ = ("_equivalence_markup", "_expression")
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -61,8 +59,6 @@ class Segment(TypedTuple):
             item_class = eval(item_class, globals_)
         assert issubclass(item_class, self._parent_item_class)
         TypedTuple.__init__(self, items=items, item_class=item_class)
-        self._equivalence_markup = None
-        self._expression = None
 
     ### SPECIAL METHODS ###
 

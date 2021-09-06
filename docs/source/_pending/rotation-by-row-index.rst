@@ -34,11 +34,11 @@ Rotation, by row index
     ...         sets = [
     ...             abjad.PitchClassSegment(hexachords[0]).rotate(r),
     ...             abjad.PitchClassSegment(hexachords[1]).rotate(r),
-    ...             abjad.PitchClassSegment(hexachords[0])
-    ...             .rotate(r, stravinsky=True)
+    ...             abjad.PitchClassSegment(hexachords[0]).rotate(r)
+    ...             .transpose(-int(hexcahords[0][0]))
     ...             .transpose(hexachords[0][0]),
-    ...             abjad.PitchClassSegment(hexachords[1])
-    ...             .rotate(r, stravinsky=True)
+    ...             abjad.PitchClassSegment(hexachords[1]).rotate(r)
+    ...             .transpose(-int(hexachords[1][0]))
     ...             .transpose(hexachords[1][0]),
     ...         ]
     ...         names = [
@@ -108,7 +108,7 @@ Examples 1a-d are based on the following row:
 ::
 
     >>> score = make_rotation_chart(source, "P")
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -118,7 +118,7 @@ Examples 1a-d are based on the following row:
 ::
 
     >>> score = make_rotation_chart(source.invert(), "I")
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -128,7 +128,7 @@ Examples 1a-d are based on the following row:
 ::
 
     >>> score = make_rotation_chart(source.retrograde(), "R")
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -139,7 +139,7 @@ this?
 ::
 
     >>> score = make_rotation_chart(source.retrograde().invert(), "IR")
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Evans (3.2); ex. Igor Stravinsky, Abraham and Isaac (1962--63).]`

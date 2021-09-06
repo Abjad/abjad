@@ -20,10 +20,6 @@ class Set(TypedFrozenset):
     Abstract set.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_expression",)
-
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
@@ -49,7 +45,6 @@ class Set(TypedFrozenset):
                         item_class = type(items[0])
         assert issubclass(item_class, self._parent_item_class)
         TypedFrozenset.__init__(self, items=items, item_class=item_class)
-        self._expression = None
 
     ### SPECIAL METHODS ###
 

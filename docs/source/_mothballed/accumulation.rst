@@ -278,7 +278,7 @@ The final result:
     :lilypond/no-stylesheet:
 
     >>> score = make_score(rh_pitches, lh_pitches)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Adán (2.0), Bača (3.2)]`

@@ -77,7 +77,7 @@ class Configuration:
         if not self._compare_configurations(old_contents, new_contents):
             try:
                 with open(str(self.configuration_file_path), "w") as file_pointer:
-                    file_pointer.write(new_contents)
+                    print(new_contents, file=file_pointer)
             except (IOError, OSError):
                 traceback.print_exc()
         self._settings = configuration
@@ -208,41 +208,6 @@ class Configuration:
                 "default": os.path.join(str(self.configuration_directory), "output"),
                 "validator": str,
             },
-            "composer_email": {
-                "comment": ["Your email."],
-                "default": "first.last@domain.com",
-                "validator": str,
-            },
-            "composer_full_name": {
-                "comment": ["Your full name."],
-                "default": "Full Name",
-                "validator": str,
-            },
-            "composer_github_username": {
-                "comment": ["Your GitHub username."],
-                "default": "username",
-                "validator": str,
-            },
-            "composer_last_name": {
-                "comment": ["Your last name."],
-                "default": "Name",
-                "validator": str,
-            },
-            "composer_scores_directory": {
-                "comment": ["Your scores directory."],
-                "default": str(self.home_directory / "scores"),
-                "validator": str,
-            },
-            "composer_uppercase_name": {
-                "comment": ["Your full name in uppercase for score covers."],
-                "default": "FULL NAME",
-                "validator": str,
-            },
-            "composer_website": {
-                "comment": ["Your website."],
-                "default": "www.composername.com",
-                "validator": str,
-            },
             "lilypond_path": {
                 "comment": [
                     "Lilypond executable path. Set to override dynamic lookup."
@@ -330,57 +295,6 @@ class Configuration:
         Gets Abjad boilerplate directory.
         """
         return self.abjad_directory.parent / "boilerplate"
-
-    @property
-    def composer_email(self) -> str:
-        """
-        Gets composer email.
-        """
-        return self._settings["composer_email"]
-
-    @property
-    def composer_full_name(self) -> str:
-        """
-        Gets composer full name.
-        """
-        return self._settings["composer_full_name"]
-
-    @property
-    def composer_github_username(self) -> str:
-        """
-        Gets GitHub username.
-        """
-        return self._settings["composer_github_username"]
-
-    @property
-    def composer_last_name(self) -> str:
-        """
-        Gets composer last name.
-        """
-        return self._settings["composer_last_name"]
-
-    @property
-    def composer_scores_directory(self) -> pathlib.Path:
-        """
-        Gets composer scores directory.
-        """
-        if "composer_scores_directory" in self._settings:
-            return pathlib.Path(self._settings["composer_scores_directory"])
-        return self.home_directory / "Scores"
-
-    @property
-    def composer_uppercase_name(self) -> str:
-        """
-        Gets composer uppercase name.
-        """
-        return self._settings["composer_uppercase_name"]
-
-    @property
-    def composer_website(self) -> str:
-        """
-        Gets composer website.
-        """
-        return self._settings["composer_website"]
 
     @property
     def configuration_directory(self) -> pathlib.Path:

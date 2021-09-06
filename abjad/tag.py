@@ -685,7 +685,7 @@ def activate(text, tag, skipped=False):
 
         >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> string = "\n".join(lines)
-        >>> lilypond_file = abjad.LilyPondFile(items=[string])
+        >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Deactivates tag again:
@@ -704,7 +704,7 @@ def activate(text, tag, skipped=False):
 
         >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> string = "\n".join(lines)
-        >>> lilypond_file = abjad.LilyPondFile(items=[string])
+        >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Activates tag again:
@@ -723,7 +723,7 @@ def activate(text, tag, skipped=False):
 
         >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> string = "\n".join(lines)
-        >>> lilypond_file = abjad.LilyPondFile(items=[string])
+        >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     Tags can toggle indefinitely.
@@ -831,7 +831,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> string = "\n".join(lines)
-        >>> lilypond_file = abjad.LilyPondFile(items=[string])
+        >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Activates tag again:
@@ -850,7 +850,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> string = "\n".join(lines)
-        >>> lilypond_file = abjad.LilyPondFile(items=[string])
+        >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         Deactivates tag again:
@@ -869,7 +869,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         >>> lines = [_.strip("\n") for _ in text.split("\n")]
         >>> string = "\n".join(lines)
-        >>> lilypond_file = abjad.LilyPondFile(items=[string])
+        >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     Tags can toggle indefinitely.

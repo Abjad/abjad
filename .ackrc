@@ -1,6 +1,5 @@
---ignore-dir=.mypy_cache/
---ignore-dir=.pytest_cache/
---ignore-dir=Abjad.egg-info/
---ignore-dir=abjad/.mypy_cache/
---ignore-dir=docs/build/
---ignore-dir=docs/source/api/
+--ignore-dir=.mypy_cache
+--ignore-dir=.pytest_cache
+--ignore-dir=match:/.*.egg-info/
+--ignore-dir=docs/build
+--ignore-dir=docs/source/api

@@ -200,7 +200,7 @@ Twelve major scales
     >>> string = "C4 G4 D4 A4 E4 B4 F4 Bb4 Eb4 Ab4 Db4 Gb4"
     >>> tonics = string.split()
     >>> score = make_score(tonics, "major")
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -214,7 +214,7 @@ Twelve minor scales
     >>> string = "C4 G4 D4 A4 E4 B4 F4 Bb4 Eb4 Ab4 Db4 Gb4"
     >>> tonics = string.split()
     >>> score = make_score(tonics, "minor")
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -228,7 +228,7 @@ Twelve Dorian scales
     >>> string = "C4 G4 D4 A4 E4 B4 F4 Bb4 Eb4 Ab4 Db4 Gb4"
     >>> tonics = string.split()
     >>> score = make_score(tonics, "dorian")
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Bača (3.3)]`

@@ -4,8 +4,6 @@ import itertools
 from . import math
 from . import sequence as _sequence
 
-### PRIVATE FUNCTIONS ###
-
 
 def _is_restricted_growth_function(sequence):
     """
@@ -37,9 +35,8 @@ def _is_restricted_growth_function(sequence):
         >>> abjad.enumerate._is_restricted_growth_function([17])
         False
 
-    A restricted growth function is a sequence ``l`` such that
-    ``l[0] == 1`` and such that ``l[i] <= max(l[:i]) + 1`` for
-    ``1 <= i <= len(l)``.
+    A restricted growth function is a sequence ``l`` such that ``l[0] == 1`` and such
+    that ``l[i] <= max(l[:i]) + 1`` for ``1 <= i <= len(l)``.
 
     Returns true or false.
     """
@@ -68,7 +65,7 @@ def _partition_by_rgf(sequence, rgf):
 
     Returns list of lists.
     """
-    rgf = _sequence.Sequence(items=rgf)
+    rgf = _sequence.Sequence(rgf)
     if not _is_restricted_growth_function(rgf):
         raise ValueError(f"must be restricted growth function: {rgf!r}.")
     if not len(sequence) == len(rgf):
@@ -82,7 +79,7 @@ def _partition_by_rgf(sequence, rgf):
         part = partition[part_index]
         part.append(n)
     partition = [_sequence.Sequence(_) for _ in partition]
-    return _sequence.Sequence(items=partition)
+    return _sequence.Sequence(partition)
 
 
 def _yield_restricted_growth_functions(length):
@@ -131,7 +128,81 @@ def _yield_restricted_growth_functions(length):
                 break
 
 
-### PUBLIC FUNCTIONS ###
+def outer_product(argument):
+    """
+    Yields outer product of sequences in ``argument``.
+
+    ..  container:: example
+
+        >>> sequences = [abjad.Sequence([1, 2, 3]), abjad.Sequence(["a", "b"])]
+        >>> for sequence in abjad.enumerate.outer_product(sequences):
+        ...     sequence
+        ...
+        [1, 'a']
+        [1, 'b']
+        [2, 'a']
+        [2, 'b']
+        [3, 'a']
+        [3, 'b']
+
+    ..  container:: example
+
+        >>> sequences = [[1, 2, 3], ["a", "b"], ["X", "Y"]]
+        >>> for sequence in abjad.enumerate.outer_product(sequences):
+        ...     sequence
+        ...
+        [1, 'a', 'X']
+        [1, 'a', 'Y']
+        [1, 'b', 'X']
+        [1, 'b', 'Y']
+        [2, 'a', 'X']
+        [2, 'a', 'Y']
+        [2, 'b', 'X']
+        [2, 'b', 'Y']
+        [3, 'a', 'X']
+        [3, 'a', 'Y']
+        [3, 'b', 'X']
+        [3, 'b', 'Y']
+
+    ..  container:: example
+
+        >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
+        >>> for sequence in abjad.enumerate.outer_product(sequences):
+        ...     sequence
+        ...
+        [1, 4, 6]
+        [1, 4, 7]
+        [1, 4, 8]
+        [1, 5, 6]
+        [1, 5, 7]
+        [1, 5, 8]
+        [2, 4, 6]
+        [2, 4, 7]
+        [2, 4, 8]
+        [2, 5, 6]
+        [2, 5, 7]
+        [2, 5, 8]
+        [3, 4, 6]
+        [3, 4, 7]
+        [3, 4, 8]
+        [3, 5, 6]
+        [3, 5, 7]
+        [3, 5, 8]
+
+    Returns list of lists.
+    """
+
+    def _helper(sequence_1, sequence_2):
+        result = []
+        for item_1 in sequence_1:
+            for item_2 in sequence_2:
+                result.extend([item_1 + [item_2]])
+        return result
+
+    argument = list(argument)
+    argument[0] = [[_] for _ in argument[0]]
+    result = functools.reduce(_helper, argument)
+    return result
 
 
 def yield_combinations(argument, minimum_length=None, maximum_length=None):
@@ -255,87 +326,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
             if isinstance(argument, str):
                 yield "".join(sublist)
             else:
-                yield _sequence.Sequence(items=sublist)
-
-
-def yield_outer_product(argument):
-    """
-    Yields outer product of sequences in sequence.
-
-    ..  container:: example
-
-        >>> sequences = [abjad.Sequence([1, 2, 3]), abjad.Sequence(['a', 'b'])]
-        >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
-        ...     sequence_
-        ...
-        Sequence([1, 'a'])
-        Sequence([1, 'b'])
-        Sequence([2, 'a'])
-        Sequence([2, 'b'])
-        Sequence([3, 'a'])
-        Sequence([3, 'b'])
-
-    ..  container:: example
-
-        >>> sequences = [[1, 2, 3], ['a', 'b'], ['X', 'Y']]
-        >>> sequences = [abjad.Sequence(_) for _ in sequences]
-        >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
-        ...     sequence_
-        ...
-        Sequence([1, 'a', 'X'])
-        Sequence([1, 'a', 'Y'])
-        Sequence([1, 'b', 'X'])
-        Sequence([1, 'b', 'Y'])
-        Sequence([2, 'a', 'X'])
-        Sequence([2, 'a', 'Y'])
-        Sequence([2, 'b', 'X'])
-        Sequence([2, 'b', 'Y'])
-        Sequence([3, 'a', 'X'])
-        Sequence([3, 'a', 'Y'])
-        Sequence([3, 'b', 'X'])
-        Sequence([3, 'b', 'Y'])
-
-    ..  container:: example
-
-        >>> sequences = [[1, 2, 3], [4, 5], [6, 7, 8]]
-        >>> sequences = [abjad.Sequence(_) for _ in sequences]
-        >>> for sequence_ in abjad.enumerate.yield_outer_product(sequences):
-        ...     sequence_
-        ...
-        Sequence([1, 4, 6])
-        Sequence([1, 4, 7])
-        Sequence([1, 4, 8])
-        Sequence([1, 5, 6])
-        Sequence([1, 5, 7])
-        Sequence([1, 5, 8])
-        Sequence([2, 4, 6])
-        Sequence([2, 4, 7])
-        Sequence([2, 4, 8])
-        Sequence([2, 5, 6])
-        Sequence([2, 5, 7])
-        Sequence([2, 5, 8])
-        Sequence([3, 4, 6])
-        Sequence([3, 4, 7])
-        Sequence([3, 4, 8])
-        Sequence([3, 5, 6])
-        Sequence([3, 5, 7])
-        Sequence([3, 5, 8])
-
-    Returns sequence generator.
-    """
-
-    def _helper(sequence_1, sequence_2):
-        result = []
-        for item_1 in sequence_1:
-            for item_2 in sequence_2:
-                result.extend([item_1 + [item_2]])
-        return result
-
-    sequences = [_sequence.Sequence(_) for _ in argument]
-    sequences[0] = [[_] for _ in sequences[0]]
-    result = functools.reduce(_helper, sequences)
-    for element in result:
-        yield _sequence.Sequence(items=element)
+                yield _sequence.Sequence(sublist)
 
 
 def yield_pairs(argument):
@@ -389,7 +380,7 @@ def yield_pairs(argument):
         start = i + 1
         for item_ in argument[start:]:
             pair = [item, item_]
-            yield _sequence.Sequence(items=pair)
+            yield _sequence.Sequence(pair)
 
 
 def yield_partitions(argument):
@@ -434,8 +425,8 @@ def yield_partitions(argument):
             else:
                 part = [n]
                 partition.append(part)
-        parts = [_sequence.Sequence(items=_) for _ in partition]
-        partition = _sequence.Sequence(items=parts)
+        parts = [_sequence.Sequence(_) for _ in partition]
+        partition = _sequence.Sequence(parts)
         yield partition
 
 
@@ -460,7 +451,7 @@ def yield_permutations(argument):
     _argument = _sequence.Sequence(argument)
     length = len(_argument)
     for permutation in itertools.permutations(tuple(range(length))):
-        permutation = _sequence.Sequence(items=permutation)
+        permutation = _sequence.Sequence(permutation)
         yield _argument.permute(permutation)
 
 

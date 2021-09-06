@@ -413,7 +413,7 @@ can start building our score.
 
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile(items=[lilypond_preamble, subtitle,  score])
+    >>> lilypond_file = abjad.LilyPondFile([lilypond_preamble, subtitle,  score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -429,7 +429,7 @@ can start building our score.
 
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile(items=[lilypond_preamble, subtitle, score])
+    >>> lilypond_file = abjad.LilyPondFile([lilypond_preamble, subtitle, score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -442,7 +442,7 @@ can start building our score.
     >>> choices = [9, 10, 9, 10, 9, 10, 9, 2, 9, 10, 9, 10, 9, 10, 9, 2]
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile(items=[lilypond_preamble, subtitle, score])
+    >>> lilypond_file = abjad.LilyPondFile([lilypond_preamble, subtitle, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Oberholtzer (2.19), Bača (3.2); attr. W. A. Mozart.]`

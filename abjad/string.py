@@ -387,44 +387,10 @@ class String(str):
             return True
         return bool(String.hyphen_delimited_lowercase_file_name_regex.match(self))
 
-    def is_introduction_segment_name(self) -> bool:
-        """
-        Is true when string is introductory segment name.
-
-        ..  container:: example
-
-            >>> abjad.String('_').is_introduction_segment_name()
-            True
-            >>> abjad.String('_1').is_introduction_segment_name()
-            True
-            >>> abjad.String('_2').is_introduction_segment_name()
-            True
-            >>> abjad.String('_99').is_introduction_segment_name()
-            True
-
-            >>> abjad.String('__').is_introduction_segment_name()
-            False
-            >>> abjad.String('__1').is_introduction_segment_name()
-            False
-
-            >>> abjad.String('A').is_introduction_segment_name()
-            False
-            >>> abjad.String('1').is_introduction_segment_name()
-            False
-
-        """
-        if not self:
-            return False
-        if self[0] != "_":
-            return False
-        if bool(self[1:]) and not self[1:].isdigit():
-            return False
-        return True
-
     def is_lilypond_identifier(self) -> bool:
         """
-        Is true when string starts with a letter and contains only letters
-        and underscores thereafter.
+        Is true when string starts with a letter and either 1. contains only letters and
+        underscores thereafter, or 2. contains only letters, numbers and dots thereafter.
 
         ..  container:: example
 
@@ -455,11 +421,34 @@ class String(str):
             >>> abjad.String('Violin 1').is_lilypond_identifier()
             False
 
+        ..  container:: example
+
+            >>> abjad.String('Violin.1').is_lilypond_identifier()
+            True
+            >>> abjad.String('Violin.1.1').is_lilypond_identifier()
+            True
+            >>> abjad.String('Violin.1_1').is_lilypond_identifier()
+            False
+            >>> abjad.String('Violin_1.1').is_lilypond_identifier()
+            False
+
         """
         if self and self[0] == "_":
             return False
+        if self and self[0] == ".":
+            return False
+        if "_" in self:
+            for character in self:
+                if not (character.isalpha() or character == "_"):
+                    return False
+            return True
+        if "." in self:
+            for character in self:
+                if not (character.isalnum() or character == "."):
+                    return False
+            return True
         for character in self:
-            if not (character.isalpha() or character == "_"):
+            if not character.isalpha():
                 return False
         return True
 

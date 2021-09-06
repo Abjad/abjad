@@ -1,4 +1,5 @@
 import os
+import pathlib
 import re
 import shutil
 import tempfile
@@ -29,7 +30,6 @@ def as_ly(
     assert ly_file_path is not None, repr(ly_file_path)
     ly_file_path = str(ly_file_path)
     ly_file_path = os.path.expanduser(ly_file_path)
-    assert ly_file_path.endswith(".ly"), ly_file_path
     timer = Timer()
     with timer:
         string = lilypond_file._get_lilypond_format()
@@ -37,10 +37,11 @@ def as_ly(
     directory = os.path.dirname(ly_file_path)
     io._ensure_directory_existence(directory)
     with open(ly_file_path, "w") as file_pointer:
-        file_pointer.write(string)
+        print(string, file=file_pointer)
     return ly_file_path, abjad_formatting_time
 
 
+# TODO: remove remove_ly keyword
 def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     """
     Persists ``argument`` as MIDI file.
@@ -53,14 +54,11 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     else:
         lilypond_file = illustrate(argument, **keywords)
     assert hasattr(lilypond_file, "score_block")
-    if midi_file_path is not None:
-        midi_file_path = os.path.expanduser(midi_file_path)
-        without_extension = os.path.splitext(midi_file_path)[0]
-        ly_file_path = f"{without_extension}.ly"
-    else:
-        ly_file_path = None
-    result = as_ly(argument, ly_file_path, **keywords)
-    ly_file_path, abjad_formatting_time = result
+    assert midi_file_path is not None, repr(midi_file_path)
+    midi_file_path = os.path.expanduser(midi_file_path)
+    midi_file_path = pathlib.Path(midi_file_path)
+    ly_file_path = midi_file_path.with_suffix(".ly")
+    ly_file_path, abjad_formatting_time = as_ly(argument, ly_file_path, **keywords)
     timer = Timer()
     with timer:
         success = io.run_lilypond(ly_file_path)
@@ -81,6 +79,7 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     )
 
 
+# TODO: remove remove_ly keyword
 def as_pdf(
     argument,
     pdf_file_path,
@@ -125,6 +124,7 @@ def as_pdf(
     )
 
 
+# TODO: remove remove_ly keyword
 def as_png(
     argument,
     png_file_path,

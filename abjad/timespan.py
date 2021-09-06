@@ -203,7 +203,7 @@ class Timespan:
 
     __documentation_section__ = "Timespans"
 
-    __slots__ = ("_expression", "_start_offset", "_stop_offset")
+    __slots__ = ("_start_offset", "_stop_offset")
 
     ### INITIALIZER ###
 
@@ -212,7 +212,6 @@ class Timespan:
         start_offset=None,
         stop_offset=None,
     ) -> None:
-        self._expression = None
         if isinstance(start_offset, type(self)):
             raise Exception("can not initialize from timespan.")
         if isinstance(stop_offset, type(self)):
