@@ -1,7 +1,7 @@
 import typing
 
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
-from ..storage import StorageFormatManager
 
 
 class StopHairpin:
@@ -38,7 +38,7 @@ class StopHairpin:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 

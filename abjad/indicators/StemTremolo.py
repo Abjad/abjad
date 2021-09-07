@@ -1,6 +1,7 @@
-from .. import enums, math
+from .. import enums
+from .. import format as _format
+from .. import math
 from ..bundle import LilyPondFormatBundle
-from ..storage import FormatSpecification, StorageFormatManager
 
 
 class StemTremolo:
@@ -104,7 +105,7 @@ class StemTremolo:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -116,7 +117,7 @@ class StemTremolo:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """
@@ -144,7 +145,7 @@ class StemTremolo:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(client=self, storage_format_is_indented=False)
+        return _format.FormatSpecification(storage_format_is_not_indented=True)
 
     def _get_lilypond_format(self):
         return str(self)

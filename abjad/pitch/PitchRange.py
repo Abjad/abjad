@@ -2,7 +2,7 @@ import functools
 import numbers
 import typing
 
-from ..storage import FormatSpecification, StorageFormatManager
+from .. import format as _format
 from . import _lib
 from .Octave import Octave
 from .pitchclasses import NamedPitchClass
@@ -36,9 +36,10 @@ class PitchRange:
 
         ..  docs::
 
-            >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+            >>> score = lilypond_file["Score"]
+            >>> string = abjad.lilypond(score)
             >>> print(string)
-            \new Score
+            \context Score = "Score"
             \with
             {
                 \override BarLine.stencil = ##f
@@ -47,7 +48,7 @@ class PitchRange:
                 \override TimeSignature.stencil = ##f
             }
             <<
-                \new PianoStaff
+                \context PianoStaff = "Piano_Staff"
                 <<
                     \context Staff = "Treble_Staff"
                     {
@@ -301,7 +302,7 @@ class PitchRange:
 
         Returns true or false.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self):
         """
@@ -357,7 +358,7 @@ class PitchRange:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE PROPERTIES ###
 
@@ -407,12 +408,10 @@ class PitchRange:
                     return self.start_pitch < pitch < self.stop_pitch
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            self,
+        return _format.FormatSpecification(
             coerce_for_equality=True,
-            repr_is_indented=False,
             storage_format_args_values=[self.range_string],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
         )
 
     def _get_named_range_string(self):

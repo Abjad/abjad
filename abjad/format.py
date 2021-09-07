@@ -1,286 +1,548 @@
-from . import bundle as _bundle
-from . import enums, overrides, storage
-from . import tag as _tag
-from .new import new
+import collections
+import dataclasses
+import importlib
+import inspect
+import numbers
+import types
+import typing
+
+import quicktions
+import uqbar
 
 
-def remove_tags(string) -> str:
+@dataclasses.dataclass
+class FormatSpecification:
     """
-    Removes all tags from ``string``.
-    """
-    lines = []
-    for line in string.split("\n"):
-        if "%!" not in line:
-            lines.append(line)
-            continue
-        tag_start = line.find("%!")
-        line = line[:tag_start]
-        line = line.rstrip()
-        if line:
-            lines.append(line)
-    string = "\n".join(lines)
-    return string
-
-
-class LilyPondFormatManager:
-    """
-    Manages LilyPond formatting logic.
+    Format specification.
     """
 
-    ### CLASS VARIABLES ###
+    coerce_for_equality: bool = False
+    repr_args_values: typing.Optional[tuple] = None
+    repr_is_bracketed: bool = False
+    repr_is_indented: bool = False
+    repr_keyword_names: typing.Optional[tuple] = None
+    repr_text: typing.Optional[str] = None
+    storage_format_args_values: typing.Optional[tuple] = None
+    storage_format_forced_override: typing.Optional[str] = None
+    storage_format_is_bracketed: bool = False
+    storage_format_is_not_indented: bool = False
+    storage_format_keyword_names: typing.Optional[tuple] = None
+    storage_format_text: typing.Optional[str] = None
+    template_names: typing.Optional[tuple] = None
 
-    __documentation_section__ = "LilyPond formatting"
 
-    __slots__ = ()
+def _dispatch_formatting(argument, as_storage_format=True, is_indented=True):
+    if isinstance(argument, types.MethodType):
+        return []
+    elif isinstance(argument, type):
+        return _format_class(argument, as_storage_format, is_indented)
+    elif as_storage_format and hasattr(argument, "_get_format_specification"):
+        pieces = _format_specced_object(argument, as_storage_format=as_storage_format)
+        return list(pieces)
+    elif not as_storage_format and hasattr(argument, "_get_format_specification"):
+        pieces = _format_specced_object(argument, as_storage_format=as_storage_format)
+        return list(pieces)
+    elif isinstance(argument, (list, tuple)):
+        return _format_sequence(argument, as_storage_format, is_indented)
+    elif isinstance(argument, collections.OrderedDict):
+        return _format_ordered_mapping(argument, as_storage_format, is_indented)
+    elif hasattr(argument, "_collection") and isinstance(
+        argument._collection, collections.OrderedDict
+    ):
+        return _format_ordered_mapping(argument, as_storage_format, is_indented)
+    elif isinstance(argument, dict):
+        return _format_mapping(argument, as_storage_format, is_indented)
+    elif isinstance(argument, float):
+        return repr(round(argument, 15)).split("\n")
+    return repr(argument).split("\n")
 
-    ### SPECIAL METHODS ###
 
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return storage.StorageFormatManager(self).get_repr_format()
+def _format_class(argument, as_storage_format, is_indented):
+    if as_storage_format:
+        root_package_name = _get_module_path_parts(argument)[0]
+        root_package = importlib.import_module(root_package_name)
+        parts = [root_package_name]
+        if argument.__name__ not in dir(root_package):
+            tools_package_name = _get_tools_package_name(argument)
+            parts.append(tools_package_name)
+        parts.append(argument.__name__)
+        result = ".".join(parts)
+    else:
+        result = argument.__name__
+    return [result]
 
-    ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _collect_indicators(component):
-        wrappers = []
-        for parent in component._get_parentage():
-            wrappers_ = parent._get_indicators(unwrap=False)
-            wrappers.extend(wrappers_)
-        up_markup_wrappers = []
-        down_markup_wrappers = []
-        neutral_markup_wrappers = []
-        context_wrappers = []
-        noncontext_wrappers = []
-        # classify wrappers attached to component
-        for wrapper in wrappers:
-            # skip nonprinting indicators like annotation
-            indicator = wrapper.indicator
-            if not hasattr(indicator, "_get_lilypond_format") and not hasattr(
-                indicator, "_get_lilypond_format_bundle"
-            ):
-                continue
-            elif wrapper.annotation is not None:
-                continue
-            # skip comments and commands unless attached directly to us
-            elif (
-                wrapper.context is None
-                and hasattr(wrapper.indicator, "_format_leaf_children")
-                and not getattr(wrapper.indicator, "_format_leaf_children")
-                and wrapper.component is not component
-            ):
-                continue
-            # store markup wrappers
-            elif wrapper.indicator.__class__.__name__ == "Markup":
-                if wrapper.indicator.direction is enums.Up:
-                    up_markup_wrappers.append(wrapper)
-                elif wrapper.indicator.direction is enums.Down:
-                    down_markup_wrappers.append(wrapper)
-                elif wrapper.indicator.direction in (enums.Center, None):
-                    neutral_markup_wrappers.append(wrapper)
-            # store context wrappers
-            elif wrapper.context is not None:
-                if wrapper.annotation is None and wrapper.component is component:
-                    context_wrappers.append(wrapper)
-            # store noncontext wrappers
-            else:
-                noncontext_wrappers.append(wrapper)
-        indicators = (
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
-            context_wrappers,
-            noncontext_wrappers,
+def _format_mapping(argument, as_storage_format, is_indented):
+    result = []
+    prefix, infix, suffix = _get_whitespace(is_indented)
+    result.append("{" + infix)
+    for key, value in sorted(argument.items()):
+        key_pieces = _dispatch_formatting(
+            key, as_storage_format=as_storage_format, is_indented=is_indented
         )
-        return indicators
+        value_pieces = _dispatch_formatting(
+            value, as_storage_format=as_storage_format, is_indented=is_indented
+        )
+        for line in key_pieces[:-1]:
+            result.append(prefix + line)
+        result.append(f"{prefix}{key_pieces[-1]}: {value_pieces[0]}")
+        for line in value_pieces[1:]:
+            result.append(prefix + line)
+        result[-1] = result[-1] + suffix
+    if not is_indented:
+        result[-1] = result[-1].rstrip(suffix) + infix
+    result.append(prefix + "}")
+    return result
 
-    @staticmethod
-    def _populate_context_setting_format_contributions(component, bundle):
-        result = []
-        if hasattr(component, "_lilypond_type"):
-            strings = overrides.setting(component)._format_in_with_block()
-            result.extend(strings)
+
+def _format_ordered_mapping(argument, as_storage_format, is_indented):
+    result = []
+    prefix, infix, suffix = _get_whitespace(is_indented)
+    result.append("[" + infix)
+    for item in list(argument.items()):
+        item_pieces = _dispatch_formatting(
+            item, as_storage_format=as_storage_format, is_indented=is_indented
+        )
+        for line in item_pieces:
+            result.append(prefix + line)
+        result[-1] = result[-1] + suffix
+    if not is_indented:
+        result[-1] = result[-1].rstrip(suffix) + infix
+    result.append(prefix + "]")
+    return result
+
+
+def _format_sequence(argument, as_storage_format, is_indented):
+    result = []
+    prefix, infix, suffix = _get_whitespace(is_indented)
+    # just return the repr, if all contents are builtin types
+    prototype = (bool, int, float, str, type(None))
+    if all(isinstance(x, prototype) for x in argument):
+        piece = repr(argument)
+        if len(piece) < 50:
+            return [repr(argument)]
+    if isinstance(argument, list):
+        braces = "[", "]"
+    else:
+        braces = "(", ")"
+    result.append(braces[0] + infix)
+    for x in argument:
+        pieces = _dispatch_formatting(
+            x, as_storage_format=as_storage_format, is_indented=is_indented
+        )
+        for line in pieces[:-1]:
+            result.append(prefix + line)
+        result.append(prefix + pieces[-1] + suffix)
+    if not is_indented:
+        if isinstance(argument, list) or 1 < len(argument):
+            result[-1] = result[-1].rstrip(suffix)
         else:
-            strings = overrides.setting(component)._format_inline()
-            result.extend(strings)
-        result.sort()
-        bundle.context_settings.extend(result)
+            result[-1] = result[-1].rstrip()
+    result.append(prefix + braces[1])
+    return result
 
-    @staticmethod
-    def _populate_context_wrapper_format_contributions(
-        component, bundle, context_wrappers
-    ):
-        for wrapper in context_wrappers:
-            format_pieces = wrapper._get_format_pieces()
-            if isinstance(format_pieces, type(bundle)):
-                bundle.update(format_pieces)
-            else:
-                format_slot = wrapper.indicator._format_slot
-                bundle.get(format_slot).indicators.extend(format_pieces)
 
-    @staticmethod
-    def _populate_grob_override_format_contributions(component, bundle):
-        result = []
-        once = hasattr(component, "_written_duration")
-        grob = overrides.override(component)
-        contributions = grob._list_format_contributions("override", once=once)
-        for string in result[:]:
-            if "NoteHead" in string and "pitch" in string:
-                contributions.remove(string)
-        try:
-            written_pitch = component.written_pitch
-            arrow = written_pitch.arrow
-        except AttributeError:
-            arrow = None
-        if arrow in (enums.Up, enums.Down):
-            contributions_ = written_pitch._list_format_contributions()
-            contributions.extend(contributions_)
-        bundle.grob_overrides.extend(contributions)
-
-    @staticmethod
-    def _populate_grob_revert_format_contributions(component, bundle):
-        if not hasattr(component, "_written_duration"):
-            contributions = overrides.override(component)._list_format_contributions(
-                "revert"
+def _format_specced_object(argument, as_storage_format=True):
+    if hasattr(argument, "_get_format_specification"):
+        specification = argument._get_format_specification()
+        if specification.storage_format_forced_override is not None:
+            return [specification.storage_format_forced_override]
+    formatting_keywords = _get_formatting_keywords(argument, as_storage_format)
+    args_values = formatting_keywords["args_values"]
+    as_storage_format = formatting_keywords["as_storage_format"]
+    is_bracketed = formatting_keywords["is_bracketed"]
+    is_indented = formatting_keywords["is_indented"]
+    keyword_names = formatting_keywords["keyword_names"]
+    text = formatting_keywords["text"]
+    result = []
+    if is_bracketed:
+        result.append("<")
+    if text is not None:
+        result.append(text)
+    else:
+        prefix, infix, suffix = _get_whitespace(is_indented)
+        class_name_prefix = _get_class_name_prefix(argument, as_storage_format)
+        positional_argument_pieces = []
+        for value in args_values:
+            pieces = _dispatch_formatting(
+                value,
+                as_storage_format=as_storage_format,
+                is_indented=is_indented,
             )
-            bundle.grob_reverts.extend(contributions)
+            for piece in pieces[:-1]:
+                positional_argument_pieces.append(prefix + piece)
+            positional_argument_pieces.append(prefix + pieces[-1] + suffix)
+        keyword_argument_pieces = []
+        for name in keyword_names:
+            value = _get(argument, name)
+            if value is None or isinstance(value, types.MethodType):
+                continue
+            pieces = _dispatch_formatting(
+                value,
+                as_storage_format=as_storage_format,
+                is_indented=is_indented,
+            )
+            pieces[0] = f"{name}={pieces[0]}"
+            for piece in pieces[:-1]:
+                keyword_argument_pieces.append(prefix + piece)
+            keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
+        if not positional_argument_pieces and not keyword_argument_pieces:
+            result.append(f"{class_name_prefix}()")
+        else:
+            result.append(f"{class_name_prefix}({infix}")
+            result.extend(positional_argument_pieces)
+            if positional_argument_pieces and not keyword_argument_pieces:
+                result[-1] = result[-1].rstrip(suffix) + infix
+            else:
+                result.extend(keyword_argument_pieces)
+            if not as_storage_format:
+                result[-1] = result[-1].rstrip(suffix) + infix
+            if is_indented:
+                result.append(f"{prefix})")
+            else:
+                result.append(")")
+    if is_bracketed:
+        result.append(">")
+    if not is_indented:
+        return ["".join(result)]
+    return result
 
-    @staticmethod
-    def _populate_indicator_format_contributions(component, bundle):
-        (
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
-            context_wrappers,
-            noncontext_wrappers,
-        ) = LilyPondFormatManager._collect_indicators(component)
-        LilyPondFormatManager._populate_markup_format_contributions(
-            component,
-            bundle,
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
-        )
-        LilyPondFormatManager._populate_context_wrapper_format_contributions(
-            component, bundle, context_wrappers
-        )
-        LilyPondFormatManager._populate_noncontext_wrapper_format_contributions(
-            component, bundle, noncontext_wrappers
-        )
 
-    @staticmethod
-    def _populate_markup_format_contributions(
-        component,
-        bundle,
-        up_markup_wrappers,
-        down_markup_wrappers,
-        neutral_markup_wrappers,
-    ):
-        for wrappers in (
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
+def _get(argument, name):
+    value = None
+    try:
+        value = getattr(argument, name, None)
+        if value is None:
+            value = getattr(argument, "_" + name, None)
+        if value is None:
+            value = getattr(argument, "_" + name.rstrip("_"), None)
+    except AttributeError:
+        try:
+            value = argument[name]
+        except (TypeError, KeyError):
+            value = None
+    return value
+
+
+def _get_class_name_prefix(argument, as_storage_format) -> str:
+    if not isinstance(argument, type):
+        class_name = type(argument).__name__
+    else:
+        class_name = argument.__name__
+    if as_storage_format:
+        root_package_name = _get_module_path_parts(argument)[0]
+        root_package = importlib.import_module(root_package_name)
+        parts = []
+        if root_package_name != "abjadext":
+            parts.append(root_package_name)
+        if class_name not in dir(root_package):
+            name = _get_tools_package_name(argument)
+            parts.append(name)
+        parts.append(class_name)
+        return ".".join(parts)
+    return class_name
+
+
+def _get_formatting_keywords(argument, as_storage_format=True):
+    if hasattr(argument, "_get_format_specification"):
+        specification = argument._get_format_specification()
+    else:
+        specification = FormatSpecification()
+    via = "_get_format_specification()"
+    if as_storage_format:
+        args_values = specification.storage_format_args_values
+        is_bracketed = specification.storage_format_is_bracketed
+        is_indented = not specification.storage_format_is_not_indented
+        keyword_names = specification.storage_format_keyword_names
+        text = specification.storage_format_text
+    else:
+        args_values = specification.repr_args_values
+        if args_values is None:
+            args_values = specification.storage_format_args_values
+        is_bracketed = specification.repr_is_bracketed
+        is_indented = specification.repr_is_indented
+        keyword_names = specification.repr_keyword_names
+        if keyword_names is None:
+            keyword_names = specification.storage_format_keyword_names
+        text = specification.repr_text
+        if text is None:
+            text = specification.storage_format_text
+    result = _inspect_signature(argument)
+    signature_positional_names = result[0]
+    signature_keyword_names = result[1]
+    signature_accepts_args = result[2]
+    if keyword_names is None:
+        keyword_names = signature_keyword_names
+    if args_values is None:
+        args_values = tuple(_get(argument, _) for _ in signature_positional_names)
+    if args_values:
+        keyword_names = list(keyword_names)
+        names = signature_positional_names
+        if not signature_accepts_args:
+            names += signature_keyword_names
+        names = names[: len(args_values)]
+        for name in names:
+            if name in keyword_names:
+                keyword_names.remove(name)
+        keyword_names = tuple(keyword_names)
+    return dict(
+        args_values=args_values,
+        as_storage_format=as_storage_format,
+        is_bracketed=is_bracketed,
+        is_indented=is_indented,
+        keyword_names=keyword_names,
+        text=text,
+        via=via,
+    )
+
+
+def _get_module_path_parts(subject):
+    if isinstance(subject, type):
+        class_ = subject
+    elif type(subject) is subject.__class__:
+        class_ = type(subject)
+    class_name = class_.__name__
+    parts = class_.__module__.split(".")
+    while parts and parts[-1] == class_name:
+        parts.pop()
+    parts.append(class_name)
+    return parts
+
+
+def _get_tools_package_name(argument):
+    parts = _get_module_path_parts(argument)
+    if parts[0] == "abjadext":
+        return parts[1]
+    if parts[0] == "abjad":
+        for part in reversed(parts):
+            if part == parts[-1]:
+                continue
+            return part
+    return ".".join(parts[:-1])
+
+
+def _get_whitespace(is_indented):
+    if is_indented:
+        return "    ", "\n", ",\n"
+    return "", "", ", "
+
+
+def _inspect_signature(subject):
+    positional_names = []
+    keyword_names = []
+    accepts_args = False
+    accepts_keywords = False
+    if not isinstance(subject, type):
+        subject = type(subject)
+    try:
+        signature = inspect.signature(subject)
+    except ValueError:
+        return (
+            positional_names,
+            keyword_names,
+            accepts_args,
+            accepts_keywords,
+        )
+    for name, parameter in signature.parameters.items():
+        if parameter.kind == inspect._POSITIONAL_OR_KEYWORD:
+            if parameter.default == parameter.empty:
+                positional_names.append(name)
+            else:
+                keyword_names.append(name)
+        # Python 3 allow keyword only parameters:
+        elif (
+            hasattr(inspect, "_KEYWORD_ONLY")
+            and parameter.kind == inspect._KEYWORD_ONLY
         ):
-            for wrapper in wrappers:
-                if wrapper.indicator.direction is None:
-                    markup = new(wrapper.indicator, direction="-")
-                else:
-                    markup = wrapper.indicator
-                format_pieces = markup._get_format_pieces()
-                format_pieces = _tag.double_tag(
-                    format_pieces, wrapper.tag, deactivate=wrapper.deactivate
+            keyword_names.append(name)
+        elif parameter.kind == inspect._VAR_POSITIONAL:
+            accepts_args = True
+        elif parameter.kind == inspect._VAR_KEYWORD:
+            accepts_keywords = True
+    return (positional_names, keyword_names, accepts_args, accepts_keywords)
+
+
+def _make_hashable(value):
+    if isinstance(value, dict):
+        value = tuple(value.items())
+    elif isinstance(value, list):
+        value = tuple(value)
+    elif isinstance(value, (set, frozenset)):
+        value = tuple(value)
+    return value
+
+
+def _to_evaluable_string(argument):
+    if argument is None:
+        pass
+    elif isinstance(argument, str):
+        argument = repr(argument)
+    elif argument.__class__ is quicktions.Fraction:
+        argument = f"quicktions.{argument!r}"
+    elif isinstance(argument, quicktions.Fraction):
+        argument = f"abjad.{argument!r}"
+    elif isinstance(argument, numbers.Number):
+        argument = str(argument)
+    elif isinstance(argument, (list, tuple)):
+        item_strings = []
+        item_count = len(argument)
+        for item in argument:
+            item_string = _to_evaluable_string(item)
+            item_strings.append(item_string)
+        items = ", ".join(item_strings)
+        if isinstance(argument, list):
+            argument = f"[{items}]"
+        elif isinstance(argument, tuple):
+            if item_count == 1:
+                items += ","
+            argument = f"({items})"
+        else:
+            raise Exception(repr(argument))
+    elif isinstance(argument, slice):
+        argument = repr(argument)
+    elif isinstance(argument, uqbar.enums.StrictEnumeration):
+        argument = f"abjad.{argument!r}"
+    # abjad object
+    elif not inspect.isclass(argument):
+        try:
+            argument = storage(argument)
+        except (TypeError, ValueError):
+            try:
+                argument = storage(argument)
+            except (TypeError, ValueError):
+                raise Exception(f"can not make storage format: {argument!r}.")
+    # abjad class
+    elif inspect.isclass(argument) and "abjad" in argument.__module__:
+        argument = f"abjad.{argument.__name__}"
+    # builtin class [like tuple used in classes=(tuple,)]
+    elif inspect.isclass(argument) and "abjad" not in argument.__module__:
+        argument = argument.__name__
+    else:
+        raise Exception(f"can not make evaluable string: {argument!r}.")
+    return argument
+
+
+def _wrap_arguments(frame):
+    try:
+        frame_info = inspect.getframeinfo(frame)
+        function_name = frame_info.function
+        argument_info = inspect.getargvalues(frame)
+        # bound method
+        if argument_info.args and argument_info.args[0] == "self":
+            self = argument_info.locals["self"]
+            function = getattr(self, function_name)
+            signature = inspect.signature(function)
+            argument_names = argument_info.args[1:]
+        # function
+        else:
+            function = frame.f_globals[function_name]
+            signature = inspect.signature(function)
+            argument_names = argument_info.args[:]
+        argument_strings = []
+        for argument_name in argument_names:
+            argument_value = argument_info.locals[argument_name]
+            parameter = signature.parameters[argument_name]
+            # positional argument
+            if parameter.default == inspect.Parameter.empty:
+                argument_value = _to_evaluable_string(argument_value)
+                argument_string = argument_value
+                argument_strings.append(argument_string)
+            # keyword argument
+            elif argument_value != parameter.default:
+                argument_string = "{argument_name}={argument_value}"
+                argument_value = _to_evaluable_string(argument_value)
+                argument_string = argument_string.format(
+                    argument_name=argument_name,
+                    argument_value=argument_value,
                 )
-                bundle.after.markup.extend(format_pieces)
+                argument_strings.append(argument_string)
+        arguments = ", ".join(argument_strings)
+    finally:
+        del frame
+    return arguments
 
-    @staticmethod
-    def _populate_noncontext_wrapper_format_contributions(
-        component, bundle, noncontext_wrappers
-    ):
-        for wrapper in noncontext_wrappers:
-            indicator = wrapper.indicator
-            if hasattr(indicator, "_get_lilypond_format_bundle"):
-                bundle_ = indicator._get_lilypond_format_bundle()
-                if wrapper.tag:
-                    bundle_.tag_format_contributions(
-                        wrapper.tag, deactivate=wrapper.deactivate
-                    )
-                if bundle_ is not None:
-                    bundle.update(bundle_)
 
-    @staticmethod
-    def _report_leaf_format_contributions(leaf):
-        bundle = LilyPondFormatManager.bundle_format_contributions(leaf)
-        report = ""
-        report += 'slot "absolute before":\n'
-        packet = leaf._format_absolute_before_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "before":\n'
-        packet = leaf._format_before_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "opening":\n'
-        packet = leaf._format_opening_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "contents slot":\n'
-        report += _bundle.LilyPondFormatBundle.indent + "leaf body:\n"
-        string = leaf._format_contents_slot(bundle)[0][1][0]
-        report += (2 * _bundle.LilyPondFormatBundle.indent) + string + "\n"
-        report += 'slot "closing":\n'
-        packet = leaf._format_closing_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "after":\n'
-        packet = leaf._format_after_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "absolute after":\n'
-        packet = leaf._format_absolute_after_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        while report[-1] == "\n":
-            report = report[:-1]
-        return report
+def compare_objects(object_1, object_2) -> bool:
+    """
+    Compares ``object_1`` to ``object_2``.
+    """
+    if hasattr(object_1, "_get_format_specification"):
+        specification = object_1._get_format_specification()
+        coerce_for_equality = specification.coerce_for_equality
+    else:
+        coerce_for_equality = False
 
-    ### PUBLIC METHODS ###
+    if coerce_for_equality:
+        try:
+            object_2 = type(object_1)(object_2)
+        except (TypeError, ValueError):
+            return False
+    elif not isinstance(object_2, type(object_1)):
+        return False
+    template_1 = get_template_dict(object_1)
+    template_2 = get_template_dict(object_2)
+    return template_1 == template_2
 
-    @staticmethod
-    def bundle_format_contributions(component) -> "_bundle.LilyPondFormatBundle":
-        """
-        Gets all format contributions for ``component``.
-        """
-        bundle = _bundle.LilyPondFormatBundle()
-        LilyPondFormatManager._populate_indicator_format_contributions(
-            component, bundle
-        )
-        LilyPondFormatManager._populate_context_setting_format_contributions(
-            component, bundle
-        )
-        LilyPondFormatManager._populate_grob_override_format_contributions(
-            component, bundle
-        )
-        LilyPondFormatManager._populate_grob_revert_format_contributions(
-            component, bundle
-        )
-        bundle.sort_overrides()
-        return bundle
 
-    @staticmethod
-    def left_shift_tags(text, realign=None) -> str:
-        """
-        Left shifts tags in ``strings`` and realigns to column ``realign``.
-        """
-        strings = text.split("\n")
-        strings_ = []
-        for string in strings:
-            if "%@% " not in string or "%!" not in string:
-                strings_.append(string)
-                continue
-            if not string.startswith(4 * " "):
-                strings_.append(string)
-                continue
-            string_ = string[4:]
-            tag_start = string_.find("%!")
-            string_ = list(string_)
-            string_[tag_start:tag_start] = _bundle.LilyPondFormatBundle.indent
-            string_ = "".join(string_)
-            strings_.append(string_)
-        text = "\n".join(strings_)
-        return text
+def get_hash_values(argument):
+    """
+    Gets hash values of ``argument``.
+    """
+    values = []
+    if isinstance(argument, type):
+        values.append(argument)
+    else:
+        values.append(type(argument))
+    template_items = sorted(get_template_dict(argument).items())
+    values.extend(_make_hashable(v) for k, v in template_items)
+    return tuple(values)
+
+
+def get_template_dict(argument):
+    """
+    Gets template dictionary of ``argument``.
+    """
+    if hasattr(argument, "_get_format_specification"):
+        specification = argument._get_format_specification()
+        template_names = specification.template_names
+        keyword_names = specification.storage_format_keyword_names or ()
+    else:
+        template_names = None
+        keyword_names = ()
+    if template_names is None:
+        result = _inspect_signature(argument)
+        signature_positional_names = result[0]
+        signature_keyword_names = result[1]
+        template_names = list(signature_positional_names)
+        template_names.extend(signature_keyword_names)
+        template_names.extend(keyword_names)
+        template_names = sorted(set(template_names))
+    template_dict = collections.OrderedDict()
+    for name in template_names:
+        template_dict[name] = _get(argument, name)
+    return template_dict
+
+
+def get_repr(argument):
+    """
+    Gets repr format of ``argument``.
+    """
+    pieces = _format_specced_object(argument, as_storage_format=False)
+    return "".join(pieces)
+
+
+def storage(argument):
+    """
+    Gets storage format of ``argument``.
+    """
+    if isinstance(argument, dict) and not isinstance(argument, collections.OrderedDict):
+        pieces = _dispatch_formatting(argument)
+        pieces[-1] = pieces[-1] + "\n"
+        pieces.append(")")
+        pieces = ["    " + _ for _ in pieces]
+        pieces.insert(0, "dict(\n")
+        result = "".join(pieces)
+    else:
+        pieces = _format_specced_object(argument, as_storage_format=True)
+        result = "".join(pieces)
+    return result

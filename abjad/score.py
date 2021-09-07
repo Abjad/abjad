@@ -8,6 +8,7 @@ import typing
 import quicktions
 
 from . import enums, exceptions
+from . import format as _format
 from . import math as _math
 from . import tag as _tag
 from . import typings
@@ -20,7 +21,6 @@ from .new import new
 from .overrides import TweakInterface, override, setting, tweak
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
-from .storage import FormatSpecification, StorageFormatManager
 from .timespan import Timespan
 from .typedcollections import TypedList
 
@@ -121,7 +121,7 @@ class Component:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -171,10 +171,10 @@ class Component:
         return []
 
     def _format_component(self, pieces=False):
-        from .format import LilyPondFormatManager
+        from . import lilypondformat as _lilypondformat
 
         result = []
-        bundle = LilyPondFormatManager.bundle_format_contributions(self)
+        bundle = _lilypondformat.bundle_format_contributions(self)
         result.extend(self._format_absolute_before_slot(bundle))
         result.extend(self._format_before_slot(bundle))
         result.extend(self._format_open_brackets_slot(bundle))
@@ -246,11 +246,11 @@ class Component:
         return duration
 
     def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
-        from .format import LilyPondFormatManager
+        from . import lilypondformat as _lilypondformat
 
         result = []
         if bundle is None:
-            bundle = LilyPondFormatManager.bundle_format_contributions(self)
+            bundle = _lilypondformat.bundle_format_contributions(self)
         slot_names = (
             "before",
             "open_brackets",
@@ -281,8 +281,7 @@ class Component:
         summary = self._get_contents_summary()
         if summary:
             values.append(summary)
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             repr_args_values=values,
             storage_format_keyword_names=[],
         )
@@ -654,12 +653,11 @@ class Leaf(Component):
 
     def _get_format_specification(self):
         summary = self._get_compact_representation()
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             repr_is_indented=False,
             repr_args_values=[summary],
             storage_format_args_values=[self._get_lilypond_format()],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=[],
         )
 
@@ -1050,7 +1048,7 @@ class Container(Component):
 
         Traverses top-level items only.
         """
-        from .select import Selection
+        from .selection import Selection
 
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
@@ -1320,8 +1318,7 @@ class Container(Component):
             storage_format_args_values.append(lilypond_format)
             if not self[:].are_leaves():
                 repr_text = self._get_abbreviated_string_format()
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             repr_args_values=repr_args_values,
             repr_keyword_names=repr_keyword_names,
             repr_text=repr_text,
@@ -2687,7 +2684,7 @@ class Chord(Leaf):
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
-        self._note_heads = NoteHeadList(client=self)
+        self._note_heads = NoteHeadList()
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
             parsed = self._parse_lilypond_string(string, language=language)
@@ -3514,7 +3511,6 @@ class NoteHead:
 
     __slots__ = (
         "_alternative",
-        "_client",
         "_is_cautionary",
         "_is_forced",
         "_is_parenthesized",
@@ -3527,18 +3523,12 @@ class NoteHead:
     def __init__(
         self,
         written_pitch=None,
-        client=None,
         is_cautionary=None,
         is_forced=None,
         is_parenthesized=None,
         tweaks=None,
     ):
         self._alternative = None
-        if client is not None:
-            assert hasattr(client, "written_pitch") or hasattr(
-                client, "written_pitches"
-            )
-        self._client = client
         if isinstance(written_pitch, type(self)):
             note_head = written_pitch
             written_pitch = note_head.written_pitch
@@ -3579,7 +3569,7 @@ class NoteHead:
         """
         arguments = (
             self.written_pitch,
-            None,
+            # None,
             self.is_cautionary,
             self.is_forced,
             self.is_parenthesized,
@@ -3589,8 +3579,8 @@ class NoteHead:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when ```argument`` is a note-head with written pitch equal to
-        that of this note-head.
+        Is true when ```argument`` is a note-head with written pitch equal to that of
+        this note-head.
         """
         if isinstance(argument, type(self)):
             return self.written_pitch == argument.written_pitch
@@ -3626,7 +3616,7 @@ class NoteHead:
             NoteHead("cs''")
 
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """
@@ -3675,13 +3665,13 @@ class NoteHead:
             arguments.extend(self.tweaks._get_attribute_pairs())
         arguments = ", ".join([str(_) for _ in arguments])
         repr_text = f"{type(self).__name__}({arguments})"
-        names = list(StorageFormatManager(self).signature_keyword_names)
-        if "client" in names:
-            names.remove("client")
+        result = _format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        names = list(signature_keyword_names)
         if "tweaks" in names:
             names.remove("tweaks")
-        return FormatSpecification(
-            self, repr_text=repr_text, storage_format_keyword_names=names
+        return _format.FormatSpecification(
+            repr_text=repr_text, storage_format_keyword_names=names
         )
 
     def _get_lilypond_format(self, duration=None):
@@ -3796,21 +3786,6 @@ class NoteHead:
             assert isinstance(argument[1], str), repr(argument)
             assert isinstance(argument[2], str), repr(argument)
         self._alternative = argument
-
-    @property
-    def client(self):
-        """
-        Gets client of note-head.
-
-        ..  container:: example
-
-            >>> note_head = abjad.NoteHead(13)
-            >>> note_head.client is None
-            True
-
-        Returns note, chord or none.
-        """
-        return self._client
 
     @property
     def is_cautionary(self) -> bool:
@@ -4046,6 +4021,48 @@ class NoteHead:
             self.alternative[0].written_pitch = written_pitch
 
 
+# TODO: replace in favor of abjad.NoteHead
+class DrumNoteHead(NoteHead):
+    """
+    Drum note-head.
+
+    ..  container:: example
+
+        >>> note_head = abjad.DrumNoteHead("snare")
+        >>> note_head
+        DrumNoteHead('snare')
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Note-heads"
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        written_pitch: str = "snare",
+        is_cautionary: bool = None,
+        is_forced: bool = None,
+        is_parenthesized: bool = None,
+        tweaks: TweakInterface = None,
+    ) -> None:
+        NoteHead.__init__(
+            self,
+            written_pitch=None,
+            is_cautionary=is_cautionary,
+            is_forced=is_forced,
+            is_parenthesized=is_parenthesized,
+            tweaks=tweaks,
+        )
+        assert str(written_pitch) in drums
+        drum_pitch = drums[str(written_pitch)]
+        self._written_pitch = drum_pitch
+
+
 class NoteHeadList(TypedList):
     r"""
     Note-head list.
@@ -4053,10 +4070,7 @@ class NoteHeadList(TypedList):
     ..  container:: example
 
         >>> chord = abjad.Chord([0, 1, 4], (1, 4))
-        >>> note_heads = abjad.NoteHeadList(
-        ...     client=chord,
-        ...     items=[11, 10, 9],
-        ...     )
+        >>> note_heads = abjad.NoteHeadList(items=[11, 10, 9])
 
         >>> string = abjad.storage(note_heads)
         >>> print(string)
@@ -4080,12 +4094,9 @@ class NoteHeadList(TypedList):
 
     __documentation_section__ = "Note-heads"
 
-    __slots__ = ("_client",)
-
     ### INITIALIZER ###
 
-    def __init__(self, items=None, client=None):
-        self._client = client
+    def __init__(self, items=None):
         TypedList.__init__(self, item_class=NoteHead, keep_sorted=True, items=items)
 
     ### PRIVATE METHODS ###
@@ -4094,31 +4105,22 @@ class NoteHeadList(TypedList):
         def coerce_(token):
             if not isinstance(token, NoteHead):
                 token = NoteHead(written_pitch=token)
-                token._client = self.client
             return token
 
         return coerce_(item)
 
     def _get_format_specification(self):
-        names = list(StorageFormatManager(self).signature_keyword_names)
-        if "client" in names:
-            names.remove("client")
+        result = _format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        names = list(signature_keyword_names)
         if "items" in names:
             names.remove("items")
         if "keep_sorted" in names:
             names.remove("keep_sorted")
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self._collection],
             storage_format_keyword_names=names,
         )
-
-    def _on_insertion(self, item):
-        item._client = self.client
-
-    def _on_removal(self, item):
-        item._client = None
 
     ### PUBLIC METHODS ###
 
@@ -4290,59 +4292,6 @@ class NoteHeadList(TypedList):
 
         """
         return super().remove(item)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        """
-        Gets client.
-        """
-        return self._client
-
-
-# TODO: replace in favor of abjad.NoteHead
-class DrumNoteHead(NoteHead):
-    """
-    Drum note-head.
-
-    ..  container:: example
-
-        >>> note_head = abjad.DrumNoteHead('snare')
-        >>> note_head
-        DrumNoteHead('snare')
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Note-heads"
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        written_pitch: str = "snare",
-        client=None,
-        is_cautionary: bool = None,
-        is_forced: bool = None,
-        is_parenthesized: bool = None,
-        tweaks: TweakInterface = None,
-    ) -> None:
-        NoteHead.__init__(
-            self,
-            written_pitch=None,
-            client=client,
-            is_cautionary=is_cautionary,
-            is_forced=is_forced,
-            is_parenthesized=is_parenthesized,
-            tweaks=tweaks,
-        )
-        assert str(written_pitch) in drums
-        drum_pitch = drums[str(written_pitch)]
-        self._written_pitch = drum_pitch
 
 
 class Note(Leaf):
@@ -4537,7 +4486,7 @@ class Note(Leaf):
         elif isinstance(argument, NoteHead):
             self._note_head = argument
         else:
-            note_head = NoteHead(client=self, written_pitch=argument)
+            note_head = NoteHead(written_pitch=argument)
             self._note_head = note_head
 
     @property
@@ -4578,6 +4527,7 @@ class Note(Leaf):
     def written_duration(self, argument):
         return Leaf.written_duration.fset(self, argument)
 
+    # TODO: change Note always to have a note head
     @property
     def written_pitch(self) -> typing.Optional[NamedPitch]:
         """
@@ -5463,8 +5413,7 @@ class Tuplet(Container):
             return r"\tweak edge-height #'(0.7 . 0)"
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             repr_args_values=[self.colon_string, self._get_contents_summary()],
             storage_format_args_values=[self.multiplier, self[:]],
             storage_format_keyword_names=[],
@@ -5633,42 +5582,6 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            The ``default.ily`` stylesheet included in all Abjad API examples
-            includes the following:
-
-            ``\override TupletNumber.text = #tuplet-number::calc-fraction-text``
-
-            This means that even simple tuplets format as explicit fractions:
-
-            >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \times 2/3 {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \times 2/3 {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \times 2/3 {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                }
-
             To illustrate the effect of Abjad's force fraction property, we can
             temporarily restore LilyPond's default tuplet number formatting
             like this:
@@ -5765,14 +5678,14 @@ class Tuplet(Container):
                 {
                     \override TupletNumber.text = \markup { \score
                         {
-                            \new Score
+                            \context Score = "Score"
                             \with
                             {
                                 \override SpacingSpanner.spacing-increment = 0.5
                                 proportionalNotationDuration = ##f
                             }
                             <<
-                                \new RhythmicStaff
+                                \context RhythmicStaff = "Rhythmic_Staff"
                                 \with
                                 {
                                     \remove Time_signature_engraver
@@ -5793,12 +5706,14 @@ class Tuplet(Container):
                                     c'4
                                 }
                             >>
-                            \layout {
+                            \layout
+                            {
                                 indent = 0
                                 ragged-right = ##t
                             }
                         } }
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
                         d'8
                         e'8
@@ -7131,7 +7046,7 @@ class Voice(Context):
                 d''8
             }
 
-        >>> for leaf in abjad.iterate(outer_red_voice).leaves():
+        >>> for leaf in abjad.iterate.leaves(outer_red_voice):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
@@ -7204,7 +7119,7 @@ class Voice(Context):
                 d''8
             }
 
-        >>> for leaf in abjad.iterate(outer_red_voice).leaves():
+        >>> for leaf in abjad.iterate.leaves(outer_red_voice):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
@@ -7277,7 +7192,7 @@ class Voice(Context):
                 d''8
             }
 
-        >>> for leaf in abjad.iterate(outer_red_voice).leaves():
+        >>> for leaf in abjad.iterate.leaves(outer_red_voice):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
@@ -7353,7 +7268,7 @@ class Voice(Context):
                 d''8
             }
 
-        >>> for leaf in abjad.iterate(outer_red_voice).leaves():
+        >>> for leaf in abjad.iterate.leaves(outer_red_voice):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...

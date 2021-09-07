@@ -1,9 +1,10 @@
 import typing
 
-from .. import enums, math
+from .. import enums
+from .. import format as _format
+from .. import math
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
-from ..storage import FormatSpecification, StorageFormatManager
 from ..string import String
 
 
@@ -333,7 +334,7 @@ class Dynamic:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -384,11 +385,9 @@ class Dynamic:
         keywords.append("name_is_textual")
         if self._sforzando is not None:
             keywords.append("sforzando")
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.name],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=keywords,
         )
 
@@ -814,7 +813,7 @@ class Dynamic:
                 f'4
             }
 
-            >>> for leaf in abjad.iterate(voice).leaves():
+            >>> for leaf in abjad.iterate.leaves(voice):
             ...     leaf, abjad.get.effective(leaf, abjad.Dynamic)
             ...
             (Note("c'4"), Dynamic('f'))

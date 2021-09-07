@@ -187,15 +187,13 @@ This LilyPond code styles output:
     ...         \override TimeSignature.stencil = ##f
     ...     }
     ...     indent = 0
-    ... }"""
+    ... }
+    ... """
 
 ----
 
 Twelve major scales
 -------------------
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> string = "C4 G4 D4 A4 E4 B4 F4 Bb4 Eb4 Ab4 Db4 Gb4"
     >>> tonics = string.split()
@@ -208,9 +206,6 @@ Twelve major scales
 Twelve minor scales
 -------------------
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> string = "C4 G4 D4 A4 E4 B4 F4 Bb4 Eb4 Ab4 Db4 Gb4"
     >>> tonics = string.split()
     >>> score = make_score(tonics, "minor")
@@ -221,9 +216,6 @@ Twelve minor scales
 
 Twelve Dorian scales
 --------------------
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> string = "C4 G4 D4 A4 E4 B4 F4 Bb4 Eb4 Ab4 Db4 Gb4"
     >>> tonics = string.split()

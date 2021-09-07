@@ -1,7 +1,7 @@
 import typing
 
+from . import format as _format
 from .lyenv import contexts, engravers, grob_interfaces, interface_properties
-from .storage import StorageFormatManager
 
 
 class LilyPondContext:
@@ -96,7 +96,7 @@ class LilyPondContext:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1168,7 +1168,7 @@ class LilyPondEngraver:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC METHODS ###
 
@@ -1423,7 +1423,7 @@ class LilyPondGrob:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -1745,7 +1745,7 @@ class LilyPondGrobInterface:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC METHODS ###
 

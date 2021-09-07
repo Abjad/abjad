@@ -1,9 +1,9 @@
 import typing
 
 from .. import enums
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
-from ..storage import StorageFormatManager
 
 
 class StopPianoPedal:
@@ -48,7 +48,7 @@ class StopPianoPedal:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 

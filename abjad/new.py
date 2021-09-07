@@ -1,6 +1,6 @@
 import types
 
-from .storage import StorageFormatManager
+from . import format as _format
 
 
 def new(argument, *arguments, **keywords):
@@ -78,8 +78,10 @@ def new(argument, *arguments, **keywords):
     """
     if argument is None:
         return argument
-    manager = StorageFormatManager(argument)
-    template_dict = manager.get_template_dict()
+    result = _format._inspect_signature(argument)
+    signature_positional_names = result[0]
+    signature_accepts_keywords = result[3]
+    template_dict = _format.get_template_dict(argument)
     if not (template_dict):
         message = "low-level class not equipped for new():\n"
         message += f"   {repr(argument)}"
@@ -93,15 +95,15 @@ def new(argument, *arguments, **keywords):
             pair = (subkey, value)
             recursive_arguments[key].append(pair)
             continue
-        if key in template_dict or manager.signature_accepts_keywords:
+        if key in template_dict or signature_accepts_keywords:
             template_dict[key] = value
         elif isinstance(getattr(argument, key, None), types.MethodType):
             method = getattr(argument, key)
             result = method(value)
             if isinstance(result, type(argument)):
                 argument = result
-                manager_ = StorageFormatManager(argument)
-                template_dict.update(manager_.get_template_dict())
+                template_dict_ = _format.get_template_dict(argument)
+                template_dict.update(template_dict_)
         else:
             raise KeyError(f"{type(argument)} has no key {key!r}.")
     for key, pairs in recursive_arguments.items():
@@ -113,7 +115,7 @@ def new(argument, *arguments, **keywords):
         if key in template_dict:
             template_dict[key] = recursed_object
     positional_values = []
-    for name in manager.signature_positional_names:
+    for name in signature_positional_names:
         if name in template_dict:
             positional_values.append(template_dict.pop(name))
     # _positional_arguments_name used, for example, in rhythm-makers

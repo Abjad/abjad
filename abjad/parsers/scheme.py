@@ -3,7 +3,7 @@ import typing
 from ply import lex
 
 from .. import exceptions
-from ..storage import StorageFormatManager
+from .. import format as _format
 from .base import Parser
 
 
@@ -33,13 +33,13 @@ class Scheme:
 
         Returns true or false.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 

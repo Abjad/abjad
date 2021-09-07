@@ -1,10 +1,10 @@
 import functools
 import typing
 
+from .. import format as _format
 from .. import typings
 from ..duration import Multiplier
 from ..markups import Markup
-from ..storage import StorageFormatManager
 
 
 @functools.total_ordering
@@ -96,7 +96,7 @@ class BowContactPoint:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 

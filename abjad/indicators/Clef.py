@@ -2,10 +2,10 @@ import functools
 import numbers
 import typing
 
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
 from ..pitch import _lib as pitch__lib
 from ..pitch.pitches import NamedPitch
-from ..storage import FormatSpecification, StorageFormatManager
 
 
 class Clef:
@@ -224,7 +224,7 @@ class Clef:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -236,7 +236,7 @@ class Clef:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -280,11 +280,9 @@ class Clef:
         }[clef_name]
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.name],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
         )
 
     def _get_lilypond_format(self):
@@ -312,7 +310,7 @@ class Clef:
             >>> maker = abjad.NoteMaker()
             >>> notes = maker(range(-12, -6), [(1, 4)])
             >>> staff = abjad.Staff(notes)
-            >>> pitches = abjad.iterate(staff).pitches()
+            >>> pitches = abjad.iterate.pitches(staff)
             >>> abjad.Clef.from_pitches(pitches)
             Clef('bass')
 
@@ -384,7 +382,7 @@ class Clef:
                 f'4
             }
 
-            >>> for leaf in abjad.iterate(staff).leaves():
+            >>> for leaf in abjad.iterate.leaves(staff):
             ...     leaf, abjad.get.effective(leaf, abjad.Clef)
             ...
             (Note("c'4"), Clef('treble'))
@@ -563,7 +561,7 @@ class StaffPosition:
 
         Returns true or false.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self):
         """
@@ -616,7 +614,7 @@ class StaffPosition:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -634,10 +632,8 @@ class StaffPosition:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
+        return _format.FormatSpecification(
+            storage_format_is_not_indented=True,
             storage_format_args_values=[self.number],
             storage_format_keyword_names=[],
         )

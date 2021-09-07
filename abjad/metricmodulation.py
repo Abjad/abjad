@@ -1,12 +1,13 @@
 import typing
 
-from . import _inspect, enums, illustrators, score, typings
+from . import _inspect, enums
+from . import format as _format
+from . import illustrators, score, typings
 from .bundle import LilyPondFormatBundle
 from .markups import Markup
 from .new import new
 from .ratio import Ratio
-from .select import Selection
-from .storage import StorageFormatManager
+from .selection import Selection
 
 
 class MetricModulation:
@@ -23,11 +24,15 @@ class MetricModulation:
         ...     right_rhythm=abjad.Note("c'4."),
         ...     )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [metric_modulation], includes=["abjad.ily"],
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation #3 #1 #2 #1 #'(1 . 1)
 
     ..  container:: example
@@ -39,7 +44,10 @@ class MetricModulation:
         ...     right_rhythm=abjad.Note("c'4"),
         ...     )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [metric_modulation], includes=["abjad.ily"],
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -51,7 +59,10 @@ class MetricModulation:
         ...     right_rhythm=abjad.Tuplet((4, 5), "c'4"),
         ...     )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [metric_modulation], includes=["abjad.ily"],
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -67,7 +78,10 @@ class MetricModulation:
         ...     right_rhythm=abjad.Tuplet((2, 3), "c8"),
         ...     )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [metric_modulation], includes=["abjad.ily"],
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -85,21 +99,24 @@ class MetricModulation:
         ...     right_rhythm=notes,
         ...     )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [metric_modulation], includes=["abjad.ily"],
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
             >>> print(abjad.lilypond(metric_modulation))
             \markup { \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -120,7 +137,8 @@ class MetricModulation:
                             c'4
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -129,14 +147,14 @@ class MetricModulation:
             \hspace #-0.5
             \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -159,7 +177,8 @@ class MetricModulation:
                             c'16
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -177,21 +196,24 @@ class MetricModulation:
         ...     right_rhythm=tuplet,
         ...     )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [metric_modulation], includes=["abjad.ily"],
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
             >>> print(abjad.lilypond(metric_modulation))
             \markup { \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -212,7 +234,8 @@ class MetricModulation:
                             c'4
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -221,14 +244,14 @@ class MetricModulation:
             \hspace #-0.5
             \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -247,14 +270,16 @@ class MetricModulation:
                         }
                         {
                             \tweak edge-height #'(0.7 . 0)
-                            \times 2/3 {
+                            \times 2/3
+                            {
                                 c'4
                                 ~
                                 c'16
                             }
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -276,7 +301,10 @@ class MetricModulation:
         >>> abjad.attach(metric_modulation, staff[3])
         >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
-        >>> abjad.show(score) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [score], includes=["abjad.ily"],
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -412,7 +440,7 @@ class MetricModulation:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         r"""
@@ -683,7 +711,10 @@ class MetricModulation:
             >>> abjad.attach(metric_modulation, staff[3])
             >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
-            >>> abjad.show(score) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile(
+            ...     [score], includes=["abjad.ily"],
+            ... )
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 

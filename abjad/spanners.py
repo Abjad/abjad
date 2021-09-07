@@ -3,8 +3,10 @@ Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
 """
 import typing
 
-from . import _inspect, _iterate, enums, typings
-from .attach import attach, detach
+from . import _inspect, _iterate, enums
+from . import iterate as iterate_
+from . import typings
+from .bind import attach, detach
 from .duration import Duration
 from .indicators.BeamCount import BeamCount
 from .indicators.BendAfter import BendAfter
@@ -31,11 +33,10 @@ from .indicators.StopSlur import StopSlur
 from .indicators.StopTextSpan import StopTextSpan
 from .indicators.StopTrillSpan import StopTrillSpan
 from .indicators.Tie import Tie
-from .iterate import Iteration
 from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, tweak
 from .parentage import Parentage
 from .score import Chord, Component, MultimeasureRest, Note, Rest, Skip, Staff
-from .select import DurationInequality, Selection, select
+from .selection import DurationInequality, Selection, select
 from .sequence import Sequence
 from .tag import Tag
 
@@ -99,7 +100,7 @@ def beam(
     """
     assert callable(selector)
     argument = selector(argument)
-    original_leaves = Iteration(argument).leaves()
+    original_leaves = iterate_.leaves(argument)
     original_leaves = list(original_leaves)
 
     silent_prototype = (MultimeasureRest, Rest, Skip)
@@ -1309,7 +1310,8 @@ def glissando(
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1348,7 +1350,8 @@ def glissando(
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1388,7 +1391,8 @@ def glissando(
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2025,7 +2029,8 @@ def text_spanner(
         ...     )
         >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
         >>> abjad.override(staff[0]).TextSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2066,7 +2071,8 @@ def text_spanner(
         ...     )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).TextSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2111,7 +2117,8 @@ def text_spanner(
         ...     )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).TextSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 

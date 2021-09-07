@@ -1,5 +1,5 @@
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
-from ..storage import FormatSpecification, StorageFormatManager
 
 
 class BarLine:
@@ -112,14 +112,13 @@ class BarLine:
         """
         Delegates to storage format manager.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            storage_format_is_indented=False,
+        return _format.FormatSpecification(
+            storage_format_is_not_indented=True,
             storage_format_args_values=[self.abbreviation],
         )
 

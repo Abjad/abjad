@@ -71,7 +71,7 @@ The following functions recreate Malt's results in Abjad:
 
 ::
 
-    >>> preamble =r"""#(set-global-staff-size 12)
+    >>> preamble = r"""#(set-global-staff-size 12)
     ...
     ... \layout {
     ...     \context {
@@ -91,13 +91,12 @@ The following functions recreate Malt's results in Abjad:
     ...         proportionalNotationDuration = #(ly:make-moment 1 40)
     ...         tupletFullLength = ##t
     ...     }
-    ... }"""
+    ... }
+    ... """
 
 ----
 
 Here are 11 rows and 6 columns:
-
-::
 
     >>> score = make_score(11, 6)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
@@ -106,8 +105,6 @@ Here are 11 rows and 6 columns:
 ----
 
 Here's the rhythmic retrograde of the same:
-
-::
 
     >>> score = make_score(11, 6, retrograde=True)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])

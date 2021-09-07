@@ -1,6 +1,6 @@
 import typing
 
-from . import storage
+from . import format as _format
 
 
 class CyclicTuple:
@@ -128,7 +128,7 @@ class CyclicTuple:
         """
         Gets interpreter representation.
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """
@@ -159,9 +159,7 @@ class CyclicTuple:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return storage.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[list(self._items)],
         )
 

@@ -1,12 +1,12 @@
 import copy
 
 from . import _iterate
+from . import iterate as iterate_
 from . import score as _score
-from . import select
+from . import selection as _selection
 from . import tag as _tag
-from .attach import attach
+from .bind import attach
 from .indicators.BarLine import BarLine
-from .iterate import Iteration
 from .overrides import override
 
 
@@ -61,7 +61,7 @@ def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine
         last_leaf = _iterate._get_leaf(score, -1)
         attach(bar_line, last_leaf, tag=_tag.Tag("SCORE_1"))
     else:
-        for voice in Iteration(score).components(_score.Voice):
+        for voice in iterate_.components(score, _score.Voice):
             last_leaf = _iterate._get_leaf(voice, -1)
             attach(bar_line, last_leaf, tag=_tag.Tag("SCORE_1"))
     return bar_line
@@ -156,7 +156,7 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
             >>
 
     """
-    selection = select.Selection(score)
+    selection = _selection.Selection(score)
     last_leaf = selection._get_component(_score.Leaf, -1)
     markup = copy.copy(markup)
     attach(markup, last_leaf, tag=_tag.Tag("SCORE_2"))

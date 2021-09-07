@@ -7,7 +7,6 @@ import abjad
 ignored_classes = [
     abjad.FormatSpecification,
     abjad.MetricModulation,
-    abjad.StorageFormatManager,
 ]
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
@@ -36,7 +35,6 @@ ignored_classes = [
     abjad.FormatSpecification,
     abjad.Meter,
     abjad.MetricModulation,
-    abjad.StorageFormatManager,
 ]
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)

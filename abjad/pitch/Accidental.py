@@ -1,8 +1,9 @@
 import functools
 import numbers
 
-from .. import enums, math
-from ..storage import FormatSpecification, StorageFormatManager
+from .. import enums
+from .. import format as _format
+from .. import math
 from . import _lib
 
 
@@ -175,7 +176,7 @@ class Accidental:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -263,7 +264,7 @@ class Accidental:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -345,11 +346,9 @@ class Accidental:
         return list(_lib._accidental_semitones_to_abbreviation.keys())
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.name],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=["arrow"],
         )
 

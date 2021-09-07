@@ -17,7 +17,6 @@ _allowed_to_be_empty_string = (
 ignored_classes = (
     abjad.FormatSpecification,
     abjad.MetricModulation,
-    abjad.StorageFormatManager,
 )
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)

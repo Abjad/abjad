@@ -1,10 +1,10 @@
 from . import enumerate
-from .iterate import Iteration
+from . import iterate as iterate_
 from .ordereddict import OrderedDict
 from .parentage import Parentage
 from .pitch.segments import PitchSegment
 from .score import Chord, Leaf, Note
-from .select import Selection
+from .selection import Selection
 from .sequence import Sequence
 
 
@@ -821,19 +821,19 @@ def iterate_pitch_pairs(components):
     Returns generator.
     """
     for leaf_pair in iterate_leaf_pairs(components):
-        pitches = sorted(Iteration(leaf_pair[0]).pitches())
+        pitches = sorted(iterate_.pitches(leaf_pair[0]))
         for pair in enumerate.yield_pairs(pitches):
             yield PitchSegment(pair)
         if isinstance(leaf_pair, set):
-            pitches = sorted(Iteration(leaf_pair).pitches())
+            pitches = sorted(iterate_.pitches(leaf_pair))
             for pair in enumerate.yield_pairs(pitches):
                 yield PitchSegment(pair)
         else:
-            pitches_1 = sorted(Iteration(leaf_pair[0]).pitches())
-            pitches_2 = sorted(Iteration(leaf_pair[1]).pitches())
+            pitches_1 = sorted(iterate_.pitches(leaf_pair[0]))
+            pitches_2 = sorted(iterate_.pitches(leaf_pair[1]))
             sequences = [pitches_1, pitches_2]
             for pair in enumerate.outer_product(sequences):
                 yield PitchSegment(pair)
-        pitches = sorted(Iteration(leaf_pair[1]).pitches())
+        pitches = sorted(iterate_.pitches(leaf_pair[1]))
         for pair in enumerate.yield_pairs(pitches):
             yield PitchSegment(pair)

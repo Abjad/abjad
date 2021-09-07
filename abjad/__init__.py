@@ -6,6 +6,7 @@ from . import (
     get,
     illustrators,
     io,
+    iterate,
     iterpitches,
     lyconst,
     lyenv,
@@ -15,7 +16,7 @@ from . import (
     wf,
 )
 from ._version import __version__, __version_info__
-from .attach import Wrapper, annotate, attach, detach
+from .bind import Wrapper, annotate, attach, detach
 from .bundle import LilyPondFormatBundle, SlotContributions
 from .configuration import (
     Configuration,
@@ -61,8 +62,7 @@ from .exceptions import (
     UnboundedTimeIntervalError,
     WellformednessError,
 )
-from .expression import Expression
-from .format import LilyPondFormatManager
+from .format import FormatSpecification, storage
 from .get import Descendants, Lineage
 from .illustrators import illustrate
 from .indicators.Arpeggio import Arpeggio
@@ -165,9 +165,7 @@ from .instruments import (
     Xylophone,
 )
 from .io import graph, play, show
-from .iterate import Iteration, iterate
-from .label import ColorMap, Label
-from .lilypond import lilypond
+from .label import ColorMap
 from .lilypondfile import (
     Block,
     ContextBlock,
@@ -178,6 +176,7 @@ from .lilypondfile import (
     LilyPondVersionToken,
     PackageGitCommitToken,
 )
+from .lilypondformat import lilypond
 from .lyproxy import (
     LilyPondContext,
     LilyPondEngraver,
@@ -275,7 +274,7 @@ from .score import (
     Voice,
 )
 from .segmentmaker import SegmentMaker
-from .select import (
+from .selection import (
     DurationInequality,
     Inequality,
     LengthInequality,
@@ -299,12 +298,6 @@ from .spanners import (
     tie,
     trill_spanner,
 )
-from .storage import (
-    FormatSpecification,
-    StorageFormatManager,
-    StorageFormatSpecification,
-    storage,
-)
 from .string import String
 from .tag import Line, Tag, activate, deactivate
 from .templates import (
@@ -313,7 +306,6 @@ from .templates import (
     ScoreTemplate,
     StringOrchestraScoreTemplate,
     StringQuartetScoreTemplate,
-    TwoStaffPianoScoreTemplate,
 )
 from .timespan import AnnotatedTimespan, Timespan, TimespanList
 from .typedcollections import (
@@ -448,10 +440,8 @@ __all__ = [
     "IntervalSet",
     "IntervalVector",
     "Inversion",
-    "Iteration",
     "KeyCluster",
     "KeySignature",
-    "Label",
     "LaissezVibrer",
     "Leaf",
     "LeafMaker",
@@ -464,7 +454,6 @@ __all__ = [
     "LilyPondEngraver",
     "LilyPondFile",
     "LilyPondFormatBundle",
-    "LilyPondFormatManager",
     "LilyPondGrob",
     "LilyPondGrobInterface",
     "LilyPondLanguageToken",
@@ -594,8 +583,6 @@ __all__ = [
     "StopSlur",
     "StopTextSpan",
     "StopTrillSpan",
-    "StorageFormatManager",
-    "StorageFormatSpecification",
     "String",
     "StringContactPoint",
     "StringNumber",
@@ -621,7 +608,6 @@ __all__ = [
     "Tuplet",
     "TweakInterface",
     "TwelveToneRow",
-    "TwoStaffPianoScoreTemplate",
     "TypedCollection",
     "TypedCounter",
     "TypedFrozenset",
@@ -650,6 +636,7 @@ __all__ = [
     "deprecated",
     "detach",
     "enumerate",
+    "format",
     "glissando",
     "graph",
     "hairpin",
@@ -667,9 +654,10 @@ __all__ = [
     "iterate_pitch_pairs",
     "iterate_vertical_moments",
     "iterpitches",
-    "lilypond",
+    "label",
     "list_all_classes",
     "list_all_functions",
+    "lilypond",
     "lyconst",
     "lyenv",
     "makers",

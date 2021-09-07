@@ -3,8 +3,8 @@ import functools
 import numbers
 import typing
 
+from .. import format as _format
 from .. import math
-from ..storage import FormatSpecification, StorageFormatManager
 from . import _lib
 from .pitches import NamedPitch, NumberedPitch
 
@@ -81,7 +81,7 @@ class Interval:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __float__(self):
         """
@@ -117,7 +117,7 @@ class Interval:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -627,11 +627,9 @@ class NamedInterval(Interval):
 
     def _get_format_specification(self):
         values = [self.name]
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             coerce_for_equality=True,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_args_values=values,
         )
 
@@ -1211,11 +1209,9 @@ class NumberedInterval(Interval):
 
     def _get_format_specification(self):
         values = [self.number]
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             coerce_for_equality=True,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_args_values=values,
         )
 

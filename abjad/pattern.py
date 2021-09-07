@@ -1,10 +1,10 @@
 import collections
 import operator
 
+from . import format as _format
 from . import math
 from .new import new
 from .sequence import Sequence
-from .storage import FormatSpecification, StorageFormatManager
 from .typedcollections import TypedTuple
 
 
@@ -586,7 +586,7 @@ class Pattern:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __xor__(self, pattern):
         """
@@ -725,7 +725,7 @@ class Pattern:
         return False
 
     def _get_format_specification(self):
-        return FormatSpecification(client=self)
+        return _format.FormatSpecification()
 
     def _make_subscript_string(self):
         return str(self)

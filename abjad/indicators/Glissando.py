@@ -1,8 +1,8 @@
 import typing
 
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
-from ..storage import StorageFormatManager
 
 
 class Glissando:
@@ -96,7 +96,7 @@ class Glissando:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -108,7 +108,7 @@ class Glissando:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -204,7 +204,8 @@ class Glissando:
             ...     abjad.override(note).NoteHead.transparent = True
             ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
             ...
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -241,7 +242,8 @@ class Glissando:
             ...     abjad.override(note).NoteHead.transparent = True
             ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
             ...
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 

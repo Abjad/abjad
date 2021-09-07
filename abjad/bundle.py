@@ -1,6 +1,6 @@
 import typing
 
-from . import storage
+from . import format as _format
 from . import tag as _tag
 
 
@@ -49,7 +49,7 @@ class LilyPondFormatBundle:
         """
         Gets interpreter representation.
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -71,9 +71,7 @@ class LilyPondFormatBundle:
             _ for _ in slot_contribution_names if getattr(self, _).has_contributions
         ]
         names.extend(_ for _ in grob_contribution_names if getattr(self, _))
-        return storage.FormatSpecification(
-            client=self, storage_format_keyword_names=names
-        )
+        return _format.FormatSpecification(storage_format_keyword_names=names)
 
     ### PUBLIC METHODS ###
 
@@ -257,7 +255,7 @@ class SlotContributions:
         """
         Gets interpreter representation.
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -275,9 +273,7 @@ class SlotContributions:
             "trill_spanner_starts",
         ]
         names = [_ for _ in names if getattr(self, _)]
-        return storage.FormatSpecification(
-            client=self, storage_format_keyword_names=names
-        )
+        return _format.FormatSpecification(storage_format_keyword_names=names)
 
     ### PUBLIC PROPERTIES ###
 

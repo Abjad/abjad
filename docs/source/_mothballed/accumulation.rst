@@ -274,9 +274,6 @@ The final result:
     ...     "as, cs ds fs gs | as, cs ds",
     ... ]
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> score = make_score(rh_pitches, lh_pitches)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)

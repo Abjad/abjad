@@ -34,10 +34,6 @@ def test_Chord___deepcopy___01():
         """
     )
 
-    assert chord_2.note_heads[0]._client is chord_2
-    assert chord_2.note_heads[1]._client is chord_2
-    assert chord_2.note_heads[2]._client is chord_2
-
     assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 

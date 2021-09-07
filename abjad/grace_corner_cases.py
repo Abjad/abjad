@@ -14,7 +14,8 @@ r"""
     ... )
     >>> abjad.attach(abjad.Articulation(">"), container[0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -72,7 +73,8 @@ r"""
     >>> container = abjad.BeforeGraceContainer("gs'16")
     >>> abjad.attach(container, music_voice[1][1][0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -131,7 +133,8 @@ r"""
     ... )
     >>> abjad.attach(abjad.Articulation(">"), container[0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -213,7 +216,7 @@ r"""
             }
         }
 
-    >>> for component in abjad.iterate(staff).components():
+    >>> for component in abjad.iterate.components(staff):
     ...     timespan = abjad.get.timespan(component)
     ...     print(f"{repr(component):30} {repr(timespan)}")
     <Staff{1}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
@@ -239,7 +242,8 @@ r"""
     ... )
     >>> abjad.attach(abjad.Articulation(">"), container[0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -287,7 +291,7 @@ r"""
             }
         }
 
-    >>> for component in abjad.iterate(staff).components():
+    >>> for component in abjad.iterate.components(staff):
     ...     timespan = abjad.get.timespan(component)
     ...     print(f"{repr(component):30} {repr(timespan)}")
     <Staff{1}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
