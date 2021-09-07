@@ -1,5 +1,5 @@
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
-from ..storage import StorageFormatManager
 
 
 class LilyPondComment:
@@ -70,7 +70,7 @@ class LilyPondComment:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -82,7 +82,7 @@ class LilyPondComment:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """

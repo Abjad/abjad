@@ -1,9 +1,9 @@
 import typing
 
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
 from ..markups import Markup
 from ..new import new
-from ..storage import StorageFormatManager
 
 
 class StartMarkup:
@@ -145,7 +145,7 @@ class StartMarkup:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE PROPERTIES ###
 

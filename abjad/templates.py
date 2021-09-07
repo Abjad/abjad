@@ -1,21 +1,13 @@
-import abc
 import collections
 import typing
 
-from . import _inspect, _iterate, instruments
-from .attach import Wrapper, annotate, attach
-from .illustrators import illustrate
+from . import bind as _bind
+from . import format as _format
+from . import instruments as _instruments
+from . import overrides as _overrides
+from . import score as _score
+from . import tag as _tag
 from .indicators.Clef import Clef
-from .instruments import Piano
-from .iterate import Iteration
-from .lilypondfile import LilyPondFile
-from .new import new
-from .ordereddict import OrderedDict
-from .overrides import LilyPondLiteral
-from .score import Context, Score, Skip, Staff, StaffGroup, Voice
-from .select import Selection
-from .storage import StorageFormatManager
-from .tag import Tag
 
 
 class ScoreTemplate:
@@ -27,147 +19,13 @@ class ScoreTemplate:
 
     __documentation_section__: typing.Optional[str] = "Score templates"
 
-    __slots__ = ("_voice_abbreviations",)
-
-    _always_make_global_rests = False
-
-    _do_not_require_margin_markup = False
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        self._voice_abbreviations = OrderedDict()
-
     ### SPECIAL METHODS ###
-
-    @abc.abstractmethod
-    def __call__(self) -> Score:
-        """
-        Calls score template.
-        """
-        pass
-
-    def __illustrate__(
-        self, default_paper_size=None, global_staff_size=None, includes=None
-    ):
-        """
-        Illustrates score template.
-        """
-        score: Score = self()
-        site = "abjad.ScoreTemplate.__illustrate__()"
-        tag = Tag(site)
-        for voice in Iteration(score).components(Voice):
-            skip = Skip(1, tag=tag)
-            voice.append(skip)
-        self.attach_defaults(score)
-        lilypond_file: LilyPondFile = illustrate(score)
-        lilypond_file = new(
-            lilypond_file,
-            default_paper_size=default_paper_size,
-            global_staff_size=global_staff_size,
-            includes=includes,
-        )
-        return lilypond_file
 
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
-
-    ### PRIVATE METHODS ###
-
-    def _make_global_context(self):
-        site = "abjad.ScoreTemplate._make_global_context()"
-        tag = Tag(site)
-        global_rests = Context(
-            lilypond_type="GlobalRests",
-            name="Global_Rests",
-            tag=tag,
-        )
-        global_skips = Context(
-            lilypond_type="GlobalSkips",
-            name="Global_Skips",
-            tag=tag,
-        )
-        global_context = Context(
-            [global_rests, global_skips],
-            lilypond_type="GlobalContext",
-            simultaneous=True,
-            name="Global_Context",
-            tag=tag,
-        )
-        return global_context
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def always_make_global_rests(self) -> bool:
-        """
-        Is true when score template always makes global rests.
-        """
-        return self._always_make_global_rests
-
-    @property
-    def do_not_require_margin_markup(self) -> bool:
-        """
-        Is true when score template does not require margin markup.
-
-        Conventionally, solos do not require margin markup.
-        """
-        return self._do_not_require_margin_markup
-
-    ### PUBLIC METHODS ###
-
-    def allows_instrument(
-        self, staff_name: str, instrument: instruments.Instrument
-    ) -> bool:
-        """
-        Is true when ``staff_name`` allows ``instrument``.
-
-        To be implemented by concrete score template classes.
-        """
-        return True
-
-    def attach_defaults(self, argument) -> typing.List:
-        """
-        Attaches defaults to all staff and staff group contexts in
-        ``argument`` when ``argument`` is a score.
-
-        Attaches defaults to ``argument`` (without iterating ``argument``) when
-        ``argument`` is a staff or staff group.
-
-        Returns list of one wrapper for every indicator attached.
-        """
-        assert isinstance(argument, (Score, Staff, StaffGroup)), repr(argument)
-        wrappers: typing.List[Wrapper] = []
-        prototype = (Staff, StaffGroup)
-        staves = Selection(argument).components(prototype)
-        assert isinstance(staves, Selection), repr(staves)
-        for staff in staves:
-            leaf = _iterate._get_leaf(staff, 0)
-            clef = _inspect._get_indicator(leaf, Clef)
-            if clef is not None:
-                continue
-            clef = _inspect._get_annotation(staff, "default_clef")
-            if clef is not None:
-                wrapper = attach(
-                    clef,
-                    leaf,
-                    tag=Tag("abjad.ScoreTemplate.attach_defaults(3)"),
-                    wrapper=True,
-                )
-                wrappers.append(wrapper)
-        return wrappers
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def voice_abbreviations(self) -> OrderedDict:
-        """
-        Gets voice abbreviations.
-        """
-        return self._voice_abbreviations
+        return _format.get_repr(self)
 
 
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
@@ -178,57 +36,8 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         One voice per staff:
 
-        >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
-        >>> template_1 = class_(staff_count=4)
-        >>> abjad.show(template_1) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> score = template_1.__illustrate__()[abjad.Score]
-            >>> string = abjad.lilypond(score)
-            >>> print(string)
-            \context Score = "Grouped_Rhythmic_Staves_Score"
-            <<
-                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group"
-                <<
-                    \context RhythmicStaff = "Staff_1"
-                    {
-                        \context Voice = "Voice_1"
-                        {
-                            \clef "percussion"
-                            s1
-                        }
-                    }
-                    \context RhythmicStaff = "Staff_2"
-                    {
-                        \context Voice = "Voice_2"
-                        {
-                            \clef "percussion"
-                            s1
-                        }
-                    }
-                    \context RhythmicStaff = "Staff_3"
-                    {
-                        \context Voice = "Voice_3"
-                        {
-                            \clef "percussion"
-                            s1
-                        }
-                    }
-                    \context RhythmicStaff = "Staff_4"
-                    {
-                        \context Voice = "Voice_4"
-                        {
-                            \clef "percussion"
-                            s1
-                        }
-                    }
-                >>
-            >>
-
-        >>> score = template_1()
-        >>> abjad.show(score) # doctest: +SKIP
-
+        >>> template = abjad.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score = template()
         >>> string = abjad.lilypond(score)
         >>> print(string)
         \context Score = "Grouped_Rhythmic_Staves_Score"
@@ -266,52 +75,8 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
         More than one voice per staff:
 
-        >>> template_2 = class_(staff_count=[2, 1, 2])
-        >>> abjad.show(template_2) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(template_2.__illustrate__()[abjad.Score])
-            >>> print(string)
-            \context Score = "Grouped_Rhythmic_Staves_Score"
-            <<
-                \context StaffGroup = "Grouped_Rhythmic_Staves_Staff_Group"
-                <<
-                    \context RhythmicStaff = "Staff_1"
-                    <<
-                        \context Voice = "Voice_1_1"
-                        {
-                            s1
-                        }
-                        \context Voice = "Voice_1_2"
-                        {
-                            s1
-                        }
-                    >>
-                    \context RhythmicStaff = "Staff_2"
-                    {
-                        \context Voice = "Voice_2"
-                        {
-                            s1
-                        }
-                    }
-                    \context RhythmicStaff = "Staff_3"
-                    <<
-                        \context Voice = "Voice_3_1"
-                        {
-                            s1
-                        }
-                        \context Voice = "Voice_3_2"
-                        {
-                            s1
-                        }
-                    >>
-                >>
-            >>
-
-        >>> score = template_2()
-        >>> abjad.show(score) # doctest: +SKIP
-
+        >>> template = abjad.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
+        >>> score = template()
         >>> string = abjad.lilypond(score)
         >>> print(string)
         \context Score = "Grouped_Rhythmic_Staves_Score"
@@ -370,24 +135,22 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         """
         staves = []
         site = "abjad.GroupedRhythmicStavesScoreTemplate.__call__()"
-        tag = Tag(site)
+        tag = _tag.Tag(site)
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
                 name = f"Voice_{number}"
-                voice = Voice([], name=name, tag=tag)
+                voice = _score.Voice([], name=name, tag=tag)
                 name = f"Staff_{number}"
-                staff = Staff([voice], name=name, tag=tag)
+                staff = _score.Staff([voice], name=name, tag=tag)
                 staff.lilypond_type = "RhythmicStaff"
-                annotate(staff, "default_clef", Clef("percussion"))
+                _bind.annotate(staff, "default_clef", Clef("percussion"))
                 staves.append(staff)
-                key = f"v{number}"
-                self.voice_abbreviations[key] = voice.name
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
                 name = f"Staff_{staff_number}"
-                staff = Staff(name=name, tag=tag)
+                staff = _score.Staff(name=name, tag=tag)
                 staff.lilypond_type = "RhythmicStaff"
                 assert 1 <= voice_count
                 for voice_index in range(voice_count):
@@ -398,15 +161,13 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                         voice_identifier = f"{staff_number}_{voice_number}"
                         staff.simultaneous = True
                     name = f"Voice_{voice_identifier}"
-                    voice = Voice([], name=name, tag=tag)
+                    voice = _score.Voice([], name=name, tag=tag)
                     staff.append(voice)
-                    key = f"v{voice_identifier}"
-                    self.voice_abbreviations[key] = voice.name
                 staves.append(staff)
-        grouped_rhythmic_staves_staff_group = StaffGroup(
+        grouped_rhythmic_staves_staff_group = _score.StaffGroup(
             staves, name="Grouped_Rhythmic_Staves_Staff_Group", tag=tag
         )
-        grouped_rhythmic_staves_score = Score(
+        grouped_rhythmic_staves_score = _score.Score(
             [grouped_rhythmic_staves_staff_group],
             name="Grouped_Rhythmic_Staves_Score",
             tag=tag,
@@ -431,21 +192,6 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         """
         return self._staff_count
 
-    @property
-    def voice_abbreviations(self):
-        """
-        Gets context name abbreviations.
-
-        ..  container:: example
-
-            >>> class_ = abjad.GroupedRhythmicStavesScoreTemplate
-            >>> template = class_(staff_count=4)
-            >>> template.voice_abbreviations
-            OrderedDict([])
-
-        """
-        return super(GroupedRhythmicStavesScoreTemplate, self).voice_abbreviations
-
 
 class GroupedStavesScoreTemplate(ScoreTemplate):
     r"""
@@ -453,49 +199,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
     ..  container:: example
 
-        >>> class_ = abjad.GroupedStavesScoreTemplate
-        >>> template = class_(staff_count=4)
-        >>> abjad.show(template) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
-            >>> print(string)
-            \context Score = "Grouped_Staves_Score"
-            <<
-                \context StaffGroup = "Grouped_Staves_Staff_Group"
-                <<
-                    \context Staff = "Staff_1"
-                    {
-                        \context Voice = "Voice_1"
-                        {
-                            s1
-                        }
-                    }
-                    \context Staff = "Staff_2"
-                    {
-                        \context Voice = "Voice_2"
-                        {
-                            s1
-                        }
-                    }
-                    \context Staff = "Staff_3"
-                    {
-                        \context Voice = "Voice_3"
-                        {
-                            s1
-                        }
-                    }
-                    \context Staff = "Staff_4"
-                    {
-                        \context Voice = "Voice_4"
-                        {
-                            s1
-                        }
-                    }
-                >>
-            >>
-
+        >>> template = abjad.GroupedStavesScoreTemplate(staff_count=4)
         >>> score = template()
         >>> string = abjad.lilypond(score)
         >>> print(string)
@@ -552,15 +256,16 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         """
         staves = []
         site = "abjad.GroupedStavesScoreTemplate.__call__()"
-        tag = Tag(site)
+        tag = _tag.Tag(site)
         for index in range(self.staff_count):
             number = index + 1
-            voice = Voice([], name=f"Voice_{number}", tag=tag)
-            staff = Staff([voice], name=f"Staff_{number}", tag=tag)
+            voice = _score.Voice([], name=f"Voice_{number}", tag=tag)
+            staff = _score.Staff([voice], name=f"Staff_{number}", tag=tag)
             staves.append(staff)
-            self.voice_abbreviations[f"v{number}"] = voice.name
-        staff_group = StaffGroup(staves, name="Grouped_Staves_Staff_Group", tag=tag)
-        score = Score([staff_group], name="Grouped_Staves_Score", tag=tag)
+        staff_group = _score.StaffGroup(
+            staves, name="Grouped_Staves_Staff_Group", tag=tag
+        )
+        score = _score.Score([staff_group], name="Grouped_Staves_Score", tag=tag)
         return score
 
     ### PUBLIC PROPERTIES ###
@@ -580,21 +285,6 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         """
         return self._staff_count
 
-    @property
-    def voice_abbreviations(self):
-        """
-        Gets context name abbreviations.
-
-        ..  container::
-
-            >>> class_ = abjad.GroupedStavesScoreTemplate
-            >>> template = class_(staff_count=4)
-            >>> template.voice_abbreviations
-            OrderedDict([])
-
-        """
-        return super().voice_abbreviations
-
 
 class StringOrchestraScoreTemplate(ScoreTemplate):
     r"""
@@ -603,9 +293,8 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
     ..  container:: example
 
         >>> template = abjad.StringOrchestraScoreTemplate()
-        >>> abjad.show(template) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
+        >>> score = template()
+        >>> string = abjad.lilypond(score)
         >>> print(string)
         \context Score = "Score"
         <<
@@ -624,15 +313,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_1_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_1_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_1_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -643,15 +329,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_2_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_2_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_2_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -662,15 +345,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_3_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_3_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_3_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -681,15 +361,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_4_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_4_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_4_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -700,15 +377,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_5_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_5_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_5_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -719,15 +393,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_6_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_6_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_6_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -741,15 +412,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Viola_1_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Viola_1_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Viola_1_Fingering_Voice"
                             {
-                                \clef "alto"
-                                s1
                             }
                         >>
                     >>
@@ -760,15 +428,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Viola_2_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Viola_2_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Viola_2_Fingering_Voice"
                             {
-                                \clef "alto"
-                                s1
                             }
                         >>
                     >>
@@ -779,15 +444,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Viola_3_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Viola_3_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Viola_3_Fingering_Voice"
                             {
-                                \clef "alto"
-                                s1
                             }
                         >>
                     >>
@@ -798,15 +460,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Viola_4_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Viola_4_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Viola_4_Fingering_Voice"
                             {
-                                \clef "alto"
-                                s1
                             }
                         >>
                     >>
@@ -820,15 +479,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Cello_1_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Cello_1_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Cello_1_Fingering_Voice"
                             {
-                                \clef "bass"
-                                s1
                             }
                         >>
                     >>
@@ -839,15 +495,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Cello_2_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Cello_2_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Cello_2_Fingering_Voice"
                             {
-                                \clef "bass"
-                                s1
                             }
                         >>
                     >>
@@ -858,15 +511,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Cello_3_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Cello_3_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Cello_3_Fingering_Voice"
                             {
-                                \clef "bass"
-                                s1
                             }
                         >>
                     >>
@@ -880,15 +530,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Contrabass_1_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Contrabass_1_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Contrabass_1_Fingering_Voice"
                             {
-                                \clef "bass_8"
-                                s1
                             }
                         >>
                     >>
@@ -899,15 +546,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Contrabass_2_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Contrabass_2_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Contrabass_2_Fingering_Voice"
                             {
-                                \clef "bass_8"
-                                s1
                             }
                         >>
                     >>
@@ -925,9 +569,8 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         ...     cello_count=1,
         ...     contrabass_count=0,
         ...     )
-        >>> abjad.show(template) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
+        >>> score = template()
+        >>> string = abjad.lilypond(score)
         >>> print(string)
         \context Score = "Score"
         <<
@@ -946,15 +589,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_1_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_1_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_1_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -965,15 +605,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Violin_2_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Violin_2_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Violin_2_Fingering_Voice"
                             {
-                                \clef "treble"
-                                s1
                             }
                         >>
                     >>
@@ -987,15 +624,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Viola_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Viola_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Viola_Fingering_Voice"
                             {
-                                \clef "alto"
-                                s1
                             }
                         >>
                     >>
@@ -1009,15 +643,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Cello_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Cello_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Cello_Fingering_Voice"
                             {
-                                \clef "bass"
-                                s1
                             }
                         >>
                     >>
@@ -1035,9 +666,8 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         ...     cello_count=1,
         ...     contrabass_count=0,
         ...     )
-        >>> abjad.show(template) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
+        >>> score = template()
+        >>> string = abjad.lilypond(score)
         >>> print(string)
         \context Score = "Score"
         <<
@@ -1056,15 +686,12 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
                         <<
                             \context BowingVoice = "Cello_Bowing_Voice"
                             {
-                                s1
                             }
                         >>
                         \context FingeringStaff = "Cello_Fingering_Staff"
                         <<
                             \context FingeringVoice = "Cello_Fingering_Voice"
                             {
-                                \clef "bass"
-                                s1
                             }
                         >>
                     >>
@@ -1117,7 +744,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
         Returns score.
         """
         site = "abjad.StringOrchestraScoreTemplate.__call__()"
-        tag = Tag(site)
+        tag = _tag.Tag(site)
 
         ### TAGS ###
 
@@ -1125,9 +752,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         ### SCORE ###
 
-        staff_group = StaffGroup(name="Outer_Staff_Group", tag=tag)
+        staff_group = _score.StaffGroup(name="Outer_Staff_Group", tag=tag)
 
-        score = Score([staff_group], name="Score", tag=tag)
+        score = _score.Score([staff_group], name="Score", tag=tag)
 
         ### VIOLINS ###
 
@@ -1135,7 +762,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "treble"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = instruments.Violin()
+            instrument = _instruments.Violin()
             instrument_count = self.violin_count
             (
                 instrument_staff_group,
@@ -1154,7 +781,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "alto"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = instruments.Viola()
+            instrument = _instruments.Viola()
             instrument_count = self.viola_count
             (
                 instrument_staff_group,
@@ -1173,7 +800,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "bass"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = instruments.Cello()
+            instrument = _instruments.Cello()
             instrument_count = self.cello_count
             (
                 instrument_staff_group,
@@ -1192,7 +819,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             clef_name = "bass_8"
             if self.use_percussion_clefs:
                 clef_name = "percussion"
-            instrument = instruments.Contrabass()
+            instrument = _instruments.Contrabass()
             instrument_count = self.contrabass_count
             (
                 instrument_staff_group,
@@ -1207,13 +834,13 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
         ### TIME SIGNATURE CONTEXT ###
 
-        global_context = Context(
+        global_context = _score.Context(
             lilypond_type="GlobalContext", name="Global_Context", tag=tag
         )
         instrument_tags = " ".join(tag_names)
         tag_string = rf"\tag #'({instrument_tags})"
-        literal = LilyPondLiteral(tag_string, "before")
-        attach(literal, global_context, tag=tag)
+        literal = _overrides.LilyPondLiteral(tag_string, "before")
+        _bind.attach(literal, global_context, tag=tag)
         score.insert(0, global_context)
         return score
 
@@ -1221,9 +848,9 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
     def _make_instrument_staff_group(self, clef_name=None, count=None, instrument=None):
         site = "abjad.StringOrchestraScoreTemplate._make_instrument_staff_group()"
-        tag = Tag(site)
+        tag = _tag.Tag(site)
         name = instrument.name.title()
-        instrument_staff_group = StaffGroup(
+        instrument_staff_group = _score.StaffGroup(
             lilypond_type=f"{name}StaffGroup",
             name=f"{name}_Staff_Group",
             tag=tag,
@@ -1246,48 +873,44 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
 
     def _make_performer_staff_group(self, clef_name=None, instrument=None, number=None):
         site = "StringOrchestraScoreTemplate._make_performer_staff_group()"
-        tag = Tag(site)
+        tag = _tag.Tag(site)
         if number is not None:
             name = f"{instrument.name.title()}_{number}"
         else:
             name = instrument.name.title()
         pitch_range = instrument.pitch_range
-        staff_group = StaffGroup(
+        staff_group = _score.StaffGroup(
             lilypond_type="StringPerformerStaffGroup",
             name=f"{name}_Staff_Group",
             tag=tag,
         )
         tag_name = name.replace(" ", "")
         tag_string = rf"\tag #'{tag_name}"
-        tag_command = LilyPondLiteral(tag_string, "before")
-        attach(tag_command, staff_group, tag=tag)
+        tag_command = _overrides.LilyPondLiteral(tag_string, "before")
+        _bind.attach(tag_command, staff_group, tag=tag)
         if self.split_hands:
-            lh_voice = Voice(
+            lh_voice = _score.Voice(
                 [],
                 lilypond_type="FingeringVoice",
                 name=f"{name}_Fingering_Voice",
                 tag=tag,
             )
-            abbreviation = lh_voice.name.lower().replace(" ", "_")
-            self.voice_abbreviations[abbreviation] = lh_voice.name
-            lh_staff = Staff(
+            lh_staff = _score.Staff(
                 [lh_voice],
                 lilypond_type="FingeringStaff",
                 name=f"{name}_Fingering_Staff",
                 tag=tag,
             )
             lh_staff.simultaneous = True
-            annotate(lh_staff, "pitch_range", pitch_range)
-            annotate(lh_staff, "default_clef", Clef(clef_name))
-            rh_voice = Voice(
+            _bind.annotate(lh_staff, "pitch_range", pitch_range)
+            _bind.annotate(lh_staff, "default_clef", Clef(clef_name))
+            rh_voice = _score.Voice(
                 [],
                 lilypond_type="BowingVoice",
                 name=f"{name}_Bowing_Voice",
                 tag=tag,
             )
-            abbreviation = rh_voice.name.lower().replace(" ", "_")
-            self.voice_abbreviations[abbreviation] = rh_voice.name
-            rh_staff = Staff(
+            rh_staff = _score.Staff(
                 [rh_voice],
                 lilypond_type="BowingStaff",
                 name=f"{name}_Bowing_Staff",
@@ -1296,21 +919,21 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             rh_staff.simultaneous = True
             staff_group.extend([rh_staff, lh_staff])
         else:
-            lh_voice = Voice(
+            lh_voice = _score.Voice(
                 [],
                 lilypond_type="FingeringVoice",
                 name=f"{name}_Voice",
                 tag=tag,
             )
-            lh_staff = Staff(
+            lh_staff = _score.Staff(
                 [lh_voice],
                 lilypond_type="FingeringStaff",
                 name=f"{name}_Staff",
                 tag=tag,
             )
             lh_staff.simultaneous = True
-            annotate(lh_staff, "pitch_range", pitch_range)
-            annotate(lh_staff, "default_clef", Clef(clef_name))
+            _bind.annotate(lh_staff, "pitch_range", pitch_range)
+            _bind.annotate(lh_staff, "default_clef", Clef(clef_name))
             staff_group.append(lh_staff)
         return staff_group, tag_name
 
@@ -1375,9 +998,8 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     ..  container:: example
 
         >>> template = abjad.StringQuartetScoreTemplate()
-        >>> abjad.show(template) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
+        >>> score = template()
+        >>> string = abjad.lilypond(score)
         >>> print(string)
         \context Score = "String_Quartet_Score"
         <<
@@ -1388,8 +1010,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "First_Violin_Voice"
                     {
-                        \clef "treble"
-                        s1
                     }
                 }
                 \tag #'second-violin
@@ -1397,8 +1017,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "Second_Violin_Voice"
                     {
-                        \clef "treble"
-                        s1
                     }
                 }
                 \tag #'viola
@@ -1406,8 +1024,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "Viola_Voice"
                     {
-                        \clef "alto"
-                        s1
                     }
                 }
                 \tag #'cello
@@ -1415,8 +1031,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                 {
                     \context Voice = "Cello_Voice"
                     {
-                        \clef "bass"
-                        s1
                     }
                 }
             >>
@@ -1428,19 +1042,6 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        super().__init__()
-        self.voice_abbreviations.update(
-            {
-                "vn1": "First Violin Voice",
-                "vn2": "Second Violin Voice",
-                "va": "Viola Voice",
-                "vc": "Cello Voice",
-            }
-        )
 
     ### SPECIAL METHODS ###
 
@@ -1451,61 +1052,61 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         Returns score.
         """
         site = "abjad.StringQuartetScoreTemplate.__call__()"
-        tag = Tag(site)
+        tag = _tag.Tag(site)
 
         # make first violin voice and staff
-        first_violin_voice = Voice([], name="First_Violin_Voice", tag=tag)
-        first_violin_staff = Staff(
+        first_violin_voice = _score.Voice([], name="First_Violin_Voice", tag=tag)
+        first_violin_staff = _score.Staff(
             [first_violin_voice], name="First_Violin_Staff", tag=tag
         )
         clef = Clef("treble")
-        annotate(first_violin_staff, "default_clef", clef)
-        violin = instruments.Violin()
-        annotate(first_violin_staff, "default_instrument", violin)
-        literal = LilyPondLiteral(r"\tag #'first-violin", "before")
-        attach(literal, first_violin_staff)
+        _bind.annotate(first_violin_staff, "default_clef", clef)
+        violin = _instruments.Violin()
+        _bind.annotate(first_violin_staff, "default_instrument", violin)
+        literal = _overrides.LilyPondLiteral(r"\tag #'first-violin", "before")
+        _bind.attach(literal, first_violin_staff)
 
         # make second violin voice and staff
-        second_violin_voice = Voice([], name="Second_Violin_Voice", tag=tag)
-        second_violin_staff = Staff(
+        second_violin_voice = _score.Voice([], name="Second_Violin_Voice", tag=tag)
+        second_violin_staff = _score.Staff(
             [second_violin_voice], name="Second_Violin_Staff", tag=tag
         )
         clef = Clef("treble")
-        annotate(second_violin_staff, "default_clef", clef)
-        violin = instruments.Violin()
-        annotate(second_violin_staff, "default_instrument", violin)
-        literal = LilyPondLiteral(r"\tag #'second-violin", "before")
-        attach(literal, second_violin_staff)
+        _bind.annotate(second_violin_staff, "default_clef", clef)
+        violin = _instruments.Violin()
+        _bind.annotate(second_violin_staff, "default_instrument", violin)
+        literal = _overrides.LilyPondLiteral(r"\tag #'second-violin", "before")
+        _bind.attach(literal, second_violin_staff)
 
         # make viola voice and staff
-        viola_voice = Voice([], name="Viola_Voice", tag=tag)
-        viola_staff = Staff([viola_voice], name="Viola_Staff", tag=tag)
+        viola_voice = _score.Voice([], name="Viola_Voice", tag=tag)
+        viola_staff = _score.Staff([viola_voice], name="Viola_Staff", tag=tag)
         clef = Clef("alto")
-        annotate(viola_staff, "default_clef", clef)
-        viola = instruments.Viola()
-        annotate(viola_staff, "default_instrument", viola)
-        literal = LilyPondLiteral(r"\tag #'viola", "before")
-        attach(literal, viola_staff)
+        _bind.annotate(viola_staff, "default_clef", clef)
+        viola = _instruments.Viola()
+        _bind.annotate(viola_staff, "default_instrument", viola)
+        literal = _overrides.LilyPondLiteral(r"\tag #'viola", "before")
+        _bind.attach(literal, viola_staff)
 
         # make cello voice and staff
-        cello_voice = Voice([], name="Cello_Voice", tag=tag)
-        cello_staff = Staff([cello_voice], name="Cello_Staff", tag=tag)
+        cello_voice = _score.Voice([], name="Cello_Voice", tag=tag)
+        cello_staff = _score.Staff([cello_voice], name="Cello_Staff", tag=tag)
         clef = Clef("bass")
-        annotate(cello_staff, "default_clef", clef)
-        cello = instruments.Cello()
-        annotate(cello_staff, "default_instrument", cello)
-        literal = LilyPondLiteral(r"\tag #'cello", "before")
-        attach(literal, cello_staff)
+        _bind.annotate(cello_staff, "default_clef", clef)
+        cello = _instruments.Cello()
+        _bind.annotate(cello_staff, "default_instrument", cello)
+        literal = _overrides.LilyPondLiteral(r"\tag #'cello", "before")
+        _bind.attach(literal, cello_staff)
 
         # make string quartet staff group
-        string_quartet_staff_group = StaffGroup(
+        string_quartet_staff_group = _score.StaffGroup(
             [first_violin_staff, second_violin_staff, viola_staff, cello_staff],
             name="String_Quartet_Staff_Group",
             tag=tag,
         )
 
         # make string quartet score
-        string_quartet_score = Score(
+        string_quartet_score = _score.Score(
             [string_quartet_staff_group],
             name="String_Quartet_Score",
             tag=tag,
@@ -1513,146 +1114,3 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         # return string quartet score
         return string_quartet_score
-
-
-class TwoStaffPianoScoreTemplate(ScoreTemplate):
-    r"""
-    Two-staff piano score template.
-
-    ..  container:: example
-
-        >>> template = abjad.TwoStaffPianoScoreTemplate()
-        >>> abjad.show(template) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(template.__illustrate__()[abjad.Score])
-        >>> print(string)
-        \context Score = "Two_Staff_Piano_Score"
-        <<
-            \context GlobalContext = "Global_Context"
-            <<
-                \context GlobalRests = "Global_Rests"
-                {
-                }
-                \context GlobalSkips = "Global_Skips"
-                {
-                }
-            >>
-            \context PianoStaff = "Piano_Staff"
-            <<
-                \context Staff = "RH_Staff"
-                {
-                    \context Voice = "RH_Voice"
-                    {
-                        s1
-                    }
-                }
-                \context Staff = "LH_Staff"
-                {
-                    \context Voice = "LH_Voice"
-                    {
-                        \clef "bass"
-                        s1
-                    }
-                }
-            >>
-        >>
-
-    Returns score template.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        super().__init__()
-        self.voice_abbreviations.update({"rh": "RHVoice", "lh": "LHVoice"})
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self) -> Score:
-        r"""
-        Calls two-staff piano score template.
-
-        ..  container:: example
-
-            REGRESSION. Attaches piano to piano group (rather than just staff):
-
-            >>> template = abjad.TwoStaffPianoScoreTemplate()
-            >>> score = template()
-            >>> piano_staff = score['Piano_Staff']
-            >>> rh_voice = score['RH_Voice']
-            >>> lh_voice = score['LH_Voice']
-
-            >>> rh_voice.append("g'4")
-            >>> lh_voice.append("c4")
-
-            >>> abjad.show(score) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(score)
-                >>> print(string)
-                \context Score = "Two_Staff_Piano_Score"
-                <<
-                    \context GlobalContext = "Global_Context"
-                    <<
-                        \context GlobalRests = "Global_Rests"
-                        {
-                        }
-                        \context GlobalSkips = "Global_Skips"
-                        {
-                        }
-                    >>
-                    \context PianoStaff = "Piano_Staff"
-                    <<
-                        \context Staff = "RH_Staff"
-                        {
-                            \context Voice = "RH_Voice"
-                            {
-                                g'4
-                            }
-                        }
-                        \context Staff = "LH_Staff"
-                        {
-                            \context Voice = "LH_Voice"
-                            {
-                                c4
-                            }
-                        }
-                    >>
-                >>
-
-        """
-        site = "abjad.TwoStaffPianoScoreTemplate.__call__()"
-        tag = Tag(site)
-        # GLOBAL CONTEXT
-        global_context = self._make_global_context()
-
-        # RH STAFF
-        rh_voice = Voice(name="RH_Voice", tag=tag)
-        rh_staff = Staff([rh_voice], name="RH_Staff", tag=tag)
-
-        # LH STAFF
-        lh_voice = Voice(name="LH_Voice", tag=tag)
-        lh_staff = Staff([lh_voice], name="LH_Staff", tag=tag)
-        annotate(lh_staff, "default_clef", Clef("bass"))
-
-        # PIANO STAFF
-        staff_group = StaffGroup(
-            [rh_staff, lh_staff],
-            lilypond_type="PianoStaff",
-            name="Piano_Staff",
-            tag=tag,
-        )
-        annotate(staff_group, "default_instrument", Piano())
-
-        # SCORE
-        score = Score(
-            [global_context, staff_group],
-            name="Two_Staff_Piano_Score",
-            tag=tag,
-        )
-        return score

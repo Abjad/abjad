@@ -70,10 +70,8 @@ Attach a clef and final bar line:
 
 Override LilyPond's hairpin formatting:
 
-::
-
     >>> note = abjad.select(rh_voice).note(-2)
-    >>> abjad.override(note).hairpin.to_barline = False
+    >>> abjad.override(note).Hairpin.to_barline = False
     >>> abjad.show(score)
 
 :author:`[Adán (1.1), Bača (3.2); ex. Béla Bartók, "Wandering," Mikrokosmos, vol. III]`

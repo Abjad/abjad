@@ -5,8 +5,8 @@ import typing
 import quicktions
 
 from . import exceptions
+from . import format as _format
 from . import math as _math
-from . import storage
 
 
 class Duration(quicktions.Fraction):
@@ -398,7 +398,7 @@ class Duration(quicktions.Fraction):
         """
         Gets interpreter representation.
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __rmod__(self, *arguments):
         """
@@ -466,10 +466,9 @@ class Duration(quicktions.Fraction):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return storage.FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.numerator, self.denominator],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=[],
         )
 
@@ -1889,10 +1888,9 @@ class Offset(Duration):
         values = [(self.numerator, self.denominator)]
         if self._get_displacement():
             names = ["displacement"]
-        return storage.FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             storage_format_args_values=values,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=names,
         )
 
@@ -2324,7 +2322,7 @@ class NonreducedFraction(quicktions.Fraction):
             NonreducedFraction(3, 6)
 
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __rmul__(self, argument) -> "NonreducedFraction":
         """
@@ -2403,11 +2401,9 @@ class NonreducedFraction(quicktions.Fraction):
         return result
 
     def _get_format_specification(self):
-        return storage.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.numerator, self.denominator],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=[],
         )
 

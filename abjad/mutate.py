@@ -2,16 +2,16 @@ import copy as python_copy
 import itertools
 
 from . import enums, exceptions, get
-from .attach import attach, detach
+from . import iterate as iterate_
+from .bind import attach, detach
 from .duration import Duration
 from .indicators.RepeatTie import RepeatTie
 from .indicators.Tie import Tie
-from .iterate import Iteration
 from .makers import NoteMaker
 from .pitch.intervals import NamedInterval
 from .ratio import Ratio
 from .score import BeforeGraceContainer, Chord, Component, Container, Leaf, Note, Tuplet
-from .select import Selection
+from .selection import Selection
 from .sequence import Sequence
 from .spanners import tie
 
@@ -267,7 +267,7 @@ def _split_container_by_duration(CONTAINER, duration):
     # in order to start upward crawl through duration-crossing containers
     else:
         duration_crossing_containers = duration_crossing_descendants[:]
-        for leaf in Iteration(bottom).leaves():
+        for leaf in iterate_.leaves(bottom):
             timespan = get.timespan(leaf)
             if timespan.start_offset == global_split_point:
                 leaf_right_of_split = leaf
@@ -412,7 +412,7 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
 
 def copy(argument, n=1):
     r"""
-    Copies client.
+    Copies argument.
 
     ..  container:: example
 
@@ -611,9 +611,9 @@ def eject_contents(argument):
 
 def extract(argument):
     r"""
-    Extracts mutation client from score.
+    Extracts ``argument`` from score.
 
-    Leaves children of mutation client in score.
+    Leaves children of ``argument`` in score.
 
     ..  container:: example
 
@@ -760,14 +760,14 @@ def extract(argument):
                 e'4
             }
 
-    Returns mutation client.
+    Returns ``argument``.
     """
     return _extract(argument)
 
 
 def fuse(argument):
     r"""
-    Fuses mutation client.
+    Fuses ``argument``.
 
     ..  container:: example
 
@@ -1029,8 +1029,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
 
 def replace(argument, recipients, wrappers=False):
     r"""
-    Replaces mutation client (and contents of mutation client) with
-    ``recipients``.
+    Replaces ``argument`` (and contents of ``argument``) with ``recipients``.
 
     ..  container:: example
 
@@ -1271,7 +1270,7 @@ def replace(argument, recipients, wrappers=False):
 
 def scale(argument, multiplier) -> None:
     r"""
-    Scales mutation client by ``multiplier``.
+    Scales ``argument`` by ``multiplier``.
 
     ..  container:: example
 
@@ -1457,7 +1456,7 @@ def scale(argument, multiplier) -> None:
 # TODO: add example showing grace and after grace handling.
 def split(argument, durations, cyclic=False):
     r"""
-    Splits mutation client by ``durations``.
+    Splits ``argument`` by ``durations``.
 
     ..  container:: example
 
@@ -1961,7 +1960,7 @@ def split(argument, durations, cyclic=False):
 
 def swap(argument, container):
     r"""
-    Swaps mutation client for empty ``container``.
+    Swaps ``argument`` for empty ``container``.
 
     ..  container:: example
 
@@ -2100,7 +2099,7 @@ def transpose(argument, interval):
     Returns none.
     """
     named_interval = NamedInterval(interval)
-    for x in Iteration(argument).components((Note, Chord)):
+    for x in iterate_.components(argument, (Note, Chord)):
         if isinstance(x, Note):
             old_written_pitch = x.note_head.written_pitch
             new_written_pitch = old_written_pitch.transpose(named_interval)
@@ -2114,7 +2113,7 @@ def transpose(argument, interval):
 
 def wrap(argument, container):
     r"""
-    Wraps mutation client in empty ``container``.
+    Wraps ``argument`` in empty ``container``.
 
     ..  container:: example
 
@@ -2300,7 +2299,7 @@ def wrap(argument, container):
             }
 
         >>> prototype = abjad.TimeSignature
-        >>> for component in abjad.iterate(staff).components():
+        >>> for component in abjad.iterate.components(staff):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...

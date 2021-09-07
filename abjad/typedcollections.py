@@ -1,8 +1,8 @@
 import abc
 import collections.abc
 
+from . import format as _format
 from .new import new
-from .storage import FormatSpecification, StorageFormatManager
 
 
 class TypedCollection:
@@ -76,7 +76,7 @@ class TypedCollection:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -91,12 +91,12 @@ class TypedCollection:
         return coerce_(item)
 
     def _get_format_specification(self):
-        names = list(StorageFormatManager(self).signature_keyword_names)
+        result = _format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        names = list(signature_keyword_names)
         if "items" in names:
             names.remove("items")
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self._collection],
             storage_format_keyword_names=names,
         )
@@ -307,12 +307,12 @@ class TypedCounter(TypedCollection, collections.abc.MutableMapping):
         return the_items, itemdict
 
     def _get_format_specification(self):
-        names = list(StorageFormatManager(self).signature_keyword_names)
+        result = _format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        names = list(signature_keyword_names)
         if "items" in names:
             names.remove("items")
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self._collection],
             storage_format_keyword_names=names,
             template_names=names,
@@ -804,14 +804,14 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        names = list(StorageFormatManager(self).signature_keyword_names)
+        result = _format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        names = list(signature_keyword_names)
         if "items" in names:
             names.remove("items")
         if "keep_sorted" in names:
             names.remove("keep_sorted")
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self._collection],
             storage_format_keyword_names=names,
         )

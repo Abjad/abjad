@@ -1,8 +1,8 @@
 import typing
 
+from .. import format as _format
 from .. import math, typings
 from ..duration import Duration, Multiplier, NonreducedFraction
-from ..storage import FormatSpecification, StorageFormatManager
 
 
 class TimeSignature:
@@ -274,7 +274,7 @@ class TimeSignature:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """
@@ -291,15 +291,13 @@ class TimeSignature:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        storage_format_is_indented = False
+        storage_format_is_not_indented = True
         if self.partial is not None or self.hide is not None:
-            storage_format_is_indented = True
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
+            storage_format_is_not_indented = False
+        return _format.FormatSpecification(
             storage_format_args_values=[self.pair],
             storage_format_keyword_names=["partial", "hide"],
-            storage_format_is_indented=storage_format_is_indented,
+            storage_format_is_not_indented=storage_format_is_not_indented,
         )
 
     def _get_lilypond_format(self):
@@ -438,7 +436,7 @@ class TimeSignature:
                 f'4
             }
 
-            >>> for leaf in abjad.iterate(staff).leaves():
+            >>> for leaf in abjad.iterate.leaves(staff):
             ...     prototype = abjad.TimeSignature
             ...     leaf, abjad.get.effective(leaf, prototype)
             ...

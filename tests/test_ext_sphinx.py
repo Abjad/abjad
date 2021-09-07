@@ -19,38 +19,38 @@ def test_ext_sphinx_01(app, status, warning, rm_dirs):
     assert not warning.getvalue().strip()
     images_path = pathlib.Path(app.outdir) / "_images"
     assert sorted(path.name for path in images_path.iterdir()) == [
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.cropped.svg",
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.ly",
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d.cropped.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d.ly",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-1.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-2.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-3.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-4.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78.cropped.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78.ly",
+        "lilypond-d85b6f545cbf75344c7cf33a35063b0623b3ff7a217081827f76bc22aad946d6.cropped.svg",
+        "lilypond-d85b6f545cbf75344c7cf33a35063b0623b3ff7a217081827f76bc22aad946d6.ly",
+        "lilypond-d85b6f545cbf75344c7cf33a35063b0623b3ff7a217081827f76bc22aad946d6.svg",
     ]
 
     index_path = pathlib.Path(app.srcdir) / "_build" / "html" / "index.html"
     index_source = index_path.read_text()
     assert re.findall(r"lilypond-\w{64}(?:-\d+|.cropped)?\.svg", index_source) == [
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.cropped.svg",
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d.cropped.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
+        "lilypond-d85b6f545cbf75344c7cf33a35063b0623b3ff7a217081827f76bc22aad946d6.cropped.svg",
+        "lilypond-d85b6f545cbf75344c7cf33a35063b0623b3ff7a217081827f76bc22aad946d6.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78.cropped.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-1.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-2.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-3.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-4.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-2.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-3.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-1.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-1.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-1.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-2.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-2.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-3.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-3.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-4.svg",
+        "lilypond-d5d910c50c8632716c4e835cf0ee997ba8165d433302f5c8c9ebbea663443e78-4.svg",
     ]
 
 
@@ -71,8 +71,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
 
            \score
            {
@@ -91,8 +89,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
 
            \score
            {
@@ -116,8 +112,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
 
            \score
            {
@@ -141,8 +135,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
 
            \score
            {
@@ -165,8 +157,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
 
            \score
            {
@@ -189,8 +179,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
 
            \score
            {

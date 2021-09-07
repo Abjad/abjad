@@ -9,11 +9,11 @@ Updates start offsets, stop offsets and indicators everywhere in score.
     implementation of the update manager.
 
 """
+from . import iterate as iterate_
 from . import math
 from .duration import Duration, Multiplier, Offset
 from .indicators.MetronomeMark import MetronomeMark
 from .indicators.TimeSignature import TimeSignature
-from .iterate import Iteration
 from .obgc import OnBeatGraceContainer
 from .parentage import Parentage
 from .score import AfterGraceContainer, BeforeGraceContainer
@@ -152,8 +152,8 @@ def _iterate_entire_score(root):
     """
     NOTE: RETURNS GRACE NOTES LAST (AND OUT-OF-ORDER).
     """
-    components = list(Iteration(root).components(grace=False))
-    graces = Iteration(root).components(grace=True)
+    components = list(iterate_.components(root, grace=False))
+    graces = iterate_.components(root, grace=True)
     components.extend(graces)
     return components
 

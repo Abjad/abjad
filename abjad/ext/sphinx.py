@@ -26,10 +26,10 @@ from uqbar.strings import normalize
 
 from ..configuration import Configuration
 from ..contextmanagers import TemporaryDirectoryChange
-from ..format import remove_tags
 from ..illustrators import illustrate
 from ..io import Illustrator, LilyPondIO, Player
 from ..lilypondfile import Block, LilyPondVersionToken
+from ..lilypondformat import remove_tags
 
 configuration = Configuration()
 logger = logging.getLogger(__name__)
@@ -270,9 +270,6 @@ class LilyPondExtension(Extension):
             block = Block(name="midi")
             illustration.score_block.items.append(block)
         if illustration.header_block:
-            if getattr(illustration.header_block, "tagline") == "##f":
-                # default.ily stylesheet already sets tagline = ##f
-                delattr(illustration.header_block, "tagline")
             if illustration.header_block.empty():
                 illustration.items.remove(illustration.header_block)
         if illustration.layout_block and illustration.layout_block.empty():
@@ -281,7 +278,7 @@ class LilyPondExtension(Extension):
             illustration.items.remove(illustration.paper_block)
         token = LilyPondVersionToken("2.19.83")
         illustration._lilypond_version_token = token
-        stylesheet = self.stylesheet or "default.ily"
+        stylesheet = self.stylesheet
         if self.no_stylesheet:
             stylesheet = None
         if stylesheet and not illustration.includes:

@@ -390,22 +390,21 @@ can start building our score.
     ...     string = "-".join(string)
     ...     string = f"[{string}]"
     ...     string = r'\header { subtitle = \markup "' + string + '" }'
+    ...     string += "\n"
     ...     return string
 
 ::
 
-    >>> lilypond_preamble = r"""#(set-global-staff-size 16)
+    >>> preamble = r"""#(set-global-staff-size 16)
     ... 
     ... \layout { indent = #0 }
     ...
-    ... \header { title = \markup "Ein Musikalisches Wuerfelspiel" }"""
+    ... \header { title = \markup "Ein Musikalisches Wuerfelspiel" }
+    ... """
 
 ----
 
 **Example 1.** Here's the minuet resulting from a random seed of 1:
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> random.seed(1)
     >>> choices = [random.randint(1, _) for _ in counts]
@@ -413,15 +412,12 @@ can start building our score.
 
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile([lilypond_preamble, subtitle,  score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, subtitle,  score])
     >>> abjad.show(lilypond_file)
 
 ----
 
 **Example 2.** Here's the minuet resulting from a random seed of 2:
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> random.seed(2)
     >>> choices = [random.randint(1, _) for _ in counts]
@@ -429,20 +425,17 @@ can start building our score.
 
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile([lilypond_preamble, subtitle, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, subtitle, score])
     >>> abjad.show(lilypond_file)
 
 ----
 
 **Example 3.** And here's a minuet resulting from measure choices made by hand:
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> choices = [9, 10, 9, 10, 9, 10, 9, 2, 9, 10, 9, 10, 9, 10, 9, 2]
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile([lilypond_preamble, subtitle, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, subtitle, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Oberholtzer (2.19), Bača (3.2); attr. W. A. Mozart.]`

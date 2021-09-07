@@ -21,5 +21,3 @@ def test_NoteHeadList_append_01():
         >4
         """
     )
-
-    assert note_head._client is chord

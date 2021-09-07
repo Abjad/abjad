@@ -1,5 +1,5 @@
 from .. import _iterate
-from ..attach import attach, detach
+from ..bind import attach, detach
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
 from ..indicators.StartBeam import StartBeam
@@ -11,7 +11,7 @@ from ..indicators.TimeSignature import TimeSignature
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..score import Chord, Container, Note, Rest, Tuplet
-from ..select import Selection
+from ..selection import Selection
 from .base import Parser
 
 

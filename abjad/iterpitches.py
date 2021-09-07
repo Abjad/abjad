@@ -2,13 +2,13 @@ import typing
 
 from . import _inspect
 from . import get as _get
+from . import iterate as iterate_
 from .indicators.StartTrillSpan import StartTrillSpan
 from .instruments import Instrument
-from .iterate import Iteration
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch, Pitch
 from .score import Chord, Note
-from .select import Selection
+from .selection import Selection
 
 
 def iterate_out_of_range(components) -> typing.Generator:
@@ -93,7 +93,7 @@ def respell_with_flats(selection) -> None:
             }
 
     """
-    for leaf in Iteration(selection).leaves():
+    for leaf in iterate_.leaves(selection):
         if isinstance(leaf, Note):
             assert leaf.written_pitch is not None
             leaf.written_pitch = leaf.written_pitch._respell(accidental="flats")
@@ -146,7 +146,7 @@ def respell_with_sharps(selection) -> None:
             }
 
     """
-    for leaf in Iteration(selection).leaves():
+    for leaf in iterate_.leaves(selection):
         if isinstance(leaf, Note):
             assert leaf.written_pitch is not None
             leaf.written_pitch = leaf.written_pitch._respell(accidental="sharps")
@@ -157,6 +157,9 @@ def respell_with_sharps(selection) -> None:
 
 
 def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
+    """
+    Returns true when all pitches in ``argument`` sound within ``pitch_range``.
+    """
     assert isinstance(pitch_range, PitchRange), repr(pitch_range)
     if isinstance(argument, (int, float)):
         pitch = NamedPitch(argument)
@@ -169,7 +172,7 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     if hasattr(argument, "written_pitches"):
         sounding_pitches = _inspect._get_sounding_pitches(argument)
         return all(pitch_range._contains_pitch(_) for _ in sounding_pitches)
-    pitches = list(Iteration(argument).pitches())
+    pitches = list(iterate_.pitches(argument))
     if pitches:
         return all(pitch_range._contains_pitch(_) for _ in pitches)
     else:
@@ -219,7 +222,7 @@ def transpose_from_sounding_pitch(argument) -> None:
             }
 
     """
-    for leaf in Iteration(argument).leaves(pitched=True):
+    for leaf in iterate_.leaves(argument, pitched=True):
         instrument = _inspect._get_effective(leaf, Instrument)
         if not instrument:
             continue
@@ -279,7 +282,7 @@ def transpose_from_written_pitch(argument) -> None:
             }
 
     """
-    for leaf in Iteration(argument).leaves(pitched=True):
+    for leaf in iterate_.leaves(argument, pitched=True):
         instrument = _inspect._get_effective(leaf, Instrument)
         if not instrument:
             continue

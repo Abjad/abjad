@@ -1,7 +1,7 @@
 import typing
 
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
-from ..storage import StorageFormatManager
 
 
 class StopTextSpan:
@@ -41,7 +41,7 @@ class StopTextSpan:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -106,7 +106,8 @@ class StopTextSpan:
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopTextSpan()
             >>> abjad.attach(command, staff[-2])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -142,7 +143,8 @@ class StopTextSpan:
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopTextSpan(leak=True)
             >>> abjad.attach(command, staff[-2])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 

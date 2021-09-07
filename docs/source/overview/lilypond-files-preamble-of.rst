@@ -50,7 +50,4 @@ Then everything appears together:
 Click on the image below. Abjad generates this same LilyPond input behind the scenes when
 you call show:
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> abjad.show(lilypond_file)

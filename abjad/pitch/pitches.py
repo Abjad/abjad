@@ -5,8 +5,8 @@ import typing
 
 import quicktions
 
+from .. import format as _format
 from .. import math as _math
-from ..storage import FormatSpecification, StorageFormatManager
 from . import _lib
 from .Accidental import Accidental
 from .Octave import Octave
@@ -80,7 +80,7 @@ class Pitch:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __float__(self):
         """
@@ -108,7 +108,7 @@ class Pitch:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE PROPERTIES ###
 
@@ -604,12 +604,10 @@ class NamedPitch(Pitch):
         return diatonic_pitch_number
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            self,
+        return _format.FormatSpecification(
             coerce_for_equality=True,
-            repr_is_indented=False,
             storage_format_args_values=[self.name],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=["arrow"],
         )
 
@@ -1210,11 +1208,9 @@ class NumberedPitch(Pitch):
         return result
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             coerce_for_equality=True,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_args_values=[self.number],
             storage_format_keyword_names=["arrow"],
         )

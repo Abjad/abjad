@@ -5,12 +5,12 @@ import copy
 import typing
 
 from . import enumerate
+from . import format as _format
 from .markups import Markup
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
-from .storage import FormatSpecification, StorageFormatManager
 from .string import String
 
 
@@ -155,7 +155,7 @@ class Instrument:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -167,7 +167,7 @@ class Instrument:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE PROPERTIES ###
 
@@ -191,10 +191,7 @@ class Instrument:
 
     def _get_format_specification(self):
         keywords = []
-        return FormatSpecification(
-            self,
-            repr_args_values=[],
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             repr_keyword_names=keywords,
         )
 
@@ -404,7 +401,7 @@ class StringNumber:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -516,7 +513,7 @@ class Tuning:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -528,12 +525,12 @@ class Tuning:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(client=self)
+        return _format.FormatSpecification()
 
     ### PUBLIC PROPERTIES ###
 

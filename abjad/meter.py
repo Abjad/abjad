@@ -7,16 +7,17 @@ import typing
 
 import uqbar.graphs
 
-from . import _inspect, _iterate, markups, math, mutate, rhythmtrees
+from . import _inspect, _iterate
+from . import format as _format
+from . import markups, math, mutate, rhythmtrees
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
 from .lilypondfile import LilyPondFile
 from .new import new
 from .parentage import Parentage
 from .score import Chord, Container, Note, Rest, Skip, Tuplet
-from .select import LogicalTie, Selection
+from .selection import LogicalTie, Selection
 from .sequence import Sequence
-from .storage import FormatSpecification, StorageFormatManager
 from .timespan import OffsetCounter, Timespan, TimespanList
 from .typedcollections import TypedList
 
@@ -386,7 +387,7 @@ class Meter:
 
         Returns true or false.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __graph__(self, **keywords):
         """
@@ -644,7 +645,7 @@ class Meter:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """
@@ -672,9 +673,7 @@ class Meter:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.rtm_format],
             storage_format_keyword_names=[],
         )
@@ -2859,13 +2858,12 @@ class MetricAccentKernel:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             repr_is_indented=True,
             storage_format_args_values=[self.kernel],
             storage_format_keyword_names=[],

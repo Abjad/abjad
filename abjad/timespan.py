@@ -5,13 +5,14 @@ import collections
 import copy
 import typing
 
-from . import enums, math
+from . import enums
+from . import format as _format
+from . import math
 from .duration import Duration, Multiplier, Offset
 from .markups import Markup, Postscript
 from .new import new
 from .ratio import Ratio
 from .sequence import Sequence
-from .storage import FormatSpecification, StorageFormatManager
 from .typedcollections import TypedCounter, TypedList
 
 infinity = math.Infinity()
@@ -327,7 +328,7 @@ class Timespan:
             False
 
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __ge__(self, argument) -> bool:
         """
@@ -589,7 +590,7 @@ class Timespan:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __sub__(self, argument) -> "TimespanList":
         """
@@ -883,10 +884,8 @@ class Timespan:
         return False
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             repr_args_values=(self.start_offset, self.stop_offset),
-            repr_is_indented=False,
         )
 
     @staticmethod

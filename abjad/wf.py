@@ -1,6 +1,7 @@
 import typing
 
 from . import _inspect
+from . import iterate as iterate_
 from .duration import Duration
 from .indicators.Clef import Clef
 from .indicators.StartBeam import StartBeam
@@ -10,7 +11,6 @@ from .indicators.StopBeam import StopBeam
 from .indicators.StopHairpin import StopHairpin
 from .indicators.StopTextSpan import StopTextSpan
 from .instruments import Instrument
-from .iterate import Iteration
 from .iterpitches import sounding_pitches_are_in_range
 from .parentage import Parentage
 from .score import Container, Context
@@ -27,7 +27,7 @@ def _aggregate_context_wrappers(argument):
     This method aggregates all Special_Voice wrappers for checks.
     """
     name_to_wrappers: typing.Dict = {}
-    for context in Iteration(argument).components(Context):
+    for context in iterate_.components(argument, Context):
         if context.name not in name_to_wrappers:
             name_to_wrappers[context.name] = []
         wrappers = context._dependent_wrappers[:]
@@ -64,7 +64,8 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
                 f'4
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         2 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -96,7 +97,8 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
                 f'8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -131,7 +133,8 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
                 f'2
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -147,7 +150,7 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
     voice-persistent.
     """
     violators, total = [], 0
-    for leaf in Iteration(argument).leaves():
+    for leaf in iterate_.leaves(argument):
         total += 1
         if leaf.written_duration < Duration((1, 4)):
             continue
@@ -172,7 +175,7 @@ def check_duplicate_ids(argument) -> typing.Tuple[typing.List, int]:
     Checks duplicate IDs.
     """
     violators = []
-    components = Iteration(argument).components()
+    components = iterate_.components(argument)
     total_ids = [id(_) for _ in components]
     unique_ids = Sequence(total_ids).remove_repeats()
     if len(unique_ids) < len(total_ids):
@@ -208,7 +211,7 @@ def check_empty_containers(argument) -> typing.Tuple[typing.List, int]:
 
     """
     violators, containers = [], set()
-    for container in Iteration(argument).components(Container):
+    for container in iterate_.components(argument, Container):
         containers.add(container)
         if len(container) == 0:
             violators.append(container)
@@ -220,7 +223,7 @@ def check_missing_parents(argument) -> typing.Tuple[typing.List, int]:
     Checks missing parents.
     """
     violators, total = [], set()
-    components = Iteration(argument).components()
+    components = iterate_.components(argument)
     for i, component in enumerate(components):
         total.add(component)
         if 0 < i:
@@ -255,7 +258,8 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
                 f'8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
+        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -290,7 +294,8 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
                 f'8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
+        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -304,7 +309,7 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
 
     """
     violators, total = [], set()
-    for leaf in Iteration(argument).leaves():
+    for leaf in iterate_.leaves(argument):
         total.add(leaf)
         instrument = _inspect._get_effective(leaf, Instrument)
         if instrument is None:
@@ -343,7 +348,8 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
                 r8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
+        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -376,7 +382,8 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
                 r8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
+        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -390,7 +397,7 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
 
     """
     violators, total = [], set()
-    for leaf in Iteration(argument).leaves(pitched=True):
+    for leaf in iterate_.leaves(argument, pitched=True):
         total.add(leaf)
         if leaf._has_indicator("ALLOW_OUT_OF_RANGE"):
             continue
@@ -431,7 +438,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -468,7 +476,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -500,7 +509,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -540,7 +550,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -607,7 +618,8 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -691,7 +703,8 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
             c'4
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -721,7 +734,8 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
             c'4
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -827,7 +841,8 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
             c'4
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
         0 /     4 beamed long notes
         0 /     5 duplicate ids
         0 /     1 empty containers
@@ -966,7 +981,7 @@ def tabulate_wellformedness(
     check_unmatched_stop_text_spans: bool = True,
     check_unterminated_hairpins: bool = True,
     check_unterminated_text_spanners: bool = True,
-) -> str:
+) -> tuple[int, str]:
     """
     Tabulates wellformedness.
     """
@@ -984,13 +999,15 @@ def tabulate_wellformedness(
         check_unterminated_text_spanners=check_unterminated_text_spanners,
     )
     strings = []
+    total_violators = 0
     for violators, total, name in triples:
         violator_count = len(violators)
         name = name.replace("check_", "")
         name = name.replace("_", " ")
         string = f"{violator_count} /    {total} {name}"
         strings.append(string)
-    return "\n".join(strings)
+        total_violators += violator_count
+    return total_violators, "\n".join(strings)
 
 
 def wellformed(

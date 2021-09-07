@@ -5,13 +5,13 @@ import itertools
 import operator
 import typing
 
-from . import _inspect, _iterate, enums, math, typings
-from .attach import attach, detach
+from . import _inspect, _iterate, enums
+from . import format as _format
+from . import math, typings
+from .bind import attach, detach
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Offset
-from .expression import Expression
 from .indicators.Tie import Tie
-from .new import new
 from .parentage import Parentage
 from .pattern import Pattern
 from .pitch.pitches import NamedPitch, NumberedPitch
@@ -34,9 +34,6 @@ from .score import (
     Voice,
 )
 from .sequence import Sequence
-from .storage import FormatSpecification, StorageFormatManager
-
-### INEQUALITIES ###
 
 
 class Inequality:
@@ -81,7 +78,7 @@ class Inequality:
         """
         Is true equal to ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -93,7 +90,7 @@ class Inequality:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -345,9 +342,6 @@ class PitchInequality:
         return self._pitches
 
 
-### SELECTION ###
-
-
 class Selection(collections.abc.Sequence):
     r"""
     Selection of items (components / or other selections).
@@ -374,7 +368,7 @@ class Selection(collections.abc.Sequence):
 
     __documentation_section__ = "Selections"
 
-    __slots__ = ("_expression", "_items", "_previous")
+    __slots__ = ("_items", "_previous")
 
     ### INITIALIZER ###
 
@@ -386,12 +380,11 @@ class Selection(collections.abc.Sequence):
         items = tuple(items)
         self._check(items)
         self._items = tuple(items)
-        self._expression = None
         self._previous = previous
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument) -> typing.Union["Selection", Expression]:
+    def __add__(self, argument) -> "Selection":
         r"""
         Cocatenates ``argument`` to selection.
 
@@ -440,18 +433,13 @@ class Selection(collections.abc.Sequence):
         return False
 
     def __getitem__(self, argument):
-        r"""
+        """
         Gets item, slice or pattern ``argument`` in selection.
 
-        Returns a single item (or expression) when ``argument`` is an integer.
+        Returns a single item when ``argument`` is an integer.
 
-        Returns new selection (or expression) when ``argument`` is a slice.
+        Returns new selection when ``argument`` is a slice.
         """
-        if self._expression:
-            method = Expression._make___getitem___string_template
-            template = method(argument)
-            template = template.format(self._expression.template)
-            return self._update_expression(inspect.currentframe(), template=template)
         result = self.items.__getitem__(argument)
         if isinstance(result, tuple):
             result = type(self)(result, previous=self._previous)
@@ -485,12 +473,10 @@ class Selection(collections.abc.Sequence):
         """
         return len(self.items)
 
-    def __radd__(self, argument) -> typing.Union["Selection", Expression]:
+    def __radd__(self, argument) -> "Selection":
         """
         Concatenates selection to ``argument``.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         assert isinstance(argument, collections.abc.Iterable)
         items = tuple(argument) + self.items
         return type(self)(items=items)
@@ -499,7 +485,7 @@ class Selection(collections.abc.Sequence):
         """
         Gets interpreter representation of selection.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __setstate__(self, state) -> None:
         """
@@ -592,7 +578,7 @@ class Selection(collections.abc.Sequence):
         values = []
         if self.items:
             values = [list(self.items)]
-        return FormatSpecification(client=self, storage_format_args_values=values)
+        return _format.FormatSpecification(storage_format_args_values=values)
 
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
@@ -622,7 +608,7 @@ class Selection(collections.abc.Sequence):
         try:
             frame_info = inspect.getframeinfo(frame)
             function_name = frame_info.function
-            arguments = Expression._wrap_arguments(frame)
+            arguments = _format._wrap_arguments(frame)
         finally:
             del frame
         template = f".{function_name}({arguments})"
@@ -811,25 +797,6 @@ class Selection(collections.abc.Sequence):
             result = Selection(result__)
         return result
 
-    def _update_expression(
-        self,
-        frame,
-        evaluation_template=None,
-        lone=None,
-        map_operand=None,
-        template=None,
-    ):
-        callback = Expression._frame_to_callback(
-            frame,
-            evaluation_template=evaluation_template,
-            map_operand=map_operand,
-        )
-        callback = new(callback, lone=lone)
-        expression = self._expression.append_callback(callback)
-        if template is None:
-            template = self._get_template(frame, self._expression)
-        return new(expression, template=template)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -849,7 +816,7 @@ class Selection(collections.abc.Sequence):
 
     def are_contiguous_logical_voice(
         self, prototype=None, *, ignore_before_after_grace=None
-    ) -> typing.Union[bool, Expression]:
+    ) -> bool:
         r"""
         Is true when items in selection are contiguous components in the
         same logical voice.
@@ -934,8 +901,6 @@ class Selection(collections.abc.Sequence):
             True
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         if not isinstance(self, collections.abc.Iterable):
             return False
         prototype = prototype or (Component,)
@@ -975,7 +940,7 @@ class Selection(collections.abc.Sequence):
 
     def are_contiguous_same_parent(
         self, prototype=None, *, ignore_before_after_grace=None
-    ) -> typing.Union[bool, Expression]:
+    ) -> bool:
         r"""
         Is true when items in selection are all contiguous components in
         the same parent.
@@ -1060,8 +1025,6 @@ class Selection(collections.abc.Sequence):
             True
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         prototype = prototype or (Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -1095,7 +1058,7 @@ class Selection(collections.abc.Sequence):
             previous = current
         return True
 
-    def are_leaves(self) -> typing.Union[bool, Expression]:
+    def are_leaves(self) -> bool:
         """
         Is true when items in selection are all leaves.
 
@@ -1105,11 +1068,9 @@ class Selection(collections.abc.Sequence):
             True
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return all(isinstance(_, Leaf) for _ in self)
 
-    def are_logical_voice(self, prototype=None) -> typing.Union[bool, Expression]:
+    def are_logical_voice(self, prototype=None) -> bool:
         """
         Is true when items in selection are all components in the same
         logical voice.
@@ -1125,13 +1086,11 @@ class Selection(collections.abc.Sequence):
             True
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return _inspect._are_logical_voice(self, prototype=prototype)
 
     def chord(
         self, n: int, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> typing.Union[Chord, Expression]:
+    ) -> Chord:
         r"""
         Selects chord ``n``.
 
@@ -1147,32 +1106,29 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).chord(-1)
             >>> result
             Chord("<fs' gs'>16")
 
-            >>> abjad.Label(result).by_selector(lone=True)
+            >>> abjad.label.by_selector(result, lone=True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -1183,10 +1139,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             bf'16
                             <a'' b''>16
                             c'16
@@ -1215,21 +1169,16 @@ class Selection(collections.abc.Sequence):
                             ~
                             \abjad-color-music #'green
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.chords(exclude=exclude, grace=grace)[n]
 
     def chords(
         self, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Selects chords.
 
@@ -1245,12 +1194,13 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).chords()
             >>> for item in result:
@@ -1266,21 +1216,17 @@ class Selection(collections.abc.Sequence):
             Chord("<fs' gs'>4")
             Chord("<fs' gs'>16")
 
-            >>> abjad.Label(result).by_selector(True)
+            >>> abjad.label.by_selector(result, True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -1291,10 +1237,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             bf'16
                             \abjad-color-music #'red
                             <a'' b''>16
@@ -1331,16 +1275,11 @@ class Selection(collections.abc.Sequence):
                             ~
                             \abjad-color-music #'red
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return self.components(Chord, exclude=exclude, grace=grace)
 
     def components(
@@ -1350,7 +1289,7 @@ class Selection(collections.abc.Sequence):
         exclude: typings.Strings = None,
         grace: bool = None,
         reverse: bool = None,
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Selects components.
 
@@ -1372,8 +1311,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("g'8")
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1430,8 +1370,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("f'8")
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1490,8 +1431,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("f'8")
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1546,8 +1488,9 @@ class Selection(collections.abc.Sequence):
             Note("af'16")
             Note("gf'16")
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1579,16 +1522,12 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         generator = _iterate._public_iterate_components(
             self, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
         )
         return type(self)(generator, previous=self._previous)
 
-    def exclude(
-        self, indices: typing.Sequence[int], period: int = None
-    ) -> typing.Union["Selection", Expression]:
+    def exclude(self, indices: typing.Sequence[int], period: int = None) -> "Selection":
         r"""
         Gets patterned items.
 
@@ -1609,8 +1548,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("f'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1655,8 +1595,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("d'8"), Note("d'8")])
             LogicalTie([Note("f'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1701,8 +1642,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8"), Note("e'8")])
             Selection([Note("f'8")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1733,8 +1675,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         pattern = Pattern(indices, period=period, inverted=True)
         pattern = pattern.advance(self._previous)
         self._previous = None
@@ -1742,7 +1682,7 @@ class Selection(collections.abc.Sequence):
         result = type(self)(items, previous=self._previous)
         return result
 
-    def filter(self, predicate=None) -> typing.Union["Selection", Expression]:
+    def filter(self, predicate=None) -> "Selection":
         r"""
         Filters selection by ``predicate``.
 
@@ -1760,8 +1700,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1786,8 +1727,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         if predicate is None:
             return type(self)(self)
         return type(self)([_ for _ in self if predicate(_)])
@@ -1798,7 +1737,7 @@ class Selection(collections.abc.Sequence):
         duration: typings.DurationTyping,
         *,
         preprolated: bool = None,
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Filters selection by ``operator`` and ``duration``.
 
@@ -1816,8 +1755,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1856,8 +1796,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8")])
             Selection([Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1883,14 +1824,10 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         inequality = DurationInequality(operator, duration, preprolated=preprolated)
         return self.filter(inequality)
 
-    def filter_length(
-        self, operator, length: int
-    ) -> typing.Union["Selection", Expression]:
+    def filter_length(self, operator, length: int) -> "Selection":
         r"""
         Filters selection by ``operator`` and ``length``.
 
@@ -1908,8 +1845,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1950,8 +1888,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8")])
             Selection([Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1977,13 +1916,9 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return self.filter(LengthInequality(operator, length))
 
-    def filter_pitches(
-        self, operator, pitches
-    ) -> typing.Union["Selection", Expression]:
+    def filter_pitches(self, operator, pitches) -> "Selection":
         r"""
         Filters selection by ``operator`` and ``pitches``.
 
@@ -2004,8 +1939,9 @@ class Selection(collections.abc.Sequence):
             Chord("<c' e' g'>8")
             Chord("<c' e' g'>4")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2049,8 +1985,9 @@ class Selection(collections.abc.Sequence):
             Chord("<c' e' g'>8")
             Chord("<c' e' g'>4")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2093,8 +2030,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("c'8")])
             LogicalTie([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2121,13 +2059,11 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return self.filter(PitchInequality(operator, pitches))
 
     def filter_preprolated(
         self, operator, duration: typings.DurationTyping
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Filters selection by ``operator`` and preprolated ``duration``.
 
@@ -2145,8 +2081,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2185,8 +2122,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8")])
             Selection([Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2212,12 +2150,10 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         inequality = DurationInequality(operator, duration, preprolated=True)
         return self.filter(inequality)
 
-    def flatten(self, depth: int = 1) -> typing.Union["Selection", Expression]:
+    def flatten(self, depth: int = 1) -> "Selection":
         r"""
         Flattens selection to ``depth``.
 
@@ -2233,12 +2169,13 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).tuplets()
             >>> result = [abjad.select(_).leaves()[:2] for _ in result]
@@ -2248,21 +2185,17 @@ class Selection(collections.abc.Sequence):
             Selection([Rest('r16'), Note("bf'16")])
             Selection([Rest('r16'), Note("bf'16")])
 
-            >>> abjad.Label(result).by_selector(True)
+            >>> abjad.label.by_selector(result, True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -2273,11 +2206,9 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             \abjad-color-music #'red
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             \abjad-color-music #'red
                             bf'16
                             <a'' b''>16
@@ -2310,9 +2241,6 @@ class Selection(collections.abc.Sequence):
                             <fs' gs'>4
                             ~
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
@@ -2329,12 +2257,13 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).tuplets()
             >>> result = abjad.select(abjad.select(_).leaves()[:2] for _ in result)
@@ -2348,21 +2277,17 @@ class Selection(collections.abc.Sequence):
             Rest('r16')
             Note("bf'16")
 
-            >>> abjad.Label(result).by_selector(True)
+            >>> abjad.label.by_selector(result, True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -2373,11 +2298,9 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             \abjad-color-music #'red
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             \abjad-color-music #'blue
                             bf'16
                             <a'' b''>16
@@ -2410,23 +2333,18 @@ class Selection(collections.abc.Sequence):
                             <fs' gs'>4
                             ~
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return type(self)(Sequence(self).flatten(depth=depth))
 
     def get(
         self,
         indices: typing.Union[typing.Sequence[int], Pattern],
         period: int = None,
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Gets patterned items.
 
@@ -2447,8 +2365,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Rest('r8')
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2493,8 +2412,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("c'8")])
             LogicalTie([Note("e'8"), Note("e'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2539,8 +2459,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8")])
             Selection(items=())
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2568,8 +2489,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         if isinstance(indices, Pattern):
             assert period is None
             pattern = indices
@@ -2581,7 +2500,7 @@ class Selection(collections.abc.Sequence):
         result = type(self)(items, previous=self._previous)
         return result
 
-    def group(self) -> typing.Union["Selection", Expression]:
+    def group(self) -> "Selection":
         r"""
         Groups selection.
 
@@ -2599,8 +2518,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
 
-            >>> abjad.Label(result).by_selector(lone=True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, lone=True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2639,11 +2559,9 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.group_by()
 
-    def group_by(self, predicate=None) -> typing.Union["Selection", Expression]:
+    def group_by(self, predicate=None) -> "Selection":
         r'''
         Groups items in selection by ``predicate``.
 
@@ -2664,8 +2582,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
 
-            >>> abjad.Label(result).by_selector(lone=True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, lone=True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2704,12 +2623,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         '''
-        if self._expression:
-            return self._update_expression(
-                inspect.currentframe(),
-                evaluation_template="group_by",
-                map_operand=predicate,
-            )
         items = []
         if predicate is None:
 
@@ -2722,7 +2635,7 @@ class Selection(collections.abc.Sequence):
             items.append(item)
         return type(self)(items)
 
-    def group_by_contiguity(self) -> typing.Union["Selection", Expression]:
+    def group_by_contiguity(self) -> "Selection":
         r'''
         Groups items in selection by contiguity.
 
@@ -2745,8 +2658,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
             Selection([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2799,8 +2713,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
             Selection([Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2849,8 +2764,9 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
             Note("g'8")
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2896,8 +2812,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("d'16"), Note("d'16")])
             Selection([Note("d'16"), Note("d'16")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2957,8 +2874,9 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("d'8"), Note("d'16")]), LogicalTie([Note("d'16")])])
             Selection([LogicalTie([Note("d'16")]), LogicalTie([Note("d'16")])])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -2997,8 +2915,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         '''
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         result = []
         selection: typing.List[typing.Union[Component, Selection]] = []
         selection.extend(self[:1])
@@ -3020,7 +2936,7 @@ class Selection(collections.abc.Sequence):
             result.append(type(self)(selection))
         return type(self)(result)
 
-    def group_by_duration(self) -> typing.Union["Selection", Expression]:
+    def group_by_duration(self) -> "Selection":
         r"""
         Groups items in selection by duration.
 
@@ -3044,8 +2960,9 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("f'16"), Note("f'16")])])
             Selection([LogicalTie([Note("f'16")])])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3084,15 +3001,13 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
 
         def predicate(argument):
             return _inspect._get_duration(argument)
 
         return self.group_by(predicate)
 
-    def group_by_length(self) -> typing.Union["Selection", Expression]:
+    def group_by_length(self) -> "Selection":
         r"""
         Groups items in selection by length.
 
@@ -3113,8 +3028,9 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("e'4"), Note("e'16")]), LogicalTie([Note("f'16"), Note("f'16")])])
             Selection([LogicalTie([Note("f'16")])])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3153,8 +3069,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
 
         def predicate(argument):
             if isinstance(argument, Leaf):
@@ -3163,7 +3077,7 @@ class Selection(collections.abc.Sequence):
 
         return self.group_by(predicate)
 
-    def group_by_measure(self) -> typing.Union["Selection", Expression]:
+    def group_by_measure(self) -> "Selection":
         r"""
         Groups items in selection by measure.
 
@@ -3187,8 +3101,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("g'8"), Note("a'8"), Note("b'8")])
             Selection([Note("c''8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3241,8 +3156,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")])
             Selection([Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3295,8 +3211,9 @@ class Selection(collections.abc.Sequence):
             Note("g'8")
             Note("c''8")
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3346,8 +3263,9 @@ class Selection(collections.abc.Sequence):
             Note("b'8")
             Note("c''8")
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3394,8 +3312,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
             Selection([Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3444,8 +3363,9 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("e'8"), Note("e'8")])])
             Selection([LogicalTie([Note("f'8")]), LogicalTie([Note("g'8"), Note("g'8")])])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3497,8 +3417,6 @@ class Selection(collections.abc.Sequence):
             Selection([Note("g'4"), Note("a'4"), Note("b'4")])
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
 
         def _get_first_component(argument):
             component = Selection(argument).components()[0]
@@ -3519,7 +3437,7 @@ class Selection(collections.abc.Sequence):
             selections.append(selection)
         return type(self)(selections)
 
-    def group_by_pitch(self) -> typing.Union["Selection", Expression]:
+    def group_by_pitch(self) -> "Selection":
         r"""
         Groups items in selection by pitches.
 
@@ -3540,8 +3458,9 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("e'4"), Note("e'16")])])
             Selection([LogicalTie([Note("f'16"), Note("f'16")]), LogicalTie([Note("f'16")])])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3580,8 +3499,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
 
         def predicate(argument):
             selection = Selection(argument)
@@ -3601,7 +3518,7 @@ class Selection(collections.abc.Sequence):
         reverse: bool = None,
         tail: bool = None,
         trim: typing.Union[bool, int] = None,
-    ) -> typing.Union[Leaf, Expression]:
+    ) -> Leaf:
         r"""
         Selects leaf ``n``.
 
@@ -3617,32 +3534,29 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).leaf(-1)
             >>> result
             Chord("<fs' gs'>16")
 
-            >>> abjad.Label(result).by_selector(lone=True)
+            >>> abjad.label.by_selector(result, lone=True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -3653,10 +3567,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             bf'16
                             <a'' b''>16
                             c'16
@@ -3685,16 +3597,11 @@ class Selection(collections.abc.Sequence):
                             ~
                             \abjad-color-music #'green
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.leaves(
             exclude=exclude,
             grace=grace,
@@ -3717,7 +3624,7 @@ class Selection(collections.abc.Sequence):
         reverse: bool = None,
         tail: bool = None,
         trim: typing.Union[bool, int] = None,
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r'''
         Selects leaves (without grace notes).
 
@@ -3746,8 +3653,9 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
             Rest('r8')
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3806,8 +3714,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("d'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3867,8 +3776,9 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
 
             >>> abjad.ottava(result)
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3932,8 +3842,9 @@ class Selection(collections.abc.Sequence):
             Rest('r8')
 
             >>> abjad.ottava(result)
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -3997,8 +3908,9 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
             Note("c'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4058,8 +3970,9 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
             Rest('r8')
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4113,8 +4026,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("d'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4168,8 +4082,9 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
             Note("c'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4225,8 +4140,9 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
             Note("c'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4280,8 +4196,9 @@ class Selection(collections.abc.Sequence):
             Chord("<c' e' g'>8")
             Chord("<c' d'>8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4338,8 +4255,9 @@ class Selection(collections.abc.Sequence):
             Note("f'8")
             Note("e'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4399,8 +4317,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("f'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4455,8 +4374,9 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
             Note("f'8")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4507,8 +4427,9 @@ class Selection(collections.abc.Sequence):
             Note("af'16")
             Note("gf'16")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4541,8 +4462,6 @@ class Selection(collections.abc.Sequence):
 
         '''
         assert trim in (True, False, enums.Left, None)
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         if pitched:
             prototype = (Chord, Note)
         elif prototype is None:
@@ -4566,8 +4485,9 @@ class Selection(collections.abc.Sequence):
         nontrivial: bool = None,
         pitched: bool = None,
         reverse: bool = None,
-    ) -> typing.Union[Leaf, Expression]:
-        r"""
+    ) -> Leaf:
+        """
+        Selects logical tie ``n``.
 
         ..  todo:: Make work on nonhead leaves.
 
@@ -4576,8 +4496,6 @@ class Selection(collections.abc.Sequence):
         ..  todo:: Remove ``abjad.get.logical_tie()``.
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.logical_ties(
             exclude=exclude,
             grace=grace,
@@ -4594,7 +4512,7 @@ class Selection(collections.abc.Sequence):
         nontrivial: bool = None,
         pitched: bool = None,
         reverse: bool = None,
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r'''
         Selects logical ties (without grace notes).
 
@@ -4616,8 +4534,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("f'8"), Note("f'8")])
             LogicalTie([Rest('r8')])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4667,8 +4586,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("e'8")])
             LogicalTie([Note("f'8"), Note("f'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4716,8 +4636,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("d'8"), Note("d'8")])
             LogicalTie([Note("f'8"), Note("f'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4767,8 +4688,9 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("g'8")]), LogicalTie([Note("a'8"), Note("a'8")])])
             Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4833,8 +4755,9 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("g'8")]), LogicalTie([Note("a'8"), Note("a'8")])])
             Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4900,8 +4823,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("e'8")])
             LogicalTie([Note("f'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -4956,8 +4880,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("e'8")])
             LogicalTie([Note("f'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5009,8 +4934,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("af'16")])
             LogicalTie([Note("gf'16")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5059,8 +4985,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("f'8"), Note("f'8")])
             LogicalTie([Rest('r8')])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5109,8 +5036,9 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("c'8")])
             LogicalTie([Note("d'8"), Note("d'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5142,8 +5070,6 @@ class Selection(collections.abc.Sequence):
             Selects logical ties 6 and 7 on second call.
 
         '''
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         generator = _iterate._iterate_logical_ties(
             self,
             exclude=exclude,
@@ -5155,7 +5081,7 @@ class Selection(collections.abc.Sequence):
         )
         return type(self)(generator, previous=self._previous)
 
-    def nontrivial(self) -> typing.Union["Selection", Expression]:
+    def nontrivial(self) -> "Selection":
         r"""
         Filters selection by length greater than 1.
 
@@ -5173,8 +5099,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5202,13 +5129,11 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return self.filter_length(">", 1)
 
     def note(
         self, n: int, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> typing.Union[Note, Expression]:
+    ) -> Note:
         r"""
         Selects note ``n``.
 
@@ -5224,32 +5149,29 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).note(-1)
             >>> result
             Note("e'16")
 
-            >>> abjad.Label(result).by_selector(lone=True)
+            >>> abjad.label.by_selector(result, lone=True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -5260,10 +5182,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             bf'16
                             <a'' b''>16
                             c'16
@@ -5292,21 +5212,16 @@ class Selection(collections.abc.Sequence):
                             <fs' gs'>4
                             ~
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.notes(exclude=exclude, grace=grace)[n]
 
     def notes(
         self, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Selects notes.
 
@@ -5322,12 +5237,13 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).notes()
             >>> for item in result:
@@ -5340,21 +5256,17 @@ class Selection(collections.abc.Sequence):
             Note("bf'16")
             Note("e'16")
 
-            >>> abjad.Label(result).by_selector()
+            >>> abjad.label.by_selector(result)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -5365,10 +5277,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             \abjad-color-music #'red
                             bf'16
                             <a'' b''>16
@@ -5402,16 +5312,11 @@ class Selection(collections.abc.Sequence):
                             <fs' gs'>4
                             ~
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return self.components(Note, exclude=exclude, grace=grace)
 
     def partition_by_counts(
@@ -5423,7 +5328,7 @@ class Selection(collections.abc.Sequence):
         fuse_overhang=False,
         nonempty=False,
         overhang=False,
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Partitions selection by ``counts``.
 
@@ -5445,8 +5350,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("c'8"), Rest('r8'), Note("d'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5489,8 +5395,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Rest('r8'), Note("d'8")])
             Selection([Note("e'8"), Rest('r8'), Note("f'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5537,8 +5444,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8"), Rest('r8'), Note("f'8")])
             Selection([Note("g'8"), Note("a'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5588,8 +5496,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Rest('r8'), Note("d'8")])
             Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5642,8 +5551,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("a'8"), Note("b'8")])
             Selection([Rest('r8'), Note("c''8")])
 
-            >>> abjad.Label(result).by_selector(colors=["#red", "#blue", "#cyan"])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5699,8 +5609,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Rest('r8')])
             Selection([Note("f'8"), Note("g'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5751,8 +5662,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8")])
             Selection([Note("c''8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5800,8 +5712,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Rest('r8'), Note("d'8")])
             Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5838,8 +5751,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         result = []
         groups_ = Sequence(self).partition_by_counts(
             [abs(_) for _ in counts],
@@ -5883,7 +5794,7 @@ class Selection(collections.abc.Sequence):
         fill=None,
         in_seconds=False,
         overhang=False,
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Partitions selection by ``durations``.
 
@@ -5903,7 +5814,8 @@ class Selection(collections.abc.Sequence):
             ...     abjad.attach(time_signature, container[0])
             ...
             >>> abjad.setting(staff).autoBeaming = False
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).leaves().partition_by_durations(
             ...     [abjad.Duration(3, 8)],
@@ -5919,8 +5831,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
             Selection([Note("b'8"), Note("c''8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -5991,8 +5904,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("c'8"), Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6063,8 +5977,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("a'8")])
             Selection([Note("b'8"), Note("c''8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6142,8 +6057,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("a'8")])
             Selection([Note("b'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6214,8 +6130,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("c'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6284,8 +6201,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Note("d'8"), Note("e'8")])
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6361,8 +6279,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
             Selection([Note("b'8"), Note("c''8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6438,8 +6357,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("c'8"), Note("d'8"), Note("e'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6516,8 +6436,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("a'8")])
             Selection([Note("b'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6592,8 +6513,9 @@ class Selection(collections.abc.Sequence):
             ...
             Selection([Note("c'8")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6643,8 +6565,6 @@ class Selection(collections.abc.Sequence):
 
         Returns remaining components at end in final part when ``overhang`` is true.
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         fill = fill or enums.Exact
         durations = [Duration(_) for _ in durations]
         if cyclic:
@@ -6718,7 +6638,7 @@ class Selection(collections.abc.Sequence):
         selections = [type(self)(_) for _ in result]
         return type(self)(selections)
 
-    def partition_by_ratio(self, ratio) -> typing.Union["Selection", Expression]:
+    def partition_by_ratio(self, ratio) -> "Selection":
         r"""
         Partitions selection by ``ratio``.
 
@@ -6738,8 +6658,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8')])
             Selection([Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6790,8 +6711,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8"), Rest('r8'), Note("f'8")])
             Selection([Note("g'8"), Note("a'8"), Rest('r8')])
 
-            >>> abjad.Label(result).by_selector(colors=["#red", "#blue", "#cyan"])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -6826,8 +6748,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         ratio = ratio or Ratio((1,))
         ratio = Ratio(ratio)
         counts = ratio.partition_integer(len(self))
@@ -6837,7 +6757,7 @@ class Selection(collections.abc.Sequence):
 
     def rest(
         self, n: int, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> typing.Union[Rest, Expression]:
+    ) -> Rest:
         r"""
         Selects rest ``n``.
 
@@ -6853,32 +6773,29 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).rest(-1)
             >>> result
             Rest('r16')
 
-            >>> abjad.Label(result).by_selector(lone=True)
+            >>> abjad.label.by_selector(result, lone=True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -6889,10 +6806,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             bf'16
                             <a'' b''>16
                             c'16
@@ -6921,21 +6836,16 @@ class Selection(collections.abc.Sequence):
                             <fs' gs'>4
                             ~
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.rests(grace=grace)[n]
 
     def rests(
         self, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Selects rests.
 
@@ -6951,12 +6861,13 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).rests()
             >>> for item in result:
@@ -6966,21 +6877,17 @@ class Selection(collections.abc.Sequence):
             Rest('r16')
             Rest('r16')
 
-            >>> abjad.Label(result).by_selector()
+            >>> abjad.label.by_selector(result)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -6991,11 +6898,9 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             \abjad-color-music #'red
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             bf'16
                             <a'' b''>16
                             c'16
@@ -7025,21 +6930,14 @@ class Selection(collections.abc.Sequence):
                             <fs' gs'>4
                             ~
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         return self.components((MultimeasureRest, Rest), exclude=exclude, grace=grace)
 
-    def run(
-        self, n: int, *, exclude: typings.Strings = None
-    ) -> typing.Union["Selection", Expression]:
+    def run(self, n: int, *, exclude: typings.Strings = None) -> "Selection":
         r"""
         Selects run ``n``.
 
@@ -7055,32 +6953,29 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).run(-1)
             >>> result
             Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
-            >>> abjad.Label(result).by_selector(lone=True)
+            >>> abjad.label.by_selector(result, lone=True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -7091,10 +6986,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             c'16
                             c'16
                             c'16
@@ -7127,21 +7020,14 @@ class Selection(collections.abc.Sequence):
                             ~
                             \abjad-color-music #'green
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.runs(exclude=exclude)[n]
 
-    def runs(
-        self, *, exclude: typings.Strings = None
-    ) -> typing.Union["Selection", Expression]:
+    def runs(self, *, exclude: typings.Strings = None) -> "Selection":
         r"""
         Selects runs.
 
@@ -7157,12 +7043,13 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).runs()
             >>> for item in result:
@@ -7172,21 +7059,17 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
             Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
-            >>> abjad.Label(result).by_selector()
+            >>> abjad.label.by_selector(result)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -7197,10 +7080,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             \abjad-color-music #'red
                             c'16
                             \abjad-color-music #'red
@@ -7243,9 +7124,6 @@ class Selection(collections.abc.Sequence):
                             ~
                             \abjad-color-music #'red
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
@@ -7275,8 +7153,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("cs'16"), Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
             Selection([Note("f'8"), Note("fs'16")])
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7344,8 +7223,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         result = Selection.leaves(self, exclude=exclude, pitched=True)
         result = result.group_by_contiguity()
         assert isinstance(result, Selection)
@@ -7353,9 +7230,7 @@ class Selection(collections.abc.Sequence):
         result = type(self)(items)
         return result
 
-    def top(
-        self, *, exclude: typings.Strings = None
-    ) -> typing.Union["Selection", Expression]:
+    def top(self, *, exclude: typings.Strings = None) -> "Selection":
         r"""
         Selects top components.
 
@@ -7379,8 +7254,9 @@ class Selection(collections.abc.Sequence):
             Note("a'8")
             Rest('r8')
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7415,8 +7291,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         result: typing.List[typing.Union[Component, Selection]] = []
         for component in _iterate._public_iterate_components(self, exclude=exclude):
             for component_ in Parentage(component):
@@ -7429,7 +7303,7 @@ class Selection(collections.abc.Sequence):
 
     def tuplet(
         self, n: int, *, exclude: typings.Strings = None, level: int = None
-    ) -> typing.Union[Component, Expression]:
+    ) -> Component:
         r"""
         Selects tuplet ``n``.
 
@@ -7445,32 +7319,29 @@ class Selection(collections.abc.Sequence):
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
             >>> tuplets = [abjad.select(tuplets)]
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(tuplets)
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> staff = lilypond_file[abjad.Staff]
+
+            >>> lilypond_file = abjad.illustrators.selection(tuplets)
+            >>> staff = lilypond_file["Staff"]
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.override(staff).TupletBracket.direction = abjad.Up
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).tuplet(-1)
             >>> result
             Tuplet('9:10', "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
-            >>> abjad.Label(result).by_selector(lone=True)
+            >>> abjad.label.by_selector(result, lone=True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
+                >>> score = lilypond_file["Score"]
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
-                    \new GlobalContext
-                    {
-                        \time 7/4
-                        s1 * 7/4
-                    }
-                    \new Staff
+                    \context Staff = "Staff"
                     \with
                     {
                         \override TupletBracket.direction = #up
@@ -7481,10 +7352,8 @@ class Selection(collections.abc.Sequence):
                         \tweak text #tuplet-number::calc-fraction-text
                         \times 10/9
                         {
+                            \time 7/4
                             r16
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
                             bf'16
                             <a'' b''>16
                             c'16
@@ -7518,21 +7387,16 @@ class Selection(collections.abc.Sequence):
                             ~
                             \abjad-color-music #'green
                             <fs' gs'>16
-                            - \tweak staff-padding 18
-                            - \tweak transparent ##t
-                            ^ \markup I
                         }
                     }
                 >>
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe(), lone=True)
         return self.tuplets(exclude=exclude, level=level)[n]
 
     def tuplets(
         self, *, exclude: typings.Strings = None, level: int = None
-    ) -> typing.Union["Selection", Expression]:
+    ) -> "Selection":
         r"""
         Selects tuplets.
 
@@ -7552,8 +7416,9 @@ class Selection(collections.abc.Sequence):
             Tuplet('3:2', "d'8 e'8 f'8")
             Tuplet('3:2', "c'4 d'4 e'4")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7601,8 +7466,9 @@ class Selection(collections.abc.Sequence):
             Tuplet('3:2', "d'8 e'8 f'8")
             Tuplet('3:2', "c'4 d'4 e'4")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7649,8 +7515,9 @@ class Selection(collections.abc.Sequence):
             Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
             Tuplet('3:2', "c'4 d'4 e'4")
 
-            >>> abjad.Label(result).by_selector()
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7684,8 +7551,6 @@ class Selection(collections.abc.Sequence):
             tuplet (themselves) and are not contained by any other tuplets.
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         tuplets = self.components(Tuplet, exclude=exclude)
         assert isinstance(tuplets, Selection)
         if level is None:
@@ -7707,9 +7572,7 @@ class Selection(collections.abc.Sequence):
         return type(self)(result)
 
     # TODO: write grace examples
-    def with_next_leaf(
-        self, *, grace: bool = None
-    ) -> typing.Union["Selection", Expression]:
+    def with_next_leaf(self, *, grace: bool = None) -> "Selection":
         r"""
         Extends selection with next leaf.
 
@@ -7729,8 +7592,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8"), Rest('r8')])
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7777,8 +7641,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8"), Rest('r8')])
             Selection([Note("f'8")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7834,9 +7699,10 @@ class Selection(collections.abc.Sequence):
             ...     abjad.piano_pedal(item)
             ...
 
-            >>> abjad.Label(result).by_selector(True)
+            >>> abjad.label.by_selector(result, True)
             >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 6
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7908,8 +7774,9 @@ class Selection(collections.abc.Sequence):
             Selection([Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
             Selection([Note("fs'16")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -7969,8 +7836,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
         previous_leaf = leaves[-1]
         while True:
@@ -7987,7 +7852,7 @@ class Selection(collections.abc.Sequence):
             previous_leaf = next_leaf
         return type(self)(leaves)
 
-    def with_previous_leaf(self) -> typing.Union["Selection", Expression]:
+    def with_previous_leaf(self) -> "Selection":
         r"""
         Extends selection with previous leaf.
 
@@ -8007,8 +7872,9 @@ class Selection(collections.abc.Sequence):
             Selection([Rest('r8'), Note("d'8"), Note("e'8")])
             Selection([Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -8055,8 +7921,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
             Selection([Rest('r8'), Note("f'8")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -8116,8 +7983,9 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16")])
             Selection([Note("f'4"), Note("fs'16")])
 
-            >>> abjad.Label(result).by_selector(True)
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> abjad.label.by_selector(result, True)
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -8178,8 +8046,6 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if self._expression:
-            return self._update_expression(inspect.currentframe())
         leaves = list(self.leaves())
         previous_leaf = _iterate._get_leaf(leaves[0], n=-1)
         if previous_leaf is not None:
@@ -8285,12 +8151,9 @@ class LogicalTie(Selection):
         return sum([_.written_duration for _ in self])
 
 
-### FUNCTIONS ###
-
-
 def select(items=None, previous=None):
     r"""
-    Selects ``items`` or makes select expression.
+    Deprecated. Use ``abjad.Selection()`` instead.
 
     ..  container:: example
 
@@ -8318,9 +8181,5 @@ def select(items=None, previous=None):
             }
 
     """
-    if items is not None:
-        return Selection(items=items, previous=previous)
-    expression = Expression(proxy_class=Selection)
-    callback = Expression._make_initializer_callback(Selection, previous=previous)
-    expression = expression.append_callback(callback)
-    return new(expression, template="abjad.select()")
+    assert items is not None, repr(items)
+    return Selection(items=items, previous=previous)

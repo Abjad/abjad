@@ -11,7 +11,7 @@ from .pitch.pitchclasses import PitchClass
 from .pitch.pitches import NamedPitch, NumberedPitch
 from .ratio import NonreducedRatio, Ratio
 from .score import Chord, Leaf, MultimeasureRest, Note, Rest, Skip, Tuplet
-from .select import Selection
+from .selection import Selection
 from .sequence import Sequence
 from .spanners import tie
 from .tag import Tag

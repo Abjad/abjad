@@ -1,14 +1,14 @@
 import typing
 
 from . import _iterate, mutate, typings
-from .attach import attach, detach
+from .bind import attach, detach
 from .bundle import LilyPondFormatBundle
 from .duration import Duration
 from .overrides import LilyPondLiteral, tweak
 from .parentage import Parentage
 from .pitch.sets import PitchSet
 from .score import Chord, Container, Note, Voice
-from .select import Selection
+from .selection import Selection
 from .spanners import beam, slur
 from .tag import Tag
 
@@ -31,7 +31,8 @@ class OnBeatGraceContainer(Container):
         ... )
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -304,7 +305,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -364,7 +366,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -422,7 +425,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -483,7 +487,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -550,7 +555,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -614,7 +620,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -676,7 +683,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -741,7 +749,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 

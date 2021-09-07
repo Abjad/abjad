@@ -69,14 +69,12 @@ example:
     ...         \override TimeSignature.transparent = ##t
     ...         proportionalNotationDuration = #(ly:make-moment 1 16)
     ...     }
-    ... }"""
+    ... }
+    ... """
 
 ----
 
 **Example 1.** Here are the 48 row forms of ``[7, 3, 8, 5, 4, 6, 0, 10, 11, 2, 9, 1]``:
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> row = abjad.TwelveToneRow([7, 3, 8, 5, 4, 6, 0, 10, 11, 2, 9, 1])
     >>> score = make_score(row)
@@ -90,9 +88,6 @@ orchestras.
 
 **Example 2.** Here are the 48 row forms of ``[3, 5, 2, 1, 10, 11, 9, 0, 8, 4, 7, 6]``:
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> row = abjad.TwelveToneRow([3, 5, 2, 1, 10, 11, 9, 0, 8, 4, 7, 6])
     >>> score = make_score(row)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
@@ -103,9 +98,6 @@ From Koblyakov's analysis of Pierre Boulez's `Marteau sans maître` (1955).
 ----
 
 **Example 3.** Here are the 48 row forms of ``[9, 2, 11, 4, 1, 6, 8, 3, 5, 10, 7, 0]``:
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> row = abjad.TwelveToneRow([9, 2, 11, 4, 1, 6, 8, 3, 5, 10, 7, 0])
     >>> score = make_score(row)

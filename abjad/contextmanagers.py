@@ -9,7 +9,8 @@ import sys
 import tempfile
 import time
 
-from . import storage, string
+from . import format as _format
+from . import string
 from .configuration import Configuration
 
 configuration = Configuration()
@@ -52,7 +53,7 @@ class ContextManager:
         """
         Gets interpreter representation.
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
 
 class FilesystemState(ContextManager):
@@ -509,12 +510,10 @@ class RedirectedStreams(ContextManager):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return storage.FormatSpecification(
-            self,
+        return _format.FormatSpecification(
             repr_is_bracketed=True,
-            repr_is_indented=False,
             storage_format_is_bracketed=True,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_args_values=[],
             storage_format_keyword_names=[],
         )

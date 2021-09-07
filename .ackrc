@@ -3,3 +3,4 @@
 --ignore-dir=match:/.*.egg-info/
 --ignore-dir=docs/build
 --ignore-dir=docs/source/api
+--ignore-dir=htmlcov

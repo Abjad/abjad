@@ -3,7 +3,7 @@ import collections
 import types
 
 from .. import enumerate, math
-from ..storage import FormatSpecification
+from ..format import FormatSpecification
 from ..typedcollections import TypedCollection, TypedCounter
 from .intervalclasses import IntervalClass, NamedIntervalClass, NumberedIntervalClass
 from .intervals import Interval, NamedInterval, NumberedInterval
@@ -117,8 +117,6 @@ class Vector(TypedCounter):
                 for k, v in self.items()
             }
         return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
             repr_args_values=[repr_items],
             storage_format_args_values=[self._collection],
         )

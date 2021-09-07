@@ -4,7 +4,7 @@ import pytest
 
 import abjad
 
-ignored_classes = (abjad.StorageFormatManager, abjad.FormatSpecification)
+ignored_classes = (abjad.FormatSpecification,)
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
