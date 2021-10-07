@@ -58,7 +58,8 @@ LilyPond settings to format examples:
     ...         \override TimeSignature.transparent = ##t
     ...         proportionalNotationDuration = #(ly:make-moment 1 16)
     ...     }
-    ... }"""
+    ... }
+    ... """
 
 ----
 
@@ -66,8 +67,6 @@ Examples
 --------
 
 **Example 1a.** Ascending chromatic scale:
-
-::
 
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> segment = abjad.PitchSegment(string)
@@ -78,8 +77,6 @@ Examples
 
 **Example 1b.** Starting segment; partitioned:
 
-::
-
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> segment = abjad.PitchSegment(string)
     >>> chords = partition(segment)
@@ -88,8 +85,6 @@ Examples
     >>> abjad.show(lilypond_file)
 
 **Example 1c.** Starting segment; partitioned; chords at indexes 1, 2, 4, 5 flipped:
-
-::
 
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> segment = abjad.PitchSegment(string)
@@ -100,8 +95,6 @@ Examples
 
 **Example 1d.** Starting segment; partitioned; chords 1, 2, 4, 5 flipped; chords at
 indexes 2, 3, 4, 5 selectively transposed:
-
-::
 
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> segment = abjad.PitchSegment(string)
@@ -118,8 +111,6 @@ Diotima* (1980).
 
 **Example 2a.** Starting segment written by hand:
 
-::
-
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> segment = abjad.PitchSegment(string)
     >>> notes = [abjad.Note(_, (1, 4)) for _ in segment]
@@ -128,8 +119,6 @@ Diotima* (1980).
     >>> abjad.show(lilypond_file)
 
 **Example 2b.** Starting segment; partitioned:
-
-::
 
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> segment = abjad.PitchSegment(string)
@@ -140,8 +129,6 @@ Diotima* (1980).
 
 **Example 2c.** Starting segment; partitioned; chords at indexes 0, 1, 2, 4 flipped:
 
-::
-
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> segment = abjad.PitchSegment(string)
     >>> chords = partition(segment, flip=[0, 1, 2, 4])
@@ -151,8 +138,6 @@ Diotima* (1980).
 
 **Example 2d.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped; chords at
 indexes 0, 1 selectively transposed:
-
-::
 
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> segment = abjad.PitchSegment(string)

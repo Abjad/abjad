@@ -1,6 +1,6 @@
 import collections
 
-from .storage import FormatSpecification, StorageFormatManager
+from . import format as _format
 
 
 class OrderedDict(collections.abc.MutableMapping):
@@ -235,7 +235,7 @@ class OrderedDict(collections.abc.MutableMapping):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __setitem__(self, i, argument):
         """
@@ -248,13 +248,13 @@ class OrderedDict(collections.abc.MutableMapping):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        names = list(StorageFormatManager(self).signature_keyword_names)
+        result = _format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        names = list(signature_keyword_names)
         if "items" in names:
             names.remove("items")
         values = [list(self._collection.items())]
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=values,
             storage_format_keyword_names=names,
         )

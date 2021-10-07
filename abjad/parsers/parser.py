@@ -17,7 +17,7 @@ from ply.yacc import (  # type: ignore
 )
 
 from .. import exceptions
-from ..attach import attach
+from ..bind import attach
 from ..duration import Duration, Multiplier
 from ..indicators.Articulation import Articulation
 from ..indicators.BarLine import BarLine

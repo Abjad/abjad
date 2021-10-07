@@ -4,13 +4,14 @@ Tools for modeling LilyPond's markup and postscript.
 import collections
 import typing
 
-from . import enums, math
+from . import enums
+from . import format as _format
+from . import math
 from . import tag as _tag
 from .bundle import LilyPondFormatBundle
 from .fsv import format_scheme_value
 from .new import new
 from .overrides import TweakInterface
-from .storage import FormatSpecification, StorageFormatManager
 from .string import String
 
 
@@ -392,7 +393,7 @@ class Markup:
 
         Returns new markup.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self):
         """
@@ -518,7 +519,7 @@ class Markup:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         r"""
@@ -580,11 +581,10 @@ class Markup:
         return tweaks + pieces
 
     def _get_format_specification(self):
-        names = list(StorageFormatManager(self).signature_keyword_names)
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_keyword_names=names,
+        result = _format._inspect_signature(self)
+        signature_keyword_names = result[1]
+        return _format.FormatSpecification(
+            storage_format_keyword_names=list(signature_keyword_names),
         )
 
     def _get_lilypond_format(self):
@@ -1058,7 +1058,7 @@ class MarkupCommand:
 
         Returns string.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         r"""
@@ -1123,9 +1123,7 @@ class MarkupCommand:
         return parts
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=(self.name,) + self.arguments,
             storage_format_keyword_names=[],
         )
@@ -1301,7 +1299,7 @@ class Postscript:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -1326,7 +1324,7 @@ class Postscript:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -2259,7 +2257,7 @@ class PostscriptOperator:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -2271,7 +2269,7 @@ class PostscriptOperator:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -2297,10 +2295,9 @@ class PostscriptOperator:
 
     def _get_format_specification(self):
         values = [self.name] + list(self.arguments or ())
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             storage_format_args_values=values,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=[],
         )
 
@@ -2340,16 +2337,15 @@ def abjad_metronome_mark(
 
     ..  container:: example
 
-        >>> markup = abjad.markups.abjad_metronome_mark(
-        ...     2, 0, 1, 67.5, direction=abjad.Up,
-        ... )
+        >>> markup = abjad.markups.abjad_metronome_mark(2, 0, 1, 67.5)
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        ^ \markup {
+        \markup {
             \abjad-metronome-mark-markup #2 #0 #1 #"67.5"
             }
 
-        >>> abjad.show(markup) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([markup], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     Returns new markup
     """

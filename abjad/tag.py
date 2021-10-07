@@ -1,6 +1,6 @@
 import typing
 
-from .storage import FormatSpecification, StorageFormatManager
+from . import format as _format
 
 
 class Tag:
@@ -199,7 +199,7 @@ class Tag:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -222,11 +222,9 @@ class Tag:
         values = []
         if self.string is not None:
             values.append(self.string)
-        return FormatSpecification(
-            self,
-            repr_is_indented=False,
+        return _format.FormatSpecification(
             storage_format_args_values=values,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
         )
 
     ### PUBLIC PROPERTIES ###
@@ -420,7 +418,7 @@ class Line:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         r"""
@@ -655,7 +653,7 @@ def activate(text, tag, skipped=False):
         ... )
 
         >>> text = abjad.lilypond(staff, tags=True)
-        >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
+        >>> text = abjad.lilypondformat.left_shift_tags(text)
         >>> print(text)
         \new Staff
         {
@@ -800,7 +798,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         ...     )
 
         >>> text = abjad.lilypond(staff, tags=True)
-        >>> text = abjad.LilyPondFormatManager.left_shift_tags(text)
+        >>> text = abjad.lilypondformat.left_shift_tags(text)
         >>> print(text)
         \new Staff
         {

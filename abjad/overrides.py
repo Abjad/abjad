@@ -2,11 +2,11 @@ import copy
 import typing
 
 from . import enums
+from . import format as _format
 from . import tag as _tag
 from .bundle import LilyPondFormatBundle
 from .fsv import format_scheme_value
 from .lyenv import contexts, grob_interfaces
-from .storage import FormatSpecification, StorageFormatManager
 from .string import String
 
 
@@ -317,7 +317,7 @@ class LilyPondLiteral:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -329,7 +329,7 @@ class LilyPondLiteral:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -347,10 +347,9 @@ class LilyPondLiteral:
         return self.argument[:]
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.argument],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
         )
 
     def _get_lilypond_format_bundle(self, component=None):

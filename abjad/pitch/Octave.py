@@ -3,7 +3,7 @@ import math
 import numbers
 import re
 
-from ..storage import FormatSpecification, StorageFormatManager
+from .. import format as _format
 from . import _lib
 
 
@@ -105,7 +105,7 @@ class Octave:
 
         Returns true or false.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __float__(self):
         """
@@ -174,7 +174,7 @@ class Octave:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -200,10 +200,8 @@ class Octave:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
+        return _format.FormatSpecification(
+            storage_format_is_not_indented=True,
             storage_format_args_values=[self.number],
             storage_format_keyword_names=[],
         )

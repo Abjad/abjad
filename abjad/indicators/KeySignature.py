@@ -1,9 +1,9 @@
 import typing
 
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
 from ..pitch.pitchclasses import NamedPitchClass
-from ..storage import FormatSpecification, StorageFormatManager
 from .Mode import Mode
 
 
@@ -87,7 +87,7 @@ class KeySignature:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -99,7 +99,7 @@ class KeySignature:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """
@@ -126,10 +126,8 @@ class KeySignature:
 
     def _get_format_specification(self):
         values = [self.tonic, self.mode]
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
+        return _format.FormatSpecification(
+            storage_format_is_not_indented=True,
             storage_format_args_values=values,
         )
 

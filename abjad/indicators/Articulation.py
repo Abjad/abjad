@@ -1,9 +1,9 @@
 import typing
 
 from .. import enums
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
-from ..storage import FormatSpecification, StorageFormatManager
 from ..string import String
 
 
@@ -162,7 +162,7 @@ class Articulation:
         """
         Is true when articulation equals ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self):
         """
@@ -174,7 +174,7 @@ class Articulation:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         """
@@ -200,10 +200,9 @@ class Articulation:
         values = [self.name]
         if self.direction is not None:
             values.append(self.direction)
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             storage_format_args_values=values,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
         )
 
     def _get_lilypond_format(self):

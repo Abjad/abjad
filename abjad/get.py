@@ -1,9 +1,11 @@
 import collections
 import typing
 
-from . import _inspect, _iterate, enums, typings
+from . import _inspect, _iterate, enums
+from . import format as _format
+from . import lilypondformat as _lilypondformat
+from . import typings
 from .duration import Duration
-from .format import LilyPondFormatManager
 from .indicators.StaffChange import StaffChange
 from .indicators.TimeSignature import TimeSignature
 from .markups import Markup
@@ -11,12 +13,9 @@ from .parentage import Parentage
 from .pitch.pitches import NamedPitch
 from .pitch.sets import PitchSet
 from .score import Chord, Component, Container, Leaf, Note, Staff
-from .select import LogicalTie, Selection
-from .storage import StorageFormatManager
+from .selection import LogicalTie, Selection
 from .tag import Tag
 from .timespan import Timespan
-
-### FUNCTIONS ###
 
 
 def after_grace_container(argument):
@@ -37,7 +36,8 @@ def after_grace_container(argument):
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -250,7 +250,7 @@ def annotation_wrappers(argument):
 
 def bar_line_crossing(argument) -> bool:
     r"""
-    Is true when client crosses bar line.
+    Is true when ``argument`` crosses bar line.
 
     ..  container:: example
 
@@ -289,7 +289,6 @@ def bar_line_crossing(argument) -> bool:
         time_signature_duration = time_signature.duration
     partial = getattr(time_signature, "partial", 0)
     partial = partial or 0
-    # start_offset = Inspection(self.client).timespan().start_offset
     start_offset = timespan(argument).start_offset
     shifted_start = start_offset - partial
     shifted_start %= time_signature_duration
@@ -317,7 +316,8 @@ def before_grace_container(argument):
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -411,7 +411,8 @@ def contents(argument) -> typing.Optional["Selection"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -604,7 +605,8 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -772,7 +774,8 @@ def duration(argument, in_seconds: bool = None) -> Duration:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -940,7 +943,8 @@ def effective(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1077,7 +1081,7 @@ def effective(
                 f'8
             }
 
-        >>> for component in abjad.iterate(staff).components():
+        >>> for component in abjad.iterate.components(staff):
         ...     string = abjad.get.effective(component, str)
         ...     print(component, repr(string))
         ...
@@ -1268,7 +1272,7 @@ def effective(
             }
 
         >>> prototype = abjad.TimeSignature
-        >>> for component in abjad.iterate(staff).components():
+        >>> for component in abjad.iterate.components(staff):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
@@ -1440,7 +1444,8 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1553,7 +1558,8 @@ def effective_wrapper(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1652,7 +1658,7 @@ def effective_wrapper(
 
 def grace(argument) -> bool:
     r"""
-    Is true when client is grace music.
+    Is true when ``argument`` is grace music.
 
     Grace music defined equal to grace container, after-grace container and
     contents of those containers.
@@ -1671,7 +1677,8 @@ def grace(argument) -> bool:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1755,7 +1762,7 @@ def has_effective_indicator(
     attributes: typing.Dict = None,
 ) -> bool:
     r"""
-    Is true when client has effective indicator.
+    Is true when ``argument`` has effective indicator.
 
     ..  container:: example
 
@@ -1772,7 +1779,8 @@ def has_effective_indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1907,7 +1915,7 @@ def has_indicator(
     attributes: typing.Dict = None,
 ) -> bool:
     r"""
-    Is true when client has one or more indicators.
+    Is true when ``argument`` has one or more indicators.
 
     ..  container:: example
 
@@ -1924,7 +1932,8 @@ def has_indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2121,7 +2130,8 @@ def indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2239,9 +2249,9 @@ def indicator(
         Note("ds'4")                   None
 
     Raises exception when more than one indicator of ``prototype`` attach
-    to client.
+    to ``argument``.
 
-    Returns default when no indicator of ``prototype`` attaches to client.
+    Returns default when no indicator of ``prototype`` attaches to ``argument``.
     """
     return _inspect._get_indicator(argument, prototype, default=default, unwrap=unwrap)
 
@@ -2274,7 +2284,8 @@ def indicators(
         >>> for note in abjad.select(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2410,7 +2421,7 @@ def indicators(
         Note("ds'4")                   [Articulation('.')]
 
     """
-    # TODO: extend to any non-none client
+    # TODO: extend to any non-none argument
     if not isinstance(argument, Component):
         message = "can only get indicators on component"
         message += f" (not {argument!r})."
@@ -2460,7 +2471,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
 
     ..  container:: example
 
-        Gets leaf **FROM** client when client is a leaf:
+        Gets leaf **FROM** ``argument`` when ``argument`` is a leaf:
 
         >>> leaf = staff[0][1]
 
@@ -2475,7 +2486,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
 
     ..  container:: example
 
-        Gets leaf **IN** client when client is a container:
+        Gets leaf **IN** ``argument`` when ``argument`` is a container:
 
         >>> voice = staff[0]
 
@@ -2503,7 +2514,8 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2686,7 +2698,8 @@ def lineage(argument) -> "Lineage":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2891,7 +2904,8 @@ def logical_tie(argument) -> "LogicalTie":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3058,7 +3072,7 @@ def markup(
     """
     Gets markup.
     """
-    # TODO: extend to any non-none client
+    # TODO: extend to any non-none argument
     if not isinstance(argument, Component):
         raise Exception("can only get markup on component.")
     result = argument._get_markup(direction=direction)
@@ -3083,7 +3097,8 @@ def measure_number(argument) -> int:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3257,7 +3272,8 @@ def parentage(argument) -> "Parentage":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3471,7 +3487,8 @@ def pitches(argument) -> typing.Optional[PitchSet]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3631,7 +3648,7 @@ def report_modifications(argument) -> str:
 
     """
     if isinstance(argument, Container):
-        bundle = LilyPondFormatManager.bundle_format_contributions(argument)
+        bundle = _lilypondformat.bundle_format_contributions(argument)
         result: typing.List[str] = []
         for slot in ("before", "open brackets", "opening"):
             lines = argument._get_format_contributions_for_slot(slot, bundle)
@@ -3643,7 +3660,7 @@ def report_modifications(argument) -> str:
             result.extend(lines)
         return "\n".join(result)
     elif isinstance(argument, Leaf):
-        return LilyPondFormatManager._report_leaf_format_contributions(argument)
+        return _lilypondformat._report_leaf_format_contributions(argument)
     else:
         return f"only defined for components: {argument}."
 
@@ -3715,7 +3732,7 @@ def sounding_pitches(argument) -> PitchSet:
         Chord("<d' fs'>4")   PitchSet(["d'''", "fs'''"])
 
     """
-    # TODO: extend to any non-none client
+    # TODO: extend to any non-none argument
     if not isinstance(argument, Chord):
         raise Exception("can only get sounding pitches of chord.")
     result = _inspect._get_sounding_pitches(argument)
@@ -3724,7 +3741,7 @@ def sounding_pitches(argument) -> PitchSet:
 
 def sustained(argument) -> bool:
     r"""
-    Is true when client is sustained.
+    Is true when ``argument`` is sustained.
 
     ..  container:: example
 
@@ -3781,7 +3798,8 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3946,7 +3964,8 @@ def wrapper(
         >>> for note in abjad.select(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -4031,7 +4050,7 @@ def wrapper(
         Note("fs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
 
     Raises exception when more than one indicator of ``prototype`` attach
-    to client.
+    to ``argument``.
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
@@ -4065,7 +4084,8 @@ def wrappers(
         >>> for note in abjad.select(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -4254,7 +4274,7 @@ class Descendants(collections.abc.Sequence):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -4435,7 +4455,7 @@ class Lineage(collections.abc.Sequence):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 

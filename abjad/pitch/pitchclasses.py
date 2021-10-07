@@ -1,8 +1,9 @@
 import functools
 import numbers
 
-from .. import enums, math
-from ..storage import FormatSpecification, StorageFormatManager
+from .. import enums
+from .. import format as _format
+from .. import math
 from . import _lib
 from .Accidental import Accidental
 from .pitches import NamedPitch, NumberedPitch, Pitch
@@ -56,7 +57,7 @@ class PitchClass:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __float__(self):
         """
@@ -84,7 +85,7 @@ class PitchClass:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -461,10 +462,9 @@ class NamedPitchClass(PitchClass):
 
     def _get_format_specification(self):
         values = [self.name]
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             coerce_for_equality=True,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_args_values=values,
             storage_format_keyword_names=[],
         )
@@ -909,10 +909,9 @@ class NumberedPitchClass(PitchClass):
 
     def _get_format_specification(self):
         values = [self.number]
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             coerce_for_equality=True,
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_args_values=values,
             storage_format_keyword_names=[],
         )

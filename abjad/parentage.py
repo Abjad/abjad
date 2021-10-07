@@ -1,6 +1,7 @@
 import collections
 import typing
 
+from . import format as _format
 from . import math
 from .duration import Multiplier
 from .ordereddict import OrderedDict
@@ -13,7 +14,6 @@ from .score import (
     StaffGroup,
     Voice,
 )
-from .storage import StorageFormatManager
 
 
 class Parentage(collections.abc.Sequence):
@@ -104,7 +104,7 @@ class Parentage(collections.abc.Sequence):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -143,7 +143,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -237,7 +238,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -396,7 +398,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -490,7 +493,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -588,7 +592,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[1][2])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -689,7 +694,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -877,7 +883,7 @@ class Parentage(collections.abc.Sequence):
                     d''8
                 }
 
-            >>> for leaf in abjad.iterate(outer_red_voice).leaves():
+            >>> for leaf in abjad.iterate.leaves(outer_red_voice):
             ...     depth = abjad.get.parentage(leaf).count(abjad.Voice)
             ...     print(leaf, depth)
             ...
@@ -905,7 +911,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1161,7 +1168,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1476,7 +1484,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 

@@ -10,7 +10,7 @@ def test_Parentage_logical_voice_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
     containment = abjad.get.parentage(staff).logical_voice()
-    for component in abjad.iterate(staff).components():
+    for component in abjad.iterate.components(staff):
         assert abjad.get.parentage(component).logical_voice() == containment
 
 
@@ -23,7 +23,7 @@ def test_Parentage_logical_voice_02():
     staff.name = "foo"
 
     containment = abjad.get.parentage(staff).logical_voice()
-    for component in abjad.iterate(staff).components():
+    for component in abjad.iterate.components(staff):
         assert abjad.get.parentage(component).logical_voice() == containment
 
 
@@ -40,7 +40,7 @@ def test_Parentage_logical_voice_03():
     staff[1].name = "foo"
 
     containment = abjad.get.parentage(staff[0][0]).logical_voice()
-    for leaf in abjad.iterate(staff).leaves():
+    for leaf in abjad.iterate.leaves(staff):
         assert abjad.get.parentage(leaf).logical_voice() == containment
 
 
@@ -101,7 +101,7 @@ def test_Parentage_logical_voice_04():
 
     signatures = [
         abjad.get.parentage(leaf).logical_voice()
-        for leaf in abjad.iterate(voice).leaves()
+        for leaf in abjad.iterate.leaves(voice)
     ]
 
     assert signatures[0] == signatures[1]
@@ -171,7 +171,7 @@ def test_Parentage_logical_voice_05():
 
     signatures = [
         abjad.get.parentage(leaf).logical_voice()
-        for leaf in abjad.iterate(voice).leaves()
+        for leaf in abjad.iterate.leaves(voice)
     ]
 
     signatures[0] == signatures[1]
@@ -314,7 +314,7 @@ def test_Parentage_logical_voice_07():
 
     signatures = [
         abjad.get.parentage(leaf).logical_voice()
-        for leaf in abjad.iterate(container).leaves()
+        for leaf in abjad.iterate.leaves(container)
     ]
 
     signatures[0] != signatures[1]

@@ -14,10 +14,10 @@ class Aggregate(object):
         self._ratio = ratio
 
     def __eq__(self, argument):
-        return abjad.StorageFormatManager.compare_objects(self, argument)
+        return abjad.format.compare_objects(self, argument)
 
     def __format__(self, format_specification=""):
-        return abjad.StorageFormatManager(self).get_storage_format()
+        return abjad.storage(self)
 
     @property
     def pitch_segment(self):

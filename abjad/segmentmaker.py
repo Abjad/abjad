@@ -1,5 +1,5 @@
+from . import format as _format
 from .lilypondfile import LilyPondFile
-from .storage import StorageFormatManager
 
 
 class SegmentMaker:
@@ -28,20 +28,20 @@ class SegmentMaker:
         """
         Is true if ``expr`` is a segment-maker with equivalent properties.
         """
-        return StorageFormatManager.compare_objects(self, expr)
+        return _format.compare_objects(self, expr)
 
     def __hash__(self):
         """
         Hashes segment-maker.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
+        hash_values = _format.get_hash_values(self)
         return hash(hash_values)
 
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -59,7 +59,7 @@ class SegmentMaker:
 
     ### PUBLIC METHODS ###
 
-    def run(self):
+    def run(self) -> LilyPondFile:
         """
         Runs segment-maker.
         """

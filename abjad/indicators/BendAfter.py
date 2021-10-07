@@ -1,9 +1,10 @@
 import typing
 
-from .. import enums, typings
+from .. import enums
+from .. import format as _format
+from .. import typings
 from ..bundle import LilyPondFormatBundle
 from ..overrides import TweakInterface
-from ..storage import StorageFormatManager
 
 
 class BendAfter:
@@ -72,7 +73,7 @@ class BendAfter:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self) -> str:
         r"""

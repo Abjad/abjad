@@ -1,5 +1,3 @@
-import collections
-import copy
 import importlib
 import inspect
 import numbers
@@ -9,25 +7,19 @@ import subprocess
 import time
 import typing
 
-from . import _inspect
+from . import bundle as _bundle
+from . import configuration as _configuration
+from . import contextmanagers as _contextmanagers
+from . import format as _format
+from . import iterate as iterate_
+from . import lilypondformat as _lilypondformat
+from . import markups as _markups
+from . import overrides as _overrides
+from . import score as _score
 from . import tag as _tag
-from .attach import attach
-from .bundle import LilyPondFormatBundle
-from .configuration import Configuration
-from .contextmanagers import TemporaryDirectoryChange
 from .indicators.LilyPondComment import LilyPondComment
-from .indicators.TimeSignature import TimeSignature
-from .iterate import Iteration
-from .lilypond import lilypond
-from .markups import Markup
-from .overrides import LilyPondLiteral, override, setting
-from .pitch.pitches import NamedPitch
-from .score import Component, Container, Context, Leaf, Score, Skip, Staff, Voice
-from .select import Selection
-from .sequence import Sequence
-from .storage import FormatSpecification, StorageFormatManager
 
-configuration = Configuration()
+configuration = _configuration.Configuration()
 
 
 class Block:
@@ -38,8 +30,8 @@ class Block:
 
         REGRESSION. Blocks remember attribute assignment order.
 
-        Here right margin precedes left margin even though left margin
-        alphabetizes before right margin:
+        Here right margin precedes left margin even though left margin alphabetizes
+        before right margin:
 
         >>> block = abjad.Block(name="paper")
         >>> block.right_margin = abjad.LilyPondDimension(2, "cm")
@@ -131,7 +123,7 @@ class Block:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __setattr__(self, name, value):
         """
@@ -157,7 +149,7 @@ class Block:
     ### PRIVATE METHODS ###
 
     def _format_item(self, item, depth=1):
-        indent = LilyPondFormatBundle.indent * depth
+        indent = _bundle.LilyPondFormatBundle.indent * depth
         result = []
         if isinstance(item, (list, tuple)):
             result.append(indent + "{")
@@ -196,7 +188,7 @@ class Block:
         return result
 
     def _get_format_pieces(self, tag=None):
-        indent = LilyPondFormatBundle.indent
+        indent = _bundle.LilyPondFormatBundle.indent
         result = []
         if (
             not self._get_formatted_user_attributes()
@@ -214,7 +206,7 @@ class Block:
         for item in self.items:
             if isinstance(item, ContextBlock):
                 continue
-            if isinstance(item, (Leaf, Markup)):
+            if isinstance(item, (_score.Leaf, _markups.Markup)):
                 item = [item]
             result.extend(self._format_item(item))
         formatted_attributes = self._get_formatted_user_attributes()
@@ -232,8 +224,8 @@ class Block:
         return result
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self, repr_is_bracketed=True, repr_is_indented=False
+        return _format.FormatSpecification(
+            repr_is_bracketed=True,
         )
 
     def _get_formatted_user_attributes(self):
@@ -248,10 +240,10 @@ class Block:
                     string = f"#'{formatted_key[i]}"
                     formatted_key[i] = string
             formatted_key = " ".join(formatted_key)
-            if isinstance(value, Markup):
+            if isinstance(value, _markups.Markup):
                 formatted_value = value._get_format_pieces()
             elif isinstance(value, LilyPondDimension):
-                formatted_value = [lilypond(value)]
+                formatted_value = [_lilypondformat.lilypond(value)]
             else:
                 assert isinstance(value, (int, str, float)), repr((self, key, value))
                 formatted_value = [str(value)]
@@ -400,7 +392,7 @@ class ContextBlock(Block):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self, tag=None):
-        indent = LilyPondFormatBundle.indent
+        indent = _bundle.LilyPondFormatBundle.indent
         result = []
         string = f"{self._escaped_name} {{"
         result.append(string)
@@ -428,11 +420,11 @@ class ContextBlock(Block):
         for statement in self.accepts_commands:
             string = indent + rf"\accepts {statement}"
             result.append(string)
-        overrides = override(self)._list_format_contributions("override")
+        overrides = _overrides.override(self)._list_format_contributions("override")
         for statement in overrides:
             string = indent + statement
             result.append(string)
-        setting_contributions = setting(self)._format_in_with_block()
+        setting_contributions = _overrides.setting(self)._format_in_with_block()
         for setting_contribution in sorted(setting_contributions):
             string = indent + setting_contribution
             result.append(string)
@@ -776,7 +768,7 @@ class LilyPondDimension:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -953,7 +945,7 @@ class PackageGitCommitToken:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -971,7 +963,7 @@ class PackageGitCommitToken:
 
     def _get_lilypond_format(self):
         path = self._get_package_path()
-        with TemporaryDirectoryChange(path):
+        with _contextmanagers.TemporaryDirectoryChange(path):
             git_branch = self._get_git_branch()
             git_hash = self._get_git_hash()
             timestamp = self._get_commit_timestamp(git_hash)
@@ -1027,15 +1019,11 @@ class LilyPondFile:
         ...     "File construct as an example.",
         ...     "Parts shown here for positioning.",
         ... ]
-        >>> includes = [
-        ...     "external-settings-file-1.ily",
-        ...     "external-settings-file-2.ily",
-        ... ]
         >>> lilypond_file = abjad.LilyPondFile(
         ...     items=[staff],
         ...     default_paper_size=("a5", "portrait"),
         ...     comments=comments,
-        ...     includes=includes,
+        ...     includes=["abjad.ily"],
         ...     global_staff_size=16,
         ... )
 
@@ -1043,15 +1031,15 @@ class LilyPondFile:
 
         ::
 
-            >>> print(abjad.lilypond(lilypond_file)) # doctest: +SKIP
+            >>> string = abjad.lilypond(lilypond_file)
+            >>> print(string) # doctest: +SKIP
             % File construct as an example.
             % Parts shown here for positioning.
             <BLANKLINE>
-            \version "2.23.0"
+            \version "2.23.1"
             \language "english"
             <BLANKLINE>
-            \include "external-settings-file-1.ily"
-            \include "external-settings-file-2.ily"
+            \include "abjad.ily"
             <BLANKLINE>
             #(set-default-paper-size "a5" 'portrait)
             #(set-global-staff-size 16)
@@ -1151,26 +1139,26 @@ class LilyPondFile:
         except (AssertionError, KeyError, ValueError, TypeError):
             return False
 
-    def __getitem__(self, name):
+    def __getitem__(self, argument):
         r"""
-        Gets item with ``name``.
+        Gets item identified by ``argument``.
 
         ..  container:: example
 
             Searches score:
 
-            >>> voice_1 = abjad.Voice("c''4 b' a' g'", name="Custom_Voice_1")
+            >>> voice_1 = abjad.Voice("c''4 b' a' g'", name="Voice_1")
             >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
             >>> abjad.attach(literal, voice_1)
-            >>> voice_2 = abjad.Voice("c'4 d' e' f'", name="Custom_Voice_2")
+            >>> voice_2 = abjad.Voice("c'4 d' e' f'", name="Voice_2")
             >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
             >>> abjad.attach(literal, voice_2)
             >>> staff = abjad.Staff(
             ...     [voice_1, voice_2],
             ...     simultaneous=True,
-            ...     name="Custom_Staff",
+            ...     name="Staff",
             ... )
-            >>> score = abjad.Score([staff], name="Custom_Score")
+            >>> score = abjad.Score([staff], name="Score")
             >>> block = abjad.Block(name="score")
             >>> block.items.append(score)
             >>> lilypond_file = abjad.LilyPondFile([block])
@@ -1180,11 +1168,11 @@ class LilyPondFile:
 
                 >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \context Score = "Custom_Score"
+                \context Score = "Score"
                 <<
-                    \context Staff = "Custom_Staff"
+                    \context Staff = "Staff"
                     <<
-                        \context Voice = "Custom_Voice_1"
+                        \context Voice = "Voice_1"
                         {
                             \voiceOne
                             c''4
@@ -1192,7 +1180,7 @@ class LilyPondFile:
                             a'4
                             g'4
                         }
-                        \context Voice = "Custom_Voice_2"
+                        \context Voice = "Voice_2"
                         {
                             \voiceTwo
                             c'4
@@ -1206,122 +1194,198 @@ class LilyPondFile:
             >>> lilypond_file["score"]
             <Block(name='score')>
 
-            >>> lilypond_file["Custom_Score"]
-            <Score-"Custom_Score"<<1>>>
+            >>> lilypond_file["Score"]
+            <Score-"Score"<<1>>>
 
             >>> lilypond_file[abjad.Score]
-            <Score-"Custom_Score"<<1>>>
+            <Score-"Score"<<1>>>
 
-            >>> lilypond_file["Custom_Staff"]
-            <Staff-"Custom_Staff"<<2>>>
+            >>> lilypond_file["Staff"]
+            <Staff-"Staff"<<2>>>
 
             >>> lilypond_file[abjad.Staff]
-            <Staff-"Custom_Staff"<<2>>>
+            <Staff-"Staff"<<2>>>
 
-            >>> lilypond_file["Custom_Voice_1"]
-            Voice("c''4 b'4 a'4 g'4", name='Custom_Voice_1')
+            >>> lilypond_file["Voice_1"]
+            Voice("c''4 b'4 a'4 g'4", name='Voice_1')
 
-            >>> lilypond_file["Custom_Voice_2"]
-            Voice("c'4 d'4 e'4 f'4", name='Custom_Voice_2')
+            >>> lilypond_file["Voice_2"]
+            Voice("c'4 d'4 e'4 f'4", name='Voice_2')
 
             >>> lilypond_file[abjad.Voice]
-            Voice("c''4 b'4 a'4 g'4", name='Custom_Voice_1')
+            Voice("c''4 b'4 a'4 g'4", name='Voice_1')
 
         ..  container:: example
 
-            REGRESSION. Works when score block contains parallel container:
+            Searches score:
 
-                >>> include_container = abjad.Container()
-                >>> string = r'\include "layout.ly"'
-                >>> literal = abjad.LilyPondLiteral(string, "opening")
-                >>> abjad.attach(literal, include_container)
-                >>> staff = abjad.Staff("c'4 d' e' f'", name="Custom_Staff")
-                >>> container = abjad.Container(
-                ...     [include_container, staff],
-                ...     simultaneous=True,
-                ... )
-                >>> block = abjad.Block(name="score")
-                >>> block.items.append(container)
-                >>> lilypond_file = abjad.LilyPondFile(
-                ...     items=[block],
-                ...     lilypond_language_token=False,
-                ...     lilypond_version_token=False,
-                ... )
-                >>> string = abjad.lilypond(lilypond_file)
+            >>> voice_1 = abjad.Voice("c''4 b' a' g'", name="Voice_1")
+            >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
+            >>> abjad.attach(literal, voice_1)
+            >>> voice_2 = abjad.Voice("c'4 d' e' f'", name="Voice_2")
+            >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
+            >>> abjad.attach(literal, voice_2)
+            >>> staff = abjad.Staff(
+            ...     [voice_1, voice_2],
+            ...     simultaneous=True,
+            ...     name="Staff",
+            ... )
+            >>> score = abjad.Score([staff], name="Score")
+            >>> lilypond_file = abjad.LilyPondFile([score])
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \score {
+                \context Score = "Score"
+                <<
+                    \context Staff = "Staff"
                     <<
+                        \context Voice = "Voice_1"
                         {
-                            \include "layout.ly"
+                            \voiceOne
+                            c''4
+                            b'4
+                            a'4
+                            g'4
                         }
-                        \context Staff = "Custom_Staff"
+                        \context Voice = "Voice_2"
                         {
+                            \voiceTwo
                             c'4
                             d'4
                             e'4
                             f'4
                         }
                     >>
-                }
+                >>
 
-                >>> lilypond_file[abjad.Staff]
-                Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')
+            >>> lilypond_file["Score"]
+            <Score-"Score"<<1>>>
 
-                >>> lilypond_file['Custom_Staff']
-                Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')
+            >>> lilypond_file[abjad.Score]
+            <Score-"Score"<<1>>>
+
+            >>> lilypond_file["Staff"]
+            <Staff-"Staff"<<2>>>
+
+            >>> lilypond_file[abjad.Staff]
+            <Staff-"Staff"<<2>>>
+
+            >>> lilypond_file["Voice_1"]
+            Voice("c''4 b'4 a'4 g'4", name='Voice_1')
+
+            >>> lilypond_file["Voice_2"]
+            Voice("c'4 d'4 e'4 f'4", name='Voice_2')
+
+            >>> lilypond_file[abjad.Voice]
+            Voice("c''4 b'4 a'4 g'4", name='Voice_1')
+
+        ..  container:: example
+
+            REGRESSION. Works when score block contains parallel container:
+
+            >>> include_container = abjad.Container()
+            >>> string = r'\include "layout.ly"'
+            >>> literal = abjad.LilyPondLiteral(string, "opening")
+            >>> abjad.attach(literal, include_container)
+            >>> staff = abjad.Staff("c'4 d' e' f'", name="Staff")
+            >>> container = abjad.Container(
+            ...     [include_container, staff],
+            ...     simultaneous=True,
+            ... )
+            >>> block = abjad.Block(name="score")
+            >>> block.items.append(container)
+            >>> lilypond_file = abjad.LilyPondFile(
+            ...     items=[block],
+            ...     lilypond_language_token=False,
+            ...     lilypond_version_token=False,
+            ... )
+            >>> string = abjad.lilypond(lilypond_file)
+            >>> print(string)
+            \score {
+                <<
+                    {
+                        \include "layout.ly"
+                    }
+                    \context Staff = "Staff"
+                    {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                >>
+            }
+
+            >>> lilypond_file[abjad.Staff]
+            Staff("c'4 d'4 e'4 f'4", name='Staff')
+
+            >>> lilypond_file['Staff']
+            Staff("c'4 d'4 e'4 f'4", name='Staff')
 
         Returns item.
 
-        Raises key error when no item with ``name`` is found.
+        Raises key error when ``argument`` identifies no item in LilyPond file.
         """
-        if not isinstance(name, str):
-            if inspect.isclass(name):
-                assert issubclass(name, Component), repr(name)
+        if not isinstance(argument, str):
+            if inspect.isclass(argument):
+                assert issubclass(argument, _score.Component), repr(argument)
             else:
-                assert isinstance(name, Component), repr(name)
+                assert isinstance(argument, _score.Component), repr(argument)
+        for item in self.items:
+            if isinstance(item, _score.Component):
+                for context in iterate_.components(item, _score.Context):
+                    if context.name == argument:
+                        return context
+                    if context is argument:
+                        return context
+                    if inspect.isclass(argument) and isinstance(context, argument):
+                        return context
         score = None
         if self.score_block and self.score_block.items:
             items = self.score_block.items
-            for container in Iteration(items).components(Container):
-                if isinstance(container, Context):
+            for container in iterate_.components(items, _score.Container):
+                if isinstance(container, _score.Context):
                     score = container
                     break
-        if isinstance(name, str):
+        if isinstance(argument, str):
             for item in self.items:
-                if getattr(item, "name", None) == name:
+                if getattr(item, "name", None) == argument:
                     return item
             if score is not None:
-                if score.name == name:
+                if score.name == argument:
                     return score
-                context = score[name]
+                context = score[argument]
                 return context
-            raise KeyError(f"can not find item with name {name!r}.")
-        elif isinstance(name, Component):
+            raise KeyError(f"can not find item with name {argument!r}.")
+        elif isinstance(argument, _score.Component):
             for item in self.items:
-                if item is name:
+                if item is argument:
                     return item
             if score is not None:
-                if score is name:
+                if score is argument:
                     return score
-                prototype = Context
-                for context in Iteration(score).components(prototype):
-                    if context is name:
+                prototype = _score.Context
+                for context in iterate_.components(score, prototype):
+                    if context is argument:
                         return context
-            raise KeyError(f"can not find {name}.")
-        elif inspect.isclass(name) and issubclass(name, Component):
+            raise KeyError(f"can not find {argument}.")
+        elif inspect.isclass(argument) and issubclass(argument, _score.Component):
             for item in self.items:
-                if isinstance(item, name):
+                if isinstance(item, argument):
                     return item
             if score is not None:
-                if isinstance(score, name):
+                if isinstance(score, argument):
                     return score
-                prototype = Context
-                for context in Iteration(score).components(prototype):
-                    if isinstance(context, name):
+                prototype = _score.Context
+                for context in iterate_.components(score, prototype):
+                    if isinstance(context, argument):
                         return context
-            raise KeyError(f"can not find item of class {name}.")
+            raise KeyError(f"can not find item of class {argument}.")
         else:
-            raise TypeError(name)
+            raise TypeError(argument)
 
     def __illustrate__(self) -> "LilyPondFile":
         """
@@ -1335,7 +1399,7 @@ class LilyPondFile:
         """
         Gets interpreter representation of LilyPond file.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -1373,7 +1437,7 @@ class LilyPondFile:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(client=self)
+        return _format.FormatSpecification()
 
     def _get_formatted_blocks(self):
         result = []
@@ -1417,7 +1481,7 @@ class LilyPondFile:
             elif isinstance(include, pathlib.Path):
                 string = rf'\include "{include!s}"'
                 result.append(string)
-            elif isinstance(include, LilyPondLiteral):
+            elif isinstance(include, _overrides.LilyPondLiteral):
                 string = str(include.argument)
                 result.append(string)
             else:
@@ -1455,26 +1519,6 @@ class LilyPondFile:
             else:
                 lines.append(line)
         return "\n".join(lines)
-
-    @staticmethod
-    def _make_global_context_block(font_size=3, minimum_distance=10, padding=4):
-        assert isinstance(font_size, (int, float))
-        assert isinstance(padding, (int, float))
-        block = ContextBlock(name="Global_Context", type_="Engraver_group")
-        block.consists_commands.append("Axis_group_engraver")
-        block.consists_commands.append("Time_signature_engraver")
-        time_signature_grob = override(block).time_signature
-        time_signature_grob.X_extent = (0, 0)
-        time_signature_grob.X_offset = "#ly:self-alignment-interface::x-aligned-on-self"
-        time_signature_grob.Y_extent = (0, 0)
-        time_signature_grob.break_align_symbol = False
-        time_signature_grob.break_visibility = "#end-of-line-invisible"
-        time_signature_grob.font_size = font_size
-        time_signature_grob.self_alignment_X = "#center"
-        grob = override(block).vertical_axis_group
-        string = "#'((basic-distance . 0) (minimum-distance . {minimum_distance}) (padding . {padding}) (stretchability . 0))"
-        grob.default_staff_staff_spacing = string
-        return block
 
     ### PUBLIC PROPERTIES ###
 
@@ -1721,446 +1765,3 @@ class LilyPondFile:
         tag = _tag.Tag(self._tag)
         tag = tag.append(site)
         return tag
-
-    @classmethod
-    def rhythm(
-        class_,
-        selections,
-        divisions=None,
-        attach_lilypond_voice_commands=None,
-        implicit_scaling=None,
-        includes=("default.ily", "rhythm-maker-docs.ily"),
-        pitched_staff=None,
-        simultaneous_selections=None,
-        time_signatures=None,
-    ) -> "LilyPondFile":
-        r"""
-        Makes rhythm-styled LilyPond file.
-
-        ..  container:: example
-
-            Makes rhythmic staff:
-
-            >>> divisions = [(3, 4), (4, 8), (1, 4)]
-            >>> maker = abjad.NoteMaker()
-            >>> selections = [
-            ...     maker(6 * [0], [(1, 8)]),
-            ...     maker(8 * [0], [(1, 16)]),
-            ...     maker(2 * [0], [(1, 8)]),
-            ... ]
-            >>> for selection in selections:
-            ...     abjad.beam(selection[:])
-            ...
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     )
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> score = lilypond_file[abjad.Score]
-                >>> string = abjad.lilypond(score)
-                >>> print(string)
-                \new Score
-                <<
-                    \new GlobalContext
-                    {
-                        \time 3/4
-                        s1 * 3/4
-                        \time 4/8
-                        s1 * 1/2
-                        \time 1/4
-                        s1 * 1/4
-                    }
-                    \new RhythmicStaff
-                    {
-                        c'8
-                        - \tweak staff-padding 11
-                        - \tweak transparent ##t
-                        ^ \markup I
-                        [
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        ]
-                        c'16
-                        [
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        ]
-                        c'8
-                        [
-                        c'8
-                        ]
-                    }
-                >>
-
-        ..  container:: example
-
-            Set time signatures explicitly:
-
-            >>> divisions = [(3, 4), (4, 8), (1, 4)]
-            >>> maker = abjad.NoteMaker()
-            >>> selections = [
-            ...     maker(6 * [0], [(1, 8)]),
-            ...     maker(8 * [0], [(1, 16)]),
-            ...     maker(2 * [0], [(1, 8)]),
-            ... ]
-            >>> for selection in selections:
-            ...     abjad.beam(selection[:])
-            ...
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     [(6, 8), (4, 8), (2, 8)],
-            ... )
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> score = lilypond_file[abjad.Score]
-                >>> string = abjad.lilypond(score)
-                >>> print(string)
-                \new Score
-                <<
-                    \new GlobalContext
-                    {
-                        \time 6/8
-                        s1 * 3/4
-                        \time 4/8
-                        s1 * 1/2
-                        \time 2/8
-                        s1 * 1/4
-                    }
-                    \new RhythmicStaff
-                    {
-                        c'8
-                        - \tweak staff-padding 11
-                        - \tweak transparent ##t
-                        ^ \markup I
-                        [
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        ]
-                        c'16
-                        [
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        ]
-                        c'8
-                        [
-                        c'8
-                        ]
-                    }
-                >>
-
-        ..  container:: example
-
-            Makes pitched staff:
-
-            >>> divisions = [(3, 4), (4, 8), (1, 4)]
-            >>> maker = abjad.NoteMaker()
-            >>> selections = [
-            ...     maker(6 * [0], [(1, 8)]),
-            ...     maker(8 * [0], [(1, 16)]),
-            ...     maker(2 * [0], [(1, 8)]),
-            ... ]
-            >>> for selection in selections:
-            ...     abjad.beam(selection[:])
-            ...
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ...     pitched_staff=True,
-            ... )
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
-                >>> print(string)
-                \new Score
-                <<
-                    \new GlobalContext
-                    {
-                        \time 3/4
-                        s1 * 3/4
-                        \time 4/8
-                        s1 * 1/2
-                        \time 1/4
-                        s1 * 1/4
-                    }
-                    \new Staff
-                    {
-                        c'8
-                        - \tweak staff-padding 11
-                        - \tweak transparent ##t
-                        ^ \markup I
-                        [
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        ]
-                        c'16
-                        [
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        c'16
-                        ]
-                        c'8
-                        [
-                        c'8
-                        ]
-                    }
-                >>
-
-        ..  container:: example
-
-            Makes simultaneous voices:
-
-            >>> divisions = [(3, 4), (4, 8), (1, 4)]
-            >>> maker = abjad.NoteMaker()
-            >>> selections = [
-            ...     maker(6 * [0], [(1, 8)]),
-            ...     maker(8 * [0], [(1, 16)]),
-            ...     maker(2 * [0], [(1, 8)]),
-            ... ]
-            >>> for selection in selections:
-            ...     abjad.beam(selection[:])
-            ...
-            >>> for note in abjad.iterate(selections).components(abjad.Note):
-            ...     note.written_pitch = abjad.NamedPitch("e'")
-            ...
-            >>> selection_1 = selections[0] + selections[1] + selections[2]
-            >>> selections = [
-            ...     maker(12 * [0], [(1, 16)]),
-            ...     maker(16 * [0], [(1, 32)]),
-            ...     maker(4 * [0], [(1, 16)]),
-            ... ]
-            >>> for selection in selections:
-            ...     abjad.beam(selection[:])
-            ...
-            >>> selection_2 = selections[0] + selections[1] + selections[2]
-            >>> selections = {
-            ...     "Voice_1": selection_1,
-            ...     "Voice_2": selection_2,
-            ... }
-            >>> lilypond_file = abjad.LilyPondFile.rhythm(
-            ...     selections,
-            ...     divisions,
-            ... )
-            >>> abjad.illustrators.attach_markup_struts(lilypond_file)
-            >>> voice_1 = lilypond_file["Voice_1"]
-            >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
-            >>> abjad.attach(literal, voice_1)
-            >>> voice_2 = lilypond_file["Voice_2"]
-            >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
-            >>> abjad.attach(literal, voice_2)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(lilypond_file[abjad.Score])
-                >>> print(string)
-                \new Score
-                <<
-                    \new GlobalContext
-                    {
-                        s1 * 3/4
-                        s1 * 1/2
-                        s1 * 1/4
-                    }
-                    \new Staff
-                    <<
-                        \context Voice = "Voice_1"
-                        {
-                            \voiceOne
-                            e'8
-                            - \tweak staff-padding 11
-                            - \tweak transparent ##t
-                            ^ \markup I
-                            [
-                            e'8
-                            e'8
-                            e'8
-                            e'8
-                            e'8
-                            ]
-                            e'16
-                            [
-                            e'16
-                            e'16
-                            e'16
-                            e'16
-                            e'16
-                            e'16
-                            e'16
-                            ]
-                            e'8
-                            [
-                            e'8
-                            ]
-                        }
-                        \context Voice = "Voice_2"
-                        {
-                            \voiceTwo
-                            c'16
-                            [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            ]
-                            c'32
-                            [
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            c'32
-                            ]
-                            c'16
-                            [
-                            c'16
-                            c'16
-                            c'16
-                            ]
-                        }
-                    >>
-                >>
-
-        """
-        if isinstance(selections, Selection):
-            pass
-        elif isinstance(selections, list):
-            for selection in selections:
-                if not isinstance(selection, Selection):
-                    raise TypeError(f"must be selection: {selection!r}.")
-        elif isinstance(selections, dict):
-            for selection in selections.values():
-                if not isinstance(selection, Selection):
-                    raise TypeError(f"must be selection: {selection!r}.")
-        else:
-            raise TypeError(f"must be list or dictionary: {selections!r}.")
-        score = Score()
-        lilypond_file = class_(
-            includes=includes,
-            items=[
-                Block(name="header"),
-                Block(name="layout"),
-                Block(name="paper"),
-                Block(name="score"),
-            ],
-        )
-        assert lilypond_file.header_block is not None
-        lilypond_file.header_block.tagline = "##f"
-        assert lilypond_file.score_block is not None
-        lilypond_file.score_block.items.append(score)
-        if pitched_staff is None:
-            if isinstance(selections, (list, Selection)):
-                selections_ = selections
-            elif isinstance(selections, dict):
-                selections_ = list(selections.values())
-            else:
-                raise TypeError(selections)
-            notes = Selection(selections_).notes()
-            assert isinstance(notes, Selection)
-            for note in notes:
-                if note.written_pitch != NamedPitch("c'"):
-                    pitched_staff = True
-                    break
-            chords = Selection(selections_).chords()
-            if chords:
-                pitched_staff = True
-        if isinstance(selections, (list, Selection)):
-            if divisions is None:
-                duration = _inspect._get_duration(selections)
-                divisions = [duration]
-            time_signatures = time_signatures or divisions
-            time_signatures = [TimeSignature(_) for _ in time_signatures]
-            if pitched_staff:
-                staff = Staff()
-            else:
-                staff = Staff(lilypond_type="RhythmicStaff")
-            staff.extend(selections)
-        elif isinstance(selections, dict):
-            voices = []
-            for voice_name in sorted(selections):
-                selections_ = selections[voice_name]
-                selections__ = Sequence(selections_).flatten(depth=-1)
-                selections__ = copy.deepcopy(selections__)
-                voice = Voice(selections__, name=voice_name)
-                if attach_lilypond_voice_commands:
-                    voice_name_to_command_string = {
-                        "Voice_1": "voiceOne",
-                        "Voice_2": "voiceTwo",
-                        "Voice_3": "voiceThree",
-                        "Voice_4": "voiceFour",
-                    }
-                    command_string = voice_name_to_command_string.get(voice_name)
-                    if command_string:
-                        command = LilyPondLiteral("\\" + command_string)
-                        attach(command, voice)
-                voices.append(voice)
-            staff = Staff(voices, simultaneous=True)
-            if divisions is None:
-                duration = staff._get_duration()
-                divisions = [duration]
-        else:
-            message = "must be list or dictionary of selections:"
-            message += f" {selections!r}."
-            raise TypeError(message)
-        score.append(staff)
-        assert isinstance(divisions, collections.abc.Sequence), repr(divisions)
-        time_signatures = time_signatures or divisions
-        context = Context(lilypond_type="GlobalContext")
-        skips = []
-        for time_signature in time_signatures:
-            skip = Skip(1)
-            skip.multiplier = time_signature
-            attach(time_signature, skip, context="Score")
-            skips.append(skip)
-        context.extend(skips)
-        score.insert(0, context)
-        return lilypond_file

@@ -1,11 +1,11 @@
 import collections
 
+from .. import format as _format
 from .. import markups
 from ..cyclictuple import CyclicTuple
 from ..new import new
 from ..pattern import Pattern
 from ..sequence import Sequence
-from ..storage import StorageFormatManager
 from ..typedcollections import TypedCollection
 from .pitchclasses import PitchClass
 from .pitches import NamedPitch, Pitch
@@ -140,7 +140,7 @@ class CompoundOperator:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -185,7 +185,7 @@ class CompoundOperator:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -659,7 +659,7 @@ class Duplication:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -671,7 +671,7 @@ class Duplication:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -786,10 +786,10 @@ class Inversion:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     a'8
                     g'8
@@ -813,10 +813,10 @@ class Inversion:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     ef'8
                     cs'8
@@ -922,7 +922,7 @@ class Inversion:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -950,7 +950,7 @@ class Inversion:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -1071,10 +1071,10 @@ class Multiplication:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     ef'8
                     cs'8
@@ -1098,10 +1098,10 @@ class Multiplication:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     ef'8
                     cs'8
@@ -1150,7 +1150,7 @@ class Multiplication:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -1178,7 +1178,7 @@ class Multiplication:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -1293,10 +1293,10 @@ class Retrograde:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     af'8
                     g'8
@@ -1320,10 +1320,10 @@ class Retrograde:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     af'8
                     g'8
@@ -1404,7 +1404,7 @@ class Retrograde:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -1432,7 +1432,7 @@ class Retrograde:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -1538,10 +1538,10 @@ class Rotation:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     f'8
                     g'8
@@ -1565,10 +1565,10 @@ class Rotation:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     f'8
                     g'8
@@ -1649,7 +1649,7 @@ class Rotation:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -1677,7 +1677,7 @@ class Rotation:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -1812,10 +1812,10 @@ class Transposition:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     e'8
                     fs'8
@@ -1839,10 +1839,10 @@ class Transposition:
 
             ..  docs::
 
-                >>> voice = lilypond_file[abjad.Score][0][0]
+                >>> voice = lilypond_file["Voice"]
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \new Voice
+                \context Voice = "Voice"
                 {
                     e'8
                     fs'8
@@ -1906,7 +1906,7 @@ class Transposition:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -1934,7 +1934,7 @@ class Transposition:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __str__(self):
         """

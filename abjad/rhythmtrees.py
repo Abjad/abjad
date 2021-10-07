@@ -8,6 +8,7 @@ import quicktions
 import uqbar.containers
 import uqbar.graphs
 
+from . import format as _format
 from . import math, mutate
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .makers import LeafMaker
@@ -15,7 +16,6 @@ from .parsers.base import Parser
 from .score import Container, Tuplet
 from .sequence import Sequence
 from .spanners import tie
-from .storage import FormatSpecification, StorageFormatManager
 
 
 class RhythmTreeMixin:
@@ -49,7 +49,7 @@ class RhythmTreeMixin:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -67,7 +67,7 @@ class RhythmTreeMixin:
         return inventory
 
     def _get_format_specification(self):
-        return FormatSpecification(client=self)
+        return _format.FormatSpecification()
 
     @abc.abstractmethod
     def _pretty_rtm_format_pieces(self):

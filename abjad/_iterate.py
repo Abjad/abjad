@@ -58,7 +58,7 @@ def _get_logical_tie_leaves(LEAF):
 
 
 def _iterate_components(
-    client,
+    argument,
     prototype=None,
     *,
     exclude=None,
@@ -66,7 +66,6 @@ def _iterate_components(
     grace=None,
     reverse=None,
 ):
-    argument = client
     prototype = prototype or score.Component
     before_grace_container = None
     after_grace_container = None

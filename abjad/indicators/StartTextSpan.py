@@ -1,9 +1,10 @@
 import typing
 
-from .. import enums, markups, typings
+from .. import enums
+from .. import format as _format
+from .. import markups, typings
 from ..bundle import LilyPondFormatBundle
 from ..overrides import LilyPondOverride, TweakInterface
-from ..storage import StorageFormatManager
 from ..string import String
 
 
@@ -23,7 +24,8 @@ class StartTextSpan:
         >>> abjad.attach(start_text_span, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -140,7 +142,7 @@ class StartTextSpan:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -152,7 +154,7 @@ class StartTextSpan:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -283,7 +285,8 @@ class StartTextSpan:
             >>> markup = abjad.Markup("SPACER", direction=abjad.Up)
             >>> abjad.tweak(markup).transparent = True
             >>> abjad.attach(markup, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -405,7 +408,8 @@ class StartTextSpan:
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -500,7 +504,8 @@ class StartTextSpan:
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -535,7 +540,8 @@ class StartTextSpan:
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -567,7 +573,8 @@ class StartTextSpan:
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -603,7 +610,8 @@ class StartTextSpan:
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -638,7 +646,8 @@ class StartTextSpan:
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
             >>> abjad.attach(stop_text_span, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 

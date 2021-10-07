@@ -21,7 +21,6 @@ ignored_classes = (
     abjad.LilyPondFormatBundle,
     abjad.SlotContributions,
     abjad.RedirectedStreams,
-    abjad.StorageFormatManager,
     abjad.FormatSpecification,
 )
 

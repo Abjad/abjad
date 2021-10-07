@@ -3,9 +3,9 @@ import typing
 
 import quicktions
 
+from . import format as _format
 from . import math
 from .duration import Multiplier
-from .storage import FormatSpecification, StorageFormatManager
 
 
 class NonreducedRatio(collections.abc.Sequence):
@@ -66,7 +66,7 @@ class NonreducedRatio(collections.abc.Sequence):
 
         Returns true or false.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __getitem__(self, argument):
         """
@@ -118,7 +118,7 @@ class NonreducedRatio(collections.abc.Sequence):
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __reversed__(self):
         """
@@ -159,10 +159,9 @@ class NonreducedRatio(collections.abc.Sequence):
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             storage_format_args_values=[self.numbers],
-            storage_format_is_indented=False,
+            storage_format_is_not_indented=True,
             storage_format_keyword_names=[],
         )
 

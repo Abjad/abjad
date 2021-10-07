@@ -11,7 +11,6 @@ ignored_classes = (
     abjad.parsers.scheme.SchemeParser,
     abjad.rhythmtrees.RhythmTreeParser,
     abjad.RedirectedStreams,
-    abjad.StorageFormatManager,
     abjad.FormatSpecification,
 )
 

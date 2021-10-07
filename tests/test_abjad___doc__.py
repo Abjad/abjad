@@ -27,7 +27,6 @@ ignored_classes = (
     abjad.parsers.reduced.ReducedLyParser,
     abjad.parsers.scheme.SchemeParser,
     abjad.rhythmtrees.RhythmTreeParser,
-    abjad.StorageFormatManager,
     abjad.FormatSpecification,
 )
 

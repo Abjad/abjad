@@ -1,7 +1,7 @@
 import typing
 
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
-from ..storage import StorageFormatManager
 
 
 class Ottava:
@@ -56,7 +56,7 @@ class Ottava:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -68,7 +68,7 @@ class Ottava:
         """
         Delegates to storage format manager.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 

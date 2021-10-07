@@ -3,10 +3,10 @@ import importlib
 import typing
 
 from . import _inspect, exceptions
+from . import format as _format
 from . import tag as _tag
 from .duration import Multiplier, Offset
 from .score import AfterGraceContainer, BeforeGraceContainer, Component, Container, Leaf
-from .storage import FormatSpecification, StorageFormatManager, storage
 
 
 class Wrapper:
@@ -344,7 +344,7 @@ class Wrapper:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -356,7 +356,7 @@ class Wrapper:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -455,9 +455,7 @@ class Wrapper:
             "synthetic_offset",
             "tag",
         ]
-        return FormatSpecification(
-            client=self,
-            storage_format_args_values=None,
+        return _format.FormatSpecification(
             storage_format_keyword_names=keywords,
         )
 
@@ -518,10 +516,10 @@ class Wrapper:
                 break
         if wrapper.indicator == self.indicator and context is not wrapper_context:
             return
-        message = f"\n\nCan not attach ...\n\n{storage(self)}\n\n..."
+        message = f"\n\nCan not attach ...\n\n{_format.storage(self)}\n\n..."
         message += f" to {repr(component)}"
         message += f" in {getattr(context, 'name', None)} because ..."
-        message += f"\n\n{storage(wrapper)}\n\n"
+        message += f"\n\n{_format.storage(wrapper)}\n\n"
         message += "... is already attached"
         if component is wrapper.component:
             message += " to the same leaf."

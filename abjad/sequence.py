@@ -8,10 +8,10 @@ import typing
 import quicktions
 
 from . import enums
+from . import format as _format
 from . import math as _math
 from .cyclictuple import CyclicTuple
 from .ratio import Ratio
-from .storage import FormatSpecification, StorageFormatManager
 
 
 class Sequence(collections.abc.Sequence):
@@ -145,7 +145,7 @@ class Sequence(collections.abc.Sequence):
             False
 
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __getitem__(self, argument) -> typing.Any:
         r"""
@@ -323,7 +323,7 @@ class Sequence(collections.abc.Sequence):
                     yield item_
 
     def _get_format_specification(self):
-        return FormatSpecification(client=self)
+        return _format.FormatSpecification()
 
     @classmethod
     def _partition_sequence_cyclically_by_weights_at_least(

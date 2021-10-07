@@ -1,6 +1,6 @@
 import typing
 
-from ..storage import StorageFormatManager
+from .. import format as _format
 
 
 class BowPressure:
@@ -45,7 +45,7 @@ class BowPressure:
         Is true when all initialization values of Abjad value object equal
         the initialization values of ``argument``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -57,7 +57,7 @@ class BowPressure:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PUBLIC PROPERTIES ###
 

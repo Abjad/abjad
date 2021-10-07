@@ -4,9 +4,9 @@ import copy
 import types
 
 from .. import enumerate
+from ..format import FormatSpecification
 from ..new import new
 from ..sequence import Sequence
-from ..storage import FormatSpecification
 from ..typedcollections import TypedCollection, TypedFrozenset
 from .intervalclasses import IntervalClass, NamedIntervalClass, NumberedIntervalClass
 from .intervals import Interval, NamedInterval, NumberedInterval
@@ -78,8 +78,6 @@ class Set(TypedFrozenset):
     def _get_format_specification(self):
         repr_items = self._get_sorted_repr_items()
         return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
             repr_args_values=[repr_items],
             storage_format_args_values=[repr_items],
             storage_format_keyword_names=[],

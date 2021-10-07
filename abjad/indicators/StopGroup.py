@@ -1,8 +1,8 @@
 import typing
 
 from .. import enums
+from .. import format as _format
 from ..bundle import LilyPondFormatBundle
-from ..storage import StorageFormatManager
 
 
 class StopGroup:
@@ -37,7 +37,7 @@ class StopGroup:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 

@@ -9,7 +9,7 @@ from collections import abc as collections_abc
 
 import quicktions
 
-from .storage import FormatSpecification, StorageFormatManager
+from . import format as _format
 
 ### FUNCTIONS ###
 
@@ -1199,7 +1199,7 @@ class Infinity:
         """
         Is true when ``argument`` is also infinity.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return _format.compare_objects(self, argument)
 
     def __float__(self):
         """
@@ -1251,7 +1251,7 @@ class Infinity:
         """
         Gets interpreter representation.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return _format.get_repr(self)
 
     def __sub__(self, argument):
         """
@@ -1266,8 +1266,7 @@ class Infinity:
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
+        return _format.FormatSpecification(
             repr_text=type(self).__name__,
             storage_format_text=type(self).__name__,
         )

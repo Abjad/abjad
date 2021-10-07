@@ -194,9 +194,6 @@ music cyclically every 3 half notes, just so nothing crosses the bar lines accid
 You can see how each part is twice as slow as the previous, and starts a little bit later
 too: 
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> descents = voice_to_descents["Viola"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
@@ -647,7 +644,6 @@ We define commands like this:
 We create the score like this; only the first four pages are shown below:
 
 ..  book::
-    :lilypond/no-stylesheet:
     :lilypond/pages: 1-4
     :lilypond/with-columns: 2
 
