@@ -391,35 +391,20 @@ def vertical_moments(
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \tiny
-                                0
-                            }
+                        ^ \markup \tiny 0
                         d'4
-                        ^ \markup {
-                            \tiny
-                                1
-                            }
+                        ^ \markup \tiny 1
                         e'16
-                        ^ \markup {
-                            \tiny
-                                3
-                            }
+                        ^ \markup \tiny 3
                         f'16
-                        ^ \markup {
-                            \tiny
-                                4
-                            }
+                        ^ \markup \tiny 4
                     }
                     \new Staff
                     {
                         \clef "alto"
                         g4
                         f4
-                        ^ \markup {
-                            \tiny
-                                2
-                            }
+                        ^ \markup \tiny 2
                     }
                     \new Staff
                     {
@@ -456,60 +441,20 @@ def vertical_moments(
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        0
-                                        -5
-                                        -24
-                                    }
-                            }
+                        ^ \markup \tiny \column { 0 -5 -24 }
                         d'4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        2
-                                        -5
-                                        -24
-                                    }
-                            }
+                        ^ \markup \tiny \column { 2 -5 -24 }
                         e'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        4
-                                        -7
-                                        -24
-                                    }
-                            }
+                        ^ \markup \tiny \column { 4 -7 -24 }
                         f'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        5
-                                        -7
-                                        -24
-                                    }
-                            }
+                        ^ \markup \tiny \column { 5 -7 -24 }
                     }
                     \new Staff
                     {
                         \clef "alto"
                         g4
                         f4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        2
-                                        -7
-                                        -24
-                                    }
-                            }
+                        ^ \markup \tiny \column { 2 -7 -24 }
                     }
                     \new Staff
                     {
@@ -544,58 +489,20 @@ def vertical_moments(
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        7
-                                        0
-                                    }
-                            }
+                        ^ \markup \tiny \column { 7 0 }
                         d'4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        7
-                                        2
-                                        0
-                                    }
-                            }
+                        ^ \markup \tiny \column { 7 2 0 }
                         e'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        5
-                                        4
-                                        0
-                                    }
-                            }
+                        ^ \markup \tiny \column { 5 4 0 }
                         f'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        5
-                                        0
-                                    }
-                            }
+                        ^ \markup \tiny \column { 5 0 }
                     }
                     \new Staff
                     {
                         \clef "alto"
                         g4
                         f4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        5
-                                        2
-                                        0
-                                    }
-                            }
+                        ^ \markup \tiny \column { 5 2 0 }
                     }
                     \new Staff
                     {
@@ -630,55 +537,20 @@ def vertical_moments(
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        15
-                                        12
-                                    }
-                            }
+                        ^ \markup \tiny \column { 15 12 }
                         d'4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        16
-                                        12
-                                    }
-                            }
+                        ^ \markup \tiny \column { 16 12 }
                         e'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        17
-                                        11
-                                    }
-                            }
+                        ^ \markup \tiny \column { 17 11 }
                         f'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        18
-                                        11
-                                    }
-                            }
+                        ^ \markup \tiny \column { 18 11 }
                     }
                     \new Staff
                     {
                         \clef "alto"
                         g4
                         f4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        16
-                                        11
-                                    }
-                            }
+                        ^ \markup \tiny \column { 16 11 }
                     }
                     \new Staff
                     {
@@ -713,55 +585,20 @@ def vertical_moments(
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        12
-                                        7
-                                    }
-                            }
+                        ^ \markup \tiny \column { 12 7 }
                         d'4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        2
-                                        7
-                                    }
-                            }
+                        ^ \markup \tiny \column { 2 7 }
                         e'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        4
-                                        5
-                                    }
-                            }
+                        ^ \markup \tiny \column { 4 5 }
                         f'16
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        5
-                                        5
-                                    }
-                            }
+                        ^ \markup \tiny \column { 5 5 }
                     }
                     \new Staff
                     {
                         \clef "alto"
                         g4
                         f4
-                        ^ \markup {
-                            \tiny
-                                \column
-                                    {
-                                        2
-                                        5
-                                    }
-                            }
+                        ^ \markup \tiny \column { 2 5 }
                     }
                     \new Staff
                     {
@@ -796,40 +633,20 @@ def vertical_moments(
                     \new Staff
                     {
                         c'8
-                        ^ \markup {
-                            \tiny
-                                \tiny
-                                    1000020
-                            }
+                        ^ \markup \tiny \tiny 1000020
                         d'4
-                        ^ \markup {
-                            \tiny
-                                \tiny
-                                    0010020
-                            }
+                        ^ \markup \tiny \tiny 0010020
                         e'16
-                        ^ \markup {
-                            \tiny
-                                \tiny
-                                    0100110
-                            }
+                        ^ \markup \tiny \tiny 0100110
                         f'16
-                        ^ \markup {
-                            \tiny
-                                \tiny
-                                    1000020
-                            }
+                        ^ \markup \tiny \tiny 1000020
                     }
                     \new Staff
                     {
                         \clef "alto"
                         g4
                         f4
-                        ^ \markup {
-                            \tiny
-                                \tiny
-                                    0011010
-                            }
+                        ^ \markup \tiny \tiny 0011010
                     }
                     \new Staff
                     {
@@ -895,16 +712,14 @@ def vertical_moments(
     for index, vertical_moment in enumerate(vertical_moments):
         label, string = None, None
         if prototype is int:
-            label = _markups.Markup(index, direction=direction)
+            string = str(index)
         elif prototype is NumberedPitch:
             leaves = vertical_moment.leaves
             pitches = PitchSegment.from_selection(leaves)
             if not pitches:
                 continue
             pitch_numbers = [str(pitch.number) for pitch in pitches]
-            label = _markups.Markup(
-                rf'\column {{ {" ".join(pitch_numbers)} }}', direction=direction
-            )
+            string = rf'\column {{ {" ".join(pitch_numbers)} }}'
         elif prototype is NumberedPitchClass:
             leaves = vertical_moment.leaves
             pitches = PitchSegment.from_selection(leaves)
@@ -915,9 +730,7 @@ def vertical_moments(
             pitch_classes.sort()
             pitch_classes.reverse()
             numbers = [str(_) for _ in pitch_classes]
-            label = _markups.Markup(
-                rf'\column {{ {" ".join(numbers)} }}', direction=direction
-            )
+            string = rf'\column {{ {" ".join(numbers)} }}'
         elif prototype is NumberedInterval:
             leaves = vertical_moment.leaves
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
@@ -934,9 +747,7 @@ def vertical_moments(
                 )
                 named_intervals.append(named_interval)
             numbers = [str(x.number) for x in named_intervals]
-            label = _markups.Markup(
-                rf'\column {{ {" ".join(numbers)} }}', direction=direction
-            )
+            string = rf'\column {{ {" ".join(numbers)} }}'
         elif prototype is NumberedIntervalClass:
             leaves = vertical_moment.leaves
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
@@ -955,7 +766,7 @@ def vertical_moments(
                 number = interval_class.number
                 numbers.append(number)
             string = " ".join([str(_) for _ in numbers])
-            label = _markups.Markup(rf"\column {{ {string} }}", direction=direction)
+            string = rf"\column {{ {string} }}"
         elif prototype is IntervalClassVector:
             leaves = vertical_moment.leaves
             pitches = PitchSegment.from_selection(leaves)
@@ -965,8 +776,7 @@ def vertical_moments(
                 pitches,
                 item_class=NumberedInversionEquivalentIntervalClass,
             )
-            markup = interval_class_vector._label
-            label = _markups.Markup(markup, direction=direction)
+            string = interval_class_vector._label
         elif prototype is SetClass or isinstance(prototype, SetClass):
             if prototype is SetClass:
                 prototype = prototype()
@@ -984,25 +794,15 @@ def vertical_moments(
             string = rf'\line {{ "{string}" }}'
         else:
             raise TypeError(f"unknown prototype {prototype!r}.")
-        if label is not None:
-            assert len(label.contents) == 1, repr(label)
-            label = _markups.Markup(
-                rf"\tiny {label.contents[0]}", direction=label.direction
-            )
-            if direction is _enums.Up:
-                leaf = vertical_moment.start_leaves[0]
-            else:
-                leaf = vertical_moment.start_leaves[-1]
-            _attach(label, leaf, deactivate=deactivate, tag=tag)
-        elif string is not None:
-            label = _markups.Markup(
-                rf"\markup \tiny {string}", direction=direction, literal=True
-            )
-            if direction is _enums.Up:
-                leaf = vertical_moment.start_leaves[0]
-            else:
-                leaf = vertical_moment.start_leaves[-1]
-            _attach(label, leaf, deactivate=deactivate, tag=tag)
+        assert string is not None
+        label = _markups.Markup(
+            rf"\markup \tiny {string}", direction=direction, literal=True
+        )
+        if direction is _enums.Up:
+            leaf = vertical_moment.start_leaves[0]
+        else:
+            leaf = vertical_moment.start_leaves[-1]
+        _attach(label, leaf, deactivate=deactivate, tag=tag)
 
 
 def with_durations(
@@ -1028,32 +828,16 @@ def with_durations(
                 \new Staff
                 {
                     c'4.
-                    ^ \markup {
-                        \fraction
-                            3
-                            8
-                        }
+                    ^ \markup \fraction 3 8
                     d'8
-                    ^ \markup {
-                        \fraction
-                            4
-                            8
-                        }
+                    ^ \markup \fraction 4 8
                     ~
                     d'4.
                     e'16
-                    ^ \markup {
-                        \fraction
-                            1
-                            16
-                        }
+                    ^ \markup \fraction 1 16
                     [
                     ef'16
-                    ^ \markup {
-                        \fraction
-                            1
-                            16
-                        }
+                    ^ \markup \fraction 1 16
                     ]
                 }
 
@@ -1074,32 +858,16 @@ def with_durations(
                 \new Staff
                 {
                     c'4.
-                    ^ \markup {
-                        \fraction
-                            6
-                            16
-                        }
+                    ^ \markup \fraction 6 16
                     d'8
-                    ^ \markup {
-                        \fraction
-                            8
-                            16
-                        }
+                    ^ \markup \fraction 8 16
                     ~
                     d'4.
                     e'16
-                    ^ \markup {
-                        \fraction
-                            1
-                            16
-                        }
+                    ^ \markup \fraction 1 16
                     [
                     ef'16
-                    ^ \markup {
-                        \fraction
-                            1
-                            16
-                        }
+                    ^ \markup \fraction 1 16
                     ]
                 }
 
@@ -1113,7 +881,9 @@ def with_durations(
         pair = duration.pair
         numerator, denominator = pair
         label = _markups.Markup(
-            rf"\fraction {numerator} {denominator}", direction=direction
+            rf"\markup \fraction {numerator} {denominator}",
+            direction=direction,
+            literal=True,
         )
         _attach(label, logical_tie.head)
 
@@ -1144,15 +914,15 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     <c' bf'>8
-                    ^ \markup { 0 }
+                    ^ \markup 0
                     <g' a'>4
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     af'8
-                    ^ \markup { 2 }
+                    ^ \markup 2
                     ~
                     af'8
                     gf'8
-                    ^ \markup { 3 }
+                    ^ \markup 3
                     ~
                     gf'4
                 }
@@ -1181,15 +951,15 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
                     <c' bf'>8
                     <g' a'>4
                     af'8
-                    ^ \markup { 0 }
+                    ^ \markup 0
                     ~
                     af'8
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     gf'8
-                    ^ \markup { 2 }
+                    ^ \markup 2
                     ~
                     gf'4
-                    ^ \markup { 3 }
+                    ^ \markup 3
                 }
 
     ..  container:: example
@@ -1214,9 +984,9 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     <c' bf'>8
-                    ^ \markup { 0 }
+                    ^ \markup 0
                     <g' a'>4
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     af'8
                     ~
                     af'8
@@ -1247,19 +1017,19 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     <c' bf'>8
-                    ^ \markup { 0 }
+                    ^ \markup 0
                     <g' a'>4
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     af'8
-                    ^ \markup { 2 }
+                    ^ \markup 2
                     ~
                     af'8
-                    ^ \markup { 3 }
+                    ^ \markup 3
                     gf'8
-                    ^ \markup { 4 }
+                    ^ \markup 4
                     ~
                     gf'4
-                    ^ \markup { 5 }
+                    ^ \markup 5
                 }
 
     ..  container:: example
@@ -1285,33 +1055,37 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
                     \override TextScript.staff-padding = 2
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
-                        ^ \markup { 0 }
+                        ^ \markup 0
                         [
                         d'8
                         e'8
                         ]
                     }
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
-                        ^ \markup { 1 }
+                        ^ \markup 1
                         [
                         d'8
                         e'8
                         ]
                     }
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
-                        ^ \markup { 2 }
+                        ^ \markup 2
                         [
                         d'8
                         e'8
                         ]
                     }
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
-                        ^ \markup { 3 }
+                        ^ \markup 3
                         [
                         d'8
                         e'8
@@ -1327,8 +1101,7 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
         items = iterate_.components(argument, prototype=prototype)
     items = list(items)
     for index, item in enumerate(items):
-        string = str(index)
-        label = _markups.Markup(string, direction=direction)
+        label = _markups.Markup(rf"\markup {index}", direction=direction, literal=True)
         leaves = _selection.Selection(item).leaves()
         first_leaf = leaves[0]
         _attach(label, first_leaf)
@@ -1363,19 +1136,19 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     c'4
-                    ^ \markup { +A15 }
+                    ^ \markup +A15
                     cs'''4
-                    ^ \markup { -M9 }
+                    ^ \markup -M9
                     b'4
-                    ^ \markup { -A9 }
+                    ^ \markup -A9
                     af4
-                    ^ \markup { -m7 }
+                    ^ \markup -m7
                     bf,4
-                    ^ \markup { +A1 }
+                    ^ \markup +A1
                     b,4
-                    ^ \markup { +m14 }
+                    ^ \markup +m14
                     a'4
-                    ^ \markup { +m2 }
+                    ^ \markup +m2
                     bf'4
                 }
 
@@ -1405,19 +1178,19 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     c'4
-                    ^ \markup { +A1 }
+                    ^ \markup +A1
                     cs'''4
-                    ^ \markup { -M2 }
+                    ^ \markup -M2
                     b'4
-                    ^ \markup { -A2 }
+                    ^ \markup -A2
                     af4
-                    ^ \markup { -m7 }
+                    ^ \markup -m7
                     bf,4
-                    ^ \markup { +A1 }
+                    ^ \markup +A1
                     b,4
-                    ^ \markup { +m7 }
+                    ^ \markup +m7
                     a'4
-                    ^ \markup { +m2 }
+                    ^ \markup +m2
                     bf'4
                 }
 
@@ -1447,19 +1220,19 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     c'4
-                    ^ \markup { +25 }
+                    ^ \markup +25
                     cs'''4
-                    ^ \markup { -14 }
+                    ^ \markup -14
                     b'4
-                    ^ \markup { -15 }
+                    ^ \markup -15
                     af4
-                    ^ \markup { -10 }
+                    ^ \markup -10
                     bf,4
-                    ^ \markup { +1 }
+                    ^ \markup +1
                     b,4
-                    ^ \markup { +22 }
+                    ^ \markup +22
                     a'4
-                    ^ \markup { +1 }
+                    ^ \markup +1
                     bf'4
                 }
 
@@ -1489,19 +1262,19 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     c'4
-                    ^ \markup { +1 }
+                    ^ \markup +1
                     cs'''4
-                    ^ \markup { -2 }
+                    ^ \markup -2
                     b'4
-                    ^ \markup { -3 }
+                    ^ \markup -3
                     af4
-                    ^ \markup { -10 }
+                    ^ \markup -10
                     bf,4
-                    ^ \markup { +1 }
+                    ^ \markup +1
                     b,4
-                    ^ \markup { +10 }
+                    ^ \markup +10
                     a'4
-                    ^ \markup { +1 }
+                    ^ \markup +1
                     bf'4
                 }
 
@@ -1532,19 +1305,19 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
                 }
                 {
                     c'4
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     cs'''4
-                    ^ \markup { 2 }
+                    ^ \markup 2
                     b'4
-                    ^ \markup { 3 }
+                    ^ \markup 3
                     af4
-                    ^ \markup { 2 }
+                    ^ \markup 2
                     bf,4
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     b,4
-                    ^ \markup { 2 }
+                    ^ \markup 2
                     a'4
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     bf'4
                 }
 
@@ -1557,19 +1330,35 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
         if isinstance(next_leaf, _score.Note):
             interval = NamedInterval.from_pitch_carriers(note, next_leaf)
             if prototype is NamedInterval:
-                label = _markups.Markup(interval, direction=direction)
+                label = _markups.Markup(
+                    rf"\markup {interval}",
+                    direction=direction,
+                    literal=True,
+                )
             elif prototype is NamedIntervalClass:
-                label = NamedIntervalClass(interval)
-                label = _markups.Markup(label, direction=direction)
+                label = _markups.Markup(
+                    rf"\markup {NamedIntervalClass(interval)}",
+                    direction=direction,
+                    literal=True,
+                )
             elif prototype is NumberedInterval:
-                label = NumberedInterval(interval)
-                label = _markups.Markup(label, direction=direction)
+                label = _markups.Markup(
+                    rf"\markup {NumberedInterval(interval)}",
+                    direction=direction,
+                    literal=True,
+                )
             elif prototype is NumberedIntervalClass:
-                label = NumberedIntervalClass(interval)
-                label = _markups.Markup(label, direction=direction)
+                label = _markups.Markup(
+                    rf"\markup {NumberedIntervalClass(interval)}",
+                    direction=direction,
+                    literal=True,
+                )
             elif prototype is NumberedInversionEquivalentIntervalClass:
-                label = NumberedInversionEquivalentIntervalClass(interval)
-                label = _markups.Markup(label, direction=direction)
+                label = _markups.Markup(
+                    rf"\markup {NumberedInversionEquivalentIntervalClass(interval)}",
+                    direction=direction,
+                    literal=True,
+                )
             if label is not None:
                 _attach(label, note)
 
@@ -1665,21 +1454,14 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 }
                 {
                     <a d' fs'>4
-                    ^ \markup {
-                        \column
-                            {
-                                6
-                                2
-                                -3
-                            }
-                        }
+                    ^ \markup \column { 6 2 -3 }
                     g'4
-                    ^ \markup { 7 }
+                    ^ \markup 7
                     ~
                     g'8
                     r8
                     fs''4
-                    ^ \markup { 18 }
+                    ^ \markup 18
                 }
 
     ..  container:: example
@@ -1705,21 +1487,14 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 }
                 {
                     <a d' fs'>4
-                    ^ \markup {
-                        \column
-                            {
-                                6
-                                2
-                                9
-                            }
-                        }
+                    ^ \markup \column { 6 2 9 }
                     g'4
-                    ^ \markup { 7 }
+                    ^ \markup 7
                     ~
                     g'8
                     r8
                     fs''4
-                    ^ \markup { 6 }
+                    ^ \markup 6
                 }
 
     ..  container:: example
@@ -1799,18 +1574,18 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 }
                 {
                     df''4
-                    ^ \markup { 13 }
+                    ^ \markup 13
                     \startGroup
                     c''4
-                    ^ \markup { 12 }
+                    ^ \markup 12
                     \stopGroup
                     f'4
                     fs'4
                     d''4
-                    ^ \markup { 14 }
+                    ^ \markup 14
                     \startGroup
                     ds''4
-                    ^ \markup { 15 }
+                    ^ \markup 15
                     \stopGroup
                 }
 
@@ -1845,18 +1620,18 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 }
                 {
                     df''4
-                    ^ \markup { 1 }
+                    ^ \markup 1
                     \startGroup
                     c''4
-                    ^ \markup { 0 }
+                    ^ \markup 0
                     \stopGroup
                     f'4
                     fs'4
                     d''4
-                    ^ \markup { 2 }
+                    ^ \markup 2
                     \startGroup
                     ds''4
-                    ^ \markup { 3 }
+                    ^ \markup 3
                     \stopGroup
                 }
 
@@ -1894,30 +1669,38 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
         elif prototype is NumberedPitch:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.number
-                label = str(pitch)
-                label = _markups.Markup(label, direction=direction)
+                label = _markups.Markup(
+                    rf"\markup {pitch}",
+                    direction=direction,
+                    literal=True,
+                )
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
                 pitches = [str(_.number) for _ in pitches]
                 string = " ".join(pitches)
                 label = _markups.Markup(
-                    rf"\column {{ {string} }}",
+                    rf"\markup \column {{ {string} }}",
                     direction=direction,
+                    literal=True,
                 )
         elif prototype is NumberedPitchClass:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.pitch_class.number
-                label = str(pitch)
-                label = _markups.Markup(label, direction=direction)
+                label = _markups.Markup(
+                    rf"\markup {pitch}",
+                    direction=direction,
+                    literal=True,
+                )
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
                 pitches = [str(_.pitch_class.number) for _ in pitches]
                 string = " ".join(pitches)
                 label = _markups.Markup(
-                    rf"\column {{ {string} }}",
+                    rf"\markup \column {{ {string} }}",
                     direction=direction,
+                    literal=True,
                 )
         if label is not None:
             label = _new.new(label, direction=direction)
@@ -2131,7 +1914,8 @@ def with_start_offsets(
                     \override TupletBracket.staff-padding = 0
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'4
                         ^ \markup { 0 }
                         d'4

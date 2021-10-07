@@ -41,7 +41,8 @@ class Block:
 
         >>> string = abjad.lilypond(block)
         >>> print(string)
-        \paper {
+        \paper
+        {
             right-margin = 2\cm
             left-margin = 2\cm
         }
@@ -49,16 +50,17 @@ class Block:
     ..  container:: example
 
         >>> block = abjad.Block(name='score')
-        >>> markup = abjad.Markup('foo')
+        >>> markup = abjad.Markup(r"\markup foo", literal=True)
         >>> block.items.append(markup)
         >>> block
         <Block(name='score')>
 
         >>> string = abjad.lilypond(block)
         >>> print(string)
-        \score {
+        \score
+        {
             {
-                \markup { foo }
+                \markup foo
             }
         }
 
@@ -265,11 +267,11 @@ class Block:
         ..  container:: example
 
             >>> block = abjad.Block(name="score")
-            >>> markup = abjad.Markup("foo")
+            >>> markup = abjad.Markup(r"\markup foo", literal=True)
             >>> block.items.append(markup)
 
             >>> block.items
-            [Markup(contents=['foo'])]
+            [Markup(contents=['\\markup foo'], literal=True)]
 
         ..  container:: example
 
@@ -289,7 +291,9 @@ class Block:
 
             >>> string = abjad.lilypond(lilypond_file)
             >>> print(string)
-            \score {
+            <BLANKLINE>
+            \score
+            {
                 <<
                 { \include "layout.ly" }
                 \new Staff
@@ -314,9 +318,6 @@ class Block:
         ..  container:: example
 
             >>> block = abjad.Block(name="score")
-            >>> markup = abjad.Markup("foo")
-            >>> block.items.append(markup)
-
             >>> block.name
             'score'
 
@@ -358,8 +359,10 @@ class ContextBlock(Block):
         >>> block
         <ContextBlock(source_lilypond_type='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')>
 
-        >>> print(abjad.lilypond(block))
-        \context {
+        >>> string = abjad.lilypond(block)
+        >>> print(string)
+        \context
+        {
             \Staff
             \name FluteStaff
             \type Engraver_group
@@ -394,8 +397,7 @@ class ContextBlock(Block):
     def _get_format_pieces(self, tag=None):
         indent = _bundle.LilyPondFormatBundle.indent
         result = []
-        string = f"{self._escaped_name} {{"
-        result.append(string)
+        result.extend([f"{self._escaped_name}", "{"])
         # CAUTION: source context name must come before type_ to allow
         # context redefinition.
         if self.source_lilypond_type is not None:
@@ -925,7 +927,8 @@ class PackageGitCommitToken:
         >>> token
         PackageGitCommitToken(package_name='abjad')
 
-        >>> print(abjad.lilypond(token))  # doctest: +SKIP
+        >>> string = abjad.lilypond(token)
+        >>> print(string)  # doctest: +SKIP
         package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
     """
@@ -1304,7 +1307,9 @@ class LilyPondFile:
             ... )
             >>> string = abjad.lilypond(lilypond_file)
             >>> print(string)
-            \score {
+            <BLANKLINE>
+            \score
+            {
                 <<
                     {
                         \include "layout.ly"
@@ -1640,9 +1645,10 @@ class LilyPondFile:
 
             >>> string = abjad.lilypond(lilypond_file)
             >>> print(string)
-            \customCommand
             <BLANKLINE>
-            \score {
+            \customCommand
+            \score
+            {
                 \new Staff
                 {
                     c'4

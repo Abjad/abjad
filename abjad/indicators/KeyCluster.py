@@ -25,18 +25,10 @@ class KeyCluster:
             \once \override AccidentalCautionary.stencil = ##f
             \once \override Arpeggio.X-offset = #-2
             \once \override NoteHead.stencil = #ly:text-interface::print
-            \once \override NoteHead.text = \markup {
-                \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-            }
+            \once \override NoteHead.text =
+            \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
             <c' e' g' b' d'' f''>8
-            ^ \markup {
-                \center-align
-                    \concat
-                        {
-                            \natural
-                            \flat
-                        }
-                }
+            ^ \markup \center-align \concat { \natural \flat }
 
     """
 
@@ -102,9 +94,8 @@ class KeyCluster:
             "\\once \\override AccidentalCautionary.stencil = ##f\n"
             "\\once \\override Arpeggio.X-offset = #-2\n"
             "\\once \\override NoteHead.stencil = #ly:text-interface::print\n"
-            r"\once \override NoteHead.text = \markup {" + "\n"
-            "\t\\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25\n"
-            "}"
+            "\\once \\override NoteHead.text =\n"
+            "\\markup \\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25"
         )
         if not self.hide:
             if self.include_black_keys and self.include_white_keys:
@@ -113,7 +104,11 @@ class KeyCluster:
                 string = r"\center-align \flat"
             else:
                 string = r"\center-align \natural"
-            markup = Markup(string, direction=self.markup_direction)
+            markup = Markup(
+                rf"\markup {string}",
+                direction=self.markup_direction,
+                literal=True,
+            )
             markup_format_pieces = markup._get_format_pieces()
             bundle.after.markup.extend(markup_format_pieces)
         return bundle
@@ -142,18 +137,10 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup {
-                    \center-align
-                        \concat
-                            {
-                                \natural
-                                \flat
-                            }
-                    }
+                ^ \markup \center-align \concat { \natural \flat }
 
             Default behavior.
 
@@ -174,9 +161,8 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
 
         ..  todo:: Remove?
@@ -208,18 +194,10 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup {
-                    \center-align
-                        \concat
-                            {
-                                \natural
-                                \flat
-                            }
-                    }
+                ^ \markup \center-align \concat { \natural \flat }
 
             Default behavior.
 
@@ -242,14 +220,10 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup {
-                    \center-align
-                        \natural
-                    }
+                ^ \markup \center-align \natural
 
         ..  todo:: Rename to ``include_flat_markup``.
 
@@ -280,18 +254,10 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup {
-                    \center-align
-                        \concat
-                            {
-                                \natural
-                                \flat
-                            }
-                    }
+                ^ \markup \center-align \concat { \natural \flat }
 
             Default behavior.
 
@@ -314,14 +280,10 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup {
-                    \center-align
-                        \flat
-                    }
+                ^ \markup \center-align \flat
 
         ..  todo:: Rename to ``include_natural_markup``.
 
@@ -352,18 +314,10 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup {
-                    \center-align
-                        \concat
-                            {
-                                \natural
-                                \flat
-                            }
-                    }
+                ^ \markup \center-align \concat { \natural \flat }
 
             Default behavior.
 
@@ -386,18 +340,10 @@ class KeyCluster:
                 \once \override AccidentalCautionary.stencil = ##f
                 \once \override Arpeggio.X-offset = #-2
                 \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text = \markup {
-                    \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                }
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                _ \markup {
-                    \center-align
-                        \concat
-                            {
-                                \natural
-                                \flat
-                            }
-                    }
+                _ \markup \center-align \concat { \natural \flat }
 
         """
         return self._markup_direction
@@ -420,18 +366,10 @@ class KeyCluster:
             \once \override AccidentalCautionary.stencil = ##f
             \once \override Arpeggio.X-offset = #-2
             \once \override NoteHead.stencil = #ly:text-interface::print
-            \once \override NoteHead.text = \markup {
-                \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-            }
+            \once \override NoteHead.text =
+            \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
             <c' e' g' b' d'' f''>8
-            ^ \markup {
-                \center-align
-                    \concat
-                        {
-                            \natural
-                            \flat
-                        }
-                }
+            ^ \markup \center-align \concat { \natural \flat }
 
             The reason for this is that chords contain multiple note-heads: if
             key cluster formatted tweaks instead of overrides, the five format

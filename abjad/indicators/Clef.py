@@ -685,7 +685,9 @@ class StaffPosition:
             ...         note.written_pitch,
             ...         "alto",
             ...     )
-            ...     markup = abjad.Markup(staff_position.number)
+            ...     markup = abjad.Markup(
+            ...         rf"\markup {staff_position.number}", literal=True
+            ...     )
             ...     abjad.attach(markup, note)
             ...
             >>> abjad.override(staff).TextScript.staff_padding = 5
@@ -702,37 +704,37 @@ class StaffPosition:
                 }
                 {
                     g16
-                    - \markup { -3 }
+                    - \markup -3
                     a16
-                    - \markup { -2 }
+                    - \markup -2
                     b16
-                    - \markup { -1 }
+                    - \markup -1
                     c'16
-                    - \markup { 0 }
+                    - \markup 0
                     d'16
-                    - \markup { 1 }
+                    - \markup 1
                     e'16
-                    - \markup { 2 }
+                    - \markup 2
                     f'16
-                    - \markup { 3 }
+                    - \markup 3
                     g'16
-                    - \markup { 4 }
+                    - \markup 4
                     a'16
-                    - \markup { 5 }
+                    - \markup 5
                     b'16
-                    - \markup { 6 }
+                    - \markup 6
                     c''16
-                    - \markup { 7 }
+                    - \markup 7
                     d''16
-                    - \markup { 8 }
+                    - \markup 8
                     e''16
-                    - \markup { 9 }
+                    - \markup 9
                     f''16
-                    - \markup { 10 }
+                    - \markup 10
                     g''16
-                    - \markup { 11 }
+                    - \markup 11
                     a''16
-                    - \markup { 12 }
+                    - \markup 12
                 }
 
         ..  container:: example
@@ -746,7 +748,9 @@ class StaffPosition:
             ...         note.written_pitch,
             ...         "bass",
             ...     )
-            ...     markup = abjad.Markup(staff_position.number)
+            ...     markup = abjad.Markup(
+            ...         rf"\markup {staff_position.number}", literal=True
+            ...     )
             ...     abjad.attach(markup, note)
             ...
             >>> abjad.attach(abjad.Clef("bass"), staff[0])
@@ -765,37 +769,37 @@ class StaffPosition:
                 {
                     \clef "bass"
                     g,16
-                    - \markup { -4 }
+                    - \markup -4
                     a,16
-                    - \markup { -3 }
+                    - \markup -3
                     b,16
-                    - \markup { -2 }
+                    - \markup -2
                     c16
-                    - \markup { -1 }
+                    - \markup -1
                     d16
-                    - \markup { 0 }
+                    - \markup 0
                     e16
-                    - \markup { 1 }
+                    - \markup 1
                     f16
-                    - \markup { 2 }
+                    - \markup 2
                     g16
-                    - \markup { 3 }
+                    - \markup 3
                     a16
-                    - \markup { 4 }
+                    - \markup 4
                     b16
-                    - \markup { 5 }
+                    - \markup 5
                     c'16
-                    - \markup { 6 }
+                    - \markup 6
                     d'16
-                    - \markup { 7 }
+                    - \markup 7
                     e'16
-                    - \markup { 8 }
+                    - \markup 8
                     f'16
-                    - \markup { 9 }
+                    - \markup 9
                     g'16
-                    - \markup { 10 }
+                    - \markup 10
                     a'16
-                    - \markup { 11 }
+                    - \markup 11
                 }
 
         """

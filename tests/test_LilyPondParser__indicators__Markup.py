@@ -4,7 +4,7 @@ import abjad
 def test_LilyPondParser__indicators__Markup_01():
 
     target = abjad.Staff([abjad.Note(0, 1)])
-    markup = abjad.Markup("hello!", direction=abjad.Up)
+    markup = abjad.Markup(r"\markup { hello! }", direction=abjad.Up, literal=True)
     abjad.attach(markup, target[0])
 
     assert abjad.lilypond(target) == abjad.String.normalize(
@@ -51,7 +51,7 @@ def test_LilyPondParser__indicators__Markup_03():
     """
 
     target = abjad.Staff([abjad.Note(0, (1, 4)), abjad.Note(2, (1, 4))])
-    markup = abjad.Markup("hello", direction=abjad.Up)
+    markup = abjad.Markup(r"\markup { hello }", direction=abjad.Up, literal=True)
     abjad.attach(markup, target[0])
     articulation = abjad.Articulation(".")
     abjad.attach(articulation, target[0])
@@ -78,18 +78,16 @@ def test_LilyPondParser__indicators__Markup_03():
 
 def test_LilyPondParser__indicators__Markup_04():
 
-    string_1 = r"""\markup {
-    \bold
-        {
-            A
-            B
-            C
-        }
-    \italic
-        123
-    }"""
+    string_1 = r"""\markup { \bold { A B C } \italic 123 }"""
+
+    string_2 = r"""\markup { \bold
+    {
+        A
+        B
+        C
+    } \italic
+    123 }"""
 
     parser = abjad.parser.LilyPondParser()
     markup = parser(string_1)
-    string_2 = abjad.lilypond(markup)
-    assert string_1 == string_2
+    assert abjad.lilypond(markup) == string_2

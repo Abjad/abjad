@@ -185,7 +185,8 @@ class ForbidUpdate(ContextManager):
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff {
+            \new Staff
+            {
                 <c' e'>8
                 <d' fs'>8
                 <d' fs'>2
@@ -449,6 +450,7 @@ class RedirectedStreams(ContextManager):
         >>> string_io.close()
         >>> print(result)
         hello, world!
+        <BLANKLINE>
 
     Redirected streams context manager is immutable.
     """

@@ -1,15 +1,14 @@
 """
 Tools for modeling and manipulating timespans.
 """
-import collections
 import copy
 import typing
 
 from . import enums
 from . import format as _format
+from . import markups as _markups
 from . import math
 from .duration import Duration, Multiplier, Offset
-from .markups import Markup, Postscript
 from .new import new
 from .ratio import Ratio
 from .sequence import Sequence
@@ -75,7 +74,7 @@ class OffsetCounter(TypedCounter):
 
     ### SPECIAL METHODS ###
 
-    def _make_markup(self, range_=None, scale=None) -> Markup:
+    def _make_markup(self, range_=None, scale=None) -> _markups.Markup:
         r"""
         Illustrates offset counter.
 
@@ -139,7 +138,7 @@ class OffsetCounter(TypedCounter):
 
         """
         if not self:
-            return Markup(r"\markup \null", literal=True)
+            return _markups.Markup(r"\markup \null", literal=True)
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -154,7 +153,7 @@ class OffsetCounter(TypedCounter):
         postscript_scale = 150.0 / (maximum_float - minimum_float)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum_float * postscript_scale) - 1
-        ps = Postscript()
+        ps = _markups.Postscript()
         ps = ps.setlinewidth(0.2)
         ps = ps.setdash([2, 1])
         for offset, count in sorted(self.items()):
@@ -175,7 +174,9 @@ class OffsetCounter(TypedCounter):
             string = rf"\sans \fontsize #-3 \center-align \fraction {n} {d}"
             strings.append(string)
         string = "\n".join(strings)
-        markup = Markup(f"\\markup {{ \\overlay {{\n{string}\n}} }}", literal=True)
+        markup = _markups.Markup(
+            f"\\markup {{ \\overlay {{\n{string}\n}} }}", literal=True
+        )
         return markup
 
     ### PRIVATE METHODS ###
@@ -864,7 +865,7 @@ class Timespan:
         start -= postscript_x_offset
         stop = float(self._stop_offset) * postscript_scale
         stop -= postscript_x_offset
-        ps = Postscript()
+        ps = _markups.Postscript()
         ps = ps.moveto(start, postscript_y_offset)
         ps = ps.lineto(stop, postscript_y_offset)
         ps = ps.stroke()
@@ -2586,7 +2587,7 @@ class TimespanList(TypedList):
         sort_callable=None,
         sortkey=None,
         scale=None,
-    ) -> Markup:
+    ) -> _markups.Markup:
         r"""
         Makes markup.
 
@@ -2853,7 +2854,7 @@ class TimespanList(TypedList):
         Returns markup.
         """
         if not self:
-            return Markup(r"\markup \null", literal=True)
+            return _markups.Markup(r"\markup \null", literal=True)
         maximum: typing.Union[Offset, math.Infinity]
         minimum: typing.Union[Offset, math.NegativeInfinity]
         if isinstance(range_, Timespan):
@@ -2874,7 +2875,7 @@ class TimespanList(TypedList):
             string = self._make_timespan_list_markup(
                 self, postscript_x_offset, postscript_scale, sortkey=sortkey
             )
-            markup = Markup(rf"\markup {string}", literal=True)
+            markup = _markups.Markup(rf"\markup {string}", literal=True)
         else:
             timespan_lists = {}
             for timespan in self:
@@ -2902,7 +2903,9 @@ class TimespanList(TypedList):
                 )
                 strings.append(string)
             string = "\n".join(strings)
-            markup = Markup(f"\\markup\n\\left-column {{\n{string}\n}}", literal=True)
+            markup = _markups.Markup(
+                f"\\markup\n\\left-column {{\n{string}\n}}", literal=True
+            )
         return markup
 
     def __invert__(self) -> "TimespanList":
@@ -3056,7 +3059,7 @@ class TimespanList(TypedList):
                 sorted_timespan_lists[value].append(timespan)
             for key, timespans in sorted(sorted_timespan_lists.items()):
                 exploded_timespan_lists.extend(timespans.explode())
-        ps = Postscript()
+        ps = _markups.Postscript()
         ps = ps.setlinewidth(0.2)
         offset_mapping = {}
         height = ((len(exploded_timespan_lists) - 1) * 3) + 1
@@ -3069,7 +3072,7 @@ class TimespanList(TypedList):
                     postscript_x_offset, postscript_y_offset, postscript_scale
                 )
         if not draw_offsets:
-            markup = Markup(rf'\postscript #"{ps}"')
+            markup = _markups.Markup(rf'\postscript #"{ps}"', literal=True)
             return markup
         ps = ps.setlinewidth(0.1)
         ps = ps.setdash([0.1, 0.2])
@@ -4229,7 +4232,7 @@ class TimespanList(TypedList):
         overlap_factor = total_overlap / timespan.duration
         return overlap_factor
 
-    def compute_overlap_factor_mapping(self) -> collections.OrderedDict:
+    def compute_overlap_factor_mapping(self) -> dict:
         """
         Computes overlap factor for each consecutive offset pair in timespans.
 
@@ -4258,7 +4261,7 @@ class TimespanList(TypedList):
 
         Returns mapping.
         """
-        mapping: collections.OrderedDict = collections.OrderedDict()
+        mapping: dict = dict()
         offsets = Sequence(sorted(self.count_offsets()))
         for start_offset, stop_offset in offsets.nwise():
             timespan = Timespan(start_offset, stop_offset)

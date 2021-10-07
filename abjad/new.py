@@ -11,7 +11,9 @@ def new(argument, *arguments, **keywords):
 
         Makes markup with new direction:
 
-        >>> markup = abjad.Markup(r'\italic "Andante assai"', direction=abjad.Up)
+        >>> markup = abjad.Markup(
+        ...     r'\markup \italic "Andante assai"', direction=abjad.Up, literal=True,
+        ... )
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -23,10 +25,7 @@ def new(argument, *arguments, **keywords):
             \new Staff
             {
                 c'4
-                ^ \markup {
-                    \italic
-                        "Andante assai"
-                    }
+                ^ \markup \italic "Andante assai"
                 d'4
                 e'4
                 f'4
@@ -44,10 +43,7 @@ def new(argument, *arguments, **keywords):
             \new Staff
             {
                 c'4
-                _ \markup {
-                    \italic
-                        "Andante assai"
-                    }
+                _ \markup \italic "Andante assai"
                 d'4
                 e'4
                 f'4
@@ -58,21 +54,17 @@ def new(argument, *arguments, **keywords):
 
         REGRESSION. Can be used to set existing properties to none:
 
-        >>> markup = abjad.Markup(r'\italic "Andante assai"', direction=abjad.Up)
+        >>> markup = abjad.Markup(
+        ...     r'\markup \italic "Andante assai"', direction=abjad.Up, literal=True,
+        ... )
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        ^ \markup {
-            \italic
-                "Andante assai"
-            }
+        ^ \markup \italic "Andante assai"
 
         >>> markup = abjad.new(markup, direction=None)
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        \markup {
-            \italic
-                "Andante assai"
-            }
+        \markup \italic "Andante assai"
 
     Returns new object with type equal to that of ``argument``.
     """

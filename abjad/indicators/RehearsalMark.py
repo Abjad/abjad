@@ -212,7 +212,7 @@ class RehearsalMark:
 
         ..  container:: example
 
-            >>> markup = abjad.Markup(r'\bold { \italic { A } }')
+            >>> markup = abjad.Markup(r'\markup \bold { \italic { A } }', literal=True)
             >>> mark = abjad.RehearsalMark(markup=markup)
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(mark, staff[0])
@@ -224,15 +224,7 @@ class RehearsalMark:
                 >>> print(string)
                 \new Staff
                 {
-                    \mark \markup {
-                        \bold
-                            {
-                                \italic
-                                    {
-                                        A
-                                    }
-                            }
-                        }
+                    \mark \markup \bold { \italic { A } }
                     c'4
                     d'4
                     e'4

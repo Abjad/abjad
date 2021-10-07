@@ -83,7 +83,8 @@ Define helper functions:
     ...         cent_string = f"{remainder}"
     ...     else:
     ...         cent_string = f"+{remainder}"
-    ...     markup = abjad.Markup(cent_string, direction=direction)
+    ...     string = rf"\markup {cent_string}"
+    ...     markup = abjad.Markup(string, direction=direction, literal=True)
     ...     abjad.tweak(markup).parent_alignment_X = 0 
     ...     abjad.tweak(markup).self_alignment_X = 0.25 
     ...     if pitch <= -8:

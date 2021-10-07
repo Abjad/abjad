@@ -150,10 +150,10 @@ class BarLine:
 
             >>> abjad.BarLine("text")
             Traceback (most recent call last):
-                ...
+            ...
             Exception: unknown bar line abbreviation: 'text'
             Abbreviation must be one of these:
-                ''
+            ''
                 '|'
                 '.'
                 '||'

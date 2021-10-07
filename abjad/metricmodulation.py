@@ -51,7 +51,8 @@ class MetricModulation:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #4 #5 #2 #0 #'(1 . 1)
 
         >>> metric_modulation = abjad.MetricModulation(
@@ -66,7 +67,8 @@ class MetricModulation:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation-tuplet-rhs #2 #0 #2 #0 #4 #5 #'(1 . 1)
 
     ..  container:: example
@@ -85,7 +87,8 @@ class MetricModulation:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation-tuplet-rhs #4 #1 #3 #0 #2 #3 #'(1 . 1)
 
     ..  container:: example
@@ -106,7 +109,8 @@ class MetricModulation:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup { \score
                 {
                     \context Score = "Score"
@@ -203,7 +207,8 @@ class MetricModulation:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup { \score
                 {
                     \context Score = "Score"

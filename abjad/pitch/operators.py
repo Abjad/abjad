@@ -1,7 +1,6 @@
 import collections
 
 from .. import format as _format
-from .. import markups
 from ..cyclictuple import CyclicTuple
 from ..new import new
 from ..pattern import Pattern
@@ -237,21 +236,6 @@ class CompoundOperator:
             result = result._with_operator(operator_2)
             result = result._with_operator(operator_1)
         return result
-
-    def _get_markup(self, direction=None):
-        markups = []
-        operators = self.operators or []
-        for operator in operators:
-            markup = operator._get_markup(direction=direction)
-            if self.show_identity_operators or not operator._is_identity_operator():
-                markups.append(markup)
-        if len(markups) == 0:
-            return
-        elif len(markups) == 1:
-            markup = markups[0]
-        else:
-            markup = markups.Markup.concat(markups, direction=direction)
-        return markup
 
     def _with_operator(self, operator):
         operators = self.operators or []
@@ -973,16 +957,6 @@ class Inversion:
         string = f"I({axis})"
         return string
 
-    ### PRIVATE METHODS ###
-
-    def _get_markup(self, direction=None):
-        markup = markups.Markup("I", direction=direction)
-        if self.axis is not None:
-            axis = self.axis.get_name(locale="us")
-            subscript = markups.Markup(axis).sub()
-            markup = markups.Markup.concat([markup, subscript])
-        return markup
-
     def _is_identity_operator(self):
         return False
 
@@ -1199,12 +1173,6 @@ class Multiplication:
         return string
 
     ### PRIVATE METHODS ###
-
-    def _get_markup(self, direction=None):
-        operator = markups.Markup("M", direction=direction)
-        subscript = markups.Markup(self.n).sub()
-        markup = markups.Markup.concat([operator, subscript])
-        return markup
 
     def _is_identity_operator(self):
         if self.n == 1:
@@ -1447,9 +1415,6 @@ class Retrograde:
         return "R"
 
     ### PRIVATE METHODS ###
-
-    def _get_markup(self, direction=None):
-        return markups.Markup("R", direction=direction)
 
     def _is_identity_operator(self):
         return False
@@ -1698,13 +1663,6 @@ class Rotation:
         return string
 
     ### PRIVATE METHODS ###
-
-    def _get_markup(self, direction=None):
-        operator = markups.Markup("r", direction=direction)
-        subscript = markups.Markup(self.n).sub()
-        hspace = markups.Markup.hspace(-0.25)
-        markup = markups.Markup.concat([operator, hspace, subscript])
-        return markup
 
     def _is_identity_operator(self):
         if self.n == 0:
@@ -1955,12 +1913,6 @@ class Transposition:
         return string
 
     ### PRIVATE METHODS ###
-
-    def _get_markup(self, direction=None):
-        operator = markups.Markup("T", direction=None)
-        subscript = markups.Markup(self.n).sub()
-        markup = markups.Markup.concat([operator, subscript])
-        return markup
 
     def _is_identity_operator(self):
         if self.n == 0:

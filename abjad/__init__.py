@@ -190,7 +190,6 @@ from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
 from .metricmodulation import MetricModulation
 from .new import new
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
-from .ordereddict import OrderedDict
 from .overrides import (
     IndexedTweakManager,
     IndexedTweakManagers,
@@ -506,7 +505,6 @@ __all__ = [
     "Offset",
     "OffsetCounter",
     "OnBeatGraceContainer",
-    "OrderedDict",
     "Ottava",
     "OverrideInterface",
     "PackageGitCommitToken",

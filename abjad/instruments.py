@@ -6,7 +6,7 @@ import typing
 
 from . import enumerate
 from . import format as _format
-from .markups import Markup
+from . import markups as _markups
 from .pitch.PitchRange import PitchRange
 from .pitch.pitchclasses import NamedPitchClass
 from .pitch.pitches import NamedPitch
@@ -25,14 +25,18 @@ class Instrument:
         >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
         >>> flute = abjad.Flute()
         >>> abjad.attach(flute, voice_1[0], context='Voice')
-        >>> flute_markup = abjad.Markup('(flute)', direction=abjad.Up)
+        >>> flute_markup = abjad.Markup(
+        ...     r'\markup (flute)', direction=abjad.Up, literal=True,
+        ... )
         >>> abjad.attach(flute_markup, voice_1[0])
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
         >>> voice_2 = abjad.Voice("c'2")
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
         >>> viola = abjad.Viola()
         >>> abjad.attach(viola, voice_2[0], context='Voice')
-        >>> viola_markup = abjad.Markup('(viola)', direction=abjad.Down)
+        >>> viola_markup = abjad.Markup(
+        ...     r'\markup (viola)', direction=abjad.Down, literal=True,
+        ... )
         >>> abjad.attach(viola_markup, voice_2[0])
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -47,7 +51,7 @@ class Instrument:
                 {
                     \voiceOne
                     e'8
-                    ^ \markup { (flute) }
+                    ^ \markup (flute)
                     g'8
                     f'8
                     a'8
@@ -56,7 +60,7 @@ class Instrument:
                 {
                     \voiceTwo
                     c'2
-                    _ \markup { (viola) }
+                    _ \markup (viola)
                 }
             >>
 
@@ -120,13 +124,13 @@ class Instrument:
             name = str(name)
         self._name = name
         if markup is not None:
-            markup = Markup(markup)
+            markup = _markups.Markup(markup, literal=True)
         self._name_markup = markup
         if short_name is not None:
             short_name = str(short_name)
         self._short_name = short_name
         if short_markup is not None:
-            short_markup = Markup(short_markup)
+            short_markup = _markups.Markup(short_markup, literal=True)
         self._short_name_markup = short_markup
         allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
@@ -203,7 +207,7 @@ class Instrument:
             if self.name:
                 string = self.name
                 string = String(string).capitalize_start()
-                markup = Markup(contents=string)
+                markup = _markups.Markup(rf"\markup {string}", literal=True)
                 self._name_markup = markup
             else:
                 self._name_markup = None
@@ -211,8 +215,7 @@ class Instrument:
             if self.short_name:
                 string = self.short_name
                 string = String(string).capitalize_start()
-                markup = Markup(contents=string)
-                self._short_name_markup = markup
+                markup = _markups.Markup(rf"\markup {string}", literal=True)
             else:
                 self._short_name_markup = None
 
@@ -262,8 +265,11 @@ class Instrument:
         """
         if self._name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(self._name_markup, Markup):
-            markup = Markup(contents=self._name_markup)
+        if self._name_markup is None:
+            return
+        if not isinstance(self._name_markup, _markups.Markup):
+            assert isinstance(self._name_markup, str), repr(self._name_markup)
+            markup = _markups.Markup(rf"\markup {self._name_markup}", literal=True)
             self._name_markup = markup
         if self._name_markup.contents != ("",):
             return self._name_markup
@@ -332,8 +338,15 @@ class Instrument:
         """
         if self._short_name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(self._short_name_markup, Markup):
-            markup = Markup(contents=self._short_name_markup)
+        if self._short_name_markup is None:
+            return
+        if not isinstance(self._short_name_markup, _markups.Markup):
+            assert isinstance(self._short_name_markup, str), repr(
+                self._short_name_markup
+            )
+            markup = _markups.Markup(
+                rf"\markup {self._short_name_markup}", literal=True
+            )
             self._short_name_markup = markup
         if self._short_name_markup.contents != ("",):
             return self._short_name_markup

@@ -134,14 +134,9 @@ class BowContactPoint:
             One quarter of the way from frog to point:
 
             >>> indicator = abjad.BowContactPoint((1, 4))
-            >>> print(abjad.lilypond(indicator.markup))
-            \markup {
-                \center-align
-                    \vcenter
-                        \fraction
-                            1
-                            4
-                }
+            >>> string = abjad.lilypond(indicator.markup)
+            >>> print(string)
+            \markup \center-align \vcenter \fraction 1 4
             >>> abjad.show(indicator.markup) # doctest: +SKIP
 
         ..  container:: example
@@ -149,14 +144,9 @@ class BowContactPoint:
             Three fifths of the way from frog to point:
 
             >>> indicator = abjad.BowContactPoint((3, 5))
-            >>> print(abjad.lilypond(indicator.markup))
-            \markup {
-                \center-align
-                    \vcenter
-                        \fraction
-                            3
-                            5
-                }
+            >>> string = abjad.lilypond(indicator.markup)
+            >>> print(string)
+            \markup \center-align \vcenter \fraction 3 5
             >>> abjad.show(indicator.markup) # doctest: +SKIP
 
         """
@@ -165,8 +155,8 @@ class BowContactPoint:
         else:
             contact_point = self.contact_point
         fraction = fr"\fraction {contact_point.numerator} {contact_point.denominator}"
-        string = rf"\center-align \vcenter {fraction}"
-        markup = Markup(string)
+        string = rf"\markup \center-align \vcenter {fraction}"
+        markup = Markup(string, literal=True)
         return markup
 
     @property

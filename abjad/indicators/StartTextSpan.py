@@ -16,10 +16,10 @@ class StartTextSpan:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont."),
-        ...     right_text=abjad.Markup(r"\upright tasto"),
+        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+        ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
         ...     style="solid-line-with-arrow",
-        ...     )
+        ... )
         >>> abjad.tweak(start_text_span).staff_padding = 2.5
         >>> abjad.attach(start_text_span, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
@@ -35,12 +35,8 @@ class StartTextSpan:
             {
                 c'4
                 - \abjad-solid-line-with-arrow
-                - \tweak bound-details.left.text \markup \concat { \upright
-                    pont. \hspace #0.5 }
-                - \tweak bound-details.right.text \markup {
-                    \upright
-                        tasto
-                    }
+                - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                - \tweak bound-details.right.text \markup \upright tasto
                 - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
@@ -139,8 +135,8 @@ class StartTextSpan:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Is true when all initialization values of Abjad value object equal the
+        initialization values of ``argument``.
         """
         return _format.compare_objects(self, argument)
 
@@ -177,6 +173,7 @@ class StartTextSpan:
             return self.left_text
         assert len(self.left_text.contents) == 1, repr(self.left_text)
         left_text_string = self.left_text.contents[0]
+        left_text_string = left_text_string.removeprefix(r"\markup").strip()
         hspace_string = fr"\hspace #{self.concat_hspace_left}"
         markup = markups.Markup(
             rf"\markup \concat {{ {left_text_string} {hspace_string} }}",
@@ -225,6 +222,8 @@ class StartTextSpan:
 
     def _get_right_text_tweak(self):
         if isinstance(self.right_text, str):
+            # TODO: is right_text ever set to string?
+            #       should right_text be forced to always be a string? never markup?
             return self.right_text
         if self.concat_hspace_right is not None:
             number = self.concat_hspace_right
@@ -260,10 +259,10 @@ class StartTextSpan:
             >>> staff = abjad.Staff("c'4 d' e' f'")
 
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont."),
-            ...     right_text=abjad.Markup(r"\upright tasto"),
+            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
             ...     style="dashed-line-with-arrow",
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).color = "#blue"
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
@@ -272,17 +271,19 @@ class StartTextSpan:
 
             >>> start_text_span = abjad.StartTextSpan(
             ...     command=r"\startTextSpanOne",
-            ...     left_text=abjad.Markup(r"\upright A"),
-            ...     right_text=abjad.Markup(r"\upright B"),
+            ...     left_text=abjad.Markup(r"\upright A", literal=True),
+            ...     right_text=abjad.Markup(r"\markup \upright B", literal=True),
             ...     style="dashed-line-with-arrow",
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).color = "#red"
             >>> abjad.tweak(start_text_span).staff_padding = 6
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan(command=r"\stopTextSpanOne")
             >>> abjad.attach(stop_text_span, staff[-1])
 
-            >>> markup = abjad.Markup("SPACER", direction=abjad.Up)
+            >>> markup = abjad.Markup(
+            ...     r"\markup SPACER", direction=abjad.Up, literal=True
+            ... )
             >>> abjad.tweak(markup).transparent = True
             >>> abjad.attach(markup, staff[0])
             >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
@@ -296,24 +297,16 @@ class StartTextSpan:
                 {
                     c'4
                     - \tweak transparent ##t
-                    ^ \markup { SPACER }
+                    ^ \markup SPACER
                     - \abjad-dashed-line-with-arrow
-                    - \tweak bound-details.left.text \markup \concat { \upright
-                        pont. \hspace #0.5 }
-                    - \tweak bound-details.right.text \markup {
-                        \upright
-                            tasto
-                        }
+                    - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                    - \tweak bound-details.right.text \markup \upright tasto
                     - \tweak color #blue
                     - \tweak staff-padding 2.5
                     \startTextSpan
                     - \abjad-dashed-line-with-arrow
-                    - \tweak bound-details.left.text \markup \concat { \upright
-                        A \hspace #0.5 }
-                    - \tweak bound-details.right.text \markup {
-                        \upright
-                            B
-                        }
+                    - \tweak bound-details.left.text \markup \concat { \upright A \hspace #0.5 }
+                    - \tweak bound-details.right.text \markup \upright B
                     - \tweak color #red
                     - \tweak staff-padding 6
                     \startTextSpanOne
@@ -398,12 +391,11 @@ class StartTextSpan:
             >>> left_text += r' \concat { \upright pont. \hspace #0.5 }'
             >>> right_text = r'- \tweak bound-details.right.text \markup'
             >>> right_text += r' \upright tasto'
-            >>> right_string = r'\markup \upright tasto'
             >>> start_text_span = abjad.StartTextSpan(
             ...     left_text=left_text,
             ...     right_text=right_text,
             ...     style='solid-line-with-arrow',
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -496,10 +488,10 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' fs'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont."),
-            ...     right_text=abjad.Markup(r"\upright tasto"),
+            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
             ...     style="dashed-line-with-arrow",
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -515,12 +507,8 @@ class StartTextSpan:
                 {
                     c'4
                     - \abjad-dashed-line-with-arrow
-                    - \tweak bound-details.left.text \markup \concat { \upright
-                        pont. \hspace #0.5 }
-                    - \tweak bound-details.right.text \markup {
-                        \upright
-                            tasto
-                        }
+                    - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                    - \tweak bound-details.right.text \markup \upright tasto
                     - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
@@ -533,9 +521,9 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
             ...     style="dashed-line-with-hook",
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -551,8 +539,7 @@ class StartTextSpan:
                 {
                     c'4
                     - \abjad-dashed-line-with-hook
-                    - \tweak bound-details.left.text \markup \concat { \upright
-                        pont. \hspace #0.5 }
+                    - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                     - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
@@ -565,10 +552,10 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont."),
-            ...     right_text=abjad.Markup(r"\upright tasto"),
+            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
             ...     style="invisible-line",
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -584,12 +571,8 @@ class StartTextSpan:
                 {
                     c'4
                     - \abjad-invisible-line
-                    - \tweak bound-details.left.text \markup \concat { \upright
-                        pont. \hspace #0.5 }
-                    - \tweak bound-details.right.text \markup {
-                        \upright
-                            tasto
-                        }
+                    - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                    - \tweak bound-details.right.text \markup \upright tasto
                     - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
@@ -602,10 +585,10 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont."),
-            ...     right_text=abjad.Markup(r"\upright tasto"),
+            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
             ...     style="solid-line-with-arrow",
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -621,12 +604,8 @@ class StartTextSpan:
                 {
                     c'4
                     - \abjad-solid-line-with-arrow
-                    - \tweak bound-details.left.text \markup \concat { \upright
-                        pont. \hspace #0.5 }
-                    - \tweak bound-details.right.text \markup {
-                        \upright
-                            tasto
-                        }
+                    - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                    - \tweak bound-details.right.text \markup \upright tasto
                     - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
@@ -639,9 +618,9 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
             ...     style="solid-line-with-hook",
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> abjad.attach(start_text_span, staff[0])
             >>> stop_text_span = abjad.StopTextSpan()
@@ -657,8 +636,7 @@ class StartTextSpan:
                 {
                     c'4
                     - \abjad-solid-line-with-hook
-                    - \tweak bound-details.left.text \markup \concat { \upright
-                        pont. \hspace #0.5 }
+                    - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                     - \tweak staff-padding 2.5
                     \startTextSpan
                     d'4
@@ -699,7 +677,7 @@ class StartTextSpan:
             >>> import copy
             >>> start_text_span = abjad.StartTextSpan(
             ...     style='dashed-line-with-arrow',
-            ...     )
+            ... )
             >>> abjad.tweak(start_text_span).color = "#blue"
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
             >>> string = abjad.storage(start_text_span)

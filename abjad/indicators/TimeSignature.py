@@ -397,7 +397,8 @@ class TimeSignature:
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     #(ly:expect-warning "strange time signature found")
                     \time 4/3
                     c'4

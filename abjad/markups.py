@@ -23,16 +23,11 @@ class Markup:
 
         Initializes from string:
 
-        >>> string = r'\italic { "Allegro assai" }'
-        >>> markup = abjad.Markup(string)
+        >>> string = r'\markup \italic "Allegro assai"'
+        >>> markup = abjad.Markup(string, literal=True)
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        \markup {
-            \italic
-                {
-                    "Allegro assai"
-                }
-            }
+        \markup \italic "Allegro assai"
 
         >>> abjad.show(markup) # doctest: +SKIP
 
@@ -40,14 +35,13 @@ class Markup:
 
         Initializes from other markup:
 
-        >>> markup = abjad.Markup(r'\italic "Allegro assai"', direction=abjad.Up)
-        >>> markup = abjad.Markup(markup, direction=abjad.Down)
+        >>> markup = abjad.Markup(
+        ...     r'\markup \italic "Allegro assai"', direction=abjad.Up, literal=True
+        ... )
+        >>> markup = abjad.Markup(markup, direction=abjad.Down, literal=True)
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        _ \markup {
-            \italic
-                "Allegro assai"
-            }
+        _ \markup \italic "Allegro assai"
 
         >>> abjad.show(markup) # doctest: +SKIP
 
@@ -56,16 +50,11 @@ class Markup:
         Attaches markup to score components:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> string = r'\italic { "Allegro assai" }'
-        >>> markup = abjad.Markup(string, direction=abjad.Up)
+        >>> string = r'\markup \italic "Allegro assai"'
+        >>> markup = abjad.Markup(string, direction=abjad.Up, literal=True)
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        ^ \markup {
-            \italic
-                {
-                    "Allegro assai"
-                }
-            }
+        ^ \markup \italic "Allegro assai"
 
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -77,12 +66,7 @@ class Markup:
             \new Staff
             {
                 c'8
-                ^ \markup {
-                    \italic
-                        {
-                            "Allegro assai"
-                        }
-                    }
+                ^ \markup \italic "Allegro assai"
                 d'8
                 e'8
                 f'8
@@ -99,7 +83,9 @@ class Markup:
         Markup can be tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+        >>> markup = abjad.Markup(
+        ...     r"\markup \italic Allegro", direction=abjad.Up, literal=True
+        ... )
         >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -110,16 +96,7 @@ class Markup:
             c'4
             %! RED
             %! M1
-            ^ \markup {
-            %! RED
-            %! M1
-                \italic
-            %! RED
-            %! M1
-                    Allegro
-            %! RED
-            %! M1
-                }
+            ^ \markup \italic Allegro
             d'4
             e'4
             f'4
@@ -130,7 +107,9 @@ class Markup:
         Markup can be deactively tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+        >>> markup = abjad.Markup(
+        ...     r"\markup \italic Allegro", direction=abjad.Up, literal=True
+        ... )
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
@@ -146,16 +125,7 @@ class Markup:
             c'4
             %! RED
             %! M1
-            %@% ^ \markup {
-            %! RED
-            %! M1
-            %@%     \italic
-            %! RED
-            %! M1
-            %@%         Allegro
-            %! RED
-            %! M1
-            %@%     }
+            %@% ^ \markup \italic Allegro
             d'4
             e'4
             f'4
@@ -167,8 +137,12 @@ class Markup:
         the second italic markup is attached:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
-        >>> markup_2 = abjad.Markup(r'\italic "non troppo"', direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(
+        ...     r"\markup \italic Allegro", direction=abjad.Up, literal=True
+        ... )
+        >>> markup_2 = abjad.Markup(
+        ...     r'\markup \italic "non troppo"', direction=abjad.Up, literal=True
+        ... )
         >>> abjad.attach(markup_1, staff[0])
         >>> abjad.attach(markup_2, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -178,14 +152,8 @@ class Markup:
         \new Staff
         {
             c'4
-            ^ \markup {
-                \italic
-                    Allegro
-                }
-            ^ \markup {
-                \italic
-                    "non troppo"
-                }
+            ^ \markup \italic Allegro
+            ^ \markup \italic "non troppo"
             d'4
             e'4
             f'4
@@ -215,29 +183,17 @@ class Markup:
         literal: bool = None,
         tweaks: TweakInterface = None,
     ) -> None:
-        from .parsers.parse import parse
-
+        assert literal is True, repr(literal)
         self._annotation = None
         new_contents: typing.Tuple[typing.Union[str, MarkupCommand], ...]
         if contents is None:
             new_contents = ("",)
-        elif isinstance(contents, str) and not literal:
-            to_parse = rf"\markup {{ {contents} }}"
-            parsed = parse(to_parse)
-            if all(isinstance(_, str) for _ in parsed.contents):
-                new_contents = (" ".join(parsed.contents),)
-            else:
-                new_contents = tuple(parsed.contents)
-        elif isinstance(contents, str) and literal is True:
+        elif isinstance(contents, str):
             new_contents = (contents,)
         elif isinstance(contents, MarkupCommand):
             new_contents = (contents,)
         elif isinstance(contents, type(self)):
             direction = direction or contents.direction
-            if direction is not None:
-                assert isinstance(direction, (str, enums.VerticalAlignment)), repr(
-                    direction
-                )
             literal = literal or contents.literal
             new_contents = tuple(contents.contents)
         elif isinstance(contents, collections.abc.Sequence) and 0 < len(contents):
@@ -253,16 +209,15 @@ class Markup:
         else:
             new_contents = (str(contents),)
         assert isinstance(new_contents, tuple), repr(new_contents)
-        assert all(isinstance(_, (str, MarkupCommand)) for _ in new_contents), repr(
-            new_contents
-        )
+        item = (str, MarkupCommand)
+        assert all(isinstance(_, item) for _ in new_contents), repr(new_contents)
         self._contents = new_contents
         direction_ = String.to_tridirectional_ordinal_constant(direction)
         if direction_ is not None:
             assert isinstance(direction_, enums.VerticalAlignment), repr(direction_)
         self._direction = direction_
         if literal is not None:
-            literal = bool(literal)
+            assert isinstance(literal, bool), repr(literal)
         self._literal = literal
         if tweaks is not None:
             assert isinstance(tweaks, TweakInterface), repr(tweaks)
@@ -270,69 +225,24 @@ class Markup:
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, argument):
-        r"""
-        Adds markup to ``argument``.
-
-        ..  container:: example
-
-            Adds markup to markup:
-
-            >>> markup = abjad.Markup("Allegro") + abjad.Markup("assai")
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup {
-                Allegro
-                assai
-                }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        ..  container:: example
-
-            Adds markup command to markup:
-
-            >>> markup = abjad.Markup(r"Allegro \hspace #0.75")
-            >>> markup = markup + abjad.Markup("assai")
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup {
-                Allegro
-                \hspace
-                    #0.75
-                assai
-                }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        commands = list(self.contents)
-        if isinstance(argument, type(self)):
-            commands.extend(argument.contents)
-        elif isinstance(argument, MarkupCommand):
-            commands.append(argument)
-        else:
-            raise TypeError(f"must be markup or markup command: {argument!r}.")
-        markup = type(self)(contents=commands, direction=self.direction)
-        return markup
-
     def __copy__(self, *arguments):
-        """
+        r"""
         Copies markup.
 
         >>> import copy
 
         ..  container:: example
 
-            >>> markup_1 = abjad.Markup("Allegro assai", direction=abjad.Up)
+            >>> markup_1 = abjad.Markup(
+            ...     r"\markup Allegro assai", direction=abjad.Up, literal=True
+            ... )
             >>> markup_2 = copy.copy(markup_1)
 
             >>> markup_1
-            Markup(contents=['Allegro assai'], direction=Up)
+            Markup(contents=['\\markup Allegro assai'], direction=Up, literal=True)
 
             >>> markup_2
-            Markup(contents=['Allegro assai'], direction=Up)
+            Markup(contents=['\\markup Allegro assai'], direction=Up, literal=True)
 
             >>> markup_1 == markup_2
             True
@@ -345,16 +255,16 @@ class Markup:
         return new(self)
 
     def __eq__(self, argument):
-        """
+        r"""
         Is true markup equals ``argument``.
 
         ..  container:: example
 
             Without keywords:
 
-            >>> markup_1 = abjad.Markup("Allegro")
-            >>> markup_2 = abjad.Markup("Allegro")
-            >>> markup_3 = abjad.Markup("Allegro assai")
+            >>> markup_1 = abjad.Markup(r"\markup Allegro", literal=True)
+            >>> markup_2 = abjad.Markup(r"\markup Allegro", literal=True)
+            >>> markup_3 = abjad.Markup(r'\markup "Allegro assai"', literal=True)
 
             >>> markup_1 == markup_1
             True
@@ -379,8 +289,10 @@ class Markup:
 
             With keywords:
 
-            >>> markup_1 = abjad.Markup("Allegro")
-            >>> markup_2 = abjad.Markup("Allegro", direction=abjad.Up)
+            >>> markup_1 = abjad.Markup(r"\markup Allegro", literal=True)
+            >>> markup_2 = abjad.Markup(
+            ...     r"\markup Allegro", direction=abjad.Up, literal=True
+            ... )
 
             >>> markup_1 == markup_1
             True
@@ -396,16 +308,16 @@ class Markup:
         return _format.compare_objects(self, argument)
 
     def __hash__(self):
-        """
+        r"""
         Hashes markup.
 
         ..  container:: example
 
             Without keywords:
 
-            >>> hash_1 = hash(abjad.Markup("Allegro"))
-            >>> hash_2 = hash(abjad.Markup("Allegro"))
-            >>> hash_3 = hash(abjad.Markup("Allegro assai"))
+            >>> hash_1 = hash(abjad.Markup(r"\markup Allegro", literal=True))
+            >>> hash_2 = hash(abjad.Markup(r"\markup Allegro", literal=True))
+            >>> hash_3 = hash(abjad.Markup(r'\markup "Allegro assai"', literal=True))
 
             >>> hash_1 == hash_1
             True
@@ -430,8 +342,9 @@ class Markup:
 
             With keywords:
 
-            >>> hash_1 = hash(abjad.Markup("Allegro"))
-            >>> hash_2 = hash(abjad.Markup("Allegro", direction=abjad.Up))
+            >>> hash_1 = hash(abjad.Markup(r"\markup Allegro", literal=True))
+            >>> string = r"\markup Allegro"
+            >>> hash_2 = hash(abjad.Markup(string, direction=abjad.Up, literal=True))
 
             >>> hash_1 == hash_1
             True
@@ -446,13 +359,13 @@ class Markup:
         return hash(self.__class__.__name__ + str(self))
 
     def __lt__(self, argument):
-        """
+        r"""
         Is true when markup contents compare less than ``argument`` contents.
 
         ..  container:: example
 
-            >>> markup_1 = abjad.Markup("Allegro")
-            >>> markup_2 = abjad.Markup("assai")
+            >>> markup_1 = abjad.Markup(r"\markup Allegro", literal=True)
+            >>> markup_2 = abjad.Markup(r"\markup assai", literal=True)
 
             >>> markup_1 < markup_2
             True
@@ -467,54 +380,6 @@ class Markup:
             raise TypeError(f"can only compare markup to markup: {argument!r}.")
         return self.contents < argument.contents
 
-    def __radd__(self, argument):
-        r"""
-        Adds ``argument`` to markup.
-
-        ..  container:: example
-
-            Adds markup to markup:
-
-            >>> markup = abjad.Markup("Allegro") + abjad.Markup("assai")
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup {
-                Allegro
-                assai
-                }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        ..  container:: example
-
-            Adds markup to markup command:
-
-            >>> markup = abjad.Markup(r"Allegro \hspace #0.75")
-            >>> markup = markup + abjad.Markup("assai")
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup {
-                Allegro
-                \hspace
-                    #0.75
-                assai
-                }
-
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        commands = []
-        if isinstance(argument, type(self)):
-            commands.extend(argument.contents)
-        elif isinstance(argument, MarkupCommand):
-            commands.append(argument)
-        else:
-            raise TypeError(f"must be markup or markup command: {argument!r}.")
-        commands.extend(self.contents)
-        markup = type(self)(contents=commands, direction=self.direction)
-        return markup
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -527,16 +392,9 @@ class Markup:
 
         ..  container:: example
 
-            >>> string = r'\italic { Allegro assai }'
-            >>> markup = abjad.Markup(string)
+            >>> markup = abjad.Markup(rf'\markup \italic "Allegro assai"', literal=True)
             >>> print(str(markup))
-            \markup {
-                \italic
-                    {
-                        Allegro
-                        assai
-                    }
-                }
+            \markup \italic "Allegro assai"
 
             >>> abjad.show(markup) # doctest: +SKIP
 
@@ -614,13 +472,13 @@ class Markup:
 
             Initializes contents positionally:
 
-            >>> abjad.Markup("Allegro assai")
-            Markup(contents=['Allegro assai'])
+            >>> abjad.Markup(r"\markup Allegro", literal=True)
+            Markup(contents=['\\markup Allegro'], literal=True)
 
             Initializes contents from keyword:
 
-            >>> abjad.Markup(contents="Allegro assai")
-            Markup(contents=['Allegro assai'])
+            >>> abjad.Markup(contents=r"\markup Allegro", literal=True)
+            Markup(contents=['\\markup Allegro'], literal=True)
 
         """
         return list(self._contents)
@@ -634,7 +492,7 @@ class Markup:
 
             With ``direction`` unset:
 
-            >>> markup = abjad.Markup("Allegro")
+            >>> markup = abjad.Markup(r"\markup Allegro", literal=True)
             >>> note = abjad.Note("c'4")
             >>> abjad.attach(markup, note)
             >>> abjad.show(note) # doctest: +SKIP
@@ -644,11 +502,12 @@ class Markup:
                 >>> string = abjad.lilypond(note)
                 >>> print(string)
                 c'4
-                - \markup { Allegro }
+                - \markup Allegro
 
             With ``direction=abjad.Up``:
 
-            >>> markup = abjad.Markup("Allegro", direction=abjad.Up)
+            >>> string = r"\markup Allegro"
+            >>> markup = abjad.Markup(string, direction=abjad.Up, literal=True)
             >>> note = abjad.Note("c'4")
             >>> abjad.attach(markup, note)
             >>> abjad.show(note) # doctest: +SKIP
@@ -658,12 +517,13 @@ class Markup:
                 >>> string = abjad.lilypond(note)
                 >>> print(string)
                 c'4
-                ^ \markup { Allegro }
+                ^ \markup Allegro
 
 
             With ``direction=abjad.Down``:
 
-            >>> markup = abjad.Markup("Allegro", direction=abjad.Down)
+            >>> string = r"\markup Allegro"
+            >>> markup = abjad.Markup(string, direction=abjad.Down, literal=True)
             >>> note = abjad.Note("c'4")
             >>> abjad.attach(markup, note)
             >>> abjad.show(note) # doctest: +SKIP
@@ -673,13 +533,13 @@ class Markup:
                 >>> string = abjad.lilypond(note)
                 >>> print(string)
                 c'4
-                _ \markup { Allegro }
+                _ \markup Allegro
 
         ..  container:: example
 
             REGRESSSION #806. Markup preserves tweaks when ``direction=None``:
 
-            >>> markup = abjad.Markup("Allegro")
+            >>> markup = abjad.Markup(r"\markup Allegro", literal=True)
             >>> abjad.tweak(markup).color = "#red"
             >>> note = abjad.Note("c'4")
             >>> abjad.attach(markup, note)
@@ -691,7 +551,7 @@ class Markup:
                 >>> print(string)
                 c'4
                 - \tweak color #red
-                - \markup { Allegro }
+                - \markup Allegro
 
         """
         return self._direction
@@ -728,7 +588,7 @@ class Markup:
             ...     string,
             ...     direction=abjad.Up,
             ...     literal=True,
-            ...     )
+            ... )
             >>> string = abjad.lilypond(markup)
             >>> print(string)
             ^ \custom-function #1 #4
@@ -740,7 +600,7 @@ class Markup:
             ...     string,
             ...     direction=abjad.Up,
             ...     literal=True,
-            ...     )
+            ... )
             >>> string = abjad.lilypond(markup)
             >>> print(string)
             ^ \custom-function #1 #4
@@ -754,7 +614,7 @@ class Markup:
             ...     string,
             ...     direction=abjad.Up,
             ...     literal=True,
-            ...     )
+            ... )
             >>> string = abjad.lilypond(markup)
             >>> print(string)
             ^ \markup { \note {4} #1 }
@@ -781,7 +641,8 @@ class Markup:
 
         ..  container:: example
 
-            >>> markup = abjad.Markup(r'\bold "Allegro assai"', direction=abjad.Up)
+            >>> string = r'\markup \bold "Allegro assai"'
+            >>> markup = abjad.Markup(string, direction=abjad.Up, literal=True)
             >>> abjad.tweak(markup).color = "#blue"
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(markup, staff[0])
@@ -791,10 +652,7 @@ class Markup:
             {
                 c'4
                 - \tweak color #blue
-                ^ \markup {
-                    \bold
-                        "Allegro assai"
-                    }
+                ^ \markup \bold "Allegro assai"
                 d'4
                 e'4
                 f'4
@@ -804,45 +662,6 @@ class Markup:
 
         """
         return self._tweaks
-
-    ### PUBLIC METHODS ###
-
-    # TODO: move to abjad.illustrators._illustrate_postscript
-    @classmethod
-    def postscript(class_, postscript, direction=None):
-        r"""
-        LilyPond ``\postscript`` markup command.
-
-        ..  container:: example
-
-            >>> postscript = abjad.Postscript()
-            >>> postscript = postscript.moveto(1, 1)
-            >>> postscript = postscript.setlinewidth(2.5)
-            >>> postscript = postscript.setdash((2, 1))
-            >>> postscript = postscript.lineto(3, -4)
-            >>> postscript = postscript.stroke()
-            >>> markup = abjad.Markup.postscript(postscript, direction=abjad.Up)
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            ^ \markup {
-                \postscript
-                    #"
-                    1 1 moveto
-                    2.5 setlinewidth
-                    [ 2 1 ] 0 setdash
-                    3 -4 lineto
-                    stroke
-                    "
-                }
-            >>> abjad.show(markup) # doctest: +SKIP
-
-        Returns new markup.
-        """
-        if isinstance(postscript, Postscript):
-            postscript = str(postscript)
-        assert isinstance(postscript, str)
-        command = MarkupCommand("postscript", postscript)
-        return class_(contents=command, direction=direction)
 
 
 class MarkupCommand:
@@ -859,7 +678,8 @@ class MarkupCommand:
         >>> rotate = abjad.markups.MarkupCommand("rotate", 60, line)
         >>> combine = abjad.markups.MarkupCommand("combine", rotate, circle)
 
-        >>> print(abjad.lilypond(combine))
+        >>> string = abjad.lilypond(combine)
+        >>> print(string)
         \combine
             \rotate
                 #60
@@ -875,7 +695,7 @@ class MarkupCommand:
                 ##f
 
         >>> note = abjad.Note("c'4")
-        >>> markup = abjad.Markup(combine)
+        >>> markup = abjad.Markup(rf"\markup {combine}", literal=True)
         >>> abjad.attach(markup, note)
         >>> abjad.show(note) # doctest: +SKIP
 
@@ -884,21 +704,19 @@ class MarkupCommand:
             >>> string = abjad.lilypond(note)
             >>> print(string)
             c'4
-            - \markup {
-                \combine
-                    \rotate
-                        #60
-                        \line
-                            {
-                                \rounded-box
-                                    hello?
-                                wow!
-                            }
-                    \draw-circle
-                        #2.5
-                        #0.1
-                        ##f
-                }
+            - \markup \combine
+                \rotate
+                    #60
+                    \line
+                        {
+                            \rounded-box
+                                hello?
+                            wow!
+                        }
+                \draw-circle
+                    #2.5
+                    #0.1
+                    ##f
 
     ..  container:: example
 
@@ -914,7 +732,7 @@ class MarkupCommand:
         >>> command = abjad.markups.MarkupCommand(
         ...     "score",
         ...     [small_staff, layout_block],
-        ...     )
+        ... )
 
         >>> string = abjad.lilypond(command)
         >>> print(string)
@@ -933,13 +751,15 @@ class MarkupCommand:
                     as'16
                     b'16
                 }
-                \layout {
+                \layout
+                {
                     indent = 0
                     ragged-right = ##t
                 }
             }
 
-        >>> markup = abjad.Markup(contents=command, direction=abjad.Up)
+        >>> string = rf"\markup {command}"
+        >>> markup = abjad.Markup(string, direction=abjad.Up, literal=True)
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -951,26 +771,25 @@ class MarkupCommand:
             \new Staff
             {
                 c'4
-                ^ \markup {
-                    \score
+                ^ \markup \score
+                    {
+                        \new Staff
+                        \with
                         {
-                            \new Staff
-                            \with
-                            {
-                                \remove Clef_engraver
-                                \remove Time_signature_engraver
-                                fontSize = -3
-                            }
-                            {
-                                fs'16
-                                gs'16
-                                as'16
-                                b'16
-                            }
-                            \layout {
-                                indent = 0
-                                ragged-right = ##t
-                            }
+                            \remove Clef_engraver
+                            \remove Time_signature_engraver
+                            fontSize = -3
+                        }
+                        {
+                            fs'16
+                            gs'16
+                            as'16
+                            b'16
+                        }
+                        \layout
+                        {
+                            indent = 0
+                            ragged-right = ##t
                         }
                     }
                 d'4
@@ -1195,8 +1014,6 @@ class MarkupCommand:
             tag = None
         self._tag = tag
 
-    ### PUBLIC METHODS ###
-
 
 class Postscript:
     r"""
@@ -1204,22 +1021,20 @@ class Postscript:
 
     ..  note::
 
-        The markup resulting from the ``\postscript`` markup command is both
-        0-height and 0-width. Make sure to wrap the ``\postscript`` command
-        with a ``\pad-to-box`` or ``\with-dimensions`` markup command to give
-        it explicit height and width. Likewise, use only positive coordinates
-        in your postscript markup if at all possible. When specifying explicit
-        extents with ``\pad-to-box`` or ``\with-dimensions``, negative extents
-        will *not* be interpreted by LilyPond as resulting in positive height
-        or width, and may have unexpected behavior.
+        The markup resulting from the ``\postscript`` markup command is both 0-height and
+        0-width. Make sure to wrap the ``\postscript`` command with a ``\pad-to-box`` or
+        ``\with-dimensions`` markup command to give it explicit height and width.
+        Likewise, use only positive coordinates in your postscript markup if at all
+        possible. When specifying explicit extents with ``\pad-to-box`` or
+        ``\with-dimensions``, negative extents will *not* be interpreted by LilyPond as
+        resulting in positive height or width, and may have unexpected behavior.
 
     ..  note::
 
-        LilyPond will fail to render if *any* of the font commands are used. To
-        create text, use ``.show("text")`` preceded by ``.scale()`` or
-        ``.rotate()`` to provide the appropriate transformation.
-        ``.charpath()`` is also useable. However, ``.findfont()``,
-        ``.scalefont()``, ``.setfont()`` will cause LilyPond to error.
+        LilyPond will fail to render if *any* of the font commands are used. To create
+        text, use ``.show("text")`` preceded by ``.scale()`` or ``.rotate()`` to provide
+        the appropriate transformation. ``.charpath()`` is also useable. However,
+        ``.findfont()``, ``.scalefont()``, ``.setfont()`` will cause LilyPond to error.
 
     ..  container:: example
 
@@ -1384,28 +1199,27 @@ class Postscript:
             >>> postscript = postscript.stroke()
 
             >>> markup = postscript.as_markup()
-            >>> print(abjad.lilypond(markup))
-            \markup {
-                \postscript
-                    #"
-                    newpath
-                    100 200 moveto
-                    200 250 lineto
-                    100 300 lineto
-                    closepath
-                    gsave
-                    0.5 setgray
-                    fill
-                    grestore
-                    4 setlinewidth
-                    0.75 setgray
-                    stroke
-                    "
-                }
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
+            \markup \postscript
+                #"
+                newpath
+                100 200 moveto
+                200 250 lineto
+                100 300 lineto
+                closepath
+                gsave
+                0.5 setgray
+                fill
+                grestore
+                4 setlinewidth
+                0.75 setgray
+                stroke
+                "
 
         Returns new markup.
         """
-        return Markup(rf'\postscript #"{self}"')
+        return Markup(f'\\markup \\postscript\n#"\n{self}\n"', literal=True)
 
     def charpath(self, text, modify_font=True):
         """
@@ -2254,8 +2068,8 @@ class PostscriptOperator:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Is true when all initialization values of Abjad value object equal the
+        initialization values of ``argument``.
         """
         return _format.compare_objects(self, argument)
 
@@ -2320,39 +2134,3 @@ class PostscriptOperator:
         Returns string.
         """
         return self._name
-
-
-### FUNCTIONS ###
-
-
-def abjad_metronome_mark(
-    duration_log,
-    dot_count,
-    stem_height,
-    units_per_minute,
-    direction=None,
-) -> Markup:
-    r"""
-    Abjad ``\abjad-metronome-mark-markup`` command.
-
-    ..  container:: example
-
-        >>> markup = abjad.markups.abjad_metronome_mark(2, 0, 1, 67.5)
-        >>> string = abjad.lilypond(markup)
-        >>> print(string)
-        \markup {
-            \abjad-metronome-mark-markup #2 #0 #1 #"67.5"
-            }
-
-        >>> lilypond_file = abjad.LilyPondFile([markup], includes=["abjad.ily"])
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-    Returns new markup
-    """
-    string = "abjad-metronome-mark-markup"
-    string += f" #{duration_log}"
-    string += f" #{dot_count}"
-    string += f" #{stem_height}"
-    string += f' #"{units_per_minute}"'
-    command = MarkupCommand(string)
-    return Markup(contents=command, direction=direction)

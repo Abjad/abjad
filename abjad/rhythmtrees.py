@@ -490,9 +490,11 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
-                \times 4/5 {
+                \times 4/5
+                {
                     c'8.
                     c'8
                 }
@@ -592,9 +594,11 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                 >>> print(string)
                 \new Staff
                 {
-                    \times 4/5 {
+                    \times 4/5
+                    {
                         c'16
-                        \times 2/3 {
+                        \times 2/3
+                        {
                             c'16
                             c'16
                             c'16
@@ -841,7 +845,8 @@ class RhythmTreeParser(Parser):
                         abjad.rhythmtrees.RhythmTreeLeaf(
                             preprolated_duration=abjad.Duration(2, 1),
                             is_pitched=True,
-                            ), abjad.rhythmtrees.RhythmTreeLeaf(
+                            ),
+                        abjad.rhythmtrees.RhythmTreeLeaf(
                             preprolated_duration=abjad.Duration(1, 1),
                             is_pitched=True,
                             ),
@@ -862,10 +867,13 @@ class RhythmTreeParser(Parser):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4 {
+            \times 3/4
+            {
                 c'2
-                \times 4/7 {
-                    \times 2/3 {
+                \times 4/7
+                {
+                    \times 2/3
+                    {
                         c'8
                         c'8
                         c'8
@@ -1010,7 +1018,8 @@ def parse_rtm_syntax(rtm):
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 c'16
                 c'16
@@ -1030,11 +1039,13 @@ def parse_rtm_syntax(rtm):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 9/17 {
+            \times 9/17
+            {
                 c'8
                 c'16
                 \tweak edge-height #'(0.7 . 0)
-                \times 8/15 {
+                \times 8/15
+                {
                     c'8
                     r16
                     c'8

@@ -30,13 +30,7 @@ class ColorFingering:
             >>> string = abjad.lilypond(note)
             >>> print(string)
             c'4
-            ^ \markup {
-                \override
-                    #'(circle-padding . 0.25)
-                    \circle
-                        \finger
-                            1
-                }
+            ^ \markup { \override #'(circle-padding . 0.25) \circle \finger 1 }
 
     ..  container:: example
 
@@ -53,13 +47,7 @@ class ColorFingering:
             >>> string = abjad.lilypond(note)
             >>> print(string)
             c'4
-            ^ \markup {
-                \override
-                    #'(circle-padding . 0.25)
-                    \circle
-                        \finger
-                            2
-                }
+            ^ \markup { \override #'(circle-padding . 0.25) \circle \finger 2 }
 
     Color fingerings indicate alternate woodwind fingerings by amount of pitch
     of timbre deviation.
@@ -167,30 +155,18 @@ class ColorFingering:
             First color fingering:
 
             >>> fingering = abjad.ColorFingering(1)
-            >>> print(abjad.lilypond(fingering.markup))
-            \markup {
-                \override
-                    #'(circle-padding . 0.25)
-                    \circle
-                        \finger
-                            1
-                }
-            >>> abjad.show(fingering.markup) # doctest: +SKIP
+            >>> string = abjad.lilypond(fingering.markup)
+            >>> print(string)
+            \markup { \override #'(circle-padding . 0.25) \circle \finger 1 }
 
         ..  container:: example
 
             Second color fingering:
 
             >>> fingering = abjad.ColorFingering(2)
-            >>> print(abjad.lilypond(fingering.markup))
-            \markup {
-                \override
-                    #'(circle-padding . 0.25)
-                    \circle
-                        \finger
-                            2
-                }
-            >>> abjad.show(fingering.markup) # doctest: +SKIP
+            >>> string = abjad.lilypond(fingering.markup)
+            >>> print(string)
+            \markup { \override #'(circle-padding . 0.25) \circle \finger 2 }
 
         """
         if self.number is None:
@@ -245,13 +221,7 @@ class ColorFingering:
                 {
                     c'4
                     - \tweak color #blue
-                    ^ \markup {
-                        \override
-                            #'(circle-padding . 0.25)
-                            \circle
-                                \finger
-                                    1
-                        }
+                    ^ \markup { \override #'(circle-padding . 0.25) \circle \finger 1 }
                     d'4
                     e'4
                     f'4

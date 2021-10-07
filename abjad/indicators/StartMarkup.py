@@ -13,7 +13,8 @@ class StartMarkup:
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+        >>> markup = abjad.Markup(r"\markup Cellos", literal=True)
+        >>> start_markup = abjad.StartMarkup(markup=markup)
         >>> abjad.attach(start_markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -24,7 +25,7 @@ class StartMarkup:
             \new Staff
             {
                 \set Staff.instrumentName =
-                \markup { Cellos }
+                \markup Cellos
                 c'4
                 d'4
                 e'4
@@ -76,7 +77,7 @@ class StartMarkup:
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        """
+        r"""
         Is true when ``argument`` is start markup with context and markup
         equal to those of this start markup.
 
@@ -84,15 +85,15 @@ class StartMarkup:
 
             >>> start_markup_1 = abjad.StartMarkup(
             ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Harp'),
+            ...     markup=abjad.Markup(r"\markup Harp", literal=True),
             ...     )
             >>> start_markup_2 = abjad.StartMarkup(
-            ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Harp'),
+            ...     context="PianoStaff",
+            ...     markup=abjad.Markup(r"\markup Harp", literal=True),
             ...     )
             >>> start_markup_3 = abjad.StartMarkup(
-            ...     context='Staff',
-            ...     markup=abjad.Markup('Harp'),
+            ...     context="Staff",
+            ...     markup=abjad.Markup(r"\markup Harp", literal=True),
             ...     )
 
             >>> start_markup_1 == start_markup_1
@@ -124,14 +125,14 @@ class StartMarkup:
         return False
 
     def __hash__(self) -> int:
-        """
+        r"""
         Hashes start markup.
 
         ..  container:: example
 
             >>> start_markup = abjad.StartMarkup(
-            ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Harp'),
+            ...     context="PianoStaff",
+            ...     markup=abjad.Markup(r"\markup Harp", literal=True),
             ...     )
 
             >>> hash_ = hash(start_markup)
@@ -191,12 +192,13 @@ class StartMarkup:
 
     @property
     def context(self) -> str:
-        """
+        r"""
         Gets default context of start markup.
 
         ..  container:: example
 
-            >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+            >>> markup = abjad.Markup(r"\markup Cellos", literal=True)
+            >>> start_markup = abjad.StartMarkup(markup=markup)
             >>> start_markup.context
             'Staff'
 
@@ -205,12 +207,13 @@ class StartMarkup:
 
     @property
     def format_slot(self) -> str:
-        """
+        r"""
         Gets format slot.
 
         ..  container:: example
 
-            >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+            >>> markup = abjad.Markup(r"\markup Cellos", literal=True)
+            >>> start_markup = abjad.StartMarkup(markup=markup)
             >>> start_markup.format_slot
             'before'
 
@@ -219,14 +222,15 @@ class StartMarkup:
 
     @property
     def markup(self) -> typing.Union[str, Markup]:
-        """
+        r"""
         Gets (instrument name) markup.
 
         ..  container:: example
 
-            >>> start_markup = abjad.StartMarkup(markup=abjad.Markup('Cellos'))
+            >>> markup = abjad.Markup(r"\markup Cellos", literal=True)
+            >>> start_markup = abjad.StartMarkup(markup=markup)
             >>> start_markup.markup
-            Markup(contents=['Cellos'])
+            Markup(contents=['\\markup Cellos'], literal=True)
 
         """
         return self._markup
