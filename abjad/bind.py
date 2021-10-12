@@ -1082,9 +1082,13 @@ def detach(argument, target=None, by_id=False):
 
         Consider the three document-specifier markups below:
 
-        >>> markup_1 = abjad.Markup('tutti', direction=abjad.Up)
-        >>> markup_2 = abjad.Markup('with the others', direction=abjad.Up)
-        >>> markup_3 = abjad.Markup('with the others', direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(r'\markup tutti', direction=abjad.Up, literal=True)
+        >>> markup_2 = abjad.Markup(
+        ...     r'\markup { with the others }', direction=abjad.Up, literal=True,
+        ... )
+        >>> markup_3 = abjad.Markup(
+        ...     r'\markup { with the others }', direction=abjad.Up, literal=True,
+        ... )
 
         Markups two and three compare equal:
 
@@ -1116,7 +1120,7 @@ def detach(argument, target=None, by_id=False):
         {
             c'4
             %! +SCORE
-            ^ \markup { tutti }
+            ^ \markup tutti
             %! +PARTS_VIOLIN_1
             %@% ^ \markup { with the others }
             %! +PARTS_VIOLIN_2
@@ -1133,7 +1137,7 @@ def detach(argument, target=None, by_id=False):
         because detach tests for equality to input argument:
 
         >>> abjad.detach(markup_2, staff[0])
-        (Markup(contents=['with the others'], direction=Up), Markup(contents=['with the others'], direction=Up))
+        (Markup(contents=['\\markup { with the others }'], direction=Up, literal=True), Markup(contents=['\\markup { with the others }'], direction=Up, literal=True))
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1143,7 +1147,7 @@ def detach(argument, target=None, by_id=False):
         {
             c'4
             %! +SCORE
-            ^ \markup { tutti }
+            ^ \markup tutti
             d'4
             e'4
             f'4
@@ -1173,7 +1177,7 @@ def detach(argument, target=None, by_id=False):
         {
             c'4
             %! +SCORE
-            ^ \markup { tutti }
+            ^ \markup tutti
             %! +PARTS_VIOLIN_1
             %@% ^ \markup { with the others }
             %! +PARTS_VIOLIN_2
@@ -1188,7 +1192,7 @@ def detach(argument, target=None, by_id=False):
         us what we want:
 
         >>> abjad.detach(markup_2, staff[0], by_id=True)
-        (Markup(contents=['with the others'], direction=Up),)
+        (Markup(contents=['\\markup { with the others }'], direction=Up, literal=True),)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1198,7 +1202,7 @@ def detach(argument, target=None, by_id=False):
         {
             c'4
             %! +SCORE
-            ^ \markup { tutti }
+            ^ \markup tutti
             %! +PARTS_VIOLIN_2
             %@% ^ \markup { with the others }
             d'4

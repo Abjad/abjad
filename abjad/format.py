@@ -1,4 +1,3 @@
-import collections
 import dataclasses
 import importlib
 import inspect
@@ -44,11 +43,7 @@ def _dispatch_formatting(argument, as_storage_format=True, is_indented=True):
         return list(pieces)
     elif isinstance(argument, (list, tuple)):
         return _format_sequence(argument, as_storage_format, is_indented)
-    elif isinstance(argument, collections.OrderedDict):
-        return _format_ordered_mapping(argument, as_storage_format, is_indented)
-    elif hasattr(argument, "_collection") and isinstance(
-        argument._collection, collections.OrderedDict
-    ):
+    elif hasattr(argument, "_collection") and isinstance(argument._collection, dict):
         return _format_ordered_mapping(argument, as_storage_format, is_indented)
     elif isinstance(argument, dict):
         return _format_mapping(argument, as_storage_format, is_indented)
@@ -517,7 +512,7 @@ def get_template_dict(argument):
         template_names.extend(signature_keyword_names)
         template_names.extend(keyword_names)
         template_names = sorted(set(template_names))
-    template_dict = collections.OrderedDict()
+    template_dict = dict()
     for name in template_names:
         template_dict[name] = _get(argument, name)
     return template_dict
@@ -535,7 +530,7 @@ def storage(argument):
     """
     Gets storage format of ``argument``.
     """
-    if isinstance(argument, dict) and not isinstance(argument, collections.OrderedDict):
+    if isinstance(argument, dict):
         pieces = _dispatch_formatting(argument)
         pieces[-1] = pieces[-1] + "\n"
         pieces.append(")")

@@ -131,10 +131,7 @@ class StringContactPoint:
 
                 >>> string = abjad.lilypond(indicator.markup)
                 >>> print(string)
-                \markup {
-                    \caps
-                        S.P.
-                    }
+                \markup \caps S.P.
 
         ..  container:: example
 
@@ -147,15 +144,12 @@ class StringContactPoint:
 
                 >>> string = abjad.lilypond(indicator.markup)
                 >>> print(string)
-                \markup {
-                    \caps
-                        S.T.
-                    }
+                \markup \caps S.T.
 
         """
         string = self._contact_point_abbreviations[self.contact_point]
-        string = rf"\caps {string.title()}"
-        markup = Markup(string)
+        string = rf"\markup \caps {string.title()}"
+        markup = Markup(string, literal=True)
         return markup
 
     @property

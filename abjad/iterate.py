@@ -1,7 +1,6 @@
 import typing
 
 from . import _iterate, score
-from .ordereddict import OrderedDict
 from .pitch.pitches import NamedPitch, Pitch
 from .pitch.sets import PitchSet
 from .selection import LogicalTie
@@ -453,7 +452,8 @@ def logical_ties(
             {
                 c'4
                 ~
-                \times 2/3 {
+                \times 2/3
+                {
                     c'16
                     d'8
                 }
@@ -618,14 +618,16 @@ def logical_ties(
             {
                 c'4
                 ~
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     d'4
                 }
                 e'4
                 ~
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     e'8
                     f'8
                 }
@@ -689,13 +691,15 @@ def logical_ties(
             {
                 c'4
                 ~
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     r4
                 }
                 d'4
                 ~
-                \times 2/3 {
+                \times 2/3
+                {
                     d'8
                     r4
                 }
@@ -1039,7 +1043,7 @@ def timeline(argument, prototype=None, *, exclude=None, reverse=None):
     components = leaves(argument, prototype=prototype, exclude=exclude)
     components = list(components)
     components.sort(key=lambda _: _._get_timespan().start_offset)
-    offset_to_components = OrderedDict()
+    offset_to_components = dict()
     for component in components:
         start_offset = component._get_timespan().start_offset
         if start_offset not in offset_to_components:

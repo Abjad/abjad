@@ -42,10 +42,10 @@ class Tag:
 
         >>> abjad.Tag("+SEGMENT:-PARTS")
         Traceback (most recent call last):
-            ...
+        ...
         Exception: only-edition and not-edition forbidden in same tag:
         <BLANKLINE>
-        ['+SEGMENT'] / ['-PARTS']
+          ['+SEGMENT'] / ['-PARTS']
 
     """
 

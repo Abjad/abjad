@@ -347,64 +347,35 @@ def bow_contact_spanner(
                 \clef "percussion"
                 \tweak Y-offset -1.0
                 \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                1
-                                4
-                    }
+                \tweak text \markup \center-align \vcenter \fraction 1 4
                 c'4.
                 - \tweak style #'dotted-line
                 \glissando
                 ^ \downbow
                 \tweak Y-offset 1.0
                 \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                3
-                                4
-                    }
+                \tweak text \markup \center-align \vcenter \fraction 3 4
                 c'8
                 \glissando
                 ^ \upbow
-                \times 2/3 {
+                \times 2/3
+                {
                     \tweak Y-offset 0.0
                     \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
-                        \center-align
-                            \vcenter
-                                \fraction
-                                    1
-                                    2
-                        }
+                    \tweak text \markup \center-align \vcenter \fraction 1 2
                     c'4
                     \glissando
                     ^ \downbow
                     \tweak Y-offset 2.0
                     \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
-                        \center-align
-                            \vcenter
-                                \fraction
-                                    1
-                                    1
-                        }
+                    \tweak text \markup \center-align \vcenter \fraction 1 1
                     c'4
                     - \tweak style #'zigzag
                     \glissando
                     ^ \upbow
                     \tweak Y-offset -2.0
                     \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
-                        \center-align
-                            \vcenter
-                                \fraction
-                                    0
-                                    1
-                        }
+                    \tweak text \markup \center-align \vcenter \fraction 0 1
                     c'4
                 }
             }
@@ -467,60 +438,31 @@ def bow_contact_spanner(
                 \clef "percussion"
                 \tweak Y-offset -1.0
                 \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                1
-                                4
-                    }
+                \tweak text \markup \center-align \vcenter \fraction 1 4
                 c'4.
                 - \tweak style #'dotted-line
                 \glissando
                 \tweak Y-offset 1.0
                 \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                3
-                                4
-                    }
+                \tweak text \markup \center-align \vcenter \fraction 3 4
                 c'8
                 \glissando
-                \times 2/3 {
+                \times 2/3
+                {
                     \tweak Y-offset 0.0
                     \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
-                        \center-align
-                            \vcenter
-                                \fraction
-                                    1
-                                    2
-                        }
+                    \tweak text \markup \center-align \vcenter \fraction 1 2
                     c'4
                     \glissando
                     \tweak Y-offset 2.0
                     \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
-                        \center-align
-                            \vcenter
-                                \fraction
-                                    1
-                                    1
-                        }
+                    \tweak text \markup \center-align \vcenter \fraction 1 1
                     c'4
                     - \tweak style #'zigzag
                     \glissando
                     \tweak Y-offset -2.0
                     \tweak stencil #ly:text-interface::print
-                    \tweak text \markup {
-                        \center-align
-                            \vcenter
-                                \fraction
-                                    0
-                                    1
-                        }
+                    \tweak text \markup \center-align \vcenter \fraction 0 1
                     c'4
                 }
             }
@@ -581,25 +523,13 @@ def bow_contact_spanner(
                 c'4
                 \tweak Y-offset 1.0
                 \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                3
-                                4
-                    }
+                \tweak text \markup \center-align \vcenter \fraction 3 4
                 c'4
                 \glissando
                 ^ \upbow
                 \tweak Y-offset 0.0
                 \tweak stencil #ly:text-interface::print
-                \tweak text \markup {
-                    \center-align
-                        \vcenter
-                            \fraction
-                                1
-                                2
-                    }
+                \tweak text \markup \center-align \vcenter \fraction 1 2
                 c'4
                 \tweak style #'cross
                 c'4
@@ -800,7 +730,7 @@ def glissando(
         >>> abjad.glissando(
         ...     staff[:],
         ...     allow_repeats=False,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -832,7 +762,7 @@ def glissando(
         >>> abjad.glissando(
         ...     staff[:],
         ...     allow_repeats=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -867,7 +797,7 @@ def glissando(
         ...     staff[:],
         ...     allow_repeats=True,
         ...     allow_ties=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -907,7 +837,7 @@ def glissando(
         ...     staff[:],
         ...     allow_repeats=True,
         ...     parenthesize_repeats=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -945,7 +875,7 @@ def glissando(
         >>> abjad.glissando(
         ...     staff[:],
         ...     parenthesize_repeats=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -981,7 +911,7 @@ def glissando(
         >>> abjad.glissando(
         ...     staff[:],
         ...     hide_middle_note_heads=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1015,7 +945,7 @@ def glissando(
         ...     staff[:],
         ...     hide_middle_note_heads=True,
         ...     hide_middle_stems=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1054,7 +984,7 @@ def glissando(
         >>> abjad.glissando(
         ...     staff[:],
         ...     right_broken=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         LilyPond output looks like this:
@@ -1088,7 +1018,7 @@ def glissando(
         ...     staff[:],
         ...     right_broken=True,
         ...     hide_middle_note_heads=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         LilyPond output looks like this:
@@ -1148,7 +1078,7 @@ def glissando(
         ...     hide_middle_note_heads=True,
         ...     right_broken=True,
         ...     right_broken_show_next=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         LilyPond output looks like this:
@@ -1223,7 +1153,7 @@ def glissando(
         ...     staff[:],
         ...     left_broken=True,
         ...     hide_middle_note_heads=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         LilyPond output looks like this:
@@ -1275,7 +1205,7 @@ def glissando(
         >>> abjad.glissando(
         ...     staff[:],
         ...     abjad.tweak("#'trill").style,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1305,7 +1235,7 @@ def glissando(
         ...     staff[:],
         ...     allow_repeats=True,
         ...     zero_padding=True,
-        ...     )
+        ... )
         >>> for note in staff[1:]:
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
@@ -1345,7 +1275,7 @@ def glissando(
         >>> abjad.glissando(
         ...     staff[:],
         ...     zero_padding=True,
-        ...     )
+        ... )
         >>> for note in staff[1:-1]:
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
@@ -1386,7 +1316,7 @@ def glissando(
         ...     (abjad.tweak("#red").color, -1),
         ...     allow_repeats=True,
         ...     zero_padding=True,
-        ...     )
+        ... )
         >>> for note in staff[1:-1]:
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
@@ -2023,10 +1953,10 @@ def text_spanner(
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont."),
-        ...     right_text=abjad.Markup(r"\upright tasto"),
+        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+        ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
         ...     style="solid-line-with-arrow",
-        ...     )
+        ... )
         >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
         >>> abjad.override(staff[0]).TextSpanner.staff_padding = 4
         >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
@@ -2041,12 +1971,8 @@ def text_spanner(
                 \once \override TextSpanner.staff-padding = 4
                 c'4
                 - \abjad-solid-line-with-arrow
-                - \tweak bound-details.left.text \markup \concat { \upright
-                    pont. \hspace #0.5 }
-                - \tweak bound-details.right.text \markup {
-                    \upright
-                        tasto
-                    }
+                - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                - \tweak bound-details.right.text \markup \upright tasto
                 \startTextSpan
                 d'4
                 e'4
@@ -2060,15 +1986,15 @@ def text_spanner(
 
         >>> staff = abjad.Staff("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont."),
+        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
         ...     style="dashed-line-with-arrow",
-        ...     )
+        ... )
         >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright tasto"),
-        ...     right_text=abjad.Markup(r"\upright pont."),
+        ...     left_text=abjad.Markup(r"\upright tasto", literal=True),
+        ...     right_text=abjad.Markup(r"\markup \upright pont.", literal=True),
         ...     style="dashed-line-with-arrow",
-        ...     )
+        ... )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).TextSpanner.staff_padding = 4
         >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
@@ -2086,19 +2012,14 @@ def text_spanner(
             {
                 c'4
                 - \abjad-dashed-line-with-arrow
-                - \tweak bound-details.left.text \markup \concat { \upright
-                    pont. \hspace #0.5 }
+                - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 \startTextSpan
                 d'4
                 e'4
                 \stopTextSpan
                 - \abjad-dashed-line-with-arrow
-                - \tweak bound-details.left.text \markup \concat { \upright
-                    tasto \hspace #0.5 }
-                - \tweak bound-details.right.text \markup {
-                    \upright
-                        pont.
-                    }
+                - \tweak bound-details.left.text \markup \concat { \upright tasto \hspace #0.5 }
+                - \tweak bound-details.right.text \markup \upright pont.
                 \startTextSpan
                 f'4
                 r4
@@ -2107,14 +2028,14 @@ def text_spanner(
 
         >>> staff = abjad.Staff("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont."),
+        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
         ...     style="dashed-line-with-arrow",
-        ...     )
+        ... )
         >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright tasto"),
+        ...     left_text=abjad.Markup(r"\upright tasto", literal=True),
         ...     style="solid-line-with-hook",
-        ...     )
+        ... )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).TextSpanner.staff_padding = 4
         >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
@@ -2132,15 +2053,13 @@ def text_spanner(
             {
                 c'4
                 - \abjad-dashed-line-with-arrow
-                - \tweak bound-details.left.text \markup \concat { \upright
-                    pont. \hspace #0.5 }
+                - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 \startTextSpan
                 d'4
                 e'4
                 \stopTextSpan
                 - \abjad-solid-line-with-hook
-                - \tweak bound-details.left.text \markup \concat { \upright
-                    tasto \hspace #0.5 }
+                - \tweak bound-details.left.text \markup \concat { \upright tasto \hspace #0.5 }
                 \startTextSpan
                 f'4
                 r4

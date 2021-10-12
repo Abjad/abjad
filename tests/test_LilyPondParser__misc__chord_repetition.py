@@ -46,7 +46,7 @@ def test_LilyPondParser__misc__chord_repetition_02():
     abjad.attach(dynamic, target[0])
     articulation = abjad.Articulation("staccatissimo")
     abjad.attach(articulation, target[2])
-    markup = abjad.Markup("text", direction=abjad.Up)
+    markup = abjad.Markup(r"\markup { text }", direction=abjad.Up, literal=True)
     abjad.attach(markup, target[3])
     articulation = abjad.Articulation("staccatissimo")
     abjad.attach(articulation, target[-1])

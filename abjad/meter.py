@@ -2562,37 +2562,34 @@ class MeterList(TypedList):
                 >>> markup = lilypond_file.items[0]
                 >>> string = abjad.lilypond(markup)
                 >>> print(string)
-                \markup { \column { \combine \combine \translate #'(1.0 . 1) \sans \fontsize #-3 \center-align \fraction 3 4 \translate #'(49.38709677419355 . 1) \sans \fontsize #-3 \center-align \fraction 5 16 \translate #'(69.54838709677419 . 1) \sans \fontsize #-3 \center-align \fraction 7 8 \combine \postscript
-                    #"
-                    0.2 setlinewidth
-                    1 0.5 moveto
-                    49.38709677419355 0.5 lineto
-                    stroke
-                    1 1.25 moveto
-                    1 -0.25 lineto
-                    stroke
-                    49.38709677419355 1.25 moveto
-                    49.38709677419355 -0.25 lineto
-                    stroke
-                    49.38709677419355 0.5 moveto
-                    69.54838709677419 0.5 lineto
-                    stroke
-                    49.38709677419355 1.25 moveto
-                    49.38709677419355 -0.25 lineto
-                    stroke
-                    69.54838709677419 1.25 moveto
-                    69.54838709677419 -0.25 lineto
-                    stroke
-                    69.54838709677419 0.5 moveto
-                    126 0.5 lineto
-                    stroke
-                    69.54838709677419 1.25 moveto
-                    69.54838709677419 -0.25 lineto
-                    stroke
-                    126 1.25 moveto
-                    126 -0.25 lineto
-                    stroke
-                    " \postscript #"1 -2 moveto
+                \markup { \column { \combine \combine \translate #'(1.0 . 1) \sans \fontsize #-3 \center-align \fraction 3 4 \translate #'(49.38709677419355 . 1) \sans \fontsize #-3 \center-align \fraction 5 16 \translate #'(69.54838709677419 . 1) \sans \fontsize #-3 \center-align \fraction 7 8 \combine \postscript #"0.2 setlinewidth
+                1 0.5 moveto
+                49.38709677419355 0.5 lineto
+                stroke
+                1 1.25 moveto
+                1 -0.25 lineto
+                stroke
+                49.38709677419355 1.25 moveto
+                49.38709677419355 -0.25 lineto
+                stroke
+                49.38709677419355 0.5 moveto
+                69.54838709677419 0.5 lineto
+                stroke
+                49.38709677419355 1.25 moveto
+                49.38709677419355 -0.25 lineto
+                stroke
+                69.54838709677419 1.25 moveto
+                69.54838709677419 -0.25 lineto
+                stroke
+                69.54838709677419 0.5 moveto
+                126 0.5 lineto
+                stroke
+                69.54838709677419 1.25 moveto
+                69.54838709677419 -0.25 lineto
+                stroke
+                126 1.25 moveto
+                126 -0.25 lineto
+                stroke" \postscript #"1 -2 moveto
                 0 -6.153846153846154 rlineto
                 stroke
                 5.032258064516129 -2 moveto

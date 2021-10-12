@@ -637,17 +637,11 @@ class LilyPondOverride:
         ...        "left",
         ...        "text",
         ...        ),
-        ...    value=abjad.Markup(r"\bold { over pressure }"),
+        ...    value=abjad.Markup(r"\markup \bold { over pressure }", literal=True),
         ...    )
 
         >>> print(override.override_string)
-        \once \override Staff.TextSpanner.bound-details.left.text = \markup {
-            \bold
-                {
-                    over
-                    pressure
-                }
-            }
+        \once \override Staff.TextSpanner.bound-details.left.text = \markup \bold { over pressure }
 
     """
 
@@ -803,7 +797,7 @@ class LilyPondOverride:
             ...        "left",
             ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r"\bold { over pressure }"),
+            ...    value=abjad.Markup(r"\markup \bold { over pressure }", literal=True),
             ...    )
             >>> override.lilypond_type
             'Staff'
@@ -835,7 +829,7 @@ class LilyPondOverride:
             ...        "left",
             ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r"\bold { over pressure }"),
+            ...    value=abjad.Markup(r"\markup \bold { over pressure }", literal=True),
             ...    )
             >>> bool(override.once)
             True
@@ -867,18 +861,12 @@ class LilyPondOverride:
             ...        "left",
             ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r"\bold { over pressure }"),
+            ...    value=abjad.Markup(r"\markup \bold { over pressure }", literal=True),
             ...    )
             >>> for line in override.override_format_pieces:
             ...     line
             ...
-            '\\once \\override Staff.TextSpanner.bound-details.left.text = \\markup {'
-            '    \\bold'
-            '        {'
-            '            over'
-            '            pressure'
-            '        }'
-            '    }'
+            '\\once \\override Staff.TextSpanner.bound-details.left.text = \\markup \\bold { over pressure }'
 
         """
         result = []
@@ -929,7 +917,7 @@ class LilyPondOverride:
             ...        "left",
             ...        "text",
             ...        ),
-            ...    value=abjad.Markup(r"\bold { over pressure }"),
+            ...    value=abjad.Markup(r"\markup \bold { over pressure }", literal=True),
             ...    )
             >>> override.property_path
             ('bound-details', 'left', 'text')
@@ -1396,7 +1384,8 @@ class SettingInterface(Interface):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.setting(staff).instrumentName = abjad.Markup("Vn. I")
+            >>> markup = abjad.Markup(r'\markup "Vn. I"', literal=True)
+            >>> abjad.setting(staff).instrumentName = markup
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1406,7 +1395,7 @@ class SettingInterface(Interface):
                 \new Staff
                 \with
                 {
-                    instrumentName = \markup { Vn. I }
+                    instrumentName = \markup "Vn. I"
                 }
                 {
                     c'4
@@ -1420,7 +1409,7 @@ class SettingInterface(Interface):
             Returns arbitrary object keyed to ``name``:
 
             >>> abjad.setting(staff).instrumentName
-            Markup(contents=['Vn. I'])
+            Markup(contents=['\\markup "Vn. I"'], literal=True)
 
         """
         camel_name = String(name).to_upper_camel_case()
@@ -1533,7 +1522,8 @@ def setting(argument):
         Sets instrument name:
 
         >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.setting(staff).instrumentName = abjad.Markup("Vn. I")
+        >>> markup = abjad.Markup(r'\markup "Vn. I"', literal=True)
+        >>> abjad.setting(staff).instrumentName = markup
         >>> abjad.show(staff) # doctest: +SKIP
 
 
@@ -1544,7 +1534,7 @@ def setting(argument):
             \new Staff
             \with
             {
-                instrumentName = \markup { Vn. I }
+                instrumentName = \markup "Vn. I"
             }
             {
                 c'4
@@ -1558,7 +1548,7 @@ def setting(argument):
         Returns LilyPond setting name manager:
 
         >>> abjad.setting(staff)
-        SettingInterface(('instrumentName', Markup(contents=['Vn. I'])))
+        SettingInterface(('instrumentName', Markup(contents=['\\markup "Vn. I"'], literal=True)))
 
     """
     if getattr(argument, "_lilypond_setting_name_manager", None) is None:
@@ -1567,14 +1557,14 @@ def setting(argument):
 
 
 class TweakInterface(Interface):
-    """
+    r"""
     LilyPond tweak manager.
 
     ..  container:: example
 
         Tweak managers are created by the ``abjad.tweak()`` factory function:
 
-        >>> markup = abjad.Markup("Allegro", direction=abjad.Up)
+        >>> markup = abjad.Markup(r"\markup Allegro", direction=abjad.Up, literal=True)
         >>> abjad.tweak(markup)
         TweakInterface(('_literal', None))
 
@@ -1626,7 +1616,9 @@ class TweakInterface(Interface):
             Tweaks may be tagged:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+            >>> markup = abjad.Markup(
+            ...     r"\markup \italic Allegro", direction=abjad.Up, literal=True
+            ... )
             >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
             >>> abjad.attach(markup, staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1638,10 +1630,7 @@ class TweakInterface(Interface):
                 c'4
                 %! +PARTS
                 - \tweak color #red
-                ^ \markup {
-                    \italic
-                        Allegro
-                    }
+                ^ \markup \italic Allegro
                 d'4
                 e'4
                 f'4
@@ -1650,7 +1639,9 @@ class TweakInterface(Interface):
             Tweaks may be tagged with ``deactivate=True``:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+            >>> markup = abjad.Markup(
+            ...     r"\markup \italic Allegro", direction=abjad.Up, literal=True
+            ... )
             >>> abjad.tweak(
             ...     markup, deactivate=True, tag=abjad.Tag("+PARTS")
             ... ).color = "#red"
@@ -1664,10 +1655,7 @@ class TweakInterface(Interface):
                 c'4
                 %! +PARTS
                 - \tweak color #red
-                ^ \markup {
-                    \italic
-                        Allegro
-                    }
+                ^ \markup \italic Allegro
                 d'4
                 e'4
                 f'4
@@ -1676,7 +1664,9 @@ class TweakInterface(Interface):
             Tweak tags and indicator tags may be set together:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup(r"\italic Allegro", direction=abjad.Up)
+            >>> markup = abjad.Markup(
+            ...     r"\markup \italic Allegro", direction=abjad.Up, literal=True
+            ... )
             >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
             >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1692,16 +1682,7 @@ class TweakInterface(Interface):
                 - \tweak color #red
                 %! RED
                 %! M1
-                ^ \markup {
-                %! RED
-                %! M1
-                    \italic
-                %! RED
-                %! M1
-                        Allegro
-                %! RED
-                %! M1
-                    }
+                ^ \markup \italic Allegro
                 d'4
                 e'4
                 f'4
@@ -1930,7 +1911,9 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup("Allegro assai", direction=abjad.Up)
+        >>> markup = abjad.Markup(
+        ...     r'\markup "Allegro assai"', direction=abjad.Up, literal=True
+        ... )
         >>> abjad.tweak(markup).color = "#red"
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1943,7 +1926,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { Allegro assai }
+                ^ \markup "Allegro assai"
                 d'4
                 e'4
                 f'4
@@ -1953,7 +1936,9 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> import copy
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup("Allegro assai", direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(
+        ...     r'\markup "Allegro assai"', direction=abjad.Up, literal=True
+        ... )
         >>> abjad.tweak(markup_1).color = "#red"
         >>> markup_2 = copy.copy(markup_1)
         >>> abjad.attach(markup_2, staff[0])
@@ -1967,7 +1952,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { Allegro assai }
+                ^ \markup "Allegro assai"
                 d'4
                 e'4
                 f'4
@@ -1976,7 +1961,9 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Survives dot-chaining:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r'\italic "Allegro assai"', direction=abjad.Up)
+        >>> markup = abjad.Markup(
+        ...     r'\markup \italic "Allegro assai"', direction=abjad.Up, literal=True
+        ... )
         >>> abjad.tweak(markup).color = "#red"
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1989,10 +1976,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup {
-                    \italic
-                        "Allegro assai"
-                    }
+                ^ \markup \italic "Allegro assai"
                 d'4
                 e'4
                 f'4
@@ -2001,10 +1985,14 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Works for opposite-directed coincident markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup("Allegro assai ...", direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(
+        ...     r'\markup "Allegro assai ..."', direction=abjad.Up, literal=True
+        ... )
         >>> abjad.tweak(markup_1).color = "#red"
         >>> abjad.attach(markup_1, staff[0])
-        >>> markup_2 = abjad.Markup("... ma non troppo", direction=abjad.Down)
+        >>> markup_2 = abjad.Markup(
+        ...     r'\markup "... ma non troppo"', direction=abjad.Down, literal=True
+        ... )
         >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
         >>> abjad.attach(markup_2, staff[0])
@@ -2018,10 +2006,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { Allegro assai ... }
+                ^ \markup "Allegro assai ..."
                 - \tweak color #blue
                 - \tweak staff-padding 4
-                _ \markup { ... ma non troppo }
+                _ \markup "... ma non troppo"
                 d'4
                 e'4
                 f'4
@@ -2030,10 +2018,14 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Ignored for same-directed coincident markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup("Allegro assai ...", direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(
+        ...     r'\markup "Allegro assai ..."', direction=abjad.Up, literal=True
+        ... )
         >>> abjad.tweak(markup_1).color = "#red"
         >>> abjad.attach(markup_1, staff[0])
-        >>> markup_2 = abjad.Markup("... ma non troppo", direction=abjad.Up)
+        >>> markup_2 = abjad.Markup(
+        ...     r'\markup "... ma non troppo"', direction=abjad.Up, literal=True
+        ... )
         >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
         >>> abjad.attach(markup_2, staff[0])
@@ -2047,10 +2039,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             {
                 c'4
                 - \tweak color #red
-                ^ \markup { Allegro assai ... }
+                ^ \markup "Allegro assai ..."
                 - \tweak color #blue
                 - \tweak staff-padding 4
-                ^ \markup { ... ma non troppo }
+                ^ \markup "... ma non troppo"
                 d'4
                 e'4
                 f'4

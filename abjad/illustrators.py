@@ -2,6 +2,7 @@ import copy
 
 from . import deprecated, enums, get
 from . import iterate as iterate_
+from . import markups as _markups
 from . import overrides
 from . import score as _score
 from . import selection as _selection
@@ -14,10 +15,8 @@ from .indicators.TimeSignature import TimeSignature
 from .lilypondfile import Block, LilyPondFile
 from .lilypondformat import lilypond
 from .makers import NoteMaker
-from .markups import Markup, Postscript
 from .metricmodulation import MetricModulation
 from .new import new
-from .ordereddict import OrderedDict
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchClassSegment, PitchSegment
@@ -45,7 +44,11 @@ def _illustrate_markup_maker(argument, **keywords):
 
 
 def _illustrate_postscript(postscript):
-    markup = Markup.postscript(postscript)
+    if isinstance(postscript, _markups.Postscript):
+        postscript = str(postscript)
+    assert isinstance(postscript, str)
+    string = "\n".join([r"\markup", r"\postscript", '#"', postscript, '"'])
+    markup = _markups.Markup(string, literal=True)
     return _illustrate_markup(markup)
 
 
@@ -158,7 +161,7 @@ def _illustrate_pitch_class_segment(
         notes.append(note)
     markup = None
     if isinstance(figure_name, str):
-        figure_name = Markup(figure_name)
+        figure_name = _markups.Markup(rf"\markup {figure_name}", literal=True)
     if figure_name is not None:
         markup = figure_name
     if markup is not None:
@@ -202,13 +205,13 @@ def _illustrate_timespan(timespan):
     return _illustrate_markup_maker(timespans)
 
 
-_class_to_method = OrderedDict(
+_class_to_method = dict(
     [
         (_score.Component, _illustrate_component),
-        (Markup, _illustrate_markup),
+        (_markups.Markup, _illustrate_markup),
         (MetricModulation, _illustrate_metric_modulation),
         (_timespan.OffsetCounter, _illustrate_markup_maker),
-        (Postscript, _illustrate_postscript),
+        (_markups.Postscript, _illustrate_postscript),
         (PitchRange, _illustrate_pitch_range),
         (PitchClassSet, _illustrate_pitch_class_set),
         (PitchSegment, _illustrate_pitch_segment),
@@ -230,14 +233,14 @@ def attach_markup_struts(lilypond_file):
     """
     rhythmic_staff = lilypond_file[_score.Score][-1]
     first_leaf = get.leaf(rhythmic_staff, 0)
-    markup = Markup(r"\markup I", direction=enums.Up, literal=True)
+    markup = _markups.Markup(r"\markup I", direction=enums.Up, literal=True)
     attach(markup, first_leaf)
     overrides.tweak(markup).staff_padding = 11
     overrides.tweak(markup).transparent = "##t"
     duration = get.duration(rhythmic_staff)
     if Duration(6, 4) < duration:
         last_leaf = get.leaf(rhythmic_staff, -1)
-        markup = Markup(r"\markup I", direction=enums.Up, literal=True)
+        markup = _markups.Markup(r"\markup I", direction=enums.Up, literal=True)
         attach(markup, last_leaf)
         overrides.tweak(markup).staff_padding = 18
         overrides.tweak(markup).transparent = "##t"
@@ -389,7 +392,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     score = _score.Score(name="Score")
     score.append(staff_group)
     for leaf in leaves:
-        markups = get.indicators(leaf, Markup)
+        markups = get.indicators(leaf, _markups.Markup)
         written_duration = leaf.written_duration
         if isinstance(leaf, _score.Note):
             if leaf.written_pitch < lowest_treble_pitch:

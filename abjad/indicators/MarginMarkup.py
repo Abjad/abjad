@@ -14,8 +14,8 @@ class MarginMarkup:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> margin_markup = abjad.MarginMarkup(
-        ...     markup=abjad.Markup('Vc.'),
-        ...     )
+        ...     markup=abjad.Markup(r"\markup Vc.", literal=True),
+        ... )
         >>> abjad.attach(margin_markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -26,7 +26,7 @@ class MarginMarkup:
             \new Staff
             {
                 \set Staff.shortInstrumentName =
-                \markup { Vc. }
+                \markup Vc.
                 c'4
                 d'4
                 e'4
@@ -39,8 +39,8 @@ class MarginMarkup:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> margin_markup = abjad.MarginMarkup(
-        ...     markup=r'\my_custom_instrument_name',
-        ...     )
+        ...     markup=r"\my_custom_instrument_name",
+        ... )
         >>> abjad.attach(margin_markup, staff[0])
 
         ..  docs::
@@ -90,24 +90,24 @@ class MarginMarkup:
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        """
+        r"""
         Is true when ``argument`` is margin markup with context and markup
         equal to those of this margin markup.
 
         ..  container:: example
 
             >>> margin_markup_1 = abjad.MarginMarkup(
-            ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Hp.'),
-            ...     )
+            ...     context="PianoStaff",
+            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ... )
             >>> margin_markup_2 = abjad.MarginMarkup(
-            ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Hp.'),
-            ...     )
+            ...     context="PianoStaff",
+            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ... )
             >>> margin_markup_3 = abjad.MarginMarkup(
-            ...     context='Staff',
-            ...     markup=abjad.Markup('Hp.'),
-            ...     )
+            ...     context="Staff",
+            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ... )
 
             >>> margin_markup_1 == margin_markup_1
             True
@@ -144,9 +144,9 @@ class MarginMarkup:
         ..  container:: example
 
             >>> margin_markup = abjad.MarginMarkup(
-            ...     context='PianoStaff',
-            ...     markup=abjad.Markup('Hp.'),
-            ...     )
+            ...     context="PianoStaff",
+            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ... )
 
             >>> hash_ = hash(margin_markup)
             >>> isinstance(hash_, int)
@@ -231,13 +231,13 @@ class MarginMarkup:
 
     @property
     def latent(self) -> bool:
-        """Is true.
+        r"""Is true.
 
         ..  container::
 
             >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup('Vc.'),
-            ...     )
+            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ... )
             >>> margin_markup.latent
             True
 
@@ -254,14 +254,14 @@ class MarginMarkup:
 
     @property
     def persistent(self) -> bool:
-        """
+        r"""
         Is true.
 
         ..  container:: example
 
             >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup('Vc.'),
-            ...     )
+            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ... )
             >>> margin_markup.persistent
             True
 
@@ -271,14 +271,14 @@ class MarginMarkup:
 
     @property
     def redraw(self) -> bool:
-        """
+        r"""
         Is true.
 
         ..  container:: example
 
             >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup('Vc.'),
-            ...     )
+            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ... )
             >>> margin_markup.redraw
             True
 

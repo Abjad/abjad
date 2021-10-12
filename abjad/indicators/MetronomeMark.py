@@ -751,12 +751,12 @@ class MetronomeMark:
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
         stem_height = 1
-        markup = markups.abjad_metronome_mark(
-            duration_log,
-            self.reference_duration.dot_count,
-            stem_height,
-            self.units_per_minute,
-        )
+        string = "abjad-metronome-mark-markup"
+        string += f" #{duration_log}"
+        string += f" #{self.reference_duration.dot_count}"
+        string += f" #{stem_height}"
+        string += f' #"{self.units_per_minute}"'
+        markup = markups.Markup(rf"\markup {string}", literal=True)
         return markup
 
     # TODO: refactor to return dict
@@ -1210,7 +1210,8 @@ class MetronomeMark:
 
             ..  docs::
 
-                >>> print(abjad.lilypond(markup))
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup \abjad-metronome-mark-markup #2 #0 #1 #"90"
 
         ..  container:: example
@@ -1223,7 +1224,8 @@ class MetronomeMark:
 
             ..  docs::
 
-                >>> print(abjad.lilypond(markup))
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup \abjad-metronome-mark-markup #2 #0 #1 #"90.1"
 
         ..  container:: example
@@ -1240,7 +1242,8 @@ class MetronomeMark:
 
             ..  docs::
 
-                >>> print(abjad.lilypond(markup))
+                >>> string = abjad.lilypond(markup)
+                >>> print(string)
                 \markup \abjad-metronome-mark-mixed-number-markup #2 #0 #1 #"90" #"2" #"3"
 
         """

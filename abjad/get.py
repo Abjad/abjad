@@ -214,10 +214,8 @@ def annotation_wrappers(argument):
                 name='cello',
                 short_name='vc.',
                 markup=abjad.Markup(
-                    contents=['Cello'],
-                    ),
-                short_markup=abjad.Markup(
-                    contents=['Vc.'],
+                    contents=['\\markup Cello'],
+                    literal=True,
                     ),
                 allowable_clefs=('bass', 'tenor', 'treble'),
                 context='Staff',

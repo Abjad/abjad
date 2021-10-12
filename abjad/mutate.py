@@ -635,7 +635,8 @@ def extract(argument):
             \new Staff
             {
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     \time 3/4
                     c'4
                     \p
@@ -643,7 +644,8 @@ def extract(argument):
                     e'4
                 }
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     d'4
                     f'4
                     \f
@@ -690,7 +692,8 @@ def extract(argument):
             \new Staff
             {
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     \time 3/4
                     c'4
                     \p
@@ -698,7 +701,8 @@ def extract(argument):
                     e'4
                 }
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     d'4
                     f'4
                     \f
@@ -740,7 +744,8 @@ def extract(argument):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/2 {
+            \times 3/2
+            {
                 c'4
                 e'4
             }
@@ -755,7 +760,8 @@ def extract(argument):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/2 {
+            \times 3/2
+            {
                 c'4
                 e'4
             }
@@ -807,14 +813,16 @@ def fuse(argument):
             >>> print(string)
             \new Staff
             {
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     [
                     d'8
                     e'8
                     ]
                 }
-                \times 2/3 {
+                \times 2/3
+                {
                     c'16
                     (
                     d'16
@@ -834,7 +842,8 @@ def fuse(argument):
             >>> print(string)
             \new Staff
             {
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     [
                     d'8
@@ -965,7 +974,8 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
                 \p
                 \<
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/5 {
+                \times 3/5
+                {
                     c'8
                     c'16
                     c'16
@@ -1050,7 +1060,8 @@ def replace(argument, recipients, wrappers=False):
             >>> print(string)
             \new Staff
             {
-                \times 2/3 {
+                \times 2/3
+                {
                     c'4
                     \p
                     \<
@@ -1058,7 +1069,8 @@ def replace(argument, recipients, wrappers=False):
                     d'4
                     e'4
                 }
-                \times 2/3 {
+                \times 2/3
+                {
                     d'4
                     e'4
                     f'4
@@ -1090,7 +1102,8 @@ def replace(argument, recipients, wrappers=False):
                 d'16
                 e'16
                 f'16
-                \times 2/3 {
+                \times 2/3
+                {
                     d'4
                     e'4
                     f'4
@@ -1391,7 +1404,8 @@ def scale(argument, multiplier) -> None:
             >>> print(string)
             \new Staff
             {
-                \times 4/5 {
+                \times 4/5
+                {
                     \time 4/8
                     c'8
                     d'8
@@ -1410,7 +1424,8 @@ def scale(argument, multiplier) -> None:
             >>> print(string)
             \new Staff
             {
-                \times 4/5 {
+                \times 4/5
+                {
                     \time 4/8
                     c'4
                     d'4
@@ -2012,7 +2027,8 @@ def swap(argument, container):
             >>> print(string)
             \new Staff
             {
-                \times 4/6 {
+                \times 4/6
+                {
                     \time 3/4
                     c'4
                     \p
@@ -2161,7 +2177,8 @@ def wrap(argument, container):
                 e'8
                 )
                 ]
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     [
                     (
@@ -2186,7 +2203,8 @@ def wrap(argument, container):
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 d'8
                 e'8
@@ -2242,19 +2260,23 @@ def wrap(argument, container):
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     c'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     cs'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     d'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     ef'1
                 }
             }

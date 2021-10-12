@@ -79,8 +79,8 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
         >>> score = abjad.Score([staff])
         >>> place = "Bremen - Boston - LA."
         >>> date = "July 2010 - May 2011."
-        >>> string = rf'\italic \right-column {{ "{place}" "{date}" }}'
-        >>> markup = abjad.Markup(string, direction=abjad.Down)
+        >>> string = rf'\markup \italic \right-column {{ "{place}" "{date}" }}'
+        >>> markup = abjad.Markup(string, direction=abjad.Down, literal=True)
         >>> markup = abjad.deprecated.add_final_markup(
         ...     score,
         ...     markup,
@@ -101,14 +101,7 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
                     e'4
                     \once \override TextScript.extra-offset = #'(0.5 . -2)
                     f'4
-                    _ \markup {
-                        \italic
-                            \right-column
-                                {
-                                    "Bremen - Boston - LA."
-                                    "July 2010 - May 2011."
-                                }
-                        }
+                    _ \markup \italic \right-column { "Bremen - Boston - LA." "July 2010 - May 2011." }
                 }
             >>
 
@@ -121,8 +114,8 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
         >>> score = abjad.Score([staff])
         >>> place = "Bremen - Boston - LA."
         >>> date = "July 2010 - May 2011."
-        >>> string = rf'\italic \right-column {{ "{place}" "{date}" }}'
-        >>> markup = abjad.Markup(string, direction=abjad.Down)
+        >>> string = rf'\markup \italic \right-column {{ "{place}" "{date}" }}'
+        >>> markup = abjad.Markup(string, direction=abjad.Down, literal=True)
         >>> markup = abjad.deprecated.add_final_markup(
         ...     score,
         ...     markup,
@@ -144,14 +137,7 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
                     f'4
                     \once \override MultiMeasureRestText.extra-offset = #'(14.5 . -2)
                     R1
-                    _ \markup {
-                        \italic
-                            \right-column
-                                {
-                                    "Bremen - Boston - LA."
-                                    "July 2010 - May 2011."
-                                }
-                        }
+                    _ \markup \italic \right-column { "Bremen - Boston - LA." "July 2010 - May 2011." }
                 }
             >>
 

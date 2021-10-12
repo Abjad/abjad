@@ -2677,7 +2677,8 @@ class Selection(collections.abc.Sequence):
                     \abjad-color-music #'red
                     d'8
                     r8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         e'8
                         r8
@@ -3667,7 +3668,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         r8
                         \abjad-color-music #'blue
@@ -3683,7 +3685,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     \abjad-color-music #'red
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         e'8
                         \abjad-color-music #'red
@@ -3728,7 +3731,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         r8
                         \abjad-color-music #'red
                         d'8
@@ -3741,7 +3745,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     \abjad-color-music #'blue
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
@@ -3790,7 +3795,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         r8
                         \ottava 1
                         \abjad-color-music #'red
@@ -3806,7 +3812,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     \abjad-color-music #'blue
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
@@ -3856,7 +3863,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         r8
                         \ottava 1
                         \abjad-color-music #'red
@@ -3872,7 +3880,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     \abjad-color-music #'blue
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
@@ -3922,7 +3931,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'blue
@@ -3938,7 +3948,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     \abjad-color-music #'red
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         e'8
                         \abjad-color-music #'red
@@ -3984,7 +3995,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         r8
                         \abjad-color-music #'blue
@@ -3996,7 +4008,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     r8
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         e'8
                         \abjad-color-music #'red
@@ -4040,7 +4053,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         r8
                         \abjad-color-music #'red
                         d'8
@@ -4051,7 +4065,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     r8
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'blue
@@ -4096,7 +4111,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'blue
@@ -4108,7 +4124,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     r8
                     e'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         d'8
                         ~
@@ -4154,7 +4171,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         c'8
                         d'8
@@ -4166,7 +4184,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     r8
                     e'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         d'8
                         ~
                         \abjad-color-music #'red
@@ -4210,7 +4229,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         <c' e' g'>8
                         ~
@@ -4221,7 +4241,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     r8
                     <g d' fs'>8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         e'8
                         \abjad-color-music #'blue
                         <c' d'>8
@@ -4269,7 +4290,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         r8
                         \abjad-color-music #'blue
@@ -4285,7 +4307,8 @@ class Selection(collections.abc.Sequence):
                     r8
                     \abjad-color-music #'red
                     f'8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         e'8
                         d'8
@@ -4702,7 +4725,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         c'8
                         \abjad-color-music #'red
@@ -4715,7 +4739,8 @@ class Selection(collections.abc.Sequence):
                     e'8
                     f'8
                     ~
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         f'8
                         \abjad-color-music #'blue
                         g'8
@@ -4727,7 +4752,8 @@ class Selection(collections.abc.Sequence):
                     a'8
                     b'8
                     ~
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         b'8
                         \abjad-color-music #'red
                         c''8
@@ -4769,7 +4795,8 @@ class Selection(collections.abc.Sequence):
                     autoBeaming = ##f
                 }
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'8
                         d'8
                         e'8
@@ -4778,7 +4805,8 @@ class Selection(collections.abc.Sequence):
                     e'8
                     f'8
                     ~
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         f'8
                         \abjad-color-music #'red
                         g'8
@@ -4790,7 +4818,8 @@ class Selection(collections.abc.Sequence):
                     a'8
                     b'8
                     ~
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         b'8
                         \abjad-color-music #'blue
                         c''8
@@ -6678,7 +6707,8 @@ class Selection(collections.abc.Sequence):
                     d'8
                     \abjad-color-music #'red
                     r8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         e'8
                         \abjad-color-music #'red
@@ -6731,7 +6761,8 @@ class Selection(collections.abc.Sequence):
                     d'8
                     \abjad-color-music #'red
                     r8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         e'8
                         \abjad-color-music #'blue
@@ -7274,7 +7305,8 @@ class Selection(collections.abc.Sequence):
                     d'8
                     \abjad-color-music #'red
                     r8
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         e'8
                         \abjad-color-music #'blue
@@ -7426,10 +7458,12 @@ class Selection(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         c'2
-                        \times 2/3 {
+                        \times 2/3
+                        {
                             \abjad-color-music #'red
                             \abjad-color-music #'blue
                             d'8
@@ -7441,7 +7475,8 @@ class Selection(collections.abc.Sequence):
                             f'8
                         }
                     }
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         c'4
                         \abjad-color-music #'red
@@ -7476,9 +7511,11 @@ class Selection(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         c'2
-                        \times 2/3 {
+                        \times 2/3
+                        {
                             \abjad-color-music #'red
                             d'8
                             \abjad-color-music #'red
@@ -7487,7 +7524,8 @@ class Selection(collections.abc.Sequence):
                             f'8
                         }
                     }
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         c'4
                         \abjad-color-music #'blue
@@ -7525,10 +7563,12 @@ class Selection(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'red
                         c'2
-                        \times 2/3 {
+                        \times 2/3
+                        {
                             \abjad-color-music #'red
                             d'8
                             \abjad-color-music #'red
@@ -7537,7 +7577,8 @@ class Selection(collections.abc.Sequence):
                             f'8
                         }
                     }
-                    \times 2/3 {
+                    \times 2/3
+                    {
                         \abjad-color-music #'blue
                         c'4
                         \abjad-color-music #'blue

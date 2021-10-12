@@ -1,6 +1,5 @@
 from . import enumerate
 from . import iterate as iterate_
-from .ordereddict import OrderedDict
 from .parentage import Parentage
 from .pitch.segments import PitchSegment
 from .score import Chord, Leaf, Note
@@ -150,7 +149,8 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
+                        \times 4/3
+                        {
                             d''8
                             c''8
                             b'8
@@ -248,7 +248,8 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
+                        \times 4/3
+                        {
                             d''8
                             c''8
                             b'8
@@ -349,7 +350,8 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
+                        \times 4/3
+                        {
                             d''8
                             c''8
                             b'8
@@ -521,7 +523,8 @@ def iterate_vertical_moments(components, reverse=None):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 4/3 {
+                    \times 4/3
+                    {
                         d''8
                         c''8
                         b'8
@@ -586,7 +589,8 @@ def iterate_vertical_moments(components, reverse=None):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 4/3 {
+                    \times 4/3
+                    {
                         d''8
                         c''8
                         b'8
@@ -636,7 +640,7 @@ def iterate_vertical_moments(components, reverse=None):
     moments = []
     components = list(Selection(components).components())
     components.sort(key=lambda _: _._get_timespan().start_offset)
-    offset_to_components = OrderedDict()
+    offset_to_components = dict()
     for component in components:
         start_offset = component._get_timespan().start_offset
         if start_offset not in offset_to_components:

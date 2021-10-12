@@ -3,17 +3,8 @@ import typing
 
 from . import format as _format
 from . import math
+from . import score as _score
 from .duration import Multiplier
-from .ordereddict import OrderedDict
-from .score import (
-    AfterGraceContainer,
-    BeforeGraceContainer,
-    Component,
-    Score,
-    Staff,
-    StaffGroup,
-    Voice,
-)
 
 
 class Parentage(collections.abc.Sequence):
@@ -79,7 +70,7 @@ class Parentage(collections.abc.Sequence):
     def __init__(self, component=None):
         components = []
         if component is not None:
-            assert isinstance(component, Component), repr(component)
+            assert isinstance(component, _score.Component), repr(component)
             components.extend(component._get_parentage())
         self._component = component
         self._components = tuple(components)
@@ -125,7 +116,7 @@ class Parentage(collections.abc.Sequence):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def component(self) -> Component:
+    def component(self) -> _score.Component:
         r"""
         Gets component.
 
@@ -220,7 +211,7 @@ class Parentage(collections.abc.Sequence):
         return self._component
 
     @property
-    def components(self) -> typing.Tuple[Component]:
+    def components(self) -> typing.Tuple[_score.Component]:
         r"""
         Gets components.
 
@@ -475,7 +466,7 @@ class Parentage(collections.abc.Sequence):
         return self.parent is None
 
     @property
-    def parent(self) -> typing.Optional[Component]:
+    def parent(self) -> typing.Optional[_score.Component]:
         r"""
         Gets parent.
 
@@ -676,7 +667,7 @@ class Parentage(collections.abc.Sequence):
         return products[-1]
 
     @property
-    def root(self) -> Component:
+    def root(self) -> _score.Component:
         r"""
         Gets root.
 
@@ -769,7 +760,7 @@ class Parentage(collections.abc.Sequence):
 
         """
         root = self.get(n=-1)
-        assert isinstance(root, Component), repr(root)
+        assert isinstance(root, _score.Component), repr(root)
         return root
 
     ### PUBLIC METHODS ###
@@ -988,13 +979,13 @@ class Parentage(collections.abc.Sequence):
         """
         n = 0
         if prototype is None:
-            prototype = Component
+            prototype = _score.Component
         for component in self:
             if isinstance(component, prototype):
                 n += 1
         return n
 
-    def get(self, prototype=None, n=0) -> typing.Optional[Component]:
+    def get(self, prototype=None, n=0) -> typing.Optional[_score.Component]:
         r"""
         Gets instance ``n`` of ``prototype`` in parentage.
 
@@ -1244,7 +1235,7 @@ class Parentage(collections.abc.Sequence):
 
         """
         if prototype is None:
-            prototype = (Component,)
+            prototype = (_score.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         if 0 <= n:
@@ -1263,7 +1254,7 @@ class Parentage(collections.abc.Sequence):
                     i -= 1
         return None
 
-    def logical_voice(self) -> OrderedDict:
+    def logical_voice(self) -> dict:
         r"""
         Gets logical voice.
 
@@ -1299,13 +1290,13 @@ class Parentage(collections.abc.Sequence):
             >>> logical_voice = parentage.logical_voice()
             >>> string = abjad.storage(logical_voice)
             >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', "Score-'Score'"),
-                    ('staff', "Staff-'Music_Staff'"),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
+            dict(
+                {
+                    'score': "Score-'Score'",
+                    'staff': "Staff-'Music_Staff'",
+                    'staff group': '',
+                    'voice': "Voice-'Music_Voice'",
+                    }
                 )
 
         ..  container:: example
@@ -1341,71 +1332,71 @@ class Parentage(collections.abc.Sequence):
             >>> lv = abjad.get.parentage(voice).logical_voice()
             >>> string = abjad.storage(lv)
             >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
+            dict(
+                {
+                    'score': '',
+                    'staff': '',
+                    'staff group': '',
+                    'voice': "Voice-'Music_Voice'",
+                    }
                 )
 
             >>> lv = abjad.get.parentage(container_1).logical_voice()
             >>> string = abjad.storage(lv)
             >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
+            dict(
+                {
+                    'score': '',
+                    'staff': '',
+                    'staff group': '',
+                    'voice': "Voice-'Music_Voice'",
+                    }
                 )
 
             >>> lv = abjad.get.parentage(container_1[0]).logical_voice()
             >>> string = abjad.storage(lv)
             >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
+            dict(
+                {
+                    'score': '',
+                    'staff': '',
+                    'staff group': '',
+                    'voice': "Voice-'Music_Voice'",
+                    }
                 )
 
             >>> lv = abjad.get.parentage(container_2).logical_voice()
             >>> string = abjad.storage(lv)
             >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
+            dict(
+                {
+                    'score': '',
+                    'staff': '',
+                    'staff group': '',
+                    'voice': "Voice-'Music_Voice'",
+                    }
                 )
 
             >>> lv = abjad.get.parentage(container_2[0]).logical_voice()
             >>> string = abjad.storage(lv)
             >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
+            dict(
+                {
+                    'score': '',
+                    'staff': '',
+                    'staff group': '',
+                    'voice': "Voice-'Music_Voice'",
+                    }
                 )
 
         """
         keys = ("score", "staff group", "staff", "voice")
-        logical_voice = collections.OrderedDict.fromkeys(keys, "")
+        logical_voice = dict.fromkeys(keys, "")
         for component in self:
-            if isinstance(component, Voice):
+            if isinstance(component, _score.Voice):
                 if not logical_voice["voice"]:
                     logical_voice["voice"] = self._id_string(component)
-            elif isinstance(component, Staff):
+            elif isinstance(component, _score.Staff):
                 if not logical_voice["staff"]:
                     logical_voice["staff"] = self._id_string(component)
                     # explicit staff demands a nested voice:
@@ -1413,13 +1404,13 @@ class Parentage(collections.abc.Sequence):
                     # create implicit voice here with random integer
                     if not logical_voice["voice"]:
                         logical_voice["voice"] = str(id(component))
-            elif isinstance(component, StaffGroup):
+            elif isinstance(component, _score.StaffGroup):
                 if not logical_voice["staff group"]:
                     logical_voice["staff group"] = self._id_string(component)
-            elif isinstance(component, Score):
+            elif isinstance(component, _score.Score):
                 if not logical_voice["score"]:
                     logical_voice["score"] = self._id_string(component)
-        logical_voice_ = OrderedDict(logical_voice)
+        logical_voice_ = dict(logical_voice)
         return logical_voice_
 
     def score_index(self) -> typing.Tuple[typing.Union[int, str], ...]:
@@ -1562,11 +1553,11 @@ class Parentage(collections.abc.Sequence):
         result: typing.List[typing.Union[int, str]] = []
         current = self[0]
         for parent in self[1:]:
-            if isinstance(current, BeforeGraceContainer):
+            if isinstance(current, _score.BeforeGraceContainer):
                 tuple_ = type(self)(current._main_leaf).score_index()
                 list_ = list(tuple_) + ["-G"]
                 result[0:0] = list_
-            elif isinstance(current, AfterGraceContainer):
+            elif isinstance(current, _score.AfterGraceContainer):
                 tuple_ = type(self)(current._main_leaf).score_index()
                 list_ = list(tuple_) + ["+G"]
                 result[0:0] = list_
