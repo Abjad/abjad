@@ -41,7 +41,7 @@ The following functions recreate Malt's results in Abjad:
     ...         label = f'"1 : ({outer} | {inner})"'
     ...         contents = [lone_note, inner_tuplet]
     ...     outer_tuplet = abjad.Tuplet(outer_string, contents)
-    ...     markup = abjad.Markup(rf"\markup {label}", direction=abjad.Up, literal=True)
+    ...     markup = abjad.Markup(rf"\markup {label}", direction=abjad.Up)
     ...     note = abjad.select(outer_tuplet).note(0)
     ...     abjad.attach(markup, note)
     ...     outer_tuplet.hide = outer_tuplet.trivial()

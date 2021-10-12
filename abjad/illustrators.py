@@ -43,15 +43,6 @@ def _illustrate_markup_maker(argument, **keywords):
     return _illustrate_markup(markup)
 
 
-def _illustrate_postscript(postscript):
-    if isinstance(postscript, _markups.Postscript):
-        postscript = str(postscript)
-    assert isinstance(postscript, str)
-    string = "\n".join([r"\markup", r"\postscript", '#"', postscript, '"'])
-    markup = _markups.Markup(string, literal=True)
-    return _illustrate_markup(markup)
-
-
 def _illustrate_metric_modulation(metric_modulation):
     lilypond_file = LilyPondFile()
     markup = metric_modulation._get_markup()
@@ -161,7 +152,7 @@ def _illustrate_pitch_class_segment(
         notes.append(note)
     markup = None
     if isinstance(figure_name, str):
-        figure_name = _markups.Markup(rf"\markup {figure_name}", literal=True)
+        figure_name = _markups.Markup(rf"\markup {figure_name}")
     if figure_name is not None:
         markup = figure_name
     if markup is not None:
@@ -211,7 +202,6 @@ _class_to_method = dict(
         (_markups.Markup, _illustrate_markup),
         (MetricModulation, _illustrate_metric_modulation),
         (_timespan.OffsetCounter, _illustrate_markup_maker),
-        (_markups.Postscript, _illustrate_postscript),
         (PitchRange, _illustrate_pitch_range),
         (PitchClassSet, _illustrate_pitch_class_set),
         (PitchSegment, _illustrate_pitch_segment),
@@ -233,14 +223,14 @@ def attach_markup_struts(lilypond_file):
     """
     rhythmic_staff = lilypond_file[_score.Score][-1]
     first_leaf = get.leaf(rhythmic_staff, 0)
-    markup = _markups.Markup(r"\markup I", direction=enums.Up, literal=True)
+    markup = _markups.Markup(r"\markup I", direction=enums.Up)
     attach(markup, first_leaf)
     overrides.tweak(markup).staff_padding = 11
     overrides.tweak(markup).transparent = "##t"
     duration = get.duration(rhythmic_staff)
     if Duration(6, 4) < duration:
         last_leaf = get.leaf(rhythmic_staff, -1)
-        markup = _markups.Markup(r"\markup I", direction=enums.Up, literal=True)
+        markup = _markups.Markup(r"\markup I", direction=enums.Up)
         attach(markup, last_leaf)
         overrides.tweak(markup).staff_padding = 18
         overrides.tweak(markup).transparent = "##t"
@@ -339,9 +329,9 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         REGRESSION. Function preserves markup:
 
         >>> note = abjad.Chord("<c bf'>4")
-        >>> markup = abjad.Markup(r"\markup loco", direction=abjad.Up, literal=True)
+        >>> markup = abjad.Markup(r"\markup loco", direction=abjad.Up)
         >>> abjad.attach(markup, chord)
-        >>> markup = abjad.Markup(r"\markup ped.", direction=abjad.Down, literal=True)
+        >>> markup = abjad.Markup(r"\markup ped.", direction=abjad.Down)
         >>> abjad.attach(markup, chord)
         >>> score = abjad.illustrators.make_piano_score([chord])
         >>> abjad.show(score) # doctest: +SKIP

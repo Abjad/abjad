@@ -124,8 +124,7 @@ class RehearsalMark:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -212,7 +211,7 @@ class RehearsalMark:
 
         ..  container:: example
 
-            >>> markup = abjad.Markup(r'\markup \bold { \italic { A } }', literal=True)
+            >>> markup = abjad.Markup(r'\markup \bold { \italic { A } }')
             >>> mark = abjad.RehearsalMark(markup=markup)
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.attach(mark, staff[0])

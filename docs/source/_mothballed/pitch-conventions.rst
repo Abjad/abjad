@@ -25,7 +25,7 @@ Abjad numbers pitches like this:
     ...         bass_staff.append(note)
     ...     number = note.written_pitch.number
     ...     string = rf"\markup {number}"
-    ...     markup = abjad.Markup(string, direction=abjad.Down, literal=True)
+    ...     markup = abjad.Markup(string, direction=abjad.Down)
     ...     abjad.attach(markup, bass_staff[-1])
     ...
     >>> clef = abjad.Clef("bass")
@@ -80,7 +80,7 @@ Abjad numbers diatonic pitches like this:
     ...         bass_staff.append(note)
     ...     number = note.written_pitch._get_diatonic_pitch_number()
     ...     string = rf"\markup {number}"
-    ...     markup = abjad.Markup(string, direction=abjad.Down, literal=True)
+    ...     markup = abjad.Markup(string, direction=abjad.Down)
     ...     abjad.attach(markup, bass_staff[-1])
     ...
     >>> clef = abjad.Clef("bass")

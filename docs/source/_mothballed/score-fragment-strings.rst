@@ -160,7 +160,7 @@ Let's see what a few of these look like. Here are the first ten violin 1 descent
     >>> descents = voice_to_descents["Violin_1"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
-    ...     markup = abjad.Markup(string, direction=abjad.Up, literal=True)
+    ...     markup = abjad.Markup(string, direction=abjad.Up)
     ...     abjad.attach(markup, descent[0])
     ...
 
@@ -178,7 +178,7 @@ Here are the first ten violin 2 descents:
     >>> descents = voice_to_descents["Violin_2"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
-    ...     markup = abjad.Markup(string, direction=abjad.Up, literal=True)
+    ...     markup = abjad.Markup(string, direction=abjad.Up)
     ...     abjad.attach(markup, descent[0])
     ...
 
@@ -197,7 +197,7 @@ too:
     >>> descents = voice_to_descents["Viola"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
-    ...     markup = abjad.Markup(string, direction=abjad.Up, literal=True)
+    ...     markup = abjad.Markup(string, direction=abjad.Up)
     ...     abjad.attach(markup, descent[0])
     ...
 
@@ -464,11 +464,11 @@ We define more functions:
     ...             abjad.attach(articulation, chord)
     ...     string = r'''\markup \concat { \musicglyph "scripts.downbow"'''
     ...     string += r''' \hspace #1 \musicglyph "scripts.upbow" }'''
-    ...     markup = abjad.Markup(string, literal=True)
+    ...     markup = abjad.Markup(string)
     ...     abjad.attach(markup, score["Violin_1_Voice"][65 - 1][0])
-    ...     markup = abjad.Markup(string, literal=True)
+    ...     markup = abjad.Markup(string)
     ...     abjad.attach(markup, score["Violin_2_Voice"][76 - 1][0])
-    ...     markup = abjad.Markup(string, literal=True)
+    ...     markup = abjad.Markup(string)
     ...     abjad.attach(markup, score["Viola_Voice"][87 - 1][0])
 
     >>> def handle_dynamic_commands(score, commands):
@@ -491,7 +491,7 @@ We define more functions:
     ...         voice = score[voice_name]
     ...         leaf = voice[measure_index][leaf_index]
     ...         string = r"\markup " + string
-    ...         markup = abjad.Markup(string, direction=direction, literal=True)
+    ...         markup = abjad.Markup(string, direction=direction)
     ...         abjad.attach(markup, leaf)
 
     >>> def attach_rehearsal_marks(score, measure_indices):

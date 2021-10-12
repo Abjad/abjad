@@ -16,7 +16,10 @@ from ply.yacc import (  # type: ignore
     format_stack_entry,
 )
 
+from .. import bundle as _bundle
 from .. import exceptions
+from .. import format as _format
+from .. import fsv as _fsv
 from .. import markups as _markups
 from ..bind import attach
 from ..duration import Duration, Multiplier
@@ -107,6 +110,94 @@ class LilyPondDuration:
 current_module["breve"] = LilyPondDuration(Duration(2, 1), None)
 current_module["longa"] = LilyPondDuration(Duration(4, 1), None)
 current_module["maxima"] = LilyPondDuration(Duration(8, 1), None)
+
+
+# TODO: dataclass
+class MarkupCommand:
+    """
+    LilyPond markup command.
+    """
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("arguments", "name")
+
+    ### INITIALIZER ###
+
+    def __init__(self, name=None, *arguments):
+        assert isinstance(name, str), repr(name)
+        self.name = name
+        self.arguments = tuple(arguments)
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, argument):
+        """
+        Is true when ``argument`` is a markup command with name and arguments equal to
+        those of this markup command.
+        """
+        # defined explicitly because of initializer *arguments
+        if isinstance(argument, type(self)):
+            if self.name == argument.name:
+                if self.arguments == argument.arguments:
+                    return True
+        return False
+
+    def __hash__(self):
+        """
+        Hashes markup command.
+        """
+        return hash(self.__class__.__name__ + str(self))
+
+    def __repr__(self):
+        """
+        Gets markup command interpreter representation.
+        """
+        return _format.get_repr(self)
+
+    def __str__(self):
+        """
+        Gets string representation of markup command.
+        """
+        return self._get_lilypond_format()
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_pieces(self):
+        def recurse(iterable):
+            result = []
+            for item in iterable:
+                if isinstance(item, (list, tuple)):
+                    result.append("{")
+                    result.extend(recurse(item))
+                    result.append("}")
+                elif hasattr(item, "_get_format_pieces"):
+                    result.extend(item._get_format_pieces())
+                elif isinstance(item, str) and "\n" in item:
+                    result.append('#"')
+                    result.extend(item.splitlines())
+                    result.append('"')
+                else:
+                    formatted = _fsv.format_scheme_value(item)
+                    if isinstance(item, str):
+                        result.append(formatted)
+                    else:
+                        result.append(f"#{formatted}")
+            return [f"{indent}{item}" for item in result]
+
+        indent = _bundle.LilyPondFormatBundle.indent
+        parts = [rf"\{self.name}"]
+        parts.extend(recurse(self.arguments))
+        return parts
+
+    def _get_format_specification(self):
+        return _format.FormatSpecification(
+            storage_format_args_values=(self.name,) + self.arguments,
+            storage_format_keyword_names=[],
+        )
+
+    def _get_lilypond_format(self):
+        return "\n".join(self._get_format_pieces())
 
 
 class Music:
@@ -2901,14 +2992,14 @@ class LilyPondParser(Parser):
         return {
             "boolean?": lambda x: isinstance(x, bool),
             "cheap-list?": lambda x: isinstance(x, (list, tuple)),
-            "cheap-markup?": lambda x: isinstance(x, _markups.MarkupCommand),
+            "cheap-markup?": lambda x: isinstance(x, MarkupCommand),
             "fraction?": lambda x: isinstance(x, LilyPondFraction),
             "integer?": lambda x: isinstance(x, int),
             "list?": lambda x: isinstance(x, (list, tuple)),
             "ly:duration?": lambda x: isinstance(x, LilyPondDuration),
             "ly:music?": lambda x: isinstance(x, Component),
             "ly:pitch?": lambda x: isinstance(x, NamedPitch),
-            "markup?": lambda x: isinstance(x, _markups.MarkupCommand),
+            "markup?": lambda x: isinstance(x, MarkupCommand),
             "number-list?": lambda x: isinstance(x, (list, tuple))
             and all(isinstance(y, (int, float)) for y in x),
             "number?": lambda x: isinstance(x, (int, float)),
@@ -3678,8 +3769,15 @@ class LilyPondParser(Parser):
 
             >>> parser = abjad.parser.LilyPondParser()
             >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
-            >>> parser(string)
-            Markup(contents=['\\markup { \\my-custom-markup-function\n    {\n        foo\n        bar\n        baz\n    } }'], literal=True)
+            >>> markup = parser(string)
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
+            \markup { \my-custom-markup-function
+                {
+                    foo
+                    bar
+                    baz
+                } }
 
         ``signature`` should be a sequence of zero or more type-predicate names, as
         understood by LilyPond.  Consult LilyPond's documentation for a complete list of
@@ -4758,12 +4856,12 @@ class LilyPondSyntacticalDefinition:
     def p_full_markup__MARKUP__markup_top(self, p):
         "full_markup : MARKUP markup_top"
         # assert isinstance(p[2], list), repr(p[2])
-        # item = (str, _markups.MarkupCommand)
+        # item = (str, MarkupCommand)
         # assert all(isinstance(_, item) for _ in p[2]), repr(p[2])
         # p[0] = _markups.Markup(p[2])
         string = " ".join([str(_) for _ in p[2]])
         string = rf"\markup {{ {string} }}"
-        p[0] = _markups.Markup(string, literal=True)
+        p[0] = _markups.Markup(string)
         self.client._lexer.pop_state()
         self.client._relex_lookahead()
 
@@ -5255,7 +5353,7 @@ class LilyPondSyntacticalDefinition:
     def p_gen_text_def__simple_string(self, p):
         "gen_text_def : simple_string"
         # assert isinstance(p[1], str), repr(p[1])
-        p[0] = _markups.Markup(rf"\markup {{ {p[1]} }}", literal=True)
+        p[0] = _markups.Markup(rf"\markup {{ {p[1]} }}")
 
     ### grouped_music_list ###
 
@@ -5418,7 +5516,7 @@ class LilyPondSyntacticalDefinition:
             command = item[0][1:]
             arguments = item[1:]
             arguments.append(markup)
-            markup = _markups.MarkupCommand(command, *arguments)
+            markup = MarkupCommand(command, *arguments)
         p[0] = markup
 
     def p_markup__simple_markup(self, p):
@@ -5469,7 +5567,7 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "markup_command_list : MARKUP_LIST_FUNCTION markup_command_list_arguments"
-        p[0] = _markups.MarkupCommand(p[1][1:], *p[2])
+        p[0] = MarkupCommand(p[1][1:], *p[2])
 
     ### markup_command_list_arguments ###
 
@@ -5492,7 +5590,7 @@ class LilyPondSyntacticalDefinition:
             command = item[0][1:]
             arguments = item[1:]
             arguments.append(markup)
-            markup = _markups.MarkupCommand(command, *arguments)
+            markup = MarkupCommand(command, *arguments)
         p[0] = markup
 
     ### markup_head_1_item ###
@@ -5562,7 +5660,7 @@ class LilyPondSyntacticalDefinition:
             command = item[0][1:]
             arguments = item[1:]
             arguments.append(markup)
-            markup = _markups.MarkupCommand(command, *arguments)
+            markup = MarkupCommand(command, *arguments)
         p[0] = markup
 
     def p_markup_top__markup_list(self, p):
@@ -6302,7 +6400,7 @@ class LilyPondSyntacticalDefinition:
         "simple_markup : MARKUP_FUNCTION markup_command_basic_arguments"
         command = p[1][1:]
         arguments = p[2]
-        p[0] = _markups.MarkupCommand(command, *arguments)
+        p[0] = MarkupCommand(command, *arguments)
 
     def p_simple_markup__MARKUP_IDENTIFIER(self, p):
         "simple_markup : MARKUP_IDENTIFIER"

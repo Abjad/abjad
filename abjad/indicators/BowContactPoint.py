@@ -156,7 +156,7 @@ class BowContactPoint:
             contact_point = self.contact_point
         fraction = fr"\fraction {contact_point.numerator} {contact_point.denominator}"
         string = rf"\markup \center-align \vcenter {fraction}"
-        markup = Markup(string, literal=True)
+        markup = Markup(string)
         return markup
 
     @property

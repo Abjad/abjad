@@ -84,7 +84,7 @@ Define helper functions:
     ...     else:
     ...         cent_string = f"+{remainder}"
     ...     string = rf"\markup {cent_string}"
-    ...     markup = abjad.Markup(string, direction=direction, literal=True)
+    ...     markup = abjad.Markup(string, direction=direction)
     ...     abjad.tweak(markup).parent_alignment_X = 0 
     ...     abjad.tweak(markup).self_alignment_X = 0.25 
     ...     if pitch <= -8:
@@ -115,7 +115,7 @@ Define helper functions:
     ...             staff.append(note)
     ...     for measure_number in (1, 11, 21, 31):
     ...         note = abjad.select(staff_1).note(measure_number - 1)
-    ...         markup = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
+    ...         markup = abjad.Markup(r"\markup A", direction=abjad.Up)
     ...         abjad.tweak(markup).staff_padding = 8
     ...         abjad.tweak(markup).transparent = True
     ...         abjad.attach(markup, note)

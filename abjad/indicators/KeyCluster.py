@@ -68,8 +68,7 @@ class KeyCluster:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -104,11 +103,7 @@ class KeyCluster:
                 string = r"\center-align \flat"
             else:
                 string = r"\center-align \natural"
-            markup = Markup(
-                rf"\markup {string}",
-                direction=self.markup_direction,
-                literal=True,
-            )
+            markup = Markup(rf"\markup {string}", direction=self.markup_direction)
             markup_format_pieces = markup._get_format_pieces()
             bundle.after.markup.extend(markup_format_pieces)
         return bundle

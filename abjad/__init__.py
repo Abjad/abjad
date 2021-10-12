@@ -184,7 +184,7 @@ from .lyproxy import (
     LilyPondGrobInterface,
 )
 from .makers import LeafMaker, NoteMaker
-from .markups import Markup, Postscript, PostscriptOperator
+from .markups import Markup
 from .math import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
 from .metricmodulation import MetricModulation
@@ -529,8 +529,6 @@ __all__ = [
     "PitchSet",
     "PitchTyping",
     "PitchVector",
-    "Postscript",
-    "PostscriptOperator",
     "ProgressIndicator",
     "Prototype",
     "Ratio",

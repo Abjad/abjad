@@ -341,8 +341,7 @@ class Wrapper:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -1082,13 +1081,9 @@ def detach(argument, target=None, by_id=False):
 
         Consider the three document-specifier markups below:
 
-        >>> markup_1 = abjad.Markup(r'\markup tutti', direction=abjad.Up, literal=True)
-        >>> markup_2 = abjad.Markup(
-        ...     r'\markup { with the others }', direction=abjad.Up, literal=True,
-        ... )
-        >>> markup_3 = abjad.Markup(
-        ...     r'\markup { with the others }', direction=abjad.Up, literal=True,
-        ... )
+        >>> markup_1 = abjad.Markup(r'\markup tutti', direction=abjad.Up)
+        >>> markup_2 = abjad.Markup(r'\markup { with the others }', direction=abjad.Up)
+        >>> markup_3 = abjad.Markup(r'\markup { with the others }', direction=abjad.Up)
 
         Markups two and three compare equal:
 
@@ -1136,8 +1131,11 @@ def detach(argument, target=None, by_id=False):
         Passing in one of the markup objects directory doesn't work. This is
         because detach tests for equality to input argument:
 
-        >>> abjad.detach(markup_2, staff[0])
-        (Markup(contents=['\\markup { with the others }'], direction=Up, literal=True), Markup(contents=['\\markup { with the others }'], direction=Up, literal=True))
+        >>> markups = abjad.detach(markup_2, staff[0])
+        >>> for markup in markups:
+        ...     markup
+        Markup('\\markup { with the others }', direction=Up)
+        Markup('\\markup { with the others }', direction=Up)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1187,12 +1185,13 @@ def detach(argument, target=None, by_id=False):
             f'4
         }
 
-        This time we set ``by_id`` to true. Now detach checks the exact id of
-        its input argument (rather than just testing for equality). This gives
-        us what we want:
+        This time we set ``by_id`` to true. Now detach checks the exact id of its input
+        argument (rather than just testing for equality). This gives us what we want:
 
-        >>> abjad.detach(markup_2, staff[0], by_id=True)
-        (Markup(contents=['\\markup { with the others }'], direction=Up, literal=True),)
+        >>> markups = abjad.detach(markup_2, staff[0], by_id=True)
+        >>> for markup in markups:
+        ...     markup
+        Markup('\\markup { with the others }', direction=Up)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
