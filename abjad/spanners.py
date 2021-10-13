@@ -1240,7 +1240,7 @@ def glissando(
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1280,7 +1280,7 @@ def glissando(
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1321,7 +1321,7 @@ def glissando(
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1959,7 +1959,7 @@ def text_spanner(
         ... )
         >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
         >>> abjad.override(staff[0]).TextSpanner.staff_padding = 4
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1997,7 +1997,7 @@ def text_spanner(
         ... )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).TextSpanner.staff_padding = 4
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -2038,7 +2038,7 @@ def text_spanner(
         ... )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
         >>> abjad.override(staff).TextSpanner.staff_padding = 4
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::

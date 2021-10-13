@@ -218,7 +218,7 @@ class Timespan:
 
     __documentation_section__ = "Timespans"
 
-    __slots__ = ("_start_offset", "_stop_offset")
+    __slots__ = ("_annotation", "_start_offset", "_stop_offset")
 
     ### INITIALIZER ###
 
@@ -226,6 +226,7 @@ class Timespan:
         self,
         start_offset=None,
         stop_offset=None,
+        annotation=None,
     ) -> None:
         if isinstance(start_offset, type(self)):
             raise Exception("can not initialize from timespan.")
@@ -240,6 +241,7 @@ class Timespan:
         assert start_offset <= stop_offset, repr((start_offset, stop_offset))
         self._start_offset = start_offset
         self._stop_offset = stop_offset
+        self._annotation = annotation
 
     ### SPECIAL METHODS ###
 
@@ -965,6 +967,50 @@ class Timespan:
         return Offset(offset)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def annotation(self) -> object:
+        """
+        Gets and sets annotated timespan annotation.
+
+        ..  container:: example
+
+            Gets annotation:
+
+            >>> annotated_timespan = abjad.Timespan(
+            ...     annotation=["a", "b", "c", "foo"],
+            ...     start_offset=(1, 4),
+            ...     stop_offset=(7, 8),
+            ... )
+            >>> annotated_timespan.annotation
+            ['a', 'b', 'c', 'foo']
+
+        ..  container:: example
+
+            Annotated timespans maintain their annotations duration mutation:
+
+            >>> left, right = annotated_timespan.split_at_offset((1, 2))
+            >>> left.annotation.append("foo")
+            >>> string = abjad.storage(right)
+            >>> print(string)
+            abjad.Timespan(
+                start_offset=abjad.Offset((1, 2)),
+                stop_offset=abjad.Offset((7, 8)),
+                annotation=['a', 'b', 'c', 'foo', 'foo'],
+                )
+
+        ..  container:: example
+
+            Sets annotation:
+
+            >>> annotated_timespan.annotation = "baz"
+
+        """
+        return self._annotation
+
+    @annotation.setter
+    def annotation(self, argument):
+        self._annotation = argument
 
     @property
     def axis(self) -> Offset:
@@ -2341,91 +2387,6 @@ class Timespan:
         )
 
 
-class AnnotatedTimespan(Timespan):
-    """
-    Annotated timespan.
-
-    ..  container:: example
-
-        >>> annotated_timespan = abjad.AnnotatedTimespan(
-        ...     annotation=['a', 'b', 'c'],
-        ...     start_offset=(1, 4),
-        ...     stop_offset=(7, 8),
-        ... )
-        >>> string = abjad.storage(annotated_timespan)
-        >>> print(string)
-        abjad.AnnotatedTimespan(
-            start_offset=abjad.Offset((1, 4)),
-            stop_offset=abjad.Offset((7, 8)),
-            annotation=['a', 'b', 'c'],
-            )
-
-    Annotated timespans maintain their annotations duration mutation:
-
-    ..  container:: example
-
-        >>> left, right = annotated_timespan.split_at_offset((1, 2))
-        >>> left.annotation.append('foo')
-        >>> string = abjad.storage(right)
-        >>> print(string)
-        abjad.AnnotatedTimespan(
-            start_offset=abjad.Offset((1, 2)),
-            stop_offset=abjad.Offset((7, 8)),
-            annotation=['a', 'b', 'c', 'foo'],
-            )
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Timespans"
-
-    __slots__ = ("_annotation",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        start_offset=None,
-        stop_offset=None,
-        annotation=None,
-    ) -> None:
-        Timespan.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
-        self._annotation = annotation
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def annotation(self) -> object:
-        """
-        Gets and sets annotated timespan annotation.
-
-        ..  container:: example
-
-            Gets annotation:
-
-            >>> annotated_timespan = abjad.AnnotatedTimespan(
-            ...     annotation=['a', 'b', 'c', 'foo'],
-            ...     start_offset=(1, 4),
-            ...     stop_offset=(7, 8),
-            ... )
-            >>> annotated_timespan.annotation
-            ['a', 'b', 'c', 'foo']
-
-        ..  container:: example
-
-            Sets annotation:
-
-            >>> annotated_timespan.annotation = 'baz'
-
-        """
-        return self._annotation
-
-    @annotation.setter
-    def annotation(self, argument):
-        self._annotation = argument
-
-
 class TimespanList(TypedList):
     """
     Timespan list.
@@ -2726,9 +2687,9 @@ class TimespanList(TypedList):
             timespan sorting:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.AnnotatedTimespan(0, (1, 4), annotation="voice 1"),
-            ...     abjad.AnnotatedTimespan(0, (1, 4), annotation="voice 2"),
-            ...     abjad.AnnotatedTimespan(0, (1, 4), annotation="voice 10"),
+            ...     abjad.Timespan(0, (1, 4), annotation="voice 1"),
+            ...     abjad.Timespan(0, (1, 4), annotation="voice 2"),
+            ...     abjad.Timespan(0, (1, 4), annotation="voice 10"),
             ... ])
 
             >>> def to_digit(string):

@@ -143,7 +143,7 @@ def color_leaves(argument, color="#red", *, deactivate=False, tag=None) -> None:
             >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
             >>> abjad.beam(staff[:])
             >>> abjad.label.color_leaves(staff, "#red")
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

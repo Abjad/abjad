@@ -203,7 +203,7 @@ class Glissando:
             ...     abjad.override(note).NoteHead.transparent = True
             ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
             ...
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -241,7 +241,7 @@ class Glissando:
             ...     abjad.override(note).NoteHead.transparent = True
             ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
             ...
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

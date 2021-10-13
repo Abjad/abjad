@@ -446,16 +446,22 @@ def selection(selection, time_signatures=None, *, includes=None):
             attach(time_signature, _selection.Selection(part).leaf(0))
     staff = _score.Staff(selection, name="Staff")
     score = _score.Score([staff], name="Score")
-    preamble = r"""\include "abjad.ily"
-
-\layout {
-    \context {
+    items = []
+    items.append(r'\include "abjad.ily"')
+    for include in includes or []:
+        items.append(rf'\include "{include}"')
+    string = r"""\layout
+{
+    \context
+    {
         \Score
         proportionalNotationDuration = #(ly:make-moment 1 24)
     }
 }
 """
-    lilypond_file = LilyPondFile([preamble, score], includes=includes)
+    items.append(string)
+    items.append(score)
+    lilypond_file = LilyPondFile(items)
     return lilypond_file
 
 
@@ -481,9 +487,9 @@ def selection_to_score_markup_string(selection):
     scheme = "#tuplet-number::calc-fraction-text"
     overrides.override(staff).TupletNumber.text = scheme
     overrides.setting(staff).tupletFullLength = True
-    layout_block = Block(name="layout")
-    layout_block.indent = 0
-    layout_block.ragged_right = "##t"
+    layout_block = Block("layout")
+    layout_block.items.append("indent = 0")
+    layout_block.items.append("ragged-right = ##t")
     score = _score.Score([staff], name="Score")
     overrides.override(score).SpacingSpanner.spacing_increment = 0.5
     overrides.setting(score).proportionalNotationDuration = False

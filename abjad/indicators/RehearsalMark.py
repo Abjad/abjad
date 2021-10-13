@@ -257,15 +257,19 @@ class RehearsalMark:
             >>> mark = abjad.RehearsalMark(markup='A')
             >>> abjad.tweak(mark).color = "#blue"
             >>> abjad.attach(mark, note)
-            >>> abjad.show(note) # doctest: +SKIP
+            >>> staff = abjad.Staff([note])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(note)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \tweak color #blue
-                \mark A
-                c'4
+                \new Staff
+                {
+                    \tweak color #blue
+                    \mark A
+                    c'4
+                }
 
         """
         return self._tweaks

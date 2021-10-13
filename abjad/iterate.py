@@ -24,7 +24,7 @@ def components(argument, prototype=None, *, exclude=None, grace=None, reverse=No
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -246,7 +246,7 @@ def leaves(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -485,7 +485,7 @@ def logical_ties(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -960,7 +960,7 @@ def timeline(argument, prototype=None, *, exclude=None, reverse=None):
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::

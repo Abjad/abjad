@@ -17,10 +17,10 @@ import uqbar
 
 import abjad
 
+from . import lilypondfile as _lilypondfile
 from .configuration import Configuration
 from .contextmanagers import Timer
 from .illustrators import illustrate
-from .lilypondfile import Block
 from .parentage import Parentage
 from .score import Container, Leaf, Tuplet
 
@@ -32,12 +32,8 @@ class AbjadGrapher(uqbar.graphs.Grapher):
     Abjad grapher.
     """
 
-    ### INTIALIZER ###
-
     def __init__(self, graphable, format_="pdf", layout="dot"):
         uqbar.graphs.Grapher.__init__(self, graphable, format_=format_, layout=layout)
-
-    ### PUBLIC METHODS ###
 
     def get_output_directory(self) -> pathlib.Path:
         return pathlib.Path(configuration["abjad_output_directory"])
@@ -50,8 +46,6 @@ class LilyPondIO:
     """
     LilyPond IO.
     """
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -75,8 +69,6 @@ class LilyPondIO:
         self.should_open = bool(should_open)
         self.should_persist_log = bool(should_persist_log)
         self.string = string
-
-    ### SPECIAL METHODS ###
 
     def __call__(self):
         with Timer() as format_timer:
@@ -107,8 +99,6 @@ class LilyPondIO:
             if self.should_open:
                 self.open_output_path(output_path)
         return openable_paths, format_time, render_time, success, log
-
-    ### PUBLIC METHODS ###
 
     def copy_stylesheets(self, render_directory):
         for directory in self.get_stylesheets_directories():
@@ -153,8 +143,8 @@ class LilyPondIO:
         return f"{timestamp}-{checksum}"
 
     def get_string(self) -> str:
-        if hasattr(self.illustrable, "__illustrate__"):
-            lilypond_file = self.illustrable.__illustrate__(**self.keywords)
+        if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
+            lilypond_file = self.illustrable
         else:
             lilypond_file = illustrate(self.illustrable, **self.keywords)
         return lilypond_file._get_lilypond_format()
@@ -210,8 +200,6 @@ class Illustrator(LilyPondIO):
     Illustrator.
     """
 
-    ### PUBLIC METHODS ###
-
     def get_openable_paths(self, output_paths) -> typing.Generator:
         for path in output_paths:
             if path.suffix == ".pdf":
@@ -223,8 +211,6 @@ class Player(LilyPondIO):
     Player.
     """
 
-    ### PUBLIC METHODS ###
-
     def get_openable_paths(self, output_paths) -> typing.Generator:
         for path in output_paths:
             if path.suffix in (".mid", ".midi"):
@@ -232,13 +218,10 @@ class Player(LilyPondIO):
 
     def get_string(self) -> str:
         lilypond_file = illustrate(self.illustrable, **self.keywords)
-        assert hasattr(lilypond_file, "score_block")
-        block = Block(name="midi")
-        lilypond_file.score_block.items.append(block)
+        assert "score" in lilypond_file, repr(lilypond_file)
+        block = _lilypondfile.Block("midi")
+        lilypond_file["score"].items.append(block)
         return lilypond_file._get_lilypond_format()
-
-
-### PRIVATE FUCTIONS ###
 
 
 def _as_graphviz_node(component):
@@ -457,9 +440,6 @@ def _read_from_pipe(pipe):
         line = line.decode(errors="ignore")
         lines.append(line)
     return "\n".join(lines)
-
-
-### FUNCTIONS ###
 
 
 def count_function_calls(

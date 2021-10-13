@@ -16,14 +16,18 @@ class Arpeggio:
         >>> chord = abjad.Chord("<c' e' g' c''>4")
         >>> arpeggio = abjad.Arpeggio()
         >>> abjad.attach(arpeggio, chord)
-        >>> abjad.show(chord) # doctest: +SKIP
+        >>> staff = abjad.Staff([chord])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(chord)
+            >>> string = abjad.lilypond(staff)
             >>> print(string)
-            <c' e' g' c''>4
-            \arpeggio
+            \new Staff
+            {
+                <c' e' g' c''>4
+                \arpeggio
+            }
 
     ..  container:: example
 
@@ -32,15 +36,19 @@ class Arpeggio:
         >>> chord = abjad.Chord("<c' e' g' c''>4")
         >>> arpeggio = abjad.Arpeggio(direction=abjad.Down)
         >>> abjad.attach(arpeggio, chord)
-        >>> abjad.show(chord) # doctest: +SKIP
+        >>> staff = abjad.Staff([chord])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(chord)
+            >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \arpeggioArrowDown
-            <c' e' g' c''>4
-            \arpeggio
+            \new Staff
+            {
+                \arpeggioArrowDown
+                <c' e' g' c''>4
+                \arpeggio
+            }
 
     """
 
@@ -114,15 +122,19 @@ class Arpeggio:
             >>> arpeggio = abjad.Arpeggio()
             >>> abjad.tweak(arpeggio).color = "#blue"
             >>> abjad.attach(arpeggio, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                <c' e' g' c''>4
-                - \tweak color #blue
-                \arpeggio
+                \new Staff
+                {
+                    <c' e' g' c''>4
+                    - \tweak color #blue
+                    \arpeggio
+                }
 
         """
         return self._tweaks

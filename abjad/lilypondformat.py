@@ -1,5 +1,6 @@
 from . import bundle as _bundle
 from . import enums as _enums
+from . import format as _format
 from . import new as _new
 from . import overrides as _overrides
 from . import tag as _tag
@@ -211,9 +212,9 @@ def _report_leaf_format_contributions(leaf):
     packet = leaf._format_opening_slot(bundle)
     report += leaf._process_contribution_packet(packet)
     report += 'slot "contents slot":\n'
-    report += _bundle.LilyPondFormatBundle.indent + "leaf body:\n"
+    report += _format.INDENT + "leaf body:\n"
     string = leaf._format_contents_slot(bundle)[0][1][0]
-    report += (2 * _bundle.LilyPondFormatBundle.indent) + string + "\n"
+    report += (2 * _format.INDENT) + string + "\n"
     report += 'slot "closing":\n'
     packet = leaf._format_closing_slot(bundle)
     report += leaf._process_contribution_packet(packet)
@@ -257,7 +258,7 @@ def left_shift_tags(text, realign=None) -> str:
         string_ = string[4:]
         tag_start = string_.find("%!")
         string_ = list(string_)
-        string_[tag_start:tag_start] = _bundle.LilyPondFormatBundle.indent
+        string_[tag_start:tag_start] = _format.INDENT
         string_ = "".join(string_)
         strings_.append(string_)
     text = "\n".join(strings_)

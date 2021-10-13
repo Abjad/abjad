@@ -16,7 +16,6 @@ from ply.yacc import (  # type: ignore
     format_stack_entry,
 )
 
-from .. import bundle as _bundle
 from .. import exceptions
 from .. import format as _format
 from .. import fsv as _fsv
@@ -185,7 +184,7 @@ class MarkupCommand:
                         result.append(f"#{formatted}")
             return [f"{indent}{item}" for item in result]
 
-        indent = _bundle.LilyPondFormatBundle.indent
+        indent = _format.INDENT
         parts = [rf"\{self.name}"]
         parts.extend(recurse(self.arguments))
         return parts

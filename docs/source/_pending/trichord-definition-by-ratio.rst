@@ -132,12 +132,14 @@ Define helper functions:
     ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
     ...     abjad.override(score).TimeSignature.stencil = False
     ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 5)"
-    ...     items= [score, abjad.Block(name="layout"), abjad.Block(name="paper")]
-    ...     lilypond_file = abjad.LilyPondFile(items, global_staff_size=16)
-    ...     lilypond_file.layout_block.indent = "#0"
+    ...     items = [score, abjad.Block(name="layout"), abjad.Block(name="paper")]
+    ...     string = "#(set-global-staff-size 16)"
+    ...     items.insert(0, string)
+    ...     lilypond_file = abjad.LilyPondFile(items)
+    ...     lilypond_file["layout"].items.append("indent = #0")
     ...     space = "system-system-spacing = #'((basic-distance . 13)"
     ...     space += " (minimum-distance . 13) (padding . 4))"
-    ...     lilypond_file.paper_block.items.append(space)
+    ...     lilypond_file["paper"].items.append(space)
     ...     return lilypond_file
     ...
 

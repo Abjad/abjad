@@ -8,6 +8,8 @@ import typing
 import quicktions
 import uqbar
 
+INDENT = 4 * " "
+
 
 @dataclasses.dataclass
 class FormatSpecification:

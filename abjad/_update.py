@@ -1,16 +1,16 @@
 """
 Updates start offsets, stop offsets and indicators everywhere in score.
 
-..  note:: This is probably the most important part of Abjad to optimize.
-    Use the profiler to figure out how many unnecessary updates are
-    happening. Then reimplement. As a hint, the update manager implements
-    a weird version of the "observer pattern." It may make sense to revisit
-    a textbook example of the observer pattern and review the
-    implementation of the update manager.
+..  note:: This is probably the most important part of Abjad to optimize. Use the
+    profiler to figure out how many unnecessary updates are happening. Then reimplement.
+    As a hint, the update manager implements a weird version of the "observer pattern."
+    It may make sense to revisit a textbook example of the observer pattern and review
+    the implementation of the update manager.
 
 """
 from . import iterate as iterate_
 from . import math
+from . import timespan as _timespan
 from .duration import Duration, Multiplier, Offset
 from .indicators.MetronomeMark import MetronomeMark
 from .indicators.TimeSignature import TimeSignature
@@ -18,7 +18,6 @@ from .obgc import OnBeatGraceContainer
 from .parentage import Parentage
 from .score import AfterGraceContainer, BeforeGraceContainer
 from .sequence import Sequence
-from .timespan import AnnotatedTimespan, TimespanList
 
 
 def _get_after_grace_leaf_offsets(leaf):
@@ -176,7 +175,7 @@ def _make_metronome_mark_map(root):
     if pairs[0][0] != 0:
         return
     score_stop_offset = max(all_stop_offsets)
-    timespans = TimespanList()
+    timespans = _timespan.TimespanList()
     clocktime_start_offset = Offset(0)
     for left, right in Sequence(pairs).nwise(wrapped=True):
         metronome_mark = left[-1]
@@ -189,7 +188,7 @@ def _make_metronome_mark_map(root):
         multiplier = Multiplier(60, metronome_mark.units_per_minute)
         clocktime_duration = duration / metronome_mark.reference_duration
         clocktime_duration *= multiplier
-        timespan = AnnotatedTimespan(
+        timespan = _timespan.Timespan(
             start_offset=start_offset,
             stop_offset=stop_offset,
             annotation=(clocktime_start_offset, clocktime_duration),

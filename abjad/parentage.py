@@ -134,7 +134,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -229,7 +229,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -389,7 +389,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -484,7 +484,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -583,7 +583,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[1][2])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -685,7 +685,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -902,7 +902,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1159,7 +1159,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1475,7 +1475,7 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

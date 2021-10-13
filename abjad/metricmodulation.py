@@ -25,7 +25,7 @@ class MetricModulation:
         ...     )
 
         >>> lilypond_file = abjad.LilyPondFile(
-        ...     [metric_modulation], includes=["abjad.ily"],
+        ...     [r'\include "abjad.ily"', metric_modulation]
         ... )
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -45,7 +45,7 @@ class MetricModulation:
         ...     )
 
         >>> lilypond_file = abjad.LilyPondFile(
-        ...     [metric_modulation], includes=["abjad.ily"],
+        ...     [r'\include "abjad.ily"', metric_modulation]
         ... )
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -61,7 +61,7 @@ class MetricModulation:
         ...     )
 
         >>> lilypond_file = abjad.LilyPondFile(
-        ...     [metric_modulation], includes=["abjad.ily"],
+        ...     [r'\include "abjad.ily"', metric_modulation]
         ... )
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -81,7 +81,7 @@ class MetricModulation:
         ...     )
 
         >>> lilypond_file = abjad.LilyPondFile(
-        ...     [metric_modulation], includes=["abjad.ily"],
+        ...     [r'\include "abjad.ily"', metric_modulation]
         ... )
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -103,7 +103,7 @@ class MetricModulation:
         ...     )
 
         >>> lilypond_file = abjad.LilyPondFile(
-        ...     [metric_modulation], includes=["abjad.ily"],
+        ...     [r'\include "abjad.ily"', metric_modulation]
         ... )
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -201,7 +201,7 @@ class MetricModulation:
         ...     )
 
         >>> lilypond_file = abjad.LilyPondFile(
-        ...     [metric_modulation], includes=["abjad.ily"],
+        ...     [r'\include "abjad.ily"', metric_modulation]
         ... )
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -306,9 +306,7 @@ class MetricModulation:
         >>> abjad.attach(metric_modulation, staff[3])
         >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
-        >>> lilypond_file = abjad.LilyPondFile(
-        ...     [score], includes=["abjad.ily"],
-        ... )
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -716,9 +714,7 @@ class MetricModulation:
             >>> abjad.attach(metric_modulation, staff[3])
             >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
-            >>> lilypond_file = abjad.LilyPondFile(
-            ...     [score], includes=["abjad.ily"],
-            ... )
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

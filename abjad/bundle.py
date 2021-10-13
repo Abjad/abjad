@@ -28,8 +28,6 @@ class LilyPondFormatBundle:
         "_opening",
     )
 
-    indent = 4 * " "
-
     ### INITIALIZER ###
 
     def __init__(self):

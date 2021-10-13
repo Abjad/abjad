@@ -60,7 +60,7 @@ class MetronomeMark:
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark((1, 4), quicktions.Fraction(272, 3))
         >>> abjad.attach(mark, staff[0])
-        >>> lilypond_file = abjad.LilyPondFile([score], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -90,7 +90,7 @@ class MetronomeMark:
         ...     decimal="90.66",
         ... )
         >>> abjad.attach(mark, staff[0])
-        >>> lilypond_file = abjad.LilyPondFile([score], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -120,7 +120,7 @@ class MetronomeMark:
         ...     decimal=True,
         ... )
         >>> abjad.attach(mark, staff[0])
-        >>> lilypond_file = abjad.LilyPondFile([score], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -821,7 +821,7 @@ class MetronomeMark:
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> score = abjad.Score([staff])
             >>> abjad.attach(mark, staff[0])
-            >>> lilypond_file = abjad.LilyPondFile([score], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1205,7 +1205,7 @@ class MetronomeMark:
             Integer-valued metronome mark:
 
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup((1, 4),  90)
-            >>> lilypond_file = abjad.LilyPondFile([markup], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1219,7 +1219,7 @@ class MetronomeMark:
             Float-valued metronome mark:
 
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup((1, 4), 90.1)
-            >>> lilypond_file = abjad.LilyPondFile([markup], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1237,7 +1237,7 @@ class MetronomeMark:
             ...     abjad.Duration(1, 4),
             ...     quicktions.Fraction(272, 3),
             ... )
-            >>> lilypond_file = abjad.LilyPondFile([markup], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

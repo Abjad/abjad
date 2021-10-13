@@ -5,6 +5,7 @@ import shutil
 import tempfile
 
 from . import io
+from . import lilypondfile as _lilypondfile
 from .contextmanagers import Timer
 from .illustrators import illustrate
 
@@ -21,10 +22,10 @@ def as_ly(
 
     Returns output path and elapsed formatting time when LilyPond output is written.
     """
-    if illustrate_function is not None:
+    if isinstance(argument, _lilypondfile.LilyPondFile):
+        lilypond_file = argument
+    elif illustrate_function is not None:
         lilypond_file = illustrate_function(**keywords)
-    elif hasattr(argument, "__illustrate__"):
-        lilypond_file = argument.__illustrate__(**keywords)
     else:
         lilypond_file = illustrate(argument, **keywords)
     assert ly_file_path is not None, repr(ly_file_path)
@@ -49,11 +50,11 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     Returns 4-tuple of output MIDI path, Abjad formatting time, LilyPond rendering time
     and success boolean.
     """
-    if hasattr(argument, "score_block"):
+    if isinstance(argument, _lilypondfile.LilyPondFile) and "score" in argument:
         lilypond_file = argument
     else:
         lilypond_file = illustrate(argument, **keywords)
-    assert hasattr(lilypond_file, "score_block")
+    assert "score" in lilypond_file, repr(lilypond_file)
     assert midi_file_path is not None, repr(midi_file_path)
     midi_file_path = os.path.expanduser(midi_file_path)
     midi_file_path = pathlib.Path(midi_file_path)

@@ -2526,262 +2526,260 @@ class MeterList(TypedList):
                 ]
             )
 
-        >>> abjad.show(meters, scale=0.5) # doctest: +SKIP
+        >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### SPECIAL METHODS ###
-
-    def __illustrate__(self, denominator=16, range_=None, scale=None) -> LilyPondFile:
-        r"""
-        Illustrates meters.
-
-        ..  container:: example
-
-            >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
-            >>> abjad.show(meters, scale=0.5) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> lilypond_file = meters.__illustrate__()
-                >>> markup = lilypond_file.items[0]
-                >>> string = abjad.lilypond(markup)
-                >>> print(string)
-                \markup
-                \column
-                {
-                \combine
-                \combine
-                \translate #'(1.0 . 1)
-                \sans \fontsize #-3 \center-align \fraction 3 4
-                \translate #'(49.38709677419355 . 1)
-                \sans \fontsize #-3 \center-align \fraction 5 16
-                \translate #'(69.54838709677419 . 1)
-                \sans \fontsize #-3 \center-align \fraction 7 8
-                \combine
-                \postscript
-                #"
-                0.2 setlinewidth
-                1 0.5 moveto
-                49.38709677419355 0.5 lineto
-                stroke
-                1 1.25 moveto
-                1 -0.25 lineto
-                stroke
-                49.38709677419355 1.25 moveto
-                49.38709677419355 -0.25 lineto
-                stroke
-                49.38709677419355 0.5 moveto
-                69.54838709677419 0.5 lineto
-                stroke
-                49.38709677419355 1.25 moveto
-                49.38709677419355 -0.25 lineto
-                stroke
-                69.54838709677419 1.25 moveto
-                69.54838709677419 -0.25 lineto
-                stroke
-                69.54838709677419 0.5 moveto
-                126 0.5 lineto
-                stroke
-                69.54838709677419 1.25 moveto
-                69.54838709677419 -0.25 lineto
-                stroke
-                126 1.25 moveto
-                126 -0.25 lineto
-                stroke
-                "
-                \postscript
-                #"
-                1 -2 moveto
-                0 -6.153846153846154 rlineto
-                stroke
-                5.032258064516129 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                9.064516129032258 -2 moveto
-                0 -3.076923076923077 rlineto
-                stroke
-                13.096774193548388 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                17.129032258064516 -2 moveto
-                0 -4.615384615384616 rlineto
-                stroke
-                21.161290322580644 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                25.193548387096776 -2 moveto
-                0 -3.076923076923077 rlineto
-                stroke
-                29.225806451612904 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                33.25806451612903 -2 moveto
-                0 -4.615384615384616 rlineto
-                stroke
-                37.29032258064516 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                41.32258064516129 -2 moveto
-                0 -3.076923076923077 rlineto
-                stroke
-                45.354838709677416 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                49.38709677419355 -2 moveto
-                0 -6.153846153846154 rlineto
-                stroke
-                49.38709677419355 -2 moveto
-                0 -10.909090909090908 rlineto
-                stroke
-                53.41935483870968 -2 moveto
-                0 -3.6363636363636367 rlineto
-                stroke
-                57.45161290322581 -2 moveto
-                0 -3.6363636363636367 rlineto
-                stroke
-                61.483870967741936 -2 moveto
-                0 -7.272727272727273 rlineto
-                stroke
-                65.51612903225806 -2 moveto
-                0 -3.6363636363636367 rlineto
-                stroke
-                69.54838709677419 -2 moveto
-                0 -10.909090909090908 rlineto
-                stroke
-                69.54838709677419 -2 moveto
-                0 -5.517241379310345 rlineto
-                stroke
-                73.58064516129032 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                77.61290322580645 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                81.64516129032258 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                85.6774193548387 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                89.70967741935483 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                93.74193548387096 -2 moveto
-                0 -4.137931034482759 rlineto
-                stroke
-                97.7741935483871 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                101.80645161290323 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                105.83870967741936 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                109.87096774193549 -2 moveto
-                0 -4.137931034482759 rlineto
-                stroke
-                113.90322580645162 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                117.93548387096774 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                121.96774193548387 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                126 -2 moveto
-                0 -5.517241379310345 rlineto
-                stroke
-                "
-                }
-
-        Returns LilyPond file.
-        """
-        durations = [_.duration for _ in self]
-        total_duration = sum(durations)
-        offsets = math.cumulative_sums(durations, start=0)
-        timespans = TimespanList()
-        for one, two in Sequence(offsets).nwise():
-            timespan = Timespan(start_offset=one, stop_offset=two)
-            timespans.append(timespan)
-        if range_ is not None:
-            minimum, maximum = range_
-        else:
-            minimum, maximum = 0, total_duration
-        minimum = float(Offset(minimum))
-        maximum = float(Offset(maximum))
-        if scale is None:
-            scale = 1.0
-        assert 0 < scale
-        postscript_scale = 125.0 / (maximum - minimum)
-        postscript_scale *= float(scale)
-        postscript_x_offset = (minimum * postscript_scale) - 1
-        timespan_markup = _timespan._make_timespan_list_markup(
-            timespans,
-            postscript_x_offset,
-            postscript_scale,
-            draw_offsets=False,
-        )
-        postscript_strings = []
-        rational_x_offset = Offset(0)
-        for meter in self:
-            kernel_denominator = denominator or meter.denominator
-            kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
-            for offset, weight in sorted(kernel.kernel.items()):
-                weight = float(weight) * -40
-                ps_x_offset = float(rational_x_offset + offset)
-                ps_x_offset *= postscript_scale
-                ps_x_offset += 1
-                postscript_strings.append(f"{markups._fpa(ps_x_offset)} -2 moveto")
-                postscript_strings.append(f"0 {markups._fpa(weight)} rlineto")
-                postscript_strings.append("stroke")
-            rational_x_offset += meter.duration
-        fraction_pairs = []
-        for meter, offset in zip(self, offsets):
-            numerator, denominator = meter.numerator, meter.denominator
-            x_translation = float(offset) * postscript_scale
-            x_translation -= postscript_x_offset
-            top_string = rf"\translate #'({x_translation} . 1)"
-            bottom_string = r"\sans \fontsize #-3 \center-align"
-            bottom_string = bottom_string + rf" \fraction {numerator} {denominator}"
-            pair = (top_string, bottom_string)
-            fraction_pairs.append(pair)
-        fraction_strings = []
-        fraction_strings.append(fraction_pairs[0][0])
-        fraction_strings.append(fraction_pairs[0][1])
-        for pair in fraction_pairs[1:]:
-            fraction_strings.insert(0, r"\combine")
-            fraction_strings.append(pair[0])
-            fraction_strings.append(pair[1])
-        strings = []
-        strings.append(r"\markup")
-        strings.append(r"\column")
-        strings.append("{")
-        strings.extend(fraction_strings)
-        strings.append(r"\combine")
-        strings.append(str(timespan_markup))
-        strings.append(r"\postscript")
-        strings.append('#"')
-        strings.extend(postscript_strings)
-        strings.append('"')
-        strings.append("}")
-        string = "\n".join(strings)
-        markup = markups.Markup(string)
-        lilypond_file = LilyPondFile()
-        markup = new(markup, direction=None)
-        lilypond_file.items.append(markup)
-        return lilypond_file
-
-    ### PRIVATE METHODS ###
 
     def _coerce_item(self, item):
         return Meter(item)
+
+
+def illustrate_meter_list(
+    meter_list, denominator=16, range_=None, scale=None
+) -> LilyPondFile:
+    r"""
+    Illustrates meters.
+
+    ..  container:: example
+
+        >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
+        >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> lilypond_file = abjad.meter.illustrate_meter_list(meters)
+            >>> markup = lilypond_file.items[0]
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
+            \markup
+            \column
+            {
+            \combine
+            \combine
+            \translate #'(1.0 . 1)
+            \sans \fontsize #-3 \center-align \fraction 3 4
+            \translate #'(49.38709677419355 . 1)
+            \sans \fontsize #-3 \center-align \fraction 5 16
+            \translate #'(69.54838709677419 . 1)
+            \sans \fontsize #-3 \center-align \fraction 7 8
+            \combine
+            \postscript
+            #"
+            0.2 setlinewidth
+            1 0.5 moveto
+            49.38709677419355 0.5 lineto
+            stroke
+            1 1.25 moveto
+            1 -0.25 lineto
+            stroke
+            49.38709677419355 1.25 moveto
+            49.38709677419355 -0.25 lineto
+            stroke
+            49.38709677419355 0.5 moveto
+            69.54838709677419 0.5 lineto
+            stroke
+            49.38709677419355 1.25 moveto
+            49.38709677419355 -0.25 lineto
+            stroke
+            69.54838709677419 1.25 moveto
+            69.54838709677419 -0.25 lineto
+            stroke
+            69.54838709677419 0.5 moveto
+            126 0.5 lineto
+            stroke
+            69.54838709677419 1.25 moveto
+            69.54838709677419 -0.25 lineto
+            stroke
+            126 1.25 moveto
+            126 -0.25 lineto
+            stroke
+            "
+            \postscript
+            #"
+            1 -2 moveto
+            0 -6.153846153846154 rlineto
+            stroke
+            5.032258064516129 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            9.064516129032258 -2 moveto
+            0 -3.076923076923077 rlineto
+            stroke
+            13.096774193548388 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            17.129032258064516 -2 moveto
+            0 -4.615384615384616 rlineto
+            stroke
+            21.161290322580644 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            25.193548387096776 -2 moveto
+            0 -3.076923076923077 rlineto
+            stroke
+            29.225806451612904 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            33.25806451612903 -2 moveto
+            0 -4.615384615384616 rlineto
+            stroke
+            37.29032258064516 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            41.32258064516129 -2 moveto
+            0 -3.076923076923077 rlineto
+            stroke
+            45.354838709677416 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            49.38709677419355 -2 moveto
+            0 -6.153846153846154 rlineto
+            stroke
+            49.38709677419355 -2 moveto
+            0 -10.909090909090908 rlineto
+            stroke
+            53.41935483870968 -2 moveto
+            0 -3.6363636363636367 rlineto
+            stroke
+            57.45161290322581 -2 moveto
+            0 -3.6363636363636367 rlineto
+            stroke
+            61.483870967741936 -2 moveto
+            0 -7.272727272727273 rlineto
+            stroke
+            65.51612903225806 -2 moveto
+            0 -3.6363636363636367 rlineto
+            stroke
+            69.54838709677419 -2 moveto
+            0 -10.909090909090908 rlineto
+            stroke
+            69.54838709677419 -2 moveto
+            0 -5.517241379310345 rlineto
+            stroke
+            73.58064516129032 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            77.61290322580645 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            81.64516129032258 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            85.6774193548387 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            89.70967741935483 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            93.74193548387096 -2 moveto
+            0 -4.137931034482759 rlineto
+            stroke
+            97.7741935483871 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            101.80645161290323 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            105.83870967741936 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            109.87096774193549 -2 moveto
+            0 -4.137931034482759 rlineto
+            stroke
+            113.90322580645162 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            117.93548387096774 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            121.96774193548387 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            126 -2 moveto
+            0 -5.517241379310345 rlineto
+            stroke
+            "
+            }
+
+    """
+    durations = [_.duration for _ in meter_list]
+    total_duration = sum(durations)
+    offsets = math.cumulative_sums(durations, start=0)
+    timespans = TimespanList()
+    for one, two in Sequence(offsets).nwise():
+        timespan = Timespan(start_offset=one, stop_offset=two)
+        timespans.append(timespan)
+    if range_ is not None:
+        minimum, maximum = range_
+    else:
+        minimum, maximum = 0, total_duration
+    minimum = float(Offset(minimum))
+    maximum = float(Offset(maximum))
+    if scale is None:
+        scale = 1.0
+    assert 0 < scale
+    postscript_scale = 125.0 / (maximum - minimum)
+    postscript_scale *= float(scale)
+    postscript_x_offset = (minimum * postscript_scale) - 1
+    timespan_markup = _timespan._make_timespan_list_markup(
+        timespans,
+        postscript_x_offset,
+        postscript_scale,
+        draw_offsets=False,
+    )
+    postscript_strings = []
+    rational_x_offset = Offset(0)
+    for meter in meter_list:
+        kernel_denominator = denominator or meter.denominator
+        kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
+        for offset, weight in sorted(kernel.kernel.items()):
+            weight = float(weight) * -40
+            ps_x_offset = float(rational_x_offset + offset)
+            ps_x_offset *= postscript_scale
+            ps_x_offset += 1
+            postscript_strings.append(f"{markups._fpa(ps_x_offset)} -2 moveto")
+            postscript_strings.append(f"0 {markups._fpa(weight)} rlineto")
+            postscript_strings.append("stroke")
+        rational_x_offset += meter.duration
+    fraction_pairs = []
+    for meter, offset in zip(meter_list, offsets):
+        numerator, denominator = meter.numerator, meter.denominator
+        x_translation = float(offset) * postscript_scale
+        x_translation -= postscript_x_offset
+        top_string = rf"\translate #'({x_translation} . 1)"
+        bottom_string = r"\sans \fontsize #-3 \center-align"
+        bottom_string = bottom_string + rf" \fraction {numerator} {denominator}"
+        pair = (top_string, bottom_string)
+        fraction_pairs.append(pair)
+    fraction_strings = []
+    fraction_strings.append(fraction_pairs[0][0])
+    fraction_strings.append(fraction_pairs[0][1])
+    for pair in fraction_pairs[1:]:
+        fraction_strings.insert(0, r"\combine")
+        fraction_strings.append(pair[0])
+        fraction_strings.append(pair[1])
+    strings = []
+    strings.append(r"\markup")
+    strings.append(r"\column")
+    strings.append("{")
+    strings.extend(fraction_strings)
+    strings.append(r"\combine")
+    strings.append(str(timespan_markup))
+    strings.append(r"\postscript")
+    strings.append('#"')
+    strings.extend(postscript_strings)
+    strings.append('"')
+    strings.append("}")
+    string = "\n".join(strings)
+    markup = markups.Markup(string)
+    lilypond_file = LilyPondFile()
+    markup = new(markup, direction=None)
+    lilypond_file.items.append(markup)
+    return lilypond_file
 
 
 class MetricAccentKernel:
