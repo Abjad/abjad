@@ -25,18 +25,14 @@ class Instrument:
         >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
         >>> flute = abjad.Flute()
         >>> abjad.attach(flute, voice_1[0], context='Voice')
-        >>> flute_markup = abjad.Markup(
-        ...     r'\markup (flute)', direction=abjad.Up, literal=True,
-        ... )
+        >>> flute_markup = abjad.Markup(r'\markup (flute)', direction=abjad.Up)
         >>> abjad.attach(flute_markup, voice_1[0])
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
         >>> voice_2 = abjad.Voice("c'2")
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
         >>> viola = abjad.Viola()
         >>> abjad.attach(viola, voice_2[0], context='Voice')
-        >>> viola_markup = abjad.Markup(
-        ...     r'\markup (viola)', direction=abjad.Down, literal=True,
-        ... )
+        >>> viola_markup = abjad.Markup(r'\markup (viola)', direction=abjad.Down)
         >>> abjad.attach(viola_markup, voice_2[0])
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -124,13 +120,13 @@ class Instrument:
             name = str(name)
         self._name = name
         if markup is not None:
-            markup = _markups.Markup(markup, literal=True)
+            markup = _markups.Markup(str(markup))
         self._name_markup = markup
         if short_name is not None:
             short_name = str(short_name)
         self._short_name = short_name
         if short_markup is not None:
-            short_markup = _markups.Markup(short_markup, literal=True)
+            short_markup = _markups.Markup(str(short_markup))
         self._short_name_markup = short_markup
         allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
@@ -156,8 +152,7 @@ class Instrument:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -207,7 +202,7 @@ class Instrument:
             if self.name:
                 string = self.name
                 string = String(string).capitalize_start()
-                markup = _markups.Markup(rf"\markup {string}", literal=True)
+                markup = _markups.Markup(rf"\markup {string}")
                 self._name_markup = markup
             else:
                 self._name_markup = None
@@ -215,7 +210,7 @@ class Instrument:
             if self.short_name:
                 string = self.short_name
                 string = String(string).capitalize_start()
-                markup = _markups.Markup(rf"\markup {string}", literal=True)
+                markup = _markups.Markup(rf"\markup {string}")
             else:
                 self._short_name_markup = None
 
@@ -269,9 +264,9 @@ class Instrument:
             return
         if not isinstance(self._name_markup, _markups.Markup):
             assert isinstance(self._name_markup, str), repr(self._name_markup)
-            markup = _markups.Markup(rf"\markup {self._name_markup}", literal=True)
+            markup = _markups.Markup(rf"\markup {self._name_markup}")
             self._name_markup = markup
-        if self._name_markup.contents != ("",):
+        if self._name_markup.string:
             return self._name_markup
 
     @property
@@ -344,11 +339,9 @@ class Instrument:
             assert isinstance(self._short_name_markup, str), repr(
                 self._short_name_markup
             )
-            markup = _markups.Markup(
-                rf"\markup {self._short_name_markup}", literal=True
-            )
+            markup = _markups.Markup(rf"\markup {self._short_name_markup}")
             self._short_name_markup = markup
-        if self._short_name_markup.contents != ("",):
+        if self._short_name_markup.string:
             return self._short_name_markup
 
     @property
@@ -411,8 +404,7 @@ class StringNumber:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -523,8 +515,7 @@ class Tuning:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 

@@ -16,8 +16,8 @@ class StartTextSpan:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-        ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+        ...     left_text=abjad.Markup(r"\upright pont."),
+        ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="solid-line-with-arrow",
         ... )
         >>> abjad.tweak(start_text_span).staff_padding = 2.5
@@ -135,8 +135,7 @@ class StartTextSpan:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal the
-        initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -171,13 +170,11 @@ class StartTextSpan:
     def _get_left_text_directive(self):
         if isinstance(self.left_text, str):
             return self.left_text
-        assert len(self.left_text.contents) == 1, repr(self.left_text)
-        left_text_string = self.left_text.contents[0]
+        left_text_string = self.left_text.string
         left_text_string = left_text_string.removeprefix(r"\markup").strip()
         hspace_string = fr"\hspace #{self.concat_hspace_left}"
         markup = markups.Markup(
-            rf"\markup \concat {{ {left_text_string} {hspace_string} }}",
-            literal=True,
+            rf"\markup \concat {{ {left_text_string} {hspace_string} }}"
         )
         override = LilyPondOverride(
             grob_name="TextSpanner",
@@ -227,11 +224,9 @@ class StartTextSpan:
             return self.right_text
         if self.concat_hspace_right is not None:
             number = self.concat_hspace_right
-            assert len(self.right_text.contents) == 1
-            right_text = self.right_text.contents[0]
+            right_text = self.right_text.string
             markup = markups.Markup(
-                rf"\markup \concat {{ {right_text} \hspace #{number} }}",
-                literal=True,
+                rf"\markup \concat {{ {right_text} \hspace #{number} }}"
             )
         else:
             markup = self.right_text
@@ -259,8 +254,8 @@ class StartTextSpan:
             >>> staff = abjad.Staff("c'4 d' e' f'")
 
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto"),
             ...     style="dashed-line-with-arrow",
             ... )
             >>> abjad.tweak(start_text_span).color = "#blue"
@@ -271,8 +266,8 @@ class StartTextSpan:
 
             >>> start_text_span = abjad.StartTextSpan(
             ...     command=r"\startTextSpanOne",
-            ...     left_text=abjad.Markup(r"\upright A", literal=True),
-            ...     right_text=abjad.Markup(r"\markup \upright B", literal=True),
+            ...     left_text=abjad.Markup(r"\upright A"),
+            ...     right_text=abjad.Markup(r"\markup \upright B"),
             ...     style="dashed-line-with-arrow",
             ... )
             >>> abjad.tweak(start_text_span).color = "#red"
@@ -281,9 +276,7 @@ class StartTextSpan:
             >>> stop_text_span = abjad.StopTextSpan(command=r"\stopTextSpanOne")
             >>> abjad.attach(stop_text_span, staff[-1])
 
-            >>> markup = abjad.Markup(
-            ...     r"\markup SPACER", direction=abjad.Up, literal=True
-            ... )
+            >>> markup = abjad.Markup(r"\markup SPACER", direction=abjad.Up)
             >>> abjad.tweak(markup).transparent = True
             >>> abjad.attach(markup, staff[0])
             >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
@@ -488,8 +481,8 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' fs'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto"),
             ...     style="dashed-line-with-arrow",
             ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
@@ -521,7 +514,7 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
             ...     style="dashed-line-with-hook",
             ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
@@ -552,8 +545,8 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto"),
             ...     style="invisible-line",
             ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
@@ -585,8 +578,8 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto"),
             ...     style="solid-line-with-arrow",
             ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5
@@ -618,7 +611,7 @@ class StartTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> start_text_span = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
             ...     style="solid-line-with-hook",
             ... )
             >>> abjad.tweak(start_text_span).staff_padding = 2.5

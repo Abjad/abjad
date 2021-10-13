@@ -33,7 +33,7 @@ example:
     ...         number = notes[0].written_pitch.number
     ...         string = r"\markup \larger \with-color #blue"
     ...         string = string + r" { T \hspace #-0.75 \sub" + str(number) + "}"
-    ...         markup = abjad.Markup(string, literal=True)
+    ...         markup = abjad.Markup(string)
     ...         start_markup = abjad.StartMarkup(markup)
     ...         abjad.attach(start_markup, notes[0])
     ...     for note in score["Voice_0"]:
@@ -41,7 +41,7 @@ example:
     ...         string = r"\markup \larger { IT \hspace #-0.75 \sub "
     ...         string += str(number)
     ...         string += " }"
-    ...         markup = abjad.Markup(string, direction=abjad.Up, literal=True)
+    ...         markup = abjad.Markup(string, direction=abjad.Up)
     ...         abjad.attach(markup, note)
     ...     note = abjad.select(score).note(0)
     ...     time_signature = abjad.TimeSignature((12, 4))

@@ -9,7 +9,6 @@ _allowed_to_be_empty_string = (
     abjad.Articulation,
     abjad.CompoundOperator,
     abjad.Line,
-    abjad.Postscript,
     abjad.String,
     abjad.Tag,
 )
@@ -27,8 +26,8 @@ def test_abjad___str___01(class_):
     """
     All concrete classes have a string representation.
 
-    With the exception of the exception classes. And those classes listed
-    explicitly here.
+    With the exception of the exception classes. And those classes listed explicitly
+    here.
     """
     if inspect.isabstract(class_):
         return

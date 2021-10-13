@@ -644,7 +644,7 @@ def activate(text, tag, skipped=False):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> string = r"\markup { \with-color #red Allegro }"
-        >>> markup = abjad.Markup(string, literal=True)
+        >>> markup = abjad.Markup(string)
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
@@ -790,7 +790,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> string = r"\markup { \with-color #red Allegro }"
-        >>> markup = abjad.Markup(string, literal=True)
+        >>> markup = abjad.Markup(string)
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],

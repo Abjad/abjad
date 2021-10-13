@@ -795,9 +795,7 @@ def vertical_moments(
         else:
             raise TypeError(f"unknown prototype {prototype!r}.")
         assert string is not None
-        label = _markups.Markup(
-            rf"\markup \tiny {string}", direction=direction, literal=True
-        )
+        label = _markups.Markup(rf"\markup \tiny {string}", direction=direction)
         if direction is _enums.Up:
             leaf = vertical_moment.start_leaves[0]
         else:
@@ -883,7 +881,6 @@ def with_durations(
         label = _markups.Markup(
             rf"\markup \fraction {numerator} {denominator}",
             direction=direction,
-            literal=True,
         )
         _attach(label, logical_tie.head)
 
@@ -1101,7 +1098,7 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
         items = iterate_.components(argument, prototype=prototype)
     items = list(items)
     for index, item in enumerate(items):
-        label = _markups.Markup(rf"\markup {index}", direction=direction, literal=True)
+        label = _markups.Markup(rf"\markup {index}", direction=direction)
         leaves = _selection.Selection(item).leaves()
         first_leaf = leaves[0]
         _attach(label, first_leaf)
@@ -1330,34 +1327,26 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
         if isinstance(next_leaf, _score.Note):
             interval = NamedInterval.from_pitch_carriers(note, next_leaf)
             if prototype is NamedInterval:
-                label = _markups.Markup(
-                    rf"\markup {interval}",
-                    direction=direction,
-                    literal=True,
-                )
+                label = _markups.Markup(rf"\markup {interval}", direction=direction)
             elif prototype is NamedIntervalClass:
                 label = _markups.Markup(
                     rf"\markup {NamedIntervalClass(interval)}",
                     direction=direction,
-                    literal=True,
                 )
             elif prototype is NumberedInterval:
                 label = _markups.Markup(
                     rf"\markup {NumberedInterval(interval)}",
                     direction=direction,
-                    literal=True,
                 )
             elif prototype is NumberedIntervalClass:
                 label = _markups.Markup(
                     rf"\markup {NumberedIntervalClass(interval)}",
                     direction=direction,
-                    literal=True,
                 )
             elif prototype is NumberedInversionEquivalentIntervalClass:
                 label = _markups.Markup(
                     rf"\markup {NumberedInversionEquivalentIntervalClass(interval)}",
                     direction=direction,
-                    literal=True,
                 )
             if label is not None:
                 _attach(label, note)
@@ -1647,11 +1636,7 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 string = leaf.written_pitch.get_name(locale=locale)
                 if "#" in string:
                     string = '"' + string + '"'
-                label = _markups.Markup(
-                    rf"\markup {{ {string} }}",
-                    direction=direction,
-                    literal=True,
-                )
+                label = _markups.Markup(rf"\markup {{ {string} }}", direction=direction)
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
@@ -1664,16 +1649,11 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 label = _markups.Markup(
                     rf"\markup \column {{ {string} }}",
                     direction=direction,
-                    literal=True,
                 )
         elif prototype is NumberedPitch:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.number
-                label = _markups.Markup(
-                    rf"\markup {pitch}",
-                    direction=direction,
-                    literal=True,
-                )
+                label = _markups.Markup(rf"\markup {pitch}", direction=direction)
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
@@ -1682,16 +1662,11 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 label = _markups.Markup(
                     rf"\markup \column {{ {string} }}",
                     direction=direction,
-                    literal=True,
                 )
         elif prototype is NumberedPitchClass:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.pitch_class.number
-                label = _markups.Markup(
-                    rf"\markup {pitch}",
-                    direction=direction,
-                    literal=True,
-                )
+                label = _markups.Markup(rf"\markup {pitch}", direction=direction)
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
@@ -1700,7 +1675,6 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 label = _markups.Markup(
                     rf"\markup \column {{ {string} }}",
                     direction=direction,
-                    literal=True,
                 )
         if label is not None:
             label = _new.new(label, direction=direction)
@@ -1872,7 +1846,7 @@ def with_set_classes(argument, direction=_enums.Up, prototype=None):
         )
         string = str(set_class)
         string = rf'\markup \tiny \line {{ "{string}" }}'
-        label = _markups.Markup(string, direction=direction, literal=True)
+        label = _markups.Markup(string, direction=direction)
         leaf = selection[0]
         _attach(label, leaf)
 
@@ -2037,10 +2011,10 @@ def with_start_offsets(
             string = f"[{string}]"
         if markup_command is not None:
             string = rf"{markup_command} {{ {string} }}"
-            label = _markups.Markup(string, direction=direction, literal=True)
+            label = _markups.Markup(string, direction=direction)
         else:
             string = rf"\markup {{ {string} }}"
-            label = _markups.Markup(string, direction=direction, literal=True)
+            label = _markups.Markup(string, direction=direction)
         _attach(label, logical_tie.head)
     total_duration = _duration.Duration(timespan.stop_offset)
     if global_offset is not None:
@@ -2097,8 +2071,7 @@ class ColorMap:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 

@@ -1,7 +1,10 @@
+import dataclasses
+
 from .. import format as _format
 from ..bundle import LilyPondFormatBundle
 
 
+@dataclasses.dataclass
 class BarLine:
     r"""
     Bar line.
@@ -16,7 +19,7 @@ class BarLine:
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> bar_line
-        BarLine('|.', format_slot='after')
+        BarLine(abbreviation='|.', format_slot='after')
 
         ..  docs::
 
@@ -62,9 +65,8 @@ class BarLine:
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_abbreviation", "_format_slot")
+    abbreviation: str = "|"
+    format_slot: str = "after"
 
     _context = "Score"
 
@@ -93,27 +95,6 @@ class BarLine:
         "'",
     )
 
-    ### INITIALIZER ##
-
-    def __init__(self, abbreviation: str = "|", *, format_slot: str = "after") -> None:
-        if abbreviation not in self._known_abbreviations:
-            message = f"unknown bar line abbreviation: {repr(abbreviation)}\n"
-            message += "Abbreviation must be one of these:\n"
-            string = "\n    ".join([repr(_) for _ in self._known_abbreviations])
-            message += string
-            raise Exception(message)
-        self._abbreviation = abbreviation
-        assert isinstance(format_slot, str), repr(format_slot)
-        self._format_slot = format_slot
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        """
-        Delegates to storage format manager.
-        """
-        return _format.get_repr(self)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -131,52 +112,6 @@ class BarLine:
         slot.commands.append(self._get_lilypond_format())
         return bundle
 
-    ## PUBLIC PROPERTIES ##
-
-    @property
-    def abbreviation(self) -> str:
-        r"""
-        Gets abbreviation.
-
-        ..  container:: example
-
-            >>> bar_line = abjad.BarLine('|.')
-            >>> bar_line.abbreviation
-            '|.'
-
-        ..  container:: example exception:
-
-            Abbreviation error-checking looks like this:
-
-            >>> abjad.BarLine("text")
-            Traceback (most recent call last):
-            ...
-            Exception: unknown bar line abbreviation: 'text'
-            Abbreviation must be one of these:
-            ''
-                '|'
-                '.'
-                '||'
-                '.|'
-                '..'
-                '|.|'
-                '|.'
-                ';'
-                '!'
-                '.|:'
-                ':..:'
-                ':|.|:'
-                ':|.:'
-                ':.|.:'
-                '[|:'
-                ':|][|:'
-                ':|]'
-                ':|.'
-                "'"
-
-        """
-        return self._abbreviation
-
     @property
     def context(self) -> str:
         r"""
@@ -191,55 +126,3 @@ class BarLine:
         Override with ``abjad.attach(..., context='...')``.
         """
         return self._context
-
-    @property
-    def format_slot(self) -> str:
-        r"""
-        Gets format slot.
-
-        ..  container:: example
-
-            >>> abjad.BarLine("|").format_slot
-            'after'
-
-            >>> abjad.BarLine("|", format_slot="before").format_slot
-            'before'
-
-        ..  container:: example
-
-            REGRESSION. You can attach a before barline and after barline to
-            the same leaf:
-
-            >>> staff = abjad.Staff("c'1 d'1")
-            >>> bar_line_1 = abjad.BarLine(".|:", format_slot="before")
-            >>> bar_line_2 = abjad.BarLine(":|.", format_slot="after")
-            >>> assert bar_line_1.format_slot != bar_line_2.format_slot
-            >>> abjad.attach(bar_line_1, staff[-1])
-            >>> abjad.attach(bar_line_2, staff[-1])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    c'1
-                    \bar ".|:"
-                    d'1
-                    \bar ":|."
-                }
-
-        """
-        return self._format_slot
-
-    @property
-    def tweaks(self) -> None:
-        r"""
-        Are not implemented on bar line.
-
-        The LilyPond ``\bar`` command refuses tweaks.
-
-        Use overrides instead.
-        """
-        pass

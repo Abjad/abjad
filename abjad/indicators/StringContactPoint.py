@@ -71,8 +71,7 @@ class StringContactPoint:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -149,7 +148,7 @@ class StringContactPoint:
         """
         string = self._contact_point_abbreviations[self.contact_point]
         string = rf"\markup \caps {string.title()}"
-        markup = Markup(string, literal=True)
+        markup = Markup(string)
         return markup
 
     @property

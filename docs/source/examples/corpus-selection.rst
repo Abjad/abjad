@@ -373,11 +373,11 @@ can start building our score.
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, leaf)
     ...     groups = abjad.select(score["RH_Voice"]).leaves().group_by_measure()
-    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
+    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up)
     ...     abjad.tweak(strut).staff_padding = 10
     ...     abjad.tweak(strut).transparent = True
     ...     abjad.attach(strut, groups[0][0])
-    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
+    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up)
     ...     abjad.tweak(strut).staff_padding = 10
     ...     abjad.tweak(strut).transparent = True
     ...     abjad.attach(strut, groups[-1][0])

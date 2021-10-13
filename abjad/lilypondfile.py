@@ -50,7 +50,7 @@ class Block:
     ..  container:: example
 
         >>> block = abjad.Block(name='score')
-        >>> markup = abjad.Markup(r"\markup foo", literal=True)
+        >>> markup = abjad.Markup(r"\markup foo")
         >>> block.items.append(markup)
         >>> block
         <Block(name='score')>
@@ -267,11 +267,11 @@ class Block:
         ..  container:: example
 
             >>> block = abjad.Block(name="score")
-            >>> markup = abjad.Markup(r"\markup foo", literal=True)
+            >>> markup = abjad.Markup(r"\markup foo")
             >>> block.items.append(markup)
 
             >>> block.items
-            [Markup(contents=['\\markup foo'], literal=True)]
+            [Markup('\\markup foo')]
 
         ..  container:: example
 

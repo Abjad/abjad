@@ -221,8 +221,7 @@ class Clef:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -685,9 +684,7 @@ class StaffPosition:
             ...         note.written_pitch,
             ...         "alto",
             ...     )
-            ...     markup = abjad.Markup(
-            ...         rf"\markup {staff_position.number}", literal=True
-            ...     )
+            ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
             ...     abjad.attach(markup, note)
             ...
             >>> abjad.override(staff).TextScript.staff_padding = 5
@@ -748,9 +745,7 @@ class StaffPosition:
             ...         note.written_pitch,
             ...         "bass",
             ...     )
-            ...     markup = abjad.Markup(
-            ...         rf"\markup {staff_position.number}", literal=True
-            ...     )
+            ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
             ...     abjad.attach(markup, note)
             ...
             >>> abjad.attach(abjad.Clef("bass"), staff[0])

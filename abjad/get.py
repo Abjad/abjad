@@ -214,8 +214,7 @@ def annotation_wrappers(argument):
                 name='cello',
                 short_name='vc.',
                 markup=abjad.Markup(
-                    contents=['\\markup Cello'],
-                    literal=True,
+                    '\\markup Cello'
                     ),
                 allowable_clefs=('bass', 'tenor', 'treble'),
                 context='Staff',
@@ -1407,9 +1406,9 @@ def effective(
         ...     bar_line = abjad.get.effective(leaf, abjad.BarLine)
         ...     leaf, bar_line
         (Note("c'2"), None)
-        (Note("d'2"), BarLine('||', format_slot='after'))
-        (Note("e'2"), BarLine('||', format_slot='after'))
-        (Note("f'2"), BarLine('||', format_slot='after'))
+        (Note("d'2"), BarLine(abbreviation='||', format_slot='after'))
+        (Note("e'2"), BarLine(abbreviation='||', format_slot='after'))
+        (Note("f'2"), BarLine(abbreviation='||', format_slot='after'))
 
     """
     if not isinstance(argument, Component):

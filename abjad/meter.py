@@ -10,6 +10,7 @@ import uqbar.graphs
 from . import _inspect, _iterate
 from . import format as _format
 from . import markups, math, mutate, rhythmtrees
+from . import timespan as _timespan
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .indicators.TimeSignature import TimeSignature
 from .lilypondfile import LilyPondFile
@@ -26,11 +27,10 @@ class Meter:
     """
     Meter.
 
-    Meter models a common practice understanding of beats and other levels of
-    rhythmic organization structured as a tree. Meter structure corresponds to
-    the monotonically increasing sequence of factors in the numerator of a
-    given time signature. Successively deeper levels of the tree divide time by
-    successive factors.
+    Meter models a common practice understanding of beats and other levels of rhythmic
+    organization structured as a tree. Meter structure corresponds to the monotonically
+    increasing sequence of factors in the numerator of a given time signature.
+    Successively deeper levels of the tree divide time by successive factors.
 
     ..  container:: example
 
@@ -244,10 +244,9 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-    Prime divisions greater than ``3`` are converted to sequences of ``2``
-    and ``3`` summing to that prime. Summands are arranged from greatest
-    to least by default. This means that ``5`` becomes ``3+2`` and ``7``
-    becomes ``3+2+2`` in the examples above.
+    Prime divisions greater than ``3`` are converted to sequences of ``2`` and ``3``
+    summing to that prime. Summands are arranged from greatest to least by default. This
+    means that ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2`` in the examples above.
     """
 
     ### CLASS VARIABLES ###
@@ -861,8 +860,8 @@ class Meter:
             11/8
             12/8    True
 
-        Compound meters defined equal to those meters with a numerator
-        divisible by ``3`` (but not equal to ``3``).
+        Compound meters defined equal to those meters with a numerator divisible by ``3``
+        (but not equal to ``3``).
 
         Returns true or false.
         """
@@ -920,8 +919,8 @@ class Meter:
             11/8    True
             12/8
 
-        Simple meters defined equal to those meters with a numerator
-        not divisible by ``3``.
+        Simple meters defined equal to those meters with a numerator not divisible by
+        ``3``.
 
         Meters with numerator equal to ``3`` are also defined as simple.
 
@@ -1106,8 +1105,8 @@ class Meter:
         starting_offset=None,
     ):
         """
-        Finds the best-matching sequence of meters for the offsets
-        contained in ``argument``.
+        Finds the best-matching sequence of meters for the offsets contained in
+        ``argument``.
 
         ..  container:: example
 
@@ -1141,8 +1140,7 @@ class Meter:
             5/4
             5/4
 
-        Coerces offsets from ``argument`` via
-        ``MetricAccentKernel.count_offsets()``.
+        Coerces offsets from ``argument`` via ``MetricAccentKernel.count_offsets()``.
 
         Coerces Meters from ``meters`` via ``MeterList``.
 
@@ -1159,11 +1157,9 @@ class Meter:
 
     def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
         r"""
-        Generates a dictionary of all offsets in a meter up
-        to ``denominator``.
+        Generates a dictionary of all offsets in a meter up to ``denominator``.
 
-        Keys are the offsets and the values are the normalized weights of
-        those offsets.
+        Keys are the offsets and the values are the normalized weights of those offsets.
 
         ..  container:: example
 
@@ -1182,8 +1178,8 @@ class Meter:
             7/8     1/16
             1       3/16
 
-        This is useful for testing how strongly a collection of offsets
-        responds to a given meter.
+        This is useful for testing how strongly a collection of offsets responds to a
+        given meter.
 
         Returns dictionary.
         """
@@ -1226,8 +1222,8 @@ class Meter:
 
         ..  container:: example
 
-            Rewrites the contents of a measure in a staff using the default
-            meter for that measure's time signature:
+            Rewrites the contents of a measure in a staff using the default meter for
+            that measure's time signature:
 
             >>> lily_string = "| 2/4 c'2 ~ |"
             >>> lily_string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
@@ -1379,8 +1375,7 @@ class Meter:
 
         ..  container:: example
 
-            Limit the maximum number of dots per leaf using
-            ``maximum_dot_count``:
+            Limit the maximum number of dots per leaf using ``maximum_dot_count``:
 
             >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1561,9 +1556,9 @@ class Meter:
 
         ..  container:: example
 
-            Split logical ties at different depths of the ``Meter``, if those
-            logical ties cross any offsets at that depth, but do not also both
-            begin and end at any of those offsets.
+            Split logical ties at different depths of the ``Meter``, if those logical
+            ties cross any offsets at that depth, but do not also both begin and end at
+            any of those offsets.
 
             Consider the default meter for ``9/8``:
 
@@ -1583,8 +1578,7 @@ class Meter:
                     1/8
                     1/8))))
 
-            We can establish that meter without specifying
-            a ``boundary_depth``:
+            We can establish that meter without specifying a ``boundary_depth``:
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1630,10 +1624,10 @@ class Meter:
                     }
                 }
 
-            With a ``boundary_depth`` of ``1`` logical ties which cross any
-            offsets created by nodes with a depth of ``1`` in this Meter's rhythm
-            tree - i.e.  ``0/8`` ``3/8`` ``6/8`` and ``9/8`` - which do not also
-            begin and end at any of those offsets, will be split:
+            With a ``boundary_depth`` of ``1`` logical ties which cross any offsets
+            created by nodes with a depth of ``1`` in this Meter's rhythm tree - i.e.
+            ``0/8`` ``3/8`` ``6/8`` and ``9/8`` - which do not also begin and end at any
+            of those offsets, will be split:
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1669,9 +1663,9 @@ class Meter:
                     }
                 }
 
-            For this ``9/8`` meter, and this input notation, A ``boundary_depth``
-            of ``2`` causes no change, as all logical ties already align to
-            multiples of ``1/8``
+            For this ``9/8`` meter, and this input notation, A ``boundary_depth`` of
+            ``2`` causes no change, as all logical ties already align to multiples of
+            ``1/8``
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1721,9 +1715,8 @@ class Meter:
             >>> staff_2[:] = container
             >>> score = abjad.Score([staff_1, staff_2])
 
-            In order to see the different time signatures on each staff,
-            we need to move some engravers from the Score context to the
-            Staff context:
+            In order to see the different time signatures on each staff, we need to move
+            some engravers from the Score context to the Staff context:
 
             >>> engravers = [
             ...     'Timing_translator',
@@ -2043,8 +2036,7 @@ class Meter:
                     }
                 >>
 
-            Note that the two time signatures are much more clearly
-            disambiguated above.
+            Note that the two time signatures are much more clearly disambiguated above.
 
         ..  container:: example
 
@@ -2086,11 +2078,10 @@ class Meter:
                     }
                 }
 
-            When establishing a meter on a selection of components which
-            contain containers, like tuplets or containers, ``rewrite_meter()``
-            will recurse into those containers, treating them as measures whose
-            time signature is derived from the preprolated preprolated_duration
-            of the container's contents:
+            When establishing a meter on a selection of components which contain
+            containers, like tuplets or containers, ``rewrite_meter()`` will recurse into
+            those containers, treating them as measures whose time signature is derived
+            from the preprolated preprolated_duration of the container's contents:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
@@ -2138,9 +2129,9 @@ class Meter:
 
         ..  container:: example
 
-            Default rewrite behavior doesn't subdivide the first note in this
-            measure because the first note in the measure starts at the
-            beginning of a level-0 beat in meter:
+            Default rewrite behavior doesn't subdivide the first note in this measure
+            because the first note in the measure starts at the beginning of a level-0
+            beat in meter:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
@@ -2161,8 +2152,7 @@ class Meter:
                     c'4
                 }
 
-            Setting boundary depth to 1 subdivides the first note in this
-            measure:
+            Setting boundary depth to 1 subdivides the first note in this measure:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
@@ -2185,8 +2175,8 @@ class Meter:
                     c'4
                 }
 
-            Another way of doing this is by setting preferred boundary depth on
-            the meter itself:
+            Another way of doing this is by setting preferred boundary depth on the meter
+            itself:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
@@ -2212,8 +2202,7 @@ class Meter:
                     c'4
                 }
 
-            This makes it possible to divide different meters in different
-            ways.
+            This makes it possible to divide different meters in different ways.
 
         ..  container:: example
 
@@ -2289,8 +2278,8 @@ class Meter:
                     c'4.
                 }
 
-            The tied note rewriting is good while the tuplet rewriting
-            could use some adjustment.
+            The tied note rewriting is good while the tuplet rewriting could use some
+            adjustment.
 
             Rewrites notes but not tuplets:
 
@@ -2556,13 +2545,27 @@ class MeterList(TypedList):
             >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
             >>> abjad.show(meters, scale=0.5) # doctest: +SKIP
 
-            ..  doctest
+            ..  docs::
 
                 >>> lilypond_file = meters.__illustrate__()
                 >>> markup = lilypond_file.items[0]
                 >>> string = abjad.lilypond(markup)
                 >>> print(string)
-                \markup { \column { \combine \combine \translate #'(1.0 . 1) \sans \fontsize #-3 \center-align \fraction 3 4 \translate #'(49.38709677419355 . 1) \sans \fontsize #-3 \center-align \fraction 5 16 \translate #'(69.54838709677419 . 1) \sans \fontsize #-3 \center-align \fraction 7 8 \combine \postscript #"0.2 setlinewidth
+                \markup
+                \column
+                {
+                \combine
+                \combine
+                \translate #'(1.0 . 1)
+                \sans \fontsize #-3 \center-align \fraction 3 4
+                \translate #'(49.38709677419355 . 1)
+                \sans \fontsize #-3 \center-align \fraction 5 16
+                \translate #'(69.54838709677419 . 1)
+                \sans \fontsize #-3 \center-align \fraction 7 8
+                \combine
+                \postscript
+                #"
+                0.2 setlinewidth
                 1 0.5 moveto
                 49.38709677419355 0.5 lineto
                 stroke
@@ -2589,7 +2592,11 @@ class MeterList(TypedList):
                 stroke
                 126 1.25 moveto
                 126 -0.25 lineto
-                stroke" \postscript #"1 -2 moveto
+                stroke
+                "
+                \postscript
+                #"
+                1 -2 moveto
                 0 -6.153846153846154 rlineto
                 stroke
                 5.032258064516129 -2 moveto
@@ -2690,7 +2697,9 @@ class MeterList(TypedList):
                 stroke
                 126 -2 moveto
                 0 -5.517241379310345 rlineto
-                stroke" } }
+                stroke
+                "
+                }
 
         Returns LilyPond file.
         """
@@ -2713,14 +2722,13 @@ class MeterList(TypedList):
         postscript_scale = 125.0 / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
-        timespan_markup = timespans._make_timespan_list_markup(
+        timespan_markup = _timespan._make_timespan_list_markup(
             timespans,
             postscript_x_offset,
             postscript_scale,
             draw_offsets=False,
         )
-        timespan_string = timespan_markup.contents[0]
-        ps = markups.Postscript()
+        postscript_strings = []
         rational_x_offset = Offset(0)
         for meter in self:
             kernel_denominator = denominator or meter.denominator
@@ -2730,26 +2738,41 @@ class MeterList(TypedList):
                 ps_x_offset = float(rational_x_offset + offset)
                 ps_x_offset *= postscript_scale
                 ps_x_offset += 1
-                ps = ps.moveto(ps_x_offset, -2)
-                ps = ps.rlineto(0, weight)
-                ps = ps.stroke()
+                postscript_strings.append(f"{markups._fpa(ps_x_offset)} -2 moveto")
+                postscript_strings.append(f"0 {markups._fpa(weight)} rlineto")
+                postscript_strings.append("stroke")
             rational_x_offset += meter.duration
-        ps_markup = rf'\postscript #"{ps}"'
-        lines_string = rf"\combine {timespan_string} {ps_markup}"
-        fraction_markups = []
+        fraction_pairs = []
         for meter, offset in zip(self, offsets):
             numerator, denominator = meter.numerator, meter.denominator
             x_translation = float(offset) * postscript_scale
             x_translation -= postscript_x_offset
-            string = rf"\translate #'({x_translation} . 1) \sans \fontsize #-3"
-            string += rf" \center-align \fraction {numerator} {denominator}"
-            fraction = markups.Markup(string, literal=True)
-            fraction_markups.append(fraction)
-        fraction_markup = str(fraction_markups[0].contents[0])
-        for markup in fraction_markups[1:]:
-            fraction_markup = rf"\combine {fraction_markup} {markup.contents[0]}"
-        string = rf"\markup {{ \column {{ {fraction_markup} {lines_string} }} }}"
-        markup = markups.Markup(string, literal=True)
+            top_string = rf"\translate #'({x_translation} . 1)"
+            bottom_string = r"\sans \fontsize #-3 \center-align"
+            bottom_string = bottom_string + rf" \fraction {numerator} {denominator}"
+            pair = (top_string, bottom_string)
+            fraction_pairs.append(pair)
+        fraction_strings = []
+        fraction_strings.append(fraction_pairs[0][0])
+        fraction_strings.append(fraction_pairs[0][1])
+        for pair in fraction_pairs[1:]:
+            fraction_strings.insert(0, r"\combine")
+            fraction_strings.append(pair[0])
+            fraction_strings.append(pair[1])
+        strings = []
+        strings.append(r"\markup")
+        strings.append(r"\column")
+        strings.append("{")
+        strings.extend(fraction_strings)
+        strings.append(r"\combine")
+        strings.append(str(timespan_markup))
+        strings.append(r"\postscript")
+        strings.append('#"')
+        strings.extend(postscript_strings)
+        strings.append('"')
+        strings.append("}")
+        string = "\n".join(strings)
+        markup = markups.Markup(string)
         lilypond_file = LilyPondFile()
         markup = new(markup, direction=None)
         lilypond_file.items.append(markup)
@@ -2783,8 +2806,8 @@ class MetricAccentKernel:
                 }
             )
 
-    Call the kernel against an expression from which offsets can be counted
-    to receive an impulse-response:
+    Call the kernel against an expression from which offsets can be counted to receive an
+    impulse-response:
 
     ..  container:: example
 
@@ -2836,8 +2859,8 @@ class MetricAccentKernel:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a metrical accent kernal with a kernal
-        equal to that of this metrical accent kernel.
+        Is true when ``argument`` is a metrical accent kernal with a kernal equal to that
+        of this metrical accent kernel.
 
         Returns true or false.
         """
@@ -3260,8 +3283,8 @@ class _MeterManager:
     @staticmethod
     def iterate_rewrite_inputs(argument):
         r"""
-        Iterates topmost masked logical ties, rest groups and containers
-        in ``argument``, masked by ``argument``.
+        Iterates topmost masked logical ties, rest groups and containers in ``argument``,
+        masked by ``argument``.
 
         >>> string = "! 2/4 c'4 d'4 ~ !"
         >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "

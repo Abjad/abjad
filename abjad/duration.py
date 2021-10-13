@@ -1116,7 +1116,7 @@ class Duration(quicktions.Fraction):
             "1'57''"
 
             >>> string = rf"\markup {{ {clock_string} }}"
-            >>> markup = abjad.Markup(string, direction=abjad.Up, literal=True)
+            >>> markup = abjad.Markup(string, direction=abjad.Up)
             >>> abjad.attach(markup, note)
             >>> abjad.show(note) # doctest: +SKIP
 

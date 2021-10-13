@@ -509,7 +509,7 @@ class MetricModulation:
     def _get_markup(self):
         string = self._get_lilypond_command_string()
         if string is not None:
-            markup = Markup(rf"\markup {string}", literal=True)
+            markup = Markup(rf"\markup {string}")
             return markup
         strings = []
         string = illustrators.selection_to_score_markup_string(self.left_rhythm)
@@ -520,7 +520,7 @@ class MetricModulation:
         strings.extend(string.split("\n"))
         string = "\n".join(strings)
         string = rf"\markup {{ {string} }}"
-        markup = Markup(string, literal=True)
+        markup = Markup(string)
         return markup
 
     def _get_markup_arguments(self):

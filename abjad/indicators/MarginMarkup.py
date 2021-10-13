@@ -14,7 +14,7 @@ class MarginMarkup:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> margin_markup = abjad.MarginMarkup(
-        ...     markup=abjad.Markup(r"\markup Vc.", literal=True),
+        ...     markup=abjad.Markup(r"\markup Vc.")
         ... )
         >>> abjad.attach(margin_markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -98,15 +98,15 @@ class MarginMarkup:
 
             >>> margin_markup_1 = abjad.MarginMarkup(
             ...     context="PianoStaff",
-            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ...     markup=abjad.Markup(r"\markup Hp."),
             ... )
             >>> margin_markup_2 = abjad.MarginMarkup(
             ...     context="PianoStaff",
-            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ...     markup=abjad.Markup(r"\markup Hp."),
             ... )
             >>> margin_markup_3 = abjad.MarginMarkup(
             ...     context="Staff",
-            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ...     markup=abjad.Markup(r"\markup Hp."),
             ... )
 
             >>> margin_markup_1 == margin_markup_1
@@ -145,7 +145,7 @@ class MarginMarkup:
 
             >>> margin_markup = abjad.MarginMarkup(
             ...     context="PianoStaff",
-            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ...     markup=abjad.Markup(r"\markup Hp."),
             ... )
 
             >>> hash_ = hash(margin_markup)
@@ -236,7 +236,7 @@ class MarginMarkup:
         ..  container::
 
             >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ...     markup=abjad.Markup(r"\markup Hp.")
             ... )
             >>> margin_markup.latent
             True
@@ -260,7 +260,7 @@ class MarginMarkup:
         ..  container:: example
 
             >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ...     markup=abjad.Markup(r"\markup Hp.")
             ... )
             >>> margin_markup.persistent
             True
@@ -277,7 +277,7 @@ class MarginMarkup:
         ..  container:: example
 
             >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup(r"\markup Hp.", literal=True),
+            ...     markup=abjad.Markup(r"\markup Hp.")
             ... )
             >>> margin_markup.redraw
             True

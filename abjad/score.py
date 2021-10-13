@@ -870,7 +870,7 @@ class Container(Component):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Articulation('^'), staff[0])
-        >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up, literal=True)
+        >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, staff[0])
         >>> abjad.attach(abjad.StemTremolo(), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2006,7 +2006,7 @@ class AfterGraceContainer(Container):
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
         >>> leaves = abjad.select(voice).leaves(grace=None)
-        >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up, literal=True)
+        >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, leaves[1])
         >>> abjad.attach(abjad.Articulation("."), leaves[1])
         >>> abjad.show(voice) # doctest: +SKIP
@@ -5690,7 +5690,7 @@ class Tuplet(Container):
             >>> duration = abjad.get.duration(tuplet)
             >>> note = abjad.Note.from_pitch_and_duration(0, duration)
             >>> string = abjad.illustrators.selection_to_score_markup_string([note])
-            >>> markup = abjad.Markup(rf"\markup {{ {string} }}", literal=True)
+            >>> markup = abjad.Markup(rf"\markup {{ {string} }}")
             >>> abjad.override(tuplet).TupletNumber.text = markup
             >>> staff = abjad.Staff([tuplet])
             >>> abjad.show(staff) # doctest: +SKIP

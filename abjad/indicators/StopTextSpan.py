@@ -98,8 +98,8 @@ class StopTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto"),
             ...     style="dashed-line-with-arrow",
             ... )
             >>> abjad.tweak(command).staff_padding = 2.5
@@ -131,8 +131,8 @@ class StopTextSpan:
 
             >>> staff = abjad.Staff("c'4 d' e' r")
             >>> command = abjad.StartTextSpan(
-            ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-            ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+            ...     left_text=abjad.Markup(r"\upright pont."),
+            ...     right_text=abjad.Markup(r"\markup \upright tasto"),
             ...     style="dashed-line-with-arrow",
             ... )
             >>> abjad.tweak(command).staff_padding = 2.5

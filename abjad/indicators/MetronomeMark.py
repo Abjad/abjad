@@ -756,7 +756,7 @@ class MetronomeMark:
         string += f" #{self.reference_duration.dot_count}"
         string += f" #{stem_height}"
         string += f' #"{self.units_per_minute}"'
-        markup = markups.Markup(rf"\markup {string}", literal=True)
+        markup = markups.Markup(rf"\markup {string}")
         return markup
 
     # TODO: refactor to return dict
@@ -1263,8 +1263,7 @@ class MetronomeMark:
                     decimal_ = decimal
                 markup = markups.Markup(
                     r"\markup \abjad-metronome-mark-markup"
-                    f' #{log} #{dots} #{stem} #"{decimal_}"',
-                    literal=True,
+                    f' #{log} #{dots} #{stem} #"{decimal_}"'
                 )
             else:
                 nonreduced = NonreducedFraction(units_per_minute)
@@ -1274,14 +1273,12 @@ class MetronomeMark:
                 markup = markups.Markup(
                     r"\markup \abjad-metronome-mark-mixed-number-markup"
                     f" #{log} #{dots} #{stem}"
-                    f' #"{base}" #"{n}" #"{d}"',
-                    literal=True,
+                    f' #"{base}" #"{n}" #"{d}"'
                 )
         else:
             markup = markups.Markup(
                 r"\markup \abjad-metronome-mark-markup"
-                f' #{log} #{dots} #{stem} #"{units_per_minute}"',
-                literal=True,
+                f' #{log} #{dots} #{stem} #"{units_per_minute}"'
             )
         return markup
 

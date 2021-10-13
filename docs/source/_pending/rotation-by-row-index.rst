@@ -12,7 +12,7 @@ Rotation, by row index
     >>> def make_rotation_chart(permutation, label):
     ...     rotations = [0, -1, -2, -3, -4, -5]
     ...     source_staff = abjad.Staff([abjad.Note(_, (1, 16)) for _ in permutation])
-    ...     markup = abjad.Markup(rf'\markup "{label}"', direction=abjad.Up, literal=True)
+    ...     markup = abjad.Markup(rf'\markup "{label}"', direction=abjad.Up)
     ...     abjad.attach(markup, source_staff[0])
     ...     score = abjad.Score([source_staff], name="Score")
     ...     group = abjad.StaffGroup(name="Staff_Group")
@@ -20,7 +20,7 @@ Rotation, by row index
     ...         [_.number for _ in permutation[:6]],
     ...         [_.number for _ in permutation[6:]],
     ...     ]
-    ...     markup = abjad.Markup(rf'\markup \box "{label}"', literal=True)
+    ...     markup = abjad.Markup(rf'\markup \box "{label}"')
     ...     margin_markups = [
     ...         abjad.StartMarkup(markup=markup),
     ...         abjad.StartMarkup(markup="I"),
@@ -42,10 +42,10 @@ Rotation, by row index
     ...             .transpose(hexachords[1][0]),
     ...         ]
     ...         names = [
-    ...             abjad.Markup(r"\markup \box α", direction=abjad.Up, literal=True),
-    ...             abjad.Markup(r"\markup \box β", direction=abjad.Up, literal=True),
-    ...             abjad.Markup(r"\markup \box γ", direction=abjad.Up, literal=True),
-    ...             abjad.Markup(r"\markup \box δ", direction=abjad.Up, literal=True),
+    ...             abjad.Markup(r"\markup \box α", direction=abjad.Up),
+    ...             abjad.Markup(r"\markup \box β", direction=abjad.Up),
+    ...             abjad.Markup(r"\markup \box γ", direction=abjad.Up),
+    ...             abjad.Markup(r"\markup \box δ", direction=abjad.Up),
     ...         ]
     ...         for set, name in zip(sets, names):
     ...             voice = abjad.Voice([abjad.Note(_, (1, 16)) for _ in set])
@@ -53,7 +53,6 @@ Rotation, by row index
     ...                 markup = abjad.Markup(
     ...                     rf"\markup {abjad.NumberedPitchClass(leaf.written_pitch)}",
     ...                     direction=abjad.Up,
-    ...                     literal=True,
     ...                 )
     ...                 abjad.tweak(markup).staff_padding = "3"
     ...                 abjad.attach(markup, leaf)

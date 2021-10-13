@@ -27,6 +27,7 @@ ignored_classes = (
     abjad.parsers.reduced.ReducedLyParser,
     abjad.parsers.scheme.SchemeParser,
     abjad.rhythmtrees.RhythmTreeParser,
+    abjad.BarLine,  # TODO: exclude dataclasses programatically
     abjad.FormatSpecification,
 )
 
@@ -63,6 +64,6 @@ if functions:
     @pytest.mark.parametrize("function", functions)
     def test_abjad___doc___02(function):
         """
-        All old functions had a docstring.
+        All functions have a docstring.
         """
         assert function.__doc__ is not None

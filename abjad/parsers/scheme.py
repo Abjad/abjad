@@ -28,10 +28,9 @@ class Scheme:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal the
-        initialization values of ``argument``.
 
         Returns true or false.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 

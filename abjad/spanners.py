@@ -1953,8 +1953,8 @@ def text_spanner(
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
-        ...     right_text=abjad.Markup(r"\markup \upright tasto", literal=True),
+        ...     left_text=abjad.Markup(r"\upright pont."),
+        ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="solid-line-with-arrow",
         ... )
         >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
@@ -1986,13 +1986,13 @@ def text_spanner(
 
         >>> staff = abjad.Staff("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+        ...     left_text=abjad.Markup(r"\upright pont."),
         ...     style="dashed-line-with-arrow",
         ... )
         >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright tasto", literal=True),
-        ...     right_text=abjad.Markup(r"\markup \upright pont.", literal=True),
+        ...     left_text=abjad.Markup(r"\upright tasto"),
+        ...     right_text=abjad.Markup(r"\markup \upright pont."),
         ...     style="dashed-line-with-arrow",
         ... )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
@@ -2028,12 +2028,12 @@ def text_spanner(
 
         >>> staff = abjad.Staff("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright pont.", literal=True),
+        ...     left_text=abjad.Markup(r"\upright pont."),
         ...     style="dashed-line-with-arrow",
         ... )
         >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
-        ...     left_text=abjad.Markup(r"\upright tasto", literal=True),
+        ...     left_text=abjad.Markup(r"\upright tasto"),
         ...     style="solid-line-with-hook",
         ... )
         >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)

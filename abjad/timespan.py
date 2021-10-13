@@ -28,7 +28,7 @@ class OffsetCounter(TypedCounter):
         ...     abjad.Timespan(0, 16),
         ...     abjad.Timespan(5, 12),
         ...     abjad.Timespan(-2, 8),
-        ...     ])
+        ... ])
         >>> timespan_operand = abjad.Timespan(6, 10)
         >>> timespans = timespans - timespan_operand
         >>> offset_counter = abjad.OffsetCounter(timespans)
@@ -72,7 +72,10 @@ class OffsetCounter(TypedCounter):
                         offset = Offset(item)
                         self[offset] += 1
 
-    ### SPECIAL METHODS ###
+    ### PRIVATE METHODS ###
+
+    def _coerce_item(self, item):
+        return Offset(item)
 
     def _make_markup(self, range_=None, scale=None) -> _markups.Markup:
         r"""
@@ -84,7 +87,7 @@ class OffsetCounter(TypedCounter):
             ...     abjad.Timespan(0, 16),
             ...     abjad.Timespan(5, 12),
             ...     abjad.Timespan(-2, 8),
-            ...     ])
+            ... ])
             >>> timespan_operand = abjad.Timespan(6, 10)
             >>> timespans = timespans - timespan_operand
             >>> offset_counter = abjad.OffsetCounter(timespans)
@@ -95,8 +98,11 @@ class OffsetCounter(TypedCounter):
                 >>> markup = offset_counter._make_markup()
                 >>> string = abjad.lilypond(markup)
                 >>> print(string)
-                \markup { \overlay {
-                \postscript #"
+                \markup
+                \overlay
+                {
+                \postscript
+                #"
                 0.2 setlinewidth
                 [ 2 1 ] 0 setdash
                 1 -1 moveto
@@ -119,7 +125,8 @@ class OffsetCounter(TypedCounter):
                 stroke
                 151 -1 moveto
                 0 -2 rlineto
-                stroke"
+                stroke
+                "
                 \translate #'(1.0 . 1)
                 \sans \fontsize #-3 \center-align \fraction -2 1
                 \translate #'(17.666666666666668 . 1)
@@ -134,11 +141,11 @@ class OffsetCounter(TypedCounter):
                 \sans \fontsize #-3 \center-align \fraction 12 1
                 \translate #'(151.0 . 1)
                 \sans \fontsize #-3 \center-align \fraction 16 1
-                } }
+                }
 
         """
         if not self:
-            return _markups.Markup(r"\markup \null", literal=True)
+            return _markups.Markup(r"\markup \null")
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -153,17 +160,29 @@ class OffsetCounter(TypedCounter):
         postscript_scale = 150.0 / (maximum_float - minimum_float)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum_float * postscript_scale) - 1
-        ps = _markups.Postscript()
-        ps = ps.setlinewidth(0.2)
-        ps = ps.setdash([2, 1])
+        postscript_strings = [
+            "0.2 setlinewidth",
+            "[ 2 1 ] 0 setdash",
+        ]
         for offset, count in sorted(self.items()):
             offset = float(offset) * postscript_scale
             offset -= postscript_x_offset
-            ps = ps.moveto(offset, -1)
-            ps = ps.rlineto(0, (float(count) * -3) + 1)
-            ps = ps.stroke()
-        string = f'\\postscript #"\n{ps}"'
-        strings = [string]
+            postscript_strings.extend(
+                [
+                    f"{_markups._fpa(offset)} -1 moveto",
+                    f"0 {_markups._fpa((float(count) * -3) + 1)} rlineto",
+                    "stroke",
+                ]
+            )
+        strings = [
+            r"\markup",
+            r"\overlay",
+            "{",
+            r"\postscript",
+            '#"',
+            *postscript_strings,
+            '"',
+        ]
         for offset in sorted(self):
             offset = Multiplier(offset)
             n, d = offset.numerator, offset.denominator
@@ -173,16 +192,10 @@ class OffsetCounter(TypedCounter):
             strings.append(string)
             string = rf"\sans \fontsize #-3 \center-align \fraction {n} {d}"
             strings.append(string)
+        strings.append("}")
         string = "\n".join(strings)
-        markup = _markups.Markup(
-            f"\\markup {{ \\overlay {{\n{string}\n}} }}", literal=True
-        )
+        markup = _markups.Markup(string)
         return markup
-
-    ### PRIVATE METHODS ###
-
-    def _coerce_item(self, item):
-        return Offset(item)
 
 
 class Timespan:
@@ -865,17 +878,18 @@ class Timespan:
         start -= postscript_x_offset
         stop = float(self._stop_offset) * postscript_scale
         stop -= postscript_x_offset
-        ps = _markups.Postscript()
-        ps = ps.moveto(start, postscript_y_offset)
-        ps = ps.lineto(stop, postscript_y_offset)
-        ps = ps.stroke()
-        ps = ps.moveto(start, postscript_y_offset + 0.75)
-        ps = ps.lineto(start, postscript_y_offset - 0.75)
-        ps = ps.stroke()
-        ps = ps.moveto(stop, postscript_y_offset + 0.75)
-        ps = ps.lineto(stop, postscript_y_offset - 0.75)
-        ps = ps.stroke()
-        return ps
+        strings = [
+            f"{_markups._fpa(start)} {_markups._fpa(postscript_y_offset)} moveto",
+            f"{_markups._fpa(stop)} {_markups._fpa(postscript_y_offset)} lineto",
+            "stroke",
+            f"{_markups._fpa(start)} {_markups._fpa(postscript_y_offset + 0.75)} moveto",
+            f"{_markups._fpa(start)} {_markups._fpa(postscript_y_offset - 0.75)} lineto",
+            "stroke",
+            f"{_markups._fpa(stop)} {_markups._fpa(postscript_y_offset + 0.75)} moveto",
+            f"{_markups._fpa(stop)} {_markups._fpa(postscript_y_offset - 0.75)} lineto",
+            "stroke",
+        ]
+        return strings
 
     def _can_fuse(self, argument):
         if isinstance(argument, type(self)):
@@ -2334,10 +2348,10 @@ class AnnotatedTimespan(Timespan):
     ..  container:: example
 
         >>> annotated_timespan = abjad.AnnotatedTimespan(
-        ...    annotation=['a', 'b', 'c'],
-        ...    start_offset=(1, 4),
-        ...    stop_offset=(7, 8),
-        ...    )
+        ...     annotation=['a', 'b', 'c'],
+        ...     start_offset=(1, 4),
+        ...     stop_offset=(7, 8),
+        ... )
         >>> string = abjad.storage(annotated_timespan)
         >>> print(string)
         abjad.AnnotatedTimespan(
@@ -2391,10 +2405,10 @@ class AnnotatedTimespan(Timespan):
             Gets annotation:
 
             >>> annotated_timespan = abjad.AnnotatedTimespan(
-            ...    annotation=['a', 'b', 'c', 'foo'],
-            ...    start_offset=(1, 4),
-            ...    stop_offset=(7, 8),
-            ...    )
+            ...     annotation=['a', 'b', 'c', 'foo'],
+            ...     start_offset=(1, 4),
+            ...     stop_offset=(7, 8),
+            ... )
             >>> annotated_timespan.annotation
             ['a', 'b', 'c', 'foo']
 
@@ -2424,7 +2438,7 @@ class TimespanList(TypedList):
         ...     abjad.Timespan(0, 3),
         ...     abjad.Timespan(3, 6),
         ...     abjad.Timespan(6, 10),
-        ...     ])
+        ... ])
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         >>> string = abjad.storage(timespans)
@@ -2456,7 +2470,7 @@ class TimespanList(TypedList):
         ...     abjad.Timespan(-2, 8),
         ...     abjad.Timespan(15, 20),
         ...     abjad.Timespan(24, 30),
-        ...     ])
+        ... ])
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         >>> string = abjad.storage(timespans)
@@ -2501,7 +2515,7 @@ class TimespanList(TypedList):
         ...     abjad.Timespan(0, (1, 2)),
         ...     ((1, 2), (3, 4)),
         ...     abjad.Timespan((3, 4), 1),
-        ...     ])
+        ... ])
 
         >>> string = abjad.storage(timespans)
         >>> print(string)
@@ -2545,7 +2559,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 16),
             ...     abjad.Timespan(5, 12),
             ...     abjad.Timespan(-2, 8),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(5, 10)
@@ -2599,7 +2613,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 16),
             ...     abjad.Timespan(5, 12),
             ...     abjad.Timespan(-2, 8),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan_operand = abjad.Timespan(6, 10)
@@ -2715,7 +2729,7 @@ class TimespanList(TypedList):
             ...     abjad.AnnotatedTimespan(0, (1, 4), annotation="voice 1"),
             ...     abjad.AnnotatedTimespan(0, (1, 4), annotation="voice 2"),
             ...     abjad.AnnotatedTimespan(0, (1, 4), annotation="voice 10"),
-            ...     ])
+            ... ])
 
             >>> def to_digit(string):
             ...     return int(string) if string.isdigit() else string
@@ -2731,7 +2745,7 @@ class TimespanList(TypedList):
             ...     key="annotation",
             ...     sort_callable=human_sorted_keys,
             ...     scale=0.5,
-            ...     ) # doctest: +SKIP
+            ... ) # doctest: +SKIP
 
             ..  docs::
 
@@ -2739,7 +2753,7 @@ class TimespanList(TypedList):
                 ...     timespans,
                 ...     key="annotation",
                 ...     sort_callable=human_sorted_keys,
-                ...     )
+                ... )
                 >>> markup = lilypond_file.items[-1]
                 >>> string = abjad.lilypond(markup)
                 >>> print(string)
@@ -2854,7 +2868,7 @@ class TimespanList(TypedList):
         Returns markup.
         """
         if not self:
-            return _markups.Markup(r"\markup \null", literal=True)
+            return _markups.Markup(r"\markup \null")
         maximum: typing.Union[Offset, math.Infinity]
         minimum: typing.Union[Offset, math.NegativeInfinity]
         if isinstance(range_, Timespan):
@@ -2872,10 +2886,10 @@ class TimespanList(TypedList):
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum_float * postscript_scale) - 1
         if key is None:
-            string = self._make_timespan_list_markup(
+            string = _make_timespan_list_markup(
                 self, postscript_x_offset, postscript_scale, sortkey=sortkey
             )
-            markup = _markups.Markup(rf"\markup {string}", literal=True)
+            markup = _markups.Markup(rf"\markup {string}")
         else:
             timespan_lists = {}
             for timespan in self:
@@ -2895,7 +2909,7 @@ class TimespanList(TypedList):
                 strings.append(string)
                 string = r"\vspace #0.5"
                 strings.append(string)
-                string = self._make_timespan_list_markup(
+                string = _make_timespan_list_markup(
                     timespans,
                     postscript_x_offset,
                     postscript_scale,
@@ -2903,9 +2917,7 @@ class TimespanList(TypedList):
                 )
                 strings.append(string)
             string = "\n".join(strings)
-            markup = _markups.Markup(
-                f"\\markup\n\\left-column {{\n{string}\n}}", literal=True
-            )
+            markup = _markups.Markup(f"\\markup\n\\left-column {{\n{string}\n}}")
         return markup
 
     def __invert__(self) -> "TimespanList":
@@ -2920,7 +2932,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> abjad.show(~timespans, range_=(-2, 30), scale=0.5) # doctest: +SKIP
@@ -2948,7 +2960,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> ~timespans
@@ -2973,7 +2985,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 16),
             ...     abjad.Timespan(5, 12),
             ...     abjad.Timespan(-2, 8),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(5, 10)
@@ -3039,76 +3051,6 @@ class TimespanList(TypedList):
         start_offset, stop_offset = self._get_offsets(argument)
         return Timespan(start_offset, stop_offset)
 
-    @staticmethod
-    def _make_timespan_list_markup(
-        timespans,
-        postscript_x_offset,
-        postscript_scale,
-        draw_offsets=True,
-        sortkey=None,
-    ):
-        exploded_timespan_lists = []
-        if not sortkey:
-            exploded_timespan_lists.extend(timespans.explode())
-        else:
-            sorted_timespan_lists = {}
-            for timespan in timespans:
-                value = getattr(timespan, sortkey)
-                if value not in sorted_timespan_lists:
-                    sorted_timespan_lists[value] = TimespanList()
-                sorted_timespan_lists[value].append(timespan)
-            for key, timespans in sorted(sorted_timespan_lists.items()):
-                exploded_timespan_lists.extend(timespans.explode())
-        ps = _markups.Postscript()
-        ps = ps.setlinewidth(0.2)
-        offset_mapping = {}
-        height = ((len(exploded_timespan_lists) - 1) * 3) + 1
-        for level, timespans in enumerate(exploded_timespan_lists, 0):
-            postscript_y_offset = height - (level * 3) - 0.5
-            for timespan in timespans:
-                offset_mapping[timespan.start_offset] = level
-                offset_mapping[timespan.stop_offset] = level
-                ps += timespan._as_postscript(
-                    postscript_x_offset, postscript_y_offset, postscript_scale
-                )
-        if not draw_offsets:
-            markup = _markups.Markup(rf'\postscript #"{ps}"', literal=True)
-            return markup
-        ps = ps.setlinewidth(0.1)
-        ps = ps.setdash([0.1, 0.2])
-        for offset in sorted(offset_mapping):
-            level = offset_mapping[offset]
-            x_offset = float(offset) * postscript_scale
-            x_offset -= postscript_x_offset
-            ps = ps.moveto(x_offset, height + 1.5)
-            ps = ps.lineto(x_offset, height - (level * 3))
-            ps = ps.stroke()
-        ps = ps.moveto(0, 0)
-        ps = ps.setgray(0.99)
-        ps = ps.rlineto(0, 0.01)
-        ps = ps.stroke()
-        x_extent = float(timespans.stop_offset)
-        x_extent *= postscript_scale
-        x_extent += postscript_x_offset
-        y_extent = height + 1.5
-        lines_string = rf"\pad-to-box #'(0 . {x_extent}) #'(0 . {y_extent})"
-        lines_string += f'\n\\postscript #"\n{ps}"'
-        fraction_strings = []
-        for offset in sorted(offset_mapping):
-            offset = Multiplier(offset)
-            numerator, denominator = offset.numerator, offset.denominator
-            x_translation = float(offset) * postscript_scale
-            x_translation -= postscript_x_offset
-            string = rf"\translate #'({x_translation} . 1)"
-            fraction_strings.append(string)
-            string = r"\sans \fontsize #-3 \center-align"
-            string += rf" \fraction {numerator} {denominator}"
-            fraction_strings.append(string)
-        fraction_string = "\n".join(fraction_strings)
-        fraction_string = f"\\overlay {{\n{fraction_string}\n}}"
-        string = f"\\column {{\n{fraction_string}\n{lines_string}\n}}"
-        return string
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -3124,7 +3066,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.all_are_contiguous
@@ -3140,7 +3082,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.all_are_contiguous
@@ -3177,7 +3119,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.all_are_nonoverlapping
@@ -3193,7 +3135,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.all_are_nonoverlapping
@@ -3231,7 +3173,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.all_are_wellformed
@@ -3247,7 +3189,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.all_are_wellformed
@@ -3277,7 +3219,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.axis
@@ -3293,7 +3235,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.axis
@@ -3326,7 +3268,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.duration
@@ -3342,7 +3284,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.duration
@@ -3374,7 +3316,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.is_sorted
@@ -3388,7 +3330,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(6, 10),
             ...     abjad.Timespan(3, 6),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.is_sorted
@@ -3421,7 +3363,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.start_offset
@@ -3437,7 +3379,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.start_offset
@@ -3471,7 +3413,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.stop_offset
@@ -3487,7 +3429,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.stop_offset
@@ -3520,7 +3462,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> abjad.show(timespans.timespan, range_=(0, 10), scale=0.5) # doctest: +SKIP
@@ -3538,7 +3480,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> abjad.show(timespans.timespan, range_=(0, 30), scale=0.5) # doctest: +SKIP
@@ -3572,12 +3514,10 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 1),
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> result = timespans.clip_timespan_durations(
-            ...     minimum=5,
-            ...     )
+            >>> result = timespans.clip_timespan_durations(minimum=5)
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(result)
@@ -3602,12 +3542,10 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 1),
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> result = timespans.clip_timespan_durations(
-            ...     maximum=5,
-            ...     )
+            >>> result = timespans.clip_timespan_durations(maximum=5)
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(result)
@@ -3632,13 +3570,13 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 1),
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> result = timespans.clip_timespan_durations(
             ...     minimum=3,
             ...     maximum=7,
-            ...     )
+            ... )
             >>> abjad.show(result, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(result)
@@ -3663,14 +3601,14 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 1),
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
             >>> result = timespans.clip_timespan_durations(
             ...     minimum=3,
             ...     maximum=7,
             ...     anchor=abjad.Right,
-            ...     )
+            ... )
             >>> abjad.show(result, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(result)
@@ -3733,7 +3671,7 @@ class TimespanList(TypedList):
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_and()
@@ -3757,7 +3695,7 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(5, 12),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_and()
@@ -3782,7 +3720,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(5, 12),
             ...     abjad.Timespan(-2, 8),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_and()
@@ -3835,7 +3773,7 @@ class TimespanList(TypedList):
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_or()
@@ -3859,7 +3797,7 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(5, 12),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_or()
@@ -3884,7 +3822,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(5, 12),
             ...     abjad.Timespan(-2, 2),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_or()
@@ -3908,7 +3846,7 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(-2, 2),
             ...     abjad.Timespan(10, 20),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_or()
@@ -3963,7 +3901,7 @@ class TimespanList(TypedList):
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_xor()
@@ -3987,7 +3925,7 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(5, 12),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_xor()
@@ -4018,7 +3956,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(5, 12),
             ...     abjad.Timespan(-2, 2),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_xor()
@@ -4052,7 +3990,7 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(-2, 2),
             ...     abjad.Timespan(10, 20),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_xor()
@@ -4083,7 +4021,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(4, 8),
             ...     abjad.Timespan(2, 6),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_xor()
@@ -4111,7 +4049,7 @@ class TimespanList(TypedList):
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
             ...     abjad.Timespan(0, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.compute_logical_xor()
@@ -4153,7 +4091,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(5, 15),
             ...     abjad.Timespan(20, 25),
             ...     abjad.Timespan(20, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         ..  container:: example
@@ -4175,9 +4113,7 @@ class TimespanList(TypedList):
 
             Computes overlap factor:
 
-            >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(-10, 5),
-            ...     )
+            >>> timespans.compute_overlap_factor(timespan=abjad.Timespan(-10, 5))
             Multiplier(1, 3)
 
         ..  container:: example
@@ -4245,7 +4181,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(5, 15),
             ...     abjad.Timespan(20, 25),
             ...     abjad.Timespan(20, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> mapping = timespans.compute_overlap_factor_mapping()
@@ -4281,7 +4217,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(timespans)
@@ -4325,7 +4261,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(timespans)
@@ -4381,7 +4317,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(0, 6),
             ...     abjad.Timespan(0, 9),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> offset_counter = timespans.count_offsets()
@@ -4422,7 +4358,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(26, 29),
             ...     abjad.Timespan(32, 34),
             ...     abjad.Timespan(34, 37),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         ..  container:: example
@@ -4642,7 +4578,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 5)
@@ -4684,7 +4620,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 8)
@@ -4727,7 +4663,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(2, 8)
@@ -4764,7 +4700,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(timespans)
@@ -4825,7 +4761,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(-2, 8),
             ...     abjad.Timespan(15, 20),
             ...     abjad.Timespan(24, 30),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(timespans)
@@ -4897,12 +4833,12 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for timespan_list in timespans.partition(
             ...     include_tangent_timespans=True,
-            ...     ):
+            ... ):
             ...     string = abjad.storage(timespan_list)
             ...     print(string)
             ...
@@ -4960,7 +4896,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.reflect()
@@ -4993,7 +4929,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.reflect(axis=abjad.Offset(15))
@@ -5042,7 +4978,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(5, 5),
             ...     abjad.Timespan(5, 10),
             ...     abjad.Timespan(5, 25),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.remove_degenerate_timespans()
@@ -5081,7 +5017,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 15), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.repeat_to_stop_offset(15)
@@ -5143,7 +5079,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 4),
             ...     abjad.Timespan(4, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.rotate(-1)
@@ -5176,7 +5112,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 4),
             ...     abjad.Timespan(4, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.rotate(1)
@@ -5244,7 +5180,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 2),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> rounded_timespans = timespans.round_offsets(3)
@@ -5277,7 +5213,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 2),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> rounded_timespans = timespans.round_offsets(5)
@@ -5310,13 +5246,13 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 2),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
             >>> rounded_timespans = timespans.round_offsets(
             ...     5,
             ...     anchor=abjad.Right,
-            ...     )
+            ... )
             >>> abjad.show(rounded_timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
             >>> string = abjad.storage(rounded_timespans)
@@ -5346,14 +5282,14 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 2),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> rounded_timespans = timespans.round_offsets(
             ...     5,
             ...     anchor=abjad.Right,
             ...     must_be_wellformed=False,
-            ...     )
+            ... )
 
             >>> string = abjad.storage(rounded_timespans)
             >>> print(string)
@@ -5399,7 +5335,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 14), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.scale(2)
@@ -5432,7 +5368,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.scale(2, anchor=abjad.Right)
@@ -5478,7 +5414,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> left, right = timespans.split_at_offset(4)
@@ -5523,7 +5459,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> left, right = timespans.split_at_offset(6)
@@ -5564,7 +5500,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> left, right = timespans.split_at_offset(-1)
@@ -5625,7 +5561,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(4, 10),
             ...     abjad.Timespan(15, 20),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 20), scale=0.5) # doctest: +SKIP
 
             >>> offsets = [-1, 3, 6, 12, 13]
@@ -5667,7 +5603,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 20), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.stretch(2)
@@ -5700,7 +5636,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(-8, 12), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.stretch(2, anchor=abjad.Offset(8))
@@ -5748,7 +5684,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.translate(50)
@@ -5792,7 +5728,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.translate_offsets(50, 50)
@@ -5825,7 +5761,7 @@ class TimespanList(TypedList):
             ...     abjad.Timespan(0, 3),
             ...     abjad.Timespan(3, 6),
             ...     abjad.Timespan(6, 10),
-            ...     ])
+            ... ])
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> _ = timespans.translate_offsets(
@@ -5861,3 +5797,94 @@ class TimespanList(TypedList):
             timespans.append(timespan)
         self[:] = timespans
         return self
+
+
+def _make_timespan_list_markup(
+    timespans,
+    postscript_x_offset,
+    postscript_scale,
+    draw_offsets=True,
+    sortkey=None,
+):
+    exploded_timespan_lists = []
+    if not sortkey:
+        exploded_timespan_lists.extend(timespans.explode())
+    else:
+        sorted_timespan_lists = {}
+        for timespan in timespans:
+            value = getattr(timespan, sortkey)
+            if value not in sorted_timespan_lists:
+                sorted_timespan_lists[value] = TimespanList()
+            sorted_timespan_lists[value].append(timespan)
+        for key, timespans in sorted(sorted_timespan_lists.items()):
+            exploded_timespan_lists.extend(timespans.explode())
+    postscript_strings = ["0.2 setlinewidth"]
+    offset_mapping = {}
+    height = ((len(exploded_timespan_lists) - 1) * 3) + 1
+    for level, timespans in enumerate(exploded_timespan_lists, 0):
+        postscript_y_offset = height - (level * 3) - 0.5
+        for timespan in timespans:
+            offset_mapping[timespan.start_offset] = level
+            offset_mapping[timespan.stop_offset] = level
+            strings = timespan._as_postscript(
+                postscript_x_offset, postscript_y_offset, postscript_scale
+            )
+            postscript_strings.extend(strings)
+    if not draw_offsets:
+        strings = [
+            r"\postscript",
+            '#"',
+            *postscript_strings,
+            '"',
+        ]
+        string = "\n".join(strings)
+        markup = _markups.Markup(string)
+        return markup
+    postscript_strings.extend(
+        [
+            "0.1 setlinewidth",
+            "[ 0.1 0.2 ] 0 setdash",
+        ]
+    )
+    for offset in sorted(offset_mapping):
+        level = offset_mapping[offset]
+        x_offset = float(offset) * postscript_scale
+        x_offset -= postscript_x_offset
+        postscript_strings.extend(
+            [
+                f"{_markups._fpa(x_offset)} {_markups._fpa(height + 1.5)} moveto",
+                f"{_markups._fpa(x_offset)} {_markups._fpa(height - (level * 3))} lineto",
+                "stroke",
+            ]
+        )
+    postscript_strings.extend(
+        [
+            "0 0 moveto",
+            "0.99 setgray",
+            "0 0.01 rlineto",
+            "stroke",
+        ]
+    )
+    string = "\n".join(postscript_strings)
+    postscript = string
+    x_extent = float(timespans.stop_offset)
+    x_extent *= postscript_scale
+    x_extent += postscript_x_offset
+    y_extent = height + 1.5
+    lines_string = rf"\pad-to-box #'(0 . {x_extent}) #'(0 . {y_extent})"
+    lines_string += f'\n\\postscript #"\n{postscript}"'
+    fraction_strings = []
+    for offset in sorted(offset_mapping):
+        offset = Multiplier(offset)
+        numerator, denominator = offset.numerator, offset.denominator
+        x_translation = float(offset) * postscript_scale
+        x_translation -= postscript_x_offset
+        string = rf"\translate #'({x_translation} . 1)"
+        fraction_strings.append(string)
+        string = r"\sans \fontsize #-3 \center-align"
+        string += rf" \fraction {numerator} {denominator}"
+        fraction_strings.append(string)
+    fraction_string = "\n".join(fraction_strings)
+    fraction_string = f"\\overlay {{\n{fraction_string}\n}}"
+    string = f"\\column {{\n{fraction_string}\n{lines_string}\n}}"
+    return string
