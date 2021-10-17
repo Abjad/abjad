@@ -68,7 +68,7 @@ class SetClass:
         SC(4-22){0, 2, 4, 7}
         SC(4-23){0, 2, 5, 7}
         SC(4-24){0, 2, 4, 8}
-        SC(4-25){2, 6, 8, 9}
+        SC(4-25){0, 2, 6, 8}
         SC(4-26){0, 3, 5, 8}
         SC(4-27){0, 2, 5, 8}
         SC(4-28){0, 3, 6, 9}
@@ -175,7 +175,7 @@ class SetClass:
     There are 352 SG1 set-classes and 224 SG2 set-classes.
     """
 
-    ### CLASS VARIABLES ##
+    ### CLASS VARIABLES ###
 
     __slots__ = (
         "_cardinality",
@@ -235,7 +235,7 @@ class SetClass:
         (4, 22): (0, 2, 4, 7),
         (4, 23): (0, 2, 5, 7),
         (4, 24): (0, 2, 4, 8),
-        (4, 25): (9, 2, 6, 8),
+        (4, 25): (0, 2, 6, 8),
         (4, 26): (0, 3, 5, 8),
         (4, 27): (0, 2, 5, 8),
         (4, 28): (0, 3, 6, 9),
@@ -1044,49 +1044,6 @@ class SetClass:
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _classify_set_classes():
-        """
-        Was only necessary to run during implementation of SetClass.
-
-        Generated the ...
-
-            _forte_identifier_to_prime_form
-            _lex_identifier_to_prime_form
-            _transposition_only_identifier_to_prime_form
-
-        ... dictionaries attached as class attributes.
-
-        Archived here in case other identifier systems are needed in future.
-        """
-        all_prime_forms = {}
-        for cardinality in range(12 + 1):
-            all_prime_forms[cardinality] = set()
-        for pc_set in SetClass._yield_all_pitch_class_sets():
-            if NumberedPitchClass(0) not in pc_set:
-                if 0 < len(pc_set):
-                    continue
-            prime_form = pc_set.get_prime_form(transposition_only=True)
-            all_prime_forms[prime_form.cardinality].add(prime_form)
-        total = 0
-        for cardinality in range(12 + 1):
-            count = len(all_prime_forms[cardinality])
-            total += count
-        for cardinality in range(12 + 1):
-            prime_forms = list(all_prime_forms[cardinality])
-            prime_forms.sort(key=lambda x: str(x))
-            for index, prime_form in enumerate(prime_forms):
-                rank = index + 1
-                prime_form = str(prime_form)
-                prime_form = prime_form.replace("{", "(")
-                prime_form = prime_form.replace("}", ")")
-                message = f"({cardinality}, {rank}): {prime_form},"
-                print(message)
-            print()
-        message = f"total set-classes: {total}"
-        print(message)
-        print()
-
     def _unrank(self, cardinality, rank, transposition_only=None):
         pair = (cardinality, rank)
         if self.transposition_only:
@@ -1097,20 +1054,6 @@ class SetClass:
             prime_form = self._forte_identifier_to_prime_form[pair]
         prime_form = PitchClassSet(items=prime_form, item_class=NumberedPitchClass)
         return prime_form
-
-    @staticmethod
-    def _yield_all_pitch_class_sets():
-        def _helper(binary_string):
-            result = zip(binary_string, range(len(binary_string)))
-            result = [string[1] for string in result if string[0] == "1"]
-            return result
-
-        for i in range(4096):
-            string = math.integer_to_binary_string(i).zfill(12)
-            subset = "".join(list(reversed(string)))
-            subset = _helper(subset)
-            subset = PitchClassSet(subset, item_class=NumberedPitchClass)
-            yield subset
 
     ### PUBLIC PROPERTIES ###
 
@@ -1601,7 +1544,7 @@ class SetClass:
             SC(4-22){0, 2, 4, 7}
             SC(4-23){0, 2, 5, 7}
             SC(4-24){0, 2, 4, 8}
-            SC(4-25){2, 6, 8, 9}
+            SC(4-25){0, 2, 6, 8}
             SC(4-26){0, 3, 5, 8}
             SC(4-27){0, 2, 5, 8}
             SC(4-28){0, 3, 6, 9}
@@ -1723,3 +1666,60 @@ class SetClass:
             )
             set_classes.append(set_class)
         return set_classes
+
+
+def _classify_set_classes(transposition_only=False):
+    """
+    Was only necessary to run during implementation of SetClass.
+
+    Generated the ...
+
+        _forte_identifier_to_prime_form
+        _lex_identifier_to_prime_form
+        _transposition_only_identifier_to_prime_form
+
+    ... dictionaries attached as class attributes.
+
+    Archived here in case other identifier systems are needed in future.
+    """
+    all_prime_forms = {}
+    for cardinality in range(12 + 1):
+        all_prime_forms[cardinality] = set()
+    for pc_set in _yield_all_pitch_class_sets():
+        if NumberedPitchClass(0) not in pc_set:
+            if 0 < len(pc_set):
+                continue
+        prime_form = pc_set.get_prime_form(transposition_only=transposition_only)
+        all_prime_forms[prime_form.cardinality].add(prime_form)
+    total = 0
+    for cardinality in range(12 + 1):
+        count = len(all_prime_forms[cardinality])
+        total += count
+    for cardinality in range(12 + 1):
+        prime_forms = list(all_prime_forms[cardinality])
+        prime_forms.sort(key=lambda x: str(x))
+        for index, prime_form in enumerate(prime_forms):
+            rank = index + 1
+            prime_form = str(prime_form)
+            prime_form = prime_form.replace("{", "(")
+            prime_form = prime_form.replace("}", ")")
+            message = f"({cardinality}, {rank}): {prime_form},"
+            print(message)
+        print()
+    message = f"total set-classes: {total}"
+    print(message)
+    print()
+
+
+def _yield_all_pitch_class_sets():
+    def _helper(binary_string):
+        result = zip(binary_string, range(len(binary_string)))
+        result = [string[1] for string in result if string[0] == "1"]
+        return result
+
+    for i in range(4096):
+        string = math.integer_to_binary_string(i).zfill(12)
+        subset = "".join(list(reversed(string)))
+        subset = _helper(subset)
+        subset = PitchClassSet(subset, item_class=NumberedPitchClass)
+        yield subset
