@@ -17,14 +17,18 @@ class BreathMark:
         >>> note = abjad.Note("c'4")
         >>> breath_mark = abjad.BreathMark()
         >>> abjad.attach(breath_mark, note)
-        >>> abjad.show(note) # doctest: +SKIP
+        >>> staff = abjad.Staff([note])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(note)
+            >>> string = abjad.lilypond(staff)
             >>> print(string)
-            c'4
-            \breathe
+            \new Staff
+            {
+                c'4
+                \breathe
+            }
 
     ..  container:: example
 
@@ -76,6 +80,26 @@ class BreathMark:
                 d'4
                 e'4
                 f'4
+                \breathe
+            }
+
+    ..  container:: example
+
+        >>> note = abjad.Note("c'4")
+        >>> breath = abjad.BreathMark()
+        >>> abjad.tweak(breath).color = "#blue"
+        >>> abjad.attach(breath, note)
+        >>> staff = abjad.Staff([note])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                \tweak color #blue
                 \breathe
             }
 
@@ -131,7 +155,7 @@ class BreathMark:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
-        return str(self)
+        return r"\breathe"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = LilyPondFormatBundle()
@@ -141,28 +165,9 @@ class BreathMark:
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
 
-    ### PUBLIC PROPERTIES ###
-
     @property
     def tweaks(self) -> typing.Optional[TweakInterface]:
-        r"""
+        """
         Gets tweaks
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> breath = abjad.BreathMark()
-            >>> abjad.tweak(breath).color = "#blue"
-            >>> abjad.attach(breath, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                c'4
-                \tweak color #blue
-                \breathe
-
         """
         return self._tweaks

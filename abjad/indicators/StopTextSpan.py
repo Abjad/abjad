@@ -106,7 +106,7 @@ class StopTextSpan:
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopTextSpan()
             >>> abjad.attach(command, staff[-2])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -139,7 +139,7 @@ class StopTextSpan:
             >>> abjad.attach(command, staff[0])
             >>> command = abjad.StopTextSpan(leak=True)
             >>> abjad.attach(command, staff[-2])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

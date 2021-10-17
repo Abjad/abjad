@@ -166,16 +166,7 @@ from .instruments import (
 )
 from .io import graph, play, show
 from .label import ColorMap
-from .lilypondfile import (
-    Block,
-    ContextBlock,
-    DateTimeToken,
-    LilyPondDimension,
-    LilyPondFile,
-    LilyPondLanguageToken,
-    LilyPondVersionToken,
-    PackageGitCommitToken,
-)
+from .lilypondfile import Block, LilyPondFile
 from .lilypondformat import lilypond
 from .lyproxy import (
     LilyPondContext,
@@ -306,7 +297,7 @@ from .templates import (
     StringOrchestraScoreTemplate,
     StringQuartetScoreTemplate,
 )
-from .timespan import AnnotatedTimespan, Timespan, TimespanList
+from .timespan import Timespan, TimespanList
 from .typedcollections import (
     TypedCollection,
     TypedCounter,
@@ -348,7 +339,6 @@ __all__ = [
     "AltoSaxophone",
     "AltoTrombone",
     "AltoVoice",
-    "AnnotatedTimespan",
     "Arpeggio",
     "Articulation",
     "AssignabilityError",
@@ -385,7 +375,6 @@ __all__ = [
     "Configuration",
     "Container",
     "Context",
-    "ContextBlock",
     "ContextManager",
     "Contrabass",
     "ContrabassClarinet",
@@ -393,7 +382,6 @@ __all__ = [
     "ContrabassSaxophone",
     "Contrabassoon",
     "CyclicTuple",
-    "DateTimeToken",
     "Descendants",
     "Down",
     "DrumNoteHead",
@@ -449,18 +437,15 @@ __all__ = [
     "Less",
     "LilyPondComment",
     "LilyPondContext",
-    "LilyPondDimension",
     "LilyPondEngraver",
     "LilyPondFile",
     "LilyPondFormatBundle",
     "LilyPondGrob",
     "LilyPondGrobInterface",
-    "LilyPondLanguageToken",
     "LilyPondLiteral",
     "LilyPondOverride",
     "LilyPondParserError",
     "LilyPondSetting",
-    "LilyPondVersionToken",
     "Line",
     "Lineage",
     "LogicalTie",
@@ -507,7 +492,6 @@ __all__ = [
     "OnBeatGraceContainer",
     "Ottava",
     "OverrideInterface",
-    "PackageGitCommitToken",
     "Parentage",
     "ParentageError",
     "Parser",

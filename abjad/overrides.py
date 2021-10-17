@@ -1451,7 +1451,7 @@ class SettingInterface(Interface):
             result = rf"{string!s} = {value_parts[0]!s}"
             pieces = [result]
             for part in value_parts[1:]:
-                pieces.append(LilyPondFormatBundle.indent + part)
+                pieces.append(_format.INDENT + part)
             string = "\n".join(pieces)
             strings.append(string)
         return strings

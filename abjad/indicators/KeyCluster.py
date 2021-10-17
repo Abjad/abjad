@@ -15,20 +15,24 @@ class KeyCluster:
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
         >>> key_cluster = abjad.KeyCluster()
         >>> abjad.attach(key_cluster, chord)
-        >>> abjad.show(chord) # doctest: +SKIP
+        >>> staff = abjad.Staff([chord])
+        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(chord)
+            >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \once \override Accidental.stencil = ##f
-            \once \override AccidentalCautionary.stencil = ##f
-            \once \override Arpeggio.X-offset = #-2
-            \once \override NoteHead.stencil = #ly:text-interface::print
-            \once \override NoteHead.text =
-            \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-            <c' e' g' b' d'' f''>8
-            ^ \markup \center-align \concat { \natural \flat }
+            \new Staff
+            {
+                \once \override Accidental.stencil = ##f
+                \once \override AccidentalCautionary.stencil = ##f
+                \once \override Arpeggio.X-offset = #-2
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text =
+                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                <c' e' g' b' d'' f''>8
+                ^ \markup \center-align \concat { \natural \flat }
+            }
 
     """
 
@@ -122,20 +126,24 @@ class KeyCluster:
             >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
             >>> key_cluster = abjad.KeyCluster(hide=False)
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                    ^ \markup \center-align \concat { \natural \flat }
+                }
 
             Default behavior.
 
@@ -146,19 +154,23 @@ class KeyCluster:
             >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
             >>> key_cluster = abjad.KeyCluster(hide=True)
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                }
 
         ..  todo:: Remove?
 
@@ -179,20 +191,24 @@ class KeyCluster:
             ...     include_black_keys=True,
             ...     )
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                    ^ \markup \center-align \concat { \natural \flat }
+                }
 
             Default behavior.
 
@@ -205,20 +221,24 @@ class KeyCluster:
             ...     include_black_keys=False,
             ...     )
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \natural
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                    ^ \markup \center-align \natural
+                }
 
         ..  todo:: Rename to ``include_flat_markup``.
 
@@ -239,20 +259,24 @@ class KeyCluster:
             ...     include_white_keys=True,
             ...     )
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                    ^ \markup \center-align \concat { \natural \flat }
+                }
 
             Default behavior.
 
@@ -265,20 +289,24 @@ class KeyCluster:
             ...     include_white_keys=False,
             ...     )
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \flat
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                    ^ \markup \center-align \flat
+                }
 
         ..  todo:: Rename to ``include_natural_markup``.
 
@@ -299,20 +327,24 @@ class KeyCluster:
             ...     markup_direction=abjad.Up,
             ...     )
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                    ^ \markup \center-align \concat { \natural \flat }
+                }
 
             Default behavior.
 
@@ -325,20 +357,24 @@ class KeyCluster:
             ...     markup_direction=abjad.Down,
             ...     )
             >>> abjad.attach(key_cluster, chord)
-            >>> abjad.show(chord) # doctest: +SKIP
+            >>> staff = abjad.Staff([chord])
+            >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(chord)
+                >>> string = abjad.lilypond(staff)
                 >>> print(string)
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                _ \markup \center-align \concat { \natural \flat }
+                \new Staff
+                {
+                    \once \override Accidental.stencil = ##f
+                    \once \override AccidentalCautionary.stencil = ##f
+                    \once \override Arpeggio.X-offset = #-2
+                    \once \override NoteHead.stencil = #ly:text-interface::print
+                    \once \override NoteHead.text =
+                    \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
+                    <c' e' g' b' d'' f''>8
+                    _ \markup \center-align \concat { \natural \flat }
+                }
 
         """
         return self._markup_direction
@@ -366,10 +402,9 @@ class KeyCluster:
             <c' e' g' b' d'' f''>8
             ^ \markup \center-align \concat { \natural \flat }
 
-            The reason for this is that chords contain multiple note-heads: if
-            key cluster formatted tweaks instead of overrides, the five format
-            commands shown above would need to be duplicated immediately before
-            each note-head.
+            The reason for this is that chords contain multiple note-heads: if key
+            cluster formatted tweaks instead of overrides, the five format commands shown
+            above would need to be duplicated immediately before each note-head.
 
         """
         pass

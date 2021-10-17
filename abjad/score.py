@@ -7,21 +7,21 @@ import typing
 
 import quicktions
 
-from . import enums, exceptions
+from . import duration as _duration
+from . import enums as _enums
+from . import exceptions as _exceptions
 from . import format as _format
+from . import markups as _markups
 from . import math as _math
+from . import overrides as _overrides
 from . import tag as _tag
+from . import timespan as _timespan
 from . import typings
-from .bundle import LilyPondFormatBundle
-from .duration import Duration, Multiplier, NonreducedFraction
 from .lyconst import drums
 from .lyproxy import LilyPondContext
-from .markups import Markup
 from .new import new
-from .overrides import TweakInterface, override, setting, tweak
 from .pitch.pitches import NamedPitch
 from .pitch.segments import PitchSegment
-from .timespan import Timespan
 from .typedcollections import TypedList
 
 
@@ -77,7 +77,7 @@ class Component:
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
-        self._timespan = Timespan()
+        self._timespan = _timespan.Timespan()
         self._wrappers: typing.List = []
 
     ### SPECIAL METHODS ###
@@ -96,9 +96,11 @@ class Component:
         """
         component = type(self)(*self.__getnewargs__())
         if getattr(self, "_overrides", None) is not None:
-            component._overrides = copy.copy(override(self))
+            component._overrides = copy.copy(_overrides.override(self))
         if getattr(self, "_lilypond_setting_name_manager", None) is not None:
-            component._lilypond_setting_name_manager = copy.copy(setting(self))
+            component._lilypond_setting_name_manager = copy.copy(
+                _overrides.setting(self)
+            )
         for wrapper in self._wrappers:
             if not wrapper.annotation:
                 continue
@@ -214,7 +216,7 @@ class Component:
                 if string.isspace():
                     string = ""
                 else:
-                    string = LilyPondFormatBundle.indent + string
+                    string = _format.INDENT + string
                 strings.append(string)
             pair = (contributor, strings)
             result.append(pair)
@@ -241,7 +243,7 @@ class Component:
         if self._parent is None:
             return duration
         for parent in self._parent._get_parentage():
-            multiplier = getattr(parent, "implied_prolation", Multiplier(1))
+            multiplier = getattr(parent, "implied_prolation", _duration.Multiplier(1))
             duration *= multiplier
         return duration
 
@@ -340,11 +342,11 @@ class Component:
         return self._format_component()
 
     def _get_markup(self, direction=None):
-        markup = self._get_indicators(Markup)
-        if direction is enums.Up:
-            return tuple(x for x in markup if x.direction is enums.Up)
-        elif direction is enums.Down:
-            return tuple(x for x in markup if x.direction is enums.Down)
+        markup = self._get_indicators(_markups.Markup)
+        if direction is _enums.Up:
+            return tuple(x for x in markup if x.direction is _enums.Up)
+        elif direction is _enums.Down:
+            return tuple(x for x in markup if x.direction is _enums.Down)
         return markup
 
     def _get_parentage(self):
@@ -377,8 +379,8 @@ class Component:
         if in_seconds:
             self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
-                raise exceptions.MissingMetronomeMarkError
-            return Timespan(
+                raise _exceptions.MissingMetronomeMarkError
+            return _timespan.Timespan(
                 start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,
             )
@@ -553,9 +555,9 @@ class Leaf(Component):
 
     def _copy_override_and_set_from_leaf(self, leaf):
         if getattr(leaf, "_overrides", None) is not None:
-            self._overrides = copy.copy(override(leaf))
+            self._overrides = copy.copy(_overrides.override(leaf))
         if getattr(leaf, "_lilypond_setting_name_manager", None) is not None:
-            self._lilypond_setting_name_manager = copy.copy(setting(leaf))
+            self._lilypond_setting_name_manager = copy.copy(_overrides.setting(leaf))
         for wrapper in leaf._wrappers:
             wrapper_ = copy.copy(wrapper)
             new(wrapper_, component=self)
@@ -677,8 +679,8 @@ class Leaf(Component):
         if self.written_duration:
             if self.multiplier is not None:
                 duration = self.multiplier * self.written_duration
-                return Duration(duration)
-            return Duration(self.written_duration)
+                return _duration.Duration(duration)
+            return _duration.Duration(self.written_duration)
 
     def _get_preprolated_duration(self):
         return self._get_multiplied_duration()
@@ -697,14 +699,12 @@ class Leaf(Component):
         for contributor, contributions in contribution_packet:
             if contributions:
                 if isinstance(contributor, tuple):
-                    contributor = LilyPondFormatBundle.indent + contributor[0] + ":\n"
+                    contributor = _format.INDENT + contributor[0] + ":\n"
                 else:
-                    contributor = LilyPondFormatBundle.indent + contributor + ":\n"
+                    contributor = _format.INDENT + contributor + ":\n"
                 result += contributor
                 for contribution in contributions:
-                    contribution = (
-                        (LilyPondFormatBundle.indent * 2) + contribution + "\n"
-                    )
+                    contribution = (_format.INDENT * 2) + contribution + "\n"
                     result += contribution
         return result
 
@@ -714,7 +714,9 @@ class Leaf(Component):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def multiplier(self) -> typing.Union[Multiplier, NonreducedFraction, None]:
+    def multiplier(
+        self,
+    ) -> typing.Union[_duration.Multiplier, _duration.NonreducedFraction, None]:
         """
         Gets multiplier.
         """
@@ -722,14 +724,14 @@ class Leaf(Component):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, (NonreducedFraction, type(None))):
+        if isinstance(argument, (_duration.NonreducedFraction, type(None))):
             multiplier = argument
         else:
-            multiplier = Multiplier(argument)
+            multiplier = _duration.Multiplier(argument)
         self._multiplier = multiplier
 
     @property
-    def written_duration(self) -> Duration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets written duration.
         """
@@ -737,10 +739,10 @@ class Leaf(Component):
 
     @written_duration.setter
     def written_duration(self, argument):
-        duration = Duration(argument)
+        duration = _duration.Duration(argument)
         if not duration.is_assignable:
             message = f"not assignable duration: {duration!r}."
-            raise exceptions.AssignabilityError(message)
+            raise _exceptions.AssignabilityError(message)
         self._written_duration = duration
 
 
@@ -1189,7 +1191,6 @@ class Container(Component):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_content_pieces(self):
-        indent = LilyPondFormatBundle.indent
         strings = []
         for component in self.components:
             string = component._get_lilypond_format()
@@ -1197,7 +1198,7 @@ class Container(Component):
                 if string.isspace():
                     string = ""
                 else:
-                    string = indent + string
+                    string = _format.INDENT + string
                 strings.append(string)
         return strings
 
@@ -1270,9 +1271,11 @@ class Container(Component):
 
     def _get_contents_duration(self):
         if self.simultaneous:
-            return max([Duration(0)] + [x._get_preprolated_duration() for x in self])
+            return max(
+                [_duration.Duration(0)] + [x._get_preprolated_duration() for x in self]
+            )
         else:
-            duration = Duration(0)
+            duration = _duration.Duration(0)
             for component in self:
                 duration += component._get_preprolated_duration()
             return duration
@@ -1418,7 +1421,7 @@ class Container(Component):
         if any(hasattr(_, "_main_leaf") for _ in argument):
             raise Exception("must attach grace container to note or chord.")
         if self._check_for_cycles(argument):
-            raise exceptions.ParentageError("attempted to induce cycles.")
+            raise _exceptions.ParentageError("attempted to induce cycles.")
         if (
             i.start == i.stop
             and i.start is not None
@@ -2724,7 +2727,7 @@ class Chord(Leaf):
                 written_pitches = written_pitches.written_pitches
         elif len(arguments) == 0:
             written_pitches = [NamedPitch(_) for _ in [0, 4, 7]]
-            written_duration = Duration(1, 4)
+            written_duration = _duration.Duration(1, 4)
         else:
             raise ValueError(f"can not initialize chord from {arguments!r}.")
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
@@ -2777,7 +2780,7 @@ class Chord(Leaf):
 
     def __getnewargs__(
         self,
-    ) -> typing.Tuple[PitchSegment, Duration]:
+    ) -> typing.Tuple[PitchSegment, _duration.Duration]:
         """
         Gets new chord arguments.
 
@@ -2805,14 +2808,13 @@ class Chord(Leaf):
         return result
 
     def _format_leaf_nucleus(self):
-        indent = LilyPondFormatBundle.indent
         result = []
         note_heads = self.note_heads
         if any("\n" in _._get_lilypond_format() for _ in note_heads):
             for note_head in note_heads:
                 current_format = note_head._get_lilypond_format()
                 format_list = current_format.split("\n")
-                format_list = [indent + x for x in format_list]
+                format_list = [_format.INDENT + x for x in format_list]
                 result.extend(format_list)
             result.insert(0, "<")
             result.append(">")
@@ -2910,7 +2912,7 @@ class Chord(Leaf):
         self.note_heads.extend(note_heads)
 
     @property
-    def written_duration(self) -> Duration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets and sets written duration of chord.
 
@@ -3189,7 +3191,6 @@ class Context(Container):
         return string
 
     def _format_open_brackets_slot(self, bundle):
-        indent = LilyPondFormatBundle.indent
         result = []
         if self.simultaneous:
             if self.identifier:
@@ -3212,22 +3213,22 @@ class Context(Container):
             contributions = tuple(contributions)
             identifier_pair = ("context_brackets", "open")
             result.append((identifier_pair, contributions))
-            contributions = [indent + _ for _ in remove_commands]
+            contributions = [_format.INDENT + _ for _ in remove_commands]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("engraver removals", "remove_commands")
             result.append((identifier_pair, contributions))
-            contributions = [indent + _ for _ in consists_commands]
+            contributions = [_format.INDENT + _ for _ in consists_commands]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("engraver consists", "consists_commands")
             result.append((identifier_pair, contributions))
-            contributions = [indent + _ for _ in overrides]
+            contributions = [_format.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("overrides", "overrides")
             result.append((identifier_pair, contributions))
-            contributions = [indent + _ for _ in settings]
+            contributions = [_format.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("settings", "settings")
@@ -3547,8 +3548,8 @@ class NoteHead:
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -3917,7 +3918,7 @@ class NoteHead:
         return self.written_pitch
 
     @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks.
 
@@ -4053,7 +4054,7 @@ class DrumNoteHead(NoteHead):
         is_cautionary: bool = None,
         is_forced: bool = None,
         is_parenthesized: bool = None,
-        tweaks: TweakInterface = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
         NoteHead.__init__(
             self,
@@ -4394,7 +4395,7 @@ class Note(Leaf):
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
             written_pitch = NamedPitch("C4")
-            written_duration = Duration(1, 4)
+            written_duration = _duration.Duration(1, 4)
         else:
             raise ValueError("can not initialize note from {arguments!r}.")
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
@@ -4495,7 +4496,7 @@ class Note(Leaf):
             self._note_head = note_head
 
     @property
-    def written_duration(self) -> Duration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets and sets written duration.
 
@@ -4655,9 +4656,9 @@ class Rest(Leaf):
         if isinstance(written_duration, Leaf):
             written_duration = written_duration.written_duration
         elif written_duration is None:
-            written_duration = Duration(1, 4)
+            written_duration = _duration.Duration(1, 4)
         else:
-            written_duration = Duration(written_duration)
+            written_duration = _duration.Duration(written_duration)
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if isinstance(original_input, Leaf):
             self._copy_override_and_set_from_leaf(original_input)
@@ -4837,7 +4838,7 @@ class Skip(Leaf):
         elif len(arguments) == 1 and not isinstance(arguments[0], str):
             written_duration = arguments[0]
         elif len(arguments) == 0:
-            written_duration = Duration(1, 4)
+            written_duration = _duration.Duration(1, 4)
         else:
             raise ValueError(f"can not initialize skip from {arguments!r}.")
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
@@ -5135,7 +5136,7 @@ class TremoloContainer(Container):
         return self._count
 
     @property
-    def implied_prolation(self) -> Multiplier:
+    def implied_prolation(self) -> _duration.Multiplier:
         r"""
         Gets implied prolation of tremolo container.
 
@@ -5150,7 +5151,7 @@ class TremoloContainer(Container):
             Multiplier(2, 1)
 
         """
-        multiplier = Multiplier(self.count)
+        multiplier = _duration.Multiplier(self.count)
         return multiplier
 
 
@@ -5314,20 +5315,20 @@ class Tuplet(Container):
         hide: bool = None,
         language: str = "english",
         tag: _tag.Tag = None,
-        tweaks: TweakInterface = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
         Container.__init__(self, components, language=language, tag=tag)
         if isinstance(multiplier, str) and ":" in multiplier:
             strings = multiplier.split(":")
             numbers = [int(_) for _ in strings]
-            multiplier = NonreducedFraction(numbers[1], numbers[0])
+            multiplier = _duration.NonreducedFraction(numbers[1], numbers[0])
         self.multiplier = multiplier
         self.denominator = denominator
         self.force_fraction = force_fraction
         self.hide = hide
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -5372,7 +5373,7 @@ class Tuplet(Container):
     def _format_lilypond_fraction_command_string(self):
         if self.hide:
             return ""
-        if "text" in vars(override(self).TupletNumber):
+        if "text" in vars(_overrides.override(self).TupletNumber):
             return ""
         if (
             self.augmentation()
@@ -5401,7 +5402,9 @@ class Tuplet(Container):
                 edge_height_tweak_string = self._get_edge_height_tweak_string()
                 if edge_height_tweak_string:
                     contributions.append(edge_height_tweak_string)
-                strings = tweak(self)._list_format_contributions(directed=False)
+                strings = _overrides.tweak(self)._list_format_contributions(
+                    directed=False
+                )
                 contributions.extend(strings)
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
@@ -5441,10 +5444,10 @@ class Tuplet(Container):
 
     def _get_multiplier_fraction_string(self):
         if self.denominator is not None:
-            inverse_multiplier = Multiplier(
+            inverse_multiplier = _duration.Multiplier(
                 self.multiplier.denominator, self.multiplier.numerator
             )
-            nonreduced_fraction = NonreducedFraction(inverse_multiplier)
+            nonreduced_fraction = _duration.NonreducedFraction(inverse_multiplier)
             nonreduced_fraction = nonreduced_fraction.with_denominator(self.denominator)
             denominator, numerator = nonreduced_fraction.pair
         else:
@@ -5473,7 +5476,7 @@ class Tuplet(Container):
             return None
 
     def _get_scale_durations_command_string(self):
-        multiplier = Multiplier(self.multiplier)
+        multiplier = _duration.Multiplier(self.multiplier)
         numerator = multiplier.numerator
         denominator = multiplier.denominator
         string = rf"\scaleDurations #'({numerator} . {denominator})"
@@ -5490,7 +5493,7 @@ class Tuplet(Container):
         return string
 
     def _scale(self, multiplier):
-        multiplier = Multiplier(multiplier)
+        multiplier = _duration.Multiplier(multiplier)
         for component in self[:]:
             if isinstance(component, Leaf):
                 component._scale(multiplier)
@@ -5840,7 +5843,7 @@ class Tuplet(Container):
         self._hide = argument
 
     @property
-    def implied_prolation(self) -> Multiplier:
+    def implied_prolation(self) -> _duration.Multiplier:
         r"""
         Gets implied prolation of tuplet.
 
@@ -5853,10 +5856,10 @@ class Tuplet(Container):
             Multiplier(2, 3)
 
         """
-        return Multiplier(self.multiplier)
+        return _duration.Multiplier(self.multiplier)
 
     @property
-    def multiplied_duration(self) -> Duration:
+    def multiplied_duration(self) -> _duration.Duration:
         r"""
         Gets multiplied duration of tuplet.
 
@@ -5870,10 +5873,10 @@ class Tuplet(Container):
             Duration(1, 4)
 
         """
-        return Duration(self.multiplier * self._get_contents_duration())
+        return _duration.Duration(self.multiplier * self._get_contents_duration())
 
     @property
-    def multiplier(self) -> NonreducedFraction:
+    def multiplier(self) -> _duration.NonreducedFraction:
         r"""
         Gets and sets multiplier of tuplet.
 
@@ -5912,9 +5915,9 @@ class Tuplet(Container):
     @multiplier.setter
     def multiplier(self, argument):
         if isinstance(argument, (int, quicktions.Fraction)):
-            multiplier = NonreducedFraction(argument)
+            multiplier = _duration.NonreducedFraction(argument)
         elif isinstance(argument, tuple):
-            multiplier = NonreducedFraction(argument)
+            multiplier = _duration.NonreducedFraction(argument)
         else:
             raise ValueError(f"can not set tuplet multiplier: {argument!r}.")
         if 0 < multiplier:
@@ -5950,7 +5953,7 @@ class Tuplet(Container):
         return super().tag
 
     @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks.
 
@@ -6316,7 +6319,7 @@ class Tuplet(Container):
         """
         if not len(components):
             raise Exception(f"components must be nonempty: {components!r}.")
-        target_duration = Duration(duration)
+        target_duration = _duration.Duration(duration)
         tuplet = Tuplet(1, components, tag=tag)
         contents_duration = tuplet._get_duration()
         multiplier = target_duration / contents_duration
@@ -6442,7 +6445,7 @@ class Tuplet(Container):
         """
         # find tuplet multiplier
         integer_exponent = int(math.log(self.multiplier, 2))
-        leaf_multiplier = Multiplier(2) ** integer_exponent
+        leaf_multiplier = _duration.Multiplier(2) ** integer_exponent
         # scale leaves in tuplet by power of two
         for component in self:
             if isinstance(component, Leaf):
@@ -6451,7 +6454,7 @@ class Tuplet(Container):
                 multiplier = new_written_duration / old_written_duration
                 component._scale(multiplier)
         numerator, denominator = leaf_multiplier.pair
-        multiplier = Multiplier(denominator, numerator)
+        multiplier = _duration.Multiplier(denominator, numerator)
         self.multiplier *= multiplier
 
     def rest_filled(self) -> bool:
@@ -6631,7 +6634,7 @@ class Tuplet(Container):
         global_dot_count = dot_counts.pop()
         if global_dot_count == 0:
             return
-        dot_multiplier = Multiplier.from_dot_count(global_dot_count)
+        dot_multiplier = _duration.Multiplier.from_dot_count(global_dot_count)
         self.multiplier *= dot_multiplier
         dot_multiplier_reciprocal = dot_multiplier.reciprocal
         for component in self:
@@ -6685,9 +6688,11 @@ class Tuplet(Container):
         durations = [
             self._get_contents_duration(),
             self._get_preprolated_duration(),
-            Duration(1, denominator),
+            _duration.Duration(1, denominator),
         ]
-        nonreduced_fractions = Duration.durations_to_nonreduced_fractions(durations)
+        nonreduced_fractions = _duration.Duration.durations_to_nonreduced_fractions(
+            durations
+        )
         self.denominator = nonreduced_fractions[1].numerator
 
     def toggle_prolation(self) -> None:
@@ -6984,7 +6989,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            duration = Duration(self.multiplier * component.written_duration)
+            duration = _duration.Duration(self.multiplier * component.written_duration)
             if not duration.is_assignable:
                 return False
         return True
@@ -7034,7 +7039,7 @@ class Tuplet(Container):
                 component.written_duration *= self.multiplier
             else:
                 raise TypeError(component)
-        self.multiplier = Multiplier(1)
+        self.multiplier = _duration.Multiplier(1)
 
 
 class Voice(Context):

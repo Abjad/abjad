@@ -26,7 +26,8 @@ First we define functions to illustrate the examples that follow:
     ...     abjad.override(treble_staff).TimeSignature.stencil = False
     ...     string = "#(ly:make-moment 1 25)"
     ...     abjad.setting(treble_staff).proportionalNotationDuration = string
-    ...     lilypond_file = abjad.LilyPondFile([treble_staff], global_staff_size=16)
+    ...     string = "#(set-global-staff-size 16)"
+    ...     lilypond_file = abjad.LilyPondFile([string, treble_staff])
     ...     return lilypond_file
 
 ----

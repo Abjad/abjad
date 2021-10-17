@@ -29,12 +29,12 @@ First we define a function to illustrate the examples that follow:
     ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 25)"
     ...     lilypond_file = abjad.LilyPondFile(
     ...         items=[
+    ...             "#(set-global-staff-size 16)",
     ...             score,
-    ...             abjad.Block(name="layout"),
+    ...             abjad.Block("layout"),
     ...         ],
-    ...         global_staff_size=16,
     ...     )
-    ...     lilypond_file.layout_block.indent = "#0"
+    ...     lilypond_file["layout"].items.append("indent = #0")
     ...     return lilypond_file
 
 ----

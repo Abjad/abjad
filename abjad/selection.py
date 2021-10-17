@@ -1312,7 +1312,7 @@ class Selection(collections.abc.Sequence):
             Note("g'8")
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1371,7 +1371,7 @@ class Selection(collections.abc.Sequence):
             Note("f'8")
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1432,7 +1432,7 @@ class Selection(collections.abc.Sequence):
             Note("f'8")
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1489,7 +1489,7 @@ class Selection(collections.abc.Sequence):
             Note("gf'16")
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1549,7 +1549,7 @@ class Selection(collections.abc.Sequence):
             Note("f'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1596,7 +1596,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("f'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1643,7 +1643,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1701,7 +1701,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1756,7 +1756,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1797,7 +1797,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1846,7 +1846,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1889,7 +1889,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1940,7 +1940,7 @@ class Selection(collections.abc.Sequence):
             Chord("<c' e' g'>4")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -1986,7 +1986,7 @@ class Selection(collections.abc.Sequence):
             Chord("<c' e' g'>4")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2031,7 +2031,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2082,7 +2082,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2123,7 +2123,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2366,7 +2366,7 @@ class Selection(collections.abc.Sequence):
             Rest('r8')
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2413,7 +2413,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("e'8"), Note("e'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2460,7 +2460,7 @@ class Selection(collections.abc.Sequence):
             Selection(items=())
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2519,7 +2519,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
 
             >>> abjad.label.by_selector(result, lone=True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2583,7 +2583,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
 
             >>> abjad.label.by_selector(result, lone=True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2659,7 +2659,7 @@ class Selection(collections.abc.Sequence):
             Selection([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2715,7 +2715,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2766,7 +2766,7 @@ class Selection(collections.abc.Sequence):
             Note("g'8")
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2814,7 +2814,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("d'16"), Note("d'16")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2876,7 +2876,7 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("d'16")]), LogicalTie([Note("d'16")])])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -2962,7 +2962,7 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("f'16")])])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3030,7 +3030,7 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("f'16")])])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3103,7 +3103,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c''8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3158,7 +3158,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3213,7 +3213,7 @@ class Selection(collections.abc.Sequence):
             Note("c''8")
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3265,7 +3265,7 @@ class Selection(collections.abc.Sequence):
             Note("c''8")
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3314,7 +3314,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3365,7 +3365,7 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("f'8")]), LogicalTie([Note("g'8"), Note("g'8")])])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3460,7 +3460,7 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("f'16"), Note("f'16")]), LogicalTie([Note("f'16")])])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3655,7 +3655,7 @@ class Selection(collections.abc.Sequence):
             Rest('r8')
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3718,7 +3718,7 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3782,7 +3782,7 @@ class Selection(collections.abc.Sequence):
 
             >>> abjad.ottava(result)
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3850,7 +3850,7 @@ class Selection(collections.abc.Sequence):
 
             >>> abjad.ottava(result)
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3918,7 +3918,7 @@ class Selection(collections.abc.Sequence):
             Note("c'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -3982,7 +3982,7 @@ class Selection(collections.abc.Sequence):
             Rest('r8')
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4040,7 +4040,7 @@ class Selection(collections.abc.Sequence):
             Note("d'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4098,7 +4098,7 @@ class Selection(collections.abc.Sequence):
             Note("c'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4158,7 +4158,7 @@ class Selection(collections.abc.Sequence):
             Note("c'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4216,7 +4216,7 @@ class Selection(collections.abc.Sequence):
             Chord("<c' d'>8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4277,7 +4277,7 @@ class Selection(collections.abc.Sequence):
             Note("e'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4341,7 +4341,7 @@ class Selection(collections.abc.Sequence):
             Note("f'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4398,7 +4398,7 @@ class Selection(collections.abc.Sequence):
             Note("f'8")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4451,7 +4451,7 @@ class Selection(collections.abc.Sequence):
             Note("gf'16")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4558,7 +4558,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Rest('r8')])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4610,7 +4610,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("f'8"), Note("f'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4660,7 +4660,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("f'8"), Note("f'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4712,7 +4712,7 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4782,7 +4782,7 @@ class Selection(collections.abc.Sequence):
             Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4853,7 +4853,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("f'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4910,7 +4910,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("f'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -4964,7 +4964,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("gf'16")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5015,7 +5015,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Rest('r8')])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5066,7 +5066,7 @@ class Selection(collections.abc.Sequence):
             LogicalTie([Note("d'8"), Note("d'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5129,7 +5129,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5380,7 +5380,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Rest('r8'), Note("d'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5425,7 +5425,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8"), Rest('r8'), Note("f'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5474,7 +5474,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5526,7 +5526,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5581,7 +5581,7 @@ class Selection(collections.abc.Sequence):
             Selection([Rest('r8'), Note("c''8")])
 
             >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5639,7 +5639,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5692,7 +5692,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c''8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5742,7 +5742,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5843,7 +5843,7 @@ class Selection(collections.abc.Sequence):
             ...     abjad.attach(time_signature, container[0])
             ...
             >>> abjad.setting(staff).autoBeaming = False
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             >>> result = abjad.select(staff).leaves().partition_by_durations(
@@ -5861,7 +5861,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -5934,7 +5934,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6007,7 +6007,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6087,7 +6087,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("b'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6160,7 +6160,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6231,7 +6231,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6309,7 +6309,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6387,7 +6387,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8"), Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6466,7 +6466,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("b'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6543,7 +6543,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("c'8")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6688,7 +6688,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -6742,7 +6742,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("g'8"), Note("a'8"), Rest('r8')])
 
             >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7185,7 +7185,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("fs'16")])
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7286,7 +7286,7 @@ class Selection(collections.abc.Sequence):
             Rest('r8')
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7449,7 +7449,7 @@ class Selection(collections.abc.Sequence):
             Tuplet('3:2', "c'4 d'4 e'4")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7502,7 +7502,7 @@ class Selection(collections.abc.Sequence):
             Tuplet('3:2', "c'4 d'4 e'4")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7554,7 +7554,7 @@ class Selection(collections.abc.Sequence):
             Tuplet('3:2', "c'4 d'4 e'4")
 
             >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7634,7 +7634,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7683,7 +7683,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'8")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7742,7 +7742,7 @@ class Selection(collections.abc.Sequence):
 
             >>> abjad.label.by_selector(result, True)
             >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 6
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7816,7 +7816,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("fs'16")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7914,7 +7914,7 @@ class Selection(collections.abc.Sequence):
             Selection([Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -7963,7 +7963,7 @@ class Selection(collections.abc.Sequence):
             Selection([Rest('r8'), Note("f'8")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
@@ -8025,7 +8025,7 @@ class Selection(collections.abc.Sequence):
             Selection([Note("f'4"), Note("fs'16")])
 
             >>> abjad.label.by_selector(result, True)
-            >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::

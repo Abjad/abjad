@@ -36,7 +36,7 @@ def after_grace_container(argument):
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -313,7 +313,7 @@ def before_grace_container(argument):
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -408,7 +408,7 @@ def contents(argument) -> typing.Optional["Selection"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -602,7 +602,7 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -771,7 +771,7 @@ def duration(argument, in_seconds: bool = None) -> Duration:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -940,7 +940,7 @@ def effective(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1441,7 +1441,7 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1555,7 +1555,7 @@ def effective_wrapper(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1674,7 +1674,7 @@ def grace(argument) -> bool:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1776,7 +1776,7 @@ def has_effective_indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -1929,7 +1929,7 @@ def has_indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -2127,7 +2127,7 @@ def indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -2281,7 +2281,7 @@ def indicators(
         >>> for note in abjad.select(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -2511,7 +2511,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -2695,7 +2695,7 @@ def lineage(argument) -> "Lineage":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -2901,7 +2901,7 @@ def logical_tie(argument) -> "LogicalTie":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -3094,7 +3094,7 @@ def measure_number(argument) -> int:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -3269,7 +3269,7 @@ def parentage(argument) -> "Parentage":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -3484,7 +3484,7 @@ def pitches(argument) -> typing.Optional[PitchSet]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -3795,7 +3795,7 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -3961,7 +3961,7 @@ def wrapper(
         >>> for note in abjad.select(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
@@ -4081,7 +4081,7 @@ def wrappers(
         >>> for note in abjad.select(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> lilypond_file = abjad.LilyPondFile([staff], includes=["abjad.ily"])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
