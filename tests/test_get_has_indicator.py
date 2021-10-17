@@ -38,16 +38,6 @@ def test_get_has_indicator_03():
 def test_get_has_indicator_04():
 
     staff = abjad.Staff("c'2 d'2")
-    comment = abjad.LilyPondComment("comment")
-    abjad.attach(comment, staff[0])
-
-    assert abjad.get.has_indicator(staff[0], abjad.LilyPondComment)
-    assert not abjad.get.has_indicator(staff[1], abjad.LilyPondComment)
-
-
-def test_get_has_indicator_05():
-
-    staff = abjad.Staff("c'2 d'2")
     stem_tremolo = abjad.StemTremolo(16)
     abjad.attach(stem_tremolo, staff[0])
 
@@ -55,7 +45,7 @@ def test_get_has_indicator_05():
     assert not abjad.get.has_indicator(staff[1], abjad.StemTremolo)
 
 
-def test_get_has_indicator_06():
+def test_get_has_indicator_05():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     time_signature = abjad.TimeSignature((4, 8))

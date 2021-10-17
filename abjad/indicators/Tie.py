@@ -1,10 +1,10 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
-from ..string import String
+from .. import overrides as _overrides
+from .. import string as _string
 
 
 class Tie:
@@ -47,23 +47,22 @@ class Tie:
 
     __slots__ = ("_direction", "_tweaks")
 
-    _context = "Voice"
-
-    _persistent = True
+    context = "Voice"
+    persistent = True
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        direction: enums.VerticalAlignment = None,
-        tweaks: TweakInterface = None,
+        direction: _enums.VerticalAlignment = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
-        direction_ = String.to_tridirectional_lilypond_symbol(direction)
+        direction_ = _string.String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -101,7 +100,7 @@ class Tie:
         return True
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             strings = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(strings)
@@ -111,22 +110,6 @@ class Tie:
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.Tie().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def direction(self) -> typing.Optional[str]:
@@ -202,21 +185,7 @@ class Tie:
         return self._direction
 
     @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.Tie().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

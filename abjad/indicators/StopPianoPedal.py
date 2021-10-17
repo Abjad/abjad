@@ -1,9 +1,9 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import overrides as _overrides
 
 
 class StopPianoPedal:
@@ -15,13 +15,12 @@ class StopPianoPedal:
 
     __slots__ = ("_kind", "_leak", "_tweaks")
 
-    _context = "StaffGroup"
+    context = "StaffGroup"
+    parameter = "PEDAL"
+    persistent = True
+    spanner_stop = True
 
-    _parameter = "PEDAL"
-
-    _persistent = True
-
-    _time_orientation = enums.Right
+    _time_orientation = _enums.Right
 
     ### INITIALIZER ###
 
@@ -30,7 +29,7 @@ class StopPianoPedal:
         kind: str = None,
         *,
         leak: bool = None,
-        tweaks: TweakInterface = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
         if kind is not None:
             assert kind in ("sustain", "sostenuto", "corda")
@@ -39,8 +38,8 @@ class StopPianoPedal:
             leak = bool(leak)
         self._leak = leak
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -53,7 +52,7 @@ class StopPianoPedal:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         strings = []
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
@@ -75,22 +74,6 @@ class StopPianoPedal:
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'StaffGroup'``.
-
-        ..  container:: example
-
-            >>> abjad.StopPianoPedal().context
-            'StaffGroup'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def kind(self) -> typing.Optional[str]:
@@ -183,48 +166,7 @@ class StopPianoPedal:
         return self._leak
 
     @property
-    def parameter(self) -> str:
-        """
-        Returns ``'PEDAL'``.
-
-        ..  container:: example
-
-            >>> abjad.StopPianoPedal().parameter
-            'PEDAL'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopPianoPedal().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_stop(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopPianoPedal().spanner_stop
-            True
-
-        """
-        return True
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

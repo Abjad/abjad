@@ -1,11 +1,12 @@
+import dataclasses
 import typing
 
-from .. import enums
-from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import bundle as _bundle
+from .. import enums as _enums
+from .. import overrides as _overrides
 
 
+@dataclasses.dataclass
 class BreathMark:
     r"""
     Breath mark.
@@ -85,6 +86,8 @@ class BreathMark:
 
     ..  container:: example
 
+        Works with tweaks:
+
         >>> note = abjad.Note("c'4")
         >>> breath = abjad.BreathMark()
         >>> abjad.tweak(breath).color = "#blue"
@@ -105,69 +108,24 @@ class BreathMark:
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_tweaks",)
+    tweaks: typing.Optional[_overrides.TweakInterface] = None
 
     _format_slot = "after"
 
-    _time_orientation = enums.Right
+    _is_dataclass = True
 
-    ### INITIALIZER ###
+    _time_orientation = _enums.Right
 
-    def __init__(self, *, tweaks: TweakInterface = None) -> None:
-        if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes breath mark.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self) -> str:
-        r"""
-        Gets string representation of breath mark.
-
-        ..  container:: example
-
-            >>> str(abjad.BreathMark())
-            '\\breathe'
-
-        """
-        return r"\breathe"
-
-    ### PRIVATE METHODS ###
+    def __post_init__(self):
+        self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _get_lilypond_format(self):
         return r"\breathe"
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions(directed=False)
             bundle.after.articulations.extend(tweaks)
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
-        """
-        Gets tweaks
-        """
-        return self._tweaks

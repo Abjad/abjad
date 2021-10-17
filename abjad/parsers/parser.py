@@ -22,10 +22,10 @@ from .. import fsv as _fsv
 from .. import markups as _markups
 from ..bind import attach
 from ..duration import Duration, Multiplier
+from ..dynamic import Dynamic
 from ..indicators.Articulation import Articulation
 from ..indicators.BarLine import BarLine
 from ..indicators.Clef import Clef
-from ..indicators.Dynamic import Dynamic
 from ..indicators.Glissando import Glissando
 from ..indicators.KeySignature import KeySignature
 from ..indicators.MetronomeMark import MetronomeMark
@@ -518,7 +518,7 @@ class GuileProxy:
                 for x in key_signatures:
                     tonic = NamedPitch((x.tonic.name, 4))
                     # TODO: cheating to assign to a read-only property
-                    x._tonic = LilyPondParser._transpose_enharmonically(
+                    x.tonic = LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, tonic
                     ).pitch_class
             if isinstance(music, Note):
@@ -6105,14 +6105,18 @@ class LilyPondSyntacticalDefinition:
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         "post_event_nofinger : script_dir direction_reqd_event"
-        # TODO: this is cheating; articulation direction should be given
+        # TODO: this is cheating; articulation and markup direction should be given
         #       at initialization and not after (as is done here)
-        try:
-            p[2].direction = p[1]
-        except AttributeError:
+        if isinstance(p[2], _markups.Markup):
             direction = String.to_tridirectional_ordinal_constant(p[1])
-            assert hasattr(p[2], "_direction")
-            p[2]._direction = direction
+            p[2].direction = direction
+        else:
+            try:
+                p[2].direction = p[1]
+            except AttributeError:
+                direction = String.to_tridirectional_ordinal_constant(p[1])
+                assert hasattr(p[2], "_direction")
+                p[2]._direction = direction
         p[0] = p[2]
 
     def p_post_event_nofinger__script_dir__music_function_event(self, p):

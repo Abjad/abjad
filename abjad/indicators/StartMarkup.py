@@ -1,9 +1,9 @@
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..markups import Markup
-from ..new import new
+from .. import markups as _markups
+from .. import new as _new
 
 
 class StartMarkup:
@@ -61,7 +61,7 @@ class StartMarkup:
 
     def __init__(
         self,
-        markup: typing.Union[str, Markup] = "instrument name",
+        markup: typing.Union[str, _markups.Markup] = "instrument name",
         *,
         context: str = "Staff",
         format_slot: str = "before",
@@ -71,7 +71,7 @@ class StartMarkup:
         assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
         if markup is not None:
-            assert isinstance(markup, (str, Markup)), repr(markup)
+            assert isinstance(markup, (str, _markups.Markup)), repr(markup)
         self._markup = markup
 
     ### SPECIAL METHODS ###
@@ -169,10 +169,10 @@ class StartMarkup:
             context = context.lilypond_type
         else:
             context = self._lilypond_type
-        if isinstance(self.markup, Markup):
+        if isinstance(self.markup, _markups.Markup):
             markup = self.markup
             if markup.direction is not None:
-                markup = new(markup, direction=None)
+                markup = _new.new(markup, direction=None)
             pieces = markup._get_format_pieces()
             result.append(rf"\set {context!s}.instrumentName =")
             result.extend(pieces)
@@ -183,7 +183,7 @@ class StartMarkup:
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         slot = bundle.get(self.format_slot)
         slot.commands.extend(self._get_lilypond_format())
         return bundle
@@ -221,7 +221,7 @@ class StartMarkup:
         return self._format_slot
 
     @property
-    def markup(self) -> typing.Union[str, Markup]:
+    def markup(self) -> typing.Union[str, _markups.Markup]:
         r"""
         Gets (instrument name) markup.
 
@@ -230,7 +230,7 @@ class StartMarkup:
             >>> markup = abjad.Markup(r"\markup Cellos")
             >>> start_markup = abjad.StartMarkup(markup=markup)
             >>> start_markup.markup
-            Markup('\\markup Cellos')
+            Markup(string='\\markup Cellos', direction=None, tweaks=None)
 
         """
         return self._markup

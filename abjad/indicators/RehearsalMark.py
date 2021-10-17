@@ -1,11 +1,11 @@
 import copy
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..markups import Markup
-from ..new import new
-from ..overrides import TweakInterface
+from .. import markups as _markups
+from .. import new as _new
+from .. import overrides as _overrides
 
 
 class RehearsalMark:
@@ -48,23 +48,23 @@ class RehearsalMark:
 
     __slots__ = ("_markup", "_number", "_tweaks")
 
-    _context = "Score"
+    context = "Score"
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        markup: typing.Union[Markup, str] = None,
+        markup: typing.Union[_markups.Markup, str] = None,
         number: int = None,
-        tweaks: TweakInterface = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
         self._tweaks = None
         self._markup = markup
         self._number = number
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -118,7 +118,7 @@ class RehearsalMark:
                 }
 
         """
-        mark_ = new(self)
+        mark_ = _new.new(self)
         mark_._tweaks = copy.copy(self.tweaks)
         return mark_
 
@@ -182,7 +182,7 @@ class RehearsalMark:
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions(directed=False)
             bundle.opening.commands.extend(tweaks)
@@ -192,20 +192,7 @@ class RehearsalMark:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self) -> str:
-        """
-        Is ``'Score'``.
-
-        ..  container:: example
-
-            >>> abjad.RehearsalMark(number=1).context
-            'Score'
-
-        """
-        return self._context
-
-    @property
-    def markup(self) -> typing.Union[Markup, str, None]:
+    def markup(self) -> typing.Union[_markups.Markup, str, None]:
         r"""
         Gets rehearsal mark markup.
 
@@ -247,7 +234,7 @@ class RehearsalMark:
         return self._number
 
     @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

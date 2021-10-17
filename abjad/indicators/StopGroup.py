@@ -1,8 +1,8 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 class StopGroup:
@@ -20,9 +20,10 @@ class StopGroup:
 
     __slots__ = ("_leak",)
 
-    _persistent = True
+    persistent = True
+    spanner_stop = True
 
-    _time_orientation = enums.Right
+    _time_orientation = _enums.Right
 
     ### INITIALIZER ###
 
@@ -42,7 +43,7 @@ class StopGroup:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         string = r"\stopGroup"
         if self.leak:
             string = f"<> {string}"
@@ -146,30 +147,3 @@ class StopGroup:
 
         """
         return self._leak
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopGroup().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_stop(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopGroup().spanner_stop
-            True
-
-        """
-        return True

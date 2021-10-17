@@ -1,6 +1,6 @@
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 class StaffChange:
@@ -46,13 +46,13 @@ class StaffChange:
 
     __slots__ = ("_staff",)
 
-    _context = "Staff"
+    context = "Staff"
 
     _format_leaf_children = False
 
     _format_slot = "opening"
 
-    _time_orientation = enums.Right
+    _time_orientation = _enums.Right
 
     ### INITIALIZER ###
 
@@ -114,36 +114,11 @@ class StaffChange:
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Gets ``'Staff'``.
-
-        ..  container:: example
-
-            Default staff change:
-
-            >>> staff_change = abjad.StaffChange()
-            >>> staff_change.context
-            'Staff'
-
-        ..  container:: example
-
-            Explicit staff change:
-
-            >>> lh_staff = abjad.Staff("s2", name='LHStaff')
-            >>> staff_change = abjad.StaffChange("LHStaff")
-            >>> staff_change.context
-            'Staff'
-
-        """
-        return self._context
 
     @property
     def staff(self):

@@ -1,6 +1,7 @@
 import inspect
 
 import pytest
+from _defaults import class_to_default_values
 
 import abjad
 
@@ -21,7 +22,8 @@ def test_abjad___repr___01(class_):
         return
     if getattr(class_, "_is_abstract", None) is True:
         return
-    instance = class_()
+    default_values = class_to_default_values.get(class_, ())
+    instance = class_(*default_values)
     string = repr(instance)
     assert string is not None
     assert string != ""

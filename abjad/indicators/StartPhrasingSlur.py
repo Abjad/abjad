@@ -1,9 +1,9 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import overrides as _overrides
 
 
 class StartPhrasingSlur:
@@ -46,24 +46,23 @@ class StartPhrasingSlur:
 
     __slots__ = ("_direction", "_tweaks")
 
-    _context = "Voice"
-
-    _parameter = "PHRASING_SLUR"
-
-    _persistent = True
+    context = "Voice"
+    parameter = "PHRASING_SLUR"
+    persistent = True
+    spanner_start = True
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         *,
-        direction: enums.VerticalAlignment = None,
-        tweaks: TweakInterface = None,
+        direction: _enums.VerticalAlignment = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
         self._direction = direction
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -93,7 +92,7 @@ class StartPhrasingSlur:
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
@@ -104,71 +103,14 @@ class StartPhrasingSlur:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StartPhrasingSlur().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
-
-    @property
-    def direction(self) -> typing.Optional[enums.VerticalAlignment]:
+    def direction(self) -> typing.Optional[_enums.VerticalAlignment]:
         """
         Gets direction.
         """
         return self._direction
 
     @property
-    def parameter(self) -> str:
-        """
-        Returns ``'PHRASING_SLUR'``.
-
-        ..  container:: example
-
-            >>> abjad.StartPhrasingSlur().parameter
-            'PHRASING_SLUR'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartPhrasingSlur().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartPhrasingSlur().spanner_start
-            True
-
-        """
-        return True
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

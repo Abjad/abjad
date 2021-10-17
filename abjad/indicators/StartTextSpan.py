@@ -1,11 +1,12 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from .. import markups, typings
-from ..bundle import LilyPondFormatBundle
-from ..overrides import LilyPondOverride, TweakInterface
-from ..string import String
+from .. import markups
+from .. import overrides as _overrides
+from .. import string as _string
+from .. import typings
 
 
 class StartTextSpan:
@@ -67,11 +68,10 @@ class StartTextSpan:
         "_tweaks",
     )
 
-    _context = "Voice"
-
-    _parameter = "TEXT_SPANNER"
-
-    _persistent = True
+    context = "Voice"
+    parameter = "TEXT_SPANNER"
+    persistent = True
+    spanner_start = True
 
     _styles = (
         "dashed-line-with-arrow",
@@ -91,13 +91,13 @@ class StartTextSpan:
         command: str = r"\startTextSpan",
         concat_hspace_left: typings.Number = 0.5,
         concat_hspace_right: typings.Number = None,
-        direction: enums.VerticalAlignment = None,
+        direction: _enums.VerticalAlignment = None,
         left_broken_text: typing.Union[bool, str, markups.Markup] = None,
         left_text: typing.Union[str, markups.Markup] = None,
         right_padding: typings.Number = None,
         right_text: typing.Union[str, markups.Markup] = None,
         style: str = None,
-        tweaks: TweakInterface = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
         assert isinstance(command, str), repr(command)
         assert command.startswith("\\"), repr(command)
@@ -108,7 +108,7 @@ class StartTextSpan:
         if concat_hspace_right is not None:
             assert isinstance(concat_hspace_right, (int, float))
         self._concat_hspace_right = concat_hspace_right
-        direction_ = String.to_tridirectional_lilypond_symbol(direction)
+        direction_ = _string.String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         if left_broken_text is not None:
             assert isinstance(left_broken_text, (bool, markups.Markup))
@@ -128,8 +128,8 @@ class StartTextSpan:
             assert style in self._styles, repr(style)
         self._style = style
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -159,7 +159,7 @@ class StartTextSpan:
         return string
 
     def _get_left_broken_text_tweak(self):
-        override = LilyPondOverride(
+        override = _overrides.LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "left-broken", "text"),
             value=self.left_broken_text,
@@ -176,7 +176,7 @@ class StartTextSpan:
         markup = markups.Markup(
             rf"\markup \concat {{ {left_text_string} {hspace_string} }}"
         )
-        override = LilyPondOverride(
+        override = _overrides.LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "left", "text"),
             value=markup,
@@ -185,7 +185,7 @@ class StartTextSpan:
         return string
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.style is not None:
             string = rf"- \abjad-{self.style}"
             bundle.after.spanner_starts.append(string)
@@ -209,7 +209,7 @@ class StartTextSpan:
         return bundle
 
     def _get_right_padding_tweak(self):
-        override = LilyPondOverride(
+        override = _overrides.LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "right", "padding"),
             value=self.right_padding,
@@ -230,7 +230,7 @@ class StartTextSpan:
             )
         else:
             markup = self.right_text
-        override = LilyPondOverride(
+        override = _overrides.LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "right", "text"),
             value=markup,
@@ -334,23 +334,7 @@ class StartTextSpan:
         return self._concat_hspace_right
 
     @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StartTextSpan().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
-
-    @property
-    def direction(self) -> typing.Optional[String]:
+    def direction(self) -> typing.Optional[_string.String]:
         """
         Gets direction.
         """
@@ -418,34 +402,6 @@ class StartTextSpan:
         return self._left_text
 
     @property
-    def parameter(self) -> str:
-        """
-        Returns ``'TEXT_SPANNER'``.
-
-        ..  container:: example
-
-            >>> abjad.StartTextSpan().parameter
-            'TEXT_SPANNER'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartTextSpan().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
     def right_padding(self) -> typing.Optional[typings.Number]:
         """
         Gets right padding.
@@ -458,19 +414,6 @@ class StartTextSpan:
         Gets right text.
         """
         return self._right_text
-
-    @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartTextSpan().spanner_start
-            True
-
-        """
-        return True
 
     @property
     def style(self) -> typing.Optional[str]:
@@ -659,7 +602,7 @@ class StartTextSpan:
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

@@ -1,7 +1,7 @@
 import dataclasses
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 @dataclasses.dataclass
@@ -68,6 +68,8 @@ class BarLine:
     abbreviation: str = "|"
     format_slot: str = "after"
 
+    _is_dataclass = True
+
     _context = "Score"
 
     # scraped from LilyPond docs because LilyPond fails to error
@@ -107,7 +109,7 @@ class BarLine:
         return rf'\bar "{self.abbreviation}"'
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         slot = bundle.get(self.format_slot)
         slot.commands.append(self._get_lilypond_format())
         return bundle

@@ -1,8 +1,8 @@
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import overrides as _overrides
 
 
 class StartPianoPedal:
@@ -68,21 +68,22 @@ class StartPianoPedal:
 
     __slots__ = ("_kind", "_tweaks")
 
-    _context = "StaffGroup"
-
-    _persistent = True
-
-    _parameter = "PEDAL"
+    context = "StaffGroup"
+    parameter = "PEDAL"
+    persistent = True
+    spanner_start = True
 
     ### INITIALIZER ###
 
-    def __init__(self, kind: str = None, *, tweaks: TweakInterface = None) -> None:
+    def __init__(
+        self, kind: str = None, *, tweaks: _overrides.TweakInterface = None
+    ) -> None:
         if kind is not None:
             assert kind in ("sustain", "sostenuto", "corda")
         self._kind = kind
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -107,7 +108,7 @@ class StartPianoPedal:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
@@ -124,22 +125,6 @@ class StartPianoPedal:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'StaffGroup'``.
-
-        ..  container:: example
-
-            >>> abjad.StartPianoPedal().context
-            'StaffGroup'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
-
-    @property
     def kind(self) -> typing.Optional[str]:
         """
         Gets kind.
@@ -147,48 +132,7 @@ class StartPianoPedal:
         return self._kind
 
     @property
-    def parameter(self) -> str:
-        """
-        Returns ``'PEDAL'``.
-
-        ..  container:: example
-
-            >>> abjad.StartPianoPedal().parameter
-            'PEDAL'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartPianoPedal().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartPianoPedal().spanner_start
-            True
-
-        """
-        return True
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

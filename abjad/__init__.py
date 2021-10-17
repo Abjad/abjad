@@ -37,6 +37,7 @@ from .contextmanagers import (
 )
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
+from .dynamic import Dynamic
 from .enums import (
     Center,
     Comparison,
@@ -70,19 +71,14 @@ from .indicators.Articulation import Articulation
 from .indicators.BarLine import BarLine
 from .indicators.BeamCount import BeamCount
 from .indicators.BendAfter import BendAfter
-from .indicators.BowContactPoint import BowContactPoint
-from .indicators.BowMotionTechnique import BowMotionTechnique
-from .indicators.BowPressure import BowPressure
 from .indicators.BreathMark import BreathMark
 from .indicators.Clef import Clef, StaffPosition
 from .indicators.ColorFingering import ColorFingering
-from .indicators.Dynamic import Dynamic
 from .indicators.Fermata import Fermata
 from .indicators.Glissando import Glissando
 from .indicators.KeyCluster import KeyCluster
 from .indicators.KeySignature import KeySignature
 from .indicators.LaissezVibrer import LaissezVibrer
-from .indicators.LilyPondComment import LilyPondComment
 from .indicators.MarginMarkup import MarginMarkup
 from .indicators.MetronomeMark import MetronomeMark
 from .indicators.Mode import Mode
@@ -109,7 +105,6 @@ from .indicators.StopPianoPedal import StopPianoPedal
 from .indicators.StopSlur import StopSlur
 from .indicators.StopTextSpan import StopTextSpan
 from .indicators.StopTrillSpan import StopTrillSpan
-from .indicators.StringContactPoint import StringContactPoint
 from .indicators.Tie import Tie
 from .indicators.TimeSignature import TimeSignature
 from .instruments import (
@@ -276,7 +271,6 @@ from .selection import (
 from .sequence import Sequence
 from .spanners import (
     beam,
-    bow_contact_spanner,
     glissando,
     hairpin,
     horizontal_bracket,
@@ -355,9 +349,6 @@ __all__ = [
     "BeforeGraceContainer",
     "BendAfter",
     "Block",
-    "BowContactPoint",
-    "BowMotionTechnique",
-    "BowPressure",
     "BreathMark",
     "Cello",
     "Center",
@@ -435,7 +426,6 @@ __all__ = [
     "Left",
     "LengthInequality",
     "Less",
-    "LilyPondComment",
     "LilyPondContext",
     "LilyPondEngraver",
     "LilyPondFile",
@@ -611,7 +601,6 @@ __all__ = [
     "annotate",
     "attach",
     "beam",
-    "bow_contact_spanner",
     "deactivate",
     "deprecated",
     "detach",

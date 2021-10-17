@@ -1,8 +1,8 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 class StopBeam:
@@ -20,13 +20,12 @@ class StopBeam:
 
     __slots__ = ("_leak",)
 
-    _context = "Voice"
+    context = "Voice"
+    parameter = "BEAM"
+    persistent = True
+    spanner_stop = True
 
-    _parameter = "BEAM"
-
-    _persistent = True
-
-    _time_orientation = enums.Right
+    _time_orientation = _enums.Right
 
     ### INITIALIZER ###
 
@@ -46,7 +45,7 @@ class StopBeam:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         string = "]"
         if self.leak:
             string = f"<> {string}"
@@ -58,22 +57,6 @@ class StopBeam:
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StopBeam().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def leak(self) -> typing.Optional[bool]:
@@ -134,44 +117,3 @@ class StopBeam:
 
         """
         return self._leak
-
-    @property
-    def parameter(self) -> str:
-        """
-        Returns ``'BEAM'``.
-
-        ..  container:: example
-
-            >>> abjad.StopBeam().parameter
-            'BEAM'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopBeam().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_stop(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopBeam().spanner_stop
-            True
-
-        """
-        return True
