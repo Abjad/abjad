@@ -1,8 +1,8 @@
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import overrides as _overrides
 
 
 class StartGroup:
@@ -45,14 +45,15 @@ class StartGroup:
 
     __slots__ = ("_tweaks",)
 
-    _persistent = True
+    persistent = True
+    spanner_start = True
 
     ### INITIALIZER ###
 
-    def __init__(self, *, tweaks: TweakInterface = None) -> None:
+    def __init__(self, *, tweaks: _overrides.TweakInterface = None) -> None:
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -77,7 +78,7 @@ class StartGroup:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
@@ -88,34 +89,7 @@ class StartGroup:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartGroup().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartGroup().spanner_start
-            True
-
-        """
-        return True
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

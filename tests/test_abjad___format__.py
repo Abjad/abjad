@@ -1,13 +1,14 @@
 import inspect
 
 import pytest
+from _defaults import class_to_default_values
 
 import abjad
 
-ignored_classes = [
+ignored_classes = (
     abjad.FormatSpecification,
     abjad.MetricModulation,
-]
+)
 
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
@@ -25,19 +26,20 @@ def test_abjad___format___01(class_):
         return
     if getattr(class_, "_is_abstract", None) is True:
         return
-    instance = class_()
+    default_values = class_to_default_values.get(class_, ())
+    instance = class_(*default_values)
     instance_format = abjad.lilypond(instance, "storage")
     assert isinstance(instance_format, str)
     assert not instance_format == ""
 
 
-ignored_classes = [
-    abjad.FormatSpecification,
-    abjad.Meter,
-    abjad.MetricModulation,
-]
-
-classes = abjad.list_all_classes(ignored_classes=ignored_classes)
+classes = abjad.list_all_classes(
+    ignored_classes=(
+        abjad.FormatSpecification,
+        abjad.Meter,
+        abjad.MetricModulation,
+    )
+)
 
 
 @pytest.mark.parametrize("class_", classes)
@@ -54,7 +56,8 @@ def test_abjad___format___02(class_):
     environment = abjad.__dict__.copy()
     environment.update(abjad.demos.__dict__)
     environment["abjad"] = abjad
-    instance_one = class_()
+    default_values = class_to_default_values.get(class_, ())
+    instance_one = class_(*default_values)
     instance_one_format = abjad.lilypond(instance_one, "storage")
     assert isinstance(instance_one_format, str)
     assert instance_one_format != ""
@@ -63,12 +66,12 @@ def test_abjad___format___02(class_):
     assert instance_one_format == instance_two_format
 
 
-ignored_classes = [
-    abjad.MetricModulation,
-    abjad.parser.SyntaxNode,
-]
-
-classes = abjad.list_all_classes(ignored_classes=ignored_classes)
+classes = abjad.list_all_classes(
+    ignored_classes=(
+        abjad.MetricModulation,
+        abjad.parser.SyntaxNode,
+    )
+)
 
 
 @pytest.mark.parametrize("class_", classes)
@@ -80,6 +83,7 @@ def test_abjad___format___03(class_):
         return
     if getattr(class_, "_is_abstract", None) is True:
         return
-    object_ = class_()
+    default_values = class_to_default_values.get(class_, ())
+    object_ = class_(*default_values)
     string = f"{object_}"
     print(string)

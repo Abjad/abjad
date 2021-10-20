@@ -16,14 +16,14 @@ class Wrapper:
     ..  container:: example
 
         >>> component = abjad.Note("c'4")
-        >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
+        >>> articulation = abjad.Articulation("accent", direction=abjad.Up)
         >>> abjad.attach(articulation, component)
         >>> wrapper = abjad.get.wrapper(component)
 
         >>> string = abjad.storage(wrapper)
         >>> print(string)
         abjad.Wrapper(
-            indicator=abjad.Articulation('accent', Up),
+            indicator=Articulation(name='accent', direction=Up, tweaks=None),
             tag=abjad.Tag(),
             )
 
@@ -31,9 +31,9 @@ class Wrapper:
 
         Duplicate indicator warnings take two forms.
 
-        >>> voice_1 = abjad.Voice("c''4 d'' e'' f''", name='VoiceI')
-        >>> voice_2 = abjad.Voice("c'4 d' e' f'", name='VoiceII')
-        >>> abjad.attach(abjad.Clef('alto'), voice_2[0])
+        >>> voice_1 = abjad.Voice("c''4 d'' e'' f''", name="VoiceI")
+        >>> voice_2 = abjad.Voice("c'4 d' e' f'", name="VoiceII")
+        >>> abjad.attach(abjad.Clef("alto"), voice_2[0])
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -60,60 +60,15 @@ class Wrapper:
                 }
             >>
 
-        First form when attempting to attach a contexted indicator to a leaf
-        that already carries a contexted indicator of the same type:
+        First form when attempting to attach a contexted indicator to a leaf that already
+        carries a contexted indicator of the same type:
 
-        >>> abjad.attach(abjad.Clef('treble'), voice_2[0])
-        Traceback (most recent call last):
-            ...
-        abjad...PersistentIndicatorError:
-        <BLANKLINE>
-        Can not attach ...
-        <BLANKLINE>
-        abjad.Wrapper(
-            context='Staff',
-            indicator=abjad.Clef('treble'),
-            tag=abjad.Tag(),
-            )
-        <BLANKLINE>
-            ... to Note("c'4") in VoiceII because ...
-        <BLANKLINE>
-        abjad.Wrapper(
-            context='Staff',
-            indicator=abjad.Clef('alto'),
-            tag=abjad.Tag(),
-            )
-        <BLANKLINE>
-            ... is already attached to the same leaf.
-        <BLANKLINE>
+        >>> # abjad.attach(abjad.Clef("treble"), voice_2[0])
 
-        Second form when attempting to attach a contexted indicator to a leaf
-        governed by some other component carrying a contexted indicator of the
-        same type.
+        Second form when attempting to attach a contexted indicator to a leaf governed by
+        some other component carrying a contexted indicator of the same type.
 
-        >>> abjad.attach(abjad.Clef('treble'), voice_1[0])
-        Traceback (most recent call last):
-            ...
-        abjad...PersistentIndicatorError:
-        <BLANKLINE>
-        Can not attach ...
-        <BLANKLINE>
-            abjad.Wrapper(
-                context='Staff',
-                indicator=abjad.Clef('treble'),
-                tag=abjad.Tag(),
-                )
-        <BLANKLINE>
-            ... to Note("c''4") in VoiceI because ...
-        <BLANKLINE>
-        abjad.Wrapper(
-            context='Staff',
-            indicator=abjad.Clef('alto'),
-            tag=abjad.Tag(),
-            )
-        <BLANKLINE>
-            ... is already attached to Note("c'4") in VoiceII.
-        <BLANKLINE>
+        >>> # abjad.attach(abjad.Clef("treble"), voice_1[0])
 
     """
 
@@ -182,7 +137,7 @@ class Wrapper:
             Preserves annotation flag:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> abjad.annotate(old_staff[0], 'bow_direction', abjad.Down)
+            >>> abjad.annotate(old_staff[0], "bow_direction", abjad.Down)
             >>> string = abjad.lilypond(old_staff)
             >>> print(string)
             \new Staff {
@@ -193,7 +148,7 @@ class Wrapper:
             }
 
             >>> leaf = old_staff[0]
-            >>> abjad.get.annotation(leaf, 'bow_direction')
+            >>> abjad.get.annotation(leaf, "bow_direction")
             Down
 
             >>> new_staff = abjad.mutate.copy(old_staff)
@@ -236,7 +191,7 @@ class Wrapper:
             >>> print(string)
             abjad.Wrapper(
                 context='Staff',
-                indicator=abjad.Clef('alto'),
+                indicator=Clef(name='alto', hide=False),
                 tag=abjad.Tag('RED:M1'),
                 )
 
@@ -260,7 +215,7 @@ class Wrapper:
             >>> print(string)
             abjad.Wrapper(
                 context='Staff',
-                indicator=abjad.Clef('alto'),
+                indicator=Clef(name='alto', hide=False),
                 tag=abjad.Tag('RED:M1'),
                 )
 
@@ -270,11 +225,11 @@ class Wrapper:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> abjad.attach(
-            ...     abjad.Clef('alto'),
+            ...     abjad.Clef("alto"),
             ...     old_staff[0],
             ...     deactivate=True,
             ...     tag=abjad.Tag("RED:M1"),
-            ...     )
+            ... )
             >>> string = abjad.lilypond(old_staff, tags=True)
             >>> print(string)
             \new Staff
@@ -295,7 +250,7 @@ class Wrapper:
             abjad.Wrapper(
                 context='Staff',
                 deactivate=True,
-                indicator=abjad.Clef('alto'),
+                indicator=Clef(name='alto', hide=False),
                 tag=abjad.Tag('RED:M1'),
                 )
 
@@ -320,7 +275,7 @@ class Wrapper:
             abjad.Wrapper(
                 context='Staff',
                 deactivate=True,
-                indicator=abjad.Clef('alto'),
+                indicator=Clef(name='alto', hide=False),
                 tag=abjad.Tag('RED:M1'),
                 )
 
@@ -538,7 +493,7 @@ class Wrapper:
         ..  container:: example
 
             >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
+            >>> articulation = abjad.Articulation("accent", direction=abjad.Up)
             >>> abjad.attach(articulation, note)
             >>> wrapper = abjad.get.wrapper(note)
             >>> wrapper.annotation is None
@@ -547,10 +502,10 @@ class Wrapper:
         ..  container:: example
 
             >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation('accent', direction=abjad.Up)
-            >>> abjad.annotate(note, 'foo', articulation)
-            >>> abjad.get.annotation(note, 'foo')
-            Articulation('accent', Up)
+            >>> articulation = abjad.Articulation("accent", direction=abjad.Up)
+            >>> abjad.annotate(note, "foo", articulation)
+            >>> abjad.get.annotation(note, "foo")
+            Articulation(name='accent', direction=Up, tweaks=None)
 
         """
         return self._annotation
@@ -594,17 +549,16 @@ class Wrapper:
     @property
     def leaked_start_offset(self) -> Offset:
         r"""
-        Gets start offset and checks to see whether indicator leaks to the
-        right.
+        Gets start offset and checks to see whether indicator leaks to the right.
 
-        This is either the wrapper's synthetic offset (if set); or the START
-        offset of the wrapper's component (if indicator DOES NOT leak); or else
-        the STOP offset of the wrapper's component (if indicator DOES leak).
+        This is either the wrapper's synthetic offset (if set); or the START offset of
+        the wrapper's component (if indicator DOES NOT leak); or else the STOP offset of
+        the wrapper's component (if indicator DOES leak).
 
         ..  container:: example
 
-            Start- and stop-text-spans attach to the same leaf. But
-            stop-text-span leaks to the right:
+            Start- and stop-text-spans attach to the same leaf. But stop-text-span leaks
+            to the right:
 
             >>> voice = abjad.Voice("c'2 d'2")
             >>> start_text_span = abjad.StartTextSpan()
@@ -623,8 +577,7 @@ class Wrapper:
                 d'2
             }
 
-            Start offset and leaked start offset are the same for
-            start-text-span:
+            Start offset and leaked start offset are the same for start-text-span:
 
             >>> wrapper = abjad.get.wrapper(voice[0], abjad.StartTextSpan)
             >>> wrapper.start_offset, wrapper.leaked_start_offset
@@ -650,8 +603,8 @@ class Wrapper:
         """
         Gets start offset.
 
-        This is either the wrapper's synthetic offset or the start offset of
-        the wrapper's component.
+        This is either the wrapper's synthetic offset or the start offset of the
+        wrapper's component.
         """
         if self._synthetic_offset is not None:
             return self._synthetic_offset
@@ -682,9 +635,6 @@ class Wrapper:
         self._tag = tag
 
 
-### FUNCTIONS ###
-
-
 def annotate(component, annotation, indicator) -> None:
     r"""
     Annotates ``component`` with ``indicator``.
@@ -694,7 +644,7 @@ def annotate(component, annotation, indicator) -> None:
         Annotates first note in staff:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.annotate(staff[0], 'bow_direction', abjad.Down)
+        >>> abjad.annotate(staff[0], "bow_direction", abjad.Down)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -709,13 +659,13 @@ def annotate(component, annotation, indicator) -> None:
                 f'4
             }
 
-        >>> abjad.get.annotation(staff[0], 'bow_direction')
+        >>> abjad.get.annotation(staff[0], "bow_direction")
         Down
 
-        >>> abjad.get.annotation(staff[0], 'bow_fraction') is None
+        >>> abjad.get.annotation(staff[0], "bow_fraction") is None
         True
 
-        >>> abjad.get.annotation(staff[0], 'bow_fraction', 99)
+        >>> abjad.get.annotation(staff[0], "bow_fraction", 99)
         99
 
     """
@@ -751,7 +701,7 @@ def attach(  # noqa: 302
         Attaches clef to first note in staff:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        >>> abjad.attach(abjad.Clef("alto"), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -772,7 +722,7 @@ def attach(  # noqa: 302
         Attaches accent to last note in staff:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Articulation('>'), staff[-1])
+        >>> abjad.attach(abjad.Articulation(">"), staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -792,9 +742,9 @@ def attach(  # noqa: 302
 
         Works with context names:
 
-        >>> voice = abjad.Voice("c'4 d' e' f'", name='MusicVoice')
-        >>> staff = abjad.Staff([voice], name='MusicStaff')
-        >>> abjad.attach(abjad.Clef('alto'), voice[0], context='MusicStaff')
+        >>> voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([voice], name="MusicStaff")
+        >>> abjad.attach(abjad.Clef("alto"), voice[0], context="MusicStaff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -816,13 +766,12 @@ def attach(  # noqa: 302
         >>> for leaf in abjad.select(staff).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
-        (Note("c'4"), Clef('alto'))
-        (Note("d'4"), Clef('alto'))
-        (Note("e'4"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
+        (Note("c'4"), Clef(name='alto', hide=False))
+        (Note("d'4"), Clef(name='alto', hide=False))
+        (Note("e'4"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
 
-        Derives context from default ``attachable`` context when ``context`` is
-        none.
+        Derives context from default ``attachable`` context when ``context`` is none.
 
     ..  container:: example
 
@@ -830,29 +779,29 @@ def attach(  # noqa: 302
         indicators are active:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Clef('treble'), staff[0])
-        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        >>> abjad.attach(abjad.Clef("treble"), staff[0])
+        >>> abjad.attach(abjad.Clef("alto"), staff[0])
         Traceback (most recent call last):
             ...
         abjad...PersistentIndicatorError: Can not attach ...
 
-        But simultaneous contexted indicators are allowed if only one is active
-        (and all others are inactive):
+        But simultaneous contexted indicators are allowed if only one is active (and all
+        others are inactive):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Clef('treble'), staff[0])
+        >>> abjad.attach(abjad.Clef("treble"), staff[0])
         >>> abjad.attach(
-        ...     abjad.Clef('alto'),
+        ...     abjad.Clef("alto"),
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("+PARTS"),
-        ...     )
+        ... )
         >>> abjad.attach(
-        ...     abjad.Clef('tenor'),
+        ...     abjad.Clef("tenor"),
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("+PARTS"),
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -872,28 +821,27 @@ def attach(  # noqa: 302
                 f'4
             }
 
-        Active indicator is always effective when competing inactive indicators
-        are present:
+        Active indicator is always effective when competing inactive indicators are
+        present:
 
         >>> for note in staff:
         ...     clef = abjad.get.effective(staff[0], abjad.Clef)
         ...     note, clef
         ...
-        (Note("c'4"), Clef('treble'))
-        (Note("d'4"), Clef('treble'))
-        (Note("e'4"), Clef('treble'))
-        (Note("f'4"), Clef('treble'))
+        (Note("c'4"), Clef(name='treble', hide=False))
+        (Note("d'4"), Clef(name='treble', hide=False))
+        (Note("e'4"), Clef(name='treble', hide=False))
+        (Note("f'4"), Clef(name='treble', hide=False))
 
-        But a lone inactivate indicator is effective when no active indicator
-        is present:
+        But a lone inactivate indicator is effective when no active indicator is present:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(
-        ...     abjad.Clef('alto'),
+        ...     abjad.Clef("alto"),
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("+PARTS"),
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -914,10 +862,10 @@ def attach(  # noqa: 302
         ...     clef = abjad.get.effective(staff[0], abjad.Clef)
         ...     note, clef
         ...
-        (Note("c'4"), Clef('alto'))
-        (Note("d'4"), Clef('alto'))
-        (Note("e'4"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
+        (Note("c'4"), Clef(name='alto', hide=False))
+        (Note("d'4"), Clef(name='alto', hide=False))
+        (Note("e'4"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
 
     ..  container:: example
 
@@ -939,7 +887,7 @@ def attach(  # noqa: 302
         >>> print(string)
         abjad.Wrapper(
             context='Staff',
-            indicator=abjad.Clef('alto'),
+            indicator=Clef(name='alto', hide=False),
             tag=abjad.Tag(),
             )
 
@@ -1035,15 +983,15 @@ def detach(argument, target=None, by_id=False):
     r"""
     Detaches indicators-equal-to-``argument`` from ``target``.
 
-    Set ``by_id`` to true to detach exact ``argument`` from ``target`` (rather
-    than detaching all indicators-equal-to-``argument``).
+    Set ``by_id`` to true to detach exact ``argument`` from ``target`` (rather than
+    detaching all indicators-equal-to-``argument``).
 
     ..  container:: example
 
         Detaches articulations from first note in staff:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Articulation('>'), staff[0])
+        >>> abjad.attach(abjad.Articulation(">"), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1060,7 +1008,7 @@ def detach(argument, target=None, by_id=False):
             }
 
         >>> abjad.detach(abjad.Articulation, staff[0])
-        (Articulation('>'),)
+        (Articulation(name='>', direction=None, tweaks=None),)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1081,17 +1029,16 @@ def detach(argument, target=None, by_id=False):
 
         Consider the three document-specifier markups below:
 
-        >>> markup_1 = abjad.Markup(r'\markup tutti', direction=abjad.Up)
-        >>> markup_2 = abjad.Markup(r'\markup { with the others }', direction=abjad.Up)
-        >>> markup_3 = abjad.Markup(r'\markup { with the others }', direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(r"\markup tutti", direction=abjad.Up)
+        >>> markup_2 = abjad.Markup(r"\markup { with the others }", direction=abjad.Up)
+        >>> markup_3 = abjad.Markup(r"\markup { with the others }", direction=abjad.Up)
 
         Markups two and three compare equal:
 
         >>> markup_2 == markup_3
         True
 
-        But document-tagging like this makes sense for score and two diferent
-        parts:
+        But document-tagging like this makes sense for score and two diferent parts:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(markup_1, staff[0], tag=abjad.Tag("+SCORE"))
@@ -1100,13 +1047,13 @@ def detach(argument, target=None, by_id=False):
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
-        ...     )
+        ... )
         >>> abjad.attach(
         ...     markup_3,
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff, tags=True)
@@ -1125,17 +1072,17 @@ def detach(argument, target=None, by_id=False):
             f'4
         }
 
-        The question is then how to detach just one of the two markups that
-        compare equal to each other?
+        The question is then how to detach just one of the two markups that compare equal
+        to each other?
 
-        Passing in one of the markup objects directory doesn't work. This is
-        because detach tests for equality to input argument:
+        Passing in one of the markup objects directory doesn't work. This is because
+        detach tests for equality to input argument:
 
         >>> markups = abjad.detach(markup_2, staff[0])
         >>> for markup in markups:
         ...     markup
-        Markup('\\markup { with the others }', direction=Up)
-        Markup('\\markup { with the others }', direction=Up)
+        Markup(string='\\markup { with the others }', direction=Up, tweaks=None)
+        Markup(string='\\markup { with the others }', direction=Up, tweaks=None)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1160,13 +1107,13 @@ def detach(argument, target=None, by_id=False):
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
-        ...     )
+        ... )
         >>> abjad.attach(
         ...     markup_3,
         ...     staff[0],
         ...     deactivate=True,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff, tags=True)
@@ -1191,7 +1138,7 @@ def detach(argument, target=None, by_id=False):
         >>> markups = abjad.detach(markup_2, staff[0], by_id=True)
         >>> for markup in markups:
         ...     markup
-        Markup('\\markup { with the others }', direction=Up)
+        Markup(string='\\markup { with the others }', direction=Up, tweaks=None)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1211,11 +1158,10 @@ def detach(argument, target=None, by_id=False):
 
     ..  container:: example
 
-        REGRESSION. Attach-detach-attach pattern works correctly when detaching
-        wrappers:
+        REGRESSION. Attach-detach-attach pattern works correctly when detaching wrappers:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Clef('alto'), staff[0])
+        >>> abjad.attach(abjad.Clef("alto"), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1233,7 +1179,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
         >>> abjad.detach(wrapper, wrapper.component)
-        (Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag()),)
+        (Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag()),)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1249,7 +1195,7 @@ def detach(argument, target=None, by_id=False):
                 f'4
             }
 
-        >>> abjad.attach(abjad.Clef('tenor'), staff[0])
+        >>> abjad.attach(abjad.Clef("tenor"), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

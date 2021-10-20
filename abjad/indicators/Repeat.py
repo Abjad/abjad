@@ -1,5 +1,5 @@
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 class Repeat:
@@ -72,11 +72,11 @@ class Repeat:
 
     _can_attach_to_containers = True
 
-    _context = "Score"
-
     _format_leaf_children = False
 
     _format_slot = "before"
+
+    context = "Score"
 
     ### INITIALIZER ###
 
@@ -134,36 +134,11 @@ class Repeat:
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         bundle.before.commands.append(self._get_lilypond_format())
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self):
-        """
-        Gets (historically conventional) context.
-
-        ..  container:: example
-
-            Volta repeat:
-
-            >>> repeat = abjad.Repeat()
-            >>> repeat.context
-            'Score'
-
-        ..  container:: example
-
-            Unfold repeat:
-
-            >>> repeat = abjad.Repeat(repeat_type='unfold')
-            >>> repeat.context
-            'Score'
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def repeat_count(self) -> int:

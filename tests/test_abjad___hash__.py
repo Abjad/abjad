@@ -1,6 +1,7 @@
 import inspect
 
 import pytest
+from _defaults import class_to_default_values
 
 import abjad
 
@@ -23,6 +24,7 @@ def test_abjad___hash___01(class_):
         return
     if getattr(class_, "__hash__", None) is None:
         return
-    instance = class_()
+    default_values = class_to_default_values.get(class_, ())
+    instance = class_(*default_values)
     value = hash(instance)
     assert isinstance(value, int)

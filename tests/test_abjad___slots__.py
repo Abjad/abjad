@@ -1,6 +1,7 @@
 import inspect
 
 import pytest
+from _defaults import class_to_default_values
 
 import abjad
 
@@ -27,5 +28,6 @@ def test_abjad___slots___01(class_):
         return
     elif attrs["__slots__"].defining_class is not class_:
         return
-    instance_one = class_()
+    default_values = class_to_default_values.get(class_, ())
+    instance_one = class_(*default_values)
     assert not hasattr(instance_one, "__dict__")

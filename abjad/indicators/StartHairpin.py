@@ -1,10 +1,10 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import LilyPondOverride, TweakInterface
-from ..string import String
+from .. import overrides as _overrides
+from .. import string as _string
 
 
 class StartHairpin:
@@ -45,7 +45,10 @@ class StartHairpin:
 
     __slots__ = ("_direction", "_shape", "_tweaks")
 
-    _context = "Voice"
+    context = "Voice"
+    parameter = "DYNAMIC"
+    persistent = True
+    spanner_start = True
 
     _crescendo_start = r"\<"
 
@@ -55,12 +58,8 @@ class StartHairpin:
 
     _known_shapes = ("<", "o<", "<|", "o<|", ">", ">o", "|>", "|>o", "--")
 
-    _parameter = "DYNAMIC"
-
-    _persistent = True
-
     # TODO: remove?
-    _time_orientation = enums.Right
+    _time_orientation = _enums.Right
 
     ### INITIALIZER ###
 
@@ -68,16 +67,16 @@ class StartHairpin:
         self,
         shape="<",
         *,
-        direction: enums.VerticalAlignment = None,
-        tweaks: TweakInterface = None,
+        direction: _enums.VerticalAlignment = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
-        direction_ = String.to_tridirectional_lilypond_symbol(direction)
+        direction_ = _string.String.to_tridirectional_lilypond_symbol(direction)
         self._direction = direction_
         assert shape in self._known_shapes, repr(shape)
         self._shape = shape
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -108,7 +107,7 @@ class StartHairpin:
 
     @staticmethod
     def _circled_tip():
-        return LilyPondOverride(
+        return _overrides.LilyPondOverride(
             grob_name="Hairpin",
             once=True,
             property_path="circled-tip",
@@ -117,7 +116,7 @@ class StartHairpin:
 
     @staticmethod
     def _constante_hairpin():
-        return LilyPondOverride(
+        return _overrides.LilyPondOverride(
             grob_name="Hairpin",
             once=True,
             property_path="stencil",
@@ -126,7 +125,7 @@ class StartHairpin:
 
     @staticmethod
     def _flared_hairpin():
-        return LilyPondOverride(
+        return _overrides.LilyPondOverride(
             grob_name="Hairpin",
             once=True,
             property_path="stencil",
@@ -166,7 +165,7 @@ class StartHairpin:
         the LilyPond \startTrillSpan [pitch] command must appear after
         \< and \> but before \set and other commmands.
         """
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanners.extend(tweaks)
@@ -177,54 +176,7 @@ class StartHairpin:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def context(self) -> str:
-        r"""
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StartHairpin('<').context
-            'Voice'
-
-        ..  container:: example
-
-            >>> voice = abjad.Voice("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Dynamic('p'), voice[0])
-            >>> abjad.attach(abjad.StartHairpin('<'), voice[0])
-            >>> abjad.attach(abjad.Dynamic('f'), voice[-1])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \new Voice
-                {
-                    c'4
-                    \p
-                    \<
-                    d'4
-                    e'4
-                    f'4
-                    \f
-                }
-
-
-            >>> for leaf in voice:
-            ...     print(leaf, abjad.get.effective(leaf, abjad.StartHairpin))
-            c'4 StartHairpin(shape='<')
-            d'4 StartHairpin(shape='<')
-            e'4 StartHairpin(shape='<')
-            f'4 StartHairpin(shape='<')
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
-
-    @property
-    def direction(self) -> typing.Optional[String]:
+    def direction(self) -> typing.Optional[_string.String]:
         """
         Gets direction.
         """
@@ -252,32 +204,6 @@ class StartHairpin:
 
         """
         return self._known_shapes
-
-    @property
-    def parameter(self) -> str:
-        """
-        Returns ``'DYNAMIC'``.
-
-        ..  container:: example
-
-            >>> abjad.StartHairpin('<').parameter
-            'DYNAMIC'
-
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartHairpin('<').persistent
-            True
-
-        """
-        return self._persistent
 
     @property
     def shape(self) -> str:
@@ -553,19 +479,6 @@ class StartHairpin:
         return self._shape
 
     @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartHairpin('<').spanner_start
-            True
-
-        """
-        return True
-
-    @property
     def trend(self) -> bool:
         """
         Is true.
@@ -580,7 +493,7 @@ class StartHairpin:
         return True
 
     @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

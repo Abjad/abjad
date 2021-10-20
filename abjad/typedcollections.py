@@ -710,11 +710,11 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             >>> print(string)
             abjad.TypedList(
                 [
-                    abjad.Dynamic('ppp'),
-                    abjad.Dynamic('p'),
-                    abjad.Dynamic('mp'),
-                    abjad.Dynamic('mf'),
-                    abjad.Dynamic('fff'),
+                    Dynamic(name='ppp', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-4, tweaks=None),
+                    Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None),
+                    Dynamic(name='mp', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-1, tweaks=None),
+                    Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None),
+                    Dynamic(name='fff', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=4, tweaks=None),
                     ],
                 item_class=abjad.Dynamic,
                 )

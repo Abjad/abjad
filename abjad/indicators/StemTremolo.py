@@ -1,7 +1,7 @@
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from .. import math
-from ..bundle import LilyPondFormatBundle
+from .. import math as _math
 
 
 class StemTremolo:
@@ -86,7 +86,7 @@ class StemTremolo:
 
     _format_slot = "after"
 
-    _time_orientation = enums.Middle
+    _time_orientation = _enums.Middle
 
     ### INITIALIZER ###
 
@@ -94,7 +94,7 @@ class StemTremolo:
         if isinstance(tremolo_flags, type(self)):
             tremolo_flags = tremolo_flags.tremolo_flags
         tremolo_flags = int(tremolo_flags)
-        if not math.is_nonnegative_integer_power_of_two(tremolo_flags):
+        if not _math.is_nonnegative_integer_power_of_two(tremolo_flags):
             raise ValueError(f"nonnegative integer power of 2: {tremolo_flags!r}.")
         self._tremolo_flags = tremolo_flags
 
@@ -150,7 +150,7 @@ class StemTremolo:
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         bundle.after.stem_tremolos.append(self._get_lilypond_format())
         return bundle
 

@@ -320,12 +320,17 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
         instrument = _inspect._get_effective(leaf, Instrument)
         if instrument is None:
             continue
-        clef = _inspect._get_effective(leaf, Clef)
-        if clef is None:
+        effective_clef = _inspect._get_effective(leaf, Clef)
+        if effective_clef is None:
             continue
-        allowable_clefs = [Clef(_) for _ in instrument.allowable_clefs]
+        allowable_clefs = []
+        for clef in instrument.allowable_clefs:
+            if isinstance(clef, str):
+                clef = Clef(clef)
+            assert isinstance(clef, Clef), repr(clef)
+            allowable_clefs.append(clef)
         allowable_clefs.append(Clef("percussion"))
-        if clef not in allowable_clefs:
+        if effective_clef not in allowable_clefs:
             violators.append(leaf)
     return violators, len(total)
 

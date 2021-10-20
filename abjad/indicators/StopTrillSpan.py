@@ -1,8 +1,8 @@
 import typing
 
-from .. import enums
+from .. import bundle as _bundle
+from .. import enums as _enums
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 class StopTrillSpan:
@@ -20,13 +20,12 @@ class StopTrillSpan:
 
     __slots__ = ("_leak",)
 
-    _context = "Voice"
+    context = "Voice"
+    parameter = "TRILL"
+    persistent = True
+    spanner_stop = True
 
-    _parameter = "TRILL"
-
-    _persistent = True
-
-    _time_orientation = enums.Right
+    _time_orientation = _enums.Right
 
     ### INITIALIZER ###
 
@@ -46,7 +45,7 @@ class StopTrillSpan:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         string = r"\stopTrillSpan"
         if self.leak:
             string = f"<> {string}"
@@ -56,22 +55,6 @@ class StopTrillSpan:
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StopTrillSpan().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def leak(self) -> typing.Optional[bool]:
@@ -132,44 +115,3 @@ class StopTrillSpan:
 
         """
         return self._leak
-
-    @property
-    def parameter(self) -> str:
-        """
-        Returns ``'TRILL'``.
-
-        ..  container:: example
-
-            >>> abjad.StopTrillSpan().parameter
-            'TRILL'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopTrillSpan().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_stop(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopTrillSpan().spanner_stop
-            True
-
-        """
-        return True

@@ -1,8 +1,8 @@
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import overrides as _overrides
 from ..pitch.intervals import NamedInterval
 from ..pitch.pitches import NamedPitch
 
@@ -42,11 +42,10 @@ class StartTrillSpan:
 
     __slots__ = ("_interval", "_pitch", "_tweaks")
 
-    _context = "Voice"
-
-    _parameter = "TRILL"
-
-    _persistent = True
+    context = "Voice"
+    parameter = "TRILL"
+    persistent = True
+    spanner_start = True
 
     ### INITIALIZER ###
 
@@ -55,7 +54,7 @@ class StartTrillSpan:
         *,
         interval: typing.Union[str, NamedInterval] = None,
         pitch: typing.Union[str, NamedPitch] = None,
-        tweaks: TweakInterface = None,
+        tweaks: _overrides.TweakInterface = None,
     ) -> None:
         if interval is not None:
             interval = NamedInterval(interval)
@@ -64,8 +63,8 @@ class StartTrillSpan:
             pitch = NamedPitch(pitch)
         self._pitch = pitch
         if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
+            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
+        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -90,7 +89,7 @@ class StartTrillSpan:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
@@ -106,22 +105,6 @@ class StartTrillSpan:
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StartTrillSpan().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def interval(self) -> typing.Optional[NamedInterval]:
@@ -158,34 +141,6 @@ class StartTrillSpan:
         return self._interval
 
     @property
-    def parameter(self) -> str:
-        """
-        Returns ``'TRILL'``.
-
-        ..  container:: example
-
-            >>> abjad.StartTrillSpan().parameter
-            'TRILL'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartTrillSpan().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
     def pitch(self) -> typing.Optional[NamedPitch]:
         r"""
         Gets pitch.
@@ -220,20 +175,7 @@ class StartTrillSpan:
         return self._pitch
 
     @property
-    def spanner_start(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StartTrillSpan().spanner_start
-            True
-
-        """
-        return True
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
+    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
         r"""
         Gets tweaks
 

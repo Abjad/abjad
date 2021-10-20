@@ -743,7 +743,7 @@ class Meter:
         ..  container:: example
 
             >>> abjad.Meter((4, 4)).implied_time_signature
-            TimeSignature((4, 4))
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         Returns time signature.
         """

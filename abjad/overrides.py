@@ -980,7 +980,7 @@ class LilyPondOverride:
             ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
             ...    )
             >>> override.value
-            Markup('\\markup \\bold { over pressure }')
+            Markup(string='\\markup \\bold { over pressure }', direction=None, tweaks=None)
 
         """
         return self._value
@@ -1408,7 +1408,7 @@ class SettingInterface(Interface):
             Returns arbitrary object keyed to ``name``:
 
             >>> abjad.setting(staff).instrumentName
-            Markup('\\markup "Vn. I"')
+            Markup(string='\\markup "Vn. I"', direction=None, tweaks=None)
 
         """
         camel_name = String(name).to_upper_camel_case()
@@ -1547,7 +1547,7 @@ def setting(argument):
         Returns LilyPond setting name manager:
 
         >>> abjad.setting(staff)
-        SettingInterface(('instrumentName', Markup('\\markup "Vn. I"')))
+        SettingInterface(('instrumentName', Markup(string='\\markup "Vn. I"', direction=None, tweaks=None)))
 
     """
     if getattr(argument, "_lilypond_setting_name_manager", None) is None:
@@ -1843,19 +1843,6 @@ class TweakInterface(Interface):
         r"""
         Sets tweaks on ``argument``.
 
-        ..  container:: example
-
-            >>> glissando = abjad.Glissando()
-            >>> glissando.tweaks is None
-            True
-
-            >>> tweaks = abjad.tweak("blue").color
-            >>> abjad.TweakInterface.set_tweaks(glissando, tweaks)
-            TweakInterface(('_literal', None), ('color', 'blue'))
-
-            >>> abjad.tweak(glissando)
-            TweakInterface(('_literal', None), ('color', 'blue'))
-
         """
         if not hasattr(argument, "_tweaks"):
             try:
@@ -1870,6 +1857,52 @@ class TweakInterface(Interface):
         if argument._tweaks is None:
             argument._tweaks = TweakInterface(literal=manager._literal)
         existing_manager = argument._tweaks
+        for tuple_ in manager._get_attribute_tuples():
+            if len(tuple_) == 2:
+                attribute, value = tuple_
+                value = copy.copy(value)
+                setattr(existing_manager, attribute, value)
+            elif len(tuple_) == 3:
+                grob, attribute, value = tuple_
+                value = copy.copy(value)
+                grob = getattr(existing_manager, grob)
+                setattr(grob, attribute, value)
+            else:
+                message = "tweak tuple must have length 2 or 3"
+                message += f" (not {tuple_!r})."
+                raise ValueError(message)
+        return existing_manager
+
+    # TODO: move this somewhere clearer
+    @staticmethod
+    def set_dataclass_tweaks(
+        argument, manager: typing.Optional["TweakInterface"]
+    ) -> typing.Optional["TweakInterface"]:
+        """
+        Sets tweaks on ``argument``.
+
+        ..  container:: example
+
+            >>> glissando = abjad.Glissando()
+            >>> glissando.tweaks is None
+            True
+
+            >>> tweaks = abjad.tweak("blue").color
+            >>> abjad.TweakInterface.set_dataclass_tweaks(glissando, tweaks)
+            TweakInterface(('_literal', None), ('color', 'blue'))
+
+            >>> abjad.tweak(glissando)
+            TweakInterface(('_literal', None), ('color', 'blue'))
+
+        """
+        assert argument._is_dataclass is True, repr(argument)
+        if manager is None:
+            return None
+        if not isinstance(manager, TweakInterface):
+            raise Exception(f"must be tweak manager (not {manager!r}).")
+        if argument.tweaks is None:
+            argument.tweaks = TweakInterface(literal=manager._literal)
+        existing_manager = argument.tweaks
         for tuple_ in manager._get_attribute_tuples():
             if len(tuple_) == 2:
                 attribute, value = tuple_
@@ -2137,20 +2170,27 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
     """
     if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
-
     constants = (enums.Down, enums.Left, enums.Right, enums.Up)
     prototype = (bool, int, float, str, tuple)
     if expression is True or argument in constants or isinstance(argument, prototype):
         interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
         interface._pending_value = argument
         return interface
-    if not hasattr(argument, "_tweaks"):
-        name = type(argument).__name__
-        raise NotImplementedError(f"{name} does not allow tweaks (yet).")
-    if argument._tweaks is None:
-        interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
-        argument._tweaks = interface
+    if getattr(argument, "_is_dataclass", False) is True:
+        if argument.tweaks is None:
+            interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
+            argument.tweaks = interface
+        else:
+            interface = argument.tweaks
+            interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
     else:
-        interface = argument._tweaks
-        interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
+        if not hasattr(argument, "_tweaks"):
+            name = type(argument).__name__
+            raise NotImplementedError(f"{name} does not allow tweaks (yet).")
+        if argument._tweaks is None:
+            interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
+            argument._tweaks = interface
+        else:
+            interface = argument._tweaks
+            interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
     return interface

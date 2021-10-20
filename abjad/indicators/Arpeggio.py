@@ -1,10 +1,13 @@
+import dataclasses
 import typing
 
-from .. import enums
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import bundle as _bundle
+from .. import enums as _enums
+from .. import overrides as _overrides
+from .. import string as _string
 
 
+@dataclasses.dataclass
 class Arpeggio:
     r"""
     Arpeggio.
@@ -50,91 +53,55 @@ class Arpeggio:
                 \arpeggio
             }
 
+    ..  container:: example
+
+        Tweaks:
+
+        >>> chord = abjad.Chord("<c' e' g' c''>4")
+        >>> arpeggio = abjad.Arpeggio()
+        >>> abjad.tweak(arpeggio).color = "#blue"
+        >>> abjad.attach(arpeggio, chord)
+        >>> staff = abjad.Staff([chord])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                <c' e' g' c''>4
+                - \tweak color #blue
+                \arpeggio
+            }
+
     """
 
-    ### CLASS VARIABLES ###
+    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
+    tweaks: typing.Optional[_overrides.TweakInterface] = None
 
-    __slots__ = ("_direction", "_tweaks")
+    _is_dataclass = True
 
-    ### INITIALIZER ###
-
-    def __init__(self, *, direction: int = None, tweaks: TweakInterface = None) -> None:
-        if direction is not None:
-            assert direction in (enums.Up, enums.Down, enums.Center)
-        self._direction = direction
-        if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
-
-    ### PRIVATE METHODS ###
+    def __post_init__(self):
+        self._annotation = None
+        self.direction = _string.String.to_tridirectional_ordinal_constant(
+            self.direction
+        )
+        self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _get_lilypond_format(self):
         return r"\arpeggio"
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.articulations.extend(tweaks)
         bundle.after.articulations.append(r"\arpeggio")
-        if self.direction in (enums.Up, enums.Down):
-            if self.direction is enums.Up:
+        if self.direction in (_enums.Up, _enums.Down):
+            if self.direction is _enums.Up:
                 command = r"\arpeggioArrowUp"
             else:
                 command = r"\arpeggioArrowDown"
             bundle.before.commands.append(command)
         return bundle
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def direction(self) -> typing.Optional[int]:
-        """
-        Gets direction of arpeggio.
-
-        ..  container:: example
-
-            Without direction arrow:
-
-            >>> arpeggio = abjad.Arpeggio()
-            >>> arpeggio.direction is None
-            True
-
-        ..  container:: example
-
-            With direction arrow:
-
-            >>> arpeggio = abjad.Arpeggio(direction=abjad.Down)
-            >>> arpeggio.direction
-            Down
-
-        """
-        return self._direction
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
-        r"""
-        Gets tweaks
-
-        ..  container:: example
-
-            >>> chord = abjad.Chord("<c' e' g' c''>4")
-            >>> arpeggio = abjad.Arpeggio()
-            >>> abjad.tweak(arpeggio).color = "#blue"
-            >>> abjad.attach(arpeggio, chord)
-            >>> staff = abjad.Staff([chord])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    <c' e' g' c''>4
-                    - \tweak color #blue
-                    \arpeggio
-                }
-
-        """
-        return self._tweaks

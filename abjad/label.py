@@ -13,7 +13,6 @@ from . import score as _score
 from . import selection as _selection
 from . import verticalmoment as _verticalmoment
 from .cyclictuple import CyclicTuple
-from .indicators.LilyPondComment import LilyPondComment
 from .pitch.SetClass import SetClass
 from .pitch.intervalclasses import (
     NamedIntervalClass,
@@ -35,7 +34,7 @@ def _attach(label, leaf, *, deactivate=False, tag=None):
 def _color_leaf(leaf, color, *, deactivate=False, tag=None):
     if isinstance(leaf, _score.Skip):
         color = color[1:]
-        comment = LilyPondComment(color)
+        comment = _overrides.LilyPondLiteral(f"% {color}", format_slot="before")
         _attach(comment, leaf, deactivate=deactivate, tag=tag)
     else:
         assert color.startswith("#")

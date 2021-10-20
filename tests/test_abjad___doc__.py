@@ -27,7 +27,6 @@ ignored_classes = (
     abjad.parsers.reduced.ReducedLyParser,
     abjad.parsers.scheme.SchemeParser,
     abjad.rhythmtrees.RhythmTreeParser,
-    abjad.BarLine,  # TODO: exclude dataclasses programatically
     abjad.FormatSpecification,
 )
 
@@ -40,6 +39,8 @@ def test_abjad___doc___01(class_):
     All classes have a docstring. All class methods have a docstring.
     """
     missing_doc_names = []
+    if getattr(class_, "_is_dataclass", False) is True:
+        return
     if class_.__doc__ is None:
         missing_doc_names.append(class_.__name__)
     for attribute in inspect.classify_class_attrs(class_):
@@ -53,9 +54,7 @@ def test_abjad___doc___01(class_):
     if missing_doc_names:
         names = [class_.__name__ + "." + _ for _ in missing_doc_names]
         names = ", ".join(names)
-        message = "Missing docstrings for: {}"
-        message = message.format(names)
-        raise Exception(message)
+        raise Exception(f"Missing docstrings for: {names}")
 
 
 functions = abjad.list_all_functions()

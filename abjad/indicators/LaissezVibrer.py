@@ -1,11 +1,12 @@
+import dataclasses
 import typing
 
-from .. import enums
-from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..overrides import TweakInterface
+from .. import bundle as _bundle
+from .. import enums as _enums
+from .. import overrides as _overrides
 
 
+@dataclasses.dataclass(unsafe_hash=True)
 class LaissezVibrer:
     r"""
     Laissez vibrer.
@@ -24,42 +25,36 @@ class LaissezVibrer:
             <c' e' g' c''>4
             \laissezVibrer
 
+    ..  container:: example
+
+        Tweaks:
+
+        >>> note = abjad.Note("c'4")
+        >>> lv = abjad.LaissezVibrer()
+        >>> abjad.tweak(lv).color = "#blue"
+        >>> abjad.attach(lv, note)
+        >>> abjad.show(note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
+            c'4
+            - \tweak color #blue
+            \laissezVibrer
+
     """
 
-    ### CLASS VARIABLES ###
+    tweaks: typing.Optional[_overrides.TweakInterface] = None
 
-    __slots__ = ("_tweaks",)
+    _is_dataclass = True
+
+    def __post_init__(self):
+        self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     _format_slot = "after"
 
-    _time_orientation = enums.Right
-
-    ### INITIALIZER ###
-
-    def __init__(self, *, tweaks: TweakInterface = None) -> None:
-        if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes laissez vibrer.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
+    _time_orientation = _enums.Right
 
     def __str__(self) -> str:
         r"""
@@ -75,41 +70,13 @@ class LaissezVibrer:
         """
         return r"\laissezVibrer"
 
-    ### PRIVATE METHODS ###
-
     def _get_lilypond_format(self):
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.articulations.extend(tweaks)
         bundle.after.articulations.append(self._get_lilypond_format())
         return bundle
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def tweaks(self) -> typing.Optional[TweakInterface]:
-        r"""
-        Gets tweaks
-
-        ..  container:: example
-
-            >>> note = abjad.Note("c'4")
-            >>> lv = abjad.LaissezVibrer()
-            >>> abjad.tweak(lv).color = "#blue"
-            >>> abjad.attach(lv, note)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                c'4
-                - \tweak color #blue
-                \laissezVibrer
-
-        """
-        return self._tweaks

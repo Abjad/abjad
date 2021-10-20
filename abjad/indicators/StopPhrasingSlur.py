@@ -1,7 +1,7 @@
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 class StopPhrasingSlur:
@@ -19,11 +19,10 @@ class StopPhrasingSlur:
 
     __slots__ = ("_leak",)
 
-    _context = "Voice"
-
-    _parameter = "PHRASING_SLUR"
-
-    _persistent = True
+    context = "Voice"
+    parameter = "PHRASING_SLUR"
+    persistent = True
+    spanner_stop = True
 
     ### INITIALIZER ###
 
@@ -43,7 +42,7 @@ class StopPhrasingSlur:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         string = r"\)"
         if self.leak:
             string = f"<> {string}"
@@ -53,22 +52,6 @@ class StopPhrasingSlur:
         return bundle
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def context(self) -> str:
-        """
-        Returns (historically conventional) context ``'Voice'``.
-
-        ..  container:: example
-
-            >>> abjad.StopPhrasingSlur().context
-            'Voice'
-
-        Class constant.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
     @property
     def leak(self) -> typing.Optional[bool]:
@@ -163,44 +146,3 @@ class StopPhrasingSlur:
 
         """
         return self._leak
-
-    @property
-    def parameter(self) -> str:
-        """
-        Returns ``'SLUR'``.
-
-        ..  container:: example
-
-            >>> abjad.StopPhrasingSlur().parameter
-            'PHRASING_SLUR'
-
-        Class constant.
-        """
-        return self._parameter
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopPhrasingSlur().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def spanner_stop(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.StopPhrasingSlur().spanner_stop
-            True
-
-        """
-        return True

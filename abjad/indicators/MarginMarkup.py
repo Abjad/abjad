@@ -1,9 +1,9 @@
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
-from ..markups import Markup
-from ..new import new
+from .. import markups as _markups
+from .. import new as _new
 
 
 class MarginMarkup:
@@ -62,11 +62,9 @@ class MarginMarkup:
 
     __slots__ = ("_context", "_format_slot", "_markup")
 
-    _latent = True
-
-    _persistent = True
-
-    _redraw = True
+    latent = True
+    persistent = True
+    redraw = True
 
     ### INITIALIZER ##
 
@@ -75,7 +73,7 @@ class MarginMarkup:
         *,
         context: str = "Staff",
         format_slot: str = "before",
-        markup: typing.Union[str, Markup] = None,
+        markup: typing.Union[str, _markups.Markup] = None,
     ) -> None:
         if context is not None:
             assert isinstance(context, str), repr(context)
@@ -84,7 +82,7 @@ class MarginMarkup:
             assert isinstance(format_slot, str), repr(format_slot)
         self._format_slot = format_slot
         if markup is not None:
-            assert isinstance(markup, (str, Markup)), repr(markup)
+            assert isinstance(markup, (str, _markups.Markup)), repr(markup)
         self._markup = markup
 
     ### SPECIAL METHODS ###
@@ -182,10 +180,10 @@ class MarginMarkup:
             context = context.lilypond_type
         else:
             context = self._lilypond_type
-        if isinstance(self.markup, Markup):
+        if isinstance(self.markup, _markups.Markup):
             markup = self.markup
             if markup.direction is not None:
-                markup = new(markup, direction=None)
+                markup = _new.new(markup, direction=None)
             pieces = markup._get_format_pieces()
             result.append(rf"\set {context!s}.shortInstrumentName =")
             result.extend(pieces)
@@ -196,7 +194,7 @@ class MarginMarkup:
         return result
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         slot = bundle.get(self.format_slot)
         slot.commands.extend(self._get_lilypond_format())
         return bundle
@@ -230,69 +228,8 @@ class MarginMarkup:
         return self._format_slot
 
     @property
-    def latent(self) -> bool:
-        r"""Is true.
-
-        ..  container::
-
-            >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup(r"\markup Hp.")
-            ... )
-            >>> margin_markup.latent
-            True
-
-        Class constant.
-        """
-        return self._latent
-
-    @property
-    def markup(self) -> typing.Optional[typing.Union[str, Markup]]:
+    def markup(self) -> typing.Optional[typing.Union[str, _markups.Markup]]:
         """
         Gets (instrument name) markup.
         """
         return self._markup
-
-    @property
-    def persistent(self) -> bool:
-        r"""
-        Is true.
-
-        ..  container:: example
-
-            >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup(r"\markup Hp.")
-            ... )
-            >>> margin_markup.persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def redraw(self) -> bool:
-        r"""
-        Is true.
-
-        ..  container:: example
-
-            >>> margin_markup = abjad.MarginMarkup(
-            ...     markup=abjad.Markup(r"\markup Hp.")
-            ... )
-            >>> margin_markup.redraw
-            True
-
-        Class constant.
-        """
-        return self._redraw
-
-    @property
-    def tweaks(self) -> None:
-        r"""
-        Are not implemented on margin markup.
-
-        The LilyPond ``\shortInstrumentName`` command refuses tweaks.
-
-        Craft explicit markup instead.
-        """
-        pass

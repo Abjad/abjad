@@ -1,7 +1,7 @@
 import typing
 
+from .. import bundle as _bundle
 from .. import format as _format
-from ..bundle import LilyPondFormatBundle
 
 
 class Ottava:
@@ -37,7 +37,7 @@ class Ottava:
 
     __slots__ = ("_format_slot", "_n")
 
-    _persistent = True
+    persistent = True
 
     ### INITIALIZER ###
 
@@ -72,7 +72,7 @@ class Ottava:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         n = self.n or 0
         string = rf"\ottava {n}"
         if self.format_slot in ("before", None):
@@ -146,17 +146,3 @@ class Ottava:
         Gets octave change.
         """
         return self._n
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        ..  container:: example
-
-            >>> abjad.Ottava().persistent
-            True
-
-        Class constant.
-        """
-        return self._persistent

@@ -1137,9 +1137,9 @@ def replace(argument, recipients, wrappers=False):
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
-        (Note("c'2"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
-        (Note("g'4"), Clef('alto'))
+        (Note("c'2"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("g'4"), Clef(name='alto', hide=False))
 
         >>> chord = abjad.Chord("<d' e'>2")
         >>> abjad.mutate.replace(staff[0], chord)
@@ -1191,9 +1191,9 @@ def replace(argument, recipients, wrappers=False):
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
-        (Note("c'2"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
-        (Note("g'4"), Clef('alto'))
+        (Note("c'2"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("g'4"), Clef(name='alto', hide=False))
 
         >>> chord = abjad.Chord("<d' e'>2")
         >>> abjad.mutate.replace(staff[0], chord, wrappers=True)
@@ -1214,9 +1214,9 @@ def replace(argument, recipients, wrappers=False):
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
-        (Chord("<d' e'>2"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
-        (Note("g'4"), Clef('alto'))
+        (Chord("<d' e'>2"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("g'4"), Clef(name='alto', hide=False))
 
         >>> abjad.wf.wellformed(staff)
         True

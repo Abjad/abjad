@@ -1,7 +1,9 @@
-from .. import format as _format
-from ..bundle import LilyPondFormatBundle
+import dataclasses
+
+from .. import bundle as _bundle
 
 
+@dataclasses.dataclass
 class BeamCount:
     r"""
     LilyPond ``\setLeftBeamCount``, ``\setRightBeamCount`` command.
@@ -13,48 +15,15 @@ class BeamCount:
 
     """
 
-    ### CLASS VARIABLES ###
+    left: int = 0
+    right: int = 0
 
-    __slots__ = ("_left", "_right")
-
-    ### INITIALIZER ###
-
-    def __init__(self, left: int = 0, right: int = 0) -> None:
-        assert isinstance(left, int), repr(left)
-        self._left = left
-        assert isinstance(right, int), repr(right)
-        self._right = right
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
+    _is_dataclass = True
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         string = rf"\set stemLeftBeamCount = {self.left}"
         bundle.before.commands.append(string)
         string = rf"\set stemRightBeamCount = {self.right}"
         bundle.before.commands.append(string)
         return bundle
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def left(self) -> int:
-        """
-        Gets stem left beam count.
-        """
-        return self._left
-
-    @property
-    def right(self) -> int:
-        """
-        Gets stem right beam count.
-        """
-        return self._right

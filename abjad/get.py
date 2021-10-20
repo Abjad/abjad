@@ -213,9 +213,7 @@ def annotation_wrappers(argument):
             indicator=abjad.Cello(
                 name='cello',
                 short_name='vc.',
-                markup=abjad.Markup(
-                    '\\markup Cello'
-                    ),
+                markup=Markup(string='\\markup Cello', direction=None, tweaks=None),
                 allowable_clefs=('bass', 'tenor', 'treble'),
                 context='Staff',
                 default_tuning=abjad.Tuning(
@@ -237,7 +235,7 @@ def annotation_wrappers(argument):
             )
         abjad.Wrapper(
             annotation='default_clef',
-            indicator=abjad.Clef('tenor'),
+            indicator=Clef(name='tenor', hide=False),
             tag=abjad.Tag(),
             )
 
@@ -999,20 +997,20 @@ def effective(
         <Staff{1}>                     None
         <Voice-"Music_Voice"{4}>       None
         Note("c'4")                    None
-        BeforeGraceContainer("cs'16")        None
+        BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
         Note("d'4")                    None
-        <<<2>>>                        Clef('alto')
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Clef('alto')
-        Chord("<e' g'>16")             Clef('alto')
-        Note("gs'16")                  Clef('alto')
-        Note("a'16")                   Clef('alto')
-        Note("as'16")                  Clef('alto')
-        Voice("e'4", name='Music_Voice') Clef('alto')
-        Note("e'4")                    Clef('alto')
-        Note("f'4")                    Clef('alto')
-        AfterGraceContainer("fs'16")   Clef('alto')
-        Note("fs'16")                  Clef('alto')
+        <<<2>>>                        Clef(name='alto', hide=False)
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Clef(name='alto', hide=False)
+        Chord("<e' g'>16")             Clef(name='alto', hide=False)
+        Note("gs'16")                  Clef(name='alto', hide=False)
+        Note("a'16")                   Clef(name='alto', hide=False)
+        Note("as'16")                  Clef(name='alto', hide=False)
+        Voice("e'4", name='Music_Voice') Clef(name='alto', hide=False)
+        Note("e'4")                    Clef(name='alto', hide=False)
+        Note("f'4")                    Clef(name='alto', hide=False)
+        AfterGraceContainer("fs'16")   Clef(name='alto', hide=False)
+        Note("fs'16")                  Clef(name='alto', hide=False)
 
     ..  container:: example
 
@@ -1053,10 +1051,10 @@ def effective(
         Note("c'16")                   None
         Note("e'16")                   None
         Note("cs'4")                   None
-        TremoloContainer("d'16 f'16")  Clef('alto')
-        Note("d'16")                   Clef('alto')
-        Note("f'16")                   Clef('alto')
-        Note("ds'4")                   Clef('alto')
+        TremoloContainer("d'16 f'16")  Clef(name='alto', hide=False)
+        Note("d'16")                   Clef(name='alto', hide=False)
+        Note("f'16")                   Clef(name='alto', hide=False)
+        Note("ds'4")                   Clef(name='alto', hide=False)
 
     ..  container:: example
 
@@ -1182,16 +1180,16 @@ def effective(
         ...     clef = abjad.get.effective(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
-        (Note("c'4"), Clef('alto'))
-        (Note("d'4"), Clef('alto'))
-        (Note("e'4"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
+        (Note("c'4"), Clef(name='alto', hide=False))
+        (Note("d'4"), Clef(name='alto', hide=False))
+        (Note("e'4"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
 
         >>> abjad.get.effective(staff[0], abjad.Clef)
-        Clef('alto')
+        Clef(name='alto', hide=False)
 
         >>> abjad.get.effective(staff[0], abjad.Clef, n=-1)
-        Clef('treble', hide=True)
+        Clef(name='treble', hide=True)
 
         >>> abjad.get.effective(staff[0], abjad.Clef, n=-2) is None
         True
@@ -1232,16 +1230,16 @@ def effective(
         ...     clef = abjad.get.effective(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
-        (Note("c'4"), Clef('treble'))
-        (Note("d'4"), Clef('treble'))
-        (Note("e'4"), Clef('treble'))
-        (Note("f'4"), Clef('treble'))
+        (Note("c'4"), Clef(name='treble', hide=False))
+        (Note("d'4"), Clef(name='treble', hide=False))
+        (Note("e'4"), Clef(name='treble', hide=False))
+        (Note("f'4"), Clef(name='treble', hide=False))
 
         >>> abjad.get.effective(staff[-1], abjad.Clef)
-        Clef('treble')
+        Clef(name='treble', hide=False)
 
         >>> abjad.get.effective(staff[-1], abjad.Clef, n=1)
-        Clef('alto', hide=True)
+        Clef(name='alto', hide=True)
 
         >>> abjad.get.effective(staff[-1], abjad.Clef, n=2) is None
         True
@@ -1625,27 +1623,27 @@ def effective_wrapper(
         Note("d'4")
             None
         <<<2>>>
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Chord("<e' g'>16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Note("gs'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Note("a'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Note("as'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Voice("e'4", name='Music_Voice')
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Note("e'4")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Note("f'4")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         AfterGraceContainer("fs'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
         Note("fs'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(context='Staff', indicator=Clef(name='alto', hide=False), tag=Tag())
 
     """
     if attributes is not None:
@@ -2186,12 +2184,12 @@ def indicator(
         <Staff{1}>                     None
         <Voice-"Music_Voice"{4}>       None
         Note("c'4")                    None
-        BeforeGraceContainer("cs'16")        None
+        BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
         Note("d'4")                    None
         <<<2>>>                        None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-        Chord("<e' g'>16")             Clef('alto')
+        Chord("<e' g'>16")             Clef(name='alto', hide=False)
         Note("gs'16")                  None
         Note("a'16")                   None
         Note("as'16")                  None
@@ -2241,12 +2239,12 @@ def indicator(
         Note("e'16")                   None
         Note("cs'4")                   None
         TremoloContainer("d'16 f'16")  None
-        Note("d'16")                   Clef('alto')
+        Note("d'16")                   Clef(name='alto', hide=False)
         Note("f'16")                   None
         Note("ds'4")                   None
 
-    Raises exception when more than one indicator of ``prototype`` attach
-    to ``argument``.
+    Raises exception when more than one indicator of ``prototype`` attach to
+    ``argument``.
 
     Returns default when no indicator of ``prototype`` attaches to ``argument``.
     """
@@ -2348,21 +2346,21 @@ def indicators(
         ...     print(f"{repr(component):30} {repr(result)}")
         <Staff{1}>                     []
         <Voice-"Music_Voice"{4}>       []
-        Note("c'4")                    [Articulation('.')]
+        Note("c'4")                    [Articulation(name='.', direction=None, tweaks=None)]
         BeforeGraceContainer("cs'16")  []
-        Note("cs'16")                  [Articulation('.')]
-        Note("d'4")                    [Articulation('.')]
+        Note("cs'16")                  [Articulation(name='.', direction=None, tweaks=None)]
+        Note("d'4")                    [Articulation(name='.', direction=None, tweaks=None)]
         <<<2>>>                        []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") [LilyPondLiteral('\\set fontSize = #-3', format_slot='opening')]
-        Chord("<e' g'>16")             [StartBeam(), LilyPondLiteral('\\slash', format_slot='opening'), StartSlur(), LilyPondLiteral('\\voiceOne', format_slot='opening'), Clef('alto'), Articulation('>')]
-        Note("gs'16")                  [Articulation('.')]
-        Note("a'16")                   [Articulation('.')]
-        Note("as'16")                  [StopBeam(), StopSlur(), Articulation('.')]
+        Chord("<e' g'>16")             [StartBeam(), LilyPondLiteral('\\slash', format_slot='opening'), StartSlur(), LilyPondLiteral('\\voiceOne', format_slot='opening'), Clef(name='alto', hide=False), Articulation(name='>', direction=None, tweaks=None)]
+        Note("gs'16")                  [Articulation(name='.', direction=None, tweaks=None)]
+        Note("a'16")                   [Articulation(name='.', direction=None, tweaks=None)]
+        Note("as'16")                  [StopBeam(), StopSlur(), Articulation(name='.', direction=None, tweaks=None)]
         Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [LilyPondLiteral('\\voiceTwo', format_slot='opening'), Articulation('.')]
-        Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='absolute_before'), Articulation('.')]
+        Note("e'4")                    [LilyPondLiteral('\\voiceTwo', format_slot='opening'), Articulation(name='.', direction=None, tweaks=None)]
+        Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='absolute_before'), Articulation(name='.', direction=None, tweaks=None)]
         AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Articulation('.')]
+        Note("fs'16")                  [Articulation(name='.', direction=None, tweaks=None)]
 
     ..  container:: example
 
@@ -2409,13 +2407,13 @@ def indicators(
         ...     print(f"{repr(component):30} {repr(result)}")
         <Staff{4}>                     []
         TremoloContainer("c'16 e'16")  []
-        Note("c'16")                   [Articulation('.')]
-        Note("e'16")                   [Articulation('.')]
-        Note("cs'4")                   [Articulation('.')]
+        Note("c'16")                   [Articulation(name='.', direction=None, tweaks=None)]
+        Note("e'16")                   [Articulation(name='.', direction=None, tweaks=None)]
+        Note("cs'4")                   [Articulation(name='.', direction=None, tweaks=None)]
         TremoloContainer("d'16 f'16")  []
-        Note("d'16")                   [Clef('alto'), Articulation('.')]
-        Note("f'16")                   [Articulation('.')]
-        Note("ds'4")                   [Articulation('.')]
+        Note("d'16")                   [Clef(name='alto', hide=False), Articulation(name='.', direction=None, tweaks=None)]
+        Note("f'16")                   [Articulation(name='.', direction=None, tweaks=None)]
+        Note("ds'4")                   [Articulation(name='.', direction=None, tweaks=None)]
 
     """
     # TODO: extend to any non-none argument
@@ -4030,24 +4028,24 @@ def wrapper(
         ...     print(f"{repr(component):30} {repr(wrapper)}")
         <Staff{1}>                     None
         <Voice-"Music_Voice"{4}>       None
-        Note("c'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("c'4")                    Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
         BeforeGraceContainer("cs'16")  None
-        Note("cs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("d'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("cs'16")                  Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
+        Note("d'4")                    Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
         <<<2>>>                        None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-        Chord("<e' g'>16")             Wrapper(indicator=Articulation('>'), tag=Tag())
-        Note("gs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("a'16")                   Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("as'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
+        Chord("<e' g'>16")             Wrapper(indicator=Articulation(name='>', direction=None, tweaks=None), tag=Tag())
+        Note("gs'16")                  Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
+        Note("a'16")                   Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
+        Note("as'16")                  Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
         Voice("e'4", name='Music_Voice') None
-        Note("e'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("f'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("e'4")                    Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
+        Note("f'4")                    Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
         AfterGraceContainer("fs'16")   None
-        Note("fs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
+        Note("fs'16")                  Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())
 
-    Raises exception when more than one indicator of ``prototype`` attach
-    to ``argument``.
+    Raises exception when more than one indicator of ``prototype`` attach to
+    ``argument``.
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
@@ -4148,21 +4146,21 @@ def wrappers(
         ...     print(f"{repr(component):30} {repr(result)}")
         <Staff{1}>                     []
         <Voice-"Music_Voice"{4}>       []
-        Note("c'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("c'4")                    [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
         BeforeGraceContainer("cs'16")  []
-        Note("cs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("d'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("cs'16")                  [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
+        Note("d'4")                    [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
         <<<2>>>                        []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") []
-        Chord("<e' g'>16")             [Wrapper(indicator=Articulation('>'), tag=Tag())]
-        Note("gs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("a'16")                   [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("as'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Chord("<e' g'>16")             [Wrapper(indicator=Articulation(name='>', direction=None, tweaks=None), tag=Tag())]
+        Note("gs'16")                  [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
+        Note("a'16")                   [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
+        Note("as'16")                  [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
         Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("f'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("e'4")                    [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
+        Note("f'4")                    [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
         AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        Note("fs'16")                  [Wrapper(indicator=Articulation(name='.', direction=None, tweaks=None), tag=Tag())]
 
     """
     if attributes is not None:
