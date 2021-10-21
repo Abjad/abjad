@@ -5,6 +5,7 @@ import typing
 
 from . import _inspect, exceptions
 from . import math as _math
+from . import score as _score
 from . import typings
 from .duration import Duration, Multiplier, NonreducedFraction
 from .pitch.pitchclasses import PitchClass
@@ -26,7 +27,7 @@ class LeafMaker:
         Integer and string elements in ``pitches`` result in notes:
 
         >>> maker = abjad.LeafMaker()
-        >>> pitches = [2, 4, 'F#5', 'G#5']
+        >>> pitches = [2, 4, "F#5", "G#5"]
         >>> duration = abjad.Duration(1, 4)
         >>> leaves = maker(pitches, duration)
         >>> staff = abjad.Staff(leaves)
@@ -49,7 +50,7 @@ class LeafMaker:
         Tuple elements in ``pitches`` result in chords:
 
         >>> maker = abjad.LeafMaker()
-        >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
+        >>> pitches = [(0, 2, 4), ("F#5", "G#5", "A#5")]
         >>> duration = abjad.Duration(1, 2)
         >>> leaves = maker(pitches, duration)
         >>> staff = abjad.Staff(leaves)
@@ -73,8 +74,7 @@ class LeafMaker:
         >>> pitches = 4 * [None]
         >>> durations = [abjad.Duration(1, 4)]
         >>> leaves = maker(pitches, durations)
-        >>> staff = abjad.Staff(leaves)
-        >>> staff.lilypond_type = 'RhythmicStaff'
+        >>> staff = abjad.Staff(leaves, lilypond_type="RhythmicStaff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -94,7 +94,7 @@ class LeafMaker:
         You can mix and match values passed to ``pitches``:
 
         >>> maker = abjad.LeafMaker()
-        >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
+        >>> pitches = [(0, 2, 4), None, "C#5", "D#5"]
         >>> durations = [abjad.Duration(1, 4)]
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
@@ -138,11 +138,11 @@ class LeafMaker:
 
     ..  container:: example
 
-        Reads ``pitches`` cyclically when the length of ``pitches`` is less
-        than the length of ``durations``:
+        Reads ``pitches`` cyclically when the length of ``pitches`` is less than the
+        length of ``durations``:
 
         >>> maker = abjad.LeafMaker()
-        >>> pitches = ['C5']
+        >>> pitches = ["C5"]
         >>> durations = 2 * [abjad.Duration(3, 8), abjad.Duration(1, 8)]
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
@@ -162,8 +162,8 @@ class LeafMaker:
 
     ..  container:: example
 
-        Reads ``durations`` cyclically when the length of ``durations`` is less
-        than the length of ``pitches``:
+        Reads ``durations`` cyclically when the length of ``durations`` is less than the
+        length of ``pitches``:
 
         >>> maker = abjad.LeafMaker()
         >>> pitches = "c'' d'' e'' f''"
@@ -190,7 +190,7 @@ class LeafMaker:
         tuplet-nested leaves:
 
         >>> maker = abjad.LeafMaker()
-        >>> pitches = ['D5']
+        >>> pitches = ["D5"]
         >>> durations = 3 * [abjad.Duration(1, 3)]
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
@@ -212,11 +212,11 @@ class LeafMaker:
 
     ..  container:: example
 
-        Set ``increase_monotonic`` to false to return nonassignable
-        durations tied from greatest to least:
+        Set ``increase_monotonic`` to false to return nonassignable durations tied from
+        greatest to least:
 
         >>> maker = abjad.LeafMaker(increase_monotonic=False)
-        >>> pitches = ['D#5']
+        >>> pitches = ["D#5"]
         >>> durations = [abjad.Duration(13, 16)]
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
@@ -238,11 +238,11 @@ class LeafMaker:
 
     ..  container:: example
 
-        Set ``increase_monotonic`` to true to return nonassignable
-        durations tied from least to greatest:
+        Set ``increase_monotonic`` to true to return nonassignable durations tied from
+        least to greatest:
 
         >>> maker = abjad.LeafMaker(increase_monotonic=True)
-        >>> pitches = ['E5']
+        >>> pitches = ["E5"]
         >>> durations = [abjad.Duration(13, 16)]
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
@@ -264,12 +264,12 @@ class LeafMaker:
 
     ..  container:: example
 
-        Set ``forbidden_note_duration`` to avoid notes greater than or equal
-        to a certain written duration:
+        Set ``forbidden_note_duration`` to avoid notes greater than or equal to a certain
+        written duration:
 
         >>> maker = abjad.LeafMaker(
         ...     forbidden_note_duration=abjad.Duration(1, 2),
-        ...     )
+        ... )
         >>> pitches = "f' g'"
         >>> durations = [abjad.Duration(5, 8)]
         >>> leaves = maker(pitches, durations)
@@ -299,13 +299,12 @@ class LeafMaker:
 
     ..  container:: example
 
-        You may set ``forbidden_note_duration`` and ``increase_monotonic``
-        together:
+        You may set ``forbidden_note_duration`` and ``increase_monotonic`` together:
 
         >>> maker = abjad.LeafMaker(
         ...     forbidden_note_duration=abjad.Duration(1, 2),
         ...     increase_monotonic=True,
-        ...     )
+        ... )
         >>> pitches = "f' g'"
         >>> durations = [abjad.Duration(5, 8)]
         >>> leaves = maker(pitches, durations)
@@ -368,8 +367,8 @@ class LeafMaker:
 
     ..  container:: example
 
-        None-valued elements in ``pitches`` result in multimeasure rests when
-        the multimeasure rest keyword is set:
+        None-valued elements in ``pitches`` result in multimeasure rests when the
+        multimeasure rest keyword is set:
 
         >>> maker = abjad.LeafMaker(use_multimeasure_rests=True)
         >>> pitches = [None]
@@ -380,8 +379,7 @@ class LeafMaker:
 
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> abjad.attach(abjad.TimeSignature((5, 8)), leaves[1])
-        >>> staff = abjad.Staff(leaves)
-        >>> staff.lilypond_type = 'RhythmicStaff'
+        >>> staff = abjad.Staff(leaves, lilypond_type="RhythmicStaff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -428,7 +426,6 @@ class LeafMaker:
         >>> maker(pitches, durations)
         Selection([Skip('s2.'), Skip('s16')])
 
-    Returns selection of leaves.
     """
 
     ### CLASS VARIABLES ###
@@ -484,8 +481,6 @@ class LeafMaker:
     def __call__(self, pitches, durations) -> Selection:
         """
         Calls leaf-maker on ``pitches`` and ``durations``.
-
-        Returns selection.
         """
         if isinstance(pitches, str):
             pitches = pitches.split()
@@ -728,7 +723,7 @@ class LeafMaker:
             Integer and string elements in ``pitches`` result in notes:
 
             >>> maker = abjad.LeafMaker(tag=abjad.Tag("leaf_maker"))
-            >>> pitches = [2, 4, 'F#5', 'G#5']
+            >>> pitches = [2, 4, "F#5", "G#5"]
             >>> duration = abjad.Duration(1, 4)
             >>> leaves = maker(pitches, duration)
             >>> staff = abjad.Staff(leaves)
@@ -769,8 +764,8 @@ class NoteMaker:
 
     ..  container:: example
 
-        Cycles through ``pitches`` when the length of ``pitches`` is less than
-        the length of ``durations``:
+        Cycles through ``pitches`` when the length of ``pitches`` is less than the length
+        of ``durations``:
 
         >>> maker = abjad.NoteMaker()
         >>> notes = maker([0], [(1, 16), (1, 8), (1, 8)])
@@ -790,14 +785,14 @@ class NoteMaker:
 
     ..  container:: example
 
-        Cycles through ``durations`` when the length of ``durations`` is less
-        than the length of ``pitches``:
+        Cycles through ``durations`` when the length of ``durations`` is less than the
+        length of ``pitches``:
 
         >>> maker = abjad.NoteMaker()
         >>> notes = maker(
         ...     [0, 2, 4, 5, 7],
         ...     [(1, 16), (1, 8), (1, 8)],
-        ...     )
+        ... )
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -840,8 +835,7 @@ class NoteMaker:
 
     ..  container:: example
 
-        Set ``increase_monotonic=False`` to express tied values in decreasing
-        duration:
+        Set ``increase_monotonic=False`` to express tied values in decreasing duration:
 
         >>> maker = abjad.NoteMaker(increase_monotonic=False)
         >>> notes = maker([0], [(13, 16)])
@@ -861,8 +855,7 @@ class NoteMaker:
 
     ..  container:: example
 
-        Set ``increase_monotonic=True`` to express tied values in increasing
-        duration:
+        Set ``increase_monotonic=True`` to express tied values in increasing duration:
 
         >>> maker = abjad.NoteMaker(increase_monotonic=True)
         >>> notes = maker([0], [(13, 16)])
@@ -907,8 +900,6 @@ class NoteMaker:
     Set ``pitches`` to a single pitch or a sequence of pitches.
 
     Set ``durations`` to a single duration or a list of durations.
-
-    Returns selection.
     """
 
     ### CLASS VARIABLES ###
@@ -1012,7 +1003,7 @@ class NoteMaker:
 
         ..  container:: example
 
-            >>> maker = abjad.NoteMaker(tag=abjad.Tag('note_maker'))
+            >>> maker = abjad.NoteMaker(tag=abjad.Tag("note_maker"))
             >>> notes = maker([0], [(1, 16), (1, 8), (1, 8)])
             >>> staff = abjad.Staff(notes)
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1035,29 +1026,25 @@ class NoteMaker:
         return self._tag
 
 
-### FUNCTIONS ###
-
-
 def tuplet_from_duration_and_ratio(
     duration, ratio, *, increase_monotonic: bool = None, tag: Tag = None
-) -> "Tuplet":
+) -> _score.Tuplet:
     r"""
     Makes tuplet from ``duration`` and ``ratio``.
 
     ..  container:: example
 
-        Makes tupletted leaves strictly without dots when all
-        ``ratio`` equal ``1``:
+        Makes tupletted leaves strictly without dots when all ``ratio`` equal ``1``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((1, 1, 1, -1, -1)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1074,18 +1061,18 @@ def tuplet_from_duration_and_ratio(
                 r32.
             }
 
-        Allows tupletted leaves to return with dots when some ``ratio``
-        do not equal ``1``:
+        Allows tupletted leaves to return with dots when some ``ratio`` do not equal
+        ``1``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((1, -2, -2, 3, 3)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1103,19 +1090,18 @@ def tuplet_from_duration_and_ratio(
                 c'16.
             }
 
-        Interprets nonassignable ``ratio`` according to
-        ``increase_monotonic``:
+        Interprets nonassignable ``ratio`` according to ``increase_monotonic``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((5, -1, 5)),
         ...     increase_monotonic=True,
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1132,18 +1118,17 @@ def tuplet_from_duration_and_ratio(
 
     ..  container:: example
 
-        Makes augmented tuplet from ``duration`` and ``ratio`` and
-        encourages dots:
+        Makes augmented tuplet from ``duration`` and ``ratio`` and encourages dots:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((1, 1, 1, -1, -1)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1160,19 +1145,18 @@ def tuplet_from_duration_and_ratio(
                 r32.
             }
 
-        Interprets nonassignable ``ratio`` according to
-        ``increase_monotonic``:
+        Interprets nonassignable ``ratio`` according to ``increase_monotonic``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((5, -1, 5)),
         ...     increase_monotonic=True,
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1189,21 +1173,19 @@ def tuplet_from_duration_and_ratio(
 
     ..  container:: example
 
-        Makes diminished tuplet from ``duration`` and nonzero integer
-        ``ratio``.
+        Makes diminished tuplet from ``duration`` and nonzero integer ``ratio``.
 
-        Makes tupletted leaves strictly without dots when all
-        ``ratio`` equal ``1``:
+        Makes tupletted leaves strictly without dots when all ``ratio`` equal ``1``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((1, 1, 1, -1, -1)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1220,18 +1202,18 @@ def tuplet_from_duration_and_ratio(
                 r32.
             }
 
-        Allows tupletted leaves to return with dots when some ``ratio``
-        do not equal ``1``:
+        Allows tupletted leaves to return with dots when some ``ratio`` do not equal
+        ``1``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((1, -2, -2, 3, 3)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1249,19 +1231,18 @@ def tuplet_from_duration_and_ratio(
                 c'16.
             }
 
-        Interprets nonassignable ``ratio`` according to
-        ``increase_monotonic``:
+        Interprets nonassignable ``ratio`` according to ``increase_monotonic``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((5, -1, 5)),
         ...     increase_monotonic=True,
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1278,18 +1259,17 @@ def tuplet_from_duration_and_ratio(
 
     ..  container:: example
 
-        Makes diminished tuplet from ``duration`` and ``ratio`` and
-        encourages dots:
+        Makes diminished tuplet from ``duration`` and ``ratio`` and encourages dots:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((1, 1, 1, -1, -1)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type = 'RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1312,12 +1292,12 @@ def tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
         ...     abjad.Ratio((5, -1, 5)),
         ...     increase_monotonic=True,
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1360,7 +1340,7 @@ def tuplet_from_duration_and_ratio(
 
 def tuplet_from_leaf_and_ratio(
     leaf: Leaf, ratio: typing.Union[typing.List, Ratio]
-) -> "Tuplet":
+) -> _score.Tuplet:
     r"""
     Makes tuplet from ``leaf`` and ``ratio``.
 
@@ -1371,12 +1351,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     abjad.Ratio((1,)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1395,12 +1375,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1420,12 +1400,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     abjad.Ratio((1, 2, 2)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1445,12 +1425,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2, 2, 3],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1472,12 +1452,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2, 2, 3, 3],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1500,12 +1480,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     abjad.Ratio((1, 2, 2, 3, 3, 4)),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1528,12 +1508,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1552,12 +1532,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1577,12 +1557,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2, 2],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1602,12 +1582,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2, 2, 3],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1629,12 +1609,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2, 2, 3, 3],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1657,12 +1637,12 @@ def tuplet_from_leaf_and_ratio(
         >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
         ...     note,
         ...     [1, 2, 2, 3, 3, 4],
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1680,7 +1660,6 @@ def tuplet_from_leaf_and_ratio(
                 c'16
             }
 
-    Returns tuplet.
     """
     proportions = Ratio(ratio)
     target_duration = leaf.written_duration
@@ -1706,7 +1685,7 @@ def tuplet_from_ratio_and_pair(
     fraction: typing.Union[typing.Tuple, NonreducedFraction],
     *,
     tag: Tag = None,
-) -> "Tuplet":
+) -> _score.Tuplet:
     r"""
     Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.
 
@@ -1715,12 +1694,12 @@ def tuplet_from_ratio_and_pair(
         >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
         ...     abjad.NonreducedRatio((1,)),
         ...     abjad.NonreducedFraction(7, 16),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1737,12 +1716,12 @@ def tuplet_from_ratio_and_pair(
         >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
         ...     abjad.NonreducedRatio((1, 2)),
         ...     abjad.NonreducedFraction(7, 16),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1760,12 +1739,12 @@ def tuplet_from_ratio_and_pair(
         >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
         ...     abjad.NonreducedRatio((1, 2, 4)),
         ...     abjad.NonreducedFraction(7, 16),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1784,12 +1763,12 @@ def tuplet_from_ratio_and_pair(
         >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
         ...     abjad.NonreducedRatio((1, 2, 4, 1)),
         ...     abjad.NonreducedFraction(7, 16),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1809,12 +1788,12 @@ def tuplet_from_ratio_and_pair(
         >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
         ...     abjad.NonreducedRatio((1, 2, 4, 1, 2)),
         ...     abjad.NonreducedFraction(7, 16),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1835,12 +1814,12 @@ def tuplet_from_ratio_and_pair(
         >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
         ...     abjad.NonreducedRatio((1, 2, 4, 1, 2, 4)),
         ...     abjad.NonreducedFraction(7, 16),
-        ...     )
+        ... )
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
-        ...     lilypond_type='RhythmicStaff',
-        ...     )
+        ...     lilypond_type="RhythmicStaff",
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1856,6 +1835,31 @@ def tuplet_from_ratio_and_pair(
                 c'16
                 c'8
                 c'4
+            }
+
+        Works with nonassignable rests:
+
+        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((11, -5), (5, 16))
+        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
+        >>> staff = abjad.Staff(
+        ...     [tuplet],
+        ...     lilypond_type="RhythmicStaff",
+        ... )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff[0])
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \times 5/8
+            {
+                \time 7/16
+                c'4
+                ~
+                c'16.
+                r8
+                r32
             }
 
     Interprets ``d`` as tuplet denominator.
@@ -1908,6 +1912,11 @@ def tuplet_from_ratio_and_pair(
                     notes = maker(0, (x, denominator))
                     components.extend(notes)
             else:
-                rest = Rest((-x, denominator), tag=tag)
-                components.append(rest)
+                try:
+                    rest = Rest((-x, denominator), tag=tag)
+                    components.append(rest)
+                except exceptions.AssignabilityError:
+                    leaf_maker = LeafMaker(tag=tag)
+                    rests = leaf_maker(None, (-x, denominator))
+                    components.extend(rests)
         return Tuplet.from_duration(duration, components, tag=tag)

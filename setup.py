@@ -85,7 +85,7 @@ install_requires = [
     "six",
     "sphinx-autodoc-typehints",
     "types-six",
-    "uqbar>=0.4.4, <0.5.0",
+    "uqbar>=0.4.4",
 ]
 
 if __name__ == "__main__":

@@ -1,4 +1,3 @@
-#(ly:set-option 'relative-includes #t)
 \include "abjad-coloring.ily"
 \include "abjad-metric-modulations.ily"
 \include "abjad-spanners.ily"

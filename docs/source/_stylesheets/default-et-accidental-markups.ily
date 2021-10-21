@@ -1,5 +1,4 @@
 \version "2.19.84"
-#(ly:set-option 'relative-includes #t)
 \include "fraction-accidental-markups.ily"
 \include "general-et-accidental-markups.ily"
 

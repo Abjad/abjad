@@ -1,4 +1,3 @@
-#(ly:set-option 'relative-includes #t)
 font-name = "HEJI2"
 \include "markup-functions.ily"
 

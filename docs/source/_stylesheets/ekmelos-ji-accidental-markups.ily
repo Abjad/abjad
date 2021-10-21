@@ -1,4 +1,3 @@
-#(ly:set-option 'relative-includes #t)
 font-name = "ekmelos"
 \include "markup-functions.ily"
 
