@@ -103,8 +103,6 @@ class String(str):
         """
         Gets base-26 representation of nonnegative integer ``n``.
 
-        :param n: integer.
-
         ..  container:: example
 
             >>> abjad.String.base_26(1)

@@ -2433,7 +2433,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
     r"""
     Gets leaf ``n``.
 
-    :param n: constrained to -1, 0, 1 for previous, current, next leaf.
+    ``n`` constrained to -1, 0, 1 for previous, current, next leaf.
 
     ..  container:: example
 
