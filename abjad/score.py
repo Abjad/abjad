@@ -4787,21 +4787,42 @@ class Skip(Leaf):
 
     ..  container:: example
 
-        >>> skip = abjad.Skip((3, 16))
+        >>> skip = abjad.Skip((1, 1))
         >>> skip
-        Skip('s8.')
+        Skip('s1')
 
         ..  docs::
 
             >>> string = abjad.lilypond(skip)
             >>> print(string)
-            s8.
+            s1
+
+        >>> skip = abjad.Skip((1, 1), multiplier=(5, 4))
+        >>> skip
+        Skip('s1 * 5/4')
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(skip)
+            >>> print(string)
+            s1 * 5/4
+
+        >>> note = abjad.Note("c'4", multiplier=(5, 4))
+        >>> skip = abjad.Skip(note)
+        >>> skip
+        Skip('s4 * 5/4')
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(skip)
+            >>> print(string)
+            s4 * 5/4
 
     ..  container:: example
 
         Skips can be tagged:
 
-        >>> skip = abjad.Skip('s8.', tag=abjad.Tag('GLOBAL_SKIP'))
+        >>> skip = abjad.Skip("s8.", tag=abjad.Tag("GLOBAL_SKIP"))
         >>> string = abjad.lilypond(skip, tags=True)
         >>> print(string)
         %! GLOBAL_SKIP
@@ -4833,8 +4854,9 @@ class Skip(Leaf):
             input_leaf = parsed[0]
             written_duration = input_leaf.written_duration
         elif len(arguments) == 1 and isinstance(arguments[0], Leaf):
-            written_duration = arguments[0].written_duration
             input_leaf = arguments[0]
+            written_duration = input_leaf.written_duration
+            multiplier = input_leaf.multiplier
         elif len(arguments) == 1 and not isinstance(arguments[0], str):
             written_duration = arguments[0]
         elif len(arguments) == 0:
