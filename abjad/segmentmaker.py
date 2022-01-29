@@ -26,7 +26,7 @@ class SegmentMaker:
 
     def __eq__(self, expr):
         """
-        Is true if ``expr`` is a segment-maker with equivalent properties.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, expr)
 

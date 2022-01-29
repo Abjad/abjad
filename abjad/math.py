@@ -1197,7 +1197,7 @@ class Infinity:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is also infinity.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 

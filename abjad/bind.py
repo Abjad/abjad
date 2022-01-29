@@ -92,6 +92,7 @@ class Wrapper:
     def __init__(
         self,
         annotation: str = None,
+        check_duplicate_indicator=False,
         component=None,
         context: str = None,
         deactivate: bool = None,
@@ -124,7 +125,9 @@ class Wrapper:
         tag = _tag.Tag(tag)
         self._tag: _tag.Tag = tag
         if component is not None:
-            self._bind_component(component)
+            self._bind_component(
+                component, check_duplicate_indicator=check_duplicate_indicator
+            )
 
     ### SPECIAL METHODS ###
 
@@ -296,9 +299,26 @@ class Wrapper:
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Is true when self equals ``argument``.
         """
-        return _format.compare_objects(self, argument)
+        # return _format.compare_objects(self, argument)
+        if not isinstance(argument, Wrapper):
+            return False
+        if self.annotation != argument.annotation:
+            return False
+        if self.component != argument.component:
+            return False
+        if self.context != argument.context:
+            return False
+        if self.deactivate != argument.deactivate:
+            return False
+        if self.indicator != argument.indicator:
+            return False
+        if self.synthetic_offset != argument.synthetic_offset:
+            return False
+        if self.tag != argument.tag:
+            return False
+        return True
 
     def __hash__(self) -> int:
         """
@@ -314,9 +334,10 @@ class Wrapper:
 
     ### PRIVATE METHODS ###
 
-    def _bind_component(self, component):
+    def _bind_component(self, component, check_duplicate_indicator=False):
         if getattr(self.indicator, "context", None) is not None:
-            self._warn_duplicate_indicator(component)
+            if check_duplicate_indicator is True:
+                self._warn_duplicate_indicator(component)
             self._unbind_component()
             self._component = component
             self._update_effective_context()
@@ -680,6 +701,7 @@ def annotate(component, annotation, indicator) -> None:
 def attach(  # noqa: 302
     attachable,
     target,
+    check_duplicate_indicator=False,
     context=None,
     deactivate=None,
     do_not_test=None,
@@ -780,7 +802,7 @@ def attach(  # noqa: 302
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef("treble"), staff[0])
-        >>> abjad.attach(abjad.Clef("alto"), staff[0])
+        >>> abjad.attach(abjad.Clef("alto"), staff[0], check_duplicate_indicator=True)
         Traceback (most recent call last):
             ...
         abjad...PersistentIndicatorError: Can not attach ...
@@ -967,6 +989,7 @@ def attach(  # noqa: 302
 
     wrapper_ = Wrapper(
         annotation=annotation,
+        check_duplicate_indicator=check_duplicate_indicator,
         component=component,
         context=context,
         deactivate=deactivate,

@@ -125,8 +125,7 @@ class Sequence(collections.abc.Sequence):
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a sequence with items equal to those of
-        this sequence.
+        Delegates to ``abjad.format.compare_objects()``.
 
         ..  container:: example
 

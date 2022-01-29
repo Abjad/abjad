@@ -391,8 +391,7 @@ class StaffPosition:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a staff position with the same number as this staff
-        position.
+        Delegates to ``abjad.format.compare_objects()``.
 
         ..  container:: example
 

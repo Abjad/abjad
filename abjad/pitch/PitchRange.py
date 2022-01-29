@@ -270,8 +270,7 @@ class PitchRange:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a pitch range with start and stop equal
-        to those of this pitch range.
+        Delegates to ``abjad.format.compare_objects()``.
 
         ..  container:: example
 

@@ -195,7 +195,11 @@ def _get_indicator(
     elif len(indicators) == 1:
         return list(indicators)[0]
     else:
-        raise Exception("multiple indicators attached to component.")
+        name = getattr(prototype, "__name__", "")
+        strings = "\n".join([str(_) for _ in indicators])
+        raise Exception(
+            f"{len(indicators)} {name} indicators attached to component:\n{strings}"
+        )
 
 
 def _get_leaf_from_leaf(LEAF, n):

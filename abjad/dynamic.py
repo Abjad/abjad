@@ -125,7 +125,7 @@ class Dynamic:
         >>> dynamic = abjad.Dynamic("p")
         >>> abjad.attach(dynamic, staff[0])
         >>> dynamic = abjad.Dynamic("p")
-        >>> abjad.attach(dynamic, staff[0])
+        >>> abjad.attach(dynamic, staff[0], check_duplicate_indicator=True)
         Traceback (most recent call last):
             ...
         abjad.exceptions.PersistentIndicatorError:

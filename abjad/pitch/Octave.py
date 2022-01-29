@@ -74,7 +74,7 @@ class Octave:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is octave with same octave number.
+        Delegates to ``abjad.format.compare_objects()``.
 
         ..  container:: example
 

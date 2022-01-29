@@ -61,10 +61,7 @@ class NonreducedRatio(collections.abc.Sequence):
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a nonreduced ratio with numerator and
-        denominator equal to those of this nonreduced ratio.
-
-        Returns true or false.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 

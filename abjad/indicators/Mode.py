@@ -46,8 +46,7 @@ class Mode:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a mode with mode name equal to that of
-        this mode.
+        Delegates to ``abjad.format.compare_objects()``.
 
         ..  container:: example
 

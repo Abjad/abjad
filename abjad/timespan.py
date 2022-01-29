@@ -333,7 +333,7 @@ class Timespan:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a timespan with equal offsets.
+        Delegates to ``abjad.format.compare_objects()``.
 
         ..  container:: example
 

@@ -1,6 +1,5 @@
 import abc
 import collections.abc
-import inspect
 import itertools
 import operator
 import typing
@@ -76,7 +75,7 @@ class Inequality:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true equal to ``argument``.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
@@ -602,17 +601,6 @@ class Selection(collections.abc.Sequence):
 
     def _get_preprolated_duration(self):
         return sum(component._get_preprolated_duration() for component in self)
-
-    @staticmethod
-    def _get_template(frame, selector):
-        try:
-            frame_info = inspect.getframeinfo(frame)
-            function_name = frame_info.function
-            arguments = _format._wrap_arguments(frame)
-        finally:
-            del frame
-        template = f".{function_name}({arguments})"
-        return selector.template + template
 
     def _give_components_to_empty_container(self, container):
         """

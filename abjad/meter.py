@@ -381,10 +381,7 @@ class Meter:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a meter with an rtm format equal to that
-        of this meter.
-
-        Returns true or false.
+        Delegates to ``abjad.format.compare_objects()``.
         """
         return _format.compare_objects(self, argument)
 
