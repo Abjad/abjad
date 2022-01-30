@@ -1022,7 +1022,7 @@ class Container(Component):
             First tuplet must have start slur removed:
 
             >>> abjad.detach(abjad.StartSlur, tuplet_1[0])
-            (StartSlur(),)
+            (StartSlur(direction=None, tweaks=None),)
 
             >>> abjad.show(tuplet_1) # doctest: +SKIP
 

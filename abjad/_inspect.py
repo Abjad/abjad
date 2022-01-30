@@ -4,7 +4,7 @@ import typing
 
 from . import exceptions, typings
 from .duration import Duration
-from .indicators.MetronomeMark import MetronomeMark
+from .indicators import MetronomeMark
 from .instruments import Instrument
 from .parentage import Parentage
 from .pitch.pitches import NamedPitch

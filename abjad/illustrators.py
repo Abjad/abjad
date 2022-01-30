@@ -9,9 +9,7 @@ from . import selection as _selection
 from . import timespan as _timespan
 from .bind import attach
 from .duration import Duration
-from .indicators.Clef import Clef
-from .indicators.StaffChange import StaffChange
-from .indicators.TimeSignature import TimeSignature
+from .indicators import Clef, StaffChange, TimeSignature
 from .lilypondfile import Block, LilyPondFile
 from .lilypondformat import lilypond
 from .makers import NoteMaker

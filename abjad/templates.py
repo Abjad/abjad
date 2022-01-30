@@ -7,7 +7,7 @@ from . import instruments as _instruments
 from . import overrides as _overrides
 from . import score as _score
 from . import tag as _tag
-from .indicators.Clef import Clef
+from .indicators import Clef
 
 
 class ScoreTemplate:

@@ -10,7 +10,7 @@ from . import math, typings
 from .bind import attach, detach
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Offset
-from .indicators.Tie import Tie
+from .indicators import Tie
 from .parentage import Parentage
 from .pattern import Pattern
 from .pitch.pitches import NamedPitch, NumberedPitch

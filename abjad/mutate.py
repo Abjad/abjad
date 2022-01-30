@@ -5,8 +5,7 @@ from . import enums, exceptions, get
 from . import iterate as iterate_
 from .bind import attach, detach
 from .duration import Duration
-from .indicators.RepeatTie import RepeatTie
-from .indicators.Tie import Tie
+from .indicators import RepeatTie, Tie
 from .makers import NoteMaker
 from .pitch.intervals import NamedInterval
 from .ratio import Ratio

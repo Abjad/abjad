@@ -2,12 +2,7 @@ from .. import _iterate
 from ..bind import attach, detach
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
-from ..indicators.StartBeam import StartBeam
-from ..indicators.StartSlur import StartSlur
-from ..indicators.StopBeam import StopBeam
-from ..indicators.StopSlur import StopSlur
-from ..indicators.Tie import Tie
-from ..indicators.TimeSignature import TimeSignature
+from ..indicators import StartBeam, StartSlur, StopBeam, StopSlur, Tie, TimeSignature
 from ..pitch.pitchclasses import NamedPitchClass
 from ..pitch.pitches import NamedPitch
 from ..score import Chord, Container, Note, Rest, Tuplet

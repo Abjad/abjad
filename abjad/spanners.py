@@ -9,28 +9,30 @@ from . import typings
 from .bind import attach, detach
 from .duration import Duration
 from .dynamic import Dynamic
-from .indicators.BeamCount import BeamCount
-from .indicators.BendAfter import BendAfter
-from .indicators.Glissando import Glissando
-from .indicators.Ottava import Ottava
-from .indicators.RepeatTie import RepeatTie
-from .indicators.StartBeam import StartBeam
-from .indicators.StartGroup import StartGroup
-from .indicators.StartHairpin import StartHairpin
-from .indicators.StartPhrasingSlur import StartPhrasingSlur
-from .indicators.StartPianoPedal import StartPianoPedal
-from .indicators.StartSlur import StartSlur
-from .indicators.StartTextSpan import StartTextSpan
-from .indicators.StartTrillSpan import StartTrillSpan
-from .indicators.StopBeam import StopBeam
-from .indicators.StopGroup import StopGroup
-from .indicators.StopHairpin import StopHairpin
-from .indicators.StopPhrasingSlur import StopPhrasingSlur
-from .indicators.StopPianoPedal import StopPianoPedal
-from .indicators.StopSlur import StopSlur
-from .indicators.StopTextSpan import StopTextSpan
-from .indicators.StopTrillSpan import StopTrillSpan
-from .indicators.Tie import Tie
+from .indicators import (
+    BeamCount,
+    BendAfter,
+    Glissando,
+    Ottava,
+    RepeatTie,
+    StartBeam,
+    StartGroup,
+    StartHairpin,
+    StartPhrasingSlur,
+    StartPianoPedal,
+    StartSlur,
+    StartTextSpan,
+    StartTrillSpan,
+    StopBeam,
+    StopGroup,
+    StopHairpin,
+    StopPhrasingSlur,
+    StopPianoPedal,
+    StopSlur,
+    StopTextSpan,
+    StopTrillSpan,
+    Tie,
+)
 from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, tweak
 from .parentage import Parentage
 from .score import Chord, Component, MultimeasureRest, Note, Rest, Skip, Staff

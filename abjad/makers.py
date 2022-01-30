@@ -1898,7 +1898,7 @@ def tuplet_from_ratio_and_pair(
         exponent = int(
             math.log(_math.weight(ratio.numbers), 2) - math.log(numerator, 2)
         )
-        denominator = int(denominator * 2 ** exponent)
+        denominator = int(denominator * 2**exponent)
         components: typing.List[typing.Union[Note, Rest]] = []
         for x in ratio.numbers:
             if not x:

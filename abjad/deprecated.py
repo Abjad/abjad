@@ -6,7 +6,7 @@ from . import score as _score
 from . import selection as _selection
 from . import tag as _tag
 from .bind import attach
-from .indicators.BarLine import BarLine
+from .indicators import BarLine
 from .overrides import override
 
 

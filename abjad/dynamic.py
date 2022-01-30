@@ -8,7 +8,7 @@ from . import overrides as _overrides
 from . import string as _string
 
 
-@dataclasses.dataclass(eq=False, unsafe_hash=True)
+@dataclasses.dataclass(eq=False, slots=True, unsafe_hash=True)
 class Dynamic:
     r"""
     Dynamic.

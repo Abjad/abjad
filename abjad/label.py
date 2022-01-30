@@ -38,7 +38,7 @@ def _color_leaf(leaf, color, *, deactivate=False, tag=None):
         _attach(comment, leaf, deactivate=deactivate, tag=tag)
     else:
         assert color.startswith("#")
-        string = fr"\abjad-color-music #'{color[1:]}"
+        string = rf"\abjad-color-music #'{color[1:]}"
         literal = _overrides.LilyPondLiteral(string)
         _attach(literal, leaf)
     return leaf

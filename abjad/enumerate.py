@@ -308,7 +308,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     Returns sequence generator.
     """
     length = len(argument)
-    for i in range(2 ** length):
+    for i in range(2**length):
         binary_string = math.integer_to_binary_string(i)
         binary_string = binary_string.zfill(length)
         sublist = []
@@ -414,7 +414,7 @@ def yield_partitions(argument):
     Returns generator of nested sequences.
     """
     length = len(argument) - 1
-    for i in range(2 ** length):
+    for i in range(2**length):
         binary_string = math.integer_to_binary_string(i)
         binary_string = binary_string.zfill(length)
         part = list(argument[0:1])

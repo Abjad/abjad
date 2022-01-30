@@ -2,8 +2,7 @@ import collections
 import typing
 
 from . import _inspect, score
-from .indicators.RepeatTie import RepeatTie
-from .indicators.Tie import Tie
+from .indicators import RepeatTie, Tie
 
 
 def _coerce_exclude(exclude):

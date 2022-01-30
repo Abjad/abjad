@@ -619,7 +619,7 @@ def integer_to_base_k_tuple(n, k) -> typing.Tuple[int, ...]:
     current_exponent = math.trunc(math.log(n, k))
     remainder = n
     while 0 <= current_exponent:
-        current_power = k ** current_exponent
+        current_power = k**current_exponent
         current_digit = remainder // current_power
         result.append(current_digit)
         remainder -= current_digit * current_power
