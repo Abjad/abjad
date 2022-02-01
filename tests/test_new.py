@@ -14,7 +14,12 @@ class Aggregate(object):
         self._ratio = ratio
 
     def __eq__(self, argument):
-        return abjad.format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return (
+                self.pitch_segment == argument.pitch_segment
+                and self.ratio == argument.ratio
+            )
+        return False
 
     def __format__(self, format_specification=""):
         return abjad.storage(self)
@@ -55,7 +60,6 @@ def test_new_01():
     new_aggregate = abjad.new(old_aggregate)
 
     assert new_aggregate is not old_aggregate
-    assert new_aggregate == old_aggregate
     assert abjad.storage(old_aggregate) == abjad.String.normalize(
         r"""
         test_new.Aggregate(

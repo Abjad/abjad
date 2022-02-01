@@ -1,8 +1,9 @@
 import collections
 import typing
 
-from . import _inspect, score
-from .indicators import RepeatTie, Tie
+from . import _inspect
+from . import indicators as _indicators
+from . import score as _score
 
 
 def _coerce_exclude(exclude):
@@ -35,7 +36,9 @@ def _get_logical_tie_leaves(LEAF):
             break
         if _is_unpitched(previous_leaf):
             break
-        if current_leaf._has_indicator(RepeatTie) or previous_leaf._has_indicator(Tie):
+        if current_leaf._has_indicator(
+            _indicators.RepeatTie
+        ) or previous_leaf._has_indicator(_indicators.Tie):
             leaves_before.insert(0, previous_leaf)
         else:
             break
@@ -47,7 +50,9 @@ def _get_logical_tie_leaves(LEAF):
             break
         if _is_unpitched(next_leaf):
             break
-        if current_leaf._has_indicator(Tie) or next_leaf._has_indicator(RepeatTie):
+        if current_leaf._has_indicator(_indicators.Tie) or next_leaf._has_indicator(
+            _indicators.RepeatTie
+        ):
             leaves_after.append(next_leaf)
         else:
             break
@@ -65,12 +70,12 @@ def _iterate_components(
     grace=None,
     reverse=None,
 ):
-    prototype = prototype or score.Component
+    prototype = prototype or _score.Component
     before_grace_container = None
     after_grace_container = None
     exclude = _coerce_exclude(exclude)
     assert isinstance(exclude, tuple), repr(exclude)
-    if grace is not False and isinstance(argument, score.Leaf):
+    if grace is not False and isinstance(argument, _score.Leaf):
         before_grace_container = argument._before_grace_container
         after_grace_container = argument._after_grace_container
     if not reverse:
@@ -165,7 +170,7 @@ def _iterate_components(
 
 
 def _iterate_descendants(component, cross_offset=None):
-    assert isinstance(component, score.Component), repr(component)
+    assert isinstance(component, _score.Component), repr(component)
     if component is None:
         components = ()
     else:
@@ -226,9 +231,9 @@ def _get_leaf(ARGUMENT, n: int = 0):
         message = "n must be -1, 0 or 1:\n"
         message += f"   {repr(n)}"
         raise Exception(message)
-    if isinstance(ARGUMENT, score.Leaf):
+    if isinstance(ARGUMENT, _score.Leaf):
         candidate = _inspect._get_sibling_with_graces(ARGUMENT, n)
-        if isinstance(candidate, score.Leaf):
+        if isinstance(candidate, _score.Leaf):
             return candidate
         return _inspect._get_leaf_from_leaf(ARGUMENT, n)
     if 0 <= n:
@@ -246,7 +251,7 @@ def _get_leaf(ARGUMENT, n: int = 0):
 def _public_iterate_components(
     ARGUMENT, prototype=None, *, exclude=None, grace=None, reverse=None
 ):
-    if isinstance(ARGUMENT, score.Container):
+    if isinstance(ARGUMENT, _score.Container):
         for component in _iterate_components(
             ARGUMENT,
             prototype,
@@ -298,11 +303,11 @@ def _public_iterate_leaves(
     pitched=None,
     reverse=None,
 ):
-    prototype = prototype or score.Leaf
+    prototype = prototype or _score.Leaf
     if pitched is True:
-        prototype = (score.Chord, score.Note)
+        prototype = (_score.Chord, _score.Note)
     elif pitched is False:
-        prototype = (score.MultimeasureRest, score.Rest, score.Skip)
+        prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
     return _public_iterate_components(
         ARGUMENT, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
     )

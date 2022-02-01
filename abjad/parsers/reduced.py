@@ -1,10 +1,9 @@
 from .. import _iterate
+from .. import pitch as _pitch
 from ..bind import attach, detach
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
 from ..indicators import StartBeam, StartSlur, StopBeam, StopSlur, Tie, TimeSignature
-from ..pitch.pitchclasses import NamedPitchClass
-from ..pitch.pitches import NamedPitch
 from ..score import Chord, Container, Note, Rest, Tuplet
 from ..selection import Selection
 from .base import Parser
@@ -251,7 +250,7 @@ class ReducedLyParser(Parser):
 
     def t_PITCHNAME(self, t):
         r"[a-g](ff|ss|f|s|tqf|tqs|qs|qf)?"
-        t.value = NamedPitchClass(t.value)
+        t.value = _pitch.NamedPitchClass(t.value)
         return t
 
     def t_error(self, t):
@@ -456,19 +455,19 @@ class ReducedLyParser(Parser):
         """
         pitch : PITCHNAME
         """
-        p[0] = NamedPitch(str(p[1]))
+        p[0] = _pitch.NamedPitch(str(p[1]))
 
     def p_pitch__PITCHNAME__apostrophes(self, p):
         """
         pitch : PITCHNAME apostrophes
         """
-        p[0] = NamedPitch(str(p[1]) + "'" * p[2])
+        p[0] = _pitch.NamedPitch(str(p[1]) + "'" * p[2])
 
     def p_pitch__PITCHNAME__commas(self, p):
         """
         pitch : PITCHNAME commas
         """
-        p[0] = NamedPitch(str(p[1]) + "," * p[2])
+        p[0] = _pitch.NamedPitch(str(p[1]) + "," * p[2])
 
     def p_pitches__pitch(self, p):
         """

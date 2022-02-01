@@ -295,7 +295,7 @@ def test_init(input_, semitones, name):
     abjad.NamedIntervalClass(instance)
     abjad.NumberedIntervalClass(instance)
     if isinstance(input_, str):
-        group_dict = abjad.pitch._lib._interval_name_abbreviation_regex.match(
+        group_dict = abjad.pitch._interval_name_abbreviation_regex.match(
             input_
         ).groupdict()
         inflected_up = class_(

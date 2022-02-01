@@ -17,14 +17,14 @@ import uqbar
 
 import abjad
 
+from . import configuration as _configuration
+from . import contextmanagers as _contextmanagers
+from . import illustrators as _illustrators
 from . import lilypondfile as _lilypondfile
-from .configuration import Configuration
-from .contextmanagers import Timer
-from .illustrators import illustrate
-from .parentage import Parentage
-from .score import Container, Leaf, Tuplet
+from . import parentage as _parentage
+from . import score as _score
 
-configuration = Configuration()
+configuration = _configuration.Configuration()
 
 
 class AbjadGrapher(uqbar.graphs.Grapher):
@@ -71,7 +71,7 @@ class LilyPondIO:
         self.string = string
 
     def __call__(self):
-        with Timer() as format_timer:
+        with _contextmanagers.Timer() as format_timer:
             string = self.string or self.get_string()
         format_time = format_timer.elapsed_time
         render_prefix = self.render_prefix or self.get_render_prefix(string)
@@ -82,7 +82,7 @@ class LilyPondIO:
         if self.should_copy_stylesheets:
             self.copy_stylesheets(render_directory)
         render_command = self.get_render_command(input_path, lilypond_path)
-        with Timer() as render_timer:
+        with _contextmanagers.Timer() as render_timer:
             log, success = self.run_command(render_command)
         render_time = render_timer.elapsed_time
         if self.should_persist_log:
@@ -146,7 +146,7 @@ class LilyPondIO:
         if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
             lilypond_file = self.illustrable
         else:
-            lilypond_file = illustrate(self.illustrable, **self.keywords)
+            lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
         return lilypond_file._get_lilypond_format()
 
     def get_stylesheets_directories(self) -> typing.List[pathlib.Path]:
@@ -217,7 +217,7 @@ class Player(LilyPondIO):
                 yield path
 
     def get_string(self) -> str:
-        lilypond_file = illustrate(self.illustrable, **self.keywords)
+        lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
         assert "score" in lilypond_file, repr(lilypond_file)
         block = _lilypondfile.Block("midi")
         lilypond_file["score"].items.append(block)
@@ -225,7 +225,7 @@ class Player(LilyPondIO):
 
 
 def _as_graphviz_node(component):
-    score_index = Parentage(component).score_index()
+    score_index = _parentage.Parentage(component).score_index()
     score_index = "_".join(str(_) for _ in score_index)
     class_name = type(component).__name__
     if score_index:
@@ -236,7 +236,7 @@ def _as_graphviz_node(component):
     table = uqbar.graphs.Table(attributes={"border": 2, "cellpadding": 5})
     node.append(table)
 
-    if isinstance(component, Container):
+    if isinstance(component, _score.Container):
         node[0].append(
             uqbar.graphs.TableRow(
                 [
@@ -247,7 +247,7 @@ def _as_graphviz_node(component):
             )
         )
 
-    if isinstance(component, Tuplet):
+    if isinstance(component, _score.Tuplet):
         node[0].extend(
             [
                 uqbar.graphs.TableRow(
@@ -269,7 +269,7 @@ def _as_graphviz_node(component):
             ]
         )
 
-    if isinstance(component, Leaf):
+    if isinstance(component, _score.Leaf):
         lilypond_format = component._get_compact_representation()
         lilypond_format = lilypond_format.replace("<", "&lt;")
         lilypond_format = lilypond_format.replace(">", "&gt;")
@@ -293,13 +293,13 @@ def _as_graphviz_node(component):
 
 
 def _graph_container(container):
-    assert isinstance(container, Container), repr(container)
+    assert isinstance(container, _score.Container), repr(container)
 
     def recurse(component, leaf_cluster):
         component_node = _as_graphviz_node(component)
         node_mapping[component] = component_node
         node_order = [component_node.name]
-        if isinstance(component, Container):
+        if isinstance(component, _score.Container):
             graph.append(component_node)
             this_leaf_cluster = uqbar.graphs.Graph(
                 name=component_node.name,
@@ -308,7 +308,7 @@ def _graph_container(container):
             all_are_leaves = True
             pending_node_order = []
             for child in component:
-                if not isinstance(child, Leaf):
+                if not isinstance(child, _score.Leaf):
                     all_are_leaves = False
                 child_node, child_node_order = recurse(child, this_leaf_cluster)
                 pending_node_order.extend(child_node_order)

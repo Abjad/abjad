@@ -1,20 +1,20 @@
 import collections
 import typing
 
-from . import _inspect, _iterate, enums
+from . import _inspect, _iterate
+from . import duration as _duration
+from . import enums as _enums
 from . import format as _format
+from . import indicators as _indicators
 from . import lilypondformat as _lilypondformat
-from . import typings
-from .duration import Duration
-from .indicators import StaffChange, TimeSignature
-from .markups import Markup
-from .parentage import Parentage
-from .pitch.pitches import NamedPitch
-from .pitch.sets import PitchSet
-from .score import Chord, Component, Container, Leaf, Note, Staff
-from .selection import LogicalTie, Selection
-from .tag import Tag
-from .timespan import Timespan
+from . import markups as _markups
+from . import parentage as _parentage
+from . import pitch as _pitch
+from . import score as _score
+from . import selection as _selection
+from . import tag as _tag
+from . import timespan as _timespan
+from . import typings as _typings
 
 
 def after_grace_container(argument):
@@ -274,11 +274,11 @@ def bar_line_crossing(argument) -> bool:
         e'4 False
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
-    time_signature = _inspect._get_effective(argument, TimeSignature)
+    time_signature = _inspect._get_effective(argument, _indicators.TimeSignature)
     if time_signature is None:
-        time_signature_duration = Duration(4, 4)
+        time_signature_duration = _duration.Duration(4, 4)
     else:
         time_signature_duration = time_signature.duration
     partial = getattr(time_signature, "partial", 0)
@@ -387,7 +387,7 @@ def before_grace_container(argument):
     return getattr(argument, "_before_grace_container", None)
 
 
-def contents(argument) -> typing.Optional["Selection"]:
+def contents(argument) -> typing.Optional["_selection.Selection"]:
     r"""
     Gets contents.
 
@@ -573,15 +573,17 @@ def contents(argument) -> typing.Optional["Selection"]:
             Note("ds'4")
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get contents of component.")
     result = []
     result.append(argument)
     result.extend(getattr(argument, "components", []))
-    return Selection(result)
+    return _selection.Selection(result)
 
 
-def descendants(argument) -> typing.Union["Descendants", "Selection"]:
+def descendants(
+    argument,
+) -> typing.Union["Descendants", "_selection.Selection"]:
     r"""
     Gets descendants.
 
@@ -737,20 +739,20 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
             Note("fs'16")
 
     """
-    if isinstance(argument, Component):
+    if isinstance(argument, _score.Component):
         return Descendants(argument)
-    descendants_: typing.List[Component] = []
-    assert isinstance(argument, Selection)
+    descendants_: typing.List[_score.Component] = []
+    assert isinstance(argument, _selection.Selection)
     for argument_ in argument:
         descendants__ = descendants(argument_)
         for descendant_ in descendants__:
             if descendant_ not in descendants_:
                 descendants_.append(descendant_)
-    result = Selection(descendants_)
+    result = _selection.Selection(descendants_)
     return result
 
 
-def duration(argument, in_seconds: bool = None) -> Duration:
+def duration(argument, in_seconds: bool = None) -> _duration.Duration:
     r"""
     Gets duration.
 
@@ -912,7 +914,7 @@ def duration(argument, in_seconds: bool = None) -> Duration:
 
 def effective(
     argument,
-    prototype: typings.Prototype,
+    prototype: _typings.Prototype,
     *,
     attributes: typing.Dict = None,
     default: typing.Any = None,
@@ -1407,7 +1409,7 @@ def effective(
         (Note("f'2"), BarLine(abbreviation='||', format_slot='after'))
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get effective on components.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
@@ -1419,7 +1421,7 @@ def effective(
     return result
 
 
-def effective_staff(argument) -> typing.Optional["Staff"]:
+def effective_staff(argument) -> typing.Optional["_score.Staff"]:
     r"""
     Gets effective staff.
 
@@ -1511,16 +1513,16 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
         Note("fs'16")                  <Staff{1}>
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get effective staff on components.")
-    staff_change = _inspect._get_effective(argument, StaffChange)
+    staff_change = _inspect._get_effective(argument, _indicators.StaffChange)
     if staff_change is not None:
         for component in argument._get_parentage():
             root = component
         effective_staff = root[staff_change.staff]
         return effective_staff
     for component in argument._get_parentage():
-        if isinstance(component, Staff):
+        if isinstance(component, _score.Staff):
             effective_staff = component
             break
     return effective_staff
@@ -1528,7 +1530,7 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
 
 def effective_wrapper(
     argument,
-    prototype: typings.Prototype,
+    prototype: _typings.Prototype,
     *,
     attributes: typing.Dict = None,
     n: int = 0,
@@ -1750,7 +1752,7 @@ def grace(argument) -> bool:
 
 def has_effective_indicator(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
     attributes: typing.Dict = None,
 ) -> bool:
@@ -1893,7 +1895,7 @@ def has_effective_indicator(
         Note("ds'4")                   True
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get effective indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
@@ -1903,7 +1905,7 @@ def has_effective_indicator(
 
 def has_indicator(
     argument,
-    prototype: typing.Union[str, typings.Prototype] = None,
+    prototype: typing.Union[str, _typings.Prototype] = None,
     *,
     attributes: typing.Dict = None,
 ) -> bool:
@@ -2089,9 +2091,9 @@ def has_indicator(
 
 
     """
-    if isinstance(prototype, Tag):
+    if isinstance(prototype, _tag.Tag):
         raise Exception("do not attach tags; use tag=None keyword.")
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
@@ -2100,7 +2102,7 @@ def has_indicator(
 
 def indicator(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
     default: typing.Any = None,
     unwrap: bool = True,
@@ -2251,7 +2253,7 @@ def indicator(
 
 def indicators(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
     attributes: typing.Dict = None,
     unwrap: bool = True,
@@ -2415,7 +2417,7 @@ def indicators(
 
     """
     # TODO: extend to any non-none argument
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         message = "can only get indicators on component"
         message += f" (not {argument!r})."
         raise Exception(message)
@@ -2427,7 +2429,7 @@ def indicators(
     return list(result)
 
 
-def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
+def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
     r"""
     Gets leaf ``n``.
 
@@ -2874,12 +2876,12 @@ def lineage(argument) -> "Lineage":
             Note("fs'16")
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get lineage on component.")
     return Lineage(argument)
 
 
-def logical_tie(argument) -> "LogicalTie":
+def logical_tie(argument) -> "_selection.LogicalTie":
     r"""
     Gets logical tie.
 
@@ -3053,20 +3055,20 @@ def logical_tie(argument) -> "LogicalTie":
         LogicalTie([Note("c'4")])
 
     """
-    if not isinstance(argument, Leaf):
+    if not isinstance(argument, _score.Leaf):
         raise Exception("can only get logical tie on leaf.")
     leaves = _iterate._get_logical_tie_leaves(argument)
-    return LogicalTie(leaves)
+    return _selection.LogicalTie(leaves)
 
 
 def markup(
-    argument, *, direction: enums.VerticalAlignment = None
-) -> typing.List[Markup]:
+    argument, *, direction: _enums.VerticalAlignment = None
+) -> typing.List[_markups.Markup]:
     """
     Gets markup.
     """
     # TODO: extend to any non-none argument
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get markup on component.")
     result = argument._get_markup(direction=direction)
     return list(result)
@@ -3242,14 +3244,14 @@ def measure_number(argument) -> int:
         Note("ds'4")                   1
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get measure number on component.")
     argument._update_measure_numbers()
     assert isinstance(argument._measure_number, int)
     return argument._measure_number
 
 
-def parentage(argument) -> "Parentage":
+def parentage(argument) -> "_parentage.Parentage":
     r"""
     Gets parentage.
 
@@ -3455,14 +3457,14 @@ def parentage(argument) -> "Parentage":
             (Note("ds'4"), <Staff{4}>)
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         message = "can only get parentage on component"
         message += f" (not {argument})."
         raise Exception(message)
-    return Parentage(argument)
+    return _parentage.Parentage(argument)
 
 
-def pitches(argument) -> typing.Optional[PitchSet]:
+def pitches(argument) -> typing.Optional[_pitch.PitchSet]:
     r"""
     Gets pitches.
 
@@ -3556,8 +3558,8 @@ def pitches(argument) -> typing.Optional[PitchSet]:
     """
     if not argument:
         return None
-    selection = Selection(argument)
-    return PitchSet.from_selection(selection)
+    selection = _selection.Selection(argument)
+    return _pitch.PitchSet.from_selection(selection)
 
 
 def report_modifications(argument) -> str:
@@ -3640,7 +3642,7 @@ def report_modifications(argument) -> str:
         slot "absolute after":
 
     """
-    if isinstance(argument, Container):
+    if isinstance(argument, _score.Container):
         bundle = _lilypondformat.bundle_format_contributions(argument)
         result: typing.List[str] = []
         for slot in ("before", "open brackets", "opening"):
@@ -3652,13 +3654,13 @@ def report_modifications(argument) -> str:
             lines = argument._get_format_contributions_for_slot(slot, bundle)
             result.extend(lines)
         return "\n".join(result)
-    elif isinstance(argument, Leaf):
+    elif isinstance(argument, _score.Leaf):
         return _lilypondformat._report_leaf_format_contributions(argument)
     else:
         return f"only defined for components: {argument}."
 
 
-def sounding_pitch(argument) -> NamedPitch:
+def sounding_pitch(argument) -> _pitch.NamedPitch:
     r"""
     Gets sounding pitch of note.
 
@@ -3691,12 +3693,12 @@ def sounding_pitch(argument) -> NamedPitch:
         Note("g'8") NamedPitch("g''")
 
     """
-    if not isinstance(argument, Note):
+    if not isinstance(argument, _score.Note):
         raise Exception("can only get sounding pitch of note.")
     return _inspect._get_sounding_pitch(argument)
 
 
-def sounding_pitches(argument) -> PitchSet:
+def sounding_pitches(argument) -> _pitch.PitchSet:
     r"""
     Gets sounding pitches.
 
@@ -3726,10 +3728,10 @@ def sounding_pitches(argument) -> PitchSet:
 
     """
     # TODO: extend to any non-none argument
-    if not isinstance(argument, Chord):
+    if not isinstance(argument, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
     result = _inspect._get_sounding_pitches(argument)
-    return PitchSet(result)
+    return _pitch.PitchSet(result)
 
 
 def sustained(argument) -> bool:
@@ -3759,8 +3761,8 @@ def sustained(argument) -> bool:
 
     """
     lt_head_count = 0
-    leaves = Selection(argument).leaves()
-    assert isinstance(leaves, Selection), repr(leaves)
+    leaves = _selection.Selection(argument).leaves()
+    assert isinstance(leaves, _selection.Selection), repr(leaves)
     for leaf in leaves:
         lt = logical_tie(leaf)
         if lt.head is leaf:
@@ -3773,7 +3775,7 @@ def sustained(argument) -> bool:
     return False
 
 
-def timespan(argument, in_seconds: bool = False) -> Timespan:
+def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
     r"""
     Gets timespan.
 
@@ -3934,7 +3936,7 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
 
 def wrapper(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
     attributes: typing.Dict = None,
 ):
@@ -4052,7 +4054,7 @@ def wrapper(
 
 def wrappers(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
     attributes: typing.Dict = None,
 ):
@@ -4239,7 +4241,7 @@ class Descendants(collections.abc.Sequence):
     ### INITIALIZER ###
 
     def __init__(self, component=None, cross_offset=None):
-        assert isinstance(component, (Component, type(None)))
+        assert isinstance(component, (_score.Component, type(None)))
         self._component = component
         if component is not None:
             descendants = _iterate._iterate_descendants(component)
@@ -4272,14 +4274,14 @@ class Descendants(collections.abc.Sequence):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def component(self) -> Component:
+    def component(self) -> _score.Component:
         """
         Gets component.
         """
         return self._component
 
     @property
-    def components(self) -> typing.Tuple[Component]:
+    def components(self) -> typing.Tuple[_score.Component]:
         """
         Gets components.
         """
@@ -4338,7 +4340,7 @@ class Descendants(collections.abc.Sequence):
         """
         n = 0
         if prototype is None:
-            prototype = Component
+            prototype = _score.Component
         for component in self:
             if isinstance(component, prototype):
                 n += 1

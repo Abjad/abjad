@@ -175,7 +175,7 @@ from .lyproxy import (
 from .makers import LeafMaker, NoteMaker
 from .markups import Markup
 from .math import Infinity, NegativeInfinity
-from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
+from .meter import Meter, MeterList, MetricAccentKernel
 from .metricmodulation import MetricModulation
 from .new import new
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
@@ -198,43 +198,48 @@ from .parsers import parser
 from .parsers.base import Parser
 from .parsers.parse import parse
 from .pattern import Pattern, PatternTuple
-from .pitch.Accidental import Accidental
-from .pitch.Octave import Octave
-from .pitch.PitchRange import PitchRange
-from .pitch.SetClass import SetClass
-from .pitch.intervalclasses import (
-    IntervalClass,
-    NamedIntervalClass,
-    NamedInversionEquivalentIntervalClass,
-    NumberedIntervalClass,
-    NumberedInversionEquivalentIntervalClass,
-)
-from .pitch.intervals import Interval, NamedInterval, NumberedInterval
-from .pitch.operators import (
+from .pitch import (
+    Accidental,
     CompoundOperator,
     Duplication,
+    Interval,
+    IntervalClass,
+    IntervalClassSegment,
+    IntervalClassSet,
+    IntervalClassVector,
+    IntervalSegment,
+    IntervalSet,
+    IntervalVector,
     Inversion,
     Multiplication,
+    NamedInterval,
+    NamedIntervalClass,
+    NamedInversionEquivalentIntervalClass,
+    NamedPitch,
+    NamedPitchClass,
+    NumberedInterval,
+    NumberedIntervalClass,
+    NumberedInversionEquivalentIntervalClass,
+    NumberedPitch,
+    NumberedPitchClass,
+    Octave,
+    Pitch,
+    PitchClass,
+    PitchClassSegment,
+    PitchClassSet,
+    PitchClassVector,
+    PitchRange,
+    PitchSegment,
+    PitchSet,
+    PitchTyping,
+    PitchVector,
     Retrograde,
     Rotation,
-    Transposition,
-)
-from .pitch.pitchclasses import NamedPitchClass, NumberedPitchClass, PitchClass
-from .pitch.pitches import NamedPitch, NumberedPitch, Pitch, PitchTyping
-from .pitch.segments import (
-    IntervalClassSegment,
-    IntervalSegment,
-    PitchClassSegment,
-    PitchSegment,
     Segment,
+    Set,
+    SetClass,
+    Transposition,
     TwelveToneRow,
-)
-from .pitch.sets import IntervalClassSet, IntervalSet, PitchClassSet, PitchSet, Set
-from .pitch.vectors import (
-    IntervalClassVector,
-    IntervalVector,
-    PitchClassVector,
-    PitchVector,
     Vector,
 )
 from .ratio import NonreducedRatio, Ratio
@@ -294,7 +299,7 @@ from .templates import (
     StringOrchestraScoreTemplate,
     StringQuartetScoreTemplate,
 )
-from .timespan import Timespan, TimespanList
+from .timespan import OffsetCounter, Timespan, TimespanList
 from .typedcollections import (
     TypedCollection,
     TypedCounter,

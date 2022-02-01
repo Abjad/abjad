@@ -1,5 +1,5 @@
 from . import format as _format
-from .lilypondfile import LilyPondFile
+from . import lilypondfile as _lilypondfile
 
 
 class SegmentMaker:
@@ -24,19 +24,6 @@ class SegmentMaker:
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, expr)
-
-    def __hash__(self):
-        """
-        Hashes segment-maker.
-        """
-        hash_values = _format.get_hash_values(self)
-        return hash(hash_values)
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation.
@@ -59,11 +46,11 @@ class SegmentMaker:
 
     ### PUBLIC METHODS ###
 
-    def run(self) -> LilyPondFile:
+    def run(self) -> _lilypondfile.LilyPondFile:
         """
         Runs segment-maker.
         """
         lilypond_file = self._make_lilypond_file()
         self._lilypond_file = lilypond_file
-        assert isinstance(self._lilypond_file, LilyPondFile)
+        assert isinstance(self._lilypond_file, _lilypondfile.LilyPondFile)
         return self._lilypond_file

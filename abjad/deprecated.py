@@ -1,16 +1,18 @@
 import copy
 
 from . import _iterate
+from . import bind as _bind
+from . import indicators as _indicators
 from . import iterate as iterate_
+from . import overrides as _overrides
 from . import score as _score
 from . import selection as _selection
 from . import tag as _tag
-from .bind import attach
-from .indicators import BarLine
-from .overrides import override
 
 
-def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine:
+def add_final_bar_line(
+    score, abbreviation="|.", to_each_voice=False
+) -> _indicators.BarLine:
     r"""
     Adds final bar line to end of score.
 
@@ -56,14 +58,14 @@ def add_final_bar_line(score, abbreviation="|.", to_each_voice=False) -> BarLine
 
     Set ``to_each_voice`` to true to make part extraction easier.
     """
-    bar_line = BarLine(abbreviation)
+    bar_line = _indicators.BarLine(abbreviation)
     if not to_each_voice:
         last_leaf = _iterate._get_leaf(score, -1)
-        attach(bar_line, last_leaf, tag=_tag.Tag("SCORE_1"))
+        _bind.attach(bar_line, last_leaf, tag=_tag.Tag("SCORE_1"))
     else:
         for voice in iterate_.components(score, _score.Voice):
             last_leaf = _iterate._get_leaf(voice, -1)
-            attach(bar_line, last_leaf, tag=_tag.Tag("SCORE_1"))
+            _bind.attach(bar_line, last_leaf, tag=_tag.Tag("SCORE_1"))
     return bar_line
 
 
@@ -145,11 +147,11 @@ def add_final_markup(score, markup, extra_offset=None) -> None:
     selection = _selection.Selection(score)
     last_leaf = selection._get_component(_score.Leaf, -1)
     markup = copy.copy(markup)
-    attach(markup, last_leaf, tag=_tag.Tag("SCORE_2"))
+    _bind.attach(markup, last_leaf, tag=_tag.Tag("SCORE_2"))
     if extra_offset is not None:
         if isinstance(last_leaf, _score.MultimeasureRest):
-            grob_proxy = override(last_leaf).MultiMeasureRestText
+            grob_proxy = _overrides.override(last_leaf).MultiMeasureRestText
         else:
-            grob_proxy = override(last_leaf).TextScript
+            grob_proxy = _overrides.override(last_leaf).TextScript
         grob_proxy.extra_offset = extra_offset
     return markup

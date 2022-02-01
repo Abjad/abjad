@@ -8,14 +8,15 @@ import quicktions
 import uqbar.containers
 import uqbar.graphs
 
+from . import duration as _duration
 from . import format as _format
-from . import math, mutate
-from .duration import Duration, Multiplier, NonreducedFraction, Offset
-from .makers import LeafMaker
+from . import makers as _makers
+from . import math as _math
+from . import mutate as _mutate
+from . import score as _score
+from . import sequence as _sequence
+from . import spanners as _spanners
 from .parsers.base import Parser
-from .score import Container, Tuplet
-from .sequence import Sequence
-from .spanners import tie
 
 
 class RhythmTreeMixin:
@@ -32,7 +33,7 @@ class RhythmTreeMixin:
     @abc.abstractmethod
     def __init__(self, preprolated_duration=1):
         self._duration = 0
-        self._offset = Offset(0)
+        self._offset = _duration.Offset(0)
         self._offsets_are_current = False
         self.preprolated_duration = preprolated_duration
 
@@ -86,7 +87,7 @@ class RhythmTreeMixin:
                     current_offset += child.duration
             return current_offset
 
-        offset = Offset(0)
+        offset = _duration.Offset(0)
         root = self.root
         if root is None:
             root = self
@@ -195,7 +196,7 @@ class RhythmTreeMixin:
     @preprolated_duration.setter
     def preprolated_duration(self, argument):
         if not isinstance(argument, quicktions.Fraction):
-            argument = Duration(argument)
+            argument = _duration.Duration(argument)
         assert 0 < argument
         self._duration = argument
         self._mark_entire_tree_for_later_update()
@@ -227,7 +228,7 @@ class RhythmTreeMixin:
 
         Returns multiplier.
         """
-        return math.cumulative_products(self.prolations)[-1]
+        return _math.cumulative_products(self.prolations)[-1]
 
     @property
     def prolations(self):
@@ -236,11 +237,13 @@ class RhythmTreeMixin:
 
         Returns tuple.
         """
-        prolations = [Multiplier(1)]
-        pairs = Sequence(self.parentage).nwise()
+        prolations = [_duration.Multiplier(1)]
+        pairs = _sequence.Sequence(self.parentage).nwise()
         for child, parent in pairs:
             prolations.append(
-                Multiplier(parent.preprolated_duration, parent._get_contents_duration())
+                _duration.Multiplier(
+                    parent.preprolated_duration, parent._get_contents_duration()
+                )
             )
         return tuple(prolations)
 
@@ -336,9 +339,9 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         Returns sequence of components.
         """
-        pulse_duration = Duration(pulse_duration)
+        pulse_duration = _duration.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
-        maker = LeafMaker()
+        maker = _makers.LeafMaker()
         if self.is_pitched:
             return maker(0, total_duration)
         return maker([None], total_duration)
@@ -615,7 +618,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
             basic_written_duration = (
                 basic_prolated_duration.equal_or_greater_power_of_two
             )
-            tuplet = Tuplet(1, [])
+            tuplet = _score.Tuplet(1, [])
             for child in node.children:
                 if isinstance(child, type(self)):
                     tuplet.extend(
@@ -628,7 +631,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                     leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
-                        tie(leaves)
+                        _spanners.tie(leaves)
             assert tuplet.multiplier == 1, repr(tuplet.multiplier)
             contents_duration = tuplet._get_duration()
             target_duration = tuplet_duration
@@ -638,13 +641,13 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                 return tuplet[:]
             return [tuplet]
 
-        pulse_duration = Duration(pulse_duration)
+        pulse_duration = _duration.Duration(pulse_duration)
         assert 0 < pulse_duration
         result = recurse(self, pulse_duration * self.preprolated_duration)
         for component in result[:]:
-            if isinstance(component, Tuplet):
+            if isinstance(component, _score.Tuplet):
                 if component.trivial():
-                    mutate._extract(component)
+                    _mutate._extract(component)
         return result
 
     def __graph__(self, **keywords):
@@ -765,14 +768,6 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
             result.extend(["    " + x for x in child._pretty_rtm_format_pieces()])
         result[-1] = result[-1] + "))"
         return result
-
-    #    @property
-    #    def _leaf_class(self):
-    #        return RhythmTreeLeaf
-
-    #    @property
-    #    def _node_class(self):
-    #        return RhythmTreeMixin
 
     ### PUBLIC PROPERTIES ###
 
@@ -914,11 +909,11 @@ class RhythmTreeParser(Parser):
         r"-?[1-9]\d*(/[1-9]\d*)?"
         parts = t.value.partition("/")
         if not parts[2]:
-            t.value = Duration(int(parts[0]))
+            t.value = _duration.Duration(int(parts[0]))
         else:
             numerator, denominator = int(parts[0]), int(parts[2])
-            fraction = NonreducedFraction(numerator, denominator)
-            preprolated_duration = Duration(fraction)
+            fraction = _duration.NonreducedFraction(numerator, denominator)
+            preprolated_duration = _duration.Duration(fraction)
             if fraction.numerator == preprolated_duration.numerator:
                 t.value = preprolated_duration
             else:
@@ -1055,7 +1050,7 @@ def parse_rtm_syntax(rtm):
     Returns tuplet or container.
     """
     result = RhythmTreeParser()(rtm)
-    container = Container()
+    container = _score.Container()
     for node in result:
         tuplet = node((1, 4))
         # following line added 2012-08-01. tb.

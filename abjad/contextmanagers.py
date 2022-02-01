@@ -9,11 +9,11 @@ import sys
 import tempfile
 import time
 
+from . import configuration as _configuration
 from . import format as _format
-from . import string
-from .configuration import Configuration
+from . import string as _string
 
-configuration = Configuration()
+configuration = _configuration.Configuration()
 
 
 class ContextManager:
@@ -856,7 +856,7 @@ class Timer(ContextManager):
 
         Returns string.
         """
-        identifier = string.String("second").pluralize(int(self.elapsed_time))
+        identifier = _string.String("second").pluralize(int(self.elapsed_time))
         message = f"total time {int(self.elapsed_time)} {identifier} ..."
         return message
 

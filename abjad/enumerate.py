@@ -1,7 +1,7 @@
 import functools
 import itertools
 
-from . import math
+from . import math as _math
 from . import sequence as _sequence
 
 
@@ -112,7 +112,7 @@ def _yield_restricted_growth_functions(length):
 
     Returns generator of tuples.
     """
-    assert math.is_positive_integer(length), repr(length)
+    assert _math.is_positive_integer(length), repr(length)
     last_rgf = list(range(1, length + 1))
     rgf = length * [1]
     yield tuple(rgf)
@@ -309,7 +309,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
     """
     length = len(argument)
     for i in range(2**length):
-        binary_string = math.integer_to_binary_string(i)
+        binary_string = _math.integer_to_binary_string(i)
         binary_string = binary_string.zfill(length)
         sublist = []
         for j, digit in enumerate(reversed(binary_string)):
@@ -415,7 +415,7 @@ def yield_partitions(argument):
     """
     length = len(argument) - 1
     for i in range(2**length):
-        binary_string = math.integer_to_binary_string(i)
+        binary_string = _math.integer_to_binary_string(i)
         binary_string = binary_string.zfill(length)
         part = list(argument[0:1])
         partition = [part]

@@ -1,11 +1,11 @@
 """
 Abjad's math library.
 """
+import collections
 import itertools
 import math
 import numbers
 import typing
-from collections import abc as collections_abc
 
 import quicktions
 
@@ -241,7 +241,7 @@ def are_relatively_prime(argument) -> bool:
         True
 
     """
-    if not isinstance(argument, collections_abc.Iterable):
+    if not isinstance(argument, collections.abc.Iterable):
         return False
     if not all(isinstance(_, numbers.Number) for _ in argument):
         return False
@@ -272,7 +272,7 @@ def arithmetic_mean(argument) -> typing.Union[int, float]:
 
     Raises exception when ``argument`` is not iterable.
     """
-    if not isinstance(argument, collections_abc.Sequence):
+    if not isinstance(argument, collections.abc.Sequence):
         raise TypeError(argument)
     total = sum(argument)
     length = len(argument)
@@ -324,7 +324,7 @@ def cumulative_products(argument):
 
     Returns new object of ``argument`` type.
     """
-    if not isinstance(argument, collections_abc.Iterable):
+    if not isinstance(argument, collections.abc.Iterable):
         raise TypeError(argument)
     if len(argument) == 0:
         return type(argument)([])
@@ -1197,9 +1197,9 @@ class Infinity:
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares type.
         """
-        return _format.compare_objects(self, argument)
+        return isinstance(argument, type(self))
 
     def __float__(self):
         """

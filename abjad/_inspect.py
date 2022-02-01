@@ -2,26 +2,19 @@ import bisect
 import collections
 import typing
 
-from . import exceptions, typings
-from .duration import Duration
-from .indicators import MetronomeMark
-from .instruments import Instrument
-from .parentage import Parentage
-from .pitch.pitches import NamedPitch
-from .score import (
-    AfterGraceContainer,
-    BeforeGraceContainer,
-    Component,
-    Container,
-    Context,
-    Leaf,
-    Voice,
-)
-from .timespan import Timespan
+from . import duration as _duration
+from . import exceptions as _exceptions
+from . import indicators as _indicators
+from . import instruments as _instruments
+from . import parentage as _parentage
+from . import pitch as _pitch
+from . import score as _score
+from . import timespan as _timespan
+from . import typings as _typings
 
 
 def _are_logical_voice(COMPONENTS, prototype=None):
-    prototype = prototype or (Component,)
+    prototype = prototype or (_score.Component,)
     if not isinstance(prototype, tuple):
         prototype = (prototype,)
     assert isinstance(prototype, tuple)
@@ -33,10 +26,10 @@ def _are_logical_voice(COMPONENTS, prototype=None):
     if not isinstance(first, prototype):
         return False
     same_logical_voice = True
-    parentage = Parentage(first)
+    parentage = _parentage.Parentage(first)
     first_logical_voice = parentage.logical_voice()
     for component in COMPONENTS[1:]:
-        parentage = Parentage(component)
+        parentage = _parentage.Parentage(component)
         if parentage.logical_voice() != first_logical_voice:
             same_logical_voice = False
         if not parentage.orphan and not same_logical_voice:
@@ -64,27 +57,30 @@ def _get_annotation_wrappers(ARGUMENT):
 
 
 def _get_duration(ARGUMENT, in_seconds: bool = None):
-    if isinstance(ARGUMENT, Component):
+    if isinstance(ARGUMENT, _score.Component):
         if in_seconds is True:
             return _get_duration_in_seconds(ARGUMENT)
         else:
             return ARGUMENT._get_duration()
     assert isinstance(ARGUMENT, collections.abc.Iterable), repr(ARGUMENT)
     durations = [_get_duration(_, in_seconds=in_seconds) for _ in ARGUMENT]
-    return Duration(sum(durations))
+    return _duration.Duration(sum(durations))
 
 
 def _get_duration_in_seconds(COMPONENT):
-    if isinstance(COMPONENT, Container):
+    if isinstance(COMPONENT, _score.Container):
         if COMPONENT.simultaneous:
-            return max([Duration(0)] + [_get_duration_in_seconds(_) for _ in COMPONENT])
+            return max(
+                [_duration.Duration(0)]
+                + [_get_duration_in_seconds(_) for _ in COMPONENT]
+            )
         else:
-            duration = Duration(0)
+            duration = _duration.Duration(0)
             for component in COMPONENT:
                 duration += _get_duration_in_seconds(component)
             return duration
     else:
-        mark = _get_effective(COMPONENT, MetronomeMark)
+        mark = _get_effective(COMPONENT, _indicators.MetronomeMark)
         if mark is not None and not mark.is_imprecise:
             result = (
                 COMPONENT._get_duration()
@@ -92,8 +88,8 @@ def _get_duration_in_seconds(COMPONENT):
                 / mark.units_per_minute
                 * 60
             )
-            return Duration(result)
-        raise exceptions.MissingMetronomeMarkError
+            return _duration.Duration(result)
+        raise _exceptions.MissingMetronomeMarkError
 
 
 def _get_effective(
@@ -104,7 +100,7 @@ def _get_effective(
     parentage = COMPONENT._get_parentage()
     enclosing_voice_name = None
     for component in parentage:
-        if isinstance(component, Voice):
+        if isinstance(component, _score.Voice):
             if (
                 enclosing_voice_name is not None
                 and component.name != enclosing_voice_name
@@ -135,7 +131,7 @@ def _get_effective(
         for wrapper in local_wrappers:
             offset = wrapper.start_offset
             candidate_wrappers.setdefault(offset, []).append(wrapper)
-        if not isinstance(component, Context):
+        if not isinstance(component, _score.Context):
             continue
         for wrapper in component._dependent_wrappers:
             if wrapper.annotation:
@@ -169,8 +165,8 @@ def _get_effective(
 
 def _get_grace_container(COMPONENT):
     prototype = (
-        AfterGraceContainer,
-        BeforeGraceContainer,
+        _score.AfterGraceContainer,
+        _score.BeforeGraceContainer,
     )
     for component in COMPONENT._get_parentage():
         if isinstance(component, prototype):
@@ -182,12 +178,12 @@ def _get_grace_container(COMPONENT):
 
 def _get_indicator(
     COMPONENT,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
     default: typing.Any = None,
     unwrap: bool = True,
 ) -> typing.Any:
-    if not isinstance(COMPONENT, Component):
+    if not isinstance(COMPONENT, _score.Component):
         raise Exception("can only get indicator on component.")
     indicators = COMPONENT._get_indicators(prototype=prototype, unwrap=unwrap)
     if not indicators:
@@ -214,7 +210,7 @@ def _get_leaf_from_leaf(LEAF, n):
     else:
         assert n == -1
         if (
-            isinstance(sibling, Container)
+            isinstance(sibling, _score.Container)
             and len(sibling) == 2
             and any(hasattr(_, "_leaf_duration") for _ in sibling)
         ):
@@ -225,7 +221,7 @@ def _get_leaf_from_leaf(LEAF, n):
             return main_voice[-1]
         components = sibling._get_descendants_stopping_with()
     for component in components:
-        if not isinstance(component, Leaf):
+        if not isinstance(component, _score.Leaf):
             continue
         if _are_logical_voice([LEAF, component]):
             return component
@@ -266,7 +262,7 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
             continue
         if hasattr(indicator, "parameter"):
             key = indicator.parameter
-        elif isinstance(indicator, Instrument):
+        elif isinstance(indicator, _instruments.Instrument):
             key = "Instrument"
         else:
             key = str(type(indicator))
@@ -358,12 +354,12 @@ def _get_sounding_pitch(NOTE):
     if "sounding pitch" in NOTE._get_indicators(str):
         return NOTE.written_pitch
     else:
-        instrument = _get_effective(NOTE, Instrument)
+        instrument = _get_effective(NOTE, _instruments.Instrument)
         if instrument:
             sounding_pitch = instrument.middle_c_sounding_pitch
         else:
-            sounding_pitch = NamedPitch("C4")
-        interval = NamedPitch("C4") - sounding_pitch
+            sounding_pitch = _pitch.NamedPitch("C4")
+        interval = _pitch.NamedPitch("C4") - sounding_pitch
         sounding_pitch = interval.transpose(NOTE.written_pitch)
         return sounding_pitch
 
@@ -372,12 +368,12 @@ def _get_sounding_pitches(chord):
     if "sounding pitch" in chord._get_indicators(str):
         return chord.written_pitches
     else:
-        instrument = _get_effective(chord, Instrument)
+        instrument = _get_effective(chord, _instruments.Instrument)
         if instrument:
             sounding_pitch = instrument.middle_c_sounding_pitch
         else:
-            sounding_pitch = NamedPitch("C4")
-        interval = NamedPitch("C4") - sounding_pitch
+            sounding_pitch = _pitch.NamedPitch("C4")
+        interval = _pitch.NamedPitch("C4") - sounding_pitch
         sounding_pitches = [
             interval.transpose(pitch) for pitch in chord.written_pitches
         ]
@@ -385,7 +381,7 @@ def _get_sounding_pitches(chord):
 
 
 def _get_timespan(ARGUMENT, in_seconds: bool = False):
-    if isinstance(ARGUMENT, Component):
+    if isinstance(ARGUMENT, _score.Component):
         return ARGUMENT._get_timespan(in_seconds=in_seconds)
     assert isinstance(ARGUMENT, collections.abc.Iterable), repr(ARGUMENT)
     remaining_items = []
@@ -403,4 +399,4 @@ def _get_timespan(ARGUMENT, in_seconds: bool = False):
             start_offset = timespan.start_offset
         if stop_offset < timespan.stop_offset:
             stop_offset = timespan.stop_offset
-    return Timespan(start_offset, stop_offset)
+    return _timespan.Timespan(start_offset, stop_offset)

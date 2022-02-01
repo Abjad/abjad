@@ -1,24 +1,24 @@
 import copy as python_copy
 import itertools
 
-from . import enums, exceptions, get
+from . import bind as _bind
+from . import duration as _duration
+from . import enums as _enums
+from . import exceptions as _exceptions
+from . import get as _get
+from . import indicators as _indicators
 from . import iterate as iterate_
-from .bind import attach, detach
-from .duration import Duration
-from .indicators import RepeatTie, Tie
-from .makers import NoteMaker
-from .pitch.intervals import NamedInterval
-from .ratio import Ratio
-from .score import BeforeGraceContainer, Chord, Component, Container, Leaf, Note, Tuplet
-from .selection import Selection
-from .sequence import Sequence
-from .spanners import tie
-
-### PRIVATE FUNCTIONS ###
+from . import makers as _makers
+from . import pitch as _pitch
+from . import ratio as _ratio
+from . import score as _score
+from . import selection as _selection
+from . import sequence as _sequence
+from . import spanners as _spanners
 
 
 def _extract(COMPONENT):
-    selection = Selection([COMPONENT])
+    selection = _selection.Selection([COMPONENT])
     parent, start, stop = selection._get_parent_and_start_stop_indices()
     if parent is not None:
         components = list(getattr(COMPONENT, "components", ()))
@@ -30,7 +30,7 @@ def _fuse(SELECTION):
     assert SELECTION.are_contiguous_logical_voice()
     if SELECTION.are_leaves():
         return _fuse_leaves(SELECTION)
-    elif all(isinstance(_, Tuplet) for _ in SELECTION):
+    elif all(isinstance(_, _score.Tuplet) for _ in SELECTION):
         return _fuse_tuplets(SELECTION)
     else:
         raise Exception(f"can only fuse leaves and tuplets (not {SELECTION}).")
@@ -42,7 +42,7 @@ def _fuse_leaves(SELECTION):
     leaves = SELECTION
     if len(leaves) <= 1:
         return leaves
-    originally_tied = SELECTION[-1]._has_indicator(Tie)
+    originally_tied = SELECTION[-1]._has_indicator(_indicators.Tie)
     total_preprolated = leaves._get_preprolated_duration()
     for leaf in leaves[1:]:
         parent = leaf._parent
@@ -51,8 +51,8 @@ def _fuse_leaves(SELECTION):
             del parent[index]
     result = _set_leaf_duration(leaves[0], total_preprolated)
     if not originally_tied:
-        last_leaf = Selection(result).leaf(-1)
-        detach(Tie, last_leaf)
+        last_leaf = _selection.Selection(result).leaf(-1)
+        _bind.detach(_indicators.Tie, last_leaf)
     return result
 
 
@@ -66,7 +66,7 @@ def _fuse_leaves_by_immediate_parent(SELECTION):
 
 
 def _fuse_tuplets(SELECTION):
-    assert SELECTION.are_contiguous_same_parent(prototype=Tuplet)
+    assert SELECTION.are_contiguous_same_parent(prototype=_score.Tuplet)
     if len(SELECTION) == 0:
         return None
     first = SELECTION[0]
@@ -74,11 +74,11 @@ def _fuse_tuplets(SELECTION):
     for tuplet in SELECTION[1:]:
         if tuplet.multiplier != first_multiplier:
             raise ValueError("tuplets must carry same multiplier.")
-    assert isinstance(first, Tuplet)
-    new_tuplet = Tuplet(first_multiplier, [])
+    assert isinstance(first, _score.Tuplet)
+    new_tuplet = _score.Tuplet(first_multiplier, [])
     wrapped = False
-    if get.parentage(SELECTION[0]).root is not get.parentage(SELECTION[-1]).root:
-        dummy_container = Container(SELECTION)
+    if _get.parentage(SELECTION[0]).root is not _get.parentage(SELECTION[-1]).root:
+        dummy_container = _score.Container(SELECTION)
         wrapped = True
     swap(SELECTION, new_tuplet)
     if wrapped:
@@ -90,59 +90,63 @@ def _get_leaves_grouped_by_immediate_parents(SELECTION):
     result = []
     pairs_generator = itertools.groupby(SELECTION, lambda x: id(x._parent))
     for key, values_generator in pairs_generator:
-        group = Selection(list(values_generator))
+        group = _selection.Selection(list(values_generator))
         result.append(group)
     return result
 
 
 def _move_indicators(donor_component, recipient_component):
-    for wrapper in get.wrappers(donor_component):
-        detach(wrapper, donor_component)
-        attach(wrapper, recipient_component)
+    for wrapper in _get.wrappers(donor_component):
+        _bind.detach(wrapper, donor_component)
+        _bind.attach(wrapper, recipient_component)
 
 
 def _set_leaf_duration(leaf, new_duration):
-    new_duration = Duration(new_duration)
+    new_duration = _duration.Duration(new_duration)
     if leaf.multiplier is not None:
         multiplier = new_duration.__div__(leaf.written_duration)
         leaf.multiplier = multiplier
-        return Selection(leaf)
+        return _selection.Selection(leaf)
     try:
         leaf.written_duration = new_duration
-        return Selection(leaf)
-    except exceptions.AssignabilityError:
+        return _selection.Selection(leaf)
+    except _exceptions.AssignabilityError:
         pass
-    maker = NoteMaker()
+    maker = _makers.NoteMaker()
     components = maker(0, new_duration)
-    new_leaves = Selection(components).leaves()
+    new_leaves = _selection.Selection(components).leaves()
     following_leaf_count = len(new_leaves) - 1
     following_leaves = []
     for i in range(following_leaf_count):
         following_leaf = copy(leaf)
-        for indicator in get.indicators(following_leaf):
+        for indicator in _get.indicators(following_leaf):
             if i != following_leaf_count - 1:
-                if getattr(indicator, "_time_orientation", enums.Left) != enums.Middle:
-                    detach(indicator, following_leaf)
+                if (
+                    getattr(indicator, "_time_orientation", _enums.Left)
+                    != _enums.Middle
+                ):
+                    _bind.detach(indicator, following_leaf)
             elif (
-                getattr(indicator, "_time_orientation", enums.Left) != enums.Right
-                and getattr(indicator, "_time_orientation", enums.Left) != enums.Middle
+                getattr(indicator, "_time_orientation", _enums.Left) != _enums.Right
+                and getattr(indicator, "_time_orientation", _enums.Left)
+                != _enums.Middle
             ):
-                detach(indicator, following_leaf)
-        detach(BeforeGraceContainer, following_leaf)
+                _bind.detach(indicator, following_leaf)
+        _bind.detach(_score.BeforeGraceContainer, following_leaf)
         following_leaves.append(following_leaf)
     if following_leaf_count > 0:
-        for indicator in get.indicators(leaf):
-            if getattr(indicator, "_time_orientation", enums.Left) == enums.Right:
-                detach(indicator, leaf)
+        for indicator in _get.indicators(leaf):
+            if getattr(indicator, "_time_orientation", _enums.Left) == _enums.Right:
+                _bind.detach(indicator, leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
     for all_leaf, new_leaf in zip(all_leaves, new_leaves):
         all_leaf.written_duration = new_leaf.written_duration
-    logical_tie = get.logical_tie(leaf)
+    logical_tie = _get.logical_tie(leaf)
     logical_tie_leaves = list(logical_tie.leaves)
     for leaf_ in logical_tie:
-        detach(Tie, leaf_)
-        detach(RepeatTie, leaf_)
+        _bind.detach(_indicators.Tie, leaf_)
+        _bind.detach(_indicators.RepeatTie, leaf_)
     if leaf._parent is not None:
         index = leaf._parent.index(leaf)
         next_ = index + 1
@@ -150,20 +154,20 @@ def _set_leaf_duration(leaf, new_duration):
     index = logical_tie_leaves.index(leaf)
     next_ = index + 1
     logical_tie_leaves[next_:next_] = following_leaves
-    if 1 < len(logical_tie_leaves) and isinstance(leaf, (Note, Chord)):
-        tie(logical_tie_leaves)
-    if isinstance(components[0], Leaf):
-        return Selection(all_leaves)
+    if 1 < len(logical_tie_leaves) and isinstance(leaf, (_score.Note, _score.Chord)):
+        _spanners.tie(logical_tie_leaves)
+    if isinstance(components[0], _score.Leaf):
+        return _selection.Selection(all_leaves)
     else:
-        assert isinstance(components[0], Tuplet)
+        assert isinstance(components[0], _score.Tuplet)
         assert len(components) == 1
         tuplet = components[0]
         multiplier = tuplet.multiplier
-        tuplet = Tuplet(multiplier, [])
-        if not isinstance(all_leaves, Selection):
-            all_leaves = Selection(all_leaves)
+        tuplet = _score.Tuplet(multiplier, [])
+        if not isinstance(all_leaves, _selection.Selection):
+            all_leaves = _selection.Selection(all_leaves)
         wrap(all_leaves, tuplet)
-        return Selection(tuplet)
+        return _selection.Selection(tuplet)
 
 
 def _split_container_at_index(CONTAINER, i):
@@ -183,7 +187,7 @@ def _split_container_at_index(CONTAINER, i):
     left_components = CONTAINER[:i]
     right_components = CONTAINER[i:]
     # instantiate new left and right containers
-    if isinstance(CONTAINER, Tuplet):
+    if isinstance(CONTAINER, _score.Tuplet):
         multiplier = CONTAINER.multiplier
         left = type(CONTAINER)(multiplier, [])
         wrap(left_components, left)
@@ -198,7 +202,7 @@ def _split_container_at_index(CONTAINER, i):
     halves = (left, right)
     nonempty_halves = [half for half in halves if len(half)]
     # incorporate left and right parents in score if possible
-    selection = Selection(CONTAINER)
+    selection = _selection.Selection(CONTAINER)
     parent, start, stop = selection._get_parent_and_start_stop_indices()
     if parent is not None:
         parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
@@ -214,19 +218,19 @@ def _split_container_at_index(CONTAINER, i):
 def _split_container_by_duration(CONTAINER, duration):
     if CONTAINER.simultaneous:
         return _split_simultaneous_by_duration(CONTAINER, duration=duration)
-    duration = Duration(duration)
+    duration = _duration.Duration(duration)
     assert 0 <= duration, repr(duration)
     if duration == 0:
         # TODO: disallow and raise Exception
         return [], CONTAINER
     # get split point score offset
-    timespan = get.timespan(CONTAINER)
+    timespan = _get.timespan(CONTAINER)
     global_split_point = timespan.start_offset + duration
     # get any duration-crossing descendents
     cross_offset = timespan.start_offset + duration
     duration_crossing_descendants = []
-    for descendant in get.descendants(CONTAINER):
-        timespan = get.timespan(descendant)
+    for descendant in _get.descendants(CONTAINER):
+        timespan = _get.timespan(descendant)
         start_offset = timespan.start_offset
         stop_offset = timespan.stop_offset
         if start_offset < cross_offset < stop_offset:
@@ -235,11 +239,11 @@ def _split_container_by_duration(CONTAINER, duration):
     bottom = duration_crossing_descendants[-1]
     did_split_leaf = False
     # if split point necessitates leaf split
-    if isinstance(bottom, Leaf):
-        assert isinstance(bottom, Leaf)
+    if isinstance(bottom, _score.Leaf):
+        assert isinstance(bottom, _score.Leaf)
         original_bottom_parent = bottom._parent
         did_split_leaf = True
-        timespan = get.timespan(bottom)
+        timespan = _get.timespan(bottom)
         split_point_in_bottom = global_split_point - timespan.start_offset
         new_leaves = _split_leaf_by_durations(
             bottom,
@@ -247,14 +251,14 @@ def _split_container_by_duration(CONTAINER, duration):
         )
         if new_leaves[0]._parent is not original_bottom_parent:
             new_leaves_tuplet_wrapper = new_leaves[0]._parent
-            assert isinstance(new_leaves_tuplet_wrapper, Tuplet)
+            assert isinstance(new_leaves_tuplet_wrapper, _score.Tuplet)
             assert new_leaves_tuplet_wrapper._parent is original_bottom_parent
             _split_container_by_duration(
                 new_leaves_tuplet_wrapper,
                 split_point_in_bottom,
             )
         for leaf in new_leaves:
-            timespan = get.timespan(leaf)
+            timespan = _get.timespan(leaf)
             if timespan.stop_offset == global_split_point:
                 leaf_left_of_split = leaf
             if timespan.start_offset == global_split_point:
@@ -267,10 +271,10 @@ def _split_container_by_duration(CONTAINER, duration):
     else:
         duration_crossing_containers = duration_crossing_descendants[:]
         for leaf in iterate_.leaves(bottom):
-            timespan = get.timespan(leaf)
+            timespan = _get.timespan(leaf)
             if timespan.start_offset == global_split_point:
                 leaf_right_of_split = leaf
-                leaf_left_of_split = get.leaf(leaf, -1)
+                leaf_left_of_split = _get.leaf(leaf, -1)
                 break
         else:
             raise Exception("can not split empty container {bottom!r}.")
@@ -287,22 +291,22 @@ def _split_container_by_duration(CONTAINER, duration):
     # crawl back up through duration-crossing containers and split each
     previous = highest_level_component_right_of_split
     for container in reversed(duration_crossing_containers):
-        assert isinstance(container, Container)
+        assert isinstance(container, _score.Container)
         index = container.index(previous)
         left, right = _split_container_at_index(container, index)
         previous = right
     # reapply tie here if crawl above killed tie applied to leaves
     if did_split_leaf:
-        if isinstance(leaf_left_of_split, Note):
+        if isinstance(leaf_left_of_split, _score.Note):
             if (
-                get.parentage(leaf_left_of_split).root
-                is get.parentage(leaf_right_of_split).root
+                _get.parentage(leaf_left_of_split).root
+                is _get.parentage(leaf_right_of_split).root
             ):
                 leaves_around_split = (
                     leaf_left_of_split,
                     leaf_right_of_split,
                 )
-                selection = Selection(leaves_around_split)
+                selection = _selection.Selection(leaves_around_split)
                 selection._attach_tie_to_leaves()
     # return list-wrapped halves of container
     return [left], [right]
@@ -316,93 +320,95 @@ def _split_simultaneous_by_duration(CONTAINER, duration):
         left_components_, right_components_ = halves
         left_components.extend(left_components_)
         right_components.extend(right_components_)
-    left_components = Selection(left_components)
-    right_components = Selection(right_components)
+    left_components = _selection.Selection(left_components)
+    right_components = _selection.Selection(right_components)
     left_container = CONTAINER.__copy__()
     right_container = CONTAINER.__copy__()
     left_container.extend(left_components)
     right_container.extend(right_components)
-    if get.parentage(CONTAINER).parent is not None:
-        containers = Selection([left_container, right_container])
+    if _get.parentage(CONTAINER).parent is not None:
+        containers = _selection.Selection([left_container, right_container])
         replace(CONTAINER, containers)
     # return list-wrapped halves of container
     return [left_container], [right_container]
 
 
 def _split_leaf_by_durations(LEAF, durations, cyclic=False):
-    durations = [Duration(_) for _ in durations]
-    durations = Sequence(durations)
-    leaf_duration = get.duration(LEAF)
+    durations = [_duration.Duration(_) for _ in durations]
+    durations = _sequence.Sequence(durations)
+    leaf_duration = _get.duration(LEAF)
     if cyclic:
         durations = durations.repeat_to_weight(leaf_duration)
     if sum(durations) < leaf_duration:
         last_duration = leaf_duration - sum(durations)
         durations = list(durations)
         durations.append(last_duration)
-        durations = Sequence(durations)
+        durations = _sequence.Sequence(durations)
     durations = durations.truncate(weight=leaf_duration)
-    originally_tied = LEAF._has_indicator(Tie)
-    originally_repeat_tied = LEAF._has_indicator(RepeatTie)
+    originally_tied = LEAF._has_indicator(_indicators.Tie)
+    originally_repeat_tied = LEAF._has_indicator(_indicators.RepeatTie)
     result_selections = []
     # detach grace containers
     before_grace_container = LEAF._before_grace_container
     if before_grace_container is not None:
-        detach(before_grace_container, LEAF)
+        _bind.detach(before_grace_container, LEAF)
     after_grace_container = LEAF._after_grace_container
     if after_grace_container is not None:
-        detach(after_grace_container, LEAF)
+        _bind.detach(after_grace_container, LEAF)
     # do other things
-    leaf_prolation = get.parentage(LEAF).prolation
+    leaf_prolation = _get.parentage(LEAF).prolation
     for duration in durations:
         new_leaf = python_copy.copy(LEAF)
         preprolated_duration = duration / leaf_prolation
         selection = _set_leaf_duration(new_leaf, preprolated_duration)
         result_selections.append(selection)
-    result_components = Sequence(result_selections).flatten(depth=-1)
-    result_components = Selection(result_components)
-    result_leaves = Selection(result_components).leaves(grace=False)
-    assert all(isinstance(_, Selection) for _ in result_selections)
-    assert all(isinstance(_, Component) for _ in result_components)
+    result_components = _sequence.Sequence(result_selections).flatten(depth=-1)
+    result_components = _selection.Selection(result_components)
+    result_leaves = _selection.Selection(result_components).leaves(grace=False)
+    assert all(isinstance(_, _selection.Selection) for _ in result_selections)
+    assert all(isinstance(_, _score.Component) for _ in result_components)
     assert result_leaves.are_leaves()
     # strip result leaves of all indicators
     for leaf in result_leaves:
-        detach(object, leaf)
+        _bind.detach(object, leaf)
     # replace leaf with flattened result
-    if get.parentage(LEAF).parent is not None:
+    if _get.parentage(LEAF).parent is not None:
         replace(LEAF, result_components)
     # move indicators
     first_result_leaf = result_leaves[0]
     last_result_leaf = result_leaves[-1]
-    for indicator in get.indicators(LEAF):
-        detach(indicator, LEAF)
-        direction = getattr(indicator, "_time_orientation", enums.Left)
-        if direction is enums.Left:
-            attach(indicator, first_result_leaf)
-        elif direction == enums.Right:
-            attach(indicator, last_result_leaf)
-        elif direction == enums.Middle:
-            attach(indicator, first_result_leaf)
+    for indicator in _get.indicators(LEAF):
+        _bind.detach(indicator, LEAF)
+        direction = getattr(indicator, "_time_orientation", _enums.Left)
+        if direction is _enums.Left:
+            _bind.attach(indicator, first_result_leaf)
+        elif direction == _enums.Right:
+            _bind.attach(indicator, last_result_leaf)
+        elif direction == _enums.Middle:
+            _bind.attach(indicator, first_result_leaf)
             indicator_copy = python_copy.copy(indicator)
-            attach(indicator_copy, last_result_leaf)
+            _bind.attach(indicator_copy, last_result_leaf)
         else:
             raise ValueError(direction)
     # reattach grace containers
     if before_grace_container is not None:
-        attach(before_grace_container, first_result_leaf)
+        _bind.attach(before_grace_container, first_result_leaf)
     if after_grace_container is not None:
-        attach(after_grace_container, last_result_leaf)
+        _bind.attach(after_grace_container, last_result_leaf)
     # fuse tuplets
-    if isinstance(result_components[0], Tuplet):
+    if isinstance(result_components[0], _score.Tuplet):
         fuse(result_components)
     # tie split notes
-    if isinstance(LEAF, (Note, Chord)) and 1 < len(result_leaves):
+    if isinstance(LEAF, (_score.Note, _score.Chord)) and 1 < len(result_leaves):
         result_leaves._attach_tie_to_leaves()
-    if originally_repeat_tied and not result_leaves[0]._has_indicator(RepeatTie):
-        attach(RepeatTie(), result_leaves[0])
-    if originally_tied and not result_leaves[-1]._has_indicator(Tie):
-        attach(Tie(), result_leaves[-1])
-    assert isinstance(result_leaves, Selection)
-    assert all(isinstance(_, Leaf) for _ in result_leaves)
+    if originally_repeat_tied and not result_leaves[0]._has_indicator(
+        _indicators.RepeatTie
+    ):
+        _bind.attach(_indicators.RepeatTie(), result_leaves[0])
+    if originally_tied and not result_leaves[-1]._has_indicator(_indicators.Tie):
+        _bind.attach(_indicators.Tie(), result_leaves[-1])
+    assert isinstance(result_leaves, _selection.Selection)
+    assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     return result_leaves
 
 
@@ -526,13 +532,13 @@ def copy(argument, n=1):
 
     Returns selection of new components.
     """
-    if isinstance(argument, Component):
-        selection = Selection(argument)
+    if isinstance(argument, _score.Component):
+        selection = _selection.Selection(argument)
     else:
         selection = argument
     if n == 1:
         result = selection._copy()
-        if isinstance(argument, Component):
+        if isinstance(argument, _score.Component):
             if len(result) == 1:
                 result = result[0]
         return result
@@ -910,15 +916,18 @@ def fuse(argument):
 
     Returns selection.
     """
-    if isinstance(argument, Component):
-        selection = Selection(argument)
+    if isinstance(argument, _score.Component):
+        selection = _selection.Selection(argument)
         return _fuse(selection)
-    elif isinstance(argument, Selection) and argument.are_contiguous_logical_voice():
-        selection = Selection(argument)
+    elif (
+        isinstance(argument, _selection.Selection)
+        and argument.are_contiguous_logical_voice()
+    ):
+        selection = _selection.Selection(argument)
         return _fuse(selection)
 
 
-def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
+def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
     r"""
     Changes logical tie to tuplet.
 
@@ -1016,22 +1025,24 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
             }
 
     """
-    proportions = Ratio(proportions)
+    proportions = _ratio.Ratio(proportions)
     target_duration = argument._get_preprolated_duration()
     prolated_duration = target_duration / sum(proportions.numbers)
     basic_written_duration = prolated_duration.equal_or_greater_power_of_two
     written_durations = [_ * basic_written_duration for _ in proportions.numbers]
-    maker = NoteMaker()
+    maker = _makers.NoteMaker()
     try:
-        notes = Selection([Note(0, _) for _ in written_durations])
-    except exceptions.AssignabilityError:
+        notes = _selection.Selection([_score.Note(0, _) for _ in written_durations])
+    except _exceptions.AssignabilityError:
         denominator = target_duration._denominator
-        note_durations = [Duration(_, denominator) for _ in proportions.numbers]
+        note_durations = [
+            _duration.Duration(_, denominator) for _ in proportions.numbers
+        ]
         notes = maker(0, note_durations)
-    tuplet = Tuplet.from_duration(target_duration, notes)
+    tuplet = _score.Tuplet.from_duration(target_duration, notes)
     for leaf in argument:
-        detach(Tie, leaf)
-        detach(RepeatTie, leaf)
+        _bind.detach(_indicators.Tie, leaf)
+        _bind.detach(_indicators.RepeatTie, leaf)
     replace(argument, tuplet)
     return tuplet
 
@@ -1243,23 +1254,23 @@ def replace(argument, recipients, wrappers=False):
 
     Returns none.
     """
-    if isinstance(argument, Selection):
+    if isinstance(argument, _selection.Selection):
         donors = argument
     else:
-        donors = Selection(argument)
+        donors = _selection.Selection(argument)
     assert donors.are_contiguous_same_parent()
-    if not isinstance(recipients, Selection):
-        recipients = Selection(recipients)
+    if not isinstance(recipients, _selection.Selection):
+        recipients = _selection.Selection(recipients)
     assert recipients.are_contiguous_same_parent()
     if not donors:
         return
     if wrappers is True:
-        if 1 < len(donors) or not isinstance(donors[0], Leaf):
+        if 1 < len(donors) or not isinstance(donors[0], _score.Leaf):
             raise Exception(f"set wrappers only with single leaf: {donors!r}.")
-        if 1 < len(recipients) or not isinstance(recipients[0], Leaf):
+        if 1 < len(recipients) or not isinstance(recipients[0], _score.Leaf):
             raise Exception(f"set wrappers only with single leaf: {recipients!r}.")
         donor = donors[0]
-        wrappers = get.wrappers(donor)
+        wrappers = _get.wrappers(donor)
         recipient = recipients[0]
     parent, start, stop = donors._get_parent_and_start_stop_indices()
     assert parent is not None, repr(donors)
@@ -1460,7 +1471,7 @@ def scale(argument, multiplier) -> None:
     if hasattr(argument, "_scale"):
         argument._scale(multiplier)
     else:
-        assert isinstance(argument, Selection)
+        assert isinstance(argument, _selection.Selection)
         for component in argument:
             component._scale(multiplier)
 
@@ -1855,17 +1866,17 @@ def split(argument, durations, cyclic=False):
     Returns list of selections.
     """
     components = argument
-    if isinstance(components, Component):
-        components = Selection(components)
-    assert all(isinstance(_, Component) for _ in components)
-    if not isinstance(components, Selection):
-        components = Selection(components)
-    durations = [Duration(_) for _ in durations]
+    if isinstance(components, _score.Component):
+        components = _selection.Selection(components)
+    assert all(isinstance(_, _score.Component) for _ in components)
+    if not isinstance(components, _selection.Selection):
+        components = _selection.Selection(components)
+    durations = [_duration.Duration(_) for _ in durations]
     assert len(durations), repr(durations)
-    total_component_duration = get.duration(components)
+    total_component_duration = _get.duration(components)
     total_split_duration = sum(durations)
     if cyclic:
-        durations = Sequence(durations)
+        durations = _sequence.Sequence(durations)
         durations = durations.repeat_to_weight(total_component_duration)
         durations = list(durations)
     elif total_split_duration < total_component_duration:
@@ -1873,7 +1884,7 @@ def split(argument, durations, cyclic=False):
         durations.append(final_offset)
     elif total_component_duration < total_split_duration:
         weight = total_component_duration
-        durations = Sequence(durations).truncate(weight=weight)
+        durations = _sequence.Sequence(durations).truncate(weight=weight)
         durations = list(durations)
     # keep copy of durations to partition result components
     durations_copy = durations[:]
@@ -1881,7 +1892,7 @@ def split(argument, durations, cyclic=False):
     assert total_split_duration == total_component_duration
     result, shard = [], []
     offset_index = 0
-    current_shard_duration = Duration(0)
+    current_shard_duration = _duration.Duration(0)
     remaining_components = list(components[:])
     advance_to_next_offset = True
     # build shards:
@@ -1898,26 +1909,26 @@ def split(argument, durations, cyclic=False):
             break
         current_component = remaining_components.pop(0)
         # find where current component endpoint will position us
-        duration_ = get.duration(current_component)
+        duration_ = _get.duration(current_component)
         candidate_shard_duration = current_shard_duration + duration_
         # if current component would fill current shard exactly
         if candidate_shard_duration == next_split_point:
             shard.append(current_component)
             result.append(shard)
             shard = []
-            current_shard_duration = Duration(0)
+            current_shard_duration = _duration.Duration(0)
             offset_index += 1
         # if current component would exceed current shard
         elif next_split_point < candidate_shard_duration:
             local_split_duration = next_split_point
             local_split_duration -= current_shard_duration
-            if isinstance(current_component, Leaf):
+            if isinstance(current_component, _score.Leaf):
                 leaf_split_durations = [local_split_duration]
-                duration_ = get.duration(current_component)
+                duration_ = _get.duration(current_component)
                 current_duration = duration_
                 additional_required_duration = current_duration
                 additional_required_duration -= local_split_duration
-                split_durations = Sequence(durations)
+                split_durations = _sequence.Sequence(durations)
                 split_durations = split_durations.split(
                     [additional_required_duration],
                     cyclic=False,
@@ -1936,7 +1947,7 @@ def split(argument, durations, cyclic=False):
                 result.append(shard)
                 offset_index += len(additional_durations)
             else:
-                assert isinstance(current_component, Container)
+                assert isinstance(current_component, _score.Container)
                 pair = _split_container_by_duration(
                     current_component,
                     local_split_duration,
@@ -1947,11 +1958,11 @@ def split(argument, durations, cyclic=False):
                 remaining_components.__setitem__(slice(0, 0), right_list)
             shard = []
             offset_index += 1
-            current_shard_duration = Duration(0)
+            current_shard_duration = _duration.Duration(0)
         # if current component would not fill current shard
         elif candidate_shard_duration < next_split_point:
             shard.append(current_component)
-            duration_ = get.duration(current_component)
+            duration_ = _get.duration(current_component)
             current_shard_duration += duration_
             advance_to_next_offset = False
         else:
@@ -1965,10 +1976,12 @@ def split(argument, durations, cyclic=False):
     if len(remaining_components):
         result.append(remaining_components)
     # partition split components according to input durations
-    result = Sequence(result).flatten(depth=-1)
-    result = Selection(result).partition_by_durations(durations_copy, fill=enums.Exact)
+    result = _sequence.Sequence(result).flatten(depth=-1)
+    result = _selection.Selection(result).partition_by_durations(
+        durations_copy, fill=_enums.Exact
+    )
     # return list of shards
-    assert all(isinstance(_, Selection) for _ in result)
+    assert all(isinstance(_, _selection.Selection) for _ in result)
     return result
 
 
@@ -2045,12 +2058,12 @@ def swap(argument, container):
 
     Returns none.
     """
-    if isinstance(argument, Selection):
+    if isinstance(argument, _selection.Selection):
         donors = argument
     else:
-        donors = Selection(argument)
+        donors = _selection.Selection(argument)
     assert donors.are_contiguous_same_parent()
-    assert isinstance(container, Container)
+    assert isinstance(container, _score.Container)
     assert not container, repr(container)
     donors._give_components_to_empty_container(container)
     # donors._give_dominant_spanners([container])
@@ -2113,9 +2126,9 @@ def transpose(argument, interval):
 
     Returns none.
     """
-    named_interval = NamedInterval(interval)
-    for x in iterate_.components(argument, (Note, Chord)):
-        if isinstance(x, Note):
+    named_interval = _pitch.NamedInterval(interval)
+    for x in iterate_.components(argument, (_score.Note, _score.Chord)):
+        if isinstance(x, _score.Note):
             old_written_pitch = x.note_head.written_pitch
             new_written_pitch = old_written_pitch.transpose(named_interval)
             x.note_head.written_pitch = new_written_pitch
@@ -2333,13 +2346,13 @@ def wrap(argument, container):
 
     Returns none.
     """
-    if not isinstance(container, Container) or 0 < len(container):
+    if not isinstance(container, _score.Container) or 0 < len(container):
         raise Exception(f"must be empty container: {container!r}.")
-    if isinstance(argument, Component):
-        selection = Selection(argument)
+    if isinstance(argument, _score.Component):
+        selection = _selection.Selection(argument)
     else:
         selection = argument
-    assert isinstance(selection, Selection), repr(selection)
+    assert isinstance(selection, _selection.Selection), repr(selection)
     parent, start, stop = selection._get_parent_and_start_stop_indices(
         ignore_before_after_grace=True
     )

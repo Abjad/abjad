@@ -1,17 +1,17 @@
 import copy
 import typing
 
-from . import enums
+from . import bundle as _bundle
+from . import enums as _enums
 from . import format as _format
+from . import fsv as _fsv
+from . import lyenv as _lyenv
+from . import string as _string
 from . import tag as _tag
-from .bundle import LilyPondFormatBundle
-from .fsv import format_scheme_value
-from .lyenv import contexts, grob_interfaces
-from .string import String
 
 
 def format_embedded_scheme_value(value):
-    result = format_scheme_value(value)
+    result = _fsv.format_scheme_value(value)
     if isinstance(value, bool):
         result = "#" + result
     return result
@@ -56,11 +56,11 @@ def format_lilypond_value(argument) -> str:
     if argument is False:
         return "##f"
     if argument in (
-        enums.Up,
-        enums.Down,
-        enums.Left,
-        enums.Right,
-        enums.Center,
+        _enums.Up,
+        _enums.Down,
+        _enums.Left,
+        _enums.Right,
+        _enums.Center,
     ):
         return rf"#{repr(argument).lower()}"
     if argument in lilypond_color_constants:
@@ -73,13 +73,13 @@ def format_lilypond_value(argument) -> str:
 def make_lilypond_override_string(
     grob, attribute, value, context=None, once=False
 ) -> str:
-    # camel_name = String(grob).to_upper_camel_case()
+    # camel_name = _string.String(grob).to_upper_camel_case()
     # assert grob == camel_name, repr((grob, camel_name))
-    grob = String(grob).to_upper_camel_case()
+    grob = _string.String(grob).to_upper_camel_case()
     attribute = format_lilypond_attribute(attribute)
     value = format_lilypond_value(value)
     if context is not None:
-        context = String(context).capitalize_start() + "."
+        context = _string.String(context).capitalize_start() + "."
     else:
         context = ""
     if once is True:
@@ -91,14 +91,14 @@ def make_lilypond_override_string(
 
 
 def make_lilypond_revert_string(grob, attribute, context=None) -> str:
-    # camel_name = String(grob).to_upper_camel_case()
+    # camel_name = _string.String(grob).to_upper_camel_case()
     # assert grob == camel_name, repr((grob, camel_name))
-    grob = String(grob).to_upper_camel_case()
+    grob = _string.String(grob).to_upper_camel_case()
     dotted = format_lilypond_attribute(attribute)
     if context is not None:
-        # camel_name = String(context).to_upper_camel_case()
+        # camel_name = _string.String(context).to_upper_camel_case()
         # assert context == camel_name, repr((context, camel_name))
-        context = String(context).to_upper_camel_case()
+        context = _string.String(context).to_upper_camel_case()
         context += "."
     else:
         context = ""
@@ -110,9 +110,9 @@ def make_lilypond_tweak_string(
     attribute, value, *, directed=True, grob=None, literal=None
 ) -> str:
     if grob is not None:
-        # camel_name = String(grob).to_upper_camel_case()
+        # camel_name = _string.String(grob).to_upper_camel_case()
         # assert grob == camel_name, repr((grob, camel_name))
-        grob = String(grob).to_upper_camel_case()
+        grob = _string.String(grob).to_upper_camel_case()
         grob += "."
     else:
         grob = ""
@@ -314,9 +314,12 @@ class LilyPondLiteral:
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares ``argument`` and ``format_slot``.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            if self.argument == argument.argument:
+                return self.format_slot == argument.format_slot
+        return False
 
     def __hash__(self) -> int:
         """
@@ -352,7 +355,7 @@ class LilyPondLiteral:
         )
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions(directed=self.directed)
@@ -707,7 +710,7 @@ class LilyPondOverride:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if not self.once:
             revert_format = "\n".join(self.revert_format_pieces)
             bundle.grob_reverts.append(revert_format)
@@ -1104,7 +1107,7 @@ class LilyPondSetting:
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         string = "\n".join(self.format_pieces)
         bundle.context_settings.append(string)
         return bundle
@@ -1209,7 +1212,7 @@ class OverrideInterface(Interface):
         Note that the dot-chained user syntax is unproblematic. But the class of each
         manager returned in the chain is likely to be surprising at first encounter.
         """
-        camel_name = String(name).to_upper_camel_case()
+        camel_name = _string.String(name).to_upper_camel_case()
         # assert name == camel_name, repr((name, camel_name))
         if name.startswith("_"):
             try:
@@ -1217,14 +1220,14 @@ class OverrideInterface(Interface):
             except KeyError:
                 type_name = type(self).__name__
                 raise AttributeError("{type_name!r} object has no attribute: {name!r}.")
-        elif camel_name in contexts:
+        elif camel_name in _lyenv.contexts:
             try:
                 return vars(self)["_" + name]
             except KeyError:
                 context = OverrideInterface()
                 vars(self)["_" + name] = context
                 return context
-        elif camel_name in grob_interfaces:
+        elif camel_name in _lyenv.grob_interfaces:
             try:
                 return vars(self)[name]
             except KeyError:
@@ -1411,7 +1414,7 @@ class SettingInterface(Interface):
             Markup(string='\\markup "Vn. I"', direction=None, tweaks=None)
 
         """
-        camel_name = String(name).to_upper_camel_case()
+        camel_name = _string.String(name).to_upper_camel_case()
         # assert name == camel_name, repr((name, camel_name))
         if name.startswith("_"):
             try:
@@ -1419,7 +1422,7 @@ class SettingInterface(Interface):
             except KeyError:
                 message = "{type(self).__name__!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
-        elif camel_name in contexts:
+        elif camel_name in _lyenv.contexts:
             try:
                 return vars(self)["_" + name]
             except KeyError:
@@ -1720,7 +1723,7 @@ class TweakInterface(Interface):
             self.__setattr__(name, _pending_value)
             delattr(self, "_pending_value")
             return self
-        camel_name = String(name).to_upper_camel_case()
+        camel_name = _string.String(name).to_upper_camel_case()
         # assert name == camel_name, repr((name, camel_name))
         if name.startswith("_"):
             try:
@@ -1728,7 +1731,7 @@ class TweakInterface(Interface):
             except KeyError:
                 type_name = type(self).__name__
                 raise AttributeError(f"{type_name} object has no attribute {name!r}.")
-        elif camel_name in grob_interfaces:
+        elif camel_name in _lyenv.grob_interfaces:
             try:
                 return vars(self)[name]
             except KeyError:
@@ -2170,7 +2173,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
     """
     if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
-    constants = (enums.Down, enums.Left, enums.Right, enums.Up)
+    constants = (_enums.Down, _enums.Left, _enums.Right, _enums.Up)
     prototype = (bool, int, float, str, tuple)
     if expression is True or argument in constants or isinstance(argument, prototype):
         interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)

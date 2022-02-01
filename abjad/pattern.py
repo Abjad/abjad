@@ -2,10 +2,10 @@ import collections
 import operator
 
 from . import format as _format
-from . import math
-from .new import new
-from .sequence import Sequence
-from .typedcollections import TypedTuple
+from . import math as _math
+from . import new as _new
+from . import sequence as _sequence
+from . import typedcollections as _typedcollections
 
 
 class Pattern:
@@ -174,7 +174,7 @@ class Pattern:
             assert operator in self._name_to_operator, repr(operator)
         self._operator = operator
         if period is not None:
-            assert math.is_positive_integer(period), repr(period)
+            assert _math.is_positive_integer(period), repr(period)
         if patterns is not None:
             assert all(isinstance(_, type(self)) for _ in patterns)
             patterns = tuple(patterns)
@@ -393,7 +393,7 @@ class Pattern:
         Returns new pattern.
         """
         inverted = not self.inverted
-        return new(self, inverted=inverted)
+        return _new.new(self, inverted=inverted)
 
     def __len__(self):
         """
@@ -1084,7 +1084,7 @@ class Pattern:
         if self.patterns:
             periods = [_.period for _ in self.patterns]
             if None not in periods:
-                return math.least_common_multiple(*periods)
+                return _math.least_common_multiple(*periods)
 
     @property
     def weight(self):
@@ -1158,7 +1158,7 @@ class Pattern:
 
         """
         if not count:
-            return new(self)
+            return _new.new(self)
         assert 0 < count, repr(count)
         for index in self.indices:
             if index < 0:
@@ -1170,7 +1170,7 @@ class Pattern:
             new_index = index - count
             if 0 <= new_index:
                 new_indices.append(new_index)
-        return new(self, indices=new_indices)
+        return _new.new(self, indices=new_indices)
 
     @classmethod
     def from_vector(class_, vector):
@@ -1473,7 +1473,7 @@ class Pattern:
             if self.matches_index(i, length):
                 item = sequence[i]
                 items.append(item)
-        return Sequence(items=items)
+        return _sequence.Sequence(items=items)
 
     @staticmethod
     def index(indices, period=None, inverted=None):
@@ -2561,9 +2561,9 @@ class Pattern:
         """
         if not self.patterns:
             indices = [-index - 1 for index in self.indices]
-            return new(self, indices=indices)
+            return _new.new(self, indices=indices)
         patterns = [_.reverse() for _ in self.patterns]
-        return new(self, patterns=patterns)
+        return _new.new(self, patterns=patterns)
 
     def rotate(self, n=0):
         """
@@ -2766,12 +2766,12 @@ class Pattern:
         """
         if not self.patterns:
             indices = [index + n for index in self.indices]
-            return new(self, indices=indices)
+            return _new.new(self, indices=indices)
         patterns = [_.rotate(n=n) for _ in self.patterns]
-        return new(self, patterns=patterns)
+        return _new.new(self, patterns=patterns)
 
 
-class PatternTuple(TypedTuple):
+class PatternTuple(_typedcollections.TypedTuple):
     """
     Pattern tuple.
 

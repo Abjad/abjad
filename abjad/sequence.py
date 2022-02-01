@@ -7,11 +7,11 @@ import typing
 
 import quicktions
 
-from . import enums
+from . import cyclictuple as _cyclictuple
+from . import enums as _enums
 from . import format as _format
 from . import math as _math
-from .cyclictuple import CyclicTuple
-from .ratio import Ratio
+from . import ratio as _ratio
 
 
 class Sequence(collections.abc.Sequence):
@@ -125,7 +125,7 @@ class Sequence(collections.abc.Sequence):
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares ``items``.
 
         ..  container:: example
 
@@ -144,7 +144,9 @@ class Sequence(collections.abc.Sequence):
             False
 
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return self.items == argument.items
+        return False
 
     def __getitem__(self, argument) -> typing.Any:
         r"""
@@ -1552,7 +1554,7 @@ class Sequence(collections.abc.Sequence):
         if reversed_:
             sequence = type(self)(reversed(sequence))
         if counts:
-            counts = CyclicTuple(counts)
+            counts = _cyclictuple.CyclicTuple(counts)
         else:
             return type(self)([sequence])
         result = []
@@ -1576,9 +1578,9 @@ class Sequence(collections.abc.Sequence):
         if part:
             if overhang is True:
                 result.append(part)
-            elif overhang is enums.Exact and len(part) == count:
+            elif overhang is _enums.Exact and len(part) == count:
                 result.append(part)
-            elif overhang is enums.Exact and len(part) != count:
+            elif overhang is _enums.Exact and len(part) != count:
                 raise Exception("sequence does not partition exactly.")
         if reversed_:
             result_ = []
@@ -1626,10 +1628,10 @@ class Sequence(collections.abc.Sequence):
 
         Returns nested sequence.
         """
-        ratio = Ratio(ratio)
+        ratio = _ratio.Ratio(ratio)
         length = len(self)
         counts = ratio.partition_integer(length)
-        parts = self.partition_by_counts(counts, cyclic=False, overhang=enums.Exact)
+        parts = self.partition_by_counts(counts, cyclic=False, overhang=_enums.Exact)
         return type(self)(parts)
 
     def partition_by_ratio_of_weights(self, weights) -> "Sequence":
@@ -1765,7 +1767,7 @@ class Sequence(collections.abc.Sequence):
         Returns nested sequence.
         """
         list_weight = _math.weight(self)
-        weights_parts = Ratio(weights).partition_integer(list_weight)
+        weights_parts = _ratio.Ratio(weights).partition_integer(list_weight)
         cumulative_weights = _math.cumulative_sums(weights_parts, start=None)
         items = []
         sublist: typing.List[typing.Any] = []
@@ -1793,7 +1795,7 @@ class Sequence(collections.abc.Sequence):
         # TODO: make keyword-only:
         cyclic=False,
         overhang=False,
-        allow_part_weights=enums.Exact,
+        allow_part_weights=_enums.Exact,
     ) -> "Sequence":
         r"""
         Partitions sequence by ``weights`` exactly.
@@ -2007,7 +2009,7 @@ class Sequence(collections.abc.Sequence):
 
         Returns nested sequence.
         """
-        if allow_part_weights is enums.Exact:
+        if allow_part_weights is _enums.Exact:
             candidate = type(self)(self)
             candidate = candidate.split(weights, cyclic=cyclic, overhang=overhang)
             flattened_candidate = candidate.flatten(depth=-1)
@@ -2015,7 +2017,7 @@ class Sequence(collections.abc.Sequence):
                 return candidate
             else:
                 raise Exception("can not partition exactly.")
-        elif allow_part_weights is enums.More:
+        elif allow_part_weights is _enums.More:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_least(
                     self, weights, overhang=overhang
@@ -2024,7 +2026,7 @@ class Sequence(collections.abc.Sequence):
                 return Sequence._partition_sequence_cyclically_by_weights_at_least(
                     self, weights, overhang=overhang
                 )
-        elif allow_part_weights is enums.Less:
+        elif allow_part_weights is _enums.Less:
             if not cyclic:
                 return Sequence._partition_sequence_once_by_weights_at_most(
                     self, weights, overhang=overhang
@@ -2246,7 +2248,7 @@ class Sequence(collections.abc.Sequence):
                 items.append(item)
         return type(self)(items[start:stop_index])
 
-    def repeat_to_weight(self, weight, allow_total=enums.Exact) -> "Sequence":
+    def repeat_to_weight(self, weight, allow_total=_enums.Exact) -> "Sequence":
         """
         Repeats sequence to ``weight``.
 
@@ -2287,7 +2289,7 @@ class Sequence(collections.abc.Sequence):
 
         """
         assert 0 <= weight
-        if allow_total is enums.Exact:
+        if allow_total is _enums.Exact:
             sequence_weight = _math.weight(self)
             complete_repetitions = int(
                 math.ceil(float(weight) / float(sequence_weight))
@@ -2312,7 +2314,7 @@ class Sequence(collections.abc.Sequence):
                         break
                 else:
                     break
-        elif allow_total is enums.Less:
+        elif allow_total is _enums.Less:
             items = [self[0]]
             i = 1
             while _math.weight(items) < weight:
@@ -2321,7 +2323,7 @@ class Sequence(collections.abc.Sequence):
             if weight < _math.weight(items):
                 items = items[:-1]
             return type(self)(items)
-        elif allow_total is enums.More:
+        elif allow_total is _enums.More:
             items = [self[0]]
             i = 1
             while _math.weight(items) < weight:
@@ -2752,7 +2754,7 @@ class Sequence(collections.abc.Sequence):
         current_piece: typing.List[typing.Any] = []
         if cyclic:
             weights = Sequence(weights).repeat_to_weight(
-                _math.weight(self), allow_total=enums.Less
+                _math.weight(self), allow_total=_enums.Less
             )
         for weight in weights:
             current_piece_weight = _math.weight(current_piece)

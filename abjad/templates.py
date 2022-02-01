@@ -3,11 +3,11 @@ import typing
 
 from . import bind as _bind
 from . import format as _format
+from . import indicators as _indicators
 from . import instruments as _instruments
 from . import overrides as _overrides
 from . import score as _score
 from . import tag as _tag
-from .indicators import Clef
 
 
 class ScoreTemplate:
@@ -144,7 +144,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                 name = f"Staff_{number}"
                 staff = _score.Staff([voice], name=name, tag=tag)
                 staff.lilypond_type = "RhythmicStaff"
-                _bind.annotate(staff, "default_clef", Clef("percussion"))
+                _bind.annotate(staff, "default_clef", _indicators.Clef("percussion"))
                 staves.append(staff)
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
@@ -903,7 +903,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             )
             lh_staff.simultaneous = True
             _bind.annotate(lh_staff, "pitch_range", pitch_range)
-            _bind.annotate(lh_staff, "default_clef", Clef(clef_name))
+            _bind.annotate(lh_staff, "default_clef", _indicators.Clef(clef_name))
             rh_voice = _score.Voice(
                 [],
                 lilypond_type="BowingVoice",
@@ -933,7 +933,7 @@ class StringOrchestraScoreTemplate(ScoreTemplate):
             )
             lh_staff.simultaneous = True
             _bind.annotate(lh_staff, "pitch_range", pitch_range)
-            _bind.annotate(lh_staff, "default_clef", Clef(clef_name))
+            _bind.annotate(lh_staff, "default_clef", _indicators.Clef(clef_name))
             staff_group.append(lh_staff)
         return staff_group, tag_name
 
@@ -1059,7 +1059,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         first_violin_staff = _score.Staff(
             [first_violin_voice], name="First_Violin_Staff", tag=tag
         )
-        clef = Clef("treble")
+        clef = _indicators.Clef("treble")
         _bind.annotate(first_violin_staff, "default_clef", clef)
         violin = _instruments.Violin()
         _bind.annotate(first_violin_staff, "default_instrument", violin)
@@ -1071,7 +1071,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         second_violin_staff = _score.Staff(
             [second_violin_voice], name="Second_Violin_Staff", tag=tag
         )
-        clef = Clef("treble")
+        clef = _indicators.Clef("treble")
         _bind.annotate(second_violin_staff, "default_clef", clef)
         violin = _instruments.Violin()
         _bind.annotate(second_violin_staff, "default_instrument", violin)
@@ -1081,7 +1081,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         # make viola voice and staff
         viola_voice = _score.Voice([], name="Viola_Voice", tag=tag)
         viola_staff = _score.Staff([viola_voice], name="Viola_Staff", tag=tag)
-        clef = Clef("alto")
+        clef = _indicators.Clef("alto")
         _bind.annotate(viola_staff, "default_clef", clef)
         viola = _instruments.Viola()
         _bind.annotate(viola_staff, "default_instrument", viola)
@@ -1091,7 +1091,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         # make cello voice and staff
         cello_voice = _score.Voice([], name="Cello_Voice", tag=tag)
         cello_staff = _score.Staff([cello_voice], name="Cello_Staff", tag=tag)
-        clef = Clef("bass")
+        clef = _indicators.Clef("bass")
         _bind.annotate(cello_staff, "default_clef", clef)
         cello = _instruments.Cello()
         _bind.annotate(cello_staff, "default_instrument", cello)

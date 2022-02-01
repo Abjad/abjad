@@ -3,9 +3,9 @@ import typing
 
 import quicktions
 
+from . import duration as _duration
 from . import format as _format
-from . import math
-from .duration import Multiplier
+from . import math as _math
 
 
 class NonreducedRatio(collections.abc.Sequence):
@@ -61,9 +61,11 @@ class NonreducedRatio(collections.abc.Sequence):
 
     def __eq__(self, argument):
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Is true when ``argument`` is a ratio with numbers equal to this ratio.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return self.numbers == argument.numbers
+        return False
 
     def __getitem__(self, argument):
         """
@@ -188,7 +190,7 @@ class NonreducedRatio(collections.abc.Sequence):
         Returns tuple of multipliers.
         """
         weight = sum(self.numbers)
-        multipliers = [Multiplier((_, weight)) for _ in self.numbers]
+        multipliers = [_duration.Multiplier((_, weight)) for _ in self.numbers]
         multipliers = tuple(multipliers)
         return multipliers
 
@@ -277,7 +279,7 @@ class Ratio(NonreducedRatio):
             strings = numbers.split(":")
             numbers = [int(_) for _ in strings]
         numbers = [int(_) for _ in numbers]
-        gcd = math.greatest_common_divisor(*numbers)
+        gcd = _math.greatest_common_divisor(*numbers)
         numbers = [_ // gcd for _ in numbers]
         self._numbers = tuple(numbers)
 
@@ -410,7 +412,7 @@ class Ratio(NonreducedRatio):
         Returns tuple of multipliers.
         """
         weight = sum(self.numbers)
-        multipliers = [Multiplier((_, weight)) for _ in self.numbers]
+        multipliers = [_duration.Multiplier((_, weight)) for _ in self.numbers]
         multipliers = tuple(multipliers)
         return multipliers
 
@@ -516,23 +518,23 @@ class Ratio(NonreducedRatio):
 
         Returns result with weight equal to absolute value of ``n``.
         """
-        if not math.is_integer_equivalent_number(n):
+        if not _math.is_integer_equivalent_number(n):
             raise TypeError(f"is not integer-equivalent number: {n!r}.")
         ratio = self.numbers
-        if not all(math.is_integer_equivalent_number(part) for part in ratio):
+        if not all(_math.is_integer_equivalent_number(part) for part in ratio):
             message = f"some parts in {ratio!r} not integer-equivalent numbers."
             raise TypeError(message)
         result = [0]
-        divisions = [float(abs(n)) * abs(part) / math.weight(ratio) for part in ratio]
-        cumulative_divisions = math.cumulative_sums(divisions, start=None)
+        divisions = [float(abs(n)) * abs(part) / _math.weight(ratio) for part in ratio]
+        cumulative_divisions = _math.cumulative_sums(divisions, start=None)
         for division in cumulative_divisions:
             rounded_division = int(round(division)) - sum(result)
             if division - round(division) == 0.5:
                 rounded_division += 1
             result.append(rounded_division)
         result = result[1:]
-        if math.sign(n) == -1:
+        if _math.sign(n) == -1:
             result = [-x for x in result]
-        ratio_signs = [math.sign(x) for x in ratio]
+        ratio_signs = [_math.sign(x) for x in ratio]
         result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
         return result

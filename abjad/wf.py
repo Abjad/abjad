@@ -1,25 +1,15 @@
 import typing
 
 from . import _inspect
+from . import duration as _duration
+from . import indicators as _indicators
+from . import instruments as _instruments
 from . import iterate as iterate_
-from .duration import Duration
-from .indicators import (
-    Clef,
-    StartBeam,
-    StartHairpin,
-    StartTextSpan,
-    StopBeam,
-    StopHairpin,
-    StopTextSpan,
-)
-from .instruments import Instrument
-from .iterpitches import sounding_pitches_are_in_range
-from .parentage import Parentage
-from .score import Container, Context
-from .sequence import Sequence
-from .tag import Tag
-
-### PRIVATE FUNCTIONS ###
+from . import iterpitches as _iterpitches
+from . import parentage as _parentage
+from . import score as _score
+from . import sequence as _sequence
+from . import tag as _tag
 
 
 def _aggregate_context_wrappers(argument):
@@ -29,15 +19,12 @@ def _aggregate_context_wrappers(argument):
     This method aggregates all Special_Voice wrappers for checks.
     """
     name_to_wrappers: typing.Dict = {}
-    for context in iterate_.components(argument, Context):
+    for context in iterate_.components(argument, _score.Context):
         if context.name not in name_to_wrappers:
             name_to_wrappers[context.name] = []
         wrappers = context._dependent_wrappers[:]
         name_to_wrappers[context.name].extend(wrappers)
     return name_to_wrappers
-
-
-### PUBLIC FUNCTIONS ###
 
 
 def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
@@ -157,12 +144,14 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
     violators, total = [], 0
     for leaf in iterate_.leaves(argument):
         total += 1
-        if leaf.written_duration < Duration((1, 4)):
+        if leaf.written_duration < _duration.Duration((1, 4)):
             continue
-        start_wrapper = _inspect._get_effective(leaf, StartBeam, unwrap=False)
+        start_wrapper = _inspect._get_effective(
+            leaf, _indicators.StartBeam, unwrap=False
+        )
         if start_wrapper is None:
             continue
-        stop_wrapper = _inspect._get_effective(leaf, StopBeam, unwrap=False)
+        stop_wrapper = _inspect._get_effective(leaf, _indicators.StopBeam, unwrap=False)
         if stop_wrapper is None:
             violators.append(leaf)
             continue
@@ -182,7 +171,7 @@ def check_duplicate_ids(argument) -> typing.Tuple[typing.List, int]:
     violators = []
     components = iterate_.components(argument)
     total_ids = [id(_) for _ in components]
-    unique_ids = Sequence(total_ids).remove_repeats()
+    unique_ids = _sequence.Sequence(total_ids).remove_repeats()
     if len(unique_ids) < len(total_ids):
         for current_id in unique_ids:
             if 1 < total_ids.count(current_id):
@@ -217,7 +206,7 @@ def check_empty_containers(argument) -> typing.Tuple[typing.List, int]:
 
     """
     violators, containers = [], set()
-    for container in iterate_.components(argument, Container):
+    for container in iterate_.components(argument, _score.Container):
         containers.add(container)
         if len(container) == 0:
             violators.append(container)
@@ -234,7 +223,7 @@ def check_missing_parents(argument) -> typing.Tuple[typing.List, int]:
         total.add(component)
         if 0 < i:
             # TODO: figure out why "if component._parent is None" doesn't work
-            if Parentage(component).parent is None:
+            if _parentage.Parentage(component).parent is None:
                 violators.append(component)
     return violators, len(total)
 
@@ -319,19 +308,19 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
     violators, total = [], set()
     for leaf in iterate_.leaves(argument):
         total.add(leaf)
-        instrument = _inspect._get_effective(leaf, Instrument)
+        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             continue
-        effective_clef = _inspect._get_effective(leaf, Clef)
+        effective_clef = _inspect._get_effective(leaf, _indicators.Clef)
         if effective_clef is None:
             continue
         allowable_clefs = []
         for clef in instrument.allowable_clefs:
             if isinstance(clef, str):
-                clef = Clef(clef)
-            assert isinstance(clef, Clef), repr(clef)
+                clef = _indicators.Clef(clef)
+            assert isinstance(clef, _indicators.Clef), repr(clef)
             allowable_clefs.append(clef)
-        allowable_clefs.append(Clef("percussion"))
+        allowable_clefs.append(_indicators.Clef("percussion"))
         if effective_clef not in allowable_clefs:
             violators.append(leaf)
     return violators, len(total)
@@ -420,11 +409,11 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
             continue
         if "unpitched" in argument._get_indicators(str):
             continue
-        instrument = _inspect._get_effective(leaf, Instrument)
+        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             continue
         # if leaf not in instrument.pitch_range:
-        if not sounding_pitches_are_in_range(leaf, instrument.pitch_range):
+        if not _iterpitches.sounding_pitches_are_in_range(leaf, instrument.pitch_range):
             violators.append(leaf)
     return violators, len(total)
 
@@ -586,7 +575,7 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
     violators, total = [], 0
 
     def key(wrapper):
-        if isinstance(wrapper.indicator, StartTextSpan):
+        if isinstance(wrapper.indicator, _indicators.StartTextSpan):
             priority = 1
         else:
             priority = 0
@@ -597,7 +586,7 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         wrappers.sort(key=key)
         open_spanners: typing.Dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, StartTextSpan):
+            if isinstance(wrapper.indicator, _indicators.StartTextSpan):
                 total += 1
                 command = wrapper.indicator.command
                 command = command.replace("start", "")
@@ -607,7 +596,7 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
                 if open_spanners[command]:
                     violators.append(wrapper.component)
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, StopTextSpan):
+            elif isinstance(wrapper.indicator, _indicators.StopTextSpan):
                 command = wrapper.indicator.command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
@@ -684,7 +673,7 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         open_spanners: typing.Dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, StartTextSpan):
+            if isinstance(wrapper.indicator, _indicators.StartTextSpan):
                 total += 1
                 command = wrapper.indicator.command
                 command = command.replace("start", "")
@@ -692,7 +681,7 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
                 if command not in open_spanners:
                     open_spanners[command] = []
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, StopTextSpan):
+            elif isinstance(wrapper.indicator, _indicators.StopTextSpan):
                 command = wrapper.indicator.command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
@@ -833,13 +822,15 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         for wrapper in wrappers:
             parameter = getattr(wrapper.indicator, "parameter", None)
-            if parameter == "DYNAMIC" or isinstance(wrapper.indicator, StopHairpin):
+            if parameter == "DYNAMIC" or isinstance(
+                wrapper.indicator, _indicators.StopHairpin
+            ):
                 last_dynamic = wrapper.indicator
                 last_tag = wrapper.tag
-                if isinstance(wrapper.indicator, StartHairpin):
+                if isinstance(wrapper.indicator, _indicators.StartHairpin):
                     total += 1
-        if isinstance(last_dynamic, StartHairpin) and str(
-            Tag("RIGHT_BROKEN")
+        if isinstance(last_dynamic, _indicators.StartHairpin) and str(
+            _tag.Tag("RIGHT_BROKEN")
         ) not in str(last_tag):
             violators.append(wrapper.component)
     return violators, total
@@ -913,7 +904,7 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         open_spanners: typing.Dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, StartTextSpan):
+            if isinstance(wrapper.indicator, _indicators.StartTextSpan):
                 total += 1
                 command = wrapper.indicator.command
                 command = command.replace("start", "")
@@ -921,7 +912,7 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
                 if command not in open_spanners:
                     open_spanners[command] = []
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, StopTextSpan):
+            elif isinstance(wrapper.indicator, _indicators.StopTextSpan):
                 command = wrapper.indicator.command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")

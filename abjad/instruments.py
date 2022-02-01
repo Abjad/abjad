@@ -4,14 +4,11 @@ Instrument classes.
 import copy
 import typing
 
-from . import enumerate
+from . import enumerate as _enumerate
 from . import format as _format
 from . import markups as _markups
-from .pitch.PitchRange import PitchRange
-from .pitch.pitchclasses import NamedPitchClass
-from .pitch.pitches import NamedPitch
-from .pitch.segments import PitchSegment
-from .string import String
+from . import pitch as _pitch
+from . import string as _string
 
 
 class Instrument:
@@ -131,16 +128,16 @@ class Instrument:
         allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
-            pitch_range = PitchRange(pitch_range)
-        elif isinstance(pitch_range, PitchRange):
+            pitch_range = _pitch.PitchRange(pitch_range)
+        elif isinstance(pitch_range, _pitch.PitchRange):
             pitch_range = copy.copy(pitch_range)
         elif pitch_range is None:
-            pitch_range = PitchRange()
+            pitch_range = _pitch.PitchRange()
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        middle_c_sounding_pitch = middle_c_sounding_pitch or NamedPitch("c'")
-        middle_c_sounding_pitch = NamedPitch(middle_c_sounding_pitch)
+        middle_c_sounding_pitch = middle_c_sounding_pitch or _pitch.NamedPitch("c'")
+        middle_c_sounding_pitch = _pitch.NamedPitch(middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
         if primary is not None:
             primary = bool(primary)
@@ -152,9 +149,21 @@ class Instrument:
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares all nine initializer parameters.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return (
+                self.allowable_clefs == argument.allowable_clefs
+                and self.context == argument.context
+                and self.markup == argument.markup
+                and self.middle_c_sounding_pitch == argument.middle_c_sounding_pitch
+                and self.name == argument.name
+                and self.pitch_range == argument.pitch_range
+                and self.primary == argument.primary
+                and self.short_name == argument.short_name
+                and self.short_markup == argument.short_markup
+            )
+        return False
 
     def __hash__(self) -> int:
         """
@@ -201,7 +210,7 @@ class Instrument:
         if self._name_markup is None:
             if self.name:
                 string = self.name
-                string = String(string).capitalize_start()
+                string = _string.String(string).capitalize_start()
                 markup = _markups.Markup(rf"\markup {string}")
                 self._name_markup = markup
             else:
@@ -209,7 +218,7 @@ class Instrument:
         if self._short_name_markup is None:
             if self.short_name:
                 string = self.short_name
-                string = String(string).capitalize_start()
+                string = _string.String(string).capitalize_start()
                 markup = _markups.Markup(rf"\markup {string}")
             else:
                 self._short_name_markup = None
@@ -404,9 +413,11 @@ class StringNumber:
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares ``numbers``.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return self.numbers == argument.numbers
+        return False
 
     def __hash__(self) -> int:
         """
@@ -508,16 +519,18 @@ class Tuning:
         if pitches is not None:
             if isinstance(pitches, type(self)):
                 pitches = pitches.pitches
-            pitches = PitchSegment(items=pitches, item_class=NamedPitch)
-        self._pitches: typing.Optional[PitchSegment] = pitches
+            pitches = _pitch.PitchSegment(items=pitches, item_class=_pitch.NamedPitch)
+        self._pitches: typing.Optional[_pitch.PitchSegment] = pitches
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares ``pitches``.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return self.pitches == argument.pitches
+        return False
 
     def __hash__(self) -> int:
         """
@@ -539,7 +552,7 @@ class Tuning:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def pitch_ranges(self) -> typing.List[PitchRange]:
+    def pitch_ranges(self) -> typing.List[_pitch.PitchRange]:
         """
         Gets two-octave pitch-ranges for each pitch in this tuning.
 
@@ -556,12 +569,12 @@ class Tuning:
         """
         result = []
         for pitch in self.pitches or []:
-            pitch_range = PitchRange.from_pitches(pitch, pitch + 24)
+            pitch_range = _pitch.PitchRange.from_pitches(pitch, pitch + 24)
             result.append(pitch_range)
         return result
 
     @property
-    def pitches(self) -> typing.Optional[PitchSegment]:
+    def pitches(self) -> typing.Optional[_pitch.PitchSegment]:
         """
         Gets pitches of tuning.
 
@@ -595,7 +608,7 @@ class Tuning:
 
     def get_pitch_ranges_by_string_number(
         self, string_number: StringNumber
-    ) -> typing.Tuple[PitchRange, ...]:
+    ) -> typing.Tuple[_pitch.PitchRange, ...]:
         """
         Gets tuning pitch ranges by string number.
 
@@ -622,7 +635,7 @@ class Tuning:
 
     def get_pitches_by_string_number(
         self, string_number: StringNumber
-    ) -> typing.Tuple[NamedPitch, ...]:
+    ) -> typing.Tuple[_pitch.NamedPitch, ...]:
         """
         Gets tuning pitches by string number.
 
@@ -726,16 +739,18 @@ class Tuning:
 
         """
         assert self.pitches is not None
-        pitch_classes = [NamedPitchClass(_) for _ in pitch_classes]
+        pitch_classes = [_pitch.NamedPitchClass(_) for _ in pitch_classes]
         pitch_classes.extend([None] * (len(self.pitches) - len(pitch_classes)))
-        permutations = enumerate.yield_permutations(pitch_classes)
+        permutations = _enumerate.yield_permutations(pitch_classes)
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
-        result: typing.List[typing.Tuple[typing.Union[NamedPitch, None], ...]] = []
+        result: typing.List[
+            typing.Tuple[typing.Union[_pitch.NamedPitch, None], ...]
+        ] = []
         for permutation in permutations:
             sequences: typing.List = []
             for pitch_range, pitch_class in zip(pitch_ranges, permutation):
-                pitches: typing.List[typing.Optional[NamedPitch]]
+                pitches: typing.List[typing.Optional[_pitch.NamedPitch]]
                 if pitch_class is None:
                     sequences.append([None])
                     continue
@@ -747,7 +762,7 @@ class Tuning:
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            subresult = enumerate.outer_product(sequences)
+            subresult = _enumerate.outer_product(sequences)
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
         result.sort()
