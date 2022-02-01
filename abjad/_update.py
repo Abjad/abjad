@@ -12,8 +12,7 @@ from . import iterate as iterate_
 from . import math
 from . import timespan as _timespan
 from .duration import Duration, Multiplier, Offset
-from .indicators.MetronomeMark import MetronomeMark
-from .indicators.TimeSignature import TimeSignature
+from .indicators import MetronomeMark, TimeSignature
 from .obgc import OnBeatGraceContainer
 from .parentage import Parentage
 from .score import AfterGraceContainer, BeforeGraceContainer

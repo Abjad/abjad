@@ -11,7 +11,7 @@ import uqbar
 INDENT = 4 * " "
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(slots=True)
 class FormatSpecification:
     """
     Format specification.

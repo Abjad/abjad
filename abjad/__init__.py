@@ -66,47 +66,50 @@ from .exceptions import (
 from .format import FormatSpecification, storage
 from .get import Descendants, Lineage
 from .illustrators import illustrate
-from .indicators.Arpeggio import Arpeggio
-from .indicators.Articulation import Articulation
-from .indicators.BarLine import BarLine
-from .indicators.BeamCount import BeamCount
-from .indicators.BendAfter import BendAfter
-from .indicators.BreathMark import BreathMark
-from .indicators.Clef import Clef, StaffPosition
-from .indicators.ColorFingering import ColorFingering
-from .indicators.Fermata import Fermata
-from .indicators.Glissando import Glissando
-from .indicators.KeyCluster import KeyCluster
-from .indicators.KeySignature import KeySignature
-from .indicators.LaissezVibrer import LaissezVibrer
-from .indicators.MarginMarkup import MarginMarkup
-from .indicators.MetronomeMark import MetronomeMark
-from .indicators.Mode import Mode
-from .indicators.Ottava import Ottava
-from .indicators.RehearsalMark import RehearsalMark
-from .indicators.Repeat import Repeat
-from .indicators.RepeatTie import RepeatTie
-from .indicators.StaffChange import StaffChange
-from .indicators.StartBeam import StartBeam
-from .indicators.StartGroup import StartGroup
-from .indicators.StartHairpin import StartHairpin
-from .indicators.StartMarkup import StartMarkup
-from .indicators.StartPhrasingSlur import StartPhrasingSlur
-from .indicators.StartPianoPedal import StartPianoPedal
-from .indicators.StartSlur import StartSlur
-from .indicators.StartTextSpan import StartTextSpan
-from .indicators.StartTrillSpan import StartTrillSpan
-from .indicators.StemTremolo import StemTremolo
-from .indicators.StopBeam import StopBeam
-from .indicators.StopGroup import StopGroup
-from .indicators.StopHairpin import StopHairpin
-from .indicators.StopPhrasingSlur import StopPhrasingSlur
-from .indicators.StopPianoPedal import StopPianoPedal
-from .indicators.StopSlur import StopSlur
-from .indicators.StopTextSpan import StopTextSpan
-from .indicators.StopTrillSpan import StopTrillSpan
-from .indicators.Tie import Tie
-from .indicators.TimeSignature import TimeSignature
+from .indicators import (
+    Arpeggio,
+    Articulation,
+    BarLine,
+    BeamCount,
+    BendAfter,
+    BreathMark,
+    Clef,
+    ColorFingering,
+    Fermata,
+    Glissando,
+    KeyCluster,
+    KeySignature,
+    LaissezVibrer,
+    MarginMarkup,
+    MetronomeMark,
+    Mode,
+    Ottava,
+    RehearsalMark,
+    Repeat,
+    RepeatTie,
+    StaffChange,
+    StaffPosition,
+    StartBeam,
+    StartGroup,
+    StartHairpin,
+    StartMarkup,
+    StartPhrasingSlur,
+    StartPianoPedal,
+    StartSlur,
+    StartTextSpan,
+    StartTrillSpan,
+    StemTremolo,
+    StopBeam,
+    StopGroup,
+    StopHairpin,
+    StopPhrasingSlur,
+    StopPianoPedal,
+    StopSlur,
+    StopTextSpan,
+    StopTrillSpan,
+    Tie,
+    TimeSignature,
+)
 from .instruments import (
     Accordion,
     AltoFlute,
@@ -554,7 +557,6 @@ __all__ = [
     "StopTextSpan",
     "StopTrillSpan",
     "String",
-    "StringContactPoint",
     "StringNumber",
     "StringOrchestraScoreTemplate",
     "StringQuartetScoreTemplate",

@@ -3,7 +3,7 @@ import typing
 from . import _inspect
 from . import get as _get
 from . import iterate as iterate_
-from .indicators.StartTrillSpan import StartTrillSpan
+from .indicators import StartTrillSpan
 from .instruments import Instrument
 from .pitch.PitchRange import PitchRange
 from .pitch.pitches import NamedPitch, Pitch
@@ -240,7 +240,7 @@ def transpose_from_sounding_pitch(argument) -> None:
         if start_trill_span is not None:
             pitch = start_trill_span.pitch
             pitch = interval.transpose(pitch)
-            start_trill_span._pitch = pitch
+            start_trill_span.pitch = pitch
 
 
 def transpose_from_written_pitch(argument) -> None:
@@ -299,4 +299,4 @@ def transpose_from_written_pitch(argument) -> None:
         if start_trill_span is not None:
             pitch = start_trill_span.pitch
             pitch = interval.transpose(pitch)
-            start_trill_span._pitch = pitch
+            start_trill_span.pitch = pitch

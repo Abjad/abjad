@@ -181,7 +181,7 @@ class Block:
         return "\n".join(self._get_format_pieces(tag=tag))
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(slots=True)
 class LilyPondFile:
     r"""
     LilyPond file.

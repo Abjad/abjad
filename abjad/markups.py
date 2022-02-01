@@ -7,12 +7,11 @@ import typing
 
 from . import enums as _enums
 from . import math as _math
-from . import new as _new
 from . import overrides as _overrides
 from . import string as _string
 
 
-@dataclasses.dataclass(order=True, unsafe_hash=True)
+@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
 class Markup:
     r"""
     LilyPond markup.
@@ -319,6 +318,7 @@ class Markup:
     string: str
     direction: typing.Union[int, _enums.VerticalAlignment, None] = None
     tweaks: typing.Optional[_overrides.TweakInterface] = None
+    _annotation: typing.Any = dataclasses.field(default=None, init=False, repr=False)
 
     def __post_init__(self):
         self._annotation = None
@@ -328,14 +328,6 @@ class Markup:
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     _is_dataclass = True
-
-    _private_attributes_to_copy = ("_tweaks",)
-
-    def __copy__(self, *arguments) -> "Markup":
-        """
-        Copies markup.
-        """
-        return _new.new(self)
 
     # TODO: remove eventually
     def __str__(self) -> str:

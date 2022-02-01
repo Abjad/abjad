@@ -23,29 +23,31 @@ from .. import markups as _markups
 from ..bind import attach
 from ..duration import Duration, Multiplier
 from ..dynamic import Dynamic
-from ..indicators.Articulation import Articulation
-from ..indicators.BarLine import BarLine
-from ..indicators.Clef import Clef
-from ..indicators.Glissando import Glissando
-from ..indicators.KeySignature import KeySignature
-from ..indicators.MetronomeMark import MetronomeMark
-from ..indicators.StartBeam import StartBeam
-from ..indicators.StartGroup import StartGroup
-from ..indicators.StartHairpin import StartHairpin
-from ..indicators.StartPhrasingSlur import StartPhrasingSlur
-from ..indicators.StartSlur import StartSlur
-from ..indicators.StartTextSpan import StartTextSpan
-from ..indicators.StartTrillSpan import StartTrillSpan
-from ..indicators.StemTremolo import StemTremolo
-from ..indicators.StopBeam import StopBeam
-from ..indicators.StopGroup import StopGroup
-from ..indicators.StopHairpin import StopHairpin
-from ..indicators.StopPhrasingSlur import StopPhrasingSlur
-from ..indicators.StopSlur import StopSlur
-from ..indicators.StopTextSpan import StopTextSpan
-from ..indicators.StopTrillSpan import StopTrillSpan
-from ..indicators.Tie import Tie
-from ..indicators.TimeSignature import TimeSignature
+from ..indicators import (
+    Articulation,
+    BarLine,
+    Clef,
+    Glissando,
+    KeySignature,
+    MetronomeMark,
+    StartBeam,
+    StartGroup,
+    StartHairpin,
+    StartPhrasingSlur,
+    StartSlur,
+    StartTextSpan,
+    StartTrillSpan,
+    StemTremolo,
+    StopBeam,
+    StopGroup,
+    StopHairpin,
+    StopPhrasingSlur,
+    StopSlur,
+    StopTextSpan,
+    StopTrillSpan,
+    Tie,
+    TimeSignature,
+)
 from ..lilypondfile import Block, LilyPondFile
 from ..lyconst import drums
 from ..lyenv import (

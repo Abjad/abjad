@@ -3,13 +3,15 @@ import typing
 from . import _inspect
 from . import iterate as iterate_
 from .duration import Duration
-from .indicators.Clef import Clef
-from .indicators.StartBeam import StartBeam
-from .indicators.StartHairpin import StartHairpin
-from .indicators.StartTextSpan import StartTextSpan
-from .indicators.StopBeam import StopBeam
-from .indicators.StopHairpin import StopHairpin
-from .indicators.StopTextSpan import StopTextSpan
+from .indicators import (
+    Clef,
+    StartBeam,
+    StartHairpin,
+    StartTextSpan,
+    StopBeam,
+    StopHairpin,
+    StopTextSpan,
+)
 from .instruments import Instrument
 from .iterpitches import sounding_pitches_are_in_range
 from .parentage import Parentage

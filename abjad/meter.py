@@ -12,7 +12,7 @@ from . import format as _format
 from . import markups, math, mutate, rhythmtrees
 from . import timespan as _timespan
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
-from .indicators.TimeSignature import TimeSignature
+from .indicators import TimeSignature
 from .lilypondfile import LilyPondFile
 from .new import new
 from .parentage import Parentage

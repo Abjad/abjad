@@ -492,7 +492,7 @@ class Duration(quicktions.Fraction):
 
     @staticmethod
     def _initialize_from_lilypond_duration_string(duration_string):
-        numeric_body_strings = [str(2 ** n) for n in range(8)]
+        numeric_body_strings = [str(2**n) for n in range(8)]
         other_body_strings = [r"\\breve", r"\\longa", r"\\maxima"]
         body_strings = numeric_body_strings + other_body_strings
         body_strings = "|".join(body_strings)
@@ -516,7 +516,7 @@ class Duration(quicktions.Fraction):
         rational = body_duration
         for n in range(len(dots_string)):
             exponent = n + 1
-            denominator = 2 ** exponent
+            denominator = 2**exponent
             multiplier = quicktions.Fraction(1, denominator)
             addend = multiplier * body_duration
             rational += addend
@@ -1291,7 +1291,7 @@ class Multiplier(Duration):
         """
         assert isinstance(dot_count, int), repr(dot_count)
         assert 0 <= dot_count, repr(dot_count)
-        denominator = 2 ** dot_count
+        denominator = 2**dot_count
         numerator = 2 ** (dot_count + 1) - 1
         return Multiplier(numerator, denominator)
 

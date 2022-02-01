@@ -6,8 +6,7 @@ from . import format as _format
 from . import lilypondformat as _lilypondformat
 from . import typings
 from .duration import Duration
-from .indicators.StaffChange import StaffChange
-from .indicators.TimeSignature import TimeSignature
+from .indicators import StaffChange, TimeSignature
 from .markups import Markup
 from .parentage import Parentage
 from .pitch.pitches import NamedPitch
@@ -1309,18 +1308,18 @@ def effective(
         >>> for note in abjad.select(staff).notes():
         ...     note, abjad.get.effective(note, abjad.StartTextSpan)
         ...
-        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
 
         >>> for note in abjad.select(staff).notes():
         ...     note, abjad.get.effective(note, abjad.StopTextSpan)
         ...
         (Note("c'4"), None)
         (Note("d'4"), None)
-        (Note("e'4"), StopTextSpan(command='\\stopTextSpan'))
-        (Note("f'4"), StopTextSpan(command='\\stopTextSpan'))
+        (Note("e'4"), StopTextSpan(command='\\stopTextSpan', leak=None))
+        (Note("f'4"), StopTextSpan(command='\\stopTextSpan', leak=None))
 
         >>> attributes = {'parameter': 'TEXT_SPANNER'}
         >>> for note in abjad.select(staff).notes():
@@ -1331,18 +1330,17 @@ def effective(
         ...         )
         ...     note, indicator
         ...
-        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("e'4"), StopTextSpan(command='\\stopTextSpan'))
-        (Note("f'4"), StopTextSpan(command='\\stopTextSpan'))
+        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("e'4"), StopTextSpan(command='\\stopTextSpan', leak=None))
+        (Note("f'4"), StopTextSpan(command='\\stopTextSpan', leak=None))
 
     ..  container:: example
 
-        REGRESSION. Matching start-beam and stop-beam indicators work
-        correctly:
+        REGRESSION. Matching start-beam and stop-beam indicators work correctly:
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8 g'4 a'4")
-        >>> abjad.attach(abjad.StartBeam(), voice[0])
+        >>> abjad.attach(abjad.StartBeam(direction=None, tweaks=None), voice[0])
         >>> abjad.attach(abjad.StopBeam(), voice[3])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1366,12 +1364,12 @@ def effective(
         ...     start_beam = abjad.get.effective(leaf, abjad.StartBeam)
         ...     stop_beam = abjad.get.effective(leaf, abjad.StopBeam)
         ...     leaf, start_beam, stop_beam
-        (Note("c'8"), StartBeam(), None)
-        (Note("d'8"), StartBeam(), None)
-        (Note("e'8"), StartBeam(), None)
-        (Note("f'8"), StartBeam(), StopBeam())
-        (Note("g'4"), StartBeam(), StopBeam())
-        (Note("a'4"), StartBeam(), StopBeam())
+        (Note("c'8"), StartBeam(direction=None, tweaks=None), None)
+        (Note("d'8"), StartBeam(direction=None, tweaks=None), None)
+        (Note("e'8"), StartBeam(direction=None, tweaks=None), None)
+        (Note("f'8"), StartBeam(direction=None, tweaks=None), StopBeam(leak=None))
+        (Note("g'4"), StartBeam(direction=None, tweaks=None), StopBeam(leak=None))
+        (Note("a'4"), StartBeam(direction=None, tweaks=None), StopBeam(leak=None))
 
         # TODO: make this work.
 
@@ -2352,10 +2350,10 @@ def indicators(
         Note("d'4")                    [Articulation(name='.', direction=None, tweaks=None)]
         <<<2>>>                        []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") [LilyPondLiteral('\\set fontSize = #-3', format_slot='opening')]
-        Chord("<e' g'>16")             [StartBeam(), LilyPondLiteral('\\slash', format_slot='opening'), StartSlur(), LilyPondLiteral('\\voiceOne', format_slot='opening'), Clef(name='alto', hide=False), Articulation(name='>', direction=None, tweaks=None)]
+        Chord("<e' g'>16")             [StartBeam(direction=None, tweaks=None), LilyPondLiteral('\\slash', format_slot='opening'), StartSlur(direction=None, tweaks=None), LilyPondLiteral('\\voiceOne', format_slot='opening'), Clef(name='alto', hide=False), Articulation(name='>', direction=None, tweaks=None)]
         Note("gs'16")                  [Articulation(name='.', direction=None, tweaks=None)]
         Note("a'16")                   [Articulation(name='.', direction=None, tweaks=None)]
-        Note("as'16")                  [StopBeam(), StopSlur(), Articulation(name='.', direction=None, tweaks=None)]
+        Note("as'16")                  [StopBeam(leak=None), StopSlur(leak=None), Articulation(name='.', direction=None, tweaks=None)]
         Voice("e'4", name='Music_Voice') []
         Note("e'4")                    [LilyPondLiteral('\\voiceTwo', format_slot='opening'), Articulation(name='.', direction=None, tweaks=None)]
         Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='absolute_before'), Articulation(name='.', direction=None, tweaks=None)]
