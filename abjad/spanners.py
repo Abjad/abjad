@@ -3,48 +3,26 @@ Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
 """
 import typing
 
-from . import _iterate, enums
+from . import _iterate
+from . import bind as _bind
+from . import duration as _duration
+from . import dynamic as _dynamic
+from . import enums as _enums
+from . import indicators as _indicators
 from . import iterate as iterate_
-from . import typings
-from .bind import attach, detach
-from .duration import Duration
-from .dynamic import Dynamic
-from .indicators import (
-    BeamCount,
-    BendAfter,
-    Glissando,
-    Ottava,
-    RepeatTie,
-    StartBeam,
-    StartGroup,
-    StartHairpin,
-    StartPhrasingSlur,
-    StartPianoPedal,
-    StartSlur,
-    StartTextSpan,
-    StartTrillSpan,
-    StopBeam,
-    StopGroup,
-    StopHairpin,
-    StopPhrasingSlur,
-    StopPianoPedal,
-    StopSlur,
-    StopTextSpan,
-    StopTrillSpan,
-    Tie,
-)
-from .overrides import IndexedTweakManager, LilyPondLiteral, TweakInterface, tweak
-from .parentage import Parentage
-from .score import Chord, Component, MultimeasureRest, Note, Rest, Skip, Staff
-from .selection import DurationInequality, Selection, select
-from .sequence import Sequence
-from .tag import Tag
+from . import overrides as _overrides
+from . import parentage as _parentage
+from . import score as _score
+from . import selection as _selection
+from . import sequence as _sequence
+from . import tag as _tag
+from . import typings as _typings
 
 
 def _apply_tweaks(argument, tweaks, i=None, total=None):
     if not tweaks:
         return
-    manager = tweak(argument)
+    manager = _overrides.tweak(argument)
     for item in tweaks:
         if isinstance(item, tuple):
             assert len(item) == 2
@@ -55,24 +33,24 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
                 continue
         else:
             manager_ = item
-        assert isinstance(manager_, TweakInterface)
+        assert isinstance(manager_, _overrides.TweakInterface)
         tuples = manager_._get_attribute_tuples()
         for attribute, value in tuples:
             setattr(manager, attribute, value)
 
 
 def beam(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
     beam_lone_notes: bool = None,
     beam_rests: typing.Optional[bool] = True,
-    durations: typing.Sequence[Duration] = None,
-    selector=lambda _: select(_).leaves(),
+    durations: typing.Sequence[_duration.Duration] = None,
+    selector=lambda _: _selection.select(_).leaves(),
     span_beam_count: int = None,
-    start_beam: StartBeam = None,
-    stemlet_length: typings.Number = None,
-    stop_beam: StopBeam = None,
-    tag: Tag = None,
+    start_beam: _indicators.StartBeam = None,
+    stemlet_length: _typings.Number = None,
+    stop_beam: _indicators.StopBeam = None,
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches beam indicators.
@@ -103,10 +81,10 @@ def beam(
     original_leaves = iterate_.leaves(argument)
     original_leaves = list(original_leaves)
 
-    silent_prototype = (MultimeasureRest, Rest, Skip)
+    silent_prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
 
     def _is_beamable(argument, beam_rests=False):
-        if isinstance(argument, (Chord, Note)):
+        if isinstance(argument, (_score.Chord, _score.Note)):
             if 0 < argument.written_duration.flag_count:
                 return True
         if beam_rests and isinstance(argument, silent_prototype):
@@ -128,19 +106,19 @@ def beam(
         if this_index + 1 == that_index:
             run.append(leaf)
         else:
-            selection = Selection(run)
+            selection = _selection.Selection(run)
             runs.append(selection)
             run = [leaf]
     if run:
-        selection = Selection(run)
+        selection = _selection.Selection(run)
         runs.append(selection)
-    runs_ = Selection(runs)
-    assert isinstance(runs_, Selection), repr(runs_)
+    runs_ = _selection.Selection(runs)
+    assert isinstance(runs_, _selection.Selection), repr(runs_)
     # print(runs, "RRR", len(runs))
     # print()
     if not beam_lone_notes:
         result = runs_.nontrivial()
-        assert isinstance(result, Selection), repr(result)
+        assert isinstance(result, _selection.Selection), repr(result)
         runs_ = result
     for run in runs_:
         # print(run, "RRR")
@@ -148,33 +126,33 @@ def beam(
             continue
         start_leaf = run[0]
         stop_leaf = run[-1]
-        start_beam_ = start_beam or StartBeam()
-        stop_beam_ = stop_beam or StopBeam()
-        detach(StartBeam, start_leaf)
-        attach(start_beam_, start_leaf, tag=tag)
-        detach(StopBeam, stop_leaf)
-        attach(stop_beam_, stop_leaf, tag=tag)
+        start_beam_ = start_beam or _indicators.StartBeam()
+        stop_beam_ = stop_beam or _indicators.StopBeam()
+        _bind.detach(_indicators.StartBeam, start_leaf)
+        _bind.attach(start_beam_, start_leaf, tag=tag)
+        _bind.detach(_indicators.StopBeam, stop_leaf)
+        _bind.attach(stop_beam_, stop_leaf, tag=tag)
 
         if stemlet_length is None:
             continue
-        staff = Parentage(start_leaf).get(Staff)
+        staff = _parentage.Parentage(start_leaf).get(_score.Staff)
         lilypond_type = getattr(staff, "lilypond_type", "Staff")
         string = rf"\override {lilypond_type}.Stem.stemlet-length = {stemlet_length}"
-        literal = LilyPondLiteral(string)
+        literal = _overrides.LilyPondLiteral(string)
         for indicator in start_leaf._get_indicators():
             if indicator == literal:
                 break
         else:
-            attach(literal, start_leaf, tag=tag)
-        staff = Parentage(stop_leaf).get(Staff)
+            _bind.attach(literal, start_leaf, tag=tag)
+        staff = _parentage.Parentage(stop_leaf).get(_score.Staff)
         lilypond_type = getattr(staff, "lilypond_type", "Staff")
         string = rf"\revert {lilypond_type}.Stem.stemlet-length"
-        literal = LilyPondLiteral(string)
+        literal = _overrides.LilyPondLiteral(string)
         for indicator in stop_leaf._get_indicators():
             if indicator == literal:
                 break
         else:
-            attach(literal, stop_leaf, tag=tag)
+            _bind.attach(literal, stop_leaf, tag=tag)
 
     if not durations:
         return
@@ -197,12 +175,12 @@ def beam(
         return previous, next_
 
     span_beam_count = span_beam_count or 1
-    durations = [Duration(_) for _ in durations]
+    durations = [_duration.Duration(_) for _ in durations]
     leaf_durations = [_._get_duration() for _ in original_leaves]
-    leaf_durations_ = Sequence(leaf_durations)
+    leaf_durations_ = _sequence.Sequence(leaf_durations)
     parts = leaf_durations_.partition_by_weights(durations, overhang=True)
     part_counts = [len(_) for _ in parts]
-    original_leaves = Sequence(original_leaves)
+    original_leaves = _sequence.Sequence(original_leaves)
     parts = original_leaves.partition_by_counts(part_counts)
     total_parts = len(parts)
     for i, part in enumerate(parts):
@@ -219,16 +197,16 @@ def beam(
                 continue
             left = flag_count
             right = flag_count
-            beam_count = BeamCount(left, right)
-            attach(beam_count, first_leaf, tag=tag)
+            beam_count = _indicators.BeamCount(left, right)
+            _bind.attach(beam_count, first_leaf, tag=tag)
             continue
         if _is_beamable(first_leaf, beam_rests=False):
             if is_first_part:
                 left = 0
             else:
                 left = span_beam_count
-            beam_count = BeamCount(left, flag_count)
-            attach(beam_count, first_leaf, tag=tag)
+            beam_count = _indicators.BeamCount(left, flag_count)
+            _bind.attach(beam_count, first_leaf, tag=tag)
         last_leaf = part[-1]
         if _is_beamable(last_leaf, beam_rests=False):
             flag_count = last_leaf.written_duration.flag_count
@@ -254,8 +232,8 @@ def beam(
                 else:
                     left = flag_count
                     right = min(previous, flag_count)
-            beam_count = BeamCount(left, right)
-            attach(beam_count, last_leaf, tag=tag)
+            beam_count = _indicators.BeamCount(left, right)
+            _bind.attach(beam_count, last_leaf, tag=tag)
 
         # TODO: eventually remove middle leaf beam counts?
         for middle_leaf in part[1:-1]:
@@ -282,13 +260,13 @@ def beam(
             else:
                 left = min(previous, flag_count)
                 right = flag_count
-            beam_count = BeamCount(left, right)
-            attach(beam_count, middle_leaf, tag=tag)
+            beam_count = _indicators.BeamCount(left, right)
+            _bind.attach(beam_count, middle_leaf, tag=tag)
 
 
 def glissando(
     argument,
-    *tweaks: IndexedTweakManager,
+    *tweaks: _overrides.IndexedTweakManager,
     allow_repeats: bool = None,
     allow_ties: bool = None,
     hide_middle_note_heads: bool = None,
@@ -299,7 +277,7 @@ def glissando(
     right_broken: bool = None,
     right_broken_show_next: bool = None,
     style: str = None,
-    tag: Tag = None,
+    tag: _tag.Tag = None,
     zero_padding: bool = False,
 ):
     r"""
@@ -978,7 +956,7 @@ def glissando(
             }
 
     """
-    tag = tag or Tag()
+    tag = tag or _tag.Tag()
 
     if right_broken_show_next and not right_broken:
         raise Exception("set right_broken_show_next only when right_broken is true.")
@@ -995,47 +973,47 @@ def glissando(
     def _next_leaf_changes_current_pitch(leaf):
         next_leaf = _iterate._get_leaf(leaf, 1)
         if (
-            isinstance(leaf, Note)
-            and isinstance(next_leaf, Note)
+            isinstance(leaf, _score.Note)
+            and isinstance(next_leaf, _score.Note)
             and leaf.written_pitch == next_leaf.written_pitch
         ):
             return False
         elif (
-            isinstance(leaf, Chord)
-            and isinstance(next_leaf, Chord)
+            isinstance(leaf, _score.Chord)
+            and isinstance(next_leaf, _score.Chord)
             and leaf.written_pitches == next_leaf.written_pitches
         ):
             return False
         return True
 
     def _parenthesize_leaf(leaf):
-        if isinstance(leaf, Note):
+        if isinstance(leaf, _score.Note):
             leaf.note_head.is_parenthesized = True
-        elif isinstance(leaf, Chord):
+        elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
                 note_head.is_parenthesized = True
 
     def _previous_leaf_changes_current_pitch(leaf):
         previous_leaf = _iterate._get_leaf(leaf, -1)
         if (
-            isinstance(leaf, Note)
-            and isinstance(previous_leaf, Note)
+            isinstance(leaf, _score.Note)
+            and isinstance(previous_leaf, _score.Note)
             and leaf.written_pitch == previous_leaf.written_pitch
         ):
             return False
         elif (
-            isinstance(leaf, Chord)
-            and isinstance(previous_leaf, Chord)
+            isinstance(leaf, _score.Chord)
+            and isinstance(previous_leaf, _score.Chord)
             and leaf.written_pitches == previous_leaf.written_pitches
         ):
             return False
         return True
 
-    should_hide_stem = Selection()
+    should_hide_stem = _selection.Selection()
     if hide_stem_selector is not None:
         should_hide_stem = hide_stem_selector(argument)
 
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     total = len(leaves) - 1
     for i, leaf in enumerate(leaves):
         if leaf is not leaves[0]:
@@ -1044,13 +1022,13 @@ def glissando(
                     _parenthesize_leaf(leaf)
         should_attach_glissando = False
         deactivate_glissando = None
-        if leaf._has_indicator(BendAfter):
+        if leaf._has_indicator(_indicators.BendAfter):
             pass
         elif leaf is leaves[-1]:
             if right_broken is True:
                 should_attach_glissando = True
                 deactivate_glissando = True
-        elif not isinstance(leaf, (Chord, Note)):
+        elif not isinstance(leaf, (_score.Chord, _score.Note)):
             pass
         elif allow_repeats and allow_ties:
             should_attach_glissando = True
@@ -1068,8 +1046,8 @@ def glissando(
                 r"\once \override Dots.transparent = ##t",
                 r"\once \override Stem.transparent = ##t",
             ]
-            literal = LilyPondLiteral(strings)
-            attach(literal, leaf, tag=tag.append(Tag("abjad.glissando(-1)")))
+            literal = _overrides.LilyPondLiteral(strings)
+            _bind.attach(literal, leaf, tag=tag.append(_tag.Tag("abjad.glissando(-1)")))
         if hide_middle_note_heads:
             if leaf is not leaves[0]:
                 should_attach_glissando = False
@@ -1087,20 +1065,20 @@ def glissando(
                             r"\override Stem.transparent = ##t",
                         ]
                     )
-                literal = LilyPondLiteral(strings)
+                literal = _overrides.LilyPondLiteral(strings)
                 if right_broken is True:
-                    attach(
+                    _bind.attach(
                         literal,
                         leaf,
-                        tag=tag.append(Tag("abjad.glissando(0)"))
-                        .append(Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
-                        .append(Tag("RIGHT_BROKEN")),
+                        tag=tag.append(_tag.Tag("abjad.glissando(0)"))
+                        .append(_tag.Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
+                        .append(_tag.Tag("RIGHT_BROKEN")),
                     )
                 else:
-                    attach(
+                    _bind.attach(
                         literal,
                         leaf,
-                        tag=tag.append(Tag("abjad.glissando(1)")),
+                        tag=tag.append(_tag.Tag("abjad.glissando(1)")),
                     )
             elif left_broken and leaf is leaves[0]:
                 strings = [
@@ -1115,23 +1093,23 @@ def glissando(
                             r"\override Stem.transparent = ##t",
                         ]
                     )
-                literal = LilyPondLiteral(strings)
-                attach(
+                literal = _overrides.LilyPondLiteral(strings)
+                _bind.attach(
                     literal,
                     leaf,
-                    tag=tag.append(Tag("abjad.glissando(2)"))
-                    .append(Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
-                    .append(Tag("LEFT_BROKEN")),
+                    tag=tag.append(_tag.Tag("abjad.glissando(2)"))
+                    .append(_tag.Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
+                    .append(_tag.Tag("LEFT_BROKEN")),
                 )
             elif left_broken and leaf is leaves[1]:
                 string = r"\override NoteColumn.glissando-skip = ##t"
-                literal = LilyPondLiteral(string)
-                attach(
+                literal = _overrides.LilyPondLiteral(string)
+                _bind.attach(
                     literal,
                     leaf,
-                    tag=tag.append(Tag("abjad.glissando(3)"))
-                    .append(Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
-                    .append(Tag("LEFT_BROKEN")),
+                    tag=tag.append(_tag.Tag("abjad.glissando(3)"))
+                    .append(_tag.Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
+                    .append(_tag.Tag("LEFT_BROKEN")),
                 )
             if leaf is leaves[-1]:
                 strings = [
@@ -1146,47 +1124,49 @@ def glissando(
                     )
                 if right_broken:
                     deactivate_glissando = True
-                    literal = LilyPondLiteral(strings)
-                    attach(
+                    literal = _overrides.LilyPondLiteral(strings)
+                    _bind.attach(
                         literal,
                         leaf,
                         deactivate=False,
-                        tag=tag.append(Tag("abjad.glissando(4)"))
-                        .append(Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
-                        .append(Tag("RIGHT_BROKEN")),
+                        tag=tag.append(_tag.Tag("abjad.glissando(4)"))
+                        .append(_tag.Tag("HIDE_TO_JOIN_BROKEN_SPANNERS"))
+                        .append(_tag.Tag("RIGHT_BROKEN")),
                     )
                     if right_broken_show_next:
-                        literal = LilyPondLiteral(strings, format_slot="after")
-                        attach(
+                        literal = _overrides.LilyPondLiteral(
+                            strings, format_slot="after"
+                        )
+                        _bind.attach(
                             literal,
                             leaf,
                             deactivate=True,
-                            tag=tag.append(Tag("abjad.glissando(5)"))
-                            .append(Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
-                            .append(Tag("RIGHT_BROKEN_SHOW_NEXT")),
+                            tag=tag.append(_tag.Tag("abjad.glissando(5)"))
+                            .append(_tag.Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
+                            .append(_tag.Tag("RIGHT_BROKEN_SHOW_NEXT")),
                         )
                 else:
-                    literal = LilyPondLiteral(strings)
-                    attach(
+                    literal = _overrides.LilyPondLiteral(strings)
+                    _bind.attach(
                         literal,
                         leaf,
-                        tag=tag.append(Tag("abjad.glissando(6)")),
+                        tag=tag.append(_tag.Tag("abjad.glissando(6)")),
                     )
         if should_attach_glissando:
-            glissando = Glissando(zero_padding=zero_padding)
+            glissando = _indicators.Glissando(zero_padding=zero_padding)
             _apply_tweaks(glissando, tweaks, i=i, total=total)
-            tag_ = tag.append(Tag("abjad.glissando(7)"))
+            tag_ = tag.append(_tag.Tag("abjad.glissando(7)"))
             if deactivate_glissando:
-                tag_ = tag_.append(Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
-            attach(glissando, leaf, deactivate=deactivate_glissando, tag=tag_)
+                tag_ = tag_.append(_tag.Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
+            _bind.attach(glissando, leaf, deactivate=deactivate_glissando, tag=tag_)
 
 
 def hairpin(
     descriptor: str,
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches hairpin indicators.
@@ -1285,20 +1265,20 @@ def hairpin(
 
     """
     indicators: typing.List = []
-    start_dynamic: typing.Optional[Dynamic]
-    hairpin: typing.Optional[StartHairpin]
-    stop_dynamic: typing.Optional[Dynamic]
-    known_shapes = StartHairpin("<").known_shapes
+    start_dynamic: typing.Optional[_dynamic.Dynamic]
+    hairpin: typing.Optional[_indicators.StartHairpin]
+    stop_dynamic: typing.Optional[_dynamic.Dynamic]
+    known_shapes = _indicators.StartHairpin("<").known_shapes
     if isinstance(descriptor, str):
         for string in descriptor.split():
             if string in known_shapes:
-                hairpin = StartHairpin(string)
+                hairpin = _indicators.StartHairpin(string)
                 indicators.append(hairpin)
             elif string == "!":
-                stop_hairpin = StopHairpin()
+                stop_hairpin = _indicators.StopHairpin()
                 indicators.append(stop_hairpin)
             else:
-                dynamic = Dynamic(string)
+                dynamic = _dynamic.Dynamic(string)
                 indicators.append(dynamic)
     else:
         assert isinstance(descriptor, list), repr(descriptor)
@@ -1306,12 +1286,12 @@ def hairpin(
 
     start_dynamic, hairpin, stop_dynamic = None, None, None
     if len(indicators) == 1:
-        if isinstance(indicators[0], Dynamic):
+        if isinstance(indicators[0], _dynamic.Dynamic):
             start_dynamic = indicators[0]
         else:
             hairpin = indicators[0]
     elif len(indicators) == 2:
-        if isinstance(indicators[0], Dynamic):
+        if isinstance(indicators[0], _dynamic.Dynamic):
             start_dynamic = indicators[0]
             hairpin = indicators[1]
         else:
@@ -1323,29 +1303,29 @@ def hairpin(
         raise Exception(indicators)
 
     if start_dynamic is not None:
-        assert isinstance(start_dynamic, Dynamic), repr(start_dynamic)
+        assert isinstance(start_dynamic, _dynamic.Dynamic), repr(start_dynamic)
 
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
 
     if start_dynamic is not None:
-        attach(start_dynamic, start_leaf, tag=tag)
+        _bind.attach(start_dynamic, start_leaf, tag=tag)
     if hairpin is not None:
-        attach(hairpin, start_leaf, tag=tag)
+        _bind.attach(hairpin, start_leaf, tag=tag)
     if stop_dynamic is not None:
-        attach(stop_dynamic, stop_leaf, tag=tag)
+        _bind.attach(stop_dynamic, stop_leaf, tag=tag)
 
 
 def horizontal_bracket(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    start_group: StartGroup = None,
-    stop_group: StopGroup = None,
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    start_group: _indicators.StartGroup = None,
+    stop_group: _indicators.StopGroup = None,
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches group indicators.
@@ -1371,24 +1351,24 @@ def horizontal_bracket(
             }
 
     """
-    start_group = start_group or StartGroup()
-    stop_group = stop_group or StopGroup()
+    start_group = start_group or _indicators.StartGroup()
+    stop_group = stop_group or _indicators.StopGroup()
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_group, start_leaf, tag=tag)
-    attach(stop_group, stop_leaf, tag=tag)
+    _bind.attach(start_group, start_leaf, tag=tag)
+    _bind.attach(stop_group, stop_leaf, tag=tag)
 
 
 def ottava(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    start_ottava: Ottava = Ottava(n=1),
-    stop_ottava: Ottava = Ottava(n=0, format_slot="after"),
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    start_ottava: _indicators.Ottava = _indicators.Ottava(n=1),
+    stop_ottava: _indicators.Ottava = _indicators.Ottava(n=0, format_slot="after"),
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches ottava indicators.
@@ -1414,24 +1394,24 @@ def ottava(
             }
 
     """
-    assert isinstance(start_ottava, Ottava), repr(start_ottava)
-    assert isinstance(stop_ottava, Ottava), repr(stop_ottava)
+    assert isinstance(start_ottava, _indicators.Ottava), repr(start_ottava)
+    assert isinstance(stop_ottava, _indicators.Ottava), repr(stop_ottava)
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_ottava, start_leaf, tag=tag)
-    attach(stop_ottava, stop_leaf, tag=tag)
+    _bind.attach(start_ottava, start_leaf, tag=tag)
+    _bind.attach(stop_ottava, stop_leaf, tag=tag)
 
 
 def phrasing_slur(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    start_phrasing_slur: StartPhrasingSlur = None,
-    stop_phrasing_slur: StopPhrasingSlur = None,
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    start_phrasing_slur: _indicators.StartPhrasingSlur = None,
+    stop_phrasing_slur: _indicators.StopPhrasingSlur = None,
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches phrasing slur indicators.
@@ -1458,26 +1438,26 @@ def phrasing_slur(
 
 
     """
-    start_phrasing_slur = StartPhrasingSlur()
-    stop_phrasing_slur = StopPhrasingSlur()
+    start_phrasing_slur = _indicators.StartPhrasingSlur()
+    stop_phrasing_slur = _indicators.StopPhrasingSlur()
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    start_phrasing_slur = start_phrasing_slur or StartPhrasingSlur()
-    stop_phrasing_slur = stop_phrasing_slur or StopPhrasingSlur()
-    attach(start_phrasing_slur, start_leaf, tag=tag)
-    attach(stop_phrasing_slur, stop_leaf, tag=tag)
+    start_phrasing_slur = start_phrasing_slur or _indicators.StartPhrasingSlur()
+    stop_phrasing_slur = stop_phrasing_slur or _indicators.StopPhrasingSlur()
+    _bind.attach(start_phrasing_slur, start_leaf, tag=tag)
+    _bind.attach(stop_phrasing_slur, stop_leaf, tag=tag)
 
 
 def piano_pedal(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    start_piano_pedal: StartPianoPedal = None,
-    stop_piano_pedal: StopPianoPedal = None,
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    start_piano_pedal: _indicators.StartPianoPedal = None,
+    stop_piano_pedal: _indicators.StopPianoPedal = None,
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches piano pedal indicators.
@@ -1510,24 +1490,24 @@ def piano_pedal(
             }
 
     """
-    start_piano_pedal = start_piano_pedal or StartPianoPedal()
-    stop_piano_pedal = stop_piano_pedal or StopPianoPedal()
+    start_piano_pedal = start_piano_pedal or _indicators.StartPianoPedal()
+    stop_piano_pedal = stop_piano_pedal or _indicators.StopPianoPedal()
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_piano_pedal, start_leaf, tag=tag)
-    attach(stop_piano_pedal, stop_leaf, tag=tag)
+    _bind.attach(start_piano_pedal, start_leaf, tag=tag)
+    _bind.attach(stop_piano_pedal, stop_leaf, tag=tag)
 
 
 def slur(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    start_slur: StartSlur = None,
-    stop_slur: StopSlur = None,
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    start_slur: _indicators.StartSlur = None,
+    stop_slur: _indicators.StopSlur = None,
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches slur indicators.
@@ -1554,24 +1534,24 @@ def slur(
 
 
     """
-    start_slur = start_slur or StartSlur()
-    stop_slur = stop_slur or StopSlur()
+    start_slur = start_slur or _indicators.StartSlur()
+    stop_slur = stop_slur or _indicators.StopSlur()
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_slur, start_leaf, tag=tag)
-    attach(stop_slur, stop_leaf, tag=tag)
+    _bind.attach(start_slur, start_leaf, tag=tag)
+    _bind.attach(stop_slur, stop_leaf, tag=tag)
 
 
 def text_spanner(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    start_text_span: StartTextSpan = None,
-    stop_text_span: StopTextSpan = None,
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    start_text_span: _indicators.StartTextSpan = None,
+    stop_text_span: _indicators.StopTextSpan = None,
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches text span indicators.
@@ -1696,24 +1676,26 @@ def text_spanner(
             }
 
     """
-    start_text_span = start_text_span or StartTextSpan()
-    stop_text_span = stop_text_span or StopTextSpan()
+    start_text_span = start_text_span or _indicators.StartTextSpan()
+    stop_text_span = stop_text_span or _indicators.StopTextSpan()
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_text_span, start_leaf, tag=tag)
-    attach(stop_text_span, stop_leaf, tag=tag)
+    _bind.attach(start_text_span, start_leaf, tag=tag)
+    _bind.attach(stop_text_span, stop_leaf, tag=tag)
 
 
 def tie(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    direction: enums.VerticalAlignment = None,
-    repeat: typing.Union[bool, typings.IntegerPair, DurationInequality] = None,
-    selector=lambda _: select(_).leaves(),
-    tag: Tag = None,
+    direction: _enums.VerticalAlignment = None,
+    repeat: typing.Union[
+        bool, _typings.IntegerPair, _selection.DurationInequality
+    ] = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches tie indicators.
@@ -1899,45 +1881,45 @@ def tie(
 
     """
     if repeat in (None, False):
-        inequality = DurationInequality("<", 0)
+        inequality = _selection.DurationInequality("<", 0)
     elif repeat is True:
-        inequality = DurationInequality(">=", 0)
-    elif isinstance(repeat, DurationInequality):
+        inequality = _selection.DurationInequality(">=", 0)
+    elif isinstance(repeat, _selection.DurationInequality):
         inequality = repeat
     else:
         assert isinstance(repeat, tuple) and len(repeat) == 2, repr(repeat)
-        inequality = DurationInequality(">=", repeat)
-    assert isinstance(inequality, DurationInequality), repr(inequality)
+        inequality = _selection.DurationInequality(">=", repeat)
+    assert isinstance(inequality, _selection.DurationInequality), repr(inequality)
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
-    assert isinstance(leaves, Selection), repr(leaves)
+    leaves = _selection.Selection(argument).leaves()
+    assert isinstance(leaves, _selection.Selection), repr(leaves)
     if len(leaves) < 2:
         raise Exception(f"must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
-        if not isinstance(leaf, (Note, Chord)):
+        if not isinstance(leaf, (_score.Note, _score.Chord)):
             raise Exception(rf"tie note or chord (not {leaf!r}).")
-    for current_leaf, next_leaf in Sequence(leaves).nwise():
+    for current_leaf, next_leaf in _sequence.Sequence(leaves).nwise():
         duration = current_leaf._get_duration()
         if inequality(duration):
-            detach(Tie, current_leaf)
-            detach(RepeatTie, next_leaf)
-            repeat_tie = RepeatTie(direction=direction)
-            attach(repeat_tie, next_leaf, tag=tag)
+            _bind.detach(_indicators.Tie, current_leaf)
+            _bind.detach(_indicators.RepeatTie, next_leaf)
+            repeat_tie = _indicators.RepeatTie(direction=direction)
+            _bind.attach(repeat_tie, next_leaf, tag=tag)
         else:
-            detach(Tie, current_leaf)
-            detach(RepeatTie, next_leaf)
-            tie = Tie(direction=direction)
-            attach(tie, current_leaf, tag=tag)
+            _bind.detach(_indicators.Tie, current_leaf)
+            _bind.detach(_indicators.RepeatTie, next_leaf)
+            tie = _indicators.Tie(direction=direction)
+            _bind.attach(tie, current_leaf, tag=tag)
 
 
 def trill_spanner(
-    argument: typing.Union[Component, Selection],
+    argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: select(_).leaves(),
-    start_trill_span: StartTrillSpan = None,
-    stop_trill_span: StopTrillSpan = None,
-    tag: Tag = None,
+    selector=lambda _: _selection.select(_).leaves(),
+    start_trill_span: _indicators.StartTrillSpan = None,
+    stop_trill_span: _indicators.StopTrillSpan = None,
+    tag: _tag.Tag = None,
 ) -> None:
     r"""
     Attaches trill spanner indicators.
@@ -1963,12 +1945,12 @@ def trill_spanner(
             }
 
     """
-    start_trill_span = start_trill_span or StartTrillSpan()
-    stop_trill_span = stop_trill_span or StopTrillSpan()
+    start_trill_span = start_trill_span or _indicators.StartTrillSpan()
+    stop_trill_span = stop_trill_span or _indicators.StopTrillSpan()
     assert callable(selector)
     argument = selector(argument)
-    leaves = Selection(argument).leaves()
+    leaves = _selection.Selection(argument).leaves()
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    attach(start_trill_span, start_leaf, tag=tag)
-    attach(stop_trill_span, stop_leaf, tag=tag)
+    _bind.attach(start_trill_span, start_leaf, tag=tag)
+    _bind.attach(stop_trill_span, stop_leaf, tag=tag)

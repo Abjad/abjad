@@ -7,7 +7,7 @@ import unicodedata
 import roman
 import six
 
-from . import enums
+from . import enums as _enums
 
 
 class String(str):
@@ -1365,10 +1365,10 @@ class String(str):
 
         """
         try:
-            alignment = enums.VerticalAlignment.from_expr(argument)
+            alignment = _enums.VerticalAlignment.from_expr(argument)
         except Exception:
             raise ValueError(repr(argument))
-        if alignment is enums.Center:
+        if alignment is _enums.Center:
             raise ValueError(repr(argument))
         return String(alignment)
 
@@ -1393,10 +1393,10 @@ class String(str):
 
         """
         try:
-            alignment = enums.VerticalAlignment.from_expr(argument)
+            alignment = _enums.VerticalAlignment.from_expr(argument)
         except Exception:
             raise ValueError(repr(argument))
-        if alignment is enums.Center:
+        if alignment is _enums.Center:
             raise ValueError(repr(argument))
         return String(alignment._get_lilypond_format())
 
@@ -1620,7 +1620,7 @@ class String(str):
         if argument is None:
             return None
         try:
-            alignment = enums.VerticalAlignment.from_expr(argument)
+            alignment = _enums.VerticalAlignment.from_expr(argument)
         except Exception:
             raise ValueError(repr(argument))
         return String(alignment)
@@ -1672,7 +1672,7 @@ class String(str):
         if argument is None:
             return None
         try:
-            alignment = enums.VerticalAlignment.from_expr(argument)
+            alignment = _enums.VerticalAlignment.from_expr(argument)
         except Exception:
             raise ValueError(repr(argument))
         return String(alignment._get_lilypond_format())
@@ -1680,7 +1680,7 @@ class String(str):
     @staticmethod
     def to_tridirectional_ordinal_constant(
         argument,
-    ) -> typing.Union[None, enums.VerticalAlignment, "String"]:
+    ) -> typing.Union[None, _enums.VerticalAlignment, "String"]:
         """
         Changes ``argument`` to tridirectional ordinal constant.
 
@@ -1715,7 +1715,7 @@ class String(str):
         """
         if argument is None:
             return None
-        return enums.VerticalAlignment.from_expr(argument)
+        return _enums.VerticalAlignment.from_expr(argument)
 
     def to_upper_camel_case(self) -> "String":
         """

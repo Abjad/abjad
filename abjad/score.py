@@ -11,18 +11,17 @@ from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
 from . import format as _format
+from . import lyconst as _lyconst
+from . import lyproxy as _lyproxy
 from . import markups as _markups
 from . import math as _math
+from . import new as _new
 from . import overrides as _overrides
+from . import pitch as _pitch
 from . import tag as _tag
 from . import timespan as _timespan
-from . import typings
-from .lyconst import drums
-from .lyproxy import LilyPondContext
-from .new import new
-from .pitch.pitches import NamedPitch
-from .pitch.segments import PitchSegment
-from .typedcollections import TypedList
+from . import typedcollections as _typedcollections
+from . import typings as _typings
 
 
 class Component:
@@ -105,10 +104,10 @@ class Component:
             if not wrapper.annotation:
                 continue
             wrapper_ = copy.copy(wrapper)
-            new(wrapper_, component=component)
+            _new.new(wrapper_, component=component)
         for wrapper in self._get_indicators(unwrap=False):
             wrapper_ = copy.copy(wrapper)
-            new(wrapper_, component=component)
+            _new.new(wrapper_, component=component)
         return component
 
     def __getnewargs__(self):
@@ -560,7 +559,7 @@ class Leaf(Component):
             self._lilypond_setting_name_manager = copy.copy(_overrides.setting(leaf))
         for wrapper in leaf._wrappers:
             wrapper_ = copy.copy(wrapper)
-            new(wrapper_, component=self)
+            _new.new(wrapper_, component=self)
 
     def _format_after_grace_body(self):
         result = []
@@ -2688,7 +2687,7 @@ class Chord(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: typings.DurationTyping = None,
+        multiplier: _typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -2726,7 +2725,7 @@ class Chord(Leaf):
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
         elif len(arguments) == 0:
-            written_pitches = [NamedPitch(_) for _ in [0, 4, 7]]
+            written_pitches = [_pitch.NamedPitch(_) for _ in [0, 4, 7]]
             written_duration = _duration.Duration(1, 4)
         else:
             raise ValueError(f"can not initialize chord from {arguments!r}.")
@@ -2746,7 +2745,7 @@ class Chord(Leaf):
                 is_forced = None
             if not is_parenthesized:
                 is_parenthesized = None
-            if written_pitch not in drums:
+            if written_pitch not in _lyconst.drums:
                 note_head = NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
@@ -2780,7 +2779,7 @@ class Chord(Leaf):
 
     def __getnewargs__(
         self,
-    ) -> typing.Tuple[PitchSegment, _duration.Duration]:
+    ) -> typing.Tuple[_pitch.PitchSegment, _duration.Duration]:
         """
         Gets new chord arguments.
 
@@ -2944,7 +2943,7 @@ class Chord(Leaf):
         Leaf.written_duration.fset(self, argument)
 
     @property
-    def written_pitches(self) -> PitchSegment:
+    def written_pitches(self) -> _pitch.PitchSegment:
         """
         Written pitches in chord.
 
@@ -2979,9 +2978,9 @@ class Chord(Leaf):
 
         Set written pitches with any iterable.
         """
-        return PitchSegment(
+        return _pitch.PitchSegment(
             items=(note_head.written_pitch for note_head in self.note_heads),
-            item_class=NamedPitch,
+            item_class=_pitch.NamedPitch,
         )
 
     @written_pitches.setter
@@ -3312,9 +3311,11 @@ class Context(Container):
         Returns LilyPond context instance.
         """
         try:
-            lilypond_context = LilyPondContext(name=self.lilypond_type)
+            lilypond_context = _lyproxy.LilyPondContext(name=self.lilypond_type)
         except AssertionError:
-            lilypond_context = LilyPondContext(name=self._default_lilypond_type)
+            lilypond_context = _lyproxy.LilyPondContext(
+                name=self._default_lilypond_type
+            )
         return lilypond_context
 
     @property
@@ -3452,7 +3453,7 @@ class MultimeasureRest(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: typings.DurationTyping = None,
+        multiplier: _typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
         if len(arguments) == 0:
@@ -3655,7 +3656,7 @@ class NoteHead:
             strings = self.tweaks._list_format_contributions(directed=False)
             result.extend(strings)
         written_pitch = self.written_pitch
-        if isinstance(written_pitch, NamedPitch):
+        if isinstance(written_pitch, _pitch.NamedPitch):
             written_pitch = written_pitch.simplify()
         kernel = str(written_pitch)
         if self.is_forced:
@@ -3904,7 +3905,7 @@ class NoteHead:
         self._is_parenthesized = argument
 
     @property
-    def named_pitch(self) -> NamedPitch:
+    def named_pitch(self) -> _pitch.NamedPitch:
         """
         Gets named pitch.
 
@@ -4001,7 +4002,7 @@ class NoteHead:
         return self._tweaks
 
     @property
-    def written_pitch(self) -> NamedPitch:
+    def written_pitch(self) -> _pitch.NamedPitch:
         """
         Gets and sets written pitch of note-head.
 
@@ -4021,7 +4022,7 @@ class NoteHead:
 
     @written_pitch.setter
     def written_pitch(self, argument):
-        written_pitch = NamedPitch(argument)
+        written_pitch = _pitch.NamedPitch(argument)
         self._written_pitch = written_pitch
         if self.alternative is not None:
             self.alternative[0].written_pitch = written_pitch
@@ -4064,12 +4065,12 @@ class DrumNoteHead(NoteHead):
             is_parenthesized=is_parenthesized,
             tweaks=tweaks,
         )
-        assert str(written_pitch) in drums
-        drum_pitch = drums[str(written_pitch)]
+        assert str(written_pitch) in _lyconst.drums
+        drum_pitch = _lyconst.drums[str(written_pitch)]
         self._written_pitch = drum_pitch
 
 
-class NoteHeadList(TypedList):
+class NoteHeadList(_typedcollections.TypedList):
     r"""
     Note-head list.
 
@@ -4103,7 +4104,9 @@ class NoteHeadList(TypedList):
     ### INITIALIZER ###
 
     def __init__(self, items=None):
-        TypedList.__init__(self, item_class=NoteHead, keep_sorted=True, items=items)
+        _typedcollections.TypedList.__init__(
+            self, item_class=NoteHead, keep_sorted=True, items=items
+        )
 
     ### PRIVATE METHODS ###
 
@@ -4228,7 +4231,7 @@ class NoteHeadList(TypedList):
         Returns note-head.
         """
         result = []
-        pitch = NamedPitch(pitch)
+        pitch = _pitch.NamedPitch(pitch)
         for note_head in self:
             if note_head.written_pitch == pitch:
                 result.append(note_head)
@@ -4358,7 +4361,7 @@ class Note(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: typings.DurationTyping = None,
+        multiplier: _typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -4394,13 +4397,13 @@ class Note(Leaf):
         elif len(arguments) == 2:
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
-            written_pitch = NamedPitch("C4")
+            written_pitch = _pitch.NamedPitch("C4")
             written_duration = _duration.Duration(1, 4)
         else:
             raise ValueError("can not initialize note from {arguments!r}.")
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if written_pitch is not None:
-            if written_pitch not in drums:
+            if written_pitch not in _lyconst.drums:
                 self.note_head = NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
@@ -4535,7 +4538,7 @@ class Note(Leaf):
 
     # TODO: change Note always to have a note head
     @property
-    def written_pitch(self) -> typing.Optional[NamedPitch]:
+    def written_pitch(self) -> typing.Optional[_pitch.NamedPitch]:
         """
         Gets and sets written pitch.
 
@@ -4580,7 +4583,7 @@ class Note(Leaf):
             if self.note_head is None:
                 self.note_head = NoteHead(self, written_pitch=None)
             else:
-                pitch = NamedPitch(argument)
+                pitch = _pitch.NamedPitch(argument)
                 self.note_head.written_pitch = pitch
 
     ### PUBLIC METHODS ###
@@ -4642,7 +4645,7 @@ class Rest(Leaf):
         written_duration=None,
         *,
         language: str = "english",
-        multiplier: typings.DurationTyping = None,
+        multiplier: _typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
         original_input = written_duration
@@ -4842,7 +4845,7 @@ class Skip(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: typings.DurationTyping = None,
+        multiplier: _typings.DurationTyping = None,
         tag: _tag.Tag = None,
     ) -> None:
         input_leaf = None
@@ -6315,7 +6318,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: typings.DurationTyping, components, *, tag: _tag.Tag = None
+        duration: _typings.DurationTyping, components, *, tag: _tag.Tag = None
     ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``components``.

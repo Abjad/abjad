@@ -1,37 +1,36 @@
 import copy
 
-from . import deprecated, enums, get
+from . import bind as _bind
+from . import deprecated as _deprecated
+from . import duration as _duration
+from . import enums as _enums
+from . import get as _get
+from . import indicators as _indicators
 from . import iterate as iterate_
+from . import lilypondfile as _lilypondfile
+from . import lilypondformat as _lilypondformat
+from . import makers as _makers
 from . import markups as _markups
-from . import overrides
+from . import metricmodulation as _metricmodulation
+from . import new as _new
+from . import overrides as _overrides
+from . import pitch as _pitch
 from . import score as _score
 from . import selection as _selection
+from . import spanners as _spanners
 from . import timespan as _timespan
-from .bind import attach
-from .duration import Duration
-from .indicators import Clef, StaffChange, TimeSignature
-from .lilypondfile import Block, LilyPondFile
-from .lilypondformat import lilypond
-from .makers import NoteMaker
-from .metricmodulation import MetricModulation
-from .new import new
-from .pitch.PitchRange import PitchRange
-from .pitch.pitches import NamedPitch
-from .pitch.segments import PitchClassSegment, PitchSegment
-from .pitch.sets import PitchClassSet, PitchSet
-from .spanners import glissando
 
 
 def _illustrate_component(component):
-    block = Block(name="score")
+    block = _lilypondfile.Block(name="score")
     block.items.append(component)
-    lilypond_file = LilyPondFile([block])
+    lilypond_file = _lilypondfile.LilyPondFile([block])
     return lilypond_file
 
 
 def _illustrate_markup(markup):
-    lilypond_file = LilyPondFile()
-    markup = new(markup, direction=None)
+    lilypond_file = _lilypondfile.LilyPondFile()
+    markup = _new.new(markup, direction=None)
     lilypond_file.items.append(markup)
     return lilypond_file
 
@@ -42,40 +41,40 @@ def _illustrate_markup_maker(argument, **keywords):
 
 
 def _illustrate_metric_modulation(metric_modulation):
-    lilypond_file = LilyPondFile()
+    lilypond_file = _lilypondfile.LilyPondFile()
     markup = metric_modulation._get_markup()
     lilypond_file.items.append(markup)
     return lilypond_file
 
 
 def _illustrate_pitch_class_set(set_):
-    chord = _score.Chord(set_, Duration(1))
+    chord = _score.Chord(set_, _duration.Duration(1))
     voice = _score.Voice([chord], name="Voice")
     staff = _score.Staff([voice], name="Staff")
     score = _score.Score([staff], name="Score")
-    lilypond_file = LilyPondFile([score])
+    lilypond_file = _lilypondfile.LilyPondFile([score])
     return lilypond_file
 
 
 def _illustrate_pitch_range(pitch_range):
-    start_pitch_clef = Clef.from_pitches([pitch_range.start_pitch])
-    stop_pitch_clef = Clef.from_pitches([pitch_range.stop_pitch])
+    start_pitch_clef = _indicators.Clef.from_pitches([pitch_range.start_pitch])
+    stop_pitch_clef = _indicators.Clef.from_pitches([pitch_range.stop_pitch])
     start_note = _score.Note(pitch_range.start_pitch, 1)
     stop_note = _score.Note(pitch_range.stop_pitch, 1)
     if start_pitch_clef == stop_pitch_clef:
-        if start_pitch_clef == Clef("bass"):
+        if start_pitch_clef == _indicators.Clef("bass"):
             bass_staff = _score.Staff(name="Bass_Staff")
-            attach(Clef("bass"), bass_staff)
+            _bind.attach(_indicators.Clef("bass"), bass_staff)
             bass_staff.extend([start_note, stop_note])
             bass_leaves = _selection.Selection(bass_staff).leaves()
-            glissando(bass_leaves)
+            _spanners.glissando(bass_leaves)
             score = _score.Score([bass_staff], name="Score")
         else:
             treble_staff = _score.Staff(name="Treble_Staff")
-            attach(Clef("treble"), treble_staff)
+            _bind.attach(_indicators.Clef("treble"), treble_staff)
             treble_staff.extend([start_note, stop_note])
             treble_leaves = _selection.Selection(treble_staff).leaves()
-            glissando(treble_leaves)
+            _spanners.glissando(treble_leaves)
             score = _score.Score([treble_staff], name="Score")
     else:
         score = make_piano_score()
@@ -83,32 +82,32 @@ def _illustrate_pitch_range(pitch_range):
         bass_staff.extend([start_note, stop_note])
         treble_staff.extend("s1 s1")
         bass_leaves = _selection.Selection(bass_staff).leaves()
-        glissando(bass_leaves)
-        attach(StaffChange("Treble_Staff"), bass_staff[1])
-        attach(Clef("treble"), treble_staff[0])
-        attach(Clef("bass"), bass_staff[0])
+        _spanners.glissando(bass_leaves)
+        _bind.attach(_indicators.StaffChange("Treble_Staff"), bass_staff[1])
+        _bind.attach(_indicators.Clef("treble"), treble_staff[0])
+        _bind.attach(_indicators.Clef("bass"), bass_staff[0])
     for leaf in iterate_.leaves(score):
         leaf.multiplier = (1, 4)
-    overrides.override(score).BarLine.stencil = False
-    overrides.override(score).SpanBar.stencil = False
-    overrides.override(score).Glissando.thickness = 2
-    overrides.override(score).TimeSignature.stencil = False
-    lilypond_file = LilyPondFile([score])
+    _overrides.override(score).BarLine.stencil = False
+    _overrides.override(score).SpanBar.stencil = False
+    _overrides.override(score).Glissando.thickness = 2
+    _overrides.override(score).TimeSignature.stencil = False
+    lilypond_file = _lilypondfile.LilyPondFile([score])
     return lilypond_file
 
 
 def _illustrate_pitch_segment(segment):
-    named_pitches = [NamedPitch(x) for x in segment]
-    maker = NoteMaker()
+    named_pitches = [_pitch.NamedPitch(x) for x in segment]
+    maker = _makers.NoteMaker()
     notes = maker(named_pitches, [1])
     score = make_piano_score(leaves=notes)
-    overrides.override(score).TimeSignature.stencil = False
-    overrides.override(score).BarLine.stencil = False
-    overrides.override(score).SpanBar.stencil = False
+    _overrides.override(score).TimeSignature.stencil = False
+    _overrides.override(score).BarLine.stencil = False
+    _overrides.override(score).SpanBar.stencil = False
     for leaf in iterate_.leaves(score):
         leaf.multiplier = (1, 8)
-    overrides.override(score).Rest.transparent = True
-    lilypond_file = LilyPondFile([score])
+    _overrides.override(score).Rest.transparent = True
+    lilypond_file = _lilypondfile.LilyPondFile([score])
     return lilypond_file
 
 
@@ -120,11 +119,11 @@ def _illustrate_pitch_set(set_):
         else:
             upper.append(pitch)
     if upper:
-        upper = _score.Chord(upper, Duration(1))
+        upper = _score.Chord(upper, _duration.Duration(1))
     else:
         upper = _score.Skip((1, 1))
     if lower:
-        lower = _score.Chord(lower, Duration(1))
+        lower = _score.Chord(lower, _duration.Duration(1))
     else:
         lower = _score.Skip((1, 1))
     upper_voice = _score.Voice([upper], name="Treble_Voice")
@@ -137,16 +136,16 @@ def _illustrate_pitch_set(set_):
         name="Piano_Staff",
     )
     score = _score.Score([staff_group], name="Score")
-    lilypond_file = LilyPondFile([score])
+    lilypond_file = _lilypondfile.LilyPondFile([score])
     return lilypond_file
 
 
 def _illustrate_pitch_class_segment(
-    segment, markup_direction=enums.Up, figure_name=None
+    segment, markup_direction=_enums.Up, figure_name=None
 ):
     notes = []
     for item in segment:
-        note = _score.Note(item, Duration(1, 8))
+        note = _score.Note(item, _duration.Duration(1, 8))
         notes.append(note)
     markup = None
     if isinstance(figure_name, str):
@@ -155,8 +154,8 @@ def _illustrate_pitch_class_segment(
         markup = figure_name
     if markup is not None:
         direction = markup_direction
-        markup = new(markup, direction=direction)
-        attach(markup, notes[0])
+        markup = _new.new(markup, direction=direction)
+        _bind.attach(markup, notes[0])
     voice = _score.Voice(notes, name="Voice")
     staff = _score.Staff([voice], name="Staff")
     score = _score.Score([staff], name="Score")
@@ -180,12 +179,12 @@ def _illustrate_pitch_class_segment(
     system-system-spacing.padding = 10
     top-markup-spacing.padding = 4
 }"""
-    deprecated.add_final_bar_line(score)
+    _deprecated.add_final_bar_line(score)
     string = r"\override Score.BarLine.transparent = ##f"
-    command = overrides.LilyPondLiteral(string, "after")
+    command = _overrides.LilyPondLiteral(string, "after")
     last_leaf = _selection.Selection(score).leaves()[-1]
-    attach(command, last_leaf)
-    lilypond_file = LilyPondFile([preamble, score])
+    _bind.attach(command, last_leaf)
+    lilypond_file = _lilypondfile.LilyPondFile([preamble, score])
     return lilypond_file
 
 
@@ -198,13 +197,13 @@ _class_to_method = dict(
     [
         (_score.Component, _illustrate_component),
         (_markups.Markup, _illustrate_markup),
-        (MetricModulation, _illustrate_metric_modulation),
+        (_metricmodulation.MetricModulation, _illustrate_metric_modulation),
         (_timespan.OffsetCounter, _illustrate_markup_maker),
-        (PitchRange, _illustrate_pitch_range),
-        (PitchClassSet, _illustrate_pitch_class_set),
-        (PitchSegment, _illustrate_pitch_segment),
-        (PitchClassSegment, _illustrate_pitch_class_segment),
-        (PitchSet, _illustrate_pitch_set),
+        (_pitch.PitchRange, _illustrate_pitch_range),
+        (_pitch.PitchClassSet, _illustrate_pitch_class_set),
+        (_pitch.PitchSegment, _illustrate_pitch_segment),
+        (_pitch.PitchClassSegment, _illustrate_pitch_class_segment),
+        (_pitch.PitchSet, _illustrate_pitch_set),
         (_timespan.Timespan, _illustrate_timespan),
         (_timespan.TimespanList, _illustrate_markup_maker),
     ]
@@ -220,18 +219,18 @@ def attach_markup_struts(lilypond_file):
     These transparent markup struts force LilyPond's cropping to preserve whitespace.
     """
     rhythmic_staff = lilypond_file[_score.Score][-1]
-    first_leaf = get.leaf(rhythmic_staff, 0)
-    markup = _markups.Markup(r"\markup I", direction=enums.Up)
-    attach(markup, first_leaf)
-    overrides.tweak(markup).staff_padding = 11
-    overrides.tweak(markup).transparent = "##t"
-    duration = get.duration(rhythmic_staff)
-    if Duration(6, 4) < duration:
-        last_leaf = get.leaf(rhythmic_staff, -1)
-        markup = _markups.Markup(r"\markup I", direction=enums.Up)
-        attach(markup, last_leaf)
-        overrides.tweak(markup).staff_padding = 18
-        overrides.tweak(markup).transparent = "##t"
+    first_leaf = _get.leaf(rhythmic_staff, 0)
+    markup = _markups.Markup(r"\markup I", direction=_enums.Up)
+    _bind.attach(markup, first_leaf)
+    _overrides.tweak(markup).staff_padding = 11
+    _overrides.tweak(markup).transparent = "##t"
+    duration = _get.duration(rhythmic_staff)
+    if _duration.Duration(6, 4) < duration:
+        last_leaf = _get.leaf(rhythmic_staff, -1)
+        markup = _markups.Markup(r"\markup I", direction=_enums.Up)
+        _bind.attach(markup, last_leaf)
+        _overrides.tweak(markup).staff_padding = 18
+        _overrides.tweak(markup).transparent = "##t"
 
 
 def illustrate(item, **keywords):
@@ -369,7 +368,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
 
     """
     leaves = leaves or []
-    lowest_treble_pitch = NamedPitch(lowest_treble_pitch)
+    lowest_treble_pitch = _pitch.NamedPitch(lowest_treble_pitch)
     treble_staff = _score.Staff(name="Treble_Staff")
     bass_staff = _score.Staff(name="Bass_Staff")
     staff_group = _score.StaffGroup(
@@ -380,7 +379,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     score = _score.Score(name="Score")
     score.append(staff_group)
     for leaf in leaves:
-        markups = get.indicators(leaf, _markups.Markup)
+        markups = _get.indicators(leaf, _markups.Markup)
         written_duration = leaf.written_duration
         if isinstance(leaf, _score.Note):
             if leaf.written_pitch < lowest_treble_pitch:
@@ -414,16 +413,16 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             bass_leaf = copy.copy(leaf)
         for markup in markups:
             markup_copy = copy.copy(markup)
-            if markup.direction in (enums.Up, None):
-                attach(markup_copy, treble_leaf)
+            if markup.direction in (_enums.Up, None):
+                _bind.attach(markup_copy, treble_leaf)
             else:
-                attach(markup_copy, bass_leaf)
+                _bind.attach(markup_copy, bass_leaf)
         treble_staff.append(treble_leaf)
         bass_staff.append(bass_leaf)
     if 0 < len(treble_staff):
-        attach(Clef("treble"), treble_staff[0])
+        _bind.attach(_indicators.Clef("treble"), treble_staff[0])
     if 0 < len(bass_staff):
-        attach(Clef("bass"), bass_staff[0])
+        _bind.attach(_indicators.Clef("bass"), bass_staff[0])
     return score
 
 
@@ -432,16 +431,16 @@ def selection(selection, time_signatures=None, *, includes=None):
     Wraps ``selection`` in LilyPond file for doc examples.
     """
     if time_signatures is None:
-        duration = get.duration(selection)
-        time_signature = TimeSignature(duration)
-        attach(time_signature, _selection.Selection(selection).leaf(0))
+        duration = _get.duration(selection)
+        time_signature = _indicators.TimeSignature(duration)
+        _bind.attach(time_signature, _selection.Selection(selection).leaf(0))
     else:
         leaves = _selection.Selection(selection).leaves(grace=False)
         parts = leaves.partition_by_durations(time_signatures)
         assert len(parts) == len(time_signatures)
         for time_signature, part in zip(time_signatures, parts):
-            time_signature = TimeSignature(time_signature)
-            attach(time_signature, _selection.Selection(part).leaf(0))
+            time_signature = _indicators.TimeSignature(time_signature)
+            _bind.attach(time_signature, _selection.Selection(part).leaf(0))
     staff = _score.Staff(selection, name="Staff")
     score = _score.Score([staff], name="Score")
     items = []
@@ -459,7 +458,7 @@ def selection(selection, time_signatures=None, *, includes=None):
 """
     items.append(string)
     items.append(score)
-    lilypond_file = LilyPondFile(items)
+    lilypond_file = _lilypondfile.LilyPondFile(items)
     return lilypond_file
 
 
@@ -472,29 +471,33 @@ def selection_to_score_markup_string(selection):
     staff.lilypond_type = "RhythmicStaff"
     staff.remove_commands.append("Time_signature_engraver")
     staff.remove_commands.append("Staff_symbol_engraver")
-    overrides.override(staff).Stem.direction = enums.Up
-    overrides.override(staff).Stem.length = 5
-    overrides.override(staff).TupletBracket.bracket_visibility = True
-    overrides.override(staff).TupletBracket.direction = enums.Up
-    overrides.override(staff).TupletBracket.minimum_length = 4
-    overrides.override(staff).TupletBracket.padding = 1.25
-    overrides.override(staff).TupletBracket.shorten_pair = "#'(-1 . -1.5)"
+    _overrides.override(staff).Stem.direction = _enums.Up
+    _overrides.override(staff).Stem.length = 5
+    _overrides.override(staff).TupletBracket.bracket_visibility = True
+    _overrides.override(staff).TupletBracket.direction = _enums.Up
+    _overrides.override(staff).TupletBracket.minimum_length = 4
+    _overrides.override(staff).TupletBracket.padding = 1.25
+    _overrides.override(staff).TupletBracket.shorten_pair = "#'(-1 . -1.5)"
     scheme = "#ly:spanner::set-spacing-rods"
-    overrides.override(staff).TupletBracket.springs_and_rods = scheme
-    overrides.override(staff).TupletNumber.font_size = 0
+    _overrides.override(staff).TupletBracket.springs_and_rods = scheme
+    _overrides.override(staff).TupletNumber.font_size = 0
     scheme = "#tuplet-number::calc-fraction-text"
-    overrides.override(staff).TupletNumber.text = scheme
-    overrides.setting(staff).tupletFullLength = True
-    layout_block = Block("layout")
+    _overrides.override(staff).TupletNumber.text = scheme
+    _overrides.setting(staff).tupletFullLength = True
+    layout_block = _lilypondfile.Block("layout")
     layout_block.items.append("indent = 0")
     layout_block.items.append("ragged-right = ##t")
     score = _score.Score([staff], name="Score")
-    overrides.override(score).SpacingSpanner.spacing_increment = 0.5
-    overrides.setting(score).proportionalNotationDuration = False
+    _overrides.override(score).SpacingSpanner.spacing_increment = 0.5
+    _overrides.setting(score).proportionalNotationDuration = False
     indent = 4 * " "
     strings = [r"\score", indent + "{"]
-    strings.extend([2 * indent + _ for _ in lilypond(score).split("\n")])
-    strings.extend([2 * indent + _ for _ in lilypond(layout_block).split("\n")])
+    strings.extend(
+        [2 * indent + _ for _ in _lilypondformat.lilypond(score).split("\n")]
+    )
+    strings.extend(
+        [2 * indent + _ for _ in _lilypondformat.lilypond(layout_block).split("\n")]
+    )
     strings.append(indent + "}")
     string = "\n".join(strings)
     return string

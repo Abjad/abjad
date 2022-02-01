@@ -4,7 +4,7 @@ import typing
 
 import quicktions
 
-from . import exceptions
+from . import exceptions as _exceptions
 from . import format as _format
 from . import math as _math
 
@@ -579,7 +579,7 @@ class Duration(quicktions.Fraction):
         Raises assignability error when duration is not assignable.
         """
         if not self.is_assignable:
-            raise exceptions.AssignabilityError
+            raise _exceptions.AssignabilityError
         binary_string = _math.integer_to_binary_string(self.numerator)
         digit_sum = sum([int(x) for x in list(binary_string)])
         dot_count = digit_sum - 1
@@ -938,7 +938,7 @@ class Duration(quicktions.Fraction):
         Raises assignability error when duration is not assignable.
         """
         if not self.is_assignable:
-            raise exceptions.AssignabilityError(self)
+            raise _exceptions.AssignabilityError(self)
         undotted_rational = self.equal_or_lesser_power_of_two
         if undotted_rational <= 1:
             undotted_duration_string = str(undotted_rational.denominator)

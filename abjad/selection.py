@@ -4,35 +4,21 @@ import itertools
 import operator
 import typing
 
-from . import _inspect, _iterate, enums
+from . import _inspect, _iterate
+from . import bind as _bind
+from . import cyclictuple as _cyclictuple
+from . import duration as _duration
+from . import enums as _enums
 from . import format as _format
-from . import math, typings
-from .bind import attach, detach
-from .cyclictuple import CyclicTuple
-from .duration import Duration, Offset
-from .indicators import Tie
-from .parentage import Parentage
-from .pattern import Pattern
-from .pitch.pitches import NamedPitch, NumberedPitch
-from .pitch.segments import PitchSegment
-from .pitch.sets import PitchSet
-from .ratio import Ratio
-from .score import (
-    AfterGraceContainer,
-    BeforeGraceContainer,
-    Chord,
-    Component,
-    Container,
-    Context,
-    Leaf,
-    MultimeasureRest,
-    Note,
-    Rest,
-    Skip,
-    Tuplet,
-    Voice,
-)
-from .sequence import Sequence
+from . import indicators as _indicators
+from . import math as _math
+from . import parentage as _parentage
+from . import pattern as _pattern
+from . import pitch as _pitch
+from . import ratio as _ratio
+from . import score as _score
+from . import sequence as _sequence
+from . import typings as _typings
 
 
 class Inequality:
@@ -72,12 +58,6 @@ class Inequality:
         Returns true or false.
         """
         raise NotImplementedError
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
 
     def __hash__(self) -> int:
         """
@@ -152,10 +132,10 @@ class DurationInequality(Inequality):
     ) -> None:
         Inequality.__init__(self, operator_string=operator_string)
         if duration is None:
-            duration = math.Infinity()
-        infinities = (math.Infinity(), math.NegativeInfinity())
+            duration = _math.Infinity()
+        infinities = (_math.Infinity(), _math.NegativeInfinity())
         if duration not in infinities:
-            duration = Duration(duration)
+            duration = _duration.Duration(duration)
             assert 0 <= duration
         self._duration = duration
         self._preprolated = preprolated
@@ -170,15 +150,26 @@ class DurationInequality(Inequality):
             duration = argument._get_preprolated_duration()
         else:
             try:
-                duration = Duration(argument)
+                duration = _duration.Duration(argument)
             except Exception:
                 duration = _inspect._get_duration(argument)
         return self._operator_function(duration, self.duration)
 
+    def __eq__(self, argument) -> bool:
+        """
+        Compares ``operator_string``, ``duration``.
+        """
+        if isinstance(argument, type(self)):
+            return (
+                self.operator_string == argument.operator_string
+                and self.duration == argument.duration
+            )
+        return False
+
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration(self) -> Duration:
+    def duration(self) -> _duration.Duration:
         """
         Gets duration.
         """
@@ -228,9 +219,9 @@ class LengthInequality(Inequality):
     def __init__(self, operator_string="<", length=None):
         Inequality.__init__(self, operator_string=operator_string)
         if length is None:
-            length = math.Infinity()
+            length = _math.Infinity()
         assert 0 <= length
-        infinities = (math.Infinity(), math.NegativeInfinity())
+        infinities = (_math.Infinity(), _math.NegativeInfinity())
         if length not in infinities:
             length = int(length)
         self._length = length
@@ -244,6 +235,17 @@ class LengthInequality(Inequality):
         Returns true or false.
         """
         return self._operator_function(len(argument), self.length)
+
+    def __eq__(self, argument) -> bool:
+        """
+        Compares ``operator_string``, ``length``.
+        """
+        if isinstance(argument, type(self)):
+            return (
+                self.operator_string == argument.operator_string
+                and self.length == argument.length
+            )
+        return False
 
     ### PUBLIC PROPERTIES ###
 
@@ -302,7 +304,7 @@ class PitchInequality:
         # only intersection is currently implemented
         if not isinstance(pitches, collections.abc.Iterable):
             pitches = [pitches]
-        pitches = PitchSet(items=pitches, item_class=NumberedPitch)
+        pitches = _pitch.PitchSet(items=pitches, item_class=_pitch.NumberedPitch)
         self._pitches = pitches
 
     ### SPECIAL METHODS ###
@@ -314,11 +316,24 @@ class PitchInequality:
         if not self.pitches:
             return False
         selection = Selection(argument)
-        pitch_set = PitchSet.from_selection(selection, item_class=NumberedPitch)
+        pitch_set = _pitch.PitchSet.from_selection(
+            selection, item_class=_pitch.NumberedPitch
+        )
         if self.operator_string == "&":
             return bool(self.pitches.intersection(pitch_set))
         else:
             raise NotImplementedError(f"implement {self.operator_string!r}.")
+
+    def __eq__(self, argument) -> bool:
+        """
+        Compares ``operator_string``, ``pitches``.
+        """
+        if isinstance(argument, type(self)):
+            return (
+                self.operator_string == argument.operator_string
+                and self.pitches == argument.pitches
+            )
+        return False
 
     ### PUBLIC PROPERTIES ###
 
@@ -374,7 +389,7 @@ class Selection(collections.abc.Sequence):
     def __init__(self, items=None, previous=None):
         if items is None:
             items = []
-        if isinstance(items, Component):
+        if isinstance(items, _score.Component):
             items = [items]
         items = tuple(items)
         self._check(items)
@@ -497,13 +512,13 @@ class Selection(collections.abc.Sequence):
 
     def _attach_tie_to_leaves(self):
         for leaf in self[:-1]:
-            detach(Tie, leaf)
-            attach(Tie(), leaf)
+            _bind.detach(_indicators.Tie, leaf)
+            _bind.attach(_indicators.Tie(), leaf)
 
     @staticmethod
     def _check(items):
         for item in items:
-            if not isinstance(item, (Component, Selection)):
+            if not isinstance(item, (_score.Component, Selection)):
                 message = "components / selections only:\n"
                 message += f"   {items!r}"
                 raise TypeError(message)
@@ -520,7 +535,7 @@ class Selection(collections.abc.Sequence):
         tail=None,
         trim=None,
     ):
-        prototype = prototype or Component
+        prototype = prototype or _score.Component
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         result = []
@@ -529,7 +544,7 @@ class Selection(collections.abc.Sequence):
         )
         components = list(generator)
         if components:
-            if trim in (True, enums.Left):
+            if trim in (True, _enums.Left):
                 components = Selection._trim_subresult(components, trim)
             if head is not None:
                 components = Selection._head_filter_subresult(components, head)
@@ -542,7 +557,7 @@ class Selection(collections.abc.Sequence):
         assert self.are_contiguous_logical_voice()
         new_components = []
         for component in self:
-            if isinstance(component, Container):
+            if isinstance(component, _score.Container):
                 new_component = component._copy_with_children()
             else:
                 new_component = component.__copy__()
@@ -551,7 +566,7 @@ class Selection(collections.abc.Sequence):
         return new_components
 
     def _get_component(self, prototype=None, n=0, recurse=True):
-        prototype = prototype or (Component,)
+        prototype = prototype or (_score.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         if 0 <= n:
@@ -607,7 +622,7 @@ class Selection(collections.abc.Sequence):
         Not composer-safe.
         """
         assert self.are_contiguous_same_parent()
-        assert isinstance(container, Container)
+        assert isinstance(container, _score.Container)
         assert not container
         components = []
         for component in self:
@@ -620,7 +635,7 @@ class Selection(collections.abc.Sequence):
         Not composer-safe.
         """
         assert self.are_contiguous_same_parent()
-        assert isinstance(container, Container)
+        assert isinstance(container, _score.Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._components.__setitem__(slice(start, start), [container])
@@ -631,14 +646,14 @@ class Selection(collections.abc.Sequence):
     def _head_filter_subresult(result, head):
         result_ = []
         for item in result:
-            if isinstance(item, Component):
+            if isinstance(item, _score.Component):
                 leaves = _iterate._get_logical_tie_leaves(item)
                 if head == (item is leaves[0]):
                     result_.append(item)
                 else:
                     pass
             elif isinstance(item, Selection):
-                if not all(isinstance(_, Component) for _ in item):
+                if not all(isinstance(_, _score.Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
@@ -660,7 +675,7 @@ class Selection(collections.abc.Sequence):
         current = component_1
         # do not include OnBeatGraceContainer here because
         # OnBeatGraceContainer is a proper container
-        grace_prototype = (AfterGraceContainer, BeforeGraceContainer)
+        grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
         while current is not None:
             sibling = _inspect._get_sibling_with_graces(current, 1)
             while (
@@ -679,15 +694,15 @@ class Selection(collections.abc.Sequence):
 
     @staticmethod
     def _is_immediate_child_of_outermost_voice(component):
-        parentage = Parentage(component)
-        context = parentage.get(Voice, -1) or parentage.get(Context)
+        parentage = _parentage.Parentage(component)
+        context = parentage.get(_score.Voice, -1) or parentage.get(_score.Context)
         if context is not None:
             return parentage.component._parent is context
         return None
 
     # TODO: remove this in favor of the abjad.iterpitches module;
     #       force users to initialize pitch segments expicitly after iteration.
-    def _pitch_segment(self) -> PitchSegment:
+    def _pitch_segment(self) -> _pitch.PitchSegment:
         pitches = []
         for leaf in _iterate._public_iterate_leaves(self, pitched=True):
             try:
@@ -698,7 +713,7 @@ class Selection(collections.abc.Sequence):
                 pitches.append(leaf.written_pitch)
             except AttributeError:
                 pass
-        return PitchSegment(items=pitches, item_class=NamedPitch)
+        return _pitch.PitchSegment(items=pitches, item_class=_pitch.NamedPitch)
 
     def _set_parents(self, new_parent):
         """
@@ -711,14 +726,14 @@ class Selection(collections.abc.Sequence):
     def _tail_filter_subresult(result, tail):
         result_ = []
         for item in result:
-            if isinstance(item, Component):
+            if isinstance(item, _score.Component):
                 leaves = _iterate._get_logical_tie_leaves(item)
                 if tail == (item is leaves[-1]):
                     result_.append(item)
                 else:
                     pass
             elif isinstance(item, Selection):
-                if not all(isinstance(_, Component) for _ in item):
+                if not all(isinstance(_, _score.Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
@@ -736,16 +751,16 @@ class Selection(collections.abc.Sequence):
 
     @staticmethod
     def _trim_subresult(result, trim):
-        assert trim in (True, enums.Left)
-        prototype = (MultimeasureRest, Rest, Skip)
+        assert trim in (True, _enums.Left)
+        prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
         result_ = []
         found_good_component = False
         for item in result:
-            if isinstance(item, Component):
+            if isinstance(item, _score.Component):
                 if not isinstance(item, prototype):
                     found_good_component = True
             elif isinstance(item, Selection):
-                if not all(isinstance(_, Component) for _ in item):
+                if not all(isinstance(_, _score.Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
                 for component in item:
@@ -758,17 +773,17 @@ class Selection(collections.abc.Sequence):
                 raise TypeError(item)
             if found_good_component:
                 result_.append(item)
-        if trim is enums.Left:
+        if trim is _enums.Left:
             result = Selection(result_)
         else:
             result__ = []
             found_good_component = False
             for item in reversed(result_):
-                if isinstance(item, Component):
+                if isinstance(item, _score.Component):
                     if not isinstance(item, prototype):
                         found_good_component = True
                 elif isinstance(item, Selection):
-                    if not all(isinstance(_, Component) for _ in item):
+                    if not all(isinstance(_, _score.Component) for _ in item):
                         raise NotImplementedError(item)
                     selection = []
                     for component in reversed(item):
@@ -891,7 +906,7 @@ class Selection(collections.abc.Sequence):
         """
         if not isinstance(self, collections.abc.Iterable):
             return False
-        prototype = prototype or (Component,)
+        prototype = prototype or (_score.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         assert isinstance(prototype, tuple)
@@ -902,12 +917,12 @@ class Selection(collections.abc.Sequence):
         first = self[0]
         if not isinstance(first, prototype):
             return False
-        first_parentage = Parentage(first)
+        first_parentage = _parentage.Parentage(first)
         first_logical_voice = first_parentage.logical_voice()
         first_root = first_parentage.root
         previous = first
         for current in self[1:]:
-            current_parentage = Parentage(current)
+            current_parentage = _parentage.Parentage(current)
             current_logical_voice = current_parentage.logical_voice()
             # false if wrong type of component found
             if not isinstance(current, prototype):
@@ -1013,7 +1028,7 @@ class Selection(collections.abc.Sequence):
             True
 
         """
-        prototype = prototype or (Component,)
+        prototype = prototype or (_score.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         assert isinstance(prototype, tuple)
@@ -1056,7 +1071,7 @@ class Selection(collections.abc.Sequence):
             True
 
         """
-        return all(isinstance(_, Leaf) for _ in self)
+        return all(isinstance(_, _score.Leaf) for _ in self)
 
     def are_logical_voice(self, prototype=None) -> bool:
         """
@@ -1077,8 +1092,8 @@ class Selection(collections.abc.Sequence):
         return _inspect._are_logical_voice(self, prototype=prototype)
 
     def chord(
-        self, n: int, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> Chord:
+        self, n: int, *, exclude: _typings.Strings = None, grace: bool = None
+    ) -> _score.Chord:
         r"""
         Selects chord ``n``.
 
@@ -1165,7 +1180,7 @@ class Selection(collections.abc.Sequence):
         return self.chords(exclude=exclude, grace=grace)[n]
 
     def chords(
-        self, *, exclude: typings.Strings = None, grace: bool = None
+        self, *, exclude: _typings.Strings = None, grace: bool = None
     ) -> "Selection":
         r"""
         Selects chords.
@@ -1268,13 +1283,13 @@ class Selection(collections.abc.Sequence):
                 >>
 
         """
-        return self.components(Chord, exclude=exclude, grace=grace)
+        return self.components(_score.Chord, exclude=exclude, grace=grace)
 
     def components(
         self,
         prototype=None,
         *,
-        exclude: typings.Strings = None,
+        exclude: _typings.Strings = None,
         grace: bool = None,
         reverse: bool = None,
     ) -> "Selection":
@@ -1663,10 +1678,10 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        pattern = Pattern(indices, period=period, inverted=True)
+        pattern = _pattern.Pattern(indices, period=period, inverted=True)
         pattern = pattern.advance(self._previous)
         self._previous = None
-        items = Sequence(self.items).retain_pattern(pattern)
+        items = _sequence.Sequence(self.items).retain_pattern(pattern)
         result = type(self)(items, previous=self._previous)
         return result
 
@@ -1722,7 +1737,7 @@ class Selection(collections.abc.Sequence):
     def filter_duration(
         self,
         operator,
-        duration: typings.DurationTyping,
+        duration: _typings.DurationTyping,
         *,
         preprolated: bool = None,
     ) -> "Selection":
@@ -2050,7 +2065,7 @@ class Selection(collections.abc.Sequence):
         return self.filter(PitchInequality(operator, pitches))
 
     def filter_preprolated(
-        self, operator, duration: typings.DurationTyping
+        self, operator, duration: _typings.DurationTyping
     ) -> "Selection":
         r"""
         Filters selection by ``operator`` and preprolated ``duration``.
@@ -2326,11 +2341,11 @@ class Selection(collections.abc.Sequence):
                 >>
 
         """
-        return type(self)(Sequence(self).flatten(depth=depth))
+        return type(self)(_sequence.Sequence(self).flatten(depth=depth))
 
     def get(
         self,
-        indices: typing.Union[typing.Sequence[int], Pattern],
+        indices: typing.Union[typing.Sequence[int], _pattern.Pattern],
         period: int = None,
     ) -> "Selection":
         r"""
@@ -2477,14 +2492,14 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        if isinstance(indices, Pattern):
+        if isinstance(indices, _pattern.Pattern):
             assert period is None
             pattern = indices
         else:
-            pattern = Pattern(indices, period=period)
+            pattern = _pattern.Pattern(indices, period=period)
         pattern = pattern.advance(self._previous)
         self._previous = None
-        items = Sequence(self.items).retain_pattern(pattern)
+        items = _sequence.Sequence(self.items).retain_pattern(pattern)
         result = type(self)(items, previous=self._previous)
         return result
 
@@ -2905,16 +2920,16 @@ class Selection(collections.abc.Sequence):
 
         '''
         result = []
-        selection: typing.List[typing.Union[Component, Selection]] = []
+        selection: typing.List[typing.Union[_score.Component, Selection]] = []
         selection.extend(self[:1])
         for item in self[1:]:
             this_timespan = _inspect._get_timespan(selection[-1])
             that_timespan = _inspect._get_timespan(item)
             # remove displacement
             this_stop_offset = this_timespan.stop_offset
-            this_stop_offset = Offset(this_stop_offset.pair)
+            this_stop_offset = _duration.Offset(this_stop_offset.pair)
             that_start_offset = that_timespan.start_offset
-            that_start_offset = Offset(that_start_offset.pair)
+            that_start_offset = _duration.Offset(that_start_offset.pair)
             # if this_timespan.stop_offset == that_timespan.start_offset:
             if this_stop_offset == that_start_offset:
                 selection.append(item)
@@ -3060,7 +3075,7 @@ class Selection(collections.abc.Sequence):
         """
 
         def predicate(argument):
-            if isinstance(argument, Leaf):
+            if isinstance(argument, _score.Leaf):
                 return 1
             return len(argument)
 
@@ -3409,7 +3424,7 @@ class Selection(collections.abc.Sequence):
 
         def _get_first_component(argument):
             component = Selection(argument).components()[0]
-            assert isinstance(component, Component)
+            assert isinstance(component, _score.Component)
             return component
 
         def _get_measure_number(argument):
@@ -3491,7 +3506,7 @@ class Selection(collections.abc.Sequence):
 
         def predicate(argument):
             selection = Selection(argument)
-            return PitchSet.from_selection(selection)
+            return _pitch.PitchSet.from_selection(selection)
 
         return self.group_by(predicate)
 
@@ -3499,7 +3514,7 @@ class Selection(collections.abc.Sequence):
         self,
         n: int,
         *,
-        exclude: typings.Strings = None,
+        exclude: _typings.Strings = None,
         grace: bool = None,
         head: bool = None,
         pitched: bool = None,
@@ -3507,7 +3522,7 @@ class Selection(collections.abc.Sequence):
         reverse: bool = None,
         tail: bool = None,
         trim: typing.Union[bool, int] = None,
-    ) -> Leaf:
+    ) -> _score.Leaf:
         r"""
         Selects leaf ``n``.
 
@@ -3606,7 +3621,7 @@ class Selection(collections.abc.Sequence):
         self,
         prototype=None,
         *,
-        exclude: typings.Strings = None,
+        exclude: _typings.Strings = None,
         grace: bool = None,
         head: bool = None,
         pitched: bool = None,
@@ -4472,11 +4487,11 @@ class Selection(collections.abc.Sequence):
                 }
 
         '''
-        assert trim in (True, False, enums.Left, None)
+        assert trim in (True, False, _enums.Left, None)
         if pitched:
-            prototype = (Chord, Note)
+            prototype = (_score.Chord, _score.Note)
         elif prototype is None:
-            prototype = Leaf
+            prototype = _score.Leaf
         return self._components(
             self,
             prototype=prototype,
@@ -4491,12 +4506,12 @@ class Selection(collections.abc.Sequence):
         self,
         n: int = 0,
         *,
-        exclude: typings.Strings = None,
+        exclude: _typings.Strings = None,
         grace: bool = None,
         nontrivial: bool = None,
         pitched: bool = None,
         reverse: bool = None,
-    ) -> Leaf:
+    ) -> _score.Leaf:
         """
         Selects logical tie ``n``.
 
@@ -4518,7 +4533,7 @@ class Selection(collections.abc.Sequence):
     def logical_ties(
         self,
         *,
-        exclude: typings.Strings = None,
+        exclude: _typings.Strings = None,
         grace: bool = None,
         nontrivial: bool = None,
         pitched: bool = None,
@@ -5149,8 +5164,8 @@ class Selection(collections.abc.Sequence):
         return self.filter_length(">", 1)
 
     def note(
-        self, n: int, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> Note:
+        self, n: int, *, exclude: _typings.Strings = None, grace: bool = None
+    ) -> _score.Note:
         r"""
         Selects note ``n``.
 
@@ -5237,7 +5252,7 @@ class Selection(collections.abc.Sequence):
         return self.notes(exclude=exclude, grace=grace)[n]
 
     def notes(
-        self, *, exclude: typings.Strings = None, grace: bool = None
+        self, *, exclude: _typings.Strings = None, grace: bool = None
     ) -> "Selection":
         r"""
         Selects notes.
@@ -5334,7 +5349,7 @@ class Selection(collections.abc.Sequence):
                 >>
 
         """
-        return self.components(Note, exclude=exclude, grace=grace)
+        return self.components(_score.Note, exclude=exclude, grace=grace)
 
     def partition_by_counts(
         self,
@@ -5769,7 +5784,7 @@ class Selection(collections.abc.Sequence):
 
         """
         result = []
-        groups_ = Sequence(self).partition_by_counts(
+        groups_ = _sequence.Sequence(self).partition_by_counts(
             [abs(_) for _ in counts],
             cyclic=cyclic,
             enchain=enchain,
@@ -5784,7 +5799,7 @@ class Selection(collections.abc.Sequence):
                 groups[-1] += last_group
         subresult = []
         if cyclic:
-            counts = CyclicTuple(counts)
+            counts = _cyclictuple.CyclicTuple(counts)
         for i, group in enumerate(groups):
             if overhang and i == total - 1:
                 pass
@@ -6582,15 +6597,15 @@ class Selection(collections.abc.Sequence):
 
         Returns remaining components at end in final part when ``overhang`` is true.
         """
-        fill = fill or enums.Exact
-        durations = [Duration(_) for _ in durations]
+        fill = fill or _enums.Exact
+        durations = [_duration.Duration(_) for _ in durations]
         if cyclic:
-            durations = CyclicTuple(durations)
+            durations = _cyclictuple.CyclicTuple(durations)
         result = []
         part = []
         current_duration_index = 0
         target_duration = durations[current_duration_index]
-        cumulative_duration = Duration(0)
+        cumulative_duration = _duration.Duration(0)
         components_copy = list(self)
         while True:
             try:
@@ -6608,24 +6623,24 @@ class Selection(collections.abc.Sequence):
                 part.append(component)
                 result.append(part)
                 part = []
-                cumulative_duration = Duration(0)
+                cumulative_duration = _duration.Duration(0)
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]
                 except IndexError:
                     break
             elif target_duration < candidate_duration:
-                if fill is enums.Exact:
+                if fill is _enums.Exact:
                     raise Exception("must partition exactly.")
-                elif fill is enums.Less:
+                elif fill is _enums.Less:
                     result.append(part)
                     part = [component]
                     if in_seconds:
                         sum_ = sum([_inspect._get_duration_in_seconds(_) for _ in part])
-                        cumulative_duration = Duration(sum_)
+                        cumulative_duration = _duration.Duration(sum_)
                     else:
                         sum_ = sum([_inspect._get_duration(_) for _ in part])
-                        cumulative_duration = Duration(sum_)
+                        cumulative_duration = _duration.Duration(sum_)
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -6636,11 +6651,11 @@ class Selection(collections.abc.Sequence):
                         message += " than cumulative duration"
                         message += f" {cumulative_duration}."
                         raise Exception(message)
-                elif fill is enums.More:
+                elif fill is _enums.More:
                     part.append(component)
                     result.append(part)
                     part = []
-                    cumulative_duration = Duration(0)
+                    cumulative_duration = _duration.Duration(0)
                     current_duration_index += 1
                     try:
                         target_duration = durations[current_duration_index]
@@ -6767,16 +6782,16 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        ratio = ratio or Ratio((1,))
-        ratio = Ratio(ratio)
+        ratio = ratio or _ratio.Ratio((1,))
+        ratio = _ratio.Ratio(ratio)
         counts = ratio.partition_integer(len(self))
-        parts = Sequence(self).partition_by_counts(counts=counts)
+        parts = _sequence.Sequence(self).partition_by_counts(counts=counts)
         selections = [type(self)(_) for _ in parts]
         return type(self)(selections)
 
     def rest(
-        self, n: int, *, exclude: typings.Strings = None, grace: bool = None
-    ) -> Rest:
+        self, n: int, *, exclude: _typings.Strings = None, grace: bool = None
+    ) -> _score.Rest:
         r"""
         Selects rest ``n``.
 
@@ -6863,7 +6878,7 @@ class Selection(collections.abc.Sequence):
         return self.rests(grace=grace)[n]
 
     def rests(
-        self, *, exclude: typings.Strings = None, grace: bool = None
+        self, *, exclude: _typings.Strings = None, grace: bool = None
     ) -> "Selection":
         r"""
         Selects rests.
@@ -6954,9 +6969,11 @@ class Selection(collections.abc.Sequence):
                 >>
 
         """
-        return self.components((MultimeasureRest, Rest), exclude=exclude, grace=grace)
+        return self.components(
+            (_score.MultimeasureRest, _score.Rest), exclude=exclude, grace=grace
+        )
 
-    def run(self, n: int, *, exclude: typings.Strings = None) -> "Selection":
+    def run(self, n: int, *, exclude: _typings.Strings = None) -> "Selection":
         r"""
         Selects run ``n``.
 
@@ -7046,7 +7063,7 @@ class Selection(collections.abc.Sequence):
         """
         return self.runs(exclude=exclude)[n]
 
-    def runs(self, *, exclude: typings.Strings = None) -> "Selection":
+    def runs(self, *, exclude: _typings.Strings = None) -> "Selection":
         r"""
         Selects runs.
 
@@ -7249,7 +7266,7 @@ class Selection(collections.abc.Sequence):
         result = type(self)(items)
         return result
 
-    def top(self, *, exclude: typings.Strings = None) -> "Selection":
+    def top(self, *, exclude: _typings.Strings = None) -> "Selection":
         r"""
         Selects top components.
 
@@ -7311,9 +7328,9 @@ class Selection(collections.abc.Sequence):
                 }
 
         """
-        result: typing.List[typing.Union[Component, Selection]] = []
+        result: typing.List[typing.Union[_score.Component, Selection]] = []
         for component in _iterate._public_iterate_components(self, exclude=exclude):
-            for component_ in Parentage(component):
+            for component_ in _parentage.Parentage(component):
                 if (
                     self._is_immediate_child_of_outermost_voice(component_)
                     and component_ not in result
@@ -7322,8 +7339,8 @@ class Selection(collections.abc.Sequence):
         return type(self)(result)
 
     def tuplet(
-        self, n: int, *, exclude: typings.Strings = None, level: int = None
-    ) -> Component:
+        self, n: int, *, exclude: _typings.Strings = None, level: int = None
+    ) -> _score.Component:
         r"""
         Selects tuplet ``n``.
 
@@ -7415,7 +7432,7 @@ class Selection(collections.abc.Sequence):
         return self.tuplets(exclude=exclude, level=level)[n]
 
     def tuplets(
-        self, *, exclude: typings.Strings = None, level: int = None
+        self, *, exclude: _typings.Strings = None, level: int = None
     ) -> "Selection":
         r"""
         Selects tuplets.
@@ -7580,7 +7597,7 @@ class Selection(collections.abc.Sequence):
             tuplet (themselves) and are not contained by any other tuplets.
 
         """
-        tuplets = self.components(Tuplet, exclude=exclude)
+        tuplets = self.components(_score.Tuplet, exclude=exclude)
         assert isinstance(tuplets, Selection)
         if level is None:
             return tuplets
@@ -7589,14 +7606,14 @@ class Selection(collections.abc.Sequence):
             for tuplet in tuplets:
                 count = 0
                 for component in _iterate._iterate_descendants(tuplet):
-                    if isinstance(component, Tuplet):
+                    if isinstance(component, _score.Tuplet):
                         count += 1
                 if -count == level:
                     result.append(tuplet)
         else:
             result = []
             for tuplet in tuplets:
-                if Parentage(tuplet).count(Tuplet) == level:
+                if _parentage.Parentage(tuplet).count(_score.Tuplet) == level:
                     result.append(tuplet)
         return type(self)(result)
 

@@ -1,10 +1,10 @@
-from . import enumerate
+from . import enumerate as _enumerate
 from . import iterate as iterate_
-from .parentage import Parentage
-from .pitch.segments import PitchSegment
-from .score import Chord, Leaf, Note
-from .selection import Selection
-from .sequence import Sequence
+from . import parentage as _parentage
+from . import pitch as _pitch
+from . import score as _score
+from . import selection as _selection
+from . import sequence as _sequence
 
 
 class VerticalMoment:
@@ -286,7 +286,7 @@ class VerticalMoment:
         """
         leaves = []
         for leaf in self.start_leaves:
-            if isinstance(leaf, (Note, Chord)):
+            if isinstance(leaf, (_score.Note, _score.Chord)):
                 leaves.append(leaf)
         return len(leaves)
 
@@ -388,9 +388,9 @@ class VerticalMoment:
         """
         result = []
         for component in self.components:
-            if isinstance(component, Leaf):
+            if isinstance(component, _score.Leaf):
                 result.append(component)
-        result = Selection(result)
+        result = _selection.Selection(result)
         return result
 
     @property
@@ -400,7 +400,7 @@ class VerticalMoment:
         """
         result = []
         for component in self.components:
-            if isinstance(component, Note):
+            if isinstance(component, _score.Note):
                 result.append(component)
         result = tuple(result)
         return result
@@ -411,7 +411,7 @@ class VerticalMoment:
         Tuple of zero or more notes and chords at vertical moment.
         """
         result = []
-        prototype = (Chord, Note)
+        prototype = (_score.Chord, _score.Note)
         for component in self.components:
             if isinstance(component, prototype):
                 result.append(component)
@@ -444,7 +444,7 @@ class VerticalMoment:
         Tuple of leaves in vertical moment starting before vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.overlap_components if isinstance(x, Leaf)]
+        result = [x for x in self.overlap_components if isinstance(x, _score.Leaf)]
         result = tuple(result)
         return result
 
@@ -455,7 +455,7 @@ class VerticalMoment:
         ordered by score index.
         """
         result = self.overlap_components
-        result = [_ for _ in result if isinstance(_, Note)]
+        result = [_ for _ in result if isinstance(_, _score.Note)]
         result = tuple(result)
         return result
 
@@ -478,7 +478,7 @@ class VerticalMoment:
         Tuple of leaves in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.start_components if isinstance(x, Leaf)]
+        result = [x for x in self.start_components if isinstance(x, _score.Leaf)]
         result = tuple(result)
         return result
 
@@ -488,7 +488,7 @@ class VerticalMoment:
         Tuple of notes in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.start_components if isinstance(x, Note)]
+        result = [x for x in self.start_components if isinstance(x, _score.Note)]
         result = tuple(result)
         return result
 
@@ -638,7 +638,7 @@ def iterate_vertical_moments(components, reverse=None):
     Returns tuple.
     '''
     moments = []
-    components = list(Selection(components).components())
+    components = list(_selection.Selection(components).components())
     components.sort(key=lambda _: _._get_timespan().start_offset)
     offset_to_components = dict()
     for component in components:
@@ -660,7 +660,7 @@ def iterate_vertical_moments(components, reverse=None):
                 break
     moments = []
     for offset, list_ in offset_to_components.items():
-        list_.sort(key=lambda _: Parentage(_).score_index())
+        list_.sort(key=lambda _: _parentage.Parentage(_).score_index())
         moment = VerticalMoment(components=list_, offset=offset)
         moments.append(moment)
     if reverse is True:
@@ -726,15 +726,15 @@ def iterate_leaf_pairs(components):
     Returns generator.
     """
     vertical_moments = iterate_vertical_moments(components)
-    for moment_1, moment_2 in Sequence(vertical_moments).nwise():
-        for pair in enumerate.yield_pairs(moment_1.start_leaves):
-            yield Selection(pair)
+    for moment_1, moment_2 in _sequence.Sequence(vertical_moments).nwise():
+        for pair in _enumerate.yield_pairs(moment_1.start_leaves):
+            yield _selection.Selection(pair)
         sequences = [moment_1.leaves, moment_2.start_leaves]
-        for pair in enumerate.outer_product(sequences):
-            yield Selection(pair)
+        for pair in _enumerate.outer_product(sequences):
+            yield _selection.Selection(pair)
     else:
-        for pair in enumerate.yield_pairs(moment_2.start_leaves):
-            yield Selection(pair)
+        for pair in _enumerate.yield_pairs(moment_2.start_leaves):
+            yield _selection.Selection(pair)
 
 
 def iterate_pitch_pairs(components):
@@ -826,18 +826,18 @@ def iterate_pitch_pairs(components):
     """
     for leaf_pair in iterate_leaf_pairs(components):
         pitches = sorted(iterate_.pitches(leaf_pair[0]))
-        for pair in enumerate.yield_pairs(pitches):
-            yield PitchSegment(pair)
+        for pair in _enumerate.yield_pairs(pitches):
+            yield _pitch.PitchSegment(pair)
         if isinstance(leaf_pair, set):
             pitches = sorted(iterate_.pitches(leaf_pair))
-            for pair in enumerate.yield_pairs(pitches):
-                yield PitchSegment(pair)
+            for pair in _enumerate.yield_pairs(pitches):
+                yield _pitch.PitchSegment(pair)
         else:
             pitches_1 = sorted(iterate_.pitches(leaf_pair[0]))
             pitches_2 = sorted(iterate_.pitches(leaf_pair[1]))
             sequences = [pitches_1, pitches_2]
-            for pair in enumerate.outer_product(sequences):
-                yield PitchSegment(pair)
+            for pair in _enumerate.outer_product(sequences):
+                yield _pitch.PitchSegment(pair)
         pitches = sorted(iterate_.pitches(leaf_pair[1]))
-        for pair in enumerate.yield_pairs(pitches):
-            yield PitchSegment(pair)
+        for pair in _enumerate.yield_pairs(pitches):
+            yield _pitch.PitchSegment(pair)

@@ -3,14 +3,14 @@ Utilities for typehinting.
 """
 import typing
 
-from .duration import Duration
-from .ratio import Ratio
+from . import duration as _duration
+from . import ratio as _ratio
 
 IntegerPair = typing.Tuple[int, int]
 
 IntegerSequence = typing.Sequence[int]
 
-DurationTyping = typing.Union[Duration, IntegerPair]
+DurationTyping = typing.Union[_duration.Duration, IntegerPair]
 
 DurationSequenceTyping = typing.Sequence[DurationTyping]
 
@@ -24,7 +24,7 @@ PatternTyping = typing.Union[
 
 Prototype = typing.Union[typing.Type, typing.Tuple[typing.Type, ...]]
 
-RatioTyping = typing.Union[Duration, Ratio, typing.Tuple[int, ...]]
+RatioTyping = typing.Union[_duration.Duration, _ratio.Ratio, typing.Tuple[int, ...]]
 
 RatioSequenceTyping = typing.Sequence[RatioTyping]
 

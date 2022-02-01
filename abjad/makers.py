@@ -3,19 +3,18 @@ import math
 import numbers
 import typing
 
-from . import _inspect, exceptions
+from . import _inspect
+from . import duration as _duration
+from . import exceptions as _exceptions
 from . import math as _math
+from . import pitch as _pitch
+from . import ratio as _ratio
 from . import score as _score
-from . import typings
-from .duration import Duration, Multiplier, NonreducedFraction
-from .pitch.pitchclasses import PitchClass
-from .pitch.pitches import NamedPitch, NumberedPitch
-from .ratio import NonreducedRatio, Ratio
-from .score import Chord, Leaf, MultimeasureRest, Note, Rest, Skip, Tuplet
-from .selection import Selection
-from .sequence import Sequence
-from .spanners import tie
-from .tag import Tag
+from . import selection as _selection
+from . import sequence as _sequence
+from . import spanners as _spanners
+from . import tag as _tag
+from . import typings as _typings
 
 
 class LeafMaker:
@@ -447,10 +446,10 @@ class LeafMaker:
         self,
         *,
         increase_monotonic: bool = None,
-        forbidden_note_duration: typings.DurationTyping = None,
-        forbidden_rest_duration: typings.DurationTyping = None,
+        forbidden_note_duration: _typings.DurationTyping = None,
+        forbidden_rest_duration: _typings.DurationTyping = None,
         skips_instead_of_rests: bool = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
         use_multimeasure_rests: bool = None,
     ) -> None:
         if increase_monotonic is not None:
@@ -459,18 +458,18 @@ class LeafMaker:
         if forbidden_note_duration is None:
             forbidden_note_duration_ = None
         else:
-            forbidden_note_duration_ = Duration(forbidden_note_duration)
+            forbidden_note_duration_ = _duration.Duration(forbidden_note_duration)
         self._forbidden_note_duration = forbidden_note_duration_
         if forbidden_rest_duration is None:
             forbidden_rest_duration_ = None
         else:
-            forbidden_rest_duration_ = Duration(forbidden_rest_duration)
+            forbidden_rest_duration_ = _duration.Duration(forbidden_rest_duration)
         self._forbidden_rest_duration = forbidden_rest_duration_
         if skips_instead_of_rests is not None:
             skips_instead_of_rests = bool(skips_instead_of_rests)
         self._skips_instead_of_rests = skips_instead_of_rests
         if tag is not None:
-            assert isinstance(tag, Tag), repr(tag)
+            assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
         if use_multimeasure_rests is not None:
             use_multimeasure_rests = bool(use_multimeasure_rests)
@@ -478,7 +477,7 @@ class LeafMaker:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pitches, durations) -> Selection:
+    def __call__(self, pitches, durations) -> _selection.Selection:
         """
         Calls leaf-maker on ``pitches`` and ``durations``.
         """
@@ -488,12 +487,16 @@ class LeafMaker:
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = Sequence([NonreducedFraction(_) for _ in durations])
+        nonreduced_fractions = _sequence.Sequence(
+            [_duration.NonreducedFraction(_) for _ in durations]
+        )
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = Sequence(pitches).repeat_to_length(size)
-        duration_groups = Duration._group_by_implied_prolation(nonreduced_fractions)
-        result: typing.List[typing.Union[Tuplet, Leaf]] = []
+        pitches = _sequence.Sequence(pitches).repeat_to_length(size)
+        duration_groups = _duration.Duration._group_by_implied_prolation(
+            nonreduced_fractions
+        )
+        result: typing.List[typing.Union[_score.Tuplet, _score.Leaf]] = []
         for duration_group in duration_groups:
             # get factors in denominator of duration group other than 1, 2.
             factors_ = _math.factors(duration_group[0].denominator)
@@ -520,12 +523,12 @@ class LeafMaker:
                 denominator = duration_group[0].denominator
                 numerator = _math.greatest_power_of_two_less_equal(denominator)
                 multiplier = (numerator, denominator)
-                ratio = 1 / Duration(*multiplier)
+                ratio = 1 / _duration.Duration(*multiplier)
                 duration_group = [
-                    ratio * Duration(duration) for duration in duration_group
+                    ratio * _duration.Duration(duration) for duration in duration_group
                 ]
                 # make tuplet leaves
-                tuplet_leaves: typing.List[Leaf] = []
+                tuplet_leaves: typing.List[_score.Leaf] = []
                 for pitch, duration in zip(current_pitches, duration_group):
                     leaves = self._make_leaf_on_pitch(
                         pitch,
@@ -536,9 +539,9 @@ class LeafMaker:
                         use_multimeasure_rests=self.use_multimeasure_rests,
                     )
                     tuplet_leaves.extend(leaves)
-                tuplet = Tuplet(multiplier, tuplet_leaves)
+                tuplet = _score.Tuplet(multiplier, tuplet_leaves)
                 result.append(tuplet)
-        return Selection(result)
+        return _selection.Selection(result)
 
     ### PRIVATE METHODS ###
 
@@ -557,15 +560,15 @@ class LeafMaker:
         note_prototype = (
             numbers.Number,
             str,
-            NamedPitch,
-            NumberedPitch,
-            PitchClass,
+            _pitch.NamedPitch,
+            _pitch.NumberedPitch,
+            _pitch.PitchClass,
         )
         chord_prototype = (tuple, list)
         rest_prototype = (type(None),)
         if isinstance(pitch, note_prototype):
             leaves = LeafMaker._make_tied_leaf(
-                Note,
+                _score.Note,
                 duration,
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_note_duration,
@@ -574,7 +577,7 @@ class LeafMaker:
             )
         elif isinstance(pitch, chord_prototype):
             leaves = LeafMaker._make_tied_leaf(
-                Chord,
+                _score.Chord,
                 duration,
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_note_duration,
@@ -583,7 +586,7 @@ class LeafMaker:
             )
         elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
             leaves = LeafMaker._make_tied_leaf(
-                Skip,
+                _score.Skip,
                 duration,
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_rest_duration,
@@ -592,7 +595,7 @@ class LeafMaker:
             )
         elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
             leaves = LeafMaker._make_tied_leaf(
-                Rest,
+                _score.Rest,
                 duration,
                 increase_monotonic=increase_monotonic,
                 forbidden_duration=forbidden_rest_duration,
@@ -600,7 +603,7 @@ class LeafMaker:
                 tag=tag,
             )
         elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
-            multimeasure_rest = MultimeasureRest((1), tag=tag)
+            multimeasure_rest = _score.MultimeasureRest((1), tag=tag)
             multimeasure_rest.multiplier = duration
             leaves = (multimeasure_rest,)
         else:
@@ -618,7 +621,7 @@ class LeafMaker:
         tag=None,
         tie_parts=True,
     ):
-        duration = Duration(duration)
+        duration = _duration.Duration(duration)
         if forbidden_duration is not None:
             assert forbidden_duration.is_assignable
             assert forbidden_duration.numerator == 1
@@ -629,9 +632,9 @@ class LeafMaker:
                 duration.denominator,
             ]
             denominator = _math.least_common_multiple(*denominators)
-            forbidden_duration = NonreducedFraction(forbidden_duration)
+            forbidden_duration = _duration.NonreducedFraction(forbidden_duration)
             forbidden_duration = forbidden_duration.with_denominator(denominator)
-            duration = NonreducedFraction(duration)
+            duration = _duration.NonreducedFraction(duration)
             duration = duration.with_denominator(denominator)
             forbidden_numerator = forbidden_duration.numerator
             assert forbidden_numerator % 2 == 0
@@ -656,17 +659,17 @@ class LeafMaker:
         # make one leaf per written duration
         result = []
         for numerator in numerators:
-            written_duration = Duration(numerator, duration.denominator)
+            written_duration = _duration.Duration(numerator, duration.denominator)
             if pitches is not None:
                 arguments = (pitches, written_duration)
             else:
                 arguments = (written_duration,)
             result.append(class_(*arguments, multiplier=multiplier, tag=tag))
-        result = Selection(result)
+        result = _selection.Selection(result)
         # tie if required
         if tie_parts and 1 < len(result):
-            if not issubclass(class_, (Rest, Skip)):
-                tie(result)
+            if not issubclass(class_, (_score.Rest, _score.Skip)):
+                _spanners.tie(result)
         return result
 
     @staticmethod
@@ -686,14 +689,14 @@ class LeafMaker:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def forbidden_note_duration(self) -> typing.Optional[Duration]:
+    def forbidden_note_duration(self) -> typing.Optional[_duration.Duration]:
         """
         Gets forbidden written duration.
         """
         return self._forbidden_note_duration
 
     @property
-    def forbidden_rest_duration(self) -> typing.Optional[Duration]:
+    def forbidden_rest_duration(self) -> typing.Optional[_duration.Duration]:
         """
         Gets forbidden written duration.
         """
@@ -714,7 +717,7 @@ class LeafMaker:
         return self._skips_instead_of_rests
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         r"""
         Gets tag.
 
@@ -910,17 +913,19 @@ class NoteMaker:
 
     ### INITIALIZER ###
 
-    def __init__(self, *, increase_monotonic: bool = None, tag: Tag = None) -> None:
+    def __init__(
+        self, *, increase_monotonic: bool = None, tag: _tag.Tag = None
+    ) -> None:
         if increase_monotonic is not None:
             increase_monotonic = bool(increase_monotonic)
         self._increase_monotonic = increase_monotonic
         if tag is not None:
-            assert isinstance(tag, Tag), repr(tag)
+            assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pitches, durations) -> Selection:
+    def __call__(self, pitches, durations) -> _selection.Selection:
         """
         Calls note-maker on ``pitches`` and ``durations``.
         """
@@ -930,12 +935,14 @@ class NoteMaker:
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = Sequence([NonreducedFraction(_) for _ in durations])
+        nonreduced_fractions = _sequence.Sequence(
+            [_duration.NonreducedFraction(_) for _ in durations]
+        )
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = Sequence(pitches).repeat_to_length(size)
-        durations = Duration._group_by_implied_prolation(nonreduced_fractions)
-        result: typing.List[typing.Union[Note, Tuplet]] = []
+        pitches = _sequence.Sequence(pitches).repeat_to_length(size)
+        durations = _duration.Duration._group_by_implied_prolation(nonreduced_fractions)
+        result: typing.List[typing.Union[_score.Note, _score.Tuplet]] = []
         for duration in durations:
             # get factors in denominator of duration group duration not 1 or 2
             factors = set(_math.factors(duration[0].denominator))
@@ -956,18 +963,18 @@ class NoteMaker:
                 # compute prolation
                 denominator = duration[0].denominator
                 numerator = _math.greatest_power_of_two_less_equal(denominator)
-                multiplier = Multiplier(numerator, denominator)
+                multiplier = _duration.Multiplier(numerator, denominator)
                 ratio = multiplier.reciprocal
-                duration = [ratio * Duration(d) for d in duration]
+                duration = [ratio * _duration.Duration(d) for d in duration]
                 ns = self._make_unprolated_notes(
                     ps,
                     duration,
                     increase_monotonic=self.increase_monotonic,
                     tag=self.tag,
                 )
-                tuplet = Tuplet(multiplier, ns)
+                tuplet = _score.Tuplet(multiplier, ns)
                 result.append(tuplet)
-        return Selection(result)
+        return _selection.Selection(result)
 
     ### PRIVATE METHODS ###
 
@@ -978,7 +985,7 @@ class NoteMaker:
         for pitch, duration in zip(pitches, durations):
             result.extend(
                 LeafMaker._make_tied_leaf(
-                    Note,
+                    _score.Note,
                     duration,
                     pitches=pitch,
                     increase_monotonic=increase_monotonic,
@@ -997,7 +1004,7 @@ class NoteMaker:
         return self._increase_monotonic
 
     @property
-    def tag(self) -> typing.Optional[Tag]:
+    def tag(self) -> typing.Optional[_tag.Tag]:
         r"""
         Gets tag.
 
@@ -1027,7 +1034,7 @@ class NoteMaker:
 
 
 def tuplet_from_duration_and_ratio(
-    duration, ratio, *, increase_monotonic: bool = None, tag: Tag = None
+    duration, ratio, *, increase_monotonic: bool = None, tag: _tag.Tag = None
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from ``duration`` and ``ratio``.
@@ -1316,30 +1323,30 @@ def tuplet_from_duration_and_ratio(
 
     Interprets negative ``ratio`` as rests.
     """
-    duration = Duration(duration)
-    ratio = Ratio(ratio)
+    duration = _duration.Duration(duration)
+    ratio = _ratio.Ratio(ratio)
     basic_prolated_duration = duration / _math.weight(ratio.numbers)
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
     written_durations = [x * basic_written_duration for x in ratio.numbers]
     leaf_maker = LeafMaker(increase_monotonic=increase_monotonic, tag=tag)
     try:
         notes = [
-            Note(0, x, tag=tag) if 0 < x else Rest(abs(x), tag=tag)
+            _score.Note(0, x, tag=tag) if 0 < x else _score.Rest(abs(x), tag=tag)
             for x in written_durations
         ]
-    except exceptions.AssignabilityError:
+    except _exceptions.AssignabilityError:
         denominator = duration.denominator
-        note_durations = [Duration(x, denominator) for x in ratio.numbers]
+        note_durations = [_duration.Duration(x, denominator) for x in ratio.numbers]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
         notes = list(leaf_maker(pitches, leaf_durations))
-    tuplet = Tuplet.from_duration(duration, notes, tag=tag)
+    tuplet = _score.Tuplet.from_duration(duration, notes, tag=tag)
     tuplet.normalize_multiplier()
     return tuplet
 
 
 def tuplet_from_leaf_and_ratio(
-    leaf: Leaf, ratio: typing.Union[typing.List, Ratio]
+    leaf: _score.Leaf, ratio: typing.Union[typing.List, _ratio.Ratio]
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from ``leaf`` and ``ratio``.
@@ -1661,30 +1668,32 @@ def tuplet_from_leaf_and_ratio(
             }
 
     """
-    proportions = Ratio(ratio)
+    proportions = _ratio.Ratio(ratio)
     target_duration = leaf.written_duration
     basic_prolated_duration = target_duration / sum(proportions.numbers)
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
     written_durations = [_ * basic_written_duration for _ in proportions.numbers]
     maker = NoteMaker()
     try:
-        notes = [Note(0, x) for x in written_durations]
-    except exceptions.AssignabilityError:
+        notes = [_score.Note(0, x) for x in written_durations]
+    except _exceptions.AssignabilityError:
         denominator = target_duration.denominator
-        note_durations = [Duration(_, denominator) for _ in proportions.numbers]
+        note_durations = [
+            _duration.Duration(_, denominator) for _ in proportions.numbers
+        ]
         notes = list(maker(0, note_durations))
     contents_duration = _inspect._get_duration(notes)
     multiplier = target_duration / contents_duration
-    tuplet = Tuplet(multiplier, notes)
+    tuplet = _score.Tuplet(multiplier, notes)
     tuplet.normalize_multiplier()
     return tuplet
 
 
 def tuplet_from_ratio_and_pair(
-    ratio: typing.Union[typing.Tuple, NonreducedRatio],
-    fraction: typing.Union[typing.Tuple, NonreducedFraction],
+    ratio: typing.Union[typing.Tuple, _ratio.NonreducedRatio],
+    fraction: typing.Union[typing.Tuple, _duration.NonreducedFraction],
     *,
-    tag: Tag = None,
+    tag: _tag.Tag = None,
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.
@@ -1864,34 +1873,34 @@ def tuplet_from_ratio_and_pair(
 
     Interprets ``d`` as tuplet denominator.
     """
-    ratio = NonreducedRatio(ratio)
+    ratio = _ratio.NonreducedRatio(ratio)
     if isinstance(fraction, tuple):
-        fraction = NonreducedFraction(*fraction)
+        fraction = _duration.NonreducedFraction(*fraction)
     numerator = fraction.numerator
     denominator = fraction.denominator
-    duration = Duration(fraction)
+    duration = _duration.Duration(fraction)
     if len(ratio.numbers) == 1:
         if 0 < ratio.numbers[0]:
             try:
-                note = Note(0, duration, tag=tag)
+                note = _score.Note(0, duration, tag=tag)
                 duration = note._get_duration()
-                tuplet = Tuplet.from_duration(duration, [note], tag=tag)
+                tuplet = _score.Tuplet.from_duration(duration, [note], tag=tag)
                 return tuplet
-            except exceptions.AssignabilityError:
+            except _exceptions.AssignabilityError:
                 note_maker = NoteMaker(tag=tag)
                 notes = note_maker(0, duration)
                 duration = _inspect._get_duration(notes)
-                return Tuplet.from_duration(duration, notes, tag=tag)
+                return _score.Tuplet.from_duration(duration, notes, tag=tag)
         elif ratio.numbers[0] < 0:
             try:
-                rest = Rest(duration, tag=tag)
+                rest = _score.Rest(duration, tag=tag)
                 duration = rest._get_duration()
-                return Tuplet.from_duration(duration, [rest], tag=tag)
-            except exceptions.AssignabilityError:
+                return _score.Tuplet.from_duration(duration, [rest], tag=tag)
+            except _exceptions.AssignabilityError:
                 leaf_maker = LeafMaker(tag=tag)
                 rests = leaf_maker([None], duration)
                 duration = _inspect._get_duration(rests)
-                return Tuplet.from_duration(duration, rests, tag=tag)
+                return _score.Tuplet.from_duration(duration, rests, tag=tag)
         else:
             raise ValueError("no divide zero values.")
     else:
@@ -1899,24 +1908,24 @@ def tuplet_from_ratio_and_pair(
             math.log(_math.weight(ratio.numbers), 2) - math.log(numerator, 2)
         )
         denominator = int(denominator * 2**exponent)
-        components: typing.List[typing.Union[Note, Rest]] = []
+        components: typing.List[typing.Union[_score.Note, _score.Rest]] = []
         for x in ratio.numbers:
             if not x:
                 raise ValueError("no divide zero values.")
             if 0 < x:
                 try:
-                    note = Note(0, (x, denominator), tag=tag)
+                    note = _score.Note(0, (x, denominator), tag=tag)
                     components.append(note)
-                except exceptions.AssignabilityError:
+                except _exceptions.AssignabilityError:
                     maker = NoteMaker(tag=tag)
                     notes = maker(0, (x, denominator))
                     components.extend(notes)
             else:
                 try:
-                    rest = Rest((-x, denominator), tag=tag)
+                    rest = _score.Rest((-x, denominator), tag=tag)
                     components.append(rest)
-                except exceptions.AssignabilityError:
+                except _exceptions.AssignabilityError:
                     leaf_maker = LeafMaker(tag=tag)
                     rests = leaf_maker(None, (-x, denominator))
                     components.extend(rests)
-        return Tuplet.from_duration(duration, components, tag=tag)
+        return _score.Tuplet.from_duration(duration, components, tag=tag)

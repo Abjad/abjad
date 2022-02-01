@@ -15,15 +15,11 @@ from . import markups as _markups
 from . import math as _math
 from . import new as _new
 from . import overrides as _overrides
+from . import pitch as _pitch
 from . import ratio as _ratio
 from . import sequence as _sequence
 from . import string as _string
 from . import typings as _typings
-from .pitch import _lib as pitch__lib
-from .pitch.intervals import NamedInterval
-from .pitch.pitchclasses import NamedPitchClass
-from .pitch.pitches import NamedPitch
-from .pitch.segments import IntervalSegment
 
 
 @dataclasses.dataclass(slots=True)
@@ -849,7 +845,7 @@ class StaffPosition:
 
         """
         assert isinstance(clef, Clef), repr(clef)
-        pitch = NamedPitch(pitch)
+        pitch = _pitch.NamedPitch(pitch)
         staff_position_number = pitch._get_diatonic_pitch_number()
         staff_position_number += clef.middle_c_position.number
         staff_position = StaffPosition(staff_position_number)
@@ -963,12 +959,12 @@ class StaffPosition:
         offset_staff_position = StaffPosition(offset_staff_position_number)
         octave_number = offset_staff_position.number // 7 + 4
         diatonic_pc_number = offset_staff_position.number % 7
-        pitch_class_number = pitch__lib._diatonic_pc_number_to_pitch_class_number[
+        pitch_class_number = _pitch._diatonic_pc_number_to_pitch_class_number[
             diatonic_pc_number
         ]
         pitch_number = 12 * (octave_number - 4)
         pitch_number += pitch_class_number
-        named_pitch = NamedPitch(pitch_number)
+        named_pitch = _pitch.NamedPitch(pitch_number)
         return named_pitch
 
 
@@ -1238,17 +1234,17 @@ class Clef:
 
     def _clef_name_to_staff_position_zero(self, clef_name):
         return {
-            "treble": NamedPitch("B4"),
-            "alto": NamedPitch("C4"),
-            "varC": NamedPitch("C4"),
-            "tenor": NamedPitch("A3"),
-            "tenorvarC": NamedPitch("A3"),
-            "bass": NamedPitch("D3"),
-            "french": NamedPitch("D5"),
-            "soprano": NamedPitch("G4"),
-            "mezzosoprano": NamedPitch("E4"),
-            "baritone": NamedPitch("F3"),
-            "varbaritone": NamedPitch("F3"),
+            "treble": _pitch.NamedPitch("B4"),
+            "alto": _pitch.NamedPitch("C4"),
+            "varC": _pitch.NamedPitch("C4"),
+            "tenor": _pitch.NamedPitch("A3"),
+            "tenorvarC": _pitch.NamedPitch("A3"),
+            "bass": _pitch.NamedPitch("D3"),
+            "french": _pitch.NamedPitch("D5"),
+            "soprano": _pitch.NamedPitch("G4"),
+            "mezzosoprano": _pitch.NamedPitch("E4"),
+            "baritone": _pitch.NamedPitch("F3"),
+            "varbaritone": _pitch.NamedPitch("F3"),
             "percussion": None,
             "tab": None,
         }[clef_name]
@@ -1284,14 +1280,14 @@ class Clef:
         ]
         max_diatonic_pitch_number = max(diatonic_pitch_numbers)
         min_diatonic_pitch_number = min(diatonic_pitch_numbers)
-        lowest_treble_line_pitch = NamedPitch("E4")
+        lowest_treble_line_pitch = _pitch.NamedPitch("E4")
         lowest_treble_line_diatonic_pitch_number = (
             lowest_treble_line_pitch._get_diatonic_pitch_number()
         )
         candidate_steps_below_treble = (
             lowest_treble_line_diatonic_pitch_number - min_diatonic_pitch_number
         )
-        highest_bass_line_pitch = NamedPitch("A3")
+        highest_bass_line_pitch = _pitch.NamedPitch("A3")
         highest_bass_line_diatonic_pitch_number = (
             highest_bass_line_pitch._get_diatonic_pitch_number()
         )
@@ -2031,9 +2027,9 @@ class Mode:
 
     def named_interval_segment(self):
         mdi_segment = []
-        m2 = NamedInterval("m2")
-        M2 = NamedInterval("M2")
-        A2 = NamedInterval("aug2")
+        m2 = _pitch.NamedInterval("m2")
+        M2 = _pitch.NamedInterval("M2")
+        A2 = _pitch.NamedInterval("aug2")
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if self.mode_name == "dorian":
             mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=0))
@@ -2055,7 +2051,9 @@ class Mode:
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
             raise ValueError(f"unknown mode name: {self.mode_name!r}.")
-        return IntervalSegment(items=mdi_segment, item_class=NamedInterval)
+        return _pitch.IntervalSegment(
+            items=mdi_segment, item_class=_pitch.NamedInterval
+        )
 
 
 @dataclasses.dataclass(slots=True, unsafe_hash=True)
@@ -2129,7 +2127,7 @@ class KeySignature:
 
     """
 
-    tonic: NamedPitchClass = NamedPitchClass("c")
+    tonic: _pitch.NamedPitchClass = _pitch.NamedPitchClass("c")
     mode: Mode = Mode("major")
     tweaks: typing.Union[_overrides.TweakInterface, None] = None
 
@@ -2140,8 +2138,8 @@ class KeySignature:
     redraw = True
 
     def __post_init__(self):
-        if not isinstance(self.tonic, NamedPitchClass):
-            self.tonic = NamedPitchClass(self.tonic)
+        if not isinstance(self.tonic, _pitch.NamedPitchClass):
+            self.tonic = _pitch.NamedPitchClass(self.tonic)
         if not isinstance(self.mode, Mode):
             self.mode = Mode(self.mode)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -5408,8 +5406,8 @@ class StartTrillSpan:
 
     """
 
-    interval: str | NamedInterval | None = None
-    pitch: str | NamedPitch | None = None
+    interval: str | _pitch.NamedInterval | None = None
+    pitch: str | _pitch.NamedPitch | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass = True
@@ -5420,9 +5418,9 @@ class StartTrillSpan:
 
     def __post_init__(self):
         if self.interval is not None:
-            self.interval = NamedInterval(self.interval)
+            self.interval = _pitch.NamedInterval(self.interval)
         if self.pitch is not None:
-            self.pitch = NamedPitch(self.pitch)
+            self.pitch = _pitch.NamedPitch(self.pitch)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _get_lilypond_format_bundle(self, component=None):

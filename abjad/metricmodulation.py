@@ -1,13 +1,16 @@
 import typing
 
-from . import _inspect, enums
+from . import _inspect
+from . import bundle as _bundle
+from . import enums as _enums
 from . import format as _format
-from . import illustrators, score, typings
-from .bundle import LilyPondFormatBundle
-from .markups import Markup
-from .new import new
-from .ratio import Ratio
-from .selection import Selection
+from . import illustrators as _illustrators
+from . import markups as _markups
+from . import new as _new
+from . import ratio as _ratio
+from . import score as _score
+from . import selection as _selection
+from . import typings as _typings
 
 
 class MetricModulation:
@@ -353,9 +356,9 @@ class MetricModulation:
         right_rhythm,
         *,
         hide: bool = None,
-        left_markup: Markup = None,
-        right_markup: Markup = None,
-        scale: typing.Tuple[typings.Number, typings.Number] = (1, 1),
+        left_markup: _markups.Markup = None,
+        right_markup: _markups.Markup = None,
+        scale: typing.Tuple[_typings.Number, _typings.Number] = (1, 1),
     ) -> None:
         if hide is not None:
             hide = bool(hide)
@@ -366,10 +369,10 @@ class MetricModulation:
         self._right_rhythm = right_rhythm
         self._right_rhythm = right_rhythm
         if left_markup is not None:
-            assert isinstance(left_markup, Markup)
+            assert isinstance(left_markup, _markups.Markup)
         self._left_markup = left_markup
         if right_markup is not None:
-            assert isinstance(right_markup, Markup)
+            assert isinstance(right_markup, _markups.Markup)
         self._right_markup = right_markup
         assert isinstance(scale, tuple), repr(scale)
         self._scale = scale
@@ -496,10 +499,10 @@ class MetricModulation:
         return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+        bundle = _bundle.LilyPondFormatBundle()
         if not self.hide:
             markup = self._get_markup()
-            markup = new(markup, direction=enums.Up)
+            markup = _new.new(markup, direction=_enums.Up)
             markup_format_pieces = markup._get_format_pieces()
             bundle.after.markup.extend(markup_format_pieces)
         return bundle
@@ -507,18 +510,18 @@ class MetricModulation:
     def _get_markup(self):
         string = self._get_lilypond_command_string()
         if string is not None:
-            markup = Markup(rf"\markup {string}")
+            markup = _markups.Markup(rf"\markup {string}")
             return markup
         strings = []
-        string = illustrators.selection_to_score_markup_string(self.left_rhythm)
+        string = _illustrators.selection_to_score_markup_string(self.left_rhythm)
         strings.extend(string.split("\n"))
         strings.append("=")
         strings.append(r"\hspace #-0.5")
-        string = illustrators.selection_to_score_markup_string(self.right_rhythm)
+        string = _illustrators.selection_to_score_markup_string(self.right_rhythm)
         strings.extend(string.split("\n"))
         string = "\n".join(strings)
         string = rf"\markup {{ {string} }}"
-        markup = Markup(string)
+        markup = _markups.Markup(string)
         return markup
 
     def _get_markup_arguments(self):
@@ -563,7 +566,7 @@ class MetricModulation:
 
     def _initialize_rhythm(self, rhythm):
         if not hasattr(rhythm, "_items"):
-            selection = Selection([rhythm])
+            selection = _selection.Selection([rhythm])
         else:
             assert hasattr(rhythm, "_items"), repr(rhythm)
             selection = rhythm
@@ -571,9 +574,9 @@ class MetricModulation:
 
     def _lhs_tuplet(self):
         if (
-            isinstance(self.left_rhythm[0], score.Tuplet)
+            isinstance(self.left_rhythm[0], _score.Tuplet)
             and len(self.left_rhythm[0]) == 1
-            and isinstance(self.right_rhythm[0], score.Note)
+            and isinstance(self.right_rhythm[0], _score.Note)
             and len(self.right_rhythm) == 1
         ):
             return True
@@ -581,9 +584,9 @@ class MetricModulation:
 
     def _note_to_note(self):
         if (
-            isinstance(self.left_rhythm[0], score.Note)
+            isinstance(self.left_rhythm[0], _score.Note)
             and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], score.Note)
+            and isinstance(self.right_rhythm[0], _score.Note)
             and len(self.right_rhythm) == 1
         ):
             return True
@@ -591,9 +594,9 @@ class MetricModulation:
 
     def _rhs_tuplet(self):
         if (
-            isinstance(self.left_rhythm[0], score.Note)
+            isinstance(self.left_rhythm[0], _score.Note)
             and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], score.Tuplet)
+            and isinstance(self.right_rhythm[0], _score.Tuplet)
             and len(self.right_rhythm[0]) == 1
         ):
             return True
@@ -609,7 +612,7 @@ class MetricModulation:
         return self._hide
 
     @property
-    def left_markup(self) -> typing.Optional[Markup]:
+    def left_markup(self) -> typing.Optional[_markups.Markup]:
         """
         Gets left markup of metric modulation.
 
@@ -643,7 +646,7 @@ class MetricModulation:
         return self._left_rhythm
 
     @property
-    def ratio(self) -> Ratio:
+    def ratio(self) -> _ratio.Ratio:
         """
         Gets ratio of metric modulation.
 
@@ -660,11 +663,11 @@ class MetricModulation:
         left_duration = _inspect._get_duration(self.left_rhythm)
         right_duration = _inspect._get_duration(self.right_rhythm)
         duration = left_duration / right_duration
-        ratio = Ratio(duration.pair)
+        ratio = _ratio.Ratio(duration.pair)
         return ratio
 
     @property
-    def right_markup(self) -> typing.Optional[Markup]:
+    def right_markup(self) -> typing.Optional[_markups.Markup]:
         r"""Gets right markup of metric modulation.
 
         ..  container:: example
@@ -696,7 +699,7 @@ class MetricModulation:
         return self._right_rhythm
 
     @property
-    def scale(self) -> typing.Tuple[typings.Number, typings.Number]:
+    def scale(self) -> typing.Tuple[_typings.Number, _typings.Number]:
         r"""
         Gets scale of output markup.
 

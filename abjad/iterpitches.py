@@ -2,13 +2,12 @@ import typing
 
 from . import _inspect
 from . import get as _get
+from . import indicators as _indicators
+from . import instruments as _instruments
 from . import iterate as iterate_
-from .indicators import StartTrillSpan
-from .instruments import Instrument
-from .pitch.PitchRange import PitchRange
-from .pitch.pitches import NamedPitch, Pitch
-from .score import Chord, Note
-from .selection import Selection
+from . import pitch as _pitch
+from . import score as _score
+from . import selection as _selection
 
 
 def iterate_out_of_range(components) -> typing.Generator:
@@ -40,10 +39,10 @@ def iterate_out_of_range(components) -> typing.Generator:
         Chord('<d fs>8')
 
     """
-    leaves = Selection(components).leaves(pitched=True)
-    assert isinstance(leaves, Selection), repr(leaves)
+    leaves = _selection.Selection(components).leaves(pitched=True)
+    assert isinstance(leaves, _selection.Selection), repr(leaves)
     for leaf in leaves:
-        instrument = _inspect._get_effective(leaf, Instrument)
+        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             raise ValueError("no instrument found.")
         if not sounding_pitches_are_in_range(leaf, instrument.pitch_range):
@@ -94,10 +93,10 @@ def respell_with_flats(selection) -> None:
 
     """
     for leaf in iterate_.leaves(selection):
-        if isinstance(leaf, Note):
+        if isinstance(leaf, _score.Note):
             assert leaf.written_pitch is not None
             leaf.written_pitch = leaf.written_pitch._respell(accidental="flats")
-        elif isinstance(leaf, Chord):
+        elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
                 pitch = note_head.written_pitch._respell(accidental="flats")
                 note_head.written_pitch = pitch
@@ -147,10 +146,10 @@ def respell_with_sharps(selection) -> None:
 
     """
     for leaf in iterate_.leaves(selection):
-        if isinstance(leaf, Note):
+        if isinstance(leaf, _score.Note):
             assert leaf.written_pitch is not None
             leaf.written_pitch = leaf.written_pitch._respell(accidental="sharps")
-        elif isinstance(leaf, Chord):
+        elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
                 pitch = note_head.written_pitch._respell(accidental="sharps")
                 note_head.written_pitch = pitch
@@ -160,11 +159,11 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     """
     Returns true when all pitches in ``argument`` sound within ``pitch_range``.
     """
-    assert isinstance(pitch_range, PitchRange), repr(pitch_range)
+    assert isinstance(pitch_range, _pitch.PitchRange), repr(pitch_range)
     if isinstance(argument, (int, float)):
-        pitch = NamedPitch(argument)
+        pitch = _pitch.NamedPitch(argument)
         return pitch_range._contains_pitch(pitch)
-    if isinstance(argument, Pitch):
+    if isinstance(argument, _pitch.Pitch):
         return pitch_range._contains_pitch(argument)
     if hasattr(argument, "written_pitch"):
         sounding_pitch = _inspect._get_sounding_pitch(argument)
@@ -223,11 +222,11 @@ def transpose_from_sounding_pitch(argument) -> None:
 
     """
     for leaf in iterate_.leaves(argument, pitched=True):
-        instrument = _inspect._get_effective(leaf, Instrument)
+        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch
-        interval = NamedPitch("C4") - sounding_pitch
+        interval = _pitch.NamedPitch("C4") - sounding_pitch
         interval *= -1
         if hasattr(leaf, "written_pitch"):
             pitch = leaf.written_pitch
@@ -236,7 +235,7 @@ def transpose_from_sounding_pitch(argument) -> None:
         elif hasattr(leaf, "written_pitches"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             leaf.written_pitches = pitches
-        start_trill_span = _get.indicator(leaf, StartTrillSpan)
+        start_trill_span = _get.indicator(leaf, _indicators.StartTrillSpan)
         if start_trill_span is not None:
             pitch = start_trill_span.pitch
             pitch = interval.transpose(pitch)
@@ -283,11 +282,11 @@ def transpose_from_written_pitch(argument) -> None:
 
     """
     for leaf in iterate_.leaves(argument, pitched=True):
-        instrument = _inspect._get_effective(leaf, Instrument)
+        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch
-        interval = NamedPitch("C4") - sounding_pitch
+        interval = _pitch.NamedPitch("C4") - sounding_pitch
         if hasattr(leaf, "written_pitch"):
             written_pitch = leaf.written_pitch
             written_pitch = interval.transpose(written_pitch)
@@ -295,7 +294,7 @@ def transpose_from_written_pitch(argument) -> None:
         elif hasattr(leaf, "written_pitches"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             leaf.written_pitches = pitches
-        start_trill_span = _get.indicator(leaf, StartTrillSpan)
+        start_trill_span = _get.indicator(leaf, _indicators.StartTrillSpan)
         if start_trill_span is not None:
             pitch = start_trill_span.pitch
             pitch = interval.transpose(pitch)

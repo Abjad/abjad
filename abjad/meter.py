@@ -8,19 +8,21 @@ import typing
 import uqbar.graphs
 
 from . import _inspect, _iterate
+from . import duration as _duration
 from . import format as _format
-from . import markups, math, mutate, rhythmtrees
+from . import indicators as _indicators
+from . import lilypondfile as _lilypondfile
+from . import markups as _markups
+from . import math as _math
+from . import mutate as _mutate
+from . import new as _new
+from . import parentage as _parentage
+from . import rhythmtrees as _rhythmtrees
+from . import score as _score
+from . import selection as _selection
+from . import sequence as _sequence
 from . import timespan as _timespan
-from .duration import Duration, Multiplier, NonreducedFraction, Offset
-from .indicators import TimeSignature
-from .lilypondfile import LilyPondFile
-from .new import new
-from .parentage import Parentage
-from .score import Chord, Container, Note, Rest, Skip, Tuplet
-from .selection import LogicalTie, Selection
-from .sequence import Sequence
-from .timespan import OffsetCounter, Timespan, TimespanList
-from .typedcollections import TypedList
+from . import typedcollections as _typedcollections
 
 
 class Meter:
@@ -279,7 +281,7 @@ class Meter:
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            child = rhythmtrees.RhythmTreeContainer(
+                            child = _rhythmtrees.RhythmTreeContainer(
                                 preprolated_duration=preprolated_duration
                             )
                             node.append(child)
@@ -287,7 +289,7 @@ class Meter:
                     else:
                         for _ in range(factor):
                             node.append(
-                                rhythmtrees.RhythmTreeLeaf(
+                                _rhythmtrees.RhythmTreeLeaf(
                                     preprolated_duration=(1, denominator)
                                 )
                             )
@@ -301,12 +303,12 @@ class Meter:
                             parts.insert(0, 2)
                         total += 2
                     for part in parts:
-                        grouping = rhythmtrees.RhythmTreeContainer(
+                        grouping = _rhythmtrees.RhythmTreeContainer(
                             preprolated_duration=part * preprolated_duration
                         )
                         if factors:
                             for _ in range(part):
-                                child = rhythmtrees.RhythmTreeContainer(
+                                child = _rhythmtrees.RhythmTreeContainer(
                                     preprolated_duration=preprolated_duration
                                 )
                                 grouping.append(child)
@@ -319,7 +321,7 @@ class Meter:
                         else:
                             for _ in range(part):
                                 grouping.append(
-                                    rhythmtrees.RhythmTreeLeaf(
+                                    _rhythmtrees.RhythmTreeLeaf(
                                         preprolated_duration=(1, denominator)
                                     )
                                 )
@@ -327,7 +329,7 @@ class Meter:
             else:
                 node.extend(
                     [
-                        rhythmtrees.RhythmTreeLeaf(
+                        _rhythmtrees.RhythmTreeLeaf(
                             preprolated_duration=(1, denominator)
                         )
                         for _ in range(node.preprolated_duration.numerator)
@@ -345,9 +347,9 @@ class Meter:
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
             increase_monotonic = argument.increase_monotonic
-        elif isinstance(argument, (str, rhythmtrees.RhythmTreeContainer)):
+        elif isinstance(argument, (str, _rhythmtrees.RhythmTreeContainer)):
             if isinstance(argument, str):
-                parsed = rhythmtrees.RhythmTreeParser()(argument)
+                parsed = _rhythmtrees.RhythmTreeParser()(argument)
                 assert len(parsed) == 1
                 root = parsed[0]
             else:
@@ -358,15 +360,17 @@ class Meter:
             denominator = root.preprolated_duration.denominator
         elif is_fraction_like or isinstance(argument, tuple):
             if isinstance(argument, tuple):
-                fraction = NonreducedFraction(argument)
+                fraction = _duration.NonreducedFraction(argument)
             else:
-                fraction = NonreducedFraction(argument.numerator, argument.denominator)
+                fraction = _duration.NonreducedFraction(
+                    argument.numerator, argument.denominator
+                )
             numerator, denominator = fraction.numerator, fraction.denominator
-            factors = math.factors(numerator)
+            factors = _math.factors(numerator)
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = rhythmtrees.RhythmTreeContainer(preprolated_duration=fraction)
+            root = _rhythmtrees.RhythmTreeContainer(preprolated_duration=fraction)
             recurse(root, factors, denominator, increase_monotonic)
         else:
             name = type(self).__name__
@@ -381,9 +385,17 @@ class Meter:
 
     def __eq__(self, argument):
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares ``numerator``, ``denominator``, ``increase_monotonic``,
+        ``preferred_boundary_depth``.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return (
+                self.numerator == argument.numerator
+                and self.denominator == argument.denominator
+                and self.increase_monotonic == argument.increase_monotonic
+                and self.preferred_boundary_depth == argument.preferred_boundary_depth
+            )
+        return False
 
     def __graph__(self, **keywords):
         """
@@ -543,7 +555,7 @@ class Meter:
                 edge.attach(leaf_two_node, offset_node)
 
         offsets = MetricAccentKernel.count_offsets(
-            Sequence(self.depthwise_offset_inventory).flatten(depth=-1)
+            _sequence.Sequence(self.depthwise_offset_inventory).flatten(depth=-1)
         )
         graph = uqbar.graphs.Graph(
             name="G",
@@ -563,7 +575,7 @@ class Meter:
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
             graphviz_node.attributes["label"] = str(node.preprolated_duration)
-            if isinstance(node, rhythmtrees.RhythmTreeContainer):
+            if isinstance(node, _rhythmtrees.RhythmTreeContainer):
                 graphviz_node.attributes["shape"] = "triangle"
             else:
                 graphviz_node.attributes["shape"] = "box"
@@ -579,7 +591,7 @@ class Meter:
         )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
-        for one, two in Sequence(leaves).nwise():
+        for one, two in _sequence.Sequence(leaves).nwise():
             offset = one.stop_offset
             make_offset_node(offset, one, two)
         offset = leaves[-1].stop_offset
@@ -622,7 +634,7 @@ class Meter:
         def recurse(node):
             result = []
             for child in node:
-                if isinstance(child, rhythmtrees.RhythmTreeLeaf):
+                if isinstance(child, _rhythmtrees.RhythmTreeLeaf):
                     result.append(child)
                 else:
                     result.extend(recurse(child))
@@ -631,9 +643,9 @@ class Meter:
 
         result = recurse(self.root_node)
         for node in result:
-            start_offset = NonreducedFraction(node.start_offset)
+            start_offset = _duration.NonreducedFraction(node.start_offset)
             start_offset = start_offset.with_denominator(self.denominator)
-            stop_offset = NonreducedFraction(node.stop_offset)
+            stop_offset = _duration.NonreducedFraction(node.stop_offset)
             stop_offset = stop_offset.with_denominator(self.denominator)
             yield start_offset, stop_offset
 
@@ -710,10 +722,10 @@ class Meter:
         """
         inventory = []
         all_offsets = set()
-        all_offsets.add(Offset(self.numerator, self.denominator))
+        all_offsets.add(_duration.Offset(self.numerator, self.denominator))
         for depth, nodes in sorted(self.root_node._depthwise_inventory().items()):
             for node in nodes:
-                all_offsets.add(Offset(node.start_offset))
+                all_offsets.add(_duration.Offset(node.start_offset))
             inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
@@ -730,7 +742,7 @@ class Meter:
 
         Returns duration.
         """
-        return Duration(self.numerator, self.denominator)
+        return _duration.Duration(self.numerator, self.denominator)
 
     @property
     def implied_time_signature(self):
@@ -744,7 +756,7 @@ class Meter:
 
         Returns time signature.
         """
-        return TimeSignature(self.root_node.preprolated_duration)
+        return _indicators.TimeSignature(self.root_node.preprolated_duration)
 
     @property
     def increase_monotonic(self) -> typing.Optional[bool]:
@@ -862,7 +874,7 @@ class Meter:
 
         Returns true or false.
         """
-        if 3 in math.divisors(self.numerator):
+        if 3 in _math.divisors(self.numerator):
             if not self.numerator == 3:
                 return True
         return False
@@ -1180,15 +1192,15 @@ class Meter:
 
         Returns dictionary.
         """
-        assert math.is_positive_integer_power_of_two(denominator // self.denominator)
+        assert _math.is_positive_integer_power_of_two(denominator // self.denominator)
         inventory = list(self.depthwise_offset_inventory)
-        old_flag_count = Duration(1, self.denominator).flag_count
-        new_flag_count = Duration(1, denominator).flag_count
+        old_flag_count = _duration.Duration(1, self.denominator).flag_count
+        new_flag_count = _duration.Duration(1, denominator).flag_count
         extra_depth = new_flag_count - old_flag_count
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in Sequence(old_offsets).nwise():
+            for first, second in _sequence.Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])
@@ -1203,7 +1215,7 @@ class Meter:
                 total += 1
         if normalize:
             for offset, response in kernel.items():
-                kernel[offset] = Multiplier(response, total)
+                kernel[offset] = _duration.Multiplier(response, total)
         return MetricAccentKernel(kernel)
 
     def rewrite_meter(
@@ -2379,8 +2391,8 @@ class Meter:
                         break
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
-                    shards = mutate.split(logical_tie[:], [split_offset])
-                    logical_ties = [LogicalTie(_) for _ in shards]
+                    shards = _mutate.split(logical_tie[:], [split_offset])
+                    logical_ties = [_selection.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
                             boundary_depth=boundary_depth,
@@ -2411,8 +2423,8 @@ class Meter:
                         break
                 assert split_offset is not None
                 split_offset -= logical_tie_start_offset
-                shards = mutate.split(logical_tie[:], [split_offset])
-                logical_ties = [LogicalTie(shard) for shard in shards]
+                shards = _mutate.split(logical_tie[:], [split_offset])
+                logical_ties = [_selection.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
                         boundary_depth=boundary_depth,
@@ -2421,14 +2433,14 @@ class Meter:
                         logical_tie=logical_tie,
                     )
             else:
-                mutate._fuse(logical_tie[:])
+                _mutate._fuse(logical_tie[:])
 
-        assert isinstance(components, Selection), repr(components)
+        assert isinstance(components, _selection.Selection), repr(components)
         if not isinstance(meter, Meter):
             meter = Meter(meter)
         boundary_depth = boundary_depth or meter.preferred_boundary_depth
         # Validate arguments.
-        assert Selection(components).are_contiguous_logical_voice(
+        assert _selection.Selection(components).are_contiguous_logical_voice(
             ignore_before_after_grace=True
         )
         if not isinstance(meter, Meter):
@@ -2439,8 +2451,8 @@ class Meter:
             maximum_dot_count = int(maximum_dot_count)
             assert 0 <= maximum_dot_count
         if initial_offset is None:
-            initial_offset = Offset(0)
-        initial_offset = Offset(initial_offset)
+            initial_offset = _duration.Offset(0)
+        initial_offset = _duration.Offset(initial_offset)
         first_start_offset = components[0]._get_timespan().start_offset
         last_start_offset = components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
@@ -2451,7 +2463,7 @@ class Meter:
         if components[0]._parent is None:
             prolation = 1
         else:
-            parentage = Parentage(components[0]._parent)
+            parentage = _parentage.Parentage(components[0]._parent)
             prolation = parentage.prolation
         offset_inventory = []
         for offsets in meter.depthwise_offset_inventory:
@@ -2467,21 +2479,23 @@ class Meter:
         iterator = _MeterManager.iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
-            if isinstance(item, LogicalTie):
+            if isinstance(item, _selection.LogicalTie):
                 recurse(
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
                     depth=0,
                     logical_tie=item,
                 )
-            elif isinstance(item, Tuplet) and not rewrite_tuplets:
+            elif isinstance(item, _score.Tuplet) and not rewrite_tuplets:
                 pass
             else:
                 preprolated_duration = sum(
                     [_._get_preprolated_duration() for _ in item]
                 )
                 if preprolated_duration.numerator == 1:
-                    preprolated_duration = NonreducedFraction(preprolated_duration)
+                    preprolated_duration = _duration.NonreducedFraction(
+                        preprolated_duration
+                    )
                     preprolated_duration = preprolated_duration.with_denominator(
                         preprolated_duration.denominator * 4
                     )
@@ -2497,7 +2511,7 @@ class Meter:
                 )
 
 
-class MeterList(TypedList):
+class MeterList(_typedcollections.TypedList):
     """
     Meter list.
 
@@ -2536,7 +2550,7 @@ class MeterList(TypedList):
 
 def illustrate_meter_list(
     meter_list, denominator=16, range_=None, scale=None
-) -> LilyPondFile:
+) -> _lilypondfile.LilyPondFile:
     r"""
     Illustrates meters.
 
@@ -2705,17 +2719,17 @@ def illustrate_meter_list(
     """
     durations = [_.duration for _ in meter_list]
     total_duration = sum(durations)
-    offsets = math.cumulative_sums(durations, start=0)
-    timespans = TimespanList()
-    for one, two in Sequence(offsets).nwise():
-        timespan = Timespan(start_offset=one, stop_offset=two)
+    offsets = _math.cumulative_sums(durations, start=0)
+    timespans = _timespan.TimespanList()
+    for one, two in _sequence.Sequence(offsets).nwise():
+        timespan = _timespan.Timespan(start_offset=one, stop_offset=two)
         timespans.append(timespan)
     if range_ is not None:
         minimum, maximum = range_
     else:
         minimum, maximum = 0, total_duration
-    minimum = float(Offset(minimum))
-    maximum = float(Offset(maximum))
+    minimum = float(_duration.Offset(minimum))
+    maximum = float(_duration.Offset(maximum))
     if scale is None:
         scale = 1.0
     assert 0 < scale
@@ -2729,7 +2743,7 @@ def illustrate_meter_list(
         draw_offsets=False,
     )
     postscript_strings = []
-    rational_x_offset = Offset(0)
+    rational_x_offset = _duration.Offset(0)
     for meter in meter_list:
         kernel_denominator = denominator or meter.denominator
         kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
@@ -2738,8 +2752,8 @@ def illustrate_meter_list(
             ps_x_offset = float(rational_x_offset + offset)
             ps_x_offset *= postscript_scale
             ps_x_offset += 1
-            postscript_strings.append(f"{markups._fpa(ps_x_offset)} -2 moveto")
-            postscript_strings.append(f"0 {markups._fpa(weight)} rlineto")
+            postscript_strings.append(f"{_markups._fpa(ps_x_offset)} -2 moveto")
+            postscript_strings.append(f"0 {_markups._fpa(weight)} rlineto")
             postscript_strings.append("stroke")
         rational_x_offset += meter.duration
     fraction_pairs = []
@@ -2772,9 +2786,9 @@ def illustrate_meter_list(
     strings.append('"')
     strings.append("}")
     string = "\n".join(strings)
-    markup = markups.Markup(string)
-    lilypond_file = LilyPondFile()
-    markup = new(markup, direction=None)
+    markup = _markups.Markup(string)
+    lilypond_file = _lilypondfile.LilyPondFile()
+    markup = _new.new(markup, direction=None)
     lilypond_file.items.append(markup)
     return lilypond_file
 
@@ -2822,8 +2836,8 @@ class MetricAccentKernel:
         kernel = kernel or {}
         assert isinstance(kernel, dict)
         for key, value in kernel.items():
-            assert isinstance(key, Offset)
-            assert isinstance(value, Multiplier)
+            assert isinstance(key, _duration.Offset)
+            assert isinstance(value, _duration.Multiplier)
         self._kernel = kernel.copy()
         self._offsets = tuple(sorted(self._kernel))
 
@@ -2844,7 +2858,7 @@ class MetricAccentKernel:
         Returns float.
         """
         offset_count = self.count_offsets(argument)
-        response = Multiplier(0, 1)
+        response = _duration.Multiplier(0, 1)
         for offset, count in offset_count.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]
@@ -2891,7 +2905,7 @@ class MetricAccentKernel:
         """
         Gets duration.
         """
-        return Duration(self._offsets[-1])
+        return _duration.Duration(self._offsets[-1])
 
     @property
     def kernel(self):
@@ -2905,7 +2919,7 @@ class MetricAccentKernel:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def count_offsets(argument) -> OffsetCounter:
+    def count_offsets(argument) -> _timespan.OffsetCounter:
         r"""
         Count offsets in ``argument``.
 
@@ -2968,7 +2982,7 @@ class MetricAccentKernel:
 
         Returns counter.
         """
-        return OffsetCounter(argument)
+        return _timespan.OffsetCounter(argument)
 
     @staticmethod
     def from_meter(meter, denominator=32, normalize=True):
@@ -3027,7 +3041,7 @@ class _MeterFittingSession:
         self._ordered_offsets = tuple(sorted(self.offset_counter))
         meters = meters or ()
         self._meters = tuple(Meter(_) for _ in meters)
-        self._kernel_denominator = Duration(kernel_denominator)
+        self._kernel_denominator = _duration.Duration(kernel_denominator)
         self._kernels = {}
         for meter in self._meters:
             kernel = meter.generate_offset_kernel_to_denominator(
@@ -3048,7 +3062,7 @@ class _MeterFittingSession:
         Returns meter list.
         """
         selected_kernels = []
-        current_offset = Offset(0)
+        current_offset = _duration.Offset(0)
         while current_offset < self.ordered_offsets[-1]:
             kernel_scores = []
             kernels = self._get_kernels(selected_kernels)
@@ -3212,11 +3226,11 @@ class _MeterManager:
         while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
-            for first, second in Sequence(old_offsets).nwise():
+            for first, second in _sequence.Sequence(old_offsets).nwise():
                 new_offsets.append(first)
                 difference = second - first
                 half = (first + second) / 2
-                if Duration(1, 8) < difference:
+                if _duration.Duration(1, 8) < difference:
                     new_offsets.append(half)
                 else:
                     one_quarter = (first + half) / 2
@@ -3374,9 +3388,9 @@ class _MeterManager:
         current_leaf_group = None
         current_leaf_group_is_silent = False
         for component in argument:
-            if isinstance(component, (Note, Chord)):
+            if isinstance(component, (_score.Note, _score.Chord)):
                 this_tie_leaves = _iterate._get_logical_tie_leaves(component)
-                this_tie = LogicalTie(this_tie_leaves)
+                this_tie = _selection.LogicalTie(this_tie_leaves)
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (
@@ -3384,27 +3398,27 @@ class _MeterManager:
                     or this_tie is None
                     or last_tie != this_tie
                 ):
-                    yield LogicalTie(current_leaf_group)
+                    yield _selection.LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = False
                 current_leaf_group.append(component)
                 last_tie = this_tie
-            elif isinstance(component, (Rest, Skip)):
+            elif isinstance(component, (_score.Rest, _score.Skip)):
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif not current_leaf_group_is_silent:
-                    yield LogicalTie(current_leaf_group)
+                    yield _selection.LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = True
                 current_leaf_group.append(component)
                 last_tie = None
-            elif isinstance(component, Container):
+            elif isinstance(component, _score.Container):
                 if current_leaf_group is not None:
-                    yield LogicalTie(current_leaf_group)
+                    yield _selection.LogicalTie(current_leaf_group)
                     current_leaf_group = None
                     last_tie = None
                 yield component
             else:
                 raise Exception(f"unhandled component: {component!r}.")
         if current_leaf_group is not None:
-            yield LogicalTie(current_leaf_group)
+            yield _selection.LogicalTie(current_leaf_group)

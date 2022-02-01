@@ -2,11 +2,12 @@ import copy
 import importlib
 import typing
 
-from . import _inspect, exceptions
+from . import _inspect
+from . import duration as _duration
+from . import exceptions as _exceptions
 from . import format as _format
+from . import score as _score
 from . import tag as _tag
-from .duration import Multiplier, Offset
-from .score import AfterGraceContainer, BeforeGraceContainer, Component, Container, Leaf
 
 
 class Wrapper:
@@ -105,7 +106,7 @@ class Wrapper:
             assert isinstance(annotation, str), repr(annotation)
         self._annotation = annotation
         if component is not None:
-            assert isinstance(component, Component), repr(component)
+            assert isinstance(component, _score.Component), repr(component)
         self._component = component
         if deactivate is not None:
             deactivate = bool(deactivate)
@@ -118,7 +119,7 @@ class Wrapper:
         self._effective_context = None
         self._indicator = indicator
         if synthetic_offset is not None:
-            synthetic_offset = Offset(synthetic_offset)
+            synthetic_offset = _duration.Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
         if tag is not None:
             assert isinstance(tag, (str, _tag.Tag))
@@ -301,7 +302,6 @@ class Wrapper:
         """
         Is true when self equals ``argument``.
         """
-        # return _format.compare_objects(self, argument)
         if not isinstance(argument, Wrapper):
             return False
         if self.annotation != argument.annotation:
@@ -502,7 +502,7 @@ class Wrapper:
             message += f" to {repr(wrapper.component)}"
             message += f" in {wrapper_context.name}."
         message += "\n"
-        raise exceptions.PersistentIndicatorError(message)
+        raise _exceptions.PersistentIndicatorError(message)
 
     ### PUBLIC PROPERTIES ###
 
@@ -568,7 +568,7 @@ class Wrapper:
         return self._indicator
 
     @property
-    def leaked_start_offset(self) -> Offset:
+    def leaked_start_offset(self) -> _duration.Offset:
         r"""
         Gets start offset and checks to see whether indicator leaks to the right.
 
@@ -620,7 +620,7 @@ class Wrapper:
             return self._component._get_timespan().stop_offset
 
     @property
-    def start_offset(self) -> Offset:
+    def start_offset(self) -> _duration.Offset:
         """
         Gets start offset.
 
@@ -923,7 +923,7 @@ def attach(  # noqa: 302
     if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
 
-    if isinstance(attachable, Multiplier):
+    if isinstance(attachable, _duration.Multiplier):
         message = "use the Leaf.multiplier property to multiply leaf duration."
         raise Exception(message)
 
@@ -949,16 +949,16 @@ def attach(  # noqa: 302
             message = "\n".join(result)
             raise Exception(message)
 
-    prototype = (AfterGraceContainer, BeforeGraceContainer)
+    prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
     if isinstance(attachable, prototype):
         if not hasattr(target, "written_duration"):
             raise Exception("grace containers attach to single leaf only.")
         attachable._attach(target)
         return
 
-    assert isinstance(target, Component), repr(target)
+    assert isinstance(target, _score.Component), repr(target)
 
-    if isinstance(target, Container):
+    if isinstance(target, _score.Container):
         acceptable = False
         if isinstance(attachable, (dict, str, _tag.Tag, Wrapper)):
             acceptable = True
@@ -967,12 +967,12 @@ def attach(  # noqa: 302
         if not acceptable:
             message = f"can not attach {attachable!r} to containers: {target!r}"
             raise Exception(message)
-    elif not isinstance(target, Leaf):
+    elif not isinstance(target, _score.Leaf):
         message = f"indicator {attachable!r} must attach to leaf, not {target!r}."
         raise Exception(message)
 
     component = target
-    assert isinstance(component, Component), repr(component)
+    assert isinstance(component, _score.Component), repr(component)
 
     annotation = None
     if isinstance(attachable, Wrapper):

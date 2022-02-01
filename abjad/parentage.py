@@ -1,10 +1,10 @@
 import collections
 import typing
 
+from . import duration as _duration
 from . import format as _format
-from . import math
+from . import math as _math
 from . import score as _score
-from .duration import Multiplier
 
 
 class Parentage(collections.abc.Sequence):
@@ -107,7 +107,7 @@ class Parentage(collections.abc.Sequence):
 
     def _prolations(self):
         prolations = []
-        default = Multiplier(1)
+        default = _duration.Multiplier(1)
         for parent in self:
             prolation = getattr(parent, "implied_prolation", default)
             prolations.append(prolation)
@@ -561,7 +561,7 @@ class Parentage(collections.abc.Sequence):
         return self.get(n=1)
 
     @property
-    def prolation(self) -> Multiplier:
+    def prolation(self) -> _duration.Multiplier:
         r"""
         Gets prolation.
 
@@ -662,8 +662,8 @@ class Parentage(collections.abc.Sequence):
             Note("fs'16")                  Multiplier(2, 3)
 
         """
-        prolations = [Multiplier(1)] + self._prolations()
-        products = math.cumulative_products(prolations)
+        prolations = [_duration.Multiplier(1)] + self._prolations()
+        products = _math.cumulative_products(prolations)
         return products[-1]
 
     @property

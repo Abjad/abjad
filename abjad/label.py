@@ -2,6 +2,7 @@ import typing
 
 from . import _inspect, _iterate
 from . import bind as _bind
+from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
 from . import format as _format
@@ -9,22 +10,10 @@ from . import iterate as iterate_
 from . import markups as _markups
 from . import new as _new
 from . import overrides as _overrides
+from . import pitch as _pitch
 from . import score as _score
 from . import selection as _selection
 from . import verticalmoment as _verticalmoment
-from .cyclictuple import CyclicTuple
-from .pitch.SetClass import SetClass
-from .pitch.intervalclasses import (
-    NamedIntervalClass,
-    NumberedIntervalClass,
-    NumberedInversionEquivalentIntervalClass,
-)
-from .pitch.intervals import NamedInterval, NumberedInterval
-from .pitch.pitchclasses import NumberedPitchClass
-from .pitch.pitches import NamedPitch, NumberedPitch
-from .pitch.segments import PitchSegment
-from .pitch.sets import PitchClassSet
-from .pitch.vectors import IntervalClassVector
 
 
 def _attach(label, leaf, *, deactivate=False, tag=None):
@@ -75,7 +64,7 @@ def by_selector(
         color_leaves(argument, color, deactivate=deactivate, tag=tag)
     else:
         colors = colors or ["#red", "#blue"]
-        colors = CyclicTuple(colors)
+        colors = _cyclictuple.CyclicTuple(colors)
         for i, item in enumerate(argument):
             color = colors[i]
             color_leaves(item, color, deactivate=deactivate, tag=tag)
@@ -298,7 +287,7 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
         if isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
                 number = note_head.written_pitch.number
-                pc = NumberedPitchClass(number)
+                pc = _pitch.NumberedPitchClass(number)
                 color = color_map.get(pc, None)
                 if color is not None:
                     _overrides.tweak(note_head, literal=True).Accidental.color = color
@@ -306,7 +295,7 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
         elif isinstance(leaf, _score.Note):
             note_head = leaf.note_head
             number = note_head.written_pitch.number
-            pc = NumberedPitchClass(number)
+            pc = _pitch.NumberedPitchClass(number)
             color = color_map[pc.number]
             if color is not None:
                 _overrides.tweak(leaf.note_head, literal=True).Accidental.color = color
@@ -712,16 +701,16 @@ def vertical_moments(
         label, string = None, None
         if prototype is int:
             string = str(index)
-        elif prototype is NumberedPitch:
+        elif prototype is _pitch.NumberedPitch:
             leaves = vertical_moment.leaves
-            pitches = PitchSegment.from_selection(leaves)
+            pitches = _pitch.PitchSegment.from_selection(leaves)
             if not pitches:
                 continue
             pitch_numbers = [str(pitch.number) for pitch in pitches]
             string = rf'\column {{ {" ".join(pitch_numbers)} }}'
-        elif prototype is NumberedPitchClass:
+        elif prototype is _pitch.NumberedPitchClass:
             leaves = vertical_moment.leaves
-            pitches = PitchSegment.from_selection(leaves)
+            pitches = _pitch.PitchSegment.from_selection(leaves)
             if not pitches:
                 continue
             pitch_classes = [pitch.pitch_class.number for pitch in pitches]
@@ -730,7 +719,7 @@ def vertical_moments(
             pitch_classes.reverse()
             numbers = [str(_) for _ in pitch_classes]
             string = rf'\column {{ {" ".join(numbers)} }}'
-        elif prototype is NumberedInterval:
+        elif prototype is _pitch.NumberedInterval:
             leaves = vertical_moment.leaves
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
             if not notes:
@@ -741,13 +730,13 @@ def vertical_moments(
             upper_notes = notes[:-1]
             named_intervals = []
             for upper_note in upper_notes:
-                named_interval = NamedInterval.from_pitch_carriers(
+                named_interval = _pitch.NamedInterval.from_pitch_carriers(
                     bass_note.written_pitch, upper_note.written_pitch
                 )
                 named_intervals.append(named_interval)
             numbers = [str(x.number) for x in named_intervals]
             string = rf'\column {{ {" ".join(numbers)} }}'
-        elif prototype is NumberedIntervalClass:
+        elif prototype is _pitch.NumberedIntervalClass:
             leaves = vertical_moment.leaves
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
             if not notes:
@@ -758,33 +747,33 @@ def vertical_moments(
             upper_notes = notes[:-1]
             numbers = []
             for upper_note in upper_notes:
-                interval = NamedInterval.from_pitch_carriers(
+                interval = _pitch.NamedInterval.from_pitch_carriers(
                     bass_note.written_pitch, upper_note.written_pitch
                 )
-                interval_class = NumberedIntervalClass(interval)
+                interval_class = _pitch.NumberedIntervalClass(interval)
                 number = interval_class.number
                 numbers.append(number)
             string = " ".join([str(_) for _ in numbers])
             string = rf"\column {{ {string} }}"
-        elif prototype is IntervalClassVector:
+        elif prototype is _pitch.IntervalClassVector:
             leaves = vertical_moment.leaves
-            pitches = PitchSegment.from_selection(leaves)
+            pitches = _pitch.PitchSegment.from_selection(leaves)
             if not pitches:
                 continue
-            interval_class_vector = IntervalClassVector(
+            interval_class_vector = _pitch.IntervalClassVector(
                 pitches,
-                item_class=NumberedInversionEquivalentIntervalClass,
+                item_class=_pitch.NumberedInversionEquivalentIntervalClass,
             )
             string = interval_class_vector._label
-        elif prototype is SetClass or isinstance(prototype, SetClass):
-            if prototype is SetClass:
+        elif prototype is _pitch.SetClass or isinstance(prototype, _pitch.SetClass):
+            if prototype is _pitch.SetClass:
                 prototype = prototype()
-            assert isinstance(prototype, SetClass)
+            assert isinstance(prototype, _pitch.SetClass)
             leaves = vertical_moment.leaves
-            pitch_class_set = PitchClassSet.from_selection(leaves)
+            pitch_class_set = _pitch.PitchClassSet.from_selection(leaves)
             if not pitch_class_set:
                 continue
-            set_class = SetClass.from_pitch_class_set(
+            set_class = _pitch.SetClass.from_pitch_class_set(
                 pitch_class_set,
                 lex_rank=prototype.lex_rank,
                 transposition_only=prototype.transposition_only,
@@ -1319,32 +1308,32 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
 
     Returns none.
     """
-    prototype = prototype or NamedInterval
+    prototype = prototype or _pitch.NamedInterval
     for note in iterate_.leaves(argument, _score.Note):
         label = None
         next_leaf = _iterate._get_leaf(note, 1)
         if isinstance(next_leaf, _score.Note):
-            interval = NamedInterval.from_pitch_carriers(note, next_leaf)
-            if prototype is NamedInterval:
+            interval = _pitch.NamedInterval.from_pitch_carriers(note, next_leaf)
+            if prototype is _pitch.NamedInterval:
                 label = _markups.Markup(rf"\markup {interval}", direction=direction)
-            elif prototype is NamedIntervalClass:
+            elif prototype is _pitch.NamedIntervalClass:
                 label = _markups.Markup(
-                    rf"\markup {NamedIntervalClass(interval)}",
+                    rf"\markup {_pitch.NamedIntervalClass(interval)}",
                     direction=direction,
                 )
-            elif prototype is NumberedInterval:
+            elif prototype is _pitch.NumberedInterval:
                 label = _markups.Markup(
-                    rf"\markup {NumberedInterval(interval)}",
+                    rf"\markup {_pitch.NumberedInterval(interval)}",
                     direction=direction,
                 )
-            elif prototype is NumberedIntervalClass:
+            elif prototype is _pitch.NumberedIntervalClass:
                 label = _markups.Markup(
-                    rf"\markup {NumberedIntervalClass(interval)}",
+                    rf"\markup {_pitch.NumberedIntervalClass(interval)}",
                     direction=direction,
                 )
-            elif prototype is NumberedInversionEquivalentIntervalClass:
+            elif prototype is _pitch.NumberedInversionEquivalentIntervalClass:
                 label = _markups.Markup(
-                    rf"\markup {NumberedInversionEquivalentIntervalClass(interval)}",
+                    rf"\markup {_pitch.NumberedInversionEquivalentIntervalClass(interval)}",
                     direction=direction,
                 )
             if label is not None:
@@ -1625,12 +1614,12 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
 
     Returns none.
     """
-    prototype = prototype or NamedPitch
+    prototype = prototype or _pitch.NamedPitch
     logical_ties = iterate_.logical_ties(argument)
     for logical_tie in logical_ties:
         leaf = logical_tie.head
         label = None
-        if prototype is NamedPitch:
+        if prototype is _pitch.NamedPitch:
             if isinstance(leaf, _score.Note):
                 string = leaf.written_pitch.get_name(locale=locale)
                 if "#" in string:
@@ -1649,7 +1638,7 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                     rf"\markup \column {{ {string} }}",
                     direction=direction,
                 )
-        elif prototype is NumberedPitch:
+        elif prototype is _pitch.NumberedPitch:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.number
                 label = _markups.Markup(rf"\markup {pitch}", direction=direction)
@@ -1662,7 +1651,7 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                     rf"\markup \column {{ {string} }}",
                     direction=direction,
                 )
-        elif prototype is NumberedPitchClass:
+        elif prototype is _pitch.NumberedPitchClass:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.pitch_class.number
                 label = _markups.Markup(rf"\markup {pitch}", direction=direction)
@@ -1830,15 +1819,15 @@ def with_set_classes(argument, direction=_enums.Up, prototype=None):
 
     Returns none.
     """
-    prototype = prototype or SetClass()
-    if prototype is SetClass:
+    prototype = prototype or _pitch.SetClass()
+    if prototype is _pitch.SetClass:
         prototype = prototype()
-    assert isinstance(prototype, SetClass), repr(prototype)
+    assert isinstance(prototype, _pitch.SetClass), repr(prototype)
     for selection in argument:
-        pitch_class_set = PitchClassSet.from_selection(selection)
+        pitch_class_set = _pitch.PitchClassSet.from_selection(selection)
         if not pitch_class_set:
             continue
-        set_class = SetClass.from_pitch_class_set(
+        set_class = _pitch.SetClass.from_pitch_class_set(
             pitch_class_set,
             lex_rank=prototype.lex_rank,
             transposition_only=prototype.transposition_only,
@@ -2070,9 +2059,12 @@ class ColorMap:
 
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares ``color``, ``pitch_iterables``.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            if self.colors == argument.colors:
+                return self.pitch_iterables == argument.pitch_iterables
+        return False
 
     def __getitem__(self, pitch_class) -> str:
         """
@@ -2093,7 +2085,7 @@ class ColorMap:
             '#green'
 
         """
-        pitch_class = NumberedPitchClass(pitch_class)
+        pitch_class = _pitch.NumberedPitchClass(pitch_class)
         return self._color_dictionary[pitch_class.number]
 
     def __hash__(self) -> int:
@@ -2113,7 +2105,7 @@ class ColorMap:
     def _initialize_color_dictionary(self):
         for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
             for pitch in pitch_iterable:
-                pc = NumberedPitchClass(pitch)
+                pc = _pitch.NumberedPitchClass(pitch)
                 keys = self._color_dictionary.keys()
                 if pc.number in list(keys):
                     print(pc, list(self._color_dictionary.keys()))

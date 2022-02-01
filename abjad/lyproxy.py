@@ -1,7 +1,7 @@
 import typing
 
 from . import format as _format
-from .lyenv import contexts, engravers, grob_interfaces, interface_properties
+from . import lyenv as _lyenv
 
 
 class LilyPondContext:
@@ -89,7 +89,7 @@ class LilyPondContext:
     ### INITIALIZER ###
 
     def __init__(self, name="Voice") -> None:
-        assert name in contexts
+        assert name in _lyenv.contexts
         self._name = name
 
     def __repr__(self) -> str:
@@ -262,7 +262,7 @@ class LilyPondContext:
 
         """
         accepting_contexts = set()
-        for lilypond_type, context_info in contexts.items():
+        for lilypond_type, context_info in _lyenv.contexts.items():
             assert isinstance(context_info, dict), repr(context_info)
             if self.name in context_info["accepts"]:
                 accepting_context = LilyPondContext(lilypond_type)
@@ -285,7 +285,7 @@ class LilyPondContext:
             LilyPondContext(name='NullVoice')
 
         """
-        dictionary = contexts[self.name]
+        dictionary = _lyenv.contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         accepts = (LilyPondContext(name=name) for name in dictionary["accepts"])
         return tuple(sorted(accepts, key=lambda x: x.name))
@@ -302,12 +302,12 @@ class LilyPondContext:
             LilyPondContext(name='Staff')
 
         """
-        dictionary = contexts[self.name]
+        dictionary = _lyenv.contexts[self.name]
         assert isinstance(dictionary, dict)
         aliases = dictionary["aliases"]
         if aliases:
             alias = tuple(aliases)[0]
-            if alias not in contexts:
+            if alias not in _lyenv.contexts:
                 return None
             return LilyPondContext(name=alias)
         return None
@@ -382,14 +382,14 @@ class LilyPondContext:
         """
         if self.is_bottom_context:
             return None
-        dictionary = contexts[self.name]
+        dictionary = _lyenv.contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         default_child_name = dictionary.get("default_child", None)
         if default_child_name is None:
             alias = self.alias
             if alias is not None:
                 return alias.default_child
-        if default_child_name and default_child_name in contexts:
+        if default_child_name and default_child_name in _lyenv.contexts:
             return LilyPondContext(name=default_child_name)
         return None
 
@@ -434,7 +434,7 @@ class LilyPondContext:
 
         """
         engravers = set()
-        dictionary = contexts[self.name]
+        dictionary = _lyenv.contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         for engraver_name in dictionary["consists"]:
             engraver = LilyPondEngraver(name=engraver_name)
@@ -559,7 +559,7 @@ class LilyPondContext:
             False
 
         """
-        dictionary = contexts[self.name]
+        dictionary = _lyenv.contexts[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         return bool(dictionary.get("is_custom", False))
 
@@ -918,7 +918,7 @@ class LilyPondContext:
             LilyPondContext(name='Voice')
 
         """
-        return tuple(LilyPondContext(name=name) for name in sorted(contexts))
+        return tuple(LilyPondContext(name=name) for name in sorted(_lyenv.contexts))
 
     @classmethod
     def register(
@@ -988,7 +988,7 @@ class LilyPondContext:
             >>> custom_context.unregister()
 
         """
-        assert name not in contexts
+        assert name not in _lyenv.contexts
         context_entry: typing.Dict = {}
         context_entry["accepts"] = set()
         context_entry["consists"] = set()
@@ -1041,9 +1041,9 @@ class LilyPondContext:
                 assert isinstance(x, class_)
                 accepting_contexts.add(x.name)
         assert isinstance(name, str)
-        contexts[name] = context_entry
+        _lyenv.contexts[name] = context_entry
         for accepting_context in accepting_contexts:
-            dictionary = contexts[accepting_context]
+            dictionary = _lyenv.contexts[accepting_context]
             assert isinstance(dictionary, dict)
             dictionary["accepts"].add(name)
         custom_context = class_(name=name)
@@ -1118,9 +1118,9 @@ class LilyPondContext:
 
         """
         assert self.is_custom
-        del contexts[self.name]
+        del _lyenv.contexts[self.name]
         del self._identity_map[self.name]
-        for lilypond_type, context_info in contexts.items():
+        for lilypond_type, context_info in _lyenv.contexts.items():
             assert isinstance(context_info, dict), repr(context_info)
             set_ = context_info["accepts"]
             assert isinstance(set_, set), repr(set_)
@@ -1161,7 +1161,7 @@ class LilyPondEngraver:
     ### INITIALIZER ###
 
     def __init__(self, name: str = "Note_heads_engraver") -> None:
-        assert name in engravers
+        assert name in _lyenv.engravers
         self._name = name
 
     def __repr__(self) -> str:
@@ -1320,7 +1320,7 @@ class LilyPondEngraver:
             LilyPondEngraver(name='Volta_engraver')
 
         """
-        return tuple(LilyPondEngraver(name=name) for name in sorted(engravers))
+        return tuple(LilyPondEngraver(name=name) for name in sorted(_lyenv.engravers))
 
     ### PUBLIC PROPERTIES ###
 
@@ -1338,7 +1338,7 @@ class LilyPondEngraver:
             LilyPondGrob(name='Beam')
 
         """
-        dictionary = engravers[self.name]
+        dictionary = _lyenv.engravers[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         return tuple(LilyPondGrob(name=name) for name in dictionary["grobs_created"])
 
@@ -1375,7 +1375,7 @@ class LilyPondEngraver:
             'subdivideBeams'
 
         """
-        dictionary = engravers[self.name]
+        dictionary = _lyenv.engravers[self.name]
         assert isinstance(dictionary, dict), repr(dictionary)
         property_names: typing.Set[str] = set()
         property_names.update(dictionary["properties_read"])
@@ -1416,7 +1416,7 @@ class LilyPondGrob:
     ### INITIALIZER ###
 
     def __init__(self, name="NoteHead") -> None:
-        assert name in grob_interfaces
+        assert name in _lyenv.grob_interfaces
         self._name = name
 
     def __repr__(self) -> str:
@@ -1447,7 +1447,7 @@ class LilyPondGrob:
 
         """
         return tuple(
-            LilyPondGrobInterface(_) for _ in sorted(grob_interfaces[self.name])
+            LilyPondGrobInterface(_) for _ in sorted(_lyenv.grob_interfaces[self.name])
         )
 
     @property
@@ -1700,7 +1700,7 @@ class LilyPondGrob:
             LilyPondGrob(name='VoltaBracketSpanner')
 
         """
-        return tuple(LilyPondGrob(name) for name in sorted(grob_interfaces))
+        return tuple(LilyPondGrob(name) for name in sorted(_lyenv.grob_interfaces))
 
 
 class LilyPondGrobInterface:
@@ -1736,7 +1736,7 @@ class LilyPondGrobInterface:
     ### INITIALIZER ###
 
     def __init__(self, name: str = "grob-interface") -> None:
-        assert name in interface_properties
+        assert name in _lyenv.interface_properties
         self._name = name
 
     ### SPECIAL METHODS ###
@@ -1898,7 +1898,9 @@ class LilyPondGrobInterface:
             LilyPondGrobInterface(name='volta-interface')
 
         """
-        return tuple(LilyPondGrobInterface(_) for _ in sorted(interface_properties))
+        return tuple(
+            LilyPondGrobInterface(_) for _ in sorted(_lyenv.interface_properties)
+        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -1952,7 +1954,7 @@ class LilyPondGrobInterface:
             'skip-quanting'
 
         """
-        names = interface_properties[self.name]
+        names = _lyenv.interface_properties[self.name]
         assert isinstance(names, list), repr(names)
         assert all(isinstance(_, str) for _ in names), repr(names)
         return tuple(names)

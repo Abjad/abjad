@@ -1,9 +1,9 @@
 import typing
 
-from . import _iterate, score
-from .pitch.pitches import NamedPitch, Pitch
-from .pitch.sets import PitchSet
-from .selection import LogicalTie
+from . import _iterate
+from . import pitch as _pitch
+from . import score as _score
+from . import selection as _selection
 
 
 def components(argument, prototype=None, *, exclude=None, grace=None, reverse=None):
@@ -784,7 +784,7 @@ def logical_ties(
         nontrivial=nontrivial,
         pitched=pitched,
         reverse=reverse,
-        wrapper_class=LogicalTie,
+        wrapper_class=_selection.LogicalTie,
     )
 
 
@@ -857,17 +857,17 @@ def pitches(argument):
 
     Returns generator.
     """
-    if isinstance(argument, Pitch):
-        pitch = NamedPitch(argument)
+    if isinstance(argument, _pitch.Pitch):
+        pitch = _pitch.NamedPitch(argument)
         yield pitch
     result = []
     try:
         result.extend(argument.pitches)
     except AttributeError:
         pass
-    if isinstance(argument, score.Chord):
+    if isinstance(argument, _score.Chord):
         result.extend(argument.written_pitches)
-    elif isinstance(argument, PitchSet):
+    elif isinstance(argument, _pitch.PitchSet):
         result.extend(sorted(list(argument)))
     elif isinstance(argument, (list, tuple, set)):
         for item in argument:

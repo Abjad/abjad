@@ -28,11 +28,11 @@ class Scheme:
 
     def __eq__(self, argument) -> bool:
         """
-
-        Returns true or false.
-        Delegates to ``abjad.format.compare_objects()``.
+        Is true when ``argument`` is a Scheme object with value equal to this one.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return self.value == argument.value
+        return False
 
     def __repr__(self) -> str:
         """

@@ -2,7 +2,7 @@ import abc
 import collections.abc
 
 from . import format as _format
-from .new import new
+from . import new as _new
 
 
 class TypedCollection:
@@ -1063,10 +1063,10 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         if isinstance(argument, type(self)):
             items = argument._collection
-            return new(self, items=self._collection[:] + items)
+            return _new.new(self, items=self._collection[:] + items)
         elif isinstance(argument, type(self._collection)):
             items = argument[:]
-            return new(self, items=self._collection[:] + items)
+            return _new.new(self, items=self._collection[:] + items)
         raise NotImplementedError
 
     def __contains__(self, item):
@@ -1110,14 +1110,14 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
         Returns new typed tuple.
         """
         items = self._collection * argument
-        return new(self, items=items)
+        return _new.new(self, items=items)
 
     def __radd__(self, argument):
         """
         Right-adds ``argument`` to typed tuple.
         """
         items = argument + self._collection
-        return new(self, items=items)
+        return _new.new(self, items=items)
 
     def __rmul__(self, argument):
         """
