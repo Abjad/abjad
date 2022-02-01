@@ -5,6 +5,226 @@ Changes
 
 ----
 
+Changed in Abjad 3.5
+--------------------
+
+Changes to Abjad 3.5 (2022-02-01) since Abjad 3.4 (2021-05-01).
+
+Abjad 3.5 requires Python 3.10.
+
+`#1384 <https://github.com/Abjad/abjad/issues/1384>`_. Moved ``abjad.ily`` from
+``abjad/docs/_stylesheets`` to ``abjad/abjad/_stylesheets``.
+
+`#1372 <https://github.com/Abjad/abjad/issues/1372>`_. Refactored all indicators as
+dataclasses. Added new ``indicators.py`` module.
+
+`#1370 <https://github.com/Abjad/abjad/issues/1370>`_. Fixed definition of Forte SC 4-25.
+
+`#1368 <https://github.com/Abjad/abjad/issues/1368>`_. Gutted ``abjad.Markup``. Markup is
+no longer parsed:
+
+    OLD::
+
+        abjad.Markup('\italic "Allegro moderato"', literal=True)
+
+    NEW::
+
+        abjad.Markup(r'\markup \italic "Allegro moderator"')
+
+    REMOVED::
+
+        * abjad.Postscript; use strings instead
+        * abjad.PostscriptOperator; use strings instead
+        * abjad.Markup.__add__(), __radd__()
+        * abjad.Markup.postscript()
+        * abjad.markups.abjad_metronome_mark()
+
+`#1366 <https://github.com/Abjad/abjad/issues/1366>`_. Removed ``abjad.OrderedDict``. Use
+``dict()`` instead.
+
+`#1360 <https://github.com/Abjad/abjad/issues/1360>`_. Replaced
+``abjad.StorageFormatManager`` with ``format.py`` module.
+
+`#1359 <https://github.com/Abjad/abjad/issues/1359>`_. Changed ``abjad.iterate()`` to
+``iterate.py`` module:
+
+    OLD::
+
+        abjad.iterate(argument).components()
+        abjad.iterate(argument).leaves()
+        abjad.iterate(argument).logical_ties()
+        abjad.iterate(argument).pitches()
+
+    NEW::
+
+        abjad.iterate.components(argument)
+        abjad.iterate.leaves(argument)
+        abjad.iterate.logical_ties(argument)
+        abjad.iterate.pitches(argument)
+
+`#1357 <https://github.com/Abjad/abjad/issues/1357>`_. Changed ``abjad.Label`` to
+``label.py`` module:
+
+    OLD::
+
+        abjad.Label(argument).by_selector()
+        abjad.Label(argument).color_container()
+        abjad.Label(argument).color_leaves()
+        abjad.Label(argument).color_note_heads()
+        abjad.Label(argument).remove_markup()
+        abjad.Label(argument).vertical_moments()
+        abjad.Label(argument).with_durations()
+        abjad.Label(argument).with_indices()
+        abjad.Label(argument).with_intervals()
+        abjad.Label(argument).with_pitches()
+        abjad.Label(argument).with_set_classes()
+        abjad.Label(argument).with_start_offsets()
+
+    NEW::
+
+        abjad.label.by_selector(argument)
+        abjad.label.color_container(argument)
+        abjad.label.color_leaves(argument)
+        abjad.label.color_note_heads(argument)
+        abjad.label.remove_markup(argument)
+        abjad.label.vertical_moments(argument)
+        abjad.label.with_durations(argument)
+        abjad.label.with_indices(argument)
+        abjad.label.with_intervals(argument)
+        abjad.label.with_pitches(argument)
+        abjad.label.with_set_classes(argument)
+        abjad.label.with_start_offsets(argument)
+
+`#1303 <https://github.com/Abjad/abjad/issues/1303>`_. Removed default.ily stylesheet.
+
+`#1293 <https://github.com/Abjad/abjad/issues/1293>`_. Gutted ``abjad.LilyPondFile``:
+
+    Removed abjad.ContextBlock; use abjad.Block instead::
+
+        >>> string = r"""\Staff
+        ...     \name FluteStaff
+        ...     \type Engraver_group
+        ...     \alias Staff
+        ...     \remove Forbid_line_break_engraver
+        ...     \consists Horizontal_bracket_engraver
+        ...     \accepts FluteUpperVoice
+        ...     \accepts FluteLowerVoice
+        ...     \override Beam.positions = #'(-4 . -4)
+        ...     \override Stem.stem-end-position = -6
+        ...     autoBeaming = ##f
+        ...     tupletFullLength = ##t
+        ...     \accidentalStyle dodecaphonic"""
+        >>> block = abjad.Block(name="context")
+        >>> block.items.append(string)
+
+        >>> string = abjad.lilypond(block)
+        >>> print(string)
+        \context
+        {
+            \Staff
+            \name FluteStaff
+            \type Engraver_group
+            \alias Staff
+            \remove Forbid_line_break_engraver
+            \consists Horizontal_bracket_engraver
+            \accepts FluteUpperVoice
+            \accepts FluteLowerVoice
+            \override Beam.positions = #'(-4 . -4)
+            \override Stem.stem-end-position = -6
+            autoBeaming = ##f
+            tupletFullLength = ##t
+            \accidentalStyle dodecaphonic
+        }
+
+    Removed ``abjad.Block.__setattr__()``. Use ``abjad.Block.items`` instead.
+
+    REMOVED::
+
+        * abjad.DateTimeToken
+        * abjad.LilyPondDimension
+        * abjad.LilyPondLanguageToken
+        * abjad.LilyPondVersionToken
+        * abjad.PackageGitCommitToken
+        * abjad.LilyPondFile.comments
+        * abjad.LilyPondFile.includes
+        * abjad.LilyPondFile.use_relative_includes
+        * Removed courtesy blank lines from abjad.LilyPondFile output
+        * abjad.LilyPondFile.default_paper_size
+        * abjad.LilyPondFile.global_staff_size:
+
+    OLD::
+
+        * abjad.LilyPondFile.default_paper_size = ("a4", "letter")
+        * abjad.LilyPondFile.global_staff_size = 16
+
+    NEW::
+
+        preamble = r"""
+            #(set-default-paper-size "a4" 'letter)
+            #(set-global-staff-size 16)"""
+
+        * abjad.LilyPondFile(items=[preamble, ...])
+
+    OLD::
+
+        * abjad.LilyPondFile.header_block
+        * abjad.LilyPondFile.layout_block
+        * abjad.LilyPondFile.paper_block
+
+    NEW::
+
+        * abjad.LilyPondFile["header"]
+        * abjad.LilyPondFile["layout"]
+        * abjad.LilyPondFile["paper"]
+
+    Limited ``abjad.LilyPondFile.__getitem__()`` to strings:
+
+    OLD::
+
+        * lilypond_file["My_Staff"]
+        * lilypond_file[abjad.Staff]
+
+    NEW::
+
+        * lilypond_file["My_Staff"]
+
+`#1136 <https://github.com/Abjad/abjad/issues/1136>`_. Collapsed
+``abjad.AnnotatedTimespan`` into ``abjad.Timespan``.
+
+CONFIGURATION::
+
+    * Removed abjad.AbjadConfiguration.composer_email
+    * Removed abjad.AbjadConfiguration.composer_full_name
+    * Removed abjad.AbjadConfiguration.composer_github_username
+    * Removed abjad.AbjadConfiguration.composer_last_name
+    * Removed abjad.AbjadConfiguration.composer_scores_directory
+    * Removed abjad.AbjadConfiguration.composer_uppercase_name
+    * Removed abjad.AbjadConfiguration.composer_website
+    * Added abjad.AbjadConfiguration.sphinx_stylesheets_directory colon-delimited paths
+
+ENUMERATION: `abjad.enumerate.yield_outer_product()`` previously returned a generator of
+``abjad.Sequence`` objects. The function now returns a list of list.
+
+I/O::
+
+    * Taught abjad.persist.as_ly() to write file-terminal newline.
+    * Cleaned up abjad.persist.as_midi().
+    * Cleaned up abjad.run_lilypond():
+        OLD: abjad.run_lilypond() returned true or false.
+        NEW: abjad.run_lilypond() returns integer exit code.
+    * Cleaned up abjad.io.profile():
+        * removed print_to_terminal=True keyword
+        * function now always returns a string
+
+LABEL: Taught ``abjad.Label.color_note_heads()`` to color accidentals.
+
+SELECTION: Changed ``abjad.select()`` to a true synonym for ``abjad.Selection()``.
+
+Deprecated ``abjad.SegmentMaker``. Define scores as a linear sequence of function calls
+instead.
+
+Deprecated all score templates. Define ``make_empty_score()`` function instead.
+
 Changed in Abjad 3.4
 --------------------
 
