@@ -1,5 +1,3 @@
-# Github workflow to test Abjad
-
 name: abjad
 
 on:
@@ -14,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9, "3.10"]
+        python-version: ["3.10"]
 
     steps:
     - uses: actions/checkout@v2
@@ -38,13 +36,10 @@ jobs:
         echo $PATH
     - name: Install Abjad
       run: |
-        # install without development dependencies
         pip install -e .
         # echo the configuration file path to debug read-only-filesystem handling
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
-        # prime the parser
         scr/prime-parser-tables
-        # print versions
         black --version
         flake8 --version
         isort --version

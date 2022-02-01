@@ -1,12 +1,12 @@
 Check Python
 ------------
 
-Abjad requires Python 3.6 or later:
+Abjad requires Python 3.10 or later:
 
 ..  code-block::
 
     ~$ python --version
-    Python 3.9.0
+    Python 3.10.2
 
 Check LilyPond
 --------------
