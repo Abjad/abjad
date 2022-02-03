@@ -1,4 +1,3 @@
-from . import format as _format
 from . import lilypondfile as _lilypondfile
 
 
@@ -21,14 +20,6 @@ class SegmentMaker:
     def __init__(self):
         self._lilypond_file = None
         self._score = None
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 

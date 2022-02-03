@@ -1,4 +1,3 @@
-import abc
 import logging
 import os
 import pickle
@@ -120,13 +119,6 @@ class Parser:
         """
         return self._lexer
 
-    @abc.abstractproperty
-    def lexer_rules_object(self):
-        """
-        Gets object containing the parser's lexical rule definitions.
-        """
-        raise NotImplementedError
-
     @property
     def logger(self):
         """
@@ -164,13 +156,6 @@ class Parser:
         Gets parser's PLY LRParser instance.
         """
         return self._parser
-
-    @abc.abstractproperty
-    def parser_rules_object(self):
-        """
-        Gets object containing the parser's syntactical rule definitions.
-        """
-        raise NotImplementedError
 
     @property
     def pickle_path(self):

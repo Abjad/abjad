@@ -1,4 +1,5 @@
 import copy
+import dataclasses
 
 from . import bind as _bind
 from . import deprecated as _deprecated
@@ -12,7 +13,6 @@ from . import lilypondformat as _lilypondformat
 from . import makers as _makers
 from . import markups as _markups
 from . import metricmodulation as _metricmodulation
-from . import new as _new
 from . import overrides as _overrides
 from . import pitch as _pitch
 from . import score as _score
@@ -30,7 +30,7 @@ def _illustrate_component(component):
 
 def _illustrate_markup(markup):
     lilypond_file = _lilypondfile.LilyPondFile()
-    markup = _new.new(markup, direction=None)
+    markup = dataclasses.replace(markup, direction=None)
     lilypond_file.items.append(markup)
     return lilypond_file
 
@@ -56,11 +56,13 @@ def _illustrate_pitch_class_set(set_):
     return lilypond_file
 
 
-def _illustrate_pitch_range(pitch_range):
-    start_pitch_clef = _indicators.Clef.from_pitches([pitch_range.start_pitch])
-    stop_pitch_clef = _indicators.Clef.from_pitches([pitch_range.stop_pitch])
-    start_note = _score.Note(pitch_range.start_pitch, 1)
-    stop_note = _score.Note(pitch_range.stop_pitch, 1)
+def _illustrate_pitch_range(range_):
+    start_pitch = _pitch.NamedPitch(range_.start_pitch)
+    stop_pitch = _pitch.NamedPitch(range_.stop_pitch)
+    start_pitch_clef = _indicators.Clef.from_pitches([start_pitch])
+    stop_pitch_clef = _indicators.Clef.from_pitches([stop_pitch])
+    start_note = _score.Note(range_.start_pitch, 1)
+    stop_note = _score.Note(range_.stop_pitch, 1)
     if start_pitch_clef == stop_pitch_clef:
         if start_pitch_clef == _indicators.Clef("bass"):
             bass_staff = _score.Staff(name="Bass_Staff")
@@ -154,7 +156,7 @@ def _illustrate_pitch_class_segment(
         markup = figure_name
     if markup is not None:
         direction = markup_direction
-        markup = _new.new(markup, direction=direction)
+        markup = dataclasses.replace(markup, direction=direction)
         _bind.attach(markup, notes[0])
     voice = _score.Voice(notes, name="Voice")
     staff = _score.Staff([voice], name="Staff")

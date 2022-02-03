@@ -1,53 +1,19 @@
+import dataclasses
 import typing
 
 from ply import lex
 
 from .. import exceptions
-from .. import format as _format
 from .base import Parser
 
 
+@dataclasses.dataclass(slots=True)
 class Scheme:
     """
     Abjad model of Scheme code.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_value",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        value: typing.Any = None,
-    ) -> None:
-        self._value = value
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when ``argument`` is a Scheme object with value equal to this one.
-        """
-        if isinstance(argument, type(self)):
-            return self.value == argument.value
-        return False
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def value(self) -> typing.Any:
-        """
-        Gets value.
-        """
-        return self._value
+    value: typing.Any = None
 
 
 class SchemeParser(Parser):

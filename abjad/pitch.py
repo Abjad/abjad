@@ -1,6 +1,6 @@
-import abc
 import collections
 import copy
+import dataclasses
 import functools
 import importlib
 import math
@@ -11,14 +11,10 @@ import typing
 
 import quicktions
 
-from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enumerate as _enumerate
 from . import enums as _enums
-from . import format as _format
 from . import math as _math
-from . import new as _new
-from . import pattern as _pattern
 from . import sequence as _sequence
 from . import typedcollections as _typedcollections
 
@@ -89,41 +85,6 @@ _accidental_semitones_to_abbreviation = {
     1.0: "s",
     1.5: "tqs",
     2.0: "ss",
-}
-
-# TODO: possibly remove?
-_symbolic_accidental_to_abbreviation = {
-    "bb": "ff",
-    "b~": "tqf",
-    "b": "f",
-    "~": "qf",
-    "": "",
-    "!": "!",
-    "+": "qs",
-    "#": "s",
-    "#+": "tqs",
-    "##": "ss",
-}
-
-# TODO: change to function; accommodate arbitrarily long names
-_symbolic_accidental_to_semitones = {
-    "bb": -2,
-    "b~": -1.5,
-    "b": -1,
-    "~": -0.5,
-    "": 0,
-    "+": 0.5,
-    "#": 1,
-    "#+": 1.5,
-    "##": 2,
-    "ff": -2,
-    "tqf": 1.5,
-    "f": -1,
-    "qf": -0.5,
-    "qs": 0.5,
-    "s": 1,
-    "tqs": 1.5,
-    "ss": 2,
 }
 
 _diatonic_pc_name_to_diatonic_pc_number = {
@@ -425,10 +386,6 @@ _semitones_to_quality_string_and_number = {
     11: ("major", 7),
 }
 
-_start_punctuation_to_inclusivity_string = {"[": "inclusive", "(": "exclusive"}
-
-_stop_punctuation_to_inclusivity_string = {"]": "inclusive", ")": "exclusive"}
-
 ### REGEX ATOMS ###
 
 _integer_regex_atom = r"-?\d+"
@@ -576,6 +533,7 @@ _interval_name_abbreviation_regex = re.compile(
 
 
 @functools.total_ordering
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class Accidental:
     """
     Accidental.
@@ -583,58 +541,139 @@ class Accidental:
     ..  container:: example
 
         >>> abjad.Accidental('ff')
-        Accidental('double flat')
+        Accidental(name='double flat')
 
         >>> abjad.Accidental('tqf')
-        Accidental('three-quarters flat')
+        Accidental(name='three-quarters flat')
 
         >>> abjad.Accidental('f')
-        Accidental('flat')
+        Accidental(name='flat')
 
         >>> abjad.Accidental('')
-        Accidental('natural')
+        Accidental(name='natural')
 
         >>> abjad.Accidental('qs')
-        Accidental('quarter sharp')
+        Accidental(name='quarter sharp')
 
         >>> abjad.Accidental('s')
-        Accidental('sharp')
+        Accidental(name='sharp')
 
         >>> abjad.Accidental('tqs')
-        Accidental('three-quarters sharp')
+        Accidental(name='three-quarters sharp')
 
         >>> abjad.Accidental('ss')
-        Accidental('double sharp')
+        Accidental(name='double sharp')
 
     ..  container:: example
 
         Generalized accidentals are allowed:
 
         >>> abjad.Accidental('ssss')
-        Accidental('ssss')
+        Accidental(name='ssss')
+
+    ..  container:: example
+
+        Less than is true when ``argument`` is an accidental with semitones greater
+        than those of this accidental:
+
+        >>> accidental_1 = abjad.Accidental('f')
+        >>> accidental_2 = abjad.Accidental('f')
+        >>> accidental_3 = abjad.Accidental('s')
+
+        >>> accidental_1 < accidental_1
+        False
+        >>> accidental_1 < accidental_2
+        False
+        >>> accidental_1 < accidental_3
+        True
+
+        >>> accidental_2 < accidental_1
+        False
+        >>> accidental_2 < accidental_2
+        False
+        >>> accidental_2 < accidental_3
+        True
+
+        >>> accidental_3 < accidental_1
+        False
+        >>> accidental_3 < accidental_2
+        False
+        >>> accidental_3 < accidental_3
+        False
+
+    ..  container:: example
+
+        >>> abjad.Accidental('ff').semitones
+        -2
+
+        >>> abjad.Accidental('tqf').semitones
+        -1.5
+
+        >>> abjad.Accidental('f').semitones
+        -1
+
+        >>> abjad.Accidental('').semitones
+        0
+
+        >>> abjad.Accidental('qs').semitones
+        0.5
+
+        >>> abjad.Accidental('s').semitones
+        1
+
+        >>> abjad.Accidental('tqs').semitones
+        1.5
+
+        >>> abjad.Accidental('ss').semitones
+        2
+
+
+    ..  container:: example
+
+        >>> abjad.Accidental('ff').name
+        'double flat'
+
+        >>> abjad.Accidental('tqf').name
+        'three-quarters flat'
+
+        >>> abjad.Accidental('f').name
+        'flat'
+
+        >>> abjad.Accidental('').name
+        'natural'
+
+        >>> abjad.Accidental('qs').name
+        'quarter sharp'
+
+        >>> abjad.Accidental('s').name
+        'sharp'
+
+        >>> abjad.Accidental('tqs').name
+        'three-quarters sharp'
+
+        >>> abjad.Accidental('ss').name
+        'double sharp'
 
     """
 
-    ### CLASS VARIABLES ###
+    name: str = "natural"
+    arrow: bool | None = dataclasses.field(default=None, repr=False)
+    semitones: int = dataclasses.field(compare=False, init=False, repr=False)
 
-    __slots__ = ("_arrow", "_semitones")
-
-    ### INITIALIZER ##
-
-    def __init__(self, name="", *, arrow=None):
+    def __post_init__(self):
         semitones = 0
         _arrow = None
-        if name is None:
+        if self.name is None:
             pass
-        elif isinstance(name, str):
-            if name in _accidental_name_to_abbreviation:
-                name = _accidental_name_to_abbreviation[name]
-                semitones = _accidental_abbreviation_to_semitones[name]
+        elif isinstance(self.name, str):
+            if self.name in _accidental_name_to_abbreviation:
+                self.name = _accidental_name_to_abbreviation[self.name]
+                semitones = _accidental_abbreviation_to_semitones[self.name]
             else:
-                match = _comprehensive_accidental_regex.match(name)
+                match = _comprehensive_accidental_regex.match(self.name)
                 group_dict = match.groupdict()
                 if group_dict["alphabetic_accidental"]:
-                    prefix, _, suffix = name.partition("q")
+                    prefix, _, suffix = self.name.partition("q")
                     if prefix.startswith("s"):
                         semitones += len(prefix)
                     elif prefix.startswith("f"):
@@ -648,31 +687,35 @@ class Accidental:
                         if prefix == "t":
                             semitones -= 1
                 elif group_dict["symbolic_accidental"]:
-                    semitones += name.count("#")
-                    semitones -= name.count("b")
-                    if name.endswith("+"):
+                    semitones += self.name.count("#")
+                    semitones -= self.name.count("b")
+                    if self.name.endswith("+"):
                         semitones += 0.5
-                    elif name.endswith("~"):
+                    elif self.name.endswith("~"):
                         semitones -= 0.5
-        elif isinstance(name, numbers.Number):
-            semitones = float(name)
+        elif isinstance(self.name, numbers.Number):
+            semitones = float(self.name)
             assert (semitones % 1.0) in (0.0, 0.5)
-        elif hasattr(name, "accidental"):
-            _arrow = name.accidental.arrow
-            semitones = name.accidental.semitones
-        elif isinstance(name, type(self)):
-            _arrow = name.arrow
-            semitones = name.semitones
+        elif hasattr(self.name, "accidental"):
+            _arrow = self.name.accidental.arrow
+            semitones = self.name.accidental.semitones
+        elif isinstance(self.name, type(self)):
+            _arrow = self.name.arrow
+            semitones = self.name.semitones
         semitones = _math.integer_equivalent_number_to_integer(semitones)
-        self._semitones = semitones
-        self._arrow = _arrow
-        if arrow is not None:
-            arrow = _enums.VerticalAlignment.from_expr(arrow)
-            if arrow is _enums.Center:
-                arrow = None
-            self._arrow = arrow
-
-    ### SPECIAL METHODS ###
+        self.semitones = semitones
+        if self.arrow is not None:
+            self.arrow = _enums.VerticalAlignment.from_expr(self.arrow)
+            if self.arrow is _enums.Center:
+                self.arrow = None
+        else:
+            self.arrow = _arrow
+        try:
+            abbreviation = _accidental_semitones_to_abbreviation[self.semitones]
+            name = _accidental_abbreviation_to_name[abbreviation]
+        except KeyError:
+            name = str(self)
+        self.name = name
 
     def __add__(self, argument):
         """
@@ -683,10 +726,10 @@ class Accidental:
             >>> accidental = abjad.Accidental('qs')
 
             >>> accidental + accidental
-            Accidental('sharp')
+            Accidental(name='sharp')
 
             >>> accidental + accidental + accidental
-            Accidental('three-quarters sharp')
+            Accidental(name='three-quarters sharp')
 
         Returns new accidental.
         """
@@ -739,50 +782,8 @@ class Accidental:
             raise TypeError(f"do not know how to apply accidental to {argument!r}.")
         return argument._apply_accidental(self)
 
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes accidental.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
     def __lt__(self, argument):
         """
-        Is true when ``argument`` is an accidental with semitones greater
-        than those of this accidental.
-
-        ..  container:: example
-
-            >>> accidental_1 = abjad.Accidental('f')
-            >>> accidental_2 = abjad.Accidental('f')
-            >>> accidental_3 = abjad.Accidental('s')
-
-            >>> accidental_1 < accidental_1
-            False
-            >>> accidental_1 < accidental_2
-            False
-            >>> accidental_1 < accidental_3
-            True
-
-            >>> accidental_2 < accidental_1
-            False
-            >>> accidental_2 < accidental_2
-            False
-            >>> accidental_2 < accidental_3
-            True
-
-            >>> accidental_3 < accidental_1
-            False
-            >>> accidental_3 < accidental_2
-            False
-            >>> accidental_3 < accidental_3
-            False
-
         Returns true or false.
         """
         return self.semitones < argument.semitones
@@ -794,28 +795,28 @@ class Accidental:
         ..  container:: example
 
             >>> -abjad.Accidental('ff')
-            Accidental('double sharp')
+            Accidental(name='double sharp')
 
             >>> -abjad.Accidental('tqf')
-            Accidental('three-quarters sharp')
+            Accidental(name='three-quarters sharp')
 
             >>> -abjad.Accidental('f')
-            Accidental('sharp')
+            Accidental(name='sharp')
 
             >>> -abjad.Accidental('')
-            Accidental('natural')
+            Accidental(name='natural')
 
             >>> -abjad.Accidental('qs')
-            Accidental('quarter flat')
+            Accidental(name='quarter flat')
 
             >>> -abjad.Accidental('s')
-            Accidental('flat')
+            Accidental(name='flat')
 
             >>> -abjad.Accidental('tqs')
-            Accidental('three-quarters flat')
+            Accidental(name='three-quarters flat')
 
             >>> -abjad.Accidental('ss')
-            Accidental('double flat')
+            Accidental(name='double flat')
 
         Returns new accidental.
         """
@@ -826,12 +827,6 @@ class Accidental:
         Raises not implemented error on accidental.
         """
         raise NotImplementedError
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
 
     def __str__(self):
         """
@@ -886,10 +881,10 @@ class Accidental:
             >>> accidental = abjad.Accidental('qs')
 
             >>> accidental - accidental
-            Accidental('natural')
+            Accidental(name='natural')
 
             >>> accidental - accidental - accidental
-            Accidental('quarter flat')
+            Accidental(name='quarter flat')
 
         Returns new accidental.
         """
@@ -898,26 +893,18 @@ class Accidental:
         semitones = self.semitones - argument.semitones
         return type(self)(semitones)
 
-    ### PRIVATE METHODS ###
-
-    @classmethod
+    @staticmethod
     def _get_all_accidental_abbreviations(class_):
         return list(_accidental_abbreviation_to_symbol.keys())
 
-    @classmethod
+    @staticmethod
     def _get_all_accidental_names(class_):
         return list(_accidental_name_to_abbreviation.keys())
 
-    @classmethod
+    staticmethod
+
     def _get_all_accidental_semitone_values(class_):
         return list(_accidental_semitones_to_abbreviation.keys())
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_args_values=[self.name],
-            storage_format_is_not_indented=True,
-            storage_format_keyword_names=["arrow"],
-        )
 
     def _get_lilypond_format(self):
         return self._abbreviation
@@ -934,117 +921,8 @@ class Accidental:
             return False
         return bool(_symbolic_accidental_regex.match(argument))
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def arrow(self):
-        """
-        Gets arrow of accidental.
-
-        ..  container:: example
-
-            Most accidentals carry no arrow:
-
-            >>> abjad.Accidental('sharp').arrow is None
-            True
-
-        ..  container:: example
-
-            Sharp with up-arrow:
-
-            >>> abjad.Accidental('sharp', arrow=abjad.Up).arrow
-            Up
-
-            Sharp with down-arrow:
-
-            >>> abjad.Accidental('sharp', arrow=abjad.Down).arrow
-            Down
-
-        Arrow property is currently a stub in the object model. You can set the
-        property but accidental math and formatting currently ignore the
-        setting.
-
-        Returns up, down or none.
-        """
-        return self._arrow
-
-    @property
-    def name(self):
-        """
-        Gets name of accidental.
-
-        ..  container:: example
-
-            >>> abjad.Accidental('ff').name
-            'double flat'
-
-            >>> abjad.Accidental('tqf').name
-            'three-quarters flat'
-
-            >>> abjad.Accidental('f').name
-            'flat'
-
-            >>> abjad.Accidental('').name
-            'natural'
-
-            >>> abjad.Accidental('qs').name
-            'quarter sharp'
-
-            >>> abjad.Accidental('s').name
-            'sharp'
-
-            >>> abjad.Accidental('tqs').name
-            'three-quarters sharp'
-
-            >>> abjad.Accidental('ss').name
-            'double sharp'
-
-        Returns string.
-        """
-        try:
-            abbreviation = _accidental_semitones_to_abbreviation[self.semitones]
-            name = _accidental_abbreviation_to_name[abbreviation]
-        except KeyError:
-            name = str(self)
-        return name
-
-    @property
-    def semitones(self):
-        """
-        Gets semitones of accidental.
-
-        ..  container:: example
-
-            >>> abjad.Accidental('ff').semitones
-            -2
-
-            >>> abjad.Accidental('tqf').semitones
-            -1.5
-
-            >>> abjad.Accidental('f').semitones
-            -1
-
-            >>> abjad.Accidental('').semitones
-            0
-
-            >>> abjad.Accidental('qs').semitones
-            0.5
-
-            >>> abjad.Accidental('s').semitones
-            1
-
-            >>> abjad.Accidental('tqs').semitones
-            1.5
-
-            >>> abjad.Accidental('ss').semitones
-            2
-
-        Returns number.
-        """
-        return self._semitones
-
-    @property
-    def symbol(self):
+    def symbol(self) -> str:
         """
         Gets symbol of accidental.
 
@@ -1074,14 +952,13 @@ class Accidental:
             >>> abjad.Accidental('ss').symbol
             '##'
 
-        Returns string.
         """
         abbreviation = _accidental_semitones_to_abbreviation[self.semitones]
         symbol = _accidental_abbreviation_to_symbol[abbreviation]
         return symbol
 
 
-@functools.total_ordering
+@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
 class Octave:
     """
     Octave.
@@ -1091,42 +968,63 @@ class Octave:
         Initializes octave from integer:
 
         >>> abjad.Octave(4)
-        Octave(4)
+        Octave(number=4)
 
     ..  container:: example
 
         Initializes octave from octave-tick string:
 
         >>> abjad.Octave(",,")
-        Octave(1)
+        Octave(number=1)
 
     ..  container:: example
 
         Initializes octave from named pitch:
 
         >>> abjad.Octave(abjad.NamedPitch("cs''"))
-        Octave(5)
+        Octave(number=5)
 
     ..  container:: example
 
         Initializes octave from other octave:
 
         >>> abjad.Octave(abjad.Octave(2))
-        Octave(2)
+        Octave(number=2)
+
+    ..  container:: example
+
+        >>> octave_1 = abjad.Octave(4)
+        >>> octave_2 = abjad.Octave(4)
+        >>> octave_3 = abjad.Octave(5)
+
+        >>> octave_1 == octave_1
+        True
+        >>> octave_1 == octave_2
+        True
+        >>> octave_1 == octave_3
+        False
+
+        >>> octave_2 == octave_1
+        True
+        >>> octave_2 == octave_2
+        True
+        >>> octave_2 == octave_3
+        False
+
+        >>> octave_3 == octave_1
+        False
+        >>> octave_3 == octave_2
+        False
+        >>> octave_3 == octave_3
+        True
 
     """
 
-    ### CLASS VARIABLES ###
+    number: int = 4
 
-    __slots__ = ("_number",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, number=4):
-        if number is None:
-            number = 4
-        elif isinstance(number, str):
-            match = _comprehensive_octave_regex.match(number)
+    def __post_init__(self):
+        if isinstance(self.number, str):
+            match = _comprehensive_octave_regex.match(self.number)
             group_dict = match.groupdict()
             number = 3
             if group_dict["octave_number"]:
@@ -1136,51 +1034,17 @@ class Octave:
                     number += group_dict["octave_tick"].count("'")
                 else:
                     number -= group_dict["octave_tick"].count(",")
-        elif isinstance(number, numbers.Number):
-            number = int(number)
-        elif hasattr(number, "octave"):
-            number = number.octave.number
-        elif isinstance(number, type(self)):
-            number = number.number
-        self._number = number
+            self.number = number
+        elif isinstance(self.number, (int, float)):
+            self.number = int(self.number)
+        elif hasattr(self.number, "octave"):
+            self.number = self.number.octave.number
+        elif isinstance(self.number, type(self)):
+            self.number = self.number.number
+        else:
+            raise Exception(f"must be number or string: {self.number!r}.")
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument):
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-
-        ..  container:: example
-
-            >>> octave_1 = abjad.Octave(4)
-            >>> octave_2 = abjad.Octave(4)
-            >>> octave_3 = abjad.Octave(5)
-
-            >>> octave_1 == octave_1
-            True
-            >>> octave_1 == octave_2
-            True
-            >>> octave_1 == octave_3
-            False
-
-            >>> octave_2 == octave_1
-            True
-            >>> octave_2 == octave_2
-            True
-            >>> octave_2 == octave_3
-            False
-
-            >>> octave_3 == octave_1
-            False
-            >>> octave_3 == octave_2
-            False
-            >>> octave_3 == octave_3
-            True
-
-        Returns true or false.
-        """
-        return _format.compare_objects(self, argument)
-
+    # TODO: remove
     def __float__(self):
         """
         Get octave number as float.
@@ -1189,14 +1053,7 @@ class Octave:
         """
         return float(self.number)
 
-    def __hash__(self):
-        """
-        Hashes octave.
-
-        Returns integer.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
+    # TODO: remove
     def __int__(self):
         """
         Get octave number integer.
@@ -1205,51 +1062,7 @@ class Octave:
         """
         return int(self.number)
 
-    def __lt__(self, argument):
-        """
-        Is true when octave is less than ``argument``.
-
-        ..  container:: example
-
-            >>> octave_1 = abjad.Octave(4)
-            >>> octave_2 = abjad.Octave(4)
-            >>> octave_3 = abjad.Octave(5)
-
-            >>> octave_1 < octave_1
-            False
-            >>> octave_1 < octave_2
-            False
-            >>> octave_1 < octave_3
-            True
-
-            >>> octave_2 < octave_1
-            False
-            >>> octave_2 < octave_2
-            False
-            >>> octave_2 < octave_3
-            True
-
-            >>> octave_3 < octave_1
-            False
-            >>> octave_3 < octave_2
-            False
-            >>> octave_3 < octave_3
-            False
-
-        Returns true or false.
-        """
-        try:
-            argument = type(self)(argument)
-        except Exception:
-            False
-        return self.number < argument.number
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of octave.
@@ -1271,36 +1084,12 @@ class Octave:
         """
         return self.ticks
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_is_not_indented=True,
-            storage_format_args_values=[self.number],
-            storage_format_keyword_names=[],
-        )
-
-    @classmethod
-    def _is_tick_string(class_, argument):
+    def _is_tick_string(argument):
         if not isinstance(argument, str):
             return False
-        return bool(class_._octave_tick_regex.match(argument))
+        return bool(_octave_tick_regex.match(argument))
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def number(self) -> int:
-        """
-        Gets octave number.
-
-        ..  container:: example
-
-            >>> abjad.Octave(5).number
-            5
-
-        """
-        return self._number
-
+    # TODO: replace with Octave.pitch that returns abjad.NamedPitch
     @property
     def pitch_number(self) -> int:
         """
@@ -1347,25 +1136,24 @@ class Octave:
             return "," * abs(3 - self.number)
         return ""
 
-    ### PUBLIC METHODS ###
-
     @classmethod
     def from_pitch(class_, pitch) -> "Octave":
-        """Makes octave from ``pitch``.
+        """
+        Makes octave from ``pitch``.
 
         ..  container:: example
 
             >>> abjad.Octave.from_pitch('cs')
-            Octave(3)
+            Octave(number=3)
 
             >>> abjad.Octave.from_pitch("cs'")
-            Octave(4)
+            Octave(number=4)
 
             >>> abjad.Octave.from_pitch(1)
-            Octave(4)
+            Octave(number=4)
 
             >>> abjad.Octave.from_pitch(13)
-            Octave(5)
+            Octave(number=5)
 
         """
         if isinstance(pitch, (int, float)):
@@ -1383,1740 +1171,15 @@ class Octave:
         return class_(ticks)
 
 
-class SetClass:
-    """
-    Set-class.
-
-    ..  container:: example
-
-        Makes SG2 set-class from Forte rank:
-
-        >>> set_class = abjad.SetClass(4, 29)
-        >>> print(set_class)
-        SC(4-29){0, 1, 3, 7}
-
-        Makes SG2 set-class from lex rank:
-
-        >>> set_class = abjad.SetClass(4, 29, lex_rank=True)
-        >>> print(set_class)
-        SC(4-29){0, 3, 6, 9}
-
-        Makes SG1 set-class:
-
-        >>> set_class = abjad.SetClass(4, 29, transposition_only=True)
-        >>> print(set_class)
-        SC(4-29){0, 2, 6, 7}
-
-    ..  container:: example
-
-        Makes aggregate:
-
-        >>> set_class = abjad.SetClass(12, 1, transposition_only=True)
-        >>> print(set_class)
-        SC(12-1){0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
-
-    ..  container:: example
-
-        Lists SG2 tetrachords, pentachords, hexachords by Forte rank:
-
-        >>> set_classes = abjad.SetClass.list_set_classes(cardinality=4)
-        >>> for set_class in set_classes:
-        ...     print(set_class)
-        ...
-        SC(4-1){0, 1, 2, 3}
-        SC(4-2){0, 1, 2, 4}
-        SC(4-3){0, 1, 3, 4}
-        SC(4-4){0, 1, 2, 5}
-        SC(4-5){0, 1, 2, 6}
-        SC(4-6){0, 1, 2, 7}
-        SC(4-7){0, 1, 4, 5}
-        SC(4-8){0, 1, 5, 6}
-        SC(4-9){0, 1, 6, 7}
-        SC(4-10){0, 2, 3, 5}
-        SC(4-11){0, 1, 3, 5}
-        SC(4-12){0, 2, 3, 6}
-        SC(4-13){0, 1, 3, 6}
-        SC(4-14){0, 2, 3, 7}
-        SC(4-15){0, 1, 4, 6}
-        SC(4-16){0, 1, 5, 7}
-        SC(4-17){0, 3, 4, 7}
-        SC(4-18){0, 1, 4, 7}
-        SC(4-19){0, 1, 4, 8}
-        SC(4-20){0, 1, 5, 8}
-        SC(4-21){0, 2, 4, 6}
-        SC(4-22){0, 2, 4, 7}
-        SC(4-23){0, 2, 5, 7}
-        SC(4-24){0, 2, 4, 8}
-        SC(4-25){0, 2, 6, 8}
-        SC(4-26){0, 3, 5, 8}
-        SC(4-27){0, 2, 5, 8}
-        SC(4-28){0, 3, 6, 9}
-        SC(4-29){0, 1, 3, 7}
-
-        >>> set_classes = abjad.SetClass.list_set_classes(cardinality=5)
-        >>> for set_class in set_classes:
-        ...     print(set_class)
-        ...
-        SC(5-1){0, 1, 2, 3, 4}
-        SC(5-2){0, 1, 2, 3, 5}
-        SC(5-3){0, 1, 2, 4, 5}
-        SC(5-4){0, 1, 2, 3, 6}
-        SC(5-5){0, 1, 2, 3, 7}
-        SC(5-6){0, 1, 2, 5, 6}
-        SC(5-7){0, 1, 2, 6, 7}
-        SC(5-8){0, 2, 3, 4, 6}
-        SC(5-9){0, 1, 2, 4, 6}
-        SC(5-10){0, 1, 3, 4, 6}
-        SC(5-11){0, 2, 3, 4, 7}
-        SC(5-12){0, 1, 3, 5, 6}
-        SC(5-13){0, 1, 2, 4, 8}
-        SC(5-14){0, 1, 2, 5, 7}
-        SC(5-15){0, 1, 2, 6, 8}
-        SC(5-16){0, 1, 3, 4, 7}
-        SC(5-17){0, 1, 3, 4, 8}
-        SC(5-18){0, 1, 4, 5, 7}
-        SC(5-19){0, 1, 3, 6, 7}
-        SC(5-20){0, 1, 3, 7, 8}
-        SC(5-21){0, 1, 4, 5, 8}
-        SC(5-22){0, 1, 4, 7, 8}
-        SC(5-23){0, 2, 3, 5, 7}
-        SC(5-24){0, 1, 3, 5, 7}
-        SC(5-25){0, 2, 3, 5, 8}
-        SC(5-26){0, 2, 4, 5, 8}
-        SC(5-27){0, 1, 3, 5, 8}
-        SC(5-28){0, 2, 3, 6, 8}
-        SC(5-29){0, 1, 3, 6, 8}
-        SC(5-30){0, 1, 4, 6, 8}
-        SC(5-31){0, 1, 3, 6, 9}
-        SC(5-32){0, 1, 4, 6, 9}
-        SC(5-33){0, 2, 4, 6, 8}
-        SC(5-34){0, 2, 4, 6, 9}
-        SC(5-35){0, 2, 4, 7, 9}
-        SC(5-36){0, 1, 2, 4, 7}
-        SC(5-37){0, 3, 4, 5, 8}
-        SC(5-38){0, 1, 2, 5, 8}
-
-        >>> set_classes = abjad.SetClass.list_set_classes(cardinality=6)
-        >>> for set_class in set_classes:
-        ...     print(set_class)
-        ...
-        SC(6-1){0, 1, 2, 3, 4, 5}
-        SC(6-2){0, 1, 2, 3, 4, 6}
-        SC(6-3){0, 1, 2, 3, 5, 6}
-        SC(6-4){0, 1, 2, 4, 5, 6}
-        SC(6-5){0, 1, 2, 3, 6, 7}
-        SC(6-6){0, 1, 2, 5, 6, 7}
-        SC(6-7){0, 1, 2, 6, 7, 8}
-        SC(6-8){0, 2, 3, 4, 5, 7}
-        SC(6-9){0, 1, 2, 3, 5, 7}
-        SC(6-10){0, 1, 3, 4, 5, 7}
-        SC(6-11){0, 1, 2, 4, 5, 7}
-        SC(6-12){0, 1, 2, 4, 6, 7}
-        SC(6-13){0, 1, 3, 4, 6, 7}
-        SC(6-14){0, 1, 3, 4, 5, 8}
-        SC(6-15){0, 1, 2, 4, 5, 8}
-        SC(6-16){0, 1, 4, 5, 6, 8}
-        SC(6-17){0, 1, 2, 4, 7, 8}
-        SC(6-18){0, 1, 2, 5, 7, 8}
-        SC(6-19){0, 1, 3, 4, 7, 8}
-        SC(6-20){0, 1, 4, 5, 8, 9}
-        SC(6-21){0, 2, 3, 4, 6, 8}
-        SC(6-22){0, 1, 2, 4, 6, 8}
-        SC(6-23){0, 2, 3, 5, 6, 8}
-        SC(6-24){0, 1, 3, 4, 6, 8}
-        SC(6-25){0, 1, 3, 5, 6, 8}
-        SC(6-26){0, 1, 3, 5, 7, 8}
-        SC(6-27){0, 1, 3, 4, 6, 9}
-        SC(6-28){0, 1, 3, 5, 6, 9}
-        SC(6-29){0, 1, 3, 6, 8, 9}
-        SC(6-30){0, 1, 3, 6, 7, 9}
-        SC(6-31){0, 1, 3, 5, 8, 9}
-        SC(6-32){0, 2, 4, 5, 7, 9}
-        SC(6-33){0, 2, 3, 5, 7, 9}
-        SC(6-34){0, 1, 3, 5, 7, 9}
-        SC(6-35){0, 2, 4, 6, 8, 10}
-        SC(6-36){0, 1, 2, 3, 4, 7}
-        SC(6-37){0, 1, 2, 3, 4, 8}
-        SC(6-38){0, 1, 2, 3, 7, 8}
-        SC(6-39){0, 2, 3, 4, 5, 8}
-        SC(6-40){0, 1, 2, 3, 5, 8}
-        SC(6-41){0, 1, 2, 3, 6, 8}
-        SC(6-42){0, 1, 2, 3, 6, 9}
-        SC(6-43){0, 1, 2, 5, 6, 8}
-        SC(6-44){0, 1, 2, 5, 6, 9}
-        SC(6-45){0, 2, 3, 4, 6, 9}
-        SC(6-46){0, 1, 2, 4, 6, 9}
-        SC(6-47){0, 1, 2, 4, 7, 9}
-        SC(6-48){0, 1, 2, 5, 7, 9}
-        SC(6-49){0, 1, 3, 4, 7, 9}
-        SC(6-50){0, 1, 4, 6, 7, 9}
-
-    There are 352 SG1 set-classes and 224 SG2 set-classes.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        "_cardinality",
-        "_lex_rank",
-        "_prime_form",
-        "_rank",
-        "_transposition_only",
-    )
-
-    _forte_identifier_to_prime_form = {
-        # 0
-        (0, 1): (),
-        # 1
-        (1, 1): (0,),
-        # 2
-        (2, 1): (0, 1),
-        (2, 2): (0, 2),
-        (2, 3): (0, 3),
-        (2, 4): (0, 4),
-        (2, 5): (0, 5),
-        (2, 6): (0, 6),
-        # 3
-        (3, 1): (0, 1, 2),
-        (3, 2): (0, 1, 3),
-        (3, 3): (0, 1, 4),
-        (3, 4): (0, 1, 5),
-        (3, 5): (0, 1, 6),
-        (3, 6): (0, 2, 4),
-        (3, 7): (0, 2, 5),
-        (3, 8): (0, 2, 6),
-        (3, 9): (0, 2, 7),
-        (3, 10): (0, 3, 6),
-        (3, 11): (0, 3, 7),
-        (3, 12): (0, 4, 8),
-        # 4
-        (4, 1): (0, 1, 2, 3),
-        (4, 2): (0, 1, 2, 4),
-        (4, 3): (0, 1, 3, 4),
-        (4, 4): (0, 1, 2, 5),
-        (4, 5): (0, 1, 2, 6),
-        (4, 6): (0, 1, 2, 7),
-        (4, 7): (0, 1, 4, 5),
-        (4, 8): (0, 1, 5, 6),
-        (4, 9): (0, 1, 6, 7),
-        (4, 10): (0, 2, 3, 5),
-        (4, 11): (0, 1, 3, 5),
-        (4, 12): (0, 2, 3, 6),
-        (4, 13): (0, 1, 3, 6),
-        (4, 14): (0, 2, 3, 7),
-        (4, 15): (0, 1, 4, 6),
-        (4, 16): (0, 1, 5, 7),
-        (4, 17): (0, 3, 4, 7),
-        (4, 18): (0, 1, 4, 7),
-        (4, 19): (0, 1, 4, 8),
-        (4, 20): (0, 1, 5, 8),
-        (4, 21): (0, 2, 4, 6),
-        (4, 22): (0, 2, 4, 7),
-        (4, 23): (0, 2, 5, 7),
-        (4, 24): (0, 2, 4, 8),
-        (4, 25): (0, 2, 6, 8),
-        (4, 26): (0, 3, 5, 8),
-        (4, 27): (0, 2, 5, 8),
-        (4, 28): (0, 3, 6, 9),
-        (4, 29): (0, 1, 3, 7),
-        # 5
-        (5, 1): (0, 1, 2, 3, 4),
-        (5, 2): (0, 1, 2, 3, 5),
-        (5, 3): (0, 1, 2, 4, 5),
-        (5, 4): (0, 1, 2, 3, 6),
-        (5, 5): (0, 1, 2, 3, 7),
-        (5, 6): (0, 1, 2, 5, 6),
-        (5, 7): (0, 1, 2, 6, 7),
-        (5, 8): (0, 2, 3, 4, 6),
-        (5, 9): (0, 1, 2, 4, 6),
-        (5, 10): (0, 1, 3, 4, 6),
-        (5, 11): (0, 2, 3, 4, 7),
-        (5, 12): (0, 1, 3, 5, 6),
-        (5, 13): (0, 1, 2, 4, 8),
-        (5, 14): (0, 1, 2, 5, 7),
-        (5, 15): (0, 1, 2, 6, 8),
-        (5, 16): (0, 1, 3, 4, 7),
-        (5, 17): (0, 1, 3, 4, 8),
-        (5, 18): (0, 1, 4, 5, 7),
-        (5, 19): (0, 1, 3, 6, 7),
-        (5, 20): (0, 1, 3, 7, 8),
-        (5, 21): (0, 1, 4, 5, 8),
-        (5, 22): (0, 1, 4, 7, 8),
-        (5, 23): (0, 2, 3, 5, 7),
-        (5, 24): (0, 1, 3, 5, 7),
-        (5, 25): (0, 2, 3, 5, 8),
-        (5, 26): (0, 2, 4, 5, 8),
-        (5, 27): (0, 1, 3, 5, 8),
-        (5, 28): (0, 2, 3, 6, 8),
-        (5, 29): (0, 1, 3, 6, 8),
-        (5, 30): (0, 1, 4, 6, 8),
-        (5, 31): (0, 1, 3, 6, 9),
-        (5, 32): (0, 1, 4, 6, 9),
-        (5, 33): (0, 2, 4, 6, 8),
-        (5, 34): (0, 2, 4, 6, 9),
-        (5, 35): (0, 2, 4, 7, 9),
-        (5, 36): (0, 1, 2, 4, 7),
-        (5, 37): (0, 3, 4, 5, 8),
-        (5, 38): (0, 1, 2, 5, 8),
-        # 6
-        (6, 1): (0, 1, 2, 3, 4, 5),
-        (6, 2): (0, 1, 2, 3, 4, 6),
-        (6, 3): (0, 1, 2, 3, 5, 6),
-        (6, 4): (0, 1, 2, 4, 5, 6),
-        (6, 5): (0, 1, 2, 3, 6, 7),
-        (6, 6): (0, 1, 2, 5, 6, 7),
-        (6, 7): (0, 1, 2, 6, 7, 8),
-        (6, 8): (0, 2, 3, 4, 5, 7),
-        (6, 9): (0, 1, 2, 3, 5, 7),
-        (6, 10): (0, 1, 3, 4, 5, 7),
-        (6, 11): (0, 1, 2, 4, 5, 7),
-        (6, 12): (0, 1, 2, 4, 6, 7),
-        (6, 13): (0, 1, 3, 4, 6, 7),
-        (6, 14): (0, 1, 3, 4, 5, 8),
-        (6, 15): (0, 1, 2, 4, 5, 8),
-        (6, 16): (0, 1, 4, 5, 6, 8),
-        (6, 17): (0, 1, 2, 4, 7, 8),
-        (6, 18): (0, 1, 2, 5, 7, 8),
-        (6, 19): (0, 1, 3, 4, 7, 8),
-        (6, 20): (0, 1, 4, 5, 8, 9),
-        (6, 21): (0, 2, 3, 4, 6, 8),
-        (6, 22): (0, 1, 2, 4, 6, 8),
-        (6, 23): (0, 2, 3, 5, 6, 8),
-        (6, 24): (0, 1, 3, 4, 6, 8),
-        (6, 25): (0, 1, 3, 5, 6, 8),
-        (6, 26): (0, 1, 3, 5, 7, 8),
-        (6, 27): (0, 1, 3, 4, 6, 9),
-        (6, 28): (0, 1, 3, 5, 6, 9),
-        (6, 29): (0, 1, 3, 6, 8, 9),
-        (6, 30): (0, 1, 3, 6, 7, 9),
-        (6, 31): (0, 1, 3, 5, 8, 9),
-        (6, 32): (0, 2, 4, 5, 7, 9),
-        (6, 33): (0, 2, 3, 5, 7, 9),
-        (6, 34): (0, 1, 3, 5, 7, 9),
-        (6, 35): (0, 2, 4, 6, 8, 10),
-        (6, 36): (0, 1, 2, 3, 4, 7),
-        (6, 37): (0, 1, 2, 3, 4, 8),
-        (6, 38): (0, 1, 2, 3, 7, 8),
-        (6, 39): (0, 2, 3, 4, 5, 8),
-        (6, 40): (0, 1, 2, 3, 5, 8),
-        (6, 41): (0, 1, 2, 3, 6, 8),
-        (6, 42): (0, 1, 2, 3, 6, 9),
-        (6, 43): (0, 1, 2, 5, 6, 8),
-        (6, 44): (0, 1, 2, 5, 6, 9),
-        (6, 45): (0, 2, 3, 4, 6, 9),
-        (6, 46): (0, 1, 2, 4, 6, 9),
-        (6, 47): (0, 1, 2, 4, 7, 9),
-        (6, 48): (0, 1, 2, 5, 7, 9),
-        (6, 49): (0, 1, 3, 4, 7, 9),
-        (6, 50): (0, 1, 4, 6, 7, 9),
-    }
-
-    assert len(_forte_identifier_to_prime_form) == 137
-
-    _lex_identifier_to_prime_form = {
-        # 0
-        (0, 1): (),
-        # 1
-        (1, 1): (0,),
-        # 2
-        (2, 1): (0, 1),
-        (2, 2): (0, 2),
-        (2, 3): (0, 3),
-        (2, 4): (0, 4),
-        (2, 5): (0, 5),
-        (2, 6): (0, 6),
-        # 3
-        (3, 1): (0, 1, 2),
-        (3, 2): (0, 1, 3),
-        (3, 3): (0, 1, 4),
-        (3, 4): (0, 1, 5),
-        (3, 5): (0, 1, 6),
-        (3, 6): (0, 2, 4),
-        (3, 7): (0, 2, 5),
-        (3, 8): (0, 2, 6),
-        (3, 9): (0, 2, 7),
-        (3, 10): (0, 3, 6),
-        (3, 11): (0, 3, 7),
-        (3, 12): (0, 4, 8),
-        # 4
-        (4, 1): (0, 1, 2, 3),
-        (4, 2): (0, 1, 2, 4),
-        (4, 3): (0, 1, 2, 5),
-        (4, 4): (0, 1, 2, 6),
-        (4, 5): (0, 1, 2, 7),
-        (4, 6): (0, 1, 3, 4),
-        (4, 7): (0, 1, 3, 5),
-        (4, 8): (0, 1, 3, 6),
-        (4, 9): (0, 1, 3, 7),
-        (4, 10): (0, 1, 4, 5),
-        (4, 11): (0, 1, 4, 6),
-        (4, 12): (0, 1, 4, 7),
-        (4, 13): (0, 1, 4, 8),
-        (4, 14): (0, 1, 5, 6),
-        (4, 15): (0, 1, 5, 7),
-        (4, 16): (0, 1, 5, 8),
-        (4, 17): (0, 1, 6, 7),
-        (4, 18): (0, 2, 3, 5),
-        (4, 19): (0, 2, 3, 6),
-        (4, 20): (0, 2, 3, 7),
-        (4, 21): (0, 2, 4, 6),
-        (4, 22): (0, 2, 4, 7),
-        (4, 23): (0, 2, 4, 8),
-        (4, 24): (0, 2, 5, 7),
-        (4, 25): (0, 2, 5, 8),
-        (4, 26): (0, 2, 6, 8),
-        (4, 27): (0, 3, 4, 7),
-        (4, 28): (0, 3, 5, 8),
-        (4, 29): (0, 3, 6, 9),
-        # 5
-        (5, 1): (0, 1, 2, 3, 4),
-        (5, 2): (0, 1, 2, 3, 5),
-        (5, 3): (0, 1, 2, 3, 6),
-        (5, 4): (0, 1, 2, 3, 7),
-        (5, 5): (0, 1, 2, 4, 5),
-        (5, 6): (0, 1, 2, 4, 6),
-        (5, 7): (0, 1, 2, 4, 7),
-        (5, 8): (0, 1, 2, 4, 8),
-        (5, 9): (0, 1, 2, 5, 6),
-        (5, 10): (0, 1, 2, 5, 7),
-        (5, 11): (0, 1, 2, 5, 8),
-        (5, 12): (0, 1, 2, 6, 7),
-        (5, 13): (0, 1, 2, 6, 8),
-        (5, 14): (0, 1, 3, 4, 6),
-        (5, 15): (0, 1, 3, 4, 7),
-        (5, 16): (0, 1, 3, 4, 8),
-        (5, 17): (0, 1, 3, 5, 6),
-        (5, 18): (0, 1, 3, 5, 7),
-        (5, 19): (0, 1, 3, 5, 8),
-        (5, 20): (0, 1, 3, 6, 7),
-        (5, 21): (0, 1, 3, 6, 8),
-        (5, 22): (0, 1, 3, 6, 9),
-        (5, 23): (0, 1, 3, 7, 8),
-        (5, 24): (0, 1, 4, 5, 7),
-        (5, 25): (0, 1, 4, 5, 8),
-        (5, 26): (0, 1, 4, 6, 8),
-        (5, 27): (0, 1, 4, 7, 8),
-        (5, 28): (0, 1, 4, 7, 9),
-        (5, 29): (0, 2, 3, 4, 6),
-        (5, 30): (0, 2, 3, 4, 7),
-        (5, 31): (0, 2, 3, 5, 7),
-        (5, 32): (0, 2, 3, 5, 8),
-        (5, 33): (0, 2, 3, 6, 8),
-        (5, 34): (0, 2, 4, 5, 8),
-        (5, 35): (0, 2, 4, 6, 8),
-        (5, 36): (0, 2, 4, 6, 9),
-        (5, 37): (0, 2, 4, 7, 9),
-        (5, 38): (0, 3, 4, 5, 8),
-        # 6
-        (6, 1): (0, 1, 2, 3, 4, 5),
-        (6, 2): (0, 1, 2, 3, 4, 6),
-        (6, 3): (0, 1, 2, 3, 4, 7),
-        (6, 4): (0, 1, 2, 3, 4, 8),
-        (6, 5): (0, 1, 2, 3, 5, 6),
-        (6, 6): (0, 1, 2, 3, 5, 7),
-        (6, 7): (0, 1, 2, 3, 5, 8),
-        (6, 8): (0, 1, 2, 3, 6, 7),
-        (6, 9): (0, 1, 2, 3, 6, 8),
-        (6, 10): (0, 1, 2, 3, 6, 9),
-        (6, 11): (0, 1, 2, 3, 7, 8),
-        (6, 12): (0, 1, 2, 4, 5, 6),
-        (6, 13): (0, 1, 2, 4, 5, 7),
-        (6, 14): (0, 1, 2, 4, 5, 8),
-        (6, 15): (0, 1, 2, 4, 6, 7),
-        (6, 16): (0, 1, 2, 4, 6, 8),
-        (6, 17): (0, 1, 2, 4, 6, 9),
-        (6, 18): (0, 1, 2, 4, 7, 8),
-        (6, 19): (0, 1, 2, 4, 7, 9),
-        (6, 20): (0, 1, 2, 5, 6, 7),
-        (6, 21): (0, 1, 2, 5, 6, 8),
-        (6, 22): (0, 1, 2, 5, 7, 8),
-        (6, 23): (0, 1, 2, 5, 7, 9),
-        (6, 24): (0, 1, 2, 5, 8, 9),
-        (6, 25): (0, 1, 2, 6, 7, 8),
-        (6, 26): (0, 1, 3, 4, 5, 7),
-        (6, 27): (0, 1, 3, 4, 5, 8),
-        (6, 28): (0, 1, 3, 4, 6, 7),
-        (6, 29): (0, 1, 3, 4, 6, 8),
-        (6, 30): (0, 1, 3, 4, 6, 9),
-        (6, 31): (0, 1, 3, 4, 7, 8),
-        (6, 32): (0, 1, 3, 4, 7, 9),
-        (6, 33): (0, 1, 3, 5, 6, 8),
-        (6, 34): (0, 1, 3, 5, 6, 9),
-        (6, 35): (0, 1, 3, 5, 7, 8),
-        (6, 36): (0, 1, 3, 5, 7, 9),
-        (6, 37): (0, 1, 3, 5, 8, 9),
-        (6, 38): (0, 1, 3, 6, 7, 9),
-        (6, 39): (0, 1, 3, 6, 8, 9),
-        (6, 40): (0, 1, 4, 5, 6, 8),
-        (6, 41): (0, 1, 4, 5, 8, 9),
-        (6, 42): (0, 1, 4, 6, 7, 9),
-        (6, 43): (0, 2, 3, 4, 5, 7),
-        (6, 44): (0, 2, 3, 4, 5, 8),
-        (6, 45): (0, 2, 3, 4, 6, 8),
-        (6, 46): (0, 2, 3, 4, 6, 9),
-        (6, 47): (0, 2, 3, 5, 6, 8),
-        (6, 48): (0, 2, 3, 5, 7, 9),
-        (6, 49): (0, 2, 4, 5, 7, 9),
-        (6, 50): (0, 2, 4, 6, 8, 10),
-        # 7
-        (7, 1): (0, 1, 2, 3, 4, 5, 6),
-        (7, 2): (0, 1, 2, 3, 4, 5, 7),
-        (7, 3): (0, 1, 2, 3, 4, 5, 8),
-        (7, 4): (0, 1, 2, 3, 4, 6, 7),
-        (7, 5): (0, 1, 2, 3, 4, 6, 8),
-        (7, 6): (0, 1, 2, 3, 4, 6, 9),
-        (7, 7): (0, 1, 2, 3, 4, 7, 8),
-        (7, 8): (0, 1, 2, 3, 4, 7, 9),
-        (7, 9): (0, 1, 2, 3, 5, 6, 7),
-        (7, 10): (0, 1, 2, 3, 5, 6, 8),
-        (7, 11): (0, 1, 2, 3, 5, 6, 9),
-        (7, 12): (0, 1, 2, 3, 5, 7, 8),
-        (7, 13): (0, 1, 2, 3, 5, 7, 9),
-        (7, 14): (0, 1, 2, 3, 5, 8, 9),
-        (7, 15): (0, 1, 2, 3, 6, 7, 8),
-        (7, 16): (0, 1, 2, 3, 6, 8, 9),
-        (7, 17): (0, 1, 2, 4, 5, 6, 8),
-        (7, 18): (0, 1, 2, 4, 5, 6, 9),
-        (7, 19): (0, 1, 2, 4, 5, 7, 8),
-        (7, 20): (0, 1, 2, 4, 5, 7, 9),
-        (7, 21): (0, 1, 2, 4, 5, 8, 9),
-        (7, 22): (0, 1, 2, 4, 6, 7, 8),
-        (7, 23): (0, 1, 2, 4, 6, 7, 9),
-        (7, 24): (0, 1, 2, 4, 6, 8, 10),
-        (7, 25): (0, 1, 2, 4, 6, 8, 9),
-        (7, 26): (0, 1, 2, 4, 7, 8, 9),
-        (7, 27): (0, 1, 2, 5, 6, 8, 9),
-        (7, 28): (0, 1, 3, 4, 5, 6, 8),
-        (7, 29): (0, 1, 3, 4, 5, 7, 8),
-        (7, 30): (0, 1, 3, 4, 5, 7, 9),
-        (7, 31): (0, 1, 3, 4, 6, 7, 9),
-        (7, 32): (0, 1, 3, 4, 6, 8, 10),
-        (7, 33): (0, 1, 3, 4, 6, 8, 9),
-        (7, 34): (0, 1, 3, 5, 6, 7, 9),
-        (7, 35): (0, 1, 3, 5, 6, 8, 10),
-        (7, 36): (0, 2, 3, 4, 5, 6, 8),
-        (7, 37): (0, 2, 3, 4, 5, 7, 9),
-        (7, 38): (0, 2, 3, 4, 6, 7, 9),
-        # 8
-        (8, 1): (0, 1, 2, 3, 4, 5, 6, 7),
-        (8, 2): (0, 1, 2, 3, 4, 5, 6, 8),
-        (8, 3): (0, 1, 2, 3, 4, 5, 6, 9),
-        (8, 4): (0, 1, 2, 3, 4, 5, 7, 8),
-        (8, 5): (0, 1, 2, 3, 4, 5, 7, 9),
-        (8, 6): (0, 1, 2, 3, 4, 5, 8, 9),
-        (8, 7): (0, 1, 2, 3, 4, 6, 7, 8),
-        (8, 8): (0, 1, 2, 3, 4, 6, 7, 9),
-        (8, 9): (0, 1, 2, 3, 4, 6, 8, 10),
-        (8, 10): (0, 1, 2, 3, 4, 6, 8, 9),
-        (8, 11): (0, 1, 2, 3, 4, 7, 8, 9),
-        (8, 12): (0, 1, 2, 3, 5, 6, 7, 8),
-        (8, 13): (0, 1, 2, 3, 5, 6, 7, 9),
-        (8, 14): (0, 1, 2, 3, 5, 6, 8, 9),
-        (8, 15): (0, 1, 2, 3, 5, 7, 8, 10),
-        (8, 16): (0, 1, 2, 3, 5, 7, 8, 9),
-        (8, 17): (0, 1, 2, 3, 5, 7, 9, 10),
-        (8, 18): (0, 1, 2, 3, 6, 7, 8, 9),
-        (8, 19): (0, 1, 2, 4, 5, 6, 7, 9),
-        (8, 20): (0, 1, 2, 4, 5, 6, 8, 10),
-        (8, 21): (0, 1, 2, 4, 5, 6, 8, 9),
-        (8, 22): (0, 1, 2, 4, 5, 7, 8, 10),
-        (8, 23): (0, 1, 2, 4, 5, 7, 8, 9),
-        (8, 24): (0, 1, 2, 4, 5, 7, 9, 10),
-        (8, 25): (0, 1, 2, 4, 6, 7, 8, 10),
-        (8, 26): (0, 1, 3, 4, 5, 6, 7, 9),
-        (8, 27): (0, 1, 3, 4, 5, 6, 8, 9),
-        (8, 28): (0, 1, 3, 4, 6, 7, 9, 10),
-        (8, 29): (0, 2, 3, 4, 5, 6, 7, 9),
-        # 9
-        (9, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8),
-        (9, 2): (0, 1, 2, 3, 4, 5, 6, 7, 9),
-        (9, 3): (0, 1, 2, 3, 4, 5, 6, 8, 10),
-        (9, 4): (0, 1, 2, 3, 4, 5, 6, 8, 9),
-        (9, 5): (0, 1, 2, 3, 4, 5, 7, 8, 9),
-        (9, 6): (0, 1, 2, 3, 4, 5, 7, 9, 10),
-        (9, 7): (0, 1, 2, 3, 4, 6, 7, 8, 9),
-        (9, 8): (0, 1, 2, 3, 4, 6, 7, 9, 10),
-        (9, 9): (0, 1, 2, 3, 4, 6, 8, 9, 10),
-        (9, 10): (0, 1, 2, 3, 5, 6, 7, 8, 10),
-        (9, 11): (0, 1, 2, 3, 5, 6, 8, 9, 10),
-        (9, 12): (0, 1, 2, 4, 5, 6, 8, 9, 10),
-        # 10
-        (10, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8, 10),
-        (10, 2): (0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
-        (10, 3): (0, 1, 2, 3, 4, 5, 6, 7, 9, 10),
-        (10, 4): (0, 1, 2, 3, 4, 5, 6, 8, 9, 10),
-        (10, 5): (0, 1, 2, 3, 4, 5, 7, 8, 9, 10),
-        (10, 6): (0, 1, 2, 3, 4, 6, 7, 8, 9, 10),
-        # 11
-        (11, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-        # 12
-        (12, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
-    }
-
-    assert len(_lex_identifier_to_prime_form) == 224
-
-    _transposition_only_identifier_to_prime_form = {
-        # 0
-        (0, 1): (),
-        # 1
-        (1, 1): (0),
-        # 2
-        (2, 1): (0, 1),
-        (2, 2): (0, 2),
-        (2, 3): (0, 3),
-        (2, 4): (0, 4),
-        (2, 5): (0, 5),
-        (2, 6): (0, 6),
-        # 3
-        (3, 1): (0, 1, 2),
-        (3, 2): (0, 1, 3),
-        (3, 3): (0, 1, 4),
-        (3, 4): (0, 1, 5),
-        (3, 5): (0, 1, 6),
-        (3, 6): (0, 2, 3),
-        (3, 7): (0, 2, 4),
-        (3, 8): (0, 2, 5),
-        (3, 9): (0, 2, 6),
-        (3, 10): (0, 2, 7),
-        (3, 11): (0, 3, 4),
-        (3, 12): (0, 3, 5),
-        (3, 13): (0, 3, 6),
-        (3, 14): (0, 3, 7),
-        (3, 15): (0, 4, 5),
-        (3, 16): (0, 4, 6),
-        (3, 17): (0, 4, 7),
-        (3, 18): (0, 4, 8),
-        (3, 19): (0, 5, 6),
-        # 4
-        (4, 1): (0, 1, 2, 3),
-        (4, 2): (0, 1, 2, 4),
-        (4, 3): (0, 1, 2, 5),
-        (4, 4): (0, 1, 2, 6),
-        (4, 5): (0, 1, 2, 7),
-        (4, 6): (0, 1, 3, 4),
-        (4, 7): (0, 1, 3, 5),
-        (4, 8): (0, 1, 3, 6),
-        (4, 9): (0, 1, 3, 7),
-        (4, 10): (0, 1, 4, 5),
-        (4, 11): (0, 1, 4, 6),
-        (4, 12): (0, 1, 4, 7),
-        (4, 13): (0, 1, 4, 8),
-        (4, 14): (0, 1, 5, 6),
-        (4, 15): (0, 1, 5, 7),
-        (4, 16): (0, 1, 5, 8),
-        (4, 17): (0, 1, 6, 7),
-        (4, 18): (0, 2, 3, 4),
-        (4, 19): (0, 2, 3, 5),
-        (4, 20): (0, 2, 3, 6),
-        (4, 21): (0, 2, 3, 7),
-        (4, 22): (0, 2, 4, 5),
-        (4, 23): (0, 2, 4, 6),
-        (4, 24): (0, 2, 4, 7),
-        (4, 25): (0, 2, 4, 8),
-        (4, 26): (0, 2, 5, 6),
-        (4, 27): (0, 2, 5, 7),
-        (4, 28): (0, 2, 5, 8),
-        (4, 29): (0, 2, 6, 7),
-        (4, 30): (0, 2, 6, 8),
-        (4, 31): (0, 3, 4, 5),
-        (4, 32): (0, 3, 4, 6),
-        (4, 33): (0, 3, 4, 7),
-        (4, 34): (0, 3, 4, 8),
-        (4, 35): (0, 3, 5, 6),
-        (4, 36): (0, 3, 5, 7),
-        (4, 37): (0, 3, 5, 8),
-        (4, 38): (0, 3, 6, 7),
-        (4, 39): (0, 3, 6, 8),
-        (4, 40): (0, 3, 6, 9),
-        (4, 41): (0, 4, 5, 6),
-        (4, 42): (0, 4, 5, 7),
-        (4, 43): (0, 4, 6, 7),
-        # 5
-        (5, 1): (0, 1, 2, 3, 4),
-        (5, 2): (0, 1, 2, 3, 5),
-        (5, 3): (0, 1, 2, 3, 6),
-        (5, 4): (0, 1, 2, 3, 7),
-        (5, 5): (0, 1, 2, 4, 5),
-        (5, 6): (0, 1, 2, 4, 6),
-        (5, 7): (0, 1, 2, 4, 7),
-        (5, 8): (0, 1, 2, 4, 8),
-        (5, 9): (0, 1, 2, 5, 6),
-        (5, 10): (0, 1, 2, 5, 7),
-        (5, 11): (0, 1, 2, 5, 8),
-        (5, 12): (0, 1, 2, 6, 7),
-        (5, 13): (0, 1, 2, 6, 8),
-        (5, 14): (0, 1, 3, 4, 5),
-        (5, 15): (0, 1, 3, 4, 6),
-        (5, 16): (0, 1, 3, 4, 7),
-        (5, 17): (0, 1, 3, 4, 8),
-        (5, 18): (0, 1, 3, 5, 6),
-        (5, 19): (0, 1, 3, 5, 7),
-        (5, 20): (0, 1, 3, 5, 8),
-        (5, 21): (0, 1, 3, 6, 7),
-        (5, 22): (0, 1, 3, 6, 8),
-        (5, 23): (0, 1, 3, 6, 9),
-        (5, 24): (0, 1, 3, 7, 8),
-        (5, 25): (0, 1, 4, 5, 6),
-        (5, 26): (0, 1, 4, 5, 7),
-        (5, 27): (0, 1, 4, 5, 8),
-        (5, 28): (0, 1, 4, 6, 7),
-        (5, 29): (0, 1, 4, 6, 8),
-        (5, 30): (0, 1, 4, 6, 9),
-        (5, 31): (0, 1, 4, 7, 8),
-        (5, 32): (0, 1, 4, 7, 9),
-        (5, 33): (0, 1, 5, 6, 7),
-        (5, 34): (0, 1, 5, 7, 8),
-        (5, 35): (0, 2, 3, 4, 5),
-        (5, 36): (0, 2, 3, 4, 6),
-        (5, 37): (0, 2, 3, 4, 7),
-        (5, 38): (0, 2, 3, 4, 8),
-        (5, 39): (0, 2, 3, 5, 6),
-        (5, 40): (0, 2, 3, 5, 7),
-        (5, 41): (0, 2, 3, 5, 8),
-        (5, 42): (0, 2, 3, 6, 7),
-        (5, 43): (0, 2, 3, 6, 8),
-        (5, 44): (0, 2, 3, 6, 9),
-        (5, 45): (0, 2, 4, 5, 6),
-        (5, 46): (0, 2, 4, 5, 7),
-        (5, 47): (0, 2, 4, 5, 8),
-        (5, 48): (0, 2, 4, 6, 7),
-        (5, 49): (0, 2, 4, 6, 8),
-        (5, 50): (0, 2, 4, 6, 9),
-        (5, 51): (0, 2, 4, 7, 8),
-        (5, 52): (0, 2, 4, 7, 9),
-        (5, 53): (0, 2, 5, 6, 7),
-        (5, 54): (0, 2, 5, 6, 8),
-        (5, 55): (0, 2, 5, 7, 8),
-        (5, 56): (0, 3, 4, 5, 6),
-        (5, 57): (0, 3, 4, 5, 7),
-        (5, 58): (0, 3, 4, 5, 8),
-        (5, 59): (0, 3, 4, 6, 7),
-        (5, 60): (0, 3, 4, 6, 8),
-        (5, 61): (0, 3, 4, 7, 8),
-        (5, 62): (0, 3, 5, 6, 7),
-        (5, 63): (0, 3, 5, 6, 8),
-        (5, 64): (0, 3, 5, 7, 8),
-        (5, 65): (0, 3, 6, 7, 8),
-        (5, 66): (0, 4, 5, 6, 7),
-        # 6
-        (6, 1): (0, 1, 2, 3, 4, 5),
-        (6, 2): (0, 1, 2, 3, 4, 6),
-        (6, 3): (0, 1, 2, 3, 4, 7),
-        (6, 4): (0, 1, 2, 3, 4, 8),
-        (6, 5): (0, 1, 2, 3, 5, 6),
-        (6, 6): (0, 1, 2, 3, 5, 7),
-        (6, 7): (0, 1, 2, 3, 5, 8),
-        (6, 8): (0, 1, 2, 3, 6, 7),
-        (6, 9): (0, 1, 2, 3, 6, 8),
-        (6, 10): (0, 1, 2, 3, 6, 9),
-        (6, 11): (0, 1, 2, 3, 7, 8),
-        (6, 12): (0, 1, 2, 4, 5, 6),
-        (6, 13): (0, 1, 2, 4, 5, 7),
-        (6, 14): (0, 1, 2, 4, 5, 8),
-        (6, 15): (0, 1, 2, 4, 6, 7),
-        (6, 16): (0, 1, 2, 4, 6, 8),
-        (6, 17): (0, 1, 2, 4, 6, 9),
-        (6, 18): (0, 1, 2, 4, 7, 8),
-        (6, 19): (0, 1, 2, 4, 7, 9),
-        (6, 20): (0, 1, 2, 5, 6, 7),
-        (6, 21): (0, 1, 2, 5, 6, 8),
-        (6, 22): (0, 1, 2, 5, 6, 9),
-        (6, 23): (0, 1, 2, 5, 7, 8),
-        (6, 24): (0, 1, 2, 5, 7, 9),
-        (6, 25): (0, 1, 2, 5, 8, 9),
-        (6, 26): (0, 1, 2, 6, 7, 8),
-        (6, 27): (0, 1, 3, 4, 5, 6),
-        (6, 28): (0, 1, 3, 4, 5, 7),
-        (6, 29): (0, 1, 3, 4, 5, 8),
-        (6, 30): (0, 1, 3, 4, 6, 7),
-        (6, 31): (0, 1, 3, 4, 6, 8),
-        (6, 32): (0, 1, 3, 4, 6, 9),
-        (6, 33): (0, 1, 3, 4, 7, 8),
-        (6, 34): (0, 1, 3, 4, 7, 9),
-        (6, 35): (0, 1, 3, 5, 6, 7),
-        (6, 36): (0, 1, 3, 5, 6, 8),
-        (6, 37): (0, 1, 3, 5, 6, 9),
-        (6, 38): (0, 1, 3, 5, 7, 8),
-        (6, 39): (0, 1, 3, 5, 7, 9),
-        (6, 40): (0, 1, 3, 5, 8, 9),
-        (6, 41): (0, 1, 3, 6, 7, 8),
-        (6, 42): (0, 1, 3, 6, 7, 9),
-        (6, 43): (0, 1, 3, 6, 8, 9),
-        (6, 44): (0, 1, 4, 5, 6, 7),
-        (6, 45): (0, 1, 4, 5, 6, 8),
-        (6, 46): (0, 1, 4, 5, 7, 8),
-        (6, 47): (0, 1, 4, 5, 8, 9),
-        (6, 48): (0, 1, 4, 6, 7, 8),
-        (6, 49): (0, 1, 4, 6, 7, 9),
-        (6, 50): (0, 1, 4, 6, 8, 9),
-        (6, 51): (0, 2, 3, 4, 5, 6),
-        (6, 52): (0, 2, 3, 4, 5, 7),
-        (6, 53): (0, 2, 3, 4, 5, 8),
-        (6, 54): (0, 2, 3, 4, 6, 7),
-        (6, 55): (0, 2, 3, 4, 6, 8),
-        (6, 56): (0, 2, 3, 4, 6, 9),
-        (6, 57): (0, 2, 3, 4, 7, 8),
-        (6, 58): (0, 2, 3, 4, 7, 9),
-        (6, 59): (0, 2, 3, 5, 6, 7),
-        (6, 60): (0, 2, 3, 5, 6, 8),
-        (6, 61): (0, 2, 3, 5, 6, 9),
-        (6, 62): (0, 2, 3, 5, 7, 8),
-        (6, 63): (0, 2, 3, 5, 7, 9),
-        (6, 64): (0, 2, 3, 6, 7, 8),
-        (6, 65): (0, 2, 3, 6, 8, 9),
-        (6, 66): (0, 2, 4, 5, 6, 7),
-        (6, 67): (0, 2, 4, 5, 6, 8),
-        (6, 68): (0, 2, 4, 5, 6, 9),
-        (6, 69): (0, 2, 4, 5, 7, 8),
-        (6, 70): (0, 2, 4, 5, 7, 9),
-        (6, 71): (0, 2, 4, 6, 7, 8),
-        (6, 72): (0, 2, 4, 6, 7, 9),
-        (6, 73): (0, 2, 4, 6, 8, 10),
-        (6, 74): (0, 2, 4, 6, 8, 9),
-        (6, 75): (0, 2, 5, 6, 7, 8),
-        (6, 76): (0, 3, 4, 5, 6, 7),
-        (6, 77): (0, 3, 4, 5, 6, 8),
-        (6, 78): (0, 3, 4, 5, 7, 8),
-        (6, 79): (0, 3, 4, 6, 7, 8),
-        (6, 80): (0, 3, 5, 6, 7, 8),
-        # 7
-        (7, 1): (0, 1, 2, 3, 4, 5, 6),
-        (7, 2): (0, 1, 2, 3, 4, 5, 7),
-        (7, 3): (0, 1, 2, 3, 4, 5, 8),
-        (7, 4): (0, 1, 2, 3, 4, 6, 7),
-        (7, 5): (0, 1, 2, 3, 4, 6, 8),
-        (7, 6): (0, 1, 2, 3, 4, 6, 9),
-        (7, 7): (0, 1, 2, 3, 4, 7, 8),
-        (7, 8): (0, 1, 2, 3, 4, 7, 9),
-        (7, 9): (0, 1, 2, 3, 5, 6, 7),
-        (7, 10): (0, 1, 2, 3, 5, 6, 8),
-        (7, 11): (0, 1, 2, 3, 5, 6, 9),
-        (7, 12): (0, 1, 2, 3, 5, 7, 8),
-        (7, 13): (0, 1, 2, 3, 5, 7, 9),
-        (7, 14): (0, 1, 2, 3, 5, 8, 9),
-        (7, 15): (0, 1, 2, 3, 6, 7, 8),
-        (7, 16): (0, 1, 2, 3, 6, 7, 9),
-        (7, 17): (0, 1, 2, 3, 6, 8, 9),
-        (7, 18): (0, 1, 2, 4, 5, 6, 7),
-        (7, 19): (0, 1, 2, 4, 5, 6, 8),
-        (7, 20): (0, 1, 2, 4, 5, 6, 9),
-        (7, 21): (0, 1, 2, 4, 5, 7, 8),
-        (7, 22): (0, 1, 2, 4, 5, 7, 9),
-        (7, 23): (0, 1, 2, 4, 5, 8, 9),
-        (7, 24): (0, 1, 2, 4, 6, 7, 8),
-        (7, 25): (0, 1, 2, 4, 6, 7, 9),
-        (7, 26): (0, 1, 2, 4, 6, 8, 10),
-        (7, 27): (0, 1, 2, 4, 6, 8, 9),
-        (7, 28): (0, 1, 2, 4, 7, 8, 9),
-        (7, 29): (0, 1, 2, 5, 6, 7, 8),
-        (7, 30): (0, 1, 2, 5, 6, 8, 9),
-        (7, 31): (0, 1, 2, 5, 7, 8, 9),
-        (7, 32): (0, 1, 3, 4, 5, 6, 7),
-        (7, 33): (0, 1, 3, 4, 5, 6, 8),
-        (7, 34): (0, 1, 3, 4, 5, 6, 9),
-        (7, 35): (0, 1, 3, 4, 5, 7, 8),
-        (7, 36): (0, 1, 3, 4, 5, 7, 9),
-        (7, 37): (0, 1, 3, 4, 5, 8, 9),
-        (7, 38): (0, 1, 3, 4, 6, 7, 8),
-        (7, 39): (0, 1, 3, 4, 6, 7, 9),
-        (7, 40): (0, 1, 3, 4, 6, 8, 10),
-        (7, 41): (0, 1, 3, 4, 6, 8, 9),
-        (7, 42): (0, 1, 3, 5, 6, 7, 8),
-        (7, 43): (0, 1, 3, 5, 6, 7, 9),
-        (7, 44): (0, 1, 3, 5, 6, 8, 10),
-        (7, 45): (0, 1, 3, 5, 6, 8, 9),
-        (7, 46): (0, 1, 3, 5, 7, 8, 9),
-        (7, 47): (0, 1, 4, 5, 6, 7, 8),
-        (7, 48): (0, 1, 4, 6, 7, 8, 9),
-        (7, 49): (0, 2, 3, 4, 5, 6, 7),
-        (7, 50): (0, 2, 3, 4, 5, 6, 8),
-        (7, 51): (0, 2, 3, 4, 5, 6, 9),
-        (7, 52): (0, 2, 3, 4, 5, 7, 8),
-        (7, 53): (0, 2, 3, 4, 5, 7, 9),
-        (7, 54): (0, 2, 3, 4, 6, 7, 8),
-        (7, 55): (0, 2, 3, 4, 6, 7, 9),
-        (7, 56): (0, 2, 3, 4, 6, 8, 9),
-        (7, 57): (0, 2, 3, 5, 6, 7, 8),
-        (7, 58): (0, 2, 3, 5, 6, 7, 9),
-        (7, 59): (0, 2, 3, 5, 6, 8, 9),
-        (7, 60): (0, 2, 3, 5, 7, 8, 9),
-        (7, 61): (0, 2, 4, 5, 6, 7, 8),
-        (7, 62): (0, 2, 4, 5, 6, 7, 9),
-        (7, 63): (0, 2, 4, 5, 6, 8, 9),
-        (7, 64): (0, 2, 4, 5, 7, 8, 9),
-        (7, 65): (0, 2, 4, 6, 7, 8, 9),
-        (7, 66): (0, 3, 4, 5, 6, 7, 8),
-        # 8
-        (8, 1): (0, 1, 2, 3, 4, 5, 6, 7),
-        (8, 2): (0, 1, 2, 3, 4, 5, 6, 8),
-        (8, 3): (0, 1, 2, 3, 4, 5, 6, 9),
-        (8, 4): (0, 1, 2, 3, 4, 5, 7, 8),
-        (8, 5): (0, 1, 2, 3, 4, 5, 7, 9),
-        (8, 6): (0, 1, 2, 3, 4, 5, 8, 9),
-        (8, 7): (0, 1, 2, 3, 4, 6, 7, 8),
-        (8, 8): (0, 1, 2, 3, 4, 6, 7, 9),
-        (8, 9): (0, 1, 2, 3, 4, 6, 8, 10),
-        (8, 10): (0, 1, 2, 3, 4, 6, 8, 9),
-        (8, 11): (0, 1, 2, 3, 4, 7, 8, 9),
-        (8, 12): (0, 1, 2, 3, 5, 6, 7, 8),
-        (8, 13): (0, 1, 2, 3, 5, 6, 7, 9),
-        (8, 14): (0, 1, 2, 3, 5, 6, 8, 10),
-        (8, 15): (0, 1, 2, 3, 5, 6, 8, 9),
-        (8, 16): (0, 1, 2, 3, 5, 7, 8, 10),
-        (8, 17): (0, 1, 2, 3, 5, 7, 8, 9),
-        (8, 18): (0, 1, 2, 3, 5, 7, 9, 10),
-        (8, 19): (0, 1, 2, 3, 6, 7, 8, 9),
-        (8, 20): (0, 1, 2, 4, 5, 6, 7, 8),
-        (8, 21): (0, 1, 2, 4, 5, 6, 7, 9),
-        (8, 22): (0, 1, 2, 4, 5, 6, 8, 10),
-        (8, 23): (0, 1, 2, 4, 5, 6, 8, 9),
-        (8, 24): (0, 1, 2, 4, 5, 7, 8, 10),
-        (8, 25): (0, 1, 2, 4, 5, 7, 8, 9),
-        (8, 26): (0, 1, 2, 4, 5, 7, 9, 10),
-        (8, 27): (0, 1, 2, 4, 6, 7, 8, 10),
-        (8, 28): (0, 1, 2, 4, 6, 7, 8, 9),
-        (8, 29): (0, 1, 2, 4, 6, 7, 9, 10),
-        (8, 30): (0, 1, 3, 4, 5, 6, 7, 8),
-        (8, 31): (0, 1, 3, 4, 5, 6, 7, 9),
-        (8, 32): (0, 1, 3, 4, 5, 6, 8, 9),
-        (8, 33): (0, 1, 3, 4, 5, 7, 8, 9),
-        (8, 34): (0, 1, 3, 4, 6, 7, 8, 9),
-        (8, 35): (0, 1, 3, 4, 6, 7, 9, 10),
-        (8, 36): (0, 1, 3, 5, 6, 7, 8, 9),
-        (8, 37): (0, 2, 3, 4, 5, 6, 7, 8),
-        (8, 38): (0, 2, 3, 4, 5, 6, 7, 9),
-        (8, 39): (0, 2, 3, 4, 5, 6, 8, 9),
-        (8, 40): (0, 2, 3, 4, 5, 7, 8, 9),
-        (8, 41): (0, 2, 3, 4, 6, 7, 8, 9),
-        (8, 42): (0, 2, 3, 5, 6, 7, 8, 9),
-        (8, 43): (0, 2, 4, 5, 6, 7, 8, 9),
-        # 9
-        (9, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8),
-        (9, 2): (0, 1, 2, 3, 4, 5, 6, 7, 9),
-        (9, 3): (0, 1, 2, 3, 4, 5, 6, 8, 10),
-        (9, 4): (0, 1, 2, 3, 4, 5, 6, 8, 9),
-        (9, 5): (0, 1, 2, 3, 4, 5, 7, 8, 10),
-        (9, 6): (0, 1, 2, 3, 4, 5, 7, 8, 9),
-        (9, 7): (0, 1, 2, 3, 4, 5, 7, 9, 10),
-        (9, 8): (0, 1, 2, 3, 4, 6, 7, 8, 10),
-        (9, 9): (0, 1, 2, 3, 4, 6, 7, 8, 9),
-        (9, 10): (0, 1, 2, 3, 4, 6, 7, 9, 10),
-        (9, 11): (0, 1, 2, 3, 4, 6, 8, 9, 10),
-        (9, 12): (0, 1, 2, 3, 5, 6, 7, 8, 10),
-        (9, 13): (0, 1, 2, 3, 5, 6, 7, 8, 9),
-        (9, 14): (0, 1, 2, 3, 5, 6, 7, 9, 10),
-        (9, 15): (0, 1, 2, 3, 5, 6, 8, 9, 10),
-        (9, 16): (0, 1, 2, 4, 5, 6, 7, 8, 9),
-        (9, 17): (0, 1, 2, 4, 5, 6, 8, 9, 10),
-        (9, 18): (0, 1, 3, 4, 5, 6, 7, 8, 9),
-        (9, 19): (0, 2, 3, 4, 5, 6, 7, 8, 9),
-        # 10
-        (10, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8, 10),
-        (10, 2): (0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
-        (10, 3): (0, 1, 2, 3, 4, 5, 6, 7, 9, 10),
-        (10, 4): (0, 1, 2, 3, 4, 5, 6, 8, 9, 10),
-        (10, 5): (0, 1, 2, 3, 4, 5, 7, 8, 9, 10),
-        (10, 6): (0, 1, 2, 3, 4, 6, 7, 8, 9, 10),
-        # 11
-        (11, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-        # 12
-        (12, 1): (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
-    }
-
-    assert len(_transposition_only_identifier_to_prime_form) == 352
-
-    _prime_form_to_forte_identifier = {
-        v: k for k, v in _forte_identifier_to_prime_form.items()
-    }
-
-    _prime_form_to_lex_identifier = {
-        v: k for k, v in _lex_identifier_to_prime_form.items()
-    }
-
-    _prime_form_to_transposition_only_identifier = {
-        v: k for k, v in _transposition_only_identifier_to_prime_form.items()
-    }
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self, cardinality=1, rank=1, *, lex_rank=None, transposition_only=None
-    ):
-        if bool(transposition_only) and lex_rank is False:
-            raise Exception("SG1 set-classes are always lex-rank.")
-        cardinality = int(cardinality)
-        assert 0 <= cardinality <= 12, repr(cardinality)
-        self._cardinality = cardinality
-        rank = int(rank)
-        assert 1 <= rank, repr(rank)
-        self._rank = rank
-        assert isinstance(lex_rank, (type(None), type(True)))
-        self._lex_rank = lex_rank
-        assert isinstance(transposition_only, (type(None), type(True)))
-        self._transposition_only = transposition_only
-        prime_form = self._unrank(
-            self.cardinality,
-            self.rank,
-            transposition_only=self.transposition_only,
-        )
-        self._prime_form = prime_form
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes set-class.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        """
-        Gets string representation.
-
-        ..  container:: example
-
-            Gets string of SG2 set-class with Forte rank:
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
-
-        ..  container:: example
-
-            Gets string of SG2 set-class with lex rank:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
-
-        ..  container:: example
-
-            Gets string of SG1 set-class:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
-
-        Returns string.
-        """
-        string = f"SC({self.cardinality}-{self.rank}){self.prime_form!s}"
-        string = string.replace("PC", "")
-        return string
-
-    ### PRIVATE METHODS ###
-
-    def _unrank(self, cardinality, rank, transposition_only=None):
-        pair = (cardinality, rank)
-        if self.transposition_only:
-            prime_form = self._transposition_only_identifier_to_prime_form[pair]
-        elif self.lex_rank:
-            prime_form = self._lex_identifier_to_prime_form[pair]
-        else:
-            prime_form = self._forte_identifier_to_prime_form[pair]
-        prime_form = PitchClassSet(items=prime_form, item_class=NumberedPitchClass)
-        return prime_form
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def cardinality(self):
-        """
-        Gets cardinality.
-
-        ..  container:: example
-
-            Gets cardinality of SG2 set-class with Forte rank:
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
-
-            >>> set_class.cardinality
-            4
-
-        ..  container:: example
-
-            Gets cardinality of SG2 set-class with lex rank:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
-
-            >>> set_class.cardinality
-            4
-
-        ..  container:: example
-
-            Gets cardinality of SG1 set-class:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
-
-            >>> set_class.cardinality
-            4
-
-        Set to integer between 0 and 12, inclusive.
-
-        Returns integer between 0 and 12, inclusive.
-        """
-        return self._cardinality
-
-    @property
-    def is_inversion_equivalent(self):
-        """
-        Is true when set-class is inversion-equivalent.
-
-        ..  container:: example
-
-            Is inversion-equivalent:
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
-
-            >>> pitch_class_set = set_class.prime_form
-            >>> inverted_pitch_class_set = pitch_class_set.invert()
-            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
-            ...     inverted_pitch_class_set
-            ... )
-            >>> print(inverted_set_class)
-            SC(4-29){0, 1, 3, 7}
-
-            >>> set_class.is_inversion_equivalent
-            True
-
-        ..  container:: example
-
-            Is inversion-equivalent:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
-
-            >>> pitch_class_set = set_class.prime_form
-            >>> inverted_pitch_class_set = pitch_class_set.invert()
-            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
-            ...     inverted_pitch_class_set,
-            ...     lex_rank=True,
-            ... )
-            >>> print(inverted_set_class)
-            SC(4-29){0, 3, 6, 9}
-
-            >>> set_class.is_inversion_equivalent
-            True
-
-        ..  container:: example
-
-            Is not inversion-equivalent:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
-
-            >>> pitch_class_set = set_class.prime_form
-            >>> inverted_pitch_class_set = pitch_class_set.invert()
-            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
-            ...     inverted_pitch_class_set,
-            ...     transposition_only=True,
-            ... )
-            >>> print(inverted_set_class)
-            SC(4-15){0, 1, 5, 7}
-
-            >>> set_class.is_inversion_equivalent
-            False
-
-        Returns true or false.
-        """
-        prime_form = self.prime_form
-        inverted_pitch_class_set = prime_form.invert()
-        inverted_set_class = type(self).from_pitch_class_set(
-            inverted_pitch_class_set,
-            lex_rank=self.lex_rank,
-            transposition_only=self.transposition_only,
-        )
-        return self == inverted_set_class
-
-    @property
-    def lex_rank(self):
-        """
-        Is true when set-class uses lex rank.
-
-        ..  container:: example
-
-            Uses Forte rank:
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> set_class
-            SetClass(cardinality=4, rank=29)
-
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
-
-        ..  container:: example
-
-            Uses lex rank:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     lex_rank=True,
-            ... )
-            >>> set_class
-            SetClass(cardinality=4, rank=29, lex_rank=True)
-
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
-
-        ..  container:: example
-
-            SG1 set-classes always use lex rank:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     transposition_only=True,
-            ... )
-            >>> set_class
-            SetClass(cardinality=4, rank=29, transposition_only=True)
-
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
-
-        Set to true, false or none.
-
-        Defaults to none.
-
-        Returns true, false or none.
-        """
-        return self._lex_rank
-
-    @property
-    def prime_form(self):
-        """
-        Gets prime form.
-
-        ..  container:: example
-
-            Gets prime form of SG2 set-class with Forte rank:
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
-
-            >>> set_class.prime_form
-            PitchClassSet([0, 1, 3, 7])
-
-        ..  container:: example
-
-            Gets prime form of SG2 set-class with lex rank:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
-
-            >>> set_class.prime_form
-            PitchClassSet([0, 3, 6, 9])
-
-        ..  container:: example
-
-            Gets prime form of SG1 set-class:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
-
-            >>> set_class.prime_form
-            PitchClassSet([0, 2, 6, 7])
-
-        Returns numbered pitch-class set.
-        """
-        return self._prime_form
-
-    @property
-    def rank(self):
-        """
-        Gets rank.
-
-        ..  container:: example
-
-            Gets rank of SG2 set-class with Forte rank:
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
-
-            >>> set_class.rank
-            29
-
-        ..  container:: example
-
-            Gets rank of SG2 set-class with lex rank:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
-
-            >>> set_class.rank
-            29
-
-        ..  container:: example
-
-            Gets rank of SG1 set-class:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
-
-            >>> set_class.rank
-            29
-
-        Set to positive integer.
-
-        Returns positive integer.
-        """
-        return self._rank
-
-    @property
-    def transposition_only(self):
-        """
-        Is true when set-class collects pitch-class sets related only by
-        transposition.
-
-        ..  container:: example
-
-            Initializes SG2 set-class with Forte rank:
-
-            >>> set_class = abjad.SetClass(4, 29)
-            >>> print(set_class)
-            SC(4-29){0, 1, 3, 7}
-
-        ..  container:: example
-
-            Initializes SG2 set-class with lex rank:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 3, 6, 9}
-
-        ..  container:: example
-
-            Initializes SG1 set-class:
-
-            >>> set_class = abjad.SetClass(
-            ...     4, 29,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(4-29){0, 2, 6, 7}
-
-        Set to true, false or none.
-
-        Defaults to none.
-
-        Returns true, false or none.
-        """
-        return self._transposition_only
-
-    ### PUBLIC METHODS ###
-
-    # TODO: change to from_selection()
-    @staticmethod
-    def from_pitch_class_set(pitch_class_set, lex_rank=None, transposition_only=None):
-        """
-        Makes set-class from ``pitch_class_set``.
-
-        ..  container:: example
-
-            >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-            >>> print(set_class)
-            SC(5-31){0, 1, 3, 6, 9}
-
-            >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(5-22){0, 1, 3, 6, 9}
-
-            >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(5-44){0, 2, 3, 6, 9}
-
-        ..  container:: example
-
-            >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-            >>> print(set_class)
-            SC(6-32){0, 2, 4, 5, 7, 9}
-
-            >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(6-49){0, 2, 4, 5, 7, 9}
-
-            >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(6-70){0, 2, 4, 5, 7, 9}
-
-        ..  container:: example
-
-            >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-            >>> print(set_class)
-            SC(4-9){0, 1, 6, 7}
-
-            >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(4-17){0, 1, 6, 7}
-
-            >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(4-17){0, 1, 6, 7}
-
-        ..  container:: example
-
-            >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
-            >>> print(set_class)
-            SC(3-11){0, 3, 7}
-
-            >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     lex_rank=True,
-            ... )
-            >>> print(set_class)
-            SC(3-11){0, 3, 7}
-
-            >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
-            ...     pc_set,
-            ...     transposition_only=True,
-            ... )
-            >>> print(set_class)
-            SC(3-17){0, 4, 7}
-
-        Returns set-class.
-        """
-        pitch_class_set = PitchClassSet(
-            items=pitch_class_set, item_class=NumberedPitchClass
-        )
-        prime_form = pitch_class_set.get_prime_form(
-            transposition_only=transposition_only
-        )
-        prime_form = tuple([_.number for _ in sorted(prime_form)])
-        if transposition_only:
-            pair = SetClass._prime_form_to_transposition_only_identifier[prime_form]
-        elif lex_rank:
-            pair = SetClass._prime_form_to_lex_identifier[prime_form]
-        else:
-            pair = SetClass._prime_form_to_forte_identifier[prime_form]
-        cardinality, rank = pair
-        set_class = SetClass(
-            cardinality=cardinality,
-            rank=rank,
-            lex_rank=lex_rank,
-            transposition_only=transposition_only,
-        )
-        return set_class
-
-    @staticmethod
-    def list_set_classes(cardinality=None, lex_rank=None, transposition_only=None):
-        """
-        List set-classes.
-
-        ..  container:: example
-
-            Lists SG2 set-classes of cardinality 4 with Forte rank:
-
-            >>> set_classes = abjad.SetClass.list_set_classes(
-            ...     cardinality=4,
-            ... )
-            >>> for set_class in set_classes:
-            ...     print(set_class)
-            SC(4-1){0, 1, 2, 3}
-            SC(4-2){0, 1, 2, 4}
-            SC(4-3){0, 1, 3, 4}
-            SC(4-4){0, 1, 2, 5}
-            SC(4-5){0, 1, 2, 6}
-            SC(4-6){0, 1, 2, 7}
-            SC(4-7){0, 1, 4, 5}
-            SC(4-8){0, 1, 5, 6}
-            SC(4-9){0, 1, 6, 7}
-            SC(4-10){0, 2, 3, 5}
-            SC(4-11){0, 1, 3, 5}
-            SC(4-12){0, 2, 3, 6}
-            SC(4-13){0, 1, 3, 6}
-            SC(4-14){0, 2, 3, 7}
-            SC(4-15){0, 1, 4, 6}
-            SC(4-16){0, 1, 5, 7}
-            SC(4-17){0, 3, 4, 7}
-            SC(4-18){0, 1, 4, 7}
-            SC(4-19){0, 1, 4, 8}
-            SC(4-20){0, 1, 5, 8}
-            SC(4-21){0, 2, 4, 6}
-            SC(4-22){0, 2, 4, 7}
-            SC(4-23){0, 2, 5, 7}
-            SC(4-24){0, 2, 4, 8}
-            SC(4-25){0, 2, 6, 8}
-            SC(4-26){0, 3, 5, 8}
-            SC(4-27){0, 2, 5, 8}
-            SC(4-28){0, 3, 6, 9}
-            SC(4-29){0, 1, 3, 7}
-
-        ..  container:: example
-
-            Lists SG2 set-classes of cardinality 4 with lex rank:
-
-            >>> set_classes = abjad.SetClass.list_set_classes(
-            ...     cardinality=4,
-            ...     lex_rank=True,
-            ... )
-            >>> for set_class in set_classes:
-            ...     print(set_class)
-            SC(4-1){0, 1, 2, 3}
-            SC(4-2){0, 1, 2, 4}
-            SC(4-3){0, 1, 2, 5}
-            SC(4-4){0, 1, 2, 6}
-            SC(4-5){0, 1, 2, 7}
-            SC(4-6){0, 1, 3, 4}
-            SC(4-7){0, 1, 3, 5}
-            SC(4-8){0, 1, 3, 6}
-            SC(4-9){0, 1, 3, 7}
-            SC(4-10){0, 1, 4, 5}
-            SC(4-11){0, 1, 4, 6}
-            SC(4-12){0, 1, 4, 7}
-            SC(4-13){0, 1, 4, 8}
-            SC(4-14){0, 1, 5, 6}
-            SC(4-15){0, 1, 5, 7}
-            SC(4-16){0, 1, 5, 8}
-            SC(4-17){0, 1, 6, 7}
-            SC(4-18){0, 2, 3, 5}
-            SC(4-19){0, 2, 3, 6}
-            SC(4-20){0, 2, 3, 7}
-            SC(4-21){0, 2, 4, 6}
-            SC(4-22){0, 2, 4, 7}
-            SC(4-23){0, 2, 4, 8}
-            SC(4-24){0, 2, 5, 7}
-            SC(4-25){0, 2, 5, 8}
-            SC(4-26){0, 2, 6, 8}
-            SC(4-27){0, 3, 4, 7}
-            SC(4-28){0, 3, 5, 8}
-            SC(4-29){0, 3, 6, 9}
-
-        ..  container:: example
-
-            Lists SG1 set-classes of cardinality 4:
-
-            >>> set_classes = abjad.SetClass.list_set_classes(
-            ...     cardinality=4,
-            ...     transposition_only=True,
-            ... )
-            >>> for set_class in set_classes:
-            ...     print(set_class)
-            SC(4-1){0, 1, 2, 3}
-            SC(4-2){0, 1, 2, 4}
-            SC(4-3){0, 1, 2, 5}
-            SC(4-4){0, 1, 2, 6}
-            SC(4-5){0, 1, 2, 7}
-            SC(4-6){0, 1, 3, 4}
-            SC(4-7){0, 1, 3, 5}
-            SC(4-8){0, 1, 3, 6}
-            SC(4-9){0, 1, 3, 7}
-            SC(4-10){0, 1, 4, 5}
-            SC(4-11){0, 1, 4, 6}
-            SC(4-12){0, 1, 4, 7}
-            SC(4-13){0, 1, 4, 8}
-            SC(4-14){0, 1, 5, 6}
-            SC(4-15){0, 1, 5, 7}
-            SC(4-16){0, 1, 5, 8}
-            SC(4-17){0, 1, 6, 7}
-            SC(4-18){0, 2, 3, 4}
-            SC(4-19){0, 2, 3, 5}
-            SC(4-20){0, 2, 3, 6}
-            SC(4-21){0, 2, 3, 7}
-            SC(4-22){0, 2, 4, 5}
-            SC(4-23){0, 2, 4, 6}
-            SC(4-24){0, 2, 4, 7}
-            SC(4-25){0, 2, 4, 8}
-            SC(4-26){0, 2, 5, 6}
-            SC(4-27){0, 2, 5, 7}
-            SC(4-28){0, 2, 5, 8}
-            SC(4-29){0, 2, 6, 7}
-            SC(4-30){0, 2, 6, 8}
-            SC(4-31){0, 3, 4, 5}
-            SC(4-32){0, 3, 4, 6}
-            SC(4-33){0, 3, 4, 7}
-            SC(4-34){0, 3, 4, 8}
-            SC(4-35){0, 3, 5, 6}
-            SC(4-36){0, 3, 5, 7}
-            SC(4-37){0, 3, 5, 8}
-            SC(4-38){0, 3, 6, 7}
-            SC(4-39){0, 3, 6, 8}
-            SC(4-40){0, 3, 6, 9}
-            SC(4-41){0, 4, 5, 6}
-            SC(4-42){0, 4, 5, 7}
-            SC(4-43){0, 4, 6, 7}
-
-        Returns list of set-classes.
-        """
-        if transposition_only:
-            identifiers = SetClass._transposition_only_identifier_to_prime_form
-        elif lex_rank:
-            identifiers = SetClass._lex_identifier_to_prime_form
-        else:
-            identifiers = SetClass._forte_identifier_to_prime_form
-        identifiers = list(identifiers)
-        if cardinality is not None:
-            identifiers = [_ for _ in identifiers if _[0] == cardinality]
-        set_classes = []
-        for identifier in sorted(identifiers):
-            cardinality, rank = identifier
-            set_class = SetClass(
-                cardinality,
-                rank,
-                lex_rank=lex_rank,
-                transposition_only=transposition_only,
-            )
-            set_classes.append(set_class)
-        return set_classes
-
-
-def _classify_set_classes(transposition_only=False):
-    """
-    Was only necessary to run during implementation of SetClass.
-
-    Generated the ...
-
-        _forte_identifier_to_prime_form
-        _lex_identifier_to_prime_form
-        _transposition_only_identifier_to_prime_form
-
-    ... dictionaries attached as class attributes.
-
-    Archived here in case other identifier systems are needed in future.
-    """
-    all_prime_forms = {}
-    for cardinality in range(12 + 1):
-        all_prime_forms[cardinality] = set()
-    for pc_set in _yield_all_pitch_class_sets():
-        if NumberedPitchClass(0) not in pc_set:
-            if 0 < len(pc_set):
-                continue
-        prime_form = pc_set.get_prime_form(transposition_only=transposition_only)
-        all_prime_forms[prime_form.cardinality].add(prime_form)
-    total = 0
-    for cardinality in range(12 + 1):
-        count = len(all_prime_forms[cardinality])
-        total += count
-    for cardinality in range(12 + 1):
-        prime_forms = list(all_prime_forms[cardinality])
-        prime_forms.sort(key=lambda x: str(x))
-        for index, prime_form in enumerate(prime_forms):
-            rank = index + 1
-            prime_form = str(prime_form)
-            prime_form = prime_form.replace("{", "(")
-            prime_form = prime_form.replace("}", ")")
-            message = f"({cardinality}, {rank}): {prime_form},"
-            print(message)
-        print()
-    message = f"total set-classes: {total}"
-    print(message)
-    print()
-
-
-def _yield_all_pitch_class_sets():
-    def _helper(binary_string):
-        result = zip(binary_string, range(len(binary_string)))
-        result = [string[1] for string in result if string[0] == "1"]
-        return result
-
-    for i in range(4096):
-        string = _math.integer_to_binary_string(i).zfill(12)
-        subset = "".join(list(reversed(string)))
-        subset = _helper(subset)
-        subset = PitchClassSet(subset, item_class=NumberedPitchClass)
-        yield subset
-
-
 @functools.total_ordering
 class IntervalClass:
     """
     Abstract interval-class.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
 
     _is_abstract = True
-
-    ### INITIALIZER ###
 
     def __init__(self, argument):
         if isinstance(argument, str):
@@ -3163,8 +1226,6 @@ class IntervalClass:
             message = f"can not initialize {type(self).__name__} from {argument!r}."
             raise ValueError(message)
 
-    ### SPECIAL METHODS ###
-
     def __abs__(self):
         """
         Gets absolute value of interval-class.
@@ -3173,27 +1234,13 @@ class IntervalClass:
         """
         return type(self)(abs(self._number))
 
-    def __add__(self, argument):
-        """
-        Adds ``argument`` to interval-class.
-
-        Returns new interval-class.
-        """
-        raise NotImplementedError
-
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares ``number``.
         """
-        return _format.compare_objects(self, argument)
-
-    def __float__(self):
-        """
-        Coerce to semitones as float.
-
-        Returns float.
-        """
-        raise NotImplementedError
+        if isinstance(argument, type(self)):
+            return self.number == argument.number
+        return False
 
     def __hash__(self) -> int:
         """
@@ -3201,20 +1248,14 @@ class IntervalClass:
         """
         return hash(self.__class__.__name__ + str(self))
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
-        Is true when interval-class is less than ``argument``
+        Compares ``number``.
+        """
+        assert isinstance(argument, type(self))
+        return self.number < argument.number
 
-        Returns true or false.
-        """
-        raise NotImplementedError
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of interval-class.
@@ -3223,34 +1264,21 @@ class IntervalClass:
         """
         return str(self.number)
 
-    def __sub__(self, argument):
-        """
-        Subtracts ``argument`` from interval-class.
-
-        Returns new interval-class.
-        """
-        raise NotImplementedError
-
-    ### PRIVATE METHODS ###
-
-    @classmethod
-    def _named_to_numbered(cls, direction, quality, diatonic_number):
+    @staticmethod
+    def _named_to_numbered(direction, quality, diatonic_number):
         octave_number = 0
         diatonic_pc_number = abs(diatonic_number)
         while diatonic_pc_number >= 8:
             diatonic_pc_number -= 7
             octave_number += 1
-
         quartertone = ""
         if quality.endswith(("+", "~")):
             quality, quartertone = quality[:-1], quality[-1]
-
         base_quality = quality
         if base_quality == "P" and octave_number and diatonic_pc_number == 1:
             return 12 * direction
         if len(quality) > 1:
             base_quality = quality[0]
-
         semitones = _diatonic_number_and_quality_to_semitones(
             diatonic_pc_number,
             base_quality,
@@ -3259,12 +1287,10 @@ class IntervalClass:
             semitones -= len(quality) - 1
         elif base_quality == "A":
             semitones += len(quality) - 1
-
         if quartertone == "+":
             semitones += 0.5
         elif quartertone == "~":
             semitones -= 0.5
-
         if abs(diatonic_number) == 1:
             semitones = abs(semitones)
         while abs(semitones) > 12:
@@ -3324,8 +1350,6 @@ class IntervalClass:
             raise ValueError(message)
         return quality
 
-    ### PUBLIC PROPERTIES ###
-
     @property
     def number(self):
         """
@@ -3334,8 +1358,6 @@ class IntervalClass:
         Returns number.
         """
         return self._number
-
-    ### PUBLIC METHODS ###
 
     def transpose(self, pitch_carrier):
         """
@@ -3373,16 +1395,10 @@ class NamedIntervalClass(IntervalClass):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_number", "_quality")
-
-    ### INITIALIZER ###
 
     def __init__(self, name="P1"):
         super().__init__(name or "P1")
-
-    ### SPECIAL METHODS ###
 
     def __abs__(self):
         """
@@ -3449,6 +1465,7 @@ class NamedIntervalClass(IntervalClass):
         """
         return super().__eq__(argument)
 
+    # TODO: remove
     def __float__(self):
         """
         Coerce to float.
@@ -3469,10 +1486,10 @@ class NamedIntervalClass(IntervalClass):
         """
         return super().__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a named interval class with a number
-        greater than that of this named interval.
+        Is true when ``argument`` is a named interval class with a number greater than
+        that of this named interval.
 
         ..  container:: example
 
@@ -3501,7 +1518,6 @@ class NamedIntervalClass(IntervalClass):
             >>> interval_class_3 < interval_class_3
             False
 
-        Returns true or false.
         """
         try:
             argument = type(self)(argument)
@@ -3525,6 +1541,13 @@ class NamedIntervalClass(IntervalClass):
             return NotImplemented
         return argument.__add__(self)
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.name!r})"
+
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of named interval-class.
@@ -3553,8 +1576,6 @@ class NamedIntervalClass(IntervalClass):
         interval = NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
         return type(self)(interval)
 
-    ### PRIVATE PROPERTIES ###
-
     def _from_interval_or_interval_class(self, argument):
         try:
             quality = argument.quality
@@ -3581,18 +1602,6 @@ class NamedIntervalClass(IntervalClass):
     def _from_number(self, argument):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        values = [self.name]
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=values,
-        )
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def direction_number(self):
@@ -3642,8 +1651,6 @@ class NamedIntervalClass(IntervalClass):
         Returns string.
         """
         return self._quality
-
-    ### PUBLIC METHODS ###
 
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
@@ -3736,19 +1743,13 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
         Initializes from other interval-class:
 
-        >>> interval_class = abjad.NamedInversionEquivalentIntervalClass(
-        ...     'P1',
-        ...     )
+        >>> interval_class = abjad.NamedInversionEquivalentIntervalClass("P1")
         >>> abjad.NamedInversionEquivalentIntervalClass(interval_class)
         NamedInversionEquivalentIntervalClass('P1')
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(self, name="P1"):
         super().__init__(name or "P1")
@@ -3756,13 +1757,9 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             self._quality, self._number
         )
 
-    ### SPECIAL METHODS ###
-
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a named inversion-equivalent
-        interval-class with name equal to that of this named
-        inversion-equivalent interval-class.
+        Compares ``name``.
 
         ..  container:: example
 
@@ -3804,8 +1801,6 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         """
         return super().__hash__()
 
-    ### PRIVATE METHODS ###
-
     @classmethod
     def _invert_quality_string(class_, quality):
         inversions = {"M": "m", "m": "M", "P": "P"}
@@ -3842,13 +1837,11 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             number = 9 - number
         return quality, number
 
-    ### PUBLIC METHODS ###
-
     @classmethod
     def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         """
-        Makes named inversion-equivalent interval-class from
-        ``pitch_carrier_1`` and ``pitch_carrier_2``
+        Makes named inversion-equivalent interval-class from ``pitch_carrier_1`` and
+        ``pitch_carrier_2``.
 
         ..  container:: example
 
@@ -3901,16 +1894,10 @@ class NumberedIntervalClass(IntervalClass):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_number",)
-
-    ### INITIALIZER ###
 
     def __init__(self, number=0):
         super().__init__(number or 0)
-
-    ### SPECIAL METHODS ###
 
     def __abs__(self):
         """
@@ -3932,10 +1919,9 @@ class NumberedIntervalClass(IntervalClass):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a numbered interval-class with number
-        equal to that of this numbered interval-class.
+        Compares ``number``.
 
         ..  container:: example
 
@@ -3964,10 +1950,10 @@ class NumberedIntervalClass(IntervalClass):
             >>> interval_class_3 == interval_class_3
             True
 
-        Returns true or false.
         """
         return super().__eq__(argument)
 
+    # TODO: remove
     def __float__(self):
         """
         Coerce to semitones as float.
@@ -3986,7 +1972,7 @@ class NumberedIntervalClass(IntervalClass):
 
     def __lt__(self, argument):
         """
-        Is true when numbered interval-class is less than ``argument``
+        Compares ``number``.
 
         ..  container:: example
 
@@ -4035,6 +2021,13 @@ class NumberedIntervalClass(IntervalClass):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.number!r})"
+
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of numbered interval-class.
@@ -4068,8 +2061,6 @@ class NumberedIntervalClass(IntervalClass):
             return NotImplemented
         return type(self)(float(self) - float(argument))
 
-    ### PRIVATE METHODS ###
-
     def _from_interval_or_interval_class(self, argument):
         self._from_number(float(argument))
 
@@ -4084,17 +2075,8 @@ class NumberedIntervalClass(IntervalClass):
             pc_number = 12
         self._number = pc_number * direction
 
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=[self.number],
-        )
-
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def direction_number(self):
+    def direction_number(self) -> int:
         """
         Gets direction number of numbered interval-class.
 
@@ -4107,12 +2089,12 @@ class NumberedIntervalClass(IntervalClass):
         else:
             return 1
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        """Makes numbered interval-class from ``pitch_carrier_1`` and
-        ``pitch_carrier_2``
+    def from_pitch_carriers(
+        class_, pitch_carrier_1, pitch_carrier_2
+    ) -> "NumberedIntervalClass":
+        """
+        Makes numbered interval-class from ``pitch_carrier_1`` and ``pitch_carrier_2``
 
         ..  container:: example
 
@@ -4196,19 +2178,13 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(self, number=0):
         super().__init__(number or 0)
         self._number %= 12
         if 6 < self._number:
             self._number = 12 - self._number
-
-    ### SPECIAL METHODS ###
 
     def __abs__(self):
         """
@@ -4229,9 +2205,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     def __lt__(self, argument):
         """
-        Is true when ``argument`` is a numbered inversion-equivalent
-        interval-class with a number less than this numbered
-        inversion-equivalent interval-class.
+        Compares ``number``.
         """
         if isinstance(argument, type(self)):
             return self.number < argument.number
@@ -4253,6 +2227,13 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         """
         return type(self)(self.number)
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.number!r})"
+
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of numbered inversion-equivalent
@@ -4271,20 +2252,15 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         return str(self.number)
 
 
-# NOTE: mypy 0.770 errors on functools combined with abstract class
 @functools.total_ordering
 class Interval:
     """
     Abstract interval.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_interval_class", "_octaves")
 
     _is_abstract = True
-
-    ### INITIALIZER ###
 
     def __init__(self, argument):
         if isinstance(argument, str):
@@ -4328,29 +2304,13 @@ class Interval:
         else:
             self._from_interval_or_interval_class(argument)
 
-    ### SPECIAL METHODS ###
-
-    def __abs__(self):
-        """
-        Gets absolute value of interval.
-
-        Returns new interval.
-        """
-        raise NotImplementedError
-
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares string formats.
         """
-        return _format.compare_objects(self, argument)
-
-    def __float__(self):
-        """
-        Coerce to semitones as float.
-
-        Returns float.
-        """
-        raise NotImplementedError
+        if isinstance(argument, type(self)):
+            return str(self) == str(argument)
+        return False
 
     def __hash__(self) -> int:
         """
@@ -4366,20 +2326,7 @@ class Interval:
         """
         raise NotImplementedError
 
-    def __neg__(self):
-        """
-        Negates interval.
-
-        Returns interval.
-        """
-        raise NotImplementedError
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of interval.
@@ -4387,8 +2334,6 @@ class Interval:
         Returns string.
         """
         return str(self.number)
-
-    ### PRIVATE METHODS ###
 
     def _from_interval_or_interval_class(self, argument):
         raise NotImplementedError
@@ -4399,22 +2344,19 @@ class Interval:
     def _from_number(self, argument):
         raise NotImplementedError
 
-    @classmethod
-    def _named_to_numbered(cls, direction, quality, diatonic_number):
+    @staticmethod
+    def _named_to_numbered(direction, quality, diatonic_number):
         octave_number = 0
         diatonic_pc_number = abs(diatonic_number)
         while diatonic_pc_number >= 8:
             diatonic_pc_number -= 7
             octave_number += 1
-
         quartertone = ""
         if quality.endswith(("+", "~")):
             quality, quartertone = quality[:-1], quality[-1]
-
         base_quality = quality
         if len(quality) > 1:
             base_quality = quality[0]
-
         semitones = _diatonic_number_and_quality_to_semitones(
             diatonic_pc_number, base_quality
         )
@@ -4422,12 +2364,10 @@ class Interval:
             semitones -= len(quality) - 1
         elif base_quality == "A":
             semitones += len(quality) - 1
-
         if quartertone == "+":
             semitones += 0.5
         elif quartertone == "~":
             semitones -= 0.5
-
         if abs(diatonic_number) == 1:
             semitones = abs(semitones)
         else:
@@ -4486,8 +2426,6 @@ class Interval:
             raise ValueError(message)
         return quality
 
-    ### PUBLIC PROPERTIES ###
-
     @property
     def cents(self):
         """
@@ -4541,8 +2479,6 @@ class Interval:
         Returns integer or float.
         """
         raise NotImplementedError
-
-    ### PUBLIC METHODS ###
 
     def transpose(self, pitch_carrier):
         """
@@ -4608,18 +2544,12 @@ class NamedInterval(Interval):
 
     """
 
-    ### CLASS VARIABLES ##
-
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(self, name="P1"):
         super().__init__(name or "P1")
 
-    ### SPECIAL METHODS ###
-
-    def __abs__(self):
+    def __abs__(self) -> "NamedInterval":
         """
         Gets absolute value of named interval.
 
@@ -4631,11 +2561,10 @@ class NamedInterval(Interval):
             >>> abs(abjad.NamedInterval('-M9'))
             NamedInterval('+M9')
 
-        Returns named interval.
         """
         return type(self)((self.quality, abs(self.number)))
 
-    def __add__(self, argument):
+    def __add__(self, argument) -> "NamedInterval":
         """
         Adds ``argument`` to named interval.
 
@@ -4644,7 +2573,6 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('M9') + abjad.NamedInterval('M2')
             NamedInterval('+M10')
 
-        Returns new named interval.
         """
         try:
             argument = type(self)(argument)
@@ -4654,7 +2582,7 @@ class NamedInterval(Interval):
         new_pitch = dummy_pitch + self + argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
 
-    def __copy__(self, *arguments):
+    def __copy__(self, *arguments) -> "NamedInterval":
         """
         Copies named interval.
 
@@ -4665,13 +2593,12 @@ class NamedInterval(Interval):
             >>> copy.copy(abjad.NamedInterval('+M9'))
             NamedInterval('+M9')
 
-        Returns new named interval.
         """
         return type(self)((self.quality, self.number))
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Is true when named interval equal ``argument``
+        Compares ``name``.
 
         ..  container:: example
 
@@ -4701,8 +2628,11 @@ class NamedInterval(Interval):
             True
 
         """
-        return super().__eq__(argument)
+        if isinstance(argument, type(self)):
+            return self.name == argument.name
+        return False
 
+    # TODO: remove
     def __float__(self):
         """
         Coerce to semitones as float.
@@ -4719,38 +2649,24 @@ class NamedInterval(Interval):
         """
         return super().__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a named interval with a number greater
-        than that of this named interval.
+        Compares ``semitones``.
 
         ..  container:: example
 
             >>> abjad.NamedInterval('+M9') < abjad.NamedInterval('+M10')
             True
 
-        ..  container:: example
-
-            Also true when ``argument`` is a named interval with a
-            number equal to this named interval and with semitones greater than
-            this named interval:
-
             >>> abjad.NamedInterval('+m9') < abjad.NamedInterval('+M9')
             True
-
-        ..  container:: example
-
-            Otherwise false:
 
             >>> abjad.NamedInterval('+M9') < abjad.NamedInterval('+M2')
             False
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)):
-            if self.number == argument.number:
-                return self.semitones < argument.semitones
-            return self.number < argument.number
+            return self.semitones < argument.semitones
         return False
 
     def __mul__(self, argument) -> "NamedInterval":
@@ -4773,7 +2689,7 @@ class NamedInterval(Interval):
             return -result
         return result
 
-    def __neg__(self):
+    def __neg__(self) -> "NamedInterval":
         """
         Negates named interval.
 
@@ -4782,16 +2698,13 @@ class NamedInterval(Interval):
             >>> -abjad.NamedInterval('+M9')
             NamedInterval('-M9')
 
-        ..  container:: example
-
             >>> -abjad.NamedInterval('-M9')
             NamedInterval('+M9')
 
-        Returns new named interval.
         """
         return type(self)((self.quality, -self.number))
 
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> "NamedInterval":
         """
         Adds named interval to ``argument``
 
@@ -4800,7 +2713,6 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('M9') + abjad.NamedInterval('M2')
             NamedInterval('+M10')
 
-        Returns new named interval.
         """
         try:
             argument = type(self)(argument)
@@ -4808,7 +2720,13 @@ class NamedInterval(Interval):
             return NotImplemented
         return argument.__add__(self)
 
-    def __rmul__(self, argument):
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.name!r})"
+
+    def __rmul__(self, argument) -> "NamedInterval":
         """
         Multiplies ``argument`` by named interval.
 
@@ -4817,11 +2735,11 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('+M9') * 3
             NamedInterval('+A25')
 
-        Returns new named interval.
         """
         return self * argument
 
-    def __str__(self):
+    # TODO: remove
+    def __str__(self) -> str:
         """
         Gets string representation of named interval.
 
@@ -4830,7 +2748,6 @@ class NamedInterval(Interval):
             >>> str(abjad.NamedInterval('+M9'))
             '+M9'
 
-        Returns string.
         """
         return self.name
 
@@ -4854,8 +2771,6 @@ class NamedInterval(Interval):
         dummy_pitch = NamedPitch(0)
         new_pitch = dummy_pitch + self - argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
-
-    ### PRIVATE METHODS ###
 
     def _from_interval_or_interval_class(self, argument):
         try:
@@ -4884,18 +2799,8 @@ class NamedInterval(Interval):
         direction, quality, diatonic_number = self._numbered_to_named(argument)
         self._from_named_parts(direction, quality, diatonic_number)
 
-    def _get_format_specification(self):
-        values = [self.name]
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=values,
-        )
-
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def direction_number(self):
+    def direction_number(self) -> int:
         """
         Gets direction number of named interval.
 
@@ -4916,16 +2821,15 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('-m3').direction_number
             -1
 
-        Returns ``-1``, ``0`` or ``1``.
         """
         if self.quality == "P" and abs(self.number) == 1:
             return 0
         return _math.sign(self.number)
 
     @property
-    def interval_class(self):
+    def interval_class(self) -> "NamedIntervalClass":
         """
-        Gets interval class of named interval.
+        Gets named interval class.
 
         ..  container:: example
 
@@ -4941,12 +2845,11 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('+P8').interval_class
             NamedIntervalClass('+P8')
 
-        Returns named interval-class.
         """
         return self._interval_class
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
         Gets name of named interval.
 
@@ -4955,7 +2858,6 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('+M9').name
             '+M9'
 
-        Returns string.
         """
         direction_symbol = _direction_number_to_direction_symbol[self.direction_number]
         return "{}{}{}".format(
@@ -4963,7 +2865,7 @@ class NamedInterval(Interval):
         )
 
     @property
-    def number(self):
+    def number(self) -> int | float:
         """
         Gets number of named interval.
 
@@ -4972,7 +2874,6 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('+M9').number
             9
 
-        Returns nonnegative number.
         """
         number = self._interval_class._number
         direction = _math.sign(number)
@@ -4980,25 +2881,21 @@ class NamedInterval(Interval):
         return number * direction
 
     @property
-    def octaves(self):
+    def octaves(self) -> int:
         """
         Gets octaves of interval.
-
-        Returns nonnegative number.
         """
         return self._octaves
 
     @property
-    def quality(self):
+    def quality(self) -> str:
         """
         Gets quality of named interval.
-
-        Returns string.
         """
         return self._interval_class.quality
 
     @property
-    def semitones(self):
+    def semitones(self) -> int:
         """
         Gets semitones of named interval.
 
@@ -5019,7 +2916,6 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('-P8').semitones
             -12
 
-        Returns number.
         """
         direction = self.direction_number
         diatonic_number = abs(self._interval_class._number)
@@ -5030,7 +2926,7 @@ class NamedInterval(Interval):
         return self._named_to_numbered(direction, quality, diatonic_number)
 
     @property
-    def staff_spaces(self):
+    def staff_spaces(self) -> float | int:
         """
         Gets staff spaces of named interval.
 
@@ -5051,24 +2947,21 @@ class NamedInterval(Interval):
             >>> abjad.NamedInterval('-P8').staff_spaces
             -7
 
-        Returns nonnegative integer.
         """
         if self.direction_number == -1:
             return self.number + 1
         elif not self.direction_number:
             return 0
-        elif self.direction_number == 1:
+        else:
+            assert self.direction_number == 1
             return self.number - 1
-
-    ### PUBLIC METHODS ###
 
     @classmethod
     def from_pitch_carriers(
         class_, pitch_carrier_1, pitch_carrier_2
     ) -> "NamedInterval":
         """
-        Makes named interval calculated from ``pitch_carrier_1`` to
-        ``pitch_carrier_2``
+        Makes named interval calculated from ``pitch_carrier_1`` to ``pitch_carrier_2``.
 
         ..  container:: example
 
@@ -5138,38 +3031,29 @@ class NamedInterval(Interval):
             named_ic_number,
         ) = _diatonic_number_to_octaves_and_diatonic_remainder(named_i_number)
         numbered_ic_number = numbered_i_number - 12 * octaves
-
         # multiply-diminished intervals can have opposite signs
         if named_sign and (named_sign == -numbered_sign):
             numbered_ic_number *= -1
-
         quartertone = ""
         if numbered_ic_number % 1:
             quartertone = "+"
             numbered_ic_number -= 0.5
-
         quality_to_semitones = _diatonic_number_to_quality_dictionary[named_ic_number]
-
         semitones_to_quality: typing.Dict = {
             value: key for key, value in quality_to_semitones.items()
         }
-
         quality = ""
-
         while numbered_ic_number > max(semitones_to_quality):
             numbered_ic_number -= 1
             quality += "A"
-
         while numbered_ic_number < min(semitones_to_quality):
             numbered_ic_number += 1
             quality += "d"
-
         quality += semitones_to_quality[numbered_ic_number]
         quality += quartertone
         direction = 1
         if pitch_2 < pitch_1:
             direction = -1
-
         return class_((quality, named_i_number * direction))
 
     def transpose(self, pitch_carrier):
@@ -5202,21 +3086,15 @@ class NumberedInterval(Interval):
         >>> abjad.NumberedInterval(-14)
         NumberedInterval(-14)
 
-    ..  container:: example
-
-        Initializes from other numbered interval
+        Initializes from other numbered interval:
 
         >>> abjad.NumberedInterval(abjad.NumberedInterval(-14))
         NumberedInterval(-14)
-
-    ..  container:: example
 
         Initializes from named interval:
 
         >>> abjad.NumberedInterval(abjad.NamedInterval('-P4'))
         NumberedInterval(-5)
-
-    ..  container:: example
 
         Initializes from interval string:
 
@@ -5225,18 +3103,12 @@ class NumberedInterval(Interval):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(self, number=0):
         super().__init__(number or 0)
 
-    ### SPECIAL METHODS ###
-
-    def __abs__(self):
+    def __abs__(self) -> "NumberedInterval":
         """
         Absolute value of numbered interval.
 
@@ -5245,11 +3117,10 @@ class NumberedInterval(Interval):
             >>> abs(abjad.NumberedInterval(-14))
             NumberedInterval(14)
 
-        Returns new numbered interval.
         """
         return type(self)(abs(self.number))
 
-    def __add__(self, argument):
+    def __add__(self, argument) -> "NumberedInterval":
         """
         Adds ``argument`` to numbered interval.
 
@@ -5261,7 +3132,6 @@ class NumberedInterval(Interval):
             >>> abjad.NumberedInterval(3) + abjad.NumberedInterval(-14)
             NumberedInterval(-11)
 
-        Returns new numbered interval.
         """
         try:
             argument = type(self)(argument)
@@ -5269,7 +3139,7 @@ class NumberedInterval(Interval):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
-    def __copy__(self):
+    def __copy__(self) -> "NumberedInterval":
         """
         Copies numbered interval.
 
@@ -5280,14 +3150,12 @@ class NumberedInterval(Interval):
             >>> copy.copy(abjad.NumberedInterval(-14))
             NumberedInterval(-14)
 
-        Returns new numbered interval.
         """
         return type(self)(self.number)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a numbered interval with number equal to that of
-        this numbered interval.
+        Compares ``number``.
 
         ..  container:: example
 
@@ -5316,10 +3184,12 @@ class NumberedInterval(Interval):
             >>> interval_3 == interval_3
             True
 
-        Returns true or false.
         """
-        return super().__eq__(argument)
+        if isinstance(argument, type(self)):
+            return self.number == argument.number
+        return False
 
+    # TODO: remove
     def __float__(self):
         """
         Coerce to float.
@@ -5336,11 +3206,11 @@ class NumberedInterval(Interval):
         """
         return super().__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a numbered interval with same direction
-        number as this numbered interval and with number greater than that of
-        this numbered interval.
+        Is true when ``argument`` is a numbered interval with same direction number as
+        this numbered interval and with number greater than that of this numbered
+        interval.
 
         ..  container:: example
 
@@ -5377,13 +3247,16 @@ class NumberedInterval(Interval):
 
         Returns true or false.
         """
-        if not isinstance(argument, type(self)):
-            raise TypeError(f"must be numbered interval: {argument!r}.")
-        if not self.direction_number == argument.direction_number:
-            raise ValueError("can only compare intervals of same direction.")
-        return abs(self.number) < abs(argument.number)
+        #        if not isinstance(argument, type(self)):
+        #            raise TypeError(f"must be numbered interval: {argument!r}.")
+        #        if not self.direction_number == argument.direction_number:
+        #            raise ValueError("can only compare intervals of same direction.")
+        #        return abs(self.number) < abs(argument.number)
+        if isinstance(argument, type(self)):
+            return self.number < argument.number
+        return False
 
-    def __neg__(self):
+    def __neg__(self) -> "NumberedInterval":
         """
         Negates numbered interval.
 
@@ -5392,11 +3265,10 @@ class NumberedInterval(Interval):
             >>> -abjad.NumberedInterval(-14)
             NumberedInterval(14)
 
-        Returns new numbered interval.
         """
         return type(self)(-self.number)
 
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> "NumberedInterval":
         """
         Adds numbered interval to ``argument``
 
@@ -5410,7 +3282,6 @@ class NumberedInterval(Interval):
             >>> abjad.NumberedInterval(3).__radd__(interval)
             NumberedInterval(-11)
 
-        Returns new numbered interval.
         """
         try:
             argument = type(self)(argument)
@@ -5418,30 +3289,31 @@ class NumberedInterval(Interval):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.number!r})"
+
+    # TODO: remove
     def __str__(self):
         """
-        String representation of numbered interval.
-
-        Returns string.
+        Gets string.
         """
         direction_symbol = _direction_number_to_direction_symbol[
             _math.sign(self.number)
         ]
         return f"{direction_symbol}{abs(self.number)}"
 
-    def __sub__(self, argument):
+    def __sub__(self, argument) -> "NumberedInterval":
         """
         Subtracts ``argument`` from numbered interval.
-
-        Returns new numbered interval.
         """
         try:
             argument = type(self)(argument)
         except Exception:
             return NotImplemented
         return type(self)(float(self) - float(argument))
-
-    ### PRIVATE METHODS ###
 
     def _from_interval_or_interval_class(self, argument):
         self._from_number(float(argument))
@@ -5460,18 +3332,8 @@ class NumberedInterval(Interval):
         self._octaves = octaves
         self._interval_class = NumberedIntervalClass(pc_number * direction)
 
-    def _get_format_specification(self):
-        values = [self.number]
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=values,
-        )
-
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def direction_number(self):
+    def direction_number(self) -> int:
         """
         Gets direction number of numbered interval.
 
@@ -5486,21 +3348,18 @@ class NumberedInterval(Interval):
             >>> abjad.NumberedInterval(6).direction_number
             1
 
-        Returns integer.
-        """ ""
+        """
         return _math.sign(self.number)
 
     @property
-    def interval_class(self):
+    def interval_class(self) -> "NumberedIntervalClass":
         """
-        Gets interval class of numbered interval.
-
-        Returns numbered interval-class.
+        Gets numbered interval class.
         """
         return self._interval_class
 
     @property
-    def number(self):
+    def number(self) -> float | int:
         """
         Gets number of numbered interval.
 
@@ -5515,7 +3374,6 @@ class NumberedInterval(Interval):
             >>> abjad.NumberedInterval(0).number
             0
 
-        Returns number.
         """
         number = self._interval_class._number
         direction = _math.sign(number)
@@ -5523,16 +3381,14 @@ class NumberedInterval(Interval):
         return number * direction
 
     @property
-    def octaves(self):
+    def octaves(self) -> int:
         """
         Gets octaves of interval.
-
-        Returns nonnegative number.
         """
         return self._octaves
 
     @property
-    def semitones(self):
+    def semitones(self) -> int | float:
         """
         Gets semitones corresponding to numbered interval.
 
@@ -5541,18 +3397,15 @@ class NumberedInterval(Interval):
             >>> abjad.NumberedInterval(-14).semitones
             -14
 
-        Returns nonnegative number.
         """
         return self.number
-
-    ### PUBLIC METHODS ###
 
     @classmethod
     def from_pitch_carriers(
         class_, pitch_carrier_1, pitch_carrier_2
     ) -> "NumberedInterval":
-        """Makes numbered interval from ``pitch_carrier_1`` and
-        ``pitch_carrier_2``
+        """
+        Makes numbered interval from ``pitch_carrier_1`` and ``pitch_carrier_2``.
 
         ..  container:: example
 
@@ -5612,1944 +3465,15 @@ class NumberedInterval(Interval):
         return super().transpose(pitch_carrier)
 
 
-class CompoundOperator:
-    """
-    Compound operator.
-
-    ..  container:: example
-
-        Rotation followed by transposition:
-
-        >>> operator = abjad.CompoundOperator()
-        >>> operator = operator.rotate(n=1)
-        >>> operator = operator.transpose(n=2)
-
-        >>> str(operator)
-        'T2r1'
-
-        >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-        >>> operator(pitch_classes)
-        PitchClassSegment([9, 2, 3, 6])
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_operators", "_show_identity_operators")
-
-    ### INITIALIZER ###
-
-    def __init__(self, operators=None, *, show_identity_operators=None):
-        if operators is not None:
-            if not isinstance(operators, collections.abc.Sequence):
-                operators = (operators,)
-            assert len(operators)
-            operators = tuple(operators)
-        self._operators = operators
-        assert isinstance(show_identity_operators, (bool, type(None)))
-        self._show_identity_operators = show_identity_operators
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, operator):
-        """
-        Composes compound operator and ``operator``.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.transpose(n=1)
-            >>> operator = operator.multiply(n=5)
-            >>> str(operator)
-            'M5T1'
-
-        ..  container:: example
-
-            >>> inversion = abjad.Inversion()
-            >>> retrograde = abjad.Retrograde()
-            >>> transposition = abjad.Transposition(n=1)
-
-            >>> operator_1 = inversion + retrograde
-            >>> str(operator_1)
-            'IR'
-
-            >>> operator_2 = inversion + transposition
-            >>> str(operator_2)
-            'IT1'
-
-            >>> operator_3 = operator_1 + operator_2
-            >>> str(operator_3)
-            'IRIT1'
-
-            >>> string = abjad.storage(operator_3)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Transposition(n=1),
-                    Inversion(),
-                    Retrograde(),
-                    Inversion(),
-                    ],
-                )
-
-        Returns new compound operator.
-        """
-        operators = list(self.operators)
-        if isinstance(operator, type(self)):
-            operators[0:0] = operator.operators
-        else:
-            operators.insert(0, operator)
-        result = type(self)()
-        for operator in operators:
-            result = result._with_operator(operator)
-        return result
-
-    def __call__(self, argument):
-        """
-        Calls compound operator on ``argument``.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.rotate(n=1)
-            >>> operator = operator.transpose(n=2)
-            >>> str(operator)
-            'T2r1'
-
-            >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            >>> transform = operator(segment)
-            >>> lilypond_file = abjad.illustrate(transform)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            >>> transform
-            PitchClassSegment([9, 2, 3, 6])
-
-        Returns new object with type equal to that of ``argument``.
-        """
-        if self.operators is None:
-            return argument
-        for transform in self.operators:
-            argument = transform(argument)
-        return argument
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes compound operator.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __radd__(self, operator):
-        """
-        Composes ``operator`` and compound operator.
-
-        ..  container
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.transpose(n=1)
-            >>> operator = operator.multiply(n=5)
-            >>> str(operator)
-            'M5T1'
-
-            >>> retrograde = abjad.Retrograde()
-            >>> new_operator = retrograde + operator
-            >>> str(new_operator)
-            'RM5T1'
-
-            >>> new_operator = operator + retrograde
-            >>> str(new_operator)
-            'M5T1R'
-
-        Returns new compound operator.
-        """
-        operators = list(self.operators)
-        if isinstance(operator, type(self)):
-            operators.extend(operator.operators)
-        else:
-            operators.append(operator)
-        result = type(self)()
-        for operator in operators:
-            result = result._with_operator(operator)
-        return result
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        """
-        Gets string representation of compound operator.
-
-        ..  container:: example
-
-            Gets string:
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.rotate(n=1)
-            >>> operator = operator.transpose(n=2)
-
-            >>> str(operator)
-            'T2r1'
-
-        ..  container:: example
-
-            Gets string of empty operator:
-
-            >>> operator = abjad.CompoundOperator()
-
-            >>> str(operator)
-            ''
-
-        Returns string.
-        """
-        result = []
-        operators = self.operators or []
-        for operator in reversed(operators):
-            if operator._is_identity_operator():
-                if self.show_identity_operators:
-                    result.append(str(operator))
-            else:
-                result.append(str(operator))
-        result = "".join(result)
-        return result
-
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _compose_operators(operator_1, operator_2):
-        if isinstance(operator_1, CompoundOperator):
-            result = operator_1.__add__(operator_2)
-        elif isinstance(operator_2, CompoundOperator):
-            result = operator_2.__radd__(operator_1)
-        else:
-            result = CompoundOperator()
-            result = result._with_operator(operator_2)
-            result = result._with_operator(operator_1)
-        return result
-
-    def _with_operator(self, operator):
-        operators = self.operators or []
-        operators = operators + [operator]
-        return type(self)(
-            operators, show_identity_operators=self.show_identity_operators
-        )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def operators(self):
-        """
-        Gets operators.
-
-        ..  container:: example
-
-            Gets operators:
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.rotate(n=1)
-            >>> operator = operator.transpose(n=2)
-
-            >>> for operator_ in operator.operators:
-            ...     operator_
-            ...
-            Rotation(n=1)
-            Transposition(n=2)
-
-        Returns list of operators.
-        """
-        if self._operators is not None:
-            return list(self._operators)
-
-    @property
-    def show_identity_operators(self):
-        """
-        Is true when string representation of operator should show identity
-        operators.
-
-        ..  container:: example
-
-            Does not show identity operators:
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.transpose(n=0)
-            >>> operator = operator.multiply(n=5)
-
-            >>> str(operator)
-            'M5'
-
-        ..  container:: example
-
-            Shows identity operators:
-
-            >>> operator = abjad.CompoundOperator(
-            ...     show_identity_operators=True,
-            ...     )
-            >>> operator = operator.transpose(n=0)
-            >>> operator = operator.multiply(n=5)
-
-            >>> str(operator)
-            'M5T0'
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
-        """
-        return self._show_identity_operators
-
-    ### PUBLIC METHODS ###
-
-    def duplicate(self, counts=None, indices=None, period=None):
-        """
-        Configures compound operator to duplicate pitches by ``counts``, with
-        optional ``indices`` and ``period``.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.duplicate(counts=1)
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Duplication(counts=1),
-                    ],
-                )
-
-        Returns new compound operator.
-        """
-        operator = Duplication(counts=counts, indices=indices, period=period)
-        return self._with_operator(operator)
-
-    def invert(self, axis=None):
-        """
-        Configures compound operator to invert pitches about ``axis``.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.invert(axis=2)
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Inversion(axis=NamedPitch("d'")),
-                    ],
-                )
-
-        Returns new compound operator.
-        """
-        operator = Inversion(axis=axis)
-        return self._with_operator(operator)
-
-    def multiply(self, n=1):
-        """
-        Configures compound operator to multiply pitch-classes by index ``n``.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.multiply(n=3)
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Multiplication(n=3),
-                    ],
-                )
-
-        Returns new compound operator.
-        """
-        operator = Multiplication(n=n)
-        return self._with_operator(operator)
-
-    def retrograde(self, period=None):
-        """
-        Configures compound operator to retrograde pitches.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.retrograde()
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Retrograde(),
-                    ],
-                )
-
-        Returns new compound operator.
-        """
-        operator = Retrograde(period=period)
-        return self._with_operator(operator)
-
-    def rotate(self, n=0, period=None):
-        """
-        Configures compound operator to rotate pitches by index ``n``.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.rotate(n=-1)
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Rotation(n=-1),
-                    ],
-                )
-
-        Returns new compound operator.
-        """
-        operator = Rotation(n=n, period=period)
-        return self._with_operator(operator)
-
-    def transpose(self, n=0):
-        """
-        Configures compound operator to transpose pitches by index ``n``.
-
-        ..  container:: example
-
-            >>> operator = abjad.CompoundOperator()
-            >>> operator = operator.transpose(n=1)
-
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Transposition(n=1),
-                    ],
-                )
-
-        Returns new compound operator.
-        """
-        operator = Transposition(n=n)
-        return self._with_operator(operator)
-
-
-class Duplication:
-    """
-    Duplication.
-
-    ..  container:: example:
-
-        >>> operator_ = abjad.Duplication(counts=2, period=4)
-
-        >>> string = abjad.storage(operator_)
-        >>> print(string)
-        abjad.Duplication(
-            counts=2,
-            period=4,
-            )
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_counts", "_indices", "_period")
-
-    ### INITIALIZER ###
-
-    def __init__(self, *, counts=None, indices=None, period=None):
-        if counts is not None:
-            if isinstance(counts, collections.abc.Sequence):
-                assert len(counts)
-                counts = tuple(int(_) for _ in counts)
-                assert all(0 <= _ for _ in counts)
-            else:
-                counts = int(counts)
-                assert 0 <= counts
-        self._counts = counts
-        if indices is not None:
-            assert all(isinstance(_, int) for _ in indices), repr(indices)
-            indices = tuple(indices)
-        self._indices = indices
-        if period is not None:
-            period = int(period)
-            assert 0 < period
-        self._period = period
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self, argument):
-        """
-        Calls rotation on ``argument``.
-
-        ..  container:: example
-
-            Duplicates once without period:
-
-            >>> operator_ = abjad.Duplication(counts=1)
-            >>> numbers = [1, 2, 3, 4]
-            >>> operator_(numbers)
-            [1, 2, 3, 4, 1, 2, 3, 4]
-
-        ..  container:: example
-
-            Duplicates twice without period:
-
-            >>> operator_ = abjad.Duplication(counts=2)
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-            >>> operator_(pitch_classes)
-            PitchClassSegment([0, 1, 4, 7, 0, 1, 4, 7, 0, 1, 4, 7])
-
-        ..  container:: example
-
-            Duplicates periodically:
-
-            >>> operator_ = abjad.Duplication(counts=1, period=3)
-            >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
-            >>> for pitch in operator_(pitches):
-            ...     pitch
-            ...
-            NamedPitch("c'")
-            NamedPitch("d'")
-            NamedPitch("e'")
-            NamedPitch("c'")
-            NamedPitch("d'")
-            NamedPitch("e'")
-            NamedPitch("f'")
-            NamedPitch("g'")
-            NamedPitch("a'")
-            NamedPitch("f'")
-            NamedPitch("g'")
-            NamedPitch("a'")
-            NamedPitch("b'")
-            NamedPitch("c''")
-            NamedPitch("b'")
-            NamedPitch("c''")
-
-        ..  container:: example
-
-            Duplicate indices:
-
-            >>> operator_ = abjad.Duplication(
-            ...     counts=1,
-            ...     indices=(0, -1),
-            ...     )
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-            >>> operator_(pitch_classes)
-            PitchClassSegment([0, 0, 1, 4, 7, 7])
-
-        ..  container:: example
-
-            Duplicate indices periodically:
-
-            >>> operator_ = abjad.Duplication(
-            ...     counts=1,
-            ...     indices=(0,),
-            ...     period=2,
-            ...     )
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7, 9])
-            >>> operator_(pitch_classes)
-            PitchClassSegment([0, 0, 1, 4, 4, 7, 9, 9])
-
-        ..  container:: example
-
-            Duplicate indices periodically with different counts:
-
-            >>> operator_ = abjad.Duplication(
-            ...     counts=(1, 2),
-            ...     indices=(0,),
-            ...     period=2,
-            ...     )
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7, 9])
-            >>> operator_(pitch_classes)
-            PitchClassSegment([0, 0, 1, 4, 4, 4, 7, 9, 9])
-
-        ..  container:: example
-
-            Cyclic counts:
-
-            >>> operator_ = abjad.Duplication(counts=(0, 1, 2, 3))
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7, 9])
-            >>> operator_(pitch_classes)
-            PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
-
-        Returns new object with type equal to that of ``argument``.
-        """
-        if not isinstance(argument, collections.abc.Sequence):
-            argument = (argument,)
-
-        counts = self.counts
-        if isinstance(counts, int):
-            counts = counts + 1
-        else:
-            counts = [_ + 1 for _ in counts]
-
-        if not self.period and not self.indices:
-            if isinstance(counts, int):
-                return type(argument)(argument * counts)
-            else:
-                counts = _cyclictuple.CyclicTuple(counts)
-                result = []
-                for i, x in enumerate(argument):
-                    count = counts[i]
-                    result.extend([x] * count)
-                if isinstance(argument, _typedcollections.TypedCollection):
-                    result = _new.new(argument, items=result)
-                else:
-                    result = type(argument)(result)
-                return result
-
-        if isinstance(counts, int):
-            counts = [counts]
-        counts = _cyclictuple.CyclicTuple(counts)
-
-        if not self.indices:
-            if isinstance(argument, _typedcollections.TypedCollection):
-                result = _new.new(argument, items=())
-            else:
-                result = type(argument)()
-            iterator = _sequence.Sequence(argument).partition_by_counts(
-                [self.period], cyclic=True, overhang=True
-            )
-            for i, shard in enumerate(iterator):
-                shard = type(argument)(shard) * counts[i]
-                result = result + shard
-            return result
-
-        pattern = _pattern.Pattern(indices=self.indices, period=self.period)
-        result = []
-        length = len(argument)
-        j = 0
-        for i, x in enumerate(argument):
-            if pattern.matches_index(i, length):
-                count = counts[j]
-                result.extend([x] * count)
-                j += 1
-            else:
-                result.append(x)
-        if isinstance(argument, _typedcollections.TypedCollection):
-            result = _new.new(argument, items=result)
-        else:
-            result = type(argument)(result)
-        return result
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes duplication.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def counts(self):
-        """
-        Gets counts of duplication.
-
-        ..  container:: example
-
-            >>> operator_ = abjad.Duplication(counts=1, period=3)
-            >>> operator_.counts
-            1
-
-        Returns integer or none.
-        """
-        return self._counts
-
-    @property
-    def indices(self):
-        """
-        Gets indices of duplication.
-
-        ..  container:: example
-
-            >>> operator_ = abjad.Duplication(
-            ...     counts=1,
-            ...     indices=(0, -1),
-            ...     )
-            >>> operator_.indices
-            (0, -1)
-
-        Returns integer or none.
-        """
-        return self._indices
-
-    @property
-    def period(self):
-        """
-        Gets period of duplication.
-
-        ..  container:: example
-
-            >>> operator_ = abjad.Duplication(counts=1, period=3)
-            >>> operator_.period
-            3
-
-        Returns integer or none.
-        """
-        return self._period
-
-
-class Inversion:
-    """
-    Inversion operator.
-
-    ..  container:: example
-
-        >>> abjad.Inversion()
-        Inversion()
-
-    ..  container:: example
-
-        >>> abjad.Inversion(axis=15)
-        Inversion(axis=NamedPitch("ef''"))
-
-    Object model of twelve-tone inversion operator.
-    """
-
-    ### CLASS VARIABLES ##
-
-    __slots__ = ("_axis",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, *, axis=None):
-        if axis is not None:
-            axis = NamedPitch(axis)
-        self._axis = axis
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, operator):
-        r"""
-        Composes inversion and ``operator``.
-
-        ..  container:: example
-
-            Example segment:
-
-            >>> items = [0, 2, 4, 5]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            Example operators:
-
-            >>> inversion = abjad.Inversion()
-            >>> transposition = abjad.Transposition(n=3)
-
-        ..  container:: example
-
-            Transposition followed by inversion:
-
-            >>> operator = inversion + transposition
-            >>> str(operator)
-            'IT3'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    a'8
-                    g'8
-                    f'8
-                    e'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Inversion followed by transposition:
-
-            >>> operator = transposition + inversion
-            >>> str(operator)
-            'T3I'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    ef'8
-                    cs'8
-                    b'8
-                    bf'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Returns compound operator:
-
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Inversion(),
-                    Transposition(n=3),
-                    ],
-                )
-
-        """
-        return CompoundOperator._compose_operators(self, operator)
-
-    def __call__(self, argument):
-        """
-        Calls inversion on ``argument``.
-
-        ..  container:: example
-
-            Inverts numbered pitch-class:
-
-            >>> inversion = abjad.Inversion()
-            >>> pitch_class = abjad.NumberedPitchClass(1)
-            >>> inversion(pitch_class)
-            NumberedPitchClass(11)
-
-        ..  container:: example
-
-            Inverts numbered pitch:
-
-            >>> inversion = abjad.Inversion()
-            >>> pitch = abjad.NumberedPitch(15)
-            >>> inversion(pitch)
-            NumberedPitch(-15)
-
-        ..  container:: example
-
-            Inverts named pitch:
-
-            >>> inversion = abjad.Inversion()
-            >>> pitch = abjad.NamedPitch("d'")
-            >>> inversion(pitch)
-            NamedPitch('bf')
-
-        ..  container:: example
-
-            Inverts named pitch class:
-
-            >>> inversion = abjad.Inversion()
-            >>> pitch_class = abjad.NamedPitchClass('d')
-            >>> inversion(pitch_class)
-            NamedPitchClass('bf')
-
-        ..  container:: example
-
-            Inverts pitch segment:
-
-            >>> inversion = abjad.Inversion()
-            >>> segment = abjad.PitchSegment("c' d' e'")
-            >>> inversion(segment)
-            PitchSegment("c' bf af")
-
-        ..  container:: example
-
-            Inverts pitch class segment:
-
-            >>> inversion = abjad.Inversion()
-            >>> segment = abjad.PitchClassSegment("c d e")
-            >>> inversion(segment)
-            PitchClassSegment("c bf af")
-
-        ..  container:: example
-
-            Inverts pitch class set:
-
-            >>> inversion = abjad.Inversion()
-            >>> setting = abjad.PitchClassSet("c d e")
-            >>> inversion(setting)
-            PitchClassSet(['c', 'af', 'bf'])
-
-        Returns new object with type equal to that of ``argument``.
-        """
-        if hasattr(argument, "invert"):
-            result = argument.invert(axis=self.axis)
-        else:
-            raise TypeError(f"do not know how to invert: {argument!r}.")
-        return result
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes inversion.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __radd__(self, operator):
-        """
-        Right-addition not defined on inversion.
-
-        ..  container:: example
-
-            >>> abjad.Inversion().__radd__(abjad.Inversion())
-            Traceback (most recent call last):
-                ...
-            NotImplementedError: right-addition not defined on Inversion.
-
-        Raises not implemented error.
-        """
-        message = f"right-addition not defined on {type(self).__name__}."
-        raise NotImplementedError(message)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        """
-        Gets string representation of operator.
-
-        ..  container:: example
-
-            >>> str(abjad.Inversion())
-            'I'
-
-        ..  container:: example
-
-            >>> str(abjad.Inversion(axis=15))
-            'I(Eb5)'
-
-        """
-        if self.axis is None:
-            return "I"
-        axis = self.axis.get_name(locale="us")
-        string = f"I({axis})"
-        return string
-
-    def _is_identity_operator(self):
-        return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def axis(self):
-        """
-        Gets axis of inversion.
-
-        ..  container:: example
-
-            >>> inversion = abjad.Inversion()
-            >>> inversion.axis is None
-            True
-
-        ..  container:: example
-
-            >>> inversion = abjad.Inversion(axis=15)
-            >>> inversion.axis
-            NamedPitch("ef''")
-
-        Returns named pitch or none.
-        """
-        return self._axis
-
-
-class Multiplication:
-    """
-    Multiplication operator.
-
-    ..  container:: example
-
-        >>> abjad.Multiplication()
-        Multiplication(n=1)
-
-    ..  container:: example
-
-        >>> abjad.Multiplication(n=5)
-        Multiplication(n=5)
-
-    Object model of twelve-tone multiplication operator.
-    """
-
-    ### CLASS VARIABLES ##
-
-    __slots__ = ("_n",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, *, n=1):
-        self._n = n
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, operator):
-        r"""
-        Composes multiplication and ``operator``.
-
-        ..  container:: example
-
-            Example segment:
-
-            >>> items = [0, 2, 4, 5]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            Example operators:
-
-            >>> multiplication = abjad.Multiplication(n=5)
-            >>> transposition = abjad.Transposition(n=3)
-
-        ..  container:: example
-
-
-            Transposition followed by multiplication:
-
-            >>> operator = multiplication + transposition
-            >>> str(operator)
-            'M5T3'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    ef'8
-                    cs'8
-                    b'8
-                    e'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Same as above because multiplication and transposition commute:
-
-            >>> operator = transposition + multiplication
-            >>> str(operator)
-            'T3M5'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    ef'8
-                    cs'8
-                    b'8
-                    e'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        Returns compound operator.
-        """
-        return CompoundOperator._compose_operators(self, operator)
-
-    def __call__(self, argument):
-        """
-        Calls multiplication on ``argument``.
-
-        ..  container:: example
-
-            Multiplies pitch-class:
-
-            >>> multiplication = abjad.Multiplication(n=5)
-            >>> pitch_class = abjad.NumberedPitchClass(4)
-            >>> multiplication(pitch_class)
-            NumberedPitchClass(8)
-
-        ..  container:: example
-
-            Multiplies pitch:
-
-            >>> multiplication = abjad.Multiplication(n=7)
-            >>> pitch = abjad.NamedPitch("f'")
-            >>> multiplication(pitch)
-            NamedPitch("b'''")
-
-        Returns new object with type equal to that of ``argument``.
-        """
-        if hasattr(argument, "multiply"):
-            result = argument.multiply(self.n)
-        else:
-            raise TypeError(f"do not know how to multiply: {argument!r}.")
-        return result
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes multiplication.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __radd__(self, operator):
-        """
-        Right-addition not defined on multiplication.
-
-        ..  container:: example
-
-            >>> abjad.Multiplication().__radd__(abjad.Multiplication())
-            Traceback (most recent call last):
-                ...
-            NotImplementedError: right-addition not defined on Multiplication.
-
-        Raises not implemented error.
-        """
-        message = f"right-addition not defined on {type(self).__name__}."
-        raise NotImplementedError(message)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        """
-        Gets string representation of operator.
-
-        ..  container:: example
-
-            >>> str(abjad.Multiplication())
-            'M1'
-
-        ..  container:: example
-
-            >>> str(abjad.Multiplication(n=5))
-            'M5'
-
-        """
-        string = f"M{self.n}"
-        return string
-
-    ### PRIVATE METHODS ###
-
-    def _is_identity_operator(self):
-        if self.n == 1:
-            return True
-        return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def n(self):
-        """
-        Gets index of multiplication.
-
-        ..  container:: example
-
-            >>> multiplication = abjad.Multiplication()
-            >>> multiplication.n
-            1
-
-        ..  container:: example
-
-            >>> multiplication = abjad.Multiplication(n=5)
-            >>> multiplication.n
-            5
-
-        Set to integer or none.
-        """
-        return self._n
-
-
-class Retrograde:
-    """
-    Retrograde operator.
-
-    ..  container:: example:
-
-        >>> abjad.Retrograde()
-        Retrograde()
-
-    Object model of twelve-tone retrograde operator.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_period",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, period=None):
-        if period is not None:
-            period = abs(int(period))
-            assert 0 < period
-        self._period = period
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, operator):
-        r"""
-        Composes retrograde and ``operator``.
-
-        ..  container:: example
-
-            Example segment:
-
-            >>> items = [0, 2, 4, 5]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            Example operators:
-
-            >>> retrograde = abjad.Retrograde()
-            >>> transposition = abjad.Transposition(n=3)
-
-        ..  container:: example
-
-            Transposition followed by retrograde:
-
-            >>> operator = retrograde + transposition
-            >>> str(operator)
-            'RT3'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    af'8
-                    g'8
-                    f'8
-                    ef'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Same as above because retrograde and transposition commute:
-
-            >>> operator = transposition + retrograde
-            >>> str(operator)
-            'T3R'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    af'8
-                    g'8
-                    f'8
-                    ef'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Returns compound operator:
-
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Retrograde(),
-                    Transposition(n=3),
-                    ],
-                )
-
-        """
-        return CompoundOperator._compose_operators(self, operator)
-
-    def __call__(self, argument):
-        """
-        Calls retrograde on ``argument``.
-
-        ..  container:: example
-
-            Gets retrograde pitch classes:
-
-            >>> retrograde = abjad.Retrograde()
-            >>> segment = abjad.PitchClassSegment([0, 1, 4, 7])
-            >>> retrograde(segment)
-            PitchClassSegment([7, 4, 1, 0])
-
-        ..  container:: example
-
-            Does not retrograde single pitches or pitch-classes:
-
-            >>> retrogresion = abjad.Retrograde()
-            >>> pitch_class = abjad.NumberedPitchClass(6)
-            >>> retrograde(pitch_class)
-            NumberedPitchClass(6)
-
-        ..  container:: example
-
-            Periodic retrograde:
-
-            ..  todo:: Deprecated.
-
-            >>> retrograde = abjad.Retrograde(period=3)
-            >>> segment = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
-            >>> retrograde(segment)
-            PitchSegment("e' d' c' a' g' f' c'' b'")
-
-        Returns new object with type equal to that of ``argument``.
-        """
-        if isinstance(argument, (Pitch, PitchClass)):
-            return argument
-        if not isinstance(argument, (PitchSegment, PitchClassSegment)):
-            argument = PitchSegment(argument)
-        if not self.period:
-            return type(argument)(reversed(argument))
-        result = _new.new(argument, items=())
-        for shard in _sequence.Sequence(argument).partition_by_counts(
-            [self.period], cyclic=True, overhang=True
-        ):
-            shard = type(argument)(shard)
-            shard = type(argument)(reversed(shard))
-            result = result + shard
-        return result
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes retrograde.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __radd__(self, operator):
-        """
-        Right-addition not defined on retrograde.
-
-        ..  container:: example
-
-            >>> abjad.Retrograde().__radd__(abjad.Retrograde())
-            Traceback (most recent call last):
-                ...
-            NotImplementedError: right-addition not defined on Retrograde.
-
-        Raises not implemented error.
-        """
-        message = f"right-addition not defined on {type(self).__name__}."
-        raise NotImplementedError(message)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        """
-        Gets string representation of operator.
-
-        ..  container:: example
-
-            >>> str(abjad.Retrograde())
-            'R'
-
-        """
-        return "R"
-
-    ### PRIVATE METHODS ###
-
-    def _is_identity_operator(self):
-        return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def period(self):
-        """
-        Gets optional period of retrograde.
-
-        ..  todo:: Deprecated.
-
-        ..  container:: example
-
-            >>> retrograde = abjad.Retrograde(period=3)
-            >>> retrograde.period
-            3
-
-        Returns integer or none.
-        """
-        return self._period
-
-
-class Rotation:
-    """
-    Rotation operator.
-
-    ..  container:: example:
-
-        >>> abjad.Rotation()
-        Rotation(n=0)
-
-    ..  container:: example
-
-        >>> abjad.Rotation(n=1)
-        Rotation(n=1)
-
-    Object model of the twelve-tone rotation operator.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_n", "_period")
-
-    ### INITIALIZER ###
-
-    def __init__(self, *, n=0, period=None):
-        self._n = int(n)
-        if period is not None:
-            period = abs(int(period))
-            assert 0 < period
-        self._period = period
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, operator):
-        r"""
-        Composes rotation and ``operator``.
-
-        ..  container:: example
-
-            Example segment:
-
-            >>> items = [0, 2, 4, 5]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            Example operators:
-
-            >>> rotation = abjad.Rotation(n=-1)
-            >>> transposition = abjad.Transposition(n=3)
-
-        ..  container:: example
-
-            Transposition followed by rotation:
-
-            >>> operator = rotation + transposition
-            >>> str(operator)
-            'r-1T3'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    f'8
-                    g'8
-                    af'8
-                    ef'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Same as above because rotation and transposition commute:
-
-            >>> operator = transposition + rotation
-            >>> str(operator)
-            'T3r-1'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    f'8
-                    g'8
-                    af'8
-                    ef'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Returns compound operator:
-
-            >>> string = abjad.storage(operator)
-            >>> print(string)
-            abjad.CompoundOperator(
-                operators=[
-                    Rotation(n=-1),
-                    Transposition(n=3),
-                    ],
-                )
-
-        """
-        return CompoundOperator._compose_operators(self, operator)
-
-    def __call__(self, argument):
-        """
-        Calls rotation on ``argument``.
-
-        ..  container:: example
-
-            Rotates pitch classes:
-
-            >>> rotation = abjad.Rotation(n=1)
-            >>> pitch_classes = abjad.PitchClassSegment([0, 1, 4, 7])
-            >>> rotation(pitch_classes)
-            PitchClassSegment([7, 0, 1, 4])
-
-        ..  container:: example
-
-            Does not rotate single pitches or pitch-classes:
-
-            >>> rotation = abjad.Rotation(n=1)
-            >>> pitch_class = abjad.NumberedPitchClass(6)
-            >>> rotation(pitch_class)
-            NumberedPitchClass(6)
-
-        ..  container:: example
-
-            Periodic rotation:
-
-            ..  todo:: Deprecated.
-
-            >>> rotation = abjad.Rotation(n=1, period=3)
-            >>> pitches = abjad.PitchSegment("c' d' e' f' g' a' b' c''")
-            >>> rotation(pitches)
-            PitchSegment("e' c' d' a' f' g' c'' b'")
-
-        Returns new object with type equal to that of ``argument``.
-        """
-        if isinstance(argument, (Pitch, PitchClass)):
-            return argument
-        if not isinstance(argument, (PitchSegment, PitchClassSegment)):
-            argument = PitchSegment(argument)
-        if not self.period:
-            return argument.rotate(self.n)
-        result = _new.new(argument, items=())
-        for shard in _sequence.Sequence(argument).partition_by_counts(
-            [self.period], cyclic=True, overhang=True
-        ):
-            shard = type(argument)(shard)
-            shard = shard.rotate(self.n)
-            result = result + shard
-        return result
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes rotation.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __radd__(self, operator):
-        """
-        Right-addition not defined on rotation.
-
-        ..  container:: example
-
-            >>> abjad.Rotation().__radd__(abjad.Rotation())
-            Traceback (most recent call last):
-                ...
-            NotImplementedError: right-addition not defined on Rotation.
-
-        Raises not implemented error.
-        """
-        message = f"right-addition not defined on {type(self).__name__}."
-        raise NotImplementedError(message)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        """
-        Gets string representation of operator.
-
-        ..  container:: example
-
-            >>> str(abjad.Rotation())
-            'r0'
-
-        ..  container:: example
-
-            >>> str(abjad.Rotation(n=1))
-            'r1'
-
-        """
-        string = f"r{self.n}"
-        return string
-
-    ### PRIVATE METHODS ###
-
-    def _is_identity_operator(self):
-        if self.n == 0:
-            return True
-        return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def n(self):
-        """
-        Gets index of rotation.
-
-        ..  container:: example
-
-            >>> rotation = abjad.Rotation()
-            >>> rotation.n
-            0
-
-        ..  container:: example
-
-            >>> rotation = abjad.Rotation(n=2)
-            >>> rotation.n
-            2
-
-        Returns integer.
-        """
-        return self._n
-
-    @property
-    def period(self):
-        """
-        Gets period of rotation.
-
-        ..  todo:: Deprecated.
-
-        ..  container:: example
-
-            >>> rotation = abjad.Rotation(n=2, period=3)
-            >>> rotation.period
-            3
-
-        Returns integer or none.
-        """
-        return self._period
-
-
-class Transposition:
-    """
-    Transposition operator.
-
-    ..  container:: example
-
-        >>> abjad.Transposition()
-        Transposition(n=0)
-
-    ..  container:: example
-
-        >>> abjad.Transposition(n=2)
-        Transposition(n=2)
-
-    Object model of twelve-tone transposition operator.
-    """
-
-    ### CLASS VARIABLES ##
-
-    __slots__ = ("_n",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, *, n=0):
-        self._n = n
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, operator):
-        r"""
-        Composes transposition and ``operator``.
-
-        ..  container:: example
-
-            Example segment:
-
-            >>> items = [0, 2, 4, 5]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            Example operators:
-
-            >>> T_1 = abjad.Transposition(n=1)
-            >>> T_3 = abjad.Transposition(n=3)
-
-        ..  container:: example
-
-            Successive transposition:
-
-            >>> operator = T_1 + T_3
-            >>> str(operator)
-            'T1T3'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    e'8
-                    fs'8
-                    af'8
-                    a'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        ..  container:: example
-
-            Same as above because transposition commutes:
-
-            >>> operator = T_3 + T_1
-            >>> str(operator)
-            'T3T1'
-
-            >>> segment_ = operator(segment)
-            >>> lilypond_file = abjad.illustrate(segment_)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> voice = lilypond_file["Voice"]
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \context Voice = "Voice"
-                {
-                    e'8
-                    fs'8
-                    af'8
-                    a'8
-                    \bar "|."
-                    \override Score.BarLine.transparent = ##f
-                }
-
-        Returns compound operator.
-        """
-        return CompoundOperator._compose_operators(self, operator)
-
-    def __call__(self, argument):
-        """
-        Calls transposition on ``argument``.
-
-        ..  container:: example
-
-            Transposes pitch-class:
-
-            >>> transposition = abjad.Transposition(n=2)
-            >>> pitch_class = abjad.NumberedPitchClass(1)
-            >>> transposition(pitch_class)
-            NumberedPitchClass(3)
-
-        ..  container:: example
-
-            Transposes pitch:
-
-            >>> transposition = abjad.Transposition(n=2)
-            >>> pitch = abjad.NumberedPitch(15)
-            >>> transposition(pitch)
-            NumberedPitch(17)
-
-        ..  container:: example
-
-            Transposes list of pitches:
-
-            >>> transposition = abjad.Transposition(n=2)
-            >>> pitches = [abjad.NumberedPitch(_) for _ in [15, 16]]
-            >>> transposition(pitches)
-            [NumberedPitch(17), NumberedPitch(18)]
-
-        Returns new object with type equal to that of ``argument``.
-        """
-        if hasattr(argument, "transpose"):
-            result = argument.transpose(self.n)
-        elif isinstance(argument, collections.abc.Iterable):
-            items = []
-            for item in argument:
-                item = item.transpose(self.n)
-                items.append(item)
-            result = type(argument)(items)
-        else:
-            raise TypeError(f"do not know how to transpose: {argument!r}.")
-        return result
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes transposition.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __radd__(self, operator):
-        """
-        Right-addition not defined on transposition.
-
-        ..  container:: example
-
-            >>> abjad.Transposition().__radd__(abjad.Transposition())
-            Traceback (most recent call last):
-                ...
-            NotImplementedError: right-addition not defined on Transposition.
-
-        Raises not implemented error.
-        """
-        message = f"right-addition not defined on {type(self).__name__}."
-        raise NotImplementedError(message)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        """
-        Gets string representation of operator.
-
-        ..  container:: example
-
-            >>> str(abjad.Transposition())
-            'T0'
-
-        ..  container:: example
-
-            >>> str(abjad.Transposition(n=2))
-            'T2'
-
-        """
-        string = f"T{self.n}"
-        return string
-
-    ### PRIVATE METHODS ###
-
-    def _is_identity_operator(self):
-        if self.n == 0:
-            return True
-        return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def n(self):
-        """
-        Gets index of transposition.
-
-        ..  container:: example
-
-            >>> transposition = abjad.Transposition()
-            >>> transposition.n
-            0
-
-        ..  container:: example
-
-            >>> transposition = abjad.Transposition(n=2)
-            >>> transposition.n
-            2
-
-        Set to integer, interval or none.
-        """
-        return self._n
-
-
 @functools.total_ordering
 class PitchClass:
     """
     Abstract pitch-class.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
 
     _is_abstract = True
-
-    ### INITIALIZER ###
 
     def __init__(self, argument):
         if isinstance(argument, str):
@@ -7578,14 +3502,15 @@ class PitchClass:
                 message = f"can not instantiate {class_name} from {argument!r}."
                 raise ValueError(message)
 
-    ### SPECIAL METHODS ###
-
     def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Compares string formats.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return str(self) == str(argument)
+        return False
 
+    # TODO: remove
     def __float__(self):
         """
         Coerce to float.
@@ -7607,14 +3532,6 @@ class PitchClass:
         Returns true or false.
         """
         raise NotImplementedError
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
 
     def _from_named_parts(self, dpc_number, alteration):
         raise NotImplementedError
@@ -7645,8 +3562,6 @@ class PitchClass:
         div %= 12
         return _math.integer_equivalent_number_to_integer(div)
 
-    ### PUBLIC PROPERTIES ###
-
     def accidental(self):
         """
         Gets accidental of pitch-class.
@@ -7658,8 +3573,6 @@ class PitchClass:
         Gets pitch-class label of pitch-class.
         """
         raise NotImplementedError
-
-    ### PUBLIC METHODS ###
 
     def invert(self, axis=None):
         """
@@ -7700,8 +3613,6 @@ class NamedPitchClass(PitchClass):
         >>> abjad.NamedPitchClass('cqs')
         NamedPitchClass('cqs')
 
-    ..  container:: example
-
         Initializes from number of semitones:
 
         >>> abjad.NamedPitchClass(14)
@@ -7709,8 +3620,6 @@ class NamedPitchClass(PitchClass):
 
         >>> abjad.NamedPitchClass(14.5)
         NamedPitchClass('dqs')
-
-    ..  container:: example
 
         Initializes from named pitch:
 
@@ -7720,8 +3629,6 @@ class NamedPitchClass(PitchClass):
         >>> abjad.NamedPitchClass(abjad.NamedPitch('dqs'))
         NamedPitchClass('dqs')
 
-    ..  container:: example
-
         Initializes from numbered pitch:
 
         >>> abjad.NamedPitchClass(abjad.NumberedPitch(14))
@@ -7730,8 +3637,6 @@ class NamedPitchClass(PitchClass):
         >>> abjad.NamedPitchClass(abjad.NumberedPitch(14.5))
         NamedPitchClass('dqs')
 
-    ..  container:: example
-
         Initializes from numbered pitch-class:
 
         >>> abjad.NamedPitchClass(abjad.NumberedPitchClass(2))
@@ -7739,8 +3644,6 @@ class NamedPitchClass(PitchClass):
 
         >>> abjad.NamedPitchClass(abjad.NumberedPitchClass(2.5))
         NamedPitchClass('dqs')
-
-    ..  container:: example
 
         Initializes from pitch-class / octave-number string:
 
@@ -7757,8 +3660,6 @@ class NamedPitchClass(PitchClass):
 
         >>> abjad.NamedPitchClass('Cqs5')
         NamedPitchClass('cqs')
-
-    ..  container:: example
 
         Initializes from pitch-class string:
 
@@ -7782,8 +3683,6 @@ class NamedPitchClass(PitchClass):
         >>> abjad.NamedPitchClass('cqs')
         NamedPitchClass('cqs')
 
-    ..  container:: example
-
         Initializes from note:
 
         >>> abjad.NamedPitchClass(abjad.Note("d''8."))
@@ -7794,11 +3693,7 @@ class NamedPitchClass(PitchClass):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_diatonic_pc_number", "_accidental")
-
-    ### INITIALIZER ###
 
     def __init__(self, name="c", *, accidental=None, arrow=None):
         super().__init__(name or "c")
@@ -7807,9 +3702,7 @@ class NamedPitchClass(PitchClass):
         if arrow is not None:
             self._accidental = type(self._accidental)(self._accidental, arrow=arrow)
 
-    ### SPECIAL METHODS ###
-
-    def __add__(self, named_interval):
+    def __add__(self, named_interval) -> "NamedPitchClass":
         """
         Adds ``named_interval`` to named pitch-class.
 
@@ -7821,16 +3714,14 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cs') + abjad.NamedInterval('-M9')
             NamedPitchClass('b')
 
-        Returns new named pitch-class.
         """
         dummy_pitch = NamedPitch((self.name, 4))
         pitch = named_interval.transpose(dummy_pitch)
         return type(self)(pitch)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` can be coerced to a named pitch-class with
-        pitch-class name equal to that of this named pitch-class.
+        Compares string formats.
 
         ..  container:: example
 
@@ -7859,7 +3750,6 @@ class NamedPitchClass(PitchClass):
             >>> pitch_class_3 == pitch_class_3
             True
 
-        Returns true or false.
         """
         return super().__eq__(argument)
 
@@ -7871,29 +3761,20 @@ class NamedPitchClass(PitchClass):
         """
         return super().__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a named pitch-class with a pitch
-        number greater than that of this named pitch-class.
+        Compares ``number``.
 
         ..  container:: example
-
-            Compares less than:
 
             >>> abjad.NamedPitchClass('cs') < abjad.NamedPitchClass('d')
             True
 
-        ..  container:: example
-
-            Does not compare less than:
-
             >>> abjad.NamedPitchClass('d') < abjad.NamedPitchClass('cs')
             False
 
-        Raises type error when ``argument`` is not a named pitch-class.
         """
-        if not isinstance(argument, type(self)):
-            raise TypeError(f"can not compare named pitch-class to {argument!r}.")
+        assert isinstance(argument, type(self))
         return self.number < argument.number
 
     def __radd__(self, interval):
@@ -7911,6 +3792,13 @@ class NamedPitchClass(PitchClass):
         message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.name!r})"
+
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of named pitch-class.
@@ -7924,7 +3812,7 @@ class NamedPitchClass(PitchClass):
         """
         return self.name
 
-    def __sub__(self, argument):
+    def __sub__(self, argument) -> "NamedInversionEquivalentIntervalClass":
         """
         Subtracts ``argument`` from named pitch-class.
 
@@ -7939,18 +3827,14 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cf') - abjad.NamedPitchClass('c')
             NamedInversionEquivalentIntervalClass('+A1')
 
-        Returns named inversion-equivalent interval-class.
         """
-        if not isinstance(argument, type(self)):
-            raise TypeError(f"must be named pitch-class: {argument!r}.")
+        assert isinstance(argument, type(self))
         pitch_1 = NamedPitch((self.name, 4))
         pitch_2 = NamedPitch((argument.name, 4))
         mdi = NamedInterval.from_pitch_carriers(pitch_1, pitch_2)
         pair = (mdi.quality, mdi.number)
         dic = NamedInversionEquivalentIntervalClass(pair)
         return dic
-
-    ### PRIVATE METHODS ###
 
     def _apply_accidental(self, accidental=None):
         accidental = Accidental(accidental)
@@ -7984,33 +3868,21 @@ class NamedPitchClass(PitchClass):
     def _get_diatonic_pc_number(self):
         return self._diatonic_pc_number
 
-    def _get_format_specification(self):
-        values = [self.name]
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=values,
-            storage_format_keyword_names=[],
-        )
-
     def _get_lilypond_format(self):
         name = self._get_diatonic_pc_name()
         accidental = Accidental(self._get_alteration())
         return f"{name}{accidental!s}"
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def accidental(self):
+    def accidental(self) -> Accidental:
         """
         Gets accidental.
 
         ..  container:: example
 
             >>> abjad.NamedPitchClass('cs').accidental
-            Accidental('sharp')
+            Accidental(name='sharp')
 
-        Returns accidental.
         """
         return self._accidental
 
@@ -8024,7 +3896,7 @@ class NamedPitchClass(PitchClass):
         return self._accidental.arrow
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
         Gets name of named pitch-class.
 
@@ -8033,7 +3905,6 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cs').name
             'cs'
 
-        Returns string.
         """
         diatonic_pc_name = _diatonic_pc_number_to_diatonic_pc_name[
             self._diatonic_pc_number
@@ -8041,7 +3912,7 @@ class NamedPitchClass(PitchClass):
         return f"{diatonic_pc_name}{self._accidental!s}"
 
     @property
-    def number(self):
+    def number(self) -> int | float:
         """
         Gets number.
 
@@ -8050,7 +3921,6 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cs').number
             1
 
-        Returns nonnegative integer or float.
         """
         dictionary = _diatonic_pc_number_to_pitch_class_number
         result = dictionary[self._diatonic_pc_number]
@@ -8059,7 +3929,7 @@ class NamedPitchClass(PitchClass):
         return result
 
     @property
-    def pitch_class_label(self):
+    def pitch_class_label(self) -> str:
         """
         Gets pitch-class label.
 
@@ -8068,18 +3938,13 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cs').pitch_class_label
             'C#'
 
-        Returns string.
         """
         pc = self._get_diatonic_pc_name().upper()
         return f"{pc}{self.accidental.symbol}"
 
-    ### PUBLIC METHODS ###
-
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "NamedPitchClass":
         """
         Inverts named pitch-class.
-
-        Not yet implemented.
         """
         axis = axis or NamedPitch("c")
         axis = NamedPitch(axis)
@@ -8089,7 +3954,7 @@ class NamedPitchClass(PitchClass):
         result = type(self)(result)
         return result
 
-    def multiply(self, n=1):
+    def multiply(self, n=1) -> "NamedPitchClass":
         """
         Multiplies named pitch-class by ``n``.
 
@@ -8098,11 +3963,10 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cs').multiply(3)
             NamedPitchClass('ef')
 
-        Returns new named pitch-class.
         """
         return type(self)(n * self.number)
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "NamedPitchClass":
         """
         Transposes named pitch-class by index named interval ``n``.
 
@@ -8120,7 +3984,6 @@ class NamedPitchClass(PitchClass):
             >>> abjad.NamedPitchClass('cs').transpose(interval)
             NamedPitchClass('ds')
 
-        Returns new named pitch-class.
         """
         interval = NamedInterval(n)
         pitch = NamedPitch((self.name, 4))
@@ -8139,49 +4002,35 @@ class NumberedPitchClass(PitchClass):
         >>> abjad.NumberedPitchClass(13)
         NumberedPitchClass(1)
 
-    ..  container:: example
-
-        Initializes from pitch name.
+        Initializes from pitch name:
 
         >>> abjad.NumberedPitchClass('d')
         NumberedPitchClass(2)
 
-    ..  container:: example
-
-        Initializes from named pitch.
+        Initializes from named pitch:
 
         >>> abjad.NumberedPitchClass(abjad.NamedPitch('g,'))
         NumberedPitchClass(7)
 
-    ..  container:: example
-
-        Initializes from numbered pitch.
+        Initializes from numbered pitch:
 
         >>> abjad.NumberedPitchClass(abjad.NumberedPitch(15))
         NumberedPitchClass(3)
 
-    ..  container:: example
-
-        Initializes from named pitch-class.
+        Initializes from named pitch-class:
 
         >>> abjad.NumberedPitchClass(abjad.NamedPitchClass('e'))
         NumberedPitchClass(4)
-
-    ..  container:: example
 
         Initializes from pitch-class / octave string:
 
         >>> abjad.NumberedPitchClass('C#5')
         NumberedPitchClass(1)
 
-    ..  container:: example
-
         Initializes from other numbered pitch-class:
 
         >>> abjad.NumberedPitchClass(abjad.NumberedPitchClass(9))
         NumberedPitchClass(9)
-
-    ..  container:: example
 
         Initializes from note:
 
@@ -8190,11 +4039,7 @@ class NumberedPitchClass(PitchClass):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_arrow", "_number")
-
-    ### INITIALIZER ###
 
     def __init__(self, number=0, *, arrow=None):
         super().__init__(number or 0)
@@ -8204,9 +4049,7 @@ class NumberedPitchClass(PitchClass):
                 arrow = None
             self._arrow = arrow
 
-    ### SPECIAL METHODS ###
-
-    def __add__(self, argument):
+    def __add__(self, argument) -> "NumberedPitchClass":
         """
         Adds ``argument`` to numbered pitch-class.
 
@@ -8226,12 +4069,11 @@ class NumberedPitchClass(PitchClass):
             >>> pitch_class + abjad.NumberedInterval(3)
             NumberedPitchClass(0)
 
-        Returns new numbered pitch-class.
         """
         interval = NumberedInterval(argument)
         return type(self)(self.number + interval.number % 12)
 
-    def __copy__(self, *arguments):
+    def __copy__(self, *arguments) -> "NumberedPitchClass":
         """
         Copies numbered pitch-class.
 
@@ -8242,14 +4084,12 @@ class NumberedPitchClass(PitchClass):
             >>> copy.copy(pitch_class)
             NumberedPitchClass(9)
 
-        Returns new numbered pitch-class.
         """
         return type(self)(self)
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a numbered pitch-class with pitch-class
-        number equal to that of this numbered pitch-class.
+        Compares ``number``.
 
         ..  container:: example
 
@@ -8278,9 +4118,9 @@ class NumberedPitchClass(PitchClass):
             >>> pitch_class_3 == pitch_class_3
             True
 
-        Returns true or false.
         """
-        return super().__eq__(argument)
+        if isinstance(argument, type(self)):
+            return self.number == argument.number
 
     def __hash__(self):
         """
@@ -8290,32 +4130,24 @@ class NumberedPitchClass(PitchClass):
         """
         return super().__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a numbered pitch-class with a pitch
-        number greater than that of this numberd pitch-class.
+        Compares ``number``.
 
         ..  container:: example
-
-            Compares less than:
 
             >>> abjad.NumberedPitchClass(1) < abjad.NumberedPitchClass(2)
             True
 
-        ..  container:: example
-
-            Does not compare less than:
-
             >>> abjad.NumberedPitchClass(2) < abjad.NumberedPitchClass(1)
             False
 
-        Raises type error when ``argument`` is not a numbered pitch-class.
         """
         if not isinstance(argument, type(self)):
             raise TypeError(f"can not compare numbered pitch-class to {argument!r}.")
         return self.number < argument.number
 
-    def __neg__(self):
+    def __neg__(self) -> "NumberedPitchClass":
         """
         Negates numbered pitch-class.
 
@@ -8325,7 +4157,6 @@ class NumberedPitchClass(PitchClass):
             >>> -pitch_class
             NumberedPitchClass(3)
 
-        Returns new numbered pitch-class.
         """
         return type(self)(-self.number)
 
@@ -8345,20 +4176,27 @@ class NumberedPitchClass(PitchClass):
         message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
-    def __str__(self):
+    def __repr__(self):
         """
-        Gets string representation of numbered pitch-class.
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.number!r})"
 
-        Returns string.
+    # TODO: remove
+    def __str__(self) -> str:
+        """
+        Gets string.
         """
         return str(self.number)
 
-    def __sub__(self, argument):
+    def __sub__(
+        self, argument
+    ) -> typing.Union["NumberedPitchClass", "NumberedInversionEquivalentIntervalClass"]:
         """
         Subtracts ``argument`` from numbered pitch-class.
 
-        Subtraction is defined against both numbered intervals
-        and against other pitch-classes.
+        Subtraction is defined against both numbered intervals and against other
+        pitch-classes.
 
         ..  container:: example
 
@@ -8371,8 +4209,6 @@ class NumberedPitchClass(PitchClass):
             >>> abjad.NumberedPitchClass(7) - abjad.NumberedPitchClass(6)
             NumberedInversionEquivalentIntervalClass(1)
 
-        ..  container:: example
-
             >>> abjad.NumberedPitchClass(6) - abjad.NumberedInterval(-1)
             NumberedPitchClass(5)
 
@@ -8382,7 +4218,6 @@ class NumberedPitchClass(PitchClass):
             >>> abjad.NumberedPitchClass(6) - abjad.NumberedInterval(1)
             NumberedPitchClass(5)
 
-        Returns numbered inversion-equivalent interval-class.
         """
         if isinstance(argument, type(self)):
             interval_class_number = abs(self.number - argument.number)
@@ -8391,8 +4226,6 @@ class NumberedPitchClass(PitchClass):
             return NumberedInversionEquivalentIntervalClass(interval_class_number)
         interval_class = NumberedInversionEquivalentIntervalClass(argument)
         return type(self)(self.number - interval_class.number % 12)
-
-    ### PRIVATE METHODS ###
 
     def _apply_accidental(self, accidental=None):
         accidental = Accidental(accidental)
@@ -8423,31 +4256,19 @@ class NumberedPitchClass(PitchClass):
     def _get_diatonic_pc_number(self):
         return _diatonic_pc_name_to_diatonic_pc_number[self._get_diatonic_pc_name()]
 
-    def _get_format_specification(self):
-        values = [self.number]
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=values,
-            storage_format_keyword_names=[],
-        )
-
     def _get_lilypond_format(self):
         return NamedPitchClass(self)._get_lilypond_format()
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def accidental(self):
+    def accidental(self) -> Accidental:
         """
         Gets accidental.
 
         ..  container:: example
 
             >>> abjad.NumberedPitchClass(1).accidental
-            Accidental('sharp')
+            Accidental(name='sharp')
 
-        Returns accidental.
         """
         return NamedPitch(self.number).accidental
 
@@ -8461,7 +4282,7 @@ class NumberedPitchClass(PitchClass):
         return self._arrow
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
         Gets name of numbered pitch-class.
 
@@ -8470,12 +4291,11 @@ class NumberedPitchClass(PitchClass):
             >>> abjad.NumberedPitchClass(13).name
             'cs'
 
-        Returns string.
         """
         return _pitch_class_number_to_pitch_class_name[self.number]
 
     @property
-    def number(self):
+    def number(self) -> int | float:
         """
         Gets number.
 
@@ -8484,8 +4304,6 @@ class NumberedPitchClass(PitchClass):
             >>> abjad.NumberedPitchClass(1).number
             1
 
-        ..  container:: example
-
             >>> abjad.NumberedPitchClass(13).number
             1
 
@@ -8493,7 +4311,7 @@ class NumberedPitchClass(PitchClass):
         return self._number
 
     @property
-    def pitch_class_label(self):
+    def pitch_class_label(self) -> str:
         """
         Gets pitch-class / octave label.
 
@@ -8502,14 +4320,11 @@ class NumberedPitchClass(PitchClass):
             >>> abjad.NumberedPitchClass(13).pitch_class_label
             'C#'
 
-        Returns string.
         """
         name = self._get_diatonic_pc_name().upper()
         return f"{name}{self.accidental.symbol}"
 
-    ### PUBLIC METHODS ###
-
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "NumberedPitchClass":
         """
         Inverts numbered pitch-class.
 
@@ -8533,8 +4348,6 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(11) NumberedPitchClass(1)
 
         Interprets axis of inversion equal to pitch-class 0.
-
-        Returns new numbered pitch-class.
         """
         axis = axis or NumberedPitch("c")
         axis = NumberedPitch(axis)
@@ -8544,7 +4357,7 @@ class NumberedPitchClass(PitchClass):
         result = type(self)(result)
         return result
 
-    def multiply(self, n=1):
+    def multiply(self, n=1) -> "NumberedPitchClass":
         """
         Multiplies pitch-class number by ``n``.
 
@@ -8567,11 +4380,10 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(10) NumberedPitchClass(2)
             NumberedPitchClass(11) NumberedPitchClass(7)
 
-        Returns new numbered pitch-class.
         """
         return type(self)(n * self.number)
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "NumberedPitchClass":
         """
         Transposes numbered pitch-class by index ``n``.
 
@@ -8594,7 +4406,6 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(10) NumberedPitchClass(9)
             NumberedPitchClass(11) NumberedPitchClass(10)
 
-        Returns new numbered pitch-class.
         """
         return type(self)(self.number + n)
 
@@ -8605,13 +4416,9 @@ class Pitch:
     Abstract pitch.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_pitch_class", "_octave")
 
     _is_abstract = True
-
-    ### INITIALIZER ###
 
     def __init__(self, argument, accidental=None, arrow=None, octave=None):
         if isinstance(argument, str):
@@ -8658,14 +4465,7 @@ class Pitch:
             octave = Octave(octave)
             self._octave = octave
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Delegates to ``abjad.format.compare_objects()``.
-        """
-        return _format.compare_objects(self, argument)
-
+    # TODO: remove
     def __float__(self):
         """
         Coerce to float.
@@ -8687,14 +4487,6 @@ class Pitch:
         Returns true or false.
         """
         raise NotImplementedError
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE PROPERTIES ###
 
     def _get_lilypond_format(self):
         raise NotImplementedError
@@ -8743,8 +4535,6 @@ class Pitch:
         else:
             raise TypeError(item_class)
 
-    ### PUBLIC PROPERTIES ###
-
     @property
     def arrow(self):
         """
@@ -8753,11 +4543,9 @@ class Pitch:
         raise NotImplementedError
 
     @property
-    def hertz(self):
+    def hertz(self) -> float:
         """
         Gets frequency of pitch in Hertz.
-
-        Returns float.
         """
         hertz = pow(2.0, (float(self.number) - 9.0) / 12.0) * 440.0
         return hertz
@@ -8797,8 +4585,6 @@ class Pitch:
         Returns pitch-class.
         """
         raise NotImplementedError
-
-    ### PUBLIC METHODS ###
 
     @classmethod
     def from_hertz(class_, hertz):
@@ -8850,11 +4636,10 @@ class Pitch:
         raise NotImplementedError
 
 
-### TYPINGS ###
-
 PitchTyping = typing.Union[int, str, Pitch]
 
 
+@functools.total_ordering
 class NamedPitch(Pitch):
     r"""
     Named pitch.
@@ -8871,8 +4656,6 @@ class NamedPitch(Pitch):
         >>> abjad.NamedPitch("aqs")
         NamedPitch('aqs')
 
-    ..  container:: example
-
         Initializes from pitch-class / octave string:
 
         >>> abjad.NamedPitch('C#5')
@@ -8886,8 +4669,6 @@ class NamedPitch(Pitch):
         >>> abjad.NamedPitch('Aqs3')
         NamedPitch('aqs')
 
-    ..  container:: example
-
         Initializes arrowed pitch:
 
         >>> abjad.NamedPitch('C#5', arrow=abjad.Up)
@@ -8895,8 +4676,7 @@ class NamedPitch(Pitch):
 
     ..  container:: example
 
-        REGRESSION. Small floats just less than a C initialize in the correct
-        octave.
+        REGRESSION. Small floats just less than a C initialize in the correct octave:
 
         Initializes c / C3:
 
@@ -8915,20 +4695,14 @@ class NamedPitch(Pitch):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(self, name="c'", *, accidental=None, arrow=None, octave=None):
         super().__init__(
             name or "c'", accidental=accidental, arrow=arrow, octave=octave
         )
 
-    ### SPECIAL METHODS ###
-
-    def __add__(self, interval):
+    def __add__(self, interval) -> "NamedPitch":
         """
         Adds named pitch to ``interval``.
 
@@ -8943,12 +4717,11 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cs''") + abjad.NamedInterval('+M2')
             NamedPitch("ds''")
 
-        Returns new named pitch.
         """
         interval = NamedInterval(interval)
         return interval.transpose(self)
 
-    def __copy__(self, *arguments):
+    def __copy__(self, *arguments) -> "NamedPitch":
         """
         Copies named pitch.
 
@@ -8965,19 +4738,16 @@ class NamedPitch(Pitch):
             >>> copy.copy(abjad.NamedPitch("df''"))
             NamedPitch("df''")
 
-        ..  container:: example
-
             Copies arrowed pitch:
 
             >>> pitch = abjad.NamedPitch("cs''", arrow=abjad.Up)
             >>> copy.copy(pitch)
             NamedPitch("cs''", arrow=Up)
 
-        Returns new named pitch.
         """
         return type(self)(self, arrow=self.arrow)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` is a named pitch equal to this named pitch.
 
@@ -9010,17 +4780,70 @@ class NamedPitch(Pitch):
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        if isinstance(argument, str):
+            argument = NamedPitch(argument)
+        if isinstance(argument, type(self)):
+            return (
+                self.number == argument.number
+                and self.accidental == argument.accidental
+                and self.arrow == argument.arrow
+                and self.octave == argument.octave
+            )
+        return False
 
     def __hash__(self):
         """
-        Hashes named pitch.
-
-        Returns integer.
+        Hashes numbered pitch.
         """
         return super().__hash__()
 
-    def __lt__(self, argument):
+    # mypy currently does not support functools.total_ordering
+    # https://github.com/python/mypy/issues/4610
+    # remove __le__ (in favor of __lt__) when mypy supports functools.total_ordering
+    # or, refactor this class as a dataclass and then remove __le__
+    def __le__(self, argument) -> bool:
+        """
+        Is true when named pitch is less than or equal to ``argument``.
+
+        ..  container:: example
+
+            >>> pitch_1 = abjad.NamedPitch('fs')
+            >>> pitch_2 = abjad.NamedPitch('fs')
+            >>> pitch_3 = abjad.NamedPitch('gf')
+
+            >>> pitch_1 <= pitch_1
+            True
+            >>> pitch_1 <= pitch_2
+            True
+            >>> pitch_1 <= pitch_3
+            True
+
+            >>> pitch_2 <= pitch_1
+            True
+            >>> pitch_2 <= pitch_2
+            True
+            >>> pitch_2 <= pitch_3
+            True
+
+            >>> pitch_3 <= pitch_1
+            False
+            >>> pitch_3 <= pitch_2
+            False
+            >>> pitch_3 <= pitch_3
+            True
+
+        """
+        try:
+            argument = type(self)(argument)
+        except (TypeError, ValueError):
+            return False
+        self_dpn = self._get_diatonic_pitch_number()
+        argument_dpn = argument._get_diatonic_pitch_number()
+        if self_dpn == argument_dpn:
+            return self.accidental <= argument.accidental
+        return self_dpn <= argument_dpn
+
+    def __lt__(self, argument) -> bool:
         """
         Is true when named pitch is less than ``argument``.
 
@@ -9078,6 +4901,16 @@ class NamedPitch(Pitch):
         message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        if self.arrow is not None:
+            return f"{type(self).__name__}({self.name!r}, arrow={self.arrow})"
+        else:
+            return f"{type(self).__name__}({self.name!r})"
+
+    # TODO: remove
     def __str__(self):
         """
         Gets string representation of named pitch.
@@ -9093,11 +4926,10 @@ class NamedPitch(Pitch):
             >>> str(abjad.NamedPitch("df''"))
             "df''"
 
-        Returns string.
         """
         return self.name
 
-    def __sub__(self, argument):
+    def __sub__(self, argument) -> "NamedInterval":
         """
         Subtracts ``argument`` from named pitch.
 
@@ -9109,15 +4941,12 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cs''") - abjad.NamedPitch("fs''")
             NamedInterval('+P4')
 
-        Returns named interval.
         """
         if isinstance(argument, type(self)):
             return NamedInterval.from_pitch_carriers(self, argument)
         interval = NamedInterval(argument)
         interval = -interval
         return interval.transpose(self)
-
-    ### PRIVATE METHODS ###
 
     def _apply_accidental(self, accidental):
         name = self._get_diatonic_pc_name()
@@ -9171,14 +5000,6 @@ class NamedPitch(Pitch):
         diatonic_pitch_number += self._get_diatonic_pc_number()
         return diatonic_pitch_number
 
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_args_values=[self.name],
-            storage_format_is_not_indented=True,
-            storage_format_keyword_names=["arrow"],
-        )
-
     def _get_lilypond_format(self):
         return str(self)
 
@@ -9211,25 +5032,22 @@ class NamedPitch(Pitch):
         assert candidate.number == self.number
         return candidate
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def accidental(self):
+    def accidental(self) -> "Accidental":
         """
         Gets accidental of named pitch.
 
         ..  container:: example
 
             >>> abjad.NamedPitch("c''").accidental
-            Accidental('natural')
+            Accidental(name='natural')
 
             >>> abjad.NamedPitch("cs''").accidental
-            Accidental('sharp')
+            Accidental(name='sharp')
 
             >>> abjad.NamedPitch("df''").accidental
-            Accidental('flat')
+            Accidental(name='flat')
 
-        Returns accidental.
         """
         return self.pitch_class.accidental
 
@@ -9249,8 +5067,6 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cs''", arrow=abjad.Down).arrow
             Down
 
-        ..  container:: example
-
             Displays arrow in interpreter representation:
 
             >>> abjad.NamedPitch("cs''", arrow=abjad.Down)
@@ -9261,7 +5077,7 @@ class NamedPitch(Pitch):
         return self._pitch_class.arrow
 
     @property
-    def hertz(self):
+    def hertz(self) -> float:
         """
         Gets frequency of named pitch in Hertz.
 
@@ -9276,12 +5092,11 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("df''").hertz
             554.36...
 
-        Returns float.
         """
         return super().hertz
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
         Gets name of named pitch.
 
@@ -9296,12 +5111,11 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("df''").name
             "df''"
 
-        Returns string.
         """
         return f"{self.pitch_class!s}{self.octave!s}"
 
     @property
-    def number(self):
+    def number(self) -> int | float:
         """
         Gets number of named pitch.
 
@@ -9319,7 +5133,6 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cf'").number
             -1
 
-        Returns number.
         """
         diatonic_pc_number = self.pitch_class._get_diatonic_pc_number()
         pc_number = _diatonic_pc_number_to_pitch_class_number[diatonic_pc_number]
@@ -9330,27 +5143,26 @@ class NamedPitch(Pitch):
         )
 
     @property
-    def octave(self):
+    def octave(self) -> Octave:
         """
         Gets octave of named pitch.
 
         ..  container:: example
 
             >>> abjad.NamedPitch("c''").octave
-            Octave(5)
+            Octave(number=5)
 
             >>> abjad.NamedPitch("cs''").octave
-            Octave(5)
+            Octave(number=5)
 
             >>> abjad.NamedPitch("df''").octave
-            Octave(5)
+            Octave(number=5)
 
-        Returns octave.
         """
         return self._octave
 
     @property
-    def pitch_class(self):
+    def pitch_class(self) -> NamedPitchClass:
         """
         Gets pitch-class of named pitch.
 
@@ -9365,14 +5177,11 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("df''").pitch_class
             NamedPitchClass('df')
 
-        Returns named pitch-class.
         """
         return self._pitch_class
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_hertz(class_, hertz):
+    def from_hertz(class_, hertz) -> "NamedPitch":
         """
         Makes named pitch from ``hertz``.
 
@@ -9381,18 +5190,15 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch.from_hertz(440)
             NamedPitch("a'")
 
-        ..  container:: example
-
             REGRESSION. Returns c'' (C5) and not c' (C4):
 
             >>> abjad.NamedPitch.from_hertz(519)
             NamedPitch("c''")
 
-        Returns newly constructed named pitch.
         """
         return super().from_hertz(hertz)
 
-    def get_name(self, locale=None):
+    def get_name(self, locale=None) -> str:
         """
         Gets name of named pitch according to ``locale``.
 
@@ -9405,8 +5211,6 @@ class NamedPitch(Pitch):
             'C#5'
 
         Set ``locale`` to ``'us'`` or none.
-
-        Returns string.
         """
         if locale is None:
             return self.name
@@ -9416,7 +5220,7 @@ class NamedPitch(Pitch):
         else:
             raise ValueError(f"must be 'us' or none: {locale!r}.")
 
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "NamedPitch":
         """
         Inverts named pitch around ``axis``.
 
@@ -9430,8 +5234,6 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch('bf').invert("c'")
             NamedPitch("d'")
 
-        ..  container:: example
-
             Inverts pitch around middle C implicitly:
 
             >>> abjad.NamedPitch("d'").invert()
@@ -9440,20 +5242,16 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch('bf').invert()
             NamedPitch("d'")
 
-        ..  container:: example
-
             Inverts pitch around A3:
 
             >>> abjad.NamedPitch("d'").invert('a')
             NamedPitch('e')
 
         Interprets none-valued ``axis`` equal to middle C.
-
-        Returns new named pitch.
         """
         return super().invert(axis=axis)
 
-    def multiply(self, n=1):
+    def multiply(self, n=1) -> "NamedPitch":
         """
         Multiplies named pitch.
 
@@ -9471,14 +5269,12 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("d'").multiply(6.5)
             NamedPitch("cs''")
 
-        Returns new named pitch.
         """
         return super().multiply(n=n)
 
-    def simplify(self):
+    def simplify(self) -> "NamedPitch":
         """
-        Reduce alteration to between -2 and 2 while maintaining identical pitch
-        number.
+        Reduce alteration to between -2 and 2 while maintaining identical pitch number.
 
             >>> abjad.NamedPitch("cssqs'").simplify()
             NamedPitch("dqs'")
@@ -9519,11 +5315,10 @@ class NamedPitch(Pitch):
             alteration += step_size
         diatonic_pc_name = _diatonic_pc_number_to_diatonic_pc_name[diatonic_pc_number]
         accidental = Accidental(alteration)
-        octave = Octave(octave)
         pitch_name = f"{diatonic_pc_name}{accidental!s}{octave!s}"
         return type(self)(pitch_name, arrow=self.arrow)
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "NamedPitch":
         """
         Transposes named pitch by index ``n``.
 
@@ -9534,14 +5329,11 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("c'").transpose(n='m2')
             NamedPitch("df'")
 
-        ..  container:: example
-
             Transposes C4 down a major second:
 
             >>> abjad.NamedPitch("c'").transpose(n='-M2')
             NamedPitch('bf')
 
-        Returns new named pitch.
         """
         interval = NamedInterval(n)
         pitch_number = self.number + interval.semitones
@@ -9553,12 +5345,15 @@ class NamedPitch(Pitch):
         nearest_neighbor = self._to_nearest_octave(pitch_number, pc)
         semitones = pitch_number - nearest_neighbor
         accidental = Accidental(semitones)
-        octave = int(math.floor((pitch_number - semitones) / 12)) + 4
-        octave = Octave(octave)
+        octave_number = int(math.floor((pitch_number - semitones) / 12)) + 4
+        octave = Octave(octave_number)
         name = diatonic_pc_name + str(accidental) + octave.ticks
         return type(self)(name)
 
 
+# mypy currently does not support functools.total_ordering
+# https://github.com/python/mypy/issues/4610
+@functools.total_ordering
 class NumberedPitch(Pitch):
     r"""
     Numbered pitch.
@@ -9570,14 +5365,10 @@ class NumberedPitch(Pitch):
         >>> abjad.NumberedPitch(13)
         NumberedPitch(13)
 
-    ..  container:: example
-
-        Initializes from other numbered pitch
+        Initializes from other numbered pitch:
 
         >>> abjad.NumberedPitch(abjad.NumberedPitch(13))
         NumberedPitch(13)
-
-    ..  container:: example
 
         Initializes from pitch-class / octave pair:
 
@@ -9586,18 +5377,12 @@ class NumberedPitch(Pitch):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_number",)
-
-    ### INITIALIZER ###
 
     def __init__(self, number=0, *, arrow=None, octave=None):
         super().__init__(number or 0, arrow=arrow, octave=octave)
 
-    ### SPECIAL METHODS ###
-
-    def __add__(self, argument):
+    def __add__(self, argument) -> "NumberedPitch":
         """
         Adds ``argument`` to numbered pitch.
 
@@ -9609,13 +5394,75 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13) + abjad.NumberedPitch(12)
             NumberedPitch(25)
 
-        Returns new numbered pitch.
         """
         argument = type(self)(argument)
         semitones = float(self) + float(argument)
         return type(self)(semitones)
 
-    def __lt__(self, argument):
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when ``argument`` is a numbered pitch with ``number`` the same as this
+        numbered pitch.
+        """
+        if isinstance(argument, (int, float)):
+            argument = type(self)(argument)
+        if isinstance(argument, type(self)):
+            return (
+                self.number == argument.number
+                and self.arrow == argument.arrow
+                and self.octave == argument.octave
+            )
+        return False
+
+    def __hash__(self):
+        """
+        Hashes numbered pitch.
+        """
+        return super().__hash__()
+
+    # mypy currently does not support functools.total_ordering
+    # https://github.com/python/mypy/issues/4610
+    # remove __le__ (in favor of __lt__) when mypy supports functools.total_ordering
+    # or, refactor this class as a dataclass and then remove __le__
+    def __le__(self, argument) -> bool:
+        r"""Is true when ``argument`` can be coerced to a numbered pitch and when this
+        numbered pitch is less or equal to ``argument``.
+
+        ..  container:: example
+
+            >>> pitch_1 = abjad.NumberedPitch(12)
+            >>> pitch_2 = abjad.NumberedPitch(12)
+            >>> pitch_3 = abjad.NumberedPitch(13)
+
+            >>> pitch_1 <= pitch_1
+            True
+            >>> pitch_1 <= pitch_2
+            True
+            >>> pitch_1 <= pitch_3
+            True
+
+            >>> pitch_2 <= pitch_1
+            True
+            >>> pitch_2 <= pitch_2
+            True
+            >>> pitch_2 <= pitch_3
+            True
+
+            >>> pitch_3 <= pitch_1
+            False
+            >>> pitch_3 <= pitch_2
+            False
+            >>> pitch_3 <= pitch_3
+            True
+
+        """
+        try:
+            argument = type(self)(argument)
+        except (ValueError, TypeError):
+            return False
+        return self.number <= argument.number
+
+    def __lt__(self, argument) -> bool:
         r"""Is true when ``argument`` can be coerced to a numbered pitch and when this
         numbered pitch is less than ``argument``.
 
@@ -9646,7 +5493,6 @@ class NumberedPitch(Pitch):
             >>> pitch_3 < pitch_3
             False
 
-        Returns true or false.
         """
         try:
             argument = type(self)(argument)
@@ -9654,7 +5500,7 @@ class NumberedPitch(Pitch):
             return False
         return self.number < argument.number
 
-    def __neg__(self):
+    def __neg__(self) -> "NumberedPitch":
         """
         Negates numbered pitch.
 
@@ -9666,11 +5512,10 @@ class NumberedPitch(Pitch):
             >>> -abjad.NumberedPitch(-13.5)
             NumberedPitch(13.5)
 
-        Returns new numbered pitch.
         """
         return type(self)(-self.number)
 
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> "NumberedPitch":
         """
         Adds numbered pitch to ``argument``.
 
@@ -9684,20 +5529,24 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).__radd__(pitch)
             NumberedPitch(25)
 
-        Returns new numbered pitch.
         """
         argument = type(self)(argument)
         return argument.__add__(self)
 
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.number!r})"
+
+    # TODO: remove
     def __str__(self):
         """
-        Gets string representation of numbered pitch.
-
-        Returns string.
+        Gets string.
         """
         return str(self.number)
 
-    def __sub__(self, argument):
+    def __sub__(self, argument) -> "NumberedInterval":
         """
         Subtracts ``argument`` from numbered pitch.
 
@@ -9712,15 +5561,12 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13) - abjad.NumberedPitch(12)
             NumberedInterval(-1)
 
-        Returns numbered interval.
         """
         if isinstance(argument, type(self)):
             return NumberedInterval.from_pitch_carriers(self, argument)
         interval = NumberedInterval(argument)
         interval = -interval
         return interval.transpose(self)
-
-    ### PRIVATE METHODS ###
 
     def _apply_accidental(self, accidental=None):
         accidental = Accidental(accidental)
@@ -9761,30 +5607,19 @@ class NumberedPitch(Pitch):
         result += self._get_diatonic_pc_number()
         return result
 
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=[self.number],
-            storage_format_keyword_names=["arrow"],
-        )
-
     def _get_lilypond_format(self):
         return self.name
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def accidental(self):
+    def accidental(self) -> Accidental:
         """
         Gets accidental of numbered pitch.
 
         ..  container:: example
 
             >>> abjad.NumberedPitchClass(13).accidental
-            Accidental('sharp')
+            Accidental(name='sharp')
 
-        Returns accidental.
         """
         return self.pitch_class.accidental
 
@@ -9795,21 +5630,11 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            Gets no arrow:
-
             >>> abjad.NumberedPitch(13).arrow is None
             True
 
-        ..  container:: example
-
-            Gets up-arrow:
-
             >>> abjad.NumberedPitch(13, arrow=abjad.Up).arrow
             Up
-
-        ..  container:: example
-
-            Gets down-arrow:
 
             >>> abjad.NumberedPitch(13, arrow=abjad.Down).arrow
             Down
@@ -9819,7 +5644,7 @@ class NumberedPitch(Pitch):
         return self._pitch_class.arrow
 
     @property
-    def hertz(self):
+    def hertz(self) -> float:
         """
         Gets frequency of numbered pitch in Hertz.
 
@@ -9834,12 +5659,11 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(12).hertz
             523.25...
 
-        Returns float.
         """
         return super().hertz
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
         Gets name of numbered pitch.
 
@@ -9848,12 +5672,11 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).name
             "cs''"
 
-        Returns string
         """
         return f"{self.pitch_class.name}{self.octave.ticks}"
 
     @property
-    def number(self):
+    def number(self) -> int | float:
         """
         Gets number of numbered pitch.
 
@@ -9862,28 +5685,26 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).number
             13
 
-        Returns number.
         """
         pc_number = float(self.pitch_class)
         octave_base_pitch = (self.octave.number - 4) * 12
         return _math.integer_equivalent_number_to_integer(pc_number + octave_base_pitch)
 
     @property
-    def octave(self):
+    def octave(self) -> Octave:
         """
         Gets octave of numbered pitch.
 
         ..  container:: example
 
             >>> abjad.NumberedPitch(13).octave
-            Octave(5)
+            Octave(number=5)
 
-        Returns octave.
         """
         return self._octave
 
     @property
-    def pitch_class(self):
+    def pitch_class(self) -> NumberedPitchClass:
         """
         Gets pitch-class of numbered pitch.
 
@@ -9892,14 +5713,11 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).pitch_class
             NumberedPitchClass(1)
 
-        Returns numbered pitch-class.
         """
         return self._pitch_class
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_hertz(class_, hertz):
+    def from_hertz(class_, hertz) -> "NumberedPitch":
         """
         Makes numbered pitch from ``hertz``.
 
@@ -9908,18 +5726,15 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch.from_hertz(440)
             NumberedPitch(9)
 
-        ..  container:: example
-
             REGRESSION. Returns 12 (not 0):
 
             >>> abjad.NumberedPitch.from_hertz(519)
             NumberedPitch(12)
 
-        Returns newly constructed numbered pitch.
         """
         return super().from_hertz(hertz)
 
-    def get_name(self, locale=None):
+    def get_name(self, locale=None) -> str:
         """
         Gets name of numbered pitch name according to ``locale``.
 
@@ -9932,12 +5747,10 @@ class NumberedPitch(Pitch):
             'C#5'
 
         Set ``locale`` to ``'us'`` or none.
-
-        Returns string.
         """
         return NamedPitch(self).get_name(locale=locale)
 
-    def interpolate(self, stop_pitch, fraction):
+    def interpolate(self, stop_pitch, fraction) -> "NumberedPitch":
         """
         Interpolates between numbered pitch and ``stop_pitch`` by ``fraction``.
 
@@ -9959,8 +5772,6 @@ class NumberedPitch(Pitch):
             >>> start_pitch.interpolate(stop_pitch, 1)
             NumberedPitch(12)
 
-        ..  container:: example
-
             Interpolates from C5 to C4:
 
             >>> start_pitch = abjad.NumberedPitch(12)
@@ -9977,7 +5788,6 @@ class NumberedPitch(Pitch):
             >>> start_pitch.interpolate(stop_pitch, 1)
             NumberedPitch(0)
 
-        Returns new numbered pitch.
         """
         try:
             fraction = quicktions.Fraction(*fraction)
@@ -10002,7 +5812,7 @@ class NumberedPitch(Pitch):
             assert self >= pitch >= stop_pitch, triple
         return pitch
 
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "NumberedPitch":
         """
         Inverts numbered pitch around ``axis``.
 
@@ -10016,8 +5826,6 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(-2).invert(0)
             NumberedPitch(2)
 
-        ..  container:: example
-
             Inverts pitch-class about pitch-class 0 implicitly:
 
             >>> abjad.NumberedPitch(2).invert()
@@ -10026,18 +5834,15 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(-2).invert()
             NumberedPitch(2)
 
-        ..  container:: example
-
             Inverts pitch-class about pitch-class -3:
 
             >>> abjad.NumberedPitch(2).invert(-3)
             NumberedPitch(-8)
 
-        Returns new numbered pitch.
         """
         return Pitch.invert(self, axis=axis)
 
-    def multiply(self, n=1):
+    def multiply(self, n=1) -> "NumberedPitch":
         """
         Multiplies numbered pitch by index ``n``.
 
@@ -10046,11 +5851,10 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(14).multiply(3)
             NumberedPitch(42)
 
-        Returns new numbered pitch.
         """
         return super().multiply(n=n)
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "NumberedPitch":
         """
         Tranposes numbered pitch by ``n`` semitones.
 
@@ -10059,7 +5863,6 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).transpose(1)
             NumberedPitch(14)
 
-        Returns new numbered pitch.
         """
         interval = NumberedInterval(n)
         return type(self)(float(self) + float(interval))
@@ -10073,18 +5876,6 @@ class PitchRange:
     ..  container:: example
 
         Pitches from C3 to C7, inclusive:
-
-        >>> pitch_range = abjad.PitchRange("[C3, C7]")
-        >>> lilypond_file = abjad.illustrate(pitch_range)
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.storage(pitch_range)
-            >>> print(string)
-            abjad.PitchRange('[C3, C7]')
-
-    ..  container:: example
 
         >>> pitch_range = abjad.PitchRange("[C3, C7]")
         >>> lilypond_file = abjad.illustrate(pitch_range)
@@ -10123,26 +5914,85 @@ class PitchRange:
                 >>
             >>
 
-    Initalizes from pitch numbers, pitch names, pitch instances,
-    one-line reprs or other pitch range objects.
+    ..  container:: example
 
-    Pitch ranges do not sort relative to other pitch ranges.
+        Pitches from -39 to 48, inclusive:
+
+        >>> pitch_range = abjad.PitchRange("[-39, 48]")
+        >>> lilypond_file = abjad.illustrate(pitch_range)
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> score = lilypond_file["Score"]
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
+            \context Score = "Score"
+            \with
+            {
+                \override BarLine.stencil = ##f
+                \override Glissando.thickness = 2
+                \override SpanBar.stencil = ##f
+                \override TimeSignature.stencil = ##f
+            }
+            <<
+                \context PianoStaff = "Piano_Staff"
+                <<
+                    \context Staff = "Treble_Staff"
+                    {
+                        \clef "treble"
+                        s1 * 1/4
+                        s1 * 1/4
+                    }
+                    \context Staff = "Bass_Staff"
+                    {
+                        \clef "bass"
+                        a,,,1 * 1/4
+                        \glissando
+                        \change Staff = Treble_Staff
+                        c'''''1 * 1/4
+                    }
+                >>
+            >>
+
+    ..  container:: example exception
+
+        Errors on mismatched pitch types:
+
+        >>> abjad.PitchRange("[A0, 48]")
+        Traceback (most recent call last):
+            ...
+        Exception: mismatched types: NamedPitch('a,,,') NumberedPitch(48).
+
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_start", "_stop")
-
-    ### INITIALIZER ###
+    __slots__ = (
+        "_close_bracket",
+        "_open_bracket",
+        "_range_string",
+        "_start_pitch",
+        "_stop_pitch",
+    )
 
     def __init__(self, range_string="[A0, C8]"):
         if isinstance(range_string, type(self)):
             range_string = range_string.range_string
-        start, stop = self._parse_range_string(range_string)
-        self._start = start
-        self._stop = stop
-
-    ### SPECIAL METHODS ###
+        assert isinstance(range_string, str), repr(range_string)
+        bundle = self._parse_range_string(range_string)
+        message = f"mismatched types: {bundle.start_pitch!r} {bundle.stop_pitch!r}."
+        if isinstance(bundle.start_pitch, NamedPitch) and isinstance(
+            bundle.stop_pitch, NumberedPitch
+        ):
+            raise Exception(message)
+        if isinstance(bundle.stop_pitch, NamedPitch) and isinstance(
+            bundle.start_pitch, NumberedPitch
+        ):
+            raise Exception(message)
+        self._close_bracket = bundle.close_bracket
+        self._open_bracket = bundle.open_bracket
+        self._range_string = bundle.range_string
+        self._start_pitch = bundle.start_pitch
+        self._stop_pitch = bundle.stop_pitch
 
     def __contains__(self, argument) -> bool:
         """
@@ -10317,22 +6167,52 @@ class PitchRange:
             True
 
         """
-        if isinstance(argument, (int, float)):
+        pitch: NamedPitch | NumberedPitch
+        start_pitch: NamedPitch | NumberedPitch
+        stop_pitch: NamedPitch | NumberedPitch
+        if isinstance(argument, (str, NamedPitch)):
             pitch = NamedPitch(argument)
-            return self._contains_pitch(pitch)
-        if isinstance(argument, Pitch):
-            return self._contains_pitch(argument)
-        raise Exception(f"must be pitch or number {argument!r}.")
+            if self.start_pitch is None:
+                start_pitch = NamedPitch(-1000)
+            else:
+                start_pitch = NamedPitch(self.start_pitch)
+            if self.stop_pitch is None:
+                stop_pitch = NamedPitch(1000)
+            else:
+                stop_pitch = NamedPitch(self.stop_pitch)
+        elif isinstance(argument, (int, float, NumberedPitch)):
+            pitch = NumberedPitch(argument)
+            if self.start_pitch is None:
+                start_pitch = NumberedPitch(-1000)
+            else:
+                start_pitch = NumberedPitch(self.start_pitch)
+            if self.stop_pitch is None:
+                stop_pitch = NumberedPitch(1000)
+            else:
+                stop_pitch = NumberedPitch(self.stop_pitch)
+        else:
+            raise Exception(f"must be pitch, number or string: {argument!r}.")
+        if self._open_bracket == "[":
+            if self._close_bracket == "]":
+                return start_pitch <= pitch <= stop_pitch
+            else:
+                return start_pitch <= pitch < stop_pitch
+        else:
+            if self._close_bracket == "]":
+                return start_pitch < pitch <= stop_pitch
+            else:
+                return start_pitch < pitch < stop_pitch
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Delegates to ``abjad.format.compare_objects()``.
+        Is true when ``argument`` is a pitch range with ``range_string`` equal to this
+        pitch range.
 
         ..  container:: example
 
-            >>> range_1 = abjad.PitchRange.from_pitches(-39, 0)
-            >>> range_2 = abjad.PitchRange.from_pitches(-39, 0)
-            >>> range_3 = abjad.PitchRange.from_pitches(-39, 48)
+            >>> range_1 = abjad.PitchRange("[-39, 0]")
+            >>> range_2 = abjad.PitchRange("[-39, 0]")
+            >>> range_3 = abjad.PitchRange("[-39, 48]")
 
             >>> range_1 == range_1
             True
@@ -10355,28 +6235,27 @@ class PitchRange:
             >>> range_3 == range_3
             True
 
-        Returns true or false.
         """
-        return _format.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return self.range_string == argument.range_string
+        return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes pitch range.
-
-        Returns integer.
         """
-        return hash(self.__class__.__name__ + str(self))
+        return hash(repr(self))
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
-        Is true when start pitch of this pitch-range is less than start
-        pitch of ``argument`` pitch range.
+        Is true when start pitch of this pitch-range is less than start pitch of
+        ``argument`` pitch range.
 
         ..  container:: example
 
-            >>> range_1 = abjad.PitchRange.from_pitches(-39, 0)
-            >>> range_2 = abjad.PitchRange.from_pitches(-39, 0)
-            >>> range_3 = abjad.PitchRange.from_pitches(-39, 48)
+            >>> range_1 = abjad.PitchRange("[-39, 0]")
+            >>> range_2 = abjad.PitchRange("[-39, 0]")
+            >>> range_3 = abjad.PitchRange("[-39, 48]")
 
             >>> range_1 < range_1
             False
@@ -10399,101 +6278,67 @@ class PitchRange:
             >>> range_3 < range_3
             False
 
-        Returns true or false.
         """
-        try:
-            argument = type(self)(argument)
-        except (TypeError, ValueError):
-            return False
-        if self.start_pitch == argument.start_pitch:
-            return self.stop_pitch < argument.stop_pitch
-        return self.start_pitch < argument.start_pitch
+        assert isinstance(argument, type(self)), repr(argument)
+        argument_start_pitch: NamedPitch | NumberedPitch
+        argument_stop_pitch: NamedPitch | NumberedPitch
+        self_start_pitch: NamedPitch | NumberedPitch
+        self_stop_pitch: NamedPitch | NumberedPitch
+        if self._is_named() and argument._is_named():
+            if self.start_pitch is None:
+                self_start_pitch = NamedPitch(-1000)
+            else:
+                self_start_pitch = NamedPitch(self.start_pitch)
+            if self.stop_pitch is None:
+                self_stop_pitch = NamedPitch(1000)
+            else:
+                self_stop_pitch = NamedPitch(self.stop_pitch)
+            if argument.start_pitch is None:
+                argument_start_pitch = NamedPitch(-1000)
+            else:
+                argument_start_pitch = NamedPitch(argument.start_pitch)
+            if argument.stop_pitch is None:
+                argument_stop_pitch = NamedPitch(1000)
+            else:
+                argument_stop_pitch = NamedPitch(argument.stop_pitch)
+        elif self._is_numbered() and argument._is_numbered():
+            if self.start_pitch is None:
+                self_start_pitch = NumberedPitch(-1000)
+            else:
+                self_start_pitch = NumberedPitch(self.start_pitch)
+            if self.stop_pitch is None:
+                self_stop_pitch = NumberedPitch(1000)
+            else:
+                self_stop_pitch = NumberedPitch(self.stop_pitch)
+            if argument.start_pitch is None:
+                argument_start_pitch = NumberedPitch(-1000)
+            else:
+                argument_start_pitch = NumberedPitch(argument.start_pitch)
+            if argument.stop_pitch is None:
+                argument_stop_pitch = NumberedPitch(1000)
+            else:
+                argument_stop_pitch = NumberedPitch(argument.stop_pitch)
+        else:
+            raise Exception(f"mismatched types: {self!r} {argument!r}.")
+        if self_start_pitch == argument_start_pitch:
+            return self_stop_pitch < argument_stop_pitch
+        return self_start_pitch < argument_start_pitch
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets pitch range interpreter representation.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}(range_string={self.range_string!r})"
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _close_bracket_string(self):
-        if self.stop_pitch_is_included_in_range:
-            return "]"
-        else:
-            return ")"
-
-    @property
-    def _open_bracket_string(self):
-        if self.start_pitch_is_included_in_range:
-            return "["
-        else:
-            return "("
-
-    ### PRIVATE METHODS ###
-
-    def _contains_pitch(self, pitch):
-        if isinstance(pitch, numbers.Number):
-            pitch = NamedPitch(pitch)
-        elif isinstance(pitch, str):
-            pitch = NamedPitch(pitch)
-        if self.start_pitch is None and self.stop_pitch is None:
-            return True
-        elif self.start_pitch is None:
-            if self.stop_pitch_is_included_in_range:
-                return pitch <= self.stop_pitch
-            else:
-                return pitch < self.stop_pitch
-        elif self.stop_pitch is None:
-            if self.start_pitch_is_included_in_range:
-                return self.start_pitch <= pitch
-            else:
-                return self.start_pitch < pitch
-        else:
-            if self.start_pitch_is_included_in_range:
-                if self.stop_pitch_is_included_in_range:
-                    return self.start_pitch <= pitch <= self.stop_pitch
-                else:
-                    return self.start_pitch <= pitch < self.stop_pitch
-            else:
-                if self.stop_pitch_is_included_in_range:
-                    return self.start_pitch < pitch <= self.stop_pitch
-                else:
-                    return self.start_pitch < pitch < self.stop_pitch
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            coerce_for_equality=True,
-            storage_format_args_values=[self.range_string],
-            storage_format_is_not_indented=True,
+    def _is_named(self):
+        return isinstance(self.start_pitch, (NamedPitch, type(None))) and isinstance(
+            self.stop_pitch, (NamedPitch, type(None))
         )
 
-    def _get_named_range_string(self):
-        result = []
-        result.append(self._open_bracket_string)
-        if self.start_pitch:
-            result.append(self.start_pitch.get_name(locale="us"))
-        else:
-            result.append("-inf")
-        result.append(", ")
-        if self.stop_pitch:
-            result.append(self.stop_pitch.get_name(locale="us"))
-        else:
-            result.append("+inf")
-        result.append(self._close_bracket_string)
-        result = "".join(result)
-        return result
-
-    def _get_numbered_range_string(self):
-        result = []
-        result.append(self._open_bracket_string)
-        result.append(str(self.start_pitch.number))
-        result.append(", ")
-        result.append(str(self.stop_pitch.number))
-        result.append(self._close_bracket_string)
-        result = "".join(result)
-        return result
+    def _is_numbered(self):
+        return isinstance(self.start_pitch, (NumberedPitch, type(None))) and isinstance(
+            self.stop_pitch, (NumberedPitch, type(None))
+        )
 
     def _parse_range_string(self, range_string):
         assert isinstance(range_string, str), repr(range_string)
@@ -10501,37 +6346,40 @@ class PitchRange:
         range_string = range_string.replace("+inf", "1000")
         match = _range_string_regex.match(range_string)
         if match is None:
-            raise ValueError(f"can not instantiate pitch range: {range_string!r}")
+            raise ValueError(f"can not parse range string: {range_string!r}")
         group_dict = match.groupdict()
-        start_punctuation = group_dict["open_bracket"]
+        open_bracket = group_dict["open_bracket"]
         start_pitch_string = group_dict["start_pitch"]
         stop_pitch_string = group_dict["stop_pitch"]
-        stop_punctuation = group_dict["close_bracket"]
-        start_inclusivity_string = _start_punctuation_to_inclusivity_string[
-            start_punctuation
-        ]
-        stop_inclusivity_string = _stop_punctuation_to_inclusivity_string[
-            stop_punctuation
-        ]
+        close_bracket = group_dict["close_bracket"]
         if start_pitch_string == "-1000":
             start_pitch = None
+            start_pitch_repr = "-inf"
+        elif start_pitch_string.isnumeric() or start_pitch_string.startswith("-"):
+            start_pitch = NumberedPitch(int(start_pitch_string))
+            start_pitch_repr = str(start_pitch)
         else:
-            try:
-                start_pitch = NamedPitch(start_pitch_string)
-            except (TypeError, ValueError):
-                start_pitch = NumberedPitch(int(start_pitch_string))
+            start_pitch = NamedPitch(start_pitch_string)
+            start_pitch_repr = start_pitch.get_name(locale="us")
+
         if stop_pitch_string == "1000":
             stop_pitch = None
+            stop_pitch_repr = "+inf"
+        elif stop_pitch_string.isnumeric() or stop_pitch_string.startswith("-"):
+            stop_pitch = NumberedPitch(int(stop_pitch_string))
+            stop_pitch_repr = str(stop_pitch)
         else:
-            try:
-                stop_pitch = NamedPitch(stop_pitch_string)
-            except (TypeError, ValueError):
-                stop_pitch = NumberedPitch(int(stop_pitch_string))
-        start_pair = (start_pitch, start_inclusivity_string)
-        stop_pair = (stop_pitch, stop_inclusivity_string)
-        return start_pair, stop_pair
-
-    ### PUBLIC PROPERTIES ###
+            stop_pitch = NamedPitch(stop_pitch_string)
+            stop_pitch_repr = stop_pitch.get_name(locale="us")
+        start, stop = open_bracket, close_bracket
+        normalized_range_string = f"{start}{start_pitch_repr}, {stop_pitch_repr}{stop}"
+        return types.SimpleNamespace(
+            close_bracket=close_bracket,
+            open_bracket=open_bracket,
+            range_string=normalized_range_string,
+            start_pitch=start_pitch,
+            stop_pitch=stop_pitch,
+        )
 
     @property
     def range_string(self) -> str:
@@ -10540,78 +6388,52 @@ class PitchRange:
 
         ..  container:: example
 
-            >>> pitch_range = abjad.PitchRange("[C3, C7]")
-            >>> pitch_range.range_string
+            >>> abjad.PitchRange("[C3, C7]").range_string
             '[C3, C7]'
 
+            >>> abjad.PitchRange("[-inf, C7]").range_string
+            '[-inf, C7]'
+
+            >>> abjad.PitchRange("[C3, +inf]").range_string
+            '[C3, +inf]'
+
+            >>> abjad.PitchRange("[-inf, +inf]").range_string
+            '[-inf, +inf]'
+
         """
-        return self._get_named_range_string()
+        return self._range_string
 
     @property
-    def start_pitch(self) -> typing.Optional[NamedPitch]:
+    def start_pitch(self) -> NamedPitch | NumberedPitch | None:
         """
         Start pitch of pitch range.
 
         ..  container:: example
 
-            >>> pitch_range = abjad.PitchRange("[C3, C7]")
-            >>> pitch_range.start_pitch
+            >>> abjad.PitchRange("[C3, C7]").start_pitch
             NamedPitch('c')
 
-        """
-        if self._start is None:
-            return None
-        return self._start[0]
-
-    @property
-    def start_pitch_is_included_in_range(self) -> bool:
-        """
-        Is true when start pitch is included in range.
-
-        ..  container:: example
-
-            >>> pitch_range = abjad.PitchRange("[C3, C7]")
-            >>> pitch_range.start_pitch_is_included_in_range
+            >>> abjad.PitchRange("[-inf, C7]").start_pitch is None
             True
 
         """
-        if self._start is None:
-            return True
-        return self._start[1] == "inclusive"
+        return self._start_pitch
 
     @property
-    def stop_pitch(self) -> typing.Optional[NamedPitch]:
+    def stop_pitch(self) -> NamedPitch | NumberedPitch | None:
         """
         Stop pitch of pitch range.
 
         ..  container:: example
 
-            >>> pitch_range = abjad.PitchRange("[C3, C7]")
-            >>> pitch_range.stop_pitch
+            >>> abjad.PitchRange("[C3, C7]").stop_pitch
             NamedPitch("c''''")
 
-        """
-        if self._stop is None:
-            return None
-        return self._stop[0]
-
-    @property
-    def stop_pitch_is_included_in_range(self) -> bool:
-        """
-        Is true when stop pitch is included in range.
-
-        ..  container:: example
-
-            >>> pitch_range = abjad.PitchRange("[C3, C7]")
-            >>> pitch_range.stop_pitch_is_included_in_range
+            >>> abjad.PitchRange("[C8, +inf]").stop_pitch is None
             True
 
         """
-        if self._stop is None:
-            return True
-        return self._stop[1] == "inclusive"
-
-    ### PUBLIC METHODS ###
+        return self._stop_pitch
 
     @staticmethod
     def from_octave(octave) -> "PitchRange":
@@ -10621,86 +6443,15 @@ class PitchRange:
         ..  container:: example
 
             >>> abjad.PitchRange.from_octave(5)
-            PitchRange('[C5, C6)')
+            PitchRange(range_string='[C5, C6)')
 
         """
         octave = Octave(octave)
         return PitchRange(f"[C{octave.number}, C{octave.number + 1})")
 
-    @staticmethod
-    def from_pitches(
-        start_pitch,
-        stop_pitch,
-        start_pitch_is_included_in_range=True,
-        stop_pitch_is_included_in_range=True,
-    ) -> "PitchRange":
-        """
-        Initializes pitch range from numbers.
-
-        ..  container:: example
-
-            >>> abjad.PitchRange.from_pitches(-18, 19)
-            PitchRange('[F#2, G5]')
-
-        """
-        if start_pitch is None:
-            start_pitch_string = "-inf"
-        else:
-            start_pitch_string = str(NamedPitch(start_pitch))
-        if stop_pitch is None:
-            stop_pitch_string = "+inf"
-        else:
-            stop_pitch_string = str(NamedPitch(stop_pitch))
-        start_containment = "["
-        if not start_pitch_is_included_in_range:
-            start_containment = "("
-        stop_containment = "]"
-        if not stop_pitch_is_included_in_range:
-            stop_containment = ")"
-        string = "{}{}, {}{}"
-        string = string.format(
-            start_containment,
-            start_pitch_string,
-            stop_pitch_string,
-            stop_containment,
-        )
-        pitch_range = PitchRange(string)
-        return pitch_range
-
-    @classmethod
-    def is_range_string(class_, argument) -> bool:
-        """Is true when ``argument`` is a pitch range string.
-
-        ..  container:: example
-
-            >>> abjad.PitchRange.is_range_string("[A0, C8]")
-            True
-
-            >>> abjad.PitchRange.is_range_string("[A#0, Cb~8]")
-            True
-
-            >>> abjad.PitchRange.is_range_string("[A#+0, cs'')")
-            True
-
-            >>> abjad.PitchRange.is_range_string("(b,,,, ctqs]")
-            True
-
-        ..  container:: example
-
-            >>> abjad.PitchRange.is_range_string("text")
-            False
-
-        The regex that underlies this predicate matches against two
-        comma-separated pitches enclosed in some combination of square
-        brackets and round parentheses.
-        """
-        if not isinstance(argument, str):
-            return False
-        return bool(_range_string_regex.match(argument))
-
     def voice_pitch_class(self, pitch_class):
         """
-        Voices ``pitch_class``:
+        Voices ``pitch_class``.
 
         ..  container:: example
 
@@ -10710,15 +6461,11 @@ class PitchRange:
             >>> pitch_range.voice_pitch_class("c")
             (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
 
-        ..  container:: example
-
             Voices B two times:
 
             >>> pitch_range = abjad.PitchRange("[C4, C6]")
             >>> pitch_range.voice_pitch_class("b")
             (NamedPitch("b'"), NamedPitch("b''"))
-
-        ..  container:: example
 
             Returns empty because B can not voice:
 
@@ -10728,8 +6475,6 @@ class PitchRange:
 
         """
         named_pitch_class = NamedPitchClass(pitch_class)
-        assert self.start_pitch is not None
-        assert self.stop_pitch is not None
         pair = (named_pitch_class.name, self.start_pitch.octave.number)
         named_pitch = NamedPitch(pair)
         result = []
@@ -10740,46 +6485,49 @@ class PitchRange:
         return tuple(result)
 
 
+@dataclasses.dataclass(slots=True)
 class Segment(_typedcollections.TypedTuple):
     """
     Abstract segment.
     """
 
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
+    def __post_init__(self):
         prototype = (collections.abc.Iterator, types.GeneratorType)
-        if isinstance(items, str):
-            items = items.split()
-        elif isinstance(items, prototype):
-            items = [_ for _ in items]
-        if item_class is None:
-            item_class = self._named_item_class
-            if items is not None:
-                if isinstance(items, _typedcollections.TypedCollection) and issubclass(
-                    items.item_class, self._parent_item_class
-                ):
-                    item_class = items.item_class
-                elif len(items):
-                    if isinstance(items, collections.abc.Set):
-                        items = tuple(items)
-                    if isinstance(items[0], str):
-                        item_class = self._named_item_class
-                    elif isinstance(items[0], (int, float)):
-                        item_class = self._numbered_item_class
-                    elif isinstance(items[0], self._parent_item_class):
-                        item_class = type(items[0])
-        if isinstance(item_class, str):
+        if isinstance(self.items, str):
+            self.items = self.items.split()
+        elif isinstance(self.items, prototype):
+            self.items = [_ for _ in self.items]
+        if self.item_class is None:
+            self.item_class = self._named_item_class
+            if self.items is not None:
+                if isinstance(
+                    self.items, _typedcollections.TypedCollection
+                ) and issubclass(self.items.item_class, self._parent_item_class):
+                    self.item_class = self.items.item_class
+                elif len(self.items):
+                    if isinstance(self.items, collections.abc.Set):
+                        self.items = tuple(self.items)
+                    if isinstance(self.items[0], str):
+                        self.item_class = self._named_item_class
+                    elif isinstance(self.items[0], (int, float)):
+                        self.item_class = self._numbered_item_class
+                    elif isinstance(self.items[0], self._parent_item_class):
+                        self.item_class = type(self.items[0])
+        if isinstance(self.item_class, str):
             abjad = importlib.import_module("abjad")
             globals_ = {"abjad": abjad}
             globals_.update(abjad.__dict__.copy())
-            item_class = eval(item_class, globals_)
-        assert issubclass(item_class, self._parent_item_class)
-        _typedcollections.TypedTuple.__init__(self, items=items, item_class=item_class)
+            self.item_class = eval(self.item_class, globals_)
+        assert issubclass(self.item_class, self._parent_item_class)
+        # _typedcollections.TypedTuple.__init__(self, items=items, item_class=item_class)
+        _typedcollections.TypedTuple.__post_init__(self)
 
-    ### SPECIAL METHODS ###
+    def __repr__(self):
+        """
+        Gets repr.
+        """
+        item_strings = [str(_) for _ in self.items]
+        return f"{type(self).__name__}(items={item_strings}, item_class=abjad.{self.item_class.__name__})"
 
     def __str__(self) -> str:
         """
@@ -10789,47 +6537,8 @@ class Segment(_typedcollections.TypedTuple):
         string = ", ".join(items)
         return f"<{string}>"
 
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
-    ### PRIVATE METHODS ###
-
     def _coerce_item(self, item):
-        return self._item_class(item)
-
-    def _get_format_specification(self):
-        items = []
-        if self.item_class.__name__.startswith("Named"):
-            items = [str(x) for x in self]
-        elif hasattr(self.item_class, "pitch_number"):
-            items = [x.pitch_number for x in self]
-        elif hasattr(self.item_class, "pitch_class_number"):
-            items = [x.pitch_class_number for x in self]
-        elif self.item_class.__name__.startswith("Numbered"):
-            items = [
-                _math.integer_equivalent_number_to_integer(float(x.number))
-                for x in self
-            ]
-        elif hasattr(self.item_class, "__abs__"):
-            items = [abs(x) for x in self]
-        else:
-            raise ValueError(f"invalid item class: {self.item_class!r}.")
-        return _format.FormatSpecification(
-            repr_keyword_names=["name"],
-            repr_args_values=[items],
-            storage_format_args_values=[tuple(self._collection)],
-        )
+        return self.item_class(item)
 
     def _get_padded_string(self, width=2):
         strings = []
@@ -10839,55 +6548,23 @@ class Segment(_typedcollections.TypedTuple):
         string = ", ".join(strings)
         return f"<{string}>"
 
-    ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
-    def from_selection(class_, selection, item_class=None):
-        """
-        Makes segment from ``selection``.
-
-        Returns new segment.
-        """
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def has_duplicates(self):
-        """
-        Is true when segment has duplicates.
-
-        Returns true or false.
-        """
-        raise NotImplementedError
-
-
+@dataclasses.dataclass(slots=True)
 class IntervalClassSegment(Segment):
     """
     Interval-class segment.
 
     ..  container:: example
 
-        An interval-class segment:
-
         >>> intervals = 'm2 M10 -aug4 P5'
         >>> abjad.IntervalClassSegment(intervals)
-        IntervalClassSegment(['+m2', '+M3', '-A4', '+P5'])
-
-    ..  container:: example
-
-        Another interval-class segment:
+        IntervalClassSegment(items=(NamedIntervalClass('+m2'), NamedIntervalClass('+M3'), NamedIntervalClass('-A4'), NamedIntervalClass('+P5')), item_class=<class 'abjad.pitch.NamedIntervalClass'>)
 
         >>> intervals = 'P4 P5 P11 P12'
         >>> abjad.IntervalClassSegment(intervals)
-        IntervalClassSegment(['+P4', '+P5', '+P4', '+P5'])
+        IntervalClassSegment(items=(NamedIntervalClass('+P4'), NamedIntervalClass('+P5'), NamedIntervalClass('+P4'), NamedIntervalClass('+P5')), item_class=<class 'abjad.pitch.NamedIntervalClass'>)
 
-    Returns interval-class segment.
     """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
@@ -10901,10 +6578,8 @@ class IntervalClassSegment(Segment):
     def _parent_item_class(self):
         return IntervalClass
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def is_tertian(self):
+    def is_tertian(self) -> bool:
         """
         Is true when all named interval-classes in segment are tertian.
 
@@ -10917,9 +6592,8 @@ class IntervalClassSegment(Segment):
             >>> interval_class_segment.is_tertian
             True
 
-        Returns true or false.
         """
-        inversion_equivalent_interval_class_segment = _new.new(
+        inversion_equivalent_interval_class_segment = dataclasses.replace(
             self, item_class=NamedInversionEquivalentIntervalClass
         )
         for interval in inversion_equivalent_interval_class_segment:
@@ -10927,10 +6601,8 @@ class IntervalClassSegment(Segment):
                 return False
         return True
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "IntervalClassSegment":
         """
         Initializes interval-class segment from component selection.
 
@@ -10940,9 +6612,8 @@ class IntervalClassSegment(Segment):
             >>> staff_2 = abjad.Staff("c4. r8 g2")
             >>> selection = abjad.select((staff_1, staff_2))
             >>> abjad.IntervalClassSegment.from_selection(selection)
-            IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
+            IntervalClassSegment(items=(NamedIntervalClass('-M2'), NamedIntervalClass('-M3'), NamedIntervalClass('-m3'), NamedIntervalClass('+m7'), NamedIntervalClass('+M7'), NamedIntervalClass('-P5')), item_class=<class 'abjad.pitch.NamedIntervalClass'>)
 
-        Returns interval-class segment.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
@@ -10969,43 +6640,30 @@ class IntervalClassSegment(Segment):
         return len(set(self)) < len(self)
 
 
+@dataclasses.dataclass(slots=True)
 class IntervalSegment(Segment):
     """
     Interval segment.
 
     ..  container:: example
 
-        Initializes from string:
-
         >>> intervals = 'm2 M10 -aug4 P5'
         >>> abjad.IntervalSegment(intervals)
-        IntervalSegment(['+m2', '+M10', '-A4', '+P5'])
-
-    ..  container:: example
-
-        Initializes from pitch segment:
+        IntervalSegment(items=(NamedInterval('+m2'), NamedInterval('+M10'), NamedInterval('-A4'), NamedInterval('+P5')), item_class=<class 'abjad.pitch.NamedInterval'>)
 
         >>> pitch_segment = abjad.PitchSegment("c d e f g a b c'")
         >>> abjad.IntervalSegment(pitch_segment)
-        IntervalSegment(['+M2', '+M2', '+m2', '+M2', '+M2', '+M2', '+m2'])
+        IntervalSegment(items=(NamedInterval('+M2'), NamedInterval('+M2'), NamedInterval('+m2'), NamedInterval('+M2'), NamedInterval('+M2'), NamedInterval('+M2'), NamedInterval('+m2')), item_class=<class 'abjad.pitch.NamedInterval'>)
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
-        if isinstance(items, PitchSegment):
+    def __post_init__(self):
+        if isinstance(self.items, PitchSegment):
             intervals = []
-            for one, two in _sequence.Sequence(items).nwise():
+            for one, two in _sequence.Sequence(self.items).nwise():
                 intervals.append(one - two)
-            items = intervals
-        Segment.__init__(self, items=items, item_class=item_class)
-
-    ### PRIVATE PROPERTIES ###
+            self.items = intervals
+        Segment.__post_init__(self)
 
     @property
     def _named_item_class(self):
@@ -11018,8 +6676,6 @@ class IntervalSegment(Segment):
     @property
     def _parent_item_class(self):
         return Interval
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def slope(self):
@@ -11066,10 +6722,8 @@ class IntervalSegment(Segment):
                 minimum = current
         return NumberedInterval(maximum - minimum)
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "IntervalSegment":
         """
         Makes interval segment from component ``selection``.
 
@@ -11079,10 +6733,9 @@ class IntervalSegment(Segment):
             >>> abjad.IntervalSegment.from_selection(
             ...     abjad.select(staff),
             ...     item_class=abjad.NumberedInterval,
-            ...     )
-            IntervalSegment([2, 2, 1, 2, 2, 2, 1])
+            ... )
+            IntervalSegment(items=(NumberedInterval(2), NumberedInterval(2), NumberedInterval(1), NumberedInterval(2), NumberedInterval(2), NumberedInterval(2), NumberedInterval(1)), item_class=<class 'abjad.pitch.NumberedInterval'>)
 
-        Returns interval segment.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pitches = [_ for _ in pitch_segment]
@@ -11114,9 +6767,10 @@ class IntervalSegment(Segment):
 
         Returns new interval segment.
         """
-        return _new.new(self, self[-n:] + self[:-n])
+        return dataclasses.replace(self, self[-n:] + self[:-n])
 
 
+@dataclasses.dataclass(slots=True)
 class PitchClassSegment(Segment):
     r"""
     Pitch-class segment.
@@ -11176,20 +6830,12 @@ class PitchClassSegment(Segment):
 
     """
 
-    ### CLASS VARIABLES ###
+    def __post_init__(self):
+        if not self.items and not self.item_class:
+            self.item_class = self._named_item_class
+        Segment.__post_init__(self)
 
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
-        if not items and not item_class:
-            item_class = self._named_item_class
-        Segment.__init__(self, items=items, item_class=item_class)
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, argument):
+    def __add__(self, argument) -> "PitchClassSegment":
         r"""
         Adds ``argument`` to segment.
 
@@ -11199,7 +6845,7 @@ class PitchClassSegment(Segment):
 
             >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
             >>> abjad.PitchClassSegment(items=pitch_numbers)
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> J = abjad.PitchClassSegment(items=pitch_numbers)
             >>> lilypond_file = abjad.illustrate(J)
@@ -11207,7 +6853,7 @@ class PitchClassSegment(Segment):
 
             >>> pitch_names = ['c', 'ef', 'bqs,', 'd']
             >>> abjad.PitchClassSegment(items=pitch_names)
-            PitchClassSegment("c ef bqs d")
+            PitchClassSegment(items="c ef bqs d", item_class=NamedPitchClass)
 
             >>> K = abjad.PitchClassSegment(items=pitch_names)
             >>> lilypond_file = abjad.illustrate(K)
@@ -11218,7 +6864,7 @@ class PitchClassSegment(Segment):
             Adds J and K:
 
             >>> J + K
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 0, 3, 11.5, 2])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7, 0, 3, 11.5, 2], item_class=NumberedPitchClass)
 
             >>> segment = J + K
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11250,8 +6896,7 @@ class PitchClassSegment(Segment):
             Adds J repeatedly:
 
             >>> J + J + J
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
-
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> segment = J + J + J
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11291,7 +6936,7 @@ class PitchClassSegment(Segment):
             Adds transformed segments:
 
             >>> J.rotate(n=1) + K.rotate(n=2)
-            PitchClassSegment([7, 10, 10.5, 6, 7, 10.5, 11.5, 2, 0, 3])
+            PitchClassSegment(items=[7, 10, 10.5, 6, 7, 10.5, 11.5, 2, 0, 3], item_class=NumberedPitchClass)
 
             >>> segment = J.rotate(n=1) + K.rotate(n=2)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11324,7 +6969,7 @@ class PitchClassSegment(Segment):
 
             >>> segment = J.rotate(n=1) + K.rotate(n=2)
             >>> segment.retrograde()
-            PitchClassSegment([3, 0, 2, 11.5, 10.5, 7, 6, 10.5, 10, 7])
+            PitchClassSegment(items=[3, 0, 2, 11.5, 10.5, 7, 6, 10.5, 10, 7], item_class=NumberedPitchClass)
 
             >>> segment = segment.retrograde()
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11351,13 +6996,12 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        Returns new segment.
         """
         argument = type(self)(items=argument)
         items = self.items + argument.items
         return type(self)(items=items)
 
-    def __contains__(self, argument):
+    def __contains__(self, argument) -> bool:
         r"""
         Is true when pitch-class segment contains ``argument``.
 
@@ -11368,7 +7012,7 @@ class PitchClassSegment(Segment):
             >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
             >>> segment = abjad.PitchClassSegment(items=pitch_numbers)
             >>> segment
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> abjad.NamedPitch('bf') in segment
             True
@@ -11390,7 +7034,7 @@ class PitchClassSegment(Segment):
 
         Returns true or false.
         """
-        return super().__contains__(argument)
+        return Segment.__contains__(self, argument)
 
     def __getitem__(self, argument):
         r"""
@@ -11402,7 +7046,7 @@ class PitchClassSegment(Segment):
 
             >>> pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
             >>> abjad.PitchClassSegment(items=pitch_numbers)
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> J = abjad.PitchClassSegment(items=pitch_numbers)
             >>> lilypond_file = abjad.illustrate(J)
@@ -11427,7 +7071,7 @@ class PitchClassSegment(Segment):
             Gets slice:
 
             >>> J[:4]
-            PitchClassSegment([10, 10.5, 6, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7], item_class=NumberedPitchClass)
 
             >>> segment = J[:4]
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11453,7 +7097,7 @@ class PitchClassSegment(Segment):
             Gets retrograde of slice:
 
             >>> J[:4].retrograde()
-            PitchClassSegment([7, 6, 10.5, 10])
+            PitchClassSegment(items=[7, 6, 10.5, 10], item_class=NumberedPitchClass)
 
             >>> segment = J[:4].retrograde()
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11479,7 +7123,7 @@ class PitchClassSegment(Segment):
             Gets slice of retrograde:
 
             >>> J.retrograde()[:4]
-            PitchClassSegment([7, 10.5, 7, 6])
+            PitchClassSegment(items=[7, 10.5, 7, 6], item_class=NumberedPitchClass)
 
             >>> segment = J.retrograde()[:4]
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11508,9 +7152,9 @@ class PitchClassSegment(Segment):
             True
 
         """
-        return super().__getitem__(argument)
+        return Segment.__getitem__(self, argument)
 
-    def __mul__(self, n):
+    def __mul__(self, n) -> "PitchClassSegment":
         r"""
         Multiplies pitch-class segment by ``n``.
 
@@ -11518,13 +7162,12 @@ class PitchClassSegment(Segment):
 
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> 2 * abjad.PitchClassSegment(items=items)
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
-        Returns new pitch-class segment.
         """
-        return super().__mul__(n)
+        return Segment.__mul__(self, n)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         r"""
         Gets interpreter representation.
 
@@ -11534,9 +7177,8 @@ class PitchClassSegment(Segment):
 
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> abjad.PitchClassSegment(items=items)
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
-        Returns string.
         """
         if self.item_class is NamedPitchClass:
             contents = " ".join([str(_) for _ in self])
@@ -11544,9 +7186,9 @@ class PitchClassSegment(Segment):
         else:
             contents = ", ".join([str(_) for _ in self])
             contents = "[" + contents + "]"
-        return f"{type(self).__name__}({contents})"
+        return f"{type(self).__name__}(items={contents}, item_class={self.item_class.__name__})"
 
-    def __rmul__(self, n):
+    def __rmul__(self, n) -> "PitchClassSegment":
         r"""
         Multiplies ``n`` by pitch-class segment.
 
@@ -11554,25 +7196,20 @@ class PitchClassSegment(Segment):
 
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> abjad.PitchClassSegment(items=items) * 2
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7, 10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
-        Returns new pitch-class segment.
         """
-        return super().__rmul__(n)
+        return Segment.__rmul__(self, n)
 
-    def __str__(self):
+    def __str__(self) -> str:
         r"""
         Gets string representation of pitch-class segment.
 
         ..  container::
 
-            Gets string represenation of numbered pitch class:
-
             >>> segment = abjad.PitchClassSegment([-2, -1.5, 6, 7, -1.5, 7])
             >>> str(segment)
             'PC<10, 10.5, 6, 7, 10.5, 7>'
-
-        ..  container::
 
             Gets string represenation of named pitch class:
 
@@ -11583,15 +7220,12 @@ class PitchClassSegment(Segment):
             >>> str(segment)
             'PC<bf bqf fs g bqf g>'
 
-        Returns string.
         """
         items = [str(_) for _ in self]
         separator = " "
         if self.item_class is NumberedPitchClass:
             separator = ", "
         return f"PC<{separator.join(items)}>"
-
-    ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
@@ -11605,10 +7239,8 @@ class PitchClassSegment(Segment):
     def _parent_item_class(self):
         return PitchClass
 
-    ### PRIVATE METHODS ###
-
     def _get_padded_string(self, width=2):
-        string = super()._get_padded_string(width=width)
+        string = Segment._get_padded_string(self, width=width)
         return "PC<" + string[1:-1] + ">"
 
     def _is_equivalent_under_transposition(self, argument):
@@ -11620,7 +7252,7 @@ class PitchClassSegment(Segment):
             NamedPitch((argument[0].name, 4)) - NamedPitch((self[0].name, 4))
         )
         new_pitch_classes = (x + difference for x in self)
-        new_pitch_classes = _new.new(self, items=new_pitch_classes)
+        new_pitch_classes = dataclasses.replace(self, items=new_pitch_classes)
         return argument == new_pitch_classes
 
     @staticmethod
@@ -11634,90 +7266,7 @@ class PitchClassSegment(Segment):
         pcs = [_ % 12 for _ in numbers]
         return type(self)(items=pcs, item_class=self.item_class)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def item_class(self):
-        r"""
-        Gets item class of segment.
-
-        ..  container:: example
-
-            Gets item class of numbered segment:
-
-            >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            >>> segment.item_class.__name__
-            'NumberedPitchClass'
-
-        ..  container:: example
-
-            Gets item class of named segment:
-
-            >>> items = ['c', 'ef', 'bqs,', 'd']
-            >>> segment = abjad.PitchClassSegment(
-            ...     items=items,
-            ...     item_class=abjad.NamedPitchClass,
-            ...     )
-            >>> lilypond_file = abjad.illustrate(segment)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            >>> segment.item_class.__name__
-            'NamedPitchClass'
-
-        """
-        return super().item_class
-
-    @property
-    def items(self):
-        r"""
-        Gets items in segment.
-
-        ..  container:: example
-
-            Initializes items positionally:
-
-            >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-            >>> segment = abjad.PitchClassSegment(items)
-            >>> for item in segment.items:
-            ...     item
-            ...
-            NumberedPitchClass(10)
-            NumberedPitchClass(10.5)
-            NumberedPitchClass(6)
-            NumberedPitchClass(7)
-            NumberedPitchClass(10.5)
-            NumberedPitchClass(7)
-
-            Initializes items from keyword:
-
-            >>> items = [-2, -1.5, 6, 7, -1.5, 7]
-            >>> segment = abjad.PitchClassSegment(items=items)
-            >>> for item in segment.items:
-            ...     item
-            NumberedPitchClass(10)
-            NumberedPitchClass(10.5)
-            NumberedPitchClass(6)
-            NumberedPitchClass(7)
-            NumberedPitchClass(10.5)
-            NumberedPitchClass(7)
-
-        ..  container:: example
-
-            Returns list:
-
-            >>> isinstance(segment.items, list)
-            True
-
-        """
-        return super().items
-
-    ### PUBLIC METHODS ###
-
-    def count(self, item):
+    def count(self, item) -> int:
         """
         Counts ``item`` in segment.
 
@@ -11730,21 +7279,15 @@ class PitchClassSegment(Segment):
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        ..  container:: example
-
             Counts existing item in segment:
 
             >>> segment.count(-1.5)
             2
 
-        ..  container:: example
-
             Counts nonexisting item in segment:
 
             >>> segment.count('text')
             0
-
-        ..  container:: example
 
             Returns nonnegative integer:
 
@@ -11752,10 +7295,10 @@ class PitchClassSegment(Segment):
             True
 
         """
-        return super().count(item)
+        return Segment.count(self, item)
 
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "PitchClassSegment":
         """
         Initializes segment from ``selection``.
 
@@ -11773,18 +7316,16 @@ class PitchClassSegment(Segment):
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        ..  container:: example
-
             Returns pitch-class segment:
 
             >>> segment
-            PitchClassSegment("c d fs a b c g")
+            PitchClassSegment(items="c d fs a b c g", item_class=NamedPitchClass)
 
         """
         pitch_segment = PitchSegment.from_selection(selection)
         return class_(items=pitch_segment, item_class=item_class)
 
-    def has_duplicates(self):
+    def has_duplicates(self) -> bool:
         """
         Is true when segment contains duplicate items.
 
@@ -11800,8 +7341,6 @@ class PitchClassSegment(Segment):
             >>> segment.has_duplicates()
             True
 
-        ..  container:: example
-
             Has no duplicates:
 
             >>> items = "c d e f g a b"
@@ -11812,7 +7351,6 @@ class PitchClassSegment(Segment):
             >>> segment.has_duplicates()
             False
 
-        Returns true or false.
         """
         return len(set(self)) < len(self)
 
@@ -11829,21 +7367,15 @@ class PitchClassSegment(Segment):
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        ..  container:: example
-
             Gets index of first item in segment:
 
             >>> segment.index(-2)
             0
 
-        ..  container:: example
-
             Gets index of second item in segment:
 
             >>> segment.index(-1.5)
             1
-
-        ..  container:: example
 
             Returns nonnegative integer:
 
@@ -11851,9 +7383,9 @@ class PitchClassSegment(Segment):
             True
 
         """
-        return super().index(item)
+        return Segment.index(self, item)
 
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "PitchClassSegment":
         r"""
         Inverts segment.
 
@@ -11864,17 +7396,15 @@ class PitchClassSegment(Segment):
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> J = abjad.PitchClassSegment(items=items)
             >>> J
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(J)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        ..  container:: example
-
             Inverts segment:
 
             >>> J.invert()
-            PitchClassSegment([2, 1.5, 6, 5, 1.5, 5])
+            PitchClassSegment(items=[2, 1.5, 6, 5, 1.5, 5], item_class=NumberedPitchClass)
 
             >>> segment = J.invert()
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11897,12 +7427,10 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
             Inverts inversion of segment:
 
             >>> J.invert().invert()
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> segment = J.invert().invert()
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11928,18 +7456,11 @@ class PitchClassSegment(Segment):
             >>> segment == J
             True
 
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            >>> isinstance(segment, abjad.PitchClassSegment)
-            True
-
         """
         items = [_.invert(axis=axis) for _ in self]
         return type(self)(items=items)
 
-    def multiply(self, n=1):
+    def multiply(self, n=1) -> "PitchClassSegment":
         r"""
         Multiplies pitch-classes in segment by ``n``.
 
@@ -11950,17 +7471,15 @@ class PitchClassSegment(Segment):
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> J = abjad.PitchClassSegment(items=items)
             >>> J
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(J)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        ..  container:: example
-
             Multiplies pitch-classes in segment by 1:
 
             >>> J.multiply(n=1)
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> segment = J.multiply(n=1)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -11983,12 +7502,10 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
             Multiplies pitch-classes in segment by 5:
 
             >>> J.multiply(n=5)
-            PitchClassSegment([2, 4.5, 6, 11, 4.5, 11])
+            PitchClassSegment(items=[2, 4.5, 6, 11, 4.5, 11], item_class=NumberedPitchClass)
 
             >>> segment = J.multiply(n=5)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12011,12 +7528,10 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
             Multiplies pitch-classes in segment by 7:
 
             >>> J.multiply(n=7)
-            PitchClassSegment([10, 1.5, 6, 1, 1.5, 1])
+            PitchClassSegment(items=[10, 1.5, 6, 1, 1.5, 1], item_class=NumberedPitchClass)
 
             >>> segment = J.multiply(n=7)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12039,13 +7554,11 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
             Multiplies pitch-classes in segment by 11:
 
             >>> segment = J.multiply(n=11)
             >>> segment
-            PitchClassSegment([2, 7.5, 6, 5, 7.5, 5])
+            PitchClassSegment(items=[2, 7.5, 6, 5, 7.5, 5], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12067,26 +7580,19 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            >>> isinstance(segment, abjad.PitchClassSegment)
-            True
-
         """
         items = [NumberedPitchClass(_) for _ in self]
         items = [_.multiply(n) for _ in items]
         return type(self)(items=items)
 
-    def permute(self, row=None):
+    def permute(self, row=None) -> "PitchClassSegment":
         r"""
         Permutes segment by twelve-tone ``row``.
 
         ..  container:: example
 
             >>> abjad.PitchClassSegment([-2, -1, 6, 7, -1, 7])
-            PitchClassSegment([10, 11, 6, 7, 11, 7])
+            PitchClassSegment(items=[10, 11, 6, 7, 11, 7], item_class=NumberedPitchClass)
 
             >>> segment = abjad.PitchClassSegment([-2, -1, 6, 7, -1, 7])
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12110,7 +7616,7 @@ class PitchClassSegment(Segment):
                 }
 
             >>> segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
-            PitchClassSegment([4, 11, 5, 3, 11, 3])
+            PitchClassSegment(items=[4, 11, 5, 3, 11, 3], item_class=NumberedPitchClass)
 
             >>> segment = segment.permute([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12133,13 +7639,12 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        Returns new segment.
         """
         row = TwelveToneRow(items=row)
         items = row(self)
         return type(self)(items=items)
 
-    def retrograde(self):
+    def retrograde(self) -> "PitchClassSegment":
         r"""
         Gets retrograde of segment.
 
@@ -12150,18 +7655,16 @@ class PitchClassSegment(Segment):
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> J = abjad.PitchClassSegment(items=items)
             >>> J
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(J)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  container:: example
 
             Gets retrograde of segment:
 
             >>> segment = J.retrograde()
             >>> segment
-            PitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
+            PitchClassSegment(items=[7, 10.5, 7, 6, 10.5, 10], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12183,13 +7686,11 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
             Gets retrograde of retrograde of segment:
 
             >>> segment = J.retrograde().retrograde()
             >>> segment
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12214,17 +7715,10 @@ class PitchClassSegment(Segment):
             >>> segment == J
             True
 
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            >>> isinstance(segment, abjad.PitchClassSegment)
-            True
-
         """
-        return type(self)(items=reversed(self))
+        return type(self)(items=reversed(self.items))
 
-    def rotate(self, n=0):
+    def rotate(self, n=0) -> "PitchClassSegment":
         r"""
         Rotates segment by index ``n``.
 
@@ -12235,17 +7729,15 @@ class PitchClassSegment(Segment):
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> J = abjad.PitchClassSegment(items=items)
             >>> J
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(J)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        ..  container:: example
-
             Rotates segment to the right:
 
             >>> J.rotate(n=1)
-            PitchClassSegment([7, 10, 10.5, 6, 7, 10.5])
+            PitchClassSegment(items=[7, 10, 10.5, 6, 7, 10.5], item_class=NumberedPitchClass)
 
             >>> segment = J.rotate(n=1)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12268,12 +7760,10 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
             Rotates segment to the left:
 
             >>> J.rotate(n=-1)
-            PitchClassSegment([10.5, 6, 7, 10.5, 7, 10])
+            PitchClassSegment(items=[10.5, 6, 7, 10.5, 7, 10], item_class=NumberedPitchClass)
 
             >>> segment = J.rotate(n=-1)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12296,12 +7786,10 @@ class PitchClassSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
             Rotates segment by zero:
 
             >>> J.rotate(n=0)
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> segment = J.rotate(n=0)
             >>> lilypond_file = abjad.illustrate(J)
@@ -12327,18 +7815,11 @@ class PitchClassSegment(Segment):
             >>> segment == J
             True
 
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            >>> isinstance(segment, abjad.PitchClassSegment)
-            True
-
         """
-        items = _sequence.Sequence(self._collection).rotate(n=n)
+        items = _sequence.Sequence(self.items).rotate(n=n)
         return type(self)(items=items)
 
-    def to_pitch_classes(self):
+    def to_pitch_classes(self) -> "PitchClassSegment":
         r"""
         Changes to pitch-classes.
 
@@ -12349,7 +7830,7 @@ class PitchClassSegment(Segment):
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> segment = abjad.PitchClassSegment(items=items)
             >>> segment
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12373,7 +7854,7 @@ class PitchClassSegment(Segment):
 
             >>> segment = segment.to_pitch_classes()
             >>> segment
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12405,7 +7886,7 @@ class PitchClassSegment(Segment):
             ...     item_class=abjad.NamedPitchClass,
             ...     )
             >>> segment
-            PitchClassSegment("bf bqf fs g bqf g")
+            PitchClassSegment(items="bf bqf fs g bqf g", item_class=NamedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12429,7 +7910,7 @@ class PitchClassSegment(Segment):
 
             >>> segment = segment.to_pitch_classes()
             >>> segment
-            PitchClassSegment("bf bqf fs g bqf g")
+            PitchClassSegment(items="bf bqf fs g bqf g", item_class=NamedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12453,9 +7934,9 @@ class PitchClassSegment(Segment):
 
         Returns new segment.
         """
-        return _new.new(self)
+        return type(self)(self)
 
-    def to_pitches(self):
+    def to_pitches(self) -> "PitchSegment":
         r"""
         Changes to pitches.
 
@@ -12466,7 +7947,7 @@ class PitchClassSegment(Segment):
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> segment = abjad.PitchClassSegment(items=items)
             >>> segment
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12490,7 +7971,7 @@ class PitchClassSegment(Segment):
 
             >>> segment = segment.to_pitches()
             >>> segment
-            PitchSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitch)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12534,7 +8015,7 @@ class PitchClassSegment(Segment):
             ...     item_class=abjad.NamedPitchClass,
             ...     )
             >>> segment
-            PitchClassSegment("bf bqf fs g bqf g")
+            PitchClassSegment(items="bf bqf fs g bqf g", item_class=NamedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12558,7 +8039,7 @@ class PitchClassSegment(Segment):
 
             >>> segment = segment.to_pitches()
             >>> segment
-            PitchSegment("bf' bqf' fs' g' bqf' g'")
+            PitchSegment(items="bf' bqf' fs' g' bqf' g'", item_class=NamedPitch)
 
             >>> lilypond_file = abjad.illustrate(segment)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12592,13 +8073,12 @@ class PitchClassSegment(Segment):
                     }
                 >>
 
-        Returns new segment.
         """
         class_ = Pitch
         item_class = class_._to_pitch_item_class(self.item_class)
         return PitchSegment(items=self.items, item_class=item_class)
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "PitchClassSegment":
         r"""
         Transposes segment by index ``n``.
 
@@ -12609,7 +8089,7 @@ class PitchClassSegment(Segment):
             >>> items = [-2, -1.5, 6, 7, -1.5, 7]
             >>> J = abjad.PitchClassSegment(items=items)
             >>> J
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> lilypond_file = abjad.illustrate(J)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -12619,7 +8099,7 @@ class PitchClassSegment(Segment):
             Transposes segment by positive index:
 
             >>> J.transpose(n=13)
-            PitchClassSegment([11, 11.5, 7, 8, 11.5, 8])
+            PitchClassSegment(items=[11, 11.5, 7, 8, 11.5, 8], item_class=NumberedPitchClass)
 
             >>> segment = J.transpose(n=13)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12647,7 +8127,7 @@ class PitchClassSegment(Segment):
             Transposes segment by negative index:
 
             >>> J.transpose(n=-13)
-            PitchClassSegment([9, 9.5, 5, 6, 9.5, 6])
+            PitchClassSegment(items=[9, 9.5, 5, 6, 9.5, 6], item_class=NumberedPitchClass)
 
             >>> segment = J.transpose(n=-13)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12675,7 +8155,7 @@ class PitchClassSegment(Segment):
             Transposes segment by zero index:
 
             >>> J.transpose(n=0)
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            PitchClassSegment(items=[10, 10.5, 6, 7, 10.5, 7], item_class=NumberedPitchClass)
 
             >>> segment = J.transpose(n=0)
             >>> lilypond_file = abjad.illustrate(segment)
@@ -12701,21 +8181,13 @@ class PitchClassSegment(Segment):
             >>> segment == J
             True
 
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            >>> isinstance(segment, abjad.PitchClassSegment)
-            True
-
         """
         items = [_.transpose(n=n) for _ in self]
         return type(self)(items=items)
 
-    def voice_horizontally(self, initial_octave=4):
+    def voice_horizontally(self, initial_octave=4) -> "PitchSegment":
         r"""
-        Voices segment with each pitch as close to the previous pitch as
-        possible.
+        Voices segment with each pitch as close to the previous pitch as possible.
 
         ..  todo:: Should be implemented somewhere else.
 
@@ -12779,38 +8251,35 @@ class PitchClassSegment(Segment):
                     >>
                 >>
 
-        ..  container:: example
-
-            Returns pitch segment:
-
-            >>> voiced_segment
-            PitchSegment("c' b d' e' f' g' e' b a c'")
-
         """
         initial_octave = Octave(initial_octave)
         pitches = []
         if self:
             pitch_class = NamedPitchClass(self[0])
-            pitch = NamedPitch((pitch_class.name, initial_octave))
+            # pitch = NamedPitch((pitch_class.name, initial_octave))
+            pitch = NamedPitch((pitch_class.name, initial_octave)).number
             pitches.append(pitch)
             for pitch_class in self[1:]:
                 pitch_class = NamedPitchClass(pitch_class)
-                pitch = NamedPitch((pitch_class.name, initial_octave))
-                semitones = abs((pitch - pitches[-1]).semitones)
+                # pitch = NamedPitch((pitch_class.name, initial_octave))
+                pitch = NamedPitch((pitch_class.name, initial_octave)).number
+                # semitones = abs((pitch - pitches[-1]).semitones)
+                semitones = abs((pitch - pitches[-1]))
                 while 6 < semitones:
                     if pitch < pitches[-1]:
                         pitch += 12
                     else:
                         pitch -= 12
-                    semitones = abs((pitch - pitches[-1]).semitones)
+                    # semitones = abs((pitch - pitches[-1]).semitones)
+                    semitones = abs((pitch - pitches[-1]))
                 pitches.append(pitch)
         if self.item_class is NamedPitchClass:
-            item_class = NamedPitch
+            segment = PitchSegment(items=pitches, item_class=NamedPitch)
         else:
-            item_class = NumberedPitch
-        return PitchSegment(items=pitches, item_class=item_class)
+            segment = PitchSegment(items=pitches, item_class=NumberedPitch)
+        return segment
 
-    def voice_vertically(self, initial_octave=4):
+    def voice_vertically(self, initial_octave=4) -> "PitchSegment":
         r"""
         Voices segment with each pitch higher than the previous.
 
@@ -12870,13 +8339,6 @@ class PitchClassSegment(Segment):
                     >>
                 >>
 
-        ..  container:: example
-
-            Returns pitch segment:
-
-            >>> voiced_segment
-            PitchSegment("c' ef' g' bf' d'' f'' af''")
-
         """
         initial_octave = Octave(initial_octave)
         pitches = []
@@ -12891,12 +8353,13 @@ class PitchClassSegment(Segment):
                     pitch += 12
                 pitches.append(pitch)
         if self.item_class is NamedPitchClass:
-            item_class = NamedPitch
+            segment = PitchSegment(items=pitches, item_class=NamedPitch)
         else:
-            item_class = NumberedPitch
-        return PitchSegment(items=pitches, item_class=item_class)
+            segment = PitchSegment(items=pitches, item_class=NumberedPitch)
+        return segment
 
 
+@dataclasses.dataclass(slots=True)
 class PitchSegment(Segment):
     r"""
     Pitch segment.
@@ -12999,18 +8462,10 @@ class PitchSegment(Segment):
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
-        if not items and not item_class:
-            item_class = self._named_item_class
-        Segment.__init__(self, items=items, item_class=item_class)
-
-    ### SPECIAL METHODS ###
+    def __post_init__(self):
+        if not self.items and not self.item_class:
+            self.item_class = self._named_item_class
+        Segment.__post_init__(self)
 
     def __contains__(self, argument):
         """
@@ -13036,13 +8491,11 @@ class PitchSegment(Segment):
 
         Returns true or false.
         """
-        return super().__contains__(argument)
+        return Segment.__contains__(self, argument)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
-        Gets interpreter representation of segment.
-
-        Returns string.
+        Gets repr.
         """
         if self.item_class is NamedPitch:
             contents = " ".join([str(_) for _ in self])
@@ -13050,9 +8503,9 @@ class PitchSegment(Segment):
         else:
             contents = ", ".join([str(_) for _ in self])
             contents = "[" + contents + "]"
-        return f"{type(self).__name__}({contents})"
+        return f"{type(self).__name__}(items={contents}, item_class={self.item_class.__name__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Gets pitch segment string.
 
@@ -13070,15 +8523,12 @@ class PitchSegment(Segment):
             >>> str(segment)
             "<bf, aqs fs' g' bqf g'>"
 
-        Returns string.
         """
         items = [str(_) for _ in self]
         separator = " "
         if self.item_class is NumberedPitch:
             separator = ", "
         return f"<{separator.join(items)}>"
-
-    ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
@@ -13092,8 +8542,6 @@ class PitchSegment(Segment):
     def _parent_item_class(self):
         return Pitch
 
-    ### PRIVATE METHODS ###
-
     def _is_equivalent_under_transposition(self, argument):
         if not isinstance(argument, type(self)):
             return False
@@ -13101,13 +8549,11 @@ class PitchSegment(Segment):
             return False
         difference = -(NamedPitch(argument[0], 4) - NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = _new.new(self, items=new_pitches)
+        new_pitches = dataclasses.replace(self, items=new_pitches)
         return argument == new_pitches
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def hertz(self):
+    def hertz(self) -> list[float]:
         """
         Gets Hertz of pitches in segment.
 
@@ -13117,12 +8563,11 @@ class PitchSegment(Segment):
             >>> segment.hertz
             [130.81..., 164.81..., 195.99..., 246.94...]
 
-        Returns list.
         """
         return [_.hertz for _ in self]
 
     @property
-    def inflection_point_count(self):
+    def inflection_point_count(self) -> int:
         r"""
         Gets segment inflection point count.
 
@@ -13165,7 +8610,6 @@ class PitchSegment(Segment):
             >>> segment.inflection_point_count
             2
 
-        Returns nonnegative integer.
         """
         return len(self.local_minima) + len(self.local_maxima)
 
@@ -13277,8 +8721,6 @@ class PitchSegment(Segment):
                     result.append(middle)
         return result
 
-    ### PUBLIC METHODS ###
-
     @classmethod
     def from_selection(class_, selection, item_class=None) -> "PitchSegment":
         r"""
@@ -13352,7 +8794,7 @@ class PitchSegment(Segment):
         """
         return len(set(self)) < len(self)
 
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "PitchSegment":
         r"""
         Inverts pitch segment about ``axis``.
 
@@ -13429,12 +8871,11 @@ class PitchSegment(Segment):
                     }
                 >>
 
-        Returns new pitch segment.
         """
         items = [_.invert(axis=axis) for _ in self]
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
-    def multiply(self, n=1):
+    def multiply(self, n=1) -> "PitchSegment":
         r"""
         Multiplies pitch segment by index ``n``.
 
@@ -13511,12 +8952,11 @@ class PitchSegment(Segment):
                     }
                 >>
 
-        Returns new pitch segment.
         """
         items = [_.multiply(n=n) for _ in self]
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
-    def retrograde(self):
+    def retrograde(self) -> "PitchSegment":
         r"""
         Retrograde of pitch segment.
 
@@ -13593,11 +9033,10 @@ class PitchSegment(Segment):
                     }
                 >>
 
-        Returns new pitch segment.
         """
-        return _new.new(self, items=reversed(self))
+        return dataclasses.replace(self, items=reversed(self))
 
-    def rotate(self, n=0):
+    def rotate(self, n=0) -> "PitchSegment":
         r"""
         Rotates pitch segment by index ``n``.
 
@@ -13674,13 +9113,12 @@ class PitchSegment(Segment):
                     }
                 >>
 
-        Returns new pitch segment.
         """
-        rotated_pitches = _sequence.Sequence(self._collection).rotate(n=n)
-        new_segment = _new.new(self, items=rotated_pitches)
+        rotated_pitches = _sequence.Sequence(self.items).rotate(n=n)
+        new_segment = dataclasses.replace(self, items=rotated_pitches)
         return new_segment
 
-    def to_pitch_classes(self):
+    def to_pitch_classes(self) -> "PitchClassSegment":
         r"""
         Changes to pitch-classes.
 
@@ -13810,13 +9248,12 @@ class PitchSegment(Segment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        Returns new segment.
         """
         class_ = Pitch
         item_class = class_._to_pitch_class_item_class(self.item_class)
         return PitchClassSegment(items=self.items, item_class=item_class)
 
-    def to_pitches(self):
+    def to_pitches(self) -> "PitchSegment":
         r"""
         Changes to pitches.
 
@@ -13970,11 +9407,10 @@ class PitchSegment(Segment):
                     }
                 >>
 
-        Returns new segment.
         """
-        return _new.new(self)
+        return dataclasses.replace(self)
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "PitchSegment":
         r"""
         Transposes pitch segment by index ``n``.
 
@@ -14051,12 +9487,12 @@ class PitchSegment(Segment):
                     }
                 >>
 
-        Returns new pitch segment.
         """
         items = [_.transpose(n=n) for _ in self]
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
 
+@dataclasses.dataclass(slots=True)
 class TwelveToneRow(PitchClassSegment):
     """
     Twelve-tone row.
@@ -14069,8 +9505,6 @@ class TwelveToneRow(PitchClassSegment):
         >>> lilypond_file = abjad.illustrate(row)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-    ..  container:: example
-
         Initializes from integers:
 
         >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
@@ -14078,27 +9512,19 @@ class TwelveToneRow(PitchClassSegment):
         >>> lilypond_file = abjad.illustrate(row)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-    ..  container:: example
-
         Interpreter representation:
 
         >>> row
-        TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
+        TwelveToneRow(items=(NumberedPitchClass(1), NumberedPitchClass(11), NumberedPitchClass(9), NumberedPitchClass(3), NumberedPitchClass(6), NumberedPitchClass(7), NumberedPitchClass(5), NumberedPitchClass(4), NumberedPitchClass(10), NumberedPitchClass(2), NumberedPitchClass(8), NumberedPitchClass(0)), item_class=<class 'abjad.pitch.NumberedPitchClass'>)
 
     """
 
-    ### CLASS VARIABLES ###
+    items: typing.Any = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
 
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)):
-        assert items is not None
-        PitchClassSegment.__init__(self, items=items, item_class=NumberedPitchClass)
+    def __post_init__(self):
+        assert self.items is not None
+        PitchClassSegment.__post_init__(self)
         self._validate_pitch_classes(self)
-
-    ### SPECIAL METHODS ###
 
     def __call__(self, pitch_classes):
         r"""
@@ -14408,19 +9834,60 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Returns pitch-class segment:
+            Gets items in row:
 
-            >>> row[-6:]
-            PitchClassSegment([5, 4, 10, 2, 8, 0])
+            >>> row = abjad.TwelveToneRow()
+            >>> lilypond_file = abjad.illustrate(row)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+
+            >>> for item in row.items:
+            ...     item
+            ...
+            NumberedPitchClass(0)
+            NumberedPitchClass(1)
+            NumberedPitchClass(2)
+            NumberedPitchClass(3)
+            NumberedPitchClass(4)
+            NumberedPitchClass(5)
+            NumberedPitchClass(6)
+            NumberedPitchClass(7)
+            NumberedPitchClass(8)
+            NumberedPitchClass(9)
+            NumberedPitchClass(10)
+            NumberedPitchClass(11)
+
+            Gets items in row:
+
+            >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
+            >>> row = abjad.TwelveToneRow(numbers)
+            >>> lilypond_file = abjad.illustrate(row)
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            >>> for item in row.items:
+            ...     item
+            ...
+            NumberedPitchClass(1)
+            NumberedPitchClass(11)
+            NumberedPitchClass(9)
+            NumberedPitchClass(3)
+            NumberedPitchClass(6)
+            NumberedPitchClass(7)
+            NumberedPitchClass(5)
+            NumberedPitchClass(4)
+            NumberedPitchClass(10)
+            NumberedPitchClass(2)
+            NumberedPitchClass(8)
+            NumberedPitchClass(0)
 
         """
-        item = self._collection.__getitem__(argument)
+        item = self.items.__getitem__(argument)
         try:
             return PitchClassSegment(items=item, item_class=NumberedPitchClass)
         except TypeError:
             return item
 
-    def __mul__(self, argument):
+    def __mul__(self, argument) -> "PitchClassSegment":
         r"""
         Multiplies row by ``argument``.
 
@@ -14520,18 +9987,10 @@ class TwelveToneRow(PitchClassSegment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            >>> segment
-            PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
-
-        Returns pitch-class segment.
         """
         return PitchClassSegment(self) * argument
 
-    def __rmul__(self, argument):
+    def __rmul__(self, argument) -> "PitchClassSegment":
         r"""
         Multiplies ``argument`` by row.
 
@@ -14630,23 +10089,12 @@ class TwelveToneRow(PitchClassSegment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
-            Returns pitch-class segment:
-
-            >>> segment
-            PitchClassSegment([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
-
         """
         return PitchClassSegment(self) * argument
-
-    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_string(self):
         return ", ".join([str(abs(pc)) for pc in self])
-
-    ### PRIVATE METHODS ###
 
     @staticmethod
     def _validate_pitch_classes(pitch_classes):
@@ -14656,107 +10104,7 @@ class TwelveToneRow(PitchClassSegment):
             message = f"must contain all twelve pitch-classes: {pitch_classes!r}."
             raise ValueError(message)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def item_class(self):
-        """
-        Gets item class of row.
-
-        ..  container:: example
-
-            Gets item class:
-
-            >>> row = abjad.TwelveToneRow()
-            >>> lilypond_file = abjad.illustrate(row)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            >>> row.item_class.__name__
-            'NumberedPitchClass'
-
-        ..  container:: example
-
-            Gets item class:
-
-            >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-            >>> row = abjad.TwelveToneRow(numbers)
-            >>> lilypond_file = abjad.illustrate(row)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            >>> row.item_class.__name__
-            'NumberedPitchClass'
-
-        """
-        return super().item_class
-
-    @property
-    def items(self):
-        """
-        Gets items in row.
-
-        ..  container:: example
-
-            Gets items in row:
-
-            >>> row = abjad.TwelveToneRow()
-            >>> lilypond_file = abjad.illustrate(row)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-
-            >>> for item in row.items:
-            ...     item
-            ...
-            NumberedPitchClass(0)
-            NumberedPitchClass(1)
-            NumberedPitchClass(2)
-            NumberedPitchClass(3)
-            NumberedPitchClass(4)
-            NumberedPitchClass(5)
-            NumberedPitchClass(6)
-            NumberedPitchClass(7)
-            NumberedPitchClass(8)
-            NumberedPitchClass(9)
-            NumberedPitchClass(10)
-            NumberedPitchClass(11)
-
-        ..  container:: example
-
-            Gets items in row:
-
-            >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
-            >>> row = abjad.TwelveToneRow(numbers)
-            >>> lilypond_file = abjad.illustrate(row)
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            >>> for item in row.items:
-            ...     item
-            ...
-            NumberedPitchClass(1)
-            NumberedPitchClass(11)
-            NumberedPitchClass(9)
-            NumberedPitchClass(3)
-            NumberedPitchClass(6)
-            NumberedPitchClass(7)
-            NumberedPitchClass(5)
-            NumberedPitchClass(4)
-            NumberedPitchClass(10)
-            NumberedPitchClass(2)
-            NumberedPitchClass(8)
-            NumberedPitchClass(0)
-
-        ..  container:: example
-
-            Returns list:
-
-            >>> isinstance(row.items, list)
-            True
-
-        """
-        return super().items
-
-    ### PUBLIC METHODS ###
-
-    def count(self, item):
+    def count(self, item) -> int:
         """
         Counts ``item`` in row.
 
@@ -14790,15 +10138,8 @@ class TwelveToneRow(PitchClassSegment):
             >>> row.count('text')
             0
 
-        ..  container:: example
-
-            Returns nonnegative integer equal to 0 or 1:
-
-            >>> isinstance(row.count('text'), int)
-            True
-
         """
-        return super().count(item)
+        return PitchClassSegment.count(self, item)
 
     @classmethod
     def from_selection(class_, selection, item_class=None):
@@ -14811,7 +10152,7 @@ class TwelveToneRow(PitchClassSegment):
         """
         raise NotImplementedError
 
-    def has_duplicates(self):
+    def has_duplicates(self) -> bool:
         """
         Is false for all rows.
 
@@ -14839,10 +10180,8 @@ class TwelveToneRow(PitchClassSegment):
             False
 
         Twelve-tone rows have no duplicates.
-
-        Returns false.
         """
-        return super().has_duplicates()
+        return PitchClassSegment.has_duplicates(self)
 
     def index(self, item):
         """
@@ -14879,9 +10218,9 @@ class TwelveToneRow(PitchClassSegment):
             True
 
         """
-        return super().index(item)
+        return PitchClassSegment.index(self, item)
 
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "TwelveToneRow":
         r"""
         Inverts row about optional ``axis``.
 
@@ -15025,20 +10364,13 @@ class TwelveToneRow(PitchClassSegment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
-            Returns twelve-tone row:
-
-            >>> inversion
-            TwelveToneRow([9, 11, 1, 7, 4, 3, 5, 6, 0, 8, 2, 10])
-
         """
         if axis is None:
             axis = self[0]
         items = [pc.invert(axis=axis) for pc in self]
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
-    def multiply(self, n=1):
+    def multiply(self, n=1) -> "TwelveToneRow":
         r"""
         Multiplies pitch-classes in row by ``n``.
 
@@ -15144,17 +10476,10 @@ class TwelveToneRow(PitchClassSegment):
                     \override Score.BarLine.transparent = ##f
                 }
 
-        ..  container:: example
-
-            Returns twelve-tone row:
-
-            >>> multiplication
-            TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
-
         """
-        return super().multiply(n=n)
+        return type(self)(PitchClassSegment.multiply(self, n=n))
 
-    def retrograde(self):
+    def retrograde(self) -> "TwelveToneRow":
         r"""
         Gets retrograde of row.
 
@@ -15232,17 +10557,10 @@ class TwelveToneRow(PitchClassSegment):
             >>> retrograde == row
             True
 
-        ..  container:: example
-
-            Returns row:
-
-            >>> retrograde
-            TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
-
         """
-        return super().retrograde()
+        return type(self)(PitchClassSegment.retrograde(self))
 
-    def rotate(self, n=0):
+    def rotate(self, n=0) -> "TwelveToneRow":
         r"""
         Rotates row by index ``n``.
 
@@ -15351,17 +10669,10 @@ class TwelveToneRow(PitchClassSegment):
             >>> rotation == row
             True
 
-        ..  container:: example
-
-            Returns row:
-
-            >>> rotation
-            TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
-
         """
-        return super().rotate(n=n)
+        return type(self)(PitchClassSegment.rotate(self, n=n))
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "TwelveToneRow":
         r"""
         Transposes row by index ``n``.
 
@@ -15470,105 +10781,48 @@ class TwelveToneRow(PitchClassSegment):
             >>> transposition == row
             True
 
-        ..  container:: example
-
-            Returns row:
-
-            >>> transposition
-            TwelveToneRow([1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0])
-
         """
-        return super().transpose(n=n)
+        return type(self)(PitchClassSegment.transpose(self, n=n))
 
 
+@dataclasses.dataclass(slots=True)
 class Set(_typedcollections.TypedFrozenset):
     """
     Abstract set.
     """
 
-    ### INITIALIZER ###
+    def __post_init__(self):
+        if isinstance(self.items, str):
+            self.items = self.items.split()
+        elif isinstance(self.items, (collections.abc.Iterator, types.GeneratorType)):
+            self.items = [item for item in self.items]
+        if self.item_class is None:
+            self.item_class = self._named_item_class
+            if self.items is not None:
+                if isinstance(
+                    self.items, _typedcollections.TypedCollection
+                ) and issubclass(self.items.item_class, self._parent_item_class):
+                    self.item_class = self.items.item_class
+                elif len(self.items):
+                    if isinstance(self.items, collections.abc.Set):
+                        self.items = tuple(self.items)
+                    if isinstance(self.items[0], str):
+                        self.item_class = self._named_item_class
+                    elif isinstance(self.items[0], (int, float)):
+                        self.item_class = self._numbered_item_class
+                    elif isinstance(self.items[0], self._parent_item_class):
+                        self.item_class = type(self.items[0])
+        assert issubclass(self.item_class, self._parent_item_class)
+        _typedcollections.TypedFrozenset.__post_init__(self)
 
-    def __init__(self, items=None, item_class=None):
-        if isinstance(items, str):
-            items = items.split()
-        elif isinstance(items, (collections.abc.Iterator, types.GeneratorType)):
-            items = [item for item in items]
-        if item_class is None:
-            item_class = self._named_item_class
-            if items is not None:
-                if isinstance(items, _typedcollections.TypedCollection) and issubclass(
-                    items.item_class, self._parent_item_class
-                ):
-                    item_class = items.item_class
-                elif len(items):
-                    if isinstance(items, collections.abc.Set):
-                        items = tuple(items)
-                    if isinstance(items[0], str):
-                        item_class = self._named_item_class
-                    elif isinstance(items[0], (int, float)):
-                        item_class = self._numbered_item_class
-                    elif isinstance(items[0], self._parent_item_class):
-                        item_class = type(items[0])
-        assert issubclass(item_class, self._parent_item_class)
-        _typedcollections.TypedFrozenset.__init__(
-            self, items=items, item_class=item_class
-        )
-
-    ### SPECIAL METHODS ###
-
-    def __str__(self):
+    def __repr__(self):
         """
-        Gets string representation.
-
-        Returns string.
+        Gets repr of set.
         """
-        items = self._get_sorted_repr_items()
-        items = [str(_) for _ in items]
-        string = ", ".join(items)
-        return f"{{{string}}}"
-
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        repr_items = self._get_sorted_repr_items()
-        return _format.FormatSpecification(
-            repr_args_values=[repr_items],
-            storage_format_args_values=[repr_items],
-            storage_format_keyword_names=[],
-        )
-
-    def _get_sorted_repr_items(self):
-        items = sorted(self, key=lambda x: (float(x.number), str(x)))
-        if self.item_class.__name__.startswith("Named"):
-            repr_items = [str(x) for x in items]
-        elif hasattr(self.item_class, "number"):
-            repr_items = [x.number for x in items]
-        elif hasattr(self.item_class, "pitch_class_number"):
-            repr_items = [x.pitch_class_number for x in items]
-        elif hasattr(self.item_class, "__abs__"):
-            repr_items = [abs(x) for x in items]
-        else:
-            raise ValueError(f"invalid item class: {self.item_class!r}.")
-        return repr_items
+        return f"{type(self).__name__}(items={self._get_sorted_repr_items()}, item_class=abjad.{self.item_class.__name__})"
 
     def _sort_self(self):
         return tuple(self)
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def cardinality(self):
@@ -15581,43 +10835,25 @@ class Set(_typedcollections.TypedFrozenset):
         """
         return len(self)
 
-    ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
-    def from_selection(class_, selection, item_class=None):
-        """
-        Makes set from ``selection``.
-
-        Returns set.
-        """
-        raise NotImplementedError
-
-
+@dataclasses.dataclass(slots=True)
 class IntervalClassSet(Set):
     """
     Interval-class set.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
+    def __post_init__(self):
         prototype = (
             PitchClassSegment,
             PitchSegment,
             PitchClassSet,
             PitchSet,
         )
-        if isinstance(items, prototype):
-            items = list(items)
-            pairs = _enumerate.yield_pairs(items)
-            items = [second - first for first, second in pairs]
-        super().__init__(items=items, item_class=item_class)
-
-    ### PRIVATE PROPERTIES ###
+        if isinstance(self.items, prototype):
+            self.items = list(self.items)
+            pairs = _enumerate.yield_pairs(self.items)
+            self.items = [second - first for first, second in pairs]
+        Set.__post_init__(self)
 
     @property
     def _named_item_class(self):
@@ -15631,10 +10867,8 @@ class IntervalClassSet(Set):
     def _parent_item_class(self):
         return IntervalClass
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "IntervalClassSet":
         r"""
         Initialize interval set from component selection:
 
@@ -15692,37 +10926,29 @@ class IntervalClassSet(Set):
                 NamedIntervalClass('+M7')
                 NamedIntervalClass('+P8')
 
-        Returns interval set.
         """
         interval_set = IntervalSet.from_selection(selection)
         return class_(items=interval_set, item_class=item_class)
 
 
+@dataclasses.dataclass(slots=True)
 class IntervalSet(Set):
     """
     Interval set.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
+    def __post_init__(self):
         prototype = (
             PitchClassSegment,
             PitchClassSet,
             PitchSegment,
             PitchSet,
         )
-        if isinstance(items, prototype):
-            items = list(items)
-            pairs = _enumerate.yield_pairs(items)
-            items = [second - first for first, second in pairs]
-        super().__init__(items=items, item_class=item_class)
-
-    ### PRIVATE PROPERTIES ###
+        if isinstance(self.items, prototype):
+            self.items = list(self.items)
+            pairs = _enumerate.yield_pairs(self.items)
+            self.items = [second - first for first, second in pairs]
+        Set.__post_init__(self)
 
     @property
     def _named_item_class(self):
@@ -15736,10 +10962,8 @@ class IntervalSet(Set):
     def _parent_item_class(self):
         return Interval
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "IntervalSet":
         """
         Initializes interval set from component selection.
 
@@ -15770,7 +10994,6 @@ class IntervalSet(Set):
             NamedInterval('+A11')
             NamedInterval('+M13')
 
-        Returns interval set.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         pairs = _enumerate.yield_pairs(pitch_segment)
@@ -15778,6 +11001,7 @@ class IntervalSet(Set):
         return class_(items=intervals, item_class=item_class)
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class PitchClassSet(Set):
     """
     Pitch-class set.
@@ -15791,7 +11015,7 @@ class PitchClassSet(Set):
         ...     item_class=abjad.NumberedPitchClass,
         ...     )
         >>> numbered_pitch_class_set
-        PitchClassSet([6, 7, 10, 10.5])
+        PitchClassSet(items=[6, 7, 10, 10.5], item_class=abjad.NumberedPitchClass)
 
     ..  container:: example
 
@@ -15802,15 +11026,15 @@ class PitchClassSet(Set):
         ...     item_class=abjad.NamedPitchClass,
         ...     )
         >>> named_pitch_class_set
-        PitchClassSet(['c', 'd', 'ef', 'bqs'])
+        PitchClassSet(items=['c', 'd', 'ef', 'bqs'], item_class=abjad.NamedPitchClass)
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### SPECIAL METHODS ###
+    def __repr__(self):
+        """
+        Gets repr of pitch-class set.
+        """
+        return f"{type(self).__name__}(items={self._get_sorted_repr_items()}, item_class=abjad.{self.item_class.__name__})"
 
     def __contains__(self, argument):
         """
@@ -15825,7 +11049,7 @@ class PitchClassSet(Set):
             ...     item_class=abjad.NumberedPitchClass,
             ...     )
             >>> set_
-            PitchClassSet([6, 7, 10, 10.5])
+            PitchClassSet(items=[6, 7, 10, 10.5], item_class=abjad.NumberedPitchClass)
 
             >>> abjad.NamedPitch('fs') in set_
             True
@@ -15841,15 +11065,7 @@ class PitchClassSet(Set):
 
         Returns true or false.
         """
-        return super().__contains__(argument)
-
-    def __hash__(self):
-        """
-        Hashes pitch-class set.
-
-        Returns integer.
-        """
-        return super().__hash__()
+        return Set.__contains__(self, argument)
 
     def __str__(self) -> str:
         """
@@ -15878,8 +11094,6 @@ class PitchClassSet(Set):
             separator = ", "
         return f"PC{{{separator.join(items)}}}"
 
-    ### PRIVATE PROPERTIES ###
-
     @property
     def _named_item_class(self):
         return NamedPitchClass
@@ -15891,8 +11105,6 @@ class PitchClassSet(Set):
     @property
     def _parent_item_class(self):
         return PitchClass
-
-    ### PRIVATE METHODS ###
 
     @staticmethod
     def _get_most_compact_ordering(candidates):
@@ -15940,10 +11152,8 @@ class PitchClassSet(Set):
         segment = PitchClassSegment(items=segment, item_class=NumberedPitchClass)
         return segment
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "PitchClassSet":
         """
         Makes pitch-class set from ``selection``.
 
@@ -15953,14 +11163,13 @@ class PitchClassSet(Set):
             >>> staff_2 = abjad.Staff("c4. r8 g2")
             >>> selection = abjad.select((staff_1, staff_2))
             >>> abjad.PitchClassSet.from_selection(selection)
-            PitchClassSet(['c', 'd', 'fs', 'g', 'a', 'b'])
+            PitchClassSet(items=['c', 'd', 'fs', 'g', 'a', 'b'], item_class=abjad.NamedPitchClass)
 
-        Returns pitch-class set.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         return class_(items=pitch_segment, item_class=item_class)
 
-    def get_normal_order(self):
+    def get_normal_order(self) -> "PitchClassSegment":
         """
         Gets normal order.
 
@@ -15970,7 +11179,7 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet()
             >>> pc_set.get_normal_order()
-            PitchClassSegment([])
+            PitchClassSegment(items=[], item_class=NumberedPitchClass)
 
         ..  container:: example
 
@@ -15978,7 +11187,7 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([0, 1, 10, 11])
             >>> pc_set.get_normal_order()
-            PitchClassSegment([10, 11, 0, 1])
+            PitchClassSegment(items=[10, 11, 0, 1], item_class=NumberedPitchClass)
 
         ..  container:: example
 
@@ -15986,7 +11195,7 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([2, 8, 9])
             >>> pc_set.get_normal_order()
-            PitchClassSegment([8, 9, 2])
+            PitchClassSegment(items=[8, 9, 2], item_class=NumberedPitchClass)
 
         ..  container:: example
 
@@ -15995,7 +11204,7 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([1, 2, 7, 8])
             >>> pc_set.get_normal_order()
-            PitchClassSegment([1, 2, 7, 8])
+            PitchClassSegment(items=[1, 2, 7, 8], item_class=NumberedPitchClass)
 
         ..  container:: example
 
@@ -16004,9 +11213,8 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([0, 3, 6, 9])
             >>> pc_set.get_normal_order()
-            PitchClassSegment([0, 3, 6, 9])
+            PitchClassSegment(items=[0, 3, 6, 9], item_class=NumberedPitchClass)
 
-        Returns pitch-class segment.
         """
         if not len(self):
             return PitchClassSegment(items=None, item_class=NumberedPitchClass)
@@ -16014,12 +11222,12 @@ class PitchClassSet(Set):
         pitch_classes.sort()
         candidates = []
         for i in range(self.cardinality):
-            candidate = [NumberedPitch(_) for _ in pitch_classes]
-            candidate = _sequence.Sequence(candidate).rotate(n=-i)
+            candidate_list = [NumberedPitch(_) for _ in pitch_classes]
+            candidate = _sequence.Sequence(candidate_list).rotate(n=-i)
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 
-    def get_prime_form(self, transposition_only=False):
+    def get_prime_form(self, transposition_only=False) -> "PitchClassSet":
         """
         Gets prime form.
 
@@ -16029,11 +11237,11 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet()
             >>> pc_set.get_prime_form()
-            PitchClassSet([])
+            PitchClassSet(items=[], item_class=abjad.NamedPitchClass)
 
             >>> pc_set = abjad.PitchClassSet()
             >>> pc_set.get_prime_form(transposition_only=True)
-            PitchClassSet([])
+            PitchClassSet(items=[], item_class=abjad.NamedPitchClass)
 
         ..  container:: example
 
@@ -16041,11 +11249,11 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([0, 1, 10, 11])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 1, 2, 3])
+            PitchClassSet(items=[0, 1, 2, 3], item_class=abjad.NumberedPitchClass)
 
             >>> pc_set = abjad.PitchClassSet([0, 1, 10, 11])
             >>> pc_set.get_prime_form(transposition_only=True)
-            PitchClassSet([0, 1, 2, 3])
+            PitchClassSet(items=[0, 1, 2, 3], item_class=abjad.NumberedPitchClass)
 
         ..  container:: example
 
@@ -16053,11 +11261,11 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([2, 8, 9])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 1, 6])
+            PitchClassSet(items=[0, 1, 6], item_class=abjad.NumberedPitchClass)
 
             >>> pc_set = abjad.PitchClassSet([2, 8, 9])
             >>> pc_set.get_prime_form(transposition_only=True)
-            PitchClassSet([0, 1, 6])
+            PitchClassSet(items=[0, 1, 6], item_class=abjad.NumberedPitchClass)
 
         ..  container:: example
 
@@ -16066,11 +11274,11 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([1, 2, 7, 8])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 1, 6, 7])
+            PitchClassSet(items=[0, 1, 6, 7], item_class=abjad.NumberedPitchClass)
 
             >>> pc_set = abjad.PitchClassSet([1, 2, 7, 8])
             >>> pc_set.get_prime_form(transposition_only=True)
-            PitchClassSet([0, 1, 6, 7])
+            PitchClassSet(items=[0, 1, 6, 7], item_class=abjad.NumberedPitchClass)
 
         ..  container:: example
 
@@ -16079,11 +11287,11 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([0, 3, 6, 9])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 3, 6, 9])
+            PitchClassSet(items=[0, 3, 6, 9], item_class=abjad.NumberedPitchClass)
 
             >>> pc_set = abjad.PitchClassSet([0, 3, 6, 9])
             >>> pc_set.get_prime_form(transposition_only=True)
-            PitchClassSet([0, 3, 6, 9])
+            PitchClassSet(items=[0, 3, 6, 9], item_class=abjad.NumberedPitchClass)
 
         ..  container:: example
 
@@ -16091,11 +11299,11 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([0, 4, 6, 7])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 1, 3, 7])
+            PitchClassSet(items=[0, 1, 3, 7], item_class=abjad.NumberedPitchClass)
 
             >>> pc_set = abjad.PitchClassSet([0, 4, 6, 7])
             >>> pc_set.get_prime_form(transposition_only=True)
-            PitchClassSet([0, 4, 6, 7])
+            PitchClassSet(items=[0, 4, 6, 7], item_class=abjad.NumberedPitchClass)
 
         ..  container:: example
 
@@ -16103,11 +11311,11 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([0, 4, 7])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 3, 7])
+            PitchClassSet(items=[0, 3, 7], item_class=abjad.NumberedPitchClass)
 
             >>> pc_set = abjad.PitchClassSet([0, 4, 7])
             >>> pc_set.get_prime_form(transposition_only=True)
-            PitchClassSet([0, 4, 7])
+            PitchClassSet(items=[0, 4, 7], item_class=abjad.NumberedPitchClass)
 
         ..  container:: example
 
@@ -16115,13 +11323,13 @@ class PitchClassSet(Set):
 
             >>> pc_set = abjad.PitchClassSet([0, 1, 2, 5, 8, 9])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 1, 2, 5, 6, 9])
+            PitchClassSet(items=[0, 1, 2, 5, 6, 9], item_class=abjad.NumberedPitchClass)
 
             REGRESSION:
 
             >>> pc_set = abjad.PitchClassSet([0, 1, 2, 3, 6, 7])
             >>> pc_set.get_prime_form()
-            PitchClassSet([0, 1, 2, 3, 6, 7])
+            PitchClassSet(items=[0, 1, 2, 3, 6, 7], item_class=abjad.NumberedPitchClass)
 
         Returns new pitch-class set.
         """
@@ -16150,7 +11358,7 @@ class PitchClassSet(Set):
         prime_form = type(self)(items=pcs, item_class=NumberedPitchClass)
         return prime_form
 
-    def invert(self, axis=None):
+    def invert(self, axis=None) -> "PitchClassSet":
         """
         Inverts pitch-class set.
 
@@ -16159,13 +11367,12 @@ class PitchClassSet(Set):
             >>> abjad.PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7],
             ...     ).invert()
-            PitchClassSet([1.5, 2, 5, 6])
+            PitchClassSet(items=[1.5, 2, 5, 6], item_class=abjad.NumberedPitchClass)
 
-        Returns numbered pitch-class set.
         """
-        return type(self)([pc.invert(axis=axis) for pc in self])
+        return type(self)([pc.invert(axis=axis) for pc in self.items])
 
-    def is_transposed_subset(self, pcset):
+    def is_transposed_subset(self, pcset) -> bool:
         """
         Is true when pitch-class set is transposed subset of ``pcset``.
 
@@ -16181,14 +11388,13 @@ class PitchClassSet(Set):
             >>> pitch_class_set_1.is_transposed_subset(pitch_class_set_2)
             True
 
-        Returns true or false.
         """
         for n in range(12):
             if self.transpose(n).issubset(pcset):
                 return True
         return False
 
-    def is_transposed_superset(self, pcset):
+    def is_transposed_superset(self, pcset) -> bool:
         """
         Is true when pitch-class set is transposed superset of ``pcset``.
 
@@ -16204,14 +11410,13 @@ class PitchClassSet(Set):
             >>> pitch_class_set_2.is_transposed_superset(pitch_class_set_1)
             True
 
-        Returns true or false.
         """
         for n in range(12):
             if self.transpose(n).issuperset(pcset):
                 return True
         return False
 
-    def multiply(self, n):
+    def multiply(self, n) -> "PitchClassSet":
         """
         Multiplies pitch-class set by ``n``.
 
@@ -16220,14 +11425,13 @@ class PitchClassSet(Set):
             >>> abjad.PitchClassSet(
             ...     [-2, -1.5, 6, 7, -1.5, 7],
             ...     ).multiply(5)
-            PitchClassSet([2, 4.5, 6, 11])
+            PitchClassSet(items=[2, 4.5, 6, 11], item_class=abjad.NumberedPitchClass)
 
-        Returns new pitch-class set.
         """
         items = (pitch_class.multiply(n) for pitch_class in self)
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
-    def order_by(self, segment):
+    def order_by(self, segment) -> "PitchClassSegment":
         """
         Orders pitch-class set by pitch-class ``segment``.
 
@@ -16236,9 +11440,8 @@ class PitchClassSet(Set):
             >>> set_ = abjad.PitchClassSet(['c', 'e', 'b'])
             >>> segment = abjad.PitchClassSegment(['e', 'a', 'f'])
             >>> set_.order_by(segment)
-            PitchClassSegment("b e c")
+            PitchClassSegment(items="b e c", item_class=NamedPitchClass)
 
-        Returns pitch-class segment.
         """
         if not len(self) == len(segment):
             raise ValueError("set and segment must be on equal length.")
@@ -16248,7 +11451,7 @@ class PitchClassSet(Set):
                 return candidate
         raise ValueError(f"{self!s} can not order by {segment!s}.")
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "PitchClassSet":
         """
         Transposes all pitch-classes in pitch-class set by index ``n``.
 
@@ -16275,12 +11478,12 @@ class PitchClassSet(Set):
             10 PC{4, 5, 8, 8.5}
             11 PC{5, 6, 9, 9.5}
 
-        Returns new pitch-class set.
         """
         items = (pitch_class + n for pitch_class in self)
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class PitchSet(Set):
     r"""
     Pitch set.
@@ -16294,13 +11497,7 @@ class PitchSet(Set):
         ...     item_class=abjad.NumberedPitch,
         ...     )
         >>> set_
-        PitchSet([-2, -1.5, 6, 7])
-
-        >>> string = abjad.storage(set_)
-        >>> print(string)
-        abjad.PitchSet(
-            [-2, -1.5, 6, 7]
-            )
+        PitchSet(items=[-2, -1.5, 6, 7], item_class=abjad.NumberedPitch)
 
     ..  container:: example
 
@@ -16311,75 +11508,51 @@ class PitchSet(Set):
         ...     item_class=abjad.NamedPitch,
         ...     )
         >>> set_
-        PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
+        PitchSet(items=['bf,', 'aqs', 'bqf', "fs'", "g'"], item_class=abjad.NamedPitch)
 
-        >>> string = abjad.storage(set_)
-        >>> print(string)
-        abjad.PitchSet(
-            ['bf,', 'aqs', 'bqf', "fs'", "g'"]
-            )
+    ..  container:: example
+
+        >>> set_1 = abjad.PitchSet(
+        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+        ...     item_class=abjad.NumberedPitch,
+        ...     )
+        >>> set_2 = abjad.PitchSet(
+        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+        ...     item_class=abjad.NumberedPitch,
+        ...     )
+        >>> set_3 = abjad.PitchSet(
+        ...     items=[11, 12, 12.5],
+        ...     item_class=abjad.NumberedPitch,
+        ...     )
+
+        >>> set_1 == set_1
+        True
+        >>> set_1 == set_2
+        True
+        >>> set_1 == set_3
+        False
+
+        >>> set_2 == set_1
+        True
+        >>> set_2 == set_2
+        True
+        >>> set_2 == set_3
+        False
+
+        >>> set_3 == set_1
+        False
+        >>> set_3 == set_2
+        False
+        >>> set_3 == set_3
+        True
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument):
+    def __repr__(self):
         """
-        Is true when pitch set equals ``argument``.
-
-        ..  container:: example
-
-            >>> set_1 = abjad.PitchSet(
-            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     item_class=abjad.NumberedPitch,
-            ...     )
-            >>> set_2 = abjad.PitchSet(
-            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     item_class=abjad.NumberedPitch,
-            ...     )
-            >>> set_3 = abjad.PitchSet(
-            ...     items=[11, 12, 12.5],
-            ...     item_class=abjad.NumberedPitch,
-            ...     )
-
-            >>> set_1 == set_1
-            True
-            >>> set_1 == set_2
-            True
-            >>> set_1 == set_3
-            False
-
-            >>> set_2 == set_1
-            True
-            >>> set_2 == set_2
-            True
-            >>> set_2 == set_3
-            False
-
-            >>> set_3 == set_1
-            False
-            >>> set_3 == set_2
-            False
-            >>> set_3 == set_3
-            True
-
-        Return true or false.
+        Gets repr of pitch-class set.
         """
-        return super().__eq__(argument)
-
-    def __hash__(self):
-        """
-        Hashes pitch set.
-
-        Returns number.
-        """
-        return super().__hash__()
-
-    ### PRIVATE PROPERTIES ###
+        return f"{type(self).__name__}(items={self._get_sorted_repr_items()}, item_class=abjad.{self.item_class.__name__})"
 
     @property
     def _named_item_class(self):
@@ -16393,8 +11566,6 @@ class PitchSet(Set):
     def _parent_item_class(self):
         return Pitch
 
-    ### PRIVATE METHODS ###
-
     def _is_equivalent_under_transposition(self, argument):
         """
         True if pitch set is equivalent to ``argument`` under transposition.
@@ -16407,16 +11578,14 @@ class PitchSet(Set):
             return False
         difference = -(NamedPitch(argument[0], 4) - NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = _new.new(self, items=new_pitches)
+        new_pitches = dataclasses.replace(self, items=new_pitches)
         return argument == new_pitches
 
     def _sort_self(self):
         return sorted(PitchSegment(tuple(self)))
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def duplicate_pitch_classes(self):
+    def duplicate_pitch_classes(self) -> "PitchClassSet":
         """
         Gets duplicate pitch-classes in pitch set.
 
@@ -16427,16 +11596,15 @@ class PitchSet(Set):
             ...     item_class=abjad.NumberedPitch,
             ...     )
             >>> set_.duplicate_pitch_classes
-            PitchClassSet([])
+            PitchClassSet(items=[], item_class=abjad.NumberedPitchClass)
 
             >>> set_ = abjad.PitchSet(
             ...     items=[-2, -1.5, 6, 7, 10.5, 7],
             ...     item_class=abjad.NumberedPitch,
             ...     )
             >>> set_.duplicate_pitch_classes
-            PitchClassSet([10.5])
+            PitchClassSet(items=[10.5], item_class=abjad.NumberedPitchClass)
 
-        Returns pitch-class set.
         """
         pitch_classes = []
         duplicate_pitch_classes = []
@@ -16448,7 +11616,7 @@ class PitchSet(Set):
         return PitchClassSet(duplicate_pitch_classes, item_class=NumberedPitchClass)
 
     @property
-    def hertz(self):
+    def hertz(self) -> set[float]:
         """
         Gets hertz of pitches in pitch segment.
 
@@ -16458,12 +11626,11 @@ class PitchSet(Set):
             >>> sorted(pitch_set.hertz)
             [130.81..., 164.81..., 195.99..., 246.94...]
 
-        Returns set.
         """
         return set(_.hertz for _ in self)
 
     @property
-    def is_pitch_class_unique(self):
+    def is_pitch_class_unique(self) -> bool:
         """
         Is true when pitch set is pitch-class-unique.
 
@@ -16487,15 +11654,12 @@ class PitchSet(Set):
             >>> set_.is_pitch_class_unique
             False
 
-        Returns true or false.
         """
         numbered_pitch_class_set = PitchClassSet(self, item_class=NumberedPitchClass)
         return len(self) == len(numbered_pitch_class_set)
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "PitchSet":
         """
         Makes pitch set from ``selection``.
 
@@ -16505,23 +11669,20 @@ class PitchSet(Set):
             >>> staff_2 = abjad.Staff("c4. r8 g2")
             >>> selection = abjad.select((staff_1, staff_2))
             >>> abjad.PitchSet.from_selection(selection)
-            PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
+            PitchSet(items=['c', 'g', 'b', "c'", "d'", "fs'", "a'"], item_class=abjad.NamedPitch)
 
-        Returns pitch set.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         return class_(items=pitch_segment, item_class=item_class)
 
-    def invert(self, axis):
+    def invert(self, axis) -> "PitchSet":
         """
         Inverts pitch set about ``axis``.
-
-        Returns new pitch set.
         """
         items = (pitch.invert(axis) for pitch in self)
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
-    def issubset(self, argument):
+    def issubset(self, argument) -> bool:
         """
         Is true when pitch set is subset of ``argument``.
 
@@ -16542,11 +11703,10 @@ class PitchSet(Set):
             >>> set_2.issubset(set_1)
             True
 
-        Returns true or false.
         """
-        return super().issubset(argument)
+        return Set.issubset(self, argument)
 
-    def issuperset(self, argument):
+    def issuperset(self, argument) -> bool:
         """
         Is true when pitch set is superset of ``argument``.
 
@@ -16567,9 +11727,8 @@ class PitchSet(Set):
             >>> set_2.issuperset(set_1)
             True
 
-        Returns true or false.
         """
-        return super().issubset(argument)
+        return Set.issubset(self, argument)
 
     def register(self, pitch_classes):
         """
@@ -16612,91 +11771,52 @@ class PitchSet(Set):
             raise TypeError("must be pitch-class or list of pitch-classes.")
         return result
 
-    def transpose(self, n=0):
+    def transpose(self, n=0) -> "PitchSet":
         """
         Transposes pitch set by index ``n``.
-
-        Returns new pitch set.
         """
         items = (pitch.transpose(n=n) for pitch in self)
-        return _new.new(self, items=items)
+        return dataclasses.replace(self, items=items)
 
 
+@dataclasses.dataclass(slots=True)
 class Vector(_typedcollections.TypedCounter):
     """
-    Abstract vector.
+    Vector.
     """
 
-    ### CLASS VARIABLES ##
+    def __post_init__(self):
+        if isinstance(self.items, str):
+            self.items = self.items.split()
+        if self.item_class is None:
+            self.item_class = self._named_item_class
+            if self.items is not None:
+                if isinstance(
+                    self.items, _typedcollections.TypedCollection
+                ) and issubclass(self.items.item_class, self._parent_item_class):
+                    self.item_class = self.items.item_class
+                elif len(self.items):
+                    if isinstance(self.items, collections.abc.Set):
+                        self.items = tuple(self.items)
+                    if isinstance(self.items, dict):
+                        self.item_class = self._dictionary_to_item_class(self.items)
+                    elif isinstance(self.items[0], str):
+                        self.item_class = self._named_item_class
+                    elif isinstance(self.items[0], (int, float)):
+                        self.item_class = self._numbered_item_class
+                    elif isinstance(self.items[0], self._parent_item_class):
+                        self.item_class = type(self.items[0])
+        assert issubclass(self.item_class, self._parent_item_class)
+        _typedcollections.TypedCounter.__post_init__(self)
+        assert isinstance(self.items, dict), repr(self.items)
 
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
-        prototype_1 = (collections.abc.Iterator, types.GeneratorType)
-        prototype_2 = (_typedcollections.TypedCounter, collections.Counter)
-        if isinstance(items, str):
-            items = items.split()
-        elif isinstance(items, prototype_1):
-            items = [item for item in items]
-        elif isinstance(items, dict):
-            items = self._dictionary_to_items(items, item_class)
-        if isinstance(items, prototype_2):
-            new_tokens = []
-            for item, count in items.items():
-                new_tokens.extend(count * [item])
-            items = new_tokens
-        if item_class is None:
-            item_class = self._named_item_class
-            if items is not None:
-                if isinstance(items, _typedcollections.TypedCollection) and issubclass(
-                    items.item_class, self._parent_item_class
-                ):
-                    item_class = items.item_class
-                elif len(items):
-                    if isinstance(items, collections.abc.Set):
-                        items = tuple(items)
-                    if isinstance(items, dict):
-                        item_class = self._dictionary_to_item_class(items)
-                    elif isinstance(items[0], str):
-                        item_class = self._named_item_class
-                    elif isinstance(items[0], (int, float)):
-                        item_class = self._numbered_item_class
-                    elif isinstance(items[0], self._parent_item_class):
-                        item_class = type(items[0])
-        assert issubclass(item_class, self._parent_item_class)
-        _typedcollections.TypedCounter.__init__(
-            self, items=items, item_class=item_class
-        )
-
-    ### SPECIAL METHODS ###
-
-    def __str__(self):
+    def __str__(self) -> str:
         """
         String representation of vector.
-
-        Returns string.
         """
         parts = [f"{key}: {value}" for key, value in self.items()]
         string = ", ".join(parts)
         return f"<{string}>"
-
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
-    ### PRIVATE METHODS ###
 
     def _dictionary_to_item_class(self, dictionary):
         if not len(dictionary):
@@ -16711,39 +11831,8 @@ class Vector(_typedcollections.TypedCounter):
             item_class = self._named_item_class
         return item_class
 
-    def _dictionary_to_items(self, dictionary, item_class):
-        items = []
-        for initializer_token, count in dictionary.items():
-            for _ in range(count):
-                item = item_class(initializer_token)
-                items.append(item)
-        return items
 
-    def _get_format_specification(self):
-        if self.item_class.__name__.startswith("Named"):
-            repr_items = {str(k): v for k, v in self.items()}
-        else:
-            repr_items = {
-                _math.integer_equivalent_number_to_integer(float(k.number)): v
-                for k, v in self.items()
-            }
-        return _format.FormatSpecification(
-            repr_args_values=[repr_items],
-            storage_format_args_values=[self._collection],
-        )
-
-    ### PUBLIC METHODS ###
-
-    @abc.abstractmethod
-    def from_selection(class_, selection, item_class=None):
-        """
-        Makes vector from ``selection``.
-
-        Returns vector.
-        """
-        raise NotImplementedError
-
-
+@dataclasses.dataclass(slots=True)
 class IntervalVector(Vector):
     """
     Interval vector.
@@ -16759,7 +11848,7 @@ class IntervalVector(Vector):
         ...     items=pitch_segment,
         ...     item_class=abjad.NumberedInterval,
         ...     )
-        >>> for interval, count in sorted(numbered_interval_vector.items(),
+        >>> for interval, count in sorted(numbered_interval_vector.items.items(),
         ...     key=lambda x: (x[0].direction_number, x[0].number)):
         ...     print(interval, count)
         ...
@@ -16785,17 +11874,26 @@ class IntervalVector(Vector):
         +9 2
         +10 1
 
+    ..  container:: example
+
+        Gets interpreter representation of interval vector:
+
+        >>> pitch_segment = abjad.PitchSegment(
+        ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+        ...     )
+        >>> vector = abjad.IntervalVector(
+        ...     items=pitch_segment,
+        ...     item_class=abjad.NumberedInterval,
+        ...     )
+
+        >>> vector
+        IntervalVector(items={NumberedInterval(-11): 1, NumberedInterval(-10): 1, NumberedInterval(-9): 1, NumberedInterval(-8): 2, NumberedInterval(-7): 3, NumberedInterval(-6): 3, NumberedInterval(-5): 4, NumberedInterval(-4): 4, NumberedInterval(-3): 4, NumberedInterval(-2): 5, NumberedInterval(-1): 6, NumberedInterval(1): 5, NumberedInterval(2): 5, NumberedInterval(3): 5, NumberedInterval(4): 4, NumberedInterval(5): 3, NumberedInterval(6): 3, NumberedInterval(7): 2, NumberedInterval(8): 2, NumberedInterval(9): 2, NumberedInterval(10): 1}, item_class=<class 'abjad.pitch.NumberedInterval'>)
+
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
+    def __post_init__(self):
         if isinstance(
-            items,
+            self.items,
             (
                 PitchSegment,
                 PitchSet,
@@ -16804,45 +11902,11 @@ class IntervalVector(Vector):
             ),
         ):
             intervals = []
-            pairs = _enumerate.yield_pairs(items)
+            pairs = _enumerate.yield_pairs(self.items)
             for first, second in pairs:
                 intervals.append(second - first)
-            items = intervals
-        Vector.__init__(self, items=items, item_class=item_class)
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        """
-        Gets interpret representation of interval vector.
-
-        ..  container:: example
-
-            Gets interpreter representation of interval vector:
-
-            >>> pitch_segment = abjad.PitchSegment(
-            ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-            ...     )
-            >>> vector = abjad.IntervalVector(
-            ...     items=pitch_segment,
-            ...     item_class=abjad.NumberedInterval,
-            ...     )
-
-            >>> vector
-            IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)
-
-        ..  container:: example
-
-            Initializes from interpreter representation of interval vector:
-
-            >>> abjad.IntervalVector(vector)
-            IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)
-
-        Returns string.
-        """
-        return super().__repr__()
-
-    ### PRIVATE PROPERTIES ###
+            self.items = intervals
+        Vector.__post_init__(self)
 
     @property
     def _named_item_class(self):
@@ -16856,19 +11920,16 @@ class IntervalVector(Vector):
     def _parent_item_class(self):
         return Interval
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "IntervalVector":
         """
         Makes interval vector from ``selection``.
-
-        Returns interval vector.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         return class_(pitch_segment, item_class=item_class)
 
 
+@dataclasses.dataclass(slots=True)
 class IntervalClassVector(Vector):
     """
     Interval-class vector.
@@ -16879,13 +11940,13 @@ class IntervalClassVector(Vector):
 
         >>> pitch_segment = abjad.PitchSegment(
         ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-        ...     )
+        ... )
         >>> numbered_interval_class_vector = abjad.IntervalClassVector(
         ...     items=pitch_segment,
         ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
-        ...     )
+        ... )
 
-        >>> items = sorted(numbered_interval_class_vector.items())
+        >>> items = sorted(numbered_interval_class_vector.items.items())
         >>> for interval, count in items:
         ...     print(interval, count)
         ...
@@ -16896,13 +11957,22 @@ class IntervalClassVector(Vector):
         5 12
         6 6
 
+    ..  container:: example
+
+        Gets interpreter representation of interval-class vector:
+
+        >>> pitch_segment = abjad.PitchSegment(
+        ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+        ...     )
+        >>> vector = abjad.IntervalClassVector(
+        ...     items=pitch_segment,
+        ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
+        ...     )
+
+        >>> vector
+        IntervalClassVector(items={NumberedInversionEquivalentIntervalClass(1): 12, NumberedInversionEquivalentIntervalClass(2): 12, NumberedInversionEquivalentIntervalClass(3): 12, NumberedInversionEquivalentIntervalClass(4): 12, NumberedInversionEquivalentIntervalClass(5): 12, NumberedInversionEquivalentIntervalClass(6): 6}, item_class=<class 'abjad.pitch.NumberedInversionEquivalentIntervalClass'>)
+
     """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
         prototype = (
@@ -16920,55 +11990,24 @@ class IntervalClassVector(Vector):
             items = intervals
         Vector.__init__(self, items=items, item_class=item_class)
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        """
-        Gets interpreter representation of interval-class vector.
-
-        ..  container:: example
-
-            Gets interpreter representation of interval-class vector:
-
-            >>> pitch_segment = abjad.PitchSegment(
-            ...     items=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
-            ...     )
-            >>> vector = abjad.IntervalClassVector(
-            ...     items=pitch_segment,
-            ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
-            ...     )
-
-            >>> vector
-            IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
-
-        ..  container:: example
-
-            Initializes from interpreter representation of interval-class
-            vector:
-
-            >>> abjad.IntervalClassVector(vector)
-            IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
-
-        Returns string.
-        """
-        return super().__repr__()
-
-    ### PRIVATE PROPERTIES ###
-
     @property
     def _label(self):
         counts = []
         for i in range(7):
-            counts.append(self[i])
+            item = self._coerce_item(i)
+            count = self.items.get(item, 0)
+            counts.append(count)
         counts = "".join([str(x) for x in counts])
         if len(self) == 13:
             quartertones = []
             for i in range(6):
-                quartertones.append(self[i + 0.5])
-            quartertones = "".join([str(x) for x in quartertones])
-            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
+                item = self._coerce_item(i + 0.5)
+                count = self.items.get(item, 0)
+                quartertones.append(count)
+            quartertones = "".join([str(_) for _ in quartertones])
+            return rf'\tiny \column {{ "{counts}" "{quartertones}" }}'
         else:
-            return r"\tiny %s" % counts
+            return rf"\tiny {counts}"
 
     @property
     def _named_item_class(self):
@@ -16982,17 +12021,14 @@ class IntervalClassVector(Vector):
     def _parent_item_class(self):
         return IntervalClass
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "IntervalClassVector":
         """
         Makes interval-class vector from ``selection``.
 
         ..  container:: example
 
-            Makes numbered inversion-equivalent interval-class vector from
-            selection:
+            Makes numbered inversion-equivalent interval-class vector from selection:
 
             >>> chord = abjad.Chord("<c' d' b''>4"),
             >>> vector = abjad.IntervalClassVector.from_selection(
@@ -17000,9 +12036,7 @@ class IntervalClassVector(Vector):
             ...     item_class=abjad.NumberedInversionEquivalentIntervalClass,
             ...     )
             >>> vector
-            IntervalClassVector({1: 1, 2: 1, 3: 1}, item_class=NumberedInversionEquivalentIntervalClass)
-
-        ..  container:: example
+            IntervalClassVector(items={NumberedInversionEquivalentIntervalClass(1): 1, NumberedInversionEquivalentIntervalClass(2): 1, NumberedInversionEquivalentIntervalClass(3): 1}, item_class=<class 'abjad.pitch.NumberedInversionEquivalentIntervalClass'>)
 
             Makes numbered interval-class vector from selection:
 
@@ -17012,12 +12046,10 @@ class IntervalClassVector(Vector):
             ...     item_class=abjad.NumberedIntervalClass,
             ...     )
             >>> vector
-            IntervalClassVector({-11: 1, -9: 1, -2: 1}, item_class=NumberedIntervalClass)
+            IntervalClassVector(items={NumberedIntervalClass(-11): 1, NumberedIntervalClass(-9): 1, NumberedIntervalClass(-2): 1}, item_class=<class 'abjad.pitch.NumberedIntervalClass'>)
 
-            .. todo:: This should probabaly be checked. Resulting values
-                should probabaly be positive (or signless) instead of negative.
-
-        ..  container:: example
+            TODO. This should probabaly be checked. Resulting values should probabaly be
+            positive (or signless) instead of negative.
 
             Makes named interval-class vector from selection:
 
@@ -17027,17 +12059,17 @@ class IntervalClassVector(Vector):
             ...     item_class=None,
             ...     )
             >>> vector
-            IntervalClassVector({'-M2': 1, '-M6': 1, '-M7': 1}, item_class=NamedIntervalClass)
+            IntervalClassVector(items={NamedIntervalClass('-M7'): 1, NamedIntervalClass('-M6'): 1, NamedIntervalClass('-M2'): 1}, item_class=<class 'abjad.pitch.NamedIntervalClass'>)
 
-            .. todo:: This should probabaly be checked. Resulting values
-                should probabaly be positive (or signless) instead of negative.
+            TODO. This should probabaly be checked. Resulting values should probabaly be
+            positive (or signless) instead of negative.
 
-        Returns new interval-class vector.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         return class_(pitch_segment, item_class=item_class)
 
 
+@dataclasses.dataclass(slots=True)
 class PitchClassVector(Vector):
     """
     Pitch-class vector.
@@ -17049,9 +12081,11 @@ class PitchClassVector(Vector):
         >>> vector = abjad.PitchClassVector(
         ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
         ...     item_class=abjad.NumberedPitchClass,
-        ...     )
+        ... )
+        >>> vector
+        PitchClassVector(items={NumberedPitchClass(0): 1, NumberedPitchClass(1): 1, NumberedPitchClass(2): 1, NumberedPitchClass(3): 1, NumberedPitchClass(4): 2, NumberedPitchClass(6): 1, NumberedPitchClass(7): 1, NumberedPitchClass(9): 2, NumberedPitchClass(10): 1}, item_class=<class 'abjad.pitch.NumberedPitchClass'>)
 
-        >>> items = sorted(vector.items())
+        >>> items = sorted(vector.items.items())
         >>> for pitch_class, count in items:
         ...     print(pitch_class, count)
         0 1
@@ -17066,42 +12100,6 @@ class PitchClassVector(Vector):
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        """
-        Gets interpreter representation of pitch-class vector.
-
-        ..  container:: example
-
-            Gets interpreter representation of pitch-class vector:
-
-            >>> vector = abjad.PitchClassVector(
-            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-            ...     item_class=abjad.NumberedPitchClass,
-            ...     )
-
-            >>> vector
-            PitchClassVector({0: 1, 1: 1, 2: 1, 3: 1, 4: 2, 6: 1, 7: 1, 9: 2, 10: 1}, item_class=NumberedPitchClass)
-
-        ..  container:: example
-
-            Initializes from interpreter representation of pitch-class vector:
-
-
-                >>> abjad.PitchClassVector(vector)
-                PitchClassVector({0: 1, 1: 1, 2: 1, 3: 1, 4: 2, 6: 1, 7: 1, 9: 2, 10: 1}, item_class=NumberedPitchClass)
-
-        Returns string.
-        """
-        return super().__repr__()
-
-    ### PRIVATE PROPERTIES ###
-
     @property
     def _named_item_class(self):
         return NamedPitchClass
@@ -17114,14 +12112,10 @@ class PitchClassVector(Vector):
     def _parent_item_class(self):
         return PitchClass
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "PitchClassVector":
         """
         Makes pitch-class vector from ``selection``.
-
-        Returns pitch-class vector.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         return class_(pitch_segment, item_class=item_class)
@@ -17136,9 +12130,11 @@ class PitchVector(Vector):
         >>> vector = abjad.PitchVector(
         ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
         ...     item_class=abjad.NumberedPitch,
-        ...     )
+        ... )
+        >>> vector
+        PitchVector(items={NumberedPitch(-3): 2, NumberedPitch(-2): 1, NumberedPitch(0): 1, NumberedPitch(1): 1, NumberedPitch(6): 1, NumberedPitch(7): 1, NumberedPitch(14): 1, NumberedPitch(15): 1, NumberedPitch(16): 2}, item_class=<class 'abjad.pitch.NumberedPitch'>)
 
-        >>> items = list(vector.items())
+        >>> items = list(vector.items.items())
         >>> items.sort(key=lambda x: x[0].number)
         >>> for pitch_class, count in items:
         ...     print(pitch_class, count)
@@ -17154,41 +12150,6 @@ class PitchVector(Vector):
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        """
-        Gets interpreter representation of pitch vector.
-
-        ..  container:: example
-
-            Gets interpreter representation of pitch vector:
-
-            >>> vector = abjad.PitchVector(
-            ...     items=[7, 6, -2, -3, -3, 0, 1, 14, 15, 16, 16],
-            ...     item_class=abjad.NumberedPitch,
-            ...     )
-
-            >>> vector
-            PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
-
-        ..  container:: example
-
-            Initializes from interpreter representation of pitch vector:
-
-                >>> abjad.PitchVector(vector)
-                PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
-
-        Returns string.
-        """
-        return super().__repr__()
-
-    ### PRIVATE PROPERTIES ###
-
     @property
     def _named_item_class(self):
         return NamedPitch
@@ -17201,14 +12162,10 @@ class PitchVector(Vector):
     def _parent_item_class(self):
         return Pitch
 
-    ### PUBLIC METHODS ###
-
     @classmethod
-    def from_selection(class_, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None) -> "PitchVector":
         """
         Makes pitch vector from ``selection``.
-
-        Returns pitch vector.
         """
         pitch_segment = PitchSegment.from_selection(selection)
         return class_(pitch_segment, item_class=item_class)

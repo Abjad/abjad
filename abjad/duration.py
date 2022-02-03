@@ -5,7 +5,6 @@ import typing
 import quicktions
 
 from . import exceptions as _exceptions
-from . import format as _format
 from . import math as _math
 
 
@@ -396,9 +395,9 @@ class Duration(quicktions.Fraction):
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}({self.numerator}, {self.denominator})"
 
     def __rmod__(self, *arguments):
         """
@@ -464,13 +463,6 @@ class Duration(quicktions.Fraction):
         return self.__div__(*arguments)
 
     ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_args_values=[self.numerator, self.denominator],
-            storage_format_is_not_indented=True,
-            storage_format_keyword_names=[],
-        )
 
     @staticmethod
     def _group_by_implied_prolation(durations):
@@ -1415,16 +1407,6 @@ class Offset(Duration):
         >>> isinstance(abjad.Offset(3, 16), numbers.Number)
         True
 
-    ..  container:: example exception
-
-        REGRESSION. Raises exception when new is attempted:
-
-        >>> abjad.new(abjad.Offset((3, 16)))
-        Traceback (most recent call last):
-            ...
-        Exception: low-level class not equipped for new():
-            Offset((3, 16))
-
     """
 
     ### CLASS VARIABLES ###
@@ -1840,7 +1822,11 @@ class Offset(Duration):
             Offset((1, 4), displacement=Duration(-1, 16))
 
         """
-        return super().__repr__()
+        if self.displacement is None:
+            return f"{type(self).__name__}({self.pair})"
+        else:
+            string = f"{self.pair}, displacement={self.displacement!r}"
+            return f"{type(self).__name__}({string})"
 
     def __sub__(self, argument):
         """
@@ -1882,17 +1868,6 @@ class Offset(Duration):
         if self.displacement is None:
             return Duration(0)
         return self.displacement
-
-    def _get_format_specification(self):
-        names = []
-        values = [(self.numerator, self.denominator)]
-        if self._get_displacement():
-            names = ["displacement"]
-        return _format.FormatSpecification(
-            storage_format_args_values=values,
-            storage_format_is_not_indented=True,
-            storage_format_keyword_names=names,
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -2322,7 +2297,7 @@ class NonreducedFraction(quicktions.Fraction):
             NonreducedFraction(3, 6)
 
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}({self.numerator}, {self.denominator})"
 
     def __rmul__(self, argument) -> "NonreducedFraction":
         """
@@ -2399,13 +2374,6 @@ class NonreducedFraction(quicktions.Fraction):
         result = type(self)(fraction)
         result = result.with_denominator(denominator)
         return result
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_args_values=[self.numerator, self.denominator],
-            storage_format_is_not_indented=True,
-            storage_format_keyword_names=[],
-        )
 
     @staticmethod
     def _parse_input_string(string):

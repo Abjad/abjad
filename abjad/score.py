@@ -1,6 +1,6 @@
-import abc
 import collections
 import copy
+import dataclasses
 import functools
 import math
 import typing
@@ -15,7 +15,6 @@ from . import lyconst as _lyconst
 from . import lyproxy as _lyproxy
 from . import markups as _markups
 from . import math as _math
-from . import new as _new
 from . import overrides as _overrides
 from . import pitch as _pitch
 from . import tag as _tag
@@ -59,7 +58,6 @@ class Component:
 
         return parse(string, language=language)
 
-    @abc.abstractmethod
     def __init__(self, name: str = None, tag: _tag.Tag = None) -> None:
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
@@ -104,10 +102,12 @@ class Component:
             if not wrapper.annotation:
                 continue
             wrapper_ = copy.copy(wrapper)
-            _new.new(wrapper_, component=component)
-        for wrapper in self._get_indicators(unwrap=False):
+            wrapper_._component = component
+            wrapper_._bind_component(component)
+        for wrapper in list(self._get_indicators(unwrap=False)):
             wrapper_ = copy.copy(wrapper)
-            _new.new(wrapper_, component=component)
+            wrapper_._component = component
+            wrapper_._bind_component(component)
         return component
 
     def __getnewargs__(self):
@@ -117,12 +117,6 @@ class Component:
         Returns tuple.
         """
         return ()
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -276,16 +270,6 @@ class Component:
 
     def _get_format_pieces(self):
         return self._format_component(pieces=True)
-
-    def _get_format_specification(self):
-        values = []
-        summary = self._get_contents_summary()
-        if summary:
-            values.append(summary)
-        return _format.FormatSpecification(
-            repr_args_values=values,
-            storage_format_keyword_names=[],
-        )
 
     def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
         indicators = self._get_indicators(
@@ -508,7 +492,6 @@ class Leaf(Component):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(
         self, written_duration, *, multiplier=None, tag: _tag.Tag = None
     ) -> None:
@@ -544,6 +527,12 @@ class Leaf(Component):
         """
         return (self.written_duration,)
 
+    def __repr__(self) -> str:
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self._get_compact_representation()!r})"
+
     def __str__(self) -> str:
         """
         Gets string representation of leaf.
@@ -559,7 +548,8 @@ class Leaf(Component):
             self._lilypond_setting_name_manager = copy.copy(_overrides.setting(leaf))
         for wrapper in leaf._wrappers:
             wrapper_ = copy.copy(wrapper)
-            _new.new(wrapper_, component=self)
+            wrapper_._component = self
+            wrapper_._bind_component(self)
 
     def _format_after_grace_body(self):
         result = []
@@ -651,16 +641,6 @@ class Leaf(Component):
 
     def _get_format_pieces(self):
         return self._get_lilypond_format().split("\n")
-
-    def _get_format_specification(self):
-        summary = self._get_compact_representation()
-        return _format.FormatSpecification(
-            repr_is_indented=False,
-            repr_args_values=[summary],
-            storage_format_args_values=[self._get_lilypond_format()],
-            storage_format_is_not_indented=True,
-            storage_format_keyword_names=[],
-        )
 
     def _get_formatted_duration(self):
         strings = []
@@ -1119,6 +1099,16 @@ class Container(Component):
         """
         return len(self.components)
 
+    def __repr__(self) -> str:
+        """
+        Gets repr.
+        """
+        string = self._get_contents_summary()
+        if string:
+            return f"{type(self).__name__}({string!r})"
+        else:
+            return f"{type(self).__name__}()"
+
     def __setitem__(self, i, argument) -> None:
         """
         Sets container ``i`` equal to ``argument``.
@@ -1310,27 +1300,6 @@ class Container(Component):
         elif self:
             result.extend(self[-1]._get_descendants_stopping_with())
         return result
-
-    def _get_format_specification(self):
-        repr_text = None
-        repr_args_values = []
-        repr_keyword_names = self._get_repr_keyword_names()
-        storage_format_args_values = []
-        if self:
-            repr_args_values.append(self._get_contents_summary())
-            lilypond_format = " ".join(_._get_lilypond_format() for _ in self)
-            lilypond_format = lilypond_format.replace("\n", " ")
-            lilypond_format = lilypond_format.replace("\t", " ")
-            lilypond_format = lilypond_format.replace("  ", " ")
-            storage_format_args_values.append(lilypond_format)
-            if not self[:].are_leaves():
-                repr_text = self._get_abbreviated_string_format()
-        return _format.FormatSpecification(
-            repr_args_values=repr_args_values,
-            repr_keyword_names=repr_keyword_names,
-            repr_text=repr_text,
-            storage_format_args_values=storage_format_args_values,
-        )
 
     def _get_preprolated_duration(self):
         return self._get_contents_duration()
@@ -2786,7 +2755,7 @@ class Chord(Leaf):
         ..  container:: example
 
             >>> abjad.Chord("<c' d'>4").__getnewargs__()
-            (PitchSegment("c' d'"), Duration(1, 4))
+            (PitchSegment(items="c' d'", item_class=NamedPitch), Duration(1, 4))
 
         Returns pair.
         """
@@ -2848,22 +2817,8 @@ class Chord(Leaf):
 
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
-
-            >>> string = abjad.storage(chord.note_heads)
-            >>> print(string)
-            abjad.NoteHeadList(
-                [
-                    abjad.NoteHead(
-                        written_pitch=abjad.NamedPitch("g'"),
-                        ),
-                    abjad.NoteHead(
-                        written_pitch=abjad.NamedPitch("c''"),
-                        ),
-                    abjad.NoteHead(
-                        written_pitch=abjad.NamedPitch("e''"),
-                        ),
-                    ]
-                )
+            >>> chord.note_heads
+            NoteHeadList(items=[NoteHead("g'"), NoteHead("c''"), NoteHead("e''")], item_class=<class 'abjad.score.NoteHead'>, keep_sorted=True)
 
         ..  container:: example
 
@@ -2955,7 +2910,7 @@ class Chord(Leaf):
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> chord.written_pitches
-            PitchSegment("g' c'' e''")
+            PitchSegment(items="g' c'' e''", item_class=NamedPitch)
 
         ..  container:: example
 
@@ -2974,7 +2929,7 @@ class Chord(Leaf):
                 <f' b' d''>4
 
             >>> chord.written_pitches
-            PitchSegment("f' b' d''")
+            PitchSegment(items="f' b' d''", item_class=NamedPitch)
 
         Set written pitches with any iterable.
         """
@@ -3147,7 +3102,7 @@ class Context(Container):
         """
         return [], self.lilypond_type, self.simultaneous, self.name
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of context.
 
@@ -3160,11 +3115,19 @@ class Context(Container):
             >>> repr(context)
             "Context(lilypond_type='GlobalContext', name='Meter_Voice')"
 
-        Returns string.
         """
-        if self[:].are_leaves():
-            return Container.__repr__(self)
-        return self._get_abbreviated_string_format()
+        parameters = []
+        if self.components:
+            string = repr(self._get_contents_summary())
+            parameters.append(string)
+        if self.lilypond_type != type(self).__name__:
+            parameters.append(f"lilypond_type={self.lilypond_type!r}")
+        if self.name:
+            parameters.append(f"name={self.name!r}")
+        if self.simultaneous is not None:
+            parameters.append(f"simultaneous={self.simultaneous!r}")
+        string = ", ".join(parameters)
+        return f"{type(self).__name__}({string})"
 
     ### PRIVATE METHODS ###
 
@@ -3565,18 +3528,9 @@ class NoteHead:
             >>> copy.copy(note_head)
             NoteHead("cs''")
 
-        ..  container:: example
-
-            REGRESSION. Note-heads work with new:
-
-            >>> note = abjad.Note("cs''")
-            >>> abjad.new(note.note_head)
-            NoteHead("cs''")
-
         """
         arguments = (
             self.written_pitch,
-            # None,
             self.is_cautionary,
             self.is_forced,
             self.is_parenthesized,
@@ -3623,7 +3577,24 @@ class NoteHead:
             NoteHead("cs''")
 
         """
-        return _format.get_repr(self)
+        strings = []
+        if self.written_pitch is not None:
+            string = str(self.written_pitch)
+            strings.append(repr(string))
+        if self.is_cautionary:
+            string = f"is_cautionary={self.is_cautionary!r}"
+            strings.append(string)
+        if self.is_forced:
+            string = f"is_forced={self.is_forced!r}"
+            strings.append(string)
+        if self.is_parenthesized:
+            string = f"is_parenthesized={self.is_parenthesized!r}"
+            strings.append(string)
+        if self.tweaks:
+            string = f"tweaks={self.tweaks!r}"
+            strings.append(string)
+        string = ", ".join(strings)
+        return f"{type(self).__name__}({string})"
 
     def __str__(self) -> str:
         """
@@ -3666,21 +3637,6 @@ class NoteHead:
         result.append(kernel)
         return result
 
-    def _get_format_specification(self):
-        arguments = [repr(str(self))]
-        if self.tweaks:
-            arguments.extend(self.tweaks._get_attribute_pairs())
-        arguments = ", ".join([str(_) for _ in arguments])
-        repr_text = f"{type(self).__name__}({arguments})"
-        result = _format._inspect_signature(self)
-        signature_keyword_names = result[1]
-        names = list(signature_keyword_names)
-        if "tweaks" in names:
-            names.remove("tweaks")
-        return _format.FormatSpecification(
-            repr_text=repr_text, storage_format_keyword_names=names
-        )
-
     def _get_lilypond_format(self, duration=None):
         pieces = self._get_format_pieces()
         if duration is not None:
@@ -3702,10 +3658,12 @@ class NoteHead:
         """
         Gets and sets note-head alternative.
 
+        >>> import copy
+
         ..  container:: example
 
             >>> note = abjad.Note("c''4")
-            >>> alternative = abjad.new(note.note_head)
+            >>> alternative = copy.copy(note.note_head)
             >>> alternative.is_forced = True
             >>> note.note_head.alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(note) # doctest: +SKIP
@@ -3741,7 +3699,7 @@ class NoteHead:
         ..  container:: example
 
             >>> chord = abjad.Chord("<c' d' bf''>4")
-            >>> alternative = abjad.new(chord.note_heads[0])
+            >>> alternative = copy.copy(chord.note_heads[0])
             >>> alternative.is_forced = True
             >>> chord.note_heads[0].alternative = (alternative, '-PARTS', '+PARTS')
             >>> abjad.show(chord) # doctest: +SKIP
@@ -4070,45 +4028,24 @@ class DrumNoteHead(NoteHead):
         self._written_pitch = drum_pitch
 
 
+@dataclasses.dataclass(slots=True)
 class NoteHeadList(_typedcollections.TypedList):
     r"""
     Note-head list.
 
     ..  container:: example
 
-        >>> chord = abjad.Chord([0, 1, 4], (1, 4))
-        >>> note_heads = abjad.NoteHeadList(items=[11, 10, 9])
-
-        >>> string = abjad.storage(note_heads)
-        >>> print(string)
-        abjad.NoteHeadList(
-            [
-                abjad.NoteHead(
-                    written_pitch=abjad.NamedPitch("a'"),
-                    ),
-                abjad.NoteHead(
-                    written_pitch=abjad.NamedPitch("bf'"),
-                    ),
-                abjad.NoteHead(
-                    written_pitch=abjad.NamedPitch("b'"),
-                    ),
-                ]
-            )
+        >>> abjad.NoteHeadList(items=[11, 10, 9])
+        NoteHeadList(items=[NoteHead("a'"), NoteHead("bf'"), NoteHead("b'")], item_class=<class 'abjad.score.NoteHead'>, keep_sorted=True)
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Note-heads"
 
-    ### INITIALIZER ###
-
-    def __init__(self, items=None):
-        _typedcollections.TypedList.__init__(
-            self, item_class=NoteHead, keep_sorted=True, items=items
-        )
-
-    ### PRIVATE METHODS ###
+    def __post_init__(self):
+        self.item_class = NoteHead
+        self.keep_sorted = True
+        _typedcollections.TypedList.__post_init__(self)
 
     def _coerce_item(self, item):
         def coerce_(token):
@@ -4117,21 +4054,6 @@ class NoteHeadList(_typedcollections.TypedList):
             return token
 
         return coerce_(item)
-
-    def _get_format_specification(self):
-        result = _format._inspect_signature(self)
-        signature_keyword_names = result[1]
-        names = list(signature_keyword_names)
-        if "items" in names:
-            names.remove("items")
-        if "keep_sorted" in names:
-            names.remove("keep_sorted")
-        return _format.FormatSpecification(
-            storage_format_args_values=[self._collection],
-            storage_format_keyword_names=names,
-        )
-
-    ### PUBLIC METHODS ###
 
     def extend(self, items):
         r"""
@@ -4172,7 +4094,7 @@ class NoteHeadList(_typedcollections.TypedList):
 
         Returns note-head.
         """
-        return super().extend(items)
+        return _typedcollections.TypedList.extend(self, items)
 
     def get(self, pitch):
         r"""
@@ -4222,11 +4144,10 @@ class NoteHeadList(_typedcollections.TypedList):
                     f''
                 >4
 
-        Raises missing note-head error when chord contains no
-        note-head with ``pitch``.
+        Raises missing note-head error when chord contains no note-head with ``pitch``.
 
-        Raises extra note-head error when chord contains more than
-        one note-head with ``pitch``.
+        Raises extra note-head error when chord contains more than one note-head with
+        ``pitch``.
 
         Returns note-head.
         """
@@ -4272,7 +4193,7 @@ class NoteHeadList(_typedcollections.TypedList):
 
         Returns note-head.
         """
-        return super().pop(i=i)
+        return _typedcollections.TypedList.pop(self, i=i)
 
     def remove(self, item):
         r"""
@@ -4300,7 +4221,7 @@ class NoteHeadList(_typedcollections.TypedList):
                 <ef' f''>4
 
         """
-        return super().remove(item)
+        return _typedcollections.TypedList.remove(self, item)
 
 
 class Note(Leaf):
@@ -5363,6 +5284,12 @@ class Tuplet(Container):
         """
         return (self.multiplier,)
 
+    def __repr__(self) -> str:
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}({self.colon_string!r}, {self._get_contents_summary()!r})"
+
     ### PRIVATE METHODS ###
 
     def _format_after_slot(self, bundle):
@@ -5455,13 +5382,6 @@ class Tuplet(Container):
         denominator = duration.denominator
         if not _math.is_nonnegative_integer_power_of_two(denominator):
             return r"\tweak edge-height #'(0.7 . 0)"
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            repr_args_values=[self.colon_string, self._get_contents_summary()],
-            storage_format_args_values=[self.multiplier, self[:]],
-            storage_format_keyword_names=[],
-        )
 
     def _get_lilypond_format(self):
         self._update_now(indicators=True)

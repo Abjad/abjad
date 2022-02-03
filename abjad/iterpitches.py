@@ -162,21 +162,21 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     assert isinstance(pitch_range, _pitch.PitchRange), repr(pitch_range)
     if isinstance(argument, (int, float)):
         pitch = _pitch.NamedPitch(argument)
-        return pitch_range._contains_pitch(pitch)
+        return pitch in pitch_range
     if isinstance(argument, _pitch.Pitch):
-        return pitch_range._contains_pitch(argument)
+        return argument in pitch_range
     if hasattr(argument, "written_pitch"):
         sounding_pitch = _inspect._get_sounding_pitch(argument)
-        return pitch_range._contains_pitch(sounding_pitch)
+        return sounding_pitch in pitch_range
     if hasattr(argument, "written_pitches"):
         sounding_pitches = _inspect._get_sounding_pitches(argument)
-        return all(pitch_range._contains_pitch(_) for _ in sounding_pitches)
+        return all(_ in pitch_range for _ in sounding_pitches)
     pitches = list(iterate_.pitches(argument))
     if pitches:
-        return all(pitch_range._contains_pitch(_) for _ in pitches)
+        return all(_ in pitch_range for _ in pitches)
     else:
         try:
-            return all(pitch_range._contains_pitch(_) for _ in argument)
+            return all(_ in pitch_range for _ in argument)
         except TypeError:
             return False
     return False

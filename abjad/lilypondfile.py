@@ -126,7 +126,7 @@ class Block:
 
     '''
 
-    name: str
+    name: str | None = None
     items: list = dataclasses.field(default_factory=list)
 
     def __post_init__(self):
@@ -302,13 +302,13 @@ class LilyPondFile:
                 >>
 
             >>> lilypond_file["score"]
-            Block(name='score', items=[<Score-"Score"<<1>>>])
+            Block(name='score', items=[Score("{ { c''4 b'4 a'4 g'4 } { c'4 d'4 e'4 f'4 } }", name='Score', simultaneous=True)])
 
             >>> lilypond_file["Score"]
-            <Score-"Score"<<1>>>
+            Score("{ { c''4 b'4 a'4 g'4 } { c'4 d'4 e'4 f'4 } }", name='Score', simultaneous=True)
 
             >>> lilypond_file["Staff"]
-            <Staff-"Staff"<<2>>>
+            Staff("{ c''4 b'4 a'4 g'4 } { c'4 d'4 e'4 f'4 }", name='Staff', simultaneous=True)
 
             >>> lilypond_file["Voice_1"]
             Voice("c''4 b'4 a'4 g'4", name='Voice_1')
@@ -363,10 +363,10 @@ class LilyPondFile:
                 >>
 
             >>> lilypond_file["Score"]
-            <Score-"Score"<<1>>>
+            Score("{ { c''4 b'4 a'4 g'4 } { c'4 d'4 e'4 f'4 } }", name='Score', simultaneous=True)
 
             >>> lilypond_file["Staff"]
-            <Staff-"Staff"<<2>>>
+            Staff("{ c''4 b'4 a'4 g'4 } { c'4 d'4 e'4 f'4 }", name='Staff', simultaneous=True)
 
             >>> lilypond_file["Voice_1"]
             Voice("c''4 b'4 a'4 g'4", name='Voice_1')

@@ -1,4 +1,5 @@
 import copy
+import dataclasses
 import typing
 
 from . import bundle as _bundle
@@ -11,6 +12,9 @@ from . import tag as _tag
 
 
 def format_embedded_scheme_value(value):
+    """
+    Formats embedded Scheme ``value``.
+    """
     result = _fsv.format_scheme_value(value)
     if isinstance(value, bool):
         result = "#" + result
@@ -18,6 +22,9 @@ def format_embedded_scheme_value(value):
 
 
 def format_lilypond_attribute(attribute) -> str:
+    """
+    Formats LilyPond ``attribute``.
+    """
     assert isinstance(attribute, str), repr(attribute)
     attribute = attribute.replace("__", ".")
     result = attribute.replace("_", "-")
@@ -49,6 +56,9 @@ lilypond_color_constants = (
 
 
 def format_lilypond_value(argument) -> str:
+    """
+    Formats LilyPond value.
+    """
     if "_get_lilypond_format" in dir(argument):
         return argument._get_lilypond_format()
     if argument is True:
@@ -73,6 +83,9 @@ def format_lilypond_value(argument) -> str:
 def make_lilypond_override_string(
     grob, attribute, value, context=None, once=False
 ) -> str:
+    """
+    Makes LilyPond override string.
+    """
     # camel_name = _string.String(grob).to_upper_camel_case()
     # assert grob == camel_name, repr((grob, camel_name))
     grob = _string.String(grob).to_upper_camel_case()
@@ -91,6 +104,9 @@ def make_lilypond_override_string(
 
 
 def make_lilypond_revert_string(grob, attribute, context=None) -> str:
+    """
+    Makes LilyPond revert string.
+    """
     # camel_name = _string.String(grob).to_upper_camel_case()
     # assert grob == camel_name, repr((grob, camel_name))
     grob = _string.String(grob).to_upper_camel_case()
@@ -109,6 +125,9 @@ def make_lilypond_revert_string(grob, attribute, context=None) -> str:
 def make_lilypond_tweak_string(
     attribute, value, *, directed=True, grob=None, literal=None
 ) -> str:
+    """
+    Makes LilyPond tweak string.
+    """
     if grob is not None:
         # camel_name = _string.String(grob).to_upper_camel_case()
         # assert grob == camel_name, repr((grob, camel_name))
@@ -125,6 +144,7 @@ def make_lilypond_tweak_string(
     return string
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class LilyPondLiteral:
     r"""
     LilyPond literal.
@@ -270,11 +290,95 @@ class LilyPondLiteral:
             f'4
         }
 
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
+        >>> abjad.tweak(literal).color = "#blue"
+        >>> abjad.attach(literal, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                - \tweak color #blue
+                \f
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Directed literal:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
+        >>> abjad.tweak(literal).color = "#blue"
+        >>> abjad.tweak(literal).DynamicLineSpanner.staff_padding = 5
+        >>> abjad.attach(literal, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                - \tweak DynamicLineSpanner.staff-padding 5
+                - \tweak color #blue
+                \f
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Nondirected literal:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> literal = abjad.LilyPondLiteral(
+        ...     r"\breathe",
+        ...     "after",
+        ...     directed=False,
+        ...     )
+        >>> abjad.tweak(literal).color = "#blue"
+        >>> abjad.attach(literal, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                \tweak color #blue
+                \breathe
+                d'4
+                e'4
+                f'4
+            }
+
+        Proper use of the ``directed`` property entails searching the LilyPond
+        docs to understand whether LilyPond treats any particular command as
+        directed or not. Most LilyPond commands are directed. LilyPond insists
+        that a few commands (include ``\breathe``, ``\key``, ``\mark``) must
+        not be directed.
+
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_argument", "_directed", "_format_slot", "_tweaks")
+    argument: typing.Union[str, typing.List[str]] = ""
+    # TODO: probaby change default to "before"
+    format_slot: str = "opening"
+    directed: bool | None = None
+    tweaks: typing.Optional["TweakInterface"] = None
 
     _allowable_format_slots = (
         "absolute_after",
@@ -285,55 +389,15 @@ class LilyPondLiteral:
         "opening",
     )
 
+    _is_dataclass = True
     _can_attach_to_containers = True
-
     _format_leaf_children = False
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        argument: typing.Union[str, typing.List[str]] = "",
-        # TODO: probaby change default to "before"
-        format_slot: str = "opening",
-        *,
-        directed: bool = None,
-        tweaks: "TweakInterface" = None,
-    ) -> None:
-        self._argument = argument
-        assert format_slot in self._allowable_format_slots, repr(format_slot)
-        self._format_slot = format_slot
-        if directed is not None:
-            directed = bool(directed)
-        self._directed = directed
-        if tweaks is not None:
-            assert isinstance(tweaks, TweakInterface), repr(tweaks)
-        self._tweaks = TweakInterface.set_tweaks(self, tweaks)
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Compares ``argument`` and ``format_slot``.
-        """
-        if isinstance(argument, type(self)):
-            if self.argument == argument.argument:
-                return self.format_slot == argument.format_slot
-        return False
-
-    def __hash__(self) -> int:
-        """
-        Hashes LilyPond literal.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
+    def __post_init__(self):
+        assert self.format_slot in self._allowable_format_slots, repr(self.format_slot)
+        if self.directed is not None:
+            self.directed = bool(self.directed)
+        self.tweaks = TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     # TODO: activate this:
     #    def _before_attach(self, component):
@@ -348,12 +412,6 @@ class LilyPondLiteral:
         assert isinstance(self.argument, list)
         return self.argument[:]
 
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_args_values=[self.argument],
-            storage_format_is_not_indented=True,
-        )
-
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
         format_slot = bundle.get(self.format_slot)
@@ -363,133 +421,6 @@ class LilyPondLiteral:
         pieces = self._get_format_pieces()
         format_slot.commands.extend(pieces)
         return bundle
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def argument(self) -> typing.Union[str, typing.List[str]]:
-        r"""
-        Gets argument of LilyPond literal.
-
-        ..  container:: example
-
-            >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
-            >>> literal.argument
-            '\\slurDotted'
-
-        """
-        return self._argument
-
-    @property
-    def directed(self) -> typing.Optional[bool]:
-        r"""
-        Is true when literal is directed.
-
-        ..  container:: example
-
-            Directed literal:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-            >>> abjad.tweak(literal).color = "#blue"
-            >>> abjad.tweak(literal).DynamicLineSpanner.staff_padding = 5
-            >>> abjad.attach(literal, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    c'4
-                    - \tweak DynamicLineSpanner.staff-padding 5
-                    - \tweak color #blue
-                    \f
-                    d'4
-                    e'4
-                    f'4
-                }
-
-        ..  container:: example
-
-            Nondirected literal:
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> literal = abjad.LilyPondLiteral(
-            ...     r"\breathe",
-            ...     "after",
-            ...     directed=False,
-            ...     )
-            >>> abjad.tweak(literal).color = "#blue"
-            >>> abjad.attach(literal, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    c'4
-                    \tweak color #blue
-                    \breathe
-                    d'4
-                    e'4
-                    f'4
-                }
-
-        Proper use of the ``directed`` property entails searching the LilyPond
-        docs to understand whether LilyPond treats any particular command as
-        directed or not. Most LilyPond commands are directed. LilyPond insists
-        that a few commands (include ``\breathe``, ``\key``, ``\mark``) must
-        not be directed.
-        """
-        return self._directed
-
-    @property
-    def format_slot(self) -> str:
-        r"""
-        Gets format slot of LilyPond literal.
-
-        ..  container:: example
-
-            >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
-            >>> literal.format_slot
-            'opening'
-
-        """
-        return self._format_slot
-
-    @property
-    def tweaks(self) -> typing.Optional["TweakInterface"]:
-        r"""
-        Gets tweaks.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-            >>> abjad.tweak(literal).color = "#blue"
-            >>> abjad.attach(literal, staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    c'4
-                    - \tweak color #blue
-                    \f
-                    d'4
-                    e'4
-                    f'4
-                }
-
-        """
-        return self._tweaks
 
 
 class Interface:

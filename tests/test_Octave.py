@@ -30,7 +30,6 @@ values = [
     (2, 2),
     (3, 3),
     (4, 4),
-    (None, 4),
     (abjad.Octave(), 4),
     (abjad.Octave(3), 3),
     (abjad.Octave(5), 5),

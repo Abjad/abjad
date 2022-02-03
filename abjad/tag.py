@@ -1,6 +1,5 @@
+import dataclasses
 import typing
-
-from . import format as _format
 
 
 class Tag:
@@ -195,11 +194,14 @@ class Tag:
         """
         return iter(self.words)
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        if self.string is None:
+            return f"{type(self).__name__}()"
+        else:
+            return f"{type(self).__name__}({self.string!r})"
 
     def __str__(self):
         """
@@ -215,17 +217,6 @@ class Tag:
 
         """
         return self.string or ""
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        values = []
-        if self.string is not None:
-            values.append(self.string)
-        return _format.FormatSpecification(
-            storage_format_args_values=values,
-            storage_format_is_not_indented=True,
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -388,6 +379,7 @@ class Tag:
             return None
 
 
+@dataclasses.dataclass(slots=True)
 class Line:
     r"""
     Line in a LilyPond file.
@@ -400,58 +392,7 @@ class Line:
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Segment-makers"
-
-    __slots__ = ("_string",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, string=""):
-        assert isinstance(string, str), repr(string)
-        self._string = string
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    def __str__(self):
-        r"""
-        Gets string representation of line.
-
-        ..  container:: example
-
-            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
-            >>> str(abjad.Line(string))
-            '    %@%  \\with-color %! MEASURE_NUMBER:SM31'
-
-        Returns string.
-        """
-        return self.string
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def string(self):
-        r"""
-        Gets string.
-
-        ..  container:: example
-
-            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
-            >>> abjad.Line(string).string
-            '    %@%  \\with-color %! MEASURE_NUMBER:SM31'
-
-        Returns string.
-        """
-        return self._string
-
-    ### PUBLIC METHODS ###
+    string: str
 
     def get_tags(self):
         r"""
@@ -620,9 +561,6 @@ class Line:
         if not callable(predicate):
             return False
         return predicate(tags)
-
-
-### FUNCTIONS ###
 
 
 def _match_line(line, tag, current_tags):
@@ -934,6 +872,9 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
 
 def double_tag(strings, tag_, deactivate=None):
+    """
+    Double tags ``strings``.
+    """
     before_tags = []
     if tag_:
         line = str(tag_)

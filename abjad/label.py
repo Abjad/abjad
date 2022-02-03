@@ -1,3 +1,4 @@
+import dataclasses
 import typing
 
 from . import _inspect, _iterate
@@ -5,14 +6,13 @@ from . import bind as _bind
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
-from . import format as _format
 from . import iterate as iterate_
 from . import markups as _markups
-from . import new as _new
 from . import overrides as _overrides
 from . import pitch as _pitch
 from . import score as _score
 from . import selection as _selection
+from . import setclass as _setclass
 from . import verticalmoment as _verticalmoment
 
 
@@ -765,15 +765,17 @@ def vertical_moments(
                 item_class=_pitch.NumberedInversionEquivalentIntervalClass,
             )
             string = interval_class_vector._label
-        elif prototype is _pitch.SetClass or isinstance(prototype, _pitch.SetClass):
-            if prototype is _pitch.SetClass:
+        elif prototype is _setclass.SetClass or isinstance(
+            prototype, _setclass.SetClass
+        ):
+            if prototype is _setclass.SetClass:
                 prototype = prototype()
-            assert isinstance(prototype, _pitch.SetClass)
+            assert isinstance(prototype, _setclass.SetClass)
             leaves = vertical_moment.leaves
             pitch_class_set = _pitch.PitchClassSet.from_selection(leaves)
             if not pitch_class_set:
                 continue
-            set_class = _pitch.SetClass.from_pitch_class_set(
+            set_class = _setclass.SetClass.from_pitch_class_set(
                 pitch_class_set,
                 lex_rank=prototype.lex_rank,
                 transposition_only=prototype.transposition_only,
@@ -1665,7 +1667,7 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                     direction=direction,
                 )
         if label is not None:
-            label = _new.new(label, direction=direction)
+            label = dataclasses.replace(label, direction=direction)
             _attach(label, leaf)
 
 
@@ -1782,7 +1784,7 @@ def with_set_classes(argument, direction=_enums.Up, prototype=None):
             >>> for selection in selections:
             ...     abjad.horizontal_bracket(selection)
             ...
-            >>> prototype = abjad.SetClass(transposition_only=True)
+            >>> prototype = abjad.SetClass(lex_rank=True, transposition_only=True)
             >>> abjad.label.with_set_classes(selections, prototype=prototype)
             >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
             >>> abjad.override(voice).TextScript.staff_padding = 2
@@ -1819,15 +1821,15 @@ def with_set_classes(argument, direction=_enums.Up, prototype=None):
 
     Returns none.
     """
-    prototype = prototype or _pitch.SetClass()
-    if prototype is _pitch.SetClass:
+    prototype = prototype or _setclass.SetClass()
+    if prototype is _setclass.SetClass:
         prototype = prototype()
-    assert isinstance(prototype, _pitch.SetClass), repr(prototype)
+    assert isinstance(prototype, _setclass.SetClass), repr(prototype)
     for selection in argument:
         pitch_class_set = _pitch.PitchClassSet.from_selection(selection)
         if not pitch_class_set:
             continue
-        set_class = _pitch.SetClass.from_pitch_class_set(
+        set_class = _setclass.SetClass.from_pitch_class_set(
             pitch_class_set,
             lex_rank=prototype.lex_rank,
             transposition_only=prototype.transposition_only,
@@ -2010,6 +2012,7 @@ def with_start_offsets(
     return total_duration
 
 
+@dataclasses.dataclass(slots=True)
 class ColorMap:
     """
     Color map.
@@ -2026,45 +2029,21 @@ class ColorMap:
         ...         [15, 25, 42, 43],
         ...     ],
         ... )
-
-        >>> string = abjad.storage(color_map)
-        >>> print(string)
-        abjad.ColorMap(
-            colors=['#red', '#green', '#blue'],
-            pitch_iterables=[
-                [-8, 2, 10, 21],
-                [0, 11, 32, 41],
-                [15, 25, 42, 43],
-                ],
-            )
+        >>> color_map
+        ColorMap(colors=['#red', '#green', '#blue'], pitch_iterables=[[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]])
 
     """
 
-    ### CLASS VARIABLES ###
+    colors: typing.Any = None
+    pitch_iterables: typing.Any = None
+    _color_dictionary: dict = dataclasses.field(compare=False, init=False, repr=False)
 
-    __slots__ = ("_color_dictionary", "_colors", "_pitch_iterables")
-
-    ### INITIALIZER ###
-
-    def __init__(self, *, colors=None, pitch_iterables=None):
-        pitch_iterables = pitch_iterables or []
-        colors = colors or []
-        assert len(pitch_iterables) == len(colors)
-        self._pitch_iterables = pitch_iterables
-        self._colors = colors
+    def __post_init__(self):
+        self.pitch_iterables = self.pitch_iterables or []
+        self.colors = self.colors or []
+        assert len(self.pitch_iterables) == len(self.colors)
         self._color_dictionary = {}
         self._initialize_color_dictionary()
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Compares ``color``, ``pitch_iterables``.
-        """
-        if isinstance(argument, type(self)):
-            if self.colors == argument.colors:
-                return self.pitch_iterables == argument.pitch_iterables
-        return False
 
     def __getitem__(self, pitch_class) -> str:
         """
@@ -2088,20 +2067,6 @@ class ColorMap:
         pitch_class = _pitch.NumberedPitchClass(pitch_class)
         return self._color_dictionary[pitch_class.number]
 
-    def __hash__(self) -> int:
-        """
-        Hashes color map.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
-
     def _initialize_color_dictionary(self):
         for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
             for pitch in pitch_iterable:
@@ -2112,29 +2077,11 @@ class ColorMap:
                     raise KeyError("duplicated pitch-class in color map: {pc!r}.")
                 self._color_dictionary[pc.number] = color
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def colors(self) -> typing.List[str]:
+    def __hash__(self):
         """
-        Gets colors.
-
-        ..  container:: example
-
-            >>> color_map = abjad.ColorMap(
-            ...     colors=["#red", "#green", "#blue"],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...     ],
-            ... )
-
-            >>> color_map.colors
-            ['#red', '#green', '#blue']
-
+        Makes hash.
         """
-        return self._colors
+        return hash(repr(self))
 
     @property
     def is_twelve_tone_complete(self) -> bool:
@@ -2218,30 +2165,6 @@ class ColorMap:
         """
         items = list(self._color_dictionary.items())
         return list(sorted(items))
-
-    @property
-    def pitch_iterables(self) -> typing.List[typing.List[int]]:
-        """
-        Gets pitch iterables.
-
-        ..  container:: example
-
-            >>> color_map = abjad.ColorMap(
-            ...     colors=["#red", "#green", "#blue"],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...     ],
-            ... )
-
-            >>> color_map.pitch_iterables
-            [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
-
-        """
-        return self._pitch_iterables
-
-    ### PUBLIC METHODS ###
 
     def get(self, key, alternative=None) -> str:
         """

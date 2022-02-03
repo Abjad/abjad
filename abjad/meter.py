@@ -3,19 +3,18 @@ Tools for modeling musical meter.
 """
 import bisect
 import collections
+import dataclasses
 import typing
 
 import uqbar.graphs
 
 from . import _inspect, _iterate
 from . import duration as _duration
-from . import format as _format
 from . import indicators as _indicators
 from . import lilypondfile as _lilypondfile
 from . import markups as _markups
 from . import math as _math
 from . import mutate as _mutate
-from . import new as _new
 from . import parentage as _parentage
 from . import rhythmtrees as _rhythmtrees
 from . import score as _score
@@ -541,7 +540,7 @@ class Meter:
             else:
                 offset_node = uqbar.graphs.Node(attributes={"shape": "Mrecord"})
             offset_field = uqbar.graphs.RecordField(label=str(offset))
-            weight_field = uqbar.graphs.RecordField(label="+" * offsets[offset])
+            weight_field = uqbar.graphs.RecordField(label="+" * offsets.items[offset])
             group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
@@ -651,9 +650,9 @@ class Meter:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}({self.rtm_format!r})"
 
     def __str__(self) -> str:
         """
@@ -677,14 +676,6 @@ class Meter:
 
         """
         return f"{self.numerator}/{self.denominator}"
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_args_values=[self.rtm_format],
-            storage_format_keyword_names=[],
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -1033,55 +1024,10 @@ class Meter:
         ..  container:: example
 
             >>> meter = abjad.Meter((7, 4))
-            >>> print(abjad.storage(meter.root_node))
-            abjad.rhythmtrees.RhythmTreeContainer(
-                children=(
-                    abjad.rhythmtrees.RhythmTreeContainer(
-                        children=(
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            ),
-                        preprolated_duration=abjad.NonreducedFraction(3, 4),
-                        ),
-                    abjad.rhythmtrees.RhythmTreeContainer(
-                        children=(
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            ),
-                        preprolated_duration=abjad.NonreducedFraction(2, 4),
-                        ),
-                    abjad.rhythmtrees.RhythmTreeContainer(
-                        children=(
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            ),
-                        preprolated_duration=abjad.NonreducedFraction(2, 4),
-                        ),
-                    ),
-                preprolated_duration=abjad.NonreducedFraction(7, 4),
-                )
+            >>> for _ in meter.root_node: _
+            RhythmTreeContainer((3, 4))
+            RhythmTreeContainer((2, 4))
+            RhythmTreeContainer((2, 4))
 
         Returns rhythm tree node.
         """
@@ -2511,38 +2457,23 @@ class Meter:
                 )
 
 
+@dataclasses.dataclass(slots=True)
 class MeterList(_typedcollections.TypedList):
     """
     Meter list.
 
     ..  container:: example
 
-        >>> meters = abjad.MeterList([
-        ...     (3, 4), (5, 16), (7, 8),
-        ...     ])
-
-        >>> string = abjad.storage(meters)
-        >>> print(string)
-        abjad.MeterList(
-            [
-                abjad.Meter(
-                    '(3/4 (1/4 1/4 1/4))'
-                    ),
-                abjad.Meter(
-                    '(5/16 ((3/16 (1/16 1/16 1/16)) (2/16 (1/16 1/16))))'
-                    ),
-                abjad.Meter(
-                    '(7/8 ((3/8 (1/8 1/8 1/8)) (2/8 (1/8 1/8)) (2/8 (1/8 1/8))))'
-                    ),
-                ]
-            )
+        >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
+        >>> for _ in meters: _
+        Meter('(3/4 (1/4 1/4 1/4))')
+        Meter('(5/16 ((3/16 (1/16 1/16 1/16)) (2/16 (1/16 1/16))))')
+        Meter('(7/8 ((3/8 (1/8 1/8 1/8)) (2/8 (1/8 1/8)) (2/8 (1/8 1/8))))')
 
         >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     """
-
-    __slots__ = ()
 
     def _coerce_item(self, item):
         return Meter(item)
@@ -2788,7 +2719,7 @@ def illustrate_meter_list(
     string = "\n".join(strings)
     markup = _markups.Markup(string)
     lilypond_file = _lilypondfile.LilyPondFile()
-    markup = _new.new(markup, direction=None)
+    markup = dataclasses.replace(markup, direction=None)
     lilypond_file.items.append(markup)
     return lilypond_file
 
@@ -2802,18 +2733,7 @@ class MetricAccentKernel:
         >>> hierarchy = abjad.Meter((7, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
-        MetricAccentKernel(
-            {
-                Offset((0, 1)): Multiplier(3, 14),
-                Offset((1, 8)): Multiplier(1, 14),
-                Offset((1, 4)): Multiplier(1, 14),
-                Offset((3, 8)): Multiplier(1, 7),
-                Offset((1, 2)): Multiplier(1, 14),
-                Offset((5, 8)): Multiplier(1, 7),
-                Offset((3, 4)): Multiplier(1, 14),
-                Offset((7, 8)): Multiplier(3, 14),
-                }
-            )
+        MetricAccentKernel(kernel={Offset((0, 1)): Multiplier(3, 14), Offset((7, 8)): Multiplier(3, 14), Offset((3, 8)): Multiplier(1, 7), Offset((5, 8)): Multiplier(1, 7), Offset((1, 8)): Multiplier(1, 14), Offset((1, 4)): Multiplier(1, 14), Offset((1, 2)): Multiplier(1, 14), Offset((3, 4)): Multiplier(1, 14)})
 
     Call the kernel against an expression from which offsets can be counted to receive an
     impulse-response:
@@ -2859,7 +2779,7 @@ class MetricAccentKernel:
         """
         offset_count = self.count_offsets(argument)
         response = _duration.Multiplier(0, 1)
-        for offset, count in offset_count.items():
+        for offset, count in offset_count.items.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]
                 weighted_count = weight * count
@@ -2885,18 +2805,9 @@ class MetricAccentKernel:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            repr_is_indented=True,
-            storage_format_args_values=[self.kernel],
-            storage_format_keyword_names=[],
-        )
+        return f"{type(self).__name__}(kernel={self.kernel})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -2956,7 +2867,7 @@ class MetricAccentKernel:
             >>> MetricAccentKernel = abjad.MetricAccentKernel
             >>> leaves = abjad.select(score).leaves()
             >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
-            >>> for offset, count in sorted(counter.items()):
+            >>> for offset, count in sorted(counter.items.items()):
             ...     offset, count
             (Offset((0, 1)), 2)
             (Offset((1, 8)), 2)
@@ -2972,7 +2883,7 @@ class MetricAccentKernel:
             >>> c = abjad.Timespan(15, 20)
 
             >>> counter = MetricAccentKernel.count_offsets((a, b, c))
-            >>> for offset, count in sorted(counter.items()):
+            >>> for offset, count in sorted(counter.items.items()):
             ...     offset, count
             (Offset((0, 1)), 1)
             (Offset((5, 1)), 1)
@@ -3121,7 +3032,7 @@ class _MeterFittingSession:
             return offset_counter
         offset = self.ordered_offsets[index]
         while offset <= stop_offset:
-            count = self.offset_counter[offset]
+            count = self.offset_counter.items[offset]
             offset_counter[offset - start_offset] = count
             index += 1
             if index == len(self.ordered_offsets):
@@ -3356,31 +3267,31 @@ class _MeterManager:
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[0]): x
         ...
-        LogicalTie([Note("c'4")])
-        LogicalTie([Note("d'4")])
+        LogicalTie(items=[Note("c'4")])
+        LogicalTie(items=[Note("d'4")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[1]): x
         ...
-        LogicalTie([Note("d'8.")])
-        LogicalTie([Rest('r16'), Rest('r8.')])
-        LogicalTie([Note("e'16")])
+        LogicalTie(items=[Note("d'8.")])
+        LogicalTie(items=[Rest('r16'), Rest('r8.')])
+        LogicalTie(items=[Note("e'16")])
         Tuplet('3:2', "e'8 e'8 f'8")
-        LogicalTie([Note("f'4")])
+        LogicalTie(items=[Note("f'4")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[2]): x
         ...
-        LogicalTie([Note("f'8")])
-        LogicalTie([Note("g'8"), Note("g'4")])
-        LogicalTie([Note("a'4"), Note("a'8")])
-        LogicalTie([Note("b'8")])
+        LogicalTie(items=[Note("f'8")])
+        LogicalTie(items=[Note("g'8"), Note("g'4")])
+        LogicalTie(items=[Note("a'4"), Note("a'8")])
+        LogicalTie(items=[Note("b'8")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[3]): x
         ...
-        LogicalTie([Note("b'4")])
-        LogicalTie([Note("c''4")])
+        LogicalTie(items=[Note("b'4")])
+        LogicalTie(items=[Note("c''4")])
 
         Returns generator.
         """

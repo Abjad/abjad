@@ -1,12 +1,11 @@
+import dataclasses
 import typing
 
 from . import _inspect
 from . import bundle as _bundle
 from . import enums as _enums
-from . import format as _format
 from . import illustrators as _illustrators
 from . import markups as _markups
-from . import new as _new
 from . import ratio as _ratio
 from . import score as _score
 from . import selection as _selection
@@ -17,7 +16,6 @@ class MetricModulation:
     r"""
     Metric modulation.
 
-
     ..  container:: example
 
         With notes:
@@ -25,7 +23,7 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'8."),
         ...     right_rhythm=abjad.Note("c'4."),
-        ...     )
+        ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
         ...     [r'\include "abjad.ily"', metric_modulation]
@@ -45,7 +43,7 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Tuplet((4, 5), "c'4"),
         ...     right_rhythm=abjad.Note("c'4"),
-        ...     )
+        ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
         ...     [r'\include "abjad.ily"', metric_modulation]
@@ -402,11 +400,11 @@ class MetricModulation:
             ...     )
 
             >>> metric_modulation_1.ratio
-            Ratio((2, 3))
+            Ratio(numbers=(2, 3))
             >>> metric_modulation_2.ratio
-            Ratio((2, 3))
+            Ratio(numbers=(2, 3))
             >>> metric_modulation_3.ratio
-            Ratio((4, 5))
+            Ratio(numbers=(4, 5))
 
             >>> metric_modulation_1 == metric_modulation_1
             True
@@ -444,9 +442,9 @@ class MetricModulation:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}(left_rhythm={self.left_rhythm!r}, right_rhythm={self.right_rhythm!r})"
 
     def __str__(self) -> str:
         r"""
@@ -502,7 +500,7 @@ class MetricModulation:
         bundle = _bundle.LilyPondFormatBundle()
         if not self.hide:
             markup = self._get_markup()
-            markup = _new.new(markup, direction=_enums.Up)
+            markup = dataclasses.replace(markup, direction=_enums.Up)
             markup_format_pieces = markup._get_format_pieces()
             bundle.after.markup.extend(markup_format_pieces)
         return bundle
@@ -639,7 +637,7 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c'4."),
             ...     )
             >>> metric_modulation.left_rhythm
-            Selection([Note("c'4")])
+            Selection(items=[Note("c'4")])
 
         Returns selection.
         """
@@ -657,7 +655,7 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c'4"),
             ...     )
             >>> metric_modulation.ratio
-            Ratio((2, 3))
+            Ratio(numbers=(2, 3))
 
         """
         left_duration = _inspect._get_duration(self.left_rhythm)
@@ -693,7 +691,7 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c'4."),
             ...     )
             >>> metric_modulation.right_rhythm
-            Selection([Note("c'4.")])
+            Selection(items=[Note("c'4.")])
 
         """
         return self._right_rhythm

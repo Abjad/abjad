@@ -10,10 +10,8 @@ from . import bundle as _bundle
 from . import duration as _duration
 from . import enumerate as _enumerate
 from . import enums as _enums
-from . import format as _format
 from . import markups as _markups
 from . import math as _math
-from . import new as _new
 from . import overrides as _overrides
 from . import pitch as _pitch
 from . import ratio as _ratio
@@ -147,7 +145,8 @@ class Articulation:
 
         New:
 
-        >>> abjad.new(abjad.Articulation("."))
+        >>> import dataclasses
+        >>> dataclasses.replace(abjad.Articulation("."))
         Articulation(name='.', direction=None, tweaks=None)
 
     ..  container:: example
@@ -320,12 +319,6 @@ class BarLine:
     )
 
     ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_is_not_indented=True,
-            storage_format_args_values=[self.abbreviation],
-        )
 
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'
@@ -688,13 +681,6 @@ class StaffPosition:
 
     def __post_init__(self):
         assert isinstance(self.number, (int, float)), repr(self.number)
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_is_not_indented=True,
-            storage_format_args_values=[self.number],
-            storage_format_keyword_names=[],
-        )
 
     @staticmethod
     def from_pitch_and_clef(pitch, clef) -> "StaffPosition":
@@ -1387,7 +1373,7 @@ class ColorFingering:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.markup.extend(tweaks)
         markup = self.markup
-        markup = _new.new(markup, direction=_enums.Up)
+        markup = dataclasses.replace(markup, direction=_enums.Up)
         markup_format_pieces = markup._get_format_pieces()
         bundle.after.markup.extend(markup_format_pieces)
         return bundle
@@ -2343,7 +2329,7 @@ class MarginMarkup:
         if isinstance(self.markup, _markups.Markup):
             markup = self.markup
             if markup.direction is not None:
-                markup = _new.new(markup, direction=None)
+                markup = dataclasses.replace(markup, direction=None)
             pieces = markup._get_format_pieces()
             result.append(rf"\set {context!s}.shortInstrumentName =")
             result.extend(pieces)
@@ -3485,10 +3471,10 @@ class RepeatTie:
         >>> for leaf in staff:
         ...     leaf, abjad.get.logical_tie(leaf)
         ...
-        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
-        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
-        (Note("d'4"), LogicalTie([Note("d'4")]))
-        (Note("d'4"), LogicalTie([Note("d'4")]))
+        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
+        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
+        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
+        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
 
     ..  container:: example
 
@@ -3756,18 +3742,12 @@ class StartBeam:
         >>> import copy
         >>> start_beam = abjad.StartBeam()
         >>> abjad.tweak(start_beam).color = "#blue"
-        >>> string = abjad.storage(start_beam)
-        >>> print(string)
-        abjad.StartBeam(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_beam
+        StartBeam(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
         >>> start_beam_2 = copy.copy(start_beam)
-        >>> string = abjad.storage(start_beam_2)
-        >>> print(string)
-        abjad.StartBeam(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_beam_2
+        StartBeam(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
     """
 
@@ -3841,18 +3821,12 @@ class StartGroup:
         >>> import copy
         >>> start_group = abjad.StartGroup()
         >>> abjad.tweak(start_group).color = "#blue"
-        >>> string = abjad.storage(start_group)
-        >>> print(string)
-        abjad.StartGroup(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_group
+        StartGroup(tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
         >>> start_group_2 = copy.copy(start_group)
-        >>> string = abjad.storage(start_group_2)
-        >>> print(string)
-        abjad.StartGroup(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_group_2
+        StartGroup(tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
     """
 
@@ -4446,7 +4420,7 @@ class StartMarkup:
         if isinstance(self.markup, _markups.Markup):
             markup = self.markup
             if markup.direction is not None:
-                markup = _new.new(markup, direction=None)
+                markup = dataclasses.replace(markup, direction=None)
             pieces = markup._get_format_pieces()
             result.append(rf"\set {context!s}.instrumentName =")
             result.extend(pieces)
@@ -4505,18 +4479,12 @@ class StartPhrasingSlur:
         >>> import copy
         >>> start_phrasing_slur = abjad.StartPhrasingSlur()
         >>> abjad.tweak(start_phrasing_slur).color = "#blue"
-        >>> string = abjad.storage(start_phrasing_slur)
-        >>> print(string)
-        abjad.StartPhrasingSlur(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_phrasing_slur
+        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
         >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
-        >>> string = abjad.storage(start_phrasing_slur_2)
-        >>> print(string)
-        abjad.StartPhrasingSlur(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_phrasing_slur_2
+        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
     """
 
@@ -4614,18 +4582,12 @@ class StartPianoPedal:
         >>> import copy
         >>> start_piano_pedal = abjad.StartPianoPedal()
         >>> abjad.tweak(start_piano_pedal).color = "#blue"
-        >>> string = abjad.storage(start_piano_pedal)
-        >>> print(string)
-        abjad.StartPianoPedal(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_piano_pedal
+        StartPianoPedal(kind=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
         >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
-        >>> string = abjad.storage(start_piano_pedal_2)
-        >>> print(string)
-        abjad.StartPianoPedal(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_piano_pedal_2
+        StartPianoPedal(kind=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
     """
 
@@ -4790,18 +4752,12 @@ class StartSlur:
         >>> import copy
         >>> start_slur = abjad.StartSlur()
         >>> abjad.tweak(start_slur).color = "#blue"
-        >>> string = abjad.storage(start_slur)
-        >>> print(string)
-        abjad.StartSlur(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_slur
+        StartSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
         >>> start_slur_2 = copy.copy(start_slur)
-        >>> string = abjad.storage(start_slur_2)
-        >>> print(string)
-        abjad.StartSlur(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_slur_2
+        StartSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
     """
 
@@ -5159,24 +5115,12 @@ class StartTextSpan:
         ... )
         >>> abjad.tweak(start_text_span).color = "#blue"
         >>> abjad.tweak(start_text_span).staff_padding = 2.5
-        >>> string = abjad.storage(start_text_span)
-        >>> print(string)
-        abjad.StartTextSpan(
-            command='\\startTextSpan',
-            concat_hspace_left=0.5,
-            style='dashed-line-with-arrow',
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)),
-            )
+        >>> start_text_span
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)))
 
         >>> start_text_span_2 = copy.copy(start_text_span)
-        >>> string = abjad.storage(start_text_span_2)
-        >>> print(string)
-        abjad.StartTextSpan(
-            command='\\startTextSpan',
-            concat_hspace_left=0.5,
-            style='dashed-line-with-arrow',
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)),
-            )
+        >>> start_text_span_2
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)))
 
     """
 
@@ -5391,18 +5335,12 @@ class StartTrillSpan:
         >>> import copy
         >>> start_trill_span = abjad.StartTrillSpan()
         >>> abjad.tweak(start_trill_span).color = "#blue"
-        >>> string = abjad.storage(start_trill_span)
-        >>> print(string)
-        abjad.StartTrillSpan(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_trill_span
+        StartTrillSpan(interval=None, pitch=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
         >>> start_trill_span_2 = copy.copy(start_trill_span)
-        >>> string = abjad.storage(start_trill_span_2)
-        >>> print(string)
-        abjad.StartTrillSpan(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> start_trill_span_2
+        StartTrillSpan(interval=None, pitch=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
     """
 
@@ -5527,9 +5465,6 @@ class StemTremolo:
     def __post_init__(self):
         if not _math.is_nonnegative_integer_power_of_two(self.tremolo_flags):
             raise ValueError(f"nonnegative integer power of 2: {self.tremolo_flags!r}.")
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(storage_format_is_not_indented=True)
 
     def _get_lilypond_format(self):
         return f":{self.tremolo_flags!s}"
@@ -6032,18 +5967,12 @@ class StopPianoPedal:
         >>> import copy
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.tweak(stop_piano_pedal).color = "#blue"
-        >>> string = abjad.storage(stop_piano_pedal)
-        >>> print(string)
-        abjad.StopPianoPedal(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> stop_piano_pedal
+        StopPianoPedal(kind=None, leak=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
         >>> stop_piano_pedal_2 = copy.copy(stop_piano_pedal)
-        >>> string = abjad.storage(stop_piano_pedal_2)
-        >>> print(string)
-        abjad.StopPianoPedal(
-            tweaks=TweakInterface(('_literal', None), ('color', '#blue')),
-            )
+        >>> stop_piano_pedal_2
+        StopPianoPedal(kind=None, leak=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
 
     """
 
@@ -6438,10 +6367,10 @@ class Tie:
         >>> for leaf in staff:
         ...     leaf, abjad.get.logical_tie(leaf)
         ...
-        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
-        (Note("c'4"), LogicalTie([Note("c'4"), Note("c'4")]))
-        (Note("d'4"), LogicalTie([Note("d'4")]))
-        (Note("d'4"), LogicalTie([Note("d'4")]))
+        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
+        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
+        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
+        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
 
 
     ..  container:: example

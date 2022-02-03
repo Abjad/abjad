@@ -30,7 +30,7 @@ def test_NoteHead___cmp___02():
 def test_NoteHead___cmp___03():
 
     note_head_1 = abjad.NoteHead(12)
-    note_head_2 = 12
+    note_head_2 = abjad.NoteHead("c''")
 
     assert not note_head_1 < note_head_2
     assert note_head_1 <= note_head_2

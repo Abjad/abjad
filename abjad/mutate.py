@@ -578,7 +578,7 @@ def eject_contents(argument):
 
         >>> contents = abjad.mutate.eject_contents(container)
         >>> contents
-        Selection([Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")])
+        Selection(items=[Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")])
 
         Container contents can be safely added to a new container:
 
@@ -788,7 +788,7 @@ def fuse(argument):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.mutate.fuse(staff[1:])
-        Selection([Note("d'4.")])
+        Selection(items=[Note("d'4.")])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -897,7 +897,7 @@ def fuse(argument):
 
         >>> logical_tie = abjad.select(staff[0]).logical_tie()
         >>> abjad.mutate.fuse(logical_tie)
-        Selection([Note("d'8..")])
+        Selection(items=[Note("d'8..")])
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2337,7 +2337,7 @@ def wrap(argument, container):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
-        <Staff{1}> 3/8
+        Staff("{ c'4 d'4 e'4 f'4 }") 3/8
         Container("c'4 d'4 e'4 f'4") 3/8
         c'4 3/8
         d'4 3/8

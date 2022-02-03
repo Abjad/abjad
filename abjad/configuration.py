@@ -12,8 +12,6 @@ import typing
 import six
 import uqbar.apis
 
-from . import format as _format
-
 
 class Configuration:
     """
@@ -103,12 +101,6 @@ class Configuration:
         """
         for key in self._settings:
             yield key
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
 
     def __setitem__(self, i, argument) -> None:
         """
@@ -397,32 +389,295 @@ class Configuration:
         return lilypond_version_string
 
 
-### FUNCTIONS ###
-
-
 def list_all_classes(modules="abjad", ignored_classes=None):
     """
     Lists all public classes defined in ``path``.
 
     ..  container:: example
 
-        >>> all_classes = abjad.list_all_classes(modules="abjad")
+        >>> for class_ in abjad.list_all_classes(modules="abjad"): class_
+        <class 'abjad.bind.Wrapper'>
+        <class 'abjad.bundle.LilyPondFormatBundle'>
+        <class 'abjad.bundle.SlotContributions'>
+        <class 'abjad.configuration.Configuration'>
+        <class 'abjad.contextmanagers.ContextManager'>
+        <class 'abjad.contextmanagers.FilesystemState'>
+        <class 'abjad.contextmanagers.ForbidUpdate'>
+        <class 'abjad.contextmanagers.NullContextManager'>
+        <class 'abjad.contextmanagers.ProgressIndicator'>
+        <class 'abjad.contextmanagers.RedirectedStreams'>
+        <class 'abjad.contextmanagers.TemporaryDirectory'>
+        <class 'abjad.contextmanagers.TemporaryDirectoryChange'>
+        <class 'abjad.contextmanagers.Timer'>
+        <class 'abjad.cyclictuple.CyclicTuple'>
+        <class 'abjad.duration.Duration'>
+        <class 'abjad.duration.Multiplier'>
+        <class 'abjad.duration.NonreducedFraction'>
+        <class 'abjad.duration.Offset'>
+        <class 'abjad.dynamic.Dynamic'>
+        <class 'abjad.exceptions.AssignabilityError'>
+        <class 'abjad.exceptions.ImpreciseMetronomeMarkError'>
+        <class 'abjad.exceptions.LilyPondParserError'>
+        <class 'abjad.exceptions.MissingMetronomeMarkError'>
+        <class 'abjad.exceptions.ParentageError'>
+        <class 'abjad.exceptions.PersistentIndicatorError'>
+        <class 'abjad.exceptions.SchemeParserFinishedError'>
+        <class 'abjad.exceptions.UnboundedTimeIntervalError'>
+        <class 'abjad.exceptions.WellformednessError'>
+        <class 'abjad.get.Descendants'>
+        <class 'abjad.get.Lineage'>
+        <class 'abjad.indicators.Arpeggio'>
+        <class 'abjad.indicators.Articulation'>
+        <class 'abjad.indicators.BarLine'>
+        <class 'abjad.indicators.BeamCount'>
+        <class 'abjad.indicators.BendAfter'>
+        <class 'abjad.indicators.BreathMark'>
+        <class 'abjad.indicators.Clef'>
+        <class 'abjad.indicators.ColorFingering'>
+        <class 'abjad.indicators.Fermata'>
+        <class 'abjad.indicators.Glissando'>
+        <class 'abjad.indicators.KeyCluster'>
+        <class 'abjad.indicators.KeySignature'>
+        <class 'abjad.indicators.LaissezVibrer'>
+        <class 'abjad.indicators.MarginMarkup'>
+        <class 'abjad.indicators.MetronomeMark'>
+        <class 'abjad.indicators.Mode'>
+        <class 'abjad.indicators.Ottava'>
+        <class 'abjad.indicators.RehearsalMark'>
+        <class 'abjad.indicators.Repeat'>
+        <class 'abjad.indicators.RepeatTie'>
+        <class 'abjad.indicators.StaffChange'>
+        <class 'abjad.indicators.StaffPosition'>
+        <class 'abjad.indicators.StartBeam'>
+        <class 'abjad.indicators.StartGroup'>
+        <class 'abjad.indicators.StartHairpin'>
+        <class 'abjad.indicators.StartMarkup'>
+        <class 'abjad.indicators.StartPhrasingSlur'>
+        <class 'abjad.indicators.StartPianoPedal'>
+        <class 'abjad.indicators.StartSlur'>
+        <class 'abjad.indicators.StartTextSpan'>
+        <class 'abjad.indicators.StartTrillSpan'>
+        <class 'abjad.indicators.StemTremolo'>
+        <class 'abjad.indicators.StopBeam'>
+        <class 'abjad.indicators.StopGroup'>
+        <class 'abjad.indicators.StopHairpin'>
+        <class 'abjad.indicators.StopPhrasingSlur'>
+        <class 'abjad.indicators.StopPianoPedal'>
+        <class 'abjad.indicators.StopSlur'>
+        <class 'abjad.indicators.StopTextSpan'>
+        <class 'abjad.indicators.StopTrillSpan'>
+        <class 'abjad.indicators.Tie'>
+        <class 'abjad.indicators.TimeSignature'>
+        <class 'abjad.instruments.Accordion'>
+        <class 'abjad.instruments.AltoFlute'>
+        <class 'abjad.instruments.AltoSaxophone'>
+        <class 'abjad.instruments.AltoTrombone'>
+        <class 'abjad.instruments.AltoVoice'>
+        <class 'abjad.instruments.BaritoneSaxophone'>
+        <class 'abjad.instruments.BaritoneVoice'>
+        <class 'abjad.instruments.BassClarinet'>
+        <class 'abjad.instruments.BassFlute'>
+        <class 'abjad.instruments.BassSaxophone'>
+        <class 'abjad.instruments.BassTrombone'>
+        <class 'abjad.instruments.BassVoice'>
+        <class 'abjad.instruments.Bassoon'>
+        <class 'abjad.instruments.Cello'>
+        <class 'abjad.instruments.ClarinetInA'>
+        <class 'abjad.instruments.ClarinetInBFlat'>
+        <class 'abjad.instruments.ClarinetInEFlat'>
+        <class 'abjad.instruments.Contrabass'>
+        <class 'abjad.instruments.ContrabassClarinet'>
+        <class 'abjad.instruments.ContrabassFlute'>
+        <class 'abjad.instruments.ContrabassSaxophone'>
+        <class 'abjad.instruments.Contrabassoon'>
+        <class 'abjad.instruments.EnglishHorn'>
+        <class 'abjad.instruments.Flute'>
+        <class 'abjad.instruments.FrenchHorn'>
+        <class 'abjad.instruments.Glockenspiel'>
+        <class 'abjad.instruments.Guitar'>
+        <class 'abjad.instruments.Harp'>
+        <class 'abjad.instruments.Harpsichord'>
+        <class 'abjad.instruments.Instrument'>
+        <class 'abjad.instruments.Marimba'>
+        <class 'abjad.instruments.MezzoSopranoVoice'>
+        <class 'abjad.instruments.Oboe'>
+        <class 'abjad.instruments.Percussion'>
+        <class 'abjad.instruments.Piano'>
+        <class 'abjad.instruments.Piccolo'>
+        <class 'abjad.instruments.SopraninoSaxophone'>
+        <class 'abjad.instruments.SopranoSaxophone'>
+        <class 'abjad.instruments.SopranoVoice'>
+        <class 'abjad.instruments.StringNumber'>
+        <class 'abjad.instruments.TenorSaxophone'>
+        <class 'abjad.instruments.TenorTrombone'>
+        <class 'abjad.instruments.TenorVoice'>
+        <class 'abjad.instruments.Trumpet'>
+        <class 'abjad.instruments.Tuba'>
+        <class 'abjad.instruments.Tuning'>
+        <class 'abjad.instruments.Vibraphone'>
+        <class 'abjad.instruments.Viola'>
+        <class 'abjad.instruments.Violin'>
+        <class 'abjad.instruments.Xylophone'>
+        <class 'abjad.io.AbjadGrapher'>
+        <class 'abjad.io.Illustrator'>
+        <class 'abjad.io.LilyPondIO'>
+        <class 'abjad.io.Player'>
+        <class 'abjad.label.ColorMap'>
+        <class 'abjad.lilypondfile.Block'>
+        <class 'abjad.lilypondfile.LilyPondFile'>
+        <class 'abjad.lyproxy.LilyPondContext'>
+        <class 'abjad.lyproxy.LilyPondEngraver'>
+        <class 'abjad.lyproxy.LilyPondGrob'>
+        <class 'abjad.lyproxy.LilyPondGrobInterface'>
+        <class 'abjad.makers.LeafMaker'>
+        <class 'abjad.makers.NoteMaker'>
+        <class 'abjad.markups.Markup'>
+        <class 'abjad.math.Infinity'>
+        <class 'abjad.math.NegativeInfinity'>
+        <class 'abjad.meter.Meter'>
+        <class 'abjad.meter.MeterList'>
+        <class 'abjad.meter.MetricAccentKernel'>
+        <class 'abjad.metricmodulation.MetricModulation'>
+        <class 'abjad.obgc.OnBeatGraceContainer'>
+        <class 'abjad.operators.CompoundOperator'>
+        <class 'abjad.operators.Duplication'>
+        <class 'abjad.operators.Inversion'>
+        <class 'abjad.operators.Multiplication'>
+        <class 'abjad.operators.Retrograde'>
+        <class 'abjad.operators.Rotation'>
+        <class 'abjad.operators.Transposition'>
+        <class 'abjad.overrides.Interface'>
+        <class 'abjad.overrides.LilyPondLiteral'>
+        <class 'abjad.overrides.LilyPondOverride'>
+        <class 'abjad.overrides.LilyPondSetting'>
+        <class 'abjad.overrides.OverrideInterface'>
+        <class 'abjad.overrides.SettingInterface'>
+        <class 'abjad.overrides.TweakInterface'>
+        <class 'abjad.parentage.Parentage'>
+        <class 'abjad.parsers.base.Parser'>
+        <class 'abjad.parsers.parser.ContextSpeccedMusic'>
+        <class 'abjad.parsers.parser.GuileProxy'>
+        <class 'abjad.parsers.parser.LilyPondDuration'>
+        <class 'abjad.parsers.parser.LilyPondEvent'>
+        <class 'abjad.parsers.parser.LilyPondFraction'>
+        <class 'abjad.parsers.parser.LilyPondGrammarGenerator'>
+        <class 'abjad.parsers.parser.LilyPondLexicalDefinition'>
+        <class 'abjad.parsers.parser.LilyPondParser'>
+        <class 'abjad.parsers.parser.LilyPondSyntacticalDefinition'>
+        <class 'abjad.parsers.parser.MarkupCommand'>
+        <class 'abjad.parsers.parser.Music'>
+        <class 'abjad.parsers.parser.SequentialMusic'>
+        <class 'abjad.parsers.parser.SimultaneousMusic'>
+        <class 'abjad.parsers.parser.SyntaxNode'>
+        <class 'abjad.parsers.reduced.ReducedLyParser'>
+        <class 'abjad.parsers.scheme.Scheme'>
+        <class 'abjad.parsers.scheme.SchemeParser'>
+        <class 'abjad.pattern.Pattern'>
+        <class 'abjad.pattern.PatternTuple'>
+        <class 'abjad.pitch.Accidental'>
+        <class 'abjad.pitch.Interval'>
+        <class 'abjad.pitch.IntervalClass'>
+        <class 'abjad.pitch.IntervalClassSegment'>
+        <class 'abjad.pitch.IntervalClassSet'>
+        <class 'abjad.pitch.IntervalClassVector'>
+        <class 'abjad.pitch.IntervalSegment'>
+        <class 'abjad.pitch.IntervalSet'>
+        <class 'abjad.pitch.IntervalVector'>
+        <class 'abjad.pitch.NamedInterval'>
+        <class 'abjad.pitch.NamedIntervalClass'>
+        <class 'abjad.pitch.NamedInversionEquivalentIntervalClass'>
+        <class 'abjad.pitch.NamedPitch'>
+        <class 'abjad.pitch.NamedPitchClass'>
+        <class 'abjad.pitch.NumberedInterval'>
+        <class 'abjad.pitch.NumberedIntervalClass'>
+        <class 'abjad.pitch.NumberedInversionEquivalentIntervalClass'>
+        <class 'abjad.pitch.NumberedPitch'>
+        <class 'abjad.pitch.NumberedPitchClass'>
+        <class 'abjad.pitch.Octave'>
+        <class 'abjad.pitch.Pitch'>
+        <class 'abjad.pitch.PitchClass'>
+        <class 'abjad.pitch.PitchClassSegment'>
+        <class 'abjad.pitch.PitchClassSet'>
+        <class 'abjad.pitch.PitchClassVector'>
+        <class 'abjad.pitch.PitchRange'>
+        <class 'abjad.pitch.PitchSegment'>
+        <class 'abjad.pitch.PitchSet'>
+        <class 'abjad.pitch.PitchVector'>
+        <class 'abjad.pitch.Segment'>
+        <class 'abjad.pitch.Set'>
+        <class 'abjad.pitch.TwelveToneRow'>
+        <class 'abjad.pitch.Vector'>
+        <class 'abjad.ratio.NonreducedRatio'>
+        <class 'abjad.ratio.Ratio'>
+        <class 'abjad.rhythmtrees.RhythmTreeContainer'>
+        <class 'abjad.rhythmtrees.RhythmTreeLeaf'>
+        <class 'abjad.rhythmtrees.RhythmTreeMixin'>
+        <class 'abjad.rhythmtrees.RhythmTreeParser'>
+        <class 'abjad.score.AfterGraceContainer'>
+        <class 'abjad.score.BeforeGraceContainer'>
+        <class 'abjad.score.Chord'>
+        <class 'abjad.score.Cluster'>
+        <class 'abjad.score.Component'>
+        <class 'abjad.score.Container'>
+        <class 'abjad.score.Context'>
+        <class 'abjad.score.DrumNoteHead'>
+        <class 'abjad.score.Leaf'>
+        <class 'abjad.score.MultimeasureRest'>
+        <class 'abjad.score.Note'>
+        <class 'abjad.score.NoteHead'>
+        <class 'abjad.score.NoteHeadList'>
+        <class 'abjad.score.Rest'>
+        <class 'abjad.score.Score'>
+        <class 'abjad.score.Skip'>
+        <class 'abjad.score.Staff'>
+        <class 'abjad.score.StaffGroup'>
+        <class 'abjad.score.TremoloContainer'>
+        <class 'abjad.score.Tuplet'>
+        <class 'abjad.score.Voice'>
+        <class 'abjad.segmentmaker.SegmentMaker'>
+        <class 'abjad.selection.DurationInequality'>
+        <class 'abjad.selection.Inequality'>
+        <class 'abjad.selection.LengthInequality'>
+        <class 'abjad.selection.LogicalTie'>
+        <class 'abjad.selection.PitchInequality'>
+        <class 'abjad.selection.Selection'>
+        <class 'abjad.sequence.Sequence'>
+        <class 'abjad.setclass.SetClass'>
+        <class 'abjad.string.String'>
+        <class 'abjad.tag.Line'>
+        <class 'abjad.tag.Tag'>
+        <class 'abjad.templates.GroupedRhythmicStavesScoreTemplate'>
+        <class 'abjad.templates.GroupedStavesScoreTemplate'>
+        <class 'abjad.templates.ScoreTemplate'>
+        <class 'abjad.templates.StringOrchestraScoreTemplate'>
+        <class 'abjad.templates.StringQuartetScoreTemplate'>
+        <class 'abjad.timespan.OffsetCounter'>
+        <class 'abjad.timespan.Timespan'>
+        <class 'abjad.timespan.TimespanList'>
+        <class 'abjad.typedcollections.TypedCollection'>
+        <class 'abjad.typedcollections.TypedCounter'>
+        <class 'abjad.typedcollections.TypedFrozenset'>
+        <class 'abjad.typedcollections.TypedList'>
+        <class 'abjad.typedcollections.TypedTuple'>
+        <class 'abjad.verticalmoment.VerticalMoment'>
 
     """
     all_classes = set()
     for module in yield_all_modules(modules):
         name = module.__name__.split(".")[-1]
-        if name.startswith("_"):
-            continue
-        if not hasattr(module, name):
-            continue
-        obj = getattr(module, name)
-        if isinstance(obj, type):
-            all_classes.add(obj)
+        for name in dir(module):
+            item = getattr(module, name)
+            if isinstance(item, type):
+                if "sphinx" in repr(item):
+                    continue
+                if item.__name__.startswith("_"):
+                    continue
+                if "abjad" in repr(item):
+                    all_classes.add(item)
     if ignored_classes:
         ignored_classes = set(ignored_classes)
         all_classes.difference_update(ignored_classes)
-    return list(sorted(all_classes, key=lambda x: (x.__module__, x.__name__)))
+    return list(sorted(all_classes, key=lambda _: (_.__module__, _.__name__)))
 
 
 def list_all_functions(modules="abjad"):
@@ -431,7 +686,207 @@ def list_all_functions(modules="abjad"):
 
     ..  container:: example
 
-        >>> all_functions = abjad.list_all_functions(modules="abjad")
+        >>> functions = abjad.list_all_functions(modules="abjad")
+        >>> names = [_.__name__ for _ in functions]
+        >>> for name in sorted(names): name
+        'activate'
+        'add_final_bar_line'
+        'add_final_markup'
+        'after_grace_container'
+        'all_are_equal'
+        'all_are_integer_equivalent'
+        'all_are_integer_equivalent_numbers'
+        'all_are_nonnegative_integer_equivalent_numbers'
+        'all_are_nonnegative_integer_powers_of_two'
+        'all_are_nonnegative_integers'
+        'all_are_pairs_of_types'
+        'all_are_positive_integers'
+        'annotate'
+        'annotation'
+        'annotation_wrappers'
+        'are_relatively_prime'
+        'arithmetic_mean'
+        'as_ly'
+        'as_midi'
+        'as_pdf'
+        'as_png'
+        'attach'
+        'attach_markup_struts'
+        'bar_line_crossing'
+        'beam'
+        'before_grace_container'
+        'binomial_coefficient'
+        'bundle_format_contributions'
+        'by_selector'
+        'check_beamed_long_notes'
+        'check_duplicate_ids'
+        'check_empty_containers'
+        'check_missing_parents'
+        'check_notes_on_wrong_clef'
+        'check_out_of_range_pitches'
+        'check_overlapping_text_spanners'
+        'check_unmatched_stop_text_spans'
+        'check_unterminated_hairpins'
+        'check_unterminated_text_spanners'
+        'color_container'
+        'color_leaves'
+        'color_note_heads'
+        'compare_files'
+        'components'
+        'contents'
+        'copy'
+        'count_function_calls'
+        'cumulative_products'
+        'cumulative_sums'
+        'deactivate'
+        'descendants'
+        'detach'
+        'difference_series'
+        'divisors'
+        'double_tag'
+        'duration'
+        'effective'
+        'effective_staff'
+        'effective_wrapper'
+        'eject_contents'
+        'execute_file'
+        'execute_string'
+        'extract'
+        'factors'
+        'find_executable'
+        'format_embedded_scheme_value'
+        'format_lilypond_attribute'
+        'format_lilypond_value'
+        'format_scheme_value'
+        'fraction_to_proper_fraction'
+        'fuse'
+        'glissando'
+        'grace'
+        'grace_corner_cases'
+        'graph'
+        'greatest_common_divisor'
+        'greatest_power_of_two_less_equal'
+        'hairpin'
+        'has_effective_indicator'
+        'has_indicator'
+        'horizontal_bracket'
+        'illustrate'
+        'illustrate_meter_list'
+        'index'
+        'index_all'
+        'index_first'
+        'index_last'
+        'indicator'
+        'indicators'
+        'integer_equivalent_number_to_integer'
+        'integer_to_base_k_tuple'
+        'integer_to_binary_string'
+        'is_assignable_integer'
+        'is_integer_equivalent'
+        'is_integer_equivalent_n_tuple'
+        'is_integer_equivalent_number'
+        'is_nonnegative_integer'
+        'is_nonnegative_integer_equivalent_number'
+        'is_nonnegative_integer_power_of_two'
+        'is_positive_integer'
+        'is_positive_integer_equivalent_number'
+        'is_positive_integer_power_of_two'
+        'iterate_leaf_pairs'
+        'iterate_out_of_range'
+        'iterate_pitch_pairs'
+        'iterate_vertical_moments'
+        'leaf'
+        'least_common_multiple'
+        'leaves'
+        'left_shift_tags'
+        'lilypond'
+        'lineage'
+        'list_all_classes'
+        'list_all_functions'
+        'logical_tie'
+        'logical_tie_to_tuplet'
+        'logical_ties'
+        'make_lilypond_override_string'
+        'make_lilypond_revert_string'
+        'make_lilypond_tweak_string'
+        'make_piano_score'
+        'make_subprocess'
+        'markup'
+        'measure_number'
+        'new'
+        'on_beat_grace_container'
+        'open_file'
+        'open_last_log'
+        'ottava'
+        'outer_product'
+        'override'
+        'parentage'
+        'parse'
+        'parse_reduced_ly_syntax'
+        'parse_rtm_syntax'
+        'partition_integer_into_canonic_parts'
+        'phrasing_slur'
+        'piano_pedal'
+        'pitches'
+        'pitches'
+        'play'
+        'profile'
+        'remove_markup'
+        'remove_tags'
+        'replace'
+        'report_modifications'
+        'respell_with_flats'
+        'respell_with_sharps'
+        'run_command'
+        'run_lilypond'
+        'scale'
+        'select'
+        'selection'
+        'selection_to_score_markup_string'
+        'setting'
+        'show'
+        'sign'
+        'slur'
+        'sounding_pitch'
+        'sounding_pitches'
+        'sounding_pitches_are_in_range'
+        'spawn_subprocess'
+        'split'
+        'sustained'
+        'swap'
+        'tabulate_wellformedness'
+        'text_spanner'
+        'tie'
+        'timeline'
+        'timespan'
+        'transpose'
+        'transpose_from_sounding_pitch'
+        'transpose_from_written_pitch'
+        'trill_spanner'
+        'tuplet_from_duration_and_ratio'
+        'tuplet_from_leaf_and_ratio'
+        'tuplet_from_ratio_and_pair'
+        'tweak'
+        'vertical_moments'
+        'weight'
+        'wellformed'
+        'with_durations'
+        'with_indices'
+        'with_intervals'
+        'with_pitches'
+        'with_set_classes'
+        'with_start_offsets'
+        'wrap'
+        'wrapper'
+        'wrappers'
+        'yield_all_compositions_of_integer'
+        'yield_all_modules'
+        'yield_combinations'
+        'yield_pairs'
+        'yield_partitions'
+        'yield_permutations'
+        'yield_set_partitions'
+        'yield_subsequences'
 
     """
     all_functions = set()
@@ -439,12 +894,17 @@ def list_all_functions(modules="abjad"):
         name = module.__name__.split(".")[-1]
         if name.startswith("_"):
             continue
-        if not hasattr(module, name):
+        if "sphinx" in repr(module):
             continue
-        obj = getattr(module, name)
-        if isinstance(obj, types.FunctionType):
-            all_functions.add(obj)
-    return list(sorted(all_functions, key=lambda x: (x.__module__, x.__name__)))
+        for name in sorted(dir(module)):
+            item = getattr(module, name)
+            if isinstance(item, types.FunctionType):
+                if item.__name__.startswith("_"):
+                    continue
+                if "abjad" not in repr(item.__module__):
+                    continue
+                all_functions.add(item)
+    return list(sorted(all_functions, key=lambda _: (_.__module__, _.__name__)))
 
 
 configuration = Configuration()

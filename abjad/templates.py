@@ -2,7 +2,6 @@ import collections
 import typing
 
 from . import bind as _bind
-from . import format as _format
 from . import indicators as _indicators
 from . import instruments as _instruments
 from . import overrides as _overrides
@@ -15,17 +14,15 @@ class ScoreTemplate:
     Abstract score template.
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__: typing.Optional[str] = "Score templates"
 
-    ### SPECIAL METHODS ###
+    __slots__ = ()
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}()"
 
 
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):

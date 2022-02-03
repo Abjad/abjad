@@ -1,5 +1,5 @@
-import abc
 import collections.abc
+import dataclasses
 import itertools
 import operator
 import typing
@@ -9,7 +9,6 @@ from . import bind as _bind
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
-from . import format as _format
 from . import indicators as _indicators
 from . import math as _math
 from . import parentage as _parentage
@@ -21,24 +20,23 @@ from . import sequence as _sequence
 from . import typings as _typings
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class Inequality:
     """
     Inequality.
     """
 
-    ### CLASS VARIABLES ###
+    operator_string: str = "<"
+    _operator_function: typing.Any = dataclasses.field(
+        compare=False, init=False, repr=False
+    )
 
     __documentation_section__ = "Inequalities"
 
-    __slots__ = ("_operator_string", "_operator_function")
-
     _operator_strings = ("!=", "<", "<=", "==", ">", ">=")
 
-    ### INITIALIZER ###
-
-    def __init__(self, operator_string="<"):
-        assert operator_string in self._operator_strings
-        self._operator_string = operator_string
+    def __post_init__(self):
+        assert self.operator_string in self._operator_strings
         self._operator_function = {
             "!=": operator.ne,
             "<": operator.lt,
@@ -46,43 +44,10 @@ class Inequality:
             "==": operator.eq,
             ">": operator.gt,
             ">=": operator.ge,
-        }[self._operator_string]
-
-    ### SPECIAL METHODS ###
-
-    @abc.abstractmethod
-    def __call__(self, argument):
-        """
-        Calls inequality on ``argument``.
-
-        Returns true or false.
-        """
-        raise NotImplementedError
-
-    def __hash__(self) -> int:
-        """
-        Hashes inequality.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def operator_string(self) -> str:
-        """
-        Gets operator string.
-
-        Returns string.
-        """
-        return self._operator_string
+        }[self.operator_string]
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class DurationInequality(Inequality):
     """
     Duration inequality.
@@ -90,12 +55,8 @@ class DurationInequality(Inequality):
     ..  container:: example
 
         >>> inequality = abjad.DurationInequality('<', (3, 4))
-        >>> string = abjad.storage(inequality)
-        >>> print(string)
-        abjad.DurationInequality(
-            operator_string='<',
-            duration=abjad.Duration(3, 4),
-            )
+        >>> inequality
+        DurationInequality(operator_string='<', duration=Duration(3, 4))
 
         >>> inequality(abjad.Duration(1, 2))
         True
@@ -115,32 +76,19 @@ class DurationInequality(Inequality):
 
     """
 
-    ### CLASS VARIABLES ###
+    duration: typing.Any = None
+    preprolated: bool = False
 
     __documentation_section__ = "Inequalities"
 
-    __slots__ = ("_duration", "_preprolated")
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        operator_string: str = "<",
-        duration=None,
-        *,
-        preprolated: bool = None,
-    ) -> None:
-        Inequality.__init__(self, operator_string=operator_string)
-        if duration is None:
-            duration = _math.Infinity()
+    def __post_init__(self):
+        Inequality.__post_init__(self)
+        if self.duration is None:
+            self.duration = _math.Infinity()
         infinities = (_math.Infinity(), _math.NegativeInfinity())
-        if duration not in infinities:
-            duration = _duration.Duration(duration)
-            assert 0 <= duration
-        self._duration = duration
-        self._preprolated = preprolated
-
-    ### SPECIAL METHODS ###
+        if self.duration not in infinities:
+            self.duration = _duration.Duration(self.duration)
+            assert 0 <= self.duration
 
     def __call__(self, argument) -> bool:
         """
@@ -155,34 +103,14 @@ class DurationInequality(Inequality):
                 duration = _inspect._get_duration(argument)
         return self._operator_function(duration, self.duration)
 
-    def __eq__(self, argument) -> bool:
+    def __repr__(self) -> str:
         """
-        Compares ``operator_string``, ``duration``.
+        Gets interpreter representation.
         """
-        if isinstance(argument, type(self)):
-            return (
-                self.operator_string == argument.operator_string
-                and self.duration == argument.duration
-            )
-        return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration(self) -> _duration.Duration:
-        """
-        Gets duration.
-        """
-        return self._duration
-
-    @property
-    def preprolated(self) -> typing.Optional[bool]:
-        """
-        Is true when inequality evaluates preprolated duration.
-        """
-        return self._preprolated
+        return f"{type(self).__name__}(operator_string={self.operator_string!r}, duration={self.duration!r})"
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class LengthInequality(Inequality):
     """
     Length inequality.
@@ -190,12 +118,8 @@ class LengthInequality(Inequality):
     ..  container:: example
 
         >>> inequality = abjad.LengthInequality('<', 4)
-        >>> string = abjad.storage(inequality)
-        >>> print(string)
-        abjad.LengthInequality(
-            operator_string='<',
-            length=4,
-            )
+        >>> inequality
+        LengthInequality(operator_string='<', length=4)
 
         >>> inequality([1, 2, 3])
         True
@@ -208,25 +132,16 @@ class LengthInequality(Inequality):
 
     """
 
-    ### CLASS VARIABLES ###
+    length: int | _math.Infinity | _math.NegativeInfinity = _math.Infinity()
 
     __documentation_section__ = "Inequalities"
 
-    __slots__ = ("_length",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, operator_string="<", length=None):
-        Inequality.__init__(self, operator_string=operator_string)
-        if length is None:
-            length = _math.Infinity()
-        assert 0 <= length
+    def __post_init__(self):
+        Inequality.__post_init__(self)
+        assert 0 <= self.length
         infinities = (_math.Infinity(), _math.NegativeInfinity())
-        if length not in infinities:
-            length = int(length)
-        self._length = length
-
-    ### SPECIAL METHODS ###
+        if self.length not in infinities:
+            self.length = int(self.length)
 
     def __call__(self, argument):
         """
@@ -236,29 +151,8 @@ class LengthInequality(Inequality):
         """
         return self._operator_function(len(argument), self.length)
 
-    def __eq__(self, argument) -> bool:
-        """
-        Compares ``operator_string``, ``length``.
-        """
-        if isinstance(argument, type(self)):
-            return (
-                self.operator_string == argument.operator_string
-                and self.length == argument.length
-            )
-        return False
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def length(self):
-        """
-        Gets length.
-
-        Returns integer.
-        """
-        return self._length
-
-
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class PitchInequality:
     """
     Pitch inequality.
@@ -266,14 +160,8 @@ class PitchInequality:
     ..  container:: example
 
         >>> inequality = abjad.PitchInequality('&', 'C4 E4')
-        >>> string = abjad.storage(inequality)
-        >>> print(string)
-        abjad.PitchInequality(
-            operator_string='&',
-            pitches=abjad.PitchSet(
-                [0, 4]
-                ),
-            )
+        >>> inequality
+        PitchInequality(operator_string='&', pitches={0, 4})
 
         >>> inequality(abjad.Staff("d'8 e' f' g'"))
         True
@@ -288,26 +176,21 @@ class PitchInequality:
 
     """
 
-    ### CLASS VARIABLES ###
+    operator_string: str
+    pitches: typing.Any = None
 
     __documentation_section__ = "Inequalities"
 
-    __slots__ = ("_operator_string", "_pitches")
-
     _set_theoretic_operator_strings = ("&", "|", "^")
 
-    ### INITIALIZER ###
-
-    def __init__(self, operator_string="&", pitches=None):
-        assert operator_string in self._set_theoretic_operator_strings
-        self._operator_string = operator_string
+    def __post_init__(self):
+        assert self.operator_string in self._set_theoretic_operator_strings
         # only intersection is currently implemented
-        if not isinstance(pitches, collections.abc.Iterable):
-            pitches = [pitches]
-        pitches = _pitch.PitchSet(items=pitches, item_class=_pitch.NumberedPitch)
-        self._pitches = pitches
-
-    ### SPECIAL METHODS ###
+        if not isinstance(self.pitches, collections.abc.Iterable):
+            self.pitches = [self.pitches]
+        self.pitches = _pitch.PitchSet(
+            items=self.pitches, item_class=_pitch.NumberedPitch
+        )
 
     def __call__(self, argument) -> bool:
         """
@@ -324,36 +207,11 @@ class PitchInequality:
         else:
             raise NotImplementedError(f"implement {self.operator_string!r}.")
 
-    def __eq__(self, argument) -> bool:
+    def __repr__(self):
         """
-        Compares ``operator_string``, ``pitches``.
+        Gets repr.
         """
-        if isinstance(argument, type(self)):
-            return (
-                self.operator_string == argument.operator_string
-                and self.pitches == argument.pitches
-            )
-        return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def operator_string(self):
-        """
-        Gets operator string.
-
-        Returns string.
-        """
-        return self._operator_string
-
-    @property
-    def pitches(self):
-        """
-        Gets pitches.
-
-        Returns numbered pitch set.
-        """
-        return self._pitches
+        return f"{type(self).__name__}(operator_string={self.operator_string!r}, pitches={self.pitches!s})"
 
 
 class Selection(collections.abc.Sequence):
@@ -372,9 +230,9 @@ class Selection(collections.abc.Sequence):
         >>> for item in result:
         ...     item
         ...
-        Selection([Note("c'4"), Note("d'8")])
-        Selection([Note("e'8")])
-        Selection([Note("f'16"), Note("g'8"), Note("a'4")])
+        Selection(items=[Note("c'4"), Note("d'8")])
+        Selection(items=[Note("e'8")])
+        Selection(items=[Note("f'16"), Note("g'8"), Note("a'4")])
 
     """
 
@@ -479,7 +337,8 @@ class Selection(collections.abc.Sequence):
         """
         Hashes selection.
         """
-        return hash(self.__class__.__name__ + str(self))
+        # return hash(self.__class__.__name__ + str(self))
+        return id(self)
 
     def __len__(self) -> int:
         """
@@ -499,7 +358,7 @@ class Selection(collections.abc.Sequence):
         """
         Gets interpreter representation of selection.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}(items={list(self.items)!r})"
 
     def __setstate__(self, state) -> None:
         """
@@ -587,12 +446,6 @@ class Selection(collections.abc.Sequence):
             for i, x in enumerate(components):
                 if i == abs(n) - 1:
                     return x
-
-    def _get_format_specification(self):
-        values = []
-        if self.items:
-            values = [list(self.items)]
-        return _format.FormatSpecification(storage_format_args_values=values)
 
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
@@ -859,7 +712,7 @@ class Selection(collections.abc.Sequence):
                 }
 
             >>> voice[:]
-            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
             >>> voice[:].are_contiguous_logical_voice()
             False
@@ -893,7 +746,7 @@ class Selection(collections.abc.Sequence):
                 }
 
             >>> voice[:]
-            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
             >>> voice[:].are_contiguous_logical_voice()
             False
@@ -983,7 +836,7 @@ class Selection(collections.abc.Sequence):
                 }
 
             >>> voice[:]
-            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
             >>> voice[:].are_contiguous_same_parent()
             False
@@ -1017,7 +870,7 @@ class Selection(collections.abc.Sequence):
                 }
 
             >>> voice[:]
-            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
             >>> voice[:].are_contiguous_same_parent()
             False
@@ -1595,8 +1448,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("d'8"), Note("d'8")])
-            LogicalTie([Note("f'8")])
+            LogicalTie(items=[Note("d'8"), Note("d'8")])
+            LogicalTie(items=[Note("f'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1640,10 +1493,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Note("d'8")])
-            Selection([Note("e'8"), Note("e'8")])
-            Selection([Note("f'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Note("d'8")])
+            Selection(items=[Note("e'8"), Note("e'8")])
+            Selection(items=[Note("f'8")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1701,7 +1554,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("d'8"), Note("e'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1739,7 +1592,7 @@ class Selection(collections.abc.Sequence):
         operator,
         duration: _typings.DurationTyping,
         *,
-        preprolated: bool = None,
+        preprolated: bool = False,
     ) -> "Selection":
         r"""
         Filters selection by ``operator`` and ``duration``.
@@ -1756,7 +1609,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("d'8"), Note("e'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1796,8 +1649,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Note("d'8"), Note("e'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1845,8 +1698,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("d'8"), Note("e'8")])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1888,8 +1741,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Note("d'8"), Note("e'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2030,8 +1883,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("c'8")])
-            LogicalTie([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
+            LogicalTie(items=[Note("c'8")])
+            LogicalTie(items=[Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2082,7 +1935,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("d'8"), Note("e'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2122,8 +1975,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Note("d'8"), Note("e'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2184,9 +2037,9 @@ class Selection(collections.abc.Sequence):
             >>> result = [abjad.select(_).leaves()[:2] for _ in result]
             >>> for item in result:
             ...     item
-            Selection([Rest('r16'), Note("bf'16")])
-            Selection([Rest('r16'), Note("bf'16")])
-            Selection([Rest('r16'), Note("bf'16")])
+            Selection(items=[Rest('r16'), Note("bf'16")])
+            Selection(items=[Rest('r16'), Note("bf'16")])
+            Selection(items=[Rest('r16'), Note("bf'16")])
 
             >>> abjad.label.by_selector(result, True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -2412,8 +2265,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("c'8")])
-            LogicalTie([Note("e'8"), Note("e'8"), Note("e'8")])
+            LogicalTie(items=[Note("c'8")])
+            LogicalTie(items=[Note("e'8"), Note("e'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2457,10 +2310,10 @@ class Selection(collections.abc.Sequence):
             >>> result = [abjad.select(_).leaves().get([1]) for _ in result]
             >>> for item in result:
             ...     item
-            Selection(items=())
-            Selection([Note("d'8")])
-            Selection([Note("e'8")])
-            Selection(items=())
+            Selection(items=[])
+            Selection(items=[Note("d'8")])
+            Selection(items=[Note("e'8")])
+            Selection(items=[])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2519,7 +2372,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
+            Selection(items=[Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
 
             >>> abjad.label.by_selector(result, lone=True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2583,7 +2436,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
+            Selection(items=[Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
 
             >>> abjad.label.by_selector(result, lone=True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2656,10 +2509,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8")])
-            Selection([Note("e'8")])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8")])
-            Selection([Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
+            Selection(items=[Note("c'8"), Note("d'8")])
+            Selection(items=[Note("e'8")])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2714,8 +2567,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
-            Selection([Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")])
+            Selection(items=[Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
+            Selection(items=[Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2811,10 +2664,10 @@ class Selection(collections.abc.Sequence):
             >>> result = abjad.select(result).flatten()
             >>> for item in result:
             ...     item
-            Selection([Note("c'8"), Note("c'16"), Note("c'16")])
-            Selection([Note("c'16"), Note("c'16")])
-            Selection([Note("d'8"), Note("d'16"), Note("d'16")])
-            Selection([Note("d'16"), Note("d'16")])
+            Selection(items=[Note("c'8"), Note("c'16"), Note("c'16")])
+            Selection(items=[Note("c'16"), Note("c'16")])
+            Selection(items=[Note("d'8"), Note("d'16"), Note("d'16")])
+            Selection(items=[Note("d'16"), Note("d'16")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2873,10 +2726,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([LogicalTie([Note("c'8"), Note("c'16")]), LogicalTie([Note("c'16")])])
-            Selection([LogicalTie([Note("c'16")]), LogicalTie([Note("c'16")])])
-            Selection([LogicalTie([Note("d'8"), Note("d'16")]), LogicalTie([Note("d'16")])])
-            Selection([LogicalTie([Note("d'16")]), LogicalTie([Note("d'16")])])
+            Selection(items=[LogicalTie(items=[Note("c'8"), Note("c'16")]), LogicalTie(items=[Note("c'16")])])
+            Selection(items=[LogicalTie(items=[Note("c'16")]), LogicalTie(items=[Note("c'16")])])
+            Selection(items=[LogicalTie(items=[Note("d'8"), Note("d'16")]), LogicalTie(items=[Note("d'16")])])
+            Selection(items=[LogicalTie(items=[Note("d'16")]), LogicalTie(items=[Note("d'16")])])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2957,12 +2810,12 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([LogicalTie([Note("c'4"), Note("c'16")])])
-            Selection([LogicalTie([Note("d'16"), Note("d'16")])])
-            Selection([LogicalTie([Note("d'16")])])
-            Selection([LogicalTie([Note("e'4"), Note("e'16")])])
-            Selection([LogicalTie([Note("f'16"), Note("f'16")])])
-            Selection([LogicalTie([Note("f'16")])])
+            Selection(items=[LogicalTie(items=[Note("c'4"), Note("c'16")])])
+            Selection(items=[LogicalTie(items=[Note("d'16"), Note("d'16")])])
+            Selection(items=[LogicalTie(items=[Note("d'16")])])
+            Selection(items=[LogicalTie(items=[Note("e'4"), Note("e'16")])])
+            Selection(items=[LogicalTie(items=[Note("f'16"), Note("f'16")])])
+            Selection(items=[LogicalTie(items=[Note("f'16")])])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3027,10 +2880,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([LogicalTie([Note("c'4"), Note("c'16")]), LogicalTie([Note("d'16"), Note("d'16")])])
-            Selection([LogicalTie([Note("d'16")])])
-            Selection([LogicalTie([Note("e'4"), Note("e'16")]), LogicalTie([Note("f'16"), Note("f'16")])])
-            Selection([LogicalTie([Note("f'16")])])
+            Selection(items=[LogicalTie(items=[Note("c'4"), Note("c'16")]), LogicalTie(items=[Note("d'16"), Note("d'16")])])
+            Selection(items=[LogicalTie(items=[Note("d'16")])])
+            Selection(items=[LogicalTie(items=[Note("e'4"), Note("e'16")]), LogicalTie(items=[Note("f'16"), Note("f'16")])])
+            Selection(items=[LogicalTie(items=[Note("f'16")])])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3100,10 +2953,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8")])
-            Selection([Note("e'8"), Note("f'8")])
-            Selection([Note("g'8"), Note("a'8"), Note("b'8")])
-            Selection([Note("c''8")])
+            Selection(items=[Note("c'8"), Note("d'8")])
+            Selection(items=[Note("e'8"), Note("f'8")])
+            Selection(items=[Note("g'8"), Note("a'8"), Note("b'8")])
+            Selection(items=[Note("c''8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3157,8 +3010,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")])
-            Selection([Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")])
+            Selection(items=[Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")])
+            Selection(items=[Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3313,8 +3166,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
-            Selection([Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])
+            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+            Selection(items=[Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3363,9 +3216,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([LogicalTie([Note("c'8")]), LogicalTie([Note("d'8"), Note("d'8")])])
-            Selection([LogicalTie([Note("e'8"), Note("e'8")])])
-            Selection([LogicalTie([Note("f'8")]), LogicalTie([Note("g'8"), Note("g'8")])])
+            Selection(items=[LogicalTie(items=[Note("c'8")]), LogicalTie(items=[Note("d'8"), Note("d'8")])])
+            Selection(items=[LogicalTie(items=[Note("e'8"), Note("e'8")])])
+            Selection(items=[LogicalTie(items=[Note("f'8")]), LogicalTie(items=[Note("g'8"), Note("g'8")])])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3416,9 +3269,9 @@ class Selection(collections.abc.Sequence):
             >>> for measure in abjad.select(staff).leaves().group_by_measure():
             ...     print(measure)
             ...
-            Selection([Note("c'4")])
-            Selection([Note("d'4"), Note("e'4"), Note("f'4")])
-            Selection([Note("g'4"), Note("a'4"), Note("b'4")])
+            Selection(items=[Note("c'4")])
+            Selection(items=[Note("d'4"), Note("e'4"), Note("f'4")])
+            Selection(items=[Note("g'4"), Note("a'4"), Note("b'4")])
 
         """
 
@@ -3457,10 +3310,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([LogicalTie([Note("c'4"), Note("c'16")])])
-            Selection([LogicalTie([Note("d'16"), Note("d'16")]), LogicalTie([Note("d'16")])])
-            Selection([LogicalTie([Note("e'4"), Note("e'16")])])
-            Selection([LogicalTie([Note("f'16"), Note("f'16")]), LogicalTie([Note("f'16")])])
+            Selection(items=[LogicalTie(items=[Note("c'4"), Note("c'16")])])
+            Selection(items=[LogicalTie(items=[Note("d'16"), Note("d'16")]), LogicalTie(items=[Note("d'16")])])
+            Selection(items=[LogicalTie(items=[Note("e'4"), Note("e'16")])])
+            Selection(items=[LogicalTie(items=[Note("f'16"), Note("f'16")]), LogicalTie(items=[Note("f'16")])])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4553,12 +4406,12 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("c'8")])
-            LogicalTie([Note("d'8"), Note("d'8")])
-            LogicalTie([Note("e'8")])
-            LogicalTie([Rest('r8')])
-            LogicalTie([Note("f'8"), Note("f'8")])
-            LogicalTie([Rest('r8')])
+            LogicalTie(items=[Note("c'8")])
+            LogicalTie(items=[Note("d'8"), Note("d'8")])
+            LogicalTie(items=[Note("e'8")])
+            LogicalTie(items=[Rest('r8')])
+            LogicalTie(items=[Note("f'8"), Note("f'8")])
+            LogicalTie(items=[Rest('r8')])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4607,10 +4460,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("c'8")])
-            LogicalTie([Note("d'8"), Note("d'8")])
-            LogicalTie([Note("e'8")])
-            LogicalTie([Note("f'8"), Note("f'8")])
+            LogicalTie(items=[Note("c'8")])
+            LogicalTie(items=[Note("d'8"), Note("d'8")])
+            LogicalTie(items=[Note("e'8")])
+            LogicalTie(items=[Note("f'8"), Note("f'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4659,8 +4512,8 @@ class Selection(collections.abc.Sequence):
             ...     )
             >>> for item in result:
             ...     item
-            LogicalTie([Note("d'8"), Note("d'8")])
-            LogicalTie([Note("f'8"), Note("f'8")])
+            LogicalTie(items=[Note("d'8"), Note("d'8")])
+            LogicalTie(items=[Note("f'8"), Note("f'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4710,9 +4563,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([LogicalTie([Note("c'8")]), LogicalTie([Note("d'8")]), LogicalTie([Note("e'8"), Note("e'8")])])
-            Selection([LogicalTie([Note("g'8")]), LogicalTie([Note("a'8"), Note("a'8")])])
-            Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
+            Selection(items=[LogicalTie(items=[Note("c'8")]), LogicalTie(items=[Note("d'8")]), LogicalTie(items=[Note("e'8"), Note("e'8")])])
+            Selection(items=[LogicalTie(items=[Note("g'8")]), LogicalTie(items=[Note("a'8"), Note("a'8")])])
+            Selection(items=[LogicalTie(items=[Note("c''8")]), LogicalTie(items=[Note("d''8")])])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4781,8 +4634,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([LogicalTie([Note("g'8")]), LogicalTie([Note("a'8"), Note("a'8")])])
-            Selection([LogicalTie([Note("c''8")]), LogicalTie([Note("d''8")])])
+            Selection(items=[LogicalTie(items=[Note("g'8")]), LogicalTie(items=[Note("a'8"), Note("a'8")])])
+            Selection(items=[LogicalTie(items=[Note("c''8")]), LogicalTie(items=[Note("d''8")])])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4846,14 +4699,14 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("c'8")])
-            LogicalTie([Note("cf''16")])
-            LogicalTie([Note("bf'16")])
-            LogicalTie([Note("d'8")])
-            LogicalTie([Note("af'16")])
-            LogicalTie([Note("gf'16")])
-            LogicalTie([Note("e'8")])
-            LogicalTie([Note("f'8")])
+            LogicalTie(items=[Note("c'8")])
+            LogicalTie(items=[Note("cf''16")])
+            LogicalTie(items=[Note("bf'16")])
+            LogicalTie(items=[Note("d'8")])
+            LogicalTie(items=[Note("af'16")])
+            LogicalTie(items=[Note("gf'16")])
+            LogicalTie(items=[Note("e'8")])
+            LogicalTie(items=[Note("f'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4907,10 +4760,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("c'8")])
-            LogicalTie([Note("d'8")])
-            LogicalTie([Note("e'8")])
-            LogicalTie([Note("f'8")])
+            LogicalTie(items=[Note("c'8")])
+            LogicalTie(items=[Note("d'8")])
+            LogicalTie(items=[Note("e'8")])
+            LogicalTie(items=[Note("f'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4961,10 +4814,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("cf''16")])
-            LogicalTie([Note("bf'16")])
-            LogicalTie([Note("af'16")])
-            LogicalTie([Note("gf'16")])
+            LogicalTie(items=[Note("cf''16")])
+            LogicalTie(items=[Note("bf'16")])
+            LogicalTie(items=[Note("af'16")])
+            LogicalTie(items=[Note("gf'16")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5014,8 +4867,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("f'8"), Note("f'8")])
-            LogicalTie([Rest('r8')])
+            LogicalTie(items=[Note("f'8"), Note("f'8")])
+            LogicalTie(items=[Rest('r8')])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5065,8 +4918,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            LogicalTie([Note("c'8")])
-            LogicalTie([Note("d'8"), Note("d'8")])
+            LogicalTie(items=[Note("c'8")])
+            LogicalTie(items=[Note("d'8"), Note("d'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5128,8 +4981,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("d'8"), Note("e'8")])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5380,7 +5233,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8'), Note("d'8")])
+            Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5424,8 +5277,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8'), Note("d'8")])
-            Selection([Note("e'8"), Rest('r8'), Note("f'8")])
+            Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
+            Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5472,9 +5325,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8'), Note("d'8")])
-            Selection([Note("e'8"), Rest('r8'), Note("f'8")])
-            Selection([Note("g'8"), Note("a'8")])
+            Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
+            Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
+            Selection(items=[Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5525,8 +5378,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8'), Note("d'8")])
-            Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
+            Selection(items=[Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5576,12 +5429,12 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Rest('r8'), Note("d'8")])
-            Selection([Note("e'8"), Rest('r8'), Note("f'8")])
-            Selection([Note("g'8")])
-            Selection([Note("a'8"), Note("b'8")])
-            Selection([Rest('r8'), Note("c''8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Rest('r8'), Note("d'8")])
+            Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
+            Selection(items=[Note("g'8")])
+            Selection(items=[Note("a'8"), Note("b'8")])
+            Selection(items=[Rest('r8'), Note("c''8")])
 
             >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5638,8 +5491,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8')])
-            Selection([Note("f'8"), Note("g'8")])
+            Selection(items=[Note("c'8"), Rest('r8')])
+            Selection(items=[Note("f'8"), Note("g'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5690,9 +5543,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8')])
-            Selection([Note("f'8"), Note("g'8")])
-            Selection([Note("c''8")])
+            Selection(items=[Note("c'8"), Rest('r8')])
+            Selection(items=[Note("f'8"), Note("g'8")])
+            Selection(items=[Note("c''8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5741,8 +5594,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8'), Note("d'8")])
-            Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
+            Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
+            Selection(items=[Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5859,9 +5712,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Note("e'8")])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8")])
-            Selection([Note("b'8"), Note("c''8")])
+            Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5934,7 +5787,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+            Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6003,11 +5856,11 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8")])
-            Selection([Note("e'8")])
-            Selection([Note("f'8"), Note("g'8")])
-            Selection([Note("a'8")])
-            Selection([Note("b'8"), Note("c''8")])
+            Selection(items=[Note("c'8"), Note("d'8")])
+            Selection(items=[Note("e'8")])
+            Selection(items=[Note("f'8"), Note("g'8")])
+            Selection(items=[Note("a'8")])
+            Selection(items=[Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6081,13 +5934,13 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Note("d'8")])
-            Selection([Note("e'8")])
-            Selection([Note("f'8")])
-            Selection([Note("g'8")])
-            Selection([Note("a'8")])
-            Selection([Note("b'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Note("d'8")])
+            Selection(items=[Note("e'8")])
+            Selection(items=[Note("f'8")])
+            Selection(items=[Note("g'8")])
+            Selection(items=[Note("a'8")])
+            Selection(items=[Note("b'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6160,7 +6013,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
+            Selection(items=[Note("c'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6230,8 +6083,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Note("e'8")])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6307,9 +6160,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Note("e'8")])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8")])
-            Selection([Note("b'8"), Note("c''8")])
+            Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("b'8"), Note("c''8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6387,7 +6240,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Note("e'8")])
+            Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6460,13 +6313,13 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Note("d'8")])
-            Selection([Note("e'8")])
-            Selection([Note("f'8")])
-            Selection([Note("g'8")])
-            Selection([Note("a'8")])
-            Selection([Note("b'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Note("d'8")])
+            Selection(items=[Note("e'8")])
+            Selection(items=[Note("f'8")])
+            Selection(items=[Note("g'8")])
+            Selection(items=[Note("a'8")])
+            Selection(items=[Note("b'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6543,7 +6396,7 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
+            Selection(items=[Note("c'8")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6687,8 +6540,8 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8')])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
+            Selection(items=[Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8')])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6740,9 +6593,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Note("d'8"), Rest('r8')])
-            Selection([Note("e'8"), Rest('r8'), Note("f'8")])
-            Selection([Note("g'8"), Note("a'8"), Rest('r8')])
+            Selection(items=[Note("c'8"), Note("d'8"), Rest('r8')])
+            Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
+            Selection(items=[Note("g'8"), Note("a'8"), Rest('r8')])
 
             >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6999,7 +6852,7 @@ class Selection(collections.abc.Sequence):
 
             >>> result = abjad.select(staff).run(-1)
             >>> result
-            Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+            Selection(items=[Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
             >>> abjad.label.by_selector(result, lone=True)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -7091,9 +6944,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")])
-            Selection([Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
-            Selection([Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+            Selection(items=[Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")])
+            Selection(items=[Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
+            Selection(items=[Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
             >>> abjad.label.by_selector(result)
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -7185,9 +7038,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'16"), Note("d'16"), Note("e'16")])
-            Selection([Note("cs'16"), Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
-            Selection([Note("f'8"), Note("fs'16")])
+            Selection(items=[Note("c'16"), Note("d'16"), Note("e'16")])
+            Selection(items=[Note("cs'16"), Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
+            Selection(items=[Note("f'8"), Note("fs'16")])
 
             >>> abjad.label.by_selector(result)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -7634,9 +7487,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8')])
-            Selection([Note("d'8"), Note("e'8"), Rest('r8')])
-            Selection([Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("c'8"), Rest('r8')])
+            Selection(items=[Note("d'8"), Note("e'8"), Rest('r8')])
+            Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -7682,10 +7535,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8')])
-            Selection([Note("d'8"), Note("e'8")])
-            Selection([Note("e'8"), Rest('r8')])
-            Selection([Note("f'8")])
+            Selection(items=[Note("c'8"), Rest('r8')])
+            Selection(items=[Note("d'8"), Note("e'8")])
+            Selection(items=[Note("e'8"), Rest('r8')])
+            Selection(items=[Note("f'8")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -7736,10 +7589,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8"), Rest('r8')])
-            Selection([Note("d'8"), Note("d'8"), Note("e'8")])
-            Selection([Note("e'8"), Note("e'8"), Rest('r8')])
-            Selection([Note("f'8")])
+            Selection(items=[Note("c'8"), Rest('r8')])
+            Selection(items=[Note("d'8"), Note("d'8"), Note("e'8")])
+            Selection(items=[Note("e'8"), Note("e'8"), Rest('r8')])
+            Selection(items=[Note("f'8")])
 
             >>> for item in result:
             ...     abjad.piano_pedal(item)
@@ -7816,9 +7669,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("cs'16"), Note("d'4")])
-            Selection([Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
-            Selection([Note("fs'16")])
+            Selection(items=[Note("cs'16"), Note("d'4")])
+            Selection(items=[Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
+            Selection(items=[Note("fs'16")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -7914,9 +7767,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Rest('r8'), Note("d'8"), Note("e'8")])
-            Selection([Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Rest('r8'), Note("d'8"), Note("e'8")])
+            Selection(items=[Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -7962,10 +7815,10 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'8")])
-            Selection([Rest('r8'), Note("d'8")])
-            Selection([Note("d'8"), Note("e'8")])
-            Selection([Rest('r8'), Note("f'8")])
+            Selection(items=[Note("c'8")])
+            Selection(items=[Rest('r8'), Note("d'8")])
+            Selection(items=[Note("d'8"), Note("e'8")])
+            Selection(items=[Rest('r8'), Note("f'8")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -8025,9 +7878,9 @@ class Selection(collections.abc.Sequence):
             >>> for item in result:
             ...     item
             ...
-            Selection([Note("c'4"), Note("cs'16")])
-            Selection([Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16")])
-            Selection([Note("f'4"), Note("fs'16")])
+            Selection(items=[Note("c'4"), Note("cs'16")])
+            Selection(items=[Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16")])
+            Selection(items=[Note("f'4"), Note("fs'16")])
 
             >>> abjad.label.by_selector(result, True)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -8109,7 +7962,7 @@ class LogicalTie(Selection):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.select(staff[2]).logical_tie()
-        LogicalTie([Note("e'4"), Note("e'4")])
+        LogicalTie(items=[Note("e'4"), Note("e'4")])
 
     """
 

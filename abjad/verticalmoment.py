@@ -378,12 +378,12 @@ class VerticalMoment:
             >>> for moment in abjad.iterate_vertical_moments(score):
             ...     print(moment.offset, moment.leaves)
             ...
-            0 Selection([Note("d''8"), Note("a'4"), Note("f'8")])
-            1/8 Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-            1/6 Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-            1/4 Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-            1/3 Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-            3/8 Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+            0 Selection(items=[Note("d''8"), Note("a'4"), Note("f'8")])
+            1/8 Selection(items=[Note("d''8"), Note("a'4"), Note("e'8")])
+            1/6 Selection(items=[Note("c''8"), Note("a'4"), Note("e'8")])
+            1/4 Selection(items=[Note("c''8"), Note("g'4"), Note("d'8")])
+            1/3 Selection(items=[Note("b'8"), Note("g'4"), Note("d'8")])
+            3/8 Selection(items=[Note("b'8"), Note("g'4"), Note("c'8")])
 
         """
         result = []
@@ -551,20 +551,20 @@ def iterate_vertical_moments(components, reverse=None):
         >>> for vertical_moment in abjad.iterate_vertical_moments(score):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("d''8"), Note("a'4"), Note("f'8")])
-        Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-        Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-        Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+        Selection(items=[Note("d''8"), Note("a'4"), Note("f'8")])
+        Selection(items=[Note("d''8"), Note("a'4"), Note("e'8")])
+        Selection(items=[Note("c''8"), Note("a'4"), Note("e'8")])
+        Selection(items=[Note("c''8"), Note("g'4"), Note("d'8")])
+        Selection(items=[Note("b'8"), Note("g'4"), Note("d'8")])
+        Selection(items=[Note("b'8"), Note("g'4"), Note("c'8")])
 
         >>> for vertical_moment in abjad.iterate_vertical_moments(staff_group):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("a'4"), Note("f'8")])
-        Selection([Note("a'4"), Note("e'8")])
-        Selection([Note("g'4"), Note("d'8")])
-        Selection([Note("g'4"), Note("c'8")])
+        Selection(items=[Note("a'4"), Note("f'8")])
+        Selection(items=[Note("a'4"), Note("e'8")])
+        Selection(items=[Note("g'4"), Note("d'8")])
+        Selection(items=[Note("g'4"), Note("c'8")])
 
     ..  container:: example
 
@@ -617,12 +617,12 @@ def iterate_vertical_moments(components, reverse=None):
         >>> for vertical_moment in abjad.iterate_vertical_moments(score, reverse=True):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("b'8"), Note("g'4"), Note("c'8")])
-        Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-        Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-        Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("d''8"), Note("a'4"), Note("f'8")])
+        Selection(items=[Note("b'8"), Note("g'4"), Note("c'8")])
+        Selection(items=[Note("b'8"), Note("g'4"), Note("d'8")])
+        Selection(items=[Note("c''8"), Note("g'4"), Note("d'8")])
+        Selection(items=[Note("c''8"), Note("a'4"), Note("e'8")])
+        Selection(items=[Note("d''8"), Note("a'4"), Note("e'8")])
+        Selection(items=[Note("d''8"), Note("a'4"), Note("f'8")])
 
         >>> for vertical_moment in abjad.iterate_vertical_moments(
         ...     staff_group,
@@ -630,10 +630,10 @@ def iterate_vertical_moments(components, reverse=None):
         ...     ):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("g'4"), Note("c'8")])
-        Selection([Note("g'4"), Note("d'8")])
-        Selection([Note("a'4"), Note("e'8")])
-        Selection([Note("a'4"), Note("f'8")])
+        Selection(items=[Note("g'4"), Note("c'8")])
+        Selection(items=[Note("g'4"), Note("d'8")])
+        Selection(items=[Note("a'4"), Note("e'8")])
+        Selection(items=[Note("a'4"), Note("f'8")])
 
     Returns tuple.
     '''
@@ -705,21 +705,21 @@ def iterate_leaf_pairs(components):
 
         >>> for leaf_pair in abjad.iterate_leaf_pairs(score):
         ...     leaf_pair
-        Selection([Note("c'8"), Note('c4')])
-        Selection([Note("c'8"), Note("d'8")])
-        Selection([Note('c4'), Note("d'8")])
-        Selection([Note("d'8"), Note("e'8")])
-        Selection([Note("d'8"), Note('a,4')])
-        Selection([Note('c4'), Note("e'8")])
-        Selection([Note('c4'), Note('a,4')])
-        Selection([Note("e'8"), Note('a,4')])
-        Selection([Note("e'8"), Note("f'8")])
-        Selection([Note('a,4'), Note("f'8")])
-        Selection([Note("f'8"), Note("g'4")])
-        Selection([Note("f'8"), Note('g,4')])
-        Selection([Note('a,4'), Note("g'4")])
-        Selection([Note('a,4'), Note('g,4')])
-        Selection([Note("g'4"), Note('g,4')])
+        Selection(items=[Note("c'8"), Note('c4')])
+        Selection(items=[Note("c'8"), Note("d'8")])
+        Selection(items=[Note('c4'), Note("d'8")])
+        Selection(items=[Note("d'8"), Note("e'8")])
+        Selection(items=[Note("d'8"), Note('a,4')])
+        Selection(items=[Note('c4'), Note("e'8")])
+        Selection(items=[Note('c4'), Note('a,4')])
+        Selection(items=[Note("e'8"), Note('a,4')])
+        Selection(items=[Note("e'8"), Note("f'8")])
+        Selection(items=[Note('a,4'), Note("f'8")])
+        Selection(items=[Note("f'8"), Note("g'4")])
+        Selection(items=[Note("f'8"), Note('g,4')])
+        Selection(items=[Note('a,4'), Note("g'4")])
+        Selection(items=[Note('a,4'), Note('g,4')])
+        Selection(items=[Note("g'4"), Note('g,4')])
 
     Iterates leaf pairs left-to-right and top-to-bottom.
 
@@ -776,21 +776,21 @@ def iterate_pitch_pairs(components):
 
         >>> for pair in abjad.iterate_pitch_pairs(score):
         ...     pair
-        PitchSegment("c' c")
-        PitchSegment("c' d'")
-        PitchSegment("c d'")
-        PitchSegment("d' e'")
-        PitchSegment("d' a,")
-        PitchSegment("c e'")
-        PitchSegment("c a,")
-        PitchSegment("e' a,")
-        PitchSegment("e' f'")
-        PitchSegment("a, f'")
-        PitchSegment("f' g'")
-        PitchSegment("f' g,")
-        PitchSegment("a, g'")
-        PitchSegment("a, g,")
-        PitchSegment("g' g,")
+        PitchSegment(items="c' c", item_class=NamedPitch)
+        PitchSegment(items="c' d'", item_class=NamedPitch)
+        PitchSegment(items="c d'", item_class=NamedPitch)
+        PitchSegment(items="d' e'", item_class=NamedPitch)
+        PitchSegment(items="d' a,", item_class=NamedPitch)
+        PitchSegment(items="c e'", item_class=NamedPitch)
+        PitchSegment(items="c a,", item_class=NamedPitch)
+        PitchSegment(items="e' a,", item_class=NamedPitch)
+        PitchSegment(items="e' f'", item_class=NamedPitch)
+        PitchSegment(items="a, f'", item_class=NamedPitch)
+        PitchSegment(items="f' g'", item_class=NamedPitch)
+        PitchSegment(items="f' g,", item_class=NamedPitch)
+        PitchSegment(items="a, g'", item_class=NamedPitch)
+        PitchSegment(items="a, g,", item_class=NamedPitch)
+        PitchSegment(items="g' g,", item_class=NamedPitch)
 
     ..  container:: example
 
@@ -811,16 +811,16 @@ def iterate_pitch_pairs(components):
         >>> for pair in abjad.iterate_pitch_pairs(staff):
         ...     pair
         ...
-        PitchSegment("c' d'")
-        PitchSegment("c' e'")
-        PitchSegment("d' e'")
-        PitchSegment("c' f''")
-        PitchSegment("c' g''")
-        PitchSegment("d' f''")
-        PitchSegment("d' g''")
-        PitchSegment("e' f''")
-        PitchSegment("e' g''")
-        PitchSegment("f'' g''")
+        PitchSegment(items="c' d'", item_class=NamedPitch)
+        PitchSegment(items="c' e'", item_class=NamedPitch)
+        PitchSegment(items="d' e'", item_class=NamedPitch)
+        PitchSegment(items="c' f''", item_class=NamedPitch)
+        PitchSegment(items="c' g''", item_class=NamedPitch)
+        PitchSegment(items="d' f''", item_class=NamedPitch)
+        PitchSegment(items="d' g''", item_class=NamedPitch)
+        PitchSegment(items="e' f''", item_class=NamedPitch)
+        PitchSegment(items="e' g''", item_class=NamedPitch)
+        PitchSegment(items="f'' g''", item_class=NamedPitch)
 
     Returns generator.
     """

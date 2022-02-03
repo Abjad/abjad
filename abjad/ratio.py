@@ -1,13 +1,14 @@
 import collections
+import dataclasses
 import typing
 
 import quicktions
 
 from . import duration as _duration
-from . import format as _format
 from . import math as _math
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class NonreducedRatio(collections.abc.Sequence):
     """
     Nonreduced ratio.
@@ -17,39 +18,30 @@ class NonreducedRatio(collections.abc.Sequence):
         Initializes from numbers:
 
         >>> abjad.NonreducedRatio((2, 4))
-        NonreducedRatio((2, 4))
+        NonreducedRatio(numbers=(2, 4))
 
         >>> abjad.NonreducedRatio((2, 4, 2))
-        NonreducedRatio((2, 4, 2))
-
-    ..  container:: example
+        NonreducedRatio(numbers=(2, 4, 2))
 
         Initializes from string:
 
         >>> abjad.NonreducedRatio("2:4")
-        NonreducedRatio((2, 4))
+        NonreducedRatio(numbers=(2, 4))
 
         >>> abjad.NonreducedRatio("2:4:2")
-        NonreducedRatio((2, 4, 2))
+        NonreducedRatio(numbers=(2, 4, 2))
 
     """
 
-    ### CLASS VARIABLES ###
+    numbers: typing.Sequence[int] = (1, 1)
 
-    __slots__ = ("_numbers",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, numbers=(1, 1)):
-        if isinstance(numbers, type(self)):
-            numbers = numbers.numbers
-        elif isinstance(numbers, str):
-            strings = numbers.split(":")
-            numbers = [int(_) for _ in strings]
-        numbers = tuple(numbers)
-        self._numbers = numbers
-
-    ### SPECIAL METHODS ###
+    def __post_init__(self):
+        if isinstance(self.numbers, type(self)):
+            self.numbers = self.numbers.numbers
+        elif isinstance(self.numbers, str):
+            strings = self.numbers.split(":")
+            self.numbers = [int(_) for _ in strings]
+        self.numbers = tuple(self.numbers)
 
     def __contains__(self, argument):
         """
@@ -57,15 +49,7 @@ class NonreducedRatio(collections.abc.Sequence):
 
         Returns true or false.
         """
-        return argument in self._numbers
-
-    def __eq__(self, argument):
-        """
-        Is true when ``argument`` is a ratio with numbers equal to this ratio.
-        """
-        if isinstance(argument, type(self)):
-            return self.numbers == argument.numbers
-        return False
+        return argument in self.numbers
 
     def __getitem__(self, argument):
         """
@@ -80,16 +64,8 @@ class NonreducedRatio(collections.abc.Sequence):
         Returns integer or tuple.
         """
         if isinstance(argument, slice):
-            return tuple(self._numbers.__getitem__(argument))
-        return self._numbers.__getitem__(argument)
-
-    def __hash__(self):
-        """
-        Hashes non-reduced ratio.
-
-        Returns integer.
-        """
-        return super().__hash__()
+            return tuple(self.numbers.__getitem__(argument))
+        return self.numbers.__getitem__(argument)
 
     def __iter__(self):
         """
@@ -97,7 +73,7 @@ class NonreducedRatio(collections.abc.Sequence):
 
         Returns generator.
         """
-        return iter(self._numbers)
+        return iter(self.numbers)
 
     def __len__(self):
         """
@@ -111,13 +87,7 @@ class NonreducedRatio(collections.abc.Sequence):
 
         Returns integer.
         """
-        return len(self._numbers)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
+        return len(self.numbers)
 
     def __reversed__(self):
         """
@@ -125,7 +95,7 @@ class NonreducedRatio(collections.abc.Sequence):
 
         Returns generator.
         """
-        return reversed(self._numbers)
+        return reversed(self.numbers)
 
     def __rtruediv__(self, number):
         """
@@ -155,17 +125,6 @@ class NonreducedRatio(collections.abc.Sequence):
 
     __rdiv__ = __rtruediv__
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_args_values=[self.numbers],
-            storage_format_is_not_indented=True,
-            storage_format_keyword_names=[],
-        )
-
-    ### PUBLIC PROPERTIES ###
-
     @property
     def multipliers(self):
         """
@@ -194,42 +153,13 @@ class NonreducedRatio(collections.abc.Sequence):
         multipliers = tuple(multipliers)
         return multipliers
 
-    @property
-    def numbers(self):
-        """
-        Gets numbers of nonreduced ratio.
-
-        ..  container:: example
-
-            Nonreduced ratio of two numbers:
-
-            >>> ratio = abjad.NonreducedRatio((2, 4))
-            >>> ratio.numbers
-            (2, 4)
-
-        ..  container:: example
-
-            Nonreduced ratio of three numbers:
-
-            >>> ratio = abjad.NonreducedRatio((2, 4, 2))
-            >>> ratio.numbers
-            (2, 4, 2)
-
-        Set to tuple of two or more numbers.
-
-        Returns tuple of two or more numbers.
-        """
-        return self._numbers
-
-    ### PUBLIC METHODS ###
-
     def count(self, argument):
         """
         Gets count of ``argument`` in ratio.
 
         Returns integer.
         """
-        return self._numbers.count(argument)
+        return self.numbers.count(argument)
 
     def index(self, argument):
         """
@@ -237,9 +167,10 @@ class NonreducedRatio(collections.abc.Sequence):
 
         Returns integer.
         """
-        return self._numbers.index(argument)
+        return self.numbers.index(argument)
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class Ratio(NonreducedRatio):
     """
     Ratio.
@@ -249,81 +180,66 @@ class Ratio(NonreducedRatio):
         Initializes from numbers:
 
         >>> abjad.Ratio((2, 4))
-        Ratio((1, 2))
+        Ratio(numbers=(1, 2))
 
         >>> abjad.Ratio((2, 4, 2))
-        Ratio((1, 2, 1))
+        Ratio(numbers=(1, 2, 1))
 
     ..  container:: example
 
         Initializes from string:
 
         >>> abjad.Ratio("2:4")
-        Ratio((1, 2))
+        Ratio(numbers=(1, 2))
 
         >>> abjad.Ratio("2:4:2")
-        Ratio((1, 2, 1))
+        Ratio(numbers=(1, 2, 1))
+
+    ..  container:: example
+
+        >>> ratio_1 = abjad.Ratio((1, 2, 1))
+        >>> ratio_2 = abjad.Ratio((1, 2, 1))
+        >>> ratio_3 = abjad.Ratio((2, 3, 3))
+
+        >>> ratio_1 == ratio_1
+        True
+
+        >>> ratio_1 == ratio_2
+        True
+
+        >>> ratio_1 == ratio_3
+        False
+
+        >>> ratio_2 == ratio_1
+        True
+
+        >>> ratio_2 == ratio_2
+        True
+
+        >>> ratio_2 == ratio_3
+        False
+
+        >>> ratio_3 == ratio_1
+        False
+
+        >>> ratio_3 == ratio_2
+        False
+
+        >>> ratio_3 == ratio_3
+        True
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, numbers=(1, 1)):
-        if isinstance(numbers, type(self)):
-            numbers = numbers.numbers
-        elif isinstance(numbers, str):
-            strings = numbers.split(":")
-            numbers = [int(_) for _ in strings]
-        numbers = [int(_) for _ in numbers]
-        gcd = _math.greatest_common_divisor(*numbers)
-        numbers = [_ // gcd for _ in numbers]
-        self._numbers = tuple(numbers)
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument):
-        """
-        Is true when ``argument`` equals ratio.
-
-        ..  container:: example
-
-            >>> ratio_1 = abjad.Ratio((1, 2, 1))
-            >>> ratio_2 = abjad.Ratio((1, 2, 1))
-            >>> ratio_3 = abjad.Ratio((2, 3, 3))
-
-            >>> ratio_1 == ratio_1
-            True
-
-            >>> ratio_1 == ratio_2
-            True
-
-            >>> ratio_1 == ratio_3
-            False
-
-            >>> ratio_2 == ratio_1
-            True
-
-            >>> ratio_2 == ratio_2
-            True
-
-            >>> ratio_2 == ratio_3
-            False
-
-            >>> ratio_3 == ratio_1
-            False
-
-            >>> ratio_3 == ratio_2
-            False
-
-            >>> ratio_3 == ratio_3
-            True
-
-        """
-        return super().__eq__(argument)
+    def __post_init__(self):
+        if isinstance(self.numbers, type(self)):
+            self.numbers = self.numbers.numbers
+        elif isinstance(self.numbers, str):
+            strings = self.numbers.split(":")
+            self.numbers = [int(_) for _ in strings]
+        self.numbers = [int(_) for _ in self.numbers]
+        gcd = _math.greatest_common_divisor(*self.numbers)
+        self.numbers = [_ // gcd for _ in self.numbers]
+        self.numbers = tuple(self.numbers)
 
     def __getitem__(self, argument):
         """
@@ -338,16 +254,8 @@ class Ratio(NonreducedRatio):
         Returns integer or tuple.
         """
         if isinstance(argument, slice):
-            return tuple(self._numbers.__getitem__(argument))
-        return self._numbers.__getitem__(argument)
-
-    def __hash__(self):
-        """
-        Hashes ratio.
-
-        Returns integer.
-        """
-        return super().__hash__()
+            return tuple(self.numbers.__getitem__(argument))
+        return self.numbers.__getitem__(argument)
 
     def __len__(self):
         """
@@ -361,7 +269,7 @@ class Ratio(NonreducedRatio):
 
         Returns integer.
         """
-        return len(self._numbers)
+        return len(self.numbers)
 
     def __str__(self):
         """
@@ -385,8 +293,6 @@ class Ratio(NonreducedRatio):
         """
         numbers = (str(x) for x in self.numbers)
         return ":".join(numbers)
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def multipliers(self):
@@ -417,33 +323,6 @@ class Ratio(NonreducedRatio):
         return multipliers
 
     @property
-    def numbers(self):
-        """
-        Gets numbers of ratio.
-
-        ..  container:: example
-
-            Ratio of two numbers:
-
-            >>> ratio = abjad.Ratio((2, 4))
-            >>> ratio.numbers
-            (1, 2)
-
-        ..  container:: example
-
-            Ratio of three numbers:
-
-            >>> ratio = abjad.Ratio((2, 4, 2))
-            >>> ratio.numbers
-            (1, 2, 1)
-
-        Set to tuple of two or more numbers.
-
-        Returns tuple of two or more numbers.
-        """
-        return self._numbers
-
-    @property
     def reciprocal(self):
         """
         Gets reciprocal.
@@ -453,17 +332,15 @@ class Ratio(NonreducedRatio):
             Gets reciprocal:
 
             >>> abjad.Ratio((3, 2)).reciprocal
-            Ratio((2, 3))
+            Ratio(numbers=(2, 3))
 
             >>> abjad.Ratio((3, 2, 7)).reciprocal
-            Ratio((7, 2, 3))
+            Ratio(numbers=(7, 2, 3))
 
         Returns new ratio.
         """
         numbers = list(reversed(self.numbers))
         return type(self)(numbers)
-
-    ### PUBLIC METHODS ###
 
     def partition_integer(self, n) -> typing.List[int]:
         """

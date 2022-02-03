@@ -1,4 +1,3 @@
-import abc
 import collections
 import filecmp
 import os
@@ -10,7 +9,6 @@ import tempfile
 import time
 
 from . import configuration as _configuration
-from . import format as _format
 from . import string as _string
 
 configuration = _configuration.Configuration()
@@ -21,39 +19,14 @@ class ContextManager:
     An abstract context manager class.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
     _is_abstract = True
 
-    ### INTIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self):
-        raise NotImplementedError
-
-    ### SPECIAL METHODS ###
-
-    @abc.abstractmethod
-    def __enter__(self):
+    def __repr__(self):
         """
-        Enters context manager.
+        Gets repr.
         """
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def __exit__(self, exc_type, exc_value, traceback):
-        """
-        Exits context manager.
-        """
-        raise NotImplementedError
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
+        return f"<{type(self).__name__}()>"
 
 
 class FilesystemState(ContextManager):
@@ -61,13 +34,9 @@ class FilesystemState(ContextManager):
     Filesystem state context manager.
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Context managers"
 
     __slots__ = ("_keep", "_remove")
-
-    ### INITIALIZER ###
 
     def __init__(self, keep=None, remove=None):
         keep = keep or []
@@ -78,8 +47,6 @@ class FilesystemState(ContextManager):
         assert isinstance(remove, collections.abc.Iterable), repr(remove)
         remove = tuple([str(_) for _ in remove])
         self._remove = remove
-
-    ### SPECIAL METHODS ###
 
     def __enter__(self):
         """
@@ -138,8 +105,6 @@ class FilesystemState(ContextManager):
             assert os.path.exists(path), repr(path)
         for path in backup_paths:
             assert not os.path.exists(path), repr(path)
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def keep(self):
@@ -279,18 +244,12 @@ class NullContextManager(ContextManager):
     A context manager that does nothing.
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Context managers"
 
     __slots__ = ()
 
-    ### INITIALIZER ###
-
     def __init__(self):
         pass
-
-    ### SPECIAL METHODS ###
 
     def __enter__(self):
         """
@@ -441,6 +400,9 @@ class RedirectedStreams(ContextManager):
 
     ..  container:: example
 
+        >>> abjad.RedirectedStreams()
+        <RedirectedStreams()>
+
         >>> from io import StringIO
         >>> string_io = StringIO()
         >>> with abjad.RedirectedStreams(stdout=string_io):
@@ -452,7 +414,6 @@ class RedirectedStreams(ContextManager):
         hello, world!
         <BLANKLINE>
 
-    Redirected streams context manager is immutable.
     """
 
     ### CLASS VARIABLES ###
@@ -508,19 +469,6 @@ class RedirectedStreams(ContextManager):
         Returns string.
         """
         return super().__repr__()
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            repr_is_bracketed=True,
-            storage_format_is_bracketed=True,
-            storage_format_is_not_indented=True,
-            storage_format_args_values=[],
-            storage_format_keyword_names=[],
-        )
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def stderr(self):

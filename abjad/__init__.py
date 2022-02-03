@@ -63,7 +63,7 @@ from .exceptions import (
     UnboundedTimeIntervalError,
     WellformednessError,
 )
-from .format import FormatSpecification, storage
+from .format import new
 from .get import Descendants, Lineage
 from .illustrators import illustrate
 from .indicators import (
@@ -177,8 +177,16 @@ from .markups import Markup
 from .math import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel
 from .metricmodulation import MetricModulation
-from .new import new
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
+from .operators import (
+    CompoundOperator,
+    Duplication,
+    Inversion,
+    Multiplication,
+    Retrograde,
+    Rotation,
+    Transposition,
+)
 from .overrides import (
     IndexedTweakManager,
     IndexedTweakManagers,
@@ -200,8 +208,6 @@ from .parsers.parse import parse
 from .pattern import Pattern, PatternTuple
 from .pitch import (
     Accidental,
-    CompoundOperator,
-    Duplication,
     Interval,
     IntervalClass,
     IntervalClassSegment,
@@ -210,8 +216,6 @@ from .pitch import (
     IntervalSegment,
     IntervalSet,
     IntervalVector,
-    Inversion,
-    Multiplication,
     NamedInterval,
     NamedIntervalClass,
     NamedInversionEquivalentIntervalClass,
@@ -233,14 +237,9 @@ from .pitch import (
     PitchSet,
     PitchTyping,
     PitchVector,
-    Retrograde,
-    Rotation,
     Segment,
     Set,
-    SetClass,
-    Transposition,
     TwelveToneRow,
-    Vector,
 )
 from .ratio import NonreducedRatio, Ratio
 from .score import (
@@ -277,6 +276,7 @@ from .selection import (
     select,
 )
 from .sequence import Sequence
+from .setclass import SetClass
 from .spanners import (
     beam,
     glissando,
@@ -397,7 +397,6 @@ __all__ = [
     "FilesystemState",
     "Flute",
     "ForbidUpdate",
-    "FormatSpecification",
     "Fraction",
     "FrenchHorn",
     "Glissando",
@@ -652,7 +651,6 @@ __all__ = [
     "setting",
     "show",
     "slur",
-    "storage",
     "text_spanner",
     "tie",
     "trill_spanner",
