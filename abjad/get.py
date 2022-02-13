@@ -1,7 +1,7 @@
 import collections
 import typing
 
-from . import _inspect, _iterate
+from . import _inspect, _iterate, _update
 from . import duration as _duration
 from . import enums as _enums
 from . import indicators as _indicators
@@ -3212,7 +3212,7 @@ def measure_number(argument) -> int:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get measure number on component.")
-    argument._update_measure_numbers()
+    _update._update_measure_numbers(argument)
     assert isinstance(argument._measure_number, int)
     return argument._measure_number
 

@@ -1,6 +1,7 @@
 from quicktions import Fraction
 
 from . import (
+    _update,
     deprecated,
     enumerate,
     get,
@@ -603,6 +604,7 @@ __all__ = [
     "Xylophone",
     "__version__",
     "__version_info__",
+    "_update",
     "activate",
     "annotate",
     "attach",

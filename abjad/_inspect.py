@@ -2,6 +2,7 @@ import bisect
 import collections
 import typing
 
+from . import _update
 from . import duration as _duration
 from . import exceptions as _exceptions
 from . import indicators as _indicators
@@ -93,23 +94,23 @@ def _get_duration_in_seconds(COMPONENT):
 
 
 def _get_effective(
-    COMPONENT, prototype, *, attributes=None, command=None, n=0, unwrap=True
+    component, prototype, *, attributes=None, command=None, n=0, unwrap=True
 ):
-    COMPONENT._update_now(indicators=True)
+    _update._update_now(component, indicators=True)
     candidate_wrappers = {}
-    parentage = COMPONENT._get_parentage()
+    parentage = component._get_parentage()
     enclosing_voice_name = None
-    for component in parentage:
-        if isinstance(component, _score.Voice):
+    for component_ in parentage:
+        if isinstance(component_, _score.Voice):
             if (
                 enclosing_voice_name is not None
-                and component.name != enclosing_voice_name
+                and component_.name != enclosing_voice_name
             ):
                 continue
             else:
-                enclosing_voice_name = component.name or id(component)
+                enclosing_voice_name = component_.name or id(component_)
         local_wrappers = []
-        for wrapper in component._wrappers:
+        for wrapper in component_._wrappers:
             if wrapper.annotation:
                 continue
             if isinstance(wrapper.indicator, prototype):
@@ -131,9 +132,9 @@ def _get_effective(
         for wrapper in local_wrappers:
             offset = wrapper.start_offset
             candidate_wrappers.setdefault(offset, []).append(wrapper)
-        if not isinstance(component, _score.Context):
+        if not isinstance(component_, _score.Context):
             continue
-        for wrapper in component._dependent_wrappers:
+        for wrapper in component_._dependent_wrappers:
             if wrapper.annotation:
                 continue
             if isinstance(wrapper.indicator, prototype):
@@ -151,7 +152,7 @@ def _get_effective(
     if not candidate_wrappers:
         return
     all_offsets = sorted(candidate_wrappers)
-    start_offset = COMPONENT._get_timespan().start_offset
+    start_offset = component._get_timespan().start_offset
     index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
     if index < 0:
         return
