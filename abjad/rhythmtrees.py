@@ -1,7 +1,6 @@
 """
 Tools for modeling IRCAM-style rhythm trees.
 """
-import abc
 import typing
 
 import quicktions
@@ -9,7 +8,6 @@ import uqbar.containers
 import uqbar.graphs
 
 from . import duration as _duration
-from . import format as _format
 from . import makers as _makers
 from . import math as _math
 from . import mutate as _mutate
@@ -26,31 +24,17 @@ class RhythmTreeMixin:
 
     ### CLASS VARIABLES ###
 
+    _is_abstract = True
+
     _state_flag_names: typing.Tuple[str, ...] = ("_offsets_are_current",)
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(self, preprolated_duration=1):
         self._duration = 0
         self._offset = _duration.Offset(0)
         self._offsets_are_current = False
         self.preprolated_duration = preprolated_duration
-
-    ### SPECIAL METHODS ###
-
-    @abc.abstractmethod
-    def __call__(self, pulse_duration):
-        """
-        Calls rhythm tree node on ``pulse_duration``.
-        """
-        raise NotImplementedError
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
 
     ### PRIVATE METHODS ###
 
@@ -66,13 +50,6 @@ class RhythmTreeMixin:
         inventory = {}
         recurse(self)
         return inventory
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification()
-
-    @abc.abstractmethod
-    def _pretty_rtm_format_pieces(self):
-        raise NotImplementedError
 
     def _update_offsets_of_entire_tree(self):
         def recurse(container, current_offset):
@@ -127,14 +104,12 @@ class RhythmTreeMixin:
     @property
     def parentage_ratios(self):
         """
-        A sequence describing the relative durations of the nodes in a
-        node's improper parentage.
+        A sequence describing the relative durations of the nodes in a node's improper
+        parentage.
 
-        The first item in the sequence is the preprolated_duration of
-        the root node, and subsequent items are pairs of the
-        preprolated duration of the next node in the parentage and
-        the total preprolated_duration of that node and its siblings:
-
+        The first item in the sequence is the preprolated_duration of the root node, and
+        subsequent items are pairs of the preprolated duration of the next node in the
+        parentage and the total preprolated_duration of that node and its siblings:
 
         >>> a = abjad.rhythmtrees.RhythmTreeContainer(preprolated_duration=1)
         >>> b = abjad.rhythmtrees.RhythmTreeContainer(preprolated_duration=2)
@@ -247,20 +222,6 @@ class RhythmTreeMixin:
             )
         return tuple(prolations)
 
-    @abc.abstractproperty
-    def rtm_format(self):
-        """
-        The node's RTM format:
-
-        >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-        >>> tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-        >>> tree.rtm_format
-        '(1 ((1 (1 1)) (1 (1 1))))'
-
-        Returns string.
-        """
-        raise NotImplementedError
-
     @property
     def start_offset(self):
         """
@@ -308,7 +269,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         >>> result = leaf((1, 8))
         >>> result
-        Selection([Note("c'2"), Note("c'8")])
+        Selection(items=[Note("c'2"), Note("c'8")])
 
     ..  container:: example
 
@@ -316,18 +277,14 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         >>> abjad.rhythmtrees.RhythmTreeLeaf(
         ...     preprolated_duration=7, is_pitched=False)((1, 16))
-        Selection([Rest('r4..')])
+        Selection(items=[Rest('r4..')])
 
     """
-
-    ### INITIALIZER ###
 
     def __init__(self, preprolated_duration=1, is_pitched=True, name=None):
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
         RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
         self.is_pitched = is_pitched
-
-    ### SPECIAL METHODS ###
 
     def __call__(self, pulse_duration):
         """
@@ -335,7 +292,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         >>> leaf = abjad.rhythmtrees.RhythmTreeLeaf(5)
         >>> leaf((1, 4))
-        Selection([Note("c'1"), Note("c'4")])
+        Selection(items=[Note("c'1"), Note("c'4")])
 
         Returns sequence of components.
         """
@@ -357,12 +314,17 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         graph.append(node)
         return graph
 
-    ### PRIVATE METHODS ###
+    def __repr__(self) -> str:
+        """
+        Gets repr.
+        """
+        if self.name is None:
+            return f"{type(self).__name__}(preprolated_duration={self.preprolated_duration!r}, is_pitched={self.is_pitched!r})"
+        else:
+            return f"{type(self).__name__}(preprolated_duration={self.preprolated_duration!r}, is_pitched={self.is_pitched!r}, name={self.name!r})"
 
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def rtm_format(self):
@@ -416,38 +378,21 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         ...     preprolated_duration=1,
         ...     children=[],
         ...     )
-
-        >>> string = abjad.storage(container)
-        >>> print(string)
-        abjad.rhythmtrees.RhythmTreeContainer(
-            children=(),
-            preprolated_duration=abjad.Duration(1, 1),
-            )
+        >>> container
+        RhythmTreeContainer((1, 1))
 
     ..  container:: example
 
-        Similar to Abjad containers, ``RhythmTreeContainer`` supports a list
-        interface, and can be appended, extended, indexed and so forth by other
-        ``RhythmTreeMixin`` subclasses:
+        Similar to Abjad containers, ``RhythmTreeContainer`` supports a list interface,
+        and can be appended, extended, indexed and so forth by other ``RhythmTreeMixin``
+        subclasses:
 
         >>> leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=1)
         >>> leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=2)
         >>> container.extend([leaf_a, leaf_b])
-        >>> string = abjad.storage(container)
-        >>> print(string)
-        abjad.rhythmtrees.RhythmTreeContainer(
-            children=(
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(2, 1),
-                    is_pitched=True,
-                    ),
-                ),
-            preprolated_duration=abjad.Duration(1, 1),
-            )
+        >>> for _ in container: _
+        RhythmTreeLeaf(preprolated_duration=Duration(1, 1), is_pitched=True)
+        RhythmTreeLeaf(preprolated_duration=Duration(2, 1), is_pitched=True)
 
         >>> another_container = abjad.rhythmtrees.RhythmTreeContainer(
         ...     preprolated_duration=2)
@@ -455,35 +400,14 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         ...     abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=3))
         >>> another_container.append(container[1])
         >>> container.append(another_container)
-        >>> string = abjad.storage(container)
-        >>> print(string)
-        abjad.rhythmtrees.RhythmTreeContainer(
-            children=(
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                abjad.rhythmtrees.RhythmTreeContainer(
-                    children=(
-                        abjad.rhythmtrees.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(3, 1),
-                            is_pitched=True,
-                            ),
-                        abjad.rhythmtrees.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(2, 1),
-                            is_pitched=True,
-                            ),
-                        ),
-                    preprolated_duration=abjad.Duration(2, 1),
-                    ),
-                ),
-            preprolated_duration=abjad.Duration(1, 1),
-            )
+        >>> for _ in container: _
+        RhythmTreeLeaf(preprolated_duration=Duration(1, 1), is_pitched=True)
+        RhythmTreeContainer((2, 3))
 
     ..  container:: example
 
-        Call ``RhythmTreeContainer`` with a preprolated_duration to generate a
-        tuplet structure:
+        Call ``RhythmTreeContainer`` with a preprolated_duration to generate a tuplet
+        structure:
 
         >>> components = container((1, 4))
         >>> tuplet = components[0]
@@ -520,47 +444,24 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
     def __add__(self, argument):
         r"""
-        Concatenate containers self and argument. The operation c = a + b
-        returns a new RhythmTreeContainer c with the content of both a and b,
-        and a preprolated_duration equal to the sum of the durations
-        of a and b. The operation is non-commutative: the content of the
-        first operand will be placed before the content of the second operand:
+        Concatenate containers self and argument. The operation c = a + b returns a new
+        RhythmTreeContainer c with the content of both a and b, and a
+        preprolated_duration equal to the sum of the durations of a and b. The operation
+        is non-commutative: the content of the first operand will be placed before the
+        content of the second operand:
 
         >>> a = abjad.rhythmtrees.RhythmTreeParser()('(1 (1 1 1))')[0]
         >>> b = abjad.rhythmtrees.RhythmTreeParser()('(2 (3 4))')[0]
-
         >>> c = a + b
-
         >>> c.preprolated_duration
         Duration(3, 1)
 
-        >>> string = abjad.storage(c)
-        >>> print(string)
-        abjad.rhythmtrees.RhythmTreeContainer(
-            children=(
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(3, 1),
-                    is_pitched=True,
-                    ),
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(4, 1),
-                    is_pitched=True,
-                    ),
-                ),
-            preprolated_duration=abjad.Duration(3, 1),
-            )
+        >>> for _ in c: _
+        RhythmTreeLeaf(preprolated_duration=Duration(1, 1), is_pitched=True)
+        RhythmTreeLeaf(preprolated_duration=Duration(1, 1), is_pitched=True)
+        RhythmTreeLeaf(preprolated_duration=Duration(1, 1), is_pitched=True)
+        RhythmTreeLeaf(preprolated_duration=Duration(3, 1), is_pitched=True)
+        RhythmTreeLeaf(preprolated_duration=Duration(4, 1), is_pitched=True)
 
         Returns new RhythmTreeContainer.
         """
@@ -717,11 +618,9 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         assert isinstance(argument, type(self))
         return argument.__add__(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of rhythm tree container.
-
-        Returns string.
         """
         class_name = type(self).__name__
         numerator, denominator = self.duration.pair
@@ -731,8 +630,8 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
     def _get_contents_duration(self):
         """
-        The total preprolated_duration of the children
-        of a ``RhythmTreeContainer`` instance:
+        The total preprolated_duration of the children of a ``RhythmTreeContainer``
+        instance:
 
         >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
         >>> tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
@@ -793,64 +692,20 @@ class RhythmTreeParser(Parser):
 
     ..  container:: example
 
-        Abjad’s rhythm-tree parser parses a micro-language resembling Ircam’s
-        RTM Lisp syntax, and generates a sequence of RhythmTree structures,
-        which can be furthered manipulated by composers, before being converted
-        into an Abjad score object:
+        Abjad’s rhythm-tree parser parses a micro-language resembling Ircam’s RTM Lisp
+        syntax, and generates a sequence of RhythmTree structures, which can be furthered
+        manipulated by composers, before being converted into an Abjad score object:
 
         >>> parser = abjad.rhythmtrees.RhythmTreeParser()
-
         >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
         >>> rhythm_tree_list = parser(string)
         >>> rhythm_tree_container = rhythm_tree_list[0]
         >>> rhythm_tree_container.rtm_format
         '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
 
-        >>> string = abjad.storage(rhythm_tree_container)
-        >>> print(string)
-        abjad.rhythmtrees.RhythmTreeContainer(
-            children=(
-                abjad.rhythmtrees.RhythmTreeLeaf(
-                    preprolated_duration=abjad.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                abjad.rhythmtrees.RhythmTreeContainer(
-                    children=(
-                        abjad.rhythmtrees.RhythmTreeContainer(
-                            children=(
-                                abjad.rhythmtrees.RhythmTreeLeaf(
-                                    preprolated_duration=abjad.Duration(1, 1),
-                                    is_pitched=True,
-                                    ),
-                                abjad.rhythmtrees.RhythmTreeLeaf(
-                                    preprolated_duration=abjad.Duration(1, 1),
-                                    is_pitched=True,
-                                    ),
-                                abjad.rhythmtrees.RhythmTreeLeaf(
-                                    preprolated_duration=abjad.Duration(1, 1),
-                                    is_pitched=True,
-                                    ),
-                                ),
-                            preprolated_duration=abjad.Duration(2, 1),
-                            ),
-                        abjad.rhythmtrees.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(2, 1),
-                            is_pitched=True,
-                            ),
-                        abjad.rhythmtrees.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(2, 1),
-                            is_pitched=True,
-                            ),
-                        abjad.rhythmtrees.RhythmTreeLeaf(
-                            preprolated_duration=abjad.Duration(1, 1),
-                            is_pitched=True,
-                            ),
-                        ),
-                    preprolated_duration=abjad.Duration(1, 1),
-                    ),
-                ),
-            preprolated_duration=abjad.Duration(3, 1),
-            )
+        >>> for _ in rhythm_tree_container: _
+        RhythmTreeLeaf(preprolated_duration=Duration(1, 1), is_pitched=True)
+        RhythmTreeContainer((3, 2))
 
         >>> base_duration = (1, 4)
         >>> component_list = rhythm_tree_container(base_duration)

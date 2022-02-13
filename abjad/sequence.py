@@ -9,7 +9,6 @@ import quicktions
 
 from . import cyclictuple as _cyclictuple
 from . import enums as _enums
-from . import format as _format
 from . import math as _math
 from . import ratio as _ratio
 
@@ -322,9 +321,6 @@ class Sequence(collections.abc.Sequence):
                 depth_ = depth - 1
                 for item_ in Sequence._flatten_helper(item, classes, depth_):
                     yield item_
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification()
 
     @classmethod
     def _partition_sequence_cyclically_by_weights_at_least(
@@ -2581,9 +2577,9 @@ class Sequence(collections.abc.Sequence):
                 >>> for item in sequence.reverse(recurse=True):
                 ...     item
                 ...
-                PitchClassSegment([5, 4])
+                PitchClassSegment(items=[5, 4], item_class=NumberedPitchClass)
                 NumberedPitch(3)
-                PitchClassSegment([2, 1])
+                PitchClassSegment(items=[2, 1], item_class=NumberedPitchClass)
 
         """
         if not recurse:

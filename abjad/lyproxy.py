@@ -1,6 +1,5 @@
 import typing
 
-from . import format as _format
 from . import lyenv as _lyenv
 
 
@@ -11,11 +10,8 @@ class LilyPondContext:
     ..  container:: example
 
         >>> context = abjad.LilyPondContext('MensuralStaff')
-        >>> string = abjad.storage(context)
-        >>> print(string)
-        abjad.LilyPondContext(
-            name='MensuralStaff',
-            )
+        >>> context
+        LilyPondContext(name='MensuralStaff')
 
         >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
         ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
@@ -94,9 +90,9 @@ class LilyPondContext:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}(name={self.name!r})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -943,10 +939,8 @@ class LilyPondContext:
             ...     name='BowingStaff',
             ...     removes=['Note_heads_engraver'],
             ...     )
-            >>> print(abjad.storage(custom_context))
-            abjad.LilyPondContext(
-                name='BowingStaff',
-                )
+            >>> custom_context
+            LilyPondContext(name='BowingStaff')
 
             >>> custom_context.is_custom
             True
@@ -1134,11 +1128,8 @@ class LilyPondEngraver:
 
     ..  container:: example
 
-        >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
-        >>> print(abjad.storage(engraver))
-        abjad.LilyPondEngraver(
-            name='Auto_beam_engraver',
-            )
+        >>> abjad.LilyPondEngraver('Auto_beam_engraver')
+        LilyPondEngraver(name='Auto_beam_engraver')
 
     """
 
@@ -1166,9 +1157,9 @@ class LilyPondEngraver:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}(name={self.name!r})"
 
     ### PUBLIC METHODS ###
 
@@ -1389,11 +1380,8 @@ class LilyPondGrob:
 
     ..  container:: example
 
-        >>> grob = abjad.LilyPondGrob('Beam')
-        >>> print(abjad.storage(grob))
-        abjad.LilyPondGrob(
-            name='Beam',
-            )
+        >>> abjad.LilyPondGrob('Beam')
+        LilyPondGrob(name='Beam')
 
     """
 
@@ -1421,9 +1409,9 @@ class LilyPondGrob:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}(name={self.name!r})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -1709,11 +1697,8 @@ class LilyPondGrobInterface:
 
     ..  container:: example
 
-        >>> interface = abjad.LilyPondGrobInterface('beam-interface')
-        >>> print(abjad.storage(interface))
-        abjad.LilyPondGrobInterface(
-            name='beam-interface',
-            )
+        >>> abjad.LilyPondGrobInterface('beam-interface')
+        LilyPondGrobInterface(name='beam-interface')
 
     """
 
@@ -1743,9 +1728,9 @@ class LilyPondGrobInterface:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}(name={self.name!r})"
 
     ### PUBLIC METHODS ###
 

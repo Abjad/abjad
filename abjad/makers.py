@@ -374,7 +374,7 @@ class LeafMaker:
         >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
         >>> leaves = maker(pitches, durations)
         >>> leaves
-        Selection([MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')])
+        Selection(items=[MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')])
 
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> abjad.attach(abjad.TimeSignature((5, 8)), leaves[1])
@@ -423,7 +423,7 @@ class LeafMaker:
         >>> pitches = [None]
         >>> durations = [abjad.Duration(13, 16)]
         >>> maker(pitches, durations)
-        Selection([Skip('s2.'), Skip('s16')])
+        Selection(items=[Skip('s2.'), Skip('s16')])
 
     """
 

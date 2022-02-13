@@ -1,7 +1,8 @@
+import dataclasses
+
 from . import bundle as _bundle
 from . import enums as _enums
 from . import format as _format
-from . import new as _new
 from . import overrides as _overrides
 from . import tag as _tag
 
@@ -174,7 +175,7 @@ def _populate_markup_format_contributions(
     ):
         for wrapper in wrappers:
             if wrapper.indicator.direction is None:
-                markup = _new.new(wrapper.indicator, direction="-")
+                markup = dataclasses.replace(wrapper.indicator, direction="-")
             else:
                 markup = wrapper.indicator
             format_pieces = markup._get_format_pieces()

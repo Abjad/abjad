@@ -9,10 +9,6 @@ import typing
 
 import quicktions
 
-from . import format as _format
-
-### FUNCTIONS ###
-
 
 def all_are_equal(argument) -> bool:
     """
@@ -1148,9 +1144,6 @@ def yield_all_compositions_of_integer(n) -> typing.Generator:
         yield composition
 
 
-### CLASSES ###
-
-
 class Infinity:
     """
     Infinity.
@@ -1249,9 +1242,9 @@ class Infinity:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}()"
 
     def __sub__(self, argument):
         """
@@ -1262,14 +1255,6 @@ class Infinity:
         if argument is self:
             return 0
         return self
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            repr_text=type(self).__name__,
-            storage_format_text=type(self).__name__,
-        )
 
 
 class NegativeInfinity(Infinity):

@@ -54,7 +54,7 @@ class Dynamic:
         Initializes niente:
 
         >>> abjad.Dynamic("niente")
-        Dynamic(name='niente', command=None, direction=Down, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity, tweaks=None)
+        Dynamic(name='niente', command=None, direction=Down, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=None)
 
     ..  container:: example
 
@@ -132,19 +132,11 @@ class Dynamic:
         <BLANKLINE>
         Can not attach ...
         <BLANKLINE>
-        abjad.Wrapper(
-            context='Voice',
-            indicator=Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None),
-            tag=abjad.Tag(),
-            )
+        Wrapper(...)
         <BLANKLINE>
             ... to Note("c'4") in None because ...
         <BLANKLINE>
-        abjad.Wrapper(
-            context='Voice',
-            indicator=Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None),
-            tag=abjad.Tag(),
-            )
+        Wrapper(...)
         <BLANKLINE>
             ... is already attached to the same leaf.
 
@@ -184,12 +176,13 @@ class Dynamic:
             - \tweak color #blue
             \f
 
-        Tweaks survive new:
+        Tweaks survive replace:
 
         >>> import copy
+        >>> import dataclasses
         >>> dynamic_1 = abjad.Dynamic("f")
         >>> abjad.tweak(dynamic_1).color = "#blue"
-        >>> dynamic_2 = abjad.new(dynamic_1)
+        >>> dynamic_2 = dataclasses.replace(dynamic_1)
         >>> note = abjad.Note("c'4")
         >>> abjad.attach(dynamic_2, note)
         >>> abjad.show(note) # doctest: +SKIP
@@ -646,14 +639,15 @@ class Dynamic:
             f'4
         }
 
-        REGRESSION. Textual names work with new:
+        REGRESSION. Textual names work with replace:
 
+        >>> import dataclasses
         >>> dynamic = abjad.Dynamic("niente")
-        >>> abjad.new(dynamic)
-        Dynamic(name='niente', command=None, direction=Down, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity, tweaks=None)
+        >>> dataclasses.replace(dynamic)
+        Dynamic(name='niente', command=None, direction=Down, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=None)
 
         >>> dynamic = abjad.Dynamic("appena udibile", name_is_textual=True)
-        >>> abjad.new(dynamic)
+        >>> dataclasses.replace(dynamic)
         Dynamic(name='appena udibile', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=None, tweaks=None)
 
     ..  container:: example
@@ -667,7 +661,7 @@ class Dynamic:
         -2
 
         >>> abjad.Dynamic("niente").ordinal
-        NegativeInfinity
+        NegativeInfinity()
 
         >>> abjad.Dynamic('"f"').ordinal
         2
@@ -1197,7 +1191,7 @@ class Dynamic:
             4
 
             >>> abjad.Dynamic.dynamic_name_to_dynamic_ordinal("niente")
-            NegativeInfinity
+            NegativeInfinity()
 
         """
         try:

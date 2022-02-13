@@ -33,10 +33,10 @@ def find_import_as_statements():
                 print()
 
     total = total_modules_with_import_as_statements
-    print("Modules with import-as statements:   {}".format(total))
+    print(f"Modules with import-as statements:   {total}")
 
     total = total_import_as_statements
-    print("Total import-as statements:          {}".format(total))
+    print(f"Total import-as statements:          {total}")
 
 
 if __name__ == "__main__":

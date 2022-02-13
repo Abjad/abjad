@@ -1,4 +1,3 @@
-import abc
 import collections
 import copy
 import itertools
@@ -109,24 +108,17 @@ current_module["longa"] = LilyPondDuration(Duration(4, 1), None)
 current_module["maxima"] = LilyPondDuration(Duration(8, 1), None)
 
 
-# TODO: dataclass
 class MarkupCommand:
     """
     LilyPond markup command.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("arguments", "name")
-
-    ### INITIALIZER ###
 
     def __init__(self, name=None, *arguments):
         assert isinstance(name, str), repr(name)
         self.name = name
         self.arguments = tuple(arguments)
-
-    ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
         """
@@ -148,17 +140,17 @@ class MarkupCommand:
 
     def __repr__(self):
         """
-        Gets markup command interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return (
+            f"{type(self).__name__}(name={self.name!r}, arguments={self.arguments!r})"
+        )
 
     def __str__(self):
         """
         Gets string representation of markup command.
         """
         return self._get_lilypond_format()
-
-    ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
         def recurse(iterable):
@@ -187,12 +179,6 @@ class MarkupCommand:
         parts.extend(recurse(self.arguments))
         return parts
 
-    def _get_format_specification(self):
-        return _format.FormatSpecification(
-            storage_format_args_values=(self.name,) + self.arguments,
-            storage_format_keyword_names=[],
-        )
-
     def _get_lilypond_format(self):
         return "\n".join(self._get_format_pieces())
 
@@ -210,15 +196,6 @@ class Music:
 
     def __init__(self, music=None):
         self.music = music
-
-    ### PUBLIC METHODS ###
-
-    @abc.abstractmethod
-    def construct(self):
-        """
-        Please document.
-        """
-        raise NotImplementedError
 
 
 class ContextSpeccedMusic(Music):
@@ -6694,11 +6671,7 @@ class SequentialMusic(Music):
     Abjad model of the LilyPond AST sequential music node.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### PUBLIC METHODS ###
 
     def construct(self):
         """
@@ -6720,8 +6693,6 @@ class SimultaneousMusic(Music):
     Abjad model of the LilyPond AST simultaneous music node.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
 
 
@@ -6734,17 +6705,11 @@ class SyntaxNode:
     Used internally by LilyPondParser.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("type", "value")
-
-    ### INTIAILIZER ###
 
     def __init__(self, type=None, value=None):
         self.type = type
         self.value = value
-
-    ### SPECIAL METHODS ###
 
     def __getitem__(self, argument):
         """
@@ -6758,9 +6723,7 @@ class SyntaxNode:
 
     def __len__(self):
         """
-        Length of syntax node.
-
-        Returns nonnegative integer.
+        Gets length.
         """
         if isinstance(self.value, (list, tuple)):
             return len(self.value)
@@ -6768,42 +6731,32 @@ class SyntaxNode:
 
     def __repr__(self):
         """
-        Gets interpreter representation of syntax node.
-
-        Returns string.
+        Gets repr.
         """
         return f"{type(self).__name__}({self.type}, {type(self.value)})"
 
     def __str__(self):
         """
-        String representation of syntax node.
-
-        Returns string.
+        Gets string.
         """
         return "\n".join(self._format(self))
-
-    ### PRIVATE METHODS ###
 
     def _format(self, obj, indent=0):
         space = ".  " * indent
         result = []
-
         if isinstance(obj, type(self)):
             if isinstance(obj.value, (list, tuple)):
-                result.append("%s<%s>: [" % (space, obj.type))
+                result.append(f"{space}<{obj.type}>: [")
                 for x in obj.value:
                     result.extend(self._format(x, indent + 1))
                 result[-1] += " ]"
             else:
-                result.append("%s<%s>: %r" % (space, obj.type, obj.value))
-
+                result.append(f"{space}<{obj.type}>: {obj.value!r}")
         elif isinstance(obj, (list, tuple)):
-            result.append("%s[" % space)
+            result.append(f"{space}[")
             for x in obj:
                 result.extend(self._format(x, indent + 1))
             result[-1] += " ]"
-
         else:
-            result.append("%s%r" % (space, obj))
-
+            result.append(f"{space}{obj!r}")
         return result

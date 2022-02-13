@@ -2,10 +2,10 @@
 Instrument classes.
 """
 import copy
+import dataclasses
 import typing
 
 from . import enumerate as _enumerate
-from . import format as _format
 from . import markups as _markups
 from . import pitch as _pitch
 from . import string as _string
@@ -173,9 +173,9 @@ class Instrument:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return _format.get_repr(self)
+        return f"{type(self).__name__}()"
 
     ### PRIVATE PROPERTIES ###
 
@@ -196,12 +196,6 @@ class Instrument:
             string = f"Already has instrument: {leaf}."
             return string
         return True
-
-    def _get_format_specification(self):
-        keywords = []
-        return _format.FormatSpecification(
-            repr_keyword_names=keywords,
-        )
 
     def _get_lilypond_format(self, context=None):
         return []
@@ -363,6 +357,7 @@ class Instrument:
         return self._short_name
 
 
+@dataclasses.dataclass(slots=True)
 class StringNumber:
     """
     String number.
@@ -371,81 +366,24 @@ class StringNumber:
 
         String I:
 
-        >>> indicator = abjad.StringNumber(1)
-        >>> string = abjad.storage(indicator)
-        >>> print(string)
-        abjad.StringNumber(
-            numbers=(1,),
-            )
-
-    ..  container:: example
+        >>> abjad.StringNumber((1,))
+        StringNumber(numbers=(1,))
 
         Strings II and III:
 
-        >>> indicator = abjad.StringNumber((2, 3))
-        >>> string = abjad.storage(indicator)
-        >>> print(string)
-        abjad.StringNumber(
-            numbers=(2, 3),
-            )
+        >>> abjad.StringNumber((2, 3))
+        StringNumber(numbers=(2, 3))
 
     """
 
-    ### CLASS VARIABLES
+    numbers: typing.Iterable[int]
 
-    __slots__ = ("_numbers",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, numbers: typing.Union[int, typing.Iterable[int]] = None) -> None:
-        if numbers is None:
-            numbers_: typing.Tuple[int, ...] = ()
-        elif isinstance(numbers, int):
-            numbers_ = (numbers,)
-        else:
-            numbers_ = tuple(numbers)
+    def __post_init__(self):
+        numbers_ = tuple(self.numbers)
         assert isinstance(numbers_, tuple), repr(numbers_)
         numbers_ = tuple(int(_) for _ in numbers_)
         assert all(0 < _ < 7 for _ in numbers_)
-        self._numbers = numbers_
-
-    ### SPECIAL METHDOS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Compares ``numbers``.
-        """
-        if isinstance(argument, type(self)):
-            return self.numbers == argument.numbers
-        return False
-
-    def __hash__(self) -> int:
-        """
-        Hashes string number.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def numbers(self) -> typing.Tuple[int, ...]:
-        """
-        Gets numbers.
-
-        ..  container:: example
-
-            String I:
-
-            >>> indicator = abjad.StringNumber(1)
-            >>> indicator.numbers
-            (1,)
-
-            >>> indicator = abjad.StringNumber((2, 3))
-            >>> indicator.numbers
-            (2, 3)
-
-        """
-        return self._numbers
+        self.numbers = numbers_
 
     @property
     def roman_numerals(self) -> typing.Tuple[str, ...]:
@@ -456,11 +394,9 @@ class StringNumber:
 
             String I:
 
-            >>> indicator = abjad.StringNumber(1)
+            >>> indicator = abjad.StringNumber((1,))
             >>> indicator.roman_numerals
             ('i',)
-
-        ..  container:: example
 
             Strings II and III:
 
@@ -476,14 +412,8 @@ class StringNumber:
             result.append(numeral)
         return tuple(result)
 
-    @property
-    def tweaks(self) -> None:
-        """
-        Are not implemented on string number.
-        """
-        pass
 
-
+@dataclasses.dataclass(slots=True)
 class Tuning:
     """
     Tuning.
@@ -492,64 +422,25 @@ class Tuning:
 
         Violin tuning:
 
-        >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-        >>> string = abjad.storage(indicator)
-        >>> print(string)
-        abjad.Tuning(
-            pitches=abjad.PitchSegment(
-                (
-                    abjad.NamedPitch('g'),
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("a'"),
-                    abjad.NamedPitch("e''"),
-                    ),
-                item_class=abjad.NamedPitch,
-                ),
-            )
+        >>> abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
+        Tuning(pitches=PitchSegment(items="g d' a' e''", item_class=NamedPitch))
 
     """
 
-    ### CLASS VARIABLES ###
+    pitches: typing.Sequence
 
-    __slots__ = ("_pitches",)
+    def __post_init__(self):
+        if isinstance(self.pitches, type(self)):
+            self.pitches = self.pitches.pitches
+        self.pitches = _pitch.PitchSegment(
+            items=self.pitches, item_class=_pitch.NamedPitch
+        )
 
-    ### INITIALIZER ###
-
-    def __init__(self, pitches: typing.Union["Tuning", typing.Iterable] = None) -> None:
-        if pitches is not None:
-            if isinstance(pitches, type(self)):
-                pitches = pitches.pitches
-            pitches = _pitch.PitchSegment(items=pitches, item_class=_pitch.NamedPitch)
-        self._pitches: typing.Optional[_pitch.PitchSegment] = pitches
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Compares ``pitches``.
-        """
-        if isinstance(argument, type(self)):
-            return self.pitches == argument.pitches
-        return False
-
-    def __hash__(self) -> int:
+    def __hash__(self):
         """
         Hashes tuning.
         """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return _format.FormatSpecification()
-
-    ### PUBLIC PROPERTIES ###
+        return hash(repr(self))
 
     @property
     def pitch_ranges(self) -> typing.List[_pitch.PitchRange]:
@@ -561,50 +452,17 @@ class Tuning:
             >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
             >>> for range_ in indicator.pitch_ranges:
             ...     range_
-            PitchRange('[G3, G5]')
-            PitchRange('[D4, D6]')
-            PitchRange('[A4, A6]')
-            PitchRange('[E5, E7]')
+            PitchRange(range_string='[G3, G5]')
+            PitchRange(range_string='[D4, D6]')
+            PitchRange(range_string='[A4, A6]')
+            PitchRange(range_string='[E5, E7]')
 
         """
         result = []
         for pitch in self.pitches or []:
-            pitch_range = _pitch.PitchRange.from_pitches(pitch, pitch + 24)
+            pitch_range = _pitch.PitchRange(f"[{pitch}, {pitch + 24}]")
             result.append(pitch_range)
         return result
-
-    @property
-    def pitches(self) -> typing.Optional[_pitch.PitchSegment]:
-        """
-        Gets pitches of tuning.
-
-        ..  container:: example
-
-            >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-            >>> pitches = indicator.pitches
-            >>> string = abjad.storage(pitches)
-            >>> print(string)
-            abjad.PitchSegment(
-                (
-                    abjad.NamedPitch('g'),
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("a'"),
-                    abjad.NamedPitch("e''"),
-                    ),
-                item_class=abjad.NamedPitch,
-                )
-
-        """
-        return self._pitches
-
-    @property
-    def tweaks(self) -> None:
-        """
-        Are not implemented on tuning.
-        """
-        pass
-
-    ### PUBLIC METHODS ###
 
     def get_pitch_ranges_by_string_number(
         self, string_number: StringNumber
@@ -619,7 +477,7 @@ class Tuning:
             >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
             >>> string_number = abjad.StringNumber((2, 3))
             >>> tuning.get_pitch_ranges_by_string_number(string_number)
-            (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
+            (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
 
         """
         if not isinstance(string_number, StringNumber):
@@ -1608,7 +1466,7 @@ class Cello(Instrument):
 
             >>> cello = abjad.Cello()
             >>> cello.default_tuning
-            Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
+            Tuning(pitches=PitchSegment(items="c, g, d a", item_class=NamedPitch))
 
         Returns tuning.
         """
@@ -1860,7 +1718,7 @@ class Contrabass(Instrument):
 
             >>> contrabass = abjad.Contrabass()
             >>> contrabass.default_tuning
-            Tuning(pitches=PitchSegment(['c,,', 'a,,', 'd,', 'g,']))
+            Tuning(pitches=PitchSegment(items="c,, a,, d, g,", item_class=NamedPitch))
 
         Returns tuning.
         """
@@ -2419,7 +2277,7 @@ class Guitar(Instrument):
 
             >>> guitar = abjad.Guitar()
             >>> guitar.default_tuning
-            Tuning(pitches=PitchSegment(['e,', 'a,', 'd', 'g', 'b', "e'"]))
+            Tuning(pitches=PitchSegment(items="e, a, d g b e'", item_class=NamedPitch))
 
         Returns tuning.
         """
@@ -3580,7 +3438,7 @@ class Viola(Instrument):
 
             >>> viola = abjad.Viola()
             >>> viola.default_tuning
-            Tuning(pitches=PitchSegment(['c', 'g', "d'", "a'"]))
+            Tuning(pitches=PitchSegment(items="c g d' a'", item_class=NamedPitch))
 
         Returns tuning.
         """
@@ -3657,7 +3515,7 @@ class Violin(Instrument):
 
             >>> violin = abjad.Violin()
             >>> violin.default_tuning
-            Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
+            Tuning(pitches=PitchSegment(items="g d' a' e''", item_class=NamedPitch))
 
         Returns tuning.
         """

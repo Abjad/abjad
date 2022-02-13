@@ -124,9 +124,9 @@ def test_Staff___setitem___07():
     staff[0:4] = "d'8 d'8 d'8 d'8"
     assert len(staff) == 8
     for x in staff[0:4]:
-        assert x.written_pitch == 2
+        assert x.written_pitch == "d'"
     for x in staff[4:8]:
-        assert x.written_pitch == 0
+        assert x.written_pitch == "c'"
     assert abjad.wf.wellformed(staff)
 
 

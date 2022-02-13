@@ -1,6 +1,5 @@
 import typing
 
-from . import format as _format
 from . import tag as _tag
 
 
@@ -8,8 +7,8 @@ class LilyPondFormatBundle:
     """
     LilyPond format bundle.
 
-    Transient class created to hold the collection of all
-    format contributions generated on behalf of a single component.
+    Transient class created to hold the collection of all format contributions generated
+    on behalf of a single component.
     """
 
     ### CLASS VARIABLES ###
@@ -40,36 +39,6 @@ class LilyPondFormatBundle:
         self._context_settings = []
         self._grob_overrides = []
         self._grob_reverts = []
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        slot_contribution_names = (
-            "absolute_before",
-            "absolute_after",
-            "before",
-            "after",
-            "opening",
-            "closing",
-        )
-        grob_contribution_names = (
-            "context_settings",
-            "grob_overrides",
-            "grob_reverts",
-        )
-        names = [
-            _ for _ in slot_contribution_names if getattr(self, _).has_contributions
-        ]
-        names.extend(_ for _ in grob_contribution_names if getattr(self, _))
-        return _format.FormatSpecification(storage_format_keyword_names=names)
 
     ### PUBLIC METHODS ###
 
@@ -246,32 +215,6 @@ class SlotContributions:
         self._spanner_stops: typing.List[str] = []
         self._stem_tremolos: typing.List[str] = []
         self._trill_spanner_starts: typing.List[str] = []
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        names = [
-            "articulations",
-            "commands",
-            "comments",
-            "indicators",
-            "markup",
-            "spanners",
-            "spanner_starts",
-            "spanner_stops",
-            "stem_tremolos",
-            "trill_spanner_starts",
-        ]
-        names = [_ for _ in names if getattr(self, _)]
-        return _format.FormatSpecification(storage_format_keyword_names=names)
 
     ### PUBLIC PROPERTIES ###
 

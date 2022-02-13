@@ -1,29 +1,22 @@
-import abc
-import collections.abc
-
-from . import format as _format
-from . import new as _new
+import collections
+import dataclasses
+import typing
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class TypedCollection:
     """
     Abstract typed collection.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_collection", "_item_class")
+    items: typing.Any = None
+    item_class: typing.Any = None
 
     _is_abstract = True
 
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self, items=None, item_class=None):
-        assert isinstance(item_class, (type(None), type))
-        self._item_class = item_class
-
-    ### SPECIAL METHODS ###
+    def __post_init__(self):
+        assert isinstance(self.item_class, (type(None), type)), repr(self.item_class)
+        self.items = self.items or []
 
     def __contains__(self, item):
         """
@@ -35,26 +28,17 @@ class TypedCollection:
             item = self._coerce_item(item)
         except ValueError:
             return False
-        return self._collection.__contains__(item)
+        return self.items.__contains__(item)
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a typed collection with items that
-        compare equal to those of this typed collection.
-
-        Returns true or false.
+        Compares ``items``.
         """
         if issubclass(type(argument), type(self)):
-            return self._collection == argument._collection
-        elif isinstance(argument, type(self._collection)):
-            return self._collection == argument
+            return self.items == argument.items
+        elif isinstance(argument, type(self.items)):
+            return self.items == argument
         return False
-
-    def __hash__(self):
-        """
-        Hashes typed collection.
-        """
-        return object.__hash__(self)
 
     def __iter__(self):
         """
@@ -62,7 +46,7 @@ class TypedCollection:
 
         Returns generator.
         """
-        return self._collection.__iter__()
+        return self.items.__iter__()
 
     def __len__(self):
         """
@@ -70,36 +54,17 @@ class TypedCollection:
 
         Returns nonnegative integer.
         """
-        return len(self._collection)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return _format.get_repr(self)
-
-    ### PRIVATE METHODS ###
+        return len(self.items)
 
     def _coerce_item(self, item):
         def coerce_(x):
-            if isinstance(x, self._item_class):
+            if isinstance(x, self.item_class):
                 return x
-            return self._item_class(x)
+            return self.item_class(x)
 
-        if self._item_class is None:
+        if self.item_class is None:
             return item
         return coerce_(item)
-
-    def _get_format_specification(self):
-        result = _format._inspect_signature(self)
-        signature_keyword_names = result[1]
-        names = list(signature_keyword_names)
-        if "items" in names:
-            names.remove("items")
-        return _format.FormatSpecification(
-            storage_format_args_values=[self._collection],
-            storage_format_keyword_names=names,
-        )
 
     def _on_insertion(self, item):
         """
@@ -113,325 +78,49 @@ class TypedCollection:
         """
         pass
 
-    ### PUBLIC PROPERTIES ###
 
-    @property
-    def item_class(self):
-        """
-        Gets item class of collection.
-
-        Collection coerces items according to ``item_class``.
-
-        Returns class.
-        """
-        return self._item_class
-
-    @property
-    def items(self):
-        """
-        Gets items in collection.
-
-        Returns list.
-        """
-        return [_ for _ in self]
-
-
-class TypedCounter(TypedCollection, collections.abc.MutableMapping):
+@dataclasses.dataclass(slots=True)
+class TypedCounter(TypedCollection):
     """
     Typed counter.
 
     ..  container:: example
 
-        >>> counter = abjad.TypedCounter(
+        >>> abjad.TypedCounter(
         ...     [0, "c'", 1, True, "cs'", "df'"],
         ...     item_class=abjad.NumberedPitch,
-        ...     )
-
-        >>> string = abjad.storage(counter)
-        >>> print(string)
-        abjad.TypedCounter(
-            {
-                abjad.NumberedPitch(0): 2,
-                abjad.NumberedPitch(1): 4,
-                },
-            item_class=abjad.NumberedPitch,
-            )
+        ... )
+        TypedCounter(items={NumberedPitch(0): 2, NumberedPitch(1): 4}, item_class=<class 'abjad.pitch.NumberedPitch'>)
 
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None, **keywords):
-        TypedCollection.__init__(self, item_class=item_class, items=items)
-        self._collection = collections.Counter()
-        self.update(items, **keywords)
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, argument):
-        """
-        Adds typed counter to ``argument``.
-
-        Returns new typed counter.
-        """
-        if (
-            not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class
-        ):
-            return NotImplemented
-        result = type(self)()
-        result._collection = self._collection + argument._collection
-        return result
-
-    def __and__(self, argument):
-        """
-        Logical AND of typed counter and ``argument``.
-
-        Returns new typed counter.
-        """
-        if (
-            not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class
-        ):
-            return NotImplemented
-        result = type(self)()
-        result._collection = self._collection & argument._collection
-        return result
-
-    def __delitem__(self, item):
-        """
-        Deletes ``item`` from typed counter.
-
-        Returns none.
-        """
-        item = self._coerce_item(item)
-        if item in self._collection:
-            dict.__delitem__(self._collection, item)
-
-    def __getitem__(self, argument):
-        """
-        Gets item or slice identified by ``argument``.
-
-        Returns item or slice.
-        """
-        argument = self._coerce_item(argument)
-        return self._collection.__getitem__(argument)
-
-    def __or__(self, argument):
-        """
-        Logical OR of typed counter and ``argument``.
-
-        Returns new typed counter.
-        """
-        if (
-            not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class
-        ):
-            return NotImplemented
-        result = type(self)()
-        result._collection = self._collection | argument._collection
-        return result
-
-    def __radd__(self, argument):
-        """
-        Adds ``argument`` to typed counter.
-
-        Returns new typed counter.
-        """
-        if (
-            not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class
-        ):
-            return NotImplemented
-        result = type(self)()
-        result._collection = argument._collection + self._collection
-        return result
-
-    def __reduce__(self):
-        """
-        Reduces typed counter.
-
-        Returns new typed counter.
-        """
-        return type(self), (dict(self._collection),)
-
-    def __setitem__(self, item, value):
-        """
-        Sets typed counter ``item`` to ``value``.
-
-        Returns none.
-        """
-        item = self._coerce_item(item)
-        self._collection.__setitem__(item, value)
-
-    def __sub__(self, argument):
-        """
-        Subtracts ``argument`` from typed counter.
-
-        Returns new typed counter.
-        """
-        if (
-            not isinstance(argument, type(self))
-            or not self.item_class == argument.item_class
-        ):
-            return NotImplemented
-        result = type(self)()
-        result._collection = self._collection - argument._collection
-        return result
-
-    ### PRIVATE METHODS ###
-
-    def _coerce_arguments(self, items=None, **keywords):
-        def _coerce_mapping(items):
-            the_items = {}
-            for item, count in items.items():
-                item = self._coerce_item(item)
-                if item not in the_items:
-                    the_items[item] = 0
-                the_items[item] += count
-            return the_items
-
-        the_items = []
-        if items is not None:
-            if isinstance(items, collections.abc.Mapping):
-                items = _coerce_mapping(items)
-            else:
-                the_items = []
-                for item in items:
-                    the_items.append(self._coerce_item(item))
-        itemdict = _coerce_mapping(keywords)
-        return the_items, itemdict
-
-    def _get_format_specification(self):
-        result = _format._inspect_signature(self)
-        signature_keyword_names = result[1]
-        names = list(signature_keyword_names)
-        if "items" in names:
-            names.remove("items")
-        return _format.FormatSpecification(
-            storage_format_args_values=[self._collection],
-            storage_format_keyword_names=names,
-            template_names=names,
-        )
-
-    ### PUBLIC METHODS ###
-
-    def clear(self):
-        """
-        Clears typed counter.
-
-        Returns none.
-        """
-        self._collection.clear()
-
-    def copy(self):
-        """
-        Copies typed counter.
-
-        Returns new typed counter.
-        """
-        return type(self)(self)
-
-    def elements(self):
-        """
-        Elements in typed counter.
-        """
-        return self._collection.elements()
-
-    @classmethod
-    def fromkeys(class_, iterable, v=None):
-        """
-        Makes new typed counter from ``iterable``.
-
-        Not yet impelemented.
-
-        Will return new typed counter.
-        """
-        name = class_.__name__
-        message = f"{name}.fromkeys() is undefined. Use {name}(iterable) instead."
-        raise NotImplementedError(message)
-
-    def items(self):
-        """
-        Items in typed counter.
-
-        Returns tuple.
-        """
-        return list(self._collection.items())
-
-    def keys(self):
-        """
-        Iterates keys in typed counter.
-        """
-        return iter(self._collection.keys())
-
-    def most_common(self, n=None):
-        """
-        Please document.
-        """
-        return self._collection(n=n)
-
-    def subtract(self, iterable=None, **keywords):
-        """
-        Subtracts ``iterable`` from typed counter.
-        """
-        items, itemdict = self._coerce_arguments(iterable, **keywords)
-        self._collection.subtract(items, **itemdict)
-
-    def update(self, iterable=None, **keywords):
-        """
-        Updates typed counter with ``iterable``.
-        """
-        items, itemdict = self._coerce_arguments(iterable, **keywords)
-        self._collection.update(items, **itemdict)
-
-    def values(self):
-        """
-        Iterates values in typed counter.
-        """
-        return iter(self._collection.values())
-
-    def viewitems(self):
-        """
-        Please document.
-        """
-        return self._collection.items()
-
-    def viewkeys(self):
-        """
-        Please document.
-        """
-        return self._collection.keys()
-
-    def viewvalues(self):
-        """
-        Please document.
-        """
-        return self._collection.values()
+    def __post_init__(self):
+        if isinstance(self.items, TypedCounter):
+            raise Exception(f"do not initialize counter from counter: {self.items!r}")
+        TypedCollection.__post_init__(self)
+        self.items = [self._coerce_item(_) for _ in self.items]
+        self.items = collections.Counter(self.items)
+        sorted_item_to_count = {}
+        try:
+            sorted_items = sorted(self.items.items())
+        except TypeError:
+            sorted_items = self.items.items()
+        for item, count in sorted_items:
+            sorted_item_to_count[item] = count
+        self.items = sorted_item_to_count
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class TypedFrozenset(TypedCollection, collections.abc.Set):
     """
     Typed fozen set.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
-        TypedCollection.__init__(self, item_class=item_class, items=items)
-        items = items or []
-        items = [self._coerce_item(_) for _ in items]
-        self._collection = frozenset(items)
-
-    ### SPECIAL METHODS ###
+    def __post_init__(self):
+        TypedCollection.__post_init__(self)
+        self.items = self.items or []
+        self.items = [self._coerce_item(_) for _ in self.items]
+        self.items = frozenset(self.items)
 
     def __and__(self, argument):
         """
@@ -440,7 +129,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.__and__(argument._collection)
+        result = self.items.__and__(argument.items)
         result = type(self)(result)
         return result
 
@@ -451,7 +140,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns true or false.
         """
         argument = type(self)(argument)
-        return self._collection.__ge__(argument._collection)
+        return self.items.__ge__(argument.items)
 
     def __gt__(self, argument):
         """
@@ -460,15 +149,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns true or false.
         """
         argument = type(self)(argument)
-        return self._collection.__gt__(argument._collection)
-
-    def __hash__(self):
-        """
-        Hashes typed frozen set.
-
-        Returns integer.
-        """
-        return hash(self.__class__.__name__ + str(self))
+        return self.items.__gt__(argument.items)
 
     def __le__(self, argument):
         """
@@ -477,7 +158,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns true or false.
         """
         argument = type(self)(argument)
-        return self._collection.__le__(argument._collection)
+        return self.items.__le__(argument.items)
 
     def __lt__(self, argument):
         """
@@ -486,7 +167,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns true or false.
         """
         argument = type(self)(argument)
-        return self._collection.__lt__(argument._collection)
+        return self.items.__lt__(argument.items)
 
     def __or__(self, argument):
         """
@@ -495,9 +176,24 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.__or__(argument._collection)
+        result = self.items.__or__(argument.items)
         result = type(self)(result)
         return result
+
+    def __repr__(self):
+        """
+        Gets repr of TypedFrozenset.
+        """
+        return f"{type(self).__name__}(items={self._get_sorted_repr_items()}, item_class=abjad.{self.item_class.__name__})"
+
+    def __str__(self) -> str:
+        """
+        Gets string.
+        """
+        items = self._get_sorted_repr_items()
+        items = [str(_) for _ in items]
+        string = ", ".join(items)
+        return f"{{{string}}}"
 
     def __sub__(self, argument):
         """
@@ -506,7 +202,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.__sub__(argument._collection)
+        result = self.items.__sub__(argument.items)
         result = type(self)(result)
         return result
 
@@ -517,11 +213,23 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.__xor__(argument._collection)
+        result = self.items.__xor__(argument.items)
         result = type(self)(result)
         return result
 
-    ### PUBLIC METHODS ###
+    def _get_sorted_repr_items(self):
+        items = sorted(self, key=lambda _: (float(_.number), str(_)))
+        if self.item_class.__name__.startswith("Named"):
+            repr_items = [str(_) for _ in items]
+        elif hasattr(self.item_class, "number"):
+            repr_items = [_.number for _ in items]
+        elif hasattr(self.item_class, "pitch_class_number"):
+            repr_items = [_.pitch_class_number for _ in items]
+        elif hasattr(self.item_class, "__abs__"):
+            repr_items = [abs(_) for _ in items]
+        else:
+            raise ValueError(f"invalid item class: {self.item_class!r}.")
+        return repr_items
 
     def copy(self):
         """
@@ -529,7 +237,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
 
         Returns new typed frozen set.
         """
-        return type(self)(self._collection.copy())
+        return type(self)(self.items.copy())
 
     def difference(self, argument):
         """
@@ -538,7 +246,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.difference(argument._collection)
+        result = self.items.difference(argument.items)
         result = type(self)(result)
         return result
 
@@ -549,7 +257,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.intersection(argument._collection)
+        result = self.items.intersection(argument.items)
         result = type(self)(result)
         return result
 
@@ -560,7 +268,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns true or false.
         """
         argument = type(self)(argument)
-        return self._collection.isdisjoint(argument._collection)
+        return self.items.isdisjoint(argument.items)
 
     def issubset(self, argument):
         """
@@ -569,7 +277,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns true or false.
         """
         argument = type(self)(argument)
-        return self._collection.issubset(argument._collection)
+        return self.items.issubset(argument.items)
 
     def issuperset(self, argument):
         """
@@ -578,7 +286,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns true or false.
         """
         argument = type(self)(argument)
-        return self._collection.issuperset(argument._collection)
+        return self.items.issuperset(argument.items)
 
     def symmetric_difference(self, argument):
         """
@@ -587,7 +295,7 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.symmetric_difference(argument._collection)
+        result = self.items.symmetric_difference(argument.items)
         result = type(self)(result)
         return result
 
@@ -598,11 +306,12 @@ class TypedFrozenset(TypedCollection, collections.abc.Set):
         Returns new typed frozen set.
         """
         argument = type(self)(argument)
-        result = self._collection.union(argument._collection)
+        result = self.items.union(argument.items)
         result = type(self)(result)
         return result
 
 
+@dataclasses.dataclass(slots=True)
 class TypedList(TypedCollection, collections.abc.MutableSequence):
     """
     Typed list.
@@ -618,17 +327,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         >>> list_.append((1, 2, 3))
         >>> list_.append(3.14159)
 
-        >>> string = abjad.storage(list_)
-        >>> print(string)
-        abjad.TypedList(
-            [
-                23,
-                'foo',
-                False,
-                (1, 2, 3),
-                3.14159,
-                ]
-            )
+        >>> list_
+        TypedList(items=[23, 'foo', False, (1, 2, 3), 3.14159], item_class=None, keep_sorted=False)
 
     ..  container:: example
 
@@ -642,42 +342,20 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         >>> pitch_list.append(('e', 4))
         >>> pitch_list.append(abjad.NamedPitch("f'"))
 
-        >>> string = abjad.storage(pitch_list)
-        >>> print(string)
-        abjad.TypedList(
-            [
-                abjad.NamedPitch("c'"),
-                abjad.NamedPitch("d'"),
-                abjad.NamedPitch("e'"),
-                abjad.NamedPitch("f'"),
-                ],
-            item_class=abjad.NamedPitch,
-            )
+        >>> pitch_list
+        TypedList(items=[NamedPitch("c'"), NamedPitch("d'"), NamedPitch("e'"), NamedPitch("f'")], item_class=<class 'abjad.pitch.NamedPitch'>, keep_sorted=False)
 
-    Ordered collection with optional item coercion.
-
-    Implements the list interface.
     """
 
-    ### CLASS VARIABLES ###
+    keep_sorted: bool = False
 
-    __slots__ = ("_keep_sorted",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None, keep_sorted=False):
-        TypedCollection.__init__(self, item_class=item_class, items=items)
-        self._collection = []
-        if keep_sorted is not None:
-            assert isinstance(keep_sorted, bool), repr(keep_sorted)
-        self._keep_sorted = keep_sorted
-        items = items or []
-        the_items = []
-        for item in items:
-            the_items.append(self._coerce_item(item))
-        self.extend(the_items)
-
-    ### SPECIAL METHODS ###
+    def __post_init__(self):
+        TypedCollection.__post_init__(self)
+        if self.keep_sorted is not None:
+            assert isinstance(self.keep_sorted, bool), repr(self.keep_sorted)
+        self.items = [self._coerce_item(_) for _ in self.items or []]
+        if self.keep_sorted:
+            self.sort()
 
     def __delitem__(self, i):
         """
@@ -685,8 +363,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
 
         Returns none.
         """
-        self._on_removal(self._collection[i])
-        del self._collection[i]
+        self._on_removal(self.items[i])
+        del self.items[i]
 
     def __getitem__(self, argument):
         """
@@ -694,7 +372,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
 
         Returns item or slice.
         """
-        return self._collection.__getitem__(argument)
+        return self.items.__getitem__(argument)
 
     def __iadd__(self, argument):
         """
@@ -706,18 +384,8 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             >>> dynamic_list.append('ppp')
             >>> dynamic_list += ['p', 'mp', 'mf', 'fff']
 
-            >>> string = abjad.storage(dynamic_list)
-            >>> print(string)
-            abjad.TypedList(
-                [
-                    Dynamic(name='ppp', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-4, tweaks=None),
-                    Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None),
-                    Dynamic(name='mp', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-1, tweaks=None),
-                    Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None),
-                    Dynamic(name='fff', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=4, tweaks=None),
-                    ],
-                item_class=abjad.Dynamic,
-                )
+            >>> dynamic_list
+            TypedList(items=[Dynamic(name='ppp', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-4, tweaks=None), Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None), Dynamic(name='mp', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-1, tweaks=None), Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None), Dynamic(name='fff', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=4, tweaks=None)], item_class=<class 'abjad.dynamic.Dynamic'>, keep_sorted=False)
 
         Returns typed list.
         """
@@ -730,7 +398,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
 
         Returns generator.
         """
-        return self._collection.__reversed__()
+        return self.items.__reversed__()
 
     def __setitem__(self, i, argument):
         """
@@ -749,74 +417,35 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             >>> pitch_list.append(abjad.NamedPitch("f'"))
 
             >>> pitch_list[-1] = 'gqs,'
-            >>> string = abjad.storage(pitch_list)
-            >>> print(string)
-            abjad.TypedList(
-                [
-                    abjad.NamedPitch("c'"),
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("e'"),
-                    abjad.NamedPitch('gqs,'),
-                    ],
-                item_class=abjad.NamedPitch,
-                )
+            >>> pitch_list
+            TypedList(items=[NamedPitch("c'"), NamedPitch("d'"), NamedPitch("e'"), NamedPitch('gqs,')], item_class=<class 'abjad.pitch.NamedPitch'>, keep_sorted=False)
 
         ..  container:: example
 
             Sets slice:
 
             >>> pitch_list[-1:] = ["f'", "g'", "a'", "b'", "c''"]
-            >>> string = abjad.storage(pitch_list)
-            >>> print(string)
-            abjad.TypedList(
-                [
-                    abjad.NamedPitch("c'"),
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("e'"),
-                    abjad.NamedPitch("f'"),
-                    abjad.NamedPitch("g'"),
-                    abjad.NamedPitch("a'"),
-                    abjad.NamedPitch("b'"),
-                    abjad.NamedPitch("c''"),
-                    ],
-                item_class=abjad.NamedPitch,
-                )
+            >>> pitch_list
+            TypedList(items=[NamedPitch("c'"), NamedPitch("d'"), NamedPitch("e'"), NamedPitch("f'"), NamedPitch("g'"), NamedPitch("a'"), NamedPitch("b'"), NamedPitch("c''")], item_class=<class 'abjad.pitch.NamedPitch'>, keep_sorted=False)
 
         Returns none.
         """
         if isinstance(i, int):
             new_item = self._coerce_item(argument)
-            old_item = self._collection[i]
+            old_item = self.items[i]
             self._on_removal(old_item)
             self._on_insertion(new_item)
-            self._collection[i] = new_item
+            self.items[i] = new_item
         elif isinstance(i, slice):
             new_items = [self._coerce_item(item) for item in argument]
-            old_items = self._collection[i]
+            old_items = self.items[i]
             for old_item in old_items:
                 self._on_removal(old_item)
             for new_item in new_items:
                 self._on_insertion(new_item)
-            self._collection[i] = new_items
+            self.items[i] = new_items
         if self.keep_sorted:
             self.sort()
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        result = _format._inspect_signature(self)
-        signature_keyword_names = result[1]
-        names = list(signature_keyword_names)
-        if "items" in names:
-            names.remove("items")
-        if "keep_sorted" in names:
-            names.remove("keep_sorted")
-        return _format.FormatSpecification(
-            storage_format_args_values=[self._collection],
-            storage_format_keyword_names=names,
-        )
-
-    ### PUBLIC METHODS ###
 
     def append(self, item):
         """
@@ -835,7 +464,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         """
         item = self._coerce_item(item)
         self._on_insertion(item)
-        self._collection.append(item)
+        self.items.append(item)
         if self.keep_sorted:
             self.sort()
 
@@ -858,7 +487,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         Returns nonnegative integer.
         """
         item = self._coerce_item(item)
-        return self._collection.count(item)
+        return self.items.count(item)
 
     def extend(self, items):
         """
@@ -869,7 +498,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             >>> integer_list = abjad.TypedList(item_class=int)
             >>> integer_list.extend(['0', 1.0, 2, 3.14159])
             >>> integer_list
-            TypedList([0, 1, 2, 3], item_class=int)
+            TypedList(items=[0, 1, 2, 3], item_class=<class 'int'>, keep_sorted=False)
 
         Returns none.
         """
@@ -901,7 +530,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         Returns nonnegative integer.
         """
         item = self._coerce_item(item)
-        return self._collection.index(item)
+        return self.items.index(item)
 
     def insert(self, i, item):
         """
@@ -914,21 +543,21 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
             >>> integer_list = abjad.TypedList(item_class=int)
             >>> integer_list.extend(['1', 2, 4.3])
             >>> integer_list
-            TypedList([1, 2, 4], item_class=int)
+            TypedList(items=[1, 2, 4], item_class=<class 'int'>, keep_sorted=False)
 
             >>> integer_list.insert(0, '0')
             >>> integer_list
-            TypedList([0, 1, 2, 4], item_class=int)
+            TypedList(items=[0, 1, 2, 4], item_class=<class 'int'>, keep_sorted=False)
 
             >>> integer_list.insert(1, '9')
             >>> integer_list
-            TypedList([0, 9, 1, 2, 4], item_class=int)
+            TypedList(items=[0, 9, 1, 2, 4], item_class=<class 'int'>, keep_sorted=False)
 
         Returns none.
         """
         item = self._coerce_item(item)
         self._on_insertion(item)
-        result = self._collection.insert(i, item)
+        result = self.items.insert(i, item)
         if self.keep_sorted:
             self.sort()
         return result
@@ -939,7 +568,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
 
         Returns item.
         """
-        result = self._collection.pop(i)
+        result = self.items.pop(i)
         self._on_removal(result)
         if self.keep_sorted:
             self.sort()
@@ -963,10 +592,10 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         Returns none.
         """
         item = self._coerce_item(item)
-        index = self._collection.index(item)
-        item = self._collection[index]
+        index = self.items.index(item)
+        item = self.items[index]
         self._on_removal(item)
-        del self._collection[index]
+        del self.items[index]
         if self.keep_sorted:
             self.sort()
 
@@ -974,7 +603,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         """
         Reverses items in typed list.
         """
-        self._collection.reverse()
+        self.items.reverse()
 
     def sort(self, cmp=None, key=None, reverse=False):
         """
@@ -1013,46 +642,19 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
                 return CmpToKey
 
             key = cmp_to_key(cmp)
-        self._collection.sort(key=key, reverse=reverse)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def keep_sorted(self):
-        """
-        Is true when typed list keeps items sorted.
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
-        """
-        return self._keep_sorted
-
-    @keep_sorted.setter
-    def keep_sorted(self, argument):
-        assert isinstance(argument, (bool, type(None)))
-        self._keep_sorted = argument
+        self.items.sort(key=key, reverse=reverse)
 
 
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class TypedTuple(TypedCollection, collections.abc.Sequence):
     """
     Typed tuple.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, item_class=None):
-        TypedCollection.__init__(self, item_class=item_class, items=items)
-        items = items or []
-        self._collection = tuple(self._coerce_item(item) for item in items)
-
-    ### SPECIAL METHODS ###
+    def __post_init__(self):
+        TypedCollection.__post_init__(self)
+        self.items = self.items or []
+        self.items = tuple(self._coerce_item(item) for item in self.items)
 
     def __add__(self, argument):
         """
@@ -1060,13 +662,12 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns new typed tuple.
         """
-
         if isinstance(argument, type(self)):
-            items = argument._collection
-            return _new.new(self, items=self._collection[:] + items)
-        elif isinstance(argument, type(self._collection)):
+            items = argument.items
+            return dataclasses.replace(self, items=self.items[:] + items)
+        elif isinstance(argument, type(self.items)):
             items = argument[:]
-            return _new.new(self, items=self._collection[:] + items)
+            return dataclasses.replace(self, items=self.items[:] + items)
         raise NotImplementedError
 
     def __contains__(self, item):
@@ -1081,7 +682,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
             item = self._coerce_item(item)
         except ValueError:
             return False
-        return self._collection.__contains__(item)
+        return self.items.__contains__(item)
 
     def __getitem__(self, argument):
         """
@@ -1089,19 +690,11 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns item or new typed tuple.
         """
-        item = self._collection.__getitem__(argument)
+        item = self.items.__getitem__(argument)
         try:
             return type(self)(item)
         except TypeError:
             return item
-
-    def __hash__(self):
-        """
-        Hashes typed tuple.
-
-        Returns integer.
-        """
-        return hash(self.__class__.__name__ + str(self))
 
     def __mul__(self, argument):
         """
@@ -1109,15 +702,15 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
 
         Returns new typed tuple.
         """
-        items = self._collection * argument
-        return _new.new(self, items=items)
+        items = self.items * argument
+        return dataclasses.replace(self, items=items)
 
     def __radd__(self, argument):
         """
         Right-adds ``argument`` to typed tuple.
         """
-        items = argument + self._collection
-        return _new.new(self, items=items)
+        items = argument + self.items
+        return dataclasses.replace(self, items=items)
 
     def __rmul__(self, argument):
         """
@@ -1126,8 +719,6 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
         Returns new typed tuple.
         """
         return self.__mul__(argument)
-
-    ### PUBLIC METHODS ###
 
     def count(self, item):
         """
@@ -1141,7 +732,7 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
             item = self._coerce_item(item)
         except (ValueError, TypeError):
             return 0
-        return self._collection.count(item)
+        return self.items.count(item)
 
     def index(self, item):
         """
@@ -1152,4 +743,4 @@ class TypedTuple(TypedCollection, collections.abc.Sequence):
         Returns nonnegative integer.
         """
         item = self._coerce_item(item)
-        return self._collection.index(item)
+        return self.items.index(item)
