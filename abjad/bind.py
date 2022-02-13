@@ -2,7 +2,7 @@ import copy
 import importlib
 import typing
 
-from . import _inspect
+from . import _inspect, _update
 from . import duration as _duration
 from . import exceptions as _exceptions
 from . import score as _score
@@ -369,7 +369,7 @@ class Wrapper:
 
     def _get_effective_context(self):
         if self.component is not None:
-            self.component._update_now(indicators=True)
+            _update._update_now(self.component, indicators=True)
         return self._effective_context
 
     def _get_format_pieces(self):

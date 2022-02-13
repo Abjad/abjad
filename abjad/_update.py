@@ -366,18 +366,16 @@ def _update_measure_numbers(component):
 
 def _update_now(component, offsets=False, offsets_in_seconds=False, indicators=False):
     assert offsets or offsets_in_seconds or indicators
-    if component._is_forbidden_to_update:
-        return
-    parentage = _parentage.Parentage(component)
-    for parent in parentage:
-        if parent._is_forbidden_to_update:
+    parentage = component._get_parentage()
+    for component_ in parentage:
+        if component_._is_forbidden_to_update:
             return
-        (
-            offsets_are_current,
-            indicators_are_current,
-            offsets_in_seconds_are_current,
-        ) = _get_score_tree_state_flags(parentage)
-    root = parentage.root
+    (
+        offsets_are_current,
+        indicators_are_current,
+        offsets_in_seconds_are_current,
+    ) = _get_score_tree_state_flags(parentage)
+    root = parentage[-1]
     if offsets and not offsets_are_current:
         _update_all_offsets(root)
     if offsets_in_seconds and not offsets_in_seconds_are_current:

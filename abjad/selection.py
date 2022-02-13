@@ -4,7 +4,7 @@ import itertools
 import operator
 import typing
 
-from . import _inspect, _iterate
+from . import _inspect, _iterate, _update
 from . import bind as _bind
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
@@ -3287,7 +3287,7 @@ class Selection(collections.abc.Sequence):
 
         selections = []
         first_component = _get_first_component(self)
-        first_component._update_measure_numbers()
+        _update._update_measure_numbers(first_component)
         pairs = itertools.groupby(self, _get_measure_number)
         for value, group in pairs:
             selection = type(self)(group)

@@ -7,6 +7,7 @@ import typing
 
 import quicktions
 
+from . import _update
 from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
@@ -321,7 +322,7 @@ class Component:
         return result
 
     def _get_lilypond_format(self):
-        self._update_now(indicators=True)
+        _update._update_now(self, indicators=True)
         return self._format_component()
 
     def _get_markup(self, direction=None):
@@ -360,7 +361,7 @@ class Component:
 
     def _get_timespan(self, in_seconds=False):
         if in_seconds:
-            self._update_now(offsets_in_seconds=True)
+            _update._update_now(self, offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise _exceptions.MissingMetronomeMarkError
             return _timespan.Timespan(
@@ -368,7 +369,7 @@ class Component:
                 stop_offset=self._stop_offset_in_seconds,
             )
         else:
-            self._update_now(offsets=True)
+            _update._update_now(self, offsets=True)
             return self._timespan
 
     def _has_indicator(self, prototype=None, *, attributes=None):
@@ -439,21 +440,6 @@ class Component:
                 component._offsets_are_current = False
             elif offsets_in_seconds:
                 component._offsets_in_seconds_are_current = False
-
-    def _update_measure_numbers(self):
-        from ._update import _update_measure_numbers
-
-        _update_measure_numbers(self)
-
-    def _update_now(self, offsets=False, offsets_in_seconds=False, indicators=False):
-        from ._update import _update_now
-
-        return _update_now(
-            self,
-            offsets=offsets,
-            offsets_in_seconds=offsets_in_seconds,
-            indicators=indicators,
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -2310,10 +2296,6 @@ class BeforeGraceContainer(Container):
         result.append([("grace_brackets", "open"), [string]])
         return tuple(result)
 
-    def _get_lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -2986,10 +2968,6 @@ class Cluster(Container):
         result.append([contributor, contributions])
         return tuple(result)
 
-    def _get_lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
-
 
 class Context(Container):
     r"""
@@ -3228,10 +3206,6 @@ class Context(Container):
 
     def _get_format_pieces(self):
         return self._format_component(pieces=True)
-
-    def _get_lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
 
     def _get_repr_keyword_names(self):
         if self.lilypond_type == type(self).__name__:
@@ -5058,10 +5032,6 @@ class TremoloContainer(Container):
         result.append([("tremolo_brackets", "open"), [string]])
         return tuple(result)
 
-    def _get_lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
-
     def _get_preprolated_duration(self):
         return self.implied_prolation * self._get_contents_duration()
 
@@ -5382,10 +5352,6 @@ class Tuplet(Container):
         denominator = duration.denominator
         if not _math.is_nonnegative_integer_power_of_two(denominator):
             return r"\tweak edge-height #'(0.7 . 0)"
-
-    def _get_lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
 
     def _get_multiplier_fraction_string(self):
         if self.denominator is not None:
