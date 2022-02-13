@@ -73,35 +73,32 @@ def test_Container___getitem___04():
 
 def test_Container___getitem___05():
     """
-    Get one named component in subtree rooted at container.
-    """
-
-    template = abjad.StringQuartetScoreTemplate()
-    score = template()
-
-    assert score["First_Violin_Staff"].name == "First_Violin_Staff"
-    assert score["First_Violin_Voice"].name == "First_Violin_Voice"
-
-
-def test_Container___getitem___06():
-    """
     Bad name raises exception.
     """
 
-    template = abjad.StringQuartetScoreTemplate()
-    score = template()
+    score = abjad.Score()
 
     with pytest.raises(Exception):
         score["Foo"]
 
 
-def test_Container___getitem___07():
+def test_Container___getitem___06():
     """
     Duplicate named contexts raise exception.
     """
 
-    template = abjad.StringQuartetScoreTemplate()
-    score = template()
+    score = abjad.Score(
+        [
+            abjad.Staff(
+                [abjad.Voice(name="First_Violin_Voice")],
+                name="First_Violin_Staff",
+            ),
+            abjad.Staff(
+                [abjad.Voice(name="Cello_Voice")],
+                name="Cello_Staff",
+            ),
+        ]
+    )
 
     assert score["First_Violin_Voice"].name == "First_Violin_Voice"
 

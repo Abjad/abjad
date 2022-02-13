@@ -997,40 +997,14 @@ class String(str):
 
         ..  container:: example
 
-            >>> string = abjad.String('StringQuartetScoreTemplate')
-
-            >>> string.match_word_starts(['Str', 'Quar', 'Temp'])
-            True
-
-            >>> string.match_word_starts(['S', 'Q', 'S', 'T'])
-            True
-
-            >>> string.match_word_starts(['Quartet'])
-            True
-
-            >>> string.match_word_starts(['Q'])
-            True
-
-        ..  container:: example
-
-            >>> string = abjad.String('StringQuartetScoreTemplate')
-
-            >>> string.match_word_starts(['Quar', 'Str'])
-            False
-
-            >>> string.match_word_starts(['uartet'])
-            False
-
-        ..  container:: example
-
             REGRESSION:
 
             >>> string = abjad.String('LMRSpecifier')
             >>> string.match_word_starts(['L', 'M', 'R', 'S'])
             True
 
-            >>> string = abjad.String('StringQuartetScoreTemplate')
-            >>> string.match_word_starts(['S', 'Q', 'S', 'T', 'T'])
+            >>> string = abjad.String('StringQuartet')
+            >>> string.match_word_starts(['S', 'Q', 'Q'])
             False
 
             >>> string = abjad.String('AcciaccaturaSpecifier.py')
