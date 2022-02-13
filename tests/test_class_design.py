@@ -150,7 +150,6 @@ ignored_classes = (
     abjad.Lineage,
     abjad.Meter,  # TODO: should abjad.Meter pickle?
     abjad.NoteMaker,
-    abjad.SegmentMaker,
     abjad.SlotContributions,
 )
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)

@@ -634,7 +634,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.score.TremoloContainer'>
         <class 'abjad.score.Tuplet'>
         <class 'abjad.score.Voice'>
-        <class 'abjad.segmentmaker.SegmentMaker'>
         <class 'abjad.selection.DurationInequality'>
         <class 'abjad.selection.Inequality'>
         <class 'abjad.selection.LengthInequality'>
@@ -646,11 +645,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.string.String'>
         <class 'abjad.tag.Line'>
         <class 'abjad.tag.Tag'>
-        <class 'abjad.templates.GroupedRhythmicStavesScoreTemplate'>
-        <class 'abjad.templates.GroupedStavesScoreTemplate'>
-        <class 'abjad.templates.ScoreTemplate'>
-        <class 'abjad.templates.StringOrchestraScoreTemplate'>
-        <class 'abjad.templates.StringQuartetScoreTemplate'>
         <class 'abjad.timespan.OffsetCounter'>
         <class 'abjad.timespan.Timespan'>
         <class 'abjad.timespan.TimespanList'>

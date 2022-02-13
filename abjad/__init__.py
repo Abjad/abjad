@@ -266,7 +266,6 @@ from .score import (
     Tuplet,
     Voice,
 )
-from .segmentmaker import SegmentMaker
 from .selection import (
     DurationInequality,
     Inequality,
@@ -293,13 +292,6 @@ from .spanners import (
 )
 from .string import String
 from .tag import Line, Tag, activate, deactivate
-from .templates import (
-    GroupedRhythmicStavesScoreTemplate,
-    GroupedStavesScoreTemplate,
-    ScoreTemplate,
-    StringOrchestraScoreTemplate,
-    StringQuartetScoreTemplate,
-)
 from .timespan import OffsetCounter, Timespan, TimespanList
 from .typedcollections import (
     TypedCollection,
@@ -402,8 +394,6 @@ __all__ = [
     "FrenchHorn",
     "Glissando",
     "Glockenspiel",
-    "GroupedRhythmicStavesScoreTemplate",
-    "GroupedStavesScoreTemplate",
     "Guitar",
     "Harp",
     "Harpsichord",
@@ -526,9 +516,7 @@ __all__ = [
     "Rotation",
     "SchemeParserFinishedError",
     "Score",
-    "ScoreTemplate",
     "Segment",
-    "SegmentMaker",
     "Selection",
     "Sequence",
     "Set",
@@ -563,8 +551,6 @@ __all__ = [
     "StopTrillSpan",
     "String",
     "StringNumber",
-    "StringOrchestraScoreTemplate",
-    "StringQuartetScoreTemplate",
     "Strings",
     "Tag",
     "TemporaryDirectory",
