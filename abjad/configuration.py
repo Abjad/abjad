@@ -634,11 +634,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.score.TremoloContainer'>
         <class 'abjad.score.Tuplet'>
         <class 'abjad.score.Voice'>
-        <class 'abjad.selection.DurationInequality'>
-        <class 'abjad.selection.Inequality'>
-        <class 'abjad.selection.LengthInequality'>
         <class 'abjad.selection.LogicalTie'>
-        <class 'abjad.selection.PitchInequality'>
         <class 'abjad.selection.Selection'>
         <class 'abjad.sequence.Sequence'>
         <class 'abjad.setclass.SetClass'>
@@ -683,8 +679,6 @@ def list_all_functions(modules="abjad"):
         >>> names = [_.__name__ for _ in functions]
         >>> for name in sorted(names): name
         'activate'
-        'add_final_bar_line'
-        'add_final_markup'
         'after_grace_container'
         'all_are_equal'
         'all_are_integer_equivalent'

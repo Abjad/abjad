@@ -1691,10 +1691,8 @@ def tie(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
     direction: _enums.VerticalAlignment = None,
-    repeat: typing.Union[
-        bool, _typings.IntegerPair, _selection.DurationInequality
-    ] = None,
-    selector=lambda _: _selection.select(_).leaves(),
+    repeat: bool | _typings.IntegerPair | typing.Callable | None = None,
+    selector: typing.Callable = lambda _: _selection.select(_).leaves(),
     tag: _tag.Tag = None,
 ) -> None:
     r"""
@@ -1880,16 +1878,24 @@ def tie(
             }
 
     """
-    if repeat in (None, False):
-        inequality = _selection.DurationInequality("<", 0)
+    if callable(repeat):
+        pass
+    elif repeat in (None, False):
+
+        def inequality(item):
+            return item < 0
+
     elif repeat is True:
-        inequality = _selection.DurationInequality(">=", 0)
-    elif isinstance(repeat, _selection.DurationInequality):
-        inequality = repeat
+
+        def inequality(item):
+            return item >= 0
+
     else:
         assert isinstance(repeat, tuple) and len(repeat) == 2, repr(repeat)
-        inequality = _selection.DurationInequality(">=", repeat)
-    assert isinstance(inequality, _selection.DurationInequality), repr(inequality)
+
+        def inequality(item):
+            return item >= _duration.Duration(repeat)
+
     assert callable(selector)
     argument = selector(argument)
     leaves = _selection.Selection(argument).leaves()

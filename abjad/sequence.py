@@ -486,39 +486,19 @@ class Sequence(collections.abc.Sequence):
 
             By length:
 
-            ..  container:: example
+            >>> items = [[1], [2, 3, [4]], [5], [6, 7, [8]]]
+            >>> sequence = abjad.Sequence(items)
 
-                With lambda:
-
-                >>> items = [[1], [2, 3, [4]], [5], [6, 7, [8]]]
-                >>> sequence = abjad.Sequence(items)
-
-                >>> sequence.filter(lambda _: len(_) == 1)
-                Sequence([[1], [5]])
-
-            ..  container:: example
-
-                With inequality:
-
-                >>> items = [[1], [2, 3, [4]], [5], [6, 7, [8]]]
-                >>> sequence = abjad.Sequence(items)
-
-                >>> sequence.filter(abjad.LengthInequality('==', 1))
-                Sequence([[1], [5]])
-
-        ..  container:: example
+            >>> sequence.filter(lambda _: len(_) == 1)
+            Sequence([[1], [5]])
 
             By duration:
 
-            ..  container:: example
+            >>> staff = abjad.Staff("c'4. d'8 e'4. f'8 g'2")
+            >>> sequence = abjad.Sequence(staff)
 
-                With inequality:
-
-                >>> staff = abjad.Staff("c'4. d'8 e'4. f'8 g'2")
-                >>> sequence = abjad.Sequence(staff)
-
-                >>> sequence.filter(abjad.DurationInequality('==', (1, 8)))
-                Sequence([Note("d'8"), Note("f'8")])
+            >>> sequence.filter(lambda _: _.written_duration == abjad.Duration(1, 8))
+            Sequence([Note("d'8"), Note("f'8")])
 
         """
         if predicate is None:
