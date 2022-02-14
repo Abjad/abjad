@@ -591,7 +591,7 @@ def activate(text, tag, skipped=False):
         ... )
 
         >>> text = abjad.lilypond(staff, tags=True)
-        >>> text = abjad.lilypondformat.left_shift_tags(text)
+        >>> text = abjad.format.left_shift_tags(text)
         >>> print(text)
         \new Staff
         {
@@ -736,7 +736,7 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         ...     )
 
         >>> text = abjad.lilypond(staff, tags=True)
-        >>> text = abjad.lilypondformat.left_shift_tags(text)
+        >>> text = abjad.format.left_shift_tags(text)
         >>> print(text)
         \new Staff
         {

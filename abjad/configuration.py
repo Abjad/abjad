@@ -812,7 +812,6 @@ def list_all_functions(modules="abjad"):
         'make_subprocess'
         'markup'
         'measure_number'
-        'new'
         'normalize'
         'on_beat_grace_container'
         'open_file'
