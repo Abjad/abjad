@@ -14,7 +14,7 @@ def test_transpose_from_sounding_pitch_01():
     abjad.iterpitches.transpose_from_sounding_pitch(staff)
 
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {

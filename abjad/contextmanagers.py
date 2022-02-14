@@ -805,7 +805,7 @@ class Timer(ContextManager):
 
         Returns string.
         """
-        identifier = _string.String("second").pluralize(int(self.elapsed_time))
+        identifier = _string.string.pluralize("second", int(self.elapsed_time))
         message = f"total time {int(self.elapsed_time)} {identifier} ..."
         return message
 

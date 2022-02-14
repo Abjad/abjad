@@ -12,7 +12,7 @@ def test_Container_append_01():
     abjad.beam(voice[:])
     voice.append(abjad.Container("e'8 f'8"))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -40,7 +40,7 @@ def test_Container_append_02():
     abjad.beam(tuplet[:])
     tuplet.append(abjad.Note(5, (1, 16)), preserve_duration=True)
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \times 4/7
         {
@@ -83,7 +83,7 @@ def test_Container_append_04():
     voice_1 = abjad.Voice("c'8 d'8 e'8")
     abjad.beam(voice_1[:])
 
-    assert abjad.lilypond(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -99,7 +99,7 @@ def test_Container_append_04():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice_2[:])
 
-    assert abjad.lilypond(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -115,7 +115,7 @@ def test_Container_append_04():
 
     voice_1.append(voice_2[-1])
 
-    assert abjad.lilypond(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -132,7 +132,7 @@ def test_Container_append_04():
 
     assert abjad.wf.wellformed(voice_1)
 
-    assert abjad.lilypond(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -156,7 +156,7 @@ def test_Container_append_05():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -172,7 +172,7 @@ def test_Container_append_05():
 
     voice.append(voice[1])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {

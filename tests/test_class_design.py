@@ -85,7 +85,6 @@ def test_abjad___repr___01(class_):
         abjad.Accidental,
         abjad.CompoundOperator,
         abjad.Line,
-        abjad.String,
         abjad.Tag,
     )
     if inspect.isabstract(class_):

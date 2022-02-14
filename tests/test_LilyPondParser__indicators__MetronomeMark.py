@@ -7,7 +7,7 @@ def test_LilyPondParser__indicators__MetronomeMark_01():
     mark = abjad.MetronomeMark(textual_indication="As fast as possible")
     abjad.attach(mark, target[0][0], context="Staff")
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -36,7 +36,7 @@ def test_LilyPondParser__indicators__MetronomeMark_02():
     mark = abjad.MetronomeMark((1, 4), 60)
     abjad.attach(mark, leaves[0], context="Staff")
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -65,7 +65,7 @@ def test_LilyPondParser__indicators__MetronomeMark_03():
     mark = abjad.MetronomeMark((1, 4), (59, 63))
     abjad.attach(mark, leaves[0], context="Staff")
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -98,7 +98,7 @@ def test_LilyPondParser__indicators__MetronomeMark_04():
     leaves = abjad.select(target).leaves()
     abjad.attach(mark, leaves[0], context="Staff")
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Score
         <<
@@ -131,7 +131,7 @@ def test_LilyPondParser__indicators__MetronomeMark_05():
     leaves = abjad.select(target).leaves()
     abjad.attach(mark, leaves[0], context="Staff")
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Score
         <<

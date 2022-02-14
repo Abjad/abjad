@@ -14,6 +14,7 @@ from . import (
     makers,
     mutate,
     persist,
+    string,
     wf,
 )
 from ._version import __version__, __version_info__
@@ -290,7 +291,6 @@ from .spanners import (
     tie,
     trill_spanner,
 )
-from .string import String
 from .tag import Line, Tag, activate, deactivate
 from .timespan import OffsetCounter, Timespan, TimespanList
 from .typedcollections import (
@@ -549,7 +549,6 @@ __all__ = [
     "StopSlur",
     "StopTextSpan",
     "StopTrillSpan",
-    "String",
     "StringNumber",
     "Strings",
     "Tag",
@@ -639,6 +638,7 @@ __all__ = [
     "setting",
     "show",
     "slur",
+    "string",
     "text_spanner",
     "tie",
     "trill_spanner",

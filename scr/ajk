@@ -32,6 +32,6 @@ stop_time = time.time()
 total_time = int(stop_time - start_time)
 
 print()
-counter = abjad.String.pluralize("second", total_time)
+counter = abjad.string.pluralize("second", total_time)
 print(f"abjad-ack total time {total_time} {counter}.")
 print()

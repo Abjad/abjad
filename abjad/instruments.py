@@ -204,7 +204,7 @@ class Instrument:
         if self._name_markup is None:
             if self.name:
                 string = self.name
-                string = _string.String(string).capitalize_start()
+                string = _string.capitalize_start(string)
                 markup = _markups.Markup(rf"\markup {string}")
                 self._name_markup = markup
             else:
@@ -212,7 +212,7 @@ class Instrument:
         if self._short_name_markup is None:
             if self.short_name:
                 string = self.short_name
-                string = _string.String(string).capitalize_start()
+                string = _string.capitalize_start(string)
                 markup = _markups.Markup(rf"\markup {string}")
             else:
                 self._short_name_markup = None

@@ -9,7 +9,7 @@ def test_Tuplet_get_timespan_01():
     mark = abjad.MetronomeMark((1, 4), 60)
     abjad.attach(mark, leaves[0])
 
-    assert abjad.lilypond(score) == abjad.String.normalize(
+    assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         <<

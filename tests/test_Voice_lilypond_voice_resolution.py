@@ -19,7 +19,7 @@ def test_Voice_lilypond_voice_resolution_01():
     voice[2].simultaneous = True
     abjad.override(voice).NoteHead.color = "#red"
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         \with
@@ -63,7 +63,7 @@ def test_Voice_lilypond_voice_resolution_02():
     voice[2][0].name = "foo"
     abjad.override(voice).NoteHead.color = "#red"
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \context Voice = "foo"
         \with
@@ -136,7 +136,7 @@ def test_Voice_lilypond_voice_resolution_03():
     abjad.override(container[1][1]).NoteHead.color = "#red"
     abjad.override(container[2][1]).NoteHead.color = "#red"
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8

@@ -7,7 +7,7 @@ def test_Staff_engraver_removals_01():
     staff.remove_commands.append("Time_signature_engraver")
     staff.remove_commands.append("Bar_number_engraver")
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         \with

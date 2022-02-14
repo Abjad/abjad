@@ -46,7 +46,7 @@ def test_Selection_are_contiguous_same_parent_02():
         """
     )
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {

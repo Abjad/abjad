@@ -12,7 +12,7 @@ def test_Chord___deepcopy___01():
     abjad.tweak(chord_1.note_heads[0]).color = "#red"
     chord_2 = copy.deepcopy(chord_1)
 
-    assert abjad.lilypond(chord_1) == abjad.String.normalize(
+    assert abjad.lilypond(chord_1) == abjad.string.normalize(
         r"""
         <
             \tweak color #red
@@ -23,7 +23,7 @@ def test_Chord___deepcopy___01():
         """
     )
 
-    assert abjad.lilypond(chord_2) == abjad.String.normalize(
+    assert abjad.lilypond(chord_2) == abjad.string.normalize(
         r"""
         <
             \tweak color #red

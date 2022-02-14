@@ -15,7 +15,7 @@ def test_mutate__split_container_by_duration_01():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -39,7 +39,7 @@ def test_mutate__split_container_by_duration_01():
 
     abjad.mutate._split_container_by_duration(staff[0], abjad.Duration(1, 32))
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -81,7 +81,7 @@ def test_mutate__split_container_by_duration_02():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -105,7 +105,7 @@ def test_mutate__split_container_by_duration_02():
 
     abjad.mutate._split_container_by_duration(staff[0], abjad.Duration(1, 5))
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

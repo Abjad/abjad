@@ -5,7 +5,7 @@ def test_LilyPondParser__contexts__Score_01():
 
     target = abjad.Score()
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Score
         <<

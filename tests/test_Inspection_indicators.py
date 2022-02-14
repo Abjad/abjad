@@ -10,7 +10,7 @@ def test_Inspection_indicators_01():
     command_2 = abjad.LilyPondLiteral(r"\slurUp")
     abjad.attach(command_2, staff[0])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -40,7 +40,7 @@ def test_Inspection_indicators_02():
     dynamic = abjad.Dynamic("p")
     abjad.attach(dynamic, staff[0])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

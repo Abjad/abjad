@@ -322,9 +322,7 @@ class Markup:
 
     def __post_init__(self):
         self._annotation = None
-        self.direction = _string.String.to_tridirectional_ordinal_constant(
-            self.direction
-        )
+        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     _is_dataclass = True
@@ -342,7 +340,7 @@ class Markup:
             tweaks = self.tweaks._list_format_contributions()
         direction = ""
         if self.direction is not None:
-            direction = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            direction = _string.to_tridirectional_lilypond_symbol(self.direction)
         if direction:
             string = rf"{direction} {self.string}"
         else:

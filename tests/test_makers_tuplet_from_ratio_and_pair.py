@@ -7,7 +7,7 @@ def test_makers_tuplet_from_ratio_and_pair_01():
         abjad.NonreducedRatio((1, 2, 4)), abjad.NonreducedFraction(6, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/7
@@ -26,7 +26,7 @@ def test_makers_tuplet_from_ratio_and_pair_02():
         abjad.NonreducedRatio((1, 1, 2, 4)), abjad.NonreducedFraction(6, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/4
@@ -46,7 +46,7 @@ def test_makers_tuplet_from_ratio_and_pair_03():
         abjad.NonreducedRatio((-2, 3, 7)), abjad.NonreducedFraction(7, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 7/12
@@ -65,7 +65,7 @@ def test_makers_tuplet_from_ratio_and_pair_04():
         abjad.NonreducedRatio((7, 7, -4, -1)), abjad.NonreducedFraction(1, 4)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \times 16/19
         {
@@ -84,7 +84,7 @@ def test_makers_tuplet_from_ratio_and_pair_05():
         abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(12, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -103,7 +103,7 @@ def test_makers_tuplet_from_ratio_and_pair_06():
         abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(12, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -122,7 +122,7 @@ def test_makers_tuplet_from_ratio_and_pair_07():
         abjad.NonreducedRatio((4, 8, 8)), abjad.NonreducedFraction(12, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5
@@ -141,7 +141,7 @@ def test_makers_tuplet_from_ratio_and_pair_08():
         abjad.NonreducedRatio((8, 16, 16)), abjad.NonreducedFraction(12, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5
@@ -160,7 +160,7 @@ def test_makers_tuplet_from_ratio_and_pair_09():
         abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(3, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5
@@ -179,7 +179,7 @@ def test_makers_tuplet_from_ratio_and_pair_10():
         abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(6, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 3/5
@@ -198,7 +198,7 @@ def test_makers_tuplet_from_ratio_and_pair_11():
         abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(12, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -217,7 +217,7 @@ def test_makers_tuplet_from_ratio_and_pair_12():
         abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(24, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -236,7 +236,7 @@ def test_makers_tuplet_from_ratio_and_pair_13():
         abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 2)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -255,7 +255,7 @@ def test_makers_tuplet_from_ratio_and_pair_14():
         abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 4)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -274,7 +274,7 @@ def test_makers_tuplet_from_ratio_and_pair_15():
         abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 8)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -293,7 +293,7 @@ def test_makers_tuplet_from_ratio_and_pair_16():
         abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 6/5
@@ -312,7 +312,7 @@ def test_makers_tuplet_from_ratio_and_pair_17():
         abjad.NonreducedRatio((1, -1, -1)), abjad.NonreducedFraction(3, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1
@@ -331,7 +331,7 @@ def test_makers_tuplet_from_ratio_and_pair_18():
         abjad.NonreducedRatio((1, 1, -1, -1)), abjad.NonreducedFraction(4, 16)
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1
@@ -352,7 +352,7 @@ def test_makers_tuplet_from_ratio_and_pair_19():
         abjad.NonreducedFraction(5, 16),
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1
@@ -374,7 +374,7 @@ def test_makers_tuplet_from_ratio_and_pair_20():
         abjad.NonreducedFraction(6, 16),
     )
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
         \times 1/1

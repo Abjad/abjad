@@ -12,7 +12,7 @@ def test_Container_extend_01():
     abjad.beam(voice[:])
     voice.extend([abjad.Note("c'8"), abjad.Note("d'8")])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -41,7 +41,7 @@ def test_Container_extend_02():
     abjad.beam(voice_2[:])
     voice_1.extend(voice_2)
 
-    assert abjad.lilypond(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -69,7 +69,7 @@ def test_Container_extend_03():
     abjad.beam(voice[:])
     voice.extend([])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -94,7 +94,7 @@ def test_Container_extend_04():
     abjad.beam(voice[:])
     voice.extend(abjad.Voice([]))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -151,7 +151,7 @@ def test_Container_extend_07():
 
     voice_1.extend(voice_2[-2:])
 
-    assert abjad.lilypond(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -168,7 +168,7 @@ def test_Container_extend_07():
 
     assert abjad.wf.wellformed(voice_1)
 
-    assert abjad.lilypond(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -195,7 +195,7 @@ def test_Container_extend_08():
     abjad.beam(voice_2[:])
     abjad.slur(voice_2[-2:])
 
-    assert abjad.lilypond(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -213,7 +213,7 @@ def test_Container_extend_08():
 
     voice_1.extend(voice_2[-2:])
 
-    assert abjad.lilypond(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -232,7 +232,7 @@ def test_Container_extend_08():
 
     assert abjad.wf.wellformed(voice_1)
 
-    assert abjad.lilypond(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -254,7 +254,7 @@ def test_Container_extend_09():
     container = abjad.Container([])
     container.extend("c'4 ( d'4 e'4 f'4 )")
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'4
@@ -284,7 +284,7 @@ def test_Container_extend_10():
     container = abjad.Container()
     container.extend(selections)
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'4

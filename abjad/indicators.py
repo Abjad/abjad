@@ -98,9 +98,7 @@ class Arpeggio:
 
     def __post_init__(self):
         self._annotation = None
-        self.direction = _string.String.to_tridirectional_ordinal_constant(
-            self.direction
-        )
+        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _get_lilypond_format(self):
@@ -187,9 +185,7 @@ class Articulation:
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
-        self.direction = _string.String.to_tridirectional_ordinal_constant(
-            self.direction
-        )
+        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     # TODO: eventually remove
@@ -202,12 +198,10 @@ class Articulation:
             if not string:
                 string = self.name
             if self.direction is None:
-                direction = _string.String("-")
+                direction = "-"
             else:
-                direction_ = _string.String.to_tridirectional_lilypond_symbol(
-                    self.direction
-                )
-                assert isinstance(direction_, _string.String), repr(direction)
+                direction_ = _string.to_tridirectional_lilypond_symbol(self.direction)
+                assert isinstance(direction_, str), repr(direction)
                 direction = direction_
             return rf"{direction} \{string}"
         else:
@@ -3598,9 +3592,7 @@ class RepeatTie:
     persistent = True
 
     def __post_init__(self):
-        self.direction = _string.String.to_tridirectional_ordinal_constant(
-            self.direction
-        )
+        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _attachment_test_all(self, argument):
@@ -3618,7 +3610,7 @@ class RepeatTie:
             bundle.after.spanners.extend(strings)
         strings = []
         if self.direction is not None:
-            string = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            string = _string.to_tridirectional_lilypond_symbol(self.direction)
             strings.append(string)
         strings.append(r"\repeatTie")
         bundle.after.spanners.extend(strings)
@@ -3765,7 +3757,7 @@ class StartBeam:
 
     def _add_direction(self, string):
         if getattr(self, "direction", None) is not None:
-            symbol = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -4205,14 +4197,12 @@ class StartHairpin:
     _time_orientation = _enums.Right
 
     def __post_init__(self):
-        self.direction = _string.String.to_tridirectional_ordinal_constant(
-            self.direction
-        )
+        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _add_direction(self, string):
         if getattr(self, "direction", False):
-            symbol = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -4503,7 +4493,7 @@ class StartPhrasingSlur:
 
     def _add_direction(self, string):
         if getattr(self, "direction", False):
-            symbol = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -4771,14 +4761,12 @@ class StartSlur:
     spanner_start = True
 
     def __post_init__(self):
-        self.direction = _string.String.to_tridirectional_ordinal_constant(
-            self.direction
-        )
+        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _add_direction(self, string):
         if getattr(self, "direction", None) is not None:
-            symbol = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -5153,7 +5141,7 @@ class StartTextSpan:
 
     def _add_direction(self, string):
         if getattr(self, "direction", False):
-            symbol = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -6474,7 +6462,7 @@ class Tie:
 
     def _add_direction(self, string):
         if self.direction is not None:
-            symbol = _string.String.to_tridirectional_lilypond_symbol(self.direction)
+            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
             string = f"{symbol} {string}"
         return string
 

@@ -20,6 +20,7 @@ from .. import format as _format
 from .. import fsv as _fsv
 from .. import markups as _markups
 from .. import pitch as _pitch
+from .. import string as _string
 from ..bind import attach
 from ..duration import Duration, Multiplier
 from ..dynamic import Dynamic
@@ -79,7 +80,6 @@ from ..score import (
     Tuplet,
     Voice,
 )
-from ..string import String
 from .base import Parser
 
 
@@ -6069,7 +6069,7 @@ class LilyPondSyntacticalDefinition:
         try:
             p[2].direction = p[1]
         except AttributeError:
-            direction = String.to_tridirectional_lilypond_symbol(p[1])
+            direction = _string.to_tridirectional_lilypond_symbol(p[1])
             assert hasattr(p[2], "_direction")
             p[2]._direction = direction
         p[0] = p[2]
@@ -6079,13 +6079,13 @@ class LilyPondSyntacticalDefinition:
         # TODO: this is cheating; articulation and markup direction should be given
         #       at initialization and not after (as is done here)
         if isinstance(p[2], _markups.Markup):
-            direction = String.to_tridirectional_ordinal_constant(p[1])
+            direction = _string.to_tridirectional_ordinal_constant(p[1])
             p[2].direction = direction
         else:
             try:
                 p[2].direction = p[1]
             except AttributeError:
-                direction = String.to_tridirectional_ordinal_constant(p[1])
+                direction = _string.to_tridirectional_ordinal_constant(p[1])
                 assert hasattr(p[2], "_direction")
                 p[2]._direction = direction
         p[0] = p[2]
