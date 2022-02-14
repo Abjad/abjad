@@ -10,7 +10,7 @@ def test_mutate__split_leaf_by_durations_01():
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -25,7 +25,7 @@ def test_mutate__split_leaf_by_durations_01():
 
     abjad.mutate._split_leaf_by_durations(staff[1], [abjad.Duration(1, 32)])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -58,7 +58,7 @@ def test_mutate__split_leaf_by_durations_02():
     leaf = abjad.get.leaf(staff, 0)
     abjad.mutate._split_leaf_by_durations(leaf, [abjad.Duration(1, 20)])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -132,7 +132,7 @@ def test_mutate__split_leaf_by_durations_06():
     assert isinstance(new_leaves, abjad.Selection)
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -160,7 +160,7 @@ def test_mutate__split_leaf_by_durations_07():
     new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 8)])
     staff = abjad.Staff(new_leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -192,7 +192,7 @@ def test_mutate__split_leaf_by_durations_08():
     new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(5, 32)])
     staff = abjad.Staff(new_leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -224,7 +224,7 @@ def test_mutate__split_leaf_by_durations_09():
     new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 16)])
     staff = abjad.Staff(new_leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -255,7 +255,7 @@ def test_mutate__split_leaf_by_durations_10():
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -279,7 +279,7 @@ def test_mutate__split_leaf_by_durations_10():
 
     abjad.mutate._split_leaf_by_durations(leaves[0], [abjad.Duration(1, 32)])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

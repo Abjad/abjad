@@ -905,7 +905,7 @@ class Dynamic:
         ]
         after = {"f": -0.2, "m": -0.1, "p": -0.25, "r": 0, "s": 0, "z": -0.2}[name[-1]]
         direction = self.direction
-        direction = _string.String.to_tridirectional_lilypond_symbol(direction)
+        direction = _string.to_tridirectional_lilypond_symbol(direction)
         strings = []
         strings.append(f"{direction} #(make-dynamic-script")
         strings.append("    (markup")
@@ -926,7 +926,7 @@ class Dynamic:
     def _format_textual(direction, string):
         if direction is None:
             direction = _enums.Down
-        direction = _string.String.to_tridirectional_lilypond_symbol(direction)
+        direction = _string.to_tridirectional_lilypond_symbol(direction)
         assert isinstance(string, str), repr(string)
         string = f'(markup #:whiteout #:normal-text #:italic "{string}")'
         string = f"{direction} #(make-dynamic-script {string})"
@@ -943,7 +943,7 @@ class Dynamic:
             string = rf"\{self.name}"
             if self.direction is not None:
                 direction_ = self.direction
-                direction = _string.String.to_tridirectional_lilypond_symbol(direction_)
+                direction = _string.to_tridirectional_lilypond_symbol(direction_)
                 string = f"{direction} {string}"
         return string
 

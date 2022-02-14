@@ -5,7 +5,7 @@ def test_mutate__move_indicators_01():
 
     staff = abjad.Staff(r'\clef "bass" c \staccato d e f')
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -26,7 +26,7 @@ def test_mutate__move_indicators_01():
 
     abjad.mutate._move_indicators(staff[0], staff[2])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

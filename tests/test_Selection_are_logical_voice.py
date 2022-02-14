@@ -115,7 +115,7 @@ def test_Selection_are_logical_voice_06():
         """
     )
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -160,7 +160,7 @@ def test_Selection_are_logical_voice_07():
         """
     )
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -205,7 +205,7 @@ def test_Selection_are_logical_voice_08():
         """
     )
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -256,7 +256,7 @@ def test_Selection_are_logical_voice_09():
         """
     )
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -300,7 +300,7 @@ def test_Selection_are_logical_voice_10():
         """
     )
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -345,7 +345,7 @@ def test_Selection_are_logical_voice_11():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Staff
@@ -403,7 +403,7 @@ def test_Selection_are_logical_voice_12():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Staff
@@ -458,7 +458,7 @@ def test_Selection_are_logical_voice_13():
         """
     )
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -501,7 +501,7 @@ def test_Selection_are_logical_voice_14():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \context Staff = "foo"
@@ -549,7 +549,7 @@ def test_Selection_are_logical_voice_15():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             {
@@ -597,7 +597,7 @@ def test_Selection_are_logical_voice_16():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Voice
@@ -673,7 +673,7 @@ def test_Selection_are_logical_voice_18():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \context Voice = "foo"
@@ -721,7 +721,7 @@ def test_Selection_are_logical_voice_19():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             {
@@ -769,7 +769,7 @@ def test_Selection_are_logical_voice_20():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Staff
@@ -815,7 +815,7 @@ def test_Selection_are_logical_voice_21():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -859,7 +859,7 @@ def test_Selection_are_logical_voice_22():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Voice
@@ -903,7 +903,7 @@ def test_Selection_are_logical_voice_23():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -950,7 +950,7 @@ def test_Selection_are_logical_voice_24():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \context Voice = "foo"
@@ -994,7 +994,7 @@ def test_Selection_are_logical_voice_25():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -1038,7 +1038,7 @@ def test_Selection_are_logical_voice_26():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Staff
@@ -1072,7 +1072,7 @@ def test_Selection_are_logical_voice_27():
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([container] + notes)
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             {
@@ -1144,7 +1144,7 @@ def test_Selection_are_logical_voice_29():
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([voice_2] + notes)
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \context Voice = "bar"
@@ -1181,7 +1181,7 @@ def test_Selection_are_logical_voice_30():
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([voice_2] + notes)
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Voice
@@ -1220,7 +1220,7 @@ def test_Selection_are_logical_voice_31():
     container.simultaneous = True
     container = abjad.Container(notes + [container])
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -1280,7 +1280,7 @@ def test_Selection_are_logical_voice_32():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             <<
@@ -1343,7 +1343,7 @@ def test_Selection_are_logical_voice_33():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -1406,7 +1406,7 @@ def test_Selection_are_logical_voice_34():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -1465,7 +1465,7 @@ def test_Selection_are_logical_voice_35():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -1515,7 +1515,7 @@ def test_Selection_are_logical_voice_36():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -1570,7 +1570,7 @@ def test_Selection_are_logical_voice_37():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             {
@@ -1624,7 +1624,7 @@ def test_Selection_are_logical_voice_38():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -1692,7 +1692,7 @@ def test_Selection_are_logical_voice_39():
 
     voice.name = "foo"
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \context Voice = "foo"
         {
@@ -1758,7 +1758,7 @@ def test_Selection_are_logical_voice_40():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             \new Voice
@@ -1820,7 +1820,7 @@ def test_Selection_are_logical_voice_41():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8

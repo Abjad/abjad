@@ -11,7 +11,7 @@ def test_Meter_rewrite_meter_01():
     meter = abjad.Meter((4, 4))
     abjad.Meter.rewrite_meter(staff[:], meter)
     string = abjad.lilypond(staff)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Staff
         {

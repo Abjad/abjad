@@ -60,7 +60,7 @@ def test_Note___init___06():
     chord = abjad.Chord([2, 3, 4], (1, 4))
     note = abjad.Note(chord)
 
-    assert abjad.lilypond(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         d'4
         """
@@ -79,7 +79,7 @@ def test_Note___init___07():
     tuplet = abjad.Tuplet((2, 3), chords)
     note = abjad.Note(tuplet[0])
 
-    assert abjad.lilypond(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         d'4
         """
@@ -99,7 +99,7 @@ def test_Note___init___08():
     abjad.beam(staff[:])
     note = abjad.Note(staff[0])
 
-    assert abjad.lilypond(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         d'8
         [
@@ -117,7 +117,7 @@ def test_Note___init___09():
     rest = abjad.Rest("r8")
     note = abjad.Note(rest)
 
-    assert abjad.lilypond(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         8
         """

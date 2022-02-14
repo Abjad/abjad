@@ -9,7 +9,7 @@ def test_LilyPondParser__functions__grace_01():
 
     abjad.attach(grace, target[2])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4

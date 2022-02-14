@@ -7,7 +7,7 @@ def test_LilyPondParser__indicators__KeySignature_01():
     key_signature = abjad.KeySignature("g", "major")
     abjad.attach(key_signature, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {

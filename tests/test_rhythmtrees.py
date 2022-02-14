@@ -13,7 +13,7 @@ def test_RhythmTreeContainer___call___01():
     result = tree((1, 4))
     assert isinstance(result, list)
     assert len(result) == 1
-    assert abjad.lilypond(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
         \times 4/5
         {
@@ -420,7 +420,7 @@ def test_RhythmTreeNode___call___02():
     result = tree((1, 4))
     assert isinstance(result, list)
     assert len(result) == 1
-    assert abjad.lilypond(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
         \times 4/5
         {
@@ -442,7 +442,7 @@ def test_RhythmTreeNode___call___03():
     rtm = "(1 (1 (2 (1 (2 (1 1)) 1)) 2))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
-    assert abjad.lilypond(result[0]) == abjad.String.normalize(
+    assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
         \times 4/5
         {

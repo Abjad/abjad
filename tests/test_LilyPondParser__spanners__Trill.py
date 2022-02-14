@@ -14,7 +14,7 @@ def test_LilyPondParser__spanners__Trill_01():
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4
@@ -45,7 +45,7 @@ def test_LilyPondParser__spanners__Trill_02():
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4

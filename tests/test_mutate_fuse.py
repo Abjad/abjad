@@ -56,7 +56,7 @@ def test_mutate_fuse_04():
     voice = abjad.Voice([abjad.Note(0, (2, 16)), abjad.Note(9, (3, 16))])
     abjad.mutate.fuse(voice[:])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -79,7 +79,7 @@ def test_mutate_fuse_05():
     staff[0].multiplier = (1, 16)
     staff[1].multiplier = (5, 16)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -93,7 +93,7 @@ def test_mutate_fuse_05():
 
     abjad.mutate.fuse(staff[:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -116,7 +116,7 @@ def test_mutate_fuse_06():
     tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
     abjad.slur(tuplet_2[:])
 
-    assert abjad.lilypond(tuplet_1) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet_1) == abjad.string.normalize(
         r"""
         \times 2/3
         {
@@ -129,7 +129,7 @@ def test_mutate_fuse_06():
         """
     ), print(abjad.lilypond(tuplet_1))
 
-    assert abjad.lilypond(tuplet_2) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet_2) == abjad.string.normalize(
         r"""
         \times 2/3
         {
@@ -145,7 +145,7 @@ def test_mutate_fuse_06():
     tuplets = abjad.select([tuplet_1, tuplet_2])
     new = abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(new) == abjad.String.normalize(
+    assert abjad.lilypond(new) == abjad.string.normalize(
         r"""
         \times 2/3
         {
@@ -180,7 +180,7 @@ def test_mutate_fuse_07():
     abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -207,7 +207,7 @@ def test_mutate_fuse_07():
     tuplets = voice[:]
     abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -242,7 +242,7 @@ def test_mutate_fuse_08():
     abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -272,7 +272,7 @@ def test_mutate_fuse_08():
     tuplets = voice[:]
     abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -320,7 +320,7 @@ def test_mutate_fuse_10():
     leaves = abjad.select(voice).leaves()
     abjad.slur(leaves)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -344,7 +344,7 @@ def test_mutate_fuse_10():
     tuplets = voice[:2]
     abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {

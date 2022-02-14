@@ -20,7 +20,7 @@ def test_LilyPondParser__indicators__Articulation_01():
     articulation = abjad.Articulation("portato")
     abjad.attach(articulation, target[6])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -93,7 +93,7 @@ def test_LilyPondParser__indicators__Articulation_03():
     articulation = abjad.Articulation("fermata")
     abjad.attach(articulation, target[3])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c''4

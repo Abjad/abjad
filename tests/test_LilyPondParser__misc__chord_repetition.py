@@ -12,7 +12,7 @@ def test_LilyPondParser__misc__chord_repetition_01():
         ]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             <c' e' g'>4
@@ -51,7 +51,7 @@ def test_LilyPondParser__misc__chord_repetition_02():
     articulation = abjad.Articulation("staccatissimo")
     abjad.attach(articulation, target[-1])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -88,7 +88,7 @@ def test_LilyPondParser__misc__chord_repetition_03():
         ]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             <c' e' g'>8

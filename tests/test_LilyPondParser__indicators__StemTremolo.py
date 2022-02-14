@@ -7,7 +7,7 @@ def test_LilyPondParser__indicators__StemTremolo_01():
     stem_tremolo = abjad.StemTremolo(4)
     abjad.attach(stem_tremolo, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {

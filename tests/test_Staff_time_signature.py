@@ -10,7 +10,7 @@ def test_Staff_time_signature_01():
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

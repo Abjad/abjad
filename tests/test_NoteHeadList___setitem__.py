@@ -33,7 +33,7 @@ def test_NoteHeadList___setitem___03():
     abjad.tweak(note_head).color = "#red"
     chord.note_heads[0] = note_head
 
-    assert abjad.lilypond(chord) == abjad.String.normalize(
+    assert abjad.lilypond(chord) == abjad.string.normalize(
         r"""
         <
             \tweak color #red

@@ -9,7 +9,7 @@ def test_LilyPondParser__functions__transpose_01():
     key_signature = abjad.KeySignature("e", "major")
     abjad.attach(key_signature, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -36,7 +36,7 @@ def test_LilyPondParser__functions__transpose_02():
     key_signature = abjad.KeySignature("ef", "major")
     abjad.attach(key_signature, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -65,7 +65,7 @@ def test_LilyPondParser__functions__transpose_03():
         ]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {

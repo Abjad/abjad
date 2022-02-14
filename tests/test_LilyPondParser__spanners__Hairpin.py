@@ -10,7 +10,7 @@ def test_LilyPondParser__spanners__Hairpin_01():
     abjad.hairpin("< !", target[:3])
     abjad.hairpin("> ppp", target[2:])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -40,7 +40,7 @@ def test_LilyPondParser__spanners__Hairpin_01():
 #    abjad.hairpin('< !', target[1:3])
 #    abjad.hairpin('< !', target[2:])
 #
-#    assert abjad.lilypond(target) == abjad.String.normalize(
+#    assert abjad.lilypond(target) == abjad.string.normalize(
 #        r"""
 #        {
 #            c'4
@@ -73,7 +73,7 @@ def test_LilyPondParser__spanners__Hairpin_02():
     abjad.hairpin("<", target[0:2])
     abjad.hairpin("p > f", target[1:])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -139,7 +139,7 @@ def test_LilyPondParser__spanners__Hairpin_06():
     dynamic = abjad.Dynamic("ppp")
     abjad.attach(dynamic, target[-1])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -166,7 +166,7 @@ def test_LilyPondParser__spanners__Hairpin_07():
     string = r"\new Staff { c'4 ( \p \< d'4 e'4 f'4 ) \! }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
-    assert abjad.lilypond(result) == abjad.String.normalize(
+    assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \new Staff
         {

@@ -7,7 +7,7 @@ def test_LilyPondParser__indicators__Markup_01():
     markup = abjad.Markup(r"\markup { hello! }", direction=abjad.Up)
     abjad.attach(markup, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -31,7 +31,7 @@ def test_LilyPondParser__indicators__Markup_02():
     markup = abjad.Markup(r'\markup { X Y Z "a b c" }', direction=abjad.Down)
     abjad.attach(markup, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -54,7 +54,7 @@ def test_LilyPondParser__indicators__Markup_03():
     articulation = abjad.Articulation(".")
     abjad.attach(articulation, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {

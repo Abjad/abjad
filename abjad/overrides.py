@@ -86,13 +86,11 @@ def make_lilypond_override_string(
     """
     Makes LilyPond override string.
     """
-    # camel_name = _string.String(grob).to_upper_camel_case()
-    # assert grob == camel_name, repr((grob, camel_name))
-    grob = _string.String(grob).to_upper_camel_case()
+    grob = _string.to_upper_camel_case(grob)
     attribute = format_lilypond_attribute(attribute)
     value = format_lilypond_value(value)
     if context is not None:
-        context = _string.String(context).capitalize_start() + "."
+        context = _string.capitalize_start(context) + "."
     else:
         context = ""
     if once is True:
@@ -107,14 +105,10 @@ def make_lilypond_revert_string(grob, attribute, context=None) -> str:
     """
     Makes LilyPond revert string.
     """
-    # camel_name = _string.String(grob).to_upper_camel_case()
-    # assert grob == camel_name, repr((grob, camel_name))
-    grob = _string.String(grob).to_upper_camel_case()
+    grob = _string.to_upper_camel_case(grob)
     dotted = format_lilypond_attribute(attribute)
     if context is not None:
-        # camel_name = _string.String(context).to_upper_camel_case()
-        # assert context == camel_name, repr((context, camel_name))
-        context = _string.String(context).to_upper_camel_case()
+        context = _string.to_upper_camel_case(context)
         context += "."
     else:
         context = ""
@@ -129,9 +123,7 @@ def make_lilypond_tweak_string(
     Makes LilyPond tweak string.
     """
     if grob is not None:
-        # camel_name = _string.String(grob).to_upper_camel_case()
-        # assert grob == camel_name, repr((grob, camel_name))
-        grob = _string.String(grob).to_upper_camel_case()
+        grob = _string.to_upper_camel_case(grob)
         grob += "."
     else:
         grob = ""
@@ -1143,8 +1135,7 @@ class OverrideInterface(Interface):
         Note that the dot-chained user syntax is unproblematic. But the class of each
         manager returned in the chain is likely to be surprising at first encounter.
         """
-        camel_name = _string.String(name).to_upper_camel_case()
-        # assert name == camel_name, repr((name, camel_name))
+        camel_name = _string.to_upper_camel_case(name)
         if name.startswith("_"):
             try:
                 return vars(self)[name]
@@ -1345,8 +1336,7 @@ class SettingInterface(Interface):
             Markup(string='\\markup "Vn. I"', direction=None, tweaks=None)
 
         """
-        camel_name = _string.String(name).to_upper_camel_case()
-        # assert name == camel_name, repr((name, camel_name))
+        camel_name = _string.to_upper_camel_case(name)
         if name.startswith("_"):
             try:
                 return vars(self)[name]
@@ -1654,8 +1644,7 @@ class TweakInterface(Interface):
             self.__setattr__(name, _pending_value)
             delattr(self, "_pending_value")
             return self
-        camel_name = _string.String(name).to_upper_camel_case()
-        # assert name == camel_name, repr((name, camel_name))
+        camel_name = _string.to_upper_camel_case(name)
         if name.startswith("_"):
             try:
                 return vars(self)[name]
