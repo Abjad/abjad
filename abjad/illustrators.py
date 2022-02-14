@@ -5,11 +5,11 @@ from . import bind as _bind
 from . import deprecated as _deprecated
 from . import duration as _duration
 from . import enums as _enums
+from . import format as _format
 from . import get as _get
 from . import indicators as _indicators
 from . import iterate as iterate_
 from . import lilypondfile as _lilypondfile
-from . import lilypondformat as _lilypondformat
 from . import makers as _makers
 from . import markups as _markups
 from . import metricmodulation as _metricmodulation
@@ -494,12 +494,8 @@ def selection_to_score_markup_string(selection):
     _overrides.setting(score).proportionalNotationDuration = False
     indent = 4 * " "
     strings = [r"\score", indent + "{"]
-    strings.extend(
-        [2 * indent + _ for _ in _lilypondformat.lilypond(score).split("\n")]
-    )
-    strings.extend(
-        [2 * indent + _ for _ in _lilypondformat.lilypond(layout_block).split("\n")]
-    )
+    strings.extend([2 * indent + _ for _ in _format.lilypond(score).split("\n")])
+    strings.extend([2 * indent + _ for _ in _format.lilypond(layout_block).split("\n")])
     strings.append(indent + "}")
     string = "\n".join(strings)
     return string

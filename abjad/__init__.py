@@ -4,6 +4,7 @@ from . import (
     _update,
     deprecated,
     enumerate,
+    format,
     get,
     illustrators,
     io,
@@ -65,7 +66,7 @@ from .exceptions import (
     UnboundedTimeIntervalError,
     WellformednessError,
 )
-from .format import new
+from .format import lilypond
 from .get import Descendants, Lineage
 from .illustrators import illustrate
 from .indicators import (
@@ -167,7 +168,6 @@ from .instruments import (
 from .io import graph, play, show
 from .label import ColorMap
 from .lilypondfile import Block, LilyPondFile
-from .lilypondformat import lilypond
 from .lyproxy import (
     LilyPondContext,
     LilyPondEngraver,
@@ -624,7 +624,6 @@ __all__ = [
     "lyenv",
     "makers",
     "mutate",
-    "new",
     "on_beat_grace_container",
     "ottava",
     "override",

@@ -4,8 +4,8 @@ import typing
 from . import _inspect, _iterate, _update
 from . import duration as _duration
 from . import enums as _enums
+from . import format as _format
 from . import indicators as _indicators
-from . import lilypondformat as _lilypondformat
 from . import markups as _markups
 from . import parentage as _parentage
 from . import pitch as _pitch
@@ -3609,7 +3609,7 @@ def report_modifications(argument) -> str:
 
     """
     if isinstance(argument, _score.Container):
-        bundle = _lilypondformat.bundle_format_contributions(argument)
+        bundle = _format.bundle_format_contributions(argument)
         result: typing.List[str] = []
         for slot in ("before", "open brackets", "opening"):
             lines = argument._get_format_contributions_for_slot(slot, bundle)
@@ -3621,7 +3621,7 @@ def report_modifications(argument) -> str:
             result.extend(lines)
         return "\n".join(result)
     elif isinstance(argument, _score.Leaf):
-        return _lilypondformat._report_leaf_format_contributions(argument)
+        return _format._report_leaf_format_contributions(argument)
     else:
         return f"only defined for components: {argument}."
 

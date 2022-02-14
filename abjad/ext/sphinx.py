@@ -27,9 +27,9 @@ from uqbar.strings import normalize
 from .. import lilypondfile as _lilypondfile
 from ..configuration import Configuration
 from ..contextmanagers import TemporaryDirectoryChange
+from ..format import remove_tags
 from ..illustrators import illustrate
 from ..io import Illustrator, LilyPondIO, Player
-from ..lilypondformat import remove_tags
 
 configuration = Configuration()
 logger = logging.getLogger(__name__)

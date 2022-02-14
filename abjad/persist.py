@@ -5,10 +5,10 @@ import shutil
 import tempfile
 
 from . import contextmanagers as _contextmanagers
+from . import format as _format
 from . import illustrators as _illustrators
 from . import io as _io
 from . import lilypondfile as _lilypondfile
-from . import lilypondformat as _lilypondformat
 
 
 def as_ly(
@@ -37,7 +37,7 @@ def as_ly(
     with timer:
         string = lilypond_file._get_lilypond_format()
     if not tags:
-        string = _lilypondformat.remove_tags(string)
+        string = _format.remove_tags(string)
     abjad_formatting_time = timer.elapsed_time
     directory = os.path.dirname(ly_file_path)
     _io._ensure_directory_existence(directory)
