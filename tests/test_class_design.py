@@ -83,7 +83,6 @@ def test_abjad___repr___01(class_):
     """
     _allowed_to_be_empty_string = (
         abjad.Accidental,
-        abjad.CompoundOperator,
         abjad.Line,
         abjad.Tag,
     )

@@ -180,15 +180,6 @@ from .math import Infinity, NegativeInfinity
 from .meter import Meter, MeterList, MetricAccentKernel
 from .metricmodulation import MetricModulation
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
-from .operators import (
-    CompoundOperator,
-    Duplication,
-    Inversion,
-    Multiplication,
-    Retrograde,
-    Rotation,
-    Transposition,
-)
 from .overrides import (
     IndexedTweakManager,
     IndexedTweakManagers,
@@ -355,7 +346,6 @@ __all__ = [
     "ColorMap",
     "Comparison",
     "Component",
-    "CompoundOperator",
     "Configuration",
     "Container",
     "Context",
@@ -369,7 +359,6 @@ __all__ = [
     "Descendants",
     "Down",
     "DrumNoteHead",
-    "Duplication",
     "Duration",
     "DurationSequenceTyping",
     "DurationTyping",
@@ -405,7 +394,6 @@ __all__ = [
     "IntervalSegment",
     "IntervalSet",
     "IntervalVector",
-    "Inversion",
     "KeyCluster",
     "KeySignature",
     "LaissezVibrer",
@@ -440,7 +428,6 @@ __all__ = [
     "Mode",
     "More",
     "MultimeasureRest",
-    "Multiplication",
     "Multiplier",
     "NamedInterval",
     "NamedIntervalClass",
@@ -499,9 +486,7 @@ __all__ = [
     "Repeat",
     "RepeatTie",
     "Rest",
-    "Retrograde",
     "Right",
-    "Rotation",
     "SchemeParserFinishedError",
     "Score",
     "Segment",
@@ -550,7 +535,6 @@ __all__ = [
     "Timer",
     "Timespan",
     "TimespanList",
-    "Transposition",
     "TremoloContainer",
     "Trumpet",
     "Tuba",
