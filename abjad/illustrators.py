@@ -2,7 +2,6 @@ import copy
 import dataclasses
 
 from . import bind as _bind
-from . import deprecated as _deprecated
 from . import duration as _duration
 from . import enums as _enums
 from . import format as _format
@@ -181,7 +180,9 @@ def _illustrate_pitch_class_segment(
     system-system-spacing.padding = 10
     top-markup-spacing.padding = 4
 }"""
-    _deprecated.add_final_bar_line(score)
+    leaf = _selection.Selection(score).leaf(-1)
+    bar_line = _indicators.BarLine("|.")
+    _bind.attach(bar_line, leaf)
     string = r"\override Score.BarLine.transparent = ##f"
     command = _overrides.LilyPondLiteral(string, "after")
     last_leaf = _selection.Selection(score).leaves()[-1]

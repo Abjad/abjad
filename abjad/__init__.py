@@ -267,15 +267,7 @@ from .score import (
     Tuplet,
     Voice,
 )
-from .selection import (
-    DurationInequality,
-    Inequality,
-    LengthInequality,
-    LogicalTie,
-    PitchInequality,
-    Selection,
-    select,
-)
+from .selection import LogicalTie, Selection, select
 from .sequence import Sequence
 from .setclass import SetClass
 from .spanners import (
@@ -379,7 +371,6 @@ __all__ = [
     "DrumNoteHead",
     "Duplication",
     "Duration",
-    "DurationInequality",
     "DurationSequenceTyping",
     "DurationTyping",
     "Dynamic",
@@ -401,7 +392,6 @@ __all__ = [
     "ImpreciseMetronomeMarkError",
     "IndexedTweakManager",
     "IndexedTweakManagers",
-    "Inequality",
     "Infinity",
     "Instrument",
     "IntegerPair",
@@ -422,7 +412,6 @@ __all__ = [
     "Leaf",
     "LeafMaker",
     "Left",
-    "LengthInequality",
     "Less",
     "LilyPondContext",
     "LilyPondEngraver",
@@ -495,7 +484,6 @@ __all__ = [
     "PitchClassSegment",
     "PitchClassSet",
     "PitchClassVector",
-    "PitchInequality",
     "PitchRange",
     "PitchSegment",
     "PitchSet",

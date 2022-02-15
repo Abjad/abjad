@@ -720,7 +720,9 @@ def descendants(
     return result
 
 
-def duration(argument, in_seconds: bool = None) -> _duration.Duration:
+def duration(
+    argument, in_seconds: bool = None, preprolated: bool = False
+) -> _duration.Duration:
     r"""
     Gets duration.
 
@@ -876,8 +878,46 @@ def duration(argument, in_seconds: bool = None) -> _duration.Duration:
         >>> abjad.get.duration(selection)
         Duration(3, 4)
 
+    ..  container:: example
+
+        Gets preprolated duration:
+
+        >>> staff = abjad.Staff(r"\times 2/3 { c'4 ~ c' } \times 2/3 { d' ~ d' }")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \tweak edge-height #'(0.7 . 0)
+                \times 2/3
+                {
+                    c'4
+                    ~
+                    c'4
+                }
+                \tweak edge-height #'(0.7 . 0)
+                \times 2/3
+                {
+                    d'4
+                    ~
+                    d'4
+                }
+            }
+
+        >>> for lt in abjad.Selection(staff).logical_ties():
+        ...     duration = abjad.get.duration(lt)
+        ...     preprolated = abjad.get.duration(lt, preprolated=True)
+        ...     lt, duration, preprolated
+        (LogicalTie(items=[Note("c'4"), Note("c'4")]), Duration(1, 3), Duration(1, 2))
+        (LogicalTie(items=[Note("d'4"), Note("d'4")]), Duration(1, 3), Duration(1, 2))
+
     """
-    return _inspect._get_duration(argument, in_seconds=in_seconds)
+    return _inspect._get_duration(
+        argument, in_seconds=in_seconds, preprolated=preprolated
+    )
 
 
 def effective(
