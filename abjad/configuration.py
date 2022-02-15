@@ -539,13 +539,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.meter.MetricAccentKernel'>
         <class 'abjad.metricmodulation.MetricModulation'>
         <class 'abjad.obgc.OnBeatGraceContainer'>
-        <class 'abjad.operators.CompoundOperator'>
-        <class 'abjad.operators.Duplication'>
-        <class 'abjad.operators.Inversion'>
-        <class 'abjad.operators.Multiplication'>
-        <class 'abjad.operators.Retrograde'>
-        <class 'abjad.operators.Rotation'>
-        <class 'abjad.operators.Transposition'>
         <class 'abjad.overrides.Interface'>
         <class 'abjad.overrides.LilyPondLiteral'>
         <class 'abjad.overrides.LilyPondOverride'>
