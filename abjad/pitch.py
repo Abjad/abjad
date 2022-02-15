@@ -5017,21 +5017,6 @@ class NamedPitch(Pitch):
         contributions.append(string)
         return contributions
 
-    def _respell(self, accidental="sharps"):
-        if accidental == "sharps":
-            dictionary = _pitch_class_number_to_pitch_class_name_with_sharps
-        else:
-            assert accidental == "flats"
-            dictionary = _pitch_class_number_to_pitch_class_name_with_flats
-        name = dictionary[self.pitch_class.number]
-        candidate = type(self)((name, self.octave.number))
-        if candidate.number == self.number - 12:
-            candidate = type(self)(candidate, octave=candidate.octave.number + 1)
-        elif candidate.number == self.number + 12:
-            candidate = type(self)(candidate, octave=candidate.octave.number - 1)
-        assert candidate.number == self.number
-        return candidate
-
     @property
     def accidental(self) -> "Accidental":
         """
@@ -5271,6 +5256,33 @@ class NamedPitch(Pitch):
 
         """
         return super().multiply(n=n)
+
+    def respell(self, accidental="sharps"):
+        """
+        Respells named pitch with ``accidental``.
+
+        ..  container:: example
+
+            >>> abjad.NamedPitch("cs").respell(accidental="flats")
+            NamedPitch('df')
+
+            >>> abjad.NamedPitch("df").respell(accidental="sharps")
+            NamedPitch('cs')
+
+        """
+        if accidental == "sharps":
+            dictionary = _pitch_class_number_to_pitch_class_name_with_sharps
+        else:
+            assert accidental == "flats"
+            dictionary = _pitch_class_number_to_pitch_class_name_with_flats
+        name = dictionary[self.pitch_class.number]
+        candidate = type(self)((name, self.octave.number))
+        if candidate.number == self.number - 12:
+            candidate = type(self)(candidate, octave=candidate.octave.number + 1)
+        elif candidate.number == self.number + 12:
+            candidate = type(self)(candidate, octave=candidate.octave.number - 1)
+        assert candidate.number == self.number
+        return candidate
 
     def simplify(self) -> "NamedPitch":
         """

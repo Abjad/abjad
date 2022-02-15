@@ -4,15 +4,14 @@ from . import _inspect
 from . import get as _get
 from . import indicators as _indicators
 from . import instruments as _instruments
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import pitch as _pitch
 from . import score as _score
-from . import selection as _selection
 
 
-def iterate_out_of_range(components) -> typing.Generator:
+def iterate_out_of_range(argument) -> typing.Generator:
     r"""
-    Iterates out-of-range notes and chords.
+    Iterates out-of-range notes and chords in ``argument``.
 
     ..  container:: example
 
@@ -39,9 +38,7 @@ def iterate_out_of_range(components) -> typing.Generator:
         Chord('<d fs>8')
 
     """
-    leaves = _selection.Selection(components).leaves(pitched=True)
-    assert isinstance(leaves, _selection.Selection), repr(leaves)
-    for leaf in leaves:
+    for leaf in _iterate.leaves(argument, pitched=True):
         instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             raise ValueError("no instrument found.")
@@ -49,9 +46,9 @@ def iterate_out_of_range(components) -> typing.Generator:
             yield leaf
 
 
-def respell_with_flats(selection) -> None:
+def respell_with_flats(argument) -> None:
     r"""
-    Respells pitches in ``selection`` with flats.
+    Respells pitches in ``argument`` with flats.
 
     ..  container:: example
 
@@ -92,19 +89,19 @@ def respell_with_flats(selection) -> None:
             }
 
     """
-    for leaf in iterate_.leaves(selection):
+    for leaf in _iterate.leaves(argument):
         if isinstance(leaf, _score.Note):
             assert leaf.written_pitch is not None
-            leaf.written_pitch = leaf.written_pitch._respell(accidental="flats")
+            leaf.written_pitch = leaf.written_pitch.respell(accidental="flats")
         elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
-                pitch = note_head.written_pitch._respell(accidental="flats")
+                pitch = note_head.written_pitch.respell(accidental="flats")
                 note_head.written_pitch = pitch
 
 
-def respell_with_sharps(selection) -> None:
+def respell_with_sharps(argument) -> None:
     r"""
-    Respells pitches in ``selection`` with sharps.
+    Respells pitches in ``argument`` with sharps.
 
     ..  container:: example
 
@@ -145,13 +142,13 @@ def respell_with_sharps(selection) -> None:
             }
 
     """
-    for leaf in iterate_.leaves(selection):
+    for leaf in _iterate.leaves(argument):
         if isinstance(leaf, _score.Note):
             assert leaf.written_pitch is not None
-            leaf.written_pitch = leaf.written_pitch._respell(accidental="sharps")
+            leaf.written_pitch = leaf.written_pitch.respell(accidental="sharps")
         elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
-                pitch = note_head.written_pitch._respell(accidental="sharps")
+                pitch = note_head.written_pitch.respell(accidental="sharps")
                 note_head.written_pitch = pitch
 
 
@@ -171,7 +168,7 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     if hasattr(argument, "written_pitches"):
         sounding_pitches = _inspect._get_sounding_pitches(argument)
         return all(_ in pitch_range for _ in sounding_pitches)
-    pitches = list(iterate_.pitches(argument))
+    pitches = list(_iterate.pitches(argument))
     if pitches:
         return all(_ in pitch_range for _ in pitches)
     else:
@@ -221,7 +218,7 @@ def transpose_from_sounding_pitch(argument) -> None:
             }
 
     """
-    for leaf in iterate_.leaves(argument, pitched=True):
+    for leaf in _iterate.leaves(argument, pitched=True):
         instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if not instrument:
             continue
@@ -281,7 +278,7 @@ def transpose_from_written_pitch(argument) -> None:
             }
 
     """
-    for leaf in iterate_.leaves(argument, pitched=True):
+    for leaf in _iterate.leaves(argument, pitched=True):
         instrument = _inspect._get_effective(leaf, _instruments.Instrument)
         if not instrument:
             continue
