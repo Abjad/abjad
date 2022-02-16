@@ -50,7 +50,7 @@ def test_get_timespan_06():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_1.name = voice_2.name = "voice"
     container = abjad.Container([voice_1, voice_2])
-    leaves = abjad.select(container).leaves()
+    leaves = abjad.Selection(container).leaves()
     for i, x in enumerate(leaves):
         assert abjad.get.timespan(x).start_offset == i * abjad.Offset(1, 8)
 
@@ -68,7 +68,7 @@ def test_get_timespan_08():
     voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
     offset = 0
     durations = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.Selection(voice).leaves()
     for leaf, duration in zip(leaves, durations):
         assert abjad.get.timespan(leaf).start_offset == offset
         offset += abjad.Offset(*duration)
@@ -83,7 +83,7 @@ def test_get_timespan_09():
     tuplet = abjad.Tuplet((2, 3), [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")])
     offset = 0
     durations = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
-    leaves = abjad.select(tuplet).leaves()
+    leaves = abjad.Selection(tuplet).leaves()
     for leaf, duration in zip(leaves, durations):
         assert abjad.get.timespan(leaf).start_offset == offset
         offset += abjad.Offset(*duration)
@@ -113,11 +113,11 @@ def test_get_timespan_11():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([abjad.Note(0, (1, 8)), voice, abjad.Note(0, (1, 8))])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     for i, leaf in enumerate(leaves):
         start_offset = abjad.get.timespan(leaf).start_offset
         assert start_offset == i * abjad.Offset(1, 8)
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.Selection(voice).leaves()
     for i, leaf in enumerate(leaves):
         start_offset = abjad.get.timespan(leaf).start_offset
         assert start_offset == i * abjad.Offset(1, 8) + abjad.Offset(1, 8)

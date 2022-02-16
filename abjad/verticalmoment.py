@@ -1,7 +1,7 @@
 from . import enumerate as _enumerate
 from . import iterate as iterate_
 from . import parentage as _parentage
-from . import pitch as _pitch
+from . import pcollections as _pcollections
 from . import score as _score
 from . import selection as _selection
 from . import sequence as _sequence
@@ -827,17 +827,17 @@ def iterate_pitch_pairs(components):
     for leaf_pair in iterate_leaf_pairs(components):
         pitches = sorted(iterate_.pitches(leaf_pair[0]))
         for pair in _enumerate.yield_pairs(pitches):
-            yield _pitch.PitchSegment(pair)
+            yield _pcollections.PitchSegment(pair)
         if isinstance(leaf_pair, set):
             pitches = sorted(iterate_.pitches(leaf_pair))
             for pair in _enumerate.yield_pairs(pitches):
-                yield _pitch.PitchSegment(pair)
+                yield _pcollections.PitchSegment(pair)
         else:
             pitches_1 = sorted(iterate_.pitches(leaf_pair[0]))
             pitches_2 = sorted(iterate_.pitches(leaf_pair[1]))
             sequences = [pitches_1, pitches_2]
             for pair in _enumerate.outer_product(sequences):
-                yield _pitch.PitchSegment(pair)
+                yield _pcollections.PitchSegment(pair)
         pitches = sorted(iterate_.pitches(leaf_pair[1]))
         for pair in _enumerate.yield_pairs(pitches):
-            yield _pitch.PitchSegment(pair)
+            yield _pcollections.PitchSegment(pair)

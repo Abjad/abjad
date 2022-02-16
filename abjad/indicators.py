@@ -13,6 +13,7 @@ from . import enums as _enums
 from . import markups as _markups
 from . import math as _math
 from . import overrides as _overrides
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import ratio as _ratio
 from . import sequence as _sequence
@@ -1084,7 +1085,7 @@ class Clef:
 
         But Abjad components work fine:
 
-        >>> for leaf in abjad.select(voice_1).leaves():
+        >>> for leaf in abjad.Selection(voice_1).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("e'8"), Clef(name='treble', hide=False))
@@ -1094,7 +1095,7 @@ class Clef:
         (Note("g'8"), Clef(name='treble', hide=False))
         (Note("b'8"), Clef(name='treble', hide=False))
 
-        >>> for leaf in abjad.select(voice_2).leaves():
+        >>> for leaf in abjad.Selection(voice_2).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("c'4."), Clef(name='treble', hide=False))
@@ -1238,8 +1239,8 @@ class Clef:
             bundle.opening.commands.append(self._get_lilypond_format())
         return bundle
 
-    @staticmethod
-    def from_pitches(pitches) -> "Clef":
+    @classmethod
+    def from_pitches(class_, pitches) -> "Clef":
         """
         Makes clef from ``pitches``.
 
@@ -1275,9 +1276,9 @@ class Clef:
             max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
         )
         if candidate_steps_above_bass < candidate_steps_below_treble:
-            return Clef("bass")
+            return class_("bass")
         else:
-            return Clef("treble")
+            return class_("treble")
 
 
 @dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
@@ -2031,7 +2032,7 @@ class Mode:
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
             raise ValueError(f"unknown mode name: {self.mode_name!r}.")
-        return _pitch.IntervalSegment(
+        return _pcollections.IntervalSegment(
             items=mdi_segment, item_class=_pitch.NamedInterval
         )
 

@@ -5,6 +5,7 @@ from . import get as _get
 from . import indicators as _indicators
 from . import instruments as _instruments
 from . import iterate as _iterate
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
 
@@ -156,7 +157,7 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     """
     Returns true when all pitches in ``argument`` sound within ``pitch_range``.
     """
-    assert isinstance(pitch_range, _pitch.PitchRange), repr(pitch_range)
+    assert isinstance(pitch_range, _pcollections.PitchRange), repr(pitch_range)
     if isinstance(argument, (int, float)):
         pitch = _pitch.NamedPitch(argument)
         return pitch in pitch_range

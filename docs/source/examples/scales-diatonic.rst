@@ -14,7 +14,7 @@ Use string input to "write" a scale directly:
 
     >>> voice = abjad.Voice("a'4 b' cs'' d'' e'' fs'' gs'' a''", name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
-    >>> note = abjad.select(staff).note(0)
+    >>> note = abjad.Selection(staff).note(0)
     >>> key_signature = abjad.KeySignature("a", "major") 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)
@@ -85,7 +85,7 @@ Change pitches to notes like this:
 
     >>> voice = abjad.Voice(notes, name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
-    >>> note = abjad.select(staff).note(0)
+    >>> note = abjad.Selection(staff).note(0)
     >>> key_signature = abjad.KeySignature("a", "major") 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)
@@ -100,7 +100,7 @@ Reverse scale direction like this:
 
     >>> voice = abjad.Voice(notes, name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
-    >>> note = abjad.select(staff).note(0)
+    >>> note = abjad.Selection(staff).note(0)
     >>> key_signature = abjad.KeySignature("a", "major") 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)
@@ -118,7 +118,7 @@ Join ascending and descending segments like this:
 
     >>> voice = abjad.Voice(notes, name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
-    >>> note = abjad.select(staff).note(0)
+    >>> note = abjad.Selection(staff).note(0)
     >>> key_signature = abjad.KeySignature("a", "major") 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)

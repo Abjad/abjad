@@ -62,7 +62,7 @@ def test_Container_remove_02():
     """
 
     staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     sequential = staff[0]
     abjad.beam(leaves)
 

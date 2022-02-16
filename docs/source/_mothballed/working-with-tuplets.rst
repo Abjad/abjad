@@ -84,7 +84,7 @@ Use ``select(...).leaves()`` to get the leaves in a tuplet:
 
 ::
 
-    >>> abjad.select(tuplet).leaves()
+    >>> abjad.Selection(tuplet).leaves()
 
 Getting the length of a tuplet
 ------------------------------

@@ -1,12 +1,16 @@
 import typing
 
 from . import _iterate
+from . import duration as _duration
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
 from . import selection as _selection
 
 
-def components(argument, prototype=None, *, exclude=None, grace=None, reverse=None):
+def components(
+    argument, prototype=None, *, exclude=None, grace=None, reverse=None
+) -> typing.Generator:
     r"""
     Iterates components in ``argument``.
 
@@ -169,7 +173,6 @@ def components(argument, prototype=None, *, exclude=None, grace=None, reverse=No
         Note("d'4")
         Note("c'4")
 
-    Returns generator.
     """
     return _iterate._public_iterate_components(
         argument,
@@ -188,7 +191,7 @@ def leaves(
     grace=None,
     pitched=None,
     reverse=None,
-):
+) -> typing.Generator:
     r"""
     Iterates leaves in ``argument``.
 
@@ -412,7 +415,6 @@ def leaves(
         Rest('r8')
         Rest('r8')
 
-    Returns generator.
     """
     return _iterate._public_iterate_leaves(
         argument,
@@ -775,7 +777,6 @@ def logical_ties(
         ...
         LogicalTie(items=[Note("c'8"), Note("c'8"), Note("c'8")])
 
-    Returns generator.
     """
     return _iterate._iterate_logical_ties(
         argument,
@@ -788,7 +789,7 @@ def logical_ties(
     )
 
 
-def pitches(argument):
+def pitches(argument) -> typing.Generator:
     r"""
     Iterates pitches in ``argument``.
 
@@ -855,7 +856,6 @@ def pitches(argument):
         NamedPitch("e'")
         NamedPitch("fs'")
 
-    Returns generator.
     """
     if isinstance(argument, _pitch.Pitch):
         pitch = _pitch.NamedPitch(argument)
@@ -867,7 +867,7 @@ def pitches(argument):
         pass
     if isinstance(argument, _score.Chord):
         result.extend(argument.written_pitches)
-    elif isinstance(argument, _pitch.PitchSet):
+    elif isinstance(argument, _pcollections.PitchSet):
         result.extend(sorted(list(argument)))
     elif isinstance(argument, (list, tuple, set)):
         for item in argument:
@@ -887,7 +887,9 @@ def pitches(argument):
         yield pitch
 
 
-def timeline(argument, prototype=None, *, exclude=None, reverse=None):
+def timeline(
+    argument, prototype=None, *, exclude=None, reverse=None
+) -> tuple[_score.Component, ...]:
     r"""
     Iterates leaves in ``argument`` in timeline order.
 
@@ -1040,10 +1042,10 @@ def timeline(argument, prototype=None, *, exclude=None, reverse=None):
 
     Iterates leaves when ``prototype`` is none.
     """
-    components = leaves(argument, prototype=prototype, exclude=exclude)
-    components = list(components)
+    generator = leaves(argument, prototype=prototype, exclude=exclude)
+    components = list(generator)
     components.sort(key=lambda _: _._get_timespan().start_offset)
-    offset_to_components = dict()
+    offset_to_components: dict[_duration.Offset, list[_score.Component]] = dict()
     for component in components:
         start_offset = component._get_timespan().start_offset
         if start_offset not in offset_to_components:
@@ -1051,9 +1053,9 @@ def timeline(argument, prototype=None, *, exclude=None, reverse=None):
     for component in components:
         start_offset = component._get_timespan().start_offset
         offset_to_components[start_offset].append(component)
-    components = []
+    result: list[_score.Component] = []
     for start_offset, list_ in offset_to_components.items():
-        components.extend(list_)
+        result.extend(list_)
     if reverse:
-        components.reverse()
-    return tuple(components)
+        result.reverse()
+    return tuple(result)

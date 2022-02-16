@@ -250,7 +250,7 @@ def test_mutate__split_leaf_by_durations_10():
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
     staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)

@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Selection_are_contiguous_same_parent_01():
+def test_mutate__are_contiguous_same_parent_01():
     """
     Is true for strictly contiguous leaves in voice.
     Is false for other time orderings of leaves in voice.
@@ -9,25 +9,26 @@ def test_Selection_are_contiguous_same_parent_01():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
-    assert voice[:].are_contiguous_same_parent()
+    assert abjad.mutate._are_contiguous_same_parent(voice[:])
 
-    assert not abjad.select(reversed(voice[:])).are_contiguous_same_parent()
+    other = abjad.Selection(reversed(voice[:]))
+    assert not abjad.mutate._are_contiguous_same_parent(other)
 
     components = []
     components.extend(voice[2:])
     components.extend(voice[:2])
-    assert not abjad.select(components).are_contiguous_same_parent()
+    assert not abjad.mutate._are_contiguous_same_parent(components)
 
     components = []
     components.extend(voice[3:4])
     components.extend(voice[:1])
-    assert not abjad.select(components).are_contiguous_same_parent()
+    assert not abjad.mutate._are_contiguous_same_parent(components)
     components = [voice]
     components.extend(voice[:])
-    assert not abjad.select(components).are_contiguous_same_parent()
+    assert not abjad.mutate._are_contiguous_same_parent(components)
 
 
-def test_Selection_are_contiguous_same_parent_02():
+def test_mutate__are_contiguous_same_parent_02():
     """
     Is true for unincorporated components when orphans allowed.
     Is false for unincorporated components when orphans not allowed.
@@ -62,18 +63,18 @@ def test_Selection_are_contiguous_same_parent_02():
         """
     )
 
-    assert abjad.select(voice).are_contiguous_same_parent()
+    assert abjad.mutate._are_contiguous_same_parent([voice])
 
-    assert voice[:].are_contiguous_same_parent()
+    assert abjad.mutate._are_contiguous_same_parent(voice[:])
 
-    assert voice[0][:].are_contiguous_same_parent()
-    assert voice[1][:].are_contiguous_same_parent()
+    assert abjad.mutate._are_contiguous_same_parent(voice[0][:])
+    assert abjad.mutate._are_contiguous_same_parent(voice[1][:])
 
-    leaves = abjad.select(voice).leaves()
-    assert not leaves.are_contiguous_same_parent()
+    leaves = abjad.Selection(voice).leaves()
+    assert not abjad.mutate._are_contiguous_same_parent(leaves)
 
 
-def test_Selection_are_contiguous_same_parent_03():
+def test_mutate__are_contiguous_same_parent_03():
 
     notes = [
         abjad.Note("c'8"),
@@ -82,12 +83,12 @@ def test_Selection_are_contiguous_same_parent_03():
         abjad.Note("f'8"),
     ]
 
-    assert abjad.select(notes).are_contiguous_same_parent()
+    assert abjad.mutate._are_contiguous_same_parent(notes)
 
 
-def test_Selection_are_contiguous_same_parent_04():
+def test_mutate__are_contiguous_same_parent_04():
     """
     Empty selection returns true.
     """
 
-    assert abjad.Selection().are_contiguous_same_parent()
+    assert abjad.mutate._are_contiguous_same_parent([])

@@ -4,10 +4,11 @@ from . import _iterate
 from . import bind as _bind
 from . import duration as _duration
 from . import format as _format
+from . import iterate as iterate_
 from . import mutate as _mutate
 from . import overrides as _overrides
 from . import parentage as _parentage
-from . import pitch as _pitch
+from . import pcollections as _pcollections
 from . import score as _score
 from . import selection as _selection
 from . import spanners as _spanners
@@ -249,8 +250,8 @@ class OnBeatGraceContainer(_score.Container):
                 chord = _score.Chord(first_grace)
                 _mutate.replace(first_grace, chord)
                 first_grace = chord
-            selection = _selection.Selection(anchor_leaf)
-            anchor_pitches = _pitch.PitchSet.from_selection(selection)
+            generator = iterate_.pitches(anchor_leaf)
+            anchor_pitches = _pcollections.PitchSet.from_pitches(generator)
             highest_pitch = list(sorted(anchor_pitches))[-1]
             if highest_pitch not in first_grace.note_heads:
                 first_grace.note_heads.append(highest_pitch)
@@ -275,9 +276,6 @@ class OnBeatGraceContainer(_score.Container):
         Gets leaf duration.
         """
         return self._leaf_duration
-
-
-### FACTORY FUNCTIONS ###
 
 
 def on_beat_grace_container(
@@ -824,8 +822,8 @@ def on_beat_grace_container(
         return _tag.Tag(f"abjad.on_beat_grace_container({n})")
 
     assert isinstance(anchor_voice_selection, _selection.Selection)
-    if not anchor_voice_selection.are_contiguous_same_parent(
-        ignore_before_after_grace=True
+    if not _mutate._are_contiguous_same_parent(
+        anchor_voice_selection, ignore_before_after_grace=True
     ):
         message = "selection must be contiguous in same parent:\n"
         message += f"   {repr(anchor_voice_selection)}"

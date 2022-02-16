@@ -17,7 +17,7 @@ def test_mutate_copy_01():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.slur(leaves)
     abjad.trill_spanner(leaves)
     abjad.beam(leaves)
@@ -84,7 +84,7 @@ def test_mutate_copy_02():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.slur(leaves)
     abjad.trill_spanner(leaves)
     abjad.beam(leaves)
@@ -153,7 +153,7 @@ def test_mutate_copy_03():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.slur(leaves)
     abjad.trill_spanner(leaves)
     abjad.beam(leaves)
@@ -222,7 +222,7 @@ def test_mutate_copy_04():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
 
@@ -258,7 +258,7 @@ def test_mutate_copy_04():
         """
     ), print(abjad.lilypond(staff))
 
-    selection = abjad.select(staff)
+    selection = abjad.Selection(staff)
     new_selection = abjad.mutate.copy(selection)
     new_staff = new_selection[0]
 
@@ -310,7 +310,7 @@ def test_mutate_copy_05():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
 
@@ -391,7 +391,7 @@ def test_mutate_copy_06():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
 
@@ -466,7 +466,7 @@ def test_mutate_copy_07():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.beam(leaves)
     abjad.slur(leaves)
 

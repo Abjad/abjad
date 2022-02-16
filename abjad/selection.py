@@ -1,20 +1,132 @@
-import collections.abc
+import collections
 import itertools
 import typing
 
 from . import _inspect, _iterate, _update
-from . import bind as _bind
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
-from . import indicators as _indicators
+from . import iterate as iterate_
 from . import parentage as _parentage
 from . import pattern as _pattern
-from . import pitch as _pitch
+from . import pcollections as _pcollections
 from . import ratio as _ratio
 from . import score as _score
 from . import sequence as _sequence
 from . import typings as _typings
+
+
+def _head_filter_subresult(result, head):
+    result_ = []
+    for item in result:
+        if isinstance(item, _score.Component):
+            leaves = _iterate._get_logical_tie_leaves(item)
+            if head == (item is leaves[0]):
+                result_.append(item)
+            else:
+                pass
+        elif isinstance(item, Selection):
+            if not all(isinstance(_, _score.Component) for _ in item):
+                raise NotImplementedError(item)
+            selection = []
+            for component in item:
+                leaves = _iterate._get_logical_tie_leaves(component)
+                if head == leaves[0]:
+                    selection.append(item)
+                else:
+                    pass
+            selection = Selection(selection)
+            result_.append(selection)
+        else:
+            raise TypeError(item)
+    assert isinstance(result_, list), repr(result_)
+    return Selection(result_)
+
+
+def _is_immediate_child_of_outermost_voice(component):
+    parentage = _parentage.Parentage(component)
+    context = parentage.get(_score.Voice, -1) or parentage.get(_score.Context)
+    if context is not None:
+        return parentage.component._parent is context
+    return None
+
+
+def _tail_filter_subresult(result, tail):
+    result_ = []
+    for item in result:
+        if isinstance(item, _score.Component):
+            leaves = _iterate._get_logical_tie_leaves(item)
+            if tail == (item is leaves[-1]):
+                result_.append(item)
+            else:
+                pass
+        elif isinstance(item, Selection):
+            if not all(isinstance(_, _score.Component) for _ in item):
+                raise NotImplementedError(item)
+            selection = []
+            for component in item:
+                leaves = _iterate._get_logical_tie_leaves(component)
+                if tail == leaves[-1]:
+                    selection.append(item)
+                else:
+                    pass
+            selection = Selection(selection)
+            result_.append(selection)
+        else:
+            raise TypeError(item)
+    assert isinstance(result_, list), repr(result_)
+    return Selection(result_)
+
+
+def _trim_subresult(result, trim):
+    assert trim in (True, _enums.Left)
+    prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
+    result_ = []
+    found_good_component = False
+    for item in result:
+        if isinstance(item, _score.Component):
+            if not isinstance(item, prototype):
+                found_good_component = True
+        elif isinstance(item, Selection):
+            if not all(isinstance(_, _score.Component) for _ in item):
+                raise NotImplementedError(item)
+            selection = []
+            for component in item:
+                if not isinstance(component, prototype):
+                    found_good_component = True
+                if found_good_component:
+                    selection.append(component)
+            item = Selection(selection)
+        else:
+            raise TypeError(item)
+        if found_good_component:
+            result_.append(item)
+    if trim is _enums.Left:
+        result = Selection(result_)
+    else:
+        result__ = []
+        found_good_component = False
+        for item in reversed(result_):
+            if isinstance(item, _score.Component):
+                if not isinstance(item, prototype):
+                    found_good_component = True
+            elif isinstance(item, Selection):
+                if not all(isinstance(_, _score.Component) for _ in item):
+                    raise NotImplementedError(item)
+                selection = []
+                for component in reversed(item):
+                    if not isinstance(component, prototype):
+                        found_good_component = True
+                    if found_good_component:
+                        selection.insert(0, component)
+                item = Selection(selection)
+            else:
+                raise TypeError(item)
+            if found_good_component:
+                result__.insert(0, item)
+        assert isinstance(result__, list), repr(result__)
+        result = Selection(result__)
+    return result
 
 
 class Selection(collections.abc.Sequence):
@@ -28,7 +140,7 @@ class Selection(collections.abc.Sequence):
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> result = abjad.select(staff).runs()
+        >>> result = abjad.Selection(staff).runs()
 
         >>> for item in result:
         ...     item
@@ -39,56 +151,20 @@ class Selection(collections.abc.Sequence):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Selections"
 
-    __slots__ = ("_items", "_previous")
+    __slots__ = ("_items",)
 
-    ### INITIALIZER ###
-
-    def __init__(self, items=None, previous=None):
+    def __init__(self, items=None):
         if items is None:
             items = []
         if isinstance(items, _score.Component):
             items = [items]
         items = tuple(items)
-        self._check(items)
+        for item in items:
+            if not isinstance(item, (_score.Component, Selection)):
+                raise Exception("components / selections only:\n    {items!r}")
         self._items = tuple(items)
-        self._previous = previous
-
-    ### SPECIAL METHODS ###
-
-    def __add__(self, argument) -> "Selection":
-        r"""
-        Cocatenates ``argument`` to selection.
-
-        ..  container:: example
-
-            Adds selections:
-
-            ..  container:: example
-
-                >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
-                >>> abjad.setting(staff).autoBeaming = False
-                >>> abjad.show(staff) # doctest: +SKIP
-
-                >>> left = abjad.select(staff).leaves()[:2]
-                >>> right = abjad.select(staff).leaves()[-2:]
-                >>> result = left + right
-
-                >>> for item in result:
-                ...     item
-                ...
-                Note("c'8")
-                Rest('r8')
-                Note("g'8")
-                Note("a'8")
-
-        """
-        assert isinstance(argument, collections.abc.Iterable)
-        items = self.items + tuple(argument)
-        return type(self)(items=items)
 
     def __contains__(self, argument) -> bool:
         """
@@ -117,30 +193,13 @@ class Selection(collections.abc.Sequence):
         """
         result = self.items.__getitem__(argument)
         if isinstance(result, tuple):
-            result = type(self)(result, previous=self._previous)
+            result = type(self)(result)
         return result
-
-    def __getstate__(self) -> dict:
-        """
-        Gets state of selection.
-        """
-        if hasattr(self, "__dict__"):
-            state = vars(self).copy()
-        else:
-            state = {}
-        for class_ in type(self).__mro__:
-            for slot in getattr(class_, "__slots__", ()):
-                try:
-                    state[slot] = getattr(self, slot)
-                except AttributeError:
-                    pass
-        return state
 
     def __hash__(self) -> int:
         """
         Hashes selection.
         """
-        # return hash(self.__class__.__name__ + str(self))
         return id(self)
 
     def __len__(self) -> int:
@@ -149,314 +208,14 @@ class Selection(collections.abc.Sequence):
         """
         return len(self.items)
 
-    def __radd__(self, argument) -> "Selection":
-        """
-        Concatenates selection to ``argument``.
-        """
-        assert isinstance(argument, collections.abc.Iterable)
-        items = tuple(argument) + self.items
-        return type(self)(items=items)
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation of selection.
         """
         return f"{type(self).__name__}(items={list(self.items)!r})"
 
-    def __setstate__(self, state) -> None:
-        """
-        Sets state of selection.
-        """
-        for key, value in state.items():
-            setattr(self, key, value)
-
-    ### PRIVATE METHODS ###
-
-    def _attach_tie_to_leaves(self):
-        for leaf in self[:-1]:
-            _bind.detach(_indicators.Tie, leaf)
-            _bind.attach(_indicators.Tie(), leaf)
-
-    @staticmethod
-    def _check(items):
-        for item in items:
-            if not isinstance(item, (_score.Component, Selection)):
-                message = "components / selections only:\n"
-                message += f"   {items!r}"
-                raise TypeError(message)
-
-    @classmethod
-    def _components(
-        class_,
-        argument,
-        prototype=None,
-        *,
-        exclude=None,
-        grace=None,
-        head=None,
-        tail=None,
-        trim=None,
-    ):
-        prototype = prototype or _score.Component
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        result = []
-        generator = _iterate._public_iterate_components(
-            argument, prototype, exclude=exclude, grace=grace
-        )
-        components = list(generator)
-        if components:
-            if trim in (True, _enums.Left):
-                components = Selection._trim_subresult(components, trim)
-            if head is not None:
-                components = Selection._head_filter_subresult(components, head)
-            if tail is not None:
-                components = Selection._tail_filter_subresult(components, tail)
-            result.extend(components)
-        return class_(result)
-
-    def _copy(self):
-        assert self.are_contiguous_logical_voice()
-        new_components = []
-        for component in self:
-            if isinstance(component, _score.Container):
-                new_component = component._copy_with_children()
-            else:
-                new_component = component.__copy__()
-            new_components.append(new_component)
-        new_components = type(self)(new_components)
-        return new_components
-
-    def _get_component(self, prototype=None, n=0, recurse=True):
-        prototype = prototype or (_score.Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        if 0 <= n:
-            if recurse:
-                components = _iterate._public_iterate_components(self, prototype)
-            else:
-                components = self.items
-            for i, x in enumerate(components):
-                if i == n:
-                    return x
-        else:
-            if recurse:
-                components = _iterate._public_iterate_components(
-                    self, prototype, reverse=True
-                )
-            else:
-                components = reversed(self.items)
-            for i, x in enumerate(components):
-                if i == abs(n) - 1:
-                    return x
-
-    def _get_offset_lists(self):
-        start_offsets, stop_offsets = [], []
-        for component in self:
-            start_offsets.append(component._get_timespan().start_offset)
-            stop_offsets.append(component._get_timespan().stop_offset)
-        return start_offsets, stop_offsets
-
-    def _get_parent_and_start_stop_indices(self, ignore_before_after_grace=None):
-        assert self.are_contiguous_same_parent(
-            ignore_before_after_grace=ignore_before_after_grace
-        )
-        if self:
-            first, last = self[0], self[-1]
-            parent = first._parent
-            if parent is not None:
-                first_index = parent.index(first)
-                last_index = parent.index(last)
-                return parent, first_index, last_index
-        return None, None, None
-
     def _get_preprolated_duration(self):
         return sum(component._get_preprolated_duration() for component in self)
-
-    def _give_components_to_empty_container(self, container):
-        """
-        Not composer-safe.
-        """
-        assert self.are_contiguous_same_parent()
-        assert isinstance(container, _score.Container)
-        assert not container
-        components = []
-        for component in self:
-            components.extend(getattr(component, "components", ()))
-        container._components.extend(components)
-        container[:]._set_parents(container)
-
-    def _give_position_in_parent_to_container(self, container):
-        """
-        Not composer-safe.
-        """
-        assert self.are_contiguous_same_parent()
-        assert isinstance(container, _score.Container)
-        parent, start, stop = self._get_parent_and_start_stop_indices()
-        if parent is not None:
-            parent._components.__setitem__(slice(start, start), [container])
-            container._set_parent(parent)
-            self._set_parents(None)
-
-    @staticmethod
-    def _head_filter_subresult(result, head):
-        result_ = []
-        for item in result:
-            if isinstance(item, _score.Component):
-                leaves = _iterate._get_logical_tie_leaves(item)
-                if head == (item is leaves[0]):
-                    result_.append(item)
-                else:
-                    pass
-            elif isinstance(item, Selection):
-                if not all(isinstance(_, _score.Component) for _ in item):
-                    raise NotImplementedError(item)
-                selection = []
-                for component in item:
-                    leaves = _iterate._get_logical_tie_leaves(component)
-                    if head == leaves[0]:
-                        selection.append(item)
-                    else:
-                        pass
-                selection = Selection(selection)
-                result_.append(selection)
-            else:
-                raise TypeError(item)
-        assert isinstance(result_, list), repr(result_)
-        return Selection(result_)
-
-    @staticmethod
-    def _immediately_precedes(component_1, component_2, ignore_before_after_grace=None):
-        successors = []
-        current = component_1
-        # do not include OnBeatGraceContainer here because
-        # OnBeatGraceContainer is a proper container
-        grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
-        while current is not None:
-            sibling = _inspect._get_sibling_with_graces(current, 1)
-            while (
-                ignore_before_after_grace
-                and sibling is not None
-                and isinstance(sibling._parent, grace_prototype)
-            ):
-                sibling = _inspect._get_sibling_with_graces(sibling, 1)
-            if sibling is None:
-                current = current._parent
-            else:
-                descendants = sibling._get_descendants_starting_with()
-                successors = descendants
-                break
-        return component_2 in successors
-
-    @staticmethod
-    def _is_immediate_child_of_outermost_voice(component):
-        parentage = _parentage.Parentage(component)
-        context = parentage.get(_score.Voice, -1) or parentage.get(_score.Context)
-        if context is not None:
-            return parentage.component._parent is context
-        return None
-
-    # TODO: remove this in favor of the abjad.iterpitches module;
-    #       force users to initialize pitch segments expicitly after iteration.
-    def _pitch_segment(self) -> _pitch.PitchSegment:
-        pitches = []
-        for leaf in _iterate._public_iterate_leaves(self, pitched=True):
-            try:
-                pitches.extend(leaf.written_pitches)
-            except AttributeError:
-                pass
-            try:
-                pitches.append(leaf.written_pitch)
-            except AttributeError:
-                pass
-        return _pitch.PitchSegment(items=pitches, item_class=_pitch.NamedPitch)
-
-    def _set_parents(self, new_parent):
-        """
-        Not composer-safe.
-        """
-        for component in self.items:
-            component._set_parent(new_parent)
-
-    @staticmethod
-    def _tail_filter_subresult(result, tail):
-        result_ = []
-        for item in result:
-            if isinstance(item, _score.Component):
-                leaves = _iterate._get_logical_tie_leaves(item)
-                if tail == (item is leaves[-1]):
-                    result_.append(item)
-                else:
-                    pass
-            elif isinstance(item, Selection):
-                if not all(isinstance(_, _score.Component) for _ in item):
-                    raise NotImplementedError(item)
-                selection = []
-                for component in item:
-                    leaves = _iterate._get_logical_tie_leaves(component)
-                    if tail == leaves[-1]:
-                        selection.append(item)
-                    else:
-                        pass
-                selection = Selection(selection)
-                result_.append(selection)
-            else:
-                raise TypeError(item)
-        assert isinstance(result_, list), repr(result_)
-        return Selection(result_)
-
-    @staticmethod
-    def _trim_subresult(result, trim):
-        assert trim in (True, _enums.Left)
-        prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
-        result_ = []
-        found_good_component = False
-        for item in result:
-            if isinstance(item, _score.Component):
-                if not isinstance(item, prototype):
-                    found_good_component = True
-            elif isinstance(item, Selection):
-                if not all(isinstance(_, _score.Component) for _ in item):
-                    raise NotImplementedError(item)
-                selection = []
-                for component in item:
-                    if not isinstance(component, prototype):
-                        found_good_component = True
-                    if found_good_component:
-                        selection.append(component)
-                item = Selection(selection)
-            else:
-                raise TypeError(item)
-            if found_good_component:
-                result_.append(item)
-        if trim is _enums.Left:
-            result = Selection(result_)
-        else:
-            result__ = []
-            found_good_component = False
-            for item in reversed(result_):
-                if isinstance(item, _score.Component):
-                    if not isinstance(item, prototype):
-                        found_good_component = True
-                elif isinstance(item, Selection):
-                    if not all(isinstance(_, _score.Component) for _ in item):
-                        raise NotImplementedError(item)
-                    selection = []
-                    for component in reversed(item):
-                        if not isinstance(component, prototype):
-                            found_good_component = True
-                        if found_good_component:
-                            selection.insert(0, component)
-                    item = Selection(selection)
-                else:
-                    raise TypeError(item)
-                if found_good_component:
-                    result__.insert(0, item)
-            assert isinstance(result__, list), repr(result__)
-            result = Selection(result__)
-        return result
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def items(self) -> typing.Tuple:
@@ -470,282 +229,6 @@ class Selection(collections.abc.Sequence):
 
         """
         return self._items
-
-    ### PUBLIC METHODS ###
-
-    def are_contiguous_logical_voice(
-        self, prototype=None, *, ignore_before_after_grace=None
-    ) -> bool:
-        r"""
-        Is true when items in selection are contiguous components in the
-        same logical voice.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> staff[:].are_contiguous_logical_voice()
-            True
-
-            >>> selection = staff[:1] + staff[-1:]
-            >>> selection.are_contiguous_logical_voice()
-            False
-
-        ..  container:: example
-
-            REGRESSION. Before-grace music may be ignored:
-
-            >>> voice = abjad.Voice("c'4 d' e' f'")
-            >>> container = abjad.BeforeGraceContainer("cs'16")
-            >>> abjad.attach(container, voice[1])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \new Voice
-                {
-                    c'4
-                    \grace {
-                        cs'16
-                    }
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            >>> voice[:]
-            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
-
-            >>> voice[:].are_contiguous_logical_voice()
-            False
-
-            >>> voice[:].are_contiguous_logical_voice(
-            ...     ignore_before_after_grace=True
-            ... )
-            True
-
-            After-grace music may be ignored, too:
-
-            >>> voice = abjad.Voice("c'4 d' e' f'")
-            >>> container = abjad.AfterGraceContainer("cs'16")
-            >>> abjad.attach(container, voice[0])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \new Voice
-                {
-                    \afterGrace
-                    c'4
-                    {
-                        cs'16
-                    }
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            >>> voice[:]
-            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
-
-            >>> voice[:].are_contiguous_logical_voice()
-            False
-
-            >>> voice[:].are_contiguous_logical_voice(
-            ...     ignore_before_after_grace=True
-            ... )
-            True
-
-        """
-        if not isinstance(self, collections.abc.Iterable):
-            return False
-        prototype = prototype or (_score.Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        assert isinstance(prototype, tuple)
-        if len(self) == 0:
-            return True
-        if all(isinstance(_, prototype) and _._parent is None for _ in self):
-            return True
-        first = self[0]
-        if not isinstance(first, prototype):
-            return False
-        first_parentage = _parentage.Parentage(first)
-        first_logical_voice = first_parentage.logical_voice()
-        first_root = first_parentage.root
-        previous = first
-        for current in self[1:]:
-            current_parentage = _parentage.Parentage(current)
-            current_logical_voice = current_parentage.logical_voice()
-            # false if wrong type of component found
-            if not isinstance(current, prototype):
-                return False
-            # false if in different logical voices
-            if current_logical_voice != first_logical_voice:
-                return False
-            # false if components are in same score and are discontiguous
-            if current_parentage.root == first_root:
-                if not self._immediately_precedes(
-                    previous,
-                    current,
-                    ignore_before_after_grace=ignore_before_after_grace,
-                ):
-                    return False
-            previous = current
-        return True
-
-    def are_contiguous_same_parent(
-        self, prototype=None, *, ignore_before_after_grace=None
-    ) -> bool:
-        r"""
-        Is true when items in selection are all contiguous components in
-        the same parent.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> staff[:].are_contiguous_same_parent()
-            True
-
-            >>> selection = staff[:1] + staff[-1:]
-            >>> selection.are_contiguous_same_parent()
-            False
-
-        ..  container:: example
-
-            REGRESSION. Before-grace music music may be ignored:
-
-            >>> voice = abjad.Voice("c'4 d' e' f'")
-            >>> container = abjad.BeforeGraceContainer("cs'16")
-            >>> abjad.attach(container, voice[1])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \new Voice
-                {
-                    c'4
-                    \grace {
-                        cs'16
-                    }
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            >>> voice[:]
-            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
-
-            >>> voice[:].are_contiguous_same_parent()
-            False
-
-            >>> voice[:].are_contiguous_same_parent(
-            ...     ignore_before_after_grace=True
-            ... )
-            True
-
-            After-grace music may be ignored, too:
-
-            >>> voice = abjad.Voice("c'4 d' e' f'")
-            >>> container = abjad.AfterGraceContainer("cs'16")
-            >>> abjad.attach(container, voice[0])
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(voice)
-                >>> print(string)
-                \new Voice
-                {
-                    \afterGrace
-                    c'4
-                    {
-                        cs'16
-                    }
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            >>> voice[:]
-            Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
-
-            >>> voice[:].are_contiguous_same_parent()
-            False
-
-            >>> voice[:].are_contiguous_same_parent(
-            ...     ignore_before_after_grace=True
-            ... )
-            True
-
-        """
-        prototype = prototype or (_score.Component,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        assert isinstance(prototype, tuple)
-        if len(self) == 0:
-            return True
-        if all(isinstance(_, prototype) and _._parent is None for _ in self):
-            return True
-        first = self[0]
-        if not isinstance(first, prototype):
-            return False
-        first_parent = first._parent
-        same_parent = True
-        strictly_contiguous = True
-        previous = first
-        for current in self[1:]:
-            if not isinstance(current, prototype):
-                return False
-            if current._parent is not first_parent:
-                same_parent = False
-            if not self._immediately_precedes(
-                previous,
-                current,
-                ignore_before_after_grace=ignore_before_after_grace,
-            ):
-                strictly_contiguous = False
-            if current._parent is not None and (
-                not same_parent or not strictly_contiguous
-            ):
-                return False
-            previous = current
-        return True
-
-    def are_leaves(self) -> bool:
-        """
-        Is true when items in selection are all leaves.
-
-        ..  container:: example
-
-            >>> abjad.Staff("c'4 d'4 e'4 f'4")[:].are_leaves()
-            True
-
-        """
-        return all(isinstance(_, _score.Leaf) for _ in self)
-
-    def are_logical_voice(self, prototype=None) -> bool:
-        """
-        Is true when items in selection are all components in the same
-        logical voice.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> staff[:].are_logical_voice()
-            True
-
-            >>> selection = staff[:1] + staff[-1:]
-            >>> selection.are_logical_voice()
-            True
-
-        """
-        return _inspect._are_logical_voice(self, prototype=prototype)
 
     def chord(
         self, n: int, *, exclude: _typings.Strings = None, grace: bool = None
@@ -764,7 +247,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -773,7 +256,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).chord(-1)
+            >>> result = abjad.Selection(staff).chord(-1)
             >>> result
             Chord("<fs' gs'>16")
 
@@ -852,7 +335,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -861,7 +344,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).chords()
+            >>> result = abjad.Selection(staff).chords()
             >>> for item in result:
             ...     item
             ...
@@ -959,7 +442,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Note)
+            >>> result = abjad.Selection(staff).components(abjad.Note)
             >>> for item in result:
             ...     item
             ...
@@ -1012,7 +495,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(
+            >>> result = abjad.Selection(staff).components(
             ...     abjad.Leaf,
             ...     grace=None,
             ...     )
@@ -1077,7 +560,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(
+            >>> result = abjad.Selection(staff).components(
             ...     abjad.Leaf,
             ...     grace=False,
             ...     )
@@ -1134,7 +617,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(
+            >>> result = abjad.Selection(staff).components(
             ...     abjad.Leaf,
             ...     grace=True,
             ...     )
@@ -1184,7 +667,7 @@ class Selection(collections.abc.Sequence):
         generator = _iterate._public_iterate_components(
             self, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
         )
-        return type(self)(generator, previous=self._previous)
+        return type(self)(generator)
 
     def exclude(self, indices: typing.Sequence[int], period: int = None) -> "Selection":
         r"""
@@ -1198,7 +681,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().exclude([0], 2)
+            >>> result = abjad.Selection(staff).leaves().exclude([0], 2)
             >>> for item in result:
             ...     item
             ...
@@ -1246,7 +729,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> selection = abjad.select(staff).logical_ties(pitched=True)
+            >>> selection = abjad.Selection(staff).logical_ties(pitched=True)
             >>> result = selection.exclude([0], 2)
             >>> for item in result:
             ...     item
@@ -1291,8 +774,8 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(pitched=True)
-            >>> result = [abjad.select(_).leaves().exclude([1]) for _ in result]
+            >>> result = abjad.Selection(staff).logical_ties(pitched=True)
+            >>> result = [abjad.Selection(_).leaves().exclude([1]) for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -1335,10 +818,8 @@ class Selection(collections.abc.Sequence):
 
         """
         pattern = _pattern.Pattern(indices, period=period, inverted=True)
-        pattern = pattern.advance(self._previous)
-        self._previous = None
         items = _sequence.Sequence(self.items).retain_pattern(pattern)
-        result = type(self)(items, previous=self._previous)
+        result = type(self)(items)
         return result
 
     def filter(self, predicate=None) -> "Selection":
@@ -1352,7 +833,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).runs().filter(
+            >>> result = abjad.Selection(staff).runs().filter(
             ...     lambda _ : abjad.get.duration(_) == abjad.Duration((2, 8))
             ... )
             >>> for item in result:
@@ -1406,7 +887,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -1415,8 +896,8 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).tuplets()
-            >>> result = [abjad.select(_).leaves()[:2] for _ in result]
+            >>> result = abjad.Selection(staff).tuplets()
+            >>> result = [abjad.Selection(_).leaves()[:2] for _ in result]
             >>> for item in result:
             ...     item
             Selection(items=[Rest('r16'), Note("bf'16")])
@@ -1494,7 +975,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -1503,8 +984,8 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).tuplets()
-            >>> result = abjad.select(abjad.select(_).leaves()[:2] for _ in result)
+            >>> result = abjad.Selection(staff).tuplets()
+            >>> result = abjad.Selection(abjad.Selection(_).leaves()[:2] for _ in result)
             >>> result = result.flatten()
             >>> for item in result:
             ...     item
@@ -1594,7 +1075,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().get([0], 2)
+            >>> result = abjad.Selection(staff).leaves().get([0], 2)
             >>> for item in result:
             ...     item
             ...
@@ -1642,7 +1123,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> selection = abjad.select(staff).logical_ties(pitched=True)
+            >>> selection = abjad.Selection(staff).logical_ties(pitched=True)
             >>> result = selection.get([0], 2)
             >>> for item in result:
             ...     item
@@ -1688,8 +1169,8 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(pitched=True)
-            >>> result = [abjad.select(_).leaves().get([1]) for _ in result]
+            >>> result = abjad.Selection(staff).logical_ties(pitched=True)
+            >>> result = [abjad.Selection(_).leaves().get([1]) for _ in result]
             >>> for item in result:
             ...     item
             Selection(items=[])
@@ -1732,10 +1213,8 @@ class Selection(collections.abc.Sequence):
             pattern = indices
         else:
             pattern = _pattern.Pattern(indices, period=period)
-        pattern = pattern.advance(self._previous)
-        self._previous = None
         items = _sequence.Sequence(self.items).retain_pattern(pattern)
-        result = type(self)(items, previous=self._previous)
+        result = type(self)(items)
         return result
 
     def group(self) -> "Selection":
@@ -1750,7 +1229,7 @@ class Selection(collections.abc.Sequence):
             ...     ''')
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(pitched=True).group()
+            >>> result = abjad.Selection(staff).leaves(pitched=True).group()
             >>> for item in result:
             ...     item
             ...
@@ -1813,7 +1292,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(pitched=True)
+            >>> result = abjad.Selection(staff).leaves(pitched=True)
             >>> result = result.group_by()
             >>> for item in result:
             ...     item
@@ -1886,7 +1365,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.setting(staff).autoBeaming = False
             >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
 
-            >>> result = abjad.select(staff).leaves(pitched=True)
+            >>> result = abjad.Selection(staff).leaves(pitched=True)
             >>> result = result.group_by_contiguity()
             >>> for item in result:
             ...     item
@@ -1943,7 +1422,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'4 d'16 d' d' d' e'4 f'16 f' f' f'")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.filter(
             ...     lambda _: abjad.get.duration(_) == abjad.Duration(1, 16)
             ... )
@@ -1996,12 +1475,12 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties()
+            >>> result = abjad.Selection(staff).logical_ties()
             >>> result = result.filter(
             ...     lambda _: abjad.get.duration(_) < abjad.Duration(1, 4)
             ... )
             >>> result = result.group_by_contiguity()
-            >>> result = [abjad.select(_).leaves()[0] for _ in result]
+            >>> result = [abjad.Selection(_).leaves()[0] for _ in result]
             >>> for item in result:
             ...     item
             Note("d'8")
@@ -2044,10 +1523,10 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(pitched=True)
+            >>> result = abjad.Selection(staff).leaves(pitched=True)
             >>> result = result.group_by_pitch()
-            >>> result = [abjad.select(_).group_by_contiguity() for _ in result]
-            >>> result = abjad.select(result).flatten()
+            >>> result = [abjad.Selection(_).group_by_contiguity() for _ in result]
+            >>> result = abjad.Selection(result).flatten()
             >>> for item in result:
             ...     item
             Selection(items=[Note("c'8"), Note("c'16"), Note("c'16")])
@@ -2105,9 +1584,9 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(pitched=True)
+            >>> result = abjad.Selection(staff).logical_ties(pitched=True)
             >>> result = result.group_by_contiguity()
-            >>> result = abjad.select(abjad.select(_).group_by_pitch() for _ in result)
+            >>> result = abjad.Selection(abjad.Selection(_).group_by_pitch() for _ in result)
             >>> result = result.flatten()
             >>> for item in result:
             ...     item
@@ -2191,7 +1670,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties()
+            >>> result = abjad.Selection(staff).logical_ties()
             >>> result = result.group_by_duration()
             >>> for item in result:
             ...     item
@@ -2262,7 +1741,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties().group_by_length()
+            >>> result = abjad.Selection(staff).logical_ties().group_by_length()
             >>> for item in result:
             ...     item
             ...
@@ -2334,7 +1813,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
             >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.group_by_measure()
             >>> for item in result:
             ...     item
@@ -2389,10 +1868,10 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
             >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.group_by_measure()
             >>> result = result.partition_by_counts([2], cyclic=True)
-            >>> result = [abjad.select(_).flatten() for _ in result]
+            >>> result = [abjad.Selection(_).flatten() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -2444,9 +1923,9 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
             >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.group_by_measure()
-            >>> result = [abjad.select(_)[0] for _ in result]
+            >>> result = [abjad.Selection(_)[0] for _ in result]
             >>> for item in result:
             ...     item
             Note("c'8")
@@ -2495,9 +1974,9 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
             >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.group_by_measure()
-            >>> result = [abjad.select(_)[-1] for _ in result]
+            >>> result = [abjad.Selection(_)[-1] for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -2547,7 +2026,7 @@ class Selection(collections.abc.Sequence):
             >>> string = "#(ly:make-moment 1 16)"
             >>> abjad.setting(score).proportionalNotationDuration = string
 
-            >>> result = abjad.select(score).leaves()
+            >>> result = abjad.Selection(score).leaves()
             >>> result = result.group_by_measure()
             >>> for item in result:
             ...     item
@@ -2597,7 +2076,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
             >>> abjad.attach(abjad.TimeSignature((1, 8)), staff[7])
 
-            >>> result = abjad.select(staff).logical_ties()
+            >>> result = abjad.Selection(staff).logical_ties()
             >>> result = result.group_by_measure()
             >>> for item in result:
             ...     item
@@ -2652,7 +2131,7 @@ class Selection(collections.abc.Sequence):
             >>> time_signature = abjad.TimeSignature((3, 4), partial=(1, 4))
             >>> abjad.attach(time_signature, staff[0])
 
-            >>> for measure in abjad.select(staff).leaves().group_by_measure():
+            >>> for measure in abjad.Selection(staff).leaves().group_by_measure():
             ...     print(measure)
             ...
             Selection(items=[Note("c'4")])
@@ -2692,7 +2171,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties().group_by_pitch()
+            >>> result = abjad.Selection(staff).logical_ties().group_by_pitch()
             >>> for item in result:
             ...     item
             ...
@@ -2744,8 +2223,8 @@ class Selection(collections.abc.Sequence):
         """
 
         def predicate(argument):
-            selection = Selection(argument)
-            return _pitch.PitchSet.from_selection(selection)
+            generator = iterate_.pitches(argument)
+            return _pcollections.PitchSet.from_pitches(generator)
 
         return self.group_by(predicate)
 
@@ -2776,7 +2255,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -2785,7 +2264,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).leaf(-1)
+            >>> result = abjad.Selection(staff).leaf(-1)
             >>> result
             Chord("<fs' gs'>16")
 
@@ -2881,7 +2360,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> for item in result:
             ...     item
             ...
@@ -2948,7 +2427,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(pitched=True)
+            >>> result = abjad.Selection(staff).leaves(pitched=True)
             >>> for item in result:
             ...     item
             ...
@@ -3009,7 +2488,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(trim=True)
+            >>> result = abjad.Selection(staff).leaves(trim=True)
             >>> for item in result:
             ...     item
             ...
@@ -3076,7 +2555,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(trim=abjad.Left)
+            >>> result = abjad.Selection(staff).leaves(trim=abjad.Left)
             >>> for item in result:
             ...     item
             ...
@@ -3144,7 +2623,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(trim=True)
+            >>> result = abjad.Selection(staff).leaves(trim=True)
             >>> for item in result:
             ...     item
             ...
@@ -3211,7 +2690,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Tuplet)
+            >>> result = abjad.Selection(staff).components(abjad.Tuplet)
             >>> result = result.leaves()
             >>> for item in result:
             ...     item
@@ -3271,7 +2750,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Tuplet)
+            >>> result = abjad.Selection(staff).components(abjad.Tuplet)
             >>> result = result.leaves(trim=True)
             >>> for item in result:
             ...     item
@@ -3329,7 +2808,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Tuplet)
+            >>> result = abjad.Selection(staff).components(abjad.Tuplet)
             >>> result = result.leaves(head=True, pitched=True)
             >>> for item in result:
             ...     item
@@ -3389,7 +2868,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Tuplet)
+            >>> result = abjad.Selection(staff).components(abjad.Tuplet)
             >>> result = result.leaves(tail=True, pitched=True)
             >>> for item in result:
             ...     item
@@ -3449,7 +2928,7 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Tuplet)
+            >>> result = abjad.Selection(staff).components(abjad.Tuplet)
             >>> result = result.leaves(abjad.Chord, head=True)
             >>> for item in result:
             ...     item
@@ -3505,7 +2984,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach("HIDDEN", staff[-1][-1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(exclude="HIDDEN")
+            >>> result = abjad.Selection(staff).leaves(exclude="HIDDEN")
             >>> for item in result:
             ...     item
             ...
@@ -3569,7 +3048,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(grace=None)
+            >>> result = abjad.Selection(staff).leaves(grace=None)
             >>> for item in result:
             ...     item
             ...
@@ -3630,7 +3109,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(grace=False)
+            >>> result = abjad.Selection(staff).leaves(grace=False)
             >>> for item in result:
             ...     item
             ...
@@ -3683,7 +3162,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves(grace=True)
+            >>> result = abjad.Selection(staff).leaves(grace=True)
             >>> for item in result:
             ...     item
             ...
@@ -3731,15 +3210,23 @@ class Selection(collections.abc.Sequence):
             prototype = (_score.Chord, _score.Note)
         elif prototype is None:
             prototype = _score.Leaf
-        return self._components(
-            self,
-            prototype=prototype,
-            exclude=exclude,
-            grace=grace,
-            head=head,
-            tail=tail,
-            trim=trim,
+        prototype = prototype or _score.Component
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
+        result = []
+        generator = _iterate._public_iterate_components(
+            self, prototype, exclude=exclude, grace=grace
         )
+        components = list(generator)
+        if components:
+            if trim in (True, _enums.Left):
+                components = _trim_subresult(components, trim)
+            if head is not None:
+                components = _head_filter_subresult(components, head)
+            if tail is not None:
+                components = _tail_filter_subresult(components, tail)
+            result.extend(components)
+        return type(self)(result)
 
     def logical_tie(
         self,
@@ -3788,7 +3275,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties()
+            >>> result = abjad.Selection(staff).logical_ties()
             >>> for item in result:
             ...     item
             ...
@@ -3842,7 +3329,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(pitched=True)
+            >>> result = abjad.Selection(staff).logical_ties(pitched=True)
             >>> for item in result:
             ...     item
             ...
@@ -3892,7 +3379,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(
+            >>> result = abjad.Selection(staff).logical_ties(
             ...     pitched=True,
             ...     nontrivial=True,
             ...     )
@@ -3944,8 +3431,8 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Tuplet)
-            >>> result = [abjad.select(_).logical_ties(pitched=True) for _ in result]
+            >>> result = abjad.Selection(staff).components(abjad.Tuplet)
+            >>> result = [abjad.Selection(_).logical_ties(pitched=True) for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -4015,8 +3502,8 @@ class Selection(collections.abc.Sequence):
             ...     """)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).components(abjad.Tuplet)[-2:]
-            >>> result = [abjad.select(_).logical_ties(pitched=True) for _ in result]
+            >>> result = abjad.Selection(staff).components(abjad.Tuplet)[-2:]
+            >>> result = [abjad.Selection(_).logical_ties(pitched=True) for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -4081,7 +3568,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(grace=None)
+            >>> result = abjad.Selection(staff).logical_ties(grace=None)
             >>> for item in result:
             ...     item
             ...
@@ -4142,7 +3629,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, staff[1])
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(grace=False)
+            >>> result = abjad.Selection(staff).logical_ties(grace=False)
             >>> for item in result:
             ...     item
             ...
@@ -4196,7 +3683,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.setting(staff).autoBeaming = False
 
 
-            >>> result = abjad.select(staff).logical_ties(grace=True)
+            >>> result = abjad.Selection(staff).logical_ties(grace=True)
             >>> for item in result:
             ...     item
             ...
@@ -4238,108 +3725,6 @@ class Selection(collections.abc.Sequence):
                     f'8
                 }
 
-        ..  container:: example
-
-            STATAL SELECTOR WITH PATTERN.  Note that this currently only works with
-            pattern objects; slices and integer indices do not work yet.
-
-            Selector configured for logical ties 4, 5, 6, 7:
-
-            >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-            >>> abjad.setting(staff).autoBeaming = False
-
-            >>> result = abjad.select(staff).logical_ties()
-            >>> result = result.get([4, 5, 6, 7])
-            >>> for item in result:
-            ...     item
-            ...
-            LogicalTie(items=[Note("f'8"), Note("f'8")])
-            LogicalTie(items=[Rest('r8')])
-
-            >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                \with
-                {
-                    autoBeaming = ##f
-                }
-                {
-                    c'8
-                    d'8
-                    ~
-                    {
-                        d'8
-                        e'8
-                        r8
-                        \abjad-color-music #'red
-                        f'8
-                        ~
-                    }
-                    \abjad-color-music #'red
-                    f'8
-                    \abjad-color-music #'blue
-                    r8
-                }
-
-            Selects logical ties 4 and 5 on first call.
-
-            Setting ``previous`` effects statal outcome:
-
-            >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-            >>> abjad.setting(staff).autoBeaming = False
-
-            >>> logical_ties = abjad.select(staff).logical_ties()
-            >>> previous = len(logical_ties)
-            >>> previous
-            6
-
-            >>> result = abjad.select(staff, previous=previous)
-            >>> result = result.logical_ties().get([4, 5, 6, 7])
-            >>> for item in result:
-            ...     item
-            ...
-            LogicalTie(items=[Note("c'8")])
-            LogicalTie(items=[Note("d'8"), Note("d'8")])
-
-            >>> abjad.label.by_selector(result)
-            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                \with
-                {
-                    autoBeaming = ##f
-                }
-                {
-                    \abjad-color-music #'red
-                    c'8
-                    \abjad-color-music #'blue
-                    d'8
-                    ~
-                    {
-                        \abjad-color-music #'blue
-                        d'8
-                        e'8
-                        r8
-                        f'8
-                        ~
-                    }
-                    f'8
-                    r8
-                }
-
-            Selects logical ties 6 and 7 on second call.
-
         '''
         generator = _iterate._iterate_logical_ties(
             self,
@@ -4350,7 +3735,7 @@ class Selection(collections.abc.Sequence):
             reverse=reverse,
             wrapper_class=LogicalTie,
         )
-        return type(self)(generator, previous=self._previous)
+        return type(self)(generator)
 
     def nontrivial(self) -> "Selection":
         r"""
@@ -4363,7 +3748,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).runs().nontrivial()
+            >>> result = abjad.Selection(staff).runs().nontrivial()
             >>> for item in result:
             ...     item
             ...
@@ -4420,7 +3805,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -4429,7 +3814,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).note(-1)
+            >>> result = abjad.Selection(staff).note(-1)
             >>> result
             Note("e'16")
 
@@ -4508,7 +3893,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -4517,7 +3902,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).notes()
+            >>> result = abjad.Selection(staff).notes()
             >>> for item in result:
             ...     item
             ...
@@ -4611,7 +3996,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_counts(
             ...     [3],
             ...     cyclic=False,
@@ -4656,7 +4041,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().partition_by_counts(
+            >>> result = abjad.Selection(staff).leaves().partition_by_counts(
             ...     [3],
             ...     cyclic=True,
             ...     overhang=False,
@@ -4704,7 +4089,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().partition_by_counts(
+            >>> result = abjad.Selection(staff).leaves().partition_by_counts(
             ...     [3],
             ...     cyclic=True,
             ...     overhang=True,
@@ -4756,7 +4141,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().partition_by_counts(
+            >>> result = abjad.Selection(staff).leaves().partition_by_counts(
             ...     [3],
             ...     cyclic=True,
             ...     fuse_overhang=True,
@@ -4808,7 +4193,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().partition_by_counts(
+            >>> result = abjad.Selection(staff).leaves().partition_by_counts(
             ...     [1, 2, 3],
             ...     cyclic=True,
             ...     overhang=True,
@@ -4871,7 +4256,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().partition_by_counts(
+            >>> result = abjad.Selection(staff).leaves().partition_by_counts(
             ...     [2, -3],
             ...     cyclic=True,
             ...     )
@@ -4922,7 +4307,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().partition_by_counts(
+            >>> result = abjad.Selection(staff).leaves().partition_by_counts(
             ...     [2, -3],
             ...     cyclic=True,
             ...     overhang=True,
@@ -4974,7 +4359,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().partition_by_counts(
+            >>> result = abjad.Selection(staff).leaves().partition_by_counts(
             ...     [3],
             ...     overhang=True,
             ...     )
@@ -5089,7 +4474,7 @@ class Selection(collections.abc.Sequence):
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).leaves().partition_by_durations(
+            >>> result = abjad.Selection(staff).leaves().partition_by_durations(
             ...     [abjad.Duration(3, 8)],
             ...     cyclic=True,
             ...     fill=abjad.Exact,
@@ -5163,7 +4548,7 @@ class Selection(collections.abc.Sequence):
             ...
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [abjad.Duration(3, 8)],
             ...     cyclic=False,
@@ -5232,7 +4617,7 @@ class Selection(collections.abc.Sequence):
             ...
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [abjad.Duration(3, 16), abjad.Duration(1, 16)],
             ...     cyclic=True,
@@ -5310,7 +4695,7 @@ class Selection(collections.abc.Sequence):
             ...
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [abjad.Duration(3, 16)],
             ...     cyclic=True,
@@ -5389,7 +4774,7 @@ class Selection(collections.abc.Sequence):
             ...
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [abjad.Duration(3, 16)],
             ...     cyclic=False,
@@ -5459,7 +4844,7 @@ class Selection(collections.abc.Sequence):
             >>> leaf = abjad.get.leaf(staff, 0)
             >>> abjad.attach(mark, leaf, context='Staff')
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [1.5],
             ...     cyclic=True,
@@ -5536,7 +4921,7 @@ class Selection(collections.abc.Sequence):
             >>> leaf = abjad.get.leaf(staff, 0)
             >>> abjad.attach(mark, leaf, context='Staff')
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [1.5],
             ...     cyclic=True,
@@ -5616,7 +5001,7 @@ class Selection(collections.abc.Sequence):
             >>> leaf = abjad.get.leaf(staff, 0)
             >>> abjad.attach(mark, leaf, context='Staff')
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [1.5],
             ...     cyclic=False,
@@ -5689,7 +5074,7 @@ class Selection(collections.abc.Sequence):
             >>> leaf = abjad.get.leaf(staff, 0)
             >>> abjad.attach(mark, leaf, context='Staff')
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [0.75],
             ...     cyclic=True,
@@ -5772,7 +5157,7 @@ class Selection(collections.abc.Sequence):
             >>> leaf = abjad.get.leaf(staff, 0)
             >>> abjad.attach(mark, leaf, context='Staff')
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_durations(
             ...     [0.75],
             ...     cyclic=False,
@@ -5922,7 +5307,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_ratio((1, 1))
             >>> for item in result:
             ...     item
@@ -5975,7 +5360,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves()
+            >>> result = abjad.Selection(staff).leaves()
             >>> result = result.partition_by_ratio((1, 1, 1))
             >>> for item in result:
             ...     item
@@ -6046,7 +5431,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -6055,7 +5440,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).rest(-1)
+            >>> result = abjad.Selection(staff).rest(-1)
             >>> result
             Rest('r16')
 
@@ -6134,7 +5519,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -6143,7 +5528,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).rests()
+            >>> result = abjad.Selection(staff).rests()
             >>> for item in result:
             ...     item
             ...
@@ -6228,7 +5613,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -6237,7 +5622,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).run(-1)
+            >>> result = abjad.Selection(staff).run(-1)
             >>> result
             Selection(items=[Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
 
@@ -6318,7 +5703,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -6327,7 +5712,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).runs()
+            >>> result = abjad.Selection(staff).runs()
             >>> for item in result:
             ...     item
             ...
@@ -6421,7 +5806,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.attach(container, music_voice[-1])
             >>> staff = abjad.Staff([music_voice])
 
-            >>> result = abjad.select(staff).runs()
+            >>> result = abjad.Selection(staff).runs()
             >>> for item in result:
             ...     item
             ...
@@ -6518,7 +5903,7 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(string)
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).leaves().top()
+            >>> result = abjad.Selection(staff).leaves().top()
             >>> for item in result:
             ...     item
             ...
@@ -6572,7 +5957,7 @@ class Selection(collections.abc.Sequence):
         for component in _iterate._public_iterate_components(self, exclude=exclude):
             for component_ in _parentage.Parentage(component):
                 if (
-                    self._is_immediate_child_of_outermost_voice(component_)
+                    _is_immediate_child_of_outermost_voice(component_)
                     and component_ not in result
                 ):
                     result.append(component_)
@@ -6595,7 +5980,7 @@ class Selection(collections.abc.Sequence):
             ...     ]
             >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
             >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-            >>> tuplets = [abjad.select(tuplets)]
+            >>> tuplets = [abjad.Selection(tuplets)]
 
             >>> lilypond_file = abjad.illustrators.selection(tuplets)
             >>> staff = lilypond_file["Staff"]
@@ -6604,7 +5989,7 @@ class Selection(collections.abc.Sequence):
             >>> abjad.override(staff).TupletBracket.staff_padding = 3
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-            >>> result = abjad.select(staff).tuplet(-1)
+            >>> result = abjad.Selection(staff).tuplet(-1)
             >>> result
             Tuplet('9:10', "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
@@ -6685,7 +6070,7 @@ class Selection(collections.abc.Sequence):
             ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
             ... )
 
-            >>> result = abjad.select(staff).tuplets()
+            >>> result = abjad.Selection(staff).tuplets()
             >>> for item in result:
             ...     item
             ...
@@ -6739,7 +6124,7 @@ class Selection(collections.abc.Sequence):
             ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
             ... )
 
-            >>> result = abjad.select(staff).tuplets(level=-1)
+            >>> result = abjad.Selection(staff).tuplets(level=-1)
             >>> for item in result:
             ...     item
             ...
@@ -6791,7 +6176,7 @@ class Selection(collections.abc.Sequence):
             ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
             ... )
 
-            >>> result = abjad.select(staff).tuplets(level=1)
+            >>> result = abjad.Selection(staff).tuplets(level=1)
             >>> for item in result:
             ...     item
             ...
@@ -6869,8 +6254,8 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).runs()
-            >>> result = [abjad.select(_).with_next_leaf() for _ in result]
+            >>> result = abjad.Selection(staff).runs()
+            >>> result = [abjad.Selection(_).with_next_leaf() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -6917,8 +6302,8 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(pitched=True)
-            >>> result = [abjad.select(_)[-1:].with_next_leaf() for _ in result]
+            >>> result = abjad.Selection(staff).logical_ties(pitched=True)
+            >>> result = [abjad.Selection(_)[-1:].with_next_leaf() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -6971,8 +6356,8 @@ class Selection(collections.abc.Sequence):
             >>> abjad.setting(staff).autoBeaming = False
             >>> abjad.setting(staff).pedalSustainStyle = "#'mixed"
 
-            >>> result = abjad.select(staff).logical_ties(pitched=True)
-            >>> result = [abjad.select(_).with_next_leaf() for _ in result]
+            >>> result = abjad.Selection(staff).logical_ties(pitched=True)
+            >>> result = [abjad.Selection(_).with_next_leaf() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -7051,8 +6436,8 @@ class Selection(collections.abc.Sequence):
             ...     abjad.OnBeatGraceContainer,
             ...     abjad.AfterGraceContainer,
             ... )
-            >>> result = abjad.select(staff).components(prototype)
-            >>> result = [abjad.select(_).leaves().with_next_leaf() for _ in result]
+            >>> result = abjad.Selection(staff).components(prototype)
+            >>> result = [abjad.Selection(_).leaves().with_next_leaf() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -7149,8 +6534,8 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).runs()
-            >>> result = [abjad.select(_).with_previous_leaf() for _ in result]
+            >>> result = abjad.Selection(staff).runs()
+            >>> result = [abjad.Selection(_).with_previous_leaf() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -7197,8 +6582,8 @@ class Selection(collections.abc.Sequence):
             >>> staff = abjad.Staff(r"c'8 r d' ~ d' e' ~ e' r8 f'8")
             >>> abjad.setting(staff).autoBeaming = False
 
-            >>> result = abjad.select(staff).logical_ties(pitched=True)
-            >>> result = [abjad.select(_)[:1].with_previous_leaf() for _ in result]
+            >>> result = abjad.Selection(staff).logical_ties(pitched=True)
+            >>> result = [abjad.Selection(_)[:1].with_previous_leaf() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -7260,8 +6645,8 @@ class Selection(collections.abc.Sequence):
             ...     abjad.OnBeatGraceContainer,
             ...     abjad.AfterGraceContainer,
             ... )
-            >>> result = abjad.select(staff).components(prototype)
-            >>> result = [abjad.select(_).leaves().with_previous_leaf() for _ in result]
+            >>> result = abjad.Selection(staff).components(prototype)
+            >>> result = [abjad.Selection(_).leaves().with_previous_leaf() for _ in result]
             >>> for item in result:
             ...     item
             ...
@@ -7348,16 +6733,12 @@ class LogicalTie(Selection):
         >>> staff = abjad.Staff("c' d' e' ~ e'")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.select(staff[2]).logical_tie()
+        >>> abjad.Selection(staff[2]).logical_tie()
         LogicalTie(items=[Note("e'4"), Note("e'4")])
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### SPECIAL METHODS ###
 
     def __getitem__(self, argument):
         """
@@ -7370,13 +6751,9 @@ class LogicalTie(Selection):
             result = Selection(result)
         return result
 
-    ### PRIVATE METHODS ###
-
     def _scale(self, multiplier):
         for leaf in list(self):
             leaf._scale(multiplier)
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def head(self):
@@ -7435,37 +6812,3 @@ class LogicalTie(Selection):
         Returns duration.
         """
         return sum([_.written_duration for _ in self])
-
-
-def select(items=None, previous=None):
-    r"""
-    Deprecated. Use ``abjad.Selection()`` instead.
-
-    ..  container:: example
-
-        Selects first two notes in staff:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> selection = abjad.select(staff[:2]).leaves(pitched=True)
-        >>> for note in selection:
-        ...     abjad.override(note).NoteHead.color = "#red"
-
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \once \override NoteHead.color = #red
-                c'4
-                \once \override NoteHead.color = #red
-                d'4
-                e'4
-                f'4
-            }
-
-    """
-    assert items is not None, repr(items)
-    return Selection(items=items, previous=previous)

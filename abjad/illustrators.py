@@ -13,6 +13,7 @@ from . import makers as _makers
 from . import markups as _markups
 from . import metricmodulation as _metricmodulation
 from . import overrides as _overrides
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
 from . import selection as _selection
@@ -202,11 +203,11 @@ _class_to_method = dict(
         (_markups.Markup, _illustrate_markup),
         (_metricmodulation.MetricModulation, _illustrate_metric_modulation),
         (_timespan.OffsetCounter, _illustrate_markup_maker),
-        (_pitch.PitchRange, _illustrate_pitch_range),
-        (_pitch.PitchClassSet, _illustrate_pitch_class_set),
-        (_pitch.PitchSegment, _illustrate_pitch_segment),
-        (_pitch.PitchClassSegment, _illustrate_pitch_class_segment),
-        (_pitch.PitchSet, _illustrate_pitch_set),
+        (_pcollections.PitchRange, _illustrate_pitch_range),
+        (_pcollections.PitchClassSet, _illustrate_pitch_class_set),
+        (_pcollections.PitchSegment, _illustrate_pitch_segment),
+        (_pcollections.PitchClassSegment, _illustrate_pitch_class_segment),
+        (_pcollections.PitchSet, _illustrate_pitch_set),
         (_timespan.Timespan, _illustrate_timespan),
         (_timespan.TimespanList, _illustrate_markup_maker),
     ]

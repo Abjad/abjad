@@ -203,7 +203,7 @@ def test_Parentage_logical_voice_06():
     container[1].name = "staff2"
     container[0][0].name = "voicefoo"
     container[1][0].name = "voicefoo"
-    leaves = abjad.select(container).leaves()
+    leaves = abjad.Selection(container).leaves()
     abjad.beam(leaves[:2])
     abjad.beam(leaves[2:])
 
@@ -439,7 +439,7 @@ def test_Parentage_logical_voice_11():
         """
     )
 
-    leaves = abjad.select(container).leaves()
+    leaves = abjad.Selection(container).leaves()
     assert (
         abjad.get.parentage(leaves[0]).logical_voice()
         == abjad.get.parentage(leaves[1]).logical_voice()

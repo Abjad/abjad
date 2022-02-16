@@ -207,8 +207,6 @@ def _iterate_logical_ties(
         ARGUMENT, exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
     ):
         leaves = _get_logical_tie_leaves(leaf)
-        # logical_tie = LogicalTie(leaves)
-        # if leaf is not logical_tie.head:
         if leaf is not leaves[0]:
             continue
         if (
@@ -216,13 +214,10 @@ def _iterate_logical_ties(
             or (nontrivial is True and not len(leaves) == 1)
             or (nontrivial is False and len(leaves) == 1)
         ):
-            # if logical_tie not in yielded_logical_ties:
             if wrapper_class is not None:
                 leaves = wrapper_class(leaves)
             if leaves not in yielded_logical_ties:
-                # yielded_logical_ties.add(logical_tie)
                 yielded_logical_ties.add(leaves)
-                # yield logical_tie
                 yield leaves
 
 

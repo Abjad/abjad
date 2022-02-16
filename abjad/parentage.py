@@ -185,7 +185,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.component)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -280,7 +280,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     components = parentage.components
             ...     print(f"{repr(component)}:")
@@ -440,7 +440,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.orphan)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") True
@@ -535,7 +535,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.parent)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
@@ -637,7 +637,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
             Staff("{ { 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Multiplier(1, 1)
@@ -736,7 +736,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.root)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -798,7 +798,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     count = parentage.count(abjad.Tuplet)
             ...     print(f"{repr(component):55} {repr(count)}")
@@ -953,7 +953,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     count = parentage.count(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(count)}")
@@ -1210,7 +1210,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     result = parentage.get(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(result)}")
@@ -1390,7 +1390,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 >>
 
-            >>> for component in abjad.select(score).components():
+            >>> for component in abjad.Selection(score).components():
             ...     parentage = abjad.get.parentage(component)
             ...     component, parentage.score_index()
             ...
@@ -1472,7 +1472,7 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.parentage(component)
             ...     score_index = parentage.score_index()
             ...     print(f"{repr(component):30} {repr(score_index)}")

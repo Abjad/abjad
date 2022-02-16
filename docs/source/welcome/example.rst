@@ -43,7 +43,7 @@ Invert the pitches in voice 2:
 
 ::
 
-    >>> for note in abjad.select(voice_2).notes():
+    >>> for note in abjad.Selection(voice_2).notes():
     ...     note.written_pitch = note.written_pitch.invert(axis="G4")
     ... 
     >>> abjad.show(score)
@@ -53,7 +53,7 @@ Define a function to partition notes, loop over parts, attach slurs, attach arti
 ::
 
     >>> def slur_parts(voice, counts):
-    ...     notes = abjad.select(voice).notes()
+    ...     notes = abjad.Selection(voice).notes()
     ...     parts = notes.partition_by_counts(counts, cyclic=True)
     ...     for part in parts:
     ...         first_note, last_note = part[0], part[-1]
@@ -85,7 +85,7 @@ Define a function to tupletize alternating groups of notes:
 ::
 
     >>> def tupletize_notes(voice, counts, modulus):
-    ...     notes = abjad.select(voice).notes()
+    ...     notes = abjad.Selection(voice).notes()
     ...     parts = notes.partition_by_counts(counts, cyclic=True)
     ...     for i, part in enumerate(parts):
     ...         if i % len(counts) == modulus:
@@ -117,10 +117,10 @@ Attach a time signature, attach a doule bar line, clean up tuplet brackets:
 
 ::
 
-    >>> first_note = abjad.select(voice_1).note(0)
+    >>> first_note = abjad.Selection(voice_1).note(0)
     >>> time_signature = abjad.TimeSignature((2, 8))
     >>> abjad.attach(time_signature, first_note)
-    >>> last_note = abjad.select(voice_2).note(-1)
+    >>> last_note = abjad.Selection(voice_2).note(-1)
     >>> bar_line = abjad.BarLine("|.")
     >>> abjad.attach(bar_line, last_note)
     >>> abjad.override(score).tuplet_bracket.staff_padding = 2

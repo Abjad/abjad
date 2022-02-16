@@ -748,7 +748,7 @@ def attach(  # noqa: 302
                 }
             }
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.Selection(staff).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
         (Note("c'4"), Clef(name='alto', hide=False))

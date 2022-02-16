@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Selection_are_contiguous_logical_voice_01():
+def test_mutate__are_contiguous_logical_voice_01():
     """
     Components that start at the same moment are bad.
     Even if components are all part of the same logical voice.
@@ -24,24 +24,24 @@ def test_Selection_are_contiguous_logical_voice_01():
         """
     )
 
-    selection = abjad.select([voice, voice[0]])
-    assert not selection.are_contiguous_logical_voice()
-    selection = voice[0:1] + voice[0][:]
-    assert not selection.are_contiguous_logical_voice()
-    selection = voice[-1:] + voice[-1][:]
-    assert not selection.are_contiguous_logical_voice()
+    selection = abjad.Selection([voice, voice[0]])
+    assert not abjad.mutate._are_contiguous_logical_voice(selection)
+    selection = abjad.Selection(list(voice[0:1]) + list(voice[0]))
+    assert not abjad.mutate._are_contiguous_logical_voice(selection)
+    selection = abjad.Selection(list(voice[-1:]) + list(voice[-1]))
+    assert not abjad.mutate._are_contiguous_logical_voice(selection)
 
 
-def test_Selection_are_contiguous_logical_voice_02():
+def test_mutate__are_contiguous_logical_voice_02():
     """
     Is true for strictly contiguous leaves in same staff.
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    assert staff[:].are_contiguous_logical_voice()
+    assert abjad.mutate._are_contiguous_logical_voice(staff[:])
 
 
-def test_Selection_are_contiguous_logical_voice_03():
+def test_mutate__are_contiguous_logical_voice_03():
 
     notes = [
         abjad.Note("c'8"),
@@ -49,36 +49,37 @@ def test_Selection_are_contiguous_logical_voice_03():
         abjad.Note("e'8"),
         abjad.Note("f'8"),
     ]
-    assert abjad.select(notes).are_contiguous_logical_voice()
+    assert abjad.mutate._are_contiguous_logical_voice(notes)
 
 
-def test_Selection_are_contiguous_logical_voice_04():
+def test_mutate__are_contiguous_logical_voice_04():
     """
     Is false for time-reordered leaves in staff.
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    selection = staff[2:] + staff[:2]
-    assert not selection.are_contiguous_logical_voice()
+    selection = abjad.Selection(list(staff[2:]) + list(staff[:2]))
+    assert not abjad.mutate._are_contiguous_logical_voice(selection)
 
 
-def test_Selection_are_contiguous_logical_voice_05():
+def test_mutate__are_contiguous_logical_voice_05():
     """
     Is true for unincorporated component.
     """
 
-    abjad.select(abjad.Staff("c'8 d'8 e'8 f'8")).are_contiguous_logical_voice()
+    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    assert abjad.mutate._are_contiguous_logical_voice([staff])
 
 
-def test_Selection_are_contiguous_logical_voice_06():
+def test_mutate__are_contiguous_logical_voice_06():
     """
     Is true for empty selection.
     """
 
-    assert abjad.Selection().are_contiguous_logical_voice()
+    assert abjad.mutate._are_contiguous_logical_voice([])
 
 
-def test_Selection_are_contiguous_logical_voice_07():
+def test_mutate__are_contiguous_logical_voice_07():
     """
     False when components belonging to same logical voice are ommitted.
     """
@@ -102,11 +103,11 @@ def test_Selection_are_contiguous_logical_voice_07():
         """
     )
 
-    selection = voice[:2] + voice[-2:]
-    assert not selection.are_contiguous_logical_voice()
+    selection = abjad.Selection(list(voice[:2]) + list(voice[-2:]))
+    assert not abjad.mutate._are_contiguous_logical_voice(selection)
 
 
-def test_Selection_are_contiguous_logical_voice_08():
+def test_mutate__are_contiguous_logical_voice_08():
     """
     False when components belonging to same logical voice are ommitted.
     """
@@ -130,5 +131,5 @@ def test_Selection_are_contiguous_logical_voice_08():
         """
     )
 
-    selection = voice[:1] + voice[-1:]
-    assert not selection.are_contiguous_logical_voice()
+    selection = abjad.Selection(list(voice[:1]) + list(voice[-1:]))
+    assert not abjad.mutate._are_contiguous_logical_voice(selection)

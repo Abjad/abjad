@@ -29,7 +29,7 @@ def test_get_leaf_01():
         """
     )
 
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     assert abjad.get.leaf(leaves[0], -1) is None
     assert abjad.get.leaf(leaves[0], 0) is leaves[0]
     assert abjad.get.leaf(leaves[0], 1) is leaves[1]
