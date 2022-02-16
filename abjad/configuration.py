@@ -569,21 +569,16 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.pattern.PatternTuple'>
         <class 'abjad.pcollections.IntervalClassSegment'>
         <class 'abjad.pcollections.IntervalClassSet'>
-        <class 'abjad.pcollections.IntervalClassVector'>
         <class 'abjad.pcollections.IntervalSegment'>
         <class 'abjad.pcollections.IntervalSet'>
-        <class 'abjad.pcollections.IntervalVector'>
         <class 'abjad.pcollections.PitchClassSegment'>
         <class 'abjad.pcollections.PitchClassSet'>
-        <class 'abjad.pcollections.PitchClassVector'>
         <class 'abjad.pcollections.PitchRange'>
         <class 'abjad.pcollections.PitchSegment'>
         <class 'abjad.pcollections.PitchSet'>
-        <class 'abjad.pcollections.PitchVector'>
         <class 'abjad.pcollections.Segment'>
         <class 'abjad.pcollections.Set'>
         <class 'abjad.pcollections.TwelveToneRow'>
-        <class 'abjad.pcollections.Vector'>
         <class 'abjad.pitch.Accidental'>
         <class 'abjad.pitch.Interval'>
         <class 'abjad.pitch.IntervalClass'>
@@ -792,6 +787,7 @@ def list_all_functions(modules="abjad"):
         'logical_tie'
         'logical_tie_to_tuplet'
         'logical_ties'
+        'make_interval_class_vector'
         'make_lilypond_override_string'
         'make_lilypond_revert_string'
         'make_lilypond_tweak_string'
