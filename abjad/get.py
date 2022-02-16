@@ -6,8 +6,10 @@ from . import duration as _duration
 from . import enums as _enums
 from . import format as _format
 from . import indicators as _indicators
+from . import iterate as iterate_
 from . import markups as _markups
 from . import parentage as _parentage
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
 from . import selection as _selection
@@ -86,7 +88,7 @@ def after_grace_container(argument):
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     container = abjad.get.after_grace_container(component)
         ...     print(f"{repr(component):30} {repr(container)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
@@ -330,7 +332,7 @@ def before_grace_container(argument):
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     container = abjad.get.before_grace_container(component)
         ...     print(f"{repr(component):30} {repr(container)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
@@ -425,7 +427,7 @@ def contents(argument) -> typing.Optional["_selection.Selection"]:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     contents = abjad.get.contents(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in contents:
@@ -508,7 +510,7 @@ def contents(argument) -> typing.Optional["_selection.Selection"]:
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     contents = abjad.get.contents(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in contents:
@@ -621,7 +623,7 @@ def descendants(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     descendants = abjad.get.descendants(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in descendants:
@@ -792,7 +794,7 @@ def duration(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Duration(1, 1)
@@ -842,7 +844,7 @@ def duration(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") Duration(1, 1)
@@ -1000,7 +1002,7 @@ def effective(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     clef = abjad.get.effective(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
@@ -1052,7 +1054,7 @@ def effective(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     clef = abjad.get.effective(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") None
@@ -1258,7 +1260,7 @@ def effective(
         Gets effective time signature:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.Selection(staff).leaves()
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1315,7 +1317,7 @@ def effective(
                 }
             }
 
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     note, abjad.get.effective(note, abjad.StartTextSpan)
         ...
         (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
@@ -1323,7 +1325,7 @@ def effective(
         (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
         (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
 
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     note, abjad.get.effective(note, abjad.StopTextSpan)
         ...
         (Note("c'4"), None)
@@ -1332,7 +1334,7 @@ def effective(
         (Note("f'4"), StopTextSpan(command='\\stopTextSpan', leak=None))
 
         >>> attributes = {'parameter': 'TEXT_SPANNER'}
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     indicator = abjad.get.effective(
         ...         note,
         ...         object,
@@ -1370,7 +1372,7 @@ def effective(
                 a'4
             }
 
-        >>> for leaf in abjad.select(voice).leaves():
+        >>> for leaf in abjad.Selection(voice).leaves():
         ...     start_beam = abjad.get.effective(leaf, abjad.StartBeam)
         ...     stop_beam = abjad.get.effective(leaf, abjad.StopBeam)
         ...     leaf, start_beam, stop_beam
@@ -1408,7 +1410,7 @@ def effective(
                 }
             >>
 
-        >>> for leaf in abjad.select(score).leaves():
+        >>> for leaf in abjad.Selection(score).leaves():
         ...     bar_line = abjad.get.effective(leaf, abjad.BarLine)
         ...     leaf, bar_line
         (Note("c'2"), None)
@@ -1499,7 +1501,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     staff = abjad.get.effective_staff(component)
         ...     print(f"{repr(component):30} {repr(staff)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -1614,7 +1616,7 @@ def effective_wrapper(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     wrapper = abjad.get.effective_wrapper(component, abjad.Clef)
         ...     print(f"{repr(component):}")
         ...     print(f"    {repr(wrapper)}")
@@ -1732,7 +1734,7 @@ def grace(argument) -> bool:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.grace(component)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
@@ -1834,7 +1836,7 @@ def has_effective_indicator(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     function = abjad.get.has_effective_indicator
         ...     result = function(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
@@ -1887,7 +1889,7 @@ def has_effective_indicator(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     function = abjad.get.has_effective_indicator
         ...     result = function(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
@@ -1987,7 +1989,7 @@ def has_indicator(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.has_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
@@ -2039,7 +2041,7 @@ def has_indicator(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.has_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") False
@@ -2185,7 +2187,7 @@ def indicator(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
@@ -2237,7 +2239,7 @@ def indicator(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") None
@@ -2283,7 +2285,7 @@ def indicators(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2348,7 +2350,7 @@ def indicators(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.indicators(component)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") []
@@ -2379,7 +2381,7 @@ def indicators(
         >>> staff.append(abjad.TremoloContainer(2, "d'16 f'"))
         >>> abjad.attach(abjad.Clef("alto"), staff[-1][0])
         >>> staff.append("ds'4")
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2409,7 +2411,7 @@ def indicators(
                 - \staccato
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.indicators(component)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") []
@@ -2569,7 +2571,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
                 }
             }
 
-        >>> for current_leaf in abjad.select(staff).leaves():
+        >>> for current_leaf in abjad.Selection(staff).leaves():
         ...     previous_leaf = abjad.get.leaf(current_leaf, -1)
         ...     next_leaf = abjad.get.leaf(current_leaf, 1)
         ...     print(f"previous leaf: {repr(previous_leaf)}")
@@ -2646,7 +2648,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
                 ds'4
             }
 
-        >>> for current_leaf in abjad.select(staff).leaves():
+        >>> for current_leaf in abjad.Selection(staff).leaves():
         ...     previous_leaf = abjad.get.leaf(current_leaf, -1)
         ...     next_leaf = abjad.get.leaf(current_leaf, 1)
         ...     print(f"previous leaf: {repr(previous_leaf)}")
@@ -2752,7 +2754,7 @@ def lineage(argument) -> "Lineage":
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     lineage = abjad.get.lineage(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in lineage:
@@ -2958,7 +2960,7 @@ def logical_tie(argument) -> "_selection.LogicalTie":
                 }
             }
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.Selection(staff).leaves():
         ...     lt = abjad.get.logical_tie(leaf)
         ...     print(f"{repr(leaf):30} {repr(lt)}")
         Note("c'4")                    LogicalTie(items=[Note("c'4")])
@@ -3001,7 +3003,7 @@ def logical_tie(argument) -> "_selection.LogicalTie":
                 ds'4
             }
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.Selection(staff).leaves():
         ...     lt = abjad.get.logical_tie(leaf)
         ...     print(f"{repr(leaf):30} {repr(lt)}")
         Note("c'16")                   LogicalTie(items=[Note("c'16")])
@@ -3151,7 +3153,7 @@ def measure_number(argument) -> int:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     measure_number = abjad.get.measure_number(component)
         ...     print(f"{repr(component):30} {measure_number}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") 1
@@ -3196,7 +3198,7 @@ def measure_number(argument) -> int:
                 f'4
             }
 
-        >>> for component in abjad.select(voice).components():
+        >>> for component in abjad.Selection(voice).components():
         ...     measure_number = abjad.get.measure_number(component)
         ...     print(f"{repr(component):30} {measure_number}")
         Voice("c'4 d'4 e'4 f'4")       1
@@ -3236,7 +3238,7 @@ def measure_number(argument) -> int:
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     measure_number = abjad.get.measure_number(component)
         ...     print(f"{repr(component):30} {measure_number}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") 1
@@ -3325,7 +3327,7 @@ def parentage(argument) -> "_parentage.Parentage":
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     parentage = abjad.get.parentage(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in parentage[:]:
@@ -3439,7 +3441,7 @@ def parentage(argument) -> "_parentage.Parentage":
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     parentage = abjad.get.parentage(component)
         ...     print(f"{repr(component)}:")
         ...     print(f"    {repr(parentage[:])}")
@@ -3470,7 +3472,7 @@ def parentage(argument) -> "_parentage.Parentage":
     return _parentage.Parentage(argument)
 
 
-def pitches(argument) -> typing.Optional[_pitch.PitchSet]:
+def pitches(argument) -> typing.Optional[_pcollections.PitchSet]:
     r"""
     Gets pitches.
 
@@ -3540,7 +3542,7 @@ def pitches(argument) -> typing.Optional[_pitch.PitchSet]:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     pitches = abjad.get.pitches(component)
         ...     print(f"{repr(component):30} {pitches!s}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") {c', cs', d', e', f', fs', g', gs', a', as'}
@@ -3564,8 +3566,8 @@ def pitches(argument) -> typing.Optional[_pitch.PitchSet]:
     """
     if not argument:
         return None
-    selection = _selection.Selection(argument)
-    return _pitch.PitchSet.from_selection(selection)
+    generator = iterate_.pitches(argument)
+    return _pcollections.PitchSet.from_pitches(generator)
 
 
 def report_modifications(argument) -> str:
@@ -3690,7 +3692,7 @@ def sounding_pitch(argument) -> _pitch.NamedPitch:
                 g'8
             }
 
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     pitch = abjad.get.sounding_pitch(note)
         ...     print(f"{repr(note):10} {repr(pitch)}")
         Note("d'8") NamedPitch("d''")
@@ -3704,7 +3706,7 @@ def sounding_pitch(argument) -> _pitch.NamedPitch:
     return _inspect._get_sounding_pitch(argument)
 
 
-def sounding_pitches(argument) -> _pitch.PitchSet:
+def sounding_pitches(argument) -> _pcollections.PitchSet:
     r"""
     Gets sounding pitches.
 
@@ -3726,7 +3728,7 @@ def sounding_pitches(argument) -> _pitch.PitchSet:
                 <d' fs'>4
             }
 
-        >>> for chord in abjad.select(staff).chords():
+        >>> for chord in abjad.Selection(staff).chords():
         ...     pitches = abjad.get.sounding_pitches(chord)
         ...     print(f"{repr(chord):20} {pitches!s}")
         Chord("<c' e'>4")    {c''', e'''}
@@ -3737,7 +3739,7 @@ def sounding_pitches(argument) -> _pitch.PitchSet:
     if not isinstance(argument, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
     result = _inspect._get_sounding_pitches(argument)
-    return _pitch.PitchSet(result)
+    return _pcollections.PitchSet(result)
 
 
 def sustained(argument) -> bool:
@@ -3851,7 +3853,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     timespan = abjad.get.timespan(component)
         ...     print(f"{repr(component):30} {repr(timespan)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Timespan(Offset((0, 1)), Offset((1, 1)))
@@ -3901,7 +3903,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     timespan = abjad.get.timespan(component)
         ...     print(f"{repr(component):30} {repr(timespan)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") Timespan(Offset((0, 1)), Offset((1, 1)))
@@ -3962,7 +3964,7 @@ def wrapper(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4029,7 +4031,7 @@ def wrapper(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     wrapper = abjad.get.wrapper(component, abjad.Articulation)
         ...     print(f"{repr(component):30} {repr(wrapper)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
@@ -4082,7 +4084,7 @@ def wrappers(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.Selection(staff).notes():
         ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4147,7 +4149,7 @@ def wrappers(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.Selection(staff).components():
         ...     result = abjad.get.wrappers(component, abjad.Articulation)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") []
@@ -4321,7 +4323,7 @@ class Descendants(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.Selection(staff).components():
             ...     parentage = abjad.get.descendants(component)
             ...     count = parentage.count(abjad.Tuplet)
             ...     print(f"{repr(component):55} {repr(count)}")

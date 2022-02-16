@@ -1,4 +1,4 @@
-import collections.abc
+import collections
 import copy
 import itertools
 import math
@@ -592,7 +592,7 @@ class Sequence(collections.abc.Sequence):
         ..  container:: example
 
             >>> staff = abjad.Staff("c'8 d' d' e' e' e'")
-            >>> predicate = lambda x: abjad.PitchSet.from_selection(abjad.select(x))
+            >>> predicate = lambda x: abjad.PitchSet.from_pitches(abjad.Selection(x))
             >>> for item in abjad.Sequence(staff).group_by(predicate):
             ...     item
             ...

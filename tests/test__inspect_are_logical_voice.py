@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Selection_are_logical_voice_01():
+def test__inspect_are_logical_voice_01():
     """
     Unincorporated leaves do not share a logical voice.
     Unicorporated leaves do not share a root component.
@@ -14,10 +14,10 @@ def test_Selection_are_logical_voice_01():
         abjad.Note("e'8"),
         abjad.Note("f'8"),
     ]
-    assert abjad.select(notes).are_logical_voice()
+    assert abjad._inspect._are_logical_voice(notes)
 
 
-def test_Selection_are_logical_voice_02():
+def test__inspect_are_logical_voice_02():
     """
     Container and leaves all logical voice.
     """
@@ -33,10 +33,11 @@ def test_Selection_are_logical_voice_02():
     }
     """
 
-    assert abjad.select(container).components().are_logical_voice()
+    components = abjad.Selection(container).components()
+    assert abjad._inspect._are_logical_voice(components)
 
 
-def test_Selection_are_logical_voice_03():
+def test__inspect_are_logical_voice_03():
     """
     Tuplet and leaves all logical voice.
     """
@@ -52,10 +53,11 @@ def test_Selection_are_logical_voice_03():
     }
     """
 
-    assert abjad.select(tuplet).components().are_logical_voice()
+    components = abjad.Selection(tuplet).components()
+    assert abjad._inspect._are_logical_voice(components)
 
 
-def test_Selection_are_logical_voice_04():
+def test__inspect_are_logical_voice_04():
     """
     Voice and leaves all appear in same logical voice.
     """
@@ -71,10 +73,11 @@ def test_Selection_are_logical_voice_04():
     }
     """
 
-    assert abjad.select(voice).components().are_logical_voice()
+    components = abjad.Selection(voice).components()
+    assert abjad._inspect._are_logical_voice(components)
 
 
-def test_Selection_are_logical_voice_05():
+def test__inspect_are_logical_voice_05():
     """
     Anonymous staff and leaves all appear in same logical voice.
     """
@@ -90,10 +93,11 @@ def test_Selection_are_logical_voice_05():
     }
     """
 
-    assert abjad.select(staff).components().are_logical_voice()
+    components = abjad.Selection(staff).components()
+    assert abjad._inspect._are_logical_voice(components)
 
 
-def test_Selection_are_logical_voice_06():
+def test__inspect_are_logical_voice_06():
     """
     Voice, sequential and leaves all appear in same logical voice.
     """
@@ -135,10 +139,11 @@ def test_Selection_are_logical_voice_06():
         """
     )
 
-    assert abjad.select(voice).components().are_logical_voice()
+    components = abjad.Selection(voice).components()
+    assert abjad._inspect._are_logical_voice(components)
 
 
-def test_Selection_are_logical_voice_07():
+def test__inspect_are_logical_voice_07():
     """
     Anonymous voice, tuplets and leaves all appear in same logical voice.
     """
@@ -180,10 +185,11 @@ def test_Selection_are_logical_voice_07():
         """
     )
 
-    assert abjad.select(voice).components().are_logical_voice()
+    components = abjad.Selection(voice).components()
+    assert abjad._inspect._are_logical_voice(components)
 
 
-def test_Selection_are_logical_voice_08():
+def test__inspect_are_logical_voice_08():
     """
     Logical voice does not extend across anonymous voices.
     """
@@ -227,14 +233,14 @@ def test_Selection_are_logical_voice_08():
         """
     )
 
-    leaves = abjad.select(staff).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
-    assert not staff[:].are_logical_voice()
+    leaves = abjad.Selection(staff).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
+    assert not abjad._inspect._are_logical_voice(staff[:])
 
 
-def test_Selection_are_logical_voice_09():
+def test__inspect_are_logical_voice_09():
     """
     Logical voice encompasses across like-named voices.
     """
@@ -278,11 +284,11 @@ def test_Selection_are_logical_voice_09():
         """
     )
 
-    leaves = abjad.select(staff).leaves()
-    assert leaves.are_logical_voice()
+    leaves = abjad.Selection(staff).leaves()
+    assert abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_10():
+def test__inspect_are_logical_voice_10():
     """
     Logical voice does not extend across differently named voices.
     """
@@ -318,11 +324,11 @@ def test_Selection_are_logical_voice_10():
         """
     )
 
-    leaves = abjad.select(staff).leaves()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(staff).leaves()
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_11():
+def test__inspect_are_logical_voice_11():
     """
     Logical voice does not across anonymous voices.
     Logical voice does not extend across anonymous staves.
@@ -368,11 +374,11 @@ def test_Selection_are_logical_voice_11():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_12():
+def test__inspect_are_logical_voice_12():
     """
     Logical voice does not extend across anonymous voices.
     Logical voice does not extend across anonymous staves.
@@ -436,11 +442,11 @@ def test_Selection_are_logical_voice_12():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert not leaves[:4].are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert not abjad._inspect._are_logical_voice(leaves[:4])
 
 
-def test_Selection_are_logical_voice_13():
+def test__inspect_are_logical_voice_13():
     """
     Anonymous voice, sequentials and leaves all appear in same logical voice.
     """
@@ -474,11 +480,11 @@ def test_Selection_are_logical_voice_13():
         """
     )
 
-    leaves = abjad.select(voice).leaves()
-    assert leaves.are_logical_voice()
+    leaves = abjad.Selection(voice).leaves()
+    assert abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_14():
+def test__inspect_are_logical_voice_14():
     """
     Logical voice can extend across like-named staves.
     Logical voice can not extend across differently named implicit voices.
@@ -522,12 +528,12 @@ def test_Selection_are_logical_voice_14():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_15():
+def test__inspect_are_logical_voice_15():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -569,13 +575,13 @@ def test_Selection_are_logical_voice_15():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_16():
+def test__inspect_are_logical_voice_16():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -617,13 +623,13 @@ def test_Selection_are_logical_voice_16():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_17():
+def test__inspect_are_logical_voice_17():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -645,13 +651,13 @@ def test_Selection_are_logical_voice_17():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_18():
+def test__inspect_are_logical_voice_18():
     """
     Logical voice can not extend acrossdifferently named implicit voices.
     """
@@ -693,13 +699,13 @@ def test_Selection_are_logical_voice_18():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_19():
+def test__inspect_are_logical_voice_19():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -741,13 +747,13 @@ def test_Selection_are_logical_voice_19():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_20():
+def test__inspect_are_logical_voice_20():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -789,13 +795,13 @@ def test_Selection_are_logical_voice_20():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_21():
+def test__inspect_are_logical_voice_21():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -833,13 +839,13 @@ def test_Selection_are_logical_voice_21():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_22():
+def test__inspect_are_logical_voice_22():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -877,13 +883,13 @@ def test_Selection_are_logical_voice_22():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_23():
+def test__inspect_are_logical_voice_23():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -921,13 +927,13 @@ def test_Selection_are_logical_voice_23():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_24():
+def test__inspect_are_logical_voice_24():
     """
     Logical voice can not extend across differently named implicit voices.
     NOTE: THIS IS THE LILYPOND LACUNA.
@@ -968,13 +974,13 @@ def test_Selection_are_logical_voice_24():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_25():
+def test__inspect_are_logical_voice_25():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1012,13 +1018,13 @@ def test_Selection_are_logical_voice_25():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_26():
+def test__inspect_are_logical_voice_26():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1056,13 +1062,13 @@ def test_Selection_are_logical_voice_26():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_27():
+def test__inspect_are_logical_voice_27():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1092,13 +1098,13 @@ def test_Selection_are_logical_voice_27():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_28():
+def test__inspect_are_logical_voice_28():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1126,13 +1132,13 @@ def test_Selection_are_logical_voice_28():
     }
     """
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_29():
+def test__inspect_are_logical_voice_29():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1165,13 +1171,13 @@ def test_Selection_are_logical_voice_29():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_30():
+def test__inspect_are_logical_voice_30():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1202,13 +1208,13 @@ def test_Selection_are_logical_voice_30():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_31():
+def test__inspect_are_logical_voice_31():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1247,12 +1253,12 @@ def test_Selection_are_logical_voice_31():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert not leaves[:8].are_logical_voice()
-    assert not leaves[4:].are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert not abjad._inspect._are_logical_voice(leaves[:8])
+    assert not abjad._inspect._are_logical_voice(leaves[4:])
 
 
-def test_Selection_are_logical_voice_32():
+def test__inspect_are_logical_voice_32():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1307,12 +1313,12 @@ def test_Selection_are_logical_voice_32():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert not leaves[:8].are_logical_voice()
-    assert not leaves[4:].are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert not abjad._inspect._are_logical_voice(leaves[:8])
+    assert not abjad._inspect._are_logical_voice(leaves[4:])
 
 
-def test_Selection_are_logical_voice_33():
+def test__inspect_are_logical_voice_33():
     """
     Logical voice does extend across gaps.
     Logical voice can not extend across differently named voices.
@@ -1368,14 +1374,14 @@ def test_Selection_are_logical_voice_33():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
-    assert abjad.select([leaves[i] for i in middle]).are_logical_voice()
-    assert abjad.select([leaves[i] for i in inner]).are_logical_voice()
-    assert not leaves[:4].are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in middle])
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._inspect._are_logical_voice(leaves[:4])
 
 
-def test_Selection_are_logical_voice_34():
+def test__inspect_are_logical_voice_34():
     """
     Logical voice does extend across gaps.
     Logical voice can not extend across differently named implicit voices.
@@ -1432,14 +1438,14 @@ def test_Selection_are_logical_voice_34():
         """
     )
 
-    leaves = abjad.select(staff).leaves()
-    assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
-    assert abjad.select([leaves[i] for i in middle]).are_logical_voice()
-    assert abjad.select([leaves[i] for i in inner]).are_logical_voice()
-    assert not leaves[:4].are_logical_voice()
+    leaves = abjad.Selection(staff).leaves()
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in middle])
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._inspect._are_logical_voice(leaves[:4])
 
 
-def test_Selection_are_logical_voice_35():
+def test__inspect_are_logical_voice_35():
     """
     Containers and leaves all appear in same logical voice.
     """
@@ -1488,10 +1494,11 @@ def test_Selection_are_logical_voice_35():
         """
     )
 
-    assert abjad.select(container).components().are_logical_voice()
+    components = abjad.Selection(container).components()
+    assert abjad._inspect._are_logical_voice(components)
 
 
-def test_Selection_are_logical_voice_36():
+def test__inspect_are_logical_voice_36():
     """
     Logical voice can not extend across differently named voices.
     """
@@ -1540,13 +1547,13 @@ def test_Selection_are_logical_voice_36():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    leaves = abjad.select(container).leaves()
-    assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
-    assert abjad.select([leaves[i] for i in inner]).are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_37():
+def test__inspect_are_logical_voice_37():
     """
     Logical voice does not extend over differently named voices.
     """
@@ -1592,13 +1599,13 @@ def test_Selection_are_logical_voice_37():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_38():
+def test__inspect_are_logical_voice_38():
     """
     Can not nest across differently named implicit voices.
     """
@@ -1652,13 +1659,13 @@ def test_Selection_are_logical_voice_38():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    leaves = abjad.select(container).leaves()
-    assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
-    assert abjad.select([leaves[i] for i in inner]).are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_39():
+def test__inspect_are_logical_voice_39():
     """
     Logical voice can not extend across differently named voices.
     """
@@ -1726,13 +1733,13 @@ def test_Selection_are_logical_voice_39():
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
     inner = (6, 7, 8, 9)
 
-    leaves = abjad.select(voice).leaves()
-    assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
-    assert abjad.select([leaves[i] for i in inner]).are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(voice).leaves()
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_40():
+def test__inspect_are_logical_voice_40():
     """
     Logical voice can not extend across differently named anonymous voices.
     """
@@ -1783,16 +1790,16 @@ def test_Selection_are_logical_voice_40():
         """
     )
 
-    leaves = abjad.select(container).leaves()
-    assert leaves[:4].are_logical_voice()
-    assert leaves[4:8].are_logical_voice()
-    assert leaves[8:].are_logical_voice()
-    assert not leaves[:8].are_logical_voice()
-    assert not leaves[4:].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._inspect._are_logical_voice(leaves[4:8])
+    assert abjad._inspect._are_logical_voice(leaves[8:])
+    assert not abjad._inspect._are_logical_voice(leaves[:8])
+    assert not abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._inspect._are_logical_voice(leaves)
 
 
-def test_Selection_are_logical_voice_41():
+def test__inspect_are_logical_voice_41():
     """
     Logical voice can not extend across differently named anonymous voices.
     """
@@ -1849,9 +1856,9 @@ def test_Selection_are_logical_voice_41():
 
     outer = (0, 1, 10, 11)
 
-    leaves = abjad.select(container).leaves()
-    assert abjad.select([leaves[i] for i in outer]).are_logical_voice()
-    assert leaves[2:6].are_logical_voice()
-    assert leaves[6:10].are_logical_voice()
-    assert not leaves[:6].are_logical_voice()
-    assert not leaves.are_logical_voice()
+    leaves = abjad.Selection(container).leaves()
+    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._inspect._are_logical_voice(leaves[2:6])
+    assert abjad._inspect._are_logical_voice(leaves[6:10])
+    assert not abjad._inspect._are_logical_voice(leaves[:6])
+    assert not abjad._inspect._are_logical_voice(leaves)

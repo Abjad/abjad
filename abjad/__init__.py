@@ -199,16 +199,28 @@ from .parsers import parser
 from .parsers.base import Parser
 from .parsers.parse import parse
 from .pattern import Pattern, PatternTuple
-from .pitch import (
-    Accidental,
-    Interval,
-    IntervalClass,
+from .pcollections import (
     IntervalClassSegment,
     IntervalClassSet,
     IntervalClassVector,
     IntervalSegment,
     IntervalSet,
     IntervalVector,
+    PitchClassSegment,
+    PitchClassSet,
+    PitchClassVector,
+    PitchRange,
+    PitchSegment,
+    PitchSet,
+    PitchVector,
+    Segment,
+    Set,
+    TwelveToneRow,
+)
+from .pitch import (
+    Accidental,
+    Interval,
+    IntervalClass,
     NamedInterval,
     NamedIntervalClass,
     NamedInversionEquivalentIntervalClass,
@@ -222,17 +234,7 @@ from .pitch import (
     Octave,
     Pitch,
     PitchClass,
-    PitchClassSegment,
-    PitchClassSet,
-    PitchClassVector,
-    PitchRange,
-    PitchSegment,
-    PitchSet,
     PitchTyping,
-    PitchVector,
-    Segment,
-    Set,
-    TwelveToneRow,
 )
 from .ratio import NonreducedRatio, Ratio
 from .score import (
@@ -258,7 +260,7 @@ from .score import (
     Tuplet,
     Voice,
 )
-from .selection import LogicalTie, Selection, select
+from .selection import LogicalTie, Selection
 from .sequence import Sequence
 from .setclass import SetClass
 from .spanners import (
@@ -605,7 +607,6 @@ __all__ = [
     "phrasing_slur",
     "piano_pedal",
     "play",
-    "select",
     "setting",
     "show",
     "slur",

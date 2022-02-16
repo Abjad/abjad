@@ -99,7 +99,7 @@ class Dynamic:
                 }
             >>
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.Selection(staff).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Dynamic)
         ...
         (Note("e'8"), Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None))

@@ -23,7 +23,7 @@ def test_LilyPondParser__indicators__TimeSignature_01():
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-    leaves = abjad.select(result).leaves()
+    leaves = abjad.Selection(result).leaves()
     leaf = leaves[0]
     time_signatures = abjad.get.indicators(leaf, abjad.TimeSignature)
     assert len(time_signatures) == 1

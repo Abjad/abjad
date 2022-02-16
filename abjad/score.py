@@ -17,6 +17,7 @@ from . import lyproxy as _lyproxy
 from . import markups as _markups
 from . import math as _math
 from . import overrides as _overrides
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import tag as _tag
 from . import timespan as _timespan
@@ -771,7 +772,7 @@ class Container(Component):
         ...     abjad.Note("e'8"),
         ...     abjad.Note("f'8"),
         ...     ]
-        >>> selection = abjad.select(notes)
+        >>> selection = abjad.Selection(notes)
         >>> container = abjad.Container(selection)
         >>> abjad.show(container) # doctest: +SKIP
 
@@ -793,8 +794,8 @@ class Container(Component):
 
         >>> items = [
         ...     abjad.Note("c'4"),
-        ...     abjad.select(abjad.Note("e'4")),
-        ...     abjad.select(abjad.Note("d'4")),
+        ...     abjad.Selection(abjad.Note("e'4")),
+        ...     abjad.Selection(abjad.Note("d'4")),
         ...     abjad.Note("e'8"),
         ...     abjad.Note("f'8"),
         ...     ]
@@ -929,7 +930,7 @@ class Container(Component):
             >>> voice = abjad.Voice()
             >>> voice.append(abjad.Tuplet((4, 6), "c'4 d'4 e'4"))
             >>> voice.append(abjad.Tuplet((2, 3), "e'4 d'4 c'4"))
-            >>> leaves = abjad.select(voice).leaves()
+            >>> leaves = abjad.Selection(voice).leaves()
             >>> abjad.slur(leaves)
             >>> abjad.show(voice) # doctest: +SKIP
 
@@ -958,7 +959,7 @@ class Container(Component):
             >>> tuplet_1 = voice[0]
             >>> del(voice[0])
             >>> start_slur = abjad.StartSlur()
-            >>> leaf = abjad.select(voice).leaf(0)
+            >>> leaf = abjad.Selection(voice).leaf(0)
             >>> abjad.attach(start_slur, leaf)
 
             First tuplet no longer appears in voice:
@@ -1326,7 +1327,8 @@ class Container(Component):
                 if component._parent is not None:
                     raise Exception(f"must not have parent: {component!r}.")
             self._components = list(components)
-            self[:]._set_parents(self)
+            for component in self:
+                component._set_parent(self)
 
     def _is_one_of_my_first_leaves(self, leaf):
         return leaf in self._get_descendants_starting_with()
@@ -1962,7 +1964,7 @@ class AfterGraceContainer(Container):
         >>> abjad.attach(literal, voice[0])
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
-        >>> leaves = abjad.select(voice).leaves(grace=None)
+        >>> leaves = abjad.Selection(voice).leaves(grace=None)
         >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, leaves[1])
         >>> abjad.attach(abjad.Articulation("."), leaves[1])
@@ -2531,7 +2533,7 @@ class BeforeGraceContainer(Container):
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer("cs'16")
                 >>> abjad.attach(container, voice[1])
-                >>> leaves = abjad.select(voice).leaves()[1:3]
+                >>> leaves = abjad.Selection(voice).leaves()[1:3]
                 >>> abjad.slur(leaves)
                 >>> abjad.show(voice) # doctest: +SKIP
 
@@ -2562,7 +2564,7 @@ class BeforeGraceContainer(Container):
                 ...     "cs'16", command=r"\slashedGrace"
                 ... )
                 >>> abjad.attach(container, voice[1])
-                >>> leaves = abjad.select(voice).leaves()[1:3]
+                >>> leaves = abjad.Selection(voice).leaves()[1:3]
                 >>> abjad.slur(leaves)
                 >>> abjad.show(voice) # doctest: +SKIP
 
@@ -2730,7 +2732,7 @@ class Chord(Leaf):
 
     def __getnewargs__(
         self,
-    ) -> typing.Tuple[_pitch.PitchSegment, _duration.Duration]:
+    ) -> typing.Tuple[_pcollections.PitchSegment, _duration.Duration]:
         """
         Gets new chord arguments.
 
@@ -2880,7 +2882,7 @@ class Chord(Leaf):
         Leaf.written_duration.fset(self, argument)
 
     @property
-    def written_pitches(self) -> _pitch.PitchSegment:
+    def written_pitches(self) -> _pcollections.PitchSegment:
         """
         Written pitches in chord.
 
@@ -2915,7 +2917,7 @@ class Chord(Leaf):
 
         Set written pitches with any iterable.
         """
-        return _pitch.PitchSegment(
+        return _pcollections.PitchSegment(
             items=(note_head.written_pitch for note_head in self.note_heads),
             item_class=_pitch.NamedPitch,
         )
@@ -5883,7 +5885,7 @@ class Tuplet(Container):
             >>> abjad.tweak(tuplet_3).staff_padding = 4
 
             >>> staff = abjad.Staff([tuplet_3])
-            >>> leaves = abjad.select(staff).leaves()
+            >>> leaves = abjad.Selection(staff).leaves()
             >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
             >>> literal = abjad.LilyPondLiteral(r'\set tupletFullLength = ##t')
             >>> abjad.attach(literal, staff)

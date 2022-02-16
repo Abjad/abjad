@@ -105,7 +105,7 @@ def test_mutate_extract_03():
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
     staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.beam(leaves)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -158,7 +158,7 @@ def test_mutate_extract_04():
     voice.append(abjad.Container("c'8 d'8"))
     voice.append(abjad.Container("e'8 f'8"))
     voice.append(abjad.Container("g'8 a'8"))
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.Selection(voice).leaves()
     abjad.beam(leaves)
     abjad.glissando(leaves)
 

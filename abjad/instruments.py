@@ -7,6 +7,7 @@ import typing
 
 from . import enumerate as _enumerate
 from . import markups as _markups
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import string as _string
 
@@ -57,7 +58,7 @@ class Instrument:
                 }
             >>
 
-        >>> for leaf in abjad.select(voice_1).leaves():
+        >>> for leaf in abjad.Selection(voice_1).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("e'8"), Flute())
@@ -65,7 +66,7 @@ class Instrument:
         (Note("f'8"), Flute())
         (Note("a'8"), Flute())
 
-        >>> for leaf in abjad.select(voice_2).leaves():
+        >>> for leaf in abjad.Selection(voice_2).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'2"), Viola())
@@ -128,11 +129,11 @@ class Instrument:
         allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
-            pitch_range = _pitch.PitchRange(pitch_range)
-        elif isinstance(pitch_range, _pitch.PitchRange):
+            pitch_range = _pcollections.PitchRange(pitch_range)
+        elif isinstance(pitch_range, _pcollections.PitchRange):
             pitch_range = copy.copy(pitch_range)
         elif pitch_range is None:
-            pitch_range = _pitch.PitchRange()
+            pitch_range = _pcollections.PitchRange()
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
@@ -432,7 +433,7 @@ class Tuning:
     def __post_init__(self):
         if isinstance(self.pitches, type(self)):
             self.pitches = self.pitches.pitches
-        self.pitches = _pitch.PitchSegment(
+        self.pitches = _pcollections.PitchSegment(
             items=self.pitches, item_class=_pitch.NamedPitch
         )
 
@@ -443,7 +444,7 @@ class Tuning:
         return hash(repr(self))
 
     @property
-    def pitch_ranges(self) -> typing.List[_pitch.PitchRange]:
+    def pitch_ranges(self) -> typing.List[_pcollections.PitchRange]:
         """
         Gets two-octave pitch-ranges for each pitch in this tuning.
 
@@ -460,13 +461,13 @@ class Tuning:
         """
         result = []
         for pitch in self.pitches or []:
-            pitch_range = _pitch.PitchRange(f"[{pitch}, {pitch + 24}]")
+            pitch_range = _pcollections.PitchRange(f"[{pitch}, {pitch + 24}]")
             result.append(pitch_range)
         return result
 
     def get_pitch_ranges_by_string_number(
         self, string_number: StringNumber
-    ) -> typing.Tuple[_pitch.PitchRange, ...]:
+    ) -> typing.Tuple[_pcollections.PitchRange, ...]:
         """
         Gets tuning pitch ranges by string number.
 
@@ -2050,7 +2051,7 @@ class Flute(Instrument):
             fs'4
         }
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.Selection(staff).leaves():
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'4"), Flute())

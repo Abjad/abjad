@@ -1,6 +1,7 @@
 import dataclasses
 
 from . import math as _math
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 
 
@@ -1081,7 +1082,7 @@ class SetClass:
             prime_form = self._lex_identifier_to_prime_form[pair]
         else:
             prime_form = self._forte_identifier_to_prime_form[pair]
-        prime_form = _pitch.PitchClassSet(
+        prime_form = _pcollections.PitchClassSet(
             items=prime_form, item_class=_pitch.NumberedPitchClass
         )
         return prime_form
@@ -1170,7 +1171,7 @@ class SetClass:
         return self == inverted_set_class
 
     @property
-    def prime_form(self) -> _pitch.PitchClassSet:
+    def prime_form(self) -> _pcollections.PitchClassSet:
         """
         Gets prime form.
 
@@ -1223,7 +1224,7 @@ class SetClass:
         )
         return prime_form
 
-    # TODO: change to from_selection()
+    # TODO: change to from_pitches()
     @staticmethod
     def from_pitch_class_set(pitch_class_set, lex_rank=None, transposition_only=None):
         """
@@ -1323,7 +1324,7 @@ class SetClass:
 
         Returns set-class.
         """
-        pitch_class_set = _pitch.PitchClassSet(
+        pitch_class_set = _pcollections.PitchClassSet(
             items=pitch_class_set, item_class=_pitch.NumberedPitchClass
         )
         prime_form = pitch_class_set.get_prime_form(
@@ -1560,5 +1561,7 @@ def _yield_all_pitch_class_sets():
         string = _math.integer_to_binary_string(i).zfill(12)
         subset = "".join(list(reversed(string)))
         subset = _helper(subset)
-        subset = _pitch.PitchClassSet(subset, item_class=_pitch.NumberedPitchClass)
+        subset = _pcollections.PitchClassSet(
+            subset, item_class=_pitch.NumberedPitchClass
+        )
         yield subset

@@ -9,6 +9,7 @@ from . import enums as _enums
 from . import iterate as iterate_
 from . import markups as _markups
 from . import overrides as _overrides
+from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
 from . import selection as _selection
@@ -703,14 +704,16 @@ def vertical_moments(
             string = str(index)
         elif prototype is _pitch.NumberedPitch:
             leaves = vertical_moment.leaves
-            pitches = _pitch.PitchSegment.from_selection(leaves)
+            generator = iterate_.pitches(leaves)
+            pitches = _pcollections.PitchSegment.from_pitches(generator)
             if not pitches:
                 continue
             pitch_numbers = [str(pitch.number) for pitch in pitches]
             string = rf'\column {{ {" ".join(pitch_numbers)} }}'
         elif prototype is _pitch.NumberedPitchClass:
             leaves = vertical_moment.leaves
-            pitches = _pitch.PitchSegment.from_selection(leaves)
+            generator = iterate_.pitches(leaves)
+            pitches = _pcollections.PitchSegment.from_pitches(generator)
             if not pitches:
                 continue
             pitch_classes = [pitch.pitch_class.number for pitch in pitches]
@@ -755,12 +758,13 @@ def vertical_moments(
                 numbers.append(number)
             string = " ".join([str(_) for _ in numbers])
             string = rf"\column {{ {string} }}"
-        elif prototype is _pitch.IntervalClassVector:
+        elif prototype is _pcollections.IntervalClassVector:
             leaves = vertical_moment.leaves
-            pitches = _pitch.PitchSegment.from_selection(leaves)
+            generator = iterate_.pitches(leaves)
+            pitches = _pcollections.PitchSegment.from_pitches(generator)
             if not pitches:
                 continue
-            interval_class_vector = _pitch.IntervalClassVector(
+            interval_class_vector = _pcollections.IntervalClassVector(
                 pitches,
                 item_class=_pitch.NumberedInversionEquivalentIntervalClass,
             )
@@ -772,7 +776,8 @@ def vertical_moments(
                 prototype = prototype()
             assert isinstance(prototype, _setclass.SetClass)
             leaves = vertical_moment.leaves
-            pitch_class_set = _pitch.PitchClassSet.from_selection(leaves)
+            generator = iterate_.pitches(leaves)
+            pitch_class_set = _pcollections.PitchClassSet.from_pitches(generator)
             if not pitch_class_set:
                 continue
             set_class = _setclass.SetClass.from_pitch_class_set(
@@ -1826,7 +1831,8 @@ def with_set_classes(argument, direction=_enums.Up, prototype=None):
         prototype = prototype()
     assert isinstance(prototype, _setclass.SetClass), repr(prototype)
     for selection in argument:
-        pitch_class_set = _pitch.PitchClassSet.from_selection(selection)
+        generator = iterate_.pitches(selection)
+        pitch_class_set = _pcollections.PitchClassSet.from_pitches(generator)
         if not pitch_class_set:
             continue
         set_class = _setclass.SetClass.from_pitch_class_set(

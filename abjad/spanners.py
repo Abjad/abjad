@@ -45,7 +45,7 @@ def beam(
     beam_lone_notes: bool = None,
     beam_rests: typing.Optional[bool] = True,
     durations: typing.Sequence[_duration.Duration] = None,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     span_beam_count: int = None,
     start_beam: _indicators.StartBeam = None,
     stemlet_length: _typings.Number = None,
@@ -78,9 +78,7 @@ def beam(
     """
     assert callable(selector)
     argument = selector(argument)
-    original_leaves = iterate_.leaves(argument)
-    original_leaves = list(original_leaves)
-
+    original_leaves = _sequence.Sequence(iterate_.leaves(argument))
     silent_prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
 
     def _is_beamable(argument, beam_rests=False):
@@ -180,7 +178,7 @@ def beam(
     leaf_durations_ = _sequence.Sequence(leaf_durations)
     parts = leaf_durations_.partition_by_weights(durations, overhang=True)
     part_counts = [len(_) for _ in parts]
-    original_leaves = _sequence.Sequence(original_leaves)
+    _sequence.Sequence(original_leaves)
     parts = original_leaves.partition_by_counts(part_counts)
     total_parts = len(parts)
     for i, part in enumerate(parts):
@@ -1165,7 +1163,7 @@ def hairpin(
     descriptor: str,
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     tag: _tag.Tag = None,
 ) -> None:
     r"""
@@ -1322,7 +1320,7 @@ def hairpin(
 def horizontal_bracket(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     start_group: _indicators.StartGroup = None,
     stop_group: _indicators.StopGroup = None,
     tag: _tag.Tag = None,
@@ -1365,7 +1363,7 @@ def horizontal_bracket(
 def ottava(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     start_ottava: _indicators.Ottava = _indicators.Ottava(n=1),
     stop_ottava: _indicators.Ottava = _indicators.Ottava(n=0, format_slot="after"),
     tag: _tag.Tag = None,
@@ -1408,7 +1406,7 @@ def ottava(
 def phrasing_slur(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     start_phrasing_slur: _indicators.StartPhrasingSlur = None,
     stop_phrasing_slur: _indicators.StopPhrasingSlur = None,
     tag: _tag.Tag = None,
@@ -1454,7 +1452,7 @@ def phrasing_slur(
 def piano_pedal(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     start_piano_pedal: _indicators.StartPianoPedal = None,
     stop_piano_pedal: _indicators.StopPianoPedal = None,
     tag: _tag.Tag = None,
@@ -1504,7 +1502,7 @@ def piano_pedal(
 def slur(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     start_slur: _indicators.StartSlur = None,
     stop_slur: _indicators.StopSlur = None,
     tag: _tag.Tag = None,
@@ -1548,7 +1546,7 @@ def slur(
 def text_spanner(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     start_text_span: _indicators.StartTextSpan = None,
     stop_text_span: _indicators.StopTextSpan = None,
     tag: _tag.Tag = None,
@@ -1692,7 +1690,7 @@ def tie(
     *,
     direction: _enums.VerticalAlignment = None,
     repeat: bool | _typings.IntegerPair | typing.Callable | None = None,
-    selector: typing.Callable = lambda _: _selection.select(_).leaves(),
+    selector: typing.Callable = lambda _: _selection.Selection(_).leaves(),
     tag: _tag.Tag = None,
 ) -> None:
     r"""
@@ -1922,7 +1920,7 @@ def tie(
 def trill_spanner(
     argument: typing.Union[_score.Component, _selection.Selection],
     *,
-    selector=lambda _: _selection.select(_).leaves(),
+    selector=lambda _: _selection.Selection(_).leaves(),
     start_trill_span: _indicators.StartTrillSpan = None,
     stop_trill_span: _indicators.StopTrillSpan = None,
     tag: _tag.Tag = None,

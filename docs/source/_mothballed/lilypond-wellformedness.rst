@@ -31,7 +31,7 @@ voice always belong to the same logical voice:
 
     >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
     >>> staff = abjad.Staff([voice])
-    >>> notes = abjad.select(staff).leaves()
+    >>> notes = abjad.Selection(staff).leaves()
     >>> abjad.slur(notes)
     >>> abjad.show(staff)
 
@@ -42,7 +42,7 @@ no explicit voice is present:
 ::
 
     >>> staff = abjad.Staff("g'4 fs'8 e'8")
-    >>> notes = abjad.select(staff).leaves()
+    >>> notes = abjad.Selection(staff).leaves()
     >>> abjad.slur(notes)
     >>> abjad.show(staff)
 
@@ -71,7 +71,7 @@ You can slur together the notes in the first voice:
 
 ::
 
-    >>> notes = abjad.select(voice_1).leaves()
+    >>> notes = abjad.Selection(voice_1).leaves()
     >>> abjad.slur(notes)
     >>> abjad.show(staff)
 
@@ -79,7 +79,7 @@ And you can slur together the notes in the second voice:
 
 ::
 
-    >>> notes = abjad.select(voice_2).leaves()
+    >>> notes = abjad.Selection(voice_2).leaves()
     >>> abjad.slur(notes)
     >>> abjad.show(staff)
 
@@ -109,9 +109,9 @@ the case because it's now possible to slur all six notes together:
 
 ::
 
-    >>> voice_1_notes = abjad.select(voice_1).leaves()
-    >>> voice_2_notes = abjad.select(voice_2).leaves()
-    >>> all_notes = voice_1_notes + voice_2_notes
+    >>> voice_1_notes = abjad.Selection(voice_1).leaves()
+    >>> voice_2_notes = abjad.Selection(voice_2).leaves()
+    >>> all_notes = abjad.Selection(list(voice_1_notes) + list(voice_2_notes))
     >>> abjad.slur(all_notes)
     >>> abjad.show(staff)
 
@@ -142,8 +142,8 @@ the notes in the second voice. But you can't slur together all of the notes at o
 
 ::
 
-    >>> voice_1_notes = abjad.select(voice_1).leaves()
-    >>> voice_2_notes = abjad.select(voice_2).leaves()
+    >>> voice_1_notes = abjad.Selection(voice_1).leaves()
+    >>> voice_2_notes = abjad.Selection(voice_2).leaves()
     >>> abjad.slur(voice_1_notes)
     >>> abjad.slur(voice_2_notes)
     >>> abjad.show(staff)

@@ -1,6 +1,8 @@
+import collections
 import copy as python_copy
 import itertools
 
+from . import _inspect
 from . import bind as _bind
 from . import duration as _duration
 from . import enums as _enums
@@ -9,6 +11,7 @@ from . import get as _get
 from . import indicators as _indicators
 from . import iterate as iterate_
 from . import makers as _makers
+from . import parentage as _parentage
 from . import pitch as _pitch
 from . import ratio as _ratio
 from . import score as _score
@@ -17,9 +20,274 @@ from . import sequence as _sequence
 from . import spanners as _spanners
 
 
+def _are_contiguous_logical_voice(
+    selection, prototype=None, *, ignore_before_after_grace=None
+) -> bool:
+    r"""
+    Is true when items in selection are contiguous components in the same logical voice.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> abjad.mutate._are_contiguous_logical_voice(staff[:])
+        True
+
+        >>> selection = abjad.Selection([staff[0], staff[-1]])
+        >>> abjad.mutate._are_contiguous_logical_voice(selection)
+        False
+
+    ..  container:: example
+
+        REGRESSION. Before-grace music may be ignored:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.BeforeGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                c'4
+                \grace {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+        >>> abjad.mutate._are_contiguous_logical_voice(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_logical_voice(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+        After-grace music may be ignored, too:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.AfterGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                \afterGrace
+                c'4
+                {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+        >>> abjad.mutate._are_contiguous_logical_voice(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_logical_voice(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+    """
+    if not isinstance(selection, collections.abc.Sequence):
+        return False
+    prototype = prototype or (_score.Component,)
+    if not isinstance(prototype, tuple):
+        prototype = (prototype,)
+    assert isinstance(prototype, tuple)
+    if len(selection) == 0:
+        return True
+    if all(isinstance(_, prototype) and _._parent is None for _ in selection):
+        return True
+    first = selection[0]
+    if not isinstance(first, prototype):
+        return False
+    first_parentage = _parentage.Parentage(first)
+    first_logical_voice = first_parentage.logical_voice()
+    first_root = first_parentage.root
+    previous = first
+    for current in selection[1:]:
+        current_parentage = _parentage.Parentage(current)
+        current_logical_voice = current_parentage.logical_voice()
+        # false if wrong type of component found
+        if not isinstance(current, prototype):
+            return False
+        # false if in different logical voices
+        if current_logical_voice != first_logical_voice:
+            return False
+        # false if components are in same score and are discontiguous
+        if current_parentage.root == first_root:
+            if not _immediately_precedes(
+                previous,
+                current,
+                ignore_before_after_grace=ignore_before_after_grace,
+            ):
+                return False
+        previous = current
+    return True
+
+
+def _are_contiguous_same_parent(
+    self, prototype=None, *, ignore_before_after_grace=None
+) -> bool:
+    r"""
+    Is true when items in selection are all contiguous components in the same parent.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> abjad.mutate._are_contiguous_same_parent(staff[:])
+        True
+
+        >>> selection = abjad.Selection([staff[0], staff[-1]])
+        >>> abjad.mutate._are_contiguous_same_parent(selection)
+        False
+
+    ..  container:: example
+
+        REGRESSION. Before-grace music music may be ignored:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.BeforeGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                c'4
+                \grace {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+        >>> abjad.mutate._are_contiguous_same_parent(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_same_parent(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+        After-grace music may be ignored, too:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.AfterGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                \afterGrace
+                c'4
+                {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+        >>> abjad.mutate._are_contiguous_same_parent(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_same_parent(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+    """
+    prototype = prototype or (_score.Component,)
+    if not isinstance(prototype, tuple):
+        prototype = (prototype,)
+    assert isinstance(prototype, tuple)
+    if len(self) == 0:
+        return True
+    if all(isinstance(_, prototype) and _._parent is None for _ in self):
+        return True
+    first = self[0]
+    if not isinstance(first, prototype):
+        return False
+    first_parent = first._parent
+    same_parent = True
+    strictly_contiguous = True
+    previous = first
+    for current in self[1:]:
+        if not isinstance(current, prototype):
+            return False
+        if current._parent is not first_parent:
+            same_parent = False
+        if not _immediately_precedes(
+            previous,
+            current,
+            ignore_before_after_grace=ignore_before_after_grace,
+        ):
+            strictly_contiguous = False
+        if current._parent is not None and (not same_parent or not strictly_contiguous):
+            return False
+        previous = current
+    return True
+
+
+def _attach_tie_to_leaves(selection):
+    for leaf in selection[:-1]:
+        _bind.detach(_indicators.Tie, leaf)
+        _bind.attach(_indicators.Tie(), leaf)
+
+
+def _copy_selection(selection):
+    assert _are_contiguous_logical_voice(selection)
+    new_components = []
+    for component in selection:
+        if isinstance(component, _score.Container):
+            new_component = component._copy_with_children()
+        else:
+            new_component = component.__copy__()
+        new_components.append(new_component)
+    new_components = type(selection)(new_components)
+    return new_components
+
+
 def _extract(COMPONENT):
     selection = _selection.Selection([COMPONENT])
-    parent, start, stop = selection._get_parent_and_start_stop_indices()
+    parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:
         components = list(getattr(COMPONENT, "components", ()))
         parent.__setitem__(slice(start, stop + 1), components)
@@ -27,8 +295,8 @@ def _extract(COMPONENT):
 
 
 def _fuse(SELECTION):
-    assert SELECTION.are_contiguous_logical_voice()
-    if SELECTION.are_leaves():
+    assert _are_contiguous_logical_voice(SELECTION)
+    if all(isinstance(_, _score.Leaf) for _ in SELECTION):
         return _fuse_leaves(SELECTION)
     elif all(isinstance(_, _score.Tuplet) for _ in SELECTION):
         return _fuse_tuplets(SELECTION)
@@ -37,8 +305,8 @@ def _fuse(SELECTION):
 
 
 def _fuse_leaves(SELECTION):
-    assert SELECTION.are_leaves()
-    assert SELECTION.are_contiguous_logical_voice()
+    assert all(isinstance(_, _score.Leaf) for _ in SELECTION)
+    assert _are_contiguous_logical_voice(SELECTION)
     leaves = SELECTION
     if len(leaves) <= 1:
         return leaves
@@ -66,7 +334,7 @@ def _fuse_leaves_by_immediate_parent(SELECTION):
 
 
 def _fuse_tuplets(SELECTION):
-    assert SELECTION.are_contiguous_same_parent(prototype=_score.Tuplet)
+    assert _are_contiguous_same_parent(SELECTION, prototype=_score.Tuplet)
     if len(SELECTION) == 0:
         return None
     first = SELECTION[0]
@@ -93,6 +361,65 @@ def _get_leaves_grouped_by_immediate_parents(SELECTION):
         group = _selection.Selection(list(values_generator))
         result.append(group)
     return result
+
+
+def _give_components_to_empty_container(selection, container):
+    assert _are_contiguous_same_parent(selection)
+    assert isinstance(container, _score.Container)
+    assert not container
+    components = []
+    for component in selection:
+        components.extend(getattr(component, "components", ()))
+    container._components.extend(components)
+    _set_parents(container)
+
+
+def _get_parent_and_start_stop_indices(selection, ignore_before_after_grace=None):
+    assert _are_contiguous_same_parent(
+        selection, ignore_before_after_grace=ignore_before_after_grace
+    )
+    if selection:
+        first, last = selection[0], selection[-1]
+        parent = first._parent
+        if parent is not None:
+            first_index = parent.index(first)
+            last_index = parent.index(last)
+            return parent, first_index, last_index
+    return None, None, None
+
+
+def _give_position_in_parent_to_container(selection, container):
+    assert _are_contiguous_same_parent(selection)
+    assert isinstance(container, _score.Container)
+    parent, start, stop = _get_parent_and_start_stop_indices(selection)
+    if parent is not None:
+        parent._components.__setitem__(slice(start, start), [container])
+        container._set_parent(parent)
+        for component in selection:
+            component._set_parent(None)
+
+
+def _immediately_precedes(component_1, component_2, ignore_before_after_grace=None):
+    successors = []
+    current = component_1
+    # do not include OnBeatGraceContainer here because
+    # OnBeatGraceContainer is a proper container
+    grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
+    while current is not None:
+        sibling = _inspect._get_sibling_with_graces(current, 1)
+        while (
+            ignore_before_after_grace
+            and sibling is not None
+            and isinstance(sibling._parent, grace_prototype)
+        ):
+            sibling = _inspect._get_sibling_with_graces(sibling, 1)
+        if sibling is None:
+            current = current._parent
+        else:
+            descendants = sibling._get_descendants_starting_with()
+            successors = descendants
+            break
+    return component_2 in successors
 
 
 def _move_indicators(donor_component, recipient_component):
@@ -170,6 +497,11 @@ def _set_leaf_duration(leaf, new_duration):
         return _selection.Selection(tuplet)
 
 
+def _set_parents(container):
+    for component in container:
+        component._set_parent(container)
+
+
 def _split_container_at_index(CONTAINER, i):
     """
     Splits container to the left of index ``i``.
@@ -203,7 +535,7 @@ def _split_container_at_index(CONTAINER, i):
     nonempty_halves = [half for half in halves if len(half)]
     # incorporate left and right parents in score if possible
     selection = _selection.Selection(CONTAINER)
-    parent, start, stop = selection._get_parent_and_start_stop_indices()
+    parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:
         parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
         for part in nonempty_halves:
@@ -307,7 +639,7 @@ def _split_container_by_duration(CONTAINER, duration):
                     leaf_right_of_split,
                 )
                 selection = _selection.Selection(leaves_around_split)
-                selection._attach_tie_to_leaves()
+                _attach_tie_to_leaves(selection)
     # return list-wrapped halves of container
     return [left], [right]
 
@@ -367,7 +699,7 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
     result_leaves = _selection.Selection(result_components).leaves(grace=False)
     assert all(isinstance(_, _selection.Selection) for _ in result_selections)
     assert all(isinstance(_, _score.Component) for _ in result_components)
-    assert result_leaves.are_leaves()
+    assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     # strip result leaves of all indicators
     for leaf in result_leaves:
         _bind.detach(object, leaf)
@@ -400,7 +732,7 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
         fuse(result_components)
     # tie split notes
     if isinstance(LEAF, (_score.Note, _score.Chord)) and 1 < len(result_leaves):
-        result_leaves._attach_tie_to_leaves()
+        _attach_tie_to_leaves(result_leaves)
     if originally_repeat_tied and not result_leaves[0]._has_indicator(
         _indicators.RepeatTie
     ):
@@ -410,9 +742,6 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
     assert isinstance(result_leaves, _selection.Selection)
     assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     return result_leaves
-
-
-### PUBLIC FUNCTIONS ###
 
 
 def copy(argument, n=1):
@@ -513,7 +842,7 @@ def copy(argument, n=1):
             }
 
         >>> selection = staff[2:4]
-        >>> result = selection._copy()
+        >>> result = abjad.mutate.copy(selection)
         >>> new_staff = abjad.Staff(result)
         >>> abjad.show(new_staff) # doctest: +SKIP
 
@@ -537,7 +866,7 @@ def copy(argument, n=1):
     else:
         selection = argument
     if n == 1:
-        result = selection._copy()
+        result = _copy_selection(selection)
         if isinstance(argument, _score.Component):
             if len(result) == 1:
                 result = result[0]
@@ -627,7 +956,7 @@ def extract(argument):
         >>> staff = abjad.Staff()
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.Selection(staff).leaves()
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
         >>> abjad.hairpin('p < f', leaves)
@@ -684,7 +1013,7 @@ def extract(argument):
         >>> staff = abjad.Staff()
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.Selection(staff).leaves()
         >>> abjad.hairpin('p < f', leaves)
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
@@ -895,7 +1224,7 @@ def fuse(argument):
                 d'32
             }
 
-        >>> logical_tie = abjad.select(staff[0]).logical_tie()
+        >>> logical_tie = abjad.Selection(staff[0]).logical_tie()
         >>> abjad.mutate.fuse(logical_tie)
         Selection(items=[Note("d'8..")])
 
@@ -919,9 +1248,8 @@ def fuse(argument):
     if isinstance(argument, _score.Component):
         selection = _selection.Selection(argument)
         return _fuse(selection)
-    elif (
-        isinstance(argument, _selection.Selection)
-        and argument.are_contiguous_logical_voice()
+    elif isinstance(argument, _selection.Selection) and _are_contiguous_logical_voice(
+        argument
     ):
         selection = _selection.Selection(argument)
         return _fuse(selection)
@@ -963,7 +1291,7 @@ def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
                 \f
             }
 
-        >>> logical_tie = abjad.select(staff[1]).logical_tie()
+        >>> logical_tie = abjad.Selection(staff[1]).logical_tie()
         >>> abjad.mutate.logical_tie_to_tuplet(logical_tie, [2, 1, 1, 1])
         Tuplet('5:3', "c'8 c'16 c'16 c'16")
 
@@ -1059,7 +1387,7 @@ def replace(argument, recipients, wrappers=False):
         >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
         >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
         >>> staff = abjad.Staff([tuplet_1, tuplet_2])
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.Selection(staff).leaves()
         >>> abjad.hairpin('p < f', leaves)
         >>> abjad.slur(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1258,10 +1586,10 @@ def replace(argument, recipients, wrappers=False):
         donors = argument
     else:
         donors = _selection.Selection(argument)
-    assert donors.are_contiguous_same_parent()
+    assert _are_contiguous_same_parent(donors)
     if not isinstance(recipients, _selection.Selection):
         recipients = _selection.Selection(recipients)
-    assert recipients.are_contiguous_same_parent()
+    assert _are_contiguous_same_parent(recipients)
     if not donors:
         return
     if wrappers is True:
@@ -1272,7 +1600,7 @@ def replace(argument, recipients, wrappers=False):
         donor = donors[0]
         wrappers = _get.wrappers(donor)
         recipient = recipients[0]
-    parent, start, stop = donors._get_parent_and_start_stop_indices()
+    parent, start, stop = _get_parent_and_start_stop_indices(donors)
     assert parent is not None, repr(donors)
     parent.__setitem__(slice(start, stop + 1), recipients)
     if not wrappers:
@@ -1342,7 +1670,7 @@ def scale(argument, multiplier) -> None:
                 d'8
             }
 
-        >>> logical_tie = abjad.select(staff[0]).logical_tie()
+        >>> logical_tie = abjad.Selection(staff[0]).logical_tie()
         >>> logical_tie = abjad.mutate.scale(logical_tie, abjad.Multiplier(3, 2))
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1997,7 +2325,7 @@ def swap(argument, container):
         >>> staff.append(abjad.Container("c'4 d'4 e'4"))
         >>> staff.append(abjad.Container("d'4 e'4 f'4"))
         >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0][0])
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.Selection(staff).leaves()
         >>> abjad.hairpin('p < f', leaves)
         >>> measures = staff[:]
         >>> abjad.slur(leaves)
@@ -2062,12 +2390,11 @@ def swap(argument, container):
         donors = argument
     else:
         donors = _selection.Selection(argument)
-    assert donors.are_contiguous_same_parent()
+    assert _are_contiguous_same_parent(donors)
     assert isinstance(container, _score.Container)
     assert not container, repr(container)
-    donors._give_components_to_empty_container(container)
-    # donors._give_dominant_spanners([container])
-    donors._give_position_in_parent_to_container(container)
+    _give_components_to_empty_container(donors, container)
+    _give_position_in_parent_to_container(donors, container)
 
 
 def transpose(argument, interval):
@@ -2311,7 +2638,7 @@ def wrap(argument, container):
         wrap:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.Selection(staff).leaves()
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> container = abjad.Container()
         >>> abjad.mutate.wrap(leaves, container)
@@ -2353,15 +2680,15 @@ def wrap(argument, container):
     else:
         selection = argument
     assert isinstance(selection, _selection.Selection), repr(selection)
-    parent, start, stop = selection._get_parent_and_start_stop_indices(
-        ignore_before_after_grace=True
+    parent, start, stop = _get_parent_and_start_stop_indices(
+        selection, ignore_before_after_grace=True
     )
-    if not selection.are_contiguous_logical_voice(ignore_before_after_grace=True):
+    if not _are_contiguous_logical_voice(selection, ignore_before_after_grace=True):
         message = "must be contiguous components in same logical voice:\n"
         message += f"   {selection!r}."
         raise Exception(message)
     container._components = list(selection)
-    container[:]._set_parents(container)
+    _set_parents(container)
     if parent is not None:
         parent._components.insert(start, container)
         container._set_parent(parent)

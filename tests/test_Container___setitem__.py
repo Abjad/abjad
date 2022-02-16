@@ -133,7 +133,7 @@ def test_Container___setitem___04():
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.Selection(voice).leaves()
     abjad.beam(leaves)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -382,8 +382,8 @@ def test_Container___setitem___08():
 
     voice_2 = abjad.Voice(notes[3:])
     abjad.mutate.wrap(voice_2[1:3], abjad.Container())
-    leaves = abjad.select(voice_2).leaves()
-    leaves = abjad.select(voice_2[1]).leaves()
+    leaves = abjad.Selection(voice_2).leaves()
+    leaves = abjad.Selection(voice_2[1]).leaves()
     abjad.slur(leaves)
 
     assert abjad.lilypond(voice_2) == abjad.string.normalize(

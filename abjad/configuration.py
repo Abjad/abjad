@@ -567,15 +567,26 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.parsers.scheme.SchemeParser'>
         <class 'abjad.pattern.Pattern'>
         <class 'abjad.pattern.PatternTuple'>
+        <class 'abjad.pcollections.IntervalClassSegment'>
+        <class 'abjad.pcollections.IntervalClassSet'>
+        <class 'abjad.pcollections.IntervalClassVector'>
+        <class 'abjad.pcollections.IntervalSegment'>
+        <class 'abjad.pcollections.IntervalSet'>
+        <class 'abjad.pcollections.IntervalVector'>
+        <class 'abjad.pcollections.PitchClassSegment'>
+        <class 'abjad.pcollections.PitchClassSet'>
+        <class 'abjad.pcollections.PitchClassVector'>
+        <class 'abjad.pcollections.PitchRange'>
+        <class 'abjad.pcollections.PitchSegment'>
+        <class 'abjad.pcollections.PitchSet'>
+        <class 'abjad.pcollections.PitchVector'>
+        <class 'abjad.pcollections.Segment'>
+        <class 'abjad.pcollections.Set'>
+        <class 'abjad.pcollections.TwelveToneRow'>
+        <class 'abjad.pcollections.Vector'>
         <class 'abjad.pitch.Accidental'>
         <class 'abjad.pitch.Interval'>
         <class 'abjad.pitch.IntervalClass'>
-        <class 'abjad.pitch.IntervalClassSegment'>
-        <class 'abjad.pitch.IntervalClassSet'>
-        <class 'abjad.pitch.IntervalClassVector'>
-        <class 'abjad.pitch.IntervalSegment'>
-        <class 'abjad.pitch.IntervalSet'>
-        <class 'abjad.pitch.IntervalVector'>
         <class 'abjad.pitch.NamedInterval'>
         <class 'abjad.pitch.NamedIntervalClass'>
         <class 'abjad.pitch.NamedInversionEquivalentIntervalClass'>
@@ -589,17 +600,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.pitch.Octave'>
         <class 'abjad.pitch.Pitch'>
         <class 'abjad.pitch.PitchClass'>
-        <class 'abjad.pitch.PitchClassSegment'>
-        <class 'abjad.pitch.PitchClassSet'>
-        <class 'abjad.pitch.PitchClassVector'>
-        <class 'abjad.pitch.PitchRange'>
-        <class 'abjad.pitch.PitchSegment'>
-        <class 'abjad.pitch.PitchSet'>
-        <class 'abjad.pitch.PitchVector'>
-        <class 'abjad.pitch.Segment'>
-        <class 'abjad.pitch.Set'>
-        <class 'abjad.pitch.TwelveToneRow'>
-        <class 'abjad.pitch.Vector'>
         <class 'abjad.ratio.NonreducedRatio'>
         <class 'abjad.ratio.Ratio'>
         <class 'abjad.rhythmtrees.RhythmTreeContainer'>
@@ -827,7 +827,6 @@ def list_all_functions(modules="abjad"):
         'run_command'
         'run_lilypond'
         'scale'
-        'select'
         'selection'
         'selection_to_score_markup_string'
         'setting'

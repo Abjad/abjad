@@ -7,7 +7,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_01():
     """
 
     staff = abjad.Staff([abjad.Container("c'8 c'8"), abjad.Container("c'8 c'8")])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.Selection(staff).leaves()
     abjad.tie(leaves)
 
     logical_tie = abjad.get.logical_tie(leaves[1])

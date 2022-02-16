@@ -142,7 +142,7 @@ def test_mutate_fuse_06():
         """
     ), print(abjad.lilypond(tuplet_2))
 
-    tuplets = abjad.select([tuplet_1, tuplet_2])
+    tuplets = abjad.Selection([tuplet_1, tuplet_2])
     new = abjad.mutate.fuse(tuplets)
 
     assert abjad.lilypond(new) == abjad.string.normalize(
@@ -306,7 +306,7 @@ def test_mutate_fuse_09():
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     tuplet_2 = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
-    tuplets = abjad.select([tuplet_1, tuplet_2])
+    tuplets = abjad.Selection([tuplet_1, tuplet_2])
 
     with pytest.raises(Exception):
         abjad.mutate.fuse(tuplets)
@@ -317,7 +317,7 @@ def test_mutate_fuse_10():
     tuplet_1 = abjad.Tuplet((2, 3), "c'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
     voice = abjad.Voice([tuplet_1, tuplet_2, abjad.Note("c'4")])
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.Selection(voice).leaves()
     abjad.slur(leaves)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
