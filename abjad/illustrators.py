@@ -16,7 +16,7 @@ from . import overrides as _overrides
 from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
-from . import selection as _selection
+from . import select as _select
 from . import spanners as _spanners
 from . import timespan as _timespan
 
@@ -68,14 +68,14 @@ def _illustrate_pitch_range(range_):
             bass_staff = _score.Staff(name="Bass_Staff")
             _bind.attach(_indicators.Clef("bass"), bass_staff)
             bass_staff.extend([start_note, stop_note])
-            bass_leaves = _selection.Selection(bass_staff).leaves()
+            bass_leaves = _select.leaves(bass_staff)
             _spanners.glissando(bass_leaves)
             score = _score.Score([bass_staff], name="Score")
         else:
             treble_staff = _score.Staff(name="Treble_Staff")
             _bind.attach(_indicators.Clef("treble"), treble_staff)
             treble_staff.extend([start_note, stop_note])
-            treble_leaves = _selection.Selection(treble_staff).leaves()
+            treble_leaves = _select.leaves(treble_staff)
             _spanners.glissando(treble_leaves)
             score = _score.Score([treble_staff], name="Score")
     else:
@@ -83,7 +83,7 @@ def _illustrate_pitch_range(range_):
         treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
         bass_staff.extend([start_note, stop_note])
         treble_staff.extend("s1 s1")
-        bass_leaves = _selection.Selection(bass_staff).leaves()
+        bass_leaves = _select.leaves(bass_staff)
         _spanners.glissando(bass_leaves)
         _bind.attach(_indicators.StaffChange("Treble_Staff"), bass_staff[1])
         _bind.attach(_indicators.Clef("treble"), treble_staff[0])
@@ -181,12 +181,12 @@ def _illustrate_pitch_class_segment(
     system-system-spacing.padding = 10
     top-markup-spacing.padding = 4
 }"""
-    leaf = _selection.Selection(score).leaf(-1)
+    leaf = _select.leaf(score, -1)
     bar_line = _indicators.BarLine("|.")
     _bind.attach(bar_line, leaf)
     string = r"\override Score.BarLine.transparent = ##f"
     command = _overrides.LilyPondLiteral(string, "after")
-    last_leaf = _selection.Selection(score).leaves()[-1]
+    last_leaf = _select.leaf(score, -1)
     _bind.attach(command, last_leaf)
     lilypond_file = _lilypondfile.LilyPondFile([preamble, score])
     return lilypond_file
@@ -430,22 +430,22 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     return score
 
 
-def selection(selection, time_signatures=None, *, includes=None):
+def selection(components, time_signatures=None, *, includes=None):
     """
-    Wraps ``selection`` in LilyPond file for doc examples.
+    Wraps ``components`` in LilyPond file for doc examples.
     """
     if time_signatures is None:
-        duration = _get.duration(selection)
+        duration = _get.duration(components)
         time_signature = _indicators.TimeSignature(duration)
-        _bind.attach(time_signature, _selection.Selection(selection).leaf(0))
+        _bind.attach(time_signature, _select.leaf(components, 0))
     else:
-        leaves = _selection.Selection(selection).leaves(grace=False)
-        parts = leaves.partition_by_durations(time_signatures)
+        leaves = _select.leaves(components, grace=False)
+        parts = _select.partition_by_durations(leaves, time_signatures)
         assert len(parts) == len(time_signatures)
         for time_signature, part in zip(time_signatures, parts):
             time_signature = _indicators.TimeSignature(time_signature)
-            _bind.attach(time_signature, _selection.Selection(part).leaf(0))
-    staff = _score.Staff(selection, name="Staff")
+            _bind.attach(time_signature, _select.leaf(part, 0))
+    staff = _score.Staff(components, name="Staff")
     score = _score.Score([staff], name="Score")
     items = []
     items.append(r'\include "abjad.ily"')

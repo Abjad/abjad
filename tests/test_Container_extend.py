@@ -131,11 +131,11 @@ def test_Container_extend_06():
     voice = abjad.Voice("c'8 d'8")
     abjad.beam(voice[:])
 
-    with pytest.raises(AttributeError):
-        voice.extend(abjad.Note(4, (1, 4)))
+    with pytest.raises(Exception):
+        voice.extend(abjad.Note("c'4"))
 
-    with pytest.raises(AttributeError):
-        voice.extend(abjad.Chord([2, 3, 5], (1, 4)))
+    with pytest.raises(Exception):
+        voice.extend(abjad.Chord("<c' d' e'>4"))
 
 
 def test_Container_extend_07():
@@ -272,17 +272,19 @@ def test_Container_extend_09():
 
 def test_Container_extend_10():
     """
-    Selections are stripped out.
+    Lists must be flattened.
     """
 
     maker = abjad.NoteMaker()
-    selection_1 = maker([0, 2], [abjad.Duration(1, 4)])
-    selection_2 = maker([4, 5], [abjad.Duration(1, 4)])
-    selection_3 = maker([7, 9], [abjad.Duration(1, 4)])
-    selection_4 = maker([11, 12], [abjad.Duration(1, 4)])
-    selections = [selection_1, selection_2, selection_3, selection_4]
+    lists = [
+        maker([0, 2], [abjad.Duration(1, 4)]),
+        maker([4, 5], [abjad.Duration(1, 4)]),
+        maker([7, 9], [abjad.Duration(1, 4)]),
+        maker([11, 12], [abjad.Duration(1, 4)]),
+    ]
+    components = abjad.Sequence(lists).flatten(depth=-1)
     container = abjad.Container()
-    container.extend(selections)
+    container.extend(components)
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""

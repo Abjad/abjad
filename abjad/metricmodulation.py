@@ -8,7 +8,6 @@ from . import illustrators as _illustrators
 from . import markups as _markups
 from . import ratio as _ratio
 from . import score as _score
-from . import selection as _selection
 from . import typings as _typings
 
 
@@ -563,10 +562,9 @@ class MetricModulation:
             raise Exception("implement tied note values.")
 
     def _initialize_rhythm(self, rhythm):
-        if not hasattr(rhythm, "_items"):
-            selection = _selection.Selection([rhythm])
+        if isinstance(rhythm, _score.Component):
+            selection = [rhythm]
         else:
-            assert hasattr(rhythm, "_items"), repr(rhythm)
             selection = rhythm
         return selection
 
@@ -637,7 +635,7 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c'4."),
             ...     )
             >>> metric_modulation.left_rhythm
-            Selection(items=[Note("c'4")])
+            [Note("c'4")]
 
         Returns selection.
         """
@@ -691,7 +689,7 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c'4."),
             ...     )
             >>> metric_modulation.right_rhythm
-            Selection(items=[Note("c'4.")])
+            [Note("c'4.")]
 
         """
         return self._right_rhythm

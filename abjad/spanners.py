@@ -13,7 +13,7 @@ from . import iterate as iterate_
 from . import overrides as _overrides
 from . import parentage as _parentage
 from . import score as _score
-from . import selection as _selection
+from . import select as _select
 from . import sequence as _sequence
 from . import tag as _tag
 from . import typings as _typings
@@ -40,12 +40,12 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
 
 
 def beam(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
     beam_lone_notes: bool = None,
     beam_rests: typing.Optional[bool] = True,
     durations: typing.Sequence[_duration.Duration] = None,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     span_beam_count: int = None,
     start_beam: _indicators.StartBeam = None,
     stemlet_length: _typings.Number = None,
@@ -94,7 +94,6 @@ def beam(
         if not _is_beamable(leaf, beam_rests=beam_rests):
             continue
         leaves.append(leaf)
-    # print(leaves, "LLL")
     runs = []
     run = []
     run.extend(leaves[:1])
@@ -104,22 +103,15 @@ def beam(
         if this_index + 1 == that_index:
             run.append(leaf)
         else:
-            selection = _selection.Selection(run)
-            runs.append(selection)
+            runs.append(run)
             run = [leaf]
     if run:
-        selection = _selection.Selection(run)
-        runs.append(selection)
-    runs_ = _selection.Selection(runs)
-    assert isinstance(runs_, _selection.Selection), repr(runs_)
-    # print(runs, "RRR", len(runs))
-    # print()
+        runs.append(run)
+    runs_ = runs
     if not beam_lone_notes:
-        result = runs_.nontrivial()
-        assert isinstance(result, _selection.Selection), repr(result)
+        result = _select.nontrivial(runs)
         runs_ = result
     for run in runs_:
-        # print(run, "RRR")
         if all(isinstance(_, silent_prototype) for _ in run):
             continue
         start_leaf = run[0]
@@ -1007,11 +999,11 @@ def glissando(
             return False
         return True
 
-    should_hide_stem = _selection.Selection()
+    should_hide_stem = []
     if hide_stem_selector is not None:
         should_hide_stem = hide_stem_selector(argument)
 
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     total = len(leaves) - 1
     for i, leaf in enumerate(leaves):
         if leaf is not leaves[0]:
@@ -1161,9 +1153,9 @@ def glissando(
 
 def hairpin(
     descriptor: str,
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag = None,
 ) -> None:
     r"""
@@ -1305,7 +1297,7 @@ def hairpin(
 
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
 
@@ -1318,9 +1310,9 @@ def hairpin(
 
 
 def horizontal_bracket(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     start_group: _indicators.StartGroup = None,
     stop_group: _indicators.StopGroup = None,
     tag: _tag.Tag = None,
@@ -1353,7 +1345,7 @@ def horizontal_bracket(
     stop_group = stop_group or _indicators.StopGroup()
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_group, start_leaf, tag=tag)
@@ -1361,9 +1353,9 @@ def horizontal_bracket(
 
 
 def ottava(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     start_ottava: _indicators.Ottava = _indicators.Ottava(n=1),
     stop_ottava: _indicators.Ottava = _indicators.Ottava(n=0, format_slot="after"),
     tag: _tag.Tag = None,
@@ -1396,7 +1388,7 @@ def ottava(
     assert isinstance(stop_ottava, _indicators.Ottava), repr(stop_ottava)
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_ottava, start_leaf, tag=tag)
@@ -1404,9 +1396,9 @@ def ottava(
 
 
 def phrasing_slur(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     start_phrasing_slur: _indicators.StartPhrasingSlur = None,
     stop_phrasing_slur: _indicators.StopPhrasingSlur = None,
     tag: _tag.Tag = None,
@@ -1440,7 +1432,7 @@ def phrasing_slur(
     stop_phrasing_slur = _indicators.StopPhrasingSlur()
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     start_phrasing_slur = start_phrasing_slur or _indicators.StartPhrasingSlur()
@@ -1450,9 +1442,9 @@ def phrasing_slur(
 
 
 def piano_pedal(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     start_piano_pedal: _indicators.StartPianoPedal = None,
     stop_piano_pedal: _indicators.StopPianoPedal = None,
     tag: _tag.Tag = None,
@@ -1492,7 +1484,7 @@ def piano_pedal(
     stop_piano_pedal = stop_piano_pedal or _indicators.StopPianoPedal()
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_piano_pedal, start_leaf, tag=tag)
@@ -1500,9 +1492,9 @@ def piano_pedal(
 
 
 def slur(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     start_slur: _indicators.StartSlur = None,
     stop_slur: _indicators.StopSlur = None,
     tag: _tag.Tag = None,
@@ -1536,7 +1528,7 @@ def slur(
     stop_slur = stop_slur or _indicators.StopSlur()
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_slur, start_leaf, tag=tag)
@@ -1544,9 +1536,9 @@ def slur(
 
 
 def text_spanner(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     start_text_span: _indicators.StartTextSpan = None,
     stop_text_span: _indicators.StopTextSpan = None,
     tag: _tag.Tag = None,
@@ -1678,7 +1670,7 @@ def text_spanner(
     stop_text_span = stop_text_span or _indicators.StopTextSpan()
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_text_span, start_leaf, tag=tag)
@@ -1686,11 +1678,11 @@ def text_spanner(
 
 
 def tie(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
     direction: _enums.VerticalAlignment = None,
     repeat: bool | _typings.IntegerPair | typing.Callable | None = None,
-    selector: typing.Callable = lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag = None,
 ) -> None:
     r"""
@@ -1896,8 +1888,7 @@ def tie(
 
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
-    assert isinstance(leaves, _selection.Selection), repr(leaves)
+    leaves = _select.leaves(argument)
     if len(leaves) < 2:
         raise Exception(f"must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
@@ -1918,9 +1909,9 @@ def tie(
 
 
 def trill_spanner(
-    argument: typing.Union[_score.Component, _selection.Selection],
+    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
     *,
-    selector=lambda _: _selection.Selection(_).leaves(),
+    selector: typing.Callable = lambda _: _select.leaves(_),
     start_trill_span: _indicators.StartTrillSpan = None,
     stop_trill_span: _indicators.StopTrillSpan = None,
     tag: _tag.Tag = None,
@@ -1953,7 +1944,7 @@ def trill_spanner(
     stop_trill_span = stop_trill_span or _indicators.StopTrillSpan()
     assert callable(selector)
     argument = selector(argument)
-    leaves = _selection.Selection(argument).leaves()
+    leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_trill_span, start_leaf, tag=tag)

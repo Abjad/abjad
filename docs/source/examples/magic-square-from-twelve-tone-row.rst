@@ -43,7 +43,7 @@ example:
     ...         string += " }"
     ...         markup = abjad.Markup(string, direction=abjad.Up)
     ...         abjad.attach(markup, note)
-    ...     note = abjad.Selection(score).note(0)
+    ...     note = abjad.select.note(score, 0)
     ...     time_signature = abjad.TimeSignature((12, 4))
     ...     abjad.attach(time_signature, note)
     ...     return score

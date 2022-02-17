@@ -102,8 +102,6 @@ def test_mutate__split_leaf_by_durations_04():
 
     note = abjad.Note("c'4")
     new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 16)])
-
-    assert isinstance(new_leaves, abjad.Selection)
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 
 
@@ -129,9 +127,7 @@ def test_mutate__split_leaf_by_durations_06():
         staff[0], [abjad.Duration(5, 32)]
     )
 
-    assert isinstance(new_leaves, abjad.Selection)
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
-
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
@@ -250,7 +246,7 @@ def test_mutate__split_leaf_by_durations_10():
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
     staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)

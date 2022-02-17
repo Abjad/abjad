@@ -7,7 +7,7 @@ def test_Container___delitem___01():
     """
 
     voice = abjad.Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
-    leaves = abjad.Selection(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -209,7 +209,7 @@ def test_Container___delitem___08():
     """
 
     voice = abjad.Voice("c'8 [ { d'8 e'8 } f'8 ]")
-    leaves = abjad.Selection(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.glissando(leaves)
 
     string = abjad.lilypond(voice)

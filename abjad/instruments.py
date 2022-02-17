@@ -58,7 +58,7 @@ class Instrument:
                 }
             >>
 
-        >>> for leaf in abjad.Selection(voice_1).leaves():
+        >>> for leaf in abjad.select.leaves(voice_1):
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("e'8"), Flute())
@@ -66,7 +66,7 @@ class Instrument:
         (Note("f'8"), Flute())
         (Note("a'8"), Flute())
 
-        >>> for leaf in abjad.Selection(voice_2).leaves():
+        >>> for leaf in abjad.select.leaves(voice_2):
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'2"), Viola())
@@ -2051,7 +2051,7 @@ class Flute(Instrument):
             fs'4
         }
 
-        >>> for leaf in abjad.Selection(staff).leaves():
+        >>> for leaf in abjad.select.leaves(staff):
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'4"), Flute())

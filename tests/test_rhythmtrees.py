@@ -34,17 +34,26 @@ def test_RhythmTreeContainer___call___02():
 
     rtm = "(1 (1 (2 (1 1 1 1)) 1))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = tree((1, 4))
-    assert isinstance(result, abjad.Selection)
-    assert len(result) == 6
-    assert [abjad.lilypond(x) for x in result] == [
-        "c'16",
-        "c'32",
-        "c'32",
-        "c'32",
-        "c'32",
-        "c'16",
-    ]
+    components = tree((1, 4))
+    tuplet = components[0]._parent
+    staff = abjad.Staff([tuplet])
+    assert abjad.lilypond(staff) == abjad.string.normalize(
+        r"""
+        \new Staff
+        {
+            \tweak text #tuplet-number::calc-fraction-text
+            \times 1/1
+            {
+                c'16
+                c'32
+                c'32
+                c'32
+                c'32
+                c'16
+            }
+        }
+        """
+    ), print(staff)
 
 
 def test_RhythmTreeContainer___contains___01():
@@ -185,7 +194,7 @@ def test_RhythmTreeContainer___iter___01():
     container = abjad.rhythmtrees.RhythmTreeContainer(
         preprolated_duration=1, children=[leaf_a, leaf_b, leaf_c]
     )
-    assert [x for x in container] == [leaf_a, leaf_b, leaf_c]
+    assert [_ for _ in container] == [leaf_a, leaf_b, leaf_c]
 
 
 def test_RhythmTreeContainer___len___01():
@@ -406,11 +415,10 @@ def test_RhythmTreeNode___call___01():
 
     rtm = "(1 (1 1 1 1))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = tree((1, 4))
-    assert isinstance(result, abjad.Selection)
-    assert len(result) == 4
-    assert all(isinstance(x, abjad.Note) for x in result)
-    assert all(x.written_duration == abjad.Duration(1, 16) for x in result)
+    components = tree((1, 4))
+    assert len(components) == 4
+    assert all(isinstance(_, abjad.Note) for _ in components)
+    assert all(_.written_duration == abjad.Duration(1, 16) for _ in components)
 
 
 def test_RhythmTreeNode___call___02():

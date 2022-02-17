@@ -114,7 +114,7 @@ Define helper functions:
     ...             abjad.attach(markup, note)
     ...             staff.append(note)
     ...     for measure_number in (1, 11, 21, 31):
-    ...         note = abjad.Selection(staff_1).note(measure_number - 1)
+    ...         note = abjad.select.note(staff_1, measure_number - 1)
     ...         markup = abjad.Markup(r"\markup A", direction=abjad.Up)
     ...         abjad.tweak(markup).staff_padding = 8
     ...         abjad.tweak(markup).transparent = True
@@ -123,7 +123,7 @@ Define helper functions:
     ...     interface.staff_staff_spacing__minimum_distance = 12
     ...     interface = abjad.override(staff_2).vertical_axis_group
     ...     interface.staff_staff_spacing__minimum_distance = 14
-    ...     note = abjad.Selection(staff_3).note(0)
+    ...     note = abjad.select.note(staff_3, 0)
     ...     abjad.attach(abjad.Clef("bass"), note)
     ...     abjad.override(score).BarLine.stencil = False
     ...     abjad.override(score).BarNumber.stencil = False

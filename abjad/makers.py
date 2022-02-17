@@ -10,7 +10,6 @@ from . import math as _math
 from . import pitch as _pitch
 from . import ratio as _ratio
 from . import score as _score
-from . import selection as _selection
 from . import sequence as _sequence
 from . import spanners as _spanners
 from . import tag as _tag
@@ -374,7 +373,7 @@ class LeafMaker:
         >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
         >>> leaves = maker(pitches, durations)
         >>> leaves
-        Selection(items=[MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')])
+        [MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')]
 
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> abjad.attach(abjad.TimeSignature((5, 8)), leaves[1])
@@ -423,7 +422,7 @@ class LeafMaker:
         >>> pitches = [None]
         >>> durations = [abjad.Duration(13, 16)]
         >>> maker(pitches, durations)
-        Selection(items=[Skip('s2.'), Skip('s16')])
+        [Skip('s2.'), Skip('s16')]
 
     """
 
@@ -477,7 +476,7 @@ class LeafMaker:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pitches, durations) -> _selection.Selection:
+    def __call__(self, pitches, durations) -> list[_score.Leaf | _score.Tuplet]:
         """
         Calls leaf-maker on ``pitches`` and ``durations``.
         """
@@ -541,7 +540,7 @@ class LeafMaker:
                     tuplet_leaves.extend(leaves)
                 tuplet = _score.Tuplet(multiplier, tuplet_leaves)
                 result.append(tuplet)
-        return _selection.Selection(result)
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -665,7 +664,6 @@ class LeafMaker:
             else:
                 arguments = (written_duration,)
             result.append(class_(*arguments, multiplier=multiplier, tag=tag))
-        result = _selection.Selection(result)
         # tie if required
         if tie_parts and 1 < len(result):
             if not issubclass(class_, (_score.Rest, _score.Skip)):
@@ -925,7 +923,7 @@ class NoteMaker:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pitches, durations) -> _selection.Selection:
+    def __call__(self, pitches, durations) -> list[_score.Note | _score.Tuplet]:
         """
         Calls note-maker on ``pitches`` and ``durations``.
         """
@@ -974,7 +972,7 @@ class NoteMaker:
                 )
                 tuplet = _score.Tuplet(multiplier, ns)
                 result.append(tuplet)
-        return _selection.Selection(result)
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -1329,6 +1327,7 @@ def tuplet_from_duration_and_ratio(
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
     written_durations = [x * basic_written_duration for x in ratio.numbers]
     leaf_maker = LeafMaker(increase_monotonic=increase_monotonic, tag=tag)
+    notes: list[_score.Leaf | _score.Tuplet]
     try:
         notes = [
             _score.Note(0, x, tag=tag) if 0 < x else _score.Rest(abs(x), tag=tag)
@@ -1339,7 +1338,7 @@ def tuplet_from_duration_and_ratio(
         note_durations = [_duration.Duration(x, denominator) for x in ratio.numbers]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
-        notes = list(leaf_maker(pitches, leaf_durations))
+        notes = leaf_maker(pitches, leaf_durations)
     tuplet = _score.Tuplet.from_duration(duration, notes, tag=tag)
     tuplet.normalize_multiplier()
     return tuplet
@@ -1674,6 +1673,7 @@ def tuplet_from_leaf_and_ratio(
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
     written_durations = [_ * basic_written_duration for _ in proportions.numbers]
     maker = NoteMaker()
+    notes: list[_score.Leaf | _score.Tuplet]
     try:
         notes = [_score.Note(0, x) for x in written_durations]
     except _exceptions.AssignabilityError:
@@ -1908,7 +1908,7 @@ def tuplet_from_ratio_and_pair(
             math.log(_math.weight(ratio.numbers), 2) - math.log(numerator, 2)
         )
         denominator = int(denominator * 2**exponent)
-        components: typing.List[typing.Union[_score.Note, _score.Rest]] = []
+        components: list[_score.Leaf | _score.Tuplet] = []
         for x in ratio.numbers:
             if not x:
                 raise ValueError("no divide zero values.")

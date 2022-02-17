@@ -269,7 +269,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         >>> result = leaf((1, 8))
         >>> result
-        Selection(items=[Note("c'2"), Note("c'8")])
+        [Note("c'2"), Note("c'8")]
 
     ..  container:: example
 
@@ -277,7 +277,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         >>> abjad.rhythmtrees.RhythmTreeLeaf(
         ...     preprolated_duration=7, is_pitched=False)((1, 16))
-        Selection(items=[Rest('r4..')])
+        [Rest('r4..')]
 
     """
 
@@ -292,7 +292,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
 
         >>> leaf = abjad.rhythmtrees.RhythmTreeLeaf(5)
         >>> leaf((1, 4))
-        Selection(items=[Note("c'1"), Note("c'4")])
+        [Note("c'1"), Note("c'4")]
 
         Returns sequence of components.
         """

@@ -5,7 +5,7 @@ from . import duration as _duration
 from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
-from . import selection as _selection
+from . import select as _select
 
 
 def components(
@@ -785,7 +785,7 @@ def logical_ties(
         nontrivial=nontrivial,
         pitched=pitched,
         reverse=reverse,
-        wrapper_class=_selection.LogicalTie,
+        wrapper_class=_select.LogicalTie,
     )
 
 

@@ -756,8 +756,7 @@ class IntervalClassSegment(Segment):
 
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")
-            >>> selection = abjad.Selection((staff_1, staff_2))
-            >>> pitches = abjad.iterate.pitches(selection)
+            >>> pitches = abjad.iterate.pitches([staff_1, staff_2])
             >>> segment = abjad.IntervalClassSegment.from_pitches(pitches)
             >>> str(segment)
             '<-M2, -M3, -m3, +m7, +M7, -P5>'
@@ -2882,8 +2881,7 @@ class PitchSegment(Segment):
 
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")
-            >>> selection = abjad.Selection((staff_1, staff_2))
-            >>> pitches = abjad.iterate.pitches(selection)
+            >>> pitches = abjad.iterate.pitches([staff_1, staff_2])
             >>> segment = abjad.PitchSegment.from_pitches(pitches)
 
             >>> str(segment)
@@ -5111,8 +5109,7 @@ class IntervalSet(Set):
 
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")
-            >>> selection = abjad.Selection((staff_1, staff_2))
-            >>> pitches = abjad.iterate.pitches(selection)
+            >>> pitches = abjad.iterate.pitches([staff_1, staff_2])
             >>> intervals = abjad.IntervalSet.from_pitches(pitches)
             >>> for interval in sorted(intervals):
             ...     interval
@@ -5304,8 +5301,7 @@ class PitchClassSet(Set):
 
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")
-            >>> selection = abjad.Selection((staff_1, staff_2))
-            >>> pitches = abjad.iterate.pitches(selection)
+            >>> pitches = abjad.iterate.pitches([staff_1, staff_2])
             >>> abjad.PitchClassSet.from_pitches(pitches)
             PitchClassSet(items=['c', 'd', 'fs', 'g', 'a', 'b'], item_class=abjad.NamedPitchClass)
 
@@ -5817,8 +5813,7 @@ class PitchSet(Set):
 
             >>> staff_1 = abjad.Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = abjad.Staff("c4. r8 g2")
-            >>> selection = abjad.Selection((staff_1, staff_2))
-            >>> pitches = abjad.iterate.pitches(selection)
+            >>> pitches = abjad.iterate.pitches([staff_1, staff_2])
             >>> abjad.PitchSet.from_pitches(pitches)
             PitchSet(items=['c', 'g', 'b', "c'", "d'", "fs'", "a'"], item_class=abjad.NamedPitch)
 

@@ -329,9 +329,9 @@ class Component:
     def _get_markup(self, direction=None):
         markup = self._get_indicators(_markups.Markup)
         if direction is _enums.Up:
-            return tuple(x for x in markup if x.direction is _enums.Up)
+            return tuple(_ for _ in markup if _.direction is _enums.Up)
         elif direction is _enums.Down:
-            return tuple(x for x in markup if x.direction is _enums.Down)
+            return tuple(_ for _ in markup if _.direction is _enums.Down)
         return markup
 
     def _get_parentage(self):
@@ -763,39 +763,12 @@ class Container(Component):
 
     ..  container:: example
 
-        Intializes from selections:
-
-        >>> notes = [
-        ...     abjad.Note("c'4"),
-        ...     abjad.Note("e'4"),
-        ...     abjad.Note("d'4"),
-        ...     abjad.Note("e'8"),
-        ...     abjad.Note("f'8"),
-        ...     ]
-        >>> selection = abjad.Selection(notes)
-        >>> container = abjad.Container(selection)
-        >>> abjad.show(container) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(container)
-            >>> print(string)
-            {
-                c'4
-                e'4
-                d'4
-                e'8
-                f'8
-            }
-
-    ..  container:: example
-
-        Intializes from mixed components and selections:
+        Intializes from mixed components and lists:
 
         >>> items = [
         ...     abjad.Note("c'4"),
-        ...     abjad.Selection(abjad.Note("e'4")),
-        ...     abjad.Selection(abjad.Note("d'4")),
+        ...     [abjad.Note("e'4")],
+        ...     [abjad.Note("d'4")],
         ...     abjad.Note("e'8"),
         ...     abjad.Note("f'8"),
         ...     ]
@@ -930,7 +903,7 @@ class Container(Component):
             >>> voice = abjad.Voice()
             >>> voice.append(abjad.Tuplet((4, 6), "c'4 d'4 e'4"))
             >>> voice.append(abjad.Tuplet((2, 3), "e'4 d'4 c'4"))
-            >>> leaves = abjad.Selection(voice).leaves()
+            >>> leaves = abjad.select.leaves(voice)
             >>> abjad.slur(leaves)
             >>> abjad.show(voice) # doctest: +SKIP
 
@@ -959,7 +932,7 @@ class Container(Component):
             >>> tuplet_1 = voice[0]
             >>> del(voice[0])
             >>> start_slur = abjad.StartSlur()
-            >>> leaf = abjad.Selection(voice).leaf(0)
+            >>> leaf = abjad.select.leaf(voice, 0)
             >>> abjad.attach(start_slur, leaf)
 
             First tuplet no longer appears in voice:
@@ -1021,12 +994,12 @@ class Container(Component):
 
         Traverses top-level items only.
         """
-        from .selection import Selection
-
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
         elif isinstance(argument, slice):
-            return Selection(self.components.__getitem__(argument))
+            result = self.components.__getitem__(argument)
+            assert isinstance(result, tuple), repr(result)
+            return list(result)
         elif isinstance(argument, str):
             if argument not in self._named_children:
                 raise ValueError(f"can not find component named {argument!r}.")
@@ -1105,7 +1078,42 @@ class Container(Component):
             if isinstance(i, int):
                 assert len(argument) == 1, repr(argument)
                 argument = argument[0]
-        self._set_item(i, argument)
+        wrappers = []
+        for component in self._get_components(argument):
+            wrappers_ = component._get_indicators(unwrap=False)
+            wrappers.extend(wrappers_)
+        if isinstance(i, int):
+            argument = [argument]
+            if i < 0:
+                i = len(self) + i
+            i = slice(i, i + 1)
+        new_argument = []
+        for item in argument:
+            if hasattr(item, "_items"):
+                new_argument.extend(item)
+            else:
+                new_argument.append(item)
+        argument = new_argument
+        assert all(isinstance(_, Component) for _ in argument), repr(argument)
+        if any(hasattr(_, "_main_leaf") for _ in argument):
+            raise Exception("must attach grace container to note or chord.")
+        if self._check_for_cycles(argument):
+            raise _exceptions.ParentageError("attempted to induce cycles.")
+        if (
+            i.start == i.stop
+            and i.start is not None
+            and i.stop is not None
+            and i.start <= -len(self)
+        ):
+            start, stop = 0, 0
+        else:
+            start, stop, stride = i.indices(len(self))
+        del self[start:stop]
+        self._components.__setitem__(slice(start, start), argument)
+        for component in argument:
+            component._set_parent(self)
+        for wrapper in wrappers:
+            wrapper._update_effective_context()
 
     ### PRIVATE METHODS ###
 
@@ -1248,7 +1256,7 @@ class Container(Component):
     def _get_contents_duration(self):
         if self.simultaneous:
             return max(
-                [_duration.Duration(0)] + [x._get_preprolated_duration() for x in self]
+                [_duration.Duration(0)] + [_._get_preprolated_duration() for _ in self]
             )
         else:
             duration = _duration.Duration(0)
@@ -1272,8 +1280,8 @@ class Container(Component):
         result = []
         result.append(self)
         if self.simultaneous:
-            for x in self:
-                result.extend(x._get_descendants_starting_with())
+            for item in self:
+                result.extend(item._get_descendants_starting_with())
         elif self:
             result.extend(self[0]._get_descendants_starting_with())
         return result
@@ -1282,17 +1290,14 @@ class Container(Component):
         result = []
         result.append(self)
         if self.simultaneous:
-            for x in self:
-                result.extend(x._get_descendants_stopping_with())
+            for item in self:
+                result.extend(item._get_descendants_stopping_with())
         elif self:
             result.extend(self[-1]._get_descendants_stopping_with())
         return result
 
     def _get_preprolated_duration(self):
         return self._get_contents_duration()
-
-    def _get_repr_keyword_names(self):
-        return ["simultaneous", "name"]
 
     def _get_subtree(self):
         result = [self]
@@ -1306,11 +1311,13 @@ class Container(Component):
         ):
             components_ = []
             for item in components:
-                if hasattr(item, "_items"):
-                    components_.extend(item)
-                elif isinstance(item, str):
+                if isinstance(item, str):
                     parsed = self._parse_string(item, language=language)
                     components_.append(parsed)
+                elif isinstance(item, collections.abc.Iterable) and not isinstance(
+                    item, Container
+                ):
+                    components_.extend(item)
                 else:
                     components_.append(item)
             components = components_
@@ -1344,55 +1351,9 @@ class Container(Component):
         assert isinstance(parsed, Container)
         return parsed
 
-    @staticmethod
-    def _remove_powers_of_two(n):
-        assert isinstance(n, int), repr(n)
-        assert not n <= 0, repr(n)
-        while n % 2 == 0:
-            n //= 2
-        return n
-
     def _scale(self, multiplier):
         for item in list(self):
             item._scale(multiplier)
-
-    def _set_item(self, i, argument):
-        argument_wrappers = []
-        for component in self._get_components(argument):
-            wrappers = component._get_indicators(unwrap=False)
-            argument_wrappers.extend(wrappers)
-        if isinstance(i, int):
-            argument = [argument]
-            if i < 0:
-                i = len(self) + i
-            i = slice(i, i + 1)
-        new_argument = []
-        for item in argument:
-            if hasattr(item, "_items"):
-                new_argument.extend(item)
-            else:
-                new_argument.append(item)
-        argument = new_argument
-        assert all(isinstance(_, Component) for _ in argument)
-        if any(hasattr(_, "_main_leaf") for _ in argument):
-            raise Exception("must attach grace container to note or chord.")
-        if self._check_for_cycles(argument):
-            raise _exceptions.ParentageError("attempted to induce cycles.")
-        if (
-            i.start == i.stop
-            and i.start is not None
-            and i.stop is not None
-            and i.start <= -len(self)
-        ):
-            start, stop = 0, 0
-        else:
-            start, stop, stride = i.indices(len(self))
-        del self[start:stop]
-        self._components.__setitem__(slice(start, start), argument)
-        for component in argument:
-            component._set_parent(self)
-        for wrapper in argument_wrappers:
-            wrapper._update_effective_context()
 
     ### PUBLIC PROPERTIES ###
 
@@ -1602,7 +1563,7 @@ class Container(Component):
 
     ### PUBLIC METHODS ###
 
-    def append(self, component, *, language: str = "english") -> None:
+    def append(self, component: Component, *, language: str = "english") -> None:
         r"""
         Appends ``component`` to container.
 
@@ -1646,6 +1607,7 @@ class Container(Component):
             selection = self._parse_string(component, language=language)
             assert len(selection) == 1
             component = selection[0]
+        assert isinstance(component, Component), repr(component)
         self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, argument, *, language: str = "english") -> None:
@@ -1693,13 +1655,6 @@ class Container(Component):
         """
         if isinstance(argument, str):
             argument = self._parse_string(argument, language=language)
-        elif isinstance(argument, collections.abc.Iterable):
-            argument_ = []
-            for item in argument:
-                if isinstance(item, str):
-                    item = self._parse_string(item, language=language)
-                argument_.append(item)
-            argument = argument_
         self.__setitem__(
             slice(len(self), len(self)),
             argument.__getitem__(slice(0, len(argument))),
@@ -1741,7 +1696,9 @@ class Container(Component):
         else:
             raise ValueError(f"component {component!r} not in container {self!r}.")
 
-    def insert(self, i, component, *, language: str = "english") -> None:
+    def insert(
+        self, i: int, component: str | Component, *, language: str = "english"
+    ) -> None:
         r"""
         Inserts ``component`` at index ``i`` in container.
 
@@ -1809,10 +1766,11 @@ class Container(Component):
             selection = self._parse_string(component, language=language)
             assert len(selection) == 1, repr(selection)
             component = selection[0]
+        assert isinstance(component, Component), repr(component)
         self.__setitem__(slice(i, i), [component])
         return
 
-    def pop(self, i=-1):
+    def pop(self, i: int = -1) -> Component:
         r"""
         Pops component from container at index ``i``.
 
@@ -1852,13 +1810,13 @@ class Container(Component):
                     )
                 }
 
-        Returns component.
         """
+        assert isinstance(i, int), repr(i)
         component = self[i]
         del self[i]
         return component
 
-    def remove(self, component) -> None:
+    def remove(self, component: Component) -> None:
         r"""
         Removes ``component`` from container.
 
@@ -1898,6 +1856,7 @@ class Container(Component):
                 }
 
         """
+        assert isinstance(component, Component), repr(component)
         i = self.index(component)
         del self[i]
 
@@ -1964,7 +1923,7 @@ class AfterGraceContainer(Container):
         >>> abjad.attach(literal, voice[0])
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
-        >>> leaves = abjad.Selection(voice).leaves(grace=None)
+        >>> leaves = abjad.select.leaves(voice, grace=None)
         >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up)
         >>> abjad.attach(markup, leaves[1])
         >>> abjad.attach(abjad.Articulation("."), leaves[1])
@@ -2226,14 +2185,13 @@ class BeforeGraceContainer(Container):
     LilyPond provides four types of left-positioned grace music: acciaccaturas,
     appoggiaturas, grace notes and slashed grace notes; see
     ``abjad.BeforeGraceContainer.command`` to choose between these. LilyPond's
-    left-positioned grace music contrasts with "right-positioned" after-grace
-    music; see ``abjad.AfterGraceContainer``.
+    left-positioned grace music contrasts with "right-positioned" after-grace music; see
+    ``abjad.AfterGraceContainer``.
 
-    Note that neither LilyPond nor Abjad attempts to model the ways that
-    different categories of grace music have been performed historically.
-    Typographic differences in slurring and slashing are provided. But
-    distinctions between (for example) on-the-beat versus before-the-beat
-    performance are left implicit.
+    Note that neither LilyPond nor Abjad attempts to model the ways that different
+    categories of grace music have been performed historically. Typographic differences
+    in slurring and slashing are provided. But distinctions between (for example)
+    on-the-beat versus before-the-beat performance are left implicit.
     """
 
     ### CLASS VARIABLES ###
@@ -2303,13 +2261,13 @@ class BeforeGraceContainer(Container):
     @property
     def command(self) -> str:
         r"""
-        Gets command. Chooses between LilyPond's four types of left-positioned
-        grace music.
+        Gets command. Chooses between LilyPond's four types of left-positioned grace
+        music.
 
         .. container:: example
 
-            **(Vanilla) grace notes.** LilyPond formats single grace notes with
-            neither a slash nor a slur:
+            **(Vanilla) grace notes.** LilyPond formats single grace notes with neither a
+            slash nor a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -2331,8 +2289,8 @@ class BeforeGraceContainer(Container):
                     f'4
                 }
 
-            LilyPond likewise formats runs of grace notes with neither a slash
-            nor a slur:
+            LilyPond likewise formats runs of grace notes with neither a slash nor a
+            slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer("cs'16 ds'")
@@ -2357,8 +2315,8 @@ class BeforeGraceContainer(Container):
 
         .. container:: example
 
-            **Acciaccaturas.** LilyPond formats single acciaccaturas with
-            both a slash and a slur:
+            **Acciaccaturas.** LilyPond formats single acciaccaturas with both a slash
+            and a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer(
@@ -2384,8 +2342,8 @@ class BeforeGraceContainer(Container):
 
             ..  container:: example exception
 
-                But LilyPond fails to slash runs of acciaccaturas. This
-                behavior is a longstanding LilyPond bug:
+                But LilyPond fails to slash runs of acciaccaturas. This behavior is a
+                longstanding LilyPond bug:
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer(
@@ -2414,8 +2372,8 @@ class BeforeGraceContainer(Container):
 
         .. container:: example
 
-            **Appoggiaturas.** LilyPond formats single appoggiaturas with
-            only a slur; no slash is included:
+            **Appoggiaturas.** LilyPond formats single appoggiaturas with only a slur; no
+            slash is included:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer(
@@ -2466,8 +2424,8 @@ class BeforeGraceContainer(Container):
 
         .. container:: example
 
-            **Slashed grace notes.** LilyPond formats single slashed grace
-            notes with only a slash; no slur is included:
+            **Slashed grace notes.** LilyPond formats single slashed grace notes with
+            only a slash; no slur is included:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer(
@@ -2493,8 +2451,8 @@ class BeforeGraceContainer(Container):
 
             ..  container:: example exception
 
-                But LilyPond fails to slash runs of "slashed" grace notes. This
-                is a longstanding LilyPond bug:
+                But LilyPond fails to slash runs of "slashed" grace notes. This is a
+                longstanding LilyPond bug:
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer(
@@ -2519,8 +2477,7 @@ class BeforeGraceContainer(Container):
                         f'4
                     }
 
-                ..  note:: LilyPond fails to slash runs of "slashed" grace
-                    notes.
+                ..  note:: LilyPond fails to slash runs of "slashed" grace notes.
 
         ..  container:: example
 
@@ -2533,7 +2490,7 @@ class BeforeGraceContainer(Container):
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer("cs'16")
                 >>> abjad.attach(container, voice[1])
-                >>> leaves = abjad.Selection(voice).leaves()[1:3]
+                >>> leaves = abjad.select.leaves(voice)[1:3]
                 >>> abjad.slur(leaves)
                 >>> abjad.show(voice) # doctest: +SKIP
 
@@ -2556,15 +2513,14 @@ class BeforeGraceContainer(Container):
 
             .. container:: example
 
-                **Slashed grace notes with slur may be used instead of
-                acciaccatura:**
+                **Slashed grace notes with slur may be used instead of acciaccatura:**
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer(
                 ...     "cs'16", command=r"\slashedGrace"
                 ... )
                 >>> abjad.attach(container, voice[1])
-                >>> leaves = abjad.Selection(voice).leaves()[1:3]
+                >>> leaves = abjad.select.leaves(voice)[1:3]
                 >>> abjad.slur(leaves)
                 >>> abjad.show(voice) # doctest: +SKIP
 
@@ -2666,15 +2622,15 @@ class Chord(Leaf):
                 are_forced = [leaf.note_head.is_forced]
                 are_parenthesized = [leaf.note_head.is_parenthesized]
             elif isinstance(leaf, Chord):
-                written_pitches.extend(x.written_pitch for x in leaf.note_heads)
-                are_cautionary = [x.is_cautionary for x in leaf.note_heads]
-                are_forced = [x.is_forced for x in leaf.note_heads]
-                are_parenthesized = [x.is_parenthesized for x in leaf.note_heads]
+                written_pitches.extend(_.written_pitch for _ in leaf.note_heads)
+                are_cautionary = [_.is_cautionary for _ in leaf.note_heads]
+                are_forced = [_.is_forced for _ in leaf.note_heads]
+                are_parenthesized = [_.is_parenthesized for _ in leaf.note_heads]
         # TODO: move to dedicated constructor:
         elif len(arguments) == 2:
             written_pitches, written_duration = arguments
             if isinstance(written_pitches, str):
-                written_pitches = [x for x in written_pitches.split() if x]
+                written_pitches = [_ for _ in written_pitches.split() if _]
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
         elif len(arguments) == 0:
@@ -2766,7 +2722,7 @@ class Chord(Leaf):
             for note_head in note_heads:
                 current_format = note_head._get_lilypond_format()
                 format_list = current_format.split("\n")
-                format_list = [_format.INDENT + x for x in format_list]
+                format_list = [_format.INDENT + _ for _ in format_list]
                 result.extend(format_list)
             result.insert(0, "<")
             result.append(">")
@@ -2791,7 +2747,7 @@ class Chord(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def note_heads(self):
+    def note_heads(self) -> "NoteHeadList":
         r"""
         Gets note-heads in chord.
 
@@ -2801,8 +2757,10 @@ class Chord(Leaf):
 
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
-            >>> chord.note_heads
-            NoteHeadList(items=[NoteHead("g'"), NoteHead("c''"), NoteHead("e''")], item_class=<class 'abjad.score.NoteHead'>, keep_sorted=True)
+            >>> for _ in chord.note_heads: _
+            NoteHead("g'")
+            NoteHead("c''")
+            NoteHead("e''")
 
         ..  container:: example
 
@@ -2837,8 +2795,6 @@ class Chord(Leaf):
                 <e'' f'' g''>4
 
         Set note-heads with any iterable.
-
-        Returns note-head list.
         """
         return self._note_heads
 
@@ -2951,13 +2907,9 @@ class Cluster(Container):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Containers"
 
     __slots__ = ()
-
-    ### PRIVATE METHODS ###
 
     def _format_open_brackets_slot(self, bundle):
         result = []
@@ -2977,11 +2929,7 @@ class Context(Container):
 
     ..  container:: example
 
-        >>> context = abjad.Context(
-        ...     lilypond_type='GlobalContext',
-        ...     name='Meter_Voice',
-        ...     )
-
+        >>> context = abjad.Context(lilypond_type='GlobalContext', name='Meter_Voice')
         >>> context
         Context(lilypond_type='GlobalContext', name='Meter_Voice')
 
@@ -3091,7 +3039,7 @@ class Context(Container):
             >>> context = abjad.Context(
             ...     lilypond_type='GlobalContext',
             ...     name='Meter_Voice',
-            ...     )
+            ... )
             >>> repr(context)
             "Context(lilypond_type='GlobalContext', name='Meter_Voice')"
 
@@ -3209,26 +3157,19 @@ class Context(Container):
     def _get_format_pieces(self):
         return self._format_component(pieces=True)
 
-    def _get_repr_keyword_names(self):
-        if self.lilypond_type == type(self).__name__:
-            return ["simultaneous", "name"]
-        else:
-            return ["simultaneous", "lilypond_type", "name"]
-
     ### PUBLIC PROPERTIES ###
 
     @property
     def consists_commands(self):
         r"""
-        Unordered set of LilyPond engravers to include
-        in context definition.
+        Unordered set of LilyPond engravers to include in context definition.
 
         ..  container:: example
 
             Manage with add, update, other standard set commands:
 
             >>> staff = abjad.Staff([])
-            >>> staff.consists_commands.append('Horizontal_bracket_engraver')
+            >>> staff.consists_commands.append("Horizontal_bracket_engraver")
             >>> string = abjad.lilypond(staff)
             >>> print(string)
             \new Staff
@@ -3258,22 +3199,20 @@ class Context(Container):
         return lilypond_context
 
     @property
-    def lilypond_type(self):
+    def lilypond_type(self) -> str:
         """
         Gets lilypond type.
 
         ..  container:: example
 
             >>> context = abjad.Context(
-            ...     lilypond_type='ViolinStaff',
-            ...     name='MyViolinStaff',
-            ...     )
+            ...     lilypond_type="ViolinStaff",
+            ...     name="MyViolinStaff",
+            ... )
             >>> context.lilypond_type
             'ViolinStaff'
 
         Gets and sets lilypond type of context.
-
-        Returns string.
         """
         return self._lilypond_type
 
@@ -3295,7 +3234,7 @@ class Context(Container):
             Manage with add, update, other standard set commands:
 
             >>> staff = abjad.Staff([])
-            >>> staff.remove_commands.append('Time_signature_engraver')
+            >>> staff.remove_commands.append("Time_signature_engraver")
             >>> string = abjad.lilypond(staff)
             >>> print(string)
             \new Staff
@@ -3318,8 +3257,8 @@ class Context(Container):
 
             >>> context = abjad.Context(
             ...     "c'4 d' e' f'",
-            ...     lilypond_type='CustomContext',
-            ...     tag=abjad.Tag('RED'),
+            ...     lilypond_type="CustomContext",
+            ...     tag=abjad.Tag("RED"),
             ...     )
             >>> abjad.show(context) # doctest: +SKIP
 
@@ -3354,7 +3293,7 @@ class MultimeasureRest(Leaf):
         Multimeasure rests may be tagged:
 
         >>> rest = abjad.MultimeasureRest(
-        ...     'R1', tag=abjad.Tag('GLOBAL_MULTIMEASURE_REST')
+        ...     "R1", tag=abjad.Tag("GLOBAL_MULTIMEASURE_REST")
         ... )
         >>> string = abjad.lilypond(rest, tags=True)
         >>> print(string)
@@ -3531,8 +3470,8 @@ class NoteHead:
 
     def __lt__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a note-head with written pitch greater
-        than that of this note-head.
+        Is true when ``argument`` is a note-head with written pitch greater than that of
+        this note-head.
         """
         if isinstance(argument, type(self)):
             return self.written_pitch < argument.written_pitch
@@ -3641,7 +3580,7 @@ class NoteHead:
             >>> note = abjad.Note("c''4")
             >>> alternative = copy.copy(note.note_head)
             >>> alternative.is_forced = True
-            >>> note.note_head.alternative = (alternative, '-PARTS', '+PARTS')
+            >>> note.note_head.alternative = (alternative, "-PARTS", "+PARTS")
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3653,7 +3592,7 @@ class NoteHead:
 
             Survives pitch reassignment:
 
-            >>> note.written_pitch = 'D5'
+            >>> note.written_pitch = "D5"
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3677,7 +3616,7 @@ class NoteHead:
             >>> chord = abjad.Chord("<c' d' bf''>4")
             >>> alternative = copy.copy(chord.note_heads[0])
             >>> alternative.is_forced = True
-            >>> chord.note_heads[0].alternative = (alternative, '-PARTS', '+PARTS')
+            >>> chord.note_heads[0].alternative = (alternative, "-PARTS", "+PARTS")
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3693,7 +3632,7 @@ class NoteHead:
 
             Suvives pitch reassignment:
 
-            >>> chord.note_heads[0].written_pitch = 'B3'
+            >>> chord.note_heads[0].written_pitch = "B3"
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -4011,8 +3950,10 @@ class NoteHeadList(_typedcollections.TypedList):
 
     ..  container:: example
 
-        >>> abjad.NoteHeadList(items=[11, 10, 9])
-        NoteHeadList(items=[NoteHead("a'"), NoteHead("bf'"), NoteHead("b'")], item_class=<class 'abjad.score.NoteHead'>, keep_sorted=True)
+        >>> for _ in abjad.NoteHeadList(items=[11, 10, 9]): _
+        NoteHead("a'")
+        NoteHead("bf'")
+        NoteHead("b'")
 
     """
 
@@ -4031,7 +3972,7 @@ class NoteHeadList(_typedcollections.TypedList):
 
         return coerce_(item)
 
-    def extend(self, items):
+    def extend(self, items) -> None:
         r"""
         Extends note-heads.
 
@@ -4068,11 +4009,10 @@ class NoteHeadList(_typedcollections.TypedList):
                     f''
                 >4
 
-        Returns note-head.
         """
         return _typedcollections.TypedList.extend(self, items)
 
-    def get(self, pitch):
+    def get(self, pitch) -> NoteHead:
         r"""
         Gets note-head by ``pitch``.
 
@@ -4124,8 +4064,6 @@ class NoteHeadList(_typedcollections.TypedList):
 
         Raises extra note-head error when chord contains more than one note-head with
         ``pitch``.
-
-        Returns note-head.
         """
         result = []
         pitch = _pitch.NamedPitch(pitch)
@@ -4141,7 +4079,7 @@ class NoteHeadList(_typedcollections.TypedList):
         else:
             raise ValueError("extra note-head.")
 
-    def pop(self, i=-1):
+    def pop(self, i=-1) -> NoteHead:
         r"""
         Pops note-head ``i``.
 
@@ -4167,7 +4105,6 @@ class NoteHeadList(_typedcollections.TypedList):
                 >>> print(string)
                 <ef' f''>4
 
-        Returns note-head.
         """
         return _typedcollections.TypedList.pop(self, i=i)
 
@@ -4285,7 +4222,7 @@ class Note(Leaf):
                 is_parenthesized = leaf.note_head.is_parenthesized
             # TODO: move into separate from_chord() constructor:
             elif hasattr(leaf, "written_pitches"):
-                written_pitches = [x.written_pitch for x in leaf.note_heads]
+                written_pitches = [_.written_pitch for _ in leaf.note_heads]
                 if written_pitches:
                     written_pitch = written_pitches[0]
                     is_cautionary = leaf.note_heads[0].is_cautionary
@@ -4486,7 +4423,7 @@ class Note(Leaf):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_pitch_and_duration(pitch, duration):
+    def from_pitch_and_duration(pitch, duration) -> "Note":
         """
         Makes note from ``pitch`` and ``duration``.
 
@@ -4512,7 +4449,7 @@ class Rest(Leaf):
 
     ..  container:: example
 
-        >>> rest = abjad.Rest('r8.')
+        >>> rest = abjad.Rest("r8.")
         >>> abjad.attach(abjad.TimeSignature((3, 16)), rest)
         >>> staff = abjad.Staff([rest])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -4529,13 +4466,9 @@ class Rest(Leaf):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Leaves"
 
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -4562,8 +4495,6 @@ class Rest(Leaf):
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if isinstance(original_input, Leaf):
             self._copy_override_and_set_from_leaf(original_input)
-
-    ### PRIVATE METHODS ###
 
     def _get_body(self):
         return [self._get_compact_representation()]
@@ -4647,9 +4578,9 @@ class Score(Context):
 
         ..  container:: example
 
-            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
-            >>> staff = abjad.Staff([voice], tag=abjad.Tag('BLUE'))
-            >>> score = abjad.Score([staff], tag=abjad.Tag('GREEN'))
+            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag("RED"))
+            >>> staff = abjad.Staff([voice], tag=abjad.Tag("BLUE"))
+            >>> score = abjad.Score([staff], tag=abjad.Tag("GREEN"))
             >>> abjad.show(score) # doctest: +SKIP
 
             >>> string = abjad.lilypond(score, tags=True)
@@ -4730,13 +4661,9 @@ class Skip(Leaf):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Leaves"
 
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -4766,8 +4693,6 @@ class Skip(Leaf):
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)
-
-    ### PRIVATE METHODS ###
 
     def _get_body(self):
         result = []
@@ -4807,7 +4732,7 @@ class Staff(Context):
         ...     r"\times 9/10 { r8 c'16 c'16 bf'4~ bf'16 r16 }",
         ...     r"\times 9/10 { bf'16 e''16 e''4 ~ e''16 r16 fs''16 af''16 }",
         ...     r"\times 4/5 { a'16 r4 }",
-        ...     ])
+        ... ])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -4854,15 +4779,11 @@ class Staff(Context):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Contexts"
 
     __slots__ = ()
 
     _default_lilypond_type = "Staff"
-
-    ### INITIALIZER ###
 
     # TODO: make keywords mandatory
     def __init__(
@@ -4921,15 +4842,11 @@ class StaffGroup(Context):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Contexts"
 
     __slots__ = ()
 
     _default_lilypond_type = "StaffGroup"
-
-    ### INITIALIZER ###
 
     # TODO: make keywords mandatory
     def __init__(
@@ -4996,13 +4913,9 @@ class TremoloContainer(Container):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Containers"
 
     __slots__ = ("_count",)
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -5018,15 +4931,11 @@ class TremoloContainer(Container):
         if len(self) != 2:
             raise Exception(f"must contain 2 leaves (not {len(self)}")
 
-    ### SPECIAL METHODS ###
-
     def __getnewargs__(self) -> tuple:
         """
         Gets new arguments of tremolo container.
         """
         return (self.count,)
-
-    ### PRIVATE METHODS ###
 
     def _format_open_brackets_slot(self, bundle):
         result = []
@@ -5036,8 +4945,6 @@ class TremoloContainer(Container):
 
     def _get_preprolated_duration(self):
         return self.implied_prolation * self._get_contents_duration()
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def count(self) -> int:
@@ -5397,7 +5304,7 @@ class Tuplet(Container):
 
     def _get_summary(self):
         if 0 < len(self):
-            return ", ".join([str(x) for x in self.components])
+            return ", ".join([str(_) for _ in self.components])
         else:
             return ""
 
@@ -5885,7 +5792,7 @@ class Tuplet(Container):
             >>> abjad.tweak(tuplet_3).staff_padding = 4
 
             >>> staff = abjad.Staff([tuplet_3])
-            >>> leaves = abjad.Selection(staff).leaves()
+            >>> leaves = abjad.select.leaves(staff)
             >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
             >>> literal = abjad.LilyPondLiteral(r'\set tupletFullLength = ##t')
             >>> abjad.attach(literal, staff)
@@ -5927,9 +5834,9 @@ class Tuplet(Container):
                     }
                 }
 
-            ..  todo:: Report LilyPond bug that results from removing
-                tupletFullLength in the example above: blue tuplet bracket
-                shrinks to encompass only the second underlying tuplet.
+            ..  todo:: Report LilyPond bug that results from removing tupletFullLength
+                in the example above: blue tuplet bracket shrinks to encompass only the
+                second underlying tuplet.
 
         """
         return self._tweaks
@@ -5937,7 +5844,11 @@ class Tuplet(Container):
     ### PUBLIC METHODS ###
 
     def append(
-        self, component, *, language: str = "english", preserve_duration=False
+        self,
+        component: Component,
+        *,
+        language: str = "english",
+        preserve_duration=False,
     ) -> None:
         r"""
         Appends ``component`` to tuplet.

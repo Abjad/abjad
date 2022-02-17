@@ -56,7 +56,7 @@ def test_Container_pop_02():
     """
 
     staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
