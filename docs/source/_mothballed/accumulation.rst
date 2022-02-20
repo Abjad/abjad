@@ -84,7 +84,7 @@ The functions we'll use:
     ...         staves, lilypond_type="PianoStaff", name="Piano_Staff"
     ...     )
     ...     score = abjad.Score([piano_staff], name="Score")
-    ...     first_note = abjad.selct.note(lh_staff, 0)
+    ...     first_note = abjad.select.note(lh_staff, 0)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, first_note)
     ...     key_signature = abjad.KeySignature("b", "major")
