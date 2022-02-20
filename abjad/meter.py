@@ -18,7 +18,7 @@ from . import mutate as _mutate
 from . import parentage as _parentage
 from . import rhythmtrees as _rhythmtrees
 from . import score as _score
-from . import selection as _selection
+from . import select as _select
 from . import sequence as _sequence
 from . import timespan as _timespan
 from . import typedcollections as _typedcollections
@@ -1164,6 +1164,7 @@ class Meter:
                 kernel[offset] = _duration.Multiplier(response, total)
         return MetricAccentKernel(kernel)
 
+    @staticmethod
     def rewrite_meter(
         components,
         meter,
@@ -2313,7 +2314,9 @@ class Meter:
             logical_tie=None,
         ):
             offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-            logical_tie_duration = logical_tie._get_preprolated_duration()
+            logical_tie_duration = sum(
+                _._get_preprolated_duration() for _ in logical_tie
+            )
             logical_tie_timespan = _inspect._get_timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
@@ -2338,7 +2341,7 @@ class Meter:
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
                     shards = _mutate.split(logical_tie[:], [split_offset])
-                    logical_ties = [_selection.LogicalTie(_) for _ in shards]
+                    logical_ties = [_select.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
                             boundary_depth=boundary_depth,
@@ -2370,7 +2373,7 @@ class Meter:
                 assert split_offset is not None
                 split_offset -= logical_tie_start_offset
                 shards = _mutate.split(logical_tie[:], [split_offset])
-                logical_ties = [_selection.LogicalTie(shard) for shard in shards]
+                logical_ties = [_select.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
                         boundary_depth=boundary_depth,
@@ -2381,7 +2384,6 @@ class Meter:
             else:
                 _mutate._fuse(logical_tie[:])
 
-        assert isinstance(components, _selection.Selection), repr(components)
         if not isinstance(meter, Meter):
             meter = Meter(meter)
         boundary_depth = boundary_depth or meter.preferred_boundary_depth
@@ -2421,7 +2423,7 @@ class Meter:
         iterator = _MeterManager.iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
-            if isinstance(item, _selection.LogicalTie):
+            if isinstance(item, _select.LogicalTie):
                 recurse(
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
@@ -2861,7 +2863,7 @@ class MetricAccentKernel:
             >>> abjad.show(score) # doctest: +SKIP
 
             >>> MetricAccentKernel = abjad.MetricAccentKernel
-            >>> leaves = abjad.Selection(score).leaves()
+            >>> leaves = abjad.select.leaves(score)
             >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
             >>> for offset, count in sorted(counter.items.items()):
             ...     offset, count
@@ -3297,7 +3299,7 @@ class _MeterManager:
         for component in argument:
             if isinstance(component, (_score.Note, _score.Chord)):
                 this_tie_leaves = _iterate._get_logical_tie_leaves(component)
-                this_tie = _selection.LogicalTie(this_tie_leaves)
+                this_tie = _select.LogicalTie(this_tie_leaves)
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (
@@ -3305,7 +3307,7 @@ class _MeterManager:
                     or this_tie is None
                     or last_tie != this_tie
                 ):
-                    yield _selection.LogicalTie(current_leaf_group)
+                    yield _select.LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = False
                 current_leaf_group.append(component)
@@ -3314,18 +3316,18 @@ class _MeterManager:
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif not current_leaf_group_is_silent:
-                    yield _selection.LogicalTie(current_leaf_group)
+                    yield _select.LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = True
                 current_leaf_group.append(component)
                 last_tie = None
             elif isinstance(component, _score.Container):
                 if current_leaf_group is not None:
-                    yield _selection.LogicalTie(current_leaf_group)
+                    yield _select.LogicalTie(current_leaf_group)
                     current_leaf_group = None
                     last_tie = None
                 yield component
             else:
                 raise Exception(f"unhandled component: {component!r}.")
         if current_leaf_group is not None:
-            yield _selection.LogicalTie(current_leaf_group)
+            yield _select.LogicalTie(current_leaf_group)

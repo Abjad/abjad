@@ -12,7 +12,7 @@ from . import overrides as _overrides
 from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
-from . import selection as _selection
+from . import select as _select
 from . import setclass as _setclass
 from . import verticalmoment as _verticalmoment
 
@@ -837,7 +837,7 @@ def with_durations(
         _attach(label, logical_tie.head)
 
 
-def with_indices(argument, direction=_enums.Up, prototype=None):
+def with_indices(argument, direction=_enums.Up, prototype=None) -> None:
     r"""
     Labels logical ties in ``argument`` with indices.
 
@@ -1032,21 +1032,20 @@ def with_indices(argument, direction=_enums.Up, prototype=None):
                 }
             }
 
-    Returns none.
     """
     if prototype is None:
-        items = iterate_.logical_ties(argument)
+        generator = iterate_.logical_ties(argument)
     else:
-        items = iterate_.components(argument, prototype=prototype)
-    items = list(items)
+        generator = iterate_.components(argument, prototype=prototype)
+    items = list(generator)
     for index, item in enumerate(items):
         label = _markups.Markup(rf"\markup {index}", direction=direction)
-        leaves = _selection.Selection(item).leaves()
+        leaves = _select.leaves(item)
         first_leaf = leaves[0]
         _attach(label, first_leaf)
 
 
-def with_intervals(argument, direction=_enums.Up, prototype=None):
+def with_intervals(argument, direction=_enums.Up, prototype=None) -> None:
     r"""
     Labels consecutive notes in ``argument`` with intervals.
 
@@ -1249,7 +1248,6 @@ def with_intervals(argument, direction=_enums.Up, prototype=None):
                 bf'4
             }
 
-    Returns none.
     """
     prototype = prototype or _pitch.NamedInterval
     for note in iterate_.leaves(argument, _score.Note):

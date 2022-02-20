@@ -11,7 +11,7 @@ def test_mutate__are_contiguous_same_parent_01():
 
     assert abjad.mutate._are_contiguous_same_parent(voice[:])
 
-    other = abjad.Selection(reversed(voice[:]))
+    other = list(reversed(voice[:]))
     assert not abjad.mutate._are_contiguous_same_parent(other)
 
     components = []
@@ -70,7 +70,7 @@ def test_mutate__are_contiguous_same_parent_02():
     assert abjad.mutate._are_contiguous_same_parent(voice[0][:])
     assert abjad.mutate._are_contiguous_same_parent(voice[1][:])
 
-    leaves = abjad.Selection(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     assert not abjad.mutate._are_contiguous_same_parent(leaves)
 
 

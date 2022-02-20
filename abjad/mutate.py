@@ -15,7 +15,7 @@ from . import parentage as _parentage
 from . import pitch as _pitch
 from . import ratio as _ratio
 from . import score as _score
-from . import selection as _selection
+from . import select as _select
 from . import sequence as _sequence
 from . import spanners as _spanners
 
@@ -32,8 +32,8 @@ def _are_contiguous_logical_voice(
         >>> abjad.mutate._are_contiguous_logical_voice(staff[:])
         True
 
-        >>> selection = abjad.Selection([staff[0], staff[-1]])
-        >>> abjad.mutate._are_contiguous_logical_voice(selection)
+        >>> staves = [staff[0], staff[-1]]
+        >>> abjad.mutate._are_contiguous_logical_voice(staves)
         False
 
     ..  container:: example
@@ -61,7 +61,7 @@ def _are_contiguous_logical_voice(
             }
 
         >>> voice[:]
-        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
 
         >>> abjad.mutate._are_contiguous_logical_voice(voice[:])
         False
@@ -96,7 +96,7 @@ def _are_contiguous_logical_voice(
             }
 
         >>> voice[:]
-        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
 
         >>> abjad.mutate._are_contiguous_logical_voice(voice[:])
         False
@@ -158,8 +158,8 @@ def _are_contiguous_same_parent(
         >>> abjad.mutate._are_contiguous_same_parent(staff[:])
         True
 
-        >>> selection = abjad.Selection([staff[0], staff[-1]])
-        >>> abjad.mutate._are_contiguous_same_parent(selection)
+        >>> staves = [staff[0], staff[-1]]
+        >>> abjad.mutate._are_contiguous_same_parent(staves)
         False
 
     ..  container:: example
@@ -187,7 +187,7 @@ def _are_contiguous_same_parent(
             }
 
         >>> voice[:]
-        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
 
         >>> abjad.mutate._are_contiguous_same_parent(voice[:])
         False
@@ -222,7 +222,7 @@ def _are_contiguous_same_parent(
             }
 
         >>> voice[:]
-        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
 
         >>> abjad.mutate._are_contiguous_same_parent(voice[:])
         False
@@ -286,7 +286,7 @@ def _copy_selection(selection):
 
 
 def _extract(COMPONENT):
-    selection = _selection.Selection([COMPONENT])
+    selection = [COMPONENT]
     parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:
         components = list(getattr(COMPONENT, "components", ()))
@@ -311,7 +311,7 @@ def _fuse_leaves(SELECTION):
     if len(leaves) <= 1:
         return leaves
     originally_tied = SELECTION[-1]._has_indicator(_indicators.Tie)
-    total_preprolated = leaves._get_preprolated_duration()
+    total_preprolated = sum(_._get_preprolated_duration() for _ in leaves)
     for leaf in leaves[1:]:
         parent = leaf._parent
         if parent:
@@ -319,7 +319,7 @@ def _fuse_leaves(SELECTION):
             del parent[index]
     result = _set_leaf_duration(leaves[0], total_preprolated)
     if not originally_tied:
-        last_leaf = _selection.Selection(result).leaf(-1)
+        last_leaf = _select.leaf(result, -1)
         _bind.detach(_indicators.Tie, last_leaf)
     return result
 
@@ -356,9 +356,9 @@ def _fuse_tuplets(SELECTION):
 
 def _get_leaves_grouped_by_immediate_parents(SELECTION):
     result = []
-    pairs_generator = itertools.groupby(SELECTION, lambda x: id(x._parent))
+    pairs_generator = itertools.groupby(SELECTION, lambda _: id(_._parent))
     for key, values_generator in pairs_generator:
-        group = _selection.Selection(list(values_generator))
+        group = list(values_generator)
         result.append(group)
     return result
 
@@ -433,15 +433,15 @@ def _set_leaf_duration(leaf, new_duration):
     if leaf.multiplier is not None:
         multiplier = new_duration.__div__(leaf.written_duration)
         leaf.multiplier = multiplier
-        return _selection.Selection(leaf)
+        return [leaf]
     try:
         leaf.written_duration = new_duration
-        return _selection.Selection(leaf)
+        return [leaf]
     except _exceptions.AssignabilityError:
         pass
     maker = _makers.NoteMaker()
     components = maker(0, new_duration)
-    new_leaves = _selection.Selection(components).leaves()
+    new_leaves = _select.leaves(components)
     following_leaf_count = len(new_leaves) - 1
     following_leaves = []
     for i in range(following_leaf_count):
@@ -470,7 +470,7 @@ def _set_leaf_duration(leaf, new_duration):
     for all_leaf, new_leaf in zip(all_leaves, new_leaves):
         all_leaf.written_duration = new_leaf.written_duration
     logical_tie = _get.logical_tie(leaf)
-    logical_tie_leaves = list(logical_tie.leaves)
+    logical_tie_leaves = list(logical_tie)
     for leaf_ in logical_tie:
         _bind.detach(_indicators.Tie, leaf_)
         _bind.detach(_indicators.RepeatTie, leaf_)
@@ -484,17 +484,17 @@ def _set_leaf_duration(leaf, new_duration):
     if 1 < len(logical_tie_leaves) and isinstance(leaf, (_score.Note, _score.Chord)):
         _spanners.tie(logical_tie_leaves)
     if isinstance(components[0], _score.Leaf):
-        return _selection.Selection(all_leaves)
+        assert isinstance(all_leaves, list)
+        return all_leaves
     else:
         assert isinstance(components[0], _score.Tuplet)
         assert len(components) == 1
         tuplet = components[0]
         multiplier = tuplet.multiplier
         tuplet = _score.Tuplet(multiplier, [])
-        if not isinstance(all_leaves, _selection.Selection):
-            all_leaves = _selection.Selection(all_leaves)
+        assert isinstance(all_leaves, list)
         wrap(all_leaves, tuplet)
-        return _selection.Selection(tuplet)
+        return [tuplet]
 
 
 def _set_parents(container):
@@ -534,7 +534,7 @@ def _split_container_at_index(CONTAINER, i):
     halves = (left, right)
     nonempty_halves = [half for half in halves if len(half)]
     # incorporate left and right parents in score if possible
-    selection = _selection.Selection(CONTAINER)
+    selection = [CONTAINER]
     parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:
         parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
@@ -638,8 +638,7 @@ def _split_container_by_duration(CONTAINER, duration):
                     leaf_left_of_split,
                     leaf_right_of_split,
                 )
-                selection = _selection.Selection(leaves_around_split)
-                _attach_tie_to_leaves(selection)
+                _attach_tie_to_leaves(leaves_around_split)
     # return list-wrapped halves of container
     return [left], [right]
 
@@ -652,14 +651,12 @@ def _split_simultaneous_by_duration(CONTAINER, duration):
         left_components_, right_components_ = halves
         left_components.extend(left_components_)
         right_components.extend(right_components_)
-    left_components = _selection.Selection(left_components)
-    right_components = _selection.Selection(right_components)
     left_container = CONTAINER.__copy__()
     right_container = CONTAINER.__copy__()
     left_container.extend(left_components)
     right_container.extend(right_components)
     if _get.parentage(CONTAINER).parent is not None:
-        containers = _selection.Selection([left_container, right_container])
+        containers = [left_container, right_container]
         replace(CONTAINER, containers)
     # return list-wrapped halves of container
     return [left_container], [right_container]
@@ -695,9 +692,7 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
         selection = _set_leaf_duration(new_leaf, preprolated_duration)
         result_selections.append(selection)
     result_components = _sequence.Sequence(result_selections).flatten(depth=-1)
-    result_components = _selection.Selection(result_components)
-    result_leaves = _selection.Selection(result_components).leaves(grace=False)
-    assert all(isinstance(_, _selection.Selection) for _ in result_selections)
+    result_leaves = _select.leaves(result_components, grace=False)
     assert all(isinstance(_, _score.Component) for _ in result_components)
     assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     # strip result leaves of all indicators
@@ -739,12 +734,12 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
         _bind.attach(_indicators.RepeatTie(), result_leaves[0])
     if originally_tied and not result_leaves[-1]._has_indicator(_indicators.Tie):
         _bind.attach(_indicators.Tie(), result_leaves[-1])
-    assert isinstance(result_leaves, _selection.Selection)
+    assert isinstance(result_leaves, list)
     assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     return result_leaves
 
 
-def copy(argument, n=1):
+def copy(argument, n=1) -> list[_score.Component]:
     r"""
     Copies argument.
 
@@ -859,10 +854,9 @@ def copy(argument, n=1):
         >>> staff[2] is new_staff[0]
         False
 
-    Returns selection of new components.
     """
     if isinstance(argument, _score.Component):
-        selection = _selection.Selection(argument)
+        selection = [argument]
     else:
         selection = argument
     if n == 1:
@@ -907,11 +901,11 @@ def eject_contents(argument):
 
         >>> contents = abjad.mutate.eject_contents(container)
         >>> contents
-        Selection(items=[Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")])
+        [Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")]
 
         Container contents can be safely added to a new container:
 
-        >>> staff = abjad.Staff(contents, lilypond_type='RhythmicStaff')
+        >>> staff = abjad.Staff(contents, lilypond_type="RhythmicStaff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -956,7 +950,7 @@ def extract(argument):
         >>> staff = abjad.Staff()
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-        >>> leaves = abjad.Selection(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
         >>> abjad.hairpin('p < f', leaves)
@@ -1013,7 +1007,7 @@ def extract(argument):
         >>> staff = abjad.Staff()
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-        >>> leaves = abjad.Selection(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
@@ -1105,7 +1099,7 @@ def extract(argument):
     return _extract(argument)
 
 
-def fuse(argument):
+def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
     r"""
     Fuses ``argument``.
 
@@ -1117,7 +1111,8 @@ def fuse(argument):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.mutate.fuse(staff[1:])
-        Selection(items=[Note("d'4.")])
+        [Note("d'4.")]
+
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1224,9 +1219,9 @@ def fuse(argument):
                 d'32
             }
 
-        >>> logical_tie = abjad.Selection(staff[0]).logical_tie()
+        >>> logical_tie = abjad.select.logical_tie(staff[0])
         >>> abjad.mutate.fuse(logical_tie)
-        Selection(items=[Note("d'8..")])
+        [Note("d'8..")]
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1243,16 +1238,14 @@ def fuse(argument):
         >>> abjad.get.has_indicator(staff[0], abjad.Tie)
         False
 
-    Returns selection.
     """
+    _are_contiguous_logical_voice(argument)
     if isinstance(argument, _score.Component):
-        selection = _selection.Selection(argument)
-        return _fuse(selection)
-    elif isinstance(argument, _selection.Selection) and _are_contiguous_logical_voice(
-        argument
-    ):
-        selection = _selection.Selection(argument)
-        return _fuse(selection)
+        result = _fuse([argument])
+    else:
+        result = _fuse(list(argument))
+    assert isinstance(result, (list, _score.Tuplet)), repr(result)
+    return result
 
 
 def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
@@ -1291,7 +1284,7 @@ def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
                 \f
             }
 
-        >>> logical_tie = abjad.Selection(staff[1]).logical_tie()
+        >>> logical_tie = abjad.select.logical_tie(staff[1])
         >>> abjad.mutate.logical_tie_to_tuplet(logical_tie, [2, 1, 1, 1])
         Tuplet('5:3', "c'8 c'16 c'16 c'16")
 
@@ -1354,18 +1347,20 @@ def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
 
     """
     proportions = _ratio.Ratio(proportions)
-    target_duration = argument._get_preprolated_duration()
+    target_duration = sum(_._get_preprolated_duration() for _ in argument)
+    assert isinstance(target_duration, _duration.Duration)
     prolated_duration = target_duration / sum(proportions.numbers)
     basic_written_duration = prolated_duration.equal_or_greater_power_of_two
     written_durations = [_ * basic_written_duration for _ in proportions.numbers]
-    maker = _makers.NoteMaker()
+    notes: list[_score.Note | _score.Tuplet]
     try:
-        notes = _selection.Selection([_score.Note(0, _) for _ in written_durations])
+        notes = [_score.Note(0, _) for _ in written_durations]
     except _exceptions.AssignabilityError:
         denominator = target_duration._denominator
         note_durations = [
             _duration.Duration(_, denominator) for _ in proportions.numbers
         ]
+        maker = _makers.NoteMaker()
         notes = maker(0, note_durations)
     tuplet = _score.Tuplet.from_duration(target_duration, notes)
     for leaf in argument:
@@ -1387,7 +1382,7 @@ def replace(argument, recipients, wrappers=False):
         >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
         >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
         >>> staff = abjad.Staff([tuplet_1, tuplet_2])
-        >>> leaves = abjad.Selection(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
         >>> abjad.slur(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1582,13 +1577,16 @@ def replace(argument, recipients, wrappers=False):
 
     Returns none.
     """
-    if isinstance(argument, _selection.Selection):
+    if isinstance(argument, (list, _select.Selection)):
         donors = argument
     else:
-        donors = _selection.Selection(argument)
+        donors = [argument]
     assert _are_contiguous_same_parent(donors)
-    if not isinstance(recipients, _selection.Selection):
-        recipients = _selection.Selection(recipients)
+    if not isinstance(recipients, (list, _select.Selection)):
+        if isinstance(recipients, _score.Component):
+            recipients = [recipients]
+        else:
+            recipients = list(recipients)
     assert _are_contiguous_same_parent(recipients)
     if not donors:
         return
@@ -1670,7 +1668,7 @@ def scale(argument, multiplier) -> None:
                 d'8
             }
 
-        >>> logical_tie = abjad.Selection(staff[0]).logical_tie()
+        >>> logical_tie = abjad.select.logical_tie(staff[0])
         >>> logical_tie = abjad.mutate.scale(logical_tie, abjad.Multiplier(3, 2))
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1799,7 +1797,7 @@ def scale(argument, multiplier) -> None:
     if hasattr(argument, "_scale"):
         argument._scale(multiplier)
     else:
-        assert isinstance(argument, _selection.Selection)
+        assert isinstance(argument, (list, _select.Selection))
         for component in argument:
             component._scale(multiplier)
 
@@ -2195,10 +2193,8 @@ def split(argument, durations, cyclic=False):
     """
     components = argument
     if isinstance(components, _score.Component):
-        components = _selection.Selection(components)
+        components = [components]
     assert all(isinstance(_, _score.Component) for _ in components)
-    if not isinstance(components, _selection.Selection):
-        components = _selection.Selection(components)
     durations = [_duration.Duration(_) for _ in durations]
     assert len(durations), repr(durations)
     total_component_duration = _get.duration(components)
@@ -2305,11 +2301,9 @@ def split(argument, durations, cyclic=False):
         result.append(remaining_components)
     # partition split components according to input durations
     result = _sequence.Sequence(result).flatten(depth=-1)
-    result = _selection.Selection(result).partition_by_durations(
-        durations_copy, fill=_enums.Exact
-    )
+    result = _select.partition_by_durations(result, durations_copy, fill=_enums.Exact)
     # return list of shards
-    assert all(isinstance(_, _selection.Selection) for _ in result)
+    assert all(isinstance(_, (list, _select.Selection)) for _ in result)
     return result
 
 
@@ -2325,7 +2319,7 @@ def swap(argument, container):
         >>> staff.append(abjad.Container("c'4 d'4 e'4"))
         >>> staff.append(abjad.Container("d'4 e'4 f'4"))
         >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0][0])
-        >>> leaves = abjad.Selection(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
         >>> measures = staff[:]
         >>> abjad.slur(leaves)
@@ -2386,10 +2380,11 @@ def swap(argument, container):
 
     Returns none.
     """
-    if isinstance(argument, _selection.Selection):
+    if isinstance(argument, (list, _select.Selection)):
         donors = argument
     else:
-        donors = _selection.Selection(argument)
+        assert isinstance(argument, _score.Component)
+        donors = [argument]
     assert _are_contiguous_same_parent(donors)
     assert isinstance(container, _score.Container)
     assert not container, repr(container)
@@ -2454,13 +2449,13 @@ def transpose(argument, interval):
     Returns none.
     """
     named_interval = _pitch.NamedInterval(interval)
-    for x in iterate_.components(argument, (_score.Note, _score.Chord)):
-        if isinstance(x, _score.Note):
-            old_written_pitch = x.note_head.written_pitch
+    for item in iterate_.components(argument, (_score.Note, _score.Chord)):
+        if isinstance(item, _score.Note):
+            old_written_pitch = item.note_head.written_pitch
             new_written_pitch = old_written_pitch.transpose(named_interval)
-            x.note_head.written_pitch = new_written_pitch
+            item.note_head.written_pitch = new_written_pitch
         else:
-            for note_head in x.note_heads:
+            for note_head in item.note_heads:
                 old_written_pitch = note_head.written_pitch
                 new_written_pitch = old_written_pitch.transpose(named_interval)
                 note_head.written_pitch = new_written_pitch
@@ -2638,7 +2633,7 @@ def wrap(argument, container):
         wrap:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> leaves = abjad.Selection(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> container = abjad.Container()
         >>> abjad.mutate.wrap(leaves, container)
@@ -2676,10 +2671,10 @@ def wrap(argument, container):
     if not isinstance(container, _score.Container) or 0 < len(container):
         raise Exception(f"must be empty container: {container!r}.")
     if isinstance(argument, _score.Component):
-        selection = _selection.Selection(argument)
+        selection = [argument]
     else:
         selection = argument
-    assert isinstance(selection, _selection.Selection), repr(selection)
+    assert isinstance(selection, (list, _select.Selection)), repr(selection)
     parent, start, stop = _get_parent_and_start_stop_indices(
         selection, ignore_before_after_grace=True
     )

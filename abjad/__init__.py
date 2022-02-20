@@ -67,7 +67,7 @@ from .exceptions import (
     WellformednessError,
 )
 from .format import lilypond
-from .get import Descendants, Lineage
+from .get import Lineage
 from .illustrators import illustrate
 from .indicators import (
     Arpeggio,
@@ -256,7 +256,7 @@ from .score import (
     Tuplet,
     Voice,
 )
-from .selection import LogicalTie, Selection
+from .select import LogicalTie, Selection
 from .sequence import Sequence
 from .setclass import SetClass
 from .spanners import (
@@ -354,7 +354,6 @@ __all__ = [
     "ContrabassSaxophone",
     "Contrabassoon",
     "CyclicTuple",
-    "Descendants",
     "Down",
     "DrumNoteHead",
     "Duration",
@@ -598,6 +597,7 @@ __all__ = [
     "phrasing_slur",
     "piano_pedal",
     "play",
+    "select",
     "setting",
     "show",
     "slur",

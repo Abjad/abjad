@@ -29,7 +29,7 @@ Abjad numbers pitches like this:
     ...     abjad.attach(markup, bass_staff[-1])
     ...
     >>> clef = abjad.Clef("bass")
-    >>> note = abjad.Selection(bass_staff).note(0)
+    >>> note = abjad.select.note(bass_staff, 0)
     >>> abjad.attach(clef, note)
 
 ::
@@ -84,7 +84,7 @@ Abjad numbers diatonic pitches like this:
     ...     abjad.attach(markup, bass_staff[-1])
     ...
     >>> clef = abjad.Clef("bass")
-    >>> note = abjad.Selection(bass_staff).note(0)
+    >>> note = abjad.select.note(bass_staff, 0)
     >>> abjad.attach(clef, note)
 
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])

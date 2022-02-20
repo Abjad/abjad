@@ -40,7 +40,7 @@ def test_Component__sibling_03():
         """
     )
 
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     tuplet = staff[1]
 
     assert leaves[0]._sibling(-1) is None

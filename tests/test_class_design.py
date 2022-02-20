@@ -140,7 +140,6 @@ ignored_classes = (
     abjad.io.Player,
     abjad.io.LilyPondIO,
     abjad.Configuration,
-    abjad.Descendants,
     abjad.LeafMaker,
     abjad.LilyPondFormatBundle,
     abjad.LilyPondOverride,

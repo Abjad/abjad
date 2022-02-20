@@ -489,7 +489,7 @@ class TypedList(TypedCollection, collections.abc.MutableSequence):
         item = self._coerce_item(item)
         return self.items.count(item)
 
-    def extend(self, items):
+    def extend(self, items) -> None:
         """
         Extends typed list with ``items``.
 

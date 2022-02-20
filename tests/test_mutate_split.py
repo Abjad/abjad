@@ -9,7 +9,7 @@ def test_mutate_split_01():
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
     staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -78,7 +78,7 @@ def test_mutate_split_02():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -154,7 +154,7 @@ def test_mutate_split_03():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -229,7 +229,7 @@ def test_mutate_split_04():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -305,7 +305,7 @@ def test_mutate_split_05():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -384,7 +384,7 @@ def test_mutate_split_06():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -470,7 +470,7 @@ def test_mutate_split_07():
     voice = abjad.Voice()
     voice.append(abjad.Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(abjad.Tuplet((2, 3), "f'8 g'8 a'8"))
-    leaves = abjad.Selection(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
     tuplets = voice[1:2]
@@ -514,7 +514,7 @@ def test_mutate_split_08():
     voice = abjad.Voice()
     voice.append(abjad.Container("c'8 d'8 e'8"))
     voice.append(abjad.Container("f'8 g'8 a'8"))
-    leaves = abjad.Selection(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
     measures = voice[1:2]
@@ -653,7 +653,7 @@ def test_mutate_split_11():
 
     staff = abjad.Staff([abjad.Container("c'8 d'8 e'8 f'8")])
     voice = staff[0]
-    leaves = abjad.Selection(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves)
 
     result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
@@ -833,7 +833,7 @@ def test_mutate_split_13():
     """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = abjad.Selection(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
     abjad.slur(leaves)
 
@@ -899,7 +899,7 @@ def test_mutate_split_14():
     """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
-    leaves = abjad.Selection(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
     abjad.slur(leaves)
 

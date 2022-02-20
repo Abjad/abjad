@@ -167,7 +167,7 @@ Let's see what a few of these look like. Here are the first ten violin 1 descent
     >>> leaves = abjad.Sequence(descents).flatten()
     >>> staff = abjad.Staff(leaves)
     >>> time_signature = abjad.TimeSignature((6, 4))
-    >>> leaf = abjad.Selection(staff).leaf(0)
+    >>> leaf = abjad.select.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
     >>> abjad.show(staff)
 
@@ -185,7 +185,7 @@ Here are the first ten violin 2 descents:
     >>> leaves = abjad.Sequence(descents).flatten()
     >>> staff = abjad.Staff(leaves)
     >>> time_signature = abjad.TimeSignature((6, 4))
-    >>> leaf = abjad.Selection(staff).leaf(0)
+    >>> leaf = abjad.select.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
     >>> abjad.show(staff)
 
@@ -205,7 +205,7 @@ too:
     >>> staff = abjad.Staff(notes)
     >>> selections = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
-    >>> leaf = abjad.Selection(staff).leaf(0)
+    >>> leaf = abjad.select.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
     >>> abjad.show(staff)
 
@@ -280,7 +280,7 @@ We define more functions:
     ...     edit_cello(score, extra_components)
     ...     edit_bass(score, extra_components)
     ...     strings_staff_group = score["Strings_Staff_Group"]
-    ...     for voice in abjad.Selection(strings_staff_group).components(abjad.Voice):
+    ...     for voice in abjad.select.components(strings_staff_group, abjad.Voice):
     ...         selections = abjad.mutate.split(voice[:], [(6, 4)], cyclic=True)
     ...         for selection in selections:
     ...             container = abjad.Container()
@@ -357,7 +357,7 @@ We define more functions:
 
     >>> def edit_cello(score, voice_to_descents):
     ...     voice = score["Cello_Voice"]
-    ...     logical_tie = abjad.Selection(voice[-1]).logical_tie()
+    ...     logical_tie = abjad.select.logical_tie(voice[-1], 0)
     ...     for leaf in logical_tie:
     ...         chord = abjad.Chord(["e,", "a,"], leaf.written_duration)
     ...         abjad.mutate.replace(leaf, chord)
@@ -387,7 +387,7 @@ We define more functions:
     ...     score["Bass_Voice"][-3:] = string
 
     >>> def attach_contexted_indicators(score):
-    ...     leaf = abjad.Selection(score["Bell_Staff"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["Bell_Staff"], 0)
     ...     metronome_mark = abjad.MetronomeMark((1, 4), (112, 120))
     ...     abjad.attach(metronome_mark, leaf)
     ...     time_signature = abjad.TimeSignature((6, 4))
@@ -404,7 +404,7 @@ We define more functions:
     ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("treble")
     ...     abjad.attach(clef, leaf)
-    ...     leaf = abjad.Selection(score["Violin_1_Staff"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["Violin_1_Staff"], 0)
     ...     instrument = abjad.Violin()
     ...     abjad.attach(instrument, leaf)
     ...     string = r'\markup \hcenter-in #8 "Vn. I"'
@@ -413,7 +413,7 @@ We define more functions:
     ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("treble")
     ...     abjad.attach(clef, leaf)
-    ...     leaf = abjad.Selection(score["Violin_2_Staff"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["Violin_2_Staff"], 0)
     ...     instrument = abjad.Violin()
     ...     abjad.attach(instrument, leaf)
     ...     string = r'\markup \hcenter-in #8 "Vn. II"'
@@ -422,7 +422,7 @@ We define more functions:
     ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("treble")
     ...     abjad.attach(clef, leaf)
-    ...     leaf = abjad.Selection(score["Viola_Staff"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["Viola_Staff"], 0)
     ...     instrument = abjad.Viola()
     ...     abjad.attach(instrument, leaf)
     ...     string = r'\markup \hcenter-in #8 "Va."'
@@ -431,7 +431,7 @@ We define more functions:
     ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("alto")
     ...     abjad.attach(clef, leaf)
-    ...     leaf = abjad.Selection(score["Cello_Staff"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["Cello_Staff"], 0)
     ...     instrument = abjad.Cello()
     ...     abjad.attach(instrument, leaf)
     ...     string = r'\markup \hcenter-in #8 "Vc."'
@@ -440,7 +440,7 @@ We define more functions:
     ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, leaf)
-    ...     leaf = abjad.Selection(score["Bass_Staff"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["Bass_Staff"], 0)
     ...     instrument = abjad.Contrabass()
     ...     abjad.attach(instrument, leaf)
     ...     string = r'\markup \hcenter-in #8 "Cb."'
@@ -449,13 +449,13 @@ We define more functions:
     ...     abjad.attach(literal, leaf)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, leaf)
-    ...     leaf = abjad.Selection(score["Bass_Staff"]).leaf(-1)
+    ...     leaf = abjad.select.leaf(score["Bass_Staff"], -1)
     ...     bar_line = abjad.BarLine("|.")
     ...     abjad.attach(bar_line, leaf)
 
     >>> def attach_bow_marks(score):
     ...     for measure in score["Violin_1_Voice"][6:8]:
-    ...         chords = abjad.Selection(measure).components(abjad.Chord)
+    ...         chords = abjad.select.components(measure, abjad.Chord)
     ...         for i, chord in enumerate(chords):
     ...             if i % 2 == 0:
     ...                 articulation = abjad.Articulation("downbow")

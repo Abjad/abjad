@@ -80,11 +80,11 @@ Select the music in a tuplet like this:
 Selecting a tuplet's leaves
 ---------------------------
 
-Use ``select(...).leaves()`` to get the leaves in a tuplet:
+Use ``abjad.select.leaves()`` to get the leaves in a tuplet:
 
 ::
 
-    >>> abjad.Selection(tuplet).leaves()
+    >>> abjad.select.leaves(tuplet)
 
 Getting the length of a tuplet
 ------------------------------

@@ -49,7 +49,7 @@ Rotation, by row index
     ...         ]
     ...         for set, name in zip(sets, names):
     ...             voice = abjad.Voice([abjad.Note(_, (1, 16)) for _ in set])
-    ...             for leaf in abjad.Selection(voice).leaves():
+    ...             for leaf in abjad.select.leaves(voice):
     ...                 markup = abjad.Markup(
     ...                     rf"\markup {abjad.NumberedPitchClass(leaf.written_pitch)}",
     ...                     direction=abjad.Up,
@@ -61,7 +61,7 @@ Rotation, by row index
     ...             time_signature = abjad.TimeSignature((6, 16))
     ...             abjad.attach(time_signature, voice[0])
     ...             staff.append(voice)
-    ...         leaf = abjad.Selection(staff).leaf(0)
+    ...         leaf = abjad.select.leaf(staff, 0)
     ...         abjad.attach(margin_markup, leaf)
     ...         group.append(staff)
     ...     score.append(group)

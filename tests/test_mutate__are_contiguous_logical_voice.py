@@ -24,12 +24,12 @@ def test_mutate__are_contiguous_logical_voice_01():
         """
     )
 
-    selection = abjad.Selection([voice, voice[0]])
-    assert not abjad.mutate._are_contiguous_logical_voice(selection)
-    selection = abjad.Selection(list(voice[0:1]) + list(voice[0]))
-    assert not abjad.mutate._are_contiguous_logical_voice(selection)
-    selection = abjad.Selection(list(voice[-1:]) + list(voice[-1]))
-    assert not abjad.mutate._are_contiguous_logical_voice(selection)
+    voices = [voice, voice[0]]
+    assert not abjad.mutate._are_contiguous_logical_voice(voices)
+    voices = list(voice[0:1]) + list(voice[0])
+    assert not abjad.mutate._are_contiguous_logical_voice(voices)
+    voices = list(voice[-1:]) + list(voice[-1])
+    assert not abjad.mutate._are_contiguous_logical_voice(voices)
 
 
 def test_mutate__are_contiguous_logical_voice_02():
@@ -58,8 +58,8 @@ def test_mutate__are_contiguous_logical_voice_04():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    selection = abjad.Selection(list(staff[2:]) + list(staff[:2]))
-    assert not abjad.mutate._are_contiguous_logical_voice(selection)
+    leaves = list(staff[2:]) + list(staff[:2])
+    assert not abjad.mutate._are_contiguous_logical_voice(leaves)
 
 
 def test_mutate__are_contiguous_logical_voice_05():
@@ -73,7 +73,7 @@ def test_mutate__are_contiguous_logical_voice_05():
 
 def test_mutate__are_contiguous_logical_voice_06():
     """
-    Is true for empty selection.
+    Is true for empty input.
     """
 
     assert abjad.mutate._are_contiguous_logical_voice([])
@@ -103,8 +103,8 @@ def test_mutate__are_contiguous_logical_voice_07():
         """
     )
 
-    selection = abjad.Selection(list(voice[:2]) + list(voice[-2:]))
-    assert not abjad.mutate._are_contiguous_logical_voice(selection)
+    leaves = list(voice[:2]) + list(voice[-2:])
+    assert not abjad.mutate._are_contiguous_logical_voice(leaves)
 
 
 def test_mutate__are_contiguous_logical_voice_08():
@@ -131,5 +131,5 @@ def test_mutate__are_contiguous_logical_voice_08():
         """
     )
 
-    selection = abjad.Selection(list(voice[:1]) + list(voice[-1:]))
-    assert not abjad.mutate._are_contiguous_logical_voice(selection)
+    components = list(voice[:1]) + list(voice[-1:])
+    assert not abjad.mutate._are_contiguous_logical_voice(components)

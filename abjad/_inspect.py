@@ -57,15 +57,12 @@ def _get_annotation_wrappers(ARGUMENT):
     return result
 
 
-def _get_duration(argument, in_seconds: bool = None, preprolated: bool = False):
+def _get_duration(argument, *, in_seconds: bool = None, preprolated: bool = False):
     if preprolated is True:
         if hasattr(argument, "_get_preprolated_duration"):
             duration = argument._get_preprolated_duration()
         else:
-            try:
-                duration = _duration.Duration(argument)
-            except Exception:
-                duration = _get_duration(argument)
+            duration = sum(_._get_preprolated_duration() for _ in argument)
         return duration
     if isinstance(argument, _score.Component):
         if in_seconds is True:

@@ -1,11 +1,11 @@
 from .. import _iterate
+from .. import bind as _bind
 from .. import pitch as _pitch
-from ..bind import attach, detach
+from .. import select as _select
 from ..duration import Duration, NonreducedFraction
 from ..enums import Left, Right
 from ..indicators import StartBeam, StartSlur, StopBeam, StopSlur, Tie, TimeSignature
 from ..score import Chord, Container, Note, Rest, Tuplet
-from ..selection import Selection
 from .base import Parser
 
 
@@ -390,7 +390,7 @@ class ReducedLyParser(Parser):
         p[0] = p[1]
         if p[2]:
             annotation = {"post events": p[2]}
-            attach(annotation, p[0])
+            _bind.attach(annotation, p[0])
 
     def p_leaf_body__chord_body(self, p):
         """
@@ -419,7 +419,7 @@ class ReducedLyParser(Parser):
             measure.append(x)
         leaf = _iterate._get_leaf(measure, 0)
         time_signature = TimeSignature(p[2].pair)
-        attach(time_signature, leaf)
+        _bind.attach(time_signature, leaf)
         p[0] = measure
 
     def p_negative_leaf_duration__INTEGER_N__dots(self, p):
@@ -603,18 +603,18 @@ class ReducedLyParser(Parser):
                     StopSlur,
                 ):
                     indicator = current_class()
-                    attach(indicator, leaf)
+                    _bind.attach(indicator, leaf)
                     continue
                 if current_class in (
                     StartBeam,
                     StopBeam,
                 ):
                     indicator = current_class()
-                    attach(indicator, leaf)
+                    _bind.attach(indicator, leaf)
                     continue
                 if current_class is Tie:
                     indicator = current_class()
-                    attach(indicator, leaf)
+                    _bind.attach(indicator, leaf)
                     continue
 
     def _cleanup(self, parsed):
@@ -622,18 +622,18 @@ class ReducedLyParser(Parser):
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = Selection(parsed).leaves()
+        leaves = _select.leaves(parsed)
         if leaves:
             self._attach_indicators(leaves)
         for leaf in leaves:
-            detach(dict, leaf)
+            _bind.detach(dict, leaf)
         if 1 < self._toplevel_component_count:
             return parsed
         return parsed[0]
 
     def _get_span_events(self, leaf):
         annotations = leaf._get_indicators(dict)
-        detach(dict, leaf)
+        _bind.detach(dict, leaf)
         annotations = [x for x in annotations if "post events" in x]
         if annotations:
             return annotations[0]["post events"]

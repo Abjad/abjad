@@ -10,7 +10,7 @@ from . import overrides as _overrides
 from . import parentage as _parentage
 from . import pcollections as _pcollections
 from . import score as _score
-from . import selection as _selection
+from . import select as _select
 from . import spanners as _spanners
 from . import tag as _tag
 from . import typings as _typings
@@ -208,7 +208,7 @@ class OnBeatGraceContainer(_score.Container):
         else:
             assert container.index(self) == 1
             anchor_voice = container[0]
-        anchor_leaf = _selection.Selection(anchor_voice).leaf(0, grace=False)
+        anchor_leaf = _select.leaf(anchor_voice, 0, grace=False)
         return anchor_leaf
 
     @staticmethod
@@ -262,7 +262,7 @@ class OnBeatGraceContainer(_score.Container):
     def _set_leaf_durations(self):
         if self.leaf_duration is None:
             return
-        for leaf in _selection.Selection(self).leaves():
+        for leaf in _select.leaves(self):
             duration = leaf._get_duration()
             if duration != self.leaf_duration:
                 multiplier = self.leaf_duration / duration
@@ -821,7 +821,6 @@ def on_beat_grace_container(
     def _site(n):
         return _tag.Tag(f"abjad.on_beat_grace_container({n})")
 
-    assert isinstance(anchor_voice_selection, _selection.Selection)
     if not _mutate._are_contiguous_same_parent(
         anchor_voice_selection, ignore_before_after_grace=True
     ):
@@ -831,8 +830,6 @@ def on_beat_grace_container(
     on_beat_grace_container = OnBeatGraceContainer(
         contents, leaf_duration=leaf_duration
     )
-    if not isinstance(anchor_voice_selection, _selection.Selection):
-        raise Exception(f"must be selection:\n {repr(anchor_voice_selection)}")
     anchor_leaf = _iterate._get_leaf(anchor_voice_selection, 0)
     anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
     if anchor_voice.name is None:
