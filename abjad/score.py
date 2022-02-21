@@ -1014,17 +1014,6 @@ class Container(Component):
         """
         return [], self.identifier, self.simultaneous, self.name, self.tag
 
-    # TODO: teach uqbar about io._graph_container() and remove Container.__graph__()
-    def __graph__(self, **keywords):
-        """
-        Graphviz graph representation of container.
-
-        Returns Graphviz graph.
-        """
-        from .io import _graph_container
-
-        return _graph_container(self)
-
     def __iter__(self):
         """
         Iterates container.
