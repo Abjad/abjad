@@ -618,34 +618,6 @@ def graph(
         return format_time, render_time
 
 
-def play(illustrable, return_timing=False, **keywords):
-    """
-    Plays ``argument``.
-
-    ..  container:: example
-
-        >>> note = abjad.Note("c'4")
-        >>> abjad.play(note) # doctest: +SKIP
-
-    Makes MIDI file.
-
-    Appends ``.mid`` filename extension under Windows.
-
-    Appends ``.midi`` filename extension under other operating systems.
-
-    Opens MIDI file.
-    """
-    player = Player(illustrable, **keywords)
-    result = player()
-    if not result:
-        return
-    _, format_time, render_time, success, log = result
-    if not success:
-        print(log)
-    if return_timing:
-        return format_time, render_time
-
-
 def show(illustrable, return_timing=False, **keywords):
     r"""
     Shows ``argument``.
