@@ -631,7 +631,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.timespan.Timespan'>
         <class 'abjad.timespan.TimespanList'>
         <class 'abjad.typedcollections.TypedCollection'>
-        <class 'abjad.typedcollections.TypedCounter'>
         <class 'abjad.typedcollections.TypedFrozenset'>
         <class 'abjad.typedcollections.TypedList'>
         <class 'abjad.typedcollections.TypedTuple'>
