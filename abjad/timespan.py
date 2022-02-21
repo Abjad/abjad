@@ -1,6 +1,7 @@
 """
 Tools for modeling and manipulating timespans.
 """
+import collections
 import copy
 import dataclasses
 import typing
@@ -18,7 +19,8 @@ negative_infinity = _math.NegativeInfinity()
 
 
 @dataclasses.dataclass(slots=True)
-class OffsetCounter(_typedcollections.TypedCounter):
+# class OffsetCounter(_typedcollections.TypedCounter):
+class OffsetCounter:
     """
     Offset counter.
 
@@ -45,8 +47,12 @@ class OffsetCounter(_typedcollections.TypedCounter):
 
     """
 
+    items: typing.Any = ()
+    item_class: typing.Any = _duration.Offset
+
     def __post_init__(self):
         self.item_class = _duration.Offset
+        self.items = self.items or []
         if self.items:
             offsets = []
             for item in self.items:
@@ -62,7 +68,17 @@ class OffsetCounter(_typedcollections.TypedCounter):
                         offset = _duration.Offset(item)
                         offsets.append(offset)
             self.items = offsets
-        _typedcollections.TypedCounter.__post_init__(self)
+        # _typedcollections.TypedCounter.__post_init__(self)
+        self.items = [self._coerce_item(_) for _ in self.items]
+        self.items = collections.Counter(self.items)
+        sorted_item_to_count = {}
+        try:
+            sorted_items = sorted(self.items.items())
+        except TypeError:
+            sorted_items = self.items.items()
+        for item, count in sorted_items:
+            sorted_item_to_count[item] = count
+        self.items = sorted_item_to_count
 
     def _coerce_item(self, item):
         return _duration.Offset(item)
@@ -141,7 +157,7 @@ class OffsetCounter(_typedcollections.TypedCounter):
         elif range_ is not None:
             minimum, maximum = range_
         else:
-            minimum, maximum = min(self), max(self)
+            minimum, maximum = min(self.items), max(self.items)
         minimum_float = float(_duration.Offset(minimum))
         maximum_float = float(_duration.Offset(maximum))
         if scale is None:
@@ -173,7 +189,7 @@ class OffsetCounter(_typedcollections.TypedCounter):
             *postscript_strings,
             '"',
         ]
-        for offset in sorted(self):
+        for offset in sorted(self.items):
             offset = _duration.Multiplier(offset)
             n, d = offset.numerator, offset.denominator
             x_translation = float(offset) * postscript_scale
@@ -3717,7 +3733,7 @@ class TimespanList(_typedcollections.TypedList):
         Returns mapping.
         """
         mapping: dict = dict()
-        offsets = _sequence.Sequence(sorted(self.count_offsets()))
+        offsets = _sequence.Sequence(sorted(self.count_offsets().items))
         for start_offset, stop_offset in offsets.nwise():
             timespan = Timespan(start_offset, stop_offset)
             overlap_factor = self.compute_overlap_factor(timespan=timespan)

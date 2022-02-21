@@ -274,13 +274,7 @@ from .spanners import (
 )
 from .tag import Line, Tag, activate, deactivate
 from .timespan import OffsetCounter, Timespan, TimespanList
-from .typedcollections import (
-    TypedCollection,
-    TypedCounter,
-    TypedFrozenset,
-    TypedList,
-    TypedTuple,
-)
+from .typedcollections import TypedCollection, TypedFrozenset, TypedList, TypedTuple
 from .typings import (
     DurationSequenceTyping,
     DurationTyping,
@@ -536,7 +530,6 @@ __all__ = [
     "TweakInterface",
     "TwelveToneRow",
     "TypedCollection",
-    "TypedCounter",
     "TypedFrozenset",
     "TypedList",
     "TypedTuple",

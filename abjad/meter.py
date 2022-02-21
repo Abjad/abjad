@@ -2947,7 +2947,7 @@ class _MeterFittingSession:
             self._offset_counter = MetricAccentKernel.count_offsets(offset_counter)
         else:
             self._offset_counter = {}
-        self._ordered_offsets = tuple(sorted(self.offset_counter))
+        self._ordered_offsets = tuple(sorted(self.offset_counter.items))
         meters = meters or ()
         self._meters = tuple(Meter(_) for _ in meters)
         self._kernel_denominator = _duration.Duration(kernel_denominator)

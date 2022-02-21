@@ -79,37 +79,6 @@ class TypedCollection:
         pass
 
 
-@dataclasses.dataclass(slots=True)
-class TypedCounter(TypedCollection):
-    """
-    Typed counter.
-
-    ..  container:: example
-
-        >>> abjad.TypedCounter(
-        ...     [0, "c'", 1, True, "cs'", "df'"],
-        ...     item_class=abjad.NumberedPitch,
-        ... )
-        TypedCounter(items={NumberedPitch(0): 2, NumberedPitch(1): 4}, item_class=<class 'abjad.pitch.NumberedPitch'>)
-
-    """
-
-    def __post_init__(self):
-        if isinstance(self.items, TypedCounter):
-            raise Exception(f"do not initialize counter from counter: {self.items!r}")
-        TypedCollection.__post_init__(self)
-        self.items = [self._coerce_item(_) for _ in self.items]
-        self.items = collections.Counter(self.items)
-        sorted_item_to_count = {}
-        try:
-            sorted_items = sorted(self.items.items())
-        except TypeError:
-            sorted_items = self.items.items()
-        for item, count in sorted_items:
-            sorted_item_to_count[item] = count
-        self.items = sorted_item_to_count
-
-
 @dataclasses.dataclass(slots=True, unsafe_hash=True)
 class TypedFrozenset(TypedCollection, collections.abc.Set):
     """
