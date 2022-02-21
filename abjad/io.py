@@ -500,7 +500,8 @@ def graph(
 
         ..  docs::
 
-            >>> print(format(staff.__graph__(), "graphviz"))
+            >>> graph = abjad.io._graph_container(staff)
+            >>> print(format(graph, "graphviz"))
             digraph G {
                 graph [style=rounded];
                 node [fontname=Arial,
@@ -604,6 +605,8 @@ def graph(
 
     Opens image in default image viewer.
     """
+    if isinstance(graphable, _score.Container):
+        graphable = _graph_container(graphable)
     grapher = AbjadGrapher(graphable, format_=format_, layout=layout, **keywords)
     result = grapher()
     if not result:
