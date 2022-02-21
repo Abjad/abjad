@@ -165,7 +165,7 @@ from .instruments import (
     Violin,
     Xylophone,
 )
-from .io import graph, play, show
+from .io import graph, show
 from .label import ColorMap
 from .lilypondfile import Block, LilyPondFile
 from .lyproxy import (
@@ -596,7 +596,6 @@ __all__ = [
     "persist",
     "phrasing_slur",
     "piano_pedal",
-    "play",
     "select",
     "setting",
     "show",
