@@ -168,8 +168,6 @@ class Component:
         return []
 
     def _format_component(self, pieces=False):
-        from . import format as _format
-
         result = []
         bundle = _format.bundle_format_contributions(self)
         result.extend(self._format_absolute_before_slot(bundle))
@@ -243,8 +241,6 @@ class Component:
         return duration
 
     def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
-        from . import format as _format
-
         result = []
         if bundle is None:
             bundle = _format.bundle_format_contributions(self)

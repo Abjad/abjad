@@ -20,66 +20,17 @@ from .. import duration as _duration
 from .. import dynamic as _dynamic
 from .. import exceptions as _exceptions
 from .. import format as _format
+from .. import indicators as _indicators
 from .. import lilypondfile as _lilypondfile
+from .. import lyconst as _lyconst
+from .. import lyenv as _lyenv
 from .. import markups as _markups
 from .. import overrides as _overrides
 from .. import pitch as _pitch
+from .. import score as _score
 from .. import string as _string
-from ..indicators import (
-    Articulation,
-    BarLine,
-    Clef,
-    Glissando,
-    KeySignature,
-    MetronomeMark,
-    StartBeam,
-    StartGroup,
-    StartHairpin,
-    StartPhrasingSlur,
-    StartSlur,
-    StartTextSpan,
-    StartTrillSpan,
-    StemTremolo,
-    StopBeam,
-    StopGroup,
-    StopHairpin,
-    StopPhrasingSlur,
-    StopSlur,
-    StopTextSpan,
-    StopTrillSpan,
-    Tie,
-    TimeSignature,
-)
-from ..lyconst import drums
-from ..lyenv import (
-    contexts,
-    current_module,
-    grob_interfaces,
-    language_pitch_names,
-    markup_functions,
-    markup_list_functions,
-)
-from ..score import (
-    BeforeGraceContainer,
-    Chord,
-    Cluster,
-    Component,
-    Container,
-    Context,
-    DrumNoteHead,
-    Leaf,
-    MultimeasureRest,
-    Note,
-    NoteHead,
-    Rest,
-    Score,
-    Skip,
-    Staff,
-    StaffGroup,
-    Tuplet,
-    Voice,
-)
 from .base import Parser
+from .scheme import SchemeParser
 
 
 class LilyPondDuration:
@@ -102,9 +53,9 @@ class LilyPondDuration:
         self.multiplier = multiplier
 
 
-current_module["breve"] = LilyPondDuration(_duration.Duration(2, 1), None)
-current_module["longa"] = LilyPondDuration(_duration.Duration(4, 1), None)
-current_module["maxima"] = LilyPondDuration(_duration.Duration(8, 1), None)
+_lyenv.current_module["breve"] = LilyPondDuration(_duration.Duration(2, 1), None)
+_lyenv.current_module["longa"] = LilyPondDuration(_duration.Duration(4, 1), None)
+_lyenv.current_module["maxima"] = LilyPondDuration(_duration.Duration(8, 1), None)
 
 
 class MarkupCommand:
@@ -268,13 +219,13 @@ class ContextSpeccedMusic(Music):
         Returns dictionary.
         """
         return {
-            "ChoirStaff": StaffGroup,
-            "GrandStaff": StaffGroup,
-            "PianoStaff": StaffGroup,
-            "Score": Score,
-            "Staff": Staff,
-            "StaffGroup": StaffGroup,
-            "Voice": Voice,
+            "ChoirStaff": _score.StaffGroup,
+            "GrandStaff": _score.StaffGroup,
+            "PianoStaff": _score.StaffGroup,
+            "Score": _score.Score,
+            "Staff": _score.Staff,
+            "StaffGroup": _score.StaffGroup,
+            "Voice": _score.Voice,
         }
 
 
@@ -320,7 +271,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\acciaccatura`` command.
         """
-        grace = BeforeGraceContainer(music[:], command=r"\acciaccatura")
+        grace = _score.BeforeGraceContainer(music[:], command=r"\acciaccatura")
         return grace
 
     # afterGrace?
@@ -329,14 +280,14 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\appoggiatura`` command.
         """
-        grace = BeforeGraceContainer(music[:], command=r"\appoggiatura")
+        grace = _score.BeforeGraceContainer(music[:], command=r"\appoggiatura")
         return grace
 
     def bar(self, string):
         r"""
         Handles LilyPond ``\bar`` command.
         """
-        return BarLine(string)
+        return _indicators.BarLine(string)
 
     def breathe(self):
         r"""
@@ -348,16 +299,16 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\clef`` command.
         """
-        return Clef(string)
+        return _indicators.Clef(string)
 
     def grace(self, music):
         r"""
         Handles LilyPond ``\grace`` command.
         """
-        assert isinstance(music, Container)
+        assert isinstance(music, _score.Container)
         leaves = music[:]
         music[:] = []
-        return BeforeGraceContainer(leaves)
+        return _score.BeforeGraceContainer(leaves)
 
     def key(self, notename_pitch, number_list):
         r"""
@@ -365,7 +316,7 @@ class GuileProxy:
         """
         if number_list is None:
             number_list = "major"
-        return KeySignature(notename_pitch, number_list)
+        return _indicators.KeySignature(notename_pitch, number_list)
 
     def language(self, string):
         r"""
@@ -386,7 +337,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\makeClusters`` command.
         """
-        return Cluster(music[:])
+        return _score.Cluster(music[:])
 
     def mark(self, label):
         r"""
@@ -430,12 +381,12 @@ class GuileProxy:
         def recurse(component, pitch):
             if self._is_unrelativable(component):
                 return pitch
-            elif isinstance(component, (Chord, Note)):
+            elif isinstance(component, (_score.Chord, _score.Note)):
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
                     for repeated_chord in self.client._repeated_chords[component]:
                         repeated_chord.written_pitches = component.written_pitches
-            elif isinstance(component, Container):
+            elif isinstance(component, _score.Container):
                 for child in component:
                     pitch = recurse(child, pitch)
             return pitch
@@ -450,7 +401,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\skip`` command.
         """
-        leaf = Skip(duration.duration)
+        leaf = _score.Skip(duration.duration)
         if duration.multiplier is not None:
             _bind.attach(duration.multiplier, leaf)
         return leaf
@@ -459,7 +410,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\slashedGrace`` command.
         """
-        grace = BeforeGraceContainer(music[:])
+        grace = _score.BeforeGraceContainer(music[:])
         return grace
 
     def time(self, number_list, fraction):
@@ -467,19 +418,19 @@ class GuileProxy:
         Handles LilyPond ``\time`` command.
         """
         n, d = fraction.numerator, fraction.denominator
-        return TimeSignature((n, d))
+        return _indicators.TimeSignature((n, d))
 
     def times(self, fraction, music):
         r"""
         Handles LilyPond ``\times`` command.
         """
         n, d = fraction.numerator, fraction.denominator
-        if not isinstance(music, Context) and not isinstance(music, Leaf):
-            assert isinstance(music, Container), repr(music)
+        if not isinstance(music, _score.Context) and not isinstance(music, _score.Leaf):
+            assert isinstance(music, _score.Container), repr(music)
             leaves = music[:]
             music[:] = []
-            return Tuplet((n, d), leaves)
-        return Tuplet((n, d), [music])
+            return _score.Tuplet((n, d), leaves)
+        return _score.Tuplet((n, d), [music])
 
     def transpose(self, from_pitch, to_pitch, music):
         r"""
@@ -487,7 +438,7 @@ class GuileProxy:
         """
 
         def recurse(music):
-            key_signatures = music._get_indicators(KeySignature)
+            key_signatures = music._get_indicators(_indicators.KeySignature)
             if key_signatures:
                 for x in key_signatures:
                     tonic = _pitch.NamedPitch((x.tonic.name, 4))
@@ -495,16 +446,16 @@ class GuileProxy:
                     x.tonic = LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, tonic
                     ).pitch_class
-            if isinstance(music, Note):
+            if isinstance(music, _score.Note):
                 music.written_pitch = LilyPondParser._transpose_enharmonically(
                     from_pitch, to_pitch, music.written_pitch
                 )
-            elif isinstance(music, Chord):
+            elif isinstance(music, _score.Chord):
                 for note_head in music.note_heads:
                     note_head.written_pitch = LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, note_head.written_pitch
                     )
-            elif isinstance(music, Container):
+            elif isinstance(music, _score.Container):
                 for x in music:
                     recurse(x)
 
@@ -522,12 +473,12 @@ class GuileProxy:
         """
         n, d = fraction.numerator, fraction.denominator
         string = f"{n}:{d}"
-        if not isinstance(music, Context) and not isinstance(music, Leaf):
-            assert isinstance(music, Container), repr(music)
+        if not isinstance(music, _score.Context) and not isinstance(music, _score.Leaf):
+            assert isinstance(music, _score.Container), repr(music)
             leaves = music[:]
             music[:] = []
-            return Tuplet(string, leaves)
-        return Tuplet(string, [music])
+            return _score.Tuplet(string, leaves)
+        return _score.Tuplet(string, [music])
 
     # tweak
 
@@ -567,10 +518,10 @@ class GuileProxy:
     def _make_relative_leaf(self, leaf, pitch):
         if self._is_unrelativable(leaf):
             return pitch
-        elif isinstance(leaf, Note):
+        elif isinstance(leaf, _score.Note):
             pitch = self._to_relative_octave(leaf.written_pitch, pitch)
             leaf.written_pitch = pitch
-        elif isinstance(leaf, Chord):
+        elif isinstance(leaf, _score.Chord):
             # TODO: This is not ideal w/r/t post events as LilyPond does
             # not sort chord contents
             chord_pitches = self.client._chord_pitch_orders[leaf]
@@ -1938,8 +1889,6 @@ class LilyPondLexicalDefinition:
     # <INITIAL,chords,figures,lyrics,markup,notes>#
     def t_INITIAL_markup_notes_353(self, t):
         r"\#"
-        from .scheme import SchemeParser
-
         # t.type = 'SCHEME_START'
         # t.lexer.push_state('INITIAL')
         scheme_parser = SchemeParser(debug=False)
@@ -2006,16 +1955,16 @@ class LilyPondLexicalDefinition:
         if value in pitch_names:
             t.type = "NOTENAME_PITCH"
             t.value = _pitch.NamedPitchClass(pitch_names[t.value])
-        elif value in drums:
+        elif value in _lyconst.drums:
             t.type = "NOTENAME_PITCH"
-            t.value = drums[value]
+            t.value = _lyconst.drums[value]
         elif value in ["r", "s"]:
             t.type = "RESTNAME"
         elif value == "R":
             t.type = "MULTI_MEASURE_REST"
         elif value == "q":
             if self.client._last_chord is None:
-                self.client._last_chord = Chord(["c", "g", "c'"], (1, 4))
+                self.client._last_chord = _score.Chord(["c", "g", "c'"], (1, 4))
             t.type = "CHORD_REPETITION"
         else:
             t.type = "STRING"
@@ -2792,10 +2741,10 @@ class LilyPondParser(Parser):
     def __init__(self, default_language="english", debug=False):
         # LilyPond emulation data
         self._guile = GuileProxy(self)
-        self._current_module = current_module
-        self._language_pitch_names = language_pitch_names
-        self._markup_functions = markup_functions
-        self._markup_list_functions = markup_list_functions
+        self._current_module = _lyenv.current_module
+        self._language_pitch_names = _lyenv.language_pitch_names
+        self._markup_functions = _lyenv.markup_functions
+        self._markup_list_functions = _lyenv.markup_list_functions
         self.default_language = default_language
 
         # attach parser and lexer rules
@@ -2856,13 +2805,13 @@ class LilyPondParser(Parser):
         self, context, optional_id, optional_context_mod, music
     ):
         known_contexts = {
-            "ChoirStaff": StaffGroup,
-            "GrandStaff": StaffGroup,
-            "PianoStaff": StaffGroup,
-            "Score": Score,
-            "Staff": Staff,
-            "StaffGroup": StaffGroup,
-            "Voice": Voice,
+            "ChoirStaff": _score.StaffGroup,
+            "GrandStaff": _score.StaffGroup,
+            "PianoStaff": _score.StaffGroup,
+            "Score": _score.Score,
+            "Staff": _score.Staff,
+            "StaffGroup": _score.StaffGroup,
+            "Voice": _score.Voice,
         }
         lilypond_type = context
         if context in known_contexts:
@@ -2891,14 +2840,16 @@ class LilyPondParser(Parser):
         # indicator sorting could be rewritten into a single list using tuplets
         # with t[0] being 'forward' or 'backward' and t[1] being the indicator
         # as this better preserves attachment order. Not clear if we need it.
-        container = Container()
+        container = _score.Container()
         previous_leaf = None
         apply_forward = []
         apply_backward = []
         # sort events into forward or backwards attaching
         # and attach them to the proper leaf
         for x in music:
-            if isinstance(x, Component) and not isinstance(x, BeforeGraceContainer):
+            if isinstance(x, _score.Component) and not isinstance(
+                x, _score.BeforeGraceContainer
+            ):
                 for indicator in apply_forward:
                     _bind.attach(indicator, x)
                 if previous_leaf:
@@ -2912,7 +2863,7 @@ class LilyPondParser(Parser):
                 previous_leaf = x
                 container.append(x)
             else:
-                if isinstance(x, (BarLine,)):
+                if isinstance(x, (_indicators.BarLine,)):
                     apply_backward.append(x)
                 elif isinstance(x, _overrides.LilyPondLiteral) and x.argument in (
                     r"\break",
@@ -2943,7 +2894,7 @@ class LilyPondParser(Parser):
                     return True
             return False
 
-        container = Container()
+        container = _score.Container()
         container.simultaneous = True
         # check for voice separators
         groups = []
@@ -2952,12 +2903,14 @@ class LilyPondParser(Parser):
                 groups.append(list(group))
         # without voice separators
         if 1 == len(groups):
-            # assert all(isinstance(x, Context) for x in groups[0])
+            # assert all(isinstance(x, _score.Context) for x in groups[0])
             container.extend(groups[0])
         # with voice separators
         else:
             for group in groups:
-                container.append(Voice(self._construct_sequential_music(group)[:]))
+                container.append(
+                    _score.Voice(self._construct_sequential_music(group)[:])
+                )
         return container
 
     @classmethod
@@ -2970,7 +2923,7 @@ class LilyPondParser(Parser):
             "integer?": lambda x: isinstance(x, int),
             "list?": lambda x: isinstance(x, (list, tuple)),
             "ly:duration?": lambda x: isinstance(x, LilyPondDuration),
-            "ly:music?": lambda x: isinstance(x, Component),
+            "ly:music?": lambda x: isinstance(x, _score.Component),
             "ly:pitch?": lambda x: isinstance(x, _pitch.NamedPitch),
             "markup?": lambda x: isinstance(x, MarkupCommand),
             "number-list?": lambda x: isinstance(x, (list, tuple))
@@ -3001,27 +2954,27 @@ class LilyPondParser(Parser):
 
     def _process_post_events(self, leaf, post_events):
         nonspanner_post_event_types = (
-            Articulation,
-            BarLine,
+            _indicators.Articulation,
+            _indicators.BarLine,
             _dynamic.Dynamic,
-            Glissando,
-            StartHairpin,
+            _indicators.Glissando,
+            _indicators.StartHairpin,
             _overrides.LilyPondLiteral,
-            StartBeam,
-            StartGroup,
-            StartPhrasingSlur,
-            StartSlur,
-            StartTextSpan,
-            StartTrillSpan,
-            StopBeam,
-            StopGroup,
-            StopHairpin,
-            StopSlur,
-            StopPhrasingSlur,
-            StopTextSpan,
-            StopTrillSpan,
-            StemTremolo,
-            Tie,
+            _indicators.StartBeam,
+            _indicators.StartGroup,
+            _indicators.StartPhrasingSlur,
+            _indicators.StartSlur,
+            _indicators.StartTextSpan,
+            _indicators.StartTrillSpan,
+            _indicators.StopBeam,
+            _indicators.StopGroup,
+            _indicators.StopHairpin,
+            _indicators.StopSlur,
+            _indicators.StopPhrasingSlur,
+            _indicators.StopTextSpan,
+            _indicators.StopTrillSpan,
+            _indicators.StemTremolo,
+            _indicators.Tie,
             _markups.Markup,
         )
         for post_event in post_events:
@@ -3072,7 +3025,7 @@ class LilyPondParser(Parser):
         self._default_duration = LilyPondDuration((1, 4), None)
         self._last_chord = None
         # LilyPond's default!
-        # self._last_chord = Chord(['c', 'g', "c'"], (1, 4))
+        # self._last_chord = _score.Chord(['c', 'g', "c'"], (1, 4))
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
 
@@ -3081,57 +3034,57 @@ class LilyPondParser(Parser):
         lookup = self._current_module[identifier]
         name = lookup["name"]
         if name == "ArticulationEvent":
-            return Articulation(lookup["articulation-type"])
+            return _indicators.Articulation(lookup["articulation-type"])
         elif name == "AbsoluteDynamicEvent":
             return _dynamic.Dynamic(lookup["text"])
         elif name == "BeamEvent":
             if lookup["span-direction"] == -1:
-                return StartBeam()
+                return _indicators.StartBeam()
             else:
-                return StopBeam()
+                return _indicators.StopBeam()
         elif name == "CrescendoEvent":
             if lookup["span-direction"] == -1:
-                return StartHairpin("<")
+                return _indicators.StartHairpin("<")
             else:
-                return StopHairpin()
+                return _indicators.StopHairpin()
         elif name == "DecrescendoEvent":
             if lookup["span-direction"] == -1:
-                return StartHairpin(">")
+                return _indicators.StartHairpin(">")
             else:
-                return StopHairpin()
+                return _indicators.StopHairpin()
         elif name == "GlissandoEvent":
-            return Glissando()
+            return _indicators.Glissando()
         elif name == "LaissezVibrerEvent":
             return _overrides.LilyPondLiteral(r"\laissezVibrer", "after")
         elif name == "LineBreakEvent":
             return _overrides.LilyPondLiteral(r"\break")
         elif name == "NoteGroupingEvent":
             if lookup["span-direction"] == -1:
-                return StartGroup()
+                return _indicators.StartGroup()
             else:
-                return StopGroup()
+                return _indicators.StopGroup()
         elif name == "PhrasingSlurEvent":
             if lookup["span-direction"] == -1:
-                return StartPhrasingSlur()
+                return _indicators.StartPhrasingSlur()
             else:
-                return StopPhrasingSlur()
+                return _indicators.StopPhrasingSlur()
         elif name == "SlurEvent":
             if lookup["span-direction"] == -1:
-                return StartSlur()
+                return _indicators.StartSlur()
             else:
-                return StopSlur()
+                return _indicators.StopSlur()
         elif name == "TextSpanEvent":
             if lookup["span-direction"] == -1:
-                return StartTextSpan()
+                return _indicators.StartTextSpan()
             else:
-                return StopTextSpan()
+                return _indicators.StopTextSpan()
         elif name == "TieEvent":
-            return Tie()
+            return _indicators.Tie()
         elif name == "TrillSpanEvent":
             if lookup["span-direction"] == -1:
-                return StartTrillSpan()
+                return _indicators.StartTrillSpan()
             else:
-                return StopTrillSpan()
+                return _indicators.StopTrillSpan()
         event = LilyPondEvent(name)
         if "span-direction" in lookup:
             if lookup["span-direction"] == -1:
@@ -3281,7 +3234,7 @@ class LilyPondParser(Parser):
 
         """
 
-        return sorted(contexts.keys())
+        return sorted(_lyenv.contexts.keys())
 
     @staticmethod
     def list_known_dynamics() -> typing.Tuple[str, ...]:
@@ -3318,7 +3271,7 @@ class LilyPondParser(Parser):
 
         """
         result = []
-        for key, value in current_module.items():
+        for key, value in _lyenv.current_module.items():
             if not isinstance(value, dict):
                 continue
             if "dynamic-event" in value.get("types", ()):
@@ -3480,7 +3433,7 @@ class LilyPondParser(Parser):
 
         """
 
-        return sorted(grob_interfaces.keys())
+        return sorted(_lyenv.grob_interfaces.keys())
 
     @staticmethod
     def list_known_languages() -> typing.List[str]:
@@ -3508,7 +3461,7 @@ class LilyPondParser(Parser):
             vlaams
 
         """
-        return sorted(language_pitch_names.keys())
+        return sorted(_lyenv.language_pitch_names.keys())
 
     @staticmethod
     def list_known_markup_functions() -> typing.List[str]:
@@ -3678,7 +3631,8 @@ class LilyPondParser(Parser):
 
         """
         return sorted(
-            list(markup_functions.keys()) + list(markup_list_functions.keys())
+            list(_lyenv.markup_functions.keys())
+            + list(_lyenv.markup_list_functions.keys())
         )
 
     @staticmethod
@@ -3711,8 +3665,8 @@ class LilyPondParser(Parser):
 
         """
         music_functions = []
-        for name in current_module:
-            dictionary = current_module[name]
+        for name in _lyenv.current_module:
+            dictionary = _lyenv.current_module[name]
             if not isinstance(dictionary, dict):
                 continue
             assert isinstance(dictionary, dict)
@@ -3765,7 +3719,7 @@ class LilyPondParser(Parser):
 
         """
         if undo is True:
-            del markup_functions[name]
+            del _lyenv.markup_functions[name]
             return
         assert isinstance(name, str)
         assert all(not x.isspace() for x in name)
@@ -3774,7 +3728,7 @@ class LilyPondParser(Parser):
             assert isinstance(predicate, str)
             assert all(not x.isspace() for x in predicate)
             assert predicate.endswith("?")
-        markup_functions[name] = tuple(signature)
+        _lyenv.markup_functions[name] = tuple(signature)
 
     ### PUBLIC PROPERTIES ###
 
@@ -4142,14 +4096,14 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "chord_body_element : pitch exclamations questions octave_check post_events"
-        if p[1] not in drums:
-            note_head = NoteHead(
+        if p[1] not in _lyconst.drums:
+            note_head = _score.NoteHead(
                 written_pitch=p[1],
                 is_cautionary=bool(p[3]),
                 is_forced=bool(p[2]),
             )
         else:
-            note_head = DrumNoteHead(
+            note_head = _score.DrumNoteHead(
                 written_pitch=p[1],
                 is_cautionary=bool(p[3]),
                 is_forced=bool(p[2]),
@@ -4698,7 +4652,7 @@ class LilyPondSyntacticalDefinition:
         "event_chord : CHORD_REPETITION optional_notemode_duration post_events"
         pitches = self.client._last_chord.written_pitches
         duration = p[2].duration
-        chord = Chord(pitches, duration)
+        chord = _score.Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             multiplier = _duration.Multiplier(p[2].multiplier)
@@ -4715,7 +4669,7 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events"
-        rest = MultimeasureRest(p[2].duration)
+        rest = _score.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
             multiplier = _duration.Multiplier(p[2].multiplier)
             rest.multiplier = multiplier
@@ -5832,7 +5786,7 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "note_chord_element : chord_body optional_notemode_duration post_events"
-        chord = Chord([], p[2].duration)
+        chord = _score.Chord([], p[2].duration)
         pitches = []
         post_events = []
         for node in p[1]:
@@ -6258,38 +6212,38 @@ class LilyPondSyntacticalDefinition:
     def p_script_abbreviation__ANGLE_CLOSE(self, p):
         "script_abbreviation : ANGLE_CLOSE"
         kind = self.client._current_module["dashLarger"]["articulation-type"]
-        p[0] = Articulation(kind)
+        p[0] = _indicators.Articulation(kind)
 
     def p_script_abbreviation__Chr33(self, p):
         "script_abbreviation : '!'"
         # kind = self.client._current_module["dashBar"]["articulation-type"]
         kind = self.client._current_module["dashBang"]["articulation-type"]
-        p[0] = Articulation(kind)
+        p[0] = _indicators.Articulation(kind)
 
     def p_script_abbreviation__Chr43(self, p):
         "script_abbreviation : '+'"
         kind = self.client._current_module["dashPlus"]["articulation-type"]
-        p[0] = Articulation(kind)
+        p[0] = _indicators.Articulation(kind)
 
     def p_script_abbreviation__Chr45(self, p):
         "script_abbreviation : '-'"
         kind = self.client._current_module["dashDash"]["articulation-type"]
-        p[0] = Articulation(kind)
+        p[0] = _indicators.Articulation(kind)
 
     def p_script_abbreviation__Chr46(self, p):
         "script_abbreviation : '.'"
         kind = self.client._current_module["dashDot"]["articulation-type"]
-        p[0] = Articulation(kind)
+        p[0] = _indicators.Articulation(kind)
 
     def p_script_abbreviation__Chr94(self, p):
         "script_abbreviation : '^'"
         kind = self.client._current_module["dashHat"]["articulation-type"]
-        p[0] = Articulation(kind)
+        p[0] = _indicators.Articulation(kind)
 
     def p_script_abbreviation__Chr95(self, p):
         "script_abbreviation : '_'"
         kind = self.client._current_module["dashUnderscore"]["articulation-type"]
-        p[0] = Articulation(kind)
+        p[0] = _indicators.Articulation(kind)
 
     ### script_dir ###
 
@@ -6339,9 +6293,9 @@ class LilyPondSyntacticalDefinition:
     def p_simple_element__RESTNAME__optional_notemode_duration(self, p):
         "simple_element : RESTNAME optional_notemode_duration"
         if p[1] == "r":
-            rest = Rest(p[2].duration)
+            rest = _score.Rest(p[2].duration)
         else:
-            rest = Skip(p[2].duration)
+            rest = _score.Skip(p[2].duration)
         if p[2].multiplier is not None:
             multiplier = _duration.Multiplier(p[2].multiplier)
             rest.multiplier = multiplier
@@ -6352,11 +6306,11 @@ class LilyPondSyntacticalDefinition:
     ):
         "simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest"
         if not p[6]:
-            leaf = Note(p[1], p[5].duration)
+            leaf = _score.Note(p[1], p[5].duration)
             leaf.note_head.is_forced = bool(p[2])
             leaf.note_head.is_cautionary = bool(p[3])
         else:
-            leaf = Rest(p[5].duration)
+            leaf = _score.Rest(p[5].duration)
         if p[5].multiplier is not None:
             multiplier = _duration.Multiplier(p[5].multiplier)
             leaf.multiplier = multiplier
@@ -6484,7 +6438,7 @@ class LilyPondSyntacticalDefinition:
         "steno_pitch : NOTENAME_PITCH"
         if isinstance(p[1], _pitch.NamedPitchClass):
             p[0] = _pitch.NamedPitch(str(p[1]))
-        elif p[1] in drums:
+        elif p[1] in _lyconst.drums:
             p[0] = p[1]
 
     def p_steno_pitch__NOTENAME_PITCH__sub_quotes(self, p):
@@ -6577,14 +6531,14 @@ class LilyPondSyntacticalDefinition:
 
     def p_tempo_event__TEMPO__scalar(self, p):
         "tempo_event : TEMPO scalar"
-        p[0] = MetronomeMark(textual_indication=str(p[2]))
+        p[0] = _indicators.MetronomeMark(textual_indication=str(p[2]))
 
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(
         self, p
     ):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
-        # p[0] = MetronomeMark(str(p[2]), p[3].duration, p[5])
-        p[0] = MetronomeMark(
+        # p[0] = _indicators.MetronomeMark(str(p[2]), p[3].duration, p[5])
+        p[0] = _indicators.MetronomeMark(
             reference_duration=p[3].duration,
             units_per_minute=p[5],
             textual_indication=str(p[2]),
@@ -6592,7 +6546,9 @@ class LilyPondSyntacticalDefinition:
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO steno_duration '=' tempo_range"
-        p[0] = MetronomeMark(reference_duration=p[2].duration, units_per_minute=p[4])
+        p[0] = _indicators.MetronomeMark(
+            reference_duration=p[2].duration, units_per_minute=p[4]
+        )
 
     ### tempo_range ###
 
@@ -6646,7 +6602,7 @@ class LilyPondSyntacticalDefinition:
 
     def p_tremolo_type__Chr58__bare_unsigned(self, p):
         "tremolo_type : ':' bare_unsigned"
-        p[0] = StemTremolo(p[2])
+        p[0] = _indicators.StemTremolo(p[2])
 
     ### unsigned_number ###
 
@@ -6678,9 +6634,9 @@ class SequentialMusic(Music):
 
         Returns Abjad container.
         """
-        container = Container()
+        container = _score.Container()
         for x in self.music:
-            if isinstance(x, Component):
+            if isinstance(x, _score.Component):
                 container.append(x)
             elif isinstance(x, type(self)):
                 container.extend(x.construct())
