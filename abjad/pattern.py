@@ -4,7 +4,6 @@ import operator as operator_module
 import typing
 
 from . import math as _math
-from . import sequence as _sequence
 from . import typedcollections as _typedcollections
 
 
@@ -20,7 +19,7 @@ class Pattern:
         >>> pattern = abjad.Pattern(
         ...     indices=[0, 1, 7],
         ...     period=8,
-        ...     )
+        ... )
 
         >>> total_length = 16
         >>> for index in range(16):
@@ -51,7 +50,7 @@ class Pattern:
         >>> pattern = abjad.Pattern(
         ...     indices=[0, 1, 7],
         ...     period=16,
-        ...     )
+        ... )
 
         >>> total_length = 16
         >>> for index in range(16):
@@ -82,7 +81,7 @@ class Pattern:
         >>> pattern = abjad.Pattern(
         ...     indices=[16, 17, 23],
         ...     period=16,
-        ...     )
+        ... )
 
         >>> total_length = 16
         >>> for index in range(16):
@@ -142,7 +141,7 @@ class Pattern:
         >>> pattern = abjad.Pattern(
         ...     indices=[0, 1, 7],
         ...     period=8,
-        ...     )
+        ... )
 
         >>> pattern.inverted is None
         True
@@ -176,7 +175,7 @@ class Pattern:
         ...     indices=[0, 1, 7],
         ...     period=8,
         ...     inverted=True
-        ...     )
+        ... )
 
         >>> pattern.inverted
         True
@@ -235,7 +234,7 @@ class Pattern:
         ...     indices=[0, 1, 7],
         ...     payload='Allegro non troppo',
         ...     period=8,
-        ...     )
+        ... )
 
         >>> total_length = 10
         >>> for index in range(10):
@@ -266,7 +265,7 @@ class Pattern:
         >>> pattern = abjad.Pattern(
         ...     indices=[0, 1, 7],
         ...     period=8,
-        ...     )
+        ... )
 
         >>> pattern.period
         8
@@ -298,7 +297,7 @@ class Pattern:
         >>> pattern = abjad.Pattern(
         ...     indices=[0, 1, 7],
         ...     period=16,
-        ...     )
+        ... )
 
         >>> pattern.period
         16
@@ -508,7 +507,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> len(pattern)
             8
@@ -521,7 +520,7 @@ class Pattern:
 
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 2, 3],
-            ...     )
+            ... )
 
             >>> len(pattern)
             4
@@ -535,7 +534,7 @@ class Pattern:
 
             >>> pattern = abjad.Pattern(
             ...     indices=[-3],
-            ...     )
+            ... )
 
             >>> len(pattern)
             3
@@ -713,7 +712,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> pattern.weight
             3
@@ -724,7 +723,7 @@ class Pattern:
 
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 2, 3],
-            ...     )
+            ... )
 
             >>> pattern.weight
             3
@@ -862,7 +861,7 @@ class Pattern:
 
             >>> pattern = abjad.Pattern(
             ...     indices=[4, 5, 6, 7],
-            ...     )
+            ... )
 
 
             >>> pattern.get_boolean_vector(4)
@@ -887,7 +886,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[4, 5, 6, 7],
             ...     period=20,
-            ...     )
+            ... )
 
             >>> pattern.get_boolean_vector(4)
             [0, 0, 0, 0]
@@ -911,7 +910,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[4, 5, 6, 7],
             ...     period=20,
-            ...     )
+            ... )
 
             >>> pattern.get_boolean_vector(4)
             [0, 0, 0, 0]
@@ -942,7 +941,7 @@ class Pattern:
             ...             indices=[-3, -2, -1],
             ...             ),
             ...         ],
-            ...     )
+            ... )
 
             >>> pattern.get_boolean_vector(4)
             [1, 1, 1, 1]
@@ -972,7 +971,7 @@ class Pattern:
             ...             inverted=True,
             ...             ),
             ...         ],
-            ...     )
+            ... )
 
             >>> pattern.get_boolean_vector(4)
             [1, 0, 0, 0]
@@ -1034,29 +1033,29 @@ class Pattern:
 
             >>> pattern = abjad.Pattern(
             ...     indices=[4, 5, 6, 7],
-            ...     )
+            ... )
 
             >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
-            Sequence(['e', 'f', 'g', 'h'])
+            ['e', 'f', 'g', 'h']
 
         ..  container:: example
 
             >>> pattern = abjad.Pattern(
             ...     indices=[8, 9],
             ...     period=10,
-            ...     )
+            ... )
 
             >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
-            Sequence(['i', 'j', 's', 't'])
+            ['i', 'j', 's', 't']
 
         ..  container:: example
 
             >>> pattern = abjad.index_first(1) | abjad.index_last(2)
 
             >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
-            Sequence(['a', 'y', 'z'])
+            ['a', 'y', 'z']
 
-        Returns new sequence.
+        Returns list.
         """
         assert isinstance(sequence, collections.abc.Iterable), repr(sequence)
         length = len(sequence)
@@ -1065,7 +1064,7 @@ class Pattern:
             if self.matches_index(i, length):
                 item = sequence[i]
                 items.append(item)
-        return _sequence.Sequence(items=items)
+        return items
 
     @staticmethod
     def index(indices, period=None, inverted=None):
@@ -1197,7 +1196,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -1226,7 +1225,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -1260,7 +1259,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -1295,7 +1294,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -1325,7 +1324,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -1359,7 +1358,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -1460,7 +1459,7 @@ class Pattern:
             ...             indices=[0, 1, 2],
             ...             ),
             ...         ],
-            ...     )
+            ... )
             >>> total_length = 16
             >>> for index in range(total_length):
             ...     match = pattern.matches_index(index, total_length)
@@ -1492,7 +1491,7 @@ class Pattern:
             ...             indices=[0, 1, 2],
             ...             ),
             ...         ],
-            ...     )
+            ... )
             >>> total_length = 16
             >>> for index in range(total_length):
             ...     match = pattern.matches_index(index, total_length)
@@ -1524,7 +1523,7 @@ class Pattern:
             ...             indices=[0, 1, 2],
             ...             ),
             ...         ],
-            ...     )
+            ... )
             >>> total_length = 16
             >>> for index in range(total_length):
             ...     match = pattern.matches_index(index, total_length)
@@ -1565,7 +1564,7 @@ class Pattern:
             ...             indices=[-3, -2, -1],
             ...             ),
             ...         ],
-            ...     )
+            ... )
 
             Total length 16:
 
@@ -1636,7 +1635,7 @@ class Pattern:
             ...             indices=[-3, -2, -1],
             ...             ),
             ...         ],
-            ...     )
+            ... )
 
             Total length 16:
 
@@ -1707,7 +1706,7 @@ class Pattern:
             ...             indices=[-3, -2, -1],
             ...             ),
             ...         ],
-            ...     )
+            ... )
 
             Total length 16:
 
@@ -1780,7 +1779,7 @@ class Pattern:
             ...             inverted=True,
             ...             ),
             ...         ],
-            ...     )
+            ... )
 
             Total length 16:
 
@@ -1853,7 +1852,7 @@ class Pattern:
             ...             inverted=True,
             ...             ),
             ...         ],
-            ...     )
+            ... )
             >>> pattern = abjad.Pattern(
             ...     operator='or',
             ...     patterns=[
@@ -1862,7 +1861,7 @@ class Pattern:
             ...             indices=[0, 1, 2],
             ...             ),
             ...         ],
-            ...     )
+            ... )
             >>> pattern
             Pattern(indices=None, inverted=None, operator='or', patterns=(Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-3, -2, -1), inverted=True, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None), Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
@@ -1978,7 +1977,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -2009,7 +2008,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> pattern = pattern.reverse()
             >>> pattern
@@ -2054,7 +2053,7 @@ class Pattern:
             ...             inverted=True,
             ...             ),
             ...         ],
-            ...     )
+            ... )
             >>> pattern
             Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-3, -2, -1), inverted=True, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
@@ -2086,7 +2085,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -2115,7 +2114,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> pattern = pattern.rotate(n=2)
             >>> pattern
@@ -2150,7 +2149,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[-3, -2, -1],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> total_length = 16
             >>> for index in range(16):
@@ -2179,7 +2178,7 @@ class Pattern:
             >>> pattern = abjad.Pattern(
             ...     indices=[-3, -2, -1],
             ...     period=8,
-            ...     )
+            ... )
 
             >>> pattern = pattern.rotate(n=2)
             >>> pattern
@@ -2224,7 +2223,7 @@ class Pattern:
             ...             inverted=True,
             ...             ),
             ...         ],
-            ...     )
+            ... )
             >>> pattern
             Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-3, -2, -1), inverted=True, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 

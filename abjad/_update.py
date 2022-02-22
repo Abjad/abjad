@@ -89,7 +89,7 @@ def _get_measure_start_offsets(component):
     pairs.append(dummy_last_pair)
     measure_start_offsets = []
     at_first_measure = True
-    for current_pair, next_pair in _sequence.Sequence(pairs).nwise():
+    for current_pair, next_pair in _sequence.nwise(pairs):
         current_start_offset, current_time_signature = current_pair
         next_start_offset, next_time_signature = next_pair
         measure_start_offset = current_start_offset
@@ -178,7 +178,7 @@ def _make_metronome_mark_map(root):
     score_stop_offset = max(all_stop_offsets)
     timespans = _timespan.TimespanList()
     clocktime_start_offset = _duration.Offset(0)
-    for left, right in _sequence.Sequence(pairs).nwise(wrapped=True):
+    for left, right in _sequence.nwise(pairs, wrapped=True):
         metronome_mark = left[-1]
         start_offset = left[0]
         stop_offset = right[0]
@@ -213,8 +213,7 @@ def _to_measure_number(component, measure_start_offsets):
             return measure_number
     measure_start_offsets = measure_start_offsets[:]
     measure_start_offsets.append(_math.Infinity())
-    pairs = _sequence.Sequence(measure_start_offsets)
-    pairs = pairs.nwise()
+    pairs = _sequence.nwise(measure_start_offsets)
     for measure_index, pair in enumerate(pairs):
         if pair[0] <= component_start_offset < pair[-1]:
             measure_number = measure_index + 1

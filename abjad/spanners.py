@@ -78,7 +78,7 @@ def beam(
     """
     assert callable(selector)
     argument = selector(argument)
-    original_leaves = _sequence.Sequence(iterate_.leaves(argument))
+    original_leaves = list(iterate_.leaves(argument))
     silent_prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
 
     def _is_beamable(argument, beam_rests=False):
@@ -167,11 +167,9 @@ def beam(
     span_beam_count = span_beam_count or 1
     durations = [_duration.Duration(_) for _ in durations]
     leaf_durations = [_._get_duration() for _ in original_leaves]
-    leaf_durations_ = _sequence.Sequence(leaf_durations)
-    parts = leaf_durations_.partition_by_weights(durations, overhang=True)
+    parts = _sequence.partition_by_weights(leaf_durations, durations, overhang=True)
     part_counts = [len(_) for _ in parts]
-    _sequence.Sequence(original_leaves)
-    parts = original_leaves.partition_by_counts(part_counts)
+    parts = _sequence.partition_by_counts(original_leaves, part_counts)
     total_parts = len(parts)
     for i, part in enumerate(parts):
         is_first_part = False
@@ -1894,7 +1892,7 @@ def tie(
     for leaf in leaves:
         if not isinstance(leaf, (_score.Note, _score.Chord)):
             raise Exception(rf"tie note or chord (not {leaf!r}).")
-    for current_leaf, next_leaf in _sequence.Sequence(leaves).nwise():
+    for current_leaf, next_leaf in _sequence.nwise(leaves):
         duration = current_leaf._get_duration()
         if inequality(duration):
             _bind.detach(_indicators.Tie, current_leaf)

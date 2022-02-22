@@ -554,7 +554,7 @@ class Meter:
                 edge.attach(leaf_two_node, offset_node)
 
         offsets = MetricAccentKernel.count_offsets(
-            _sequence.Sequence(self.depthwise_offset_inventory).flatten(depth=-1)
+            _sequence.flatten(self.depthwise_offset_inventory, depth=-1)
         )
         graph = uqbar.graphs.Graph(
             name="G",
@@ -590,7 +590,7 @@ class Meter:
         )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
-        for one, two in _sequence.Sequence(leaves).nwise():
+        for one, two in _sequence.nwise(leaves):
             offset = one.stop_offset
             make_offset_node(offset, one, two)
         offset = leaves[-1].stop_offset
@@ -1146,7 +1146,7 @@ class Meter:
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in _sequence.Sequence(old_offsets).nwise():
+            for first, second in _sequence.nwise(old_offsets):
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])
@@ -2650,7 +2650,7 @@ def illustrate_meter_list(
     total_duration = sum(durations)
     offsets = _math.cumulative_sums(durations, start=0)
     timespans = _timespan.TimespanList()
-    for one, two in _sequence.Sequence(offsets).nwise():
+    for one, two in _sequence.nwise(offsets):
         timespan = _timespan.Timespan(start_offset=one, stop_offset=two)
         timespans.append(timespan)
     if range_ is not None:
@@ -3135,7 +3135,7 @@ class _MeterManager:
         while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
-            for first, second in _sequence.Sequence(old_offsets).nwise():
+            for first, second in _sequence.nwise(old_offsets):
                 new_offsets.append(first)
                 difference = second - first
                 half = (first + second) / 2

@@ -57,15 +57,15 @@ def _partition_by_rgf(sequence, rgf):
     """
     Partitions ``sequence`` by restricted growth function ``rgf``.
 
-    >>> sequence = abjad.Sequence(range(10))
+    >>> sequence = list(range(10))
     >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
 
     >>> abjad.enumerate._partition_by_rgf(sequence, rgf)
-    Sequence([Sequence([0, 1, 4]), Sequence([2, 3, 5, 8]), Sequence([6, 7]), Sequence([9])])
+    [[0, 1, 4], [2, 3, 5, 8], [6, 7], [9]]
 
     Returns list of lists.
     """
-    rgf = _sequence.Sequence(rgf)
+    rgf = list(rgf)
     if not _is_restricted_growth_function(rgf):
         raise ValueError(f"must be restricted growth function: {rgf!r}.")
     if not len(sequence) == len(rgf):
@@ -78,8 +78,8 @@ def _partition_by_rgf(sequence, rgf):
         part_index = part_number - 1
         part = partition[part_index]
         part.append(n)
-    partition = [_sequence.Sequence(_) for _ in partition]
-    return _sequence.Sequence(partition)
+    partition = [type(sequence)(_) for _ in partition]
+    return type(sequence)(partition)
 
 
 def _yield_restricted_growth_functions(length):
@@ -134,7 +134,7 @@ def outer_product(argument):
 
     ..  container:: example
 
-        >>> sequences = [abjad.Sequence([1, 2, 3]), abjad.Sequence(["a", "b"])]
+        >>> sequences = [list([1, 2, 3]), list(["a", "b"])]
         >>> for sequence in abjad.enumerate.outer_product(sequences):
         ...     sequence
         ...
@@ -211,79 +211,79 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
 
     ..  container:: example
 
-        >>> sequence = abjad.Sequence([1, 2, 3, 4])
+        >>> sequence = list([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(sequence):
         ...     combination
-        Sequence([])
-        Sequence([1])
-        Sequence([2])
-        Sequence([1, 2])
-        Sequence([3])
-        Sequence([1, 3])
-        Sequence([2, 3])
-        Sequence([1, 2, 3])
-        Sequence([4])
-        Sequence([1, 4])
-        Sequence([2, 4])
-        Sequence([1, 2, 4])
-        Sequence([3, 4])
-        Sequence([1, 3, 4])
-        Sequence([2, 3, 4])
-        Sequence([1, 2, 3, 4])
+        []
+        [1]
+        [2]
+        [1, 2]
+        [3]
+        [1, 3]
+        [2, 3]
+        [1, 2, 3]
+        [4]
+        [1, 4]
+        [2, 4]
+        [1, 2, 4]
+        [3, 4]
+        [1, 3, 4]
+        [2, 3, 4]
+        [1, 2, 3, 4]
 
     ..  container:: example
 
-        >>> sequence = abjad.Sequence([1, 2, 3, 4])
+        >>> sequence = list([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     minimum_length=3,
         ...     ):
         ...     combination
-        Sequence([1, 2, 3])
-        Sequence([1, 2, 4])
-        Sequence([1, 3, 4])
-        Sequence([2, 3, 4])
-        Sequence([1, 2, 3, 4])
+        [1, 2, 3]
+        [1, 2, 4]
+        [1, 3, 4]
+        [2, 3, 4]
+        [1, 2, 3, 4]
 
     ..  container:: example
 
-        >>> sequence = abjad.Sequence([1, 2, 3, 4])
+        >>> sequence = list([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     maximum_length=2,
         ...     ):
         ...     combination
-        Sequence([])
-        Sequence([1])
-        Sequence([2])
-        Sequence([1, 2])
-        Sequence([3])
-        Sequence([1, 3])
-        Sequence([2, 3])
-        Sequence([4])
-        Sequence([1, 4])
-        Sequence([2, 4])
-        Sequence([3, 4])
+        []
+        [1]
+        [2]
+        [1, 2]
+        [3]
+        [1, 3]
+        [2, 3]
+        [4]
+        [1, 4]
+        [2, 4]
+        [3, 4]
 
     ..  container:: example
 
-        >>> sequence = abjad.Sequence([1, 2, 3, 4])
+        >>> sequence = list([1, 2, 3, 4])
         >>> for combination in abjad.enumerate.yield_combinations(
         ...     sequence,
         ...     minimum_length=2,
         ...     maximum_length=2,
         ...     ):
         ...     combination
-        Sequence([1, 2])
-        Sequence([1, 3])
-        Sequence([2, 3])
-        Sequence([1, 4])
-        Sequence([2, 4])
-        Sequence([3, 4])
+        [1, 2]
+        [1, 3]
+        [2, 3]
+        [1, 4]
+        [2, 4]
+        [3, 4]
 
     ..  container:: example
 
-        >>> sequence = abjad.Sequence("text")
+        >>> sequence = list("text")
         >>> for combination in abjad.enumerate.yield_combinations(sequence):
         ...     ''.join([str(_) for _ in combination])
         ''
@@ -326,7 +326,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
             if isinstance(argument, str):
                 yield "".join(sublist)
             else:
-                yield _sequence.Sequence(sublist)
+                yield type(argument)(sublist)
 
 
 def yield_pairs(argument):
@@ -340,12 +340,12 @@ def yield_pairs(argument):
         >>> for pair in abjad.enumerate.yield_pairs([1, 2, 3, 4]):
         ...     pair
         ...
-        Sequence([1, 2])
-        Sequence([1, 3])
-        Sequence([1, 4])
-        Sequence([2, 3])
-        Sequence([2, 4])
-        Sequence([3, 4])
+        [1, 2]
+        [1, 3]
+        [1, 4]
+        [2, 3]
+        [2, 4]
+        [3, 4]
 
     ..  container:: example
 
@@ -354,9 +354,9 @@ def yield_pairs(argument):
         >>> for pair in abjad.enumerate.yield_pairs([1, 1, 1]):
         ...     pair
         ...
-        Sequence([1, 1])
-        Sequence([1, 1])
-        Sequence([1, 1])
+        [1, 1]
+        [1, 1]
+        [1, 1]
 
     ..  container:: example
 
@@ -380,7 +380,7 @@ def yield_pairs(argument):
         start = i + 1
         for item_ in argument[start:]:
             pair = [item, item_]
-            yield _sequence.Sequence(pair)
+            yield type(argument)(pair)
 
 
 def yield_partitions(argument):
@@ -392,24 +392,24 @@ def yield_partitions(argument):
         >>> for partition in abjad.enumerate.yield_partitions([0, 1, 2]):
         ...     partition
         ...
-        Sequence([Sequence([0, 1, 2])])
-        Sequence([Sequence([0, 1]), Sequence([2])])
-        Sequence([Sequence([0]), Sequence([1, 2])])
-        Sequence([Sequence([0]), Sequence([1]), Sequence([2])])
+        [[0, 1, 2]]
+        [[0, 1], [2]]
+        [[0], [1, 2]]
+        [[0], [1], [2]]
 
     ..  container:: example
 
         >>> for partition in abjad.enumerate.yield_partitions([0, 1, 2, 3]):
         ...     partition
         ...
-        Sequence([Sequence([0, 1, 2, 3])])
-        Sequence([Sequence([0, 1, 2]), Sequence([3])])
-        Sequence([Sequence([0, 1]), Sequence([2, 3])])
-        Sequence([Sequence([0, 1]), Sequence([2]), Sequence([3])])
-        Sequence([Sequence([0]), Sequence([1, 2, 3])])
-        Sequence([Sequence([0]), Sequence([1, 2]), Sequence([3])])
-        Sequence([Sequence([0]), Sequence([1]), Sequence([2, 3])])
-        Sequence([Sequence([0]), Sequence([1]), Sequence([2]), Sequence([3])])
+        [[0, 1, 2, 3]]
+        [[0, 1, 2], [3]]
+        [[0, 1], [2, 3]]
+        [[0, 1], [2], [3]]
+        [[0], [1, 2, 3]]
+        [[0], [1, 2], [3]]
+        [[0], [1], [2, 3]]
+        [[0], [1], [2], [3]]
 
     Returns generator of nested sequences.
     """
@@ -425,8 +425,8 @@ def yield_partitions(argument):
             else:
                 part = [n]
                 partition.append(part)
-        parts = [_sequence.Sequence(_) for _ in partition]
-        partition = _sequence.Sequence(parts)
+        parts = [type(argument)(_) for _ in partition]
+        partition = type(argument)(parts)
         yield partition
 
 
@@ -439,20 +439,20 @@ def yield_permutations(argument):
         >>> for permutation in abjad.enumerate.yield_permutations([1, 2, 3]):
         ...     permutation
         ...
-        Sequence([1, 2, 3])
-        Sequence([1, 3, 2])
-        Sequence([2, 1, 3])
-        Sequence([2, 3, 1])
-        Sequence([3, 1, 2])
-        Sequence([3, 2, 1])
+        [1, 2, 3]
+        [1, 3, 2]
+        [2, 1, 3]
+        [2, 3, 1]
+        [3, 1, 2]
+        [3, 2, 1]
 
     Returns sequence generator.
     """
-    _argument = _sequence.Sequence(argument)
+    _argument = list(argument)
     length = len(_argument)
     for permutation in itertools.permutations(tuple(range(length))):
-        permutation = _sequence.Sequence(permutation)
-        yield _argument.permute(permutation)
+        permutation = type(argument)(permutation)
+        yield _sequence.permute(argument, permutation)
 
 
 def yield_set_partitions(argument):
@@ -464,27 +464,27 @@ def yield_set_partitions(argument):
         >>> for set_partition in abjad.enumerate.yield_set_partitions([21, 22, 23, 24]):
         ...     set_partition
         ...
-        Sequence([Sequence([21, 22, 23, 24])])
-        Sequence([Sequence([21, 22, 23]), Sequence([24])])
-        Sequence([Sequence([21, 22, 24]), Sequence([23])])
-        Sequence([Sequence([21, 22]), Sequence([23, 24])])
-        Sequence([Sequence([21, 22]), Sequence([23]), Sequence([24])])
-        Sequence([Sequence([21, 23, 24]), Sequence([22])])
-        Sequence([Sequence([21, 23]), Sequence([22, 24])])
-        Sequence([Sequence([21, 23]), Sequence([22]), Sequence([24])])
-        Sequence([Sequence([21, 24]), Sequence([22, 23])])
-        Sequence([Sequence([21]), Sequence([22, 23, 24])])
-        Sequence([Sequence([21]), Sequence([22, 23]), Sequence([24])])
-        Sequence([Sequence([21, 24]), Sequence([22]), Sequence([23])])
-        Sequence([Sequence([21]), Sequence([22, 24]), Sequence([23])])
-        Sequence([Sequence([21]), Sequence([22]), Sequence([23, 24])])
-        Sequence([Sequence([21]), Sequence([22]), Sequence([23]), Sequence([24])])
+        [[21, 22, 23, 24]]
+        [[21, 22, 23], [24]]
+        [[21, 22, 24], [23]]
+        [[21, 22], [23, 24]]
+        [[21, 22], [23], [24]]
+        [[21, 23, 24], [22]]
+        [[21, 23], [22, 24]]
+        [[21, 23], [22], [24]]
+        [[21, 24], [22, 23]]
+        [[21], [22, 23, 24]]
+        [[21], [22, 23], [24]]
+        [[21, 24], [22], [23]]
+        [[21], [22, 24], [23]]
+        [[21], [22], [23, 24]]
+        [[21], [22], [23], [24]]
 
     Returns set partitions in order of restricted growth function.
 
     Returns generator of list of lists.
     """
-    _argument = _sequence.Sequence(argument)
+    _argument = list(argument)
     length = len(_argument)
     for rgf in _yield_restricted_growth_functions(length):
         partition = _partition_by_rgf(_argument, rgf)
@@ -500,13 +500,13 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
         >>> for subsequence in abjad.enumerate.yield_subsequences([0, 1, 2]):
         ...     subsequence
         ...
-        Sequence([])
-        Sequence([0])
-        Sequence([0, 1])
-        Sequence([0, 1, 2])
-        Sequence([1])
-        Sequence([1, 2])
-        Sequence([2])
+        []
+        [0]
+        [0, 1]
+        [0, 1, 2]
+        [1]
+        [1, 2]
+        [2]
 
     ..  container:: example
 
@@ -516,12 +516,12 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
         ...     ):
         ...     subsequence
         ...
-        Sequence([0, 1, 2])
-        Sequence([0, 1, 2, 3])
-        Sequence([0, 1, 2, 3, 4])
-        Sequence([1, 2, 3])
-        Sequence([1, 2, 3, 4])
-        Sequence([2, 3, 4])
+        [0, 1, 2]
+        [0, 1, 2, 3]
+        [0, 1, 2, 3, 4]
+        [1, 2, 3]
+        [1, 2, 3, 4]
+        [2, 3, 4]
 
     ..  container:: example
 
@@ -531,19 +531,19 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
         ...     ):
         ...     subsequence
         ...
-        Sequence([])
-        Sequence([0])
-        Sequence([0, 1])
-        Sequence([0, 1, 2])
-        Sequence([1])
-        Sequence([1, 2])
-        Sequence([1, 2, 3])
-        Sequence([2])
-        Sequence([2, 3])
-        Sequence([2, 3, 4])
-        Sequence([3])
-        Sequence([3, 4])
-        Sequence([4])
+        []
+        [0]
+        [0, 1]
+        [0, 1, 2]
+        [1]
+        [1, 2]
+        [1, 2, 3]
+        [2]
+        [2, 3]
+        [2, 3, 4]
+        [3]
+        [3, 4]
+        [4]
 
     ..  container:: example
 
@@ -554,13 +554,13 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
         ...     ):
         ...     subsequence
         ...
-        Sequence([0, 1, 2])
-        Sequence([1, 2, 3])
-        Sequence([2, 3, 4])
+        [0, 1, 2]
+        [1, 2, 3]
+        [2, 3, 4]
 
     Returns sequence generator.
     """
-    _argument = _sequence.Sequence(argument)
+    _argument = argument
     length = len(_argument)
     if maximum_length is None:
         maximum_length = length

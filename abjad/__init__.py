@@ -257,7 +257,6 @@ from .score import (
     Voice,
 )
 from .select import LogicalTie, Selection
-from .sequence import Sequence
 from .setclass import SetClass
 from .spanners import (
     beam,
@@ -478,7 +477,6 @@ __all__ = [
     "Score",
     "Segment",
     "Selection",
-    "Sequence",
     "Set",
     "SetClass",
     "SettingInterface",

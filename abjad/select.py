@@ -1240,7 +1240,7 @@ def exclude(
 
     """
     pattern = _pattern.Pattern(indices, period=period, inverted=True)
-    items = _sequence.Sequence(argument).retain_pattern(pattern)
+    items = _sequence.retain_pattern(argument, pattern)
     return list(items)
 
 
@@ -1478,7 +1478,7 @@ def flatten(argument, depth: int = 1) -> list:
             >>
 
     """
-    items = _sequence.Sequence(argument).flatten(depth=depth)
+    items = _sequence.flatten(argument, depth=depth)
     return list(items)
 
 
@@ -1638,7 +1638,7 @@ def get(
         pattern = indices
     else:
         pattern = _pattern.Pattern(indices, period=period)
-    items = _sequence.Sequence(argument).retain_pattern(pattern)
+    items = _sequence.retain_pattern(argument, pattern)
     return list(items)
 
 
@@ -4869,7 +4869,8 @@ def partition_by_counts(
 
     """
     result = []
-    groups_ = _sequence.Sequence(argument).partition_by_counts(
+    groups_ = _sequence.partition_by_counts(
+        argument,
         [abs(_) for _ in counts],
         cyclic=cyclic,
         enchain=enchain,
@@ -5883,7 +5884,7 @@ def partition_by_ratio(argument, ratio) -> list[Selection]:
     ratio = ratio or _ratio.Ratio((1,))
     ratio = _ratio.Ratio(ratio)
     counts = ratio.partition_integer(len(argument))
-    parts = _sequence.Sequence(argument).partition_by_counts(counts=counts)
+    parts = _sequence.partition_by_counts(argument, counts=counts)
     selections = [Selection(_) for _ in parts]
     return selections
 

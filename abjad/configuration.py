@@ -623,7 +623,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.score.Voice'>
         <class 'abjad.select.LogicalTie'>
         <class 'abjad.select.Selection'>
-        <class 'abjad.sequence.Sequence'>
         <class 'abjad.setclass.SetClass'>
         <class 'abjad.tag.Line'>
         <class 'abjad.tag.Tag'>

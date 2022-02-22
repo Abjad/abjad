@@ -486,12 +486,10 @@ class LeafMaker:
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = _sequence.Sequence(
-            [_duration.NonreducedFraction(_) for _ in durations]
-        )
+        nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
         size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = _sequence.Sequence(pitches).repeat_to_length(size)
+        nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
+        pitches = _sequence.repeat_to_length(pitches, size)
         duration_groups = _duration.Duration._group_by_implied_prolation(
             nonreduced_fractions
         )
@@ -933,12 +931,10 @@ class NoteMaker:
             pitches = [pitches]
         if isinstance(durations, (numbers.Number, tuple)):
             durations = [durations]
-        nonreduced_fractions = _sequence.Sequence(
-            [_duration.NonreducedFraction(_) for _ in durations]
-        )
+        nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
         size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = nonreduced_fractions.repeat_to_length(size)
-        pitches = _sequence.Sequence(pitches).repeat_to_length(size)
+        nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
+        pitches = _sequence.repeat_to_length(pitches, size)
         durations = _duration.Duration._group_by_implied_prolation(nonreduced_fractions)
         result: typing.List[typing.Union[_score.Note, _score.Tuplet]] = []
         for duration in durations:
