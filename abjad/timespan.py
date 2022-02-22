@@ -1017,7 +1017,7 @@ class Timespan:
         start_offsets = _math.cumulative_sums(
             [self.start_offset] + part_durations, start=None
         )
-        offset_pairs = _sequence.Sequence(start_offsets).nwise()
+        offset_pairs = _sequence.nwise(start_offsets)
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
@@ -3025,7 +3025,7 @@ class TimespanList(_typedcollections.TypedList):
         """
         if len(self) < 2:
             return True
-        pairs = _sequence.Sequence(self).nwise()
+        pairs = _sequence.nwise(self)
         for left_timespan, right_timespan in pairs:
             if right_timespan.start_offset < left_timespan.start_offset:
                 return False
@@ -3733,8 +3733,8 @@ class TimespanList(_typedcollections.TypedList):
         Returns mapping.
         """
         mapping: dict = dict()
-        offsets = _sequence.Sequence(sorted(self.count_offsets().items))
-        for start_offset, stop_offset in offsets.nwise():
+        offsets = list(sorted(self.count_offsets().items))
+        for start_offset, stop_offset in _sequence.nwise(offsets):
             timespan = Timespan(start_offset, stop_offset)
             overlap_factor = self.compute_overlap_factor(timespan=timespan)
             mapping[timespan] = overlap_factor

@@ -723,7 +723,7 @@ def iterate_leaf_pairs(components):
     Returns generator.
     """
     vertical_moments = iterate_vertical_moments(components)
-    for moment_1, moment_2 in _sequence.Sequence(vertical_moments).nwise():
+    for moment_1, moment_2 in _sequence.nwise(vertical_moments):
         for pair in _enumerate.yield_pairs(moment_1.start_leaves):
             yield list(pair)
         sequences = [moment_1.leaves, moment_2.start_leaves]

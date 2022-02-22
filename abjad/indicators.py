@@ -1247,7 +1247,7 @@ class Clef:
         ..  container:: example
 
             >>> maker = abjad.NoteMaker()
-            >>> notes = maker(range(-12, -6), [(1, 4)])
+            >>> notes = maker(list(range(-12, -6)), [(1, 4)])
             >>> staff = abjad.Staff(notes)
             >>> pitches = abjad.iterate.pitches(staff)
             >>> abjad.Clef.from_pitches(pitches)
@@ -2999,7 +2999,7 @@ class MetronomeMark:
             if quicktions.Fraction(1, 2) <= _ <= quicktions.Fraction(2)
         ]
         multipliers.sort()
-        multipliers_ = _sequence.Sequence(multipliers).remove_repeats()
+        multipliers_ = _sequence.remove_repeats(multipliers)
         pairs = []
         for multiplier in multipliers_:
             new_units_per_minute = multiplier * self.units_per_minute

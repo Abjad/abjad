@@ -213,7 +213,7 @@ class RhythmTreeMixin:
         Returns tuple.
         """
         prolations = [_duration.Multiplier(1)]
-        pairs = _sequence.Sequence(self.parentage).nwise()
+        pairs = _sequence.nwise(self.parentage)
         for child, parent in pairs:
             prolations.append(
                 _duration.Multiplier(

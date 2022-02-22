@@ -282,7 +282,7 @@ def test_Container_extend_10():
         maker([7, 9], [abjad.Duration(1, 4)]),
         maker([11, 12], [abjad.Duration(1, 4)]),
     ]
-    components = abjad.Sequence(lists).flatten(depth=-1)
+    components = abjad.sequence.flatten(lists, depth=-1)
     container = abjad.Container()
     container.extend(components)
 

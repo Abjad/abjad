@@ -664,16 +664,14 @@ def _split_simultaneous_by_duration(CONTAINER, duration):
 
 def _split_leaf_by_durations(LEAF, durations, cyclic=False):
     durations = [_duration.Duration(_) for _ in durations]
-    durations = _sequence.Sequence(durations)
     leaf_duration = _get.duration(LEAF)
     if cyclic:
-        durations = durations.repeat_to_weight(leaf_duration)
+        durations = _sequence.repeat_to_weight(durations, leaf_duration)
     if sum(durations) < leaf_duration:
         last_duration = leaf_duration - sum(durations)
         durations = list(durations)
         durations.append(last_duration)
-        durations = _sequence.Sequence(durations)
-    durations = durations.truncate(weight=leaf_duration)
+    durations = _sequence.truncate(durations, weight=leaf_duration)
     originally_tied = LEAF._has_indicator(_indicators.Tie)
     originally_repeat_tied = LEAF._has_indicator(_indicators.RepeatTie)
     result_selections = []
@@ -691,7 +689,7 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
         preprolated_duration = duration / leaf_prolation
         selection = _set_leaf_duration(new_leaf, preprolated_duration)
         result_selections.append(selection)
-    result_components = _sequence.Sequence(result_selections).flatten(depth=-1)
+    result_components = _sequence.flatten(result_selections, depth=-1)
     result_leaves = _select.leaves(result_components, grace=False)
     assert all(isinstance(_, _score.Component) for _ in result_components)
     assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
@@ -2200,15 +2198,14 @@ def split(argument, durations, cyclic=False):
     total_component_duration = _get.duration(components)
     total_split_duration = sum(durations)
     if cyclic:
-        durations = _sequence.Sequence(durations)
-        durations = durations.repeat_to_weight(total_component_duration)
+        durations = _sequence.repeat_to_weight(durations, total_component_duration)
         durations = list(durations)
     elif total_split_duration < total_component_duration:
         final_offset = total_component_duration - sum(durations)
         durations.append(final_offset)
     elif total_component_duration < total_split_duration:
         weight = total_component_duration
-        durations = _sequence.Sequence(durations).truncate(weight=weight)
+        durations = _sequence.truncate(durations, weight=weight)
         durations = list(durations)
     # keep copy of durations to partition result components
     durations_copy = durations[:]
@@ -2252,8 +2249,8 @@ def split(argument, durations, cyclic=False):
                 current_duration = duration_
                 additional_required_duration = current_duration
                 additional_required_duration -= local_split_duration
-                split_durations = _sequence.Sequence(durations)
-                split_durations = split_durations.split(
+                split_durations = _sequence.split(
+                    durations,
                     [additional_required_duration],
                     cyclic=False,
                     overhang=True,
@@ -2300,7 +2297,7 @@ def split(argument, durations, cyclic=False):
     if len(remaining_components):
         result.append(remaining_components)
     # partition split components according to input durations
-    result = _sequence.Sequence(result).flatten(depth=-1)
+    result = _sequence.flatten(result, depth=-1)
     result = _select.partition_by_durations(result, durations_copy, fill=_enums.Exact)
     # return list of shards
     assert all(isinstance(_, (list, _select.Selection)) for _ in result)

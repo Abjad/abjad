@@ -807,7 +807,7 @@ class IntervalSegment(Segment):
     def __post_init__(self):
         if isinstance(self.items, PitchSegment):
             intervals = []
-            for one, two in _sequence.Sequence(self.items).nwise():
+            for one, two in _sequence.nwise(self.items):
                 intervals.append(one - two)
             self.items = intervals
         Segment.__post_init__(self)
@@ -1965,7 +1965,7 @@ class PitchClassSegment(Segment):
             True
 
         """
-        items = _sequence.Sequence(self.items).rotate(n=n)
+        items = _sequence.rotate(self.items, n=n)
         return type(self)(items=items)
 
     def to_pitch_classes(self) -> "PitchClassSegment":
@@ -3263,7 +3263,7 @@ class PitchSegment(Segment):
                 >>
 
         """
-        rotated_pitches = _sequence.Sequence(self.items).rotate(n=n)
+        rotated_pitches = _sequence.rotate(self.items, n=n)
         new_segment = dataclasses.replace(self, items=rotated_pitches)
         return new_segment
 
@@ -5363,7 +5363,7 @@ class PitchClassSet(Set):
         candidates = []
         for i in range(self.cardinality):
             candidate_list = [_pitch.NumberedPitch(_) for _ in pitch_classes]
-            candidate = _sequence.Sequence(candidate_list).rotate(n=-i)
+            candidate = _sequence.rotate(candidate_list, n=-i)
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 
@@ -5585,7 +5585,7 @@ class PitchClassSet(Set):
         """
         if not len(self) == len(segment):
             raise ValueError("set and segment must be on equal length.")
-        for pitch_classes in _enumerate.yield_permutations(self):
+        for pitch_classes in _enumerate.yield_permutations(list(self)):
             candidate = PitchClassSegment(pitch_classes)
             if candidate._is_equivalent_under_transposition(segment):
                 return candidate
@@ -5910,7 +5910,7 @@ class PitchSet(Set):
                 [_ for _ in self if _.number % 12 == pc]
                 for pc in [x % 12 for x in pitch_classes]
             ]
-            result = _sequence.Sequence(result).flatten(depth=-1)
+            result = _sequence.flatten(result, depth=-1)
         elif isinstance(pitch_classes, int):
             result = [p for p in pitch_classes if p % 12 == pitch_classes][0]
         else:
