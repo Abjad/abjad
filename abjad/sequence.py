@@ -1,3 +1,4 @@
+import builtins
 import collections
 import copy
 import itertools
@@ -34,7 +35,7 @@ def _partition_sequence_cyclically_by_weights_at_least(
         if overhang:
             result.append(current_part)
     result = [type(sequence)(_) for _ in result]
-    return type(sequence)(result)
+    return result
 
 
 def _partition_sequence_cyclically_by_weights_at_most(
@@ -71,7 +72,7 @@ def _partition_sequence_cyclically_by_weights_at_most(
         if overhang:
             result.append(current_part)
     result = [type(sequence)(_) for _ in result]
-    return type(sequence)(result)
+    return result
 
 
 def _partition_sequence_once_by_weights_at_least(sequence, weights, overhang=False):
@@ -97,7 +98,7 @@ def _partition_sequence_once_by_weights_at_least(sequence, weights, overhang=Fal
         if overhang:
             result.append(l_copy)
     result = [type(sequence)(_) for _ in result]
-    return type(sequence)(result)
+    return result
 
 
 def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=False):
@@ -134,7 +135,7 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
         if left_over:
             result.append(left_over)
     result = [type(sequence)(_) for _ in result]
-    return type(sequence)(result)
+    return result
 
 
 def partition_by_counts(
@@ -144,7 +145,7 @@ def partition_by_counts(
     enchain=False,
     overhang=False,
     reversed_=False,
-):
+) -> list:
     r"""
     Partitions sequence by ``counts``.
 
@@ -589,7 +590,7 @@ def partition_by_counts(
         ...     part
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-    Returns nested sequence.
+    Returns list of sequences.
     """
     if not all(isinstance(_, int) and 0 <= _ for _ in counts):
         raise Exception(f"must be nonnegative integers: {counts!r}.")
@@ -632,10 +633,10 @@ def partition_by_counts(
             part = part_type(part)
             result_.append(part)
         result = result_
-    return type(sequence)(result)
+    return result
 
 
-def partition_by_ratio_of_lengths(sequence, ratio):
+def partition_by_ratio_of_lengths(sequence, ratio) -> list:
     r"""
     Partitions sequence by ``ratio`` of lengths.
 
@@ -665,16 +666,16 @@ def partition_by_ratio_of_lengths(sequence, ratio):
         [3, 4]
         [5, 6, 7, 8, 9]
 
-    Returns nested sequence.
+    Returns list of sequences.
     """
     ratio = _ratio.Ratio(ratio)
     length = len(sequence)
     counts = ratio.partition_integer(length)
     parts = partition_by_counts(sequence, counts, cyclic=False, overhang=_enums.Exact)
-    return type(sequence)(parts)
+    return parts
 
 
-def partition_by_ratio_of_weights(sequence, weights):
+def partition_by_ratio_of_weights(sequence, weights) -> list:
     """
     Partitions sequence by ratio of ``weights``.
 
@@ -803,7 +804,7 @@ def partition_by_ratio_of_weights(sequence, weights):
 
     Rounded weight-proportions of sequences returned equal to rounded ``weights``.
 
-    Returns nested sequence.
+    Returns list of sequences.
     """
     list_weight = _math.weight(sequence)
     weights_parts = _ratio.Ratio(weights).partition_integer(list_weight)
@@ -823,18 +824,18 @@ def partition_by_ratio_of_weights(sequence, weights):
                 items.append(sublist)
             except IndexError:
                 break
-    items_ = [type(sequence)(_) for _ in items]
-    return type(sequence)(items_)
+    result = [type(sequence)(_) for _ in items]
+    return result
 
 
 def partition_by_weights(
     sequence,
     weights,
-    # TODO: make keyword-only:
+    *,
     cyclic=False,
     overhang=False,
     allow_part_weights=_enums.Exact,
-):
+) -> list:
     r"""
     Partitions sequence by ``weights`` exactly.
 
@@ -1057,7 +1058,7 @@ def partition_by_weights(
         [5]
         [5]
 
-    Returns nested sequence.
+    Returns list of sequences.
     """
     if allow_part_weights is _enums.Exact:
         candidate = type(sequence)(sequence)
@@ -1069,29 +1070,30 @@ def partition_by_weights(
             raise Exception("can not partition exactly.")
     elif allow_part_weights is _enums.More:
         if not cyclic:
-            return _partition_sequence_once_by_weights_at_least(
+            result = _partition_sequence_once_by_weights_at_least(
                 sequence, weights, overhang=overhang
             )
         else:
-            return _partition_sequence_cyclically_by_weights_at_least(
+            result = _partition_sequence_cyclically_by_weights_at_least(
                 sequence, weights, overhang=overhang
             )
     elif allow_part_weights is _enums.Less:
         if not cyclic:
-            return _partition_sequence_once_by_weights_at_most(
+            result = _partition_sequence_once_by_weights_at_most(
                 sequence, weights, overhang=overhang
             )
         else:
-            return _partition_sequence_cyclically_by_weights_at_most(
+            result = _partition_sequence_cyclically_by_weights_at_most(
                 sequence, weights, overhang=overhang
             )
     else:
         message = "allow_part_weights must be ordinal constant: {!r}."
         message = message.format(allow_part_weights)
         raise ValueError(message)
+    return result
 
 
-def split(sequence, weights, cyclic=False, overhang=False):
+def split(sequence, weights, cyclic=False, overhang=False) -> list:
     r"""
     Splits sequence by ``weights``.
 
@@ -1176,6 +1178,7 @@ def split(sequence, weights, cyclic=False, overhang=False):
         [NonreducedFraction(12, 2), NonreducedFraction(-18, 2)]
         [NonreducedFraction(-2, 2)]
 
+    Returns list of sequences.
     """
     result = []
     current_index = 0
@@ -1210,7 +1213,7 @@ def split(sequence, weights, cyclic=False, overhang=False):
         if last_piece:
             last_piece_ = type(sequence)(last_piece)
             result.append(last_piece_)
-    return type(sequence)(result)
+    return result
 
 
 def filter(sequence, predicate=None):
@@ -1237,6 +1240,7 @@ def filter(sequence, predicate=None):
         ... )
         [Note("d'8"), Note("f'8")]
 
+    Returns sequence type.
     """
     if predicate is None:
         return sequence[:]
@@ -1300,6 +1304,7 @@ def flatten(sequence, classes=None, depth=1):
         >>> abjad.sequence.flatten(sequence, classes=(tuple, list))
         ['ab', 'cd', 'ef', 'gh', 'ij', 'kl']
 
+    Returns sequence type.
     """
     if classes is None:
         classes = (collections.abc.Sequence,)
@@ -1307,7 +1312,7 @@ def flatten(sequence, classes=None, depth=1):
     return type(sequence)(items)
 
 
-def group_by(sequence, predicate=None):
+def group_by(sequence, predicate=None) -> list:
     """
     Groups sequence items by value of items.
 
@@ -1339,7 +1344,7 @@ def group_by(sequence, predicate=None):
         [Note("d'8"), Note("d'8")]
         [Note("e'8"), Note("e'8"), Note("e'8")]
 
-    Returns nested sequence.
+    Returns list of sequence types.
     """
     items = []
     if predicate is None:
@@ -1352,7 +1357,7 @@ def group_by(sequence, predicate=None):
         for count, group in pairs:
             item = type(sequence)(group)
             items.append(item)
-    return type(sequence)(items)
+    return items
 
 
 def is_decreasing(sequence, strict=True) -> bool:
@@ -1542,6 +1547,7 @@ def join(sequence):
         >>> abjad.sequence.join(sequence)
         [(1, 2, 3, 4, 5, 6)]
 
+    Returns sequence type.
     """
     if not sequence:
         return type(sequence)()
@@ -1573,6 +1579,7 @@ def map(sequence, operand=None):
         >>> abjad.sequence.map(sequence)
         [1, 2, 3, 4, 5, 6]
 
+    Returns sequence type.
     """
     if operand is not None:
         items = []
@@ -1790,6 +1797,7 @@ def permute(sequence, permutation):
             ...
         ValueError: permutation [3, 0, 1, 2] must match length of [1, 2, 3, 4, 5, 6].
 
+    Returns sequence type.
     """
     permutation = type(sequence)(permutation)
     if not is_permutation(permutation):
@@ -1842,6 +1850,7 @@ def remove(sequence, indices=None, period=None):
         >>> abjad.sequence.remove(sequence, indices=[-97, -98, -99])
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
+    Returns sequence type.
     """
     items = []
     length = len(sequence)
@@ -1875,6 +1884,7 @@ def remove_repeats(sequence):
         >>> abjad.sequence.remove_repeats(sequence)
         [31, 35, 31, 35]
 
+    Returns sequence type.
     """
     items = [sequence[0]]
     for item in sequence[1:]:
@@ -1883,7 +1893,7 @@ def remove_repeats(sequence):
     return type(sequence)(items)
 
 
-def repeat(sequence, n=1):
+def repeat(sequence, n=1) -> list:
     r"""
     Repeats sequence.
 
@@ -1898,12 +1908,12 @@ def repeat(sequence, n=1):
         >>> abjad.sequence.repeat([1, 2, 3], n=2)
         [[1, 2, 3], [1, 2, 3]]
 
-    Returns nested sequence.
+    Returns list of sequence types.
     """
-    items = []
+    sequences = []
     for i in range(n):
-        items.append(sequence[:])
-    return type(sequence)(items)
+        sequences.append(sequence[:])
+    return sequences
 
 
 def repeat_to_length(sequence, length=None, start=0):
@@ -1929,6 +1939,7 @@ def repeat_to_length(sequence, length=None, start=0):
         >>> abjad.sequence.repeat_to_length([1, 2, 3], 10, start=100)
         [2, 3, 1, 2, 3, 1, 2, 3, 1, 2]
 
+    Returns sequence type.
     """
     assert _math.is_nonnegative_integer(length), repr(length)
     assert len(sequence), repr(sequence)
@@ -1972,6 +1983,7 @@ def repeat_to_weight(sequence, weight, allow_total=_enums.Exact):
         >>> [_.pair for _ in sequence]
         [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
 
+    Returns sequence type.
     """
     assert 0 <= weight
     if allow_total is _enums.Exact:
@@ -2028,6 +2040,7 @@ def replace(sequence, old, new):
         >>> abjad.sequence.replace(sequence, 0, 1)
         [1, 2, 3, 1, 2, 3, 1, 2, 3]
 
+    Returns sequence type.
     """
     items = []
     for item in sequence:
@@ -2086,6 +2099,7 @@ def replace_at(sequence, indices, new_material):
         ... )
         ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15]
 
+    Returns sequence type.
     """
     assert isinstance(indices, collections.abc.Sequence)
     assert len(indices) == 2
@@ -2153,6 +2167,7 @@ def retain(sequence, indices=None, period=None):
         >>> abjad.sequence.retain(sequence, indices=[-97, -98, -99])
         []
 
+    Returns sequence type.
     """
     length = len(sequence)
     period = period or length
@@ -2204,6 +2219,7 @@ def retain_pattern(sequence, pattern):
         >>> abjad.sequence.retain_pattern(sequence, abjad.index([-97, -98, -99]))
         []
 
+    Returns sequence type.
     """
     length = len(sequence)
     items = []
@@ -2240,6 +2256,7 @@ def reverse(sequence, recurse=False):
         NumberedPitch(3)
         PitchClassSegment(items=[2, 1], item_class=NumberedPitchClass)
 
+    Returns sequence type.
     """
     if not recurse:
         return type(sequence)(reversed(sequence))
@@ -2282,6 +2299,7 @@ def rotate(sequence, n=0):
         >>> abjad.sequence.rotate(sequence, n=0)
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+    Returns sequence type.
     """
     n = n or 0
     items = []
@@ -2306,6 +2324,7 @@ def sort(sequence, key=None, reverse=False):
         >>> sequence
         [3, 2, 5, 4, 1, 6]
 
+    Returns sequence type.
     """
     items = list(sequence)
     items.sort(key=key, reverse=reverse)
@@ -2377,6 +2396,8 @@ def sum_by_sign(sequence, sign=(-1, 0, 1)):
     Sums consecutive zero-valued elements when ``0`` in ``sign``.
 
     Sums consecutive positive elements when ``1`` in ``sign``.
+
+    Returns sequence type.
     """
     items = []
     generator = itertools.groupby(sequence, _math.sign)
@@ -2444,6 +2465,8 @@ def truncate(sequence, sum_=None, weight=None):
     Ignores ``sum`` when ``weight`` and ``sum`` are both set.
 
     Raises value error on negative ``sum``.
+
+    Returns sequence type.
     """
     if weight is not None:
         assert 0 <= weight, repr(weight)
@@ -2512,7 +2535,7 @@ def weight(sequence) -> typing.Any:
     return sum(weights)
 
 
-def zip(sequence, cyclic=False, truncate=True):
+def zip(sequences, cyclic=False, truncate=True) -> list[tuple]:
     """
     Zips sequences in sequence.
 
@@ -2524,19 +2547,19 @@ def zip(sequence, cyclic=False, truncate=True):
         >>> for item in abjad.sequence.zip(sequence, cyclic=True):
         ...     item
         ...
-        [1, 'a']
-        [2, 'b']
-        [3, 'a']
+        (1, 'a')
+        (2, 'b')
+        (3, 'a')
 
         >>> items = [[10, 11, 12], [20, 21], [30, 31, 32, 33]]
         >>> sequence = list(items)
         >>> for item in abjad.sequence.zip(sequence, cyclic=True):
         ...     item
         ...
-        [10, 20, 30]
-        [11, 21, 31]
-        [12, 20, 32]
-        [10, 21, 33]
+        (10, 20, 30)
+        (11, 21, 31)
+        (12, 20, 32)
+        (10, 21, 33)
 
         Zips without truncation:
 
@@ -2545,10 +2568,10 @@ def zip(sequence, cyclic=False, truncate=True):
         >>> for item in abjad.sequence.zip(sequence, truncate=False):
         ...     item
         ...
-        [1, 11, 21]
-        [2, 12, 22]
-        [3, 13, 23]
-        [4]
+        (1, 11, 21)
+        (2, 12, 22)
+        (3, 13, 23)
+        (4,)
 
     ..  container:: example
 
@@ -2558,41 +2581,39 @@ def zip(sequence, cyclic=False, truncate=True):
         >>> for item in abjad.sequence.zip(items):
         ...     item
         ...
-        [1, 11, 21]
-        [2, 12, 22]
-        [3, 13, 23]
+        (1, 11, 21)
+        (2, 12, 22)
+        (3, 13, 23)
 
-    Returns nested sequence.
+    Returns list of tuples.
     """
-    for item in sequence:
+    for item in sequences:
         if not isinstance(item, collections.abc.Iterable):
             raise Exception(f"must be iterable: {item!r}.")
     items: typing.List[typing.Any] = []
     if cyclic:
-        if not min(len(_) for _ in sequence):
-            return type(sequence)(items)
-        maximum_length = max([len(_) for _ in sequence])
+        if not min(len(_) for _ in sequences):
+            return items
+        maximum_length = max([len(_) for _ in sequences])
         for i in range(maximum_length):
             part = []
-            for item in sequence:
+            for item in sequences:
                 index = i % len(item)
                 element = item[index]
                 part.append(element)
-            part_ = type(sequence)(part)
-            items.append(part_)
+            items.append(part)
     elif not truncate:
-        maximum_length = max([len(_) for _ in sequence])
+        maximum_length = max([len(_) for _ in sequences])
         for i in range(maximum_length):
             part = []
-            for item in sequence:
+            for item in sequences:
                 try:
                     part.append(item[i])
                 except IndexError:
                     pass
-            part_ = type(sequence)(part)
-            items.append(part_)
+            items.append(part)
     elif truncate:
-        for item in __builtins__["zip"](*sequence):
-            item = type(sequence)(item)
+        for item in builtins.zip(*sequences):
             items.append(item)
-    return type(sequence)(items)
+    result = [tuple(_) for _ in items]
+    return result

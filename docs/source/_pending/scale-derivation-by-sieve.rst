@@ -12,8 +12,8 @@ First we define a function to illustrate the examples that follow:
 ::
 
     >>> def illustrate_scale(pattern, length, transposition):
-    ...     pitches = abjad.Sequence(range(length))
-    ...     pitches = pitches.retain_pattern(pattern)
+    ...     pitches = list(range(length))
+    ...     pitches = abjad.sequence.retain_pattern(pitches, pattern)
     ...     notes = [abjad.Note(_ + transposition, (1, 16)) for _ in pitches]
     ...     score = abjad.illustrators.make_piano_score(notes)
     ...     treble_staff = score["Treble_Staff"]
