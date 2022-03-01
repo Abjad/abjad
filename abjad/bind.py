@@ -19,7 +19,7 @@ class Wrapper:
         >>> articulation = abjad.Articulation("accent", direction=abjad.Up)
         >>> abjad.attach(articulation, component)
         >>> abjad.get.wrapper(component)
-        Wrapper(annotation=None, context=None, deactivate=None, indicator=Articulation(name='accent', direction=Up, tweaks=None), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='accent', direction=Up, tweaks=None), synthetic_offset=None, tag=Tag())
 
     ..  container:: example
 
@@ -89,7 +89,7 @@ class Wrapper:
         check_duplicate_indicator=False,
         component=None,
         context: str = None,
-        deactivate: bool = None,
+        deactivate: bool = False,
         indicator: typing.Any = None,
         synthetic_offset: int = None,
         tag: typing.Union[str, _tag.Tag] = None,
@@ -101,8 +101,7 @@ class Wrapper:
         if component is not None:
             assert isinstance(component, _score.Component), repr(component)
         self._component = component
-        if deactivate is not None:
-            deactivate = bool(deactivate)
+        deactivate = bool(deactivate)
         if context is not None:
             assert isinstance(context, str), repr(context)
         self._context = context
@@ -184,7 +183,7 @@ class Wrapper:
 
             >>> leaf = old_staff[0]
             >>> abjad.get.wrapper(leaf)
-            Wrapper(annotation=None, context='Staff', deactivate=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
+            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
 
             >>> new_staff = abjad.mutate.copy(old_staff)
             >>> string = abjad.lilypond(new_staff, tags=True)
@@ -202,7 +201,7 @@ class Wrapper:
 
             >>> leaf = new_staff[0]
             >>> abjad.get.wrapper(leaf)
-            Wrapper(annotation=None, context='Staff', deactivate=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
+            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
 
         ..  container:: example
 
@@ -511,7 +510,7 @@ class Wrapper:
         return self._context
 
     @property
-    def deactivate(self) -> typing.Optional[bool]:
+    def deactivate(self) -> bool:
         """
         Is true when wrapper deactivates tag.
         """
@@ -666,7 +665,7 @@ def attach(  # noqa: 302
     target,
     check_duplicate_indicator=False,
     context=None,
-    deactivate=None,
+    deactivate=False,
     do_not_test=None,
     synthetic_offset=None,
     tag=None,
@@ -868,7 +867,7 @@ def attach(  # noqa: 302
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef('alto'), staff[0], wrapper=True)
-        Wrapper(annotation=None, context='Staff', deactivate=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
 
     Otherwise returns none.
     """
@@ -1159,7 +1158,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
         >>> abjad.detach(wrapper, wrapper.component)
-        (Wrapper(annotation=None, context='Staff', deactivate=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag()),)
+        (Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag()),)
 
         >>> abjad.show(staff) # doctest: +SKIP
 

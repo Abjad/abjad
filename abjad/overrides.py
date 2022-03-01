@@ -50,7 +50,7 @@ def format_scheme_value(
         >>> abjad.overrides.format_scheme_value(
         ...     'foo',
         ...     force_quotes=True,
-        ...     )
+        ... )
         '"foo"'
 
     ..  container:: example
@@ -254,7 +254,7 @@ class LilyPondLiteral:
         >>> literal = abjad.LilyPondLiteral(
         ...     "% before all formatting",
         ...     format_slot="absolute_before",
-        ...     )
+        ... )
         >>> abjad.attach(literal, staff[0])
         >>> literal = abjad.LilyPondLiteral("", format_slot="absolute_after")
         >>> abjad.attach(literal, staff[-1])
@@ -414,7 +414,7 @@ class LilyPondLiteral:
         ...     r"\breathe",
         ...     "after",
         ...     directed=False,
-        ...     )
+        ... )
         >>> abjad.tweak(literal).color = "#blue"
         >>> abjad.attach(literal, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -444,7 +444,7 @@ class LilyPondLiteral:
     argument: typing.Union[str, typing.List[str]] = ""
     # TODO: probaby change default to "before"
     format_slot: str = "opening"
-    directed: bool | None = None
+    directed: bool = False
     tweaks: typing.Optional["TweakInterface"] = None
 
     _allowable_format_slots = (
@@ -664,8 +664,8 @@ class LilyPondOverride:
         self,
         lilypond_type: str = None,
         grob_name: str = "NoteHead",
-        once: bool = None,
-        is_revert: bool = None,
+        once: bool = False,
+        is_revert: bool = False,
         property_path: typing.Union[str, typing.Iterable[str]] = "color",
         value: typing.Any = "#red",
     ) -> None:
@@ -674,12 +674,8 @@ class LilyPondOverride:
         self._lilypond_type = lilypond_type
         assert grob_name
         self._grob_name = str(grob_name)
-        if once is not None:
-            once = bool(once)
-        self._once = once
-        if is_revert is not None:
-            is_revert = bool(is_revert)
-        self._is_revert = is_revert
+        self._once = bool(once)
+        self._is_revert = bool(is_revert)
         if isinstance(property_path, str):
             property_path_: typing.Tuple[str, ...] = (property_path,)
         else:
@@ -748,7 +744,7 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
+            ... )
             >>> override.grob_name
             'Glissando'
 
@@ -756,7 +752,7 @@ class LilyPondOverride:
         return self._grob_name
 
     @property
-    def is_revert(self) -> typing.Optional[bool]:
+    def is_revert(self) -> bool:
         r"""
         Is true if grob override is a grob revert.
 
@@ -766,16 +762,16 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
-            >>> bool(override.is_revert)
+            ... )
+            >>> override.is_revert
             False
 
             >>> override = abjad.LilyPondOverride(
             ...     grob_name="Glissando",
             ...     is_revert=True,
             ...     property_path="style",
-            ...     )
-            >>> bool(override.is_revert)
+            ... )
+            >>> override.is_revert
             True
 
         """
@@ -806,7 +802,7 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
+            ... )
             >>> override.lilypond_type is None
             True
 
@@ -814,7 +810,7 @@ class LilyPondOverride:
         return self._lilypond_type
 
     @property
-    def once(self) -> typing.Optional[bool]:
+    def once(self) -> bool:
         r"""
         Is true when grob override is to be applied only once.
 
@@ -838,7 +834,7 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
+            ... )
             >>> bool(override.once)
             False
 
@@ -894,7 +890,7 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
+            ... )
             >>> override.override_string
             "\\override Glissando.style = #'zigzag"
 
@@ -936,7 +932,7 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
+            ... )
             >>> override.revert_format_pieces
             ('\\revert Glissando.style',)
 
@@ -955,7 +951,7 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
+            ... )
             >>> override.revert_string
             '\\revert Glissando.style'
 
@@ -998,7 +994,7 @@ class LilyPondOverride:
             ...     grob_name="Glissando",
             ...     property_path="style",
             ...     value="#'zigzag",
-            ...     )
+            ... )
             >>> override.tweak_string()
             "- \\tweak style #'zigzag"
 
@@ -1008,7 +1004,7 @@ class LilyPondOverride:
             ...     grob_name="RehearsalMark",
             ...     property_path="color",
             ...     value="#red",
-            ...     )
+            ... )
             >>> override.tweak_string(directed=False)
             '\\tweak color #red'
 
@@ -1020,7 +1016,7 @@ class LilyPondOverride:
             ...     grob_name="TextSpann",
             ...     property_path=("bound-details", "left-broken", "text"),
             ...     value=abjad.LilyPondLiteral(r"\markup \upright pont."),
-            ...     )
+            ... )
             >>> override.tweak_string(directed=False)
             '\\tweak bound-details.left-broken.text \\markup \\upright pont.'
 
@@ -1564,7 +1560,7 @@ class TweakInterface(Interface):
 
         >>> markup = abjad.Markup(r"\markup Allegro", direction=abjad.Up)
         >>> abjad.tweak(markup)
-        TweakInterface(('_literal', None))
+        TweakInterface(('_literal', False))
 
         Set an attribute like this:
 
@@ -1573,7 +1569,7 @@ class TweakInterface(Interface):
         The state of the tweak manager has changed:
 
         >>> abjad.tweak(markup)
-        TweakInterface(('_literal', None), ('color', '#red'))
+        TweakInterface(('_literal', False), ('color', '#red'))
 
         And the value of the attribute just set is available like this:
 
@@ -1593,13 +1589,10 @@ class TweakInterface(Interface):
     ### INITIALIZER ###
 
     def __init__(
-        self, *, deactivate: bool = None, literal: bool = None, tag: _tag.Tag = None
+        self, *, deactivate: bool = False, literal: bool = False, tag: _tag.Tag = None
     ) -> None:
-        if deactivate is not None:
-            self._currently_deactivated = deactivate
-        if literal is not None:
-            literal = bool(literal)
-        self._literal = literal
+        self._currently_deactivated = bool(deactivate)
+        self._literal = bool(literal)
         if tag is not None:
             self._currently_tagging = tag
 
@@ -1688,24 +1681,24 @@ class TweakInterface(Interface):
             >>> tweaks.color = "#red"
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            TweakInterface(('Y_offset', 6), ('_literal', None), ('color', '#red'))
+            TweakInterface(('Y_offset', 6), ('_literal', False), ('color', '#red'))
 
             Use the ``abjad.tweak()`` factory function for a shortcut:
 
             >>> tweaks = abjad.tweak("#red").color
             >>> tweaks
-            TweakInterface(('_literal', None), ('color', '#red'))
+            TweakInterface(('_literal', False), ('color', '#red'))
 
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            TweakInterface(('Y_offset', 6), ('_literal', None), ('color', '#red'))
+            TweakInterface(('Y_offset', 6), ('_literal', False), ('color', '#red'))
 
         ..  container:: example
 
             Set long LilyPond grob chains like this:
 
             >>> abjad.tweak(False).bound_details__left_broken__text
-            TweakInterface(('_literal', None), ('bound_details__left_broken__text', False))
+            TweakInterface(('_literal', False), ('bound_details__left_broken__text', False))
 
         """
         if name == "_currently_deactivated":
@@ -1748,10 +1741,10 @@ class TweakInterface(Interface):
             Allows LilyPond colors:
 
             >>> abjad.tweak("#blue").color
-            TweakInterface(('_literal', None), ('color', '#blue'))
+            TweakInterface(('_literal', False), ('color', '#blue'))
 
             >>> abjad.tweak("#(x11-color 'ForestGreen)").color
-            TweakInterface(('_literal', None), ('color', "#(x11-color 'ForestGreen)"))
+            TweakInterface(('_literal', False), ('color', "#(x11-color 'ForestGreen)"))
 
         """
         tag = getattr(self, "_currently_tagging", None)
@@ -1887,10 +1880,10 @@ class TweakInterface(Interface):
 
             >>> tweaks = abjad.tweak("blue").color
             >>> abjad.TweakInterface.set_dataclass_tweaks(glissando, tweaks)
-            TweakInterface(('_literal', None), ('color', 'blue'))
+            TweakInterface(('_literal', False), ('color', 'blue'))
 
             >>> abjad.tweak(glissando)
-            TweakInterface(('_literal', None), ('color', 'blue'))
+            TweakInterface(('_literal', False), ('color', 'blue'))
 
         """
         assert argument._is_dataclass is True, repr(argument)
@@ -2150,20 +2143,20 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Returns LilyPond tweak manager:
 
         >>> abjad.tweak(markup_1)
-        TweakInterface(('_literal', None), ('color', '#red'))
+        TweakInterface(('_literal', False), ('color', '#red'))
 
     ..  container:: example
 
         Tweak expressions work like this:
 
         >>> abjad.tweak("#red").color
-        TweakInterface(('_literal', None), ('color', '#red'))
+        TweakInterface(('_literal', False), ('color', '#red'))
 
         >>> abjad.tweak(6).Y_offset
-        TweakInterface(('Y_offset', 6), ('_literal', None))
+        TweakInterface(('Y_offset', 6), ('_literal', False))
 
         >>> abjad.tweak(False).bound_details__left_broken__text
-        TweakInterface(('_literal', None), ('bound_details__left_broken__text', False))
+        TweakInterface(('_literal', False), ('bound_details__left_broken__text', False))
 
     """
     if tag is not None and not isinstance(tag, _tag.Tag):

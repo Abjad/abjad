@@ -833,7 +833,7 @@ def open_file(
     *,
     application: str = None,
     line_number: int = None,
-    test: bool = None,
+    test: bool = False,
 ):
     """
     Opens ``file_path``.

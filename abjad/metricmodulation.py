@@ -352,14 +352,12 @@ class MetricModulation:
         left_rhythm,
         right_rhythm,
         *,
-        hide: bool = None,
+        hide: bool = False,
         left_markup: _markups.Markup = None,
         right_markup: _markups.Markup = None,
         scale: typing.Tuple[_typings.Number, _typings.Number] = (1, 1),
     ) -> None:
-        if hide is not None:
-            hide = bool(hide)
-        self._hide = hide
+        self._hide = bool(hide)
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)
@@ -601,7 +599,7 @@ class MetricModulation:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def hide(self) -> typing.Optional[bool]:
+    def hide(self) -> bool:
         """
         Is true when metric modulation generates no LilyPond output.
         """

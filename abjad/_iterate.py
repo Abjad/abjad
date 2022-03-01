@@ -17,19 +17,19 @@ def _coerce_exclude(exclude):
     return exclude
 
 
-def _is_unpitched(LEAF):
-    if hasattr(LEAF, "written_pitch"):
+def _is_unpitched(leaf):
+    if hasattr(leaf, "written_pitch"):
         return False
-    if hasattr(LEAF, "written_pitches"):
+    if hasattr(leaf, "written_pitches"):
         return False
     return True
 
 
-def _get_logical_tie_leaves(LEAF):
-    if _is_unpitched(LEAF):
-        return [LEAF]
+def _get_logical_tie_leaves(leaf):
+    if _is_unpitched(leaf):
+        return [leaf]
     leaves_before, leaves_after = [], []
-    current_leaf = LEAF
+    current_leaf = leaf
     while True:
         previous_leaf = _get_leaf(current_leaf, -1)
         if previous_leaf is None:
@@ -43,7 +43,7 @@ def _get_logical_tie_leaves(LEAF):
         else:
             break
         current_leaf = previous_leaf
-    current_leaf = LEAF
+    current_leaf = leaf
     while True:
         next_leaf = _get_leaf(current_leaf, 1)
         if next_leaf is None:
@@ -57,7 +57,7 @@ def _get_logical_tie_leaves(LEAF):
         else:
             break
         current_leaf = next_leaf
-    leaves = leaves_before + [LEAF] + leaves_after
+    leaves = leaves_before + [leaf] + leaves_after
     return leaves
 
 
@@ -193,7 +193,7 @@ def _iterate_descendants(component, cross_offset=None):
 
 
 def _iterate_logical_ties(
-    ARGUMENT,
+    argument,
     *,
     exclude=None,
     grace=None,
@@ -204,7 +204,7 @@ def _iterate_logical_ties(
 ) -> typing.Generator:
     yielded_logical_ties = set()
     for leaf in _public_iterate_leaves(
-        ARGUMENT, exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
+        argument, exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
     ):
         leaves = _get_logical_tie_leaves(leaf)
         if leaf is not leaves[0]:
@@ -221,22 +221,22 @@ def _iterate_logical_ties(
                 yield leaves
 
 
-def _get_leaf(ARGUMENT, n: int = 0):
+def _get_leaf(argument, n: int = 0):
     if n not in (-1, 0, 1):
         message = "n must be -1, 0 or 1:\n"
         message += f"   {repr(n)}"
         raise Exception(message)
-    if isinstance(ARGUMENT, _score.Leaf):
-        candidate = _inspect._get_sibling_with_graces(ARGUMENT, n)
+    if isinstance(argument, _score.Leaf):
+        candidate = _inspect._get_sibling_with_graces(argument, n)
         if isinstance(candidate, _score.Leaf):
             return candidate
-        return _inspect._get_leaf_from_leaf(ARGUMENT, n)
+        return _inspect._get_leaf_from_leaf(argument, n)
     if 0 <= n:
         reverse = False
     else:
         reverse = True
         n = abs(n) - 1
-    leaves = _public_iterate_leaves(ARGUMENT, reverse=reverse)
+    leaves = _public_iterate_leaves(argument, reverse=reverse)
     for i, leaf in enumerate(leaves):
         if i == n:
             return leaf
@@ -244,11 +244,11 @@ def _get_leaf(ARGUMENT, n: int = 0):
 
 
 def _public_iterate_components(
-    ARGUMENT, prototype=None, *, exclude=None, grace=None, reverse=None
+    argument, prototype=None, *, exclude=None, grace=None, reverse=None
 ):
-    if isinstance(ARGUMENT, _score.Container):
+    if isinstance(argument, _score.Container):
         for component in _iterate_components(
-            ARGUMENT,
+            argument,
             prototype,
             exclude=exclude,
             do_not_iterate_grace_containers=False,
@@ -256,9 +256,9 @@ def _public_iterate_components(
             reverse=reverse,
         ):
             yield component
-    elif isinstance(ARGUMENT, collections.abc.Iterable):
+    elif isinstance(argument, collections.abc.Iterable):
         if not reverse:
-            for item in ARGUMENT:
+            for item in argument:
                 generator = _public_iterate_components(
                     item,
                     prototype,
@@ -268,7 +268,7 @@ def _public_iterate_components(
                 )
                 yield from generator
         else:
-            for item in reversed(ARGUMENT):
+            for item in reversed(argument):
                 generator = _public_iterate_components(
                     item,
                     prototype,
@@ -279,7 +279,7 @@ def _public_iterate_components(
                 yield from generator
     else:
         for component in _iterate_components(
-            ARGUMENT,
+            argument,
             prototype,
             exclude=exclude,
             do_not_iterate_grace_containers=True,
@@ -290,7 +290,7 @@ def _public_iterate_components(
 
 
 def _public_iterate_leaves(
-    ARGUMENT,
+    argument,
     prototype=None,
     *,
     exclude=None,
@@ -304,7 +304,7 @@ def _public_iterate_leaves(
     elif pitched is False:
         prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
     return _public_iterate_components(
-        ARGUMENT, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
+        argument, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
     )
 
 
