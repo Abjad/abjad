@@ -60,56 +60,6 @@ class PitchRange:
                 >>
             >>
 
-    ..  container:: example
-
-        Pitches from -39 to 48, inclusive:
-
-        >>> pitch_range = abjad.PitchRange("[-39, 48]")
-        >>> lilypond_file = abjad.illustrate(pitch_range)
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> score = lilypond_file["Score"]
-            >>> string = abjad.lilypond(score)
-            >>> print(string)
-            \context Score = "Score"
-            \with
-            {
-                \override BarLine.stencil = ##f
-                \override Glissando.thickness = 2
-                \override SpanBar.stencil = ##f
-                \override TimeSignature.stencil = ##f
-            }
-            <<
-                \context PianoStaff = "Piano_Staff"
-                <<
-                    \context Staff = "Treble_Staff"
-                    {
-                        \clef "treble"
-                        s1 * 1/4
-                        s1 * 1/4
-                    }
-                    \context Staff = "Bass_Staff"
-                    {
-                        \clef "bass"
-                        a,,,1 * 1/4
-                        \glissando
-                        \change Staff = Treble_Staff
-                        c'''''1 * 1/4
-                    }
-                >>
-            >>
-
-    ..  container:: example exception
-
-        Errors on mismatched pitch types:
-
-        >>> abjad.PitchRange("[A0, 48]")
-        Traceback (most recent call last):
-            ...
-        Exception: mismatched types: NamedPitch('a,,,') NumberedPitch(48).
-
     """
 
     __slots__ = (
@@ -125,15 +75,8 @@ class PitchRange:
             range_string = range_string.range_string
         assert isinstance(range_string, str), repr(range_string)
         bundle = self._parse_range_string(range_string)
-        message = f"mismatched types: {bundle.start_pitch!r} {bundle.stop_pitch!r}."
-        if isinstance(bundle.start_pitch, _pitch.NamedPitch) and isinstance(
-            bundle.stop_pitch, _pitch.NumberedPitch
-        ):
-            raise Exception(message)
-        if isinstance(bundle.stop_pitch, _pitch.NamedPitch) and isinstance(
-            bundle.start_pitch, _pitch.NumberedPitch
-        ):
-            raise Exception(message)
+        assert isinstance(bundle.start_pitch, (_pitch.NamedPitch, type(None)))
+        assert isinstance(bundle.stop_pitch, (_pitch.NamedPitch, type(None)))
         self._close_bracket = bundle.close_bracket
         self._open_bracket = bundle.open_bracket
         self._range_string = bundle.range_string
@@ -150,19 +93,19 @@ class PitchRange:
 
             >>> range_ = abjad.PitchRange("[A0, C8]")
 
-            >>> -99 in range_
+            >>> "C0" in range_
             False
 
-            >>> -39 in range_
+            >>> "A0" in range_
             True
 
-            >>> 0 in range_
+            >>> "C4" in range_
             True
 
-            >>> 48 in range_
+            >>> "C8" in range_
             True
 
-            >>> 99 in range_
+            >>> "C12" in range_
             False
 
         ..  container:: example
@@ -171,40 +114,40 @@ class PitchRange:
 
             >>> range_ = abjad.PitchRange("[A0, C8)")
 
-            >>> -99 in range_
+            >>> "C0" in range_
             False
 
-            >>> -39 in range_
+            >>> "A0" in range_
             True
 
-            >>> 0 in range_
+            >>> "C4" in range_
             True
 
-            >>> 48 in range_
+            >>> "C8" in range_
             False
 
-            >>> 99 in range_
+            >>> "C12" in range_
             False
 
         ..  container:: example
 
             Closed / infinite range:
 
-            >>> range_ = abjad.PitchRange("[-39, +inf]")
+            >>> range_ = abjad.PitchRange("[A0, +inf]")
 
-            >>> -99 in range_
+            >>> "C0" in range_
             False
 
-            >>> -39 in range_
+            >>> "A0" in range_
             True
 
-            >>> 0 in range_
+            >>> "C4" in range_
             True
 
-            >>> 48 in range_
+            >>> "C8" in range_
             True
 
-            >>> 99 in range_
+            >>> "C12" in range_
             True
 
         ..  container:: example
@@ -213,19 +156,19 @@ class PitchRange:
 
             >>> range_ = abjad.PitchRange("(A0, C8]")
 
-            >>> -99 in range_
+            >>> "C0" in range_
             False
 
-            >>> -39 in range_
+            >>> "A0" in range_
             False
 
-            >>> 0 in range_
+            >>> "C4" in range_
             True
 
-            >>> 48 in range_
+            >>> "C8" in range_
             True
 
-            >>> 99 in range_
+            >>> "C12" in range_
             False
 
         ..  container:: example
@@ -234,19 +177,19 @@ class PitchRange:
 
             >>> range_ = abjad.PitchRange("(A0, C8)")
 
-            >>> -99 in range_
+            >>> "C0" in range_
             False
 
-            >>> -39 in range_
+            >>> "A0" in range_
             False
 
-            >>> 0 in range_
+            >>> "C4" in range_
             True
 
-            >>> 48 in range_
+            >>> "C8" in range_
             False
 
-            >>> 99 in range_
+            >>> "C12" in range_
             False
 
         ..  container:: example
@@ -255,19 +198,19 @@ class PitchRange:
 
             >>> range_ = abjad.PitchRange("[-inf, C8]")
 
-            >>> -99 in range_
+            >>> "C0" in range_
             True
 
-            >>> -39 in range_
+            >>> "A0" in range_
             True
 
-            >>> 0 in range_
+            >>> "C4" in range_
             True
 
-            >>> 48 in range_
+            >>> "C8" in range_
             True
 
-            >>> 99 in range_
+            >>> "C12" in range_
             False
 
         ..  container:: example
@@ -276,19 +219,19 @@ class PitchRange:
 
             >>> range_ = abjad.PitchRange("[-inf, C8)")
 
-            >>> -99 in range_
+            >>> "C0" in range_
             True
 
-            >>> -39 in range_
+            >>> "A0" in range_
             True
 
-            >>> 0 in range_
+            >>> "C4" in range_
             True
 
-            >>> 48 in range_
+            >>> "C8" in range_
             False
 
-            >>> 99 in range_
+            >>> "C12" in range_
             False
 
         ..  container:: example
@@ -297,25 +240,31 @@ class PitchRange:
 
             >>> range_ = abjad.PitchRange("[-inf, +inf]")
 
+            >>> "C0" in range_
+            True
+
+            >>> "A0" in range_
+            True
+
+            >>> "C4" in range_
+            True
+
+            >>> "C8" in range_
+            True
+
+            >>> "C12" in range_
+            True
+
+        ..  container:: example
+
+            Raises exception when argument is not a named pitch or string:
+
             >>> -99 in range_
-            True
-
-            >>> -39 in range_
-            True
-
-            >>> 0 in range_
-            True
-
-            >>> 48 in range_
-            True
-
-            >>> 99 in range_
-            True
+            Traceback (most recent call last):
+                ...
+            Exception: must be named pitch or string (not -99).
 
         """
-        pitch: _pitch.NamedPitch | _pitch.NumberedPitch
-        start_pitch: _pitch.NamedPitch | _pitch.NumberedPitch
-        stop_pitch: _pitch.NamedPitch | _pitch.NumberedPitch
         if isinstance(argument, (str, _pitch.NamedPitch)):
             pitch = _pitch.NamedPitch(argument)
             if self.start_pitch is None:
@@ -326,18 +275,8 @@ class PitchRange:
                 stop_pitch = _pitch.NamedPitch(1000)
             else:
                 stop_pitch = _pitch.NamedPitch(self.stop_pitch)
-        elif isinstance(argument, (int, float, _pitch.NumberedPitch)):
-            pitch = _pitch.NumberedPitch(argument)
-            if self.start_pitch is None:
-                start_pitch = _pitch.NumberedPitch(-1000)
-            else:
-                start_pitch = _pitch.NumberedPitch(self.start_pitch)
-            if self.stop_pitch is None:
-                stop_pitch = _pitch.NumberedPitch(1000)
-            else:
-                stop_pitch = _pitch.NumberedPitch(self.stop_pitch)
         else:
-            raise Exception(f"must be pitch, number or string: {argument!r}.")
+            raise Exception(f"must be named pitch or string (not {argument!r}).")
         if self._open_bracket == "[":
             if self._close_bracket == "]":
                 return start_pitch <= pitch <= stop_pitch
@@ -356,9 +295,9 @@ class PitchRange:
 
         ..  container:: example
 
-            >>> range_1 = abjad.PitchRange("[-39, 0]")
-            >>> range_2 = abjad.PitchRange("[-39, 0]")
-            >>> range_3 = abjad.PitchRange("[-39, 48]")
+            >>> range_1 = abjad.PitchRange("[A0, C4]")
+            >>> range_2 = abjad.PitchRange("[A0, C4]")
+            >>> range_3 = abjad.PitchRange("[A0, C8]")
 
             >>> range_1 == range_1
             True
@@ -399,9 +338,9 @@ class PitchRange:
 
         ..  container:: example
 
-            >>> range_1 = abjad.PitchRange("[-39, 0]")
-            >>> range_2 = abjad.PitchRange("[-39, 0]")
-            >>> range_3 = abjad.PitchRange("[-39, 48]")
+            >>> range_1 = abjad.PitchRange("[A0, C4]")
+            >>> range_2 = abjad.PitchRange("[A0, C4]")
+            >>> range_3 = abjad.PitchRange("[A0, C8]")
 
             >>> range_1 < range_1
             False
@@ -426,46 +365,22 @@ class PitchRange:
 
         """
         assert isinstance(argument, type(self)), repr(argument)
-        argument_start_pitch: _pitch.NamedPitch | _pitch.NumberedPitch
-        argument_stop_pitch: _pitch.NamedPitch | _pitch.NumberedPitch
-        self_start_pitch: _pitch.NamedPitch | _pitch.NumberedPitch
-        self_stop_pitch: _pitch.NamedPitch | _pitch.NumberedPitch
-        if self._is_named() and argument._is_named():
-            if self.start_pitch is None:
-                self_start_pitch = _pitch.NamedPitch(-1000)
-            else:
-                self_start_pitch = _pitch.NamedPitch(self.start_pitch)
-            if self.stop_pitch is None:
-                self_stop_pitch = _pitch.NamedPitch(1000)
-            else:
-                self_stop_pitch = _pitch.NamedPitch(self.stop_pitch)
-            if argument.start_pitch is None:
-                argument_start_pitch = _pitch.NamedPitch(-1000)
-            else:
-                argument_start_pitch = _pitch.NamedPitch(argument.start_pitch)
-            if argument.stop_pitch is None:
-                argument_stop_pitch = _pitch.NamedPitch(1000)
-            else:
-                argument_stop_pitch = _pitch.NamedPitch(argument.stop_pitch)
-        elif self._is_numbered() and argument._is_numbered():
-            if self.start_pitch is None:
-                self_start_pitch = _pitch.NumberedPitch(-1000)
-            else:
-                self_start_pitch = _pitch.NumberedPitch(self.start_pitch)
-            if self.stop_pitch is None:
-                self_stop_pitch = _pitch.NumberedPitch(1000)
-            else:
-                self_stop_pitch = _pitch.NumberedPitch(self.stop_pitch)
-            if argument.start_pitch is None:
-                argument_start_pitch = _pitch.NumberedPitch(-1000)
-            else:
-                argument_start_pitch = _pitch.NumberedPitch(argument.start_pitch)
-            if argument.stop_pitch is None:
-                argument_stop_pitch = _pitch.NumberedPitch(1000)
-            else:
-                argument_stop_pitch = _pitch.NumberedPitch(argument.stop_pitch)
+        if self.start_pitch is None:
+            self_start_pitch = _pitch.NamedPitch(-1000)
         else:
-            raise Exception(f"mismatched types: {self!r} {argument!r}.")
+            self_start_pitch = _pitch.NamedPitch(self.start_pitch)
+        if self.stop_pitch is None:
+            self_stop_pitch = _pitch.NamedPitch(1000)
+        else:
+            self_stop_pitch = _pitch.NamedPitch(self.stop_pitch)
+        if argument.start_pitch is None:
+            argument_start_pitch = _pitch.NamedPitch(-1000)
+        else:
+            argument_start_pitch = _pitch.NamedPitch(argument.start_pitch)
+        if argument.stop_pitch is None:
+            argument_stop_pitch = _pitch.NamedPitch(1000)
+        else:
+            argument_stop_pitch = _pitch.NamedPitch(argument.stop_pitch)
         if self_start_pitch == argument_start_pitch:
             return self_stop_pitch < argument_stop_pitch
         return self_start_pitch < argument_start_pitch
@@ -475,16 +390,6 @@ class PitchRange:
         Gets pitch range interpreter representation.
         """
         return f"{type(self).__name__}(range_string={self.range_string!r})"
-
-    def _is_named(self):
-        return isinstance(
-            self.start_pitch, (_pitch.NamedPitch, type(None))
-        ) and isinstance(self.stop_pitch, (_pitch.NamedPitch, type(None)))
-
-    def _is_numbered(self):
-        return isinstance(
-            self.start_pitch, (_pitch.NumberedPitch, type(None))
-        ) and isinstance(self.stop_pitch, (_pitch.NumberedPitch, type(None)))
 
     def _parse_range_string(self, range_string):
         assert isinstance(range_string, str), repr(range_string)
@@ -502,8 +407,7 @@ class PitchRange:
             start_pitch = None
             start_pitch_repr = "-inf"
         elif start_pitch_string.isnumeric() or start_pitch_string.startswith("-"):
-            start_pitch = _pitch.NumberedPitch(int(start_pitch_string))
-            start_pitch_repr = str(start_pitch)
+            raise Exception(f"named pitches only (not {range_string!r}).")
         else:
             start_pitch = _pitch.NamedPitch(start_pitch_string)
             start_pitch_repr = start_pitch.get_name(locale="us")
@@ -512,8 +416,7 @@ class PitchRange:
             stop_pitch = None
             stop_pitch_repr = "+inf"
         elif stop_pitch_string.isnumeric() or stop_pitch_string.startswith("-"):
-            stop_pitch = _pitch.NumberedPitch(int(stop_pitch_string))
-            stop_pitch_repr = str(stop_pitch)
+            raise Exception(f"named pitches only (not {range_string!r}).")
         else:
             stop_pitch = _pitch.NamedPitch(stop_pitch_string)
             stop_pitch_repr = stop_pitch.get_name(locale="us")
@@ -550,7 +453,7 @@ class PitchRange:
         return self._range_string
 
     @property
-    def start_pitch(self) -> _pitch.NamedPitch | _pitch.NumberedPitch | None:
+    def start_pitch(self) -> _pitch.NamedPitch | None:
         """
         Start pitch of pitch range.
 
@@ -566,7 +469,7 @@ class PitchRange:
         return self._start_pitch
 
     @property
-    def stop_pitch(self) -> _pitch.NamedPitch | _pitch.NumberedPitch | None:
+    def stop_pitch(self) -> _pitch.NamedPitch | None:
         """
         Stop pitch of pitch range.
 
