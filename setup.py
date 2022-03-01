@@ -60,8 +60,8 @@ classifiers = [
 ]
 
 extras_require = {
-    "nauert": ["abjad-ext-nauert==3.5"],
-    "rmakers": ["abjad-ext-rmakers==3.5"],
+    "nauert": ["abjad-ext-nauert==3.6"],
+    "rmakers": ["abjad-ext-rmakers==3.6"],
 }
 
 keywords = [
@@ -71,12 +71,12 @@ keywords = [
 ]
 
 install_requires = [
-    "black",
-    "flake8",
-    "isort",
-    "mypy",
+    "black>=22.1.0",
+    "flake8>=4.0.1",
+    "isort>=5.10.1",
+    "mypy>=0.931",
     "ply",
-    "pytest",
+    "pytest>=6.2.5",
     "pytest-cov",
     "pytest-helpers-namespace",
     "quicktions",
@@ -84,7 +84,7 @@ install_requires = [
     "six",
     "sphinx-autodoc-typehints",
     "types-six",
-    "uqbar",
+    "uqbar>=0.5.9",
 ]
 
 if __name__ == "__main__":

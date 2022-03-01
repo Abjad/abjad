@@ -5,6 +5,385 @@ Changes
 
 ----
 
+Changed in Abjad 3.6
+--------------------
+
+Changes to Abjad 3.6 (2022-03-01) since Abjad 3.5 (2022-02-01).
+
+PERFORMANCE INCREASES. Abjad 3.6 runs significantly faster than previous versions of the
+system: user code rendering two or more pages of music runs 200% to 800% than before.
+Performance increases came from removing inspect-heavy functions, and from optimizing
+score updates. Total performance increase depends on the number of context indicators
+(like clefs and time signatures) used, and on the amount of looping used to find
+indicators in a score.
+
+BREAKING CHANGE: `#1407 <https://github.com/Abjad/abjad/issues/1407>`_. The custom
+``abjad.Selection`` class is deprecated will be completely removed in Abjad 3.7.
+
+    CHANGED. In general, remove all ``isinstance(..., abjad.Selection)`` from your code:
+    Abjad 3.6 now passes built-in lists of components instead of custom selection
+    objects. Container slices now return a list:
+
+    OLD::
+
+        staff = abjad.Staff("c'4 d' e' f'")[:]
+        abjad.Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
+    NEW::
+
+        staff = abjad.Staff("c'4 d' e' f'")[:]
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
+
+    CHANGED. ``abjad.select.foo(...)`` and ``abjad.iterate.foo(...)`` now match.
+
+    Selecting components means calling functions; class creation is no longer required:
+
+    OLD::
+
+        abjad.select(...).chord(n)
+        abjad.select(...).chords()
+        abjad.select(...).components()
+        abjad.select(...).exclude([0], 2)
+        abjad.select(...).filter(lambda _: len(_) == 2)
+        abjad.select(...).get([0], 2)
+        abjad.select(...).group_by(lambda _: getattr(_, "foo"))
+        abjad.select(...).group_by_contiguity()
+        abjad.select(...).group_by_duration()
+        abjad.select(...).group_by_length()
+        abjad.select(...).group_by_measure()
+        abjad.select(...).group_by_pitch()
+        abjad.select(...).leaf(n)
+        abjad.select(...).leaves()
+        abjad.select(...).logical_tie(n)
+        abjad.select(...).logical_ties()
+        abjad.select(...).nontrivial()
+        abjad.select(...).note(n)
+        abjad.select(...).notes()
+        abjad.select(...).partition_by_counts([4, 4, 2], cyclic=True)
+        abjad.select(...).partition_by_ratio((2, 1))
+        abjad.select(...).rest(n)
+        abjad.select(...).rests()
+        abjad.select(...).run(n)
+        abjad.select(...).runs()
+        abjad.select(...).top()
+        abjad.select(...).tuplet(n)
+        abjad.select(...).tuplets()
+        abjad.select(...).with_next_leaf()
+        abjad.select(...).with_previous_leaf()
+
+    NEW::
+
+        abjad.select.chord(..., n)
+        abjad.select.chords(..., )
+        abjad.select.components(..., )
+        abjad.select.exclude(..., [0], 2)
+        abjad.select.filter(..., lambda _: len(_) == 2)
+        abjad.select.get(..., [0], 2)
+        abjad.select.group_by(..., lambda _: getattr(_, "foo"))
+        abjad.select.group_by_contiguity(..., )
+        abjad.select.group_by_duration(..., )
+        abjad.select.group_by_length(..., )
+        abjad.select.group_by_measure(..., )
+        abjad.select.group_by_pitch(..., )
+        abjad.select.leaf(..., n)
+        abjad.select.leaves(..., )
+        abjad.select.logical_tie(..., n)
+        abjad.select.logical_ties(..., )
+        abjad.select.nontrivial(..., )
+        abjad.select.note(..., n)
+        abjad.select.notes(..., )
+        abjad.select.partition_by_counts(..., [4, 4, 2], cyclic=True)
+        abjad.select.partition_by_ratio(..., (2, 1))
+        abjad.select.rest(..., n)
+        abjad.select.rests(..., )
+        abjad.select.run(..., n)
+        abjad.select.runs(..., )
+        abjad.select.top(..., )
+        abjad.select.tuplet(..., n)
+        abjad.select.tuplets(..., )
+        abjad.select.with_next_leaf(..., )
+        abjad.select.with_previous_leaf(..., )
+
+    Dot-chained syntax continues to be allowed in Abjad 3.6 but will be removed in Abjad
+    3.7. Rewrite dot-chained method calls like this:
+
+    Example 1::
+
+        OLD:
+
+            result = abjad.select(...).tuplets()[:4].leaves()
+
+        NEW:
+
+            result = abjad.select.tuplets(...)[:4]
+            result = abjad.select.leaves(result)
+
+    Example 2::
+
+        OLD:
+
+            result = abjad.select(...).leaves().group_by_measure().get([0], 2)
+
+        NEW:
+
+            result = abjad.select.leaves(...)
+            result = abjad.select.group_by_measure(result)
+            result = abjad.select.get(result, [0], 2)
+
+BREAKING CHANGE: `#1415 <https://github.com/Abjad/abjad/issues/1415>`_. Replaced
+``abjad.Sequence`` with ``sequence.py`` module:
+
+    OLD::
+
+        abjad.Sequence(...).filter()
+        abjad.Sequence(...).flatten()
+        abjad.Sequence(...).group_by()
+        abjad.Sequence(...).is_decreasing()
+        abjad.Sequence(...).is_increasing()
+        abjad.Sequence(...).is_permutation()
+        abjad.Sequence(...).is_repetition_free()
+        abjad.Sequence(...).join()
+        abjad.Sequence(...).map()
+        abjad.Sequence(...).nwise()
+        abjad.Sequence(...).partition_by_counts()
+        abjad.Sequence(...).partition_by_ratio_of_lengths()
+        abjad.Sequence(...).partition_by_ratio_of_weights()
+        abjad.Sequence(...).partition_by_weights()
+        abjad.Sequence(...).permute()
+        abjad.Sequence(...).remove()
+        abjad.Sequence(...).remove_repeats()
+        abjad.Sequence(...).repeat()
+        abjad.Sequence(...).repeat_to_length()
+        abjad.Sequence(...).repeat_to_weight()
+        abjad.Sequence(...).replace()
+        abjad.Sequence(...).replace_at()
+        abjad.Sequence(...).retain()
+        abjad.Sequence(...).retain_pattern()
+        abjad.Sequence(...).reverse()
+        abjad.Sequence(...).rotate()
+        abjad.Sequence(...).sort()
+        abjad.Sequence(...).split()
+        abjad.Sequence(...).sum()
+        abjad.Sequence(...).sum_by_sign()
+        abjad.Sequence(...).truncate()
+        abjad.Sequence(...).weight()
+        abjad.Sequence(...).zip()
+
+    NEW::
+
+        abjad.sequence.filter(...)
+        abjad.sequence.flatten(...)
+        abjad.sequence.group_by(...)
+        abjad.sequence.is_decreasing(...)
+        abjad.sequence.is_increasing(...)
+        abjad.sequence.is_permutation(...)
+        abjad.sequence.is_repetition_free(...)
+        abjad.sequence.join(...)
+        abjad.sequence.map(...)
+        abjad.sequence.nwise(...)
+        abjad.sequence.partition_by_counts(...)
+        abjad.sequence.partition_by_ratio_of_lengths(...)
+        abjad.sequence.partition_by_ratio_of_weights(...)
+        abjad.sequence.partition_by_weights(...)
+        abjad.sequence.permute(...)
+        abjad.sequence.remove(...)
+        abjad.sequence.remove_repeats(...)
+        abjad.sequence.repeat(...)
+        abjad.sequence.repeat_to_length(...)
+        abjad.sequence.repeat_to_weight(...)
+        abjad.sequence.replace(...)
+        abjad.sequence.replace_at(...)
+        abjad.sequence.retain(...)
+        abjad.sequence.retain_pattern(...)
+        abjad.sequence.reverse(...)
+        abjad.sequence.rotate(...)
+        abjad.sequence.sort(...)
+        abjad.sequence.split(...)
+        abjad.sequence.sum(...)
+        abjad.sequence.sum_by_sign(...)
+        abjad.sequence.truncate(...)
+        abjad.sequence.weight(...)
+        abjad.sequence.zip(...)
+
+BREAKING CHANGE: `#1394 <https://github.com/Abjad/abjad/issues/1394>`_. Replaced
+``abjad.String`` with ``string.py`` module:
+
+    OLD::
+
+        abjad.String("text").capitalize_start()
+        abjad.String("text").delimit_words()
+        abjad.String("text").from_roman()
+        abjad.String("text").is_lilypond_identifier()
+        abjad.String("text").is_roman()
+        abjad.String("text").is_shout_case()
+        abjad.String("text").pluralize()
+        abjad.String("text").strip_roman()
+        abjad.String("text").to_shout_case()
+        abjad.String("text").to_upper_camel_case()
+        abjad.String.normalize("text")
+        abjad.String.sort_roman(["PartI", "PartII", "PartIII"])
+        abjad.String.to_tridirectional_lilypond_symbol("text")
+        abjad.String.to_tridirectional_ordinal_constant("text")
+
+    NEW::
+
+        abjad.string.capitalize_start("text")
+        abjad.string.delimit_words("text")
+        abjad.string.from_roman("text")
+        abjad.string.is_lilypond_identifier("text")
+        abjad.string.is_roman("text")
+        abjad.string.is_shout_case("text")
+        abjad.string.pluralize("text")
+        abjad.string.strip_roman("text")
+        abjad.string.to_shout_case("text")
+        abjad.string.to_upper_camel_case("text")
+        abjad.string.normalize("text")
+        abjad.string.sort_roman(["PartI", "PartII", "PartIII"])
+        abjad.string.to_tridirectional_lilypond_symbol("text")
+        abjad.string.to_tridirectional_ordinal_constant("text")
+
+    REMOVED::
+
+        abjad.String("text").base_26()
+        abjad.String("text").is_build_directory_name()
+        abjad.String("text").is_classfile_name()
+        abjad.String("text").is_dash_case()
+        abjad.String("text").is_lower_camel_case()
+        abjad.String("text").is_lowercase_file_name()
+        abjad.String("text").is_module_file_name()
+        abjad.String("text").is_package_name()
+        abjad.String("text").is_public_python_file_name()
+        abjad.String("text").is_rehearsal_mark()
+        abjad.String("text").is_snake_case()
+        abjad.String("text").is_snake_case_file_name()
+        abjad.String("text").is_snake_case_file_name_with_extension()
+        abjad.String("text").is_snake_case_package_name()
+        abjad.String("text").is_space_delimited_lowercase()
+        abjad.String("text").is_string()
+        abjad.String("text").is_stylesheet_name()
+        abjad.String("text").is_tools_file_name()
+        abjad.String("text").is_upper_camel_case()
+        abjad.String("text").match_strings()
+        abjad.String("text").match_word_starts()
+        abjad.String("text").remove_zfill()
+        abjad.String("text").segment_letter()
+        abjad.String("text").segment_rank()
+        abjad.String("text").strip_diacritics()
+        abjad.String("text").to_accent_free_snake_case()
+        abjad.String("text").to_dash_case()
+        abjad.String("text").to_lower_camel_case()
+        abjad.String("text").to_segment_lilypond_identifier()
+        abjad.String("text").to_snake_case()
+        abjad.String("text").to_space_delimited_lowercase()
+        abjad.String("text").to_space_delimited_lowercase()
+        abjad.String.to_bidirectional_direction_string("text")
+        abjad.String.to_bidirectional_lilypond_symbol("text")
+        abjad.String.to_tridirectional_direction_string("text")
+
+
+`#1420 <https://github.com/Abjad/abjad/issues/1420>`_. Cleaned up boolean keywords.
+
+`#1418 <https://github.com/Abjad/abjad/issues/1418>`_. Constrained ``abjad.PitchRange``
+to named pitches:
+
+    OLD::
+
+        abjad.PitchRange("[A0, C8]")
+        abjad.PitchRange("[-39, 48]")
+        "C3" in pitch_range
+        -12 in pitch_range
+
+    NEW::
+
+        abjad.PitchRange("[A0, C8]")
+        "C3" in pitch_range
+
+`#1405 <https://github.com/Abjad/abjad/issues/1405>`_. Removed pitch vector classes.
+
+`#1403 <https://github.com/Abjad/abjad/issues/1403>`_. Changed pitch collections'
+``from_selection()`` to ``from_pitches()``:
+
+    OLD::
+
+        abjad.IntervalClassSegment.from_selection()
+        abjad.IntervalSegment.from_selection()
+        abjad.PitchClassSegment.from_selection()
+        abjad.PitchSegment.from_selection()
+        abjad.IntervalClassSet.from_selection()
+        abjad.IntervalSet.from_selection()
+        abjad.PitchClassSet.from_selection()
+        abjad.PitchSet.from_selection()
+        abjad.IntervalVector.from_selection()
+        abjad.IntervalClassVector.from_selection()
+        abjad.PitchClassVector.from_selection()
+        abjad.PitchVector.from_selection()
+
+    NEW::
+
+        abjad.IntervalClassSegment.from_pitches()
+        abjad.IntervalSegment.from_pitches()
+        abjad.PitchClassSegment.from_pitches()
+        abjad.PitchSegment.from_pitches()
+        abjad.IntervalClassSet.from_pitches()
+        abjad.IntervalSet.from_pitches()
+        abjad.PitchClassSet.from_pitches()
+        abjad.PitchSet.from_pitches()
+        abjad.IntervalVector.from_pitches()
+        abjad.IntervalClassVector.from_pitches()
+        abjad.PitchClassVector.from_pitches()
+        abjad.PitchVector.from_pitches()
+
+    You must now call ``abjad.iterate.pitches()`` explicitly before calling
+    ``from_pitches()``:
+
+    OLD::
+
+        abjad.PitchSegment.from_selection(staff[:])
+
+    NEW::
+
+        pitches = abjad.iterate.pitches(staff)
+        abjad.PitchSegment.from_pitches(pitches)
+
+`#1401 <https://github.com/Abjad/abjad/issues/1401>`_. Made
+``abjad.NamedPitch.respell()`` public.
+
+    NEW::
+
+        abjad.NamedPitch("cs").respell(accidental="flats")
+        NamedPitch('df')
+
+        abjad.NamedPitch("df").respell(accidental="sharps")
+        NamedPitch('cs')
+
+`#1399 <https://github.com/Abjad/abjad/issues/1399>`_. Removed operator classes.
+
+`#1397 <https://github.com/Abjad/abjad/issues/1397>`_. Removed inequality classes.
+
+`#1392 <https://github.com/Abjad/abjad/issues/1392>`_. Remove ``abjad.SegmentMaker``.
+Removed score templates.
+
+`#1390 <https://github.com/Abjad/abjad/issues/1390>`_. Optimized score updates.
+
+
+`#1388 <https://github.com/Abjad/abjad/issues/1388>`_. Removed
+``abjad.format.get_repr()``, and related inspect-heavy functions:
+
+    REMOVED::
+
+        abjad.get.get_hash_values()
+        abjad.format.get_repr()
+        abjad.format.get_template_dict()
+        abjad.format.storage()
+
+`#1387 <https://github.com/Abjad/abjad/issues/1387>`_. Refused comparison between named
+and numbered pitches.
+
+`#1379 <https://github.com/Abjad/abjad/issues/1379>`_. Removed
+``abjad.format.compare_objects()``.
+
+----
+
 Changed in Abjad 3.5
 --------------------
 
@@ -101,24 +480,24 @@ no longer parsed:
 
     Removed abjad.ContextBlock; use abjad.Block instead::
 
-        >>> string = r"""\Staff
-        ...     \name FluteStaff
-        ...     \type Engraver_group
-        ...     \alias Staff
-        ...     \remove Forbid_line_break_engraver
-        ...     \consists Horizontal_bracket_engraver
-        ...     \accepts FluteUpperVoice
-        ...     \accepts FluteLowerVoice
-        ...     \override Beam.positions = #'(-4 . -4)
-        ...     \override Stem.stem-end-position = -6
-        ...     autoBeaming = ##f
-        ...     tupletFullLength = ##t
-        ...     \accidentalStyle dodecaphonic"""
-        >>> block = abjad.Block(name="context")
-        >>> block.items.append(string)
+        string = r"""\Staff
+            \name FluteStaff
+            \type Engraver_group
+            \alias Staff
+            \remove Forbid_line_break_engraver
+            \consists Horizontal_bracket_engraver
+            \accepts FluteUpperVoice
+            \accepts FluteLowerVoice
+            \override Beam.positions = #'(-4 . -4)
+            \override Stem.stem-end-position = -6
+            autoBeaming = ##f
+            tupletFullLength = ##t
+            \accidentalStyle dodecaphonic"""
+        block = abjad.Block(name="context")
+        block.items.append(string)
 
-        >>> string = abjad.lilypond(block)
-        >>> print(string)
+        string = abjad.lilypond(block)
+        print(string)
         \context
         {
             \Staff
