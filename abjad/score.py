@@ -855,7 +855,7 @@ class Container(Component):
         self,
         components=None,
         identifier: str = None,
-        simultaneous: bool = None,
+        simultaneous: bool = False,
         name: str = None,
         tag: _tag.Tag = None,
         *,
@@ -869,7 +869,7 @@ class Container(Component):
         self._name = name
         self._initialize_components(components, language=language)
         self.identifier = identifier
-        self.simultaneous = simultaneous
+        self.simultaneous = bool(simultaneous)
         # sets name permanently after _initalize_components:
         self.name = name
 
@@ -1482,8 +1482,8 @@ class Container(Component):
                     }
                 }
 
-            >>> container.simultaneous is None
-            True
+            >>> container.simultaneous
+            False
 
         ..  container:: example
 
@@ -2634,11 +2634,11 @@ class Chord(Leaf):
             written_pitches, are_cautionary, are_forced, are_parenthesized
         ):
             if not is_cautionary:
-                is_cautionary = None
+                is_cautionary = False
             if not is_forced:
-                is_forced = None
+                is_forced = False
             if not is_parenthesized:
-                is_parenthesized = None
+                is_parenthesized = False
             if written_pitch not in _lyconst.drums:
                 note_head = NoteHead(
                     written_pitch=written_pitch,
@@ -2971,7 +2971,7 @@ class Context(Container):
         self,
         components=None,
         lilypond_type: str = "Context",
-        simultaneous: bool = None,
+        simultaneous: bool = False,
         name: str = None,
         tag: _tag.Tag = None,
         *,
@@ -3037,7 +3037,7 @@ class Context(Container):
             parameters.append(f"lilypond_type={self.lilypond_type!r}")
         if self.name:
             parameters.append(f"name={self.name!r}")
-        if self.simultaneous is not None:
+        if self.simultaneous is True:
             parameters.append(f"simultaneous={self.simultaneous!r}")
         string = ", ".join(parameters)
         return f"{type(self).__name__}({string})"
@@ -3684,9 +3684,7 @@ class NoteHead:
 
     @is_cautionary.setter
     def is_cautionary(self, argument):
-        if argument is not None:
-            argument = bool(argument)
-        self._is_cautionary = argument
+        self._is_cautionary = bool(argument)
 
     @property
     def is_forced(self) -> bool:
@@ -3789,7 +3787,7 @@ class NoteHead:
 
             >>> abjad.tweak(note_head).color = "#red"
             >>> note_head.tweaks
-            TweakInterface(('_literal', None), ('color', '#red'))
+            TweakInterface(('_literal', False), ('color', '#red'))
 
             >>> string = abjad.lilypond(note_head)
             >>> print(string)
@@ -3910,9 +3908,9 @@ class DrumNoteHead(NoteHead):
     def __init__(
         self,
         written_pitch: str = "snare",
-        is_cautionary: bool = None,
-        is_forced: bool = None,
-        is_parenthesized: bool = None,
+        is_cautionary: bool = False,
+        is_forced: bool = False,
+        is_parenthesized: bool = False,
         tweaks: _overrides.TweakInterface = None,
     ) -> None:
         NoteHead.__init__(
@@ -4775,7 +4773,7 @@ class Staff(Context):
         self,
         components=None,
         lilypond_type: str = "Staff",
-        simultaneous: bool = None,
+        simultaneous: bool = False,
         name: str = None,
         tag: _tag.Tag = None,
         *,
@@ -5121,8 +5119,8 @@ class Tuplet(Container):
         components=None,
         *,
         denominator: int = None,
-        force_fraction: bool = None,
-        hide: bool = None,
+        force_fraction: bool = False,
+        hide: bool = False,
         language: str = "english",
         tag: _tag.Tag = None,
         tweaks: _overrides.TweakInterface = None,
@@ -5559,7 +5557,7 @@ class Tuplet(Container):
 
     @force_fraction.setter
     def force_fraction(self, argument):
-        if isinstance(argument, (bool, type(None))):
+        if isinstance(argument, bool):
             self._force_fraction = argument
         else:
             raise TypeError(f"force fraction must be boolean (not {argument!r}).")
@@ -5585,8 +5583,8 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.hide is None
-            True
+            >>> tuplet.hide
+            False
 
         ..  container:: example
 
@@ -5644,7 +5642,7 @@ class Tuplet(Container):
 
     @hide.setter
     def hide(self, argument):
-        assert isinstance(argument, (bool, type(None))), repr(argument)
+        assert isinstance(argument, bool), repr(argument)
         self._hide = argument
 
     @property
@@ -7193,7 +7191,7 @@ class Voice(Context):
         self,
         components=None,
         lilypond_type: str = "Voice",
-        simultaneous: bool = None,
+        simultaneous: bool = False,
         name: str = None,
         tag: _tag.Tag = None,
         *,

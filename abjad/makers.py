@@ -444,12 +444,12 @@ class LeafMaker:
     def __init__(
         self,
         *,
-        increase_monotonic: bool = None,
+        increase_monotonic: bool = False,
         forbidden_note_duration: _typings.DurationTyping = None,
         forbidden_rest_duration: _typings.DurationTyping = None,
-        skips_instead_of_rests: bool = None,
+        skips_instead_of_rests: bool = False,
         tag: _tag.Tag = None,
-        use_multimeasure_rests: bool = None,
+        use_multimeasure_rests: bool = False,
     ) -> None:
         if increase_monotonic is not None:
             increase_monotonic = bool(increase_monotonic)
@@ -910,11 +910,9 @@ class NoteMaker:
     ### INITIALIZER ###
 
     def __init__(
-        self, *, increase_monotonic: bool = None, tag: _tag.Tag = None
+        self, *, increase_monotonic: bool = False, tag: _tag.Tag = None
     ) -> None:
-        if increase_monotonic is not None:
-            increase_monotonic = bool(increase_monotonic)
-        self._increase_monotonic = increase_monotonic
+        self._increase_monotonic = bool(increase_monotonic)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
@@ -1028,7 +1026,7 @@ class NoteMaker:
 
 
 def tuplet_from_duration_and_ratio(
-    duration, ratio, *, increase_monotonic: bool = None, tag: _tag.Tag = None
+    duration, ratio, *, increase_monotonic: bool = False, tag: _tag.Tag = None
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from ``duration`` and ``ratio``.

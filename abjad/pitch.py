@@ -650,7 +650,7 @@ class Accidental:
     """
 
     name: str = "natural"
-    arrow: bool | None = dataclasses.field(default=None, repr=False)
+    arrow: bool = dataclasses.field(default=False, repr=False)
     semitones: int = dataclasses.field(compare=False, init=False, repr=False)
 
     def __post_init__(self):

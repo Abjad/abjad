@@ -14,22 +14,22 @@ from . import timespan as _timespan
 from . import typings as _typings
 
 
-def _are_logical_voice(COMPONENTS, prototype=None):
+def _are_logical_voice(components, prototype=None):
     prototype = prototype or (_score.Component,)
     if not isinstance(prototype, tuple):
         prototype = (prototype,)
     assert isinstance(prototype, tuple)
-    if len(COMPONENTS) == 0:
+    if len(components) == 0:
         return True
-    if all(isinstance(_, prototype) and _._parent is None for _ in COMPONENTS):
+    if all(isinstance(_, prototype) and _._parent is None for _ in components):
         return True
-    first = COMPONENTS[0]
+    first = components[0]
     if not isinstance(first, prototype):
         return False
     same_logical_voice = True
     parentage = _parentage.Parentage(first)
     first_logical_voice = parentage.logical_voice()
-    for component in COMPONENTS[1:]:
+    for component in components[1:]:
         parentage = _parentage.Parentage(component)
         if parentage.logical_voice() != first_logical_voice:
             same_logical_voice = False
@@ -38,9 +38,9 @@ def _are_logical_voice(COMPONENTS, prototype=None):
     return True
 
 
-def _get_annotation(COMPONENT, annotation, default=None, unwrap: bool = True):
+def _get_annotation(component, annotation, default=None, unwrap: bool = True):
     assert isinstance(annotation, str), repr(annotation)
-    for wrapper in _get_annotation_wrappers(COMPONENT):
+    for wrapper in _get_annotation_wrappers(component):
         if wrapper.annotation == annotation:
             if unwrap is True:
                 return wrapper.indicator
@@ -49,15 +49,15 @@ def _get_annotation(COMPONENT, annotation, default=None, unwrap: bool = True):
     return default
 
 
-def _get_annotation_wrappers(ARGUMENT):
+def _get_annotation_wrappers(argument):
     result = []
-    for wrapper in getattr(ARGUMENT, "_wrappers", []):
+    for wrapper in getattr(argument, "_wrappers", []):
         if wrapper.annotation:
             result.append(wrapper)
     return result
 
 
-def _get_duration(argument, *, in_seconds: bool = None, preprolated: bool = False):
+def _get_duration(argument, *, in_seconds: bool = False, preprolated: bool = False):
     if preprolated is True:
         if hasattr(argument, "_get_preprolated_duration"):
             duration = argument._get_preprolated_duration()
@@ -73,23 +73,23 @@ def _get_duration(argument, *, in_seconds: bool = None, preprolated: bool = Fals
     return _duration.Duration(sum(durations))
 
 
-def _get_duration_in_seconds(COMPONENT):
-    if isinstance(COMPONENT, _score.Container):
-        if COMPONENT.simultaneous:
+def _get_duration_in_seconds(component):
+    if isinstance(component, _score.Container):
+        if component.simultaneous:
             return max(
                 [_duration.Duration(0)]
-                + [_get_duration_in_seconds(_) for _ in COMPONENT]
+                + [_get_duration_in_seconds(_) for _ in component]
             )
         else:
             duration = _duration.Duration(0)
-            for component in COMPONENT:
-                duration += _get_duration_in_seconds(component)
+            for component_ in component:
+                duration += _get_duration_in_seconds(component_)
             return duration
     else:
-        mark = _get_effective(COMPONENT, _indicators.MetronomeMark)
+        mark = _get_effective(component, _indicators.MetronomeMark)
         if mark is not None and not mark.is_imprecise:
             result = (
-                COMPONENT._get_duration()
+                component._get_duration()
                 / mark.reference_duration
                 / mark.units_per_minute
                 * 60
@@ -169,29 +169,29 @@ def _get_effective(
     return wrapper
 
 
-def _get_grace_container(COMPONENT):
+def _get_grace_container(component):
     prototype = (
         _score.AfterGraceContainer,
         _score.BeforeGraceContainer,
     )
-    for component in COMPONENT._get_parentage():
-        if isinstance(component, prototype):
+    for component_ in component._get_parentage():
+        if isinstance(component_, prototype):
             return True
-        if component.__class__.__name__ == "OnBeatGraceContainer":
+        if component_.__class__.__name__ == "OnBeatGraceContainer":
             return True
     return False
 
 
 def _get_indicator(
-    COMPONENT,
+    component,
     prototype: _typings.Prototype = None,
     *,
     default: typing.Any = None,
     unwrap: bool = True,
 ) -> typing.Any:
-    if not isinstance(COMPONENT, _score.Component):
+    if not isinstance(component, _score.Component):
         raise Exception("can only get indicator on component.")
-    indicators = COMPONENT._get_indicators(prototype=prototype, unwrap=unwrap)
+    indicators = component._get_indicators(prototype=prototype, unwrap=unwrap)
     if not indicators:
         return default
     elif len(indicators) == 1:
@@ -204,11 +204,11 @@ def _get_indicator(
         )
 
 
-def _get_leaf_from_leaf(LEAF, n):
+def _get_leaf_from_leaf(leaf, n):
     assert n in (-1, 0, 1), repr(n)
     if n == 0:
-        return LEAF
-    sibling = LEAF._sibling(n)
+        return leaf
+    sibling = leaf._sibling(n)
     if sibling is None:
         return None
     if n == 1:
@@ -229,23 +229,23 @@ def _get_leaf_from_leaf(LEAF, n):
     for component in components:
         if not isinstance(component, _score.Leaf):
             continue
-        if _are_logical_voice([LEAF, component]):
+        if _are_logical_voice([leaf, component]):
             return component
 
 
-def _get_on_beat_anchor_voice(CONTAINER):
-    container = CONTAINER._parent
-    if container is None:
+def _get_on_beat_anchor_voice(container):
+    container_ = container._parent
+    if container_ is None:
         return None
-    if not container.simultaneous:
+    if not container_.simultaneous:
         return None
-    if not len(container) == 2:
+    if not len(container_) == 2:
         return None
-    index = container.index(CONTAINER)
-    if index == 0 and container[1].__class__.__name__ == "OnBeatGraceContainer":
-        return container[1]
-    if index == 1 and container[0].__class__.__name__ == "OnBeatGraceContainer":
-        return container[0]
+    index = container_.index(container)
+    if index == 0 and container_[1].__class__.__name__ == "OnBeatGraceContainer":
+        return container_[1]
+    if index == 1 and container_[0].__class__.__name__ == "OnBeatGraceContainer":
+        return container_[0]
     return None
 
 
@@ -277,78 +277,78 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
     return wrappers
 
 
-def _get_sibling_with_graces(COMPONENT, n):
-    assert n in (-1, 0, 1), repr(COMPONENT, n)
+def _get_sibling_with_graces(component, n):
+    assert n in (-1, 0, 1), repr(component, n)
     if n == 0:
-        return COMPONENT
-    if COMPONENT._parent is None:
+        return component
+    if component._parent is None:
         return None
-    if COMPONENT._parent.simultaneous:
+    if component._parent.simultaneous:
         return None
     if (
         n == 1
-        and getattr(COMPONENT._parent, "_main_leaf", None)
-        and COMPONENT._parent._main_leaf._before_grace_container is COMPONENT._parent
-        and COMPONENT is COMPONENT._parent[-1]
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._before_grace_container is component._parent
+        and component is component._parent[-1]
     ):
-        return COMPONENT._parent._main_leaf
+        return component._parent._main_leaf
     # last leaf in on-beat grace redo
     if (
         n == 1
-        and COMPONENT is COMPONENT._parent[-1]
-        and COMPONENT._parent.__class__.__name__ == "OnBeatGraceContainer"
+        and component is component._parent[-1]
+        and component._parent.__class__.__name__ == "OnBeatGraceContainer"
     ):
-        return COMPONENT._parent._get_on_beat_anchor_leaf()
+        return component._parent._get_on_beat_anchor_leaf()
     if (
         n == 1
-        and getattr(COMPONENT._parent, "_main_leaf", None)
-        and COMPONENT._parent._main_leaf._after_grace_container is COMPONENT._parent
-        and COMPONENT is COMPONENT._parent[-1]
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._after_grace_container is component._parent
+        and component is component._parent[-1]
     ):
-        main_leaf = COMPONENT._parent._main_leaf
+        main_leaf = component._parent._main_leaf
         if main_leaf is main_leaf._parent[-1]:
             return None
         index = main_leaf._parent.index(main_leaf)
         return main_leaf._parent[index + 1]
-    if n == 1 and getattr(COMPONENT, "_after_grace_container", None):
-        return COMPONENT._after_grace_container[0]
+    if n == 1 and getattr(component, "_after_grace_container", None):
+        return component._after_grace_container[0]
     if (
         n == -1
-        and getattr(COMPONENT._parent, "_main_leaf", None)
-        and COMPONENT._parent._main_leaf._after_grace_container is COMPONENT._parent
-        and COMPONENT is COMPONENT._parent[0]
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._after_grace_container is component._parent
+        and component is component._parent[0]
     ):
-        return COMPONENT._parent._main_leaf
+        return component._parent._main_leaf
     if (
         n == -1
-        and getattr(COMPONENT._parent, "_main_leaf", None)
-        and COMPONENT._parent._main_leaf._before_grace_container is COMPONENT._parent
-        and COMPONENT is COMPONENT._parent[0]
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._before_grace_container is component._parent
+        and component is component._parent[0]
     ):
-        main_leaf = COMPONENT._parent._main_leaf
+        main_leaf = component._parent._main_leaf
         if main_leaf is main_leaf._parent[0]:
             return None
         index = main_leaf._parent.index(main_leaf)
         return main_leaf._parent[index - 1]
-    # COMPONENT is main leaf in main voice (simultaneous with on-beat graces)
+    # component is main leaf in main voice (simultaneous with on-beat graces)
     if (
         n == -1
-        and COMPONENT is COMPONENT._parent[0]
-        and _get_on_beat_anchor_voice(COMPONENT._parent) is not None
+        and component is component._parent[0]
+        and _get_on_beat_anchor_voice(component._parent) is not None
     ):
-        on_beat = _get_on_beat_anchor_voice(COMPONENT._parent)
+        on_beat = _get_on_beat_anchor_voice(component._parent)
         return on_beat[-1]
-    if n == -1 and hasattr(COMPONENT, "_get_on_beat_anchor_voice"):
-        raise Exception(repr(COMPONENT))
-        on_beat = _get_on_beat_anchor_voice(COMPONENT)
+    if n == -1 and hasattr(component, "_get_on_beat_anchor_voice"):
+        raise Exception(repr(component))
+        on_beat = _get_on_beat_anchor_voice(component)
         if on_beat is not None:
             return on_beat[-1]
-    if n == -1 and getattr(COMPONENT, "_before_grace_container", None):
-        return COMPONENT._before_grace_container[-1]
-    index = COMPONENT._parent.index(COMPONENT) + n
-    if not (0 <= index < len(COMPONENT._parent)):
+    if n == -1 and getattr(component, "_before_grace_container", None):
+        return component._before_grace_container[-1]
+    index = component._parent.index(component) + n
+    if not (0 <= index < len(component._parent)):
         return None
-    candidate = COMPONENT._parent[index]
+    candidate = component._parent[index]
     if n == 1 and getattr(candidate, "_before_grace_container", None):
         return candidate._before_grace_container[0]
     if n == -1 and getattr(candidate, "_after_grace_container", None):
@@ -356,17 +356,17 @@ def _get_sibling_with_graces(COMPONENT, n):
     return candidate
 
 
-def _get_sounding_pitch(NOTE):
-    if "sounding pitch" in NOTE._get_indicators(str):
-        return NOTE.written_pitch
+def _get_sounding_pitch(note):
+    if "sounding pitch" in note._get_indicators(str):
+        return note.written_pitch
     else:
-        instrument = _get_effective(NOTE, _instruments.Instrument)
+        instrument = _get_effective(note, _instruments.Instrument)
         if instrument:
             sounding_pitch = instrument.middle_c_sounding_pitch
         else:
             sounding_pitch = _pitch.NamedPitch("C4")
         interval = _pitch.NamedPitch("C4") - sounding_pitch
-        sounding_pitch = interval.transpose(NOTE.written_pitch)
+        sounding_pitch = interval.transpose(note.written_pitch)
         return sounding_pitch
 
 
@@ -386,12 +386,12 @@ def _get_sounding_pitches(chord):
         return tuple(sounding_pitches)
 
 
-def _get_timespan(ARGUMENT, in_seconds: bool = False):
-    if isinstance(ARGUMENT, _score.Component):
-        return ARGUMENT._get_timespan(in_seconds=in_seconds)
-    assert isinstance(ARGUMENT, collections.abc.Iterable), repr(ARGUMENT)
+def _get_timespan(argument, in_seconds: bool = False):
+    if isinstance(argument, _score.Component):
+        return argument._get_timespan(in_seconds=in_seconds)
+    assert isinstance(argument, collections.abc.Iterable), repr(argument)
     remaining_items = []
-    for i, item in enumerate(ARGUMENT):
+    for i, item in enumerate(argument):
         if i == 0:
             first_item = item
         else:

@@ -760,7 +760,7 @@ def vertical_moments(
 
 
 def with_durations(
-    argument, *, denominator=None, direction=_enums.Up, in_seconds: bool = None
+    argument, *, denominator=None, direction=_enums.Up, in_seconds: bool = False
 ):
     r"""
     Labels logical ties in ``argument`` with durations.

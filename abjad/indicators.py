@@ -2535,8 +2535,8 @@ class MetronomeMark:
         ...     (1, 4),
         ...     quicktions.Fraction(272, 3),
         ... )
-        >>> mark.decimal is None
-        True
+        >>> mark.decimal
+        False
 
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
@@ -2588,10 +2588,10 @@ class MetronomeMark:
         ...     prototype = abjad.MetronomeMark
         ...     leaf, abjad.get.effective(leaf, prototype)
         ...
-        (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=None, hide=False))
-        (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=None, hide=False))
-        (Note("e'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=None, hide=True))
-        (Note("f'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=None, hide=True))
+        (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False, hide=False))
+        (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False, hide=False))
+        (Note("e'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False, hide=True))
+        (Note("f'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False, hide=True))
 
     """
 
@@ -2599,7 +2599,7 @@ class MetronomeMark:
     units_per_minute: typing.Union[int, quicktions.Fraction] = None
     textual_indication: typing.Optional[str] = None
     custom_markup: typing.Optional[_markups.Markup] = None
-    decimal: typing.Union[bool, str, None] = None
+    decimal: bool | str = False
     hide: bool = False
 
     _is_dataclass = True
@@ -3018,7 +3018,7 @@ class MetronomeMark:
 
     @staticmethod
     def make_tempo_equation_markup(
-        reference_duration, units_per_minute, *, decimal=None
+        reference_duration, units_per_minute, *, decimal=False
     ) -> _markups.Markup:
         r"""
         Makes tempo equation markup.
@@ -3736,11 +3736,11 @@ class StartBeam:
         >>> start_beam = abjad.StartBeam()
         >>> abjad.tweak(start_beam).color = "#blue"
         >>> start_beam
-        StartBeam(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartBeam(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_beam_2 = copy.copy(start_beam)
         >>> start_beam_2
-        StartBeam(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartBeam(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
@@ -3815,11 +3815,11 @@ class StartGroup:
         >>> start_group = abjad.StartGroup()
         >>> abjad.tweak(start_group).color = "#blue"
         >>> start_group
-        StartGroup(tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartGroup(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_group_2 = copy.copy(start_group)
         >>> start_group_2
-        StartGroup(tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartGroup(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
@@ -4471,11 +4471,11 @@ class StartPhrasingSlur:
         >>> start_phrasing_slur = abjad.StartPhrasingSlur()
         >>> abjad.tweak(start_phrasing_slur).color = "#blue"
         >>> start_phrasing_slur
-        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
         >>> start_phrasing_slur_2
-        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
@@ -4574,11 +4574,11 @@ class StartPianoPedal:
         >>> start_piano_pedal = abjad.StartPianoPedal()
         >>> abjad.tweak(start_piano_pedal).color = "#blue"
         >>> start_piano_pedal
-        StartPianoPedal(kind=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartPianoPedal(kind=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
         >>> start_piano_pedal_2
-        StartPianoPedal(kind=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartPianoPedal(kind=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
@@ -4744,11 +4744,11 @@ class StartSlur:
         >>> start_slur = abjad.StartSlur()
         >>> abjad.tweak(start_slur).color = "#blue"
         >>> start_slur
-        StartSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_slur_2 = copy.copy(start_slur)
         >>> start_slur_2
-        StartSlur(direction=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
@@ -5105,11 +5105,11 @@ class StartTextSpan:
         >>> abjad.tweak(start_text_span).color = "#blue"
         >>> abjad.tweak(start_text_span).staff_padding = 2.5
         >>> start_text_span
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)))
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', False), ('color', '#blue'), ('staff_padding', 2.5)))
 
         >>> start_text_span_2 = copy.copy(start_text_span)
         >>> start_text_span_2
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', None), ('color', '#blue'), ('staff_padding', 2.5)))
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', False), ('color', '#blue'), ('staff_padding', 2.5)))
 
     """
 
@@ -5325,11 +5325,11 @@ class StartTrillSpan:
         >>> start_trill_span = abjad.StartTrillSpan()
         >>> abjad.tweak(start_trill_span).color = "#blue"
         >>> start_trill_span
-        StartTrillSpan(interval=None, pitch=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartTrillSpan(interval=None, pitch=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_trill_span_2 = copy.copy(start_trill_span)
         >>> start_trill_span_2
-        StartTrillSpan(interval=None, pitch=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StartTrillSpan(interval=None, pitch=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
@@ -5472,7 +5472,7 @@ class StopBeam:
     ..  container:: example
 
         >>> abjad.StopBeam()
-        StopBeam(leak=None)
+        StopBeam(leak=False)
 
     ..  container:: example
 
@@ -5528,7 +5528,7 @@ class StopBeam:
 
     """
 
-    leak: bool | None = None
+    leak: bool = False
 
     _is_dataclass = True
     context = "Voice"
@@ -5559,7 +5559,7 @@ class StopGroup:
     ..  container:: example
 
         >>> abjad.StopGroup()
-        StopGroup(leak=None)
+        StopGroup(leak=False)
 
     ..  container:: example
 
@@ -5649,7 +5649,7 @@ class StopGroup:
 
     """
 
-    leak: bool | None = None
+    leak: bool = False
 
     _is_dataclass = True
     persistent = True
@@ -5676,7 +5676,7 @@ class StopHairpin:
     ..  container:: example
 
         >>> abjad.StopHairpin()
-        StopHairpin(leak=None)
+        StopHairpin(leak=False)
 
     ..  container:: example
 
@@ -5732,7 +5732,7 @@ class StopHairpin:
 
     """
 
-    leak: bool | None = None
+    leak: bool = False
 
     _is_dataclass = True
     context = "Voice"
@@ -5760,7 +5760,7 @@ class StopPhrasingSlur:
     ..  container:: example
 
         >>> abjad.StopPhrasingSlur()
-        StopPhrasingSlur(leak=None)
+        StopPhrasingSlur(leak=False)
 
     ..  container:: example
 
@@ -5850,7 +5850,7 @@ class StopPhrasingSlur:
 
     """
 
-    leak: bool | None = None
+    leak: bool = False
 
     _is_dataclass = True
     context = "Voice"
@@ -5957,16 +5957,16 @@ class StopPianoPedal:
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.tweak(stop_piano_pedal).color = "#blue"
         >>> stop_piano_pedal
-        StopPianoPedal(kind=None, leak=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StopPianoPedal(kind=None, leak=False, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> stop_piano_pedal_2 = copy.copy(stop_piano_pedal)
         >>> stop_piano_pedal_2
-        StopPianoPedal(kind=None, leak=None, tweaks=TweakInterface(('_literal', None), ('color', '#blue')))
+        StopPianoPedal(kind=None, leak=False, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
     kind: str | None = None
-    leak: bool | None = None
+    leak: bool = False
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass = True
@@ -6015,7 +6015,7 @@ class StopSlur:
     ..  container:: example
 
         >>> abjad.StopSlur()
-        StopSlur(leak=None)
+        StopSlur(leak=False)
 
     ..  container:: example
 
@@ -6105,7 +6105,7 @@ class StopSlur:
 
     """
 
-    leak: bool | None = None
+    leak: bool = False
 
     _is_dataclass = True
     context = "Voice"
@@ -6138,7 +6138,7 @@ class StopTextSpan:
     ..  container:: example
 
         >>> abjad.StopTextSpan()
-        StopTextSpan(command='\\stopTextSpan', leak=None)
+        StopTextSpan(command='\\stopTextSpan', leak=False)
 
     ..  container:: example
 
@@ -6211,7 +6211,7 @@ class StopTextSpan:
     """
 
     command: str = r"\stopTextSpan"
-    leak: bool | None = None
+    leak: bool = False
 
     _is_dataclass = True
     context = "Voice"
@@ -6245,7 +6245,7 @@ class StopTrillSpan:
     ..  container:: example
 
         >>> abjad.StopTrillSpan()
-        StopTrillSpan(leak=None)
+        StopTrillSpan(leak=False)
 
     ..  container:: example
 
@@ -6301,7 +6301,7 @@ class StopTrillSpan:
 
     """
 
-    leak: bool | None = None
+    leak: bool = False
 
     _is_dataclass = True
     context = "Voice"

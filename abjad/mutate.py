@@ -285,32 +285,31 @@ def _copy_selection(selection):
     return new_components
 
 
-def _extract(COMPONENT):
-    selection = [COMPONENT]
+def _extract(component):
+    selection = [component]
     parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:
-        components = list(getattr(COMPONENT, "components", ()))
+        components = list(getattr(component, "components", ()))
         parent.__setitem__(slice(start, stop + 1), components)
-    return COMPONENT
+    return component
 
 
-def _fuse(SELECTION):
-    assert _are_contiguous_logical_voice(SELECTION)
-    if all(isinstance(_, _score.Leaf) for _ in SELECTION):
-        return _fuse_leaves(SELECTION)
-    elif all(isinstance(_, _score.Tuplet) for _ in SELECTION):
-        return _fuse_tuplets(SELECTION)
+def _fuse(components):
+    assert _are_contiguous_logical_voice(components)
+    if all(isinstance(_, _score.Leaf) for _ in components):
+        return _fuse_leaves(components)
+    elif all(isinstance(_, _score.Tuplet) for _ in components):
+        return _fuse_tuplets(components)
     else:
-        raise Exception(f"can only fuse leaves and tuplets (not {SELECTION}).")
+        raise Exception(f"can only fuse leaves and tuplets (not {components}).")
 
 
-def _fuse_leaves(SELECTION):
-    assert all(isinstance(_, _score.Leaf) for _ in SELECTION)
-    assert _are_contiguous_logical_voice(SELECTION)
-    leaves = SELECTION
+def _fuse_leaves(leaves):
+    assert all(isinstance(_, _score.Leaf) for _ in leaves)
+    assert _are_contiguous_logical_voice(leaves)
     if len(leaves) <= 1:
         return leaves
-    originally_tied = SELECTION[-1]._has_indicator(_indicators.Tie)
+    originally_tied = leaves[-1]._has_indicator(_indicators.Tie)
     total_preprolated = sum(_._get_preprolated_duration() for _ in leaves)
     for leaf in leaves[1:]:
         parent = leaf._parent
@@ -324,39 +323,39 @@ def _fuse_leaves(SELECTION):
     return result
 
 
-def _fuse_leaves_by_immediate_parent(SELECTION):
+def _fuse_leaves_by_immediate_parent(leaves):
     result = []
-    parts = _get_leaves_grouped_by_immediate_parents(SELECTION)
+    parts = _get_leaves_grouped_by_immediate_parents(leaves)
     for part in parts:
         fused = _fuse(part)
         result.append(fused)
     return result
 
 
-def _fuse_tuplets(SELECTION):
-    assert _are_contiguous_same_parent(SELECTION, prototype=_score.Tuplet)
-    if len(SELECTION) == 0:
+def _fuse_tuplets(tuplets):
+    assert _are_contiguous_same_parent(tuplets, prototype=_score.Tuplet)
+    if len(tuplets) == 0:
         return None
-    first = SELECTION[0]
+    first = tuplets[0]
     first_multiplier = first.multiplier
-    for tuplet in SELECTION[1:]:
+    for tuplet in tuplets[1:]:
         if tuplet.multiplier != first_multiplier:
             raise ValueError("tuplets must carry same multiplier.")
     assert isinstance(first, _score.Tuplet)
     new_tuplet = _score.Tuplet(first_multiplier, [])
     wrapped = False
-    if _get.parentage(SELECTION[0]).root is not _get.parentage(SELECTION[-1]).root:
-        dummy_container = _score.Container(SELECTION)
+    if _get.parentage(tuplets[0]).root is not _get.parentage(tuplets[-1]).root:
+        dummy_container = _score.Container(tuplets)
         wrapped = True
-    swap(SELECTION, new_tuplet)
+    swap(tuplets, new_tuplet)
     if wrapped:
         del dummy_container[:]
     return new_tuplet
 
 
-def _get_leaves_grouped_by_immediate_parents(SELECTION):
+def _get_leaves_grouped_by_immediate_parents(leaves):
     result = []
-    pairs_generator = itertools.groupby(SELECTION, lambda _: id(_._parent))
+    pairs_generator = itertools.groupby(leaves, lambda _: id(_._parent))
     for key, values_generator in pairs_generator:
         group = list(values_generator)
         result.append(group)
@@ -662,9 +661,9 @@ def _split_simultaneous_by_duration(CONTAINER, duration):
     return [left_container], [right_container]
 
 
-def _split_leaf_by_durations(LEAF, durations, cyclic=False):
+def _split_leaf_by_durations(leaf, durations, cyclic=False):
     durations = [_duration.Duration(_) for _ in durations]
-    leaf_duration = _get.duration(LEAF)
+    leaf_duration = _get.duration(leaf)
     if cyclic:
         durations = _sequence.repeat_to_weight(durations, leaf_duration)
     if sum(durations) < leaf_duration:
@@ -672,20 +671,20 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
         durations = list(durations)
         durations.append(last_duration)
     durations = _sequence.truncate(durations, weight=leaf_duration)
-    originally_tied = LEAF._has_indicator(_indicators.Tie)
-    originally_repeat_tied = LEAF._has_indicator(_indicators.RepeatTie)
+    originally_tied = leaf._has_indicator(_indicators.Tie)
+    originally_repeat_tied = leaf._has_indicator(_indicators.RepeatTie)
     result_selections = []
     # detach grace containers
-    before_grace_container = LEAF._before_grace_container
+    before_grace_container = leaf._before_grace_container
     if before_grace_container is not None:
-        _bind.detach(before_grace_container, LEAF)
-    after_grace_container = LEAF._after_grace_container
+        _bind.detach(before_grace_container, leaf)
+    after_grace_container = leaf._after_grace_container
     if after_grace_container is not None:
-        _bind.detach(after_grace_container, LEAF)
+        _bind.detach(after_grace_container, leaf)
     # do other things
-    leaf_prolation = _get.parentage(LEAF).prolation
+    leaf_prolation = _get.parentage(leaf).prolation
     for duration in durations:
-        new_leaf = python_copy.copy(LEAF)
+        new_leaf = python_copy.copy(leaf)
         preprolated_duration = duration / leaf_prolation
         selection = _set_leaf_duration(new_leaf, preprolated_duration)
         result_selections.append(selection)
@@ -694,16 +693,16 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
     assert all(isinstance(_, _score.Component) for _ in result_components)
     assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     # strip result leaves of all indicators
-    for leaf in result_leaves:
-        _bind.detach(object, leaf)
+    for leaf_ in result_leaves:
+        _bind.detach(object, leaf_)
     # replace leaf with flattened result
-    if _get.parentage(LEAF).parent is not None:
-        replace(LEAF, result_components)
+    if _get.parentage(leaf).parent is not None:
+        replace(leaf, result_components)
     # move indicators
     first_result_leaf = result_leaves[0]
     last_result_leaf = result_leaves[-1]
-    for indicator in _get.indicators(LEAF):
-        _bind.detach(indicator, LEAF)
+    for indicator in _get.indicators(leaf):
+        _bind.detach(indicator, leaf)
         direction = getattr(indicator, "_time_orientation", _enums.Left)
         if direction is _enums.Left:
             _bind.attach(indicator, first_result_leaf)
@@ -724,7 +723,7 @@ def _split_leaf_by_durations(LEAF, durations, cyclic=False):
     if isinstance(result_components[0], _score.Tuplet):
         fuse(result_components)
     # tie split notes
-    if isinstance(LEAF, (_score.Note, _score.Chord)) and 1 < len(result_leaves):
+    if isinstance(leaf, (_score.Note, _score.Chord)) and 1 < len(result_leaves):
         _attach_tie_to_leaves(result_leaves)
     if originally_repeat_tied and not result_leaves[0]._has_indicator(
         _indicators.RepeatTie
