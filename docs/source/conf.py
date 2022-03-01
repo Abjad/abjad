@@ -39,7 +39,7 @@ html_theme_options = {
     # navigation_depth=1 makes sidebar completely flat;
     # leave flat navigation in place forever:
     "navigation_depth": 1,
-    "style_nav_header_background": "#00ff55",
+    "style_nav_header_background": "#00dd00",
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 project = "Abjad"
