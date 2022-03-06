@@ -21,7 +21,6 @@ from . import score as _score
 from . import select as _select
 from . import sequence as _sequence
 from . import timespan as _timespan
-from . import typedcollections as _typedcollections
 
 
 class Meter:
@@ -1096,8 +1095,6 @@ class Meter:
             5/4
 
         Coerces offsets from ``argument`` via ``MetricAccentKernel.count_offsets()``.
-
-        Coerces Meters from ``meters`` via ``MeterList``.
 
         Returns list.
         """
@@ -2455,28 +2452,6 @@ class Meter:
                 )
 
 
-@dataclasses.dataclass(slots=True)
-class MeterList(_typedcollections.TypedList):
-    """
-    Meter list.
-
-    ..  container:: example
-
-        >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
-        >>> for _ in meters: _
-        Meter('(3/4 (1/4 1/4 1/4))')
-        Meter('(5/16 ((3/16 (1/16 1/16 1/16)) (2/16 (1/16 1/16))))')
-        Meter('(7/8 ((3/8 (1/8 1/8 1/8)) (2/8 (1/8 1/8)) (2/8 (1/8 1/8))))')
-
-        >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-    """
-
-    def _coerce_item(self, item):
-        return Meter(item)
-
-
 def illustrate_meter_list(
     meter_list, denominator=16, range_=None, scale=None
 ) -> _lilypondfile.LilyPondFile:
@@ -2485,7 +2460,7 @@ def illustrate_meter_list(
 
     ..  container:: example
 
-        >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
+        >>> meters = [abjad.Meter(_) for _ in [(3, 4), (5, 16), (7, 8)]]
         >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -3003,7 +2978,6 @@ class _MeterFittingSession:
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
         selected_meters = (self.kernels[_] for _ in selected_kernels)
-        selected_meters = MeterList(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###

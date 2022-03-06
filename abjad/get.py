@@ -9,7 +9,6 @@ from . import indicators as _indicators
 from . import iterate as iterate_
 from . import markups as _markups
 from . import parentage as _parentage
-from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
 from . import select as _select
@@ -3468,7 +3467,7 @@ def parentage(argument) -> "_parentage.Parentage":
     return _parentage.Parentage(argument)
 
 
-def pitches(argument) -> typing.Optional[_pcollections.PitchSet]:
+def pitches(argument) -> set[_pitch.NamedPitch]:
     r"""
     Gets pitches.
 
@@ -3540,30 +3539,73 @@ def pitches(argument) -> typing.Optional[_pcollections.PitchSet]:
 
         >>> for component in abjad.select.components(staff):
         ...     pitches = abjad.get.pitches(component)
-        ...     print(f"{repr(component):30} {pitches!s}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") {c', cs', d', e', f', fs', g', gs', a', as'}
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') {c', cs', d', e', f', fs', g', gs', a', as'}
-        Note("c'4")                    {c'}
-        BeforeGraceContainer("cs'16")  {cs'}
-        Note("cs'16")                  {cs'}
-        Note("d'4")                    {d'}
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") {e', g', gs', a', as'}
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") {e', g', gs', a', as'}
-        Chord("<e' g'>16")             {e', g'}
-        Note("gs'16")                  {gs'}
-        Note("a'16")                   {a'}
-        Note("as'16")                  {as'}
-        Voice("e'4", name='Music_Voice') {e'}
-        Note("e'4")                    {e'}
-        Note("f'4")                    {f'}
-        AfterGraceContainer("fs'16")   {fs'}
-        Note("fs'16")                  {fs'}
+        ...     component
+        ...     for _ in sorted(pitches): print(f"    {_!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            NamedPitch("c'")
+            NamedPitch("cs'")
+            NamedPitch("d'")
+            NamedPitch("e'")
+            NamedPitch("f'")
+            NamedPitch("fs'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            NamedPitch("c'")
+            NamedPitch("cs'")
+            NamedPitch("d'")
+            NamedPitch("e'")
+            NamedPitch("f'")
+            NamedPitch("fs'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        Note("c'4")
+            NamedPitch("c'")
+        BeforeGraceContainer("cs'16")
+            NamedPitch("cs'")
+        Note("cs'16")
+            NamedPitch("cs'")
+        Note("d'4")
+            NamedPitch("d'")
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            NamedPitch("e'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
+            NamedPitch("e'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        Chord("<e' g'>16")
+            NamedPitch("e'")
+            NamedPitch("g'")
+        Note("gs'16")
+            NamedPitch("gs'")
+        Note("a'16")
+            NamedPitch("a'")
+        Note("as'16")
+            NamedPitch("as'")
+        Voice("e'4", name='Music_Voice')
+            NamedPitch("e'")
+        Note("e'4")
+            NamedPitch("e'")
+        Note("f'4")
+            NamedPitch("f'")
+        AfterGraceContainer("fs'16")
+            NamedPitch("fs'")
+        Note("fs'16")
+            NamedPitch("fs'")
 
     """
-    if not argument:
-        return None
     generator = iterate_.pitches(argument)
-    return _pcollections.PitchSet.from_pitches(generator)
+    return set(generator)
 
 
 def report_modifications(argument) -> str:
@@ -3702,7 +3744,7 @@ def sounding_pitch(argument) -> _pitch.NamedPitch:
     return _inspect._get_sounding_pitch(argument)
 
 
-def sounding_pitches(argument) -> _pcollections.PitchSet:
+def sounding_pitches(argument) -> set[_pitch.NamedPitch]:
     r"""
     Gets sounding pitches.
 
@@ -3726,16 +3768,21 @@ def sounding_pitches(argument) -> _pcollections.PitchSet:
 
         >>> for chord in abjad.select.chords(staff):
         ...     pitches = abjad.get.sounding_pitches(chord)
-        ...     print(f"{repr(chord):20} {pitches!s}")
-        Chord("<c' e'>4")    {c''', e'''}
-        Chord("<d' fs'>4")   {d''', fs'''}
+        ...     chord
+        ...     for _ in sorted(pitches): print(f"    {_!r}")
+        Chord("<c' e'>4")
+            NamedPitch("c'''")
+            NamedPitch("e'''")
+        Chord("<d' fs'>4")
+            NamedPitch("d'''")
+            NamedPitch("fs'''")
 
     """
     # TODO: extend to any non-none argument
     if not isinstance(argument, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
-    result = _inspect._get_sounding_pitches(argument)
-    return _pcollections.PitchSet(result)
+    pitches = _inspect._get_sounding_pitches(argument)
+    return set(pitches)
 
 
 def sustained(argument) -> bool:

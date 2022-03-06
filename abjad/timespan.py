@@ -12,14 +12,12 @@ from . import markups as _markups
 from . import math as _math
 from . import ratio as _ratio
 from . import sequence as _sequence
-from . import typedcollections as _typedcollections
 
 infinity = _math.Infinity()
 negative_infinity = _math.NegativeInfinity()
 
 
 @dataclasses.dataclass(slots=True)
-# class OffsetCounter(_typedcollections.TypedCounter):
 class OffsetCounter:
     """
     Offset counter.
@@ -68,7 +66,6 @@ class OffsetCounter:
                         offset = _duration.Offset(item)
                         offsets.append(offset)
             self.items = offsets
-        # _typedcollections.TypedCounter.__post_init__(self)
         self.items = [self._coerce_item(_) for _ in self.items]
         self.items = collections.Counter(self.items)
         sorted_item_to_count = {}
@@ -831,9 +828,6 @@ class Timespan:
             start_offset, stop_offset = argument.timespan.offsets
         elif hasattr(argument, "_get_timespan"):
             start_offset, stop_offset = argument._get_timespan().offsets
-        # TODO: remove this branch in favor of the _get_timespan above
-        # elif hasattr(argument, 'timespan'):
-        #    start_offset, stop_offset = argument.timespan().offsets
         else:
             raise ValueError(argument)
         return dataclasses.replace(
@@ -848,9 +842,6 @@ class Timespan:
         ):
             return True
         if hasattr(timespan, "_get_timespan"):
-            return True
-        # TODO: remove this branch in favor of the _get_timespan above
-        if hasattr(timespan, "timespan"):
             return True
         if getattr(timespan, "timespan", "foo") != "foo":
             return True
@@ -1481,7 +1472,6 @@ class Timespan:
         )
         return result
 
-    # TODO: extend to self.split_at_offsets()
     def split_at_offset(self, offset) -> "TimespanList":
         """
         Split into two parts when ``offset`` happens during timespan:
@@ -2202,7 +2192,7 @@ class Timespan:
 
 
 @dataclasses.dataclass(slots=True)
-class TimespanList(_typedcollections.TypedList):
+class TimespanList(list):
     """
     Timespan list.
 
@@ -2270,6 +2260,42 @@ class TimespanList(_typedcollections.TypedList):
 
     __documentation_section__ = "Timespans"
 
+    def __init__(self, argument=()):
+        timespans = [self._coerce_item(_) for _ in argument]
+        list.__init__(self, timespans)
+
+    def __setitem__(self, i, argument):
+        """
+        Coerces ``argument`` and sets at ``i``.
+        """
+        if isinstance(i, int):
+            item = self._coerce_item(argument)
+            list.__setitem__(self, i, item)
+        elif isinstance(i, slice):
+            items = [self._coerce_item(_) for _ in argument]
+            list.__setitem__(self, i, items)
+
+    def append(self, item):
+        """
+        Coerces ``item`` and appends.
+        """
+        item = self._coerce_item(item)
+        list.append(self, item)
+
+    def extend(self, items):
+        """
+        Coerces ``items`` and extends.
+        """
+        items = [self._coerce_item(_) for _ in items]
+        list.extend(self, items)
+
+    def remove(self, item):
+        """
+        Coerces ``item`` and removes.
+        """
+        item = self._coerce_item(item)
+        list.remove(self, item)
+
     def __and__(self, timespan) -> "TimespanList":
         """
         Keeps material that intersects ``timespan``.
@@ -2294,7 +2320,6 @@ class TimespanList(_typedcollections.TypedList):
             Timespan(Offset((5, 1)), Offset((10, 1)))
             Timespan(Offset((5, 1)), Offset((10, 1)))
 
-        Operates in place and returns timespan list.
         """
         new_timespans: typing.List[Timespan] = []
         for current_timespan in self[:]:
@@ -2307,7 +2332,7 @@ class TimespanList(_typedcollections.TypedList):
         """
         Gets repr.
         """
-        return f"{type(self).__name__}({self.items})"
+        return f"{type(self).__name__}({list(self)})"
 
     def _make_markup(
         self,
@@ -2437,8 +2462,8 @@ class TimespanList(_typedcollections.TypedList):
 
         ..  container:: example
 
-            Set ``key`` and ``sort_callable`` together like this to customize
-            timespan sorting:
+            Set ``key`` and ``sort_callable`` together like this to customize timespan
+            sorting:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, (1, 4), annotation="voice 1"),
@@ -2580,7 +2605,6 @@ class TimespanList(_typedcollections.TypedList):
                 }
                 }
 
-        Returns markup.
         """
         if not self:
             return _markups.Markup(r"\markup \null")
@@ -2705,7 +2729,6 @@ class TimespanList(_typedcollections.TypedList):
 
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-        Operates in place and returns timespan list.
         """
         new_timespans: typing.List[Timespan] = []
         for current_timespan in self[:]:
@@ -2714,7 +2737,8 @@ class TimespanList(_typedcollections.TypedList):
         self[:] = sorted(new_timespans)
         return self
 
-    def _coerce_item(self, item):
+    @staticmethod
+    def _coerce_item(item):
         if Timespan._implements_timespan_interface(item):
             return item
         elif isinstance(item, Timespan):
@@ -2724,7 +2748,8 @@ class TimespanList(_typedcollections.TypedList):
         else:
             return Timespan(item)
 
-    def _get_offsets(self, argument):
+    @staticmethod
+    def _get_offsets(argument):
         try:
             return argument.start_offset, argument.stop_offset
         except AttributeError:
@@ -2735,8 +2760,9 @@ class TimespanList(_typedcollections.TypedList):
             pass
         raise TypeError(argument)
 
-    def _get_timespan(self, argument):
-        start_offset, stop_offset = self._get_offsets(argument)
+    @staticmethod
+    def _get_timespan(argument):
+        start_offset, stop_offset = Timespan._get_offsets(argument)
         return Timespan(start_offset, stop_offset)
 
     @property

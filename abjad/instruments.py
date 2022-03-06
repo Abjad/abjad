@@ -414,7 +414,7 @@ class StringNumber:
         return tuple(result)
 
 
-@dataclasses.dataclass(slots=True)
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class Tuning:
     """
     Tuning.
@@ -423,25 +423,15 @@ class Tuning:
 
         Violin tuning:
 
-        >>> abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-        Tuning(pitches=PitchSegment(items="g d' a' e''", item_class=NamedPitch))
+        >>> abjad.Tuning(pitches=("G3", "D4", "A4", "E5"))
+        Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''")))
 
     """
 
-    pitches: typing.Sequence
+    pitches: typing.Sequence[_pitch.NamedPitch] = ()
 
     def __post_init__(self):
-        if isinstance(self.pitches, type(self)):
-            self.pitches = self.pitches.pitches
-        self.pitches = _pcollections.PitchSegment(
-            items=self.pitches, item_class=_pitch.NamedPitch
-        )
-
-    def __hash__(self):
-        """
-        Hashes tuning.
-        """
-        return hash(repr(self))
+        self.pitches = tuple(_pitch.NamedPitch(_) for _ in self.pitches)
 
     @property
     def pitch_ranges(self) -> typing.List[_pcollections.PitchRange]:
@@ -543,7 +533,7 @@ class Tuning:
             >>> voicings = tuning.voice_pitch_classes(
             ...     ('a', 'd'),
             ...     allow_open_strings=False,
-            ...     )
+            ... )
             >>> for voicing in voicings:
             ...     voicing
             ...
@@ -1467,7 +1457,7 @@ class Cello(Instrument):
 
             >>> cello = abjad.Cello()
             >>> cello.default_tuning
-            Tuning(pitches=PitchSegment(items="c, g, d a", item_class=NamedPitch))
+            Tuning(pitches=(NamedPitch('c,'), NamedPitch('g,'), NamedPitch('d'), NamedPitch('a')))
 
         Returns tuning.
         """
@@ -1719,7 +1709,7 @@ class Contrabass(Instrument):
 
             >>> contrabass = abjad.Contrabass()
             >>> contrabass.default_tuning
-            Tuning(pitches=PitchSegment(items="c,, a,, d, g,", item_class=NamedPitch))
+            Tuning(pitches=(NamedPitch('c,,'), NamedPitch('a,,'), NamedPitch('d,'), NamedPitch('g,')))
 
         Returns tuning.
         """
@@ -2278,7 +2268,7 @@ class Guitar(Instrument):
 
             >>> guitar = abjad.Guitar()
             >>> guitar.default_tuning
-            Tuning(pitches=PitchSegment(items="e, a, d g b e'", item_class=NamedPitch))
+            Tuning(pitches=(NamedPitch('e,'), NamedPitch('a,'), NamedPitch('d'), NamedPitch('g'), NamedPitch('b'), NamedPitch("e'")))
 
         Returns tuning.
         """
@@ -2367,7 +2357,7 @@ class Harpsichord(Instrument):
         >>> staff_group = abjad.StaffGroup(
         ...     [upper_staff, lower_staff],
         ...     lilypond_type='PianoStaff',
-        ...     )
+        ... )
         >>> harpsichord = abjad.Harpsichord()
         >>> abjad.attach(harpsichord, staff_group[0][0])
         >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
@@ -3439,7 +3429,7 @@ class Viola(Instrument):
 
             >>> viola = abjad.Viola()
             >>> viola.default_tuning
-            Tuning(pitches=PitchSegment(items="c g d' a'", item_class=NamedPitch))
+            Tuning(pitches=(NamedPitch('c'), NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'")))
 
         Returns tuning.
         """
@@ -3516,7 +3506,7 @@ class Violin(Instrument):
 
             >>> violin = abjad.Violin()
             >>> violin.default_tuning
-            Tuning(pitches=PitchSegment(items="g d' a' e''", item_class=NamedPitch))
+            Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''")))
 
         Returns tuning.
         """

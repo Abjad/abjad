@@ -11,7 +11,7 @@ def test_Chord_written_pitches_01():
     chord = abjad.Chord("<d' e' f'>4")
     pitches = chord.written_pitches
 
-    assert isinstance(pitches, abjad.PitchSegment)
+    assert isinstance(pitches, tuple)
     assert len(pitches) == 3
     with pytest.raises(Exception):
         pitches.pop()

@@ -115,7 +115,7 @@ class LeafMaker:
         Works with segments:
 
         >>> maker = abjad.LeafMaker()
-        >>> pitches = abjad.PitchSegment("e'' ef'' d'' df'' c''")
+        >>> pitches = "e'' ef'' d'' df'' c''"
         >>> durations = [abjad.Duration(1, 4)]
         >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)

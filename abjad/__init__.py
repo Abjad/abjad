@@ -177,7 +177,7 @@ from .lyproxy import (
 from .makers import LeafMaker, NoteMaker
 from .markups import Markup
 from .math import Infinity, NegativeInfinity
-from .meter import Meter, MeterList, MetricAccentKernel
+from .meter import Meter, MetricAccentKernel
 from .metricmodulation import MetricModulation
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
 from .overrides import (
@@ -200,17 +200,11 @@ from .parsers.base import Parser
 from .parsers.parse import parse
 from .pattern import Pattern, PatternTuple
 from .pcollections import (
-    IntervalClassSegment,
-    IntervalClassSet,
-    IntervalSegment,
-    IntervalSet,
     PitchClassSegment,
     PitchClassSet,
     PitchRange,
     PitchSegment,
     PitchSet,
-    Segment,
-    Set,
     TwelveToneRow,
 )
 from .pitch import (
@@ -273,7 +267,6 @@ from .spanners import (
 )
 from .tag import Line, Tag, activate, deactivate
 from .timespan import OffsetCounter, Timespan, TimespanList
-from .typedcollections import TypedCollection, TypedFrozenset, TypedList, TypedTuple
 from .typings import (
     DurationSequenceTyping,
     DurationTyping,
@@ -378,10 +371,6 @@ __all__ = [
     "Interface",
     "Interval",
     "IntervalClass",
-    "IntervalClassSegment",
-    "IntervalClassSet",
-    "IntervalSegment",
-    "IntervalSet",
     "KeyCluster",
     "KeySignature",
     "LaissezVibrer",
@@ -406,7 +395,6 @@ __all__ = [
     "Marimba",
     "Markup",
     "Meter",
-    "MeterList",
     "MetricAccentKernel",
     "MetricModulation",
     "MetronomeMark",
@@ -437,6 +425,10 @@ __all__ = [
     "NumberedInversionEquivalentIntervalClass",
     "NumberedPitch",
     "NumberedPitchClass",
+    "PitchClassSegment",
+    "PitchClassSet",
+    "PitchSegment",
+    "PitchSet",
     "Oboe",
     "Octave",
     "Offset",
@@ -456,11 +448,7 @@ __all__ = [
     "Piccolo",
     "Pitch",
     "PitchClass",
-    "PitchClassSegment",
-    "PitchClassSet",
     "PitchRange",
-    "PitchSegment",
-    "PitchSet",
     "PitchTyping",
     "ProgressIndicator",
     "Prototype",
@@ -475,9 +463,7 @@ __all__ = [
     "Right",
     "SchemeParserFinishedError",
     "Score",
-    "Segment",
     "Selection",
-    "Set",
     "SetClass",
     "SettingInterface",
     "Skip",
@@ -527,10 +513,6 @@ __all__ = [
     "Tuplet",
     "TweakInterface",
     "TwelveToneRow",
-    "TypedCollection",
-    "TypedFrozenset",
-    "TypedList",
-    "TypedTuple",
     "UnboundedTimeIntervalError",
     "Up",
     "VerticalAlignment",

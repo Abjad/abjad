@@ -1,7 +1,6 @@
 from . import enumerate as _enumerate
 from . import iterate as iterate_
 from . import parentage as _parentage
-from . import pcollections as _pcollections
 from . import score as _score
 from . import select as _select
 from . import sequence as _sequence
@@ -773,21 +772,21 @@ def iterate_pitch_pairs(components):
 
         >>> for pair in abjad.iterate_pitch_pairs(score):
         ...     pair
-        PitchSegment(items="c' c", item_class=NamedPitch)
-        PitchSegment(items="c' d'", item_class=NamedPitch)
-        PitchSegment(items="c d'", item_class=NamedPitch)
-        PitchSegment(items="d' e'", item_class=NamedPitch)
-        PitchSegment(items="d' a,", item_class=NamedPitch)
-        PitchSegment(items="c e'", item_class=NamedPitch)
-        PitchSegment(items="c a,", item_class=NamedPitch)
-        PitchSegment(items="e' a,", item_class=NamedPitch)
-        PitchSegment(items="e' f'", item_class=NamedPitch)
-        PitchSegment(items="a, f'", item_class=NamedPitch)
-        PitchSegment(items="f' g'", item_class=NamedPitch)
-        PitchSegment(items="f' g,", item_class=NamedPitch)
-        PitchSegment(items="a, g'", item_class=NamedPitch)
-        PitchSegment(items="a, g,", item_class=NamedPitch)
-        PitchSegment(items="g' g,", item_class=NamedPitch)
+        (NamedPitch("c'"), NamedPitch('c'))
+        (NamedPitch("c'"), NamedPitch("d'"))
+        (NamedPitch('c'), NamedPitch("d'"))
+        (NamedPitch("d'"), NamedPitch("e'"))
+        (NamedPitch("d'"), NamedPitch('a,'))
+        (NamedPitch('c'), NamedPitch("e'"))
+        (NamedPitch('c'), NamedPitch('a,'))
+        (NamedPitch("e'"), NamedPitch('a,'))
+        (NamedPitch("e'"), NamedPitch("f'"))
+        (NamedPitch('a,'), NamedPitch("f'"))
+        (NamedPitch("f'"), NamedPitch("g'"))
+        (NamedPitch("f'"), NamedPitch('g,'))
+        (NamedPitch('a,'), NamedPitch("g'"))
+        (NamedPitch('a,'), NamedPitch('g,'))
+        (NamedPitch("g'"), NamedPitch('g,'))
 
     ..  container:: example
 
@@ -808,33 +807,33 @@ def iterate_pitch_pairs(components):
         >>> for pair in abjad.iterate_pitch_pairs(staff):
         ...     pair
         ...
-        PitchSegment(items="c' d'", item_class=NamedPitch)
-        PitchSegment(items="c' e'", item_class=NamedPitch)
-        PitchSegment(items="d' e'", item_class=NamedPitch)
-        PitchSegment(items="c' f''", item_class=NamedPitch)
-        PitchSegment(items="c' g''", item_class=NamedPitch)
-        PitchSegment(items="d' f''", item_class=NamedPitch)
-        PitchSegment(items="d' g''", item_class=NamedPitch)
-        PitchSegment(items="e' f''", item_class=NamedPitch)
-        PitchSegment(items="e' g''", item_class=NamedPitch)
-        PitchSegment(items="f'' g''", item_class=NamedPitch)
+        (NamedPitch("c'"), NamedPitch("d'"))
+        (NamedPitch("c'"), NamedPitch("e'"))
+        (NamedPitch("d'"), NamedPitch("e'"))
+        (NamedPitch("c'"), NamedPitch("f''"))
+        (NamedPitch("c'"), NamedPitch("g''"))
+        (NamedPitch("d'"), NamedPitch("f''"))
+        (NamedPitch("d'"), NamedPitch("g''"))
+        (NamedPitch("e'"), NamedPitch("f''"))
+        (NamedPitch("e'"), NamedPitch("g''"))
+        (NamedPitch("f''"), NamedPitch("g''"))
 
     Returns generator.
     """
     for leaf_pair in iterate_leaf_pairs(components):
         pitches = sorted(iterate_.pitches(leaf_pair[0]))
         for pair in _enumerate.yield_pairs(pitches):
-            yield _pcollections.PitchSegment(pair)
+            yield tuple(pair)
         if isinstance(leaf_pair, set):
             pitches = sorted(iterate_.pitches(leaf_pair))
             for pair in _enumerate.yield_pairs(pitches):
-                yield _pcollections.PitchSegment(pair)
+                yield tuple(pair)
         else:
             pitches_1 = sorted(iterate_.pitches(leaf_pair[0]))
             pitches_2 = sorted(iterate_.pitches(leaf_pair[1]))
             sequences = [pitches_1, pitches_2]
             for pair in _enumerate.outer_product(sequences):
-                yield _pcollections.PitchSegment(pair)
+                yield tuple(pair)
         pitches = sorted(iterate_.pitches(leaf_pair[1]))
         for pair in _enumerate.yield_pairs(pitches):
-            yield _pcollections.PitchSegment(pair)
+            yield tuple(pair)

@@ -2659,7 +2659,7 @@ def group_by_pitch(argument) -> list[Selection]:
 
     def predicate(argument):
         generator = iterate_.pitches(argument)
-        return _pcollections.PitchSet.from_pitches(generator)
+        return _pcollections.PitchSet(generator)
 
     return group_by(argument, predicate)
 

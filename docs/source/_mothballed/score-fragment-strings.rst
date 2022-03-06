@@ -23,7 +23,7 @@ descents per instruments as there are pitches in its overall scale.
     ...         a' b' c'' d'' e'' f'' g''
     ...         a'' b'' c''' d''' e''' f''' g''' a'''
     ...     """
-    ...     gamut = abjad.PitchSegment(string)
+    ...     gamut = [abjad.NamedPitch(_) for _ in string.split()]
     ...     pitch_ranges = {
     ...         "Violin_1": abjad.PitchRange("[C4, A6]"),
     ...         "Violin_2": abjad.PitchRange("[A3, A5]"),
@@ -35,7 +35,8 @@ descents per instruments as there are pitches in its overall scale.
     ...     for voice_name, pitch_range in pitch_ranges.items():
     ...         start = gamut.index(pitch_range.start_pitch)
     ...         stop = gamut.index(pitch_range.stop_pitch)
-    ...         pitches = abjad.PitchSegment(reversed(gamut[start : stop + 1]))
+    ...         pitches = gamut[start : stop + 1]
+    ...         pitches.reverse()
     ...         pitch_descents = []
     ...         for i in range(len(pitches)):
     ...             descent = tuple(pitches[: i + 1])
@@ -652,5 +653,5 @@ We create the score like this; only the first four pages are shown below:
     ... )
     >>> abjad.show(lilypond_file)
 
-:author:`[Treviño (2.19), Bača (3.2); ex. Arvo Pärt, Cantus In Memoriam Benjamin Britten
-(1980).]`
+:author:`[Treviño (2.19), Bača (3.2, 3.7); ex. Arvo Pärt, Cantus In Memoriam Benjamin
+Britten (1980).]`

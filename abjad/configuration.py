@@ -529,7 +529,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.math.Infinity'>
         <class 'abjad.math.NegativeInfinity'>
         <class 'abjad.meter.Meter'>
-        <class 'abjad.meter.MeterList'>
         <class 'abjad.meter.MetricAccentKernel'>
         <class 'abjad.metricmodulation.MetricModulation'>
         <class 'abjad.obgc.OnBeatGraceContainer'>
@@ -561,17 +560,11 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.parsers.scheme.SchemeParser'>
         <class 'abjad.pattern.Pattern'>
         <class 'abjad.pattern.PatternTuple'>
-        <class 'abjad.pcollections.IntervalClassSegment'>
-        <class 'abjad.pcollections.IntervalClassSet'>
-        <class 'abjad.pcollections.IntervalSegment'>
-        <class 'abjad.pcollections.IntervalSet'>
         <class 'abjad.pcollections.PitchClassSegment'>
         <class 'abjad.pcollections.PitchClassSet'>
         <class 'abjad.pcollections.PitchRange'>
         <class 'abjad.pcollections.PitchSegment'>
         <class 'abjad.pcollections.PitchSet'>
-        <class 'abjad.pcollections.Segment'>
-        <class 'abjad.pcollections.Set'>
         <class 'abjad.pcollections.TwelveToneRow'>
         <class 'abjad.pitch.Accidental'>
         <class 'abjad.pitch.Interval'>
@@ -624,10 +617,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.timespan.OffsetCounter'>
         <class 'abjad.timespan.Timespan'>
         <class 'abjad.timespan.TimespanList'>
-        <class 'abjad.typedcollections.TypedCollection'>
-        <class 'abjad.typedcollections.TypedFrozenset'>
-        <class 'abjad.typedcollections.TypedList'>
-        <class 'abjad.typedcollections.TypedTuple'>
         <class 'abjad.verticalmoment.VerticalMoment'>
 
     """

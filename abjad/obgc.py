@@ -8,7 +8,6 @@ from . import iterate as iterate_
 from . import mutate as _mutate
 from . import overrides as _overrides
 from . import parentage as _parentage
-from . import pcollections as _pcollections
 from . import score as _score
 from . import select as _select
 from . import spanners as _spanners
@@ -251,7 +250,7 @@ class OnBeatGraceContainer(_score.Container):
                 _mutate.replace(first_grace, chord)
                 first_grace = chord
             generator = iterate_.pitches(anchor_leaf)
-            anchor_pitches = _pcollections.PitchSet.from_pitches(generator)
+            anchor_pitches = list(generator)
             highest_pitch = list(sorted(anchor_pitches))[-1]
             if highest_pitch not in first_grace.note_heads:
                 first_grace.note_heads.append(highest_pitch)

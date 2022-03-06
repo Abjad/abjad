@@ -1335,7 +1335,7 @@ def group_by(sequence, predicate=None) -> list:
     ..  container:: example
 
         >>> staff = abjad.Staff("c'8 d' d' e' e' e'")
-        >>> predicate = lambda _: abjad.PitchSet.from_pitches([_])
+        >>> predicate = lambda _: abjad.PitchSet([_])
         >>> sequence = list(staff)
         >>> for item in abjad.sequence.group_by(sequence, predicate):
         ...     item
@@ -1358,6 +1358,25 @@ def group_by(sequence, predicate=None) -> list:
             item = type(sequence)(group)
             items.append(item)
     return items
+
+
+def has_duplicates(sequence):
+    """
+    Is true when ``sequence`` has duplicates.
+
+    ..  container::
+
+        >>> abjad.sequence.has_duplicates([0, 1, 2, 3, 4])
+        False
+
+        >>> abjad.sequence.has_duplicates([0, 1, 2, 3, 3])
+        True
+
+        >>> abjad.sequence.has_duplicates([0, 1, 0, 1, 0])
+        True
+
+    """
+    return len(set(sequence)) < len(sequence)
 
 
 def is_decreasing(sequence, strict=True) -> bool:
@@ -2252,9 +2271,9 @@ def reverse(sequence, recurse=False):
         >>> for item in abjad.sequence.reverse(sequence, recurse=True):
         ...     item
         ...
-        PitchClassSegment(items=[5, 4], item_class=NumberedPitchClass)
+        PitchClassSegment([5, 4])
         NumberedPitch(3)
-        PitchClassSegment(items=[2, 1], item_class=NumberedPitchClass)
+        PitchClassSegment([2, 1])
 
     Returns sequence type.
     """

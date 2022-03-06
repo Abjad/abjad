@@ -1082,9 +1082,7 @@ class SetClass:
             prime_form = self._lex_identifier_to_prime_form[pair]
         else:
             prime_form = self._forte_identifier_to_prime_form[pair]
-        prime_form = _pcollections.PitchClassSet(
-            items=prime_form, item_class=_pitch.NumberedPitchClass
-        )
+        prime_form = _pcollections.PitchClassSet(prime_form)
         return prime_form
 
     @property
@@ -1184,7 +1182,7 @@ class SetClass:
             SC(4-29){0, 1, 3, 7}
 
             >>> set_class.prime_form
-            PitchClassSet(items=[0, 1, 3, 7], item_class=abjad.NumberedPitchClass)
+            PitchClassSet([0, 1, 3, 7])
 
         ..  container:: example
 
@@ -1198,7 +1196,7 @@ class SetClass:
             SC(4-29){0, 3, 6, 9}
 
             >>> set_class.prime_form
-            PitchClassSet(items=[0, 3, 6, 9], item_class=abjad.NumberedPitchClass)
+            PitchClassSet([0, 3, 6, 9])
 
         ..  container:: example
 
@@ -1213,7 +1211,7 @@ class SetClass:
             SC(4-29){0, 2, 6, 7}
 
             >>> set_class.prime_form
-            PitchClassSet(items=[0, 2, 6, 7], item_class=abjad.NumberedPitchClass)
+            PitchClassSet([0, 2, 6, 7])
 
         Returns numbered pitch-class set.
         """
@@ -1324,9 +1322,7 @@ class SetClass:
 
         Returns set-class.
         """
-        pitch_class_set = _pcollections.PitchClassSet(
-            items=pitch_class_set, item_class=_pitch.NumberedPitchClass
-        )
+        pitch_class_set = _pcollections.PitchClassSet(pitch_class_set)
         prime_form = pitch_class_set.get_prime_form(
             transposition_only=transposition_only
         )
@@ -1561,7 +1557,5 @@ def _yield_all_pitch_class_sets():
         string = _math.integer_to_binary_string(i).zfill(12)
         subset = "".join(list(reversed(string)))
         subset = _helper(subset)
-        subset = _pcollections.PitchClassSet(
-            subset, item_class=_pitch.NumberedPitchClass
-        )
+        subset = _pcollections.PitchClassSet(subset)
         yield subset

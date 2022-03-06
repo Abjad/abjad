@@ -3,11 +3,27 @@ import inspect
 import pickle
 
 import pytest
-from default_values import class_to_default_values
 
 import abjad
 
 classes = abjad.list_all_classes()
+
+
+class_to_default_values = {
+    abjad.io.AbjadGrapher: (abjad.Note("c'4"),),
+    abjad.io.Illustrator: (abjad.Note("c'4"),),
+    abjad.io.LilyPondIO: (abjad.Note("c'4"),),
+    abjad.io.Player: (abjad.Note("c'4"),),
+    abjad.parsers.parser.MarkupCommand: (r"\hcenter-in",),
+    abjad.Articulation: ("staccato",),
+    abjad.ColorFingering: (0,),
+    abjad.Line: ("text",),
+    abjad.Markup: (r"\markup Allegro",),
+    abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
+    abjad.MetronomeMark: ((1, 4), 90),
+    abjad.StringNumber: ([1],),
+    abjad.TimeSignature: ((4, 4),),
+}
 
 
 @pytest.mark.parametrize("class_", classes)
@@ -59,21 +75,6 @@ def test_abjad___hash___01(class_):
     instance = class_(*default_values)
     value = hash(instance)
     assert isinstance(value, int)
-
-
-@pytest.mark.parametrize("class_", classes)
-def test_abjad___radd___01(class_):
-    """
-    Classes with __add__ also implement __radd__.
-    """
-    if inspect.isabstract(class_):
-        return
-    if getattr(class_, "_is_abstract", None) is True:
-        return
-    if issubclass(class_, str):
-        return
-    if hasattr(class_, "__add__"):
-        assert hasattr(class_, "__radd__")
 
 
 @pytest.mark.parametrize("class_", classes)

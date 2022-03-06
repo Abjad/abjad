@@ -1,6 +1,5 @@
 import collections
 import copy
-import dataclasses
 import functools
 import math
 import typing
@@ -17,11 +16,9 @@ from . import lyproxy as _lyproxy
 from . import markups as _markups
 from . import math as _math
 from . import overrides as _overrides
-from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import tag as _tag
 from . import timespan as _timespan
-from . import typedcollections as _typedcollections
 from . import typings as _typings
 
 
@@ -984,11 +981,19 @@ class Container(Component):
         for component in result:
             component._set_parent(None)
 
-    def __getitem__(self, argument):
-        """
-        Gets item or slice identified by ``argument``.
+    @typing.overload
+    def __getitem__(self, argument: typing.SupportsIndex | str) -> Component:
+        ...
 
-        Traverses top-level items only.
+    @typing.overload
+    def __getitem__(self, argument: slice) -> list[Component]:
+        ...
+
+    def __getitem__(
+        self, argument: typing.SupportsIndex | str | slice
+    ) -> Component | list[Component]:
+        """
+        Gets top-level item or slice identified by ``argument``.
         """
         if isinstance(argument, int):
             return self.components.__getitem__(argument)
@@ -2673,16 +2678,15 @@ class Chord(Leaf):
 
     def __getnewargs__(
         self,
-    ) -> typing.Tuple[_pcollections.PitchSegment, _duration.Duration]:
+    ) -> tuple[tuple[_pitch.NamedPitch, ...], _duration.Duration]:
         """
         Gets new chord arguments.
 
         ..  container:: example
 
             >>> abjad.Chord("<c' d'>4").__getnewargs__()
-            (PitchSegment(items="c' d'", item_class=NamedPitch), Duration(1, 4))
+            ((NamedPitch("c'"), NamedPitch("d'")), Duration(1, 4))
 
-        Returns pair.
         """
         return self.written_pitches, self.written_duration
 
@@ -2823,7 +2827,7 @@ class Chord(Leaf):
         Leaf.written_duration.fset(self, argument)
 
     @property
-    def written_pitches(self) -> _pcollections.PitchSegment:
+    def written_pitches(self) -> tuple[_pitch.NamedPitch, ...]:
         """
         Written pitches in chord.
 
@@ -2835,7 +2839,7 @@ class Chord(Leaf):
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> chord.written_pitches
-            PitchSegment(items="g' c'' e''", item_class=NamedPitch)
+            (NamedPitch("g'"), NamedPitch("c''"), NamedPitch("e''"))
 
         ..  container:: example
 
@@ -2854,14 +2858,11 @@ class Chord(Leaf):
                 <f' b' d''>4
 
             >>> chord.written_pitches
-            PitchSegment(items="f' b' d''", item_class=NamedPitch)
+            (NamedPitch("f'"), NamedPitch("b'"), NamedPitch("d''"))
 
         Set written pitches with any iterable.
         """
-        return _pcollections.PitchSegment(
-            items=(note_head.written_pitch for note_head in self.note_heads),
-            item_class=_pitch.NamedPitch,
-        )
+        return tuple(_.written_pitch for _ in self.note_heads)
 
     @written_pitches.setter
     def written_pitches(self, pitches):
@@ -3399,7 +3400,7 @@ class NoteHead:
         tweaks=None,
     ):
         self._alternative = None
-        if isinstance(written_pitch, type(self)):
+        if isinstance(written_pitch, NoteHead):
             note_head = written_pitch
             written_pitch = note_head.written_pitch
             is_cautionary = note_head.is_cautionary
@@ -3926,14 +3927,13 @@ class DrumNoteHead(NoteHead):
         self._written_pitch = drum_pitch
 
 
-@dataclasses.dataclass(slots=True)
-class NoteHeadList(_typedcollections.TypedList):
-    r"""
+class NoteHeadList(list):
+    """
     Note-head list.
 
     ..  container:: example
 
-        >>> for _ in abjad.NoteHeadList(items=[11, 10, 9]): _
+        >>> for _ in abjad.NoteHeadList([11, 10, 9]): _
         NoteHead("a'")
         NoteHead("bf'")
         NoteHead("b'")
@@ -3942,18 +3942,33 @@ class NoteHeadList(_typedcollections.TypedList):
 
     __documentation_section__ = "Note-heads"
 
-    def __post_init__(self):
-        self.item_class = NoteHead
-        self.keep_sorted = True
-        _typedcollections.TypedList.__post_init__(self)
+    def __init__(self, argument=()):
+        note_heads = [NoteHead(_) for _ in argument]
+        list.__init__(self, note_heads)
+        self.sort()
 
-    def _coerce_item(self, item):
-        def coerce_(token):
-            if not isinstance(token, NoteHead):
-                token = NoteHead(written_pitch=token)
-            return token
+    def __setitem__(self, i, argument):
+        """
+        Coerces ``argument`` and sets at ``i``.
+        """
+        if isinstance(i, int):
+            new_item = NoteHead(argument)
+            list.__setitem__(self, i, new_item)
+        elif isinstance(i, slice):
+            new_items = [NoteHead(_) for _ in argument]
+            list.__setitem__(self, i, new_items)
+        self.sort()
 
-        return coerce_(item)
+    def append(self, item):
+        """
+        Coerces ``item`` and appends note-head.
+        """
+        if isinstance(item, NoteHead):
+            note_head = item
+        else:
+            note_head = NoteHead(item)
+        list.append(self, note_head)
+        self.sort()
 
     def extend(self, items) -> None:
         r"""
@@ -3993,7 +4008,9 @@ class NoteHeadList(_typedcollections.TypedList):
                 >4
 
         """
-        return _typedcollections.TypedList.extend(self, items)
+        note_heads = [_ if isinstance(_, NoteHead) else NoteHead(_) for _ in items]
+        list.extend(self, note_heads)
+        self.sort()
 
     def get(self, pitch) -> NoteHead:
         r"""
@@ -4051,6 +4068,7 @@ class NoteHeadList(_typedcollections.TypedList):
         result = []
         pitch = _pitch.NamedPitch(pitch)
         for note_head in self:
+            assert isinstance(note_head, NoteHead), repr(note_head)
             if note_head.written_pitch == pitch:
                 result.append(note_head)
         count = len(result)
@@ -4089,7 +4107,7 @@ class NoteHeadList(_typedcollections.TypedList):
                 <ef' f''>4
 
         """
-        return _typedcollections.TypedList.pop(self, i=i)
+        return list.pop(self, i)
 
     def remove(self, item):
         r"""
@@ -4117,7 +4135,11 @@ class NoteHeadList(_typedcollections.TypedList):
                 <ef' f''>4
 
         """
-        return _typedcollections.TypedList.remove(self, item)
+        if isinstance(item, NoteHead):
+            note_head = item
+        else:
+            note_head = NoteHead(item)
+        list.remove(self, note_head)
 
 
 class Note(Leaf):
