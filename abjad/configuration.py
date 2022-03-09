@@ -1,4 +1,5 @@
 import collections
+import configparser
 import importlib
 import os
 import pathlib
@@ -9,7 +10,6 @@ import traceback
 import types
 import typing
 
-import six
 import uqbar.apis
 
 
@@ -118,16 +118,11 @@ class Configuration:
     def _configuration_from_string(self, string):
         if "[main]" not in string:
             string = "[main]\n" + string
-        config_parser = six.moves.configparser.ConfigParser()
+        config_parser = configparser.ConfigParser()
         try:
-            if six.PY3:
-                config_parser.read_string(string)
-                configuration = dict(config_parser["main"].items())
-            else:
-                string_io = six.moves.StringIO(string)
-                config_parser.readfp(string_io)
-                configuration = dict(config_parser.items("main"))
-        except six.moves.configparser.ParsingError:
+            config_parser.read_string(string)
+            configuration = dict(config_parser["main"].items())
+        except configparser.ParsingError:
             configuration = {}
         return configuration
 
