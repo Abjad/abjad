@@ -10,7 +10,7 @@ Consider the following hexachord:
 
 ::
 
-    >>> hexachord = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])
+    >>> hexachord = abjad.NumberedPitchClassSegment([0, 4, 9, 10, 8, 5])
     >>> abjad.show(hexachord)
 
 The final pitch-class in this hexachord is 5:
@@ -66,7 +66,7 @@ this. Then we write some LilyPond code to beautify the example:
     ...         while pitch < pitches[-1]:
     ...             pitch += 12
     ...         pitches.append(pitch)
-    ...     segment = abjad.PitchSegment(pitches).transpose(start)
+    ...     segment = abjad.NumberedPitchSegment(pitches).transpose(start)
     ...     return segment
 
 ::
@@ -136,7 +136,7 @@ Now we recombine our source hexachord, followed by three transforms.
 
 ::
 
-    >>> hexachord = abjad.PitchClassSegment([0, 4, 9, 10, 8, 5])
+    >>> hexachord = abjad.NumberedPitchClassSegment([0, 4, 9, 10, 8, 5])
     >>> abjad.show(hexachord)
 
     >>> aggregate = recombine(hexachord)
@@ -198,5 +198,5 @@ its complement:
     >>> lilypond_file = abjad.LilyPondFile([score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2); ex. Elliott Carter's concept of parallel-inverted all-interval
-collections; hexachords appear in Carter's Harmony Book.]`
+:author:`[Evans (3.2), Bača (3.7); ex. Elliott Carter's concept of parallel-inverted
+all-interval collections; hexachords appear in Carter's Harmony Book.]`

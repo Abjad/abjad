@@ -318,10 +318,8 @@ class Markup:
     string: str
     direction: typing.Union[int, _enums.VerticalAlignment, None] = None
     tweaks: typing.Optional[_overrides.TweakInterface] = None
-    _annotation: typing.Any = dataclasses.field(default=None, init=False, repr=False)
 
     def __post_init__(self):
-        self._annotation = None
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 

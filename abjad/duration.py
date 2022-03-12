@@ -2018,14 +2018,6 @@ class NonreducedFraction(quicktions.Fraction):
         self._denominator = denominator
         return self
 
-    ### INITIALIZER ###
-
-    def __init__(self, *arguments):
-        """
-        Dummy initializer to satisfy mypy.
-        """
-        pass
-
     ### SPECIAL METHODS ###
 
     def __abs__(self) -> "NonreducedFraction":

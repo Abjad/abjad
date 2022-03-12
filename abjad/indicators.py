@@ -13,7 +13,6 @@ from . import enums as _enums
 from . import markups as _markups
 from . import math as _math
 from . import overrides as _overrides
-from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import ratio as _ratio
 from . import sequence as _sequence
@@ -93,12 +92,10 @@ class Arpeggio:
 
     direction: int | _enums.VerticalAlignment | None = None
     tweaks: _overrides.TweakInterface | None = None
-    _annotation: typing.Any = dataclasses.field(default=None, init=False, repr=False)
 
     _is_dataclass = True
 
     def __post_init__(self):
-        self._annotation = None
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
@@ -1998,43 +1995,65 @@ class Mode:
     ..  container:: example
 
         >>> abjad.Mode("major")
-        Mode(mode_name='major')
+        Mode(name='major')
 
     """
 
-    mode_name: str = "major"
+    name: str = "major"
 
     _is_dataclass = True
 
-    def named_interval_segment(self):
-        mdi_segment = []
+    def intervals(self):
+        """
+        Gets intervals in mode.
+
+        ..  container:: example
+
+            >>> for _ in abjad.Mode("major").intervals(): _
+            NamedInterval('+M2')
+            NamedInterval('+M2')
+            NamedInterval('+m2')
+            NamedInterval('+M2')
+            NamedInterval('+M2')
+            NamedInterval('+M2')
+            NamedInterval('+m2')
+
+            >>> for _ in abjad.Mode("dorian").intervals(): _
+            NamedInterval('+M2')
+            NamedInterval('+m2')
+            NamedInterval('+M2')
+            NamedInterval('+M2')
+            NamedInterval('+M2')
+            NamedInterval('+m2')
+            NamedInterval('+M2')
+
+        """
+        intervals = []
         m2 = _pitch.NamedInterval("m2")
         M2 = _pitch.NamedInterval("M2")
         A2 = _pitch.NamedInterval("aug2")
         dorian = [M2, m2, M2, M2, M2, m2, M2]
-        if self.mode_name == "dorian":
-            mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=0))
-        elif self.mode_name == "phrygian":
-            mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=-1))
-        elif self.mode_name == "lydian":
-            mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=-2))
-        elif self.mode_name == "mixolydian":
-            mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=-3))
-        elif self.mode_name in ("aeolian", "minor", "natural minor"):
-            mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=-4))
-        elif self.mode_name == "locrian":
-            mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=-5))
-        elif self.mode_name in ("ionian", "major"):
-            mdi_segment.extend(_sequence.Sequence(dorian).rotate(n=-6))
-        elif self.mode_name == "melodic minor":
-            mdi_segment.extend([M2, m2, M2, M2, M2, M2, m2])
-        elif self.mode_name == "harmonic minor":
-            mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
+        if self.name == "dorian":
+            intervals.extend(_sequence.rotate(dorian, n=0))
+        elif self.name == "phrygian":
+            intervals.extend(_sequence.rotate(dorian, n=-1))
+        elif self.name == "lydian":
+            intervals.extend(_sequence.rotate(dorian, n=-2))
+        elif self.name == "mixolydian":
+            intervals.extend(_sequence.rotate(dorian, n=-3))
+        elif self.name in ("aeolian", "minor", "natural minor"):
+            intervals.extend(_sequence.rotate(dorian, n=-4))
+        elif self.name == "locrian":
+            intervals.extend(_sequence.rotate(dorian, n=-5))
+        elif self.name in ("ionian", "major"):
+            intervals.extend(_sequence.rotate(dorian, n=-6))
+        elif self.name == "melodic minor":
+            intervals.extend([M2, m2, M2, M2, M2, M2, m2])
+        elif self.name == "harmonic minor":
+            intervals.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
-            raise ValueError(f"unknown mode name: {self.mode_name!r}.")
-        return _pcollections.IntervalSegment(
-            items=mdi_segment, item_class=_pitch.NamedInterval
-        )
+            raise ValueError(f"unknown mode name: {self.name!r}.")
+        return intervals
 
 
 @dataclasses.dataclass(slots=True, unsafe_hash=True)
@@ -2127,7 +2146,7 @@ class KeySignature:
 
     def _get_lilypond_format(self):
         assert isinstance(self.mode, Mode), repr(self.mode)
-        return rf"\key {self.tonic!s} \{self.mode.mode_name}"
+        return rf"\key {self.tonic!s} \{self.mode.name}"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -2158,11 +2177,11 @@ class KeySignature:
 
         """
         assert isinstance(self.mode, Mode)
-        if self.mode.mode_name == "major":
+        if self.mode.name == "major":
             tonic = str(self.tonic).upper()
         else:
             tonic = str(self.tonic)
-        return f"{tonic!s} {self.mode.mode_name}"
+        return f"{tonic!s} {self.mode.name}"
 
 
 @dataclasses.dataclass(slots=True, unsafe_hash=True)

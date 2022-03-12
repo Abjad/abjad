@@ -4,7 +4,6 @@ import operator as operator_module
 import typing
 
 from . import math as _math
-from . import typedcollections as _typedcollections
 
 
 @dataclasses.dataclass(slots=True)
@@ -2245,7 +2244,8 @@ class Pattern:
         return dataclasses.replace(self, patterns=patterns)
 
 
-class PatternTuple(_typedcollections.TypedTuple):
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
+class PatternTuple:
     """
     Pattern tuple.
 
@@ -2267,7 +2267,7 @@ class PatternTuple(_typedcollections.TypedTuple):
         ...         ),
         ...     ])
         >>> patterns
-        PatternTuple(items=(Pattern(indices=(0, 1, 7), inverted=None, operator=None, patterns=None, payload=None, period=10), Pattern(indices=(-2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(2,), inverted=None, operator=None, patterns=None, payload=None, period=3)), item_class=None)
+        PatternTuple(items=(Pattern(indices=(0, 1, 7), inverted=None, operator=None, patterns=None, payload=None, period=10), Pattern(indices=(-2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(2,), inverted=None, operator=None, patterns=None, payload=None, period=3)))
 
     ..  container:: example
 
@@ -2283,15 +2283,14 @@ class PatternTuple(_typedcollections.TypedTuple):
         ...         ),
         ...     ])
         >>> patterns
-        PatternTuple(items=(Pattern(indices=(1,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)), item_class=None)
+        PatternTuple(items=(Pattern(indices=(1,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)))
 
     """
 
-    ### CLASS VARIABLES ###
+    items: typing.Sequence = ()
 
-    __slots__ = ()
-
-    ### PUBLIC METHODS ###
+    def __post_init__(self):
+        self.items = tuple(self.items or [])
 
     def get_matching_pattern(self, index, total_length, rotation=None):
         """
@@ -2419,7 +2418,7 @@ class PatternTuple(_typedcollections.TypedTuple):
 
         Returns pattern or none.
         """
-        for pattern in reversed(self):
+        for pattern in reversed(self.items):
             if hasattr(pattern, "pattern"):
                 if pattern.pattern.matches_index(
                     index, total_length, rotation=rotation

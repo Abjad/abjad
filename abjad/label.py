@@ -673,7 +673,7 @@ def vertical_moments(
         elif prototype is _pitch.NumberedPitch:
             leaves = vertical_moment.leaves
             generator = iterate_.pitches(leaves)
-            pitches = _pcollections.PitchSegment.from_pitches(generator)
+            pitches = _pcollections.PitchSegment(generator)
             if not pitches:
                 continue
             pitch_numbers = [str(pitch.number) for pitch in pitches]
@@ -681,7 +681,7 @@ def vertical_moments(
         elif prototype is _pitch.NumberedPitchClass:
             leaves = vertical_moment.leaves
             generator = iterate_.pitches(leaves)
-            pitches = _pcollections.PitchSegment.from_pitches(generator)
+            pitches = _pcollections.PitchSegment(generator)
             if not pitches:
                 continue
             pitch_classes = [pitch.pitch_class.number for pitch in pitches]
@@ -734,7 +734,7 @@ def vertical_moments(
             assert isinstance(prototype, _setclass.SetClass)
             leaves = vertical_moment.leaves
             generator = iterate_.pitches(leaves)
-            pitch_class_set = _pcollections.PitchClassSet.from_pitches(generator)
+            pitch_class_set = _pcollections.PitchClassSet(generator)
             if not pitch_class_set:
                 continue
             set_class = _setclass.SetClass.from_pitch_class_set(
@@ -1745,7 +1745,7 @@ def with_set_classes(argument, direction=_enums.Up, prototype=None):
     assert isinstance(prototype, _setclass.SetClass), repr(prototype)
     for selection in argument:
         generator = iterate_.pitches(selection)
-        pitch_class_set = _pcollections.PitchClassSet.from_pitches(generator)
+        pitch_class_set = _pcollections.PitchClassSet(generator)
         if not pitch_class_set:
             continue
         set_class = _setclass.SetClass.from_pitch_class_set(

@@ -36,7 +36,7 @@ Define trichord source and tone-row-forming transformations:
 
 ::
 
-    >>> source_trichord = abjad.PitchClassSegment([0, 1, 4])
+    >>> source_trichord = abjad.NumberedPitchClassSegment([0, 1, 4])
     >>> webern_source = source_trichord.invert().rotate(1).transpose(-8)
     >>> first_part = webern_source.transpose(7)
     >>> second_part = webern_source.invert().retrograde().transpose(6)
@@ -72,4 +72,4 @@ Show retrograde inversion:
     >>> file = illustrate_row(row.invert().retrograde())
     >>> abjad.show(file)
 
-:author:`[Evans (3.2)]`
+:author:`[Evans (3.2), Bača (3.7)]`
