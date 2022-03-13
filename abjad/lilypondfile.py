@@ -1,5 +1,4 @@
 import dataclasses
-import typing
 
 from . import configuration as _configuration
 from . import format as _format
@@ -220,9 +219,9 @@ class LilyPondFile:
     """
 
     items: list = dataclasses.field(default_factory=list)
-    lilypond_language_token: typing.Union[bool, str] = True
-    lilypond_version_token: typing.Union[bool, str] = True
-    tag: typing.Optional[_tag.Tag] = None  # TODO: externalize
+    lilypond_language_token: bool | str = True
+    lilypond_version_token: bool | str = True
+    tag: _tag.Tag | None = None  # TODO: externalize
 
     def __contains__(self, argument) -> bool:
         """

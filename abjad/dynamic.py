@@ -698,20 +698,20 @@ class Dynamic:
     # TODO: make ``name`` mandatory; remove default
 
     name: typing.Union[str, "Dynamic"] = "f"
-    command: typing.Optional[str] = None
-    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
+    command: str | None = None
+    direction: int | None = None
     format_hairpin_stop: bool = False
     hide: bool = False
     leak: bool = False
     name_is_textual: bool = False
-    ordinal: typing.Union[int, _math.Infinity, _math.NegativeInfinity, None] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    ordinal: int | _math.Infinity | _math.NegativeInfinity | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass = True
 
     def __post_init__(self):
         if self.name is not None:
-            assert isinstance(self.name, (str, Dynamic)), repr(self.name)
+            assert isinstance(self.name, str | Dynamic), repr(self.name)
         if isinstance(self.name, Dynamic):
             name_ = self.name.name
         elif isinstance(self.name, str):

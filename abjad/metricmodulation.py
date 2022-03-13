@@ -1,5 +1,4 @@
 import dataclasses
-import typing
 
 from . import _inspect
 from . import bundle as _bundle
@@ -355,7 +354,7 @@ class MetricModulation:
         hide: bool = False,
         left_markup: _markups.Markup = None,
         right_markup: _markups.Markup = None,
-        scale: typing.Tuple[_typings.Number, _typings.Number] = (1, 1),
+        scale: tuple[_typings.Number, _typings.Number] = (1, 1),
     ) -> None:
         self._hide = bool(hide)
         left_rhythm = self._initialize_rhythm(left_rhythm)
@@ -606,7 +605,7 @@ class MetricModulation:
         return self._hide
 
     @property
-    def left_markup(self) -> typing.Optional[_markups.Markup]:
+    def left_markup(self) -> _markups.Markup | None:
         """
         Gets left markup of metric modulation.
 
@@ -661,7 +660,7 @@ class MetricModulation:
         return ratio
 
     @property
-    def right_markup(self) -> typing.Optional[_markups.Markup]:
+    def right_markup(self) -> _markups.Markup | None:
         r"""Gets right markup of metric modulation.
 
         ..  container:: example
@@ -693,7 +692,7 @@ class MetricModulation:
         return self._right_rhythm
 
     @property
-    def scale(self) -> typing.Tuple[_typings.Number, _typings.Number]:
+    def scale(self) -> tuple[_typings.Number, _typings.Number]:
         r"""
         Gets scale of output markup.
 

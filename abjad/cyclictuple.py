@@ -106,7 +106,7 @@ class CyclicTuple:
         """
         Gets length of cyclic tuple.
         """
-        assert isinstance(self.items, (tuple, CyclicTuple)), repr(self.items)
+        assert isinstance(self.items, tuple | CyclicTuple), repr(self.items)
         return self.items.__len__()
 
     def __str__(self) -> str:

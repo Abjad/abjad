@@ -106,7 +106,7 @@ class MarkupCommand:
         def recurse(iterable):
             result = []
             for item in iterable:
-                if isinstance(item, (list, tuple)):
+                if isinstance(item, list | tuple):
                     result.append("{")
                     result.extend(recurse(item))
                     result.append("}")
@@ -240,7 +240,7 @@ class GuileProxy:
 
     ### CLASS VARIABLES ###
 
-    _function_name_mapping: typing.Dict[str, typing.Callable] = {}
+    _function_name_mapping: dict[str, typing.Callable] = {}
 
     ### INITIALIZER ###
 
@@ -381,7 +381,7 @@ class GuileProxy:
         def recurse(component, pitch):
             if self._is_unrelativable(component):
                 return pitch
-            elif isinstance(component, (_score.Chord, _score.Note)):
+            elif isinstance(component, _score.Chord | _score.Note):
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
                     for repeated_chord in self.client._repeated_chords[component]:
@@ -2863,7 +2863,7 @@ class LilyPondParser(Parser):
                 previous_leaf = x
                 container.append(x)
             else:
-                if isinstance(x, (_indicators.BarLine,)):
+                if isinstance(x, _indicators.BarLine):
                     apply_backward.append(x)
                 elif isinstance(x, _overrides.LilyPondLiteral) and x.argument in (
                     r"\break",
@@ -2917,19 +2917,19 @@ class LilyPondParser(Parser):
     def _get_scheme_predicates(class_):
         return {
             "boolean?": lambda x: isinstance(x, bool),
-            "cheap-list?": lambda x: isinstance(x, (list, tuple)),
+            "cheap-list?": lambda x: isinstance(x, list | tuple),
             "cheap-markup?": lambda x: isinstance(x, MarkupCommand),
             "fraction?": lambda x: isinstance(x, LilyPondFraction),
             "integer?": lambda x: isinstance(x, int),
-            "list?": lambda x: isinstance(x, (list, tuple)),
+            "list?": lambda x: isinstance(x, list | tuple),
             "ly:duration?": lambda x: isinstance(x, LilyPondDuration),
             "ly:music?": lambda x: isinstance(x, _score.Component),
             "ly:pitch?": lambda x: isinstance(x, _pitch.NamedPitch),
             "markup?": lambda x: isinstance(x, MarkupCommand),
-            "number-list?": lambda x: isinstance(x, (list, tuple))
-            and all(isinstance(y, (int, float)) for y in x),
-            "number?": lambda x: isinstance(x, (int, float)),
-            "real?": lambda x: isinstance(x, (int, float)),
+            "number-list?": lambda x: isinstance(x, list | tuple)
+            and all(isinstance(y, int | float) for y in x),
+            "number?": lambda x: isinstance(x, int | float),
+            "real?": lambda x: isinstance(x, int | float),
             "string?": lambda x: isinstance(x, str),
             "void?": lambda x: isinstance(x, type(None)),
             # the following predicates have not yet been implemented in Abjad
@@ -3188,7 +3188,7 @@ class LilyPondParser(Parser):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_known_contexts() -> typing.List[str]:
+    def list_known_contexts() -> list[str]:
         """
         Lists all LilyPond contexts recognized by LilyPond parser.
 
@@ -3237,7 +3237,7 @@ class LilyPondParser(Parser):
         return sorted(_lyenv.contexts.keys())
 
     @staticmethod
-    def list_known_dynamics() -> typing.Tuple[str, ...]:
+    def list_known_dynamics() -> tuple[str, ...]:
         """
         Lists all dynamics recognized by LilyPond parser.
 
@@ -3280,7 +3280,7 @@ class LilyPondParser(Parser):
         return tuple(result)
 
     @staticmethod
-    def list_known_grobs() -> typing.List[str]:
+    def list_known_grobs() -> list[str]:
         """
         Lists all LilyPond grobs recognized by LilyPond parser.
 
@@ -3436,7 +3436,7 @@ class LilyPondParser(Parser):
         return sorted(_lyenv.grob_interfaces.keys())
 
     @staticmethod
-    def list_known_languages() -> typing.List[str]:
+    def list_known_languages() -> list[str]:
         """
         Lists all note-input languages recognized by LilyPond parser.
 
@@ -3464,7 +3464,7 @@ class LilyPondParser(Parser):
         return sorted(_lyenv.language_pitch_names.keys())
 
     @staticmethod
-    def list_known_markup_functions() -> typing.List[str]:
+    def list_known_markup_functions() -> list[str]:
         """
         Lists all markup functions recognized by LilyPond parser.
 
@@ -3636,7 +3636,7 @@ class LilyPondParser(Parser):
         )
 
     @staticmethod
-    def list_known_music_functions() -> typing.List[str]:
+    def list_known_music_functions() -> list[str]:
         """
         Lists all music functions recognized by LilyPond parser.
 
@@ -3733,7 +3733,7 @@ class LilyPondParser(Parser):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def available_languages(self) -> typing.Tuple[str, ...]:
+    def available_languages(self) -> tuple[str, ...]:
         r"""
         Tuple of pitch-name languages supported by LilyPondParser.
 
@@ -6672,7 +6672,7 @@ class SyntaxNode:
 
         Returns item or slice.
         """
-        if isinstance(self.value, (list, tuple)):
+        if isinstance(self.value, list | tuple):
             return self.value.__getitem__(argument)
         raise Exception(f"can not get: {argument!r}.")
 
@@ -6680,7 +6680,7 @@ class SyntaxNode:
         """
         Gets length.
         """
-        if isinstance(self.value, (list, tuple)):
+        if isinstance(self.value, list | tuple):
             return len(self.value)
         raise Exception("value must be list or tuple.")
 
@@ -6700,7 +6700,7 @@ class SyntaxNode:
         space = ".  " * indent
         result = []
         if isinstance(obj, type(self)):
-            if isinstance(obj.value, (list, tuple)):
+            if isinstance(obj.value, list | tuple):
                 result.append(f"{space}<{obj.type}>: [")
                 for x in obj.value:
                     result.extend(self._format(x, indent + 1))

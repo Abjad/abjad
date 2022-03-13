@@ -1,9 +1,7 @@
-import typing
-
 from .parser import LilyPondParser
 from .reduced import parse_reduced_ly_syntax
 
-_lilypond_parsers_by_language: typing.Dict = {}
+_lilypond_parsers_by_language: dict = {}
 
 
 def parse(string, language="english"):

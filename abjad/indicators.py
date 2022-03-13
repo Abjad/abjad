@@ -90,10 +90,10 @@ class Arpeggio:
 
     """
 
-    direction: int | _enums.VerticalAlignment | None = None
+    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
@@ -166,12 +166,11 @@ class Articulation:
     """
 
     name: str
-    direction: int | _enums.VerticalAlignment | None = None
+    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-
-    _shortcut_to_word = {
+    _is_dataclass: typing.ClassVar[bool] = True
+    _shortcut_to_word: typing.ClassVar[dict[str, str]] = {
         "^": "marcato",
         "+": "stopped",
         "-": "tenuto",
@@ -281,9 +280,8 @@ class BarLine:
     abbreviation: str = "|"
     format_slot: str = "after"
 
-    _is_dataclass = True
-
-    _context = "Score"
+    _is_dataclass: typing.ClassVar[bool] = True
+    _context: typing.ClassVar[str] = "Score"
 
     # scraped from LilyPond docs because LilyPond fails to error
     # on unrecognized string
@@ -352,7 +350,7 @@ class BeamCount:
     left: int = 0
     right: int = 0
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -427,11 +425,11 @@ class BendAfter:
     """
 
     bend_amount: _typings.Number = -4
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _format_slot = "after"
-    _is_dataclass = True
-    _time_orientation = _enums.Right
+    _format_slot: typing.ClassVar[str] = "after"
+    _is_dataclass: typing.ClassVar[bool] = True
+    _time_orientation: typing.ClassVar[int] = _enums.Right
 
     # TODO: remove
     def __str__(self) -> str:
@@ -560,13 +558,11 @@ class BreathMark:
 
     """
 
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _format_slot = "after"
-
-    _is_dataclass = True
-
-    _time_orientation = _enums.Right
+    _format_slot: typing.ClassVar[str] = "after"
+    _is_dataclass: typing.ClassVar[bool] = True
+    _time_orientation: typing.ClassVar[int] = _enums.Right
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -672,7 +668,7 @@ class StaffPosition:
     number: float | int = 0
 
     def __post_init__(self):
-        assert isinstance(self.number, (int, float)), repr(self.number)
+        assert isinstance(self.number, int | float), repr(self.number)
 
     @staticmethod
     def from_pitch_and_clef(pitch, clef) -> "StaffPosition":
@@ -1148,7 +1144,7 @@ class Clef:
     hide: bool = False
     middle_c_position: StaffPosition = dataclasses.field(init=False, repr=False)
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     _clef_name_to_middle_c_position = {
         "treble": -6,
@@ -1347,9 +1343,9 @@ class ColorFingering:
     """
 
     number: int
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     _format_slot = "after"
 
@@ -1371,7 +1367,7 @@ class ColorFingering:
         return bundle
 
     @property
-    def markup(self) -> typing.Optional[_markups.Markup]:
+    def markup(self) -> _markups.Markup | None:
         r"""
         Gets markup of color fingering.
 
@@ -1516,9 +1512,9 @@ class Fermata:
     """
 
     command: str = "fermata"
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     _allowable_commands = (
         "fermata",
@@ -1567,7 +1563,7 @@ class Fermata:
         return bundle
 
     @staticmethod
-    def list_allowable_commands() -> typing.Tuple[str, ...]:
+    def list_allowable_commands() -> tuple[str, ...]:
         """
         Lists allowable commands:
 
@@ -1725,11 +1721,11 @@ class Glissando:
     allow_ties: bool = False
     parenthesize_repeats: bool = False
     stems: bool = False
-    style: typing.Optional[str] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    style: str | None = None
+    tweaks: _overrides.TweakInterface | None = None
     zero_padding: bool = False
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     context = "Voice"
     persistent = True
@@ -1961,9 +1957,9 @@ class KeyCluster:
 
     include_flat_markup: bool = True
     include_natural_markup: bool = True
-    markup_direction: typing.Union[int, _enums.VerticalAlignment] = _enums.Up
+    markup_direction: int = _enums.Up
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -2001,7 +1997,7 @@ class Mode:
 
     name: str = "major"
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     def intervals(self):
         """
@@ -2129,9 +2125,9 @@ class KeySignature:
 
     tonic: _pitch.NamedPitchClass = _pitch.NamedPitchClass("c")
     mode: Mode = Mode("major")
-    tweaks: typing.Union[_overrides.TweakInterface, None] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     context = "Staff"
     persistent = True
@@ -2223,16 +2219,14 @@ class LaissezVibrer:
 
     """
 
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    _format_slot: typing.ClassVar[str] = "after"
+    _time_orientation: typing.ClassVar[int] = _enums.Right
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
-
-    _format_slot = "after"
-
-    _time_orientation = _enums.Right
 
     def __str__(self) -> str:
         r"""
@@ -2315,13 +2309,12 @@ class MarginMarkup:
 
     context: str = "Staff"
     format_slot: str = "before"
-    markup: typing.Union[str, _markups.Markup, None] = None
+    markup: str | _markups.Markup | None = None
 
-    _is_dataclass = True
-
-    latent = True
-    persistent = True
-    redraw = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    latent: typing.ClassVar[bool] = True
+    persistent: typing.ClassVar[bool] = True
+    redraw: typing.ClassVar[bool] = True
 
     @property
     def _lilypond_type(self):
@@ -2614,25 +2607,22 @@ class MetronomeMark:
 
     """
 
-    reference_duration: typing.Optional[_typings.DurationTyping] = None
-    units_per_minute: typing.Union[int, quicktions.Fraction] = None
-    textual_indication: typing.Optional[str] = None
-    custom_markup: typing.Optional[_markups.Markup] = None
+    reference_duration: _typings.DurationTyping | None = None
+    units_per_minute: int | quicktions.Fraction = None
+    textual_indication: str | None = None
+    custom_markup: _markups.Markup | None = None
     decimal: bool | str = False
     hide: bool = False
 
-    _is_dataclass = True
-
-    context = "Score"
-    parameter = "METRONOME_MARK"
-    persistent = True
-
-    _format_slot = "opening"
-
-    _mutates_offsets_in_seconds = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Score"
+    parameter: typing.ClassVar[str] = "METRONOME_MARK"
+    persistent: typing.ClassVar[bool] = True
+    _format_slot: typing.ClassVar[str] = "opening"
+    _mutates_offsets_in_seconds: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        assert isinstance(self.textual_indication, (str, type(None)))
+        assert isinstance(self.textual_indication, str | type(None))
         if self.reference_duration:
             self.reference_duration = _duration.Duration(self.reference_duration)
         if isinstance(self.units_per_minute, float):
@@ -2650,7 +2640,7 @@ class MetronomeMark:
         if self.custom_markup is not None:
             assert isinstance(self.custom_markup, _markups.Markup)
         if self.decimal is not None:
-            assert isinstance(self.decimal, (bool, str)), repr(self.decimal)
+            assert isinstance(self.decimal, bool | str), repr(self.decimal)
         assert isinstance(self.hide, bool), repr(self.hide)
 
     def __eq__(self, argument) -> bool:
@@ -2712,7 +2702,7 @@ class MetronomeMark:
         assert isinstance(argument, type(self)), repr(argument)
         self_quarters_per_minute = self.quarters_per_minute or 0
         argument_quarters_per_minute = argument.quarters_per_minute or 0
-        assert isinstance(self_quarters_per_minute, (int, float, quicktions.Fraction))
+        assert isinstance(self_quarters_per_minute, int | float | quicktions.Fraction)
         assert isinstance(
             argument_quarters_per_minute, (int, float, quicktions.Fraction)
         )
@@ -2741,7 +2731,7 @@ class MetronomeMark:
         """
         if self.textual_indication is not None:
             string = self.textual_indication
-        elif isinstance(self.units_per_minute, (int, float)):
+        elif isinstance(self.units_per_minute, int | float):
             string = f"{self._dotted}={self.units_per_minute}"
         elif isinstance(
             self.units_per_minute, quicktions.Fraction
@@ -2882,7 +2872,7 @@ class MetronomeMark:
         return True
 
     @property
-    def quarters_per_minute(self) -> typing.Union[tuple, None, quicktions.Fraction]:
+    def quarters_per_minute(self) -> tuple | None | quicktions.Fraction:
         """
         Gets metronome mark quarters per minute.
 
@@ -2944,7 +2934,7 @@ class MetronomeMark:
         maximum_numerator=None,
         maximum_denominator=None,
         integer_tempos_only=False,
-    ) -> typing.List[typing.Tuple["MetronomeMark", "_ratio.Ratio"]]:
+    ) -> list[tuple["MetronomeMark", "_ratio.Ratio"]]:
         r"""
         Lists related tempos.
 
@@ -3097,7 +3087,7 @@ class MetronomeMark:
             units_per_minute, quicktions.Fraction
         ) and not _math.is_integer_equivalent_number(units_per_minute):
             if decimal:
-                decimal_: typing.Union[float, str]
+                decimal_: float | str
                 if decimal is True:
                     decimal_ = float(units_per_minute)
                 else:
@@ -3155,12 +3145,11 @@ class Ottava:
 
     """
 
-    n: typing.Optional[int] = None
+    n: int | None = None
     format_slot: str = "before"
 
-    _is_dataclass = True
-
-    persistent = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    persistent: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -3300,13 +3289,12 @@ class RehearsalMark:
 
     """
 
-    markup: typing.Union[_markups.Markup, str, None] = None
-    number: typing.Union[int, None] = None
-    tweaks: typing.Union[_overrides.TweakInterface, None] = None
+    markup: _markups.Markup | str | None = None
+    number: int | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-
-    context = "Score"
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Score"
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -3436,15 +3424,11 @@ class Repeat:
     repeat_count: int = 2
     repeat_type: str = "volta"
 
-    _is_dataclass = True
-
-    _can_attach_to_containers = True
-
-    _format_leaf_children = False
-
-    _format_slot = "before"
-
-    context = "Score"
+    _is_dataclass: typing.ClassVar[bool] = True
+    _can_attach_to_containers: typing.ClassVar[bool] = True
+    _format_leaf_children: typing.ClassVar[bool] = False
+    _format_slot: typing.ClassVar[str] = "before"
+    context: typing.ClassVar[str] = "Score"
 
     def _get_lilypond_format(self):
         return rf"\repeat {self.repeat_type} {self.repeat_count}"
@@ -3603,13 +3587,12 @@ class RepeatTie:
 
     """
 
-    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    direction: int | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-
-    context = "Voice"
-    persistent = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    persistent: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
@@ -3692,13 +3675,13 @@ class StaffChange:
 
     """
 
-    staff: typing.Union[str, None] = None
+    staff: str | None = None
 
-    _is_dataclass = True
-    context = "Staff"
-    _format_leaf_children = False
-    _format_slot = "opening"
-    _time_orientation = _enums.Right
+    _is_dataclass: typing.ClassVar[bool] = True
+    _format_leaf_children: typing.ClassVar[bool] = False
+    _format_slot: typing.ClassVar[str] = "opening"
+    _time_orientation: typing.ClassVar[int] = _enums.Right
+    context: typing.ClassVar[str] = "Staff"
 
     def _get_lilypond_format(self):
         if self.staff is None:
@@ -3763,14 +3746,14 @@ class StartBeam:
 
     """
 
-    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    direction: int | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "BEAM"
-    persistent = True
-    spanner_start = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "BEAM"
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -3842,11 +3825,11 @@ class StartGroup:
 
     """
 
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    persistent = True
-    spanner_start = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -4195,26 +4178,21 @@ class StartHairpin:
     """
 
     shape: str = "<"
-    direction: int | _enums.VerticalAlignment | None = None
+    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "DYNAMIC"
-    persistent = True
-    spanner_start = True
-    trend = True
-
-    _crescendo_start = r"\<"
-
-    _decrescendo_start = r"\>"
-
-    _format_slot = "after"
-
+    _crescendo_start: typing.ClassVar[str] = r"\<"
+    _decrescendo_start: typing.ClassVar[str] = r"\>"
+    _format_slot: typing.ClassVar[str] = "after"
+    _is_dataclass: typing.ClassVar[bool] = True
     _known_shapes = ("<", "o<", "<|", "o<|", ">", ">o", "|>", "|>o", "--")
-
     # TODO: remove?
-    _time_orientation = _enums.Right
+    _time_orientation: typing.ClassVar[int] = _enums.Right
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "DYNAMIC"
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
+    trend: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
@@ -4295,7 +4273,7 @@ class StartHairpin:
         return bundle
 
     @property
-    def known_shapes(self) -> typing.Tuple[str, ...]:
+    def known_shapes(self) -> tuple[str, ...]:
         r"""
 
         Gets known shapes.
@@ -4404,11 +4382,11 @@ class StartMarkup:
 
     """
 
-    markup: typing.Union[str, _markups.Markup] = "instrument name"
+    markup: str | _markups.Markup = "instrument name"
     context: str = "Staff"
     format_slot: str = "before"
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
 
     @property
     def _lilypond_type(self):
@@ -4498,15 +4476,14 @@ class StartPhrasingSlur:
 
     """
 
-    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    direction: int | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-
-    context = "Voice"
-    parameter = "PHRASING_SLUR"
-    persistent = True
-    spanner_start = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "PHRASING_SLUR"
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -4602,13 +4579,13 @@ class StartPianoPedal:
     """
 
     kind: str | None = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "StaffGroup"
-    parameter = "PEDAL"
-    persistent = True
-    spanner_start = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "StaffGroup"
+    parameter: typing.ClassVar[str] = "PEDAL"
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         if self.kind is not None:
@@ -4771,14 +4748,14 @@ class StartSlur:
 
     """
 
-    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    direction: int | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "SLUR"
-    persistent = True
-    spanner_start = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "SLUR"
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
@@ -5135,7 +5112,7 @@ class StartTextSpan:
     command: str = r"\startTextSpan"
     concat_hspace_left: int | float = 0.5
     concat_hspace_right: int | float | None = None
-    direction: int | _enums.VerticalAlignment | None = None
+    direction: int | None = None
     left_broken_text: bool | str | _markups.Markup | None = None
     left_text: str | _markups.Markup | None = None
     right_padding: int | float | None = None
@@ -5143,11 +5120,11 @@ class StartTextSpan:
     style: str | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "TEXT_SPANNER"
-    persistent = True
-    spanner_start = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "TEXT_SPANNER"
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
 
     _styles = (
         "dashed-line-with-arrow",
@@ -5356,11 +5333,11 @@ class StartTrillSpan:
     pitch: str | _pitch.NamedPitch | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "TRILL"
-    persistent = True
-    spanner_start = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "TRILL"
+    persistent: typing.ClassVar[bool] = True
+    spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         if self.interval is not None:
@@ -5465,10 +5442,9 @@ class StemTremolo:
 
     tremolo_flags: int = 16
 
-    _is_dataclass = True
-
-    _format_slot = "after"
-    _time_orientation = _enums.Middle
+    _is_dataclass: typing.ClassVar[bool] = True
+    _format_slot: typing.ClassVar[str] = "after"
+    _time_orientation: typing.ClassVar[int] = _enums.Middle
 
     def __post_init__(self):
         if not _math.is_nonnegative_integer_power_of_two(self.tremolo_flags):
@@ -5549,13 +5525,12 @@ class StopBeam:
 
     leak: bool = False
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "BEAM"
-    persistent = True
-    spanner_stop = True
-
-    _time_orientation = _enums.Right
+    _is_dataclass: typing.ClassVar[bool] = True
+    _time_orientation: typing.ClassVar[int] = _enums.Right
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "BEAM"
+    persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -5670,11 +5645,10 @@ class StopGroup:
 
     leak: bool = False
 
-    _is_dataclass = True
-    persistent = True
-    spanner_stop = True
-
-    _time_orientation = _enums.Right
+    _is_dataclass: typing.ClassVar[bool] = True
+    _time_orientation: typing.ClassVar[int] = _enums.Right
+    persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -5753,11 +5727,11 @@ class StopHairpin:
 
     leak: bool = False
 
-    _is_dataclass = True
-    context = "Voice"
-    # parameter = 'DYNAMIC'
-    # persistent = True
-    spanner_stop = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    # parameter: typing.ClassVar[str] = "DYNAMIC"
+    # persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -5766,7 +5740,6 @@ class StopHairpin:
             string = f"<> {string}"
             bundle.after.leaks.append(string)
         else:
-            # bundle.after.spanner_stops.append(string)
             bundle.after.articulations.append(string)
         return bundle
 
@@ -5871,11 +5844,11 @@ class StopPhrasingSlur:
 
     leak: bool = False
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "PHRASING_SLUR"
-    persistent = True
-    spanner_stop = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "PHRASING_SLUR"
+    persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -5988,11 +5961,11 @@ class StopPianoPedal:
     leak: bool = False
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "StaffGroup"
-    parameter = "PEDAL"
-    persistent = True
-    spanner_stop = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "StaffGroup"
+    parameter: typing.ClassVar[str] = "PEDAL"
+    persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     _time_orientation = _enums.Right
 
@@ -6009,7 +5982,6 @@ class StopPianoPedal:
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             strings.extend(tweaks)
-            # bundle.after.spanner_stops.extend(tweaks)
         if self.kind == "corda":
             string = r"\treCorde"
         elif self.kind == "sostenuto":
@@ -6126,13 +6098,12 @@ class StopSlur:
 
     leak: bool = False
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "SLUR"
-    persistent = True
-    spanner_stop = True
-
-    _time_orientation = _enums.Right
+    _is_dataclass: typing.ClassVar[bool] = True
+    _time_orientation: typing.ClassVar[int] = _enums.Right
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "SLUR"
+    persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         if self.leak is not None:
@@ -6232,12 +6203,12 @@ class StopTextSpan:
     command: str = r"\stopTextSpan"
     leak: bool = False
 
-    _is_dataclass = True
-    context = "Voice"
-    enchained = True
-    parameter = "TEXT_SPANNER"
-    persistent = True
-    spanner_stop = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    enchained: typing.ClassVar[bool] = True
+    parameter: typing.ClassVar[str] = "TEXT_SPANNER"
+    persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         assert isinstance(self.command, str), repr(self.command)
@@ -6322,13 +6293,12 @@ class StopTrillSpan:
 
     leak: bool = False
 
-    _is_dataclass = True
-    context = "Voice"
-    parameter = "TRILL"
-    persistent = True
-    spanner_stop = True
-
+    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation = _enums.Right
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "TRILL"
+    persistent: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         if self.leak is not None:
@@ -6473,12 +6443,12 @@ class Tie:
 
     """
 
-    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    direction: int | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
-    context = "Voice"
-    persistent = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    persistent: typing.ClassVar[bool] = True
 
     def _add_direction(self, string):
         if self.direction is not None:
@@ -6645,15 +6615,13 @@ class TimeSignature:
 
     pair: tuple[int, int]
     hide: bool = False
-    partial: typing.Optional[_duration.Duration] = None
+    partial: _duration.Duration | None = None
 
-    _is_dataclass = True
-
-    _format_slot = "opening"
-
+    _is_dataclass: typing.ClassVar[bool] = True
+    _format_slot: typing.ClassVar[str] = "opening"
     # TODO: context should probably be "Score"
-    context = "Staff"
-    persistent = True
+    context: typing.ClassVar[str] = "Staff"
+    persistent: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         pair_ = getattr(self.pair, "pair", self.pair)

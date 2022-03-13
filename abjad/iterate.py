@@ -8,9 +8,61 @@ from . import score as _score
 from . import select as _select
 
 
+@typing.overload
 def components(
-    argument, prototype=None, *, exclude=None, grace=None, reverse=None
-) -> typing.Generator:
+    argument,
+    *,
+    exclude=None,
+    grace=None,
+    reverse=None,
+) -> typing.Iterator[_score.Component]:
+    ...
+
+
+@typing.overload
+def components(
+    argument,
+    prototype: typing.Type[_score.Tuplet],
+    *,
+    exclude=None,
+    grace=None,
+    reverse=None,
+) -> typing.Iterator[_score.Tuplet]:
+    ...
+
+
+@typing.overload
+def components(
+    argument,
+    prototype: typing.Type[_score.Container],
+    *,
+    exclude=None,
+    grace=None,
+    reverse=None,
+) -> typing.Iterator[_score.Container]:
+    ...
+
+
+@typing.overload
+def components(
+    argument,
+    prototype: typing.Type[_score.Leaf],
+    *,
+    exclude=None,
+    grace=None,
+    reverse=None,
+) -> typing.Iterator[_score.Leaf]:
+    ...
+
+
+def components(
+    argument,
+    prototype=None,
+    *,
+    exclude=None,
+    grace=None,
+    reverse=None,
+):
     r"""
     Iterates components in ``argument``.
 
@@ -191,7 +243,7 @@ def leaves(
     grace=None,
     pitched=None,
     reverse=None,
-) -> typing.Generator:
+) -> typing.Iterator:
     r"""
     Iterates leaves in ``argument``.
 
@@ -434,7 +486,7 @@ def logical_ties(
     nontrivial=None,
     pitched=None,
     reverse=None,
-) -> typing.Generator:
+) -> typing.Iterator[_select.LogicalTie]:
     r"""
     Iterates logical ties in ``argument``.
 
@@ -785,11 +837,10 @@ def logical_ties(
         nontrivial=nontrivial,
         pitched=pitched,
         reverse=reverse,
-        wrapper_class=_select.LogicalTie,
     )
 
 
-def pitches(argument) -> typing.Generator:
+def pitches(argument) -> typing.Iterator[_pitch.NamedPitch]:
     r"""
     Iterates pitches in ``argument``.
 
@@ -869,7 +920,7 @@ def pitches(argument) -> typing.Generator:
         result.extend(argument.written_pitches)
     elif isinstance(argument, _pcollections.PitchSet):
         result.extend(sorted(list(argument)))
-    elif isinstance(argument, (list, tuple, set)):
+    elif isinstance(argument, list | tuple | set):
         for item in argument:
             for pitch_ in pitches(item):
                 result.append(pitch_)

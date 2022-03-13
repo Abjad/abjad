@@ -1028,7 +1028,7 @@ class Octave:
                 else:
                     number -= group_dict["octave_tick"].count(",")
             self.number = number
-        elif isinstance(self.number, (int, float)):
+        elif isinstance(self.number, int | float):
             self.number = int(self.number)
         elif hasattr(self.number, "octave"):
             self.number = self.number.octave.number
@@ -1149,7 +1149,7 @@ class Octave:
             Octave(number=5)
 
         """
-        if isinstance(pitch, (int, float)):
+        if isinstance(pitch, int | float):
             number = int(math.floor(pitch / 12)) + 4
             return class_(number)
         if hasattr(pitch, "name"):
@@ -1213,7 +1213,7 @@ class IntervalClass:
             self._from_named_parts(direction, quality, diatonic_number)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
-        elif isinstance(argument, (Interval, IntervalClass)):
+        elif isinstance(argument, Interval | IntervalClass):
             self._from_interval_or_interval_class(argument)
         else:
             message = f"can not initialize {type(self).__name__} from {argument!r}."
@@ -3032,7 +3032,7 @@ class NamedInterval(Interval):
             quartertone = "+"
             numbered_ic_number -= 0.5
         quality_to_semitones = _diatonic_number_to_quality_dictionary[named_ic_number]
-        semitones_to_quality: typing.Dict = {
+        semitones_to_quality: dict = {
             value: key for key, value in quality_to_semitones.items()
         }
         quality = ""
@@ -3484,7 +3484,7 @@ class PitchClass:
             self._from_named_parts(dpc_number, alteration)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
-        elif isinstance(argument, (Pitch, PitchClass)):
+        elif isinstance(argument, Pitch | PitchClass):
             self._from_pitch_or_pitch_class(argument)
         else:
             try:
@@ -4430,7 +4430,7 @@ class Pitch:
             self._from_named_parts(_dpc_number, _alteration, _octave)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
-        elif isinstance(argument, (Pitch, PitchClass)):
+        elif isinstance(argument, Pitch | PitchClass):
             self._from_pitch_or_pitch_class(argument)
         elif isinstance(argument, tuple) and len(argument) == 2:
             _pitch_class = NamedPitchClass(argument[0])
@@ -5409,7 +5409,7 @@ class NumberedPitch(Pitch):
         Is true when ``argument`` is a numbered pitch with ``number`` the same as this
         numbered pitch.
         """
-        if isinstance(argument, (int, float)):
+        if isinstance(argument, int | float):
             argument = type(self)(argument)
         if isinstance(argument, type(self)):
             return (

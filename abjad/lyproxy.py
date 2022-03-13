@@ -68,7 +68,7 @@ class LilyPondContext:
 
     __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, "LilyPondContext"] = {}
+    _identity_map: dict[str, "LilyPondContext"] = {}
 
     ### CONSTRUCTOR ###
 
@@ -97,7 +97,7 @@ class LilyPondContext:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def accepted_by(self) -> typing.Tuple["LilyPondContext", ...]:
+    def accepted_by(self) -> tuple["LilyPondContext", ...]:
         r"""
         Gets contexts accepting LilyPond context.
 
@@ -266,7 +266,7 @@ class LilyPondContext:
         return tuple(sorted(accepting_contexts, key=lambda x: x.name))
 
     @property
-    def accepts(self) -> typing.Tuple["LilyPondContext", ...]:
+    def accepts(self) -> tuple["LilyPondContext", ...]:
         r"""
         Gets contexts accepted by LilyPond context.
 
@@ -390,7 +390,7 @@ class LilyPondContext:
         return None
 
     @property
-    def engravers(self) -> typing.Tuple["LilyPondEngraver", ...]:
+    def engravers(self) -> tuple["LilyPondEngraver", ...]:
         r"""
         Gets engravers belonging to LilyPond context.
 
@@ -439,7 +439,7 @@ class LilyPondContext:
         return engravers_
 
     @property
-    def grobs(self) -> typing.Tuple["LilyPondGrob", ...]:
+    def grobs(self) -> tuple["LilyPondGrob", ...]:
         r"""
         Gets grobs created by LilyPond context.
 
@@ -791,7 +791,7 @@ class LilyPondContext:
         return self._name
 
     @property
-    def property_names(self) -> typing.Tuple[str, ...]:
+    def property_names(self) -> tuple[str, ...]:
         r"""
         Gets property names of LilyPond context.
 
@@ -870,7 +870,7 @@ class LilyPondContext:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_contexts() -> typing.Tuple["LilyPondContext", ...]:
+    def list_all_contexts() -> tuple["LilyPondContext", ...]:
         r"""
         Lists all contexts.
 
@@ -919,14 +919,14 @@ class LilyPondContext:
     @classmethod
     def register(
         class_,
-        accepted_by: typing.List[str] = None,
+        accepted_by: list[str] = None,
         accepts=None,
         alias: typing.Union[str, "LilyPondContext"] = None,
         consists=None,
         default_child=None,
         denies=None,
         name: str = None,
-        removes: typing.List[str] = None,
+        removes: list[str] = None,
     ) -> "LilyPondContext":
         r"""
         Registers a new context.
@@ -983,7 +983,7 @@ class LilyPondContext:
 
         """
         assert name not in _lyenv.contexts
-        context_entry: typing.Dict = {}
+        context_entry: dict = {}
         context_entry["accepts"] = set()
         context_entry["consists"] = set()
         context_entry["is_custom"] = True
@@ -1137,7 +1137,7 @@ class LilyPondEngraver:
 
     __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, "LilyPondEngraver"] = {}
+    _identity_map: dict[str, "LilyPondEngraver"] = {}
 
     ### CONSTRUCTOR ###
 
@@ -1164,7 +1164,7 @@ class LilyPondEngraver:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_engravers() -> typing.Tuple["LilyPondEngraver", ...]:
+    def list_all_engravers() -> tuple["LilyPondEngraver", ...]:
         """
         Lists all engravers.
 
@@ -1316,7 +1316,7 @@ class LilyPondEngraver:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def grobs(self) -> typing.Tuple["LilyPondGrob", ...]:
+    def grobs(self) -> tuple["LilyPondGrob", ...]:
         """
         Gets LilyPond engraver's created grobs.
 
@@ -1348,7 +1348,7 @@ class LilyPondEngraver:
         return self._name
 
     @property
-    def property_names(self) -> typing.Tuple[str, ...]:
+    def property_names(self) -> tuple[str, ...]:
         """
         Gets LilyPond engraver's property names.
 
@@ -1389,7 +1389,7 @@ class LilyPondGrob:
 
     __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, "LilyPondGrob"] = {}
+    _identity_map: dict[str, "LilyPondGrob"] = {}
 
     ### CONSTRUCTOR ###
 
@@ -1416,7 +1416,7 @@ class LilyPondGrob:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def interfaces(self) -> typing.Tuple["LilyPondGrobInterface", ...]:
+    def interfaces(self) -> tuple["LilyPondGrobInterface", ...]:
         """
         Gets interfaces of LilyPond grob.
 
@@ -1453,7 +1453,7 @@ class LilyPondGrob:
         return self._name
 
     @property
-    def property_names(self) -> typing.Tuple[str, ...]:
+    def property_names(self) -> tuple[str, ...]:
         """
         Gets property names of LilyPond grob.
 
@@ -1537,7 +1537,7 @@ class LilyPondGrob:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_grobs() -> typing.Tuple["LilyPondGrob", ...]:
+    def list_all_grobs() -> tuple["LilyPondGrob", ...]:
         """
         Lists all grobs.
 
@@ -1706,7 +1706,7 @@ class LilyPondGrobInterface:
 
     __slots__ = ("_name",)
 
-    _identity_map: typing.Dict[str, "LilyPondGrobInterface"] = {}
+    _identity_map: dict[str, "LilyPondGrobInterface"] = {}
 
     ### CONSTRUCTOR ###
 
@@ -1735,7 +1735,7 @@ class LilyPondGrobInterface:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def list_all_interfaces() -> typing.Tuple["LilyPondGrobInterface", ...]:
+    def list_all_interfaces() -> tuple["LilyPondGrobInterface", ...]:
         """
         Lists all interfaces.
 
@@ -1904,7 +1904,7 @@ class LilyPondGrobInterface:
         return self._name
 
     @property
-    def property_names(self) -> typing.Tuple[str, ...]:
+    def property_names(self) -> tuple[str, ...]:
         """
         Gets property names of LilyPond grob interface.
 

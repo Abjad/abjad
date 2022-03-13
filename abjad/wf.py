@@ -1,5 +1,3 @@
-import typing
-
 from . import _inspect
 from . import duration as _duration
 from . import indicators as _indicators
@@ -18,7 +16,7 @@ def _aggregate_context_wrappers(argument):
     This currently happens with OnBeatGraceContainer.
     This method aggregates all Special_Voice wrappers for checks.
     """
-    name_to_wrappers: typing.Dict = {}
+    name_to_wrappers: dict = {}
     for context in iterate_.components(argument, _score.Context):
         if context.name not in name_to_wrappers:
             name_to_wrappers[context.name] = []
@@ -27,7 +25,7 @@ def _aggregate_context_wrappers(argument):
     return name_to_wrappers
 
 
-def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
+def check_beamed_long_notes(argument) -> tuple[list, int]:
     r"""
     Checks beamed long notes.
 
@@ -164,7 +162,7 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
     return violators, total
 
 
-def check_duplicate_ids(argument) -> typing.Tuple[typing.List, int]:
+def check_duplicate_ids(argument) -> tuple[list, int]:
     """
     Checks duplicate IDs.
     """
@@ -179,7 +177,7 @@ def check_duplicate_ids(argument) -> typing.Tuple[typing.List, int]:
     return violators, len(total_ids)
 
 
-def check_empty_containers(argument) -> typing.Tuple[typing.List, int]:
+def check_empty_containers(argument) -> tuple[list, int]:
     r"""
     Checks empty containers.
 
@@ -213,7 +211,7 @@ def check_empty_containers(argument) -> typing.Tuple[typing.List, int]:
     return violators, len(containers)
 
 
-def check_missing_parents(argument) -> typing.Tuple[typing.List, int]:
+def check_missing_parents(argument) -> tuple[list, int]:
     """
     Checks missing parents.
     """
@@ -228,7 +226,7 @@ def check_missing_parents(argument) -> typing.Tuple[typing.List, int]:
     return violators, len(total)
 
 
-def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
+def check_notes_on_wrong_clef(argument) -> tuple[list, int]:
     r"""
     Checks notes and chords on wrong clef.
 
@@ -326,7 +324,7 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
     return violators, len(total)
 
 
-def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
+def check_out_of_range_pitches(argument) -> tuple[list, int]:
     r"""
     Checks out-of-range notes.
 
@@ -418,7 +416,7 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
     return violators, len(total)
 
 
-def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
+def check_overlapping_text_spanners(argument) -> tuple[list, int]:
     r"""
     Checks overlapping text spanners.
 
@@ -584,7 +582,7 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         wrappers.sort(key=key)
-        open_spanners: typing.Dict = {}
+        open_spanners: dict = {}
         for wrapper in wrappers:
             if isinstance(wrapper.indicator, _indicators.StartTextSpan):
                 total += 1
@@ -605,7 +603,7 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
     return violators, total
 
 
-def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
+def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
     r"""
     Checks unmatched stop text spans.
 
@@ -671,7 +669,7 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         wrappers.sort(key=lambda _: _.leaked_start_offset)
-        open_spanners: typing.Dict = {}
+        open_spanners: dict = {}
         for wrapper in wrappers:
             if isinstance(wrapper.indicator, _indicators.StartTextSpan):
                 total += 1
@@ -692,7 +690,7 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
     return violators, total
 
 
-def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
+def check_unterminated_hairpins(argument) -> tuple[list, int]:
     r"""
     Checks unterminated hairpins.
 
@@ -836,7 +834,7 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
     return violators, total
 
 
-def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]:
+def check_unterminated_text_spanners(argument) -> tuple[list, int]:
     r"""
     Checks unterminated text spanners.
 
@@ -902,7 +900,7 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         wrappers.sort(key=lambda _: _.leaked_start_offset)
-        open_spanners: typing.Dict = {}
+        open_spanners: dict = {}
         for wrapper in wrappers:
             if isinstance(wrapper.indicator, _indicators.StartTextSpan):
                 total += 1

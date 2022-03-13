@@ -452,7 +452,7 @@ def to_shout_case(string: str) -> str:
 
 
 def to_tridirectional_lilypond_symbol(
-    argument: int | str | _enums.VerticalAlignment | None,
+    argument: int | str | None,
 ) -> str | None:
     """
     Changes ``argument`` to tridirectional LilyPond symbol.
@@ -501,9 +501,7 @@ def to_tridirectional_lilypond_symbol(
     return alignment._get_lilypond_format()
 
 
-def to_tridirectional_ordinal_constant(
-    argument: str | _enums.VerticalAlignment | None,
-) -> _enums.VerticalAlignment | None:
+def to_tridirectional_ordinal_constant(argument: int | str | None) -> int | None:
     """
     Changes ``argument`` to tridirectional ordinal constant.
 

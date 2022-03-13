@@ -51,7 +51,7 @@ class Configuration:
     _configuration_file_name = "abjad.cfg"
 
     # for caching
-    _lilypond_version_string: typing.Optional[str] = None
+    _lilypond_version_string: typing.ClassVar[str | None] = None
 
     ### INITIALIZER ###
 
@@ -95,7 +95,7 @@ class Configuration:
         """
         return self._settings.__getitem__(argument)
 
-    def __iter__(self) -> typing.Generator:
+    def __iter__(self) -> typing.Iterator[str]:
         """
         Iterates configuration settings.
         """
@@ -610,7 +610,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.score.Tuplet'>
         <class 'abjad.score.Voice'>
         <class 'abjad.select.LogicalTie'>
-        <class 'abjad.select.Selection'>
         <class 'abjad.setclass.SetClass'>
         <class 'abjad.tag.Line'>
         <class 'abjad.tag.Tag'>
@@ -618,6 +617,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.timespan.Timespan'>
         <class 'abjad.timespan.TimespanList'>
         <class 'abjad.verticalmoment.VerticalMoment'>
+        tuple[typing.Union[abjad.overrides.TweakInterface, tuple[abjad.overrides.TweakInterface, int]], ...]
 
     """
     all_classes = set()

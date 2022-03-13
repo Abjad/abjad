@@ -25,7 +25,7 @@ def _head_filter_subresult(result, head):
                 result_.append(item)
             else:
                 pass
-        elif isinstance(item, (list, Selection)):
+        else:
             if not all(isinstance(_, _score.Component) for _ in item):
                 raise NotImplementedError(item)
             selection = []
@@ -35,12 +35,9 @@ def _head_filter_subresult(result, head):
                     selection.append(item)
                 else:
                     pass
-            selection = Selection(selection)
             result_.append(selection)
-        else:
-            raise TypeError(item)
     assert isinstance(result_, list), repr(result_)
-    return Selection(result_)
+    return result_
 
 
 def _is_immediate_child_of_outermost_voice(component):
@@ -60,7 +57,7 @@ def _tail_filter_subresult(result, tail):
                 result_.append(item)
             else:
                 pass
-        elif isinstance(item, (list, Selection)):
+        else:
             if not all(isinstance(_, _score.Component) for _ in item):
                 raise NotImplementedError(item)
             selection = []
@@ -70,12 +67,9 @@ def _tail_filter_subresult(result, tail):
                     selection.append(item)
                 else:
                     pass
-            selection = Selection(selection)
             result_.append(selection)
-        else:
-            raise TypeError(item)
     assert isinstance(result_, list), repr(result_)
-    return Selection(result_)
+    return result_
 
 
 def _trim_subresult(result, trim):
@@ -87,7 +81,7 @@ def _trim_subresult(result, trim):
         if isinstance(item, _score.Component):
             if not isinstance(item, prototype):
                 found_good_component = True
-        elif isinstance(item, (list, Selection)):
+        else:
             if not all(isinstance(_, _score.Component) for _ in item):
                 raise NotImplementedError(item)
             selection = []
@@ -96,13 +90,11 @@ def _trim_subresult(result, trim):
                     found_good_component = True
                 if found_good_component:
                     selection.append(component)
-            item = Selection(selection)
-        else:
-            raise TypeError(item)
+            item = selection
         if found_good_component:
             result_.append(item)
     if trim is _enums.Left:
-        result = Selection(result_)
+        result = result_
     else:
         result__ = []
         found_good_component = False
@@ -110,7 +102,7 @@ def _trim_subresult(result, trim):
             if isinstance(item, _score.Component):
                 if not isinstance(item, prototype):
                     found_good_component = True
-            elif isinstance(item, (list, Selection)):
+            else:
                 if not all(isinstance(_, _score.Component) for _ in item):
                     raise NotImplementedError(item)
                 selection = []
@@ -119,38 +111,27 @@ def _trim_subresult(result, trim):
                         found_good_component = True
                     if found_good_component:
                         selection.insert(0, component)
-                item = Selection(selection)
-            else:
-                raise TypeError(item)
+                item = selection
             if found_good_component:
                 result__.insert(0, item)
         assert isinstance(result__, list), repr(result__)
-        result = Selection(result__)
+        result = result__
     return result
 
 
-class Selection(collections.abc.Sequence):
-    r"""
-    Selection of items (components / or other selections).
+class LogicalTie(collections.abc.Sequence):
+    """
+    Logical tie of a component.
 
     ..  container:: example
 
-        >>> string = r"c'4 \times 2/3 { d'8 r8 e'8 } r16 f'16 g'8 a'4"
-        >>> staff = abjad.Staff(string)
-        >>> abjad.setting(staff).autoBeaming = False
+        >>> staff = abjad.Staff("c' d' e' ~ e'")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> result = abjad.select.runs(staff)
-        >>> for item in result:
-        ...     item
-        ...
-        Selection(items=[Note("c'4"), Note("d'8")])
-        Selection(items=[Note("e'8")])
-        Selection(items=[Note("f'16"), Note("g'8"), Note("a'4")])
+        >>> abjad.select.logical_tie(staff[2])
+        LogicalTie(items=[Note("e'4"), Note("e'4")])
 
     """
-
-    __documentation_section__ = "Selections"
 
     __slots__ = ("_items",)
 
@@ -161,8 +142,8 @@ class Selection(collections.abc.Sequence):
             items = [items]
         items = tuple(items)
         for item in items:
-            if not isinstance(item, (_score.Component, Selection)):
-                raise Exception("components / selections only:\n    {items!r}")
+            if not isinstance(item, _score.Component):
+                raise Exception("components only:\n    {items!r}")
         self._items = tuple(items)
 
     def __contains__(self, argument) -> bool:
@@ -182,19 +163,6 @@ class Selection(collections.abc.Sequence):
             return self.items == tuple(argument)
         return False
 
-    def __getitem__(self, argument):
-        """
-        Gets item, slice or pattern ``argument`` in selection.
-
-        Returns a single item when ``argument`` is an integer.
-
-        Returns new selection when ``argument`` is a slice.
-        """
-        result = self.items.__getitem__(argument)
-        if isinstance(result, tuple):
-            result = type(self)(result)
-        return result
-
     def __hash__(self) -> int:
         """
         Hashes selection.
@@ -213,403 +181,15 @@ class Selection(collections.abc.Sequence):
         """
         return f"{type(self).__name__}(items={list(self.items)!r})"
 
-    @property
-    def items(self) -> typing.Tuple:
-        """
-        Gets items in selection.
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> abjad.Selection(staff[:]).items
-            (Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
-
-        """
-        return self._items
-
-    def chord(
-        self, n: int, *, exclude: _typings.Strings = None, grace: bool = None
-    ) -> _score.Chord:
-        """
-        Selects chord ``n``.
-        """
-        return chord(self, n, exclude=exclude, grace=grace)
-
-    def chords(
-        self, *, exclude: _typings.Strings = None, grace: bool = None
-    ) -> "Selection":
-        """
-        Selects chords.
-        """
-        items = chords(self, exclude=exclude, grace=grace)
-        return type(self)(items)
-
-    def components(
-        self,
-        prototype=None,
-        *,
-        exclude: _typings.Strings = None,
-        grace: bool = None,
-        reverse: bool = None,
-    ) -> "Selection":
-        """
-        Selects components.
-        """
-        items = components(
-            self, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
-        )
-        return type(self)(items)
-
-    def exclude(self, indices: typing.Sequence[int], period: int = None) -> "Selection":
-        """
-        Gets items in selection at ``indices`` by ``period``.
-        """
-        items = exclude(self, indices, period)
-        return type(self)(items)
-
-    def filter(self, predicate=None) -> "Selection":
-        """
-        Filters selection by ``predicate``.
-        """
-        items = filter(self, predicate=predicate)
-        return type(self)(items)
-
-    def flatten(self, depth: int = 1) -> "Selection":
-        """
-        Flattens selection to ``depth``.
-        """
-        items = flatten(self, depth=depth)
-        return type(self)(items)
-
-    def get(
-        self,
-        indices: typing.Union[typing.Sequence[int], _pattern.Pattern],
-        period: int = None,
-    ) -> "Selection":
-        """
-        Gets patterned items.
-        """
-        items = get(self, indices, period=period)
-        return type(self)(items)
-
-    def group(self) -> "Selection":
-        """
-        Groups selection.
-        """
-        items = group(self)
-        return type(self)(items)
-
-    def group_by(self, predicate=None) -> "Selection":
-        """
-        Groups items in selection by ``predicate``.
-        """
-        items = group_by(self, predicate=predicate)
-        return type(self)(items)
-
-    def group_by_contiguity(self) -> "Selection":
-        """
-        Groups items in selection by contiguity.
-        """
-        items = group_by_contiguity(self)
-        return type(self)(items)
-
-    def group_by_duration(self) -> "Selection":
-        """
-        Groups items in selection by duration.
-        """
-        items = group_by_duration(self)
-        return type(self)(items)
-
-    def group_by_length(self) -> "Selection":
-        """
-        Groups items in selection by length.
-        """
-        items = group_by_length(self)
-        return type(self)(items)
-
-    def group_by_measure(self) -> "Selection":
-        """
-        Groups items in selection by measure.
-        """
-        items = group_by_measure(self)
-        return type(self)(items)
-
-    def group_by_pitch(self) -> "Selection":
-        """
-        Groups items in selection by pitches.
-        """
-        items = group_by_pitch(self)
-        return type(self)(items)
-
-    def leaf(
-        self,
-        n: int,
-        *,
-        exclude: _typings.Strings = None,
-        grace: bool = None,
-        head: bool = None,
-        pitched: bool = None,
-        prototype=None,
-        reverse: bool = None,
-        tail: bool = None,
-        trim: typing.Union[bool, int] = None,
-    ) -> _score.Leaf:
-        """
-        Selects leaf ``n`` in selection.
-        """
-        return leaves(
-            self,
-            exclude=exclude,
-            grace=grace,
-            head=head,
-            pitched=pitched,
-            prototype=prototype,
-            reverse=reverse,
-            tail=tail,
-            trim=trim,
-        )[n]
-
-    def leaves(
-        self,
-        prototype=None,
-        *,
-        exclude: _typings.Strings = None,
-        grace: bool = None,
-        head: bool = None,
-        pitched: bool = None,
-        reverse: bool = None,
-        tail: bool = None,
-        trim: typing.Union[bool, int] = None,
-    ) -> "Selection":
-        """
-        Selects leaves in selection.
-        """
-        items = leaves(
-            self,
-            prototype=prototype,
-            exclude=exclude,
-            grace=grace,
-            head=head,
-            pitched=pitched,
-            reverse=reverse,
-            tail=tail,
-            trim=trim,
-        )
-        return type(self)(items)
-
-    def logical_tie(
-        self,
-        n: int = 0,
-        *,
-        exclude: _typings.Strings = None,
-        grace: bool = None,
-        nontrivial: bool = None,
-        pitched: bool = None,
-        reverse: bool = None,
-    ) -> "LogicalTie":
-        """
-        Selects logical tie ``n`` in selection.
-        """
-        return logical_ties(
-            self,
-            exclude=exclude,
-            grace=grace,
-            nontrivial=nontrivial,
-            pitched=pitched,
-            reverse=reverse,
-        )[n]
-
-    def logical_ties(
-        self,
-        *,
-        exclude: _typings.Strings = None,
-        grace: bool = None,
-        nontrivial: bool = None,
-        pitched: bool = None,
-        reverse: bool = None,
-    ) -> "Selection":
-        """
-        Selects logical ties in selection.
-        """
-        items = logical_ties(
-            self,
-            exclude=exclude,
-            grace=grace,
-            nontrivial=nontrivial,
-            pitched=pitched,
-            reverse=reverse,
-        )
-        return type(self)(items)
-
-    def nontrivial(self) -> "Selection":
-        """
-        Retains items in selection with length greater than 1.
-        """
-        items = nontrivial(self)
-        return type(self)(items)
-
-    def note(
-        self, n: int, *, exclude: _typings.Strings = None, grace: bool = None
-    ) -> _score.Note:
-        """
-        Selects note ``n`` in selection.
-        """
-        return note(self, n, exclude=exclude, grace=grace)
-
-    def notes(
-        self, *, exclude: _typings.Strings = None, grace: bool = None
-    ) -> "Selection":
-        """
-        Selects notes in selection.
-        """
-        items = notes(self, exclude=exclude, grace=grace)
-        return type(self)(items)
-
-    def partition_by_counts(
-        self,
-        counts,
-        *,
-        cyclic=False,
-        enchain=False,
-        fuse_overhang=False,
-        nonempty=False,
-        overhang=False,
-    ) -> "Selection":
-        """
-        Partitions selection by ``counts``.
-        """
-        items = partition_by_counts(
-            self,
-            counts,
-            cyclic=cyclic,
-            enchain=enchain,
-            fuse_overhang=fuse_overhang,
-            nonempty=nonempty,
-            overhang=overhang,
-        )
-        return type(self)(items)
-
-    def partition_by_durations(
-        self,
-        durations,
-        *,
-        cyclic=False,
-        fill=None,
-        in_seconds=False,
-        overhang=False,
-    ) -> "Selection":
-        """
-        Partitions selection by ``durations``.
-        """
-        items = partition_by_durations(
-            self,
-            durations,
-            cyclic=cyclic,
-            fill=fill,
-            in_seconds=in_seconds,
-            overhang=overhang,
-        )
-        return type(self)(items)
-
-    def partition_by_ratio(self, ratio) -> "Selection":
-        """
-        Partitions selection by ``ratio``.
-        """
-        items = partition_by_ratio(self, ratio)
-        return type(self)(items)
-
-    def rest(
-        self, n: int, *, exclude: _typings.Strings = None, grace: bool = None
-    ) -> _score.Rest | _score.MultimeasureRest:
-        """
-        Selects rest ``n`` in selection.
-        """
-        return rest(self, n, exclude=exclude, grace=grace)
-
-    def rests(
-        self, *, exclude: _typings.Strings = None, grace: bool = None
-    ) -> "Selection":
-        """
-        Selects rests.
-        """
-        items = rests(self, exclude=exclude, grace=grace)
-        return type(self)(items)
-
-    def run(self, n: int, *, exclude: _typings.Strings = None) -> "Selection":
-        """
-        Selects run ``n`` in selection.
-        """
-        return run(self, n, exclude=exclude)
-
-    def runs(self, *, exclude: _typings.Strings = None) -> "Selection":
-        """
-        Selects runs in selection.
-        """
-        items = runs(self, exclude=exclude)
-        return type(self)(items)
-
-    def top(self, *, exclude: _typings.Strings = None) -> "Selection":
-        """
-        Selects top components in selection.
-        """
-        items = top(self, exclude=exclude)
-        return type(self)(items)
-
-    def tuplet(
-        self, n: int, *, exclude: _typings.Strings = None, level: int = None
-    ) -> _score.Component:
-        """
-        Selects tuplet ``n`` in selection.
-        """
-        return tuplet(self, n, exclude=exclude, level=level)
-
-    def tuplets(
-        self, *, exclude: _typings.Strings = None, level: int = None
-    ) -> "Selection":
-        """
-        Selects tuplets in selection.
-        """
-        items = tuplets(self, exclude=exclude, level=level)
-        return type(self)(items)
-
-    def with_next_leaf(self, *, grace: bool = None) -> "Selection":
-        """
-        Extends selection with next leaf.
-        """
-        items = with_next_leaf(self, grace=grace)
-        return type(self)(items)
-
-    def with_previous_leaf(self) -> "Selection":
-        """
-        Extends selection with previous leaf.
-        """
-        items = with_previous_leaf(self)
-        return type(self)(items)
-
-
-class LogicalTie(Selection):
-    """
-    Logical tie of a component.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c' d' e' ~ e'")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> abjad.select.logical_tie(staff[2])
-        LogicalTie(items=[Note("e'4"), Note("e'4")])
-
-    """
-
-    __slots__ = ()
-
     def __getitem__(self, argument):
         """
         Gets ``argument``.
 
-        Returns component or vanilla selection (not logical tie).
+        Returns component or list (not logical tie).
         """
         result = self.items.__getitem__(argument)
         if isinstance(result, tuple):
-            result = Selection(result)
+            result = list(result)
         return result
 
     def _scale(self, multiplier):
@@ -623,6 +203,13 @@ class LogicalTie(Selection):
         """
         assert self.items
         return self.items[0]
+
+    @property
+    def items(self) -> tuple:
+        """
+        Gets items in selection.
+        """
+        return self._items
 
     @property
     def is_pitched(self) -> bool:
@@ -1087,9 +674,7 @@ def components(
     return list(generator)
 
 
-def exclude(
-    argument, indices: typing.Sequence[int], period: int = None
-) -> list[Selection]:
+def exclude(argument, indices: typing.Sequence[int], period: int = None) -> list:
     r"""
     Excludes items at ``indices`` by ``period``.
 
@@ -1244,7 +829,7 @@ def exclude(
     return list(items)
 
 
-def filter(argument, predicate=None) -> list[Selection]:
+def filter(argument, predicate=None) -> list:
     r"""
     Filters ``argument`` by ``predicate``.
 
@@ -1262,7 +847,7 @@ def filter(argument, predicate=None) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("d'8"), Note("e'8")])
+        [Note("d'8"), Note("e'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1484,7 +1069,7 @@ def flatten(argument, depth: int = 1) -> list:
 
 def get(
     argument,
-    indices: typing.Union[typing.Sequence[int], _pattern.Pattern],
+    indices: typing.Sequence[int] | _pattern.Pattern,
     period: int = None,
 ) -> list:
     r"""
@@ -1642,7 +1227,7 @@ def get(
     return list(items)
 
 
-def group(argument) -> list[Selection]:
+def group(argument) -> list[list]:
     r"""
     Groups ``argument`` in selection.
 
@@ -1659,7 +1244,7 @@ def group(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
+        [Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")]
 
         >>> abjad.label.by_selector(result, lone=True)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1705,7 +1290,7 @@ def group(argument) -> list[Selection]:
     return group_by(argument)
 
 
-def group_by(argument, predicate=None) -> list[Selection]:
+def group_by(argument, predicate=None) -> list[list]:
     r'''
     Groups items in ``argument`` by ``predicate``.
 
@@ -1724,7 +1309,7 @@ def group_by(argument, predicate=None) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
+        [Note("c'8"), Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"), Note("d'8"), Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")]
 
         >>> abjad.label.by_selector(result, lone=True)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1775,12 +1360,11 @@ def group_by(argument, predicate=None) -> list[Selection]:
 
     pairs = itertools.groupby(argument, predicate)
     for count, group in pairs:
-        item = Selection(group)
-        items.append(item)
+        items.append(list(group))
     return items
 
 
-def group_by_contiguity(argument) -> list[Selection]:
+def group_by_contiguity(argument) -> list[list]:
     r'''
     Groups items in ``argument`` by contiguity.
 
@@ -1798,10 +1382,10 @@ def group_by_contiguity(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8")])
-        Selection(items=[Note("e'8")])
-        Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
-        Selection(items=[Chord("<c' e' g'>8"), Chord("<c' e' g'>4")])
+        [Note("c'8"), Note("d'8")]
+        [Note("e'8")]
+        [Note("f'8"), Note("g'8"), Note("a'8")]
+        [Chord("<c' e' g'>8"), Chord("<c' e' g'>4")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1858,8 +1442,8 @@ def group_by_contiguity(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
-        Selection(items=[Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")])
+        [Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")]
+        [Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1957,10 +1541,10 @@ def group_by_contiguity(argument) -> list[Selection]:
         >>> result = abjad.select.flatten(result)
         >>> for item in result:
         ...     item
-        Selection(items=[Note("c'8"), Note("c'16"), Note("c'16")])
-        Selection(items=[Note("c'16"), Note("c'16")])
-        Selection(items=[Note("d'8"), Note("d'16"), Note("d'16")])
-        Selection(items=[Note("d'16"), Note("d'16")])
+        [Note("c'8"), Note("c'16"), Note("c'16")]
+        [Note("c'16"), Note("c'16")]
+        [Note("d'8"), Note("d'16"), Note("d'16")]
+        [Note("d'16"), Note("d'16")]
 
         >>> abjad.label.by_selector(result, True)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2019,10 +1603,10 @@ def group_by_contiguity(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[LogicalTie(items=[Note("c'8"), Note("c'16")]), LogicalTie(items=[Note("c'16")])])
-        Selection(items=[LogicalTie(items=[Note("c'16")]), LogicalTie(items=[Note("c'16")])])
-        Selection(items=[LogicalTie(items=[Note("d'8"), Note("d'16")]), LogicalTie(items=[Note("d'16")])])
-        Selection(items=[LogicalTie(items=[Note("d'16")]), LogicalTie(items=[Note("d'16")])])
+        [LogicalTie(items=[Note("c'8"), Note("c'16")]), LogicalTie(items=[Note("c'16")])]
+        [LogicalTie(items=[Note("c'16")]), LogicalTie(items=[Note("c'16")])]
+        [LogicalTie(items=[Note("d'8"), Note("d'16")]), LogicalTie(items=[Note("d'16")])]
+        [LogicalTie(items=[Note("d'16")]), LogicalTie(items=[Note("d'16")])]
 
         >>> abjad.label.by_selector(result, True)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2066,7 +1650,7 @@ def group_by_contiguity(argument) -> list[Selection]:
 
     '''
     result = []
-    selection: typing.List[typing.Union[_score.Component, Selection]] = []
+    selection = []
     selection.extend(argument[:1])
     for item in argument[1:]:
         this_timespan = _inspect._get_timespan(selection[-1])
@@ -2080,14 +1664,14 @@ def group_by_contiguity(argument) -> list[Selection]:
         if this_stop_offset == that_start_offset:
             selection.append(item)
         else:
-            result.append(Selection(selection))
+            result.append(selection)
             selection = [item]
     if selection:
-        result.append(Selection(selection))
+        result.append(selection)
     return result
 
 
-def group_by_duration(argument) -> list[Selection]:
+def group_by_duration(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by duration.
 
@@ -2104,12 +1688,12 @@ def group_by_duration(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[LogicalTie(items=[Note("c'4"), Note("c'16")])])
-        Selection(items=[LogicalTie(items=[Note("d'16"), Note("d'16")])])
-        Selection(items=[LogicalTie(items=[Note("d'16")])])
-        Selection(items=[LogicalTie(items=[Note("e'4"), Note("e'16")])])
-        Selection(items=[LogicalTie(items=[Note("f'16"), Note("f'16")])])
-        Selection(items=[LogicalTie(items=[Note("f'16")])])
+        [LogicalTie(items=[Note("c'4"), Note("c'16")])]
+        [LogicalTie(items=[Note("d'16"), Note("d'16")])]
+        [LogicalTie(items=[Note("d'16")])]
+        [LogicalTie(items=[Note("e'4"), Note("e'16")])]
+        [LogicalTie(items=[Note("f'16"), Note("f'16")])]
+        [LogicalTie(items=[Note("f'16")])]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2159,7 +1743,7 @@ def group_by_duration(argument) -> list[Selection]:
     return group_by(argument, predicate=predicate)
 
 
-def group_by_length(argument) -> list[Selection]:
+def group_by_length(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by length.
 
@@ -2176,10 +1760,10 @@ def group_by_length(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[LogicalTie(items=[Note("c'4"), Note("c'16")]), LogicalTie(items=[Note("d'16"), Note("d'16")])])
-        Selection(items=[LogicalTie(items=[Note("d'16")])])
-        Selection(items=[LogicalTie(items=[Note("e'4"), Note("e'16")]), LogicalTie(items=[Note("f'16"), Note("f'16")])])
-        Selection(items=[LogicalTie(items=[Note("f'16")])])
+        [LogicalTie(items=[Note("c'4"), Note("c'16")]), LogicalTie(items=[Note("d'16"), Note("d'16")])]
+        [LogicalTie(items=[Note("d'16")])]
+        [LogicalTie(items=[Note("e'4"), Note("e'16")]), LogicalTie(items=[Note("f'16"), Note("f'16")])]
+        [LogicalTie(items=[Note("f'16")])]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2231,7 +1815,7 @@ def group_by_length(argument) -> list[Selection]:
     return group_by(argument, predicate)
 
 
-def group_by_measure(argument) -> list[Selection]:
+def group_by_measure(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by measure.
 
@@ -2250,10 +1834,10 @@ def group_by_measure(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8")])
-        Selection(items=[Note("e'8"), Note("f'8")])
-        Selection(items=[Note("g'8"), Note("a'8"), Note("b'8")])
-        Selection(items=[Note("c''8")])
+        [Note("c'8"), Note("d'8")]
+        [Note("e'8"), Note("f'8")]
+        [Note("g'8"), Note("a'8"), Note("b'8")]
+        [Note("c''8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2463,8 +2047,8 @@ def group_by_measure(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
-        Selection(items=[Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
+        [Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2513,9 +2097,9 @@ def group_by_measure(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[LogicalTie(items=[Note("c'8")]), LogicalTie(items=[Note("d'8"), Note("d'8")])])
-        Selection(items=[LogicalTie(items=[Note("e'8"), Note("e'8")])])
-        Selection(items=[LogicalTie(items=[Note("f'8")]), LogicalTie(items=[Note("g'8"), Note("g'8")])])
+        [LogicalTie(items=[Note("c'8")]), LogicalTie(items=[Note("d'8"), Note("d'8")])]
+        [LogicalTie(items=[Note("e'8"), Note("e'8")])]
+        [LogicalTie(items=[Note("f'8")]), LogicalTie(items=[Note("g'8"), Note("g'8")])]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2567,14 +2151,14 @@ def group_by_measure(argument) -> list[Selection]:
         >>> for measure in abjad.select.group_by_measure(leaves):
         ...     print(measure)
         ...
-        Selection(items=[Note("c'4")])
-        Selection(items=[Note("d'4"), Note("e'4"), Note("f'4")])
-        Selection(items=[Note("g'4"), Note("a'4"), Note("b'4")])
+        [Note("c'4")]
+        [Note("d'4"), Note("e'4"), Note("f'4")]
+        [Note("g'4"), Note("a'4"), Note("b'4")]
 
     """
 
     def _get_first_component(argument):
-        component = Selection(argument).components()[0]
+        component = components(argument)[0]
         assert isinstance(component, _score.Component)
         return component
 
@@ -2588,12 +2172,11 @@ def group_by_measure(argument) -> list[Selection]:
     _update._update_measure_numbers(first_component)
     pairs = itertools.groupby(argument, _get_measure_number)
     for value, group in pairs:
-        selection = Selection(group)
-        selections.append(selection)
+        selections.append(list(group))
     return selections
 
 
-def group_by_pitch(argument) -> list[Selection]:
+def group_by_pitch(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by pitch.
 
@@ -2610,10 +2193,10 @@ def group_by_pitch(argument) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[LogicalTie(items=[Note("c'4"), Note("c'16")])])
-        Selection(items=[LogicalTie(items=[Note("d'16"), Note("d'16")]), LogicalTie(items=[Note("d'16")])])
-        Selection(items=[LogicalTie(items=[Note("e'4"), Note("e'16")])])
-        Selection(items=[LogicalTie(items=[Note("f'16"), Note("f'16")]), LogicalTie(items=[Note("f'16")])])
+        [LogicalTie(items=[Note("c'4"), Note("c'16")])]
+        [LogicalTie(items=[Note("d'16"), Note("d'16")]), LogicalTie(items=[Note("d'16")])]
+        [LogicalTie(items=[Note("e'4"), Note("e'16")])]
+        [LogicalTie(items=[Note("f'16"), Note("f'16")]), LogicalTie(items=[Note("f'16")])]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2675,7 +2258,7 @@ def leaf(
     prototype=None,
     reverse: bool = None,
     tail: bool = None,
-    trim: typing.Union[bool, int] = None,
+    trim: bool | int | None = None,
 ) -> _score.Leaf:
     r"""
     Selects leaf ``n` in ``argument``.
@@ -2771,6 +2354,69 @@ def leaf(
     )[n]
 
 
+@typing.overload
+def leaves(
+    argument,
+    *,
+    exclude: _typings.Strings = None,
+    grace: bool = None,
+    head: bool = None,
+    pitched: bool = None,
+    reverse: bool = None,
+    tail: bool = None,
+    trim: bool | int | None = None,
+) -> list[_score.Leaf]:
+    ...
+
+
+@typing.overload
+def leaves(
+    argument,
+    prototype: typing.Type[_score.Chord],
+    *,
+    exclude: _typings.Strings = None,
+    grace: bool = None,
+    head: bool = None,
+    pitched: bool = None,
+    reverse: bool = None,
+    tail: bool = None,
+    trim: bool | int | None = None,
+) -> list[_score.Chord]:
+    ...
+
+
+@typing.overload
+def leaves(
+    argument,
+    prototype: typing.Type[_score.MultimeasureRest],
+    *,
+    exclude: _typings.Strings = None,
+    grace: bool = None,
+    head: bool = None,
+    pitched: bool = None,
+    reverse: bool = None,
+    tail: bool = None,
+    trim: bool | int | None = None,
+) -> list[_score.MultimeasureRest]:
+    ...
+
+
+@typing.overload
+def leaves(
+    argument,
+    prototype: typing.Type[_score.Note],
+    *,
+    exclude: _typings.Strings = None,
+    grace: bool = None,
+    head: bool = None,
+    pitched: bool = None,
+    reverse: bool = None,
+    tail: bool = None,
+    trim: bool | int | None = None,
+) -> list[_score.Note]:
+    ...
+
+
 def leaves(
     argument,
     prototype=None,
@@ -2781,8 +2427,9 @@ def leaves(
     pitched: bool = None,
     reverse: bool = None,
     tail: bool = None,
-    trim: typing.Union[bool, int] = None,
-) -> list[_score.Leaf]:
+    trim: bool | int | None = None,
+    # ) -> list[_score.Leaf]:
+):
     r'''
     Selects leaves in ``argument``.
 
@@ -4173,7 +3820,6 @@ def logical_ties(
         nontrivial=nontrivial,
         pitched=pitched,
         reverse=reverse,
-        wrapper_class=LogicalTie,
     )
     return list(generator)
 
@@ -4194,8 +3840,8 @@ def nontrivial(argument) -> list:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("d'8"), Note("e'8")])
-        Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
+        [Note("d'8"), Note("e'8")]
+        [Note("f'8"), Note("g'8"), Note("a'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4430,7 +4076,7 @@ def partition_by_counts(
     fuse_overhang=False,
     nonempty=False,
     overhang=False,
-) -> list[Selection]:
+) -> list[list]:
     r"""
     Partitions items in ``argument`` by ``counts``.
 
@@ -4447,11 +4093,11 @@ def partition_by_counts(
         ...     [3],
         ...     cyclic=False,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
+        [Note("c'8"), Rest('r8'), Note("d'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4497,8 +4143,8 @@ def partition_by_counts(
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
-        Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
+        [Note("c'8"), Rest('r8'), Note("d'8")]
+        [Note("e'8"), Rest('r8'), Note("f'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4543,13 +4189,13 @@ def partition_by_counts(
         ...     [3],
         ...     cyclic=True,
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
-        Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
-        Selection(items=[Note("g'8"), Note("a'8")])
+        [Note("c'8"), Rest('r8'), Note("d'8")]
+        [Note("e'8"), Rest('r8'), Note("f'8")]
+        [Note("g'8"), Note("a'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4598,12 +4244,12 @@ def partition_by_counts(
         ...     cyclic=True,
         ...     fuse_overhang=True,
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
-        Selection(items=[Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
+        [Note("c'8"), Rest('r8'), Note("d'8")]
+        [Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4651,16 +4297,16 @@ def partition_by_counts(
         ...     [1, 2, 3],
         ...     cyclic=True,
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8")])
-        Selection(items=[Rest('r8'), Note("d'8")])
-        Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
-        Selection(items=[Note("g'8")])
-        Selection(items=[Note("a'8"), Note("b'8")])
-        Selection(items=[Rest('r8'), Note("c''8")])
+        [Note("c'8")]
+        [Rest('r8'), Note("d'8")]
+        [Note("e'8"), Rest('r8'), Note("f'8")]
+        [Note("g'8")]
+        [Note("a'8"), Note("b'8")]
+        [Rest('r8'), Note("c''8")]
 
         >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4715,12 +4361,12 @@ def partition_by_counts(
         ...     leaves,
         ...     [2, -3],
         ...     cyclic=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Rest('r8')])
-        Selection(items=[Note("f'8"), Note("g'8")])
+        [Note("c'8"), Rest('r8')]
+        [Note("f'8"), Note("g'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4769,13 +4415,13 @@ def partition_by_counts(
         ...     [2, -3],
         ...     cyclic=True,
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Rest('r8')])
-        Selection(items=[Note("f'8"), Note("g'8")])
-        Selection(items=[Note("c''8")])
+        [Note("c'8"), Rest('r8')]
+        [Note("f'8"), Note("g'8")]
+        [Note("c''8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4822,12 +4468,12 @@ def partition_by_counts(
         ...     leaves,
         ...     [3],
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Rest('r8'), Note("d'8")])
-        Selection(items=[Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")])
+        [Note("c'8"), Rest('r8'), Note("d'8")]
+        [Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Rest('r8'), Note("c''8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4896,11 +4542,9 @@ def partition_by_counts(
                 raise Exception(counts, i)
             if count < 0:
                 continue
-        items = Selection(group)
-        subresult.append(items)
-    if nonempty and not subresult:
-        group = Selection(groups[0])
         subresult.append(group)
+    if nonempty and not subresult:
+        subresult.append(groups[0])
     result.extend(subresult)
     return result
 
@@ -4913,7 +4557,7 @@ def partition_by_durations(
     fill=None,
     in_seconds=False,
     overhang=False,
-) -> list[Selection]:
+) -> list[list]:
     r"""
     Partitions items in ``argument`` by ``durations``.
 
@@ -4944,13 +4588,13 @@ def partition_by_durations(
         ...     fill=abjad.Exact,
         ...     in_seconds=False,
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
-        Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
-        Selection(items=[Note("b'8"), Note("c''8")])
+        [Note("c'8"), Note("d'8"), Note("e'8")]
+        [Note("f'8"), Note("g'8"), Note("a'8")]
+        [Note("b'8"), Note("c''8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5020,11 +4664,11 @@ def partition_by_durations(
         ...     fill=abjad.Exact,
         ...     in_seconds=False,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
+        [Note("c'8"), Note("d'8"), Note("e'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5090,15 +4734,15 @@ def partition_by_durations(
         ...     fill=abjad.More,
         ...     in_seconds=False,
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8")])
-        Selection(items=[Note("e'8")])
-        Selection(items=[Note("f'8"), Note("g'8")])
-        Selection(items=[Note("a'8")])
-        Selection(items=[Note("b'8"), Note("c''8")])
+        [Note("c'8"), Note("d'8")]
+        [Note("e'8")]
+        [Note("f'8"), Note("g'8")]
+        [Note("a'8")]
+        [Note("b'8"), Note("c''8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5169,17 +4813,17 @@ def partition_by_durations(
         ...     fill=abjad.Less,
         ...     in_seconds=False,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8")])
-        Selection(items=[Note("d'8")])
-        Selection(items=[Note("e'8")])
-        Selection(items=[Note("f'8")])
-        Selection(items=[Note("g'8")])
-        Selection(items=[Note("a'8")])
-        Selection(items=[Note("b'8")])
+        [Note("c'8")]
+        [Note("d'8")]
+        [Note("e'8")]
+        [Note("f'8")]
+        [Note("g'8")]
+        [Note("a'8")]
+        [Note("b'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5249,11 +4893,11 @@ def partition_by_durations(
         ...     fill=abjad.Less,
         ...     in_seconds=False,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8")])
+        [Note("c'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5320,12 +4964,12 @@ def partition_by_durations(
         ...     fill=abjad.Exact,
         ...     in_seconds=True,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
-        Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
+        [Note("c'8"), Note("d'8"), Note("e'8")]
+        [Note("f'8"), Note("g'8"), Note("a'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5398,13 +5042,13 @@ def partition_by_durations(
         ...     fill=abjad.Exact,
         ...     in_seconds=True,
         ...     overhang=True,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
-        Selection(items=[Note("f'8"), Note("g'8"), Note("a'8")])
-        Selection(items=[Note("b'8"), Note("c''8")])
+        [Note("c'8"), Note("d'8"), Note("e'8")]
+        [Note("f'8"), Note("g'8"), Note("a'8")]
+        [Note("b'8"), Note("c''8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5479,11 +5123,11 @@ def partition_by_durations(
         ...     fill=abjad.Exact,
         ...     in_seconds=True,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8"), Note("e'8")])
+        [Note("c'8"), Note("d'8"), Note("e'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5553,17 +5197,17 @@ def partition_by_durations(
         ...     fill=abjad.Less,
         ...     in_seconds=True,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8")])
-        Selection(items=[Note("d'8")])
-        Selection(items=[Note("e'8")])
-        Selection(items=[Note("f'8")])
-        Selection(items=[Note("g'8")])
-        Selection(items=[Note("a'8")])
-        Selection(items=[Note("b'8")])
+        [Note("c'8")]
+        [Note("d'8")]
+        [Note("e'8")]
+        [Note("f'8")]
+        [Note("g'8")]
+        [Note("a'8")]
+        [Note("b'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5637,11 +5281,11 @@ def partition_by_durations(
         ...     fill=abjad.Less,
         ...     in_seconds=True,
         ...     overhang=False,
-        ...     )
+        ... )
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8")])
+        [Note("c'8")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5765,11 +5409,11 @@ def partition_by_durations(
     if len(components_copy):
         if overhang:
             result.append(components_copy)
-    selections = [Selection(_) for _ in result]
+    selections = [list(_) for _ in result]
     return selections
 
 
-def partition_by_ratio(argument, ratio) -> list[Selection]:
+def partition_by_ratio(argument, ratio) -> list[list]:
     r"""
     Partitions items in ``argument`` by ``ratio``.
 
@@ -5786,8 +5430,8 @@ def partition_by_ratio(argument, ratio) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8')])
-        Selection(items=[Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
+        [Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8')]
+        [Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5839,9 +5483,9 @@ def partition_by_ratio(argument, ratio) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'8"), Note("d'8"), Rest('r8')])
-        Selection(items=[Note("e'8"), Rest('r8'), Note("f'8")])
-        Selection(items=[Note("g'8"), Note("a'8"), Rest('r8')])
+        [Note("c'8"), Note("d'8"), Rest('r8')]
+        [Note("e'8"), Rest('r8'), Note("f'8")]
+        [Note("g'8"), Note("a'8"), Rest('r8')]
 
         >>> abjad.label.by_selector(result, colors=["#red", "#blue", "#cyan"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5885,7 +5529,7 @@ def partition_by_ratio(argument, ratio) -> list[Selection]:
     ratio = _ratio.Ratio(ratio)
     counts = ratio.partition_integer(len(argument))
     parts = _sequence.partition_by_counts(argument, counts=counts)
-    selections = [Selection(_) for _ in parts]
+    selections = [list(_) for _ in parts]
     return selections
 
 
@@ -6074,7 +5718,7 @@ def rests(
     return items
 
 
-def run(argument, n: int, *, exclude: _typings.Strings = None) -> Selection:
+def run(argument, n: int, *, exclude: _typings.Strings = None) -> list[_score.Leaf]:
     r"""
     Selects run ``n`` in ``argument``.
 
@@ -6098,7 +5742,7 @@ def run(argument, n: int, *, exclude: _typings.Strings = None) -> Selection:
 
         >>> result = abjad.select.run(staff, -1)
         >>> result
-        Selection(items=[Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+        [Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")]
 
         >>> abjad.label.by_selector(result, lone=True)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -6163,7 +5807,9 @@ def run(argument, n: int, *, exclude: _typings.Strings = None) -> Selection:
     return runs(argument, exclude=exclude)[n]
 
 
-def runs(argument, *, exclude: _typings.Strings = None) -> list[Selection]:
+def runs(
+    argument, *, exclude: _typings.Strings = None, grace: bool = None
+) -> list[list]:
     r"""
     Selects runs in ``argument``.
 
@@ -6189,9 +5835,9 @@ def runs(argument, *, exclude: _typings.Strings = None) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")])
-        Selection(items=[Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")])
-        Selection(items=[Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")])
+        [Note("c'16"), Note("c'16"), Note("c'16"), Chord("<d' e'>4"), Chord("<d' e'>16")]
+        [Note("d'16"), Note("d'16"), Note("d'16"), Chord("<e' fs'>4"), Chord("<e' fs'>16")]
+        [Note("e'16"), Note("e'16"), Note("e'16"), Chord("<fs' gs'>4"), Chord("<fs' gs'>16")]
 
         >>> abjad.label.by_selector(result)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -6283,9 +5929,9 @@ def runs(argument, *, exclude: _typings.Strings = None) -> list[Selection]:
         >>> for item in result:
         ...     item
         ...
-        Selection(items=[Note("c'16"), Note("d'16"), Note("e'16")])
-        Selection(items=[Note("cs'16"), Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")])
-        Selection(items=[Note("f'8"), Note("fs'16")])
+        [Note("c'16"), Note("d'16"), Note("e'16")]
+        [Note("cs'16"), Note("d'4"), Chord("<e' g'>16"), Note("gs'16"), Note("a'16"), Note("as'16"), Note("e'4")]
+        [Note("f'8"), Note("fs'16")]
 
         >>> abjad.label.by_selector(result)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -6357,10 +6003,9 @@ def runs(argument, *, exclude: _typings.Strings = None) -> list[Selection]:
             }
 
     """
-    result = leaves(argument, exclude=exclude, pitched=True)
+    result = leaves(argument, exclude=exclude, grace=grace, pitched=True)
     groups = group_by_contiguity(result)
-    selections = [Selection(_) for _ in groups]
-    return selections
+    return groups
 
 
 def top(argument, *, exclude: _typings.Strings = None) -> list[_score.Component]:

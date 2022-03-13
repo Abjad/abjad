@@ -1,7 +1,6 @@
 import collections
 import math
 import numbers
-import typing
 
 from . import _inspect
 from . import duration as _duration
@@ -484,7 +483,7 @@ class LeafMaker:
             pitches = pitches.split()
         if not isinstance(pitches, collections.abc.Iterable):
             pitches = [pitches]
-        if isinstance(durations, (numbers.Number, tuple)):
+        if isinstance(durations, numbers.Number | tuple):
             durations = [durations]
         nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
         size = max(len(nonreduced_fractions), len(pitches))
@@ -493,7 +492,7 @@ class LeafMaker:
         duration_groups = _duration.Duration._group_by_implied_prolation(
             nonreduced_fractions
         )
-        result: typing.List[typing.Union[_score.Tuplet, _score.Leaf]] = []
+        result: list[_score.Tuplet | _score.Leaf] = []
         for duration_group in duration_groups:
             # get factors in denominator of duration group other than 1, 2.
             factors_ = _math.factors(duration_group[0].denominator)
@@ -525,7 +524,7 @@ class LeafMaker:
                     ratio * _duration.Duration(duration) for duration in duration_group
                 ]
                 # make tuplet leaves
-                tuplet_leaves: typing.List[_score.Leaf] = []
+                tuplet_leaves: list[_score.Leaf] = []
                 for pitch, duration in zip(current_pitches, duration_group):
                     leaves = self._make_leaf_on_pitch(
                         pitch,
@@ -685,35 +684,35 @@ class LeafMaker:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def forbidden_note_duration(self) -> typing.Optional[_duration.Duration]:
+    def forbidden_note_duration(self) -> _duration.Duration | None:
         """
         Gets forbidden written duration.
         """
         return self._forbidden_note_duration
 
     @property
-    def forbidden_rest_duration(self) -> typing.Optional[_duration.Duration]:
+    def forbidden_rest_duration(self) -> _duration.Duration | None:
         """
         Gets forbidden written duration.
         """
         return self._forbidden_rest_duration
 
     @property
-    def increase_monotonic(self) -> typing.Optional[bool]:
+    def increase_monotonic(self) -> bool | None:
         """
         Is true when durations increase monotonically.
         """
         return self._increase_monotonic
 
     @property
-    def skips_instead_of_rests(self) -> typing.Optional[bool]:
+    def skips_instead_of_rests(self) -> bool | None:
         """
         Is true when skips appear in place of rests.
         """
         return self._skips_instead_of_rests
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         r"""
         Gets tag.
 
@@ -748,7 +747,7 @@ class LeafMaker:
         return self._tag
 
     @property
-    def use_multimeasure_rests(self) -> typing.Optional[bool]:
+    def use_multimeasure_rests(self) -> bool | None:
         """
         Is true when rests are multimeasure.
         """
@@ -927,14 +926,14 @@ class NoteMaker:
             pitches = pitches.split()
         if not isinstance(pitches, collections.abc.Iterable):
             pitches = [pitches]
-        if isinstance(durations, (numbers.Number, tuple)):
+        if isinstance(durations, numbers.Number | tuple):
             durations = [durations]
         nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
         size = max(len(nonreduced_fractions), len(pitches))
         nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
         pitches = _sequence.repeat_to_length(pitches, size)
         durations = _duration.Duration._group_by_implied_prolation(nonreduced_fractions)
-        result: typing.List[typing.Union[_score.Note, _score.Tuplet]] = []
+        result: list[_score.Note | _score.Tuplet] = []
         for duration in durations:
             # get factors in denominator of duration group duration not 1 or 2
             factors = set(_math.factors(duration[0].denominator))
@@ -989,14 +988,14 @@ class NoteMaker:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def increase_monotonic(self) -> typing.Optional[bool]:
+    def increase_monotonic(self) -> bool | None:
         """
         Is true when durations increase monotonically.
         """
         return self._increase_monotonic
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         r"""
         Gets tag.
 
@@ -1339,7 +1338,7 @@ def tuplet_from_duration_and_ratio(
 
 
 def tuplet_from_leaf_and_ratio(
-    leaf: _score.Leaf, ratio: typing.Union[typing.List, _ratio.Ratio]
+    leaf: _score.Leaf, ratio: list | _ratio.Ratio
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from ``leaf`` and ``ratio``.
@@ -1684,8 +1683,8 @@ def tuplet_from_leaf_and_ratio(
 
 
 def tuplet_from_ratio_and_pair(
-    ratio: typing.Union[typing.Tuple, _ratio.NonreducedRatio],
-    fraction: typing.Union[typing.Tuple, _duration.NonreducedFraction],
+    ratio: tuple | _ratio.NonreducedRatio,
+    fraction: tuple | _duration.NonreducedFraction,
     *,
     tag: _tag.Tag = None,
 ) -> _score.Tuplet:

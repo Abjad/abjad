@@ -3,9 +3,7 @@ Tools for modeling LilyPond markup.
 """
 import collections
 import dataclasses
-import typing
 
-from . import enums as _enums
 from . import math as _math
 from . import overrides as _overrides
 from . import string as _string
@@ -316,8 +314,8 @@ class Markup:
     """
 
     string: str
-    direction: typing.Union[int, _enums.VerticalAlignment, None] = None
-    tweaks: typing.Optional[_overrides.TweakInterface] = None
+    direction: int | None = None
+    tweaks: _overrides.TweakInterface | None = None
 
     def __post_init__(self):
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
@@ -361,7 +359,7 @@ def _format_postscript_argument(argument):
         return f"[ {string} ]"
     elif isinstance(argument, bool):
         return str(argument).lower()
-    elif isinstance(argument, (int, float)):
+    elif isinstance(argument, int | float):
         argument = _math.integer_equivalent_number_to_integer(argument)
         return str(argument)
     return str(argument)

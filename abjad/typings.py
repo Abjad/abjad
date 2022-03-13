@@ -6,26 +6,26 @@ import typing
 from . import duration as _duration
 from . import ratio as _ratio
 
-IntegerPair = typing.Tuple[int, int]
+IntegerPair: typing.TypeAlias = tuple[int, int]
 
-IntegerSequence = typing.Sequence[int]
+IntegerSequence: typing.TypeAlias = typing.Sequence[int]
 
-DurationTyping = typing.Union[_duration.Duration, IntegerPair]
+DurationTyping: typing.TypeAlias = _duration.Duration | IntegerPair
 
-DurationSequenceTyping = typing.Sequence[DurationTyping]
+DurationSequenceTyping: typing.TypeAlias = typing.Sequence[DurationTyping]
 
-Number = typing.Union[int, float]
+Number: typing.TypeAlias = int | float
 
-NumberPair = typing.Tuple[Number, Number]
+NumberPair: typing.TypeAlias = tuple[Number, Number]
 
-PatternTyping = typing.Union[
-    typing.Tuple[IntegerSequence], typing.Tuple[IntegerSequence, int]
+PatternTyping: typing.TypeAlias = typing.Union[
+    tuple[IntegerSequence], tuple[IntegerSequence, int]
 ]
 
-Prototype = typing.Union[typing.Type, typing.Tuple[typing.Type, ...]]
+Prototype: typing.TypeAlias = typing.Union[typing.Type | tuple[typing.Type, ...]]
 
-RatioTyping = typing.Union[_duration.Duration, _ratio.Ratio, typing.Tuple[int, ...]]
+RatioTyping: typing.TypeAlias = _duration.Duration | _ratio.Ratio | tuple[int, ...]
 
-RatioSequenceTyping = typing.Sequence[RatioTyping]
+RatioSequenceTyping: typing.TypeAlias = typing.Sequence[RatioTyping]
 
-Strings = typing.Union[str, typing.Sequence[str]]
+Strings: typing.TypeAlias = str | typing.Sequence[str]

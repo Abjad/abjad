@@ -2044,7 +2044,7 @@ class ColorMap:
         return set(pcs).issubset(set(self._color_dictionary.keys()))
 
     @property
-    def pairs(self) -> typing.List[typing.Tuple[int, str]]:
+    def pairs(self) -> list[tuple[int, str]]:
         """
         Gets pairs.
 

@@ -1,5 +1,3 @@
-import typing
-
 from . import tag as _tag
 
 
@@ -204,36 +202,36 @@ class SlotContributions:
     ### INITIALIZER ###
 
     def __init__(self) -> None:
-        self._articulations: typing.List[str] = []
-        self._commands: typing.List[str] = []
-        self._comments: typing.List[str] = []
-        self._indicators: typing.List[str] = []
-        self._leaks: typing.List[str] = []
-        self._markup: typing.List[str] = []
-        self._spanners: typing.List[str] = []
-        self._spanner_starts: typing.List[str] = []
-        self._spanner_stops: typing.List[str] = []
-        self._stem_tremolos: typing.List[str] = []
-        self._trill_spanner_starts: typing.List[str] = []
+        self._articulations: list[str] = []
+        self._commands: list[str] = []
+        self._comments: list[str] = []
+        self._indicators: list[str] = []
+        self._leaks: list[str] = []
+        self._markup: list[str] = []
+        self._spanners: list[str] = []
+        self._spanner_starts: list[str] = []
+        self._spanner_stops: list[str] = []
+        self._stem_tremolos: list[str] = []
+        self._trill_spanner_starts: list[str] = []
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def articulations(self) -> typing.List[str]:
+    def articulations(self) -> list[str]:
         """
         Gets articulations.
         """
         return self._articulations
 
     @property
-    def commands(self) -> typing.List[str]:
+    def commands(self) -> list[str]:
         """
         Gets commands.
         """
         return self._commands
 
     @property
-    def comments(self) -> typing.List[str]:
+    def comments(self) -> list[str]:
         """
         Gets comments.
         """
@@ -263,56 +261,56 @@ class SlotContributions:
         )
 
     @property
-    def indicators(self) -> typing.List[str]:
+    def indicators(self) -> list[str]:
         """
         Gets indicators.
         """
         return self._indicators
 
     @property
-    def leaks(self) -> typing.List[str]:
+    def leaks(self) -> list[str]:
         """
         Gets leaks.
         """
         return self._leaks
 
     @property
-    def markup(self) -> typing.List[str]:
+    def markup(self) -> list[str]:
         """
         Gets markup.
         """
         return self._markup
 
     @property
-    def spanner_starts(self) -> typing.List[str]:
+    def spanner_starts(self) -> list[str]:
         """
         Gets spanner starts.
         """
         return self._spanner_starts
 
     @property
-    def spanner_stops(self) -> typing.List[str]:
+    def spanner_stops(self) -> list[str]:
         """
         Gets spanner stops.
         """
         return self._spanner_stops
 
     @property
-    def spanners(self) -> typing.List[str]:
+    def spanners(self) -> list[str]:
         """
         Gets spanners.
         """
         return self._spanners
 
     @property
-    def stem_tremolos(self) -> typing.List[str]:
+    def stem_tremolos(self) -> list[str]:
         """
         Gets stem tremolos.
         """
         return self._stem_tremolos
 
     @property
-    def trill_spanner_starts(self) -> typing.List[str]:
+    def trill_spanner_starts(self) -> list[str]:
         """
         Gets trill spanner starts.
         """

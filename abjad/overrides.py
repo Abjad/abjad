@@ -88,7 +88,7 @@ def format_scheme_value(
         return "#t"
     elif value is False:
         return "#f"
-    elif isinstance(value, (list, tuple)):
+    elif isinstance(value, list | tuple):
         string = " ".join(format_scheme_value(_) for _ in value)
         return f"({string})"
     elif value is None:
@@ -441,7 +441,7 @@ class LilyPondLiteral:
 
     """
 
-    argument: typing.Union[str, typing.List[str]] = ""
+    argument: str | list[str] = ""
     # TODO: probaby change default to "before"
     format_slot: str = "opening"
     directed: bool = False
@@ -666,7 +666,7 @@ class LilyPondOverride:
         grob_name: str = "NoteHead",
         once: bool = False,
         is_revert: bool = False,
-        property_path: typing.Union[str, typing.Iterable[str]] = "color",
+        property_path: str | typing.Iterable[str] = "color",
         value: typing.Any = "#red",
     ) -> None:
         if lilypond_type is not None:
@@ -677,7 +677,7 @@ class LilyPondOverride:
         self._once = bool(once)
         self._is_revert = bool(is_revert)
         if isinstance(property_path, str):
-            property_path_: typing.Tuple[str, ...] = (property_path,)
+            property_path_: tuple[str, ...] = (property_path,)
         else:
             property_path_ = tuple(property_path)
         assert isinstance(property_path_, tuple), repr(property_path_)
@@ -778,7 +778,7 @@ class LilyPondOverride:
         return self._is_revert
 
     @property
-    def lilypond_type(self) -> typing.Optional[str]:
+    def lilypond_type(self) -> str | None:
         r"""
         Gets LilyPond type of context.
 
@@ -842,7 +842,7 @@ class LilyPondOverride:
         return self._once
 
     @property
-    def override_format_pieces(self) -> typing.Tuple[str, ...]:
+    def override_format_pieces(self) -> tuple[str, ...]:
         r"""
         Gets LilyPond grob override \override format pieces.
 
@@ -898,7 +898,7 @@ class LilyPondOverride:
         return "\n".join(self.override_format_pieces)
 
     @property
-    def property_path(self) -> typing.Tuple[str, ...]:
+    def property_path(self) -> tuple[str, ...]:
         r"""
         Gets LilyPond grob override property path.
 
@@ -922,7 +922,7 @@ class LilyPondOverride:
         return self._property_path
 
     @property
-    def revert_format_pieces(self) -> typing.Tuple[str, ...]:
+    def revert_format_pieces(self) -> tuple[str, ...]:
         r"""
         Gets LilyPond grob override \revert format pieces.
 
@@ -1116,7 +1116,7 @@ class LilyPondSetting:
         return self._context_property
 
     @property
-    def format_pieces(self) -> typing.Tuple[str, ...]:
+    def format_pieces(self) -> tuple[str, ...]:
         r"""
         Gets LilyPond context setting ``\set`` or ``\unset`` format pieces.
         """
@@ -1140,14 +1140,14 @@ class LilyPondSetting:
         return tuple(result)
 
     @property
-    def is_unset(self) -> typing.Optional[bool]:
+    def is_unset(self) -> bool | None:
         """
         Is true if context setting unsets its value.
         """
         return self._is_unset
 
     @property
-    def lilypond_type(self) -> typing.Optional[str]:
+    def lilypond_type(self) -> str | None:
         """
         Gets LilyPond type.
         """
@@ -1430,7 +1430,7 @@ class SettingInterface(Interface):
 
     ### PRIVATE METHODS ###
 
-    def _format_in_with_block(self) -> typing.List[str]:
+    def _format_in_with_block(self) -> list[str]:
         strings = []
         for key, value in vars(self).items():
             assert isinstance(key, str), repr(key)
@@ -1451,7 +1451,7 @@ class SettingInterface(Interface):
             strings.append(string)
         return strings
 
-    def _format_inline(self, context=None) -> typing.List[str]:
+    def _format_inline(self, context=None) -> list[str]:
         result = []
         for name, value in vars(self).items():
             # if we've found a leaf context namespace
@@ -1598,7 +1598,7 @@ class TweakInterface(Interface):
 
     ### SPECIAL METHODS ###
 
-    def __getattr__(self, name) -> typing.Union[Interface, typing.Any]:
+    def __getattr__(self, name) -> Interface | typing.Any:
         r"""
         Gets Interface (or OverrideInterface) keyed to ``name``.
 
@@ -1768,8 +1768,8 @@ class TweakInterface(Interface):
 
     ### PRIVATE METHODS ###
 
-    def _get_attribute_tuples(self) -> typing.List[typing.Tuple]:
-        result: typing.List[typing.Tuple] = []
+    def _get_attribute_tuples(self) -> list[tuple]:
+        result: list[tuple] = []
         for name, value in vars(self).items():
             if name == "_currently_tagging":
                 continue
@@ -1911,9 +1911,9 @@ class TweakInterface(Interface):
         return existing_manager
 
 
-IndexedTweakManager = typing.Union[TweakInterface, typing.Tuple[TweakInterface, int]]
+IndexedTweakManager = typing.Union[TweakInterface, tuple[TweakInterface, int]]
 
-IndexedTweakManagers = typing.Tuple[IndexedTweakManager, ...]
+IndexedTweakManagers = tuple[IndexedTweakManager, ...]
 
 
 ### FUNCTIONS ###

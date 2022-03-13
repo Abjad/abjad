@@ -342,7 +342,7 @@ class Ratio(NonreducedRatio):
         numbers = list(reversed(self.numbers))
         return type(self)(numbers)
 
-    def partition_integer(self, n) -> typing.List[int]:
+    def partition_integer(self, n) -> list[int]:
         """
         Partitions positive integer-equivalent ``n`` by ``ratio``.
 
