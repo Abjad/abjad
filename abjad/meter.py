@@ -4,7 +4,6 @@ Tools for modeling musical meter.
 import bisect
 import collections
 import dataclasses
-import typing
 
 import uqbar.graphs
 
@@ -268,7 +267,7 @@ class Meter:
         preferred_boundary_depth=None,
     ):
         argument = argument or (4, 4)
-        assert isinstance(preferred_boundary_depth, (int, type(None)))
+        assert isinstance(preferred_boundary_depth, int | type(None))
         self._preferred_boundary_depth = preferred_boundary_depth
 
         def recurse(node, factors, denominator, increase_monotonic):
@@ -345,7 +344,7 @@ class Meter:
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
             increase_monotonic = argument.increase_monotonic
-        elif isinstance(argument, (str, _rhythmtrees.RhythmTreeContainer)):
+        elif isinstance(argument, str | _rhythmtrees.RhythmTreeContainer):
             if isinstance(argument, str):
                 parsed = _rhythmtrees.RhythmTreeParser()(argument)
                 assert len(parsed) == 1
@@ -749,7 +748,7 @@ class Meter:
         return _indicators.TimeSignature(self.root_node.preprolated_duration)
 
     @property
-    def increase_monotonic(self) -> typing.Optional[bool]:
+    def increase_monotonic(self) -> bool | None:
         """
         Is true when meter divides large primes into collections of ``2``
         and ``3`` that increase monotonically.
@@ -3271,7 +3270,7 @@ class _MeterManager:
         current_leaf_group = None
         current_leaf_group_is_silent = False
         for component in argument:
-            if isinstance(component, (_score.Note, _score.Chord)):
+            if isinstance(component, _score.Note | _score.Chord):
                 this_tie_leaves = _iterate._get_logical_tie_leaves(component)
                 this_tie = _select.LogicalTie(this_tie_leaves)
                 if current_leaf_group is None:
@@ -3286,7 +3285,7 @@ class _MeterManager:
                 current_leaf_group_is_silent = False
                 current_leaf_group.append(component)
                 last_tie = this_tie
-            elif isinstance(component, (_score.Rest, _score.Skip)):
+            elif isinstance(component, _score.Rest | _score.Skip):
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif not current_leaf_group_is_silent:

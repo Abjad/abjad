@@ -115,7 +115,9 @@ class LilyPondIO:
                 lilypond_path = "lilypond"
         return lilypond_path
 
-    def get_openable_paths(self, output_paths) -> typing.Generator:
+    def get_openable_paths(
+        self, output_paths: typing.Iterable[pathlib.Path]
+    ) -> typing.Iterator[pathlib.Path]:
         for path in output_paths:
             if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
                 yield path
@@ -149,7 +151,7 @@ class LilyPondIO:
             lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
         return lilypond_file._get_lilypond_format()
 
-    def get_stylesheets_directories(self) -> typing.List[pathlib.Path]:
+    def get_stylesheets_directories(self) -> list[pathlib.Path]:
         directories = []
         path = getattr(abjad, "__path__")
         abjad_path = pathlib.Path(path[0])
@@ -200,7 +202,7 @@ class Illustrator(LilyPondIO):
     Illustrator.
     """
 
-    def get_openable_paths(self, output_paths) -> typing.Generator:
+    def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
         for path in output_paths:
             if path.suffix == ".pdf":
                 yield path
@@ -211,7 +213,7 @@ class Player(LilyPondIO):
     Player.
     """
 
-    def get_openable_paths(self, output_paths) -> typing.Generator:
+    def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
         for path in output_paths:
             if path.suffix in (".mid", ".midi"):
                 yield path
@@ -346,7 +348,7 @@ def _compare_backup(path):
         paths = [path]
     elif isinstance(path, pathlib.Path):
         paths = [str(path)]
-    elif isinstance(path, (tuple, list)):
+    elif isinstance(path, tuple | list):
         paths = [str(_) for _ in path]
     else:
         raise TypeError(path)
@@ -715,8 +717,8 @@ def compare_files(path_1, path_2):
 
 
 def execute_file(
-    path: str = None, *, attribute_names: typing.Tuple[str] = None
-) -> typing.Optional[typing.Tuple[str]]:
+    path: str = None, *, attribute_names: tuple[str] = None
+) -> tuple[str] | None:
     """
     Executes file ``path``.
 
@@ -742,7 +744,7 @@ def execute_file(
 def execute_string(
     string: str,
     *,
-    attribute_names: typing.Tuple[str] = None,
+    attribute_names: tuple[str] = None,
     local_namespace: dict = None,
 ):
     """
@@ -779,7 +781,7 @@ def execute_string(
     return tuple(result)
 
 
-def find_executable(name: str, *, flags: int = os.X_OK) -> typing.List[pathlib.Path]:
+def find_executable(name: str, *, flags: int = os.X_OK) -> list[pathlib.Path]:
     """
     Finds executable ``name``.
 
@@ -891,7 +893,7 @@ def profile(
     print_callees: bool = False,
     sort_by: str = "cumulative",
     strip_dirs: bool = True,
-) -> typing.Optional[str]:
+) -> str | None:
     """
     Profiles ``string``.
 
@@ -952,7 +954,7 @@ def profile(
     return result
 
 
-def run_command(command: str) -> typing.List[str]:
+def run_command(command: str) -> list[str]:
     """
     Runs command in subprocess.
 

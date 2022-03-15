@@ -250,7 +250,7 @@ from .score import (
     Tuplet,
     Voice,
 )
-from .select import LogicalTie, Selection
+from .select import LogicalTie
 from .setclass import SetClass
 from .spanners import (
     beam,
@@ -463,7 +463,6 @@ __all__ = [
     "Right",
     "SchemeParserFinishedError",
     "Score",
-    "Selection",
     "SetClass",
     "SettingInterface",
     "Skip",

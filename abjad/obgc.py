@@ -1,5 +1,3 @@
-import typing
-
 from . import _iterate
 from . import bind as _bind
 from . import duration as _duration
@@ -237,12 +235,12 @@ class OnBeatGraceContainer(_score.Container):
 
     def _match_anchor_leaf(self):
         first_grace = _iterate._get_leaf(self, 0)
-        if not isinstance(first_grace, (_score.Note, _score.Chord)):
+        if not isinstance(first_grace, _score.Note | _score.Chord):
             message = "must start with note or chord:\n"
             message += f"    {repr(self)}"
             raise Exception(message)
         anchor_leaf = self._get_on_beat_anchor_leaf()
-        if isinstance(anchor_leaf, (_score.Note, _score.Chord)) and isinstance(
+        if isinstance(anchor_leaf, _score.Note | _score.Chord) and isinstance(
             first_grace, (_score.Note, _score.Chord)
         ):
             if isinstance(first_grace, _score.Note):
@@ -270,7 +268,7 @@ class OnBeatGraceContainer(_score.Container):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def leaf_duration(self) -> typing.Optional[_duration.Duration]:
+    def leaf_duration(self) -> _duration.Duration | None:
         """
         Gets leaf duration.
         """

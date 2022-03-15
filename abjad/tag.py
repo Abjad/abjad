@@ -63,7 +63,7 @@ class Tag:
         else:
             words = []
         assert isinstance(words, list), repr(words)
-        words_: typing.List[str] = []
+        words_: list[str] = []
         for word in words:
             if word not in words_:
                 words_.append(word)
@@ -221,7 +221,7 @@ class Tag:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def string(self) -> typing.Optional[str]:
+    def string(self) -> str | None:
         """
         Gets string.
 
@@ -237,7 +237,7 @@ class Tag:
         return self._string
 
     @property
-    def words(self) -> typing.List[str]:
+    def words(self) -> list[str]:
         """
         Gets words.
 
@@ -271,7 +271,7 @@ class Tag:
         string = ":".join(words)
         return Tag(string)
 
-    def editions(self) -> typing.List["Tag"]:
+    def editions(self) -> list["Tag"]:
         """
         Gets edition tags in tag.
 
@@ -331,7 +331,7 @@ class Tag:
         tag = Tag(string)
         return tag
 
-    def not_editions(self) -> typing.List["Tag"]:
+    def not_editions(self) -> list["Tag"]:
         """
         Gets not-edition tags in tag.
 

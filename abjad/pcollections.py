@@ -646,8 +646,8 @@ class PitchRange:
             range_string = range_string.range_string
         assert isinstance(range_string, str), repr(range_string)
         bundle = self._parse_range_string(range_string)
-        assert isinstance(bundle.start_pitch, (_pitch.NamedPitch, type(None)))
-        assert isinstance(bundle.stop_pitch, (_pitch.NamedPitch, type(None)))
+        assert isinstance(bundle.start_pitch, _pitch.NamedPitch | type(None))
+        assert isinstance(bundle.stop_pitch, _pitch.NamedPitch | type(None))
         self._close_bracket = bundle.close_bracket
         self._open_bracket = bundle.open_bracket
         self._range_string = bundle.range_string
@@ -836,7 +836,7 @@ class PitchRange:
             Exception: must be named pitch or string (not -99).
 
         """
-        if isinstance(argument, (str, _pitch.NamedPitch)):
+        if isinstance(argument, str | _pitch.NamedPitch):
             pitch = _pitch.NamedPitch(argument)
             if self.start_pitch is None:
                 start_pitch = _pitch.NamedPitch(-1000)
@@ -1633,7 +1633,7 @@ class PitchSegment:
                 >>
 
         """
-        if isinstance(n, (int, float)):
+        if isinstance(n, int | float):
             interval = _pitch.NumberedInterval(n)
         else:
             interval = n
@@ -3242,7 +3242,7 @@ def voice_horizontally(
             }
 
     """
-    assert all(isinstance(_, (_pitch.NamedPitchClass)) for _ in pcs), repr(pcs)
+    assert all(isinstance(_, _pitch.NamedPitchClass) for _ in pcs), repr(pcs)
     assert isinstance(initial_octave, _pitch.Octave), repr(initial_octave)
     pitches = []
     if pcs:
@@ -3293,7 +3293,7 @@ def voice_vertically(
             }
 
     """
-    assert all(isinstance(_, (_pitch.NamedPitchClass)) for _ in pcs), repr(pcs)
+    assert all(isinstance(_, _pitch.NamedPitchClass) for _ in pcs), repr(pcs)
     assert isinstance(initial_octave, _pitch.Octave), repr(initial_octave)
     pitches = []
     if pcs:

@@ -10,7 +10,7 @@ from . import pitch as _pitch
 from . import score as _score
 
 
-def iterate_out_of_range(argument) -> typing.Generator:
+def iterate_out_of_range(argument) -> typing.Iterator[_score.Leaf]:
     r"""
     Iterates out-of-range notes and chords in ``argument``.
 
@@ -158,7 +158,7 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     Returns true when all pitches in ``argument`` sound within ``pitch_range``.
     """
     assert isinstance(pitch_range, _pcollections.PitchRange), repr(pitch_range)
-    if isinstance(argument, (int, float)):
+    if isinstance(argument, int | float):
         pitch = _pitch.NamedPitch(argument)
         return pitch in pitch_range
     if isinstance(argument, _pitch.Pitch):

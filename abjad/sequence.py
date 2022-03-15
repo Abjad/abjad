@@ -810,11 +810,11 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
     weights_parts = _ratio.Ratio(weights).partition_integer(list_weight)
     cumulative_weights = _math.cumulative_sums(weights_parts, start=None)
     items = []
-    sublist: typing.List[typing.Any] = []
+    sublist: list[typing.Any] = []
     items.append(sublist)
     current_cumulative_weight = cumulative_weights.pop(0)
     for item in sequence:
-        if not isinstance(item, (int, float, quicktions.Fraction)):
+        if not isinstance(item, int | float | quicktions.Fraction):
             raise TypeError(f"must be number: {item!r}.")
         sublist.append(item)
         while current_cumulative_weight <= _math.weight(flatten(items, depth=-1)):
@@ -1182,7 +1182,7 @@ def split(sequence, weights, cyclic=False, overhang=False) -> list:
     """
     result = []
     current_index = 0
-    current_piece: typing.List[typing.Any] = []
+    current_piece: list[typing.Any] = []
     if cyclic:
         weights = repeat_to_weight(
             weights, _math.weight(sequence), allow_total=_enums.Less
@@ -1610,7 +1610,7 @@ def map(sequence, operand=None):
     return type(sequence)(items)
 
 
-def nwise(sequence, n=2, cyclic=False, wrapped=False) -> typing.Generator:
+def nwise(sequence, n=2, cyclic=False, wrapped=False) -> typing.Iterator:
     """
     Iterates ``sequence`` ``n`` at a time.
 
@@ -1771,7 +1771,7 @@ def nwise(sequence, n=2, cyclic=False, wrapped=False) -> typing.Generator:
             current += 1
             current %= len_sequence
     elif wrapped:
-        first_n_minus_1: typing.List[typing.Any] = []
+        first_n_minus_1: list[typing.Any] = []
         item_buffer = []
         for item in sequence:
             item_buffer.append(item)
@@ -2125,13 +2125,13 @@ def replace_at(sequence, indices, new_material):
     index_values, index_period = indices
     assert isinstance(index_values, collections.abc.Sequence)
     index_values = list(index_values)
-    assert isinstance(index_period, (int, type(None)))
+    assert isinstance(index_period, int | type(None))
     assert isinstance(new_material, collections.abc.Sequence)
     assert len(new_material) == 2
     material_values, material_period = new_material
     assert isinstance(material_values, collections.abc.Sequence)
     material_values = list(material_values)
-    assert isinstance(material_period, (int, type(None)))
+    assert isinstance(material_period, int | type(None))
     maxsize = sys.maxsize
     if index_period is None:
         index_period = maxsize
@@ -2609,7 +2609,7 @@ def zip(sequences, cyclic=False, truncate=True) -> list[tuple]:
     for item in sequences:
         if not isinstance(item, collections.abc.Iterable):
             raise Exception(f"must be iterable: {item!r}.")
-    items: typing.List[typing.Any] = []
+    items: list[typing.Any] = []
     if cyclic:
         if not min(len(_) for _ in sequences):
             return items

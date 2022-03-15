@@ -881,7 +881,7 @@ class Timespan:
         return self.stop_offset - self.start_offset
 
     @property
-    def offsets(self) -> typing.Tuple[_duration.Offset, _duration.Offset]:
+    def offsets(self) -> tuple[_duration.Offset, _duration.Offset]:
         """
         Gets offsets.
 
@@ -984,7 +984,7 @@ class Timespan:
             and expr_start_offset < self_stop_offset
         )
 
-    def divide_by_ratio(self, ratio) -> typing.Tuple["Timespan", ...]:
+    def divide_by_ratio(self, ratio) -> tuple["Timespan", ...]:
         """
         Divides timespan by ``ratio``.
 
@@ -1012,9 +1012,7 @@ class Timespan:
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
-    def get_overlap_with_timespan(
-        self, timespan
-    ) -> typing.Optional[_duration.Duration]:
+    def get_overlap_with_timespan(self, timespan) -> _duration.Duration | None:
         """
         Gets duration of overlap with ``timespan``.
 
@@ -2321,7 +2319,7 @@ class TimespanList(list):
             Timespan(Offset((5, 1)), Offset((10, 1)))
 
         """
-        new_timespans: typing.List[Timespan] = []
+        new_timespans: list[Timespan] = []
         for current_timespan in self[:]:
             result = current_timespan & timespan
             new_timespans.extend(result)
@@ -2608,8 +2606,8 @@ class TimespanList(list):
         """
         if not self:
             return _markups.Markup(r"\markup \null")
-        maximum: typing.Union[_duration.Offset, _math.Infinity]
-        minimum: typing.Union[_duration.Offset, _math.NegativeInfinity]
+        maximum: _duration.Offset | _math.Infinity
+        minimum: _duration.Offset | _math.NegativeInfinity
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -2730,7 +2728,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         """
-        new_timespans: typing.List[Timespan] = []
+        new_timespans: list[Timespan] = []
         for current_timespan in self[:]:
             result = current_timespan - timespan
             new_timespans.extend(result)
@@ -2919,7 +2917,7 @@ class TimespanList(list):
         return all(self._get_timespan(argument).wellformed for argument in self)
 
     @property
-    def axis(self) -> typing.Optional[_duration.Offset]:
+    def axis(self) -> _duration.Offset | None:
         """
         Gets axis defined equal to arithmetic mean of start- and stop-offsets.
 
@@ -3061,7 +3059,7 @@ class TimespanList(list):
         return True
 
     @property
-    def start_offset(self) -> typing.Union[_duration.Offset, _math.NegativeInfinity]:
+    def start_offset(self) -> _duration.Offset | _math.NegativeInfinity:
         """
         Gets start offset.
 
@@ -3111,7 +3109,7 @@ class TimespanList(list):
             return negative_infinity
 
     @property
-    def stop_offset(self) -> typing.Union[_duration.Offset, _math.Infinity]:
+    def stop_offset(self) -> _duration.Offset | _math.Infinity:
         """
         Gets stop offset.
 
@@ -3488,7 +3486,7 @@ class TimespanList(list):
 
         Operates in place and returns timespan list.
         """
-        timespans: typing.List[Timespan] = []
+        timespans: list[Timespan] = []
         if self:
             timespans = [self[0]]
             for timespan in self[1:]:
@@ -3626,7 +3624,7 @@ class TimespanList(list):
             for j, timespan_2 in enumerate(self):
                 if i == j:
                     continue
-                revised_timespan_1_fragments: typing.List[Timespan] = []
+                revised_timespan_1_fragments: list[Timespan] = []
                 for timespan_1_fragment in timespan_1_fragments:
                     if timespan_2.intersects_timespan(timespan_1_fragment):
                         result = timespan_1_fragment - timespan_2
@@ -3863,7 +3861,7 @@ class TimespanList(list):
         """
         return OffsetCounter(self)
 
-    def explode(self, inventory_count=None) -> typing.Tuple["TimespanList", ...]:
+    def explode(self, inventory_count=None) -> tuple["TimespanList", ...]:
         """
         Explodes timespans into timespan lists, avoiding overlap, and
         distributing density as evenly as possible.
@@ -3941,7 +3939,7 @@ class TimespanList(list):
             '---'
 
         """
-        assert isinstance(inventory_count, (type(None), int))
+        assert isinstance(inventory_count, type(None) | int)
         if isinstance(inventory_count, int):
             assert 0 < inventory_count
         bounding_timespan = self.timespan
@@ -4095,9 +4093,7 @@ class TimespanList(list):
         """
         return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
 
-    def partition(
-        self, include_tangent_timespans=False
-    ) -> typing.Tuple["TimespanList", ...]:
+    def partition(self, include_tangent_timespans=False) -> tuple["TimespanList", ...]:
         """
         Partitions timespans into timespan lists.
 
@@ -4555,7 +4551,7 @@ class TimespanList(list):
         self[:] = timespans
         return self
 
-    def split_at_offset(self, offset) -> typing.Tuple["TimespanList", "TimespanList"]:
+    def split_at_offset(self, offset) -> tuple["TimespanList", "TimespanList"]:
         """
         Splits timespans at ``offset``.
 
@@ -4646,7 +4642,7 @@ class TimespanList(list):
         after_list.sort()
         return before_list, after_list
 
-    def split_at_offsets(self, offsets) -> typing.List["TimespanList"]:
+    def split_at_offsets(self, offsets) -> list["TimespanList"]:
         """
         Splits timespans at ``offsets``.
 

@@ -4,6 +4,7 @@ import typing
 from . import _inspect
 from . import indicators as _indicators
 from . import score as _score
+from . import select as _select
 
 
 def _coerce_exclude(exclude):
@@ -200,8 +201,7 @@ def _iterate_logical_ties(
     nontrivial=None,
     pitched=None,
     reverse=None,
-    wrapper_class=None,
-) -> typing.Generator:
+) -> typing.Iterator[_select.LogicalTie]:
     yielded_logical_ties = set()
     for leaf in _public_iterate_leaves(
         argument, exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
@@ -214,11 +214,10 @@ def _iterate_logical_ties(
             or (nontrivial is True and not len(leaves) == 1)
             or (nontrivial is False and len(leaves) == 1)
         ):
-            if wrapper_class is not None:
-                leaves = wrapper_class(leaves)
-            if leaves not in yielded_logical_ties:
-                yielded_logical_ties.add(leaves)
-                yield leaves
+            logical_tie = _select.LogicalTie(leaves)
+            if logical_tie not in yielded_logical_ties:
+                yielded_logical_ties.add(logical_tie)
+                yield logical_tie
 
 
 def _get_leaf(argument, n: int = 0):

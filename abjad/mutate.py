@@ -480,7 +480,7 @@ def _set_leaf_duration(leaf, new_duration):
     index = logical_tie_leaves.index(leaf)
     next_ = index + 1
     logical_tie_leaves[next_:next_] = following_leaves
-    if 1 < len(logical_tie_leaves) and isinstance(leaf, (_score.Note, _score.Chord)):
+    if 1 < len(logical_tie_leaves) and isinstance(leaf, _score.Note | _score.Chord):
         _spanners.tie(logical_tie_leaves)
     if isinstance(components[0], _score.Leaf):
         assert isinstance(all_leaves, list)
@@ -723,7 +723,7 @@ def _split_leaf_by_durations(leaf, durations, cyclic=False):
     if isinstance(result_components[0], _score.Tuplet):
         fuse(result_components)
     # tie split notes
-    if isinstance(leaf, (_score.Note, _score.Chord)) and 1 < len(result_leaves):
+    if isinstance(leaf, _score.Note | _score.Chord) and 1 < len(result_leaves):
         _attach_tie_to_leaves(result_leaves)
     if originally_repeat_tied and not result_leaves[0]._has_indicator(
         _indicators.RepeatTie
@@ -1241,7 +1241,7 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
         result = _fuse([argument])
     else:
         result = _fuse(list(argument))
-    assert isinstance(result, (list, _score.Tuplet)), repr(result)
+    assert isinstance(result, list | _score.Tuplet), repr(result)
     return result
 
 
@@ -1574,12 +1574,12 @@ def replace(argument, recipients, wrappers=False):
 
     Returns none.
     """
-    if isinstance(argument, (list, _select.Selection)):
-        donors = argument
-    else:
+    if isinstance(argument, _score.Component):
         donors = [argument]
+    else:
+        donors = argument
     assert _are_contiguous_same_parent(donors)
-    if not isinstance(recipients, (list, _select.Selection)):
+    if not isinstance(recipients, list):
         if isinstance(recipients, _score.Component):
             recipients = [recipients]
         else:
@@ -1794,7 +1794,7 @@ def scale(argument, multiplier) -> None:
     if hasattr(argument, "_scale"):
         argument._scale(multiplier)
     else:
-        assert isinstance(argument, (list, _select.Selection))
+        assert isinstance(argument, list)
         for component in argument:
             component._scale(multiplier)
 
@@ -2299,7 +2299,7 @@ def split(argument, durations, cyclic=False):
     result = _sequence.flatten(result, depth=-1)
     result = _select.partition_by_durations(result, durations_copy, fill=_enums.Exact)
     # return list of shards
-    assert all(isinstance(_, (list, _select.Selection)) for _ in result)
+    assert all(isinstance(_, list) for _ in result)
     return result
 
 
@@ -2376,7 +2376,7 @@ def swap(argument, container):
 
     Returns none.
     """
-    if isinstance(argument, (list, _select.Selection)):
+    if isinstance(argument, list):
         donors = argument
     else:
         assert isinstance(argument, _score.Component)
@@ -2670,7 +2670,6 @@ def wrap(argument, container):
         selection = [argument]
     else:
         selection = argument
-    assert isinstance(selection, (list, _select.Selection)), repr(selection)
     parent, start, stop = _get_parent_and_start_stop_indices(
         selection, ignore_before_after_grace=True
     )

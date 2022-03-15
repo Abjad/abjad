@@ -7,7 +7,6 @@ from . import _iterate
 from . import bind as _bind
 from . import duration as _duration
 from . import dynamic as _dynamic
-from . import enums as _enums
 from . import indicators as _indicators
 from . import iterate as iterate_
 from . import overrides as _overrides
@@ -40,10 +39,10 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
 
 
 def beam(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     beam_lone_notes: bool = False,
-    beam_rests: typing.Optional[bool] = True,
+    beam_rests: bool | None = True,
     durations: typing.Sequence[_duration.Duration] = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     span_beam_count: int = None,
@@ -82,7 +81,7 @@ def beam(
     silent_prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
 
     def _is_beamable(argument, beam_rests=False):
-        if isinstance(argument, (_score.Chord, _score.Note)):
+        if isinstance(argument, _score.Chord | _score.Note):
             if 0 < argument.written_duration.flag_count:
                 return True
         if beam_rests and isinstance(argument, silent_prototype):
@@ -1016,7 +1015,7 @@ def glissando(
             if right_broken is True:
                 should_attach_glissando = True
                 deactivate_glissando = True
-        elif not isinstance(leaf, (_score.Chord, _score.Note)):
+        elif not isinstance(leaf, _score.Chord | _score.Note):
             pass
         elif allow_repeats and allow_ties:
             should_attach_glissando = True
@@ -1151,7 +1150,7 @@ def glissando(
 
 def hairpin(
     descriptor: str,
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag = None,
@@ -1252,10 +1251,10 @@ def hairpin(
             }
 
     """
-    indicators: typing.List = []
-    start_dynamic: typing.Optional[_dynamic.Dynamic]
-    hairpin: typing.Optional[_indicators.StartHairpin]
-    stop_dynamic: typing.Optional[_dynamic.Dynamic]
+    indicators: list = []
+    start_dynamic: _dynamic.Dynamic | None
+    hairpin: _indicators.StartHairpin | None
+    stop_dynamic: _dynamic.Dynamic | None
     known_shapes = _indicators.StartHairpin("<").known_shapes
     if isinstance(descriptor, str):
         for string in descriptor.split():
@@ -1308,7 +1307,7 @@ def hairpin(
 
 
 def horizontal_bracket(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_group: _indicators.StartGroup = None,
@@ -1351,7 +1350,7 @@ def horizontal_bracket(
 
 
 def ottava(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_ottava: _indicators.Ottava = _indicators.Ottava(n=1),
@@ -1394,7 +1393,7 @@ def ottava(
 
 
 def phrasing_slur(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_phrasing_slur: _indicators.StartPhrasingSlur = None,
@@ -1440,7 +1439,7 @@ def phrasing_slur(
 
 
 def piano_pedal(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_piano_pedal: _indicators.StartPianoPedal = None,
@@ -1490,7 +1489,7 @@ def piano_pedal(
 
 
 def slur(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_slur: _indicators.StartSlur = None,
@@ -1534,7 +1533,7 @@ def slur(
 
 
 def text_spanner(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_text_span: _indicators.StartTextSpan = None,
@@ -1676,9 +1675,9 @@ def text_spanner(
 
 
 def tie(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
-    direction: _enums.VerticalAlignment = None,
+    direction: int = None,
     repeat: bool | _typings.IntegerPair | typing.Callable = False,
     selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag = None,
@@ -1890,7 +1889,7 @@ def tie(
     if len(leaves) < 2:
         raise Exception(f"must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
-        if not isinstance(leaf, (_score.Note, _score.Chord)):
+        if not isinstance(leaf, _score.Note | _score.Chord):
             raise Exception(rf"tie note or chord (not {leaf!r}).")
     for current_leaf, next_leaf in _sequence.nwise(leaves):
         duration = current_leaf._get_duration()
@@ -1907,7 +1906,7 @@ def tie(
 
 
 def trill_spanner(
-    argument: _score.Component | _select.Selection | typing.Sequence[_score.Component],
+    argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_trill_span: _indicators.StartTrillSpan = None,

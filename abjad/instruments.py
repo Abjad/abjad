@@ -387,7 +387,7 @@ class StringNumber:
         self.numbers = numbers_
 
     @property
-    def roman_numerals(self) -> typing.Tuple[str, ...]:
+    def roman_numerals(self) -> tuple[str, ...]:
         """
         Gets roman numerals of string number indicator.
 
@@ -434,7 +434,7 @@ class Tuning:
         self.pitches = tuple(_pitch.NamedPitch(_) for _ in self.pitches)
 
     @property
-    def pitch_ranges(self) -> typing.List[_pcollections.PitchRange]:
+    def pitch_ranges(self) -> list[_pcollections.PitchRange]:
         """
         Gets two-octave pitch-ranges for each pitch in this tuning.
 
@@ -457,7 +457,7 @@ class Tuning:
 
     def get_pitch_ranges_by_string_number(
         self, string_number: StringNumber
-    ) -> typing.Tuple[_pcollections.PitchRange, ...]:
+    ) -> tuple[_pcollections.PitchRange, ...]:
         """
         Gets tuning pitch ranges by string number.
 
@@ -484,7 +484,7 @@ class Tuning:
 
     def get_pitches_by_string_number(
         self, string_number: StringNumber
-    ) -> typing.Tuple[_pitch.NamedPitch, ...]:
+    ) -> tuple[_pitch.NamedPitch, ...]:
         """
         Gets tuning pitches by string number.
 
@@ -593,13 +593,11 @@ class Tuning:
         permutations = _enumerate.yield_permutations(pitch_classes)
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
-        result: typing.List[
-            typing.Tuple[typing.Union[_pitch.NamedPitch, None], ...]
-        ] = []
+        result: list[tuple[_pitch.NamedPitch | None, ...]] = []
         for permutation in permutations:
-            sequences: typing.List = []
+            sequences: list = []
             for pitch_range, pitch_class in zip(pitch_ranges, permutation):
-                pitches: typing.List[typing.Optional[_pitch.NamedPitch]]
+                pitches: list[_pitch.NamedPitch | None]
                 if pitch_class is None:
                     sequences.append([None])
                     continue

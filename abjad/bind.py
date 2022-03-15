@@ -92,7 +92,7 @@ class Wrapper:
         deactivate: bool = False,
         indicator: typing.Any = None,
         synthetic_offset: int = None,
-        tag: typing.Union[str, _tag.Tag] = None,
+        tag: str | _tag.Tag | None = None,
     ) -> None:
         assert not isinstance(indicator, type(self)), repr(indicator)
         if annotation is not None:
@@ -114,7 +114,7 @@ class Wrapper:
             synthetic_offset = _duration.Offset(synthetic_offset)
         self._synthetic_offset = synthetic_offset
         if tag is not None:
-            assert isinstance(tag, (str, _tag.Tag))
+            assert isinstance(tag, str | _tag.Tag)
         tag = _tag.Tag(tag)
         self._tag: _tag.Tag = tag
         if component is not None:
@@ -386,7 +386,7 @@ class Wrapper:
             lilypond_format = self.indicator._get_lilypond_format()
         if isinstance(lilypond_format, str):
             lilypond_format = [lilypond_format]
-        assert isinstance(lilypond_format, (tuple, list))
+        assert isinstance(lilypond_format, tuple | list)
         lilypond_format = _tag.double_tag(
             lilypond_format, self.tag, deactivate=self.deactivate
         )
@@ -469,7 +469,7 @@ class Wrapper:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def annotation(self) -> typing.Optional[str]:
+    def annotation(self) -> str | None:
         """
         Gets wrapper annotation.
 
@@ -503,7 +503,7 @@ class Wrapper:
         return self._component
 
     @property
-    def context(self) -> typing.Optional[str]:
+    def context(self) -> str | None:
         """
         Gets context (name).
         """
@@ -520,7 +520,7 @@ class Wrapper:
     @deactivate.setter
     def deactivate(self, argument):
         assert argument in (True, False, None)
-        self._deactivate: typing.Optional[bool] = argument
+        self._deactivate: bool | None = argument
 
     @property
     def indicator(self) -> typing.Any:
@@ -612,7 +612,7 @@ class Wrapper:
 
     @tag.setter
     def tag(self, argument):
-        if not isinstance(argument, (str, _tag.Tag)):
+        if not isinstance(argument, str | _tag.Tag):
             raise Exception(f"string or tag: {argument!r}.")
         tag = _tag.Tag(argument)
         self._tag = tag
@@ -916,7 +916,7 @@ def attach(  # noqa: 302
 
     if isinstance(target, _score.Container):
         acceptable = False
-        if isinstance(attachable, (dict, str, _tag.Tag, Wrapper)):
+        if isinstance(attachable, dict | str | _tag.Tag | Wrapper):
             acceptable = True
         if getattr(attachable, "_can_attach_to_containers", False):
             acceptable = True

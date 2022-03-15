@@ -1,5 +1,4 @@
 import collections
-import typing
 
 from . import duration as _duration
 from . import math as _math
@@ -208,7 +207,7 @@ class Parentage(collections.abc.Sequence):
         return self._component
 
     @property
-    def components(self) -> typing.Tuple[_score.Component]:
+    def components(self) -> tuple[_score.Component]:
         r"""
         Gets components.
 
@@ -463,7 +462,7 @@ class Parentage(collections.abc.Sequence):
         return self.parent is None
 
     @property
-    def parent(self) -> typing.Optional[_score.Component]:
+    def parent(self) -> _score.Component | None:
         r"""
         Gets parent.
 
@@ -982,7 +981,7 @@ class Parentage(collections.abc.Sequence):
                 n += 1
         return n
 
-    def get(self, prototype=None, n=0) -> typing.Optional[_score.Component]:
+    def get(self, prototype=None, n=0) -> _score.Component | None:
         r"""
         Gets instance ``n`` of ``prototype`` in parentage.
 
@@ -1356,7 +1355,7 @@ class Parentage(collections.abc.Sequence):
         logical_voice_ = dict(logical_voice)
         return logical_voice_
 
-    def score_index(self) -> typing.Tuple[typing.Union[int, str], ...]:
+    def score_index(self) -> tuple[int | str, ...]:
         r"""
         Gets score index.
 
@@ -1493,7 +1492,7 @@ class Parentage(collections.abc.Sequence):
             Note("fs'16")                  (0, 0, 3, '+G', 0)
 
         """
-        result: typing.List[typing.Union[int, str]] = []
+        result: list[int | str] = []
         current = self[0]
         for parent in self[1:]:
             if isinstance(current, _score.BeforeGraceContainer):

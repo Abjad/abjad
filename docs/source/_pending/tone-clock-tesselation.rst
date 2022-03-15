@@ -53,7 +53,7 @@ Trichord reservoir in Jenny McLeod's **Tone Clock Piece I**:
 
 ::
 
-    >>> ipf = abjad.NumberedPitchSegment([0, 2, 7])
+    >>> ipf = abjad.PitchSegment([0, 2, 7])
     >>> steering = [abjad.NumberedInterval(_) for _ in [0, 1, 3, 4]]
     >>> tesselation = tesselate_segment(
     ...     ipf,
@@ -68,7 +68,7 @@ Alternate reservoir:
 
 ::
 
-    >>> ipf = abjad.NumberedPitchSegment([0, 1, 6])
+    >>> ipf = abjad.PitchSegment([0, 1, 6])
     >>> steering = [abjad.NumberedInterval(_) for _ in [0, 1, 4, 6]]
     >>> tesselation = tesselate_segment(
     ...     ipf,

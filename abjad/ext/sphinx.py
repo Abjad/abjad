@@ -5,7 +5,6 @@ import os
 import pathlib
 import shutil
 import subprocess
-import typing
 
 import sphinx
 from docutils.nodes import (
@@ -50,7 +49,7 @@ class HiddenDoctestDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = True
-    option_spec: typing.Dict[str, str] = {}
+    option_spec: dict[str, str] = {}
 
     ### PUBLIC METHODS ###
 
@@ -77,7 +76,7 @@ class ShellDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = False
-    option_spec: typing.Dict[str, str] = {}
+    option_spec: dict[str, str] = {}
 
     ### PUBLIC METHODS ###
 

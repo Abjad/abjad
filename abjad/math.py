@@ -251,7 +251,7 @@ def are_relatively_prime(argument) -> bool:
     return True
 
 
-def arithmetic_mean(argument) -> typing.Union[int, float]:
+def arithmetic_mean(argument) -> int | float:
     """
     Gets arithmetic mean of ``argument``.
 
@@ -379,7 +379,7 @@ def difference_series(argument):
     return type(argument)(result)
 
 
-def divisors(n) -> typing.List[int]:
+def divisors(n) -> list[int]:
     """
     Gets positive divisors of ``n`` in increasing order.
 
@@ -428,7 +428,7 @@ def divisors(n) -> typing.List[int]:
     return divisors
 
 
-def factors(n) -> typing.List[int]:
+def factors(n) -> list[int]:
     """
     Gets prime factors less than or equal to ``n`` .
 
@@ -470,7 +470,7 @@ def factors(n) -> typing.List[int]:
 
 def fraction_to_proper_fraction(
     rational,
-) -> typing.Tuple[int, quicktions.Fraction]:
+) -> tuple[int, quicktions.Fraction]:
     """
     Changes ``rational`` to proper fraction.
 
@@ -556,7 +556,7 @@ def greatest_power_of_two_less_equal(n, i=0) -> int:
     return 2 ** (int(math.log(n, 2)) - i)
 
 
-def integer_equivalent_number_to_integer(number) -> typing.Union[int, float]:
+def integer_equivalent_number_to_integer(number) -> int | float:
     """
     Changes integer-equivalent ``number`` to integer.
 
@@ -581,7 +581,7 @@ def integer_equivalent_number_to_integer(number) -> typing.Union[int, float]:
         return number
 
 
-def integer_to_base_k_tuple(n, k) -> typing.Tuple[int, ...]:
+def integer_to_base_k_tuple(n, k) -> tuple[int, ...]:
     """
     Changes nonnegative integer ``n`` to base-`k` tuple.
 
@@ -959,7 +959,7 @@ def _least_common_multiple_helper(m, n):
 
 def partition_integer_into_canonic_parts(
     n, decrease_parts_monotonically=True
-) -> typing.Tuple[int, ...]:
+) -> tuple[int, ...]:
     """
     Partitions integer ``n`` into canonic parts.
 
@@ -1091,7 +1091,7 @@ def weight(argument) -> int:
     return sum([abs(_) for _ in argument])
 
 
-def yield_all_compositions_of_integer(n) -> typing.Generator:
+def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]]:
     """
     Yields all compositions of positive integer ``n``.
 

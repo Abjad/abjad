@@ -3,7 +3,6 @@ import typing
 
 from . import _inspect, _iterate, _update
 from . import duration as _duration
-from . import enums as _enums
 from . import format as _format
 from . import indicators as _indicators
 from . import iterate as iterate_
@@ -921,7 +920,7 @@ def effective(
     argument,
     prototype: _typings.Prototype,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
     default: typing.Any = None,
     n: int = 0,
     unwrap: bool = True,
@@ -1537,7 +1536,7 @@ def effective_wrapper(
     argument,
     prototype: _typings.Prototype,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
     n: int = 0,
 ):
     r"""
@@ -1758,7 +1757,7 @@ def has_effective_indicator(
     argument,
     prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ) -> bool:
     r"""
     Is true when ``argument`` has effective indicator.
@@ -1909,9 +1908,9 @@ def has_effective_indicator(
 
 def has_indicator(
     argument,
-    prototype: typing.Union[str, _typings.Prototype] = None,
+    prototype: str | _typings.Prototype | None = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ) -> bool:
     r"""
     Is true when ``argument`` has one or more indicators.
@@ -2259,9 +2258,9 @@ def indicators(
     argument,
     prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
     unwrap: bool = True,
-) -> typing.List:
+) -> list:
     r"""
     Get indicators.
 
@@ -3065,9 +3064,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
     return _select.LogicalTie(leaves)
 
 
-def markup(
-    argument, *, direction: _enums.VerticalAlignment = None
-) -> typing.List[_markups.Markup]:
+def markup(argument, *, direction: int = None) -> list[_markups.Markup]:
     """
     Gets markup.
     """
@@ -3690,7 +3687,7 @@ def report_modifications(argument) -> str:
     """
     if isinstance(argument, _score.Container):
         bundle = _format.bundle_format_contributions(argument)
-        result: typing.List[str] = []
+        result: list[str] = []
         for slot in ("before", "open brackets", "opening"):
             lines = argument._get_format_contributions_for_slot(slot, bundle)
             result.extend(lines)
@@ -3988,7 +3985,7 @@ def wrapper(
     argument,
     prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ):
     r"""
     Gets wrapper.
@@ -4106,7 +4103,7 @@ def wrappers(
     argument,
     prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ):
     r"""
     Gets wrappers.

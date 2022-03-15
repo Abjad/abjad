@@ -283,7 +283,7 @@ class VerticalMoment:
         """
         leaves = []
         for leaf in self.start_leaves:
-            if isinstance(leaf, (_score.Note, _score.Chord)):
+            if isinstance(leaf, _score.Note | _score.Chord):
                 leaves.append(leaf)
         return len(leaves)
 

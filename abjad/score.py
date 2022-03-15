@@ -74,7 +74,7 @@ class Component:
             assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
         self._timespan = _timespan.Timespan()
-        self._wrappers: typing.List = []
+        self._wrappers: list = []
 
     ### SPECIAL METHODS ###
 
@@ -438,7 +438,7 @@ class Component:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         """
         Gets component tag.
         """
@@ -675,7 +675,7 @@ class Leaf(Component):
     @property
     def multiplier(
         self,
-    ) -> typing.Union[_duration.Multiplier, _duration.NonreducedFraction, None]:
+    ) -> _duration.Multiplier | _duration.NonreducedFraction | None:
         """
         Gets multiplier.
         """
@@ -683,7 +683,7 @@ class Leaf(Component):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, (_duration.NonreducedFraction, type(None))):
+        if isinstance(argument, _duration.NonreducedFraction | type(None)):
             multiplier = argument
         else:
             multiplier = _duration.Multiplier(argument)
@@ -1355,7 +1355,7 @@ class Container(Component):
         return tuple(self._components)
 
     @property
-    def identifier(self) -> typing.Optional[str]:
+    def identifier(self) -> str | None:
         r"""
         Gets and sets bracket comment.
 
@@ -1381,11 +1381,11 @@ class Container(Component):
 
     @identifier.setter
     def identifier(self, argument):
-        assert isinstance(argument, (str, type(None))), repr(argument)
-        self._identifier: typing.Optional[str] = argument
+        assert isinstance(argument, str | type(None)), repr(argument)
+        self._identifier: str | None = argument
 
     @property
-    def name(self) -> typing.Optional[str]:
+    def name(self) -> str | None:
         r"""
         Gets and sets name of container.
 
@@ -1439,7 +1439,7 @@ class Container(Component):
 
     @name.setter
     def name(self, argument):
-        assert isinstance(argument, (str, type(None)))
+        assert isinstance(argument, str | type(None))
         old_name = self._name
         parent = self._parent
         while parent is not None:
@@ -1457,7 +1457,7 @@ class Container(Component):
         self._name = argument
 
     @property
-    def simultaneous(self) -> typing.Optional[bool]:
+    def simultaneous(self) -> bool | None:
         r"""
         Is true when container is simultaneous.
 
@@ -2217,7 +2217,7 @@ class BeforeGraceContainer(Container):
 
     ### SPECIAL METHODS ###
 
-    def __getnewargs__(self) -> typing.Tuple:
+    def __getnewargs__(self) -> tuple:
         """
         Gets new grace container arguments.
 
@@ -2596,9 +2596,9 @@ class Chord(Leaf):
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
-        are_cautionary: typing.List[typing.Optional[bool]] = []
-        are_forced: typing.List[typing.Optional[bool]] = []
-        are_parenthesized: typing.List[typing.Optional[bool]] = []
+        are_cautionary: list[bool | None] = []
+        are_forced: list[bool | None] = []
+        are_parenthesized: list[bool | None] = []
         if len(arguments) == 1 and hasattr(arguments[0], "written_duration"):
             leaf = arguments[0]
             written_pitches = []
@@ -2978,9 +2978,9 @@ class Context(Container):
         *,
         language: str = "english",
     ) -> None:
-        self._consists_commands: typing.List[str] = []
-        self._dependent_wrappers: typing.List = []
-        self._remove_commands: typing.List[str] = []
+        self._consists_commands: list[str] = []
+        self._dependent_wrappers: list = []
+        self._remove_commands: list[str] = []
         self.lilypond_type = lilypond_type
         Container.__init__(
             self,
@@ -3235,7 +3235,7 @@ class Context(Container):
         return self._remove_commands
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         r"""
         Gets tag.
 
@@ -3341,7 +3341,7 @@ class MultimeasureRest(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         r"""
         Gets tag.
 
@@ -3555,7 +3555,7 @@ class NoteHead:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def alternative(self) -> typing.Tuple["NoteHead", str, str]:
+    def alternative(self) -> tuple["NoteHead", str, str]:
         """
         Gets and sets note-head alternative.
 
@@ -3776,7 +3776,7 @@ class NoteHead:
         return self.written_pitch
 
     @property
-    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
+    def tweaks(self) -> _overrides.TweakInterface | None:
         r"""
         Gets tweaks.
 
@@ -4272,7 +4272,7 @@ class Note(Leaf):
         new_note.note_head = copy.copy(self.note_head)
         return new_note
 
-    def __getnewargs__(self) -> typing.Tuple:
+    def __getnewargs__(self) -> tuple:
         """
         Gets new arguments.
         """
@@ -4294,7 +4294,7 @@ class Note(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def note_head(self) -> typing.Optional[NoteHead]:
+    def note_head(self) -> NoteHead | None:
         """
         Gets and sets note-head.
 
@@ -4377,7 +4377,7 @@ class Note(Leaf):
 
     # TODO: change Note always to have a note head
     @property
-    def written_pitch(self) -> typing.Optional[_pitch.NamedPitch]:
+    def written_pitch(self) -> _pitch.NamedPitch | None:
         """
         Gets and sets written pitch.
 
@@ -4577,7 +4577,7 @@ class Score(Context):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         r"""
         Gets tag.
 
@@ -5355,7 +5355,7 @@ class Tuplet(Container):
         return f"{denominator}:{numerator}"
 
     @property
-    def denominator(self) -> typing.Optional[int]:
+    def denominator(self) -> int | None:
         r"""
         Gets and sets preferred denominator of tuplet.
 
@@ -5424,7 +5424,7 @@ class Tuplet(Container):
         self._denominator = argument
 
     @property
-    def force_fraction(self) -> typing.Optional[bool]:
+    def force_fraction(self) -> bool | None:
         r"""
         Gets and sets force fraction flag.
 
@@ -5585,7 +5585,7 @@ class Tuplet(Container):
             raise TypeError(f"force fraction must be boolean (not {argument!r}).")
 
     @property
-    def hide(self) -> typing.Optional[bool]:
+    def hide(self) -> bool | None:
         r"""
         Is true when tuplet bracket hides.
 
@@ -5739,7 +5739,7 @@ class Tuplet(Container):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, (int, quicktions.Fraction)):
+        if isinstance(argument, int | quicktions.Fraction):
             multiplier = _duration.NonreducedFraction(argument)
         elif isinstance(argument, tuple):
             multiplier = _duration.NonreducedFraction(argument)
@@ -5751,7 +5751,7 @@ class Tuplet(Container):
             raise ValueError(f"tuplet multiplier must be positive: {argument!r}.")
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         r"""
         Gets tag.
 
@@ -5778,7 +5778,7 @@ class Tuplet(Container):
         return super().tag
 
     @property
-    def tweaks(self) -> typing.Optional[_overrides.TweakInterface]:
+    def tweaks(self) -> _overrides.TweakInterface | None:
         r"""
         Gets tweaks.
 
@@ -7232,7 +7232,7 @@ class Voice(Context):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def tag(self) -> typing.Optional[_tag.Tag]:
+    def tag(self) -> _tag.Tag | None:
         r"""
         Gets tag.
 

@@ -1030,8 +1030,8 @@ class SetClass:
         assert 0 <= self.cardinality <= 12, repr(self.cardinality)
         self.rank = int(self.rank)
         assert 1 <= self.rank, repr(self.rank)
-        assert isinstance(self.lex_rank, (type(None), type(True)))
-        assert isinstance(self.transposition_only, (type(None), type(True)))
+        assert isinstance(self.lex_rank, type(None) | bool)
+        assert isinstance(self.transposition_only, type(None) | bool)
 
     def __str__(self):
         """

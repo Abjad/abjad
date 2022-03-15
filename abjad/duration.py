@@ -1,6 +1,5 @@
 import math
 import re
-import typing
 
 import quicktions
 
@@ -522,7 +521,7 @@ class Duration(quicktions.Fraction):
         general, return the ``i`` th integer power of 2 greater than the least
         integer power of 2 greater than or equal to ``n``.
         """
-        assert isinstance(n, (int, float, quicktions.Fraction)), repr(n)
+        assert isinstance(n, int | float | quicktions.Fraction), repr(n)
         assert 0 <= n, repr(n)
         result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
         return result
@@ -948,7 +947,7 @@ class Duration(quicktions.Fraction):
         return dotted_duration_string
 
     @property
-    def pair(self) -> typing.Tuple[int, int]:
+    def pair(self) -> tuple[int, int]:
         """
         Gets numerator and denominator.
 
@@ -996,8 +995,8 @@ class Duration(quicktions.Fraction):
 
     @staticmethod
     def durations_to_nonreduced_fractions(
-        durations: typing.List,
-    ) -> typing.List["NonreducedFraction"]:
+        durations: list,
+    ) -> list["NonreducedFraction"]:
         """
         Changes ``durations`` to nonreduced fractions sharing least common
         denominator.
@@ -2382,8 +2381,8 @@ class NonreducedFraction(quicktions.Fraction):
 
     @staticmethod
     def durations_to_nonreduced_fractions(
-        durations: typing.List,
-    ) -> typing.List["NonreducedFraction"]:
+        durations: list,
+    ) -> list["NonreducedFraction"]:
         """
         Changes ``durations`` to nonreduced fractions sharing least common
         denominator.
@@ -2690,7 +2689,7 @@ class NonreducedFraction(quicktions.Fraction):
         return self._numerator
 
     @property
-    def pair(self) -> typing.Tuple[int, int]:
+    def pair(self) -> tuple[int, int]:
         """
         Gets (numerator, denominator) pair of nonreduced fraction.
 

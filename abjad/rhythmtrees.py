@@ -1,8 +1,6 @@
 """
 Tools for modeling IRCAM-style rhythm trees.
 """
-import typing
-
 import quicktions
 import uqbar.containers
 import uqbar.graphs
@@ -26,7 +24,7 @@ class RhythmTreeMixin:
 
     _is_abstract = True
 
-    _state_flag_names: typing.Tuple[str, ...] = ("_offsets_are_current",)
+    _state_flag_names: tuple[str, ...] = ("_offsets_are_current",)
 
     ### INITIALIZER ###
 
@@ -435,7 +433,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
     def __init__(self, children=None, preprolated_duration=1, name=None):
         uqbar.containers.UniqueTreeList.__init__(self, name=name)
         RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
-        if isinstance(children, (list, str, tuple)):
+        if isinstance(children, list | str | tuple):
             self.extend(children)
         elif children is not None:
             raise ValueError(f"can not instantiate {type(self)} with {children!r}.")
