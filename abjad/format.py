@@ -1,5 +1,3 @@
-import dataclasses
-
 from . import bundle as _bundle
 from . import enums as _enums
 from . import format as _format
@@ -70,11 +68,14 @@ def _collect_indicators(component):
             continue
         # store markup wrappers
         elif wrapper.indicator.__class__.__name__ == "Markup":
-            if wrapper.indicator.direction is _enums.Up:
+            # if wrapper.indicator.direction is _enums.Up:
+            if wrapper.direction is _enums.Up:
                 up_markup_wrappers.append(wrapper)
-            elif wrapper.indicator.direction is _enums.Down:
+            # elif wrapper.indicator.direction is _enums.Down:
+            elif wrapper.direction is _enums.Down:
                 down_markup_wrappers.append(wrapper)
-            elif wrapper.indicator.direction in (_enums.Center, None):
+            # elif wrapper.indicator.direction in (_enums.Center, None):
+            elif wrapper.direction in (_enums.Center, None):
                 neutral_markup_wrappers.append(wrapper)
         # store context wrappers
         elif wrapper.context is not None:
@@ -112,7 +113,7 @@ def _populate_context_wrapper_format_contributions(component, bundle, context_wr
             bundle.update(format_pieces)
         else:
             format_slot = wrapper.indicator._format_slot
-            bundle.get(format_slot).indicators.extend(format_pieces)
+            getattr(bundle, format_slot).indicators.extend(format_pieces)
 
 
 def _populate_grob_override_format_contributions(component, bundle):
@@ -176,11 +177,8 @@ def _populate_markup_format_contributions(
         neutral_markup_wrappers,
     ):
         for wrapper in wrappers:
-            if wrapper.indicator.direction is None:
-                markup = dataclasses.replace(wrapper.indicator, direction="-")
-            else:
-                markup = wrapper.indicator
-            format_pieces = markup._get_format_pieces()
+            markup = wrapper.indicator
+            format_pieces = markup._get_format_pieces(wrapper=wrapper)
             format_pieces = _tag.double_tag(
                 format_pieces, wrapper.tag, deactivate=wrapper.deactivate
             )
@@ -192,14 +190,13 @@ def _populate_noncontext_wrapper_format_contributions(
 ):
     for wrapper in noncontext_wrappers:
         indicator = wrapper.indicator
-        if hasattr(indicator, "_get_lilypond_format_bundle"):
+        try:
+            bundle_ = indicator._get_lilypond_format_bundle(wrapper=wrapper)
+        except TypeError:
             bundle_ = indicator._get_lilypond_format_bundle()
-            if wrapper.tag:
-                bundle_.tag_format_contributions(
-                    wrapper.tag, deactivate=wrapper.deactivate
-                )
-            if bundle_ is not None:
-                bundle.update(bundle_)
+        if wrapper.tag:
+            bundle_.tag_format_contributions(wrapper.tag, deactivate=wrapper.deactivate)
+        bundle.update(bundle_)
 
 
 def _report_leaf_format_contributions(leaf):

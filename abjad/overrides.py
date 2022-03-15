@@ -481,7 +481,7 @@ class LilyPondLiteral:
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
-        format_slot = bundle.get(self.format_slot)
+        format_slot = getattr(bundle, self.format_slot)
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions(directed=self.directed)
             format_slot.commands.extend(tweaks)
@@ -638,7 +638,7 @@ class LilyPondOverride:
         ...        "text",
         ...        ),
         ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-        ...    )
+        ... )
 
         >>> print(override.override_string)
         \once \override Staff.TextSpanner.bound-details.left.text = \markup \bold { over pressure }
@@ -794,7 +794,7 @@ class LilyPondOverride:
             ...        "text",
             ...        ),
             ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ...    )
+            ... )
             >>> override.lilypond_type
             'Staff'
 
@@ -826,7 +826,7 @@ class LilyPondOverride:
             ...        "text",
             ...        ),
             ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ...    )
+            ... )
             >>> bool(override.once)
             True
 
@@ -858,7 +858,7 @@ class LilyPondOverride:
             ...        "text",
             ...        ),
             ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ...    )
+            ... )
             >>> for line in override.override_format_pieces:
             ...     line
             ...
@@ -914,7 +914,7 @@ class LilyPondOverride:
             ...        "text",
             ...        ),
             ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ...    )
+            ... )
             >>> override.property_path
             ('bound-details', 'left', 'text')
 
@@ -975,9 +975,9 @@ class LilyPondOverride:
             ...        "text",
             ...        ),
             ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ...    )
+            ... )
             >>> override.value
-            Markup(string='\\markup \\bold { over pressure }', direction=None, tweaks=None)
+            Markup(string='\\markup \\bold { over pressure }', tweaks=None)
 
         """
         return self._value
@@ -1051,7 +1051,7 @@ class LilyPondSetting:
         ...    lilypond_type="Score",
         ...    context_property="autoBeaming",
         ...    value="##f",
-        ...    )
+        ... )
 
         >>> print("\n".join(context_setting.format_pieces))
         \set Score.autoBeaming = ##f
@@ -1404,7 +1404,7 @@ class SettingInterface(Interface):
             Returns arbitrary object keyed to ``name``:
 
             >>> abjad.setting(staff).instrumentName
-            Markup(string='\\markup "Vn. I"', direction=None, tweaks=None)
+            Markup(string='\\markup "Vn. I"', tweaks=None)
 
         """
         camel_name = _string.to_upper_camel_case(name)
@@ -1542,7 +1542,7 @@ def setting(argument):
         Returns LilyPond setting name manager:
 
         >>> abjad.setting(staff)
-        SettingInterface(('instrumentName', Markup(string='\\markup "Vn. I"', direction=None, tweaks=None)))
+        SettingInterface(('instrumentName', Markup(string='\\markup "Vn. I"', tweaks=None)))
 
     """
     if getattr(argument, "_lilypond_setting_name_manager", None) is None:
@@ -1558,7 +1558,7 @@ class TweakInterface(Interface):
 
         Tweak managers are created by the ``abjad.tweak()`` factory function:
 
-        >>> markup = abjad.Markup(r"\markup Allegro", direction=abjad.Up)
+        >>> markup = abjad.Markup(r"\markup Allegro")
         >>> abjad.tweak(markup)
         TweakInterface(('_literal', False))
 
@@ -1576,8 +1576,7 @@ class TweakInterface(Interface):
         >>> abjad.tweak(markup).color
         '#red'
 
-        Trying to get an attribute that has not yet been set raises an
-        attribute error:
+        Trying to get an attribute that has not yet been set raises an attribute error:
 
         >>> abjad.tweak(markup).Foo
         Traceback (most recent call last):
@@ -1607,9 +1606,9 @@ class TweakInterface(Interface):
             Tweaks may be tagged:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup(r"\markup \italic Allegro", direction=abjad.Up)
+            >>> markup = abjad.Markup(r"\markup \italic Allegro")
             >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
-            >>> abjad.attach(markup, staff[0])
+            >>> abjad.attach(markup, staff[0], direction=abjad.Up)
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> string = abjad.lilypond(staff, tags=True)
@@ -1628,11 +1627,11 @@ class TweakInterface(Interface):
             Tweaks may be tagged with ``deactivate=True``:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup(r"\markup \italic Allegro", direction=abjad.Up)
+            >>> markup = abjad.Markup(r"\markup \italic Allegro")
             >>> abjad.tweak(
             ...     markup, deactivate=True, tag=abjad.Tag("+PARTS")
             ... ).color = "#red"
-            >>> abjad.attach(markup, staff[0])
+            >>> abjad.attach(markup, staff[0], direction=abjad.Up)
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> string = abjad.lilypond(staff, tags=True)
@@ -1651,9 +1650,11 @@ class TweakInterface(Interface):
             Tweak tags and indicator tags may be set together:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup(r"\markup \italic Allegro", direction=abjad.Up)
+            >>> markup = abjad.Markup(r"\markup \italic Allegro")
             >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
-            >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
+            >>> abjad.attach(
+            ...     markup, staff[0], direction=abjad.Up, tag=abjad.Tag("RED:M1")
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> string = abjad.lilypond(staff, tags=True)
@@ -1928,9 +1929,9 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Tweaks markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r'\markup "Allegro assai"', direction=abjad.Up)
+        >>> markup = abjad.Markup(r'\markup "Allegro assai"')
         >>> abjad.tweak(markup).color = "#red"
-        >>> abjad.attach(markup, staff[0])
+        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1951,10 +1952,10 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
         >>> import copy
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup(r'\markup "Allegro assai"', direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(r'\markup "Allegro assai"')
         >>> abjad.tweak(markup_1).color = "#red"
         >>> markup_2 = copy.copy(markup_1)
-        >>> abjad.attach(markup_2, staff[0])
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1974,9 +1975,9 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Survives dot-chaining:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"', direction=abjad.Up)
+        >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"')
         >>> abjad.tweak(markup).color = "#red"
-        >>> abjad.attach(markup, staff[0])
+        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1996,13 +1997,13 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Works for opposite-directed coincident markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup(r'\markup "Allegro assai ..."', direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(r'\markup "Allegro assai ..."')
         >>> abjad.tweak(markup_1).color = "#red"
-        >>> abjad.attach(markup_1, staff[0])
-        >>> markup_2 = abjad.Markup(r'\markup "... ma non troppo"', direction=abjad.Down)
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up)
+        >>> markup_2 = abjad.Markup(r'\markup "... ma non troppo"')
         >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
-        >>> abjad.attach(markup_2, staff[0])
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.Down)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2025,13 +2026,13 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         Ignored for same-directed coincident markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup(r'\markup "Allegro assai ..."', direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(r'\markup "Allegro assai ..."')
         >>> abjad.tweak(markup_1).color = "#red"
-        >>> abjad.attach(markup_1, staff[0])
-        >>> markup_2 = abjad.Markup(r'\markup "... ma non troppo"', direction=abjad.Up)
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up)
+        >>> markup_2 = abjad.Markup(r'\markup "... ma non troppo"')
         >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
-        >>> abjad.attach(markup_2, staff[0])
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

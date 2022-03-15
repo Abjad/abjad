@@ -2837,7 +2837,7 @@ class LilyPondParser(Parser):
         return context
 
     def _construct_sequential_music(self, music):
-        # indicator sorting could be rewritten into a single list using tuplets
+        # indicator sorting could be rewritten into a single list using tuples
         # with t[0] being 'forward' or 'backward' and t[1] being the indicator
         # as this better preserves attachment order. Not clear if we need it.
         container = _score.Container()
@@ -2980,6 +2980,11 @@ class LilyPondParser(Parser):
         for post_event in post_events:
             if isinstance(post_event, nonspanner_post_event_types):
                 _bind.attach(post_event, leaf)
+            if isinstance(post_event, tuple) and isinstance(
+                post_event[0], nonspanner_post_event_types
+            ):
+                indicator, direction = post_event
+                _bind.attach(indicator, leaf, direction=direction)
 
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)
@@ -6017,31 +6022,32 @@ class LilyPondSyntacticalDefinition:
 
     def p_post_event_nofinger__script_dir__direction_less_event(self, p):
         "post_event_nofinger : script_dir direction_less_event"
-        # TODO: this is cheating; articulation direction should be given
-        #       at initialization and not after (as is done here)
-        try:
-            p[2].direction = p[1]
-        except AttributeError:
-            direction = _string.to_tridirectional_lilypond_symbol(p[1])
-            assert hasattr(p[2], "_direction")
-            p[2]._direction = direction
-        p[0] = p[2]
+        #        try:
+        #            p[2].direction = p[1]
+        #            direction = _string.to_tridirectional_lilypond_symbol(p[1])
+        #        except AttributeError:
+        #            direction = _string.to_tridirectional_lilypond_symbol(p[1])
+        #            # assert hasattr(p[2], "_direction")
+        #            # p[2]._direction = direction
+        # p[0] = p[2]
+        direction = _string.to_tridirectional_lilypond_symbol(p[1])
+        p[0] = (p[2], direction)
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         "post_event_nofinger : script_dir direction_reqd_event"
-        # TODO: this is cheating; articulation and markup direction should be given
-        #       at initialization and not after (as is done here)
-        if isinstance(p[2], _markups.Markup):
-            direction = _string.to_tridirectional_ordinal_constant(p[1])
-            p[2].direction = direction
-        else:
-            try:
-                p[2].direction = p[1]
-            except AttributeError:
-                direction = _string.to_tridirectional_ordinal_constant(p[1])
-                assert hasattr(p[2], "_direction")
-                p[2]._direction = direction
-        p[0] = p[2]
+        #        if isinstance(p[2], _markups.Markup):
+        #            direction = _string.to_tridirectional_ordinal_constant(p[1])
+        #            p[2].direction = direction
+        #        else:
+        #            try:
+        #                p[2].direction = p[1]
+        #            except AttributeError:
+        #                direction = _string.to_tridirectional_ordinal_constant(p[1])
+        #                assert hasattr(p[2], "_direction")
+        #                p[2]._direction = direction
+        #        p[0] = p[2]
+        direction = _string.to_tridirectional_ordinal_constant(p[1])
+        p[0] = (p[2], direction)
 
     def p_post_event_nofinger__script_dir__music_function_event(self, p):
         "post_event_nofinger : script_dir music_function_event"

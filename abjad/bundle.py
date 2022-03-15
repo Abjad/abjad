@@ -1,347 +1,46 @@
+import dataclasses
+
 from . import tag as _tag
 
 
-class LilyPondFormatBundle:
-    """
-    LilyPond format bundle.
-
-    Transient class created to hold the collection of all format contributions generated
-    on behalf of a single component.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "LilyPond formatting"
-
-    __slots__ = (
-        "_absolute_after",
-        "_absolute_before",
-        "_after",
-        "_before",
-        "_closing",
-        "_context_settings",
-        "_grob_overrides",
-        "_grob_reverts",
-        "_opening",
-    )
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        self._absolute_after = SlotContributions()
-        self._absolute_before = SlotContributions()
-        self._before = SlotContributions()
-        self._after = SlotContributions()
-        self._opening = SlotContributions()
-        self._closing = SlotContributions()
-        self._context_settings = []
-        self._grob_overrides = []
-        self._grob_reverts = []
-
-    ### PUBLIC METHODS ###
-
-    def get(self, identifier):
-        """
-        Gets ``identifier``.
-
-        Returns format contributions object or list.
-        """
-        return getattr(self, identifier)
-
-    def sort_overrides(self):
-        """
-        Makes each slot immutable.
-
-        Returns none.
-        """
-        self._context_settings = tuple(sorted(set(self.context_settings)))
-        self._grob_overrides = tuple(sorted(set(self.grob_overrides)))
-        self._grob_reverts = tuple(sorted(set(self.grob_reverts)))
-
-    def tag_format_contributions(self, tag, deactivate=None):
-        """
-        Tags format contributions with string ``tag``.
-
-        Returns none.
-        """
-        self.absolute_before.tag(tag, deactivate)
-        self.absolute_after.tag(tag, deactivate)
-        self.before.tag(tag, deactivate)
-        self.after.tag(tag, deactivate)
-        self.opening.tag(tag, deactivate)
-        self.closing.tag(tag, deactivate)
-        self._context_settings = _tag.double_tag(self.context_settings, tag, deactivate)
-        self._grob_overrides = _tag.double_tag(self.grob_overrides, tag, deactivate)
-        self._grob_reverts = _tag.double_tag(self.grob_reverts, tag, deactivate)
-
-    def update(self, format_bundle):
-        """
-        Updates format bundle with all format contributions in
-        ``format_bundle``.
-
-        Returns none.
-        """
-        if hasattr(format_bundle, "_get_lilypond_format_bundle"):
-            format_bundle = format_bundle._get_lilypond_format_bundle()
-        assert isinstance(format_bundle, type(self))
-        self.absolute_before.update(format_bundle.absolute_before)
-        self.absolute_after.update(format_bundle.absolute_after)
-        self.before.update(format_bundle.before)
-        self.after.update(format_bundle.after)
-        self.opening.update(format_bundle.opening)
-        self.closing.update(format_bundle.closing)
-        self.context_settings.extend(format_bundle.context_settings)
-        self.grob_overrides.extend(format_bundle.grob_overrides)
-        self.grob_reverts.extend(format_bundle.grob_reverts)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def absolute_after(self):
-        """
-        Aboslute after slot contributions.
-
-        Returns slot contributions object.
-        """
-        return self._absolute_after
-
-    @property
-    def absolute_before(self):
-        """
-        Absolute before slot contributions.
-
-        Returns slot contributions object.
-        """
-        return self._absolute_before
-
-    @property
-    def after(self):
-        """
-        After slot contributions.
-
-        Returns slot contributions object.
-        """
-        return self._after
-
-    @property
-    def before(self):
-        """
-        Before slot contributions.
-
-        Returns slot contributions object.
-        """
-        return self._before
-
-    @property
-    def closing(self):
-        """
-        Closing slot contributions.
-
-        Returns slot contributions object.
-        """
-        return self._closing
-
-    @property
-    def context_settings(self):
-        """
-        Context setting format contributions.
-
-        Returns list.
-        """
-        return self._context_settings
-
-    @property
-    def grob_overrides(self):
-        """
-        Grob override format contributions.
-
-        Returns list.
-        """
-        return self._grob_overrides
-
-    @property
-    def grob_reverts(self):
-        """
-        Grob revert format contributions.
-
-        Returns list.
-        """
-        return self._grob_reverts
-
-    @property
-    def opening(self):
-        """
-        Opening slot contributions.
-
-        Returns slot contributions object.
-        """
-        return self._opening
-
-
+@dataclasses.dataclass(slots=True)
 class SlotContributions:
     """
     Slot contributions.
     """
 
+    articulations: list[str] = dataclasses.field(default_factory=list)
+    commands: list[str] = dataclasses.field(default_factory=list)
+    comments: list[str] = dataclasses.field(default_factory=list)
+    indicators: list[str] = dataclasses.field(default_factory=list)
+    leaks: list[str] = dataclasses.field(default_factory=list)
+    markup: list[str] = dataclasses.field(default_factory=list)
+    spanners: list[str] = dataclasses.field(default_factory=list)
+    spanner_starts: list[str] = dataclasses.field(default_factory=list)
+    spanner_stops: list[str] = dataclasses.field(default_factory=list)
+    stem_tremolos: list[str] = dataclasses.field(default_factory=list)
+    trill_spanner_starts: list[str] = dataclasses.field(default_factory=list)
+
     __documentation_section__ = "LilyPond formatting"
-
-    __slots__ = (
-        "_articulations",
-        "_commands",
-        "_comments",
-        "_indicators",
-        "_leaks",
-        "_markup",
-        "_spanners",
-        "_spanner_starts",
-        "_spanner_stops",
-        "_stem_tremolos",
-        "_trill_spanner_starts",
-    )
-
-    ### INITIALIZER ###
-
-    def __init__(self) -> None:
-        self._articulations: list[str] = []
-        self._commands: list[str] = []
-        self._comments: list[str] = []
-        self._indicators: list[str] = []
-        self._leaks: list[str] = []
-        self._markup: list[str] = []
-        self._spanners: list[str] = []
-        self._spanner_starts: list[str] = []
-        self._spanner_stops: list[str] = []
-        self._stem_tremolos: list[str] = []
-        self._trill_spanner_starts: list[str] = []
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def articulations(self) -> list[str]:
-        """
-        Gets articulations.
-        """
-        return self._articulations
-
-    @property
-    def commands(self) -> list[str]:
-        """
-        Gets commands.
-        """
-        return self._commands
-
-    @property
-    def comments(self) -> list[str]:
-        """
-        Gets comments.
-        """
-        return self._comments
-
-    @property
-    def has_contributions(self) -> bool:
-        """
-        Is true when has contributions.
-        """
-        contribution_categories = (
-            "articulations",
-            "commands",
-            "comments",
-            "indicators",
-            "leaks",
-            "markup",
-            "spanners",
-            "spanner_starts",
-            "spanner_stops",
-            "stem_tremolos",
-            "trill_spanner_starts",
-        )
-        return any(
-            getattr(self, contribution_category)
-            for contribution_category in contribution_categories
-        )
-
-    @property
-    def indicators(self) -> list[str]:
-        """
-        Gets indicators.
-        """
-        return self._indicators
-
-    @property
-    def leaks(self) -> list[str]:
-        """
-        Gets leaks.
-        """
-        return self._leaks
-
-    @property
-    def markup(self) -> list[str]:
-        """
-        Gets markup.
-        """
-        return self._markup
-
-    @property
-    def spanner_starts(self) -> list[str]:
-        """
-        Gets spanner starts.
-        """
-        return self._spanner_starts
-
-    @property
-    def spanner_stops(self) -> list[str]:
-        """
-        Gets spanner stops.
-        """
-        return self._spanner_stops
-
-    @property
-    def spanners(self) -> list[str]:
-        """
-        Gets spanners.
-        """
-        return self._spanners
-
-    @property
-    def stem_tremolos(self) -> list[str]:
-        """
-        Gets stem tremolos.
-        """
-        return self._stem_tremolos
-
-    @property
-    def trill_spanner_starts(self) -> list[str]:
-        """
-        Gets trill spanner starts.
-        """
-        return self._trill_spanner_starts
-
-    ### PUBLIC METHODS ###
-
-    def get(self, identifier):
-        """
-        Gets ``identifier``.
-        """
-        return getattr(self, identifier)
 
     def tag(self, tag, deactivate=None):
         """
         Tags contributions.
         """
-        self._articulations = _tag.double_tag(self.articulations, tag, deactivate)
-        self._commands = _tag.double_tag(self.commands, tag, deactivate)
-        self._comments = _tag.double_tag(self.comments, tag, deactivate)
-        self._indicators = _tag.double_tag(self.indicators, tag, deactivate)
-        self._leaks = _tag.double_tag(self.leaks, tag, deactivate)
-        self._markup = _tag.double_tag(self.markup, tag, deactivate)
-        self._spanners = _tag.double_tag(self.spanners, tag, deactivate)
+        self.articulations = _tag.double_tag(self.articulations, tag, deactivate)
+        self.commands = _tag.double_tag(self.commands, tag, deactivate)
+        self.comments = _tag.double_tag(self.comments, tag, deactivate)
+        self.indicators = _tag.double_tag(self.indicators, tag, deactivate)
+        self.leaks = _tag.double_tag(self.leaks, tag, deactivate)
+        self.markup = _tag.double_tag(self.markup, tag, deactivate)
+        self.spanners = _tag.double_tag(self.spanners, tag, deactivate)
         strings = []
         # make sure each line of multiline markup is tagged
         for string in self.spanner_starts:
             strings.extend(string.split("\n"))
-        self._spanner_starts = _tag.double_tag(strings, tag, deactivate)
-        self._spanner_stops = _tag.double_tag(self.spanner_stops, tag, deactivate)
-        self._stem_tremolos = _tag.double_tag(self.stem_tremolos, tag, deactivate)
+        self.spanner_starts = _tag.double_tag(strings, tag, deactivate)
+        self.spanner_stops = _tag.double_tag(self.spanner_stops, tag, deactivate)
+        self.stem_tremolos = _tag.double_tag(self.stem_tremolos, tag, deactivate)
 
     def update(self, slot_contributions):
         """
@@ -359,3 +58,66 @@ class SlotContributions:
         self.spanner_stops.extend(slot_contributions.spanner_stops)
         self.stem_tremolos.extend(slot_contributions.stem_tremolos)
         self.trill_spanner_starts.extend(slot_contributions.trill_spanner_starts)
+
+
+@dataclasses.dataclass(slots=True)
+class LilyPondFormatBundle:
+    """
+    LilyPond format bundle.
+
+    Transient class created to hold the collection of all format contributions generated
+    on behalf of a single component.
+    """
+
+    absolute_after: SlotContributions = dataclasses.field(
+        default_factory=SlotContributions
+    )
+    absolute_before: SlotContributions = dataclasses.field(
+        default_factory=SlotContributions
+    )
+    before: SlotContributions = dataclasses.field(default_factory=SlotContributions)
+    after: SlotContributions = dataclasses.field(default_factory=SlotContributions)
+    opening: SlotContributions = dataclasses.field(default_factory=SlotContributions)
+    closing: SlotContributions = dataclasses.field(default_factory=SlotContributions)
+    context_settings: list = dataclasses.field(default_factory=list)
+    grob_overrides: list = dataclasses.field(default_factory=list)
+    grob_reverts: list = dataclasses.field(default_factory=list)
+
+    __documentation_section__ = "LilyPond formatting"
+
+    def sort_overrides(self):
+        """
+        Makes each slot immutable.
+        """
+        self.context_settings = tuple(sorted(set(self.context_settings)))
+        self.grob_overrides = tuple(sorted(set(self.grob_overrides)))
+        self.grob_reverts = tuple(sorted(set(self.grob_reverts)))
+
+    def tag_format_contributions(self, tag, deactivate=None):
+        """
+        Tags format contributions with string ``tag``.
+        """
+        self.absolute_before.tag(tag, deactivate)
+        self.absolute_after.tag(tag, deactivate)
+        self.before.tag(tag, deactivate)
+        self.after.tag(tag, deactivate)
+        self.opening.tag(tag, deactivate)
+        self.closing.tag(tag, deactivate)
+        self.context_settings = _tag.double_tag(self.context_settings, tag, deactivate)
+        self.grob_overrides = _tag.double_tag(self.grob_overrides, tag, deactivate)
+        self.grob_reverts = _tag.double_tag(self.grob_reverts, tag, deactivate)
+
+    def update(self, bundle):
+        """
+        Updates format bundle with all format contributions in ``bundle``.
+        """
+        assert isinstance(bundle, type(self))
+        self.absolute_before.update(bundle.absolute_before)
+        self.absolute_after.update(bundle.absolute_after)
+        self.before.update(bundle.before)
+        self.after.update(bundle.after)
+        self.opening.update(bundle.opening)
+        self.closing.update(bundle.closing)
+        self.context_settings.extend(bundle.context_settings)
+        self.grob_overrides.extend(bundle.grob_overrides)
+        self.grob_reverts.extend(bundle.grob_reverts)

@@ -3,6 +3,7 @@ Tools for modeling LilyPond markup.
 """
 import collections
 import dataclasses
+import typing
 
 from . import math as _math
 from . import overrides as _overrides
@@ -26,11 +27,11 @@ class Markup:
 
         >>> abjad.show(markup) # doctest: +SKIP
 
-        >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"', direction=abjad.Up)
-        >>> markup = abjad.Markup(markup.string, direction=abjad.Down)
+        >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"')
+        >>> markup = abjad.Markup(markup.string)
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        _ \markup \italic "Allegro assai"
+        \markup \italic "Allegro assai"
 
         >>> abjad.show(markup) # doctest: +SKIP
 
@@ -40,12 +41,12 @@ class Markup:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> string = r'\markup \italic "Allegro assai"'
-        >>> markup = abjad.Markup(string, direction=abjad.Up)
+        >>> markup = abjad.Markup(string)
         >>> string = abjad.lilypond(markup)
         >>> print(string)
-        ^ \markup \italic "Allegro assai"
+        \markup \italic "Allegro assai"
 
-        >>> abjad.attach(markup, staff[0])
+        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -69,8 +70,8 @@ class Markup:
         Markup can be tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r"\markup \italic Allegro", direction=abjad.Up)
-        >>> abjad.attach(markup, staff[0], tag=abjad.Tag("RED:M1"))
+        >>> markup = abjad.Markup(r"\markup \italic Allegro")
+        >>> abjad.attach(markup, staff[0], direction=abjad.Up, tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff, tags=True)
@@ -91,11 +92,12 @@ class Markup:
         Markup can be deactively tagged:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup = abjad.Markup(r"\markup \italic Allegro", direction=abjad.Up)
+        >>> markup = abjad.Markup(r"\markup \italic Allegro")
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
         ...     deactivate=True,
+        ...     direction=abjad.Up,
         ...     tag=abjad.Tag("RED:M1"),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
@@ -119,10 +121,10 @@ class Markup:
         italic markup is attached:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> markup_1 = abjad.Markup(r"\markup \italic Allegro", direction=abjad.Up)
-        >>> markup_2 = abjad.Markup(r'\markup \italic "non troppo"', direction=abjad.Up)
-        >>> abjad.attach(markup_1, staff[0])
-        >>> abjad.attach(markup_2, staff[0])
+        >>> markup_1 = abjad.Markup(r"\markup \italic Allegro")
+        >>> markup_2 = abjad.Markup(r'\markup \italic "non troppo"')
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff)
@@ -142,10 +144,10 @@ class Markup:
         Works with tweaks:
 
         >>> string = r'\markup \bold "Allegro assai"'
-        >>> markup = abjad.Markup(string, direction=abjad.Up)
+        >>> markup = abjad.Markup(string)
         >>> abjad.tweak(markup).color = "#blue"
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup, staff[0])
+        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -212,20 +214,6 @@ class Markup:
         >>> markup_3 == markup_3
         True
 
-        With keywords:
-
-        >>> markup_1 = abjad.Markup(r"\markup Allegro")
-        >>> markup_2 = abjad.Markup(r"\markup Allegro", direction=abjad.Up)
-
-        >>> markup_1 == markup_1
-        True
-        >>> markup_1 == markup_2
-        False
-        >>> markup_2 == markup_1
-        False
-        >>> markup_2 == markup_2
-        True
-
     ..  container:: example
 
         Unsafe hash:
@@ -253,22 +241,6 @@ class Markup:
         >>> hash_3 == hash_3
         True
 
-        With keywords:
-
-        >>> hash_1 = hash(abjad.Markup(r"\markup Allegro"))
-        >>> string = r"\markup Allegro"
-        >>> hash_2 = hash(abjad.Markup(string, direction=abjad.Up))
-
-        >>> hash_1 == hash_1
-        True
-        >>> hash_1 == hash_2
-        False
-        >>> hash_2 == hash_1
-        False
-        >>> hash_2 == hash_2
-        True
-
-
     ..  container:: example
 
         Order:
@@ -286,14 +258,14 @@ class Markup:
         Copy:
 
         >>> import copy
-        >>> markup_1 = abjad.Markup(r"\markup Allegro assai", direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(r"\markup Allegro assai")
         >>> markup_2 = copy.copy(markup_1)
 
         >>> markup_1
-        Markup(string='\\markup Allegro assai', direction=Up, tweaks=None)
+        Markup(string='\\markup Allegro assai', tweaks=None)
 
         >>> markup_2
-        Markup(string='\\markup Allegro assai', direction=Up, tweaks=None)
+        Markup(string='\\markup Allegro assai', tweaks=None)
 
         >>> markup_1 == markup_2
         True
@@ -314,14 +286,13 @@ class Markup:
     """
 
     string: str
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    def __post_init__(self):
-        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
-        self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
+    _is_dataclass: typing.ClassVar[bool] = True
+    directed: typing.ClassVar[bool] = True
 
-    _is_dataclass = True
+    def __post_init__(self):
+        self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     # TODO: remove eventually
     def __str__(self) -> str:
@@ -330,21 +301,21 @@ class Markup:
         """
         return self._get_lilypond_format()
 
-    def _get_format_pieces(self):
+    def _get_format_pieces(self, *, wrapper=None):
         tweaks = []
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
-        direction = ""
-        if self.direction is not None:
-            direction = _string.to_tridirectional_lilypond_symbol(self.direction)
-        if direction:
+        if wrapper:
+            direction = wrapper.direction or "-"
+            direction = _string.to_tridirectional_lilypond_symbol(direction)
             string = rf"{direction} {self.string}"
         else:
             string = self.string
         return tweaks + [string]
 
-    def _get_lilypond_format(self):
-        return "\n".join(self._get_format_pieces())
+    def _get_lilypond_format(self, *, wrapper=None):
+        pieces = self._get_format_pieces(wrapper=wrapper)
+        return "\n".join(pieces)
 
 
 def _format_postscript_argument(argument):

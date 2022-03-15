@@ -44,17 +44,17 @@ class Dynamic:
         >>> dynamic_2 = abjad.Dynamic(dynamic_1)
 
         >>> dynamic_1
-        Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
 
         >>> dynamic_2
-        Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
 
     ..  container:: example
 
         Initializes niente:
 
         >>> abjad.Dynamic("niente")
-        Dynamic(name='niente', command=None, direction=Down, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=None)
+        Dynamic(name='niente', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=None)
 
     ..  container:: example
 
@@ -100,13 +100,19 @@ class Dynamic:
             >>
 
         >>> for leaf in abjad.select.leaves(staff):
-        ...     leaf, abjad.get.effective(leaf, abjad.Dynamic)
-        ...
-        (Note("e'8"), Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None))
-        (Note("g'8"), Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None))
-        (Note("f'8"), Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None))
-        (Note("a'8"), Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None))
-        (Note("c'2"), Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None))
+        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     print(f"{leaf!r}:")
+        ...     print(f"    {dynamic!r}")
+        Note("e'8"):
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("g'8"):
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("f'8"):
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("a'8"):
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("c'2"):
+            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
 
     ..  container:: example exception
 
@@ -234,8 +240,8 @@ class Dynamic:
         With ``direction=abjad.Up``:
 
         >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic("p", direction=abjad.Up), staff[0])
-        >>> abjad.attach(abjad.Dynamic("f", direction=abjad.Up), staff[1])
+        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.Up)
+        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -253,8 +259,8 @@ class Dynamic:
         With ``direction=abjad.Down``:
 
         >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic("p", direction=abjad.Down), staff[0])
-        >>> abjad.attach(abjad.Dynamic("f", direction=abjad.Down), staff[1])
+        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.Down)
+        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.Down)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -315,8 +321,8 @@ class Dynamic:
         And may be overriden:
 
         >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic('"p"', direction=abjad.Up), staff[0])
-        >>> abjad.attach(abjad.Dynamic('"f"', direction=abjad.Up), staff[1])
+        >>> abjad.attach(abjad.Dynamic('"p"'), staff[0], direction=abjad.Up)
+        >>> abjad.attach(abjad.Dynamic('"f"'), staff[1], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -375,12 +381,17 @@ class Dynamic:
         }
 
         >>> for leaf in abjad.iterate.leaves(voice):
-        ...     leaf, abjad.get.effective(leaf, abjad.Dynamic)
-        ...
-        (Note("c'4"), Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None))
-        (Note("d'4"), Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None))
-        (Note("e'4"), Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1, tweaks=None))
-        (Note("f'4"), Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1, tweaks=None))
+        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     print(f"{leaf!r}:")
+        ...     print(f"    {dynamic!r}")
+        Note("c'4"):
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("d'4"):
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("e'4"):
+            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("f'4"):
+            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
 
     ..  container:: example
 
@@ -539,7 +550,7 @@ class Dynamic:
         >>> import copy
         >>> dynamic = abjad.Dynamic("pp", leak=True)
         >>> copy.copy(dynamic)
-        Dynamic(name='pp', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=True, name_is_textual=False, ordinal=-3, tweaks=None)
+        Dynamic(name='pp', command=None, format_hairpin_stop=False, hide=False, leak=True, name_is_textual=False, ordinal=-3, tweaks=None)
 
     ..  container:: example
 
@@ -644,11 +655,11 @@ class Dynamic:
         >>> import dataclasses
         >>> dynamic = abjad.Dynamic("niente")
         >>> dataclasses.replace(dynamic)
-        Dynamic(name='niente', command=None, direction=Down, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=None)
+        Dynamic(name='niente', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=None)
 
         >>> dynamic = abjad.Dynamic("appena udibile", name_is_textual=True)
         >>> dataclasses.replace(dynamic)
-        Dynamic(name='appena udibile', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=None, tweaks=None)
+        Dynamic(name='appena udibile', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=None, tweaks=None)
 
     ..  container:: example
 
@@ -695,11 +706,8 @@ class Dynamic:
 
     """
 
-    # TODO: make ``name`` mandatory; remove default
-
     name: typing.Union[str, "Dynamic"] = "f"
     command: str | None = None
-    direction: int | None = None
     format_hairpin_stop: bool = False
     hide: bool = False
     leak: bool = False
@@ -707,7 +715,8 @@ class Dynamic:
     ordinal: int | _math.Infinity | _math.NegativeInfinity | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass = True
+    _is_dataclass: typing.ClassVar[bool] = True
+    directed: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         if self.name is not None:
@@ -727,10 +736,8 @@ class Dynamic:
         if self.command is not None:
             assert isinstance(self.command, str), repr(self.command)
             assert self.command.startswith("\\"), repr(self.command)
-        if self.direction is not None:
-            assert self.direction in (_enums.Down, _enums.Up), repr(self.direction)
-        elif self.name == "niente" or self.effort:
-            self.direction = _enums.Down
+        # if self.name == "niente" or self.effort:
+        #     self.direction = _enums.Down
         assert isinstance(self.format_hairpin_stop, bool), repr(
             self.format_hairpin_stop
         )
@@ -898,13 +905,14 @@ class Dynamic:
             return strings
         return True
 
-    def _format_effort_dynamic(self):
+    def _format_effort_dynamic(self, *, wrapper=None):
         name = self.name.strip('"')
         before = {"f": -0.4, "m": -0.1, "p": -0.1, "r": -0.1, "s": -0.3, "z": -0.2}[
             name[0]
         ]
         after = {"f": -0.2, "m": -0.1, "p": -0.25, "r": 0, "s": 0, "z": -0.2}[name[-1]]
-        direction = self.direction
+        # direction = self.direction
+        direction = wrapper.direction or _enums.Down
         direction = _string.to_tridirectional_lilypond_symbol(direction)
         strings = []
         strings.append(f"{direction} #(make-dynamic-script")
@@ -923,8 +931,9 @@ class Dynamic:
         return string
 
     @staticmethod
-    def _format_textual(direction, string):
-        if direction is None:
+    # def _format_textual(direction, string):
+    def _format_textual(string, *, wrapper=None):
+        if wrapper.direction is None:
             direction = _enums.Down
         direction = _string.to_tridirectional_lilypond_symbol(direction)
         assert isinstance(string, str), repr(string)
@@ -932,22 +941,24 @@ class Dynamic:
         string = f"{direction} #(make-dynamic-script {string})"
         return string
 
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, *, wrapper=None):
         if self.command:
             string = self.command
         elif self.effort:
-            string = self._format_effort_dynamic()
+            string = self._format_effort_dynamic(wrapper=wrapper)
         elif self.name_is_textual:
-            string = self._format_textual(self.direction, self.name)
+            # string = self._format_textual(self.direction, self.name)
+            string = self._format_textual(self.name, wrapper=wrapper)
         else:
             string = rf"\{self.name}"
-            if self.direction is not None:
-                direction_ = self.direction
+            # if self.direction is not None:
+            if wrapper.direction is not None:
+                direction_ = wrapper.direction
                 direction = _string.to_tridirectional_lilypond_symbol(direction_)
                 string = f"{direction} {string}"
         return string
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.leak:
             bundle.after.leaks.append("<>")
@@ -958,7 +969,7 @@ class Dynamic:
             else:
                 bundle.after.articulations.extend(tweaks)
         if not self.hide:
-            string = self._get_lilypond_format()
+            string = self._get_lilypond_format(wrapper=wrapper)
             if self.leak:
                 bundle.after.leaks.append(string)
             else:

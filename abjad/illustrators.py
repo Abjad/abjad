@@ -30,7 +30,7 @@ def _illustrate_component(component):
 
 def _illustrate_markup(markup):
     lilypond_file = _lilypondfile.LilyPondFile()
-    markup = dataclasses.replace(markup, direction=None)
+    markup = dataclasses.replace(markup)
     lilypond_file.items.append(markup)
     return lilypond_file
 
@@ -329,10 +329,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         REGRESSION. Function preserves markup:
 
         >>> note = abjad.Chord("<c bf'>4")
-        >>> markup = abjad.Markup(r"\markup loco", direction=abjad.Up)
-        >>> abjad.attach(markup, chord)
-        >>> markup = abjad.Markup(r"\markup ped.", direction=abjad.Down)
-        >>> abjad.attach(markup, chord)
+        >>> markup = abjad.Markup(r"\markup loco")
+        >>> abjad.attach(markup, chord, direction=abjad.Up)
+        >>> markup = abjad.Markup(r"\markup ped.")
+        >>> abjad.attach(markup, chord, direction=abjad.Down)
         >>> score = abjad.illustrators.make_piano_score([chord])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -382,7 +382,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     score = _score.Score(name="Score")
     score.append(staff_group)
     for leaf in leaves:
-        markups = _get.indicators(leaf, _markups.Markup)
+        markup_wrappers = _get.indicators(leaf, _markups.Markup, unwrap=False)
         written_duration = leaf.written_duration
         if isinstance(leaf, _score.Note):
             if leaf.written_pitch < lowest_treble_pitch:
@@ -414,18 +414,22 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         else:
             treble_leaf = copy.copy(leaf)
             bass_leaf = copy.copy(leaf)
-        for markup in markups:
+        for wrapper in markup_wrappers:
+            markup = wrapper.indicator
             markup_copy = copy.copy(markup)
-            if markup.direction in (_enums.Up, None):
-                _bind.attach(markup_copy, treble_leaf)
+            # if markup.direction in (_enums.Up, None):
+            if wrapper.direction in (_enums.Up, None):
+                _bind.attach(markup_copy, treble_leaf, direction=wrapper.direction)
             else:
-                _bind.attach(markup_copy, bass_leaf)
+                _bind.attach(markup_copy, bass_leaf, direction=wrapper.direction)
         treble_staff.append(treble_leaf)
         bass_staff.append(bass_leaf)
     if 0 < len(treble_staff):
-        _bind.attach(_indicators.Clef("treble"), treble_staff[0])
+        clef = _indicators.Clef("treble")
+        _bind.attach(clef, treble_staff[0])
     if 0 < len(bass_staff):
-        _bind.attach(_indicators.Clef("bass"), bass_staff[0])
+        clef = _indicators.Clef("bass")
+        _bind.attach(clef, bass_staff[0])
     return score
 
 

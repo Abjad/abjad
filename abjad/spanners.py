@@ -1491,6 +1491,7 @@ def piano_pedal(
 def slur(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
+    direction: int = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_slur: _indicators.StartSlur = None,
     stop_slur: _indicators.StopSlur = None,
@@ -1528,7 +1529,7 @@ def slur(
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    _bind.attach(start_slur, start_leaf, tag=tag)
+    _bind.attach(start_slur, start_leaf, direction=direction, tag=tag)
     _bind.attach(stop_slur, stop_leaf, tag=tag)
 
 
@@ -1896,13 +1897,13 @@ def tie(
         if inequality(duration):
             _bind.detach(_indicators.Tie, current_leaf)
             _bind.detach(_indicators.RepeatTie, next_leaf)
-            repeat_tie = _indicators.RepeatTie(direction=direction)
-            _bind.attach(repeat_tie, next_leaf, tag=tag)
+            repeat_tie = _indicators.RepeatTie()
+            _bind.attach(repeat_tie, next_leaf, direction=direction, tag=tag)
         else:
             _bind.detach(_indicators.Tie, current_leaf)
             _bind.detach(_indicators.RepeatTie, next_leaf)
-            tie = _indicators.Tie(direction=direction)
-            _bind.attach(tie, current_leaf, tag=tag)
+            tie = _indicators.Tie()
+            _bind.attach(tie, current_leaf, direction=direction, tag=tag)
 
 
 def trill_spanner(
