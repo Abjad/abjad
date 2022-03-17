@@ -17,8 +17,8 @@ from . import setclass as _setclass
 from . import verticalmoment as _verticalmoment
 
 
-def _attach(label, leaf, *, deactivate=False, tag=None):
-    _bind.attach(label, leaf, deactivate=deactivate, tag=tag)
+def _attach(label, leaf, *, deactivate=False, direction=None, tag=None):
+    _bind.attach(label, leaf, deactivate=deactivate, direction=direction, tag=tag)
 
 
 def _color_leaf(leaf, color, *, deactivate=False, tag=None):
@@ -751,12 +751,12 @@ def vertical_moments(
         else:
             raise TypeError(f"unknown prototype {prototype!r}.")
         assert string is not None
-        label = _markups.Markup(rf"\markup \tiny {string}", direction=direction)
+        label = _markups.Markup(rf"\markup \tiny {string}")
         if direction is _enums.Up:
             leaf = vertical_moment.start_leaves[0]
         else:
             leaf = vertical_moment.start_leaves[-1]
-        _attach(label, leaf, deactivate=deactivate, tag=tag)
+        _attach(label, leaf, deactivate=deactivate, direction=direction, tag=tag)
 
 
 def with_durations(
@@ -830,11 +830,8 @@ def with_durations(
             duration = duration.with_denominator(denominator)
         pair = duration.pair
         numerator, denominator = pair
-        label = _markups.Markup(
-            rf"\markup \fraction {numerator} {denominator}",
-            direction=direction,
-        )
-        _attach(label, logical_tie.head)
+        label = _markups.Markup(rf"\markup \fraction {numerator} {denominator}")
+        _attach(label, logical_tie.head, direction=direction)
 
 
 def with_indices(argument, direction=_enums.Up, prototype=None) -> None:
@@ -1039,10 +1036,10 @@ def with_indices(argument, direction=_enums.Up, prototype=None) -> None:
         generator = iterate_.components(argument, prototype=prototype)
     items = list(generator)
     for index, item in enumerate(items):
-        label = _markups.Markup(rf"\markup {index}", direction=direction)
+        label = _markups.Markup(rf"\markup {index}")
         leaves = _select.leaves(item)
         first_leaf = leaves[0]
-        _attach(label, first_leaf)
+        _attach(label, first_leaf, direction=direction)
 
 
 def with_intervals(argument, direction=_enums.Up, prototype=None) -> None:
@@ -1255,30 +1252,10 @@ def with_intervals(argument, direction=_enums.Up, prototype=None) -> None:
         next_leaf = _iterate._get_leaf(note, 1)
         if isinstance(next_leaf, _score.Note):
             interval = _pitch.NamedInterval.from_pitch_carriers(note, next_leaf)
-            if prototype is _pitch.NamedInterval:
-                label = _markups.Markup(rf"\markup {interval}", direction=direction)
-            elif prototype is _pitch.NamedIntervalClass:
-                label = _markups.Markup(
-                    rf"\markup {_pitch.NamedIntervalClass(interval)}",
-                    direction=direction,
-                )
-            elif prototype is _pitch.NumberedInterval:
-                label = _markups.Markup(
-                    rf"\markup {_pitch.NumberedInterval(interval)}",
-                    direction=direction,
-                )
-            elif prototype is _pitch.NumberedIntervalClass:
-                label = _markups.Markup(
-                    rf"\markup {_pitch.NumberedIntervalClass(interval)}",
-                    direction=direction,
-                )
-            elif prototype is _pitch.NumberedInversionEquivalentIntervalClass:
-                label = _markups.Markup(
-                    rf"\markup {_pitch.NumberedInversionEquivalentIntervalClass(interval)}",
-                    direction=direction,
-                )
+            interval = prototype(interval)
+            label = _markups.Markup(rf"\markup {interval}")
             if label is not None:
-                _attach(label, note)
+                _attach(label, note, direction=direction)
 
 
 def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
@@ -1551,7 +1528,7 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                 string = leaf.written_pitch.get_name(locale=locale)
                 if "#" in string:
                     string = '"' + string + '"'
-                label = _markups.Markup(rf"\markup {{ {string} }}", direction=direction)
+                label = _markups.Markup(rf"\markup {{ {string} }}")
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
@@ -1561,39 +1538,29 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
                     name = '"' + name + '"'
                     names.append(name)
                 string = " ".join(names)
-                label = _markups.Markup(
-                    rf"\markup \column {{ {string} }}",
-                    direction=direction,
-                )
+                label = _markups.Markup(rf"\markup \column {{ {string} }}")
         elif prototype is _pitch.NumberedPitch:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.number
-                label = _markups.Markup(rf"\markup {pitch}", direction=direction)
+                label = _markups.Markup(rf"\markup {pitch}")
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
                 pitches = [str(_.number) for _ in pitches]
                 string = " ".join(pitches)
-                label = _markups.Markup(
-                    rf"\markup \column {{ {string} }}",
-                    direction=direction,
-                )
+                label = _markups.Markup(rf"\markup \column {{ {string} }}")
         elif prototype is _pitch.NumberedPitchClass:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.pitch_class.number
-                label = _markups.Markup(rf"\markup {pitch}", direction=direction)
+                label = _markups.Markup(rf"\markup {pitch}")
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
                 pitches = [str(_.pitch_class.number) for _ in pitches]
                 string = " ".join(pitches)
-                label = _markups.Markup(
-                    rf"\markup \column {{ {string} }}",
-                    direction=direction,
-                )
+                label = _markups.Markup(rf"\markup \column {{ {string} }}")
         if label is not None:
-            label = dataclasses.replace(label, direction=direction)
-            _attach(label, leaf)
+            _attach(label, leaf, direction=direction)
 
 
 def with_set_classes(argument, direction=_enums.Up, prototype=None):
@@ -1754,10 +1721,9 @@ def with_set_classes(argument, direction=_enums.Up, prototype=None):
             transposition_only=prototype.transposition_only,
         )
         string = str(set_class)
-        string = rf'\markup \tiny \line {{ "{string}" }}'
-        label = _markups.Markup(string, direction=direction)
+        label = _markups.Markup(rf'\markup \tiny \line {{ "{string}" }}')
         leaf = selection[0]
-        _attach(label, leaf)
+        _attach(label, leaf, direction=direction)
 
 
 def with_start_offsets(
@@ -1913,12 +1879,10 @@ def with_start_offsets(
         if brackets:
             string = f"[{string}]"
         if markup_command is not None:
-            string = rf"{markup_command} {{ {string} }}"
-            label = _markups.Markup(string, direction=direction)
+            label = _markups.Markup(rf"{markup_command} {{ {string} }}")
         else:
-            string = rf"\markup {{ {string} }}"
-            label = _markups.Markup(string, direction=direction)
-        _attach(label, logical_tie.head)
+            label = _markups.Markup(rf"\markup {{ {string} }}")
+        _attach(label, logical_tie.head, direction=direction)
     total_duration = _duration.Duration(timespan.stop_offset)
     if global_offset is not None:
         total_duration += global_offset

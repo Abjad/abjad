@@ -203,8 +203,8 @@ def annotation_wrappers(argument):
             }
 
         >>> for wrapper in abjad.get.annotation_wrappers(staff[0]): wrapper
-        Wrapper(annotation='default_instrument', context=None, deactivate=False, indicator=Cello(), synthetic_offset=None, tag=Tag())
-        Wrapper(annotation='default_clef', context=None, deactivate=False, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation='default_instrument', context=None, deactivate=False, direction=None, indicator=Cello(), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation='default_clef', context=None, deactivate=False, direction=None, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag())
 
     """
     return _inspect._get_annotation_wrappers(argument)
@@ -1314,10 +1314,10 @@ def effective(
         >>> for note in abjad.select.notes(staff):
         ...     note, abjad.get.effective(note, abjad.StartTextSpan)
         ...
-        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
-        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
-        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
-        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
+        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
 
         >>> for note in abjad.select.notes(staff):
         ...     note, abjad.get.effective(note, abjad.StopTextSpan)
@@ -1334,19 +1334,23 @@ def effective(
         ...         object,
         ...         attributes=attributes,
         ...         )
-        ...     note, indicator
-        ...
-        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
-        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None))
-        (Note("e'4"), StopTextSpan(command='\\stopTextSpan', leak=False))
-        (Note("f'4"), StopTextSpan(command='\\stopTextSpan', leak=False))
+        ...     print(f"{note!r}:")
+        ...     print(f"    {indicator!r}")
+        Note("c'4"):
+            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None)
+        Note("d'4"):
+            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None)
+        Note("e'4"):
+            StopTextSpan(command='\\stopTextSpan', leak=False)
+        Note("f'4"):
+            StopTextSpan(command='\\stopTextSpan', leak=False)
 
     ..  container:: example
 
         REGRESSION. Matching start-beam and stop-beam indicators work correctly:
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8 g'4 a'4")
-        >>> abjad.attach(abjad.StartBeam(direction=None, tweaks=None), voice[0])
+        >>> abjad.attach(abjad.StartBeam(), voice[0])
         >>> abjad.attach(abjad.StopBeam(), voice[3])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1370,12 +1374,12 @@ def effective(
         ...     start_beam = abjad.get.effective(leaf, abjad.StartBeam)
         ...     stop_beam = abjad.get.effective(leaf, abjad.StopBeam)
         ...     leaf, start_beam, stop_beam
-        (Note("c'8"), StartBeam(direction=None, tweaks=None), None)
-        (Note("d'8"), StartBeam(direction=None, tweaks=None), None)
-        (Note("e'8"), StartBeam(direction=None, tweaks=None), None)
-        (Note("f'8"), StartBeam(direction=None, tweaks=None), StopBeam(leak=False))
-        (Note("g'4"), StartBeam(direction=None, tweaks=None), StopBeam(leak=False))
-        (Note("a'4"), StartBeam(direction=None, tweaks=None), StopBeam(leak=False))
+        (Note("c'8"), StartBeam(tweaks=None), None)
+        (Note("d'8"), StartBeam(tweaks=None), None)
+        (Note("e'8"), StartBeam(tweaks=None), None)
+        (Note("f'8"), StartBeam(tweaks=None), StopBeam(leak=False))
+        (Note("g'4"), StartBeam(tweaks=None), StopBeam(leak=False))
+        (Note("a'4"), StartBeam(tweaks=None), StopBeam(leak=False))
 
         # TODO: make this work.
 
@@ -1497,24 +1501,42 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
 
         >>> for component in abjad.select.components(staff):
         ...     staff = abjad.get.effective_staff(component)
-        ...     print(f"{repr(component):30} {repr(staff)}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("c'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        BeforeGraceContainer("cs'16")  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("cs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("d'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Chord("<e' g'>16")             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("gs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("a'16")                   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("as'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("e'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("e'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("f'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        AfterGraceContainer("fs'16")   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Note("fs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        ...     print(f"{component!r}:")
+        ...     print(f"    {staff!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("c'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        BeforeGraceContainer("cs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("cs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("d'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Chord("<e' g'>16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("gs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("a'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("as'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Voice("e'4", name='Music_Voice'):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("e'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("f'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        AfterGraceContainer("fs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("fs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
     """
     if not isinstance(argument, _score.Component):
@@ -1627,27 +1649,27 @@ def effective_wrapper(
         Note("d'4")
             None
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Chord("<e' g'>16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Note("gs'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Note("a'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Note("as'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Voice("e'4", name='Music_Voice')
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Note("e'4")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Note("f'4")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         AfterGraceContainer("fs'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
         Note("fs'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
 
     """
     if attributes is not None:
@@ -2346,24 +2368,42 @@ def indicators(
 
         >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.indicators(component)
-        ...     print(f"{repr(component):30} {repr(result)}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") []
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') []
-        Note("c'4")                    [Articulation(name='.', direction=None, tweaks=None)]
-        BeforeGraceContainer("cs'16")  []
-        Note("cs'16")                  [Articulation(name='.', direction=None, tweaks=None)]
-        Note("d'4")                    [Articulation(name='.', direction=None, tweaks=None)]
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") []
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") [LilyPondLiteral(argument='\\set fontSize = #-3', format_slot='opening', directed=False, tweaks=None)]
-        Chord("<e' g'>16")             [StartBeam(direction=None, tweaks=None), LilyPondLiteral(argument='\\slash', format_slot='opening', directed=False, tweaks=None), StartSlur(direction=None, tweaks=None), LilyPondLiteral(argument='\\voiceOne', format_slot='opening', directed=False, tweaks=None), Clef(name='alto', hide=False), Articulation(name='>', direction=None, tweaks=None)]
-        Note("gs'16")                  [Articulation(name='.', direction=None, tweaks=None)]
-        Note("a'16")                   [Articulation(name='.', direction=None, tweaks=None)]
-        Note("as'16")                  [StopBeam(leak=False), StopSlur(leak=False), Articulation(name='.', direction=None, tweaks=None)]
-        Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [LilyPondLiteral(argument='\\voiceTwo', format_slot='opening', directed=False, tweaks=None), Articulation(name='.', direction=None, tweaks=None)]
-        Note("f'4")                    [LilyPondLiteral(argument='\\oneVoice', format_slot='absolute_before', directed=False, tweaks=None), Articulation(name='.', direction=None, tweaks=None)]
-        AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Articulation(name='.', direction=None, tweaks=None)]
+        ...     print(f"{component!r}:")
+        ...     print(f"    {result!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            []
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            []
+        Note("c'4"):
+            [Articulation(name='.', tweaks=None)]
+        BeforeGraceContainer("cs'16"):
+            []
+        Note("cs'16"):
+            [Articulation(name='.', tweaks=None)]
+        Note("d'4"):
+            [Articulation(name='.', tweaks=None)]
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            []
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            [LilyPondLiteral(argument='\\set fontSize = #-3', format_slot='opening', directed=False, tweaks=None)]
+        Chord("<e' g'>16"):
+            [StartBeam(tweaks=None), LilyPondLiteral(argument='\\slash', format_slot='opening', directed=False, tweaks=None), StartSlur(tweaks=None), LilyPondLiteral(argument='\\voiceOne', format_slot='opening', directed=False, tweaks=None), Clef(name='alto', hide=False), Articulation(name='>', tweaks=None)]
+        Note("gs'16"):
+            [Articulation(name='.', tweaks=None)]
+        Note("a'16"):
+            [Articulation(name='.', tweaks=None)]
+        Note("as'16"):
+            [StopBeam(leak=False), StopSlur(leak=False), Articulation(name='.', tweaks=None)]
+        Voice("e'4", name='Music_Voice'):
+            []
+        Note("e'4"):
+            [LilyPondLiteral(argument='\\voiceTwo', format_slot='opening', directed=False, tweaks=None), Articulation(name='.', tweaks=None)]
+        Note("f'4"):
+            [LilyPondLiteral(argument='\\oneVoice', format_slot='absolute_before', directed=False, tweaks=None), Articulation(name='.', tweaks=None)]
+        AfterGraceContainer("fs'16"):
+            []
+        Note("fs'16"):
+            [Articulation(name='.', tweaks=None)]
 
     ..  container:: example
 
@@ -2410,13 +2450,13 @@ def indicators(
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") []
         TremoloContainer("c'16 e'16")  []
-        Note("c'16")                   [Articulation(name='.', direction=None, tweaks=None)]
-        Note("e'16")                   [Articulation(name='.', direction=None, tweaks=None)]
-        Note("cs'4")                   [Articulation(name='.', direction=None, tweaks=None)]
+        Note("c'16")                   [Articulation(name='.', tweaks=None)]
+        Note("e'16")                   [Articulation(name='.', tweaks=None)]
+        Note("cs'4")                   [Articulation(name='.', tweaks=None)]
         TremoloContainer("d'16 f'16")  []
-        Note("d'16")                   [Clef(name='alto', hide=False), Articulation(name='.', direction=None, tweaks=None)]
-        Note("f'16")                   [Articulation(name='.', direction=None, tweaks=None)]
-        Note("ds'4")                   [Articulation(name='.', direction=None, tweaks=None)]
+        Note("d'16")                   [Clef(name='alto', hide=False), Articulation(name='.', tweaks=None)]
+        Note("f'16")                   [Articulation(name='.', tweaks=None)]
+        Note("ds'4")                   [Articulation(name='.', tweaks=None)]
 
     """
     # TODO: extend to any non-none argument
@@ -3894,24 +3934,42 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
 
         >>> for component in abjad.select.components(staff):
         ...     timespan = abjad.get.timespan(component)
-        ...     print(f"{repr(component):30} {repr(timespan)}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Timespan(Offset((0, 1)), Offset((1, 1)))
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Timespan(Offset((0, 1)), Offset((1, 1)))
-        Note("c'4")                    Timespan(Offset((0, 1)), Offset((1, 4)))
-        BeforeGraceContainer("cs'16")  Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
-        Note("cs'16")                  Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
-        Note("d'4")                    Timespan(Offset((1, 4)), Offset((1, 2)))
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Timespan(Offset((1, 2)), Offset((3, 4)))
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 4)))
-        Chord("<e' g'>16")             Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 16)))
-        Note("gs'16")                  Timespan(Offset((1, 2), displacement=Duration(1, 16)), Offset((1, 2), displacement=Duration(1, 8)))
-        Note("a'16")                   Timespan(Offset((1, 2), displacement=Duration(1, 8)), Offset((1, 2), displacement=Duration(3, 16)))
-        Note("as'16")                  Timespan(Offset((1, 2), displacement=Duration(3, 16)), Offset((1, 2), displacement=Duration(1, 4)))
-        Voice("e'4", name='Music_Voice') Timespan(Offset((1, 2)), Offset((3, 4)))
-        Note("e'4")                    Timespan(Offset((1, 2), displacement=Duration(1, 4)), Offset((3, 4)))
-        Note("f'4")                    Timespan(Offset((3, 4)), Offset((1, 1)))
-        AfterGraceContainer("fs'16")   Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
-        Note("fs'16")                  Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
+        ...     print(f"{component!r}:")
+        ...     print(f"    {timespan!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Timespan(Offset((0, 1)), Offset((1, 1)))
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Timespan(Offset((0, 1)), Offset((1, 1)))
+        Note("c'4"):
+            Timespan(Offset((0, 1)), Offset((1, 4)))
+        BeforeGraceContainer("cs'16"):
+            Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
+        Note("cs'16"):
+            Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
+        Note("d'4"):
+            Timespan(Offset((1, 4)), Offset((1, 2)))
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Timespan(Offset((1, 2)), Offset((3, 4)))
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 4)))
+        Chord("<e' g'>16"):
+            Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 16)))
+        Note("gs'16"):
+            Timespan(Offset((1, 2), displacement=Duration(1, 16)), Offset((1, 2), displacement=Duration(1, 8)))
+        Note("a'16"):
+            Timespan(Offset((1, 2), displacement=Duration(1, 8)), Offset((1, 2), displacement=Duration(3, 16)))
+        Note("as'16"):
+            Timespan(Offset((1, 2), displacement=Duration(3, 16)), Offset((1, 2), displacement=Duration(1, 4)))
+        Voice("e'4", name='Music_Voice'):
+            Timespan(Offset((1, 2)), Offset((3, 4)))
+        Note("e'4"):
+            Timespan(Offset((1, 2), displacement=Duration(1, 4)), Offset((3, 4)))
+        Note("f'4"):
+            Timespan(Offset((3, 4)), Offset((1, 1)))
+        AfterGraceContainer("fs'16"):
+            Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
+        Note("fs'16"):
+            Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
 
     ..  container:: example
 
@@ -4072,24 +4130,42 @@ def wrapper(
 
         >>> for component in abjad.select.components(staff):
         ...     wrapper = abjad.get.wrapper(component, abjad.Articulation)
-        ...     print(f"{repr(component):30} {repr(wrapper)}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
-        Note("c'4")                    Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        BeforeGraceContainer("cs'16")  None
-        Note("cs'16")                  Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        Note("d'4")                    Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") None
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-        Chord("<e' g'>16")             Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='>', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        Note("gs'16")                  Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        Note("a'16")                   Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        Note("as'16")                  Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        Voice("e'4", name='Music_Voice') None
-        Note("e'4")                    Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        Note("f'4")                    Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
-        AfterGraceContainer("fs'16")   None
-        Note("fs'16")                  Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())
+        ...     print(f"{component!r}:")
+        ...     print(f"    {wrapper!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            None
+        Note("c'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        BeforeGraceContainer("cs'16"):
+            None
+        Note("cs'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        Note("d'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            None
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            None
+        Chord("<e' g'>16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>', tweaks=None), synthetic_offset=None, tag=Tag())
+        Note("gs'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        Note("a'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        Note("as'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        Voice("e'4", name='Music_Voice'):
+            None
+        Note("e'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        Note("f'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
+        AfterGraceContainer("fs'16"):
+            None
+        Note("fs'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())
 
     Raises exception when more than one indicator of ``prototype`` attach to
     ``argument``.
@@ -4190,24 +4266,42 @@ def wrappers(
 
         >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.wrappers(component, abjad.Articulation)
-        ...     print(f"{repr(component):30} {repr(result)}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") []
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') []
-        Note("c'4")                    [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        BeforeGraceContainer("cs'16")  []
-        Note("cs'16")                  [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        Note("d'4")                    [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") []
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") []
-        Chord("<e' g'>16")             [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='>', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        Note("gs'16")                  [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        Note("a'16")                   [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        Note("as'16")                  [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        Note("f'4")                    [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
-        AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='.', direction=None, tweaks=None), synthetic_offset=None, tag=Tag())]
+        ...     print(f"{component!r}:")
+        ...     print(f"    {result!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            []
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            []
+        Note("c'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        BeforeGraceContainer("cs'16"):
+            []
+        Note("cs'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        Note("d'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            []
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            []
+        Chord("<e' g'>16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>', tweaks=None), synthetic_offset=None, tag=Tag())]
+        Note("gs'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        Note("a'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        Note("as'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        Voice("e'4", name='Music_Voice'):
+            []
+        Note("e'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        Note("f'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
+        AfterGraceContainer("fs'16"):
+            []
+        Note("fs'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=None), synthetic_offset=None, tag=Tag())]
 
     """
     if attributes is not None:

@@ -16,10 +16,10 @@ class Wrapper:
     ..  container:: example
 
         >>> component = abjad.Note("c'4")
-        >>> articulation = abjad.Articulation("accent", direction=abjad.Up)
-        >>> abjad.attach(articulation, component)
+        >>> articulation = abjad.Articulation("accent")
+        >>> abjad.attach(articulation, component, direction=abjad.Up)
         >>> abjad.get.wrapper(component)
-        Wrapper(annotation=None, context=None, deactivate=False, indicator=Articulation(name='accent', direction=Up, tweaks=None), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation=None, context=None, deactivate=False, direction=Up, indicator=Articulation(name='accent', tweaks=None), synthetic_offset=None, tag=Tag())
 
     ..  container:: example
 
@@ -75,6 +75,7 @@ class Wrapper:
         "_component",
         "_context",
         "_deactivate",
+        "_direction",
         "_effective_context",
         "_indicator",
         "_synthetic_offset",
@@ -90,6 +91,7 @@ class Wrapper:
         component=None,
         context: str = None,
         deactivate: bool = False,
+        direction: int = None,
         indicator: typing.Any = None,
         synthetic_offset: int = None,
         tag: str | _tag.Tag | None = None,
@@ -108,6 +110,7 @@ class Wrapper:
         if deactivate is not None:
             deactivate = bool(deactivate)
         self._deactivate = deactivate
+        self._direction = direction
         self._effective_context = None
         self._indicator = indicator
         if synthetic_offset is not None:
@@ -183,7 +186,7 @@ class Wrapper:
 
             >>> leaf = old_staff[0]
             >>> abjad.get.wrapper(leaf)
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
 
             >>> new_staff = abjad.mutate.copy(old_staff)
             >>> string = abjad.lilypond(new_staff, tags=True)
@@ -201,7 +204,7 @@ class Wrapper:
 
             >>> leaf = new_staff[0]
             >>> abjad.get.wrapper(leaf)
-            Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
 
         ..  container:: example
 
@@ -229,7 +232,7 @@ class Wrapper:
 
             >>> leaf = old_staff[0]
             >>> abjad.get.wrapper(leaf)
-            Wrapper(annotation=None, context='Staff', deactivate=True, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
+            Wrapper(annotation=None, context='Staff', deactivate=True, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
 
             >>> new_staff = abjad.mutate.copy(old_staff)
             >>> string = abjad.lilypond(new_staff, tags=True)
@@ -247,7 +250,7 @@ class Wrapper:
 
             >>> leaf = new_staff[0]
             >>> abjad.get.wrapper(leaf)
-            Wrapper(annotation=None, context='Staff', deactivate=True, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
+            Wrapper(annotation=None, context='Staff', deactivate=True, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('RED:M1'))
 
         Copies all properties except component.
 
@@ -258,6 +261,7 @@ class Wrapper:
             component=None,
             context=self.context,
             deactivate=self.deactivate,
+            direction=self.direction,
             indicator=copy.copy(self.indicator),
             synthetic_offset=self.synthetic_offset,
             tag=self.tag,
@@ -300,6 +304,7 @@ class Wrapper:
             annotation={self.annotation!r},
             context={self.context!r},
             deactivate={self.deactivate!r},
+            direction={self.direction!r},
             indicator={self.indicator!r},
             synthetic_offset={self.synthetic_offset!r},
             tag={self.tag!r}
@@ -376,7 +381,14 @@ class Wrapper:
         if self.annotation:
             return result
         if hasattr(self.indicator, "_get_lilypond_format_bundle"):
-            bundle = self.indicator._get_lilypond_format_bundle(self.component)
+            try:
+                bundle = self.indicator._get_lilypond_format_bundle(
+                    component=self.component, wrapper=self
+                )
+            except TypeError:
+                bundle = self.indicator._get_lilypond_format_bundle(
+                    component=self.component
+                )
             bundle.tag_format_contributions(self.tag, deactivate=self.deactivate)
             return bundle
         try:
@@ -476,8 +488,8 @@ class Wrapper:
         ..  container:: example
 
             >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation("accent", direction=abjad.Up)
-            >>> abjad.attach(articulation, note)
+            >>> articulation = abjad.Articulation("accent")
+            >>> abjad.attach(articulation, note, direction=abjad.Up)
             >>> wrapper = abjad.get.wrapper(note)
             >>> wrapper.annotation is None
             True
@@ -485,10 +497,10 @@ class Wrapper:
         ..  container:: example
 
             >>> note = abjad.Note("c'4")
-            >>> articulation = abjad.Articulation("accent", direction=abjad.Up)
+            >>> articulation = abjad.Articulation("accent")
             >>> abjad.annotate(note, "foo", articulation)
             >>> abjad.get.annotation(note, "foo")
-            Articulation(name='accent', direction=Up, tweaks=None)
+            Articulation(name='accent', tweaks=None)
 
         """
         return self._annotation
@@ -521,6 +533,13 @@ class Wrapper:
     def deactivate(self, argument):
         assert argument in (True, False, None)
         self._deactivate: bool | None = argument
+
+    @property
+    def direction(self):
+        """
+        Gets direction of indicator.
+        """
+        return self._direction
 
     @property
     def indicator(self) -> typing.Any:
@@ -666,6 +685,7 @@ def attach(  # noqa: 302
     check_duplicate_indicator=False,
     context=None,
     deactivate=False,
+    direction: int = None,
     do_not_test=None,
     synthetic_offset=None,
     tag=None,
@@ -867,7 +887,7 @@ def attach(  # noqa: 302
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef('alto'), staff[0], wrapper=True)
-        Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
 
     Otherwise returns none.
     """
@@ -949,6 +969,7 @@ def attach(  # noqa: 302
         component=component,
         context=context,
         deactivate=deactivate,
+        direction=direction,
         indicator=attachable,
         synthetic_offset=synthetic_offset,
         tag=tag,
@@ -987,7 +1008,7 @@ def detach(argument, target=None, by_id=False):
             }
 
         >>> abjad.detach(abjad.Articulation, staff[0])
-        (Articulation(name='>', direction=None, tweaks=None),)
+        (Articulation(name='>', tweaks=None),)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1008,9 +1029,9 @@ def detach(argument, target=None, by_id=False):
 
         Consider the three document-specifier markups below:
 
-        >>> markup_1 = abjad.Markup(r"\markup tutti", direction=abjad.Up)
-        >>> markup_2 = abjad.Markup(r"\markup { with the others }", direction=abjad.Up)
-        >>> markup_3 = abjad.Markup(r"\markup { with the others }", direction=abjad.Up)
+        >>> markup_1 = abjad.Markup(r"\markup tutti")
+        >>> markup_2 = abjad.Markup(r"\markup { with the others }")
+        >>> markup_3 = abjad.Markup(r"\markup { with the others }")
 
         Markups two and three compare equal:
 
@@ -1020,17 +1041,19 @@ def detach(argument, target=None, by_id=False):
         But document-tagging like this makes sense for score and two diferent parts:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], tag=abjad.Tag("+SCORE"))
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up, tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
         ...     deactivate=True,
+        ...     direction=abjad.Up,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
         ... )
         >>> abjad.attach(
         ...     markup_3,
         ...     staff[0],
         ...     deactivate=True,
+        ...     direction=abjad.Up,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1060,8 +1083,8 @@ def detach(argument, target=None, by_id=False):
         >>> markups = abjad.detach(markup_2, staff[0])
         >>> for markup in markups:
         ...     markup
-        Markup(string='\\markup { with the others }', direction=Up, tweaks=None)
-        Markup(string='\\markup { with the others }', direction=Up, tweaks=None)
+        Markup(string='\\markup { with the others }', tweaks=None)
+        Markup(string='\\markup { with the others }', tweaks=None)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1080,17 +1103,19 @@ def detach(argument, target=None, by_id=False):
         We start again:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], tag=abjad.Tag("+SCORE"))
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up, tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
         ...     deactivate=True,
+        ...     direction=abjad.Up,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
         ... )
         >>> abjad.attach(
         ...     markup_3,
         ...     staff[0],
         ...     deactivate=True,
+        ...     direction=abjad.Up,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1117,7 +1142,7 @@ def detach(argument, target=None, by_id=False):
         >>> markups = abjad.detach(markup_2, staff[0], by_id=True)
         >>> for markup in markups:
         ...     markup
-        Markup(string='\\markup { with the others }', direction=Up, tweaks=None)
+        Markup(string='\\markup { with the others }', tweaks=None)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1158,7 +1183,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
         >>> abjad.detach(wrapper, wrapper.component)
-        (Wrapper(annotation=None, context='Staff', deactivate=False, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag()),)
+        (Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag()),)
 
         >>> abjad.show(staff) # doctest: +SKIP
 

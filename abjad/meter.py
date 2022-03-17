@@ -3,7 +3,6 @@ Tools for modeling musical meter.
 """
 import bisect
 import collections
-import dataclasses
 
 import uqbar.graphs
 
@@ -2691,7 +2690,6 @@ def illustrate_meter_list(
     string = "\n".join(strings)
     markup = _markups.Markup(string)
     lilypond_file = _lilypondfile.LilyPondFile()
-    markup = dataclasses.replace(markup, direction=None)
     lilypond_file.items.append(markup)
     return lilypond_file
 

@@ -184,9 +184,10 @@ class Component:
                 else:
                     contributions.append(line)
         if pieces:
-            return contributions
+            result_ = contributions
         else:
-            return "\n".join(contributions)
+            result_ = "\n".join(contributions)
+        return result_
 
     def _format_contents_slot(self, bundle):
         return []
@@ -320,12 +321,13 @@ class Component:
         return self._format_component()
 
     def _get_markup(self, direction=None):
-        markup = self._get_indicators(_markups.Markup)
+        wrappers = self._get_indicators(_markups.Markup, unwrap=False)
         if direction is _enums.Up:
-            return tuple(_ for _ in markup if _.direction is _enums.Up)
+            return tuple(_.indicator for _ in wrappers if _.direction is _enums.Up)
         elif direction is _enums.Down:
-            return tuple(_ for _ in markup if _.direction is _enums.Down)
-        return markup
+            return tuple(_.indicator for _ in wrappers if _.direction is _enums.Down)
+        indicators = [_.indicator for _ in wrappers]
+        return indicators
 
     def _get_parentage(self):
         parentage = []
@@ -804,8 +806,8 @@ class Container(Component):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Articulation('^'), staff[0])
-        >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up)
-        >>> abjad.attach(markup, staff[0])
+        >>> markup = abjad.Markup(r'\markup Allegro')
+        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
         >>> abjad.attach(abjad.StemTremolo(), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -954,7 +956,7 @@ class Container(Component):
             First tuplet must have start slur removed:
 
             >>> abjad.detach(abjad.StartSlur, tuplet_1[0])
-            (StartSlur(direction=None, tweaks=None),)
+            (StartSlur(tweaks=None),)
 
             >>> abjad.show(tuplet_1) # doctest: +SKIP
 
@@ -1700,8 +1702,8 @@ class Container(Component):
             >>> container.extend("fs16 cs' e' a'")
             >>> container.extend("cs''16 e'' cs'' a'")
             >>> container.extend("fs'16 e' cs' fs")
-            >>> start_slur = abjad.StartSlur(direction=abjad.Down)
-            >>> abjad.slur(container[:], start_slur=start_slur)
+            >>> start_slur = abjad.StartSlur()
+            >>> abjad.slur(container[:], direction=abjad.Down, start_slur=start_slur)
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1914,8 +1916,8 @@ class AfterGraceContainer(Container):
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
         >>> leaves = abjad.select.leaves(voice, grace=None)
-        >>> markup = abjad.Markup(r'\markup Allegro', direction=abjad.Up)
-        >>> abjad.attach(markup, leaves[1])
+        >>> markup = abjad.Markup(r'\markup Allegro')
+        >>> abjad.attach(markup, leaves[1], direction=abjad.Up)
         >>> abjad.attach(abjad.Articulation("."), leaves[1])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -6957,15 +6959,15 @@ class Voice(Context):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
-        e''8 Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        d''8 Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        c''4 Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        b'4 Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        c''8 Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        e''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        d''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        c''4 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        b'4 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        c''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
         e'4 None
         f'4 None
         e'8 None
-        d''8 Dynamic(name='f', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        d''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
 
     ..  container:: example
 
@@ -7035,9 +7037,9 @@ class Voice(Context):
         c''4 None
         b'4 None
         c''8 None
-        e'4 Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        f'4 Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        e'8 Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        e'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        f'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        e'8 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
         d''8 None
 
     ..  container:: example
@@ -7105,13 +7107,13 @@ class Voice(Context):
         ...
         e''8 None
         d''8 None
-        c''4 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        b'4 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        c''8 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        c''4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        b'4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        c''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
         e'4 None
         f'4 None
         e'8 None
-        d''8 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        d''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
 
     ..  container:: example
 
@@ -7181,13 +7183,13 @@ class Voice(Context):
         ...
         e''8 None
         d''8 None
-        c''4 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        b'4 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        c''8 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        e'4 Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        f'4 Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        e'8 Dynamic(name='p', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        d''8 Dynamic(name='mf', command=None, direction=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        c''4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        b'4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        c''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        e'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        f'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        e'8 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        d''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
 
     ..  container:: example
 

@@ -95,11 +95,15 @@ def test_LilyPondParser__spanners__Beam_05():
     """
 
     maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 8)]))
-    start_beam = abjad.StartBeam(direction=abjad.Up)
-    abjad.beam(target[0:3], start_beam=start_beam)
-    start_beam = abjad.StartBeam(direction=abjad.Down)
-    abjad.beam(target[3:], start_beam=start_beam, beam_lone_notes=True)
+    target = abjad.Container(maker(4 * [0], [(1, 8)]))
+    start_beam = abjad.StartBeam()
+    abjad.attach(start_beam, target[0], direction=abjad.Up)
+    stop_beam = abjad.StopBeam()
+    abjad.attach(stop_beam, target[2])
+    start_beam = abjad.StartBeam()
+    abjad.attach(start_beam, target[3], direction=abjad.Down)
+    stop_beam = abjad.StopBeam()
+    abjad.attach(stop_beam, target[3])
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""

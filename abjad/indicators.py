@@ -124,26 +124,19 @@ class Articulation:
 
     ..  container:: example
 
-        Initializes from string:
-
         >>> abjad.Articulation("staccato")
-        Articulation(name='staccato', direction=None, tweaks=None)
+        Articulation(name='staccato', tweaks=None)
 
         >>> abjad.Articulation(".")
-        Articulation(name='.', direction=None, tweaks=None)
-
-        With direction:
-
-        >>> abjad.Articulation("staccato", direction=abjad.Up)
-        Articulation(name='staccato', direction=Up, tweaks=None)
+        Articulation(name='.', tweaks=None)
 
     ..  container:: example
 
-        New:
+        Replace:
 
         >>> import dataclasses
         >>> dataclasses.replace(abjad.Articulation("."))
-        Articulation(name='.', direction=None, tweaks=None)
+        Articulation(name='.', tweaks=None)
 
     ..  container:: example
 
@@ -163,10 +156,25 @@ class Articulation:
             - \tweak color #blue
             - \marcato
 
+    ..  container:: example
+
+        Direction:
+
+        >>> note = abjad.Note("c'4")
+        >>> articulation = abjad.Articulation("marcato")
+        >>> abjad.attach(articulation, note, direction=abjad.Up)
+        >>> abjad.show(note) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(note)
+            >>> print(string)
+            c'4
+            ^ \marcato
+
     """
 
     name: str
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
@@ -182,7 +190,6 @@ class Articulation:
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
-        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     # TODO: eventually remove
@@ -190,29 +197,31 @@ class Articulation:
         """
         Gets string representation of articulation.
         """
+        return self._get_lilypond_format()
+
+    def _get_lilypond_format(self, wrapper=None):
         if self.name:
             string = self._shortcut_to_word.get(self.name)
             if not string:
                 string = self.name
-            if self.direction is None:
-                direction = "-"
-            else:
-                direction_ = _string.to_tridirectional_lilypond_symbol(self.direction)
-                assert isinstance(direction_, str), repr(direction)
+            if wrapper is not None and wrapper.direction:
+                direction_ = _string.to_tridirectional_lilypond_symbol(
+                    wrapper.direction
+                )
                 direction = direction_
+            else:
+                direction = "-"
             return rf"{direction} \{string}"
         else:
             return ""
 
-    def _get_lilypond_format(self):
-        return str(self)
-
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.articulations.extend(tweaks)
-        bundle.after.articulations.append(self._get_lilypond_format())
+        string = self._get_lilypond_format(wrapper=wrapper)
+        bundle.after.articulations.append(string)
         return bundle
 
 
@@ -315,7 +324,7 @@ class BarLine:
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
-        slot = bundle.get(self.format_slot)
+        slot = getattr(bundle, self.format_slot)
         slot.commands.append(self._get_lilypond_format())
         return bundle
 
@@ -1285,7 +1294,7 @@ class ColorFingering:
 
         >>> fingering = abjad.ColorFingering(1)
         >>> note = abjad.Note("c'4")
-        >>> abjad.attach(fingering, note)
+        >>> abjad.attach(fingering, note, direction=abjad.Up)
 
         >>> abjad.show(note) # doctest: +SKIP
 
@@ -1302,7 +1311,7 @@ class ColorFingering:
 
         >>> fingering = abjad.ColorFingering(2)
         >>> note = abjad.Note("c'4")
-        >>> abjad.attach(fingering, note)
+        >>> abjad.attach(fingering, note, direction=abjad.Up)
 
         >>> abjad.show(note) # doctest: +SKIP
 
@@ -1323,7 +1332,7 @@ class ColorFingering:
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> fingering = abjad.ColorFingering(1)
         >>> abjad.tweak(fingering).color = "#blue"
-        >>> abjad.attach(fingering, staff[0])
+        >>> abjad.attach(fingering, staff[0], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1345,9 +1354,9 @@ class ColorFingering:
     number: int
     tweaks: _overrides.TweakInterface | None = None
 
+    _format_slot: typing.ClassVar[str] = "after"
     _is_dataclass: typing.ClassVar[bool] = True
-
-    _format_slot = "after"
+    directed: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -1355,14 +1364,14 @@ class ColorFingering:
     def _get_lilypond_format(self):
         return self.markup._get_lilypond_format()
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.markup.extend(tweaks)
         markup = self.markup
-        markup = dataclasses.replace(markup, direction=_enums.Up)
-        markup_format_pieces = markup._get_format_pieces()
+        # markup = dataclasses.replace(markup, direction=_enums.Up)
+        markup_format_pieces = markup._get_format_pieces(wrapper=wrapper)
         bundle.after.markup.extend(markup_format_pieces)
         return bundle
 
@@ -1774,7 +1783,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                \markup \center-align \concat { \natural \flat }
             }
 
     ..  container:: example
@@ -1800,7 +1809,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                \markup \center-align \concat { \natural \flat }
             }
 
         Default behavior.
@@ -1828,7 +1837,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \natural
+                \markup \center-align \natural
             }
 
     ..  container:: example
@@ -1854,7 +1863,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                \markup \center-align \concat { \natural \flat }
             }
 
         Does not include natural markup:
@@ -1878,7 +1887,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \flat
+                \markup \center-align \flat
             }
 
     ..  container:: example
@@ -1897,7 +1906,7 @@ class KeyCluster:
         \once \override NoteHead.text =
         \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
         <c' e' g' b' d'' f''>8
-        ^ \markup \center-align \concat { \natural \flat }
+        \markup \center-align \concat { \natural \flat }
 
         The reason for this is that chords contain multiple note-heads: if key cluster
         formatted tweaks instead of overrides, the five format commands shown above would
@@ -1908,8 +1917,8 @@ class KeyCluster:
         Positions markup up:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = abjad.KeyCluster(markup_direction=abjad.Up)
-        >>> abjad.attach(key_cluster, chord)
+        >>> key_cluster = abjad.KeyCluster()
+        >>> abjad.attach(key_cluster, chord, direction=abjad.Up)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1932,8 +1941,8 @@ class KeyCluster:
         Positions markup down:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = abjad.KeyCluster(markup_direction=abjad.Down)
-        >>> abjad.attach(key_cluster, chord)
+        >>> key_cluster = abjad.KeyCluster()
+        >>> abjad.attach(key_cluster, chord, direction=abjad.Down)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1957,11 +1966,11 @@ class KeyCluster:
 
     include_flat_markup: bool = True
     include_natural_markup: bool = True
-    markup_direction: int = _enums.Up
 
     _is_dataclass: typing.ClassVar[bool] = True
+    directed: typing.ClassVar[bool] = True
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         bundle.grob_overrides.append(
             "\\once \\override Accidental.stencil = ##f\n"
@@ -1977,7 +1986,12 @@ class KeyCluster:
             string = r"\center-align \flat"
         else:
             string = r"\center-align \natural"
-        markup = _markups.Markup(rf"\markup {string}", direction=self.markup_direction)
+        string = rf"\markup {string}"
+        if wrapper.direction is _enums.Up:
+            string = rf"^ {string}"
+        elif wrapper.direction is _enums.Down:
+            string = rf"_ {string}"
+        markup = _markups.Markup(string)
         markup_format_pieces = markup._get_format_pieces()
         bundle.after.markup.extend(markup_format_pieces)
         return bundle
@@ -2128,10 +2142,9 @@ class KeySignature:
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
-
-    context = "Staff"
-    persistent = True
-    redraw = True
+    context: typing.ClassVar[str] = "Staff"
+    persistent: typing.ClassVar[bool] = True
+    redraw: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         if not isinstance(self.tonic, _pitch.NamedPitchClass):
@@ -2335,8 +2348,6 @@ class MarginMarkup:
             context = self._lilypond_type
         if isinstance(self.markup, _markups.Markup):
             markup = self.markup
-            if markup.direction is not None:
-                markup = dataclasses.replace(markup, direction=None)
             pieces = markup._get_format_pieces()
             result.append(rf"\set {context!s}.shortInstrumentName =")
             result.extend(pieces)
@@ -2348,7 +2359,7 @@ class MarginMarkup:
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
-        slot = bundle.get(self.format_slot)
+        slot = getattr(bundle, self.format_slot)
         slot.commands.extend(self._get_lilypond_format())
         return bundle
 
@@ -2615,11 +2626,11 @@ class MetronomeMark:
     hide: bool = False
 
     _is_dataclass: typing.ClassVar[bool] = True
+    _format_slot: typing.ClassVar[str] = "opening"
+    _mutates_offsets_in_seconds: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
     parameter: typing.ClassVar[str] = "METRONOME_MARK"
     persistent: typing.ClassVar[bool] = True
-    _format_slot: typing.ClassVar[str] = "opening"
-    _mutates_offsets_in_seconds: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         assert isinstance(self.textual_indication, str | type(None))
@@ -3506,12 +3517,12 @@ class RepeatTie:
         With ``direction=abjad.Up``:
 
         >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
-        >>> tie = abjad.RepeatTie(direction=abjad.Up)
+        >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[1])
-        >>> tie = abjad.RepeatTie(direction=abjad.Up)
+        >>> abjad.attach(tie, staff[1], direction=abjad.Up)
+        >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[3])
+        >>> abjad.attach(tie, staff[3], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3535,12 +3546,12 @@ class RepeatTie:
         With ``direction=abjad.Down``:
 
         >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
-        >>> tie = abjad.RepeatTie(direction=abjad.Down)
+        >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[1])
-        >>> tie = abjad.RepeatTie(direction=abjad.Down)
+        >>> abjad.attach(tie, staff[1], direction=abjad.Down)
+        >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[3])
+        >>> abjad.attach(tie, staff[3], direction=abjad.Down)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3563,7 +3574,7 @@ class RepeatTie:
 
     ..  container:: example
 
-        Tweaks;
+        Tweaks:
 
         >>> staff = abjad.Staff("c'4 c' d' d'")
         >>> repeat_tie = abjad.RepeatTie()
@@ -3587,15 +3598,14 @@ class RepeatTie:
 
     """
 
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
+    directed: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
     def _attachment_test_all(self, argument):
@@ -3606,14 +3616,14 @@ class RepeatTie:
             return [string]
         return True
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             strings = self.tweaks._list_format_contributions()
             bundle.after.spanners.extend(strings)
         strings = []
-        if self.direction is not None:
-            string = _string.to_tridirectional_lilypond_symbol(self.direction)
+        if wrapper.direction is not None:
+            string = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             strings.append(string)
         strings.append(r"\repeatTie")
         bundle.after.spanners.extend(strings)
@@ -3727,8 +3737,35 @@ class StartBeam:
 
     ..  container:: example
 
+        Direction:
+
+        >>> staff = abjad.Staff("c'8 d' e' f'")
+        >>> start_beam = abjad.StartBeam()
+        >>> abjad.tweak(start_beam).color = "#blue"
+        >>> abjad.attach(start_beam, staff[0], direction=abjad.Down)
+        >>> stop_beam = abjad.StopBeam()
+        >>> abjad.attach(stop_beam, staff[-1])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'8
+                - \tweak color #blue
+                _ [
+                d'8
+                e'8
+                f'8
+                ]
+            }
+
+    ..  container:: example
+
         >>> abjad.StartBeam()
-        StartBeam(direction=None, tweaks=None)
+        StartBeam(tweaks=None)
 
     ..  container:: example
 
@@ -3738,19 +3775,19 @@ class StartBeam:
         >>> start_beam = abjad.StartBeam()
         >>> abjad.tweak(start_beam).color = "#blue"
         >>> start_beam
-        StartBeam(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
+        StartBeam(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_beam_2 = copy.copy(start_beam)
         >>> start_beam_2
-        StartBeam(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
+        StartBeam(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
+    directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "BEAM"
     persistent: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
@@ -3758,18 +3795,18 @@ class StartBeam:
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
-    def _add_direction(self, string):
-        if getattr(self, "direction", None) is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
+    def _add_direction(self, string, wrapper):
+        if wrapper.direction is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction("[")
+        string = self._add_direction("[", wrapper)
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -4178,7 +4215,6 @@ class StartHairpin:
     """
 
     shape: str = "<"
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _crescendo_start: typing.ClassVar[str] = r"\<"
@@ -4189,18 +4225,18 @@ class StartHairpin:
     # TODO: remove?
     _time_orientation: typing.ClassVar[int] = _enums.Right
     context: typing.ClassVar[str] = "Voice"
+    directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "DYNAMIC"
     persistent: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
     trend: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
-    def _add_direction(self, string):
-        if getattr(self, "direction", False):
-            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
+    def _add_direction(self, string, *, wrapper=None):
+        if wrapper.direction is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -4231,7 +4267,7 @@ class StartHairpin:
             value="#abjad-flared-hairpin",
         )
 
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, *, wrapper=None):
         strings = []
         if "--" in self.shape:
             override = self._constante_hairpin()
@@ -4247,28 +4283,27 @@ class StartHairpin:
             strings.append(string)
         if "<" in self.shape or "--" in self.shape:
             string = self._crescendo_start
-            string = self._add_direction(string)
+            string = self._add_direction(string, wrapper=wrapper)
             strings.append(string)
         elif ">" in self.shape:
             string = self._decrescendo_start
-            string = self._add_direction(string)
+            string = self._add_direction(string, wrapper=wrapper)
             strings.append(string)
         else:
             raise ValueError(self.shape)
         return strings
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         r"""
-        hairpin contributes formatting to the 'spanners' slot
-        (rather than the 'commands' slot). The reason for this is that
-        the LilyPond \startTrillSpan [pitch] command must appear after
-        \< and \> but before \set and other commmands.
+        hairpin contributes formatting to the 'spanners' slot (rather than the 'commands'
+        slot). The reason for this is that the LilyPond \startTrillSpan [pitch] command
+        must appear after \< and \> but before \set and other commmands.
         """
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanners.extend(tweaks)
-        strings = self._get_lilypond_format()
+        strings = self._get_lilypond_format(wrapper=wrapper)
         bundle.after.spanners.extend(strings)
         return bundle
 
@@ -4407,8 +4442,6 @@ class StartMarkup:
             context = self._lilypond_type
         if isinstance(self.markup, _markups.Markup):
             markup = self.markup
-            if markup.direction is not None:
-                markup = dataclasses.replace(markup, direction=None)
             pieces = markup._get_format_pieces()
             result.append(rf"\set {context!s}.instrumentName =")
             result.extend(pieces)
@@ -4420,7 +4453,7 @@ class StartMarkup:
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
-        slot = bundle.get(self.format_slot)
+        slot = getattr(bundle, self.format_slot)
         slot.commands.extend(self._get_lilypond_format())
         return bundle
 
@@ -4458,7 +4491,7 @@ class StartPhrasingSlur:
     ..  container:: example
 
         >>> abjad.StartPhrasingSlur()
-        StartPhrasingSlur(direction=None, tweaks=None)
+        StartPhrasingSlur(tweaks=None)
 
     ..  container:: example
 
@@ -4468,19 +4501,19 @@ class StartPhrasingSlur:
         >>> start_phrasing_slur = abjad.StartPhrasingSlur()
         >>> abjad.tweak(start_phrasing_slur).color = "#blue"
         >>> start_phrasing_slur
-        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
+        StartPhrasingSlur(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
         >>> start_phrasing_slur_2
-        StartPhrasingSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
+        StartPhrasingSlur(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
+    directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "PHRASING_SLUR"
     persistent: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
@@ -4488,18 +4521,18 @@ class StartPhrasingSlur:
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
-    def _add_direction(self, string):
-        if getattr(self, "direction", False):
-            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
+    def _add_direction(self, string, *, wrapper=None):
+        if wrapper.direction is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction(r"\(")
+        string = self._add_direction(r"\(", wrapper=wrapper)
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -4641,7 +4674,7 @@ class StartSlur:
     ..  container:: example
 
         >>> abjad.StartSlur()
-        StartSlur(direction=None, tweaks=None)
+        StartSlur(tweaks=None)
 
     ..  container:: example
 
@@ -4677,9 +4710,9 @@ class StartSlur:
         With ``direction=abjad.Up``:
 
         >>> staff = abjad.Staff("c'8 d' e' f' c'' d'' e'' f''")
-        >>> abjad.attach(abjad.StartSlur(direction=abjad.Up), staff[0])
+        >>> abjad.attach(abjad.StartSlur(), staff[0], direction=abjad.Up)
         >>> abjad.attach(abjad.StopSlur(), staff[3])
-        >>> abjad.attach(abjad.StartSlur(direction=abjad.Up), staff[4])
+        >>> abjad.attach(abjad.StartSlur(), staff[4], direction=abjad.Up)
         >>> abjad.attach(abjad.StopSlur(), staff[7])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -4706,9 +4739,9 @@ class StartSlur:
         With ``direction=abjad.Down``:
 
         >>> staff = abjad.Staff("c'8 d' e' f' c'' d'' e'' f''")
-        >>> abjad.attach(abjad.StartSlur(direction=abjad.Down), staff[0])
+        >>> abjad.attach(abjad.StartSlur(), staff[0], direction=abjad.Down)
         >>> abjad.attach(abjad.StopSlur(), staff[3])
-        >>> abjad.attach(abjad.StartSlur(direction=abjad.Down), staff[4])
+        >>> abjad.attach(abjad.StartSlur(), staff[4], direction=abjad.Down)
         >>> abjad.attach(abjad.StopSlur(), staff[7])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -4740,39 +4773,38 @@ class StartSlur:
         >>> start_slur = abjad.StartSlur()
         >>> abjad.tweak(start_slur).color = "#blue"
         >>> start_slur
-        StartSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
+        StartSlur(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
         >>> start_slur_2 = copy.copy(start_slur)
         >>> start_slur_2
-        StartSlur(direction=None, tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
+        StartSlur(tweaks=TweakInterface(('_literal', False), ('color', '#blue')))
 
     """
 
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
+    directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "SLUR"
     persistent: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
-    def _add_direction(self, string):
-        if getattr(self, "direction", None) is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
+    def _add_direction(self, string, *, wrapper=None):
+        if wrapper.direction is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction("(")
+        string = self._add_direction("(", wrapper=wrapper)
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -4818,7 +4850,7 @@ class StartTextSpan:
     ..  container:: example
 
         >>> abjad.StartTextSpan()
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None)
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=None)
 
     ..  container:: example
 
@@ -4847,9 +4879,9 @@ class StartTextSpan:
         >>> stop_text_span = abjad.StopTextSpan(command=r"\stopTextSpanOne")
         >>> abjad.attach(stop_text_span, staff[-1])
 
-        >>> markup = abjad.Markup(r"\markup SPACER", direction=abjad.Up)
+        >>> markup = abjad.Markup(r"\markup SPACER")
         >>> abjad.tweak(markup).transparent = True
-        >>> abjad.attach(markup, staff[0])
+        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -5101,18 +5133,17 @@ class StartTextSpan:
         >>> abjad.tweak(start_text_span).color = "#blue"
         >>> abjad.tweak(start_text_span).staff_padding = 2.5
         >>> start_text_span
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', False), ('color', '#blue'), ('staff_padding', 2.5)))
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', False), ('color', '#blue'), ('staff_padding', 2.5)))
 
         >>> start_text_span_2 = copy.copy(start_text_span)
         >>> start_text_span_2
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, direction=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', False), ('color', '#blue'), ('staff_padding', 2.5)))
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=TweakInterface(('_literal', False), ('color', '#blue'), ('staff_padding', 2.5)))
 
     """
 
     command: str = r"\startTextSpan"
     concat_hspace_left: int | float = 0.5
     concat_hspace_right: int | float | None = None
-    direction: int | None = None
     left_broken_text: bool | str | _markups.Markup | None = None
     left_text: str | _markups.Markup | None = None
     right_padding: int | float | None = None
@@ -5122,6 +5153,7 @@ class StartTextSpan:
 
     _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
+    directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "TEXT_SPANNER"
     persistent: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
@@ -5136,9 +5168,9 @@ class StartTextSpan:
         "solid-line-with-up-hook",
     )
 
-    def _add_direction(self, string):
-        if getattr(self, "direction", False):
-            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
+    def _add_direction(self, string, *, wrapper=None):
+        if wrapper.direction is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -5168,7 +5200,7 @@ class StartTextSpan:
         string = override.tweak_string()
         return string
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.style is not None:
             string = rf"- \abjad-{self.style}"
@@ -5188,7 +5220,7 @@ class StartTextSpan:
         if self.tweaks:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(tweaks)
-        string = self._add_direction(self.command)
+        string = self._add_direction(self.command, wrapper=wrapper)
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -6377,8 +6409,8 @@ class Tie:
         With ``direction=abjad.Up``:
 
         >>> staff = abjad.Staff("c'4 c' c'' c''")
-        >>> abjad.attach(abjad.Tie(direction=abjad.Up), staff[0])
-        >>> abjad.attach(abjad.Tie(direction=abjad.Up), staff[2])
+        >>> abjad.attach(abjad.Tie(), staff[0], direction=abjad.Up)
+        >>> abjad.attach(abjad.Tie(), staff[2], direction=abjad.Up)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6398,8 +6430,8 @@ class Tie:
         With ``direction=abjad.Down``:
 
         >>> staff = abjad.Staff("c'4 c' c'' c''")
-        >>> abjad.attach(abjad.Tie(direction=abjad.Down), staff[0])
-        >>> abjad.attach(abjad.Tie(direction=abjad.Down), staff[2])
+        >>> abjad.attach(abjad.Tie(), staff[0], direction=abjad.Down)
+        >>> abjad.attach(abjad.Tie(), staff[2], direction=abjad.Down)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6443,16 +6475,16 @@ class Tie:
 
     """
 
-    direction: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
+    directed: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
 
-    def _add_direction(self, string):
-        if self.direction is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(self.direction)
+    def _add_direction(self, string, *, wrapper=None):
+        if wrapper.direction is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
 
@@ -6464,12 +6496,12 @@ class Tie:
             return [string]
         return True
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if self.tweaks:
             strings = self.tweaks._list_format_contributions()
             bundle.after.spanner_starts.extend(strings)
-        string = self._add_direction("~")
+        string = self._add_direction("~", wrapper=wrapper)
         strings = [string]
         bundle.after.spanner_starts.extend(strings)
         return bundle

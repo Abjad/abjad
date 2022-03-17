@@ -1,8 +1,7 @@
-import dataclasses
+import typing
 
 from . import _inspect
 from . import bundle as _bundle
-from . import enums as _enums
 from . import illustrators as _illustrators
 from . import markups as _markups
 from . import ratio as _ratio
@@ -57,7 +56,7 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=abjad.Tuplet((4, 5), "c'4"),
-        ...     )
+        ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
         ...     [r'\include "abjad.ily"', metric_modulation]
@@ -77,7 +76,7 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c16."),
         ...     right_rhythm=abjad.Tuplet((2, 3), "c8"),
-        ...     )
+        ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
         ...     [r'\include "abjad.ily"', metric_modulation]
@@ -99,7 +98,7 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=notes,
-        ...     )
+        ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
         ...     [r'\include "abjad.ily"', metric_modulation]
@@ -197,7 +196,7 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=tuplet,
-        ...     )
+        ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
         ...     [r'\include "abjad.ily"', metric_modulation]
@@ -301,8 +300,8 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c4"),
         ...     right_rhythm=abjad.Note("c8."),
-        ...     )
-        >>> abjad.attach(metric_modulation, staff[3])
+        ... )
+        >>> abjad.attach(metric_modulation, staff[3], direction=abjad.Up)
         >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
@@ -333,8 +332,6 @@ class MetricModulation:
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = (
         "_hide",
         "_left_markup",
@@ -344,7 +341,7 @@ class MetricModulation:
         "_scale",
     )
 
-    ### INITIALIZER ###
+    directed: typing.ClassVar[bool] = True
 
     def __init__(
         self,
@@ -371,8 +368,6 @@ class MetricModulation:
         assert isinstance(scale, tuple), repr(scale)
         self._scale = scale
 
-    ### SPECIAL METHODS ###
-
     def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` is another metric modulation with the same
@@ -383,17 +378,17 @@ class MetricModulation:
             >>> metric_modulation_1 = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation_2 = abjad.MetricModulation(
             ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
-            ...     )
+            ... )
             >>> maker = abjad.NoteMaker()
             >>> notes = maker([0], [(5, 16)])
             >>> metric_modulation_3 = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=notes,
-            ...     )
+            ... )
 
             >>> metric_modulation_1.ratio
             Ratio(numbers=(2, 3))
@@ -451,7 +446,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
-            ...     )
+            ... )
 
             >>> print(str(metric_modulation))
             \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #2 #3 #2 #0 #'(1 . 1)
@@ -492,12 +487,11 @@ class MetricModulation:
     def _get_lilypond_format(self):
         return str(self)
 
-    def _get_lilypond_format_bundle(self, component=None):
+    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()
         if not self.hide:
             markup = self._get_markup()
-            markup = dataclasses.replace(markup, direction=_enums.Up)
-            markup_format_pieces = markup._get_format_pieces()
+            markup_format_pieces = markup._get_format_pieces(wrapper=wrapper)
             bundle.after.markup.extend(markup_format_pieces)
         return bundle
 
@@ -614,7 +608,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.left_markup
 
         """
@@ -630,7 +624,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.left_rhythm
             [Note("c'4")]
 
@@ -648,7 +642,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
-            ...     )
+            ... )
             >>> metric_modulation.ratio
             Ratio(numbers=(2, 3))
 
@@ -668,7 +662,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.right_markup
 
         """
@@ -684,7 +678,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.right_rhythm
             [Note("c'4.")]
 
@@ -706,8 +700,8 @@ class MetricModulation:
             ...     left_rhythm=abjad.Note("c4"),
             ...     right_rhythm=abjad.Note("c8."),
             ...     scale=(0.5, 0.5),
-            ...     )
-            >>> abjad.attach(metric_modulation, staff[3])
+            ... )
+            >>> abjad.attach(metric_modulation, staff[3], direction=abjad.Up)
             >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])

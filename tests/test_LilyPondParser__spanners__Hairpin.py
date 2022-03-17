@@ -130,12 +130,12 @@ def test_LilyPondParser__spanners__Hairpin_06():
 
     maker = abjad.NoteMaker()
     target = abjad.Staff(maker([0] * 5, [(1, 4)]))
-    start_hairpin = abjad.StartHairpin("<", direction=abjad.Up)
-    abjad.attach(start_hairpin, target[0])
+    start_hairpin = abjad.StartHairpin("<")
+    abjad.attach(start_hairpin, target[0], direction=abjad.Up)
     stop_hairpin = abjad.StopHairpin()
     abjad.attach(stop_hairpin, target[2])
-    hairpin = abjad.StartHairpin(">", direction=abjad.Down)
-    abjad.attach(hairpin, target[2])
+    hairpin = abjad.StartHairpin(">")
+    abjad.attach(hairpin, target[2], direction=abjad.Down)
     dynamic = abjad.Dynamic("ppp")
     abjad.attach(dynamic, target[-1])
 
