@@ -301,7 +301,7 @@ class MetricModulation:
         ...     left_rhythm=abjad.Note("c4"),
         ...     right_rhythm=abjad.Note("c8."),
         ... )
-        >>> abjad.attach(metric_modulation, staff[3], direction=abjad.Up)
+        >>> abjad.attach(metric_modulation, staff[3], direction=abjad.UP)
         >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
@@ -701,7 +701,7 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c8."),
             ...     scale=(0.5, 0.5),
             ... )
-            >>> abjad.attach(metric_modulation, staff[3], direction=abjad.Up)
+            >>> abjad.attach(metric_modulation, staff[3], direction=abjad.UP)
             >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])

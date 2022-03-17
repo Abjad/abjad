@@ -73,7 +73,7 @@ def _tail_filter_subresult(result, tail):
 
 
 def _trim_subresult(result, trim):
-    assert trim in (True, _enums.Left)
+    assert trim in (True, _enums.LEFT)
     prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
     result_ = []
     found_good_component = False
@@ -93,7 +93,7 @@ def _trim_subresult(result, trim):
             item = selection
         if found_good_component:
             result_.append(item)
-    if trim is _enums.Left:
+    if trim is _enums.LEFT:
         result = result_
     else:
         result__ = []
@@ -263,7 +263,7 @@ def chord(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -350,7 +350,7 @@ def chords(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -900,7 +900,7 @@ def flatten(argument, depth: int = 1) -> list:
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -986,7 +986,7 @@ def flatten(argument, depth: int = 1) -> list:
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -2258,7 +2258,7 @@ def leaf(
     prototype=None,
     reverse: bool = None,
     tail: bool = None,
-    trim: bool | int | None = None,
+    trim: bool | _enums.Horizontal | None = None,
 ) -> _score.Leaf:
     r"""
     Selects leaf ``n` in ``argument``.
@@ -2277,7 +2277,7 @@ def leaf(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -2364,7 +2364,7 @@ def leaves(
     pitched: bool = None,
     reverse: bool = None,
     tail: bool = None,
-    trim: bool | int | None = None,
+    trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Leaf]:
     ...
 
@@ -2380,7 +2380,7 @@ def leaves(
     pitched: bool = None,
     reverse: bool = None,
     tail: bool = None,
-    trim: bool | int | None = None,
+    trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Chord]:
     ...
 
@@ -2396,7 +2396,7 @@ def leaves(
     pitched: bool = None,
     reverse: bool = None,
     tail: bool = None,
-    trim: bool | int | None = None,
+    trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.MultimeasureRest]:
     ...
 
@@ -2412,7 +2412,7 @@ def leaves(
     pitched: bool = None,
     reverse: bool = None,
     tail: bool = None,
-    trim: bool | int | None = None,
+    trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Note]:
     ...
 
@@ -2427,8 +2427,7 @@ def leaves(
     pitched: bool = None,
     reverse: bool = None,
     tail: bool = None,
-    trim: bool | int | None = None,
-    # ) -> list[_score.Leaf]:
+    trim: bool | _enums.Horizontal | None = None,
 ):
     r'''
     Selects leaves in ``argument``.
@@ -2629,7 +2628,7 @@ def leaves(
 
     ..  container:: example
 
-        Set ``trim`` to ``abjad.Left`` to trim rests at left (and preserve rests at
+        Set ``trim`` to ``abjad.LEFT`` to trim rests at left (and preserve rests at
         right):
 
         >>> staff = abjad.Staff(r"""
@@ -2638,7 +2637,7 @@ def leaves(
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
-        >>> result = abjad.select.leaves(staff, trim=abjad.Left)
+        >>> result = abjad.select.leaves(staff, trim=abjad.LEFT)
         >>> for item in result:
         ...     item
         ...
@@ -3288,7 +3287,7 @@ def leaves(
             }
 
     '''
-    assert trim in (True, False, _enums.Left, None)
+    assert trim in (True, False, _enums.LEFT, None)
     if pitched:
         prototype = (_score.Chord, _score.Note)
     elif prototype is None:
@@ -3302,7 +3301,7 @@ def leaves(
     )
     components = list(generator)
     if components:
-        if trim in (True, _enums.Left):
+        if trim in (True, _enums.LEFT):
             components = _trim_subresult(components, trim)
         if head is not None:
             components = _head_filter_subresult(components, head)
@@ -3897,7 +3896,7 @@ def note(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -3984,7 +3983,7 @@ def notes(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -4585,7 +4584,7 @@ def partition_by_durations(
         ...     leaves,
         ...     [abjad.Duration(3, 8)],
         ...     cyclic=True,
-        ...     fill=abjad.Exact,
+        ...     fill=abjad.EXACT,
         ...     in_seconds=False,
         ...     overhang=True,
         ... )
@@ -4661,7 +4660,7 @@ def partition_by_durations(
         ...     result,
         ...     [abjad.Duration(3, 8)],
         ...     cyclic=False,
-        ...     fill=abjad.Exact,
+        ...     fill=abjad.EXACT,
         ...     in_seconds=False,
         ...     overhang=False,
         ... )
@@ -4731,7 +4730,7 @@ def partition_by_durations(
         ...     result,
         ...     [abjad.Duration(3, 16), abjad.Duration(1, 16)],
         ...     cyclic=True,
-        ...     fill=abjad.More,
+        ...     fill=abjad.MORE,
         ...     in_seconds=False,
         ...     overhang=True,
         ... )
@@ -4810,7 +4809,7 @@ def partition_by_durations(
         ...     result,
         ...     [abjad.Duration(3, 16)],
         ...     cyclic=True,
-        ...     fill=abjad.Less,
+        ...     fill=abjad.LESS,
         ...     in_seconds=False,
         ...     overhang=False,
         ... )
@@ -4890,7 +4889,7 @@ def partition_by_durations(
         ...     result,
         ...     [abjad.Duration(3, 16)],
         ...     cyclic=False,
-        ...     fill=abjad.Less,
+        ...     fill=abjad.LESS,
         ...     in_seconds=False,
         ...     overhang=False,
         ... )
@@ -4961,7 +4960,7 @@ def partition_by_durations(
         ...     result,
         ...     [1.5],
         ...     cyclic=True,
-        ...     fill=abjad.Exact,
+        ...     fill=abjad.EXACT,
         ...     in_seconds=True,
         ...     overhang=False,
         ... )
@@ -5039,7 +5038,7 @@ def partition_by_durations(
         ...     result,
         ...     [1.5],
         ...     cyclic=True,
-        ...     fill=abjad.Exact,
+        ...     fill=abjad.EXACT,
         ...     in_seconds=True,
         ...     overhang=True,
         ... )
@@ -5120,7 +5119,7 @@ def partition_by_durations(
         ...     result,
         ...     [1.5],
         ...     cyclic=False,
-        ...     fill=abjad.Exact,
+        ...     fill=abjad.EXACT,
         ...     in_seconds=True,
         ...     overhang=False,
         ... )
@@ -5194,7 +5193,7 @@ def partition_by_durations(
         ...     result,
         ...     [0.75],
         ...     cyclic=True,
-        ...     fill=abjad.Less,
+        ...     fill=abjad.LESS,
         ...     in_seconds=True,
         ...     overhang=False,
         ... )
@@ -5278,7 +5277,7 @@ def partition_by_durations(
         ...     result,
         ...     [0.75],
         ...     cyclic=False,
-        ...     fill=abjad.Less,
+        ...     fill=abjad.LESS,
         ...     in_seconds=True,
         ...     overhang=False,
         ... )
@@ -5339,7 +5338,7 @@ def partition_by_durations(
 
     Returns remaining components at end in final part when ``overhang`` is true.
     """
-    fill = fill or _enums.Exact
+    fill = fill or _enums.EXACT
     durations = [_duration.Duration(_) for _ in durations]
     if cyclic:
         durations = _cyclictuple.CyclicTuple(durations)
@@ -5372,9 +5371,9 @@ def partition_by_durations(
             except IndexError:
                 break
         elif target_duration < candidate_duration:
-            if fill is _enums.Exact:
+            if fill is _enums.EXACT:
                 raise Exception("must partition exactly.")
-            elif fill is _enums.Less:
+            elif fill is _enums.LESS:
                 result.append(part)
                 part = [component]
                 if in_seconds:
@@ -5393,7 +5392,7 @@ def partition_by_durations(
                     message += " than cumulative duration"
                     message += f" {cumulative_duration}."
                     raise Exception(message)
-            elif fill is _enums.More:
+            elif fill is _enums.MORE:
                 part.append(component)
                 result.append(part)
                 part = []
@@ -5553,7 +5552,7 @@ def rest(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -5640,7 +5639,7 @@ def rests(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -5736,7 +5735,7 @@ def run(argument, n: int, *, exclude: _typings.Strings = None) -> list[_score.Le
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -5827,7 +5826,7 @@ def runs(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -6102,7 +6101,7 @@ def tuplet(
         >>> lilypond_file = abjad.illustrators.selection(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
-        >>> abjad.override(staff).TupletBracket.direction = abjad.Up
+        >>> abjad.override(staff).TupletBracket.direction = abjad.UP
         >>> abjad.override(staff).TupletBracket.staff_padding = 3
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 

@@ -68,14 +68,14 @@ def _collect_indicators(component):
             continue
         # store markup wrappers
         elif wrapper.indicator.__class__.__name__ == "Markup":
-            # if wrapper.indicator.direction is _enums.Up:
-            if wrapper.direction is _enums.Up:
+            # if wrapper.indicator.direction is _enums.UP:
+            if wrapper.direction is _enums.UP:
                 up_markup_wrappers.append(wrapper)
-            # elif wrapper.indicator.direction is _enums.Down:
-            elif wrapper.direction is _enums.Down:
+            # elif wrapper.indicator.direction is _enums.DOWN:
+            elif wrapper.direction is _enums.DOWN:
                 down_markup_wrappers.append(wrapper)
-            # elif wrapper.indicator.direction in (_enums.Center, None):
-            elif wrapper.direction in (_enums.Center, None):
+            # elif wrapper.indicator.direction in (_enums.CENTER, None):
+            elif wrapper.direction in (_enums.CENTER, None):
                 neutral_markup_wrappers.append(wrapper)
         # store context wrappers
         elif wrapper.context is not None:
@@ -129,7 +129,7 @@ def _populate_grob_override_format_contributions(component, bundle):
         arrow = written_pitch.arrow
     except AttributeError:
         arrow = None
-    if arrow in (_enums.Up, _enums.Down):
+    if arrow in (_enums.UP, _enums.DOWN):
         contributions_ = written_pitch._list_format_contributions()
         contributions.extend(contributions_)
     bundle.grob_overrides.extend(contributions)

@@ -3430,7 +3430,7 @@ class LilyPondParser(Parser):
             UnaCordaPedal
             UnaCordaPedalLineSpanner
             VaticanaLigature
-            VerticalAlignment
+            Vertical
             VerticalAxisGroup
             VoiceFollower
             VoltaBracket

@@ -46,7 +46,7 @@ class Markup:
         >>> print(string)
         \markup \italic "Allegro assai"
 
-        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -71,7 +71,7 @@ class Markup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r"\markup \italic Allegro")
-        >>> abjad.attach(markup, staff[0], direction=abjad.Up, tag=abjad.Tag("RED:M1"))
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP, tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff, tags=True)
@@ -97,7 +97,7 @@ class Markup:
         ...     markup,
         ...     staff[0],
         ...     deactivate=True,
-        ...     direction=abjad.Up,
+        ...     direction=abjad.UP,
         ...     tag=abjad.Tag("RED:M1"),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
@@ -123,8 +123,8 @@ class Markup:
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup_1 = abjad.Markup(r"\markup \italic Allegro")
         >>> markup_2 = abjad.Markup(r'\markup \italic "non troppo"')
-        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up)
-        >>> abjad.attach(markup_2, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP)
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff)
@@ -147,7 +147,7 @@ class Markup:
         >>> markup = abjad.Markup(string)
         >>> abjad.tweak(markup).color = "#blue"
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

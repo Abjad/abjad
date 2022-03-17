@@ -4,6 +4,7 @@ import typing
 
 from . import _inspect, _update
 from . import duration as _duration
+from . import enums as _enums
 from . import exceptions as _exceptions
 from . import score as _score
 from . import tag as _tag
@@ -17,9 +18,9 @@ class Wrapper:
 
         >>> component = abjad.Note("c'4")
         >>> articulation = abjad.Articulation("accent")
-        >>> abjad.attach(articulation, component, direction=abjad.Up)
+        >>> abjad.attach(articulation, component, direction=abjad.UP)
         >>> abjad.get.wrapper(component)
-        Wrapper(annotation=None, context=None, deactivate=False, direction=Up, indicator=Articulation(name='accent', tweaks=None), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation=None, context=None, deactivate=False, direction=<Vertical.UP: 1>, indicator=Articulation(name='accent', tweaks=None), synthetic_offset=None, tag=Tag())
 
     ..  container:: example
 
@@ -91,7 +92,7 @@ class Wrapper:
         component=None,
         context: str = None,
         deactivate: bool = False,
-        direction: int = None,
+        direction: _enums.Vertical = None,
         indicator: typing.Any = None,
         synthetic_offset: int = None,
         tag: str | _tag.Tag | None = None,
@@ -136,7 +137,7 @@ class Wrapper:
             Preserves annotation flag:
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-            >>> abjad.annotate(old_staff[0], "bow_direction", abjad.Down)
+            >>> abjad.annotate(old_staff[0], "bow_direction", abjad.DOWN)
             >>> string = abjad.lilypond(old_staff)
             >>> print(string)
             \new Staff {
@@ -148,7 +149,7 @@ class Wrapper:
 
             >>> leaf = old_staff[0]
             >>> abjad.get.annotation(leaf, "bow_direction")
-            Down
+            <Vertical.DOWN: -1>
 
             >>> new_staff = abjad.mutate.copy(old_staff)
             >>> string = abjad.lilypond(new_staff)
@@ -162,7 +163,7 @@ class Wrapper:
 
             >>> leaf = new_staff[0]
             >>> abjad.get.annotation(leaf, "bow_direction")
-            Down
+            <Vertical.DOWN: -1>
 
         ..  container:: example
 
@@ -489,7 +490,7 @@ class Wrapper:
 
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation("accent")
-            >>> abjad.attach(articulation, note, direction=abjad.Up)
+            >>> abjad.attach(articulation, note, direction=abjad.UP)
             >>> wrapper = abjad.get.wrapper(note)
             >>> wrapper.annotation is None
             True
@@ -646,7 +647,7 @@ def annotate(component, annotation, indicator) -> None:
         Annotates first note in staff:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.annotate(staff[0], "bow_direction", abjad.Down)
+        >>> abjad.annotate(staff[0], "bow_direction", abjad.DOWN)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -662,7 +663,7 @@ def annotate(component, annotation, indicator) -> None:
             }
 
         >>> abjad.get.annotation(staff[0], "bow_direction")
-        Down
+        <Vertical.DOWN: -1>
 
         >>> abjad.get.annotation(staff[0], "bow_fraction") is None
         True
@@ -685,7 +686,7 @@ def attach(  # noqa: 302
     check_duplicate_indicator=False,
     context=None,
     deactivate=False,
-    direction: int = None,
+    direction: _enums.Vertical = None,
     do_not_test=None,
     synthetic_offset=None,
     tag=None,
@@ -1041,19 +1042,19 @@ def detach(argument, target=None, by_id=False):
         But document-tagging like this makes sense for score and two diferent parts:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up, tag=abjad.Tag("+SCORE"))
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP, tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
         ...     deactivate=True,
-        ...     direction=abjad.Up,
+        ...     direction=abjad.UP,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
         ... )
         >>> abjad.attach(
         ...     markup_3,
         ...     staff[0],
         ...     deactivate=True,
-        ...     direction=abjad.Up,
+        ...     direction=abjad.UP,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1103,19 +1104,19 @@ def detach(argument, target=None, by_id=False):
         We start again:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up, tag=abjad.Tag("+SCORE"))
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP, tag=abjad.Tag("+SCORE"))
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
         ...     deactivate=True,
-        ...     direction=abjad.Up,
+        ...     direction=abjad.UP,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_1"),
         ... )
         >>> abjad.attach(
         ...     markup_3,
         ...     staff[0],
         ...     deactivate=True,
-        ...     direction=abjad.Up,
+        ...     direction=abjad.UP,
         ...     tag=abjad.Tag("+PARTS_VIOLIN_2"),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP

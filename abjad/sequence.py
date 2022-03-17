@@ -466,7 +466,7 @@ def partition_by_counts(
         ...     sequence,
         ...     [2, 3, 5],
         ...     cyclic=False,
-        ...     overhang=abjad.Exact,
+        ...     overhang=abjad.EXACT,
         ... )
 
         >>> for part in parts:
@@ -485,7 +485,7 @@ def partition_by_counts(
         ...     sequence,
         ...     [2],
         ...     cyclic=True,
-        ...     overhang=abjad.Exact,
+        ...     overhang=abjad.EXACT,
         ... )
 
         >>> for part in parts:
@@ -621,9 +621,9 @@ def partition_by_counts(
     if part:
         if overhang is True:
             result.append(part)
-        elif overhang is _enums.Exact and len(part) == count:
+        elif overhang is _enums.EXACT and len(part) == count:
             result.append(part)
-        elif overhang is _enums.Exact and len(part) != count:
+        elif overhang is _enums.EXACT and len(part) != count:
             raise Exception("sequence does not partition exactly.")
     if reversed_:
         result_ = []
@@ -671,7 +671,7 @@ def partition_by_ratio_of_lengths(sequence, ratio) -> list:
     ratio = _ratio.Ratio(ratio)
     length = len(sequence)
     counts = ratio.partition_integer(length)
-    parts = partition_by_counts(sequence, counts, cyclic=False, overhang=_enums.Exact)
+    parts = partition_by_counts(sequence, counts, cyclic=False, overhang=_enums.EXACT)
     return parts
 
 
@@ -834,7 +834,7 @@ def partition_by_weights(
     *,
     cyclic=False,
     overhang=False,
-    allow_part_weights=_enums.Exact,
+    allow_part_weights=_enums.EXACT,
 ) -> list:
     r"""
     Partitions sequence by ``weights`` exactly.
@@ -915,7 +915,7 @@ def partition_by_weights(
         ...     [10, 4],
         ...     cyclic=False,
         ...     overhang=False,
-        ...     allow_part_weights=abjad.Less,
+        ...     allow_part_weights=abjad.LESS,
         ... ):
         ...     item
         ...
@@ -932,7 +932,7 @@ def partition_by_weights(
         ...     [10, 4],
         ...     cyclic=False,
         ...     overhang=True,
-        ...     allow_part_weights=abjad.Less,
+        ...     allow_part_weights=abjad.LESS,
         ... ):
         ...     item
         ...
@@ -950,7 +950,7 @@ def partition_by_weights(
         ...     [10, 5],
         ...     cyclic=True,
         ...     overhang=False,
-        ...     allow_part_weights=abjad.Less,
+        ...     allow_part_weights=abjad.LESS,
         ... ):
         ...     item
         ...
@@ -971,7 +971,7 @@ def partition_by_weights(
         ...     [10, 5],
         ...     cyclic=True,
         ...     overhang=True,
-        ...     allow_part_weights=abjad.Less,
+        ...     allow_part_weights=abjad.LESS,
         ... ):
         ...     item
         ...
@@ -994,7 +994,7 @@ def partition_by_weights(
         ...     [10, 4],
         ...     cyclic=False,
         ...     overhang=False,
-        ...     allow_part_weights=abjad.More,
+        ...     allow_part_weights=abjad.MORE,
         ... ):
         ...     item
         ...
@@ -1011,7 +1011,7 @@ def partition_by_weights(
         ...     [10, 4],
         ...     cyclic=False,
         ...     overhang=True,
-        ...     allow_part_weights=abjad.More,
+        ...     allow_part_weights=abjad.MORE,
         ... ):
         ...     item
         ...
@@ -1029,7 +1029,7 @@ def partition_by_weights(
         ...     [10, 4],
         ...     cyclic=True,
         ...     overhang=False,
-        ...     allow_part_weights=abjad.More,
+        ...     allow_part_weights=abjad.MORE,
         ... ):
         ...     item
         ...
@@ -1048,7 +1048,7 @@ def partition_by_weights(
         ...     [10, 4],
         ...     cyclic=True,
         ...     overhang=True,
-        ...     allow_part_weights=abjad.More,
+        ...     allow_part_weights=abjad.MORE,
         ... ):
         ...     item
         ...
@@ -1060,7 +1060,7 @@ def partition_by_weights(
 
     Returns list of sequences.
     """
-    if allow_part_weights is _enums.Exact:
+    if allow_part_weights is _enums.EXACT:
         candidate = type(sequence)(sequence)
         candidate = split(candidate, weights, cyclic=cyclic, overhang=overhang)
         flattened_candidate = flatten(candidate, depth=-1)
@@ -1068,7 +1068,7 @@ def partition_by_weights(
             return candidate
         else:
             raise Exception("can not partition exactly.")
-    elif allow_part_weights is _enums.More:
+    elif allow_part_weights is _enums.MORE:
         if not cyclic:
             result = _partition_sequence_once_by_weights_at_least(
                 sequence, weights, overhang=overhang
@@ -1077,7 +1077,7 @@ def partition_by_weights(
             result = _partition_sequence_cyclically_by_weights_at_least(
                 sequence, weights, overhang=overhang
             )
-    elif allow_part_weights is _enums.Less:
+    elif allow_part_weights is _enums.LESS:
         if not cyclic:
             result = _partition_sequence_once_by_weights_at_most(
                 sequence, weights, overhang=overhang
@@ -1185,7 +1185,7 @@ def split(sequence, weights, cyclic=False, overhang=False) -> list:
     current_piece: list[typing.Any] = []
     if cyclic:
         weights = repeat_to_weight(
-            weights, _math.weight(sequence), allow_total=_enums.Less
+            weights, _math.weight(sequence), allow_total=_enums.LESS
         )
     for weight in weights:
         current_piece_weight = _math.weight(current_piece)
@@ -1972,7 +1972,7 @@ def repeat_to_length(sequence, length=None, start=0):
     return type(sequence)(items[start:stop_index])
 
 
-def repeat_to_weight(sequence, weight, allow_total=_enums.Exact):
+def repeat_to_weight(sequence, weight, allow_total=_enums.EXACT):
     """
     Repeats sequence to ``weight``.
 
@@ -1985,12 +1985,12 @@ def repeat_to_weight(sequence, weight, allow_total=_enums.Exact):
 
         Repeats sequence to weight of 23 more:
 
-        >>> abjad.sequence.repeat_to_weight([5, -5, -5], 23, allow_total=abjad.More)
+        >>> abjad.sequence.repeat_to_weight([5, -5, -5], 23, allow_total=abjad.MORE)
         [5, -5, -5, 5, -5]
 
         Repeats sequence to weight of 23 or less:
 
-        >>> abjad.sequence.repeat_to_weight([5, -5, -5], 23, allow_total=abjad.Less)
+        >>> abjad.sequence.repeat_to_weight([5, -5, -5], 23, allow_total=abjad.LESS)
         [5, -5, -5, 5]
 
         >>> sequence = [abjad.NonreducedFraction(3, 16)]
@@ -2005,7 +2005,7 @@ def repeat_to_weight(sequence, weight, allow_total=_enums.Exact):
     Returns sequence type.
     """
     assert 0 <= weight
-    if allow_total is _enums.Exact:
+    if allow_total is _enums.EXACT:
         sequence_weight = _math.weight(sequence)
         complete_repetitions = int(math.ceil(float(weight) / float(sequence_weight)))
         items = list(sequence)
@@ -2028,7 +2028,7 @@ def repeat_to_weight(sequence, weight, allow_total=_enums.Exact):
                     break
             else:
                 break
-    elif allow_total is _enums.Less:
+    elif allow_total is _enums.LESS:
         items = [sequence[0]]
         i = 1
         while _math.weight(items) < weight:
@@ -2037,7 +2037,7 @@ def repeat_to_weight(sequence, weight, allow_total=_enums.Exact):
         if weight < _math.weight(items):
             items = items[:-1]
         return type(sequence)(items)
-    elif allow_total is _enums.More:
+    elif allow_total is _enums.MORE:
         items = [sequence[0]]
         i = 1
         while _math.weight(items) < weight:

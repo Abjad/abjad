@@ -7,6 +7,7 @@ from . import _iterate
 from . import bind as _bind
 from . import duration as _duration
 from . import dynamic as _dynamic
+from . import enums as _enums
 from . import indicators as _indicators
 from . import iterate as iterate_
 from . import overrides as _overrides
@@ -43,6 +44,7 @@ def beam(
     *,
     beam_lone_notes: bool = False,
     beam_rests: bool | None = True,
+    direction: _enums.Vertical | None = None,
     durations: typing.Sequence[_duration.Duration] = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     span_beam_count: int = None,
@@ -57,7 +59,7 @@ def beam(
     ..  container:: example
 
         >>> staff = abjad.Staff("c'8 d' e' f'")
-        >>> abjad.beam(staff[:])
+        >>> abjad.beam(staff[:], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -67,7 +69,7 @@ def beam(
             \new Staff
             {
                 c'8
-                [
+                ^ [
                 d'8
                 e'8
                 f'8
@@ -118,7 +120,7 @@ def beam(
         start_beam_ = start_beam or _indicators.StartBeam()
         stop_beam_ = stop_beam or _indicators.StopBeam()
         _bind.detach(_indicators.StartBeam, start_leaf)
-        _bind.attach(start_beam_, start_leaf, tag=tag)
+        _bind.attach(start_beam_, start_leaf, direction=direction, tag=tag)
         _bind.detach(_indicators.StopBeam, stop_leaf)
         _bind.attach(stop_beam_, stop_leaf, tag=tag)
 
@@ -1152,6 +1154,7 @@ def hairpin(
     descriptor: str,
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
+    direction: _enums.Vertical | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag = None,
 ) -> None:
@@ -1163,7 +1166,7 @@ def hairpin(
         With three-part string descriptor:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.hairpin("p < f", staff[:])
+        >>> abjad.hairpin("p < f", staff[:], direction=abjad.UP)
         >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1175,8 +1178,8 @@ def hairpin(
             {
                 \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
-                \p
-                \<
+                ^ \p
+                ^ \<
                 d'4
                 e'4
                 f'4
@@ -1299,9 +1302,9 @@ def hairpin(
     stop_leaf = leaves[-1]
 
     if start_dynamic is not None:
-        _bind.attach(start_dynamic, start_leaf, tag=tag)
+        _bind.attach(start_dynamic, start_leaf, direction=direction, tag=tag)
     if hairpin is not None:
-        _bind.attach(hairpin, start_leaf, tag=tag)
+        _bind.attach(hairpin, start_leaf, direction=direction, tag=tag)
     if stop_dynamic is not None:
         _bind.attach(stop_dynamic, stop_leaf, tag=tag)
 
@@ -1395,6 +1398,7 @@ def ottava(
 def phrasing_slur(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
+    direction: _enums.Vertical | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_phrasing_slur: _indicators.StartPhrasingSlur = None,
     stop_phrasing_slur: _indicators.StopPhrasingSlur = None,
@@ -1406,7 +1410,7 @@ def phrasing_slur(
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.phrasing_slur(staff[:])
+        >>> abjad.phrasing_slur(staff[:], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1416,7 +1420,7 @@ def phrasing_slur(
             \new Staff
             {
                 c'4
-                \(
+                ^ \(
                 d'4
                 e'4
                 f'4
@@ -1434,7 +1438,7 @@ def phrasing_slur(
     stop_leaf = leaves[-1]
     start_phrasing_slur = start_phrasing_slur or _indicators.StartPhrasingSlur()
     stop_phrasing_slur = stop_phrasing_slur or _indicators.StopPhrasingSlur()
-    _bind.attach(start_phrasing_slur, start_leaf, tag=tag)
+    _bind.attach(start_phrasing_slur, start_leaf, direction=direction, tag=tag)
     _bind.attach(stop_phrasing_slur, stop_leaf, tag=tag)
 
 
@@ -1491,7 +1495,7 @@ def piano_pedal(
 def slur(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
-    direction: int = None,
+    direction: _enums.Vertical = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_slur: _indicators.StartSlur = None,
     stop_slur: _indicators.StopSlur = None,
@@ -1503,7 +1507,7 @@ def slur(
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.slur(staff[:])
+        >>> abjad.slur(staff[:], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1513,7 +1517,7 @@ def slur(
             \new Staff
             {
                 c'4
-                (
+                ^ (
                 d'4
                 e'4
                 f'4
@@ -1536,6 +1540,7 @@ def slur(
 def text_spanner(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
+    direction: _enums.Vertical | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_text_span: _indicators.StartTextSpan = None,
     stop_text_span: _indicators.StopTextSpan = None,
@@ -1554,7 +1559,9 @@ def text_spanner(
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="solid-line-with-arrow",
         ... )
-        >>> abjad.text_spanner(staff[:], start_text_span=start_text_span)
+        >>> abjad.text_spanner(
+        ...     staff[:], direction=abjad.UP, start_text_span=start_text_span
+        ... )
         >>> abjad.override(staff[0]).TextSpanner.staff_padding = 4
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -1570,7 +1577,7 @@ def text_spanner(
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                \startTextSpan
+                ^ \startTextSpan
                 d'4
                 e'4
                 f'4
@@ -1671,14 +1678,14 @@ def text_spanner(
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    _bind.attach(start_text_span, start_leaf, tag=tag)
+    _bind.attach(start_text_span, start_leaf, direction=direction, tag=tag)
     _bind.attach(stop_text_span, stop_leaf, tag=tag)
 
 
 def tie(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
-    direction: int = None,
+    direction: _enums.Vertical | None = None,
     repeat: bool | _typings.IntegerPair | typing.Callable = False,
     selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag = None,
@@ -1689,7 +1696,7 @@ def tie(
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 c' c' c'")
-        >>> abjad.tie(staff[:])
+        >>> abjad.tie(staff[:], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1699,11 +1706,11 @@ def tie(
             \new Staff
             {
                 c'4
-                ~
+                ^ ~
                 c'4
-                ~
+                ^ ~
                 c'4
-                ~
+                ^ ~
                 c'4
             }
 

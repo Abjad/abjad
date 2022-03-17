@@ -50,7 +50,7 @@ class Arpeggio:
         With direction arrow:
 
         >>> chord = abjad.Chord("<c' e' g' c''>4")
-        >>> arpeggio = abjad.Arpeggio(direction=abjad.Down)
+        >>> arpeggio = abjad.Arpeggio(direction=abjad.DOWN)
         >>> abjad.attach(arpeggio, chord)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -90,7 +90,7 @@ class Arpeggio:
 
     """
 
-    direction: int | None = None
+    direction: _enums.Vertical | None = None
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
@@ -108,8 +108,8 @@ class Arpeggio:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.articulations.extend(tweaks)
         bundle.after.articulations.append(r"\arpeggio")
-        if self.direction in (_enums.Up, _enums.Down):
-            if self.direction is _enums.Up:
+        if self.direction in (_enums.UP, _enums.DOWN):
+            if self.direction is _enums.UP:
                 command = r"\arpeggioArrowUp"
             else:
                 command = r"\arpeggioArrowDown"
@@ -162,7 +162,7 @@ class Articulation:
 
         >>> note = abjad.Note("c'4")
         >>> articulation = abjad.Articulation("marcato")
-        >>> abjad.attach(articulation, note, direction=abjad.Up)
+        >>> abjad.attach(articulation, note, direction=abjad.UP)
         >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
@@ -438,7 +438,7 @@ class BendAfter:
 
     _format_slot: typing.ClassVar[str] = "after"
     _is_dataclass: typing.ClassVar[bool] = True
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
     # TODO: remove
     def __str__(self) -> str:
@@ -571,7 +571,7 @@ class BreathMark:
 
     _format_slot: typing.ClassVar[str] = "after"
     _is_dataclass: typing.ClassVar[bool] = True
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -1294,7 +1294,7 @@ class ColorFingering:
 
         >>> fingering = abjad.ColorFingering(1)
         >>> note = abjad.Note("c'4")
-        >>> abjad.attach(fingering, note, direction=abjad.Up)
+        >>> abjad.attach(fingering, note, direction=abjad.UP)
 
         >>> abjad.show(note) # doctest: +SKIP
 
@@ -1311,7 +1311,7 @@ class ColorFingering:
 
         >>> fingering = abjad.ColorFingering(2)
         >>> note = abjad.Note("c'4")
-        >>> abjad.attach(fingering, note, direction=abjad.Up)
+        >>> abjad.attach(fingering, note, direction=abjad.UP)
 
         >>> abjad.show(note) # doctest: +SKIP
 
@@ -1332,7 +1332,7 @@ class ColorFingering:
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> fingering = abjad.ColorFingering(1)
         >>> abjad.tweak(fingering).color = "#blue"
-        >>> abjad.attach(fingering, staff[0], direction=abjad.Up)
+        >>> abjad.attach(fingering, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1370,7 +1370,7 @@ class ColorFingering:
             tweaks = self.tweaks._list_format_contributions()
             bundle.after.markup.extend(tweaks)
         markup = self.markup
-        # markup = dataclasses.replace(markup, direction=_enums.Up)
+        # markup = dataclasses.replace(markup, direction=_enums.UP)
         markup_format_pieces = markup._get_format_pieces(wrapper=wrapper)
         bundle.after.markup.extend(markup_format_pieces)
         return bundle
@@ -1918,7 +1918,7 @@ class KeyCluster:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
         >>> key_cluster = abjad.KeyCluster()
-        >>> abjad.attach(key_cluster, chord, direction=abjad.Up)
+        >>> abjad.attach(key_cluster, chord, direction=abjad.UP)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1942,7 +1942,7 @@ class KeyCluster:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
         >>> key_cluster = abjad.KeyCluster()
-        >>> abjad.attach(key_cluster, chord, direction=abjad.Down)
+        >>> abjad.attach(key_cluster, chord, direction=abjad.DOWN)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1987,9 +1987,9 @@ class KeyCluster:
         else:
             string = r"\center-align \natural"
         string = rf"\markup {string}"
-        if wrapper.direction is _enums.Up:
+        if wrapper.direction is _enums.UP:
             string = rf"^ {string}"
-        elif wrapper.direction is _enums.Down:
+        elif wrapper.direction is _enums.DOWN:
             string = rf"_ {string}"
         markup = _markups.Markup(string)
         markup_format_pieces = markup._get_format_pieces()
@@ -2236,7 +2236,7 @@ class LaissezVibrer:
 
     _is_dataclass: typing.ClassVar[bool] = True
     _format_slot: typing.ClassVar[str] = "after"
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -3514,15 +3514,15 @@ class RepeatTie:
                 \repeatTie
             }
 
-        With ``direction=abjad.Up``:
+        With ``direction=abjad.UP``:
 
         >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
         >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[1], direction=abjad.Up)
+        >>> abjad.attach(tie, staff[1], direction=abjad.UP)
         >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[3], direction=abjad.Up)
+        >>> abjad.attach(tie, staff[3], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3543,15 +3543,15 @@ class RepeatTie:
                 \repeatTie
             }
 
-        With ``direction=abjad.Down``:
+        With ``direction=abjad.DOWN``:
 
         >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
         >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[1], direction=abjad.Down)
+        >>> abjad.attach(tie, staff[1], direction=abjad.DOWN)
         >>> tie = abjad.RepeatTie()
         >>> abjad.tweak(tie).color = "#blue"
-        >>> abjad.attach(tie, staff[3], direction=abjad.Down)
+        >>> abjad.attach(tie, staff[3], direction=abjad.DOWN)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3690,7 +3690,7 @@ class StaffChange:
     _is_dataclass: typing.ClassVar[bool] = True
     _format_leaf_children: typing.ClassVar[bool] = False
     _format_slot: typing.ClassVar[str] = "opening"
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Staff"
 
     def _get_lilypond_format(self):
@@ -3742,7 +3742,7 @@ class StartBeam:
         >>> staff = abjad.Staff("c'8 d' e' f'")
         >>> start_beam = abjad.StartBeam()
         >>> abjad.tweak(start_beam).color = "#blue"
-        >>> abjad.attach(start_beam, staff[0], direction=abjad.Down)
+        >>> abjad.attach(start_beam, staff[0], direction=abjad.DOWN)
         >>> stop_beam = abjad.StopBeam()
         >>> abjad.attach(stop_beam, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -4223,7 +4223,7 @@ class StartHairpin:
     _is_dataclass: typing.ClassVar[bool] = True
     _known_shapes = ("<", "o<", "<|", "o<|", ">", ">o", "|>", "|>o", "--")
     # TODO: remove?
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "DYNAMIC"
@@ -4547,7 +4547,7 @@ class StartPianoPedal:
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_piano_pedal = abjad.StartPianoPedal()
         >>> abjad.tweak(start_piano_pedal).color = "#blue"
-        >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.Center
+        >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.CENTER
         >>> abjad.attach(start_piano_pedal, staff[0])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[1])
@@ -4707,12 +4707,12 @@ class StartSlur:
                 )
             }
 
-        With ``direction=abjad.Up``:
+        With ``direction=abjad.UP``:
 
         >>> staff = abjad.Staff("c'8 d' e' f' c'' d'' e'' f''")
-        >>> abjad.attach(abjad.StartSlur(), staff[0], direction=abjad.Up)
+        >>> abjad.attach(abjad.StartSlur(), staff[0], direction=abjad.UP)
         >>> abjad.attach(abjad.StopSlur(), staff[3])
-        >>> abjad.attach(abjad.StartSlur(), staff[4], direction=abjad.Up)
+        >>> abjad.attach(abjad.StartSlur(), staff[4], direction=abjad.UP)
         >>> abjad.attach(abjad.StopSlur(), staff[7])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -4736,12 +4736,12 @@ class StartSlur:
                 )
             }
 
-        With ``direction=abjad.Down``:
+        With ``direction=abjad.DOWN``:
 
         >>> staff = abjad.Staff("c'8 d' e' f' c'' d'' e'' f''")
-        >>> abjad.attach(abjad.StartSlur(), staff[0], direction=abjad.Down)
+        >>> abjad.attach(abjad.StartSlur(), staff[0], direction=abjad.DOWN)
         >>> abjad.attach(abjad.StopSlur(), staff[3])
-        >>> abjad.attach(abjad.StartSlur(), staff[4], direction=abjad.Down)
+        >>> abjad.attach(abjad.StartSlur(), staff[4], direction=abjad.DOWN)
         >>> abjad.attach(abjad.StopSlur(), staff[7])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -4881,7 +4881,7 @@ class StartTextSpan:
 
         >>> markup = abjad.Markup(r"\markup SPACER")
         >>> abjad.tweak(markup).transparent = True
-        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -5476,7 +5476,7 @@ class StemTremolo:
 
     _is_dataclass: typing.ClassVar[bool] = True
     _format_slot: typing.ClassVar[str] = "after"
-    _time_orientation: typing.ClassVar[int] = _enums.Middle
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.MIDDLE
 
     def __post_init__(self):
         if not _math.is_nonnegative_integer_power_of_two(self.tremolo_flags):
@@ -5558,7 +5558,7 @@ class StopBeam:
     leak: bool = False
 
     _is_dataclass: typing.ClassVar[bool] = True
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "BEAM"
     persistent: typing.ClassVar[bool] = True
@@ -5678,7 +5678,7 @@ class StopGroup:
     leak: bool = False
 
     _is_dataclass: typing.ClassVar[bool] = True
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
 
@@ -5905,11 +5905,11 @@ class StopPianoPedal:
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_piano_pedal = abjad.StartPianoPedal()
         >>> abjad.tweak(start_piano_pedal).color = "#blue"
-        >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.Center
+        >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.CENTER
         >>> abjad.attach(start_piano_pedal, staff[0])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.tweak(stop_piano_pedal).color = "#red"
-        >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.Center
+        >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.CENTER
         >>> abjad.attach(stop_piano_pedal, staff[-2])
         >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5941,11 +5941,11 @@ class StopPianoPedal:
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_piano_pedal = abjad.StartPianoPedal()
         >>> abjad.tweak(start_piano_pedal).color = "#blue"
-        >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.Center
+        >>> abjad.tweak(start_piano_pedal).parent_alignment_X = abjad.CENTER
         >>> abjad.attach(start_piano_pedal, staff[0])
         >>> stop_piano_pedal = abjad.StopPianoPedal(leak=True)
         >>> abjad.tweak(stop_piano_pedal).color = "#red"
-        >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.Center
+        >>> abjad.tweak(stop_piano_pedal).parent_alignment_X = abjad.CENTER
         >>> abjad.attach(stop_piano_pedal, staff[-2])
         >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5994,12 +5994,11 @@ class StopPianoPedal:
     tweaks: _overrides.TweakInterface | None = None
 
     _is_dataclass: typing.ClassVar[bool] = True
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "StaffGroup"
     parameter: typing.ClassVar[str] = "PEDAL"
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
-
-    _time_orientation = _enums.Right
 
     def __post_init__(self):
         if self.kind is not None:
@@ -6131,7 +6130,7 @@ class StopSlur:
     leak: bool = False
 
     _is_dataclass: typing.ClassVar[bool] = True
-    _time_orientation: typing.ClassVar[int] = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "SLUR"
     persistent: typing.ClassVar[bool] = True
@@ -6326,7 +6325,7 @@ class StopTrillSpan:
     leak: bool = False
 
     _is_dataclass: typing.ClassVar[bool] = True
-    _time_orientation = _enums.Right
+    _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "TRILL"
     persistent: typing.ClassVar[bool] = True
@@ -6406,11 +6405,11 @@ class Tie:
                 c''4
             }
 
-        With ``direction=abjad.Up``:
+        With ``direction=abjad.UP``:
 
         >>> staff = abjad.Staff("c'4 c' c'' c''")
-        >>> abjad.attach(abjad.Tie(), staff[0], direction=abjad.Up)
-        >>> abjad.attach(abjad.Tie(), staff[2], direction=abjad.Up)
+        >>> abjad.attach(abjad.Tie(), staff[0], direction=abjad.UP)
+        >>> abjad.attach(abjad.Tie(), staff[2], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6427,11 +6426,11 @@ class Tie:
                 c''4
             }
 
-        With ``direction=abjad.Down``:
+        With ``direction=abjad.DOWN``:
 
         >>> staff = abjad.Staff("c'4 c' c'' c''")
-        >>> abjad.attach(abjad.Tie(), staff[0], direction=abjad.Down)
-        >>> abjad.attach(abjad.Tie(), staff[2], direction=abjad.Down)
+        >>> abjad.attach(abjad.Tie(), staff[0], direction=abjad.DOWN)
+        >>> abjad.attach(abjad.Tie(), staff[2], direction=abjad.DOWN)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

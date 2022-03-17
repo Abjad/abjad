@@ -459,13 +459,10 @@ def to_tridirectional_lilypond_symbol(
 
     ..  container:: example
 
-        >>> abjad.string.to_tridirectional_lilypond_symbol(abjad.Up)
+        >>> abjad.string.to_tridirectional_lilypond_symbol(abjad.UP)
         '^'
 
-        >>> abjad.string.to_tridirectional_lilypond_symbol('center')
-        '-'
-
-        >>> abjad.string.to_tridirectional_lilypond_symbol(abjad.Down)
+        >>> abjad.string.to_tridirectional_lilypond_symbol(abjad.DOWN)
         '_'
 
         >>> abjad.string.to_tridirectional_lilypond_symbol(1)
@@ -494,39 +491,44 @@ def to_tridirectional_lilypond_symbol(
     """
     if argument is None:
         return None
-    try:
-        alignment = _enums.VerticalAlignment.from_expr(argument)
-    except Exception:
+    elif argument in (_enums.UP, 1, "^"):
+        return "^"
+    elif argument in (_enums.DOWN, -1, "_"):
+        return "_"
+    elif argument in (_enums.CENTER, 0, "-"):
+        return "-"
+    else:
         raise ValueError(repr(argument))
-    return alignment._get_lilypond_format()
 
 
-def to_tridirectional_ordinal_constant(argument: int | str | None) -> int | None:
+def to_tridirectional_ordinal_constant(
+    argument: int | str | None,
+) -> _enums.Vertical | None:
     """
     Changes ``argument`` to tridirectional ordinal constant.
 
     ..  container:: example
 
         >>> abjad.string.to_tridirectional_ordinal_constant('^')
-        Up
+        <Vertical.UP: 1>
 
         >>> abjad.string.to_tridirectional_ordinal_constant('_')
-        Down
+        <Vertical.DOWN: -1>
 
         >>> abjad.string.to_tridirectional_ordinal_constant(1)
-        Up
+        <Vertical.UP: 1>
 
         >>> abjad.string.to_tridirectional_ordinal_constant(-1)
-        Down
+        <Vertical.DOWN: -1>
 
-        >>> abjad.string.to_tridirectional_ordinal_constant(abjad.Up)
-        Up
+        >>> abjad.string.to_tridirectional_ordinal_constant(abjad.UP)
+        <Vertical.UP: 1>
 
-        >>> abjad.string.to_tridirectional_ordinal_constant(abjad.Down)
-        Down
+        >>> abjad.string.to_tridirectional_ordinal_constant(abjad.DOWN)
+        <Vertical.DOWN: -1>
 
-        >>> abjad.string.to_tridirectional_ordinal_constant(abjad.Center)
-        Center
+        >>> abjad.string.to_tridirectional_ordinal_constant(abjad.CENTER)
+        <Vertical.CENTER: 0>
 
         >>> abjad.string.to_tridirectional_ordinal_constant(None) is None
         True
@@ -534,7 +536,14 @@ def to_tridirectional_ordinal_constant(argument: int | str | None) -> int | None
     """
     if argument is None:
         return None
-    return _enums.VerticalAlignment.from_expr(argument)
+    elif argument in ("^", _enums.UP, 1):
+        return _enums.UP
+    elif argument in ("_", _enums.DOWN, -1):
+        return _enums.DOWN
+    elif argument in ("-", _enums.CENTER, 0):
+        return _enums.CENTER
+    else:
+        raise ValueError(repr(argument))
 
 
 def to_upper_camel_case(string: str) -> str:

@@ -10,6 +10,7 @@ import quicktions
 
 from . import enums as _enums
 from . import math as _math
+from . import string as _string
 
 ### MAPPINGS (most will become functions) ###
 
@@ -698,8 +699,8 @@ class Accidental:
         semitones = _math.integer_equivalent_number_to_integer(semitones)
         self.semitones = semitones
         if self.arrow is not None:
-            self.arrow = _enums.VerticalAlignment.from_expr(self.arrow)
-            if self.arrow is _enums.Center:
+            self.arrow = _string.to_tridirectional_ordinal_constant(self.arrow)
+            if self.arrow is _enums.CENTER:
                 self.arrow = None
         else:
             self.arrow = _arrow
@@ -4037,8 +4038,8 @@ class NumberedPitchClass(PitchClass):
     def __init__(self, number=0, *, arrow=None):
         super().__init__(number or 0)
         if arrow is not None:
-            arrow = _enums.VerticalAlignment.from_expr(arrow)
-            if arrow is _enums.Center:
+            arrow = _string.to_tridirectional_ordinal_constant(arrow)
+            if arrow is _enums.CENTER:
                 arrow = None
             self._arrow = arrow
 
@@ -4664,8 +4665,8 @@ class NamedPitch(Pitch):
 
         Initializes arrowed pitch:
 
-        >>> abjad.NamedPitch("C#5", arrow=abjad.Up)
-        NamedPitch("cs''", arrow=Up)
+        >>> abjad.NamedPitch("C#5", arrow=abjad.UP)
+        NamedPitch("cs''", arrow=Vertical.UP)
 
     ..  container:: example
 
@@ -4733,9 +4734,9 @@ class NamedPitch(Pitch):
 
             Copies arrowed pitch:
 
-            >>> pitch = abjad.NamedPitch("cs''", arrow=abjad.Up)
+            >>> pitch = abjad.NamedPitch("cs''", arrow=abjad.UP)
             >>> copy.copy(pitch)
-            NamedPitch("cs''", arrow=Up)
+            NamedPitch("cs''", arrow=Vertical.UP)
 
         """
         return type(self)(self, arrow=self.arrow)
@@ -5039,16 +5040,16 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cs''").arrow is None
             True
 
-            >>> abjad.NamedPitch("cs''", arrow=abjad.Up).arrow
-            Up
+            >>> abjad.NamedPitch("cs''", arrow=abjad.UP).arrow
+            <Vertical.UP: 1>
 
-            >>> abjad.NamedPitch("cs''", arrow=abjad.Down).arrow
-            Down
+            >>> abjad.NamedPitch("cs''", arrow=abjad.DOWN).arrow
+            <Vertical.DOWN: -1>
 
             Displays arrow in interpreter representation:
 
-            >>> abjad.NamedPitch("cs''", arrow=abjad.Down)
-            NamedPitch("cs''", arrow=Down)
+            >>> abjad.NamedPitch("cs''", arrow=abjad.DOWN)
+            NamedPitch("cs''", arrow=Vertical.DOWN)
 
         Returns up, down or none.
         """
@@ -5638,11 +5639,11 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).arrow is None
             True
 
-            >>> abjad.NumberedPitch(13, arrow=abjad.Up).arrow
-            Up
+            >>> abjad.NumberedPitch(13, arrow=abjad.UP).arrow
+            <Vertical.UP: 1>
 
-            >>> abjad.NumberedPitch(13, arrow=abjad.Down).arrow
-            Down
+            >>> abjad.NumberedPitch(13, arrow=abjad.DOWN).arrow
+            <Vertical.DOWN: -1>
 
         Returns up, down or none.
         """

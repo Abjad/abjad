@@ -64,7 +64,7 @@ class Dynamic:
         >>> abjad.attach(abjad.Dynamic('f'), voice_1[0], context='Voice')
         >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
         >>> abjad.attach(literal, voice_1)
-        >>> abjad.override(voice_1).DynamicLineSpanner.direction = abjad.Up
+        >>> abjad.override(voice_1).DynamicLineSpanner.direction = abjad.UP
         >>> voice_2 = abjad.Voice("c'2")
         >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
         >>> abjad.attach(literal, voice_2)
@@ -237,11 +237,11 @@ class Dynamic:
                 \f
             }
 
-        With ``direction=abjad.Up``:
+        With ``direction=abjad.UP``:
 
         >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.Up)
-        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.Up)
+        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.UP)
+        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -256,11 +256,11 @@ class Dynamic:
                 ^ \f
             }
 
-        With ``direction=abjad.Down``:
+        With ``direction=abjad.DOWN``:
 
         >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.Down)
-        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.Down)
+        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.DOWN)
+        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.DOWN)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -321,8 +321,8 @@ class Dynamic:
         And may be overriden:
 
         >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic('"p"'), staff[0], direction=abjad.Up)
-        >>> abjad.attach(abjad.Dynamic('"f"'), staff[1], direction=abjad.Up)
+        >>> abjad.attach(abjad.Dynamic('"p"'), staff[0], direction=abjad.UP)
+        >>> abjad.attach(abjad.Dynamic('"f"'), staff[1], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -603,7 +603,7 @@ class Dynamic:
         >>> abjad.attach(dynamic, voice[0])
         >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
         >>> abjad.override(voice).DynamicText.X_extent = "#'(0 . 0)"
-        >>> abjad.override(voice).DynamicText.self_alignment_X = abjad.Left
+        >>> abjad.override(voice).DynamicText.self_alignment_X = abjad.LEFT
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -737,7 +737,7 @@ class Dynamic:
             assert isinstance(self.command, str), repr(self.command)
             assert self.command.startswith("\\"), repr(self.command)
         # if self.name == "niente" or self.effort:
-        #     self.direction = _enums.Down
+        #     self.direction = _enums.DOWN
         assert isinstance(self.format_hairpin_stop, bool), repr(
             self.format_hairpin_stop
         )
@@ -912,7 +912,7 @@ class Dynamic:
         ]
         after = {"f": -0.2, "m": -0.1, "p": -0.25, "r": 0, "s": 0, "z": -0.2}[name[-1]]
         # direction = self.direction
-        direction = wrapper.direction or _enums.Down
+        direction = wrapper.direction or _enums.DOWN
         direction = _string.to_tridirectional_lilypond_symbol(direction)
         strings = []
         strings.append(f"{direction} #(make-dynamic-script")
@@ -934,7 +934,7 @@ class Dynamic:
     # def _format_textual(direction, string):
     def _format_textual(string, *, wrapper=None):
         if wrapper.direction is None:
-            direction = _enums.Down
+            direction = _enums.DOWN
         direction = _string.to_tridirectional_lilypond_symbol(direction)
         assert isinstance(string, str), repr(string)
         string = f'(markup #:whiteout #:normal-text #:italic "{string}")'

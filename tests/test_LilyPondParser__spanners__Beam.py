@@ -97,11 +97,11 @@ def test_LilyPondParser__spanners__Beam_05():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker(4 * [0], [(1, 8)]))
     start_beam = abjad.StartBeam()
-    abjad.attach(start_beam, target[0], direction=abjad.Up)
+    abjad.attach(start_beam, target[0], direction=abjad.UP)
     stop_beam = abjad.StopBeam()
     abjad.attach(stop_beam, target[2])
     start_beam = abjad.StartBeam()
-    abjad.attach(start_beam, target[3], direction=abjad.Down)
+    abjad.attach(start_beam, target[3], direction=abjad.DOWN)
     stop_beam = abjad.StopBeam()
     abjad.attach(stop_beam, target[3])
 

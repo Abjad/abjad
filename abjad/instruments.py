@@ -24,14 +24,14 @@ class Instrument:
         >>> flute = abjad.Flute()
         >>> abjad.attach(flute, voice_1[0], context='Voice')
         >>> flute_markup = abjad.Markup(r'\markup (flute)')
-        >>> abjad.attach(flute_markup, voice_1[0], direction=abjad.Up)
+        >>> abjad.attach(flute_markup, voice_1[0], direction=abjad.UP)
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
         >>> voice_2 = abjad.Voice("c'2")
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
         >>> viola = abjad.Viola()
         >>> abjad.attach(viola, voice_2[0], context='Voice')
         >>> viola_markup = abjad.Markup(r'\markup (viola)')
-        >>> abjad.attach(viola_markup, voice_2[0], direction=abjad.Down)
+        >>> abjad.attach(viola_markup, voice_2[0], direction=abjad.DOWN)
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
