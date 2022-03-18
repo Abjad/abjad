@@ -288,7 +288,6 @@ class Markup:
     string: str
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     directed: typing.ClassVar[bool] = True
 
     def __post_init__(self):

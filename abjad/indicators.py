@@ -93,8 +93,6 @@ class Arpeggio:
     direction: _enums.Vertical | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
-
     def __post_init__(self):
         self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
@@ -177,7 +175,6 @@ class Articulation:
     name: str
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _shortcut_to_word: typing.ClassVar[dict[str, str]] = {
         "^": "marcato",
         "+": "stopped",
@@ -191,13 +188,6 @@ class Articulation:
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
-
-    # TODO: eventually remove
-    def __str__(self) -> str:
-        """
-        Gets string representation of articulation.
-        """
-        return self._get_lilypond_format()
 
     def _get_lilypond_format(self, wrapper=None):
         if self.name:
@@ -289,7 +279,6 @@ class BarLine:
     abbreviation: str = "|"
     format_slot: str = "after"
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _context: typing.ClassVar[str] = "Score"
 
     # scraped from LilyPond docs because LilyPond fails to error
@@ -358,8 +347,6 @@ class BeamCount:
 
     left: int = 0
     right: int = 0
-
-    _is_dataclass: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -437,24 +424,10 @@ class BendAfter:
     tweaks: _overrides.TweakInterface | None = None
 
     _format_slot: typing.ClassVar[str] = "after"
-    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
-    # TODO: remove
-    def __str__(self) -> str:
-        r"""
-        Gets string representation of bend after.
-
-        ..  container:: example
-
-            >>> str(abjad.BendAfter())
-            "- \\bendAfter #'-4"
-
-        """
-        return rf"- \bendAfter #'{self.bend_amount}"
-
     def _get_lilypond_format(self):
-        return str(self)
+        return rf"- \bendAfter #'{self.bend_amount}"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -570,7 +543,6 @@ class BreathMark:
     tweaks: _overrides.TweakInterface | None = None
 
     _format_slot: typing.ClassVar[str] = "after"
-    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
     def __post_init__(self):
@@ -586,369 +558,6 @@ class BreathMark:
             bundle.after.articulations.extend(tweaks)
         bundle.after.commands.append(self._get_lilypond_format())
         return bundle
-
-
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
-class StaffPosition:
-    """
-    Staff position.
-
-    ..  container:: example
-
-        Initializes staff position at middle line of staff:
-
-        >>> abjad.StaffPosition(0)
-        StaffPosition(number=0)
-
-    ..  container:: example
-
-        Initializes staff position one space below middle line of staff:
-
-        >>> abjad.StaffPosition(-1)
-        StaffPosition(number=-1)
-
-    ..  container:: example
-
-        Initializes staff position one line below middle line of staff:
-
-        >>> abjad.StaffPosition(-2)
-        StaffPosition(number=-2)
-
-    ..  container:: example
-
-        Equality-testing:
-
-        >>> staff_position_1 = abjad.StaffPosition(-2)
-        >>> staff_position_2 = abjad.StaffPosition(-2)
-        >>> staff_position_3 = abjad.StaffPosition(0)
-
-        >>> staff_position_1 == staff_position_1
-        True
-        >>> staff_position_1 == staff_position_2
-        True
-        >>> staff_position_1 == staff_position_3
-        False
-
-        >>> staff_position_2 == staff_position_1
-        True
-        >>> staff_position_2 == staff_position_2
-        True
-        >>> staff_position_2 == staff_position_3
-        False
-
-        >>> staff_position_3 == staff_position_1
-        False
-        >>> staff_position_3 == staff_position_2
-        False
-        >>> staff_position_3 == staff_position_3
-        True
-
-    ..  container:: example
-
-        Less-than:
-
-        >>> staff_position_1 = abjad.StaffPosition(-2)
-        >>> staff_position_2 = abjad.StaffPosition(-2)
-        >>> staff_position_3 = abjad.StaffPosition(0)
-
-        >>> staff_position_1 < staff_position_1
-        False
-        >>> staff_position_1 < staff_position_2
-        False
-        >>> staff_position_1 < staff_position_3
-        True
-
-        >>> staff_position_2 < staff_position_1
-        False
-        >>> staff_position_2 < staff_position_2
-        False
-        >>> staff_position_2 < staff_position_3
-        True
-
-        >>> staff_position_3 < staff_position_1
-        False
-        >>> staff_position_3 < staff_position_2
-        False
-        >>> staff_position_3 < staff_position_3
-        False
-
-    """
-
-    number: float | int = 0
-
-    def __post_init__(self):
-        assert isinstance(self.number, int | float), repr(self.number)
-
-    @staticmethod
-    def from_pitch_and_clef(pitch, clef) -> "StaffPosition":
-        r"""
-        Changes named pitch to staff position.
-
-        ..  container:: example
-
-            Changes C#5 to absolute staff position:
-
-            >>> clef = abjad.Clef("alto")
-            >>> abjad.StaffPosition.from_pitch_and_clef('C#5', clef)
-            StaffPosition(number=7)
-
-            >>> clef = abjad.Clef("treble")
-            >>> abjad.StaffPosition.from_pitch_and_clef('C#5', clef)
-            StaffPosition(number=1)
-
-            >>> clef = abjad.Clef("bass")
-            >>> abjad.StaffPosition.from_pitch_and_clef('C#5', clef)
-            StaffPosition(number=13)
-
-        ..  container:: example
-
-            Marks up absolute staff position of many pitches:
-
-            >>> string = "g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''"
-            >>> staff = abjad.Staff(string)
-            >>> clef = abjad.Clef("alto")
-            >>> for note in staff:
-            ...     staff_position = abjad.StaffPosition.from_pitch_and_clef(
-            ...         note.written_pitch,
-            ...         clef,
-            ...     )
-            ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
-            ...     abjad.attach(markup, note)
-            ...
-            >>> abjad.override(staff).TextScript.staff_padding = 5
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                \with
-                {
-                    \override TextScript.staff-padding = 5
-                }
-                {
-                    g16
-                    - \markup -3
-                    a16
-                    - \markup -2
-                    b16
-                    - \markup -1
-                    c'16
-                    - \markup 0
-                    d'16
-                    - \markup 1
-                    e'16
-                    - \markup 2
-                    f'16
-                    - \markup 3
-                    g'16
-                    - \markup 4
-                    a'16
-                    - \markup 5
-                    b'16
-                    - \markup 6
-                    c''16
-                    - \markup 7
-                    d''16
-                    - \markup 8
-                    e''16
-                    - \markup 9
-                    f''16
-                    - \markup 10
-                    g''16
-                    - \markup 11
-                    a''16
-                    - \markup 12
-                }
-
-        ..  container:: example
-
-            Marks up bass staff position of many pitches:
-
-            >>> string = "g,16 a, b, c d e f g a b c' d' e' f' g' a'"
-            >>> staff = abjad.Staff(string)
-            >>> clef = abjad.Clef("bass")
-            >>> for note in staff:
-            ...     staff_position = abjad.StaffPosition.from_pitch_and_clef(
-            ...         note.written_pitch,
-            ...         clef,
-            ...     )
-            ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
-            ...     abjad.attach(markup, note)
-            ...
-            >>> abjad.attach(abjad.Clef("bass"), staff[0])
-            >>> abjad.override(staff).TextScript.staff_padding = 5
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                \with
-                {
-                    \override TextScript.staff-padding = 5
-                }
-                {
-                    \clef "bass"
-                    g,16
-                    - \markup -4
-                    a,16
-                    - \markup -3
-                    b,16
-                    - \markup -2
-                    c16
-                    - \markup -1
-                    d16
-                    - \markup 0
-                    e16
-                    - \markup 1
-                    f16
-                    - \markup 2
-                    g16
-                    - \markup 3
-                    a16
-                    - \markup 4
-                    b16
-                    - \markup 5
-                    c'16
-                    - \markup 6
-                    d'16
-                    - \markup 7
-                    e'16
-                    - \markup 8
-                    f'16
-                    - \markup 9
-                    g'16
-                    - \markup 10
-                    a'16
-                    - \markup 11
-                }
-
-        """
-        assert isinstance(clef, Clef), repr(clef)
-        pitch = _pitch.NamedPitch(pitch)
-        staff_position_number = pitch._get_diatonic_pitch_number()
-        staff_position_number += clef.middle_c_position.number
-        staff_position = StaffPosition(staff_position_number)
-        return staff_position
-
-    def to_pitch(self, clef):
-        """
-        Makes named pitch from staff position and ``clef``.
-
-        ..  container:: example
-
-            Treble clef:
-
-            >>> for n in range(-6, 6):
-            ...     staff_position = abjad.StaffPosition(n)
-            ...     clef = abjad.Clef("treble")
-            ...     pitch = staff_position.to_pitch(clef)
-            ...     message = f"{staff_position!s}    {pitch}"
-            ...     print(message)
-            ...
-            StaffPosition(number=-6)    c'
-            StaffPosition(number=-5)    d'
-            StaffPosition(number=-4)    e'
-            StaffPosition(number=-3)    f'
-            StaffPosition(number=-2)    g'
-            StaffPosition(number=-1)    a'
-            StaffPosition(number=0)    b'
-            StaffPosition(number=1)    c''
-            StaffPosition(number=2)    d''
-            StaffPosition(number=3)    e''
-            StaffPosition(number=4)    f''
-            StaffPosition(number=5)    g''
-
-        ..  container:: example
-
-            Bass clef:
-
-            >>> for n in range(-6, 6):
-            ...     staff_position = abjad.StaffPosition(n)
-            ...     clef = abjad.Clef("bass")
-            ...     pitch = staff_position.to_pitch(clef)
-            ...     message = f"{staff_position!s}    {pitch}"
-            ...     print(message)
-            ...
-            StaffPosition(number=-6)    e,
-            StaffPosition(number=-5)    f,
-            StaffPosition(number=-4)    g,
-            StaffPosition(number=-3)    a,
-            StaffPosition(number=-2)    b,
-            StaffPosition(number=-1)    c
-            StaffPosition(number=0)    d
-            StaffPosition(number=1)    e
-            StaffPosition(number=2)    f
-            StaffPosition(number=3)    g
-            StaffPosition(number=4)    a
-            StaffPosition(number=5)    b
-
-        ..  container:: example
-
-            Alto clef:
-
-            >>> for n in range(-6, 6):
-            ...     staff_position = abjad.StaffPosition(n)
-            ...     clef = abjad.Clef("alto")
-            ...     pitch = staff_position.to_pitch(clef)
-            ...     message = f"{staff_position!s}    {pitch}"
-            ...     print(message)
-            ...
-            StaffPosition(number=-6)    d
-            StaffPosition(number=-5)    e
-            StaffPosition(number=-4)    f
-            StaffPosition(number=-3)    g
-            StaffPosition(number=-2)    a
-            StaffPosition(number=-1)    b
-            StaffPosition(number=0)    c'
-            StaffPosition(number=1)    d'
-            StaffPosition(number=2)    e'
-            StaffPosition(number=3)    f'
-            StaffPosition(number=4)    g'
-            StaffPosition(number=5)    a'
-
-        ..  container:: example
-
-            Percussion clef:
-
-            >>> for n in range(-6, 6):
-            ...     staff_position = abjad.StaffPosition(n)
-            ...     clef = abjad.Clef("percussion")
-            ...     pitch = staff_position.to_pitch(clef)
-            ...     message = f"{staff_position!s}    {pitch}"
-            ...     print(message)
-            ...
-            StaffPosition(number=-6)    d
-            StaffPosition(number=-5)    e
-            StaffPosition(number=-4)    f
-            StaffPosition(number=-3)    g
-            StaffPosition(number=-2)    a
-            StaffPosition(number=-1)    b
-            StaffPosition(number=0)    c'
-            StaffPosition(number=1)    d'
-            StaffPosition(number=2)    e'
-            StaffPosition(number=3)    f'
-            StaffPosition(number=4)    g'
-            StaffPosition(number=5)    a'
-
-        Returns new named pitch.
-        """
-        assert isinstance(clef, Clef), repr(clef)
-        offset_staff_position_number = self.number
-        offset_staff_position_number -= clef.middle_c_position.number
-        offset_staff_position = StaffPosition(offset_staff_position_number)
-        octave_number = offset_staff_position.number // 7 + 4
-        diatonic_pc_number = offset_staff_position.number % 7
-        pitch_class_number = _pitch._diatonic_pc_number_to_pitch_class_number[
-            diatonic_pc_number
-        ]
-        pitch_number = 12 * (octave_number - 4)
-        pitch_number += pitch_class_number
-        named_pitch = _pitch.NamedPitch(pitch_number)
-        return named_pitch
 
 
 @dataclasses.dataclass(slots=True, unsafe_hash=True)
@@ -1151,9 +760,7 @@ class Clef:
 
     name: str = "treble"
     hide: bool = False
-    middle_c_position: StaffPosition = dataclasses.field(init=False, repr=False)
-
-    _is_dataclass: typing.ClassVar[bool] = True
+    middle_c_position: _pitch.StaffPosition = dataclasses.field(init=False, repr=False)
 
     _clef_name_to_middle_c_position = {
         "treble": -6,
@@ -1190,7 +797,7 @@ class Clef:
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
         middle_c_position = self._calculate_middle_c_position(self.name)
-        middle_c_position = StaffPosition(middle_c_position)
+        middle_c_position = _pitch.StaffPosition(middle_c_position)
         self.middle_c_position = middle_c_position
 
     def _calculate_middle_c_position(self, clef_name):
@@ -1282,6 +889,263 @@ class Clef:
         else:
             return class_("treble")
 
+    def to_pitch(self, staff_position) -> _pitch.NamedPitch:
+        """
+        Changes ``staff_position`` to pitch.
+
+        ..  container:: example
+
+            Treble clef:
+
+            >>> clef = abjad.Clef("treble")
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = clef.to_pitch(staff_position)
+            ...     print(f"{staff_position!r:25}{pitch!r}")
+            ...
+            StaffPosition(number=-6) NamedPitch("c'")
+            StaffPosition(number=-5) NamedPitch("d'")
+            StaffPosition(number=-4) NamedPitch("e'")
+            StaffPosition(number=-3) NamedPitch("f'")
+            StaffPosition(number=-2) NamedPitch("g'")
+            StaffPosition(number=-1) NamedPitch("a'")
+            StaffPosition(number=0)  NamedPitch("b'")
+            StaffPosition(number=1)  NamedPitch("c''")
+            StaffPosition(number=2)  NamedPitch("d''")
+            StaffPosition(number=3)  NamedPitch("e''")
+            StaffPosition(number=4)  NamedPitch("f''")
+            StaffPosition(number=5)  NamedPitch("g''")
+
+        ..  container:: example
+
+            Bass clef:
+
+            >>> clef = abjad.Clef("bass")
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = clef.to_pitch(staff_position)
+            ...     print(f"{staff_position!r:25}{pitch!r}")
+            ...
+            StaffPosition(number=-6) NamedPitch('e,')
+            StaffPosition(number=-5) NamedPitch('f,')
+            StaffPosition(number=-4) NamedPitch('g,')
+            StaffPosition(number=-3) NamedPitch('a,')
+            StaffPosition(number=-2) NamedPitch('b,')
+            StaffPosition(number=-1) NamedPitch('c')
+            StaffPosition(number=0)  NamedPitch('d')
+            StaffPosition(number=1)  NamedPitch('e')
+            StaffPosition(number=2)  NamedPitch('f')
+            StaffPosition(number=3)  NamedPitch('g')
+            StaffPosition(number=4)  NamedPitch('a')
+            StaffPosition(number=5)  NamedPitch('b')
+
+        ..  container:: example
+
+            Alto clef:
+
+            >>> clef = abjad.Clef("alto")
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = clef.to_pitch(staff_position)
+            ...     print(f"{staff_position!r:25}{pitch!r}")
+            ...
+            StaffPosition(number=-6) NamedPitch('d')
+            StaffPosition(number=-5) NamedPitch('e')
+            StaffPosition(number=-4) NamedPitch('f')
+            StaffPosition(number=-3) NamedPitch('g')
+            StaffPosition(number=-2) NamedPitch('a')
+            StaffPosition(number=-1) NamedPitch('b')
+            StaffPosition(number=0)  NamedPitch("c'")
+            StaffPosition(number=1)  NamedPitch("d'")
+            StaffPosition(number=2)  NamedPitch("e'")
+            StaffPosition(number=3)  NamedPitch("f'")
+            StaffPosition(number=4)  NamedPitch("g'")
+            StaffPosition(number=5)  NamedPitch("a'")
+
+        ..  container:: example
+
+            Percussion clef:
+
+            >>> clef = abjad.Clef("percussion")
+            >>> for n in range(-6, 6):
+            ...     staff_position = abjad.StaffPosition(n)
+            ...     pitch = clef.to_pitch(staff_position)
+            ...     print(f"{staff_position!r:25}{pitch!r}")
+            ...
+            StaffPosition(number=-6) NamedPitch('d')
+            StaffPosition(number=-5) NamedPitch('e')
+            StaffPosition(number=-4) NamedPitch('f')
+            StaffPosition(number=-3) NamedPitch('g')
+            StaffPosition(number=-2) NamedPitch('a')
+            StaffPosition(number=-1) NamedPitch('b')
+            StaffPosition(number=0)  NamedPitch("c'")
+            StaffPosition(number=1)  NamedPitch("d'")
+            StaffPosition(number=2)  NamedPitch("e'")
+            StaffPosition(number=3)  NamedPitch("f'")
+            StaffPosition(number=4)  NamedPitch("g'")
+            StaffPosition(number=5)  NamedPitch("a'")
+
+        """
+        assert isinstance(staff_position, _pitch.StaffPosition), repr(staff_position)
+        offset_staff_position_number = staff_position.number
+        offset_staff_position_number -= self.middle_c_position.number
+        offset_staff_position = _pitch.StaffPosition(offset_staff_position_number)
+        octave_number = offset_staff_position.number // 7 + 4
+        diatonic_pc_number = offset_staff_position.number % 7
+        pitch_class_number = _pitch._diatonic_pc_number_to_pitch_class_number[
+            diatonic_pc_number
+        ]
+        pitch_number = 12 * (octave_number - 4)
+        pitch_number += pitch_class_number
+        named_pitch = _pitch.NamedPitch(pitch_number)
+        return named_pitch
+
+    def to_staff_position(self, pitch) -> _pitch.StaffPosition:
+        r"""
+        Changes ``pitch`` to staff position.
+
+        ..  container:: example
+
+            Changes C#5 to absolute staff position:
+
+            >>> pitch = abjad.NamedPitch("C#5")
+
+            >>> abjad.Clef("alto").to_staff_position(pitch)
+            StaffPosition(number=7)
+
+            >>> abjad.Clef("treble").to_staff_position(pitch)
+            StaffPosition(number=1)
+
+            >>> abjad.Clef("bass").to_staff_position(pitch)
+            StaffPosition(number=13)
+
+        ..  container:: example
+
+            Labels absolute staff position:
+
+            >>> string = "g16 a b c' d' e' f' g' a' b' c'' d'' e'' f'' g'' a''"
+            >>> staff = abjad.Staff(string)
+            >>> clef = abjad.Clef("alto")
+            >>> for note in staff:
+            ...     staff_position = clef.to_staff_position(note.written_pitch)
+            ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
+            ...     abjad.attach(markup, note)
+            ...
+            >>> abjad.override(staff).TextScript.staff_padding = 5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
+                \new Staff
+                \with
+                {
+                    \override TextScript.staff-padding = 5
+                }
+                {
+                    g16
+                    - \markup -3
+                    a16
+                    - \markup -2
+                    b16
+                    - \markup -1
+                    c'16
+                    - \markup 0
+                    d'16
+                    - \markup 1
+                    e'16
+                    - \markup 2
+                    f'16
+                    - \markup 3
+                    g'16
+                    - \markup 4
+                    a'16
+                    - \markup 5
+                    b'16
+                    - \markup 6
+                    c''16
+                    - \markup 7
+                    d''16
+                    - \markup 8
+                    e''16
+                    - \markup 9
+                    f''16
+                    - \markup 10
+                    g''16
+                    - \markup 11
+                    a''16
+                    - \markup 12
+                }
+
+        ..  container:: example
+
+            Labels staff position in bass clef:
+
+            >>> string = "g,16 a, b, c d e f g a b c' d' e' f' g' a'"
+            >>> staff = abjad.Staff(string)
+            >>> clef = abjad.Clef("bass")
+            >>> for note in staff:
+            ...     staff_position = clef.to_staff_position(note.written_pitch)
+            ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
+            ...     abjad.attach(markup, note)
+            ...
+            >>> abjad.attach(abjad.Clef("bass"), staff[0])
+            >>> abjad.override(staff).TextScript.staff_padding = 5
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
+                \new Staff
+                \with
+                {
+                    \override TextScript.staff-padding = 5
+                }
+                {
+                    \clef "bass"
+                    g,16
+                    - \markup -4
+                    a,16
+                    - \markup -3
+                    b,16
+                    - \markup -2
+                    c16
+                    - \markup -1
+                    d16
+                    - \markup 0
+                    e16
+                    - \markup 1
+                    f16
+                    - \markup 2
+                    g16
+                    - \markup 3
+                    a16
+                    - \markup 4
+                    b16
+                    - \markup 5
+                    c'16
+                    - \markup 6
+                    d'16
+                    - \markup 7
+                    e'16
+                    - \markup 8
+                    f'16
+                    - \markup 9
+                    g'16
+                    - \markup 10
+                    a'16
+                    - \markup 11
+                }
+
+        """
+        assert isinstance(pitch, _pitch.NamedPitch)
+        staff_position_number = pitch._get_diatonic_pitch_number()
+        staff_position_number += self.middle_c_position.number
+        staff_position = _pitch.StaffPosition(staff_position_number)
+        return staff_position
+
 
 @dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
 class ColorFingering:
@@ -1355,7 +1219,6 @@ class ColorFingering:
     tweaks: _overrides.TweakInterface | None = None
 
     _format_slot: typing.ClassVar[str] = "after"
-    _is_dataclass: typing.ClassVar[bool] = True
     directed: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -1522,8 +1385,6 @@ class Fermata:
 
     command: str = "fermata"
     tweaks: _overrides.TweakInterface | None = None
-
-    _is_dataclass: typing.ClassVar[bool] = True
 
     _allowable_commands = (
         "fermata",
@@ -1733,8 +1594,6 @@ class Glissando:
     style: str | None = None
     tweaks: _overrides.TweakInterface | None = None
     zero_padding: bool = False
-
-    _is_dataclass: typing.ClassVar[bool] = True
 
     context = "Voice"
     persistent = True
@@ -1967,7 +1826,6 @@ class KeyCluster:
     include_flat_markup: bool = True
     include_natural_markup: bool = True
 
-    _is_dataclass: typing.ClassVar[bool] = True
     directed: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, wrapper=None):
@@ -2010,8 +1868,6 @@ class Mode:
     """
 
     name: str = "major"
-
-    _is_dataclass: typing.ClassVar[bool] = True
 
     def intervals(self):
         """
@@ -2141,7 +1997,6 @@ class KeySignature:
     mode: Mode = Mode("major")
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Staff"
     persistent: typing.ClassVar[bool] = True
     redraw: typing.ClassVar[bool] = True
@@ -2234,7 +2089,6 @@ class LaissezVibrer:
 
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _format_slot: typing.ClassVar[str] = "after"
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
@@ -2324,7 +2178,6 @@ class MarginMarkup:
     format_slot: str = "before"
     markup: str | _markups.Markup | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     latent: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     redraw: typing.ClassVar[bool] = True
@@ -2625,7 +2478,6 @@ class MetronomeMark:
     decimal: bool | str = False
     hide: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _format_slot: typing.ClassVar[str] = "opening"
     _mutates_offsets_in_seconds: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
@@ -3159,7 +3011,6 @@ class Ottava:
     n: int | None = None
     format_slot: str = "before"
 
-    _is_dataclass: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -3304,7 +3155,6 @@ class RehearsalMark:
     number: int | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
 
     def __post_init__(self):
@@ -3435,7 +3285,6 @@ class Repeat:
     repeat_count: int = 2
     repeat_type: str = "volta"
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _can_attach_to_containers: typing.ClassVar[bool] = True
     _format_leaf_children: typing.ClassVar[bool] = False
     _format_slot: typing.ClassVar[str] = "before"
@@ -3600,7 +3449,6 @@ class RepeatTie:
 
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
@@ -3687,7 +3535,6 @@ class StaffChange:
 
     staff: str | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _format_leaf_children: typing.ClassVar[bool] = False
     _format_slot: typing.ClassVar[str] = "opening"
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
@@ -3785,7 +3632,6 @@ class StartBeam:
 
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "BEAM"
@@ -3864,7 +3710,6 @@ class StartGroup:
 
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
 
@@ -4220,7 +4065,6 @@ class StartHairpin:
     _crescendo_start: typing.ClassVar[str] = r"\<"
     _decrescendo_start: typing.ClassVar[str] = r"\>"
     _format_slot: typing.ClassVar[str] = "after"
-    _is_dataclass: typing.ClassVar[bool] = True
     _known_shapes = ("<", "o<", "<|", "o<|", ">", ">o", "|>", "|>o", "--")
     # TODO: remove?
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
@@ -4421,8 +4265,6 @@ class StartMarkup:
     context: str = "Staff"
     format_slot: str = "before"
 
-    _is_dataclass: typing.ClassVar[bool] = True
-
     @property
     def _lilypond_type(self):
         if isinstance(self.context, type):
@@ -4511,7 +4353,6 @@ class StartPhrasingSlur:
 
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "PHRASING_SLUR"
@@ -4614,7 +4455,6 @@ class StartPianoPedal:
     kind: str | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "StaffGroup"
     parameter: typing.ClassVar[str] = "PEDAL"
     persistent: typing.ClassVar[bool] = True
@@ -4783,7 +4623,6 @@ class StartSlur:
 
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "SLUR"
@@ -5151,7 +4990,6 @@ class StartTextSpan:
     style: str | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "TEXT_SPANNER"
@@ -5365,7 +5203,6 @@ class StartTrillSpan:
     pitch: str | _pitch.NamedPitch | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "TRILL"
     persistent: typing.ClassVar[bool] = True
@@ -5474,7 +5311,6 @@ class StemTremolo:
 
     tremolo_flags: int = 16
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _format_slot: typing.ClassVar[str] = "after"
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.MIDDLE
 
@@ -5557,7 +5393,6 @@ class StopBeam:
 
     leak: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "BEAM"
@@ -5677,7 +5512,6 @@ class StopGroup:
 
     leak: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
@@ -5759,7 +5593,6 @@ class StopHairpin:
 
     leak: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     # parameter: typing.ClassVar[str] = "DYNAMIC"
     # persistent: typing.ClassVar[bool] = True
@@ -5876,7 +5709,6 @@ class StopPhrasingSlur:
 
     leak: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "PHRASING_SLUR"
     persistent: typing.ClassVar[bool] = True
@@ -5993,7 +5825,6 @@ class StopPianoPedal:
     leak: bool = False
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "StaffGroup"
     parameter: typing.ClassVar[str] = "PEDAL"
@@ -6129,7 +5960,6 @@ class StopSlur:
 
     leak: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "SLUR"
@@ -6234,7 +6064,6 @@ class StopTextSpan:
     command: str = r"\stopTextSpan"
     leak: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     enchained: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "TEXT_SPANNER"
@@ -6324,7 +6153,6 @@ class StopTrillSpan:
 
     leak: bool = False
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "TRILL"
@@ -6476,7 +6304,6 @@ class Tie:
 
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
@@ -6648,7 +6475,6 @@ class TimeSignature:
     hide: bool = False
     partial: _duration.Duration | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     _format_slot: typing.ClassVar[str] = "opening"
     # TODO: context should probably be "Score"
     context: typing.ClassVar[str] = "Staff"
