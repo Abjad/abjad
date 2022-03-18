@@ -441,7 +441,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.Repeat'>
         <class 'abjad.indicators.RepeatTie'>
         <class 'abjad.indicators.StaffChange'>
-        <class 'abjad.indicators.StaffPosition'>
         <class 'abjad.indicators.StartBeam'>
         <class 'abjad.indicators.StartGroup'>
         <class 'abjad.indicators.StartHairpin'>
@@ -582,6 +581,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.pitch.Octave'>
         <class 'abjad.pitch.Pitch'>
         <class 'abjad.pitch.PitchClass'>
+        <class 'abjad.pitch.StaffPosition'>
         <class 'abjad.ratio.NonreducedRatio'>
         <class 'abjad.ratio.Ratio'>
         <class 'abjad.rhythmtrees.RhythmTreeContainer'>

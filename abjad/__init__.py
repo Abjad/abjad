@@ -91,7 +91,6 @@ from .indicators import (
     Repeat,
     RepeatTie,
     StaffChange,
-    StaffPosition,
     StartBeam,
     StartGroup,
     StartHairpin,
@@ -225,6 +224,7 @@ from .pitch import (
     Pitch,
     PitchClass,
     PitchTyping,
+    StaffPosition,
 )
 from .ratio import NonreducedRatio, Ratio
 from .score import (

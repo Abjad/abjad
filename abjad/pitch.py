@@ -5872,3 +5872,33 @@ class NumberedPitch(Pitch):
         """
         interval = NumberedInterval(n)
         return type(self)(float(self) + float(interval))
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class StaffPosition:
+    """
+    Staff position.
+
+    ..  container:: example
+
+        Middle line of staff:
+
+        >>> abjad.StaffPosition(0)
+        StaffPosition(number=0)
+
+        One space below middle line of staff:
+
+        >>> abjad.StaffPosition(-1)
+        StaffPosition(number=-1)
+
+        One line below middle line of staff:
+
+        >>> abjad.StaffPosition(-2)
+        StaffPosition(number=-2)
+
+    """
+
+    number: int = 0
+
+    def __post_init__(self):
+        assert isinstance(self.number, int), repr(self.number)

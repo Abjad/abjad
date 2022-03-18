@@ -715,7 +715,6 @@ class Dynamic:
     ordinal: int | _math.Infinity | _math.NegativeInfinity | None = None
     tweaks: _overrides.TweakInterface | None = None
 
-    _is_dataclass: typing.ClassVar[bool] = True
     directed: typing.ClassVar[bool] = True
 
     def __post_init__(self):

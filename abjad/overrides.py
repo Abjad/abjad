@@ -457,7 +457,6 @@ class LilyPondLiteral:
         "opening",
     )
 
-    _is_dataclass = True
     _can_attach_to_containers = True
     _format_leaf_children = False
 
@@ -1888,7 +1887,6 @@ class TweakInterface(Interface):
             TweakInterface(('_literal', False), ('color', 'blue'))
 
         """
-        assert argument._is_dataclass is True, repr(argument)
         if manager is None:
             return None
         if not isinstance(manager, TweakInterface):
@@ -2169,7 +2167,14 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
         interface._pending_value = argument
         return interface
-    if getattr(argument, "_is_dataclass", False) is True:
+    if hasattr(argument, "_tweaks"):
+        if argument._tweaks is None:
+            interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
+            argument._tweaks = interface
+        else:
+            interface = argument._tweaks
+            interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
+    elif hasattr(argument, "tweaks"):
         if argument.tweaks is None:
             interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
             argument.tweaks = interface
@@ -2177,13 +2182,6 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
             interface = argument.tweaks
             interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
     else:
-        if not hasattr(argument, "_tweaks"):
-            name = type(argument).__name__
-            raise NotImplementedError(f"{name} does not allow tweaks (yet).")
-        if argument._tweaks is None:
-            interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
-            argument._tweaks = interface
-        else:
-            interface = argument._tweaks
-            interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
+        name = type(argument).__name__
+        raise NotImplementedError(f"{name} does not allow tweaks (yet).")
     return interface
