@@ -1228,7 +1228,7 @@ class PitchSegment:
             '<-2, -1.5, 6, 7, -1.5, 7>'
 
         """
-        string = ", ".join([str(_) for _ in self])
+        string = ", ".join([str(_.number) for _ in self])
         return f"<{string}>"
 
     def invert(self, axis=None) -> "PitchSegment":
@@ -1849,11 +1849,11 @@ class PitchSet(frozenset):
             string = f"{type(self).__name__}()"
         return string
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Gets string.
         """
-        string = ", ".join([str(_) for _ in sorted(self)])
+        string = ", ".join([str(_.number) for _ in sorted(self)])
         return f"{{{string}}}"
 
 

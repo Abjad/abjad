@@ -271,28 +271,20 @@ class Ratio(NonreducedRatio):
         """
         return len(self.numbers)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Gets string representation of ratio.
 
         ..  container:: example
 
-            Ratio of two numbers:
-
             >>> str(abjad.Ratio((2, 4)))
             '1:2'
-
-        ..  container:: example
-
-            Ratio of three numbers:
 
             >>> str(abjad.Ratio((2, 4, 2)))
             '1:2:1'
 
-        Returns string.
         """
-        numbers = (str(x) for x in self.numbers)
-        return ":".join(numbers)
+        return ":".join([str(_) for _ in self.numbers])
 
     @property
     def multipliers(self):

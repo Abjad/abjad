@@ -651,29 +651,6 @@ class Meter:
         """
         return f"{type(self).__name__}({self.rtm_format!r})"
 
-    def __str__(self) -> str:
-        """
-        Gets string representation of meter.
-
-        ..  container:: example
-
-            Gets string representation of meters over ``8``:
-
-            >>> for numerator in range(1, 9):
-            ...     meter = abjad.Meter((numerator, 8))
-            ...     print(str(meter))
-            1/8
-            2/8
-            3/8
-            4/8
-            5/8
-            6/8
-            7/8
-            8/8
-
-        """
-        return f"{self.numerator}/{self.denominator}"
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -731,6 +708,13 @@ class Meter:
         Returns duration.
         """
         return _duration.Duration(self.numerator, self.denominator)
+
+    @property
+    def fraction(self):
+        """
+        Gets nonreduced fraction.
+        """
+        return _duration.NonreducedFraction(self.pair)
 
     @property
     def implied_time_signature(self):
@@ -820,7 +804,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 4))
             ...     string = True if meter.is_compound else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/4
             2/4
@@ -842,7 +826,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 8))
             ...     string = True if meter.is_compound else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/8
             2/8
@@ -879,7 +863,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 4))
             ...     string = True if meter.is_simple else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/4     True
             2/4     True
@@ -901,7 +885,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 8))
             ...     string = True if meter.is_simple else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/8     True
             2/8     True
@@ -1073,10 +1057,10 @@ class Meter:
             >>> for meter in abjad.Meter.fit_meters(argument, meters):
             ...     print(meter.implied_time_signature)
             ...
-            4/4
-            4/4
-            4/4
-            4/4
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         ..  container:: example
 
@@ -1086,11 +1070,11 @@ class Meter:
             >>> for meter in abjad.Meter.fit_meters(argument, meters):
             ...     print(meter.implied_time_signature)
             ...
-            3/4
-            4/4
-            3/4
-            5/4
-            5/4
+            TimeSignature(pair=(3, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(3, 4), hide=False, partial=None)
+            TimeSignature(pair=(5, 4), hide=False, partial=None)
+            TimeSignature(pair=(5, 4), hide=False, partial=None)
 
         Coerces offsets from ``argument`` via ``MetricAccentKernel.count_offsets()``.
 
@@ -2681,7 +2665,7 @@ def illustrate_meter_list(
     strings.append("{")
     strings.extend(fraction_strings)
     strings.append(r"\combine")
-    strings.append(str(timespan_markup))
+    strings.append(timespan_markup.string)
     strings.append(r"\postscript")
     strings.append('#"')
     strings.extend(postscript_strings)

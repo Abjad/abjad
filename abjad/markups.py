@@ -273,16 +273,6 @@ class Markup:
         >>> markup_1 is markup_2
         False
 
-    ..  container:: example
-
-        String:
-
-        >>> markup = abjad.Markup(rf'\markup \italic "Allegro assai"')
-        >>> print(str(markup))
-        \markup \italic "Allegro assai"
-
-        >>> abjad.show(markup) # doctest: +SKIP
-
     """
 
     string: str
@@ -292,13 +282,6 @@ class Markup:
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
-
-    # TODO: remove eventually
-    def __str__(self) -> str:
-        """
-        Gets string representation of markup.
-        """
-        return self._get_lilypond_format()
 
     def _get_format_pieces(self, *, wrapper=None):
         tweaks = []

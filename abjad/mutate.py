@@ -2655,12 +2655,12 @@ def wrap(argument, container):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
-        Staff("{ c'4 d'4 e'4 f'4 }") 3/8
-        Container("c'4 d'4 e'4 f'4") 3/8
-        c'4 3/8
-        d'4 3/8
-        e'4 3/8
-        f'4 3/8
+        Staff("{ c'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Container("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("c'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("d'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("e'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
 
     Returns none.
     """

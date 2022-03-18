@@ -507,6 +507,9 @@ class LilyPondFile:
         """
         Gets tag.
         """
-        tag = _tag.Tag(self.tag)
+        if self.tag:
+            tag = _tag.Tag(self.tag.string)
+        else:
+            tag = _tag.Tag()
         tag = tag.append(site)
         return tag

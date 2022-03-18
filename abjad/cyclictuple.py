@@ -109,32 +109,6 @@ class CyclicTuple:
         assert isinstance(self.items, tuple | CyclicTuple), repr(self.items)
         return self.items.__len__()
 
-    def __str__(self) -> str:
-        """
-        Gets string representation of cyclic tuple.
-
-        ..  container:: example
-
-            Gets string:
-
-            >>> str(abjad.CyclicTuple('abcd'))
-            '(a, b, c, d)'
-
-        ..  container:: example
-
-            Gets string:
-
-            >>> str(abjad.CyclicTuple([1, 2, 3, 4]))
-            '(1, 2, 3, 4)'
-
-        """
-        if self:
-            contents = [str(item) for item in self.items]
-            string = ", ".join(contents)
-            string = f"({string})"
-            return string
-        return "()"
-
     def _get_slice(self, start_index, stop_index):
         if stop_index is not None and 1000000 < stop_index:
             stop_index = len(self)

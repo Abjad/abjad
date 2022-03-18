@@ -1567,6 +1567,6 @@ def test_NamedInterval_01(pitch_a, pitch_b, name):
     pitch_a = abjad.NamedPitch(pitch_a)
     pitch_b = abjad.NamedPitch(pitch_b)
     interval = abjad.NamedInterval.from_pitch_carriers(pitch_a, pitch_b)
-    assert str(interval) == name
+    assert interval.name == name
     assert pitch_a.transpose(interval) == pitch_b
     assert pitch_b.transpose(-interval) == pitch_a

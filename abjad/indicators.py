@@ -8,13 +8,11 @@ import quicktions
 
 from . import bundle as _bundle
 from . import duration as _duration
-from . import enumerate as _enumerate
 from . import enums as _enums
 from . import markups as _markups
 from . import math as _math
 from . import overrides as _overrides
 from . import pitch as _pitch
-from . import ratio as _ratio
 from . import sequence as _sequence
 from . import string as _string
 from . import typings as _typings
@@ -1386,43 +1384,20 @@ class Fermata:
     command: str = "fermata"
     tweaks: _overrides.TweakInterface | None = None
 
-    _allowable_commands = (
+    _allowable_commands: typing.ClassVar = (
         "fermata",
         "longfermata",
         "shortfermata",
         "verylongfermata",
     )
-
-    context = "Score"
-
-    _format_slot = "after"
+    _format_slot: typing.ClassVar[str] = "after"
+    context: typing.ClassVar[str] = "Score"
 
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
-    def __str__(self) -> str:
-        r"""
-        Gets string representation of fermata.
-
-        ..  container:: example
-
-            Fermata:
-
-            >>> str(abjad.Fermata())
-            '\\fermata'
-
-        ..  container:: example
-
-            Long fermata:
-
-            >>> str(abjad.Fermata('longfermata'))
-            '\\longfermata'
-
-        """
-        return rf"\{self.command}"
-
     def _get_lilypond_format(self):
-        return str(self)
+        return rf"\{self.command}"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -1431,26 +1406,6 @@ class Fermata:
             bundle.after.articulations.extend(tweaks)
         bundle.after.articulations.append(self._get_lilypond_format())
         return bundle
-
-    @staticmethod
-    def list_allowable_commands() -> tuple[str, ...]:
-        """
-        Lists allowable commands:
-
-        ..  container:: example
-
-            All allowable commands:
-
-            >>> commands = abjad.Fermata.list_allowable_commands()
-            >>> for command in commands:
-            ...     command
-            'fermata'
-            'longfermata'
-            'shortfermata'
-            'verylongfermata'
-
-        """
-        return Fermata._allowable_commands
 
 
 @dataclasses.dataclass(slots=True)
@@ -2010,7 +1965,7 @@ class KeySignature:
 
     def _get_lilypond_format(self):
         assert isinstance(self.mode, Mode), repr(self.mode)
-        return rf"\key {self.tonic!s} \{self.mode.name}"
+        return rf"\key {self.tonic.name} \{self.mode.name}"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -2042,9 +1997,9 @@ class KeySignature:
         """
         assert isinstance(self.mode, Mode)
         if self.mode.name == "major":
-            tonic = str(self.tonic).upper()
+            tonic = self.tonic.name.upper()
         else:
-            tonic = str(self.tonic)
+            tonic = self.tonic.name
         return f"{tonic!s} {self.mode.name}"
 
 
@@ -2095,22 +2050,8 @@ class LaissezVibrer:
     def __post_init__(self):
         self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
 
-    def __str__(self) -> str:
-        r"""
-        Gets string representation of laissez vibrer indicator.
-
-        ..  container:: example
-
-            Default:
-
-            >>> str(abjad.LaissezVibrer())
-            '\\laissezVibrer'
-
-        """
-        return r"\laissezVibrer"
-
     def _get_lilypond_format(self):
-        return str(self)
+        return r"\laissezVibrer"
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
@@ -2571,51 +2512,6 @@ class MetronomeMark:
         )
         return self_quarters_per_minute < argument_quarters_per_minute
 
-    def __str__(self) -> str:
-        """
-        Gets string representation of metronome mark.
-
-        ..  container:: example
-
-            Integer-valued metronome mark:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 90)
-            >>> str(mark)
-            '4=90'
-
-        ..  container:: example
-
-            Rational-valued metronome mark:
-
-            >>> mark = abjad.MetronomeMark((1, 4), (272, 3))
-            >>> str(mark)
-            '4=3-272'
-
-        """
-        if self.textual_indication is not None:
-            string = self.textual_indication
-        elif isinstance(self.units_per_minute, int | float):
-            string = f"{self._dotted}={self.units_per_minute}"
-        elif isinstance(
-            self.units_per_minute, quicktions.Fraction
-        ) and not _math.is_integer_equivalent_number(self.units_per_minute):
-            integer_part = int(float(self.units_per_minute))
-            remainder = self.units_per_minute - integer_part
-            remainder = quicktions.Fraction(remainder)
-            string = f"{self._dotted}={integer_part}+{remainder}"
-        elif isinstance(
-            self.units_per_minute, quicktions.Fraction
-        ) and _math.is_integer_equivalent_number(self.units_per_minute):
-            integer = int(float(self.units_per_minute))
-            string = f"{self._dotted}={integer}"
-        elif isinstance(self.units_per_minute, tuple):
-            first = self.units_per_minute[0]
-            second = self.units_per_minute[1]
-            string = f"{self._dotted}={first}-{second}"
-        else:
-            raise TypeError(f"unknown: {self.units_per_minute!r}.")
-        return string
-
     @property
     def _dotted(self):
         return self.reference_duration.lilypond_duration_string
@@ -2634,7 +2530,7 @@ class MetronomeMark:
                 self.units_per_minute,
                 decimal=self.decimal,
             )
-            string = str(markup)
+            string = markup.string
             return string
         string = f"{self._dotted}={self.units_per_minute}"
         return string
@@ -2649,7 +2545,7 @@ class MetronomeMark:
         if self.reference_duration is not None and self.units_per_minute is not None:
             equation = self._equation
         if self.custom_markup is not None:
-            return rf"\tempo {self.custom_markup}"
+            return rf"\tempo {self.custom_markup.string}"
         elif text and equation:
             return rf"\tempo {text} {equation}"
         elif equation:
@@ -2791,102 +2687,6 @@ class MetronomeMark:
         whole_note_duration *= _duration.Multiplier(60, self.units_per_minute)
         duration = _duration.Duration(duration)
         return _duration.Duration(duration * whole_note_duration)
-
-    def list_related_tempos(
-        self,
-        maximum_numerator=None,
-        maximum_denominator=None,
-        integer_tempos_only=False,
-    ) -> list[tuple["MetronomeMark", "_ratio.Ratio"]]:
-        r"""
-        Lists related tempos.
-
-        ..  container:: example
-
-            Rewrites tempo ``4=58`` by ratios ``n:d`` such that ``1 <= n <= 8`` and ``1
-            <= d <= 8``.
-
-            >>> mark = abjad.MetronomeMark((1, 4), 58)
-            >>> pairs = mark.list_related_tempos(
-            ...     maximum_numerator=8,
-            ...     maximum_denominator=8,
-            ...  )
-
-            >>> for tempo, ratio in pairs:
-            ...     string = f'{tempo!s}    {ratio!s}'
-            ...     print(string)
-            4=29    1:2
-            4=33+1/7    4:7
-            4=34+4/5    3:5
-            4=36+1/4    5:8
-            4=38+2/3    2:3
-            4=41+3/7    5:7
-            4=43+1/2    3:4
-            4=46+2/5    4:5
-            4=48+1/3    5:6
-            4=49+5/7    6:7
-            4=50+3/4    7:8
-            4=58    1:1
-            4=66+2/7    8:7
-            4=67+2/3    7:6
-            4=69+3/5    6:5
-            4=72+1/2    5:4
-            4=77+1/3    4:3
-            4=81+1/5    7:5
-            4=87    3:2
-            4=92+4/5    8:5
-            4=96+2/3    5:3
-            4=101+1/2    7:4
-            4=116    2:1
-
-        ..  container:: example
-
-            Integer-valued tempos only:
-
-            >>> mark = abjad.MetronomeMark((1, 4), 58)
-            >>> pairs = mark.list_related_tempos(
-            ...     maximum_numerator=16,
-            ...     maximum_denominator=16,
-            ...     integer_tempos_only=True,
-            ...  )
-
-            >>> for tempo, ratio in pairs:
-            ...     string = f'{tempo!s}    {ratio!s}'
-            ...     print(string)
-            4=29    1:2
-            4=58    1:1
-            4=87    3:2
-            4=116    2:1
-
-        Constrains ratios such that ``1:2 <= n:d <= 2:1``.
-        """
-        allowable_numerators = range(1, maximum_numerator + 1)
-        allowable_denominators = range(1, maximum_denominator + 1)
-        numbers = [allowable_numerators, allowable_denominators]
-        pairs = _enumerate.outer_product(numbers)
-        multipliers = [_duration.Multiplier(_) for _ in pairs]
-        multipliers = [
-            _
-            for _ in multipliers
-            if quicktions.Fraction(1, 2) <= _ <= quicktions.Fraction(2)
-        ]
-        multipliers.sort()
-        multipliers_ = _sequence.remove_repeats(multipliers)
-        pairs = []
-        for multiplier in multipliers_:
-            new_units_per_minute = multiplier * self.units_per_minute
-            if integer_tempos_only and not _math.is_integer_equivalent_number(
-                new_units_per_minute
-            ):
-                continue
-            metronome_mark = type(self)(
-                reference_duration=self.reference_duration,
-                units_per_minute=new_units_per_minute,
-            )
-            ratio = _ratio.Ratio(multiplier.pair)
-            pair = (metronome_mark, ratio)
-            pairs.append(pair)
-        return pairs
 
     @staticmethod
     def make_tempo_equation_markup(
@@ -5227,7 +5027,7 @@ class StartTrillSpan:
                 pitch = self.pitch
             else:
                 pitch = component.written_pitch + self.interval
-            string = string + f" {pitch!s}"
+            string = string + f" {pitch.name}"
         bundle.after.spanner_starts.append(string)
         return bundle
 
@@ -6507,18 +6307,6 @@ class TimeSignature:
                 if self.denominator == argument.denominator:
                     return True
         return False
-
-    def __str__(self) -> str:
-        """
-        Gets string representation of time signature.
-
-        ..  container:: example
-
-            >>> str(abjad.TimeSignature((3, 8)))
-            '3/8'
-
-        """
-        return f"{self.numerator}/{self.denominator}"
 
     def _get_lilypond_format(self):
         result = []
