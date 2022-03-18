@@ -20,7 +20,7 @@ class Wrapper:
         >>> articulation = abjad.Articulation("accent")
         >>> abjad.attach(articulation, component, direction=abjad.UP)
         >>> abjad.get.wrapper(component)
-        Wrapper(annotation=None, context=None, deactivate=False, direction=<Vertical.UP: 1>, indicator=Articulation(name='accent', tweaks=None), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation=None, context=None, deactivate=False, direction=<Vertical.UP: 1>, indicator=Articulation(name='accent', tweaks=None), synthetic_offset=None, tag=Tag(''))
 
     ..  container:: example
 
@@ -95,7 +95,7 @@ class Wrapper:
         direction: _enums.Vertical = None,
         indicator: typing.Any = None,
         synthetic_offset: int = None,
-        tag: str | _tag.Tag | None = None,
+        tag: _tag.Tag = _tag.Tag(),
     ) -> None:
         assert not isinstance(indicator, type(self)), repr(indicator)
         if annotation is not None:
@@ -119,8 +119,8 @@ class Wrapper:
         self._synthetic_offset = synthetic_offset
         if tag is not None:
             assert isinstance(tag, str | _tag.Tag)
-        tag = _tag.Tag(tag)
-        self._tag: _tag.Tag = tag
+        assert isinstance(tag, _tag.Tag), repr(tag)
+        self._tag = tag
         if component is not None:
             self._bind_component(
                 component, check_duplicate_indicator=check_duplicate_indicator
@@ -632,10 +632,9 @@ class Wrapper:
 
     @tag.setter
     def tag(self, argument):
-        if not isinstance(argument, str | _tag.Tag):
-            raise Exception(f"string or tag: {argument!r}.")
-        tag = _tag.Tag(argument)
-        self._tag = tag
+        if not isinstance(argument, _tag.Tag):
+            raise Exception(f"must be tag: {argument!r}.")
+        self._tag = argument
 
 
 def annotate(component, annotation, indicator) -> None:
@@ -888,7 +887,7 @@ def attach(  # noqa: 302
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef('alto'), staff[0], wrapper=True)
-        Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag())
+        Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
 
     Otherwise returns none.
     """
@@ -963,6 +962,9 @@ def attach(  # noqa: 302
 
     if hasattr(attachable, "context"):
         context = context or attachable.context
+
+    if tag is None:
+        tag = _tag.Tag()
 
     wrapper_ = Wrapper(
         annotation=annotation,
@@ -1184,7 +1186,7 @@ def detach(argument, target=None, by_id=False):
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
         >>> abjad.detach(wrapper, wrapper.component)
-        (Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag()),)
+        (Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag('')),)
 
         >>> abjad.show(staff) # doctest: +SKIP
 

@@ -515,12 +515,6 @@ class Leaf(Component):
         """
         return f"{type(self).__name__}({self._get_compact_representation()!r})"
 
-    def __str__(self) -> str:
-        """
-        Gets string representation of leaf.
-        """
-        return self._get_compact_representation()
-
     ### PRIVATE METHODS ###
 
     def _copy_override_and_set_from_leaf(self, leaf):
@@ -2733,7 +2727,7 @@ class Chord(Leaf):
         return f"<{summary}>{duration}"
 
     def _get_summary(self):
-        return " ".join([str(_) for _ in self.note_heads])
+        return " ".join([_._get_chord_string() for _ in self.note_heads])
 
     ### PUBLIC PROPERTIES ###
 
@@ -3481,8 +3475,12 @@ class NoteHead:
 
         """
         strings = []
-        if self.written_pitch is not None:
-            string = str(self.written_pitch)
+        if isinstance(self.written_pitch, _pitch.NamedPitch):
+            string = self.written_pitch.name
+            strings.append(repr(string))
+        # drum note head:
+        elif isinstance(self.written_pitch, str):
+            string = self.written_pitch
             strings.append(repr(string))
         if self.is_cautionary:
             string = f"is_cautionary={self.is_cautionary!r}"
@@ -3499,27 +3497,17 @@ class NoteHead:
         string = ", ".join(strings)
         return f"{type(self).__name__}({string})"
 
-    def __str__(self) -> str:
-        """
-        Gets string representation of note-head.
+    ### PRIVATE METHODS ###
 
-        ..  container:: example
-
-            >>> note_head = abjad.NoteHead(13)
-            >>> str(note_head)
-            "cs''"
-
-        """
+    def _get_chord_string(self) -> str:
         result = ""
         if self.written_pitch:
-            result = str(self.written_pitch)
+            result = self.written_pitch.name
             if self.is_forced:
                 result += "!"
             if self.is_cautionary:
                 result += "?"
         return result
-
-    ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
         assert self.written_pitch
@@ -3532,7 +3520,11 @@ class NoteHead:
         written_pitch = self.written_pitch
         if isinstance(written_pitch, _pitch.NamedPitch):
             written_pitch = written_pitch.simplify()
-        kernel = str(written_pitch)
+            kernel = written_pitch.name
+        # drum note head:
+        else:
+            assert isinstance(written_pitch, str)
+            kernel = written_pitch
         if self.is_forced:
             kernel += "!"
         if self.is_cautionary:
@@ -3557,7 +3549,7 @@ class NoteHead:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def alternative(self) -> tuple["NoteHead", str, str]:
+    def alternative(self) -> tuple["NoteHead", _tag.Tag, _tag.Tag]:
         """
         Gets and sets note-head alternative.
 
@@ -3568,7 +3560,8 @@ class NoteHead:
             >>> note = abjad.Note("c''4")
             >>> alternative = copy.copy(note.note_head)
             >>> alternative.is_forced = True
-            >>> note.note_head.alternative = (alternative, "-PARTS", "+PARTS")
+            >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
+            >>> note.note_head.alternative = triple
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3604,7 +3597,8 @@ class NoteHead:
             >>> chord = abjad.Chord("<c' d' bf''>4")
             >>> alternative = copy.copy(chord.note_heads[0])
             >>> alternative.is_forced = True
-            >>> chord.note_heads[0].alternative = (alternative, "-PARTS", "+PARTS")
+            >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
+            >>> chord.note_heads[0].alternative = triple
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3651,8 +3645,8 @@ class NoteHead:
             assert len(argument) == 3, repr(argument)
             assert isinstance(argument[0], NoteHead), repr(argument)
             assert argument[0].alternative is None, repr(argument)
-            assert isinstance(argument[1], str), repr(argument)
-            assert isinstance(argument[2], str), repr(argument)
+            assert isinstance(argument[1], _tag.Tag), repr(argument)
+            assert isinstance(argument[2], _tag.Tag), repr(argument)
         self._alternative = argument
 
     @property
@@ -3887,7 +3881,6 @@ class NoteHead:
             self.alternative[0].written_pitch = written_pitch
 
 
-# TODO: replace in favor of abjad.NoteHead
 class DrumNoteHead(NoteHead):
     """
     Drum note-head.
@@ -3900,13 +3893,9 @@ class DrumNoteHead(NoteHead):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __documentation_section__ = "Note-heads"
 
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -6959,15 +6948,15 @@ class Voice(Context):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
-        e''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        d''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        c''4 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        b'4 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        c''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
-        e'4 None
-        f'4 None
-        e'8 None
-        d''8 Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("e''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("d''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("c''4") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("b'4") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("c''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
+        Note("e'4") None
+        Note("f'4") None
+        Note("e'8") None
+        Note("d''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=None)
 
     ..  container:: example
 
@@ -7032,15 +7021,15 @@ class Voice(Context):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
-        e''8 None
-        d''8 None
-        c''4 None
-        b'4 None
-        c''8 None
-        e'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        f'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        e'8 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        d''8 None
+        Note("e''8") None
+        Note("d''8") None
+        Note("c''4") None
+        Note("b'4") None
+        Note("c''8") None
+        Note("e'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        Note("f'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        Note("e'8") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        Note("d''8") None
 
     ..  container:: example
 
@@ -7105,15 +7094,15 @@ class Voice(Context):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
-        e''8 None
-        d''8 None
-        c''4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        b'4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        c''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        e'4 None
-        f'4 None
-        e'8 None
-        d''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("e''8") None
+        Note("d''8") None
+        Note("c''4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("b'4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("c''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("e'4") None
+        Note("f'4") None
+        Note("e'8") None
+        Note("d''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
 
     ..  container:: example
 
@@ -7181,15 +7170,15 @@ class Voice(Context):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
-        e''8 None
-        d''8 None
-        c''4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        b'4 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        c''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
-        e'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        f'4 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        e'8 Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
-        d''8 Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("e''8") None
+        Note("d''8") None
+        Note("c''4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("b'4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("c''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
+        Note("e'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        Note("f'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        Note("e'8") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=None)
+        Note("d''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=None)
 
     ..  container:: example
 

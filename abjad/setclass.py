@@ -1033,7 +1033,7 @@ class SetClass:
         assert isinstance(self.lex_rank, type(None) | bool)
         assert isinstance(self.transposition_only, type(None) | bool)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Gets string representation.
 
@@ -1068,7 +1068,6 @@ class SetClass:
             >>> print(set_class)
             SC(4-29){0, 2, 6, 7}
 
-        Returns string.
         """
         string = f"SC({self.cardinality}-{self.rank}){self.prime_form!s}"
         string = string.replace("PC", "")

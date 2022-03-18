@@ -874,15 +874,15 @@ class Parentage(collections.abc.Sequence):
             ...     depth = abjad.get.parentage(leaf).count(abjad.Voice)
             ...     print(leaf, depth)
             ...
-            e''8 1
-            d''8 1
-            c''4 2
-            b'4 2
-            c''8 2
-            e'4 2
-            f'4 2
-            e'8 2
-            d''8 1
+            Note("e''8") 1
+            Note("d''8") 1
+            Note("c''4") 2
+            Note("b'4") 2
+            Note("c''8") 2
+            Note("e'4") 2
+            Note("f'4") 2
+            Note("e'8") 2
+            Note("d''8") 1
 
         ..  container:: example
 

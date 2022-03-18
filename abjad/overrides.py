@@ -93,6 +93,8 @@ def format_scheme_value(
         return f"({string})"
     elif value is None:
         return "#f"
+    elif hasattr(value, "string"):
+        return value.string
     return str(value)
 
 

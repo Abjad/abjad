@@ -437,23 +437,6 @@ class MetricModulation:
         """
         return f"{type(self).__name__}(left_rhythm={self.left_rhythm!r}, right_rhythm={self.right_rhythm!r})"
 
-    def __str__(self) -> str:
-        r"""
-        Gets string representation of metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
-            ...     right_rhythm=abjad.Note("c'4"),
-            ... )
-
-            >>> print(str(metric_modulation))
-            \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #2 #3 #2 #0 #'(1 . 1)
-
-        """
-        return str(self._get_markup())
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_command_string(self):
@@ -485,7 +468,8 @@ class MetricModulation:
         return string
 
     def _get_lilypond_format(self):
-        return str(self)
+        markup = self._get_markup()
+        return markup.string
 
     def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
         bundle = _bundle.LilyPondFormatBundle()

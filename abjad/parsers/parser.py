@@ -96,12 +96,6 @@ class MarkupCommand:
             f"{type(self).__name__}(name={self.name!r}, arguments={self.arguments!r})"
         )
 
-    def __str__(self):
-        """
-        Gets string representation of markup command.
-        """
-        return self._get_lilypond_format()
-
     def _get_format_pieces(self):
         def recurse(iterable):
             result = []
@@ -592,9 +586,9 @@ class LilyPondEvent:
 
     ### SPECIAL METHODS ###
 
-    def __str__(self):
+    def __repr__(self):
         """
-        Gets string representation of LilyPond event.
+        Gets interpreter representation of LilyPond event.
 
         Returns string.
         """
@@ -603,16 +597,8 @@ class LilyPondEvent:
             if key == "name":
                 continue
             result += f", {key} = {getattr(self, key)!r}"
-        return result
-
-    def __repr__(self):
-        """
-        Gets interpreter representation of LilyPond event.
-
-        Returns string.
-        """
         name = type(self).__name__
-        return f"{name}({str(self)})"
+        return f"{name}({result})"
 
 
 class LilyPondFraction:
@@ -3175,7 +3161,7 @@ class LilyPondParser(Parser):
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = str(_pitch.Octave(new_oct))
+        octave_ticks = _pitch.Octave(new_oct).ticks
         pitch_class_name = _pitch._diatonic_pc_number_to_diatonic_pc_name[new_step % 7]
         accidental = str(_pitch.Accidental(new_alt))
         tmp_pitch = _pitch.NamedPitch(pitch_class_name + accidental + octave_ticks)
@@ -3185,7 +3171,7 @@ class LilyPondParser(Parser):
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = str(_pitch.Octave(new_oct))
+        octave_ticks = _pitch.Octave(new_oct).ticks
         pitch_class_name = _pitch._diatonic_pc_number_to_diatonic_pc_name[new_step % 7]
         accidental = str(_pitch.Accidental(new_alt))
         return _pitch.NamedPitch(pitch_class_name + accidental + octave_ticks)
@@ -4783,11 +4769,13 @@ class LilyPondSyntacticalDefinition:
 
     def p_full_markup__MARKUP__markup_top(self, p):
         "full_markup : MARKUP markup_top"
-        # assert isinstance(p[2], list), repr(p[2])
-        # item = (str, MarkupCommand)
-        # assert all(isinstance(_, item) for _ in p[2]), repr(p[2])
-        # p[0] = _markups.Markup(p[2])
-        string = " ".join([str(_) for _ in p[2]])
+        parts = []
+        for item in p[2]:
+            if isinstance(item, MarkupCommand):
+                parts.append(item._get_lilypond_format())
+            else:
+                parts.append(item)
+        string = " ".join(parts)
         string = rf"\markup {{ {string} }}"
         p[0] = _markups.Markup(string)
         self.client._lexer.pop_state()
@@ -6443,17 +6431,17 @@ class LilyPondSyntacticalDefinition:
     def p_steno_pitch__NOTENAME_PITCH(self, p):
         "steno_pitch : NOTENAME_PITCH"
         if isinstance(p[1], _pitch.NamedPitchClass):
-            p[0] = _pitch.NamedPitch(str(p[1]))
+            p[0] = _pitch.NamedPitch(p[1].name)
         elif p[1] in _lyconst.drums:
             p[0] = p[1]
 
     def p_steno_pitch__NOTENAME_PITCH__sub_quotes(self, p):
         "steno_pitch : NOTENAME_PITCH sub_quotes"
-        p[0] = _pitch.NamedPitch(str(p[1]) + "," * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name + "," * p[2])
 
     def p_steno_pitch__NOTENAME_PITCH__sup_quotes(self, p):
         "steno_pitch : NOTENAME_PITCH sup_quotes"
-        p[0] = _pitch.NamedPitch(str(p[1]) + "'" * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name + "'" * p[2])
 
     ### steno_tonic_pitch ###
 
@@ -6543,7 +6531,6 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
-        # p[0] = _indicators.MetronomeMark(str(p[2]), p[3].duration, p[5])
         p[0] = _indicators.MetronomeMark(
             reference_duration=p[3].duration,
             units_per_minute=p[5],
@@ -6695,12 +6682,6 @@ class SyntaxNode:
         Gets repr.
         """
         return f"{type(self).__name__}({self.type}, {type(self.value)})"
-
-    def __str__(self):
-        """
-        Gets string.
-        """
-        return "\n".join(self._format(self))
 
     def _format(self, obj, indent=0):
         space = ".  " * indent

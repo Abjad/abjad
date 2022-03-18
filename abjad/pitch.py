@@ -822,7 +822,8 @@ class Accidental:
         """
         raise NotImplementedError
 
-    def __str__(self):
+    # TODO: remove?
+    def __str__(self) -> str:
         """
         Gets string representation of accidental.
 
@@ -852,15 +853,13 @@ class Accidental:
             >>> str(abjad.Accidental("ss"))
             'ss'
 
-        Returns string.
         """
         if self.semitones in _accidental_semitones_to_abbreviation:
             return _accidental_semitones_to_abbreviation[self.semitones]
         character = "s"
         if self.semitones < 0:
             character = "f"
-        semitones = abs(self.semitones)
-        semitones, remainder = divmod(semitones, 1.0)
+        semitones, remainder = divmod(abs(self.semitones), 1.0)
         abbreviation = character * int(semitones)
         if remainder:
             abbreviation += f"q{character}"
@@ -1056,28 +1055,6 @@ class Octave:
         """
         return int(self.number)
 
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of octave.
-
-        Defined equal to LilyPond octave / tick representation of octave.
-
-        ..  container:: example
-
-            >>> str(abjad.Octave(4))
-            "'"
-
-            >>> str(abjad.Octave(1))
-            ',,'
-
-            >>> str(abjad.Octave(3))
-            ''
-
-        Returns string.
-        """
-        return self.ticks
-
     def _is_tick_string(argument):
         if not isinstance(argument, str):
             return False
@@ -1240,7 +1217,7 @@ class IntervalClass:
         """
         Hashes interval-class.
         """
-        return hash(self.__class__.__name__ + str(self))
+        return hash(self.__class__.__name__ + repr(self))
 
     def __lt__(self, argument) -> bool:
         """
@@ -1248,15 +1225,6 @@ class IntervalClass:
         """
         assert isinstance(argument, type(self))
         return self.number < argument.number
-
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of interval-class.
-
-        Returns string.
-        """
-        return str(self.number)
 
     @staticmethod
     def _named_to_numbered(direction, quality, diatonic_number):
@@ -1540,20 +1508,6 @@ class NamedIntervalClass(IntervalClass):
         Gets repr.
         """
         return f"{type(self).__name__}({self.name!r})"
-
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of named interval-class.
-
-        ..  container:: example
-
-            >>> str(abjad.NamedIntervalClass("-M9"))
-            '-M2'
-
-        Returns string.
-        """
-        return self.name
 
     def __sub__(self, argument):
         """
@@ -1851,7 +1805,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         named_interval = NamedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2
         )
-        string = str(named_interval)
+        string = named_interval.name
         return class_(string)
 
 
@@ -2021,28 +1975,6 @@ class NumberedIntervalClass(IntervalClass):
         """
         return f"{type(self).__name__}({self.number!r})"
 
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of numbered interval-class.
-
-        ..  container:: example
-
-            >>> str(abjad.NumberedIntervalClass(-13))
-            '-1'
-
-            >>> str(abjad.NumberedIntervalClass(0))
-            '0'
-
-            >>> str(abjad.NumberedIntervalClass(13))
-            '+1'
-
-        """
-        string = super().__str__()
-        if 0 < self.number:
-            string = "+" + string
-        return string
-
     def __sub__(self, argument):
         """
         Subtracts ``argument`` from numbered interval-class.
@@ -2082,6 +2014,16 @@ class NumberedIntervalClass(IntervalClass):
             return 0
         else:
             return 1
+
+    @property
+    def signed_string(self):
+        """
+        Gets signed string.
+        """
+        direction_symbol = _direction_number_to_direction_symbol[
+            _math.sign(self.number)
+        ]
+        return f"{direction_symbol}{abs(self.number)}"
 
     @classmethod
     def from_pitch_carriers(
@@ -2227,24 +2169,6 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         """
         return f"{type(self).__name__}({self.number!r})"
 
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of numbered inversion-equivalent
-        interval-class.
-
-        ..  container:: example
-
-            >>> str(abjad.NumberedInversionEquivalentIntervalClass(0))
-            '0'
-
-            >>> str(abjad.NumberedInversionEquivalentIntervalClass(1.5))
-            '1.5'
-
-        Returns string.
-        """
-        return str(self.number)
-
 
 @functools.total_ordering
 class Interval:
@@ -2300,17 +2224,17 @@ class Interval:
 
     def __eq__(self, argument) -> bool:
         """
-        Compares string formats.
+        Compares repr formats.
         """
         if isinstance(argument, type(self)):
-            return str(self) == str(argument)
+            return repr(self) == repr(argument)
         return False
 
     def __hash__(self) -> int:
         """
         Hashes interval.
         """
-        return hash(self.__class__.__name__ + str(self))
+        return hash(self.__class__.__name__ + repr(self))
 
     def __lt__(self, argument):
         """
@@ -2319,15 +2243,6 @@ class Interval:
         Returns true or false.
         """
         raise NotImplementedError
-
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of interval.
-
-        Returns string.
-        """
-        return str(self.number)
 
     def _from_interval_or_interval_class(self, argument):
         raise NotImplementedError
@@ -2731,19 +2646,6 @@ class NamedInterval(Interval):
 
         """
         return self * argument
-
-    # TODO: remove
-    def __str__(self) -> str:
-        """
-        Gets string representation of named interval.
-
-        ..  container:: example
-
-            >>> str(abjad.NamedInterval("+M9"))
-            '+M9'
-
-        """
-        return self.name
 
     def __sub__(self, argument) -> "NamedInterval":
         """
@@ -3241,11 +3143,6 @@ class NumberedInterval(Interval):
 
         Returns true or false.
         """
-        #        if not isinstance(argument, type(self)):
-        #            raise TypeError(f"must be numbered interval: {argument!r}.")
-        #        if not self.direction_number == argument.direction_number:
-        #            raise ValueError("can only compare intervals of same direction.")
-        #        return abs(self.number) < abs(argument.number)
         if isinstance(argument, type(self)):
             return self.number < argument.number
         return False
@@ -3288,16 +3185,6 @@ class NumberedInterval(Interval):
         Gets repr.
         """
         return f"{type(self).__name__}({self.number!r})"
-
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string.
-        """
-        direction_symbol = _direction_number_to_direction_symbol[
-            _math.sign(self.number)
-        ]
-        return f"{direction_symbol}{abs(self.number)}"
 
     def __sub__(self, argument) -> "NumberedInterval":
         """
@@ -3393,6 +3280,16 @@ class NumberedInterval(Interval):
 
         """
         return self.number
+
+    @property
+    def signed_string(self):
+        """
+        Gets signed string.
+        """
+        direction_symbol = _direction_number_to_direction_symbol[
+            _math.sign(self.number)
+        ]
+        return f"{direction_symbol}{abs(self.number)}"
 
     @classmethod
     def from_pitch_carriers(
@@ -3498,10 +3395,10 @@ class PitchClass:
 
     def __eq__(self, argument) -> bool:
         """
-        Compares string formats.
+        Compares reprs.
         """
         if isinstance(argument, type(self)):
-            return str(self) == str(argument)
+            return repr(self) == repr(argument)
         return False
 
     # TODO: remove
@@ -3517,7 +3414,7 @@ class PitchClass:
         """
         Hashes pitch-class.
         """
-        return hash(self.__class__.__name__ + str(self))
+        return hash(self.__class__.__name__ + repr(self))
 
     def __lt__(self, argument):
         """
@@ -3791,20 +3688,6 @@ class NamedPitchClass(PitchClass):
         Gets repr.
         """
         return f"{type(self).__name__}({self.name!r})"
-
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of named pitch-class.
-
-        ..  container:: example
-
-            >>> str(abjad.NamedPitchClass("cs"))
-            'cs'
-
-        Returns string.
-        """
-        return self.name
 
     def __sub__(self, argument) -> "NamedInversionEquivalentIntervalClass":
         """
@@ -4176,13 +4059,6 @@ class NumberedPitchClass(PitchClass):
         """
         return f"{type(self).__name__}({self.number!r})"
 
-    # TODO: remove
-    def __str__(self) -> str:
-        """
-        Gets string.
-        """
-        return str(self.number)
-
     def __sub__(
         self, argument
     ) -> typing.Union["NumberedPitchClass", "NumberedInversionEquivalentIntervalClass"]:
@@ -4472,7 +4348,7 @@ class Pitch:
         """
         Hashes pitch.
         """
-        return hash(self.__class__.__name__ + str(self))
+        return hash(self.__class__.__name__ + repr(self))
 
     def __lt__(self, argument):
         """
@@ -4904,25 +4780,6 @@ class NamedPitch(Pitch):
         else:
             return f"{type(self).__name__}({self.name!r})"
 
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string representation of named pitch.
-
-        ..  container:: example
-
-            >>> str(abjad.NamedPitch("c''"))
-            "c''"
-
-            >>> str(abjad.NamedPitch("cs''"))
-            "cs''"
-
-            >>> str(abjad.NamedPitch("df''"))
-            "df''"
-
-        """
-        return self.name
-
     def __sub__(self, argument) -> "NamedInterval":
         """
         Subtracts ``argument`` from named pitch.
@@ -4995,7 +4852,7 @@ class NamedPitch(Pitch):
         return diatonic_pitch_number
 
     def _get_lilypond_format(self):
-        return str(self)
+        return self.name
 
     def _list_format_contributions(self):
         contributions = []
@@ -5091,7 +4948,7 @@ class NamedPitch(Pitch):
             "df''"
 
         """
-        return f"{self.pitch_class!s}{self.octave!s}"
+        return f"{self.pitch_class.name}{self.octave.ticks}"
 
     @property
     def number(self) -> int | float:
@@ -5544,13 +5401,6 @@ class NumberedPitch(Pitch):
         Gets repr.
         """
         return f"{type(self).__name__}({self.number!r})"
-
-    # TODO: remove
-    def __str__(self):
-        """
-        Gets string.
-        """
-        return str(self.number)
 
     def __sub__(self, argument) -> "NumberedInterval":
         """

@@ -21,13 +21,6 @@ class Tag:
 
     ..  container:: example
 
-        Initializes from other tag:
-
-        >>> abjad.Tag(abjad.Tag("YELLOW"))
-        Tag('YELLOW')
-
-    ..  container:: example
-
         Raises exception on multiple only-edition tags:
 
         >>> abjad.Tag("+SEGMENT:+PARTS")
@@ -48,20 +41,12 @@ class Tag:
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_string", "_words")
 
-    ### INITIALIZER ###
-
-    def __init__(self, string: typing.Union[str, "Tag"] = None) -> None:
-        if isinstance(string, Tag):
-            string = str(string)
-        if string is not None:
-            assert not string.startswith(":"), repr(string)
-            words = string.split(":")
-        else:
-            words = []
+    def __init__(self, string: str = "") -> None:
+        assert isinstance(string, str), repr(string)
+        assert not string.startswith(":"), repr(string)
+        words = string.split(":")
         assert isinstance(words, list), repr(words)
         words_: list[str] = []
         for word in words:
@@ -84,10 +69,8 @@ class Tag:
             string = ":".join(words_)
             assert not string.startswith(":"), repr(string)
         else:
-            string = None
+            string = ""
         self._string = string
-
-    ### SPECIAL METHODS ###
 
     def __bool__(self):
         """
@@ -102,7 +85,7 @@ class Tag:
             True
 
         """
-        return bool(str(self))
+        return bool(self.string)
 
     def __contains__(self, argument) -> bool:
         """
@@ -123,7 +106,10 @@ class Tag:
             True
 
         """
-        return str(argument) in self.words
+        if isinstance(argument, str):
+            return argument in self.words
+        else:
+            return argument.string in self.words
 
     def __eq__(self, argument):
         """
@@ -158,7 +144,7 @@ class Tag:
 
         """
         if isinstance(argument, Tag):
-            return str(self) == str(argument)
+            return self.string == argument.string
         return False
 
     def __hash__(self):
@@ -175,7 +161,7 @@ class Tag:
             True
 
         """
-        return hash(self.__class__.__name__ + str(self))
+        return hash(self.__class__.__name__ + self.string)
 
     def __iter__(self):
         """
@@ -203,32 +189,15 @@ class Tag:
         else:
             return f"{type(self).__name__}({self.string!r})"
 
-    def __str__(self):
-        """
-        Changes tag to string.
-
-        ..  container:: example
-
-            >>> str(abjad.Tag())
-            ''
-
-            >>> str(abjad.Tag("-PARTS:-SCORE:DEFAULT_CLEF"))
-            '-PARTS:-SCORE:DEFAULT_CLEF'
-
-        """
-        return self.string or ""
-
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def string(self) -> str | None:
+    def string(self) -> str:
         """
         Gets string.
 
         ..  container:: example
 
-            >>> abjad.Tag().string is None
-            True
+            >>> abjad.Tag().string
+            ''
 
             >>> abjad.Tag("-PARTS:DEFAULT_CLEF").string
             '-PARTS:DEFAULT_CLEF'
@@ -249,8 +218,6 @@ class Tag:
         """
         return list(self._words)
 
-    ### PUBLIC METHODS ###
-
     def append(self, word: typing.Optional["Tag"]) -> "Tag":
         """
         Appends ``word`` to tag.
@@ -262,12 +229,12 @@ class Tag:
 
         """
         if not bool(word):
-            return Tag(self)
+            return Tag(self.string)
         assert isinstance(word, Tag), repr(word)
         words = []
-        if str(self) != "":
-            words.append(str(self))
-        words.append(str(word))
+        if self.string:
+            words.append(self.string)
+        words.append(word.string)
         string = ":".join(words)
         return Tag(string)
 
@@ -505,13 +472,13 @@ class Line:
 
             Lambdas:
 
-            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith("M")))
+            >>> line.match(lambda x: any(_ for _ in x if _.string.startswith("M")))
             True
 
-            >>> line.match(lambda x: any(_ for _ in x if str(_).startswith("S")))
+            >>> line.match(lambda x: any(_ for _ in x if _.string.startswith("S")))
             True
 
-            >>> line.match(lambda x: any(_ for _ in x if str(_)[0] in "SM"))
+            >>> line.match(lambda x: any(_ for _ in x if _.string[0] in "SM"))
             True
 
         ..  container:: example
@@ -875,9 +842,10 @@ def double_tag(strings, tag_, deactivate=None):
     """
     Double tags ``strings``.
     """
+    assert isinstance(tag_, Tag), repr(tag_)
     before_tags = []
     if tag_:
-        line = str(tag_)
+        line = tag_.string
         lines = line.split(":")
         lines = ["%! " + _ for _ in lines]
         before_tags.extend(lines)

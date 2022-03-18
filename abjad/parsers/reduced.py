@@ -455,19 +455,19 @@ class ReducedLyParser(Parser):
         """
         pitch : PITCHNAME
         """
-        p[0] = _pitch.NamedPitch(str(p[1]))
+        p[0] = _pitch.NamedPitch(p[1].name)
 
     def p_pitch__PITCHNAME__apostrophes(self, p):
         """
         pitch : PITCHNAME apostrophes
         """
-        p[0] = _pitch.NamedPitch(str(p[1]) + "'" * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name + "'" * p[2])
 
     def p_pitch__PITCHNAME__commas(self, p):
         """
         pitch : PITCHNAME commas
         """
-        p[0] = _pitch.NamedPitch(str(p[1]) + "," * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name + "," * p[2])
 
     def p_pitches__pitch(self, p):
         """

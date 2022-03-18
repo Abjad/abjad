@@ -1253,7 +1253,14 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
         if isinstance(next_leaf, _score.Note):
             interval = _pitch.NamedInterval.from_pitch_carriers(note, next_leaf)
             interval = prototype(interval)
-            label = _markups.Markup(rf"\markup {interval}")
+            if hasattr(interval, "name"):
+                label = _markups.Markup(rf"\markup {interval.name}")
+            elif isinstance(interval, _pitch.NumberedInversionEquivalentIntervalClass):
+                label = _markups.Markup(rf"\markup {interval.number}")
+            elif isinstance(
+                interval, _pitch.NumberedIntervalClass | _pitch.NumberedInterval
+            ):
+                label = _markups.Markup(rf"\markup {interval.signed_string}")
             if label is not None:
                 _attach(label, note, direction=direction)
 

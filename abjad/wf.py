@@ -816,7 +816,7 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         last_dynamic = None
-        last_tag = None
+        last_tag = _tag.Tag()
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         for wrapper in wrappers:
             parameter = getattr(wrapper.indicator, "parameter", None)
@@ -827,9 +827,10 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
                 last_tag = wrapper.tag
                 if isinstance(wrapper.indicator, _indicators.StartHairpin):
                     total += 1
-        if isinstance(last_dynamic, _indicators.StartHairpin) and str(
-            _tag.Tag("RIGHT_BROKEN")
-        ) not in str(last_tag):
+        if (
+            isinstance(last_dynamic, _indicators.StartHairpin)
+            and _tag.Tag("RIGHT_BROKEN").string not in last_tag.string
+        ):
             violators.append(wrapper.component)
     return violators, total
 
