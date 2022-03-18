@@ -1331,7 +1331,7 @@ class Timespan:
         return self.set_offsets(new_start_offset, new_stop_offset)
 
     def round_offsets(
-        self, multiplier, anchor=_enums.Left, must_be_wellformed=True
+        self, multiplier, anchor=_enums.LEFT, must_be_wellformed=True
     ) -> "Timespan":
         """
         Rounds timespan offsets to multiple of ``multiplier``.
@@ -1346,11 +1346,11 @@ class Timespan:
             >>> timespan.round_offsets(2)
             Timespan(Offset((0, 1)), Offset((2, 1)))
 
-            >>> timespan.round_offsets(2, anchor=abjad.Right)
+            >>> timespan.round_offsets(2, anchor=abjad.RIGHT)
             Timespan(Offset((-2, 1)), Offset((0, 1)))
 
             >>> timespan.round_offsets(
-            ...     2, anchor=abjad.Right, must_be_wellformed=False
+            ...     2, anchor=abjad.RIGHT, must_be_wellformed=False
             ... )
             Timespan(Offset((0, 1)), Offset((0, 1)))
 
@@ -1364,7 +1364,7 @@ class Timespan:
             int(round(self.stop_offset / multiplier)) * multiplier
         )
         if (new_start_offset == new_stop_offset) and must_be_wellformed:
-            if anchor is _enums.Left:
+            if anchor is _enums.LEFT:
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
@@ -1373,7 +1373,7 @@ class Timespan:
         )
         return result
 
-    def scale(self, multiplier, anchor=_enums.Left) -> "Timespan":
+    def scale(self, multiplier, anchor=_enums.LEFT) -> "Timespan":
         """
         Scales timespan by ``multiplier``.
 
@@ -1390,17 +1390,17 @@ class Timespan:
 
             Scale timespan relative to timespan stop offset:
 
-            >>> timespan.scale(abjad.Multiplier(2), anchor=abjad.Right)
+            >>> timespan.scale(abjad.Multiplier(2), anchor=abjad.RIGHT)
             Timespan(Offset((0, 1)), Offset((6, 1)))
 
         """
         multiplier = _duration.Multiplier(multiplier)
         assert 0 < multiplier
         new_duration = multiplier * self.duration
-        if anchor == _enums.Left:
+        if anchor == _enums.LEFT:
             new_start_offset = self.start_offset
             new_stop_offset = self.start_offset + new_duration
-        elif anchor == _enums.Right:
+        elif anchor == _enums.RIGHT:
             new_stop_offset = self.stop_offset
             new_start_offset = self.stop_offset - new_duration
         else:
@@ -3212,7 +3212,7 @@ class TimespanList(list):
     ### PUBLIC METHODS ###
 
     def clip_timespan_durations(
-        self, minimum=None, maximum=None, anchor=_enums.Left
+        self, minimum=None, maximum=None, anchor=_enums.LEFT
     ) -> "TimespanList":
         """
         Clips timespan durations.
@@ -3287,7 +3287,7 @@ class TimespanList(list):
             >>> timespans = timespans.clip_timespan_durations(
             ...     minimum=3,
             ...     maximum=7,
-            ...     anchor=abjad.Right,
+            ...     anchor=abjad.RIGHT,
             ... )
             >>> abjad.show(timespans, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
@@ -3297,7 +3297,7 @@ class TimespanList(list):
 
 
         """
-        assert anchor in (_enums.Left, _enums.Right)
+        assert anchor in (_enums.LEFT, _enums.RIGHT)
         if minimum is not None:
             minimum = _duration.Duration(minimum)
         if maximum is not None:
@@ -3307,7 +3307,7 @@ class TimespanList(list):
         timespans = type(self)()
         for timespan in self:
             if minimum is not None and timespan.duration < minimum:
-                if anchor is _enums.Left:
+                if anchor is _enums.LEFT:
                     new_timespan = timespan.set_duration(minimum)
                 else:
                     new_start_offset = timespan.stop_offset - minimum
@@ -3317,7 +3317,7 @@ class TimespanList(list):
                         stop_offset=timespan.stop_offset,
                     )
             elif maximum is not None and maximum < timespan.duration:
-                if anchor is _enums.Left:
+                if anchor is _enums.LEFT:
                     new_timespan = timespan.set_duration(maximum)
                 else:
                     new_start_offset = timespan.stop_offset - maximum
@@ -4400,7 +4400,7 @@ class TimespanList(list):
         return self
 
     def round_offsets(
-        self, multiplier, anchor=_enums.Left, must_be_wellformed=True
+        self, multiplier, anchor=_enums.LEFT, must_be_wellformed=True
     ) -> "TimespanList":
         """
         Rounds offsets of timespans in list to multiples of ``multiplier``.
@@ -4456,7 +4456,7 @@ class TimespanList(list):
 
             >>> rounded_timespans = timespans.round_offsets(
             ...     5,
-            ...     anchor=abjad.Right,
+            ...     anchor=abjad.RIGHT,
             ... )
             >>> abjad.show(rounded_timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
@@ -4478,7 +4478,7 @@ class TimespanList(list):
 
             >>> rounded_timespans = timespans.round_offsets(
             ...     5,
-            ...     anchor=abjad.Right,
+            ...     anchor=abjad.RIGHT,
             ...     must_be_wellformed=False,
             ... )
 
@@ -4500,7 +4500,7 @@ class TimespanList(list):
         self[:] = timespans
         return self
 
-    def scale(self, multiplier, anchor=_enums.Left) -> "TimespanList":
+    def scale(self, multiplier, anchor=_enums.LEFT) -> "TimespanList":
         """
         Scales timespan by ``multiplier`` relative to ``anchor``.
 
@@ -4534,7 +4534,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
-            >>> timespans = timespans.scale(2, anchor=abjad.Right)
+            >>> timespans = timespans.scale(2, anchor=abjad.RIGHT)
             >>> abjad.show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _

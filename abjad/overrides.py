@@ -141,13 +141,14 @@ def format_lilypond_value(argument) -> str:
     if argument is False:
         return "##f"
     if argument in (
-        _enums.Up,
-        _enums.Down,
-        _enums.Left,
-        _enums.Right,
-        _enums.Center,
+        _enums.UP,
+        _enums.DOWN,
+        _enums.LEFT,
+        _enums.RIGHT,
+        _enums.CENTER,
     ):
-        return rf"#{repr(argument).lower()}"
+        # return rf"#{repr(argument).lower()}"
+        return rf"#{argument.name.lower()}"
     if argument in lilypond_color_constants:
         return rf"#{argument}"
     if isinstance(argument, tuple) and len(argument) == 2:
@@ -1608,7 +1609,7 @@ class TweakInterface(Interface):
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> markup = abjad.Markup(r"\markup \italic Allegro")
             >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
-            >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+            >>> abjad.attach(markup, staff[0], direction=abjad.UP)
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> string = abjad.lilypond(staff, tags=True)
@@ -1631,7 +1632,7 @@ class TweakInterface(Interface):
             >>> abjad.tweak(
             ...     markup, deactivate=True, tag=abjad.Tag("+PARTS")
             ... ).color = "#red"
-            >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+            >>> abjad.attach(markup, staff[0], direction=abjad.UP)
             >>> abjad.show(staff) # doctest: +SKIP
 
             >>> string = abjad.lilypond(staff, tags=True)
@@ -1653,7 +1654,7 @@ class TweakInterface(Interface):
             >>> markup = abjad.Markup(r"\markup \italic Allegro")
             >>> abjad.tweak(markup, tag=abjad.Tag("+PARTS")).color = "#red"
             >>> abjad.attach(
-            ...     markup, staff[0], direction=abjad.Up, tag=abjad.Tag("RED:M1")
+            ...     markup, staff[0], direction=abjad.UP, tag=abjad.Tag("RED:M1")
             ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1931,7 +1932,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r'\markup "Allegro assai"')
         >>> abjad.tweak(markup).color = "#red"
-        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1955,7 +1956,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> markup_1 = abjad.Markup(r'\markup "Allegro assai"')
         >>> abjad.tweak(markup_1).color = "#red"
         >>> markup_2 = copy.copy(markup_1)
-        >>> abjad.attach(markup_2, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1977,7 +1978,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"')
         >>> abjad.tweak(markup).color = "#red"
-        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1999,11 +2000,11 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup_1 = abjad.Markup(r'\markup "Allegro assai ..."')
         >>> abjad.tweak(markup_1).color = "#red"
-        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP)
         >>> markup_2 = abjad.Markup(r'\markup "... ma non troppo"')
         >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
-        >>> abjad.attach(markup_2, staff[0], direction=abjad.Down)
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.DOWN)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2028,11 +2029,11 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup_1 = abjad.Markup(r'\markup "Allegro assai ..."')
         >>> abjad.tweak(markup_1).color = "#red"
-        >>> abjad.attach(markup_1, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP)
         >>> markup_2 = abjad.Markup(r'\markup "... ma non troppo"')
         >>> abjad.tweak(markup_2).color = "#blue"
         >>> abjad.tweak(markup_2).staff_padding = 4
-        >>> abjad.attach(markup_2, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2162,7 +2163,7 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
     """
     if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
-    constants = (_enums.Down, _enums.Left, _enums.Right, _enums.Up)
+    constants = (_enums.DOWN, _enums.LEFT, _enums.RIGHT, _enums.UP)
     prototype = (bool, int, float, str, tuple)
     if expression is True or argument in constants or isinstance(argument, prototype):
         interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)

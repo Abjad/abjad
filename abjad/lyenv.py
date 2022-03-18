@@ -5782,7 +5782,7 @@ engravers = {
         "properties_written": set([]),
     },
     "Vertical_align_engraver": {
-        "grobs_created": set(["VerticalAlignment"]),
+        "grobs_created": set(["Vertical"]),
         "properties_read": set(
             ["alignAboveContext", "alignBelowContext", "hasAxisGroup"]
         ),
@@ -6756,7 +6756,7 @@ grob_interfaces = {
         "spanner-interface",
         "vaticana-ligature-interface",
     ],
-    "VerticalAlignment": [
+    "Vertical": [
         "align-interface",
         "axis-group-interface",
         "grob-interface",

@@ -334,7 +334,7 @@ def remove_markup(argument) -> None:
 
 
 def vertical_moments(
-    argument, direction=_enums.Up, prototype=None, *, deactivate=False, tag=None
+    argument, direction=_enums.UP, prototype=None, *, deactivate=False, tag=None
 ):
     r'''
     Labels vertical moments.
@@ -752,7 +752,7 @@ def vertical_moments(
             raise TypeError(f"unknown prototype {prototype!r}.")
         assert string is not None
         label = _markups.Markup(rf"\markup \tiny {string}")
-        if direction is _enums.Up:
+        if direction is _enums.UP:
             leaf = vertical_moment.start_leaves[0]
         else:
             leaf = vertical_moment.start_leaves[-1]
@@ -760,7 +760,7 @@ def vertical_moments(
 
 
 def with_durations(
-    argument, *, denominator=None, direction=_enums.Up, in_seconds: bool = False
+    argument, *, denominator=None, direction=_enums.UP, in_seconds: bool = False
 ):
     r"""
     Labels logical ties in ``argument`` with durations.
@@ -834,7 +834,7 @@ def with_durations(
         _attach(label, logical_tie.head, direction=direction)
 
 
-def with_indices(argument, direction=_enums.Up, prototype=None) -> None:
+def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
     r"""
     Labels logical ties in ``argument`` with indices.
 
@@ -1042,7 +1042,7 @@ def with_indices(argument, direction=_enums.Up, prototype=None) -> None:
         _attach(label, first_leaf, direction=direction)
 
 
-def with_intervals(argument, direction=_enums.Up, prototype=None) -> None:
+def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
     r"""
     Labels consecutive notes in ``argument`` with intervals.
 
@@ -1258,7 +1258,7 @@ def with_intervals(argument, direction=_enums.Up, prototype=None) -> None:
                 _attach(label, note, direction=direction)
 
 
-def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
+def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
     r"""
     Labels logical ties in ``argument`` with pitches.
 
@@ -1563,7 +1563,7 @@ def with_pitches(argument, direction=_enums.Up, locale=None, prototype=None):
             _attach(label, leaf, direction=direction)
 
 
-def with_set_classes(argument, direction=_enums.Up, prototype=None):
+def with_set_classes(argument, direction=_enums.UP, prototype=None):
     r"""
     Labels selections ``argument`` with set-classes.
 
@@ -1743,7 +1743,7 @@ def with_start_offsets(
 
         >>> string = r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4"
         >>> staff = abjad.Staff(string)
-        >>> abjad.label.with_start_offsets(staff, direction=abjad.Up)
+        >>> abjad.label.with_start_offsets(staff, direction=abjad.UP)
         Duration(1, 1)
 
         >>> abjad.override(staff).TextScript.staff_padding = 4
@@ -1860,7 +1860,7 @@ def with_start_offsets(
 
     Returns total duration.
     """
-    direction = direction or _enums.Up
+    direction = direction or _enums.UP
     if global_offset is not None:
         assert isinstance(global_offset, _duration.Duration)
     for logical_tie in iterate_.logical_ties(argument):

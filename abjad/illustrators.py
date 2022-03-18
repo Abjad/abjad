@@ -143,7 +143,7 @@ def _illustrate_pitch_set(set_):
 
 
 def _illustrate_pitch_class_segment(
-    segment, markup_direction=_enums.Up, figure_name=None
+    segment, markup_direction=_enums.UP, figure_name=None
 ):
     notes = []
     for item in segment:
@@ -223,14 +223,14 @@ def attach_markup_struts(lilypond_file):
     """
     rhythmic_staff = lilypond_file[_score.Score][-1]
     first_leaf = _get.leaf(rhythmic_staff, 0)
-    markup = _markups.Markup(r"\markup I", direction=_enums.Up)
+    markup = _markups.Markup(r"\markup I", direction=_enums.UP)
     _bind.attach(markup, first_leaf)
     _overrides.tweak(markup).staff_padding = 11
     _overrides.tweak(markup).transparent = "##t"
     duration = _get.duration(rhythmic_staff)
     if _duration.Duration(6, 4) < duration:
         last_leaf = _get.leaf(rhythmic_staff, -1)
-        markup = _markups.Markup(r"\markup I", direction=_enums.Up)
+        markup = _markups.Markup(r"\markup I", direction=_enums.UP)
         _bind.attach(markup, last_leaf)
         _overrides.tweak(markup).staff_padding = 18
         _overrides.tweak(markup).transparent = "##t"
@@ -330,9 +330,9 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
 
         >>> note = abjad.Chord("<c bf'>4")
         >>> markup = abjad.Markup(r"\markup loco")
-        >>> abjad.attach(markup, chord, direction=abjad.Up)
+        >>> abjad.attach(markup, chord, direction=abjad.UP)
         >>> markup = abjad.Markup(r"\markup ped.")
-        >>> abjad.attach(markup, chord, direction=abjad.Down)
+        >>> abjad.attach(markup, chord, direction=abjad.DOWN)
         >>> score = abjad.illustrators.make_piano_score([chord])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -417,8 +417,8 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         for wrapper in markup_wrappers:
             markup = wrapper.indicator
             markup_copy = copy.copy(markup)
-            # if markup.direction in (_enums.Up, None):
-            if wrapper.direction in (_enums.Up, None):
+            # if markup.direction in (_enums.UP, None):
+            if wrapper.direction in (_enums.UP, None):
                 _bind.attach(markup_copy, treble_leaf, direction=wrapper.direction)
             else:
                 _bind.attach(markup_copy, bass_leaf, direction=wrapper.direction)
@@ -478,10 +478,10 @@ def selection_to_score_markup_string(selection):
     staff.lilypond_type = "RhythmicStaff"
     staff.remove_commands.append("Time_signature_engraver")
     staff.remove_commands.append("Staff_symbol_engraver")
-    _overrides.override(staff).Stem.direction = _enums.Up
+    _overrides.override(staff).Stem.direction = _enums.UP
     _overrides.override(staff).Stem.length = 5
     _overrides.override(staff).TupletBracket.bracket_visibility = True
-    _overrides.override(staff).TupletBracket.direction = _enums.Up
+    _overrides.override(staff).TupletBracket.direction = _enums.UP
     _overrides.override(staff).TupletBracket.minimum_length = 4
     _overrides.override(staff).TupletBracket.padding = 1.25
     _overrides.override(staff).TupletBracket.shorten_pair = "#'(-1 . -1.5)"

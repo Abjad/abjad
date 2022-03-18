@@ -322,10 +322,10 @@ class Component:
 
     def _get_markup(self, direction=None):
         wrappers = self._get_indicators(_markups.Markup, unwrap=False)
-        if direction is _enums.Up:
-            return tuple(_.indicator for _ in wrappers if _.direction is _enums.Up)
-        elif direction is _enums.Down:
-            return tuple(_.indicator for _ in wrappers if _.direction is _enums.Down)
+        if direction is _enums.UP:
+            return tuple(_.indicator for _ in wrappers if _.direction is _enums.UP)
+        elif direction is _enums.DOWN:
+            return tuple(_.indicator for _ in wrappers if _.direction is _enums.DOWN)
         indicators = [_.indicator for _ in wrappers]
         return indicators
 
@@ -807,7 +807,7 @@ class Container(Component):
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Articulation('^'), staff[0])
         >>> markup = abjad.Markup(r'\markup Allegro')
-        >>> abjad.attach(markup, staff[0], direction=abjad.Up)
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> abjad.attach(abjad.StemTremolo(), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1703,7 +1703,7 @@ class Container(Component):
             >>> container.extend("cs''16 e'' cs'' a'")
             >>> container.extend("fs'16 e' cs' fs")
             >>> start_slur = abjad.StartSlur()
-            >>> abjad.slur(container[:], direction=abjad.Down, start_slur=start_slur)
+            >>> abjad.slur(container[:], direction=abjad.DOWN, start_slur=start_slur)
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1917,7 +1917,7 @@ class AfterGraceContainer(Container):
         >>> abjad.attach(after_grace_container, voice[1])
         >>> leaves = abjad.select.leaves(voice, grace=None)
         >>> markup = abjad.Markup(r'\markup Allegro')
-        >>> abjad.attach(markup, leaves[1], direction=abjad.Up)
+        >>> abjad.attach(markup, leaves[1], direction=abjad.UP)
         >>> abjad.attach(abjad.Articulation("."), leaves[1])
         >>> abjad.show(voice) # doctest: +SKIP
 

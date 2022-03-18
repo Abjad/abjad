@@ -1681,7 +1681,7 @@ class LilyPondGrob:
             LilyPondGrob(name='UnaCordaPedal')
             LilyPondGrob(name='UnaCordaPedalLineSpanner')
             LilyPondGrob(name='VaticanaLigature')
-            LilyPondGrob(name='VerticalAlignment')
+            LilyPondGrob(name='Vertical')
             LilyPondGrob(name='VerticalAxisGroup')
             LilyPondGrob(name='VoiceFollower')
             LilyPondGrob(name='VoltaBracket')

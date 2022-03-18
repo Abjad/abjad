@@ -448,21 +448,21 @@ def _set_leaf_duration(leaf, new_duration):
         for indicator in _get.indicators(following_leaf):
             if i != following_leaf_count - 1:
                 if (
-                    getattr(indicator, "_time_orientation", _enums.Left)
-                    != _enums.Middle
+                    getattr(indicator, "_time_orientation", _enums.LEFT)
+                    != _enums.MIDDLE
                 ):
                     _bind.detach(indicator, following_leaf)
             elif (
-                getattr(indicator, "_time_orientation", _enums.Left) != _enums.Right
-                and getattr(indicator, "_time_orientation", _enums.Left)
-                != _enums.Middle
+                getattr(indicator, "_time_orientation", _enums.LEFT) != _enums.RIGHT
+                and getattr(indicator, "_time_orientation", _enums.LEFT)
+                != _enums.MIDDLE
             ):
                 _bind.detach(indicator, following_leaf)
         _bind.detach(_score.BeforeGraceContainer, following_leaf)
         following_leaves.append(following_leaf)
     if following_leaf_count > 0:
         for indicator in _get.indicators(leaf):
-            if getattr(indicator, "_time_orientation", _enums.Left) == _enums.Right:
+            if getattr(indicator, "_time_orientation", _enums.LEFT) == _enums.RIGHT:
                 _bind.detach(indicator, leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
@@ -703,12 +703,12 @@ def _split_leaf_by_durations(leaf, durations, cyclic=False):
     last_result_leaf = result_leaves[-1]
     for indicator in _get.indicators(leaf):
         _bind.detach(indicator, leaf)
-        direction = getattr(indicator, "_time_orientation", _enums.Left)
-        if direction is _enums.Left:
+        direction = getattr(indicator, "_time_orientation", _enums.LEFT)
+        if direction is _enums.LEFT:
             _bind.attach(indicator, first_result_leaf)
-        elif direction == _enums.Right:
+        elif direction == _enums.RIGHT:
             _bind.attach(indicator, last_result_leaf)
-        elif direction == _enums.Middle:
+        elif direction == _enums.MIDDLE:
             _bind.attach(indicator, first_result_leaf)
             indicator_copy = python_copy.copy(indicator)
             _bind.attach(indicator_copy, last_result_leaf)
@@ -1980,13 +1980,13 @@ def split(argument, durations, cyclic=False):
         ...     r"c'4 \p \< cs' d' ds' \f",
         ...     name='Voice_2',
         ...     )
-        >>> abjad.override(voice_1).Stem.direction = abjad.Up
-        >>> abjad.override(voice_1).Slur.direction = abjad.Up
+        >>> abjad.override(voice_1).Stem.direction = abjad.UP
+        >>> abjad.override(voice_1).Slur.direction = abjad.UP
         >>> container = abjad.Container(
         ...     [voice_1, voice_2],
         ...     simultaneous=True,
         ...     )
-        >>> abjad.override(voice_2).Stem.direction = abjad.Down
+        >>> abjad.override(voice_2).Stem.direction = abjad.DOWN
         >>> staff = abjad.Staff([container])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2297,7 +2297,7 @@ def split(argument, durations, cyclic=False):
         result.append(remaining_components)
     # partition split components according to input durations
     result = _sequence.flatten(result, depth=-1)
-    result = _select.partition_by_durations(result, durations_copy, fill=_enums.Exact)
+    result = _select.partition_by_durations(result, durations_copy, fill=_enums.EXACT)
     # return list of shards
     assert all(isinstance(_, list) for _ in result)
     return result

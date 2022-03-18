@@ -113,9 +113,9 @@ def test_LilyPondParser__spanners__Slur_07():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker([0] * 4, [(1, 4)]))
     start_slur = abjad.StartSlur()
-    abjad.slur(target[:3], direction=abjad.Down, start_slur=start_slur)
+    abjad.slur(target[:3], direction=abjad.DOWN, start_slur=start_slur)
     start_slur = abjad.StartSlur()
-    abjad.slur(target[2:], direction=abjad.Up, start_slur=start_slur)
+    abjad.slur(target[2:], direction=abjad.UP, start_slur=start_slur)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
