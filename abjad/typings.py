@@ -18,6 +18,10 @@ Number: typing.TypeAlias = int | float
 
 NumberPair: typing.TypeAlias = tuple[Number, Number]
 
+OffsetTyping: typing.TypeAlias = _duration.Offset | Number | IntegerPair
+
+OffsetSequenceTyping: typing.TypeAlias = typing.Sequence[OffsetTyping]
+
 PatternTyping: typing.TypeAlias = typing.Union[
     tuple[IntegerSequence], tuple[IntegerSequence, int]
 ]
