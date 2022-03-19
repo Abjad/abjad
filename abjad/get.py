@@ -3,7 +3,6 @@ import typing
 
 from . import _inspect, _iterate, _update
 from . import duration as _duration
-from . import format as _format
 from . import indicators as _indicators
 from . import iterate as iterate_
 from . import markups as _markups
@@ -1412,9 +1411,9 @@ def effective(
         ...     bar_line = abjad.get.effective(leaf, abjad.BarLine)
         ...     leaf, bar_line
         (Note("c'2"), None)
-        (Note("d'2"), BarLine(abbreviation='||', format_slot='after'))
-        (Note("e'2"), BarLine(abbreviation='||', format_slot='after'))
-        (Note("f'2"), BarLine(abbreviation='||', format_slot='after'))
+        (Note("d'2"), BarLine(abbreviation='||', site='after'))
+        (Note("e'2"), BarLine(abbreviation='||', site='after'))
+        (Note("f'2"), BarLine(abbreviation='||', site='after'))
 
     """
     if not isinstance(argument, _score.Component):
@@ -2385,9 +2384,9 @@ def indicators(
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
-            [LilyPondLiteral(argument='\\set fontSize = #-3', format_slot='opening', directed=False, tweaks=None)]
+            [LilyPondLiteral(argument='\\set fontSize = #-3', site='opening', directed=False, tweaks=None)]
         Chord("<e' g'>16"):
-            [StartBeam(tweaks=None), LilyPondLiteral(argument='\\slash', format_slot='opening', directed=False, tweaks=None), StartSlur(tweaks=None), LilyPondLiteral(argument='\\voiceOne', format_slot='opening', directed=False, tweaks=None), Clef(name='alto', hide=False), Articulation(name='>', tweaks=None)]
+            [StartBeam(tweaks=None), LilyPondLiteral(argument='\\slash', site='opening', directed=False, tweaks=None), StartSlur(tweaks=None), LilyPondLiteral(argument='\\voiceOne', site='opening', directed=False, tweaks=None), Clef(name='alto', hide=False), Articulation(name='>', tweaks=None)]
         Note("gs'16"):
             [Articulation(name='.', tweaks=None)]
         Note("a'16"):
@@ -2397,9 +2396,9 @@ def indicators(
         Voice("e'4", name='Music_Voice'):
             []
         Note("e'4"):
-            [LilyPondLiteral(argument='\\voiceTwo', format_slot='opening', directed=False, tweaks=None), Articulation(name='.', tweaks=None)]
+            [LilyPondLiteral(argument='\\voiceTwo', site='opening', directed=False, tweaks=None), Articulation(name='.', tweaks=None)]
         Note("f'4"):
-            [LilyPondLiteral(argument='\\oneVoice', format_slot='absolute_before', directed=False, tweaks=None), Articulation(name='.', tweaks=None)]
+            [LilyPondLiteral(argument='\\oneVoice', site='absolute_before', directed=False, tweaks=None), Articulation(name='.', tweaks=None)]
         AfterGraceContainer("fs'16"):
             []
         Note("fs'16"):
@@ -3643,104 +3642,6 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
     """
     generator = iterate_.pitches(argument)
     return set(generator)
-
-
-def report_modifications(argument) -> str:
-    r"""
-    Reports modifications.
-
-    ..  container:: example
-
-        Reports container modifications:
-
-        >>> container = abjad.Container("c'8 d'8 e'8 f'8")
-        >>> abjad.override(container).NoteHead.color = "#red"
-        >>> abjad.override(container).NoteHead.style = "#'harmonic"
-        >>> abjad.show(container) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(container)
-            >>> print(string)
-            {
-                \override NoteHead.color = #red
-                \override NoteHead.style = #'harmonic
-                c'8
-                d'8
-                e'8
-                f'8
-                \revert NoteHead.color
-                \revert NoteHead.style
-            }
-
-        >>> report = abjad.get.report_modifications(container)
-        >>> print(report)
-        {
-            \override NoteHead.color = #red
-            \override NoteHead.style = #'harmonic
-            %%% 4 components omitted %%%
-            \revert NoteHead.color
-            \revert NoteHead.style
-        }
-
-    ..  container:: example
-
-        Reports leaf modifications:
-
-        >>> container = abjad.Container("c'8 d'8 e'8 f'8")
-        >>> abjad.attach(abjad.Clef('alto'), container[0])
-        >>> abjad.override(container[0]).NoteHead.color = "#red"
-        >>> abjad.override(container[0]).Stem.color = "#red"
-        >>> abjad.show(container) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(container)
-            >>> print(string)
-            {
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
-                \clef "alto"
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-
-        >>> report = abjad.get.report_modifications(container[0])
-        >>> print(report)
-        slot "absolute before":
-        slot "before":
-            grob overrides:
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
-        slot "opening":
-            commands:
-                \clef "alto"
-        slot "contents slot":
-            leaf body:
-                c'8
-        slot "closing":
-        slot "after":
-        slot "absolute after":
-
-    """
-    if isinstance(argument, _score.Container):
-        bundle = _format.bundle_format_contributions(argument)
-        result: list[str] = []
-        for slot in ("before", "open brackets", "opening"):
-            lines = argument._get_format_contributions_for_slot(slot, bundle)
-            result.extend(lines)
-        line = f"    %%% {len(argument)} components omitted %%%"
-        result.append(line)
-        for slot in ("closing", "close brackets", "after"):
-            lines = argument._get_format_contributions_for_slot(slot, bundle)
-            result.extend(lines)
-        return "\n".join(result)
-    elif isinstance(argument, _score.Leaf):
-        return _format._report_leaf_format_contributions(argument)
-    else:
-        return f"only defined for components: {argument}."
 
 
 def sounding_pitch(argument) -> _pitch.NamedPitch:

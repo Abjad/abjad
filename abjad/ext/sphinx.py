@@ -24,9 +24,9 @@ from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
 from .. import lilypondfile as _lilypondfile
+from .. import tag as _tag
 from ..configuration import Configuration
 from ..contextmanagers import TemporaryDirectoryChange
-from ..format import remove_tags
 from ..illustrators import illustrate
 from ..io import Illustrator, LilyPondIO, Player
 
@@ -264,7 +264,7 @@ class LilyPondExtension(Extension):
             illustration["score"].items.append(block)
         illustration.lilypond_version_token = r'\version "2.19.83"'
         code = illustration._get_lilypond_format()
-        code = remove_tags(code)
+        code = _tag.remove_tags(code)
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
         node["no-trim"] = self.no_trim

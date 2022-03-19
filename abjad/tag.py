@@ -1,6 +1,8 @@
 import dataclasses
 import typing
 
+from . import _indent
+
 
 class Tag:
     """
@@ -558,7 +560,7 @@ def activate(text, tag, skipped=False):
         ... )
 
         >>> text = abjad.lilypond(staff, tags=True)
-        >>> text = abjad.format.left_shift_tags(text)
+        >>> text = abjad.tag.left_shift_tags(text)
         >>> print(text)
         \new Staff
         {
@@ -700,10 +702,10 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         ...     markup,
         ...     staff[0],
         ...     tag=abjad.Tag("RED_MARKUP"),
-        ...     )
+        ... )
 
         >>> text = abjad.lilypond(staff, tags=True)
-        >>> text = abjad.format.left_shift_tags(text)
+        >>> text = abjad.tag.left_shift_tags(text)
         >>> print(text)
         \new Staff
         {
@@ -860,3 +862,44 @@ def double_tag(strings, tag_, deactivate=None):
         result.extend(before_tags)
         result.append(right_tagged_line)
     return result
+
+
+def left_shift_tags(text, realign=None) -> str:
+    """
+    Left shifts tags in ``strings`` and realigns to column ``realign``.
+    """
+    strings = text.split("\n")
+    strings_ = []
+    for string in strings:
+        if "%@% " not in string or "%!" not in string:
+            strings_.append(string)
+            continue
+        if not string.startswith(4 * " "):
+            strings_.append(string)
+            continue
+        string_ = string[4:]
+        tag_start = string_.find("%!")
+        string_ = list(string_)
+        string_[tag_start:tag_start] = _indent.INDENT
+        string_ = "".join(string_)
+        strings_.append(string_)
+    text = "\n".join(strings_)
+    return text
+
+
+def remove_tags(string) -> str:
+    """
+    Removes all tags from ``string``.
+    """
+    lines = []
+    for line in string.split("\n"):
+        if "%!" not in line:
+            lines.append(line)
+            continue
+        tag_start = line.find("%!")
+        line = line[:tag_start]
+        line = line.rstrip()
+        if line:
+            lines.append(line)
+    string = "\n".join(lines)
+    return string

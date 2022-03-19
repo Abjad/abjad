@@ -20,7 +20,7 @@ from . import (
 )
 from ._version import __version__, __version_info__
 from .bind import Wrapper, annotate, attach, detach
-from .bundle import LilyPondFormatBundle, SlotContributions
+from .bundle import LilyPondFormatBundle
 from .configuration import (
     Configuration,
     list_all_classes,
@@ -66,9 +66,8 @@ from .exceptions import (
     UnboundedTimeIntervalError,
     WellformednessError,
 )
-from .format import lilypond
 from .get import Lineage
-from .illustrators import illustrate
+from .illustrators import illustrate, lilypond
 from .indicators import (
     Arpeggio,
     Articulation,
@@ -83,6 +82,7 @@ from .indicators import (
     KeyCluster,
     KeySignature,
     LaissezVibrer,
+    LilyPondLiteral,
     MarginMarkup,
     MetronomeMark,
     Mode,
@@ -180,10 +180,9 @@ from .meter import Meter, MetricAccentKernel
 from .metricmodulation import MetricModulation
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
 from .overrides import (
-    IndexedTweakManager,
-    IndexedTweakManagers,
+    IndexedTweakInterface,
+    IndexedTweakInterfaces,
     Interface,
-    LilyPondLiteral,
     LilyPondOverride,
     LilyPondSetting,
     OverrideInterface,
@@ -223,7 +222,6 @@ from .pitch import (
     Octave,
     Pitch,
     PitchClass,
-    PitchTyping,
     StaffPosition,
 )
 from .ratio import NonreducedRatio, Ratio
@@ -364,8 +362,8 @@ __all__ = [
     "Harpsichord",
     "Horizontal",
     "ImpreciseMetronomeMarkError",
-    "IndexedTweakManager",
-    "IndexedTweakManagers",
+    "IndexedTweakInterface",
+    "IndexedTweakInterfaces",
     "Infinity",
     "Instrument",
     "IntegerPair",
@@ -453,7 +451,6 @@ __all__ = [
     "Pitch",
     "PitchClass",
     "PitchRange",
-    "PitchTyping",
     "ProgressIndicator",
     "Prototype",
     "Ratio",
@@ -470,7 +467,6 @@ __all__ = [
     "SetClass",
     "SettingInterface",
     "Skip",
-    "SlotContributions",
     "SopraninoSaxophone",
     "SopranoSaxophone",
     "SopranoVoice",

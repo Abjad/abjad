@@ -146,9 +146,8 @@ ignored_classes = (
     abjad.LilyPondOverride,
     abjad.LilyPondSetting,
     abjad.Lineage,
-    abjad.Meter,  # TODO: should abjad.Meter pickle?
+    abjad.Meter,  # TODO: make abjad.Meter pickle
     abjad.NoteMaker,
-    abjad.SlotContributions,
 )
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 

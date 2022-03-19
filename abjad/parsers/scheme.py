@@ -642,13 +642,6 @@ class SchemeParser(Parser):
         list : L_PAREN data datum PERIOD datum R_PAREN
         """
         p.slice[0].cursor_end = p.slice[-1].cursor_end
-        result = p[2] + [p[3]] + [p[5]]
-        if len(result) == 2:
-            raise Exception(result, "CCC")
-            p[0] = Scheme(f"({result[0]} . {result[1]})", verbatim=True)
-        else:
-            raise Exception(result, "DDD")
-            p[0] = Scheme(result)
         self.expression_depth -= 1
 
     ### abbreviation ###

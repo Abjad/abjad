@@ -2,9 +2,6 @@ import abjad
 
 
 def test_Tuplet_grob_override_01():
-    """
-    Tuplets bracket grob abjad.overrides at before and after slots.
-    """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8 f'8")
     abjad.override(tuplet).Glissando.thickness = 3

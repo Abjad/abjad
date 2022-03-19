@@ -2,509 +2,348 @@ import copy
 import dataclasses
 import typing
 
+from . import _indent
 from . import bundle as _bundle
 from . import enums as _enums
-from . import format as _format
 from . import lyenv as _lyenv
 from . import string as _string
 from . import tag as _tag
 
 
-def format_embedded_scheme_value(value):
-    """
-    Formats embedded Scheme ``value``.
-    """
-    result = format_scheme_value(value)
-    if isinstance(value, bool):
-        result = "#" + result
+def _format_scheme_value(value):
+    if value is True:
+        result = "##t"
+    elif value is False:
+        result = "##f"
+    elif isinstance(value, int | float):
+        result = str(value)
+    elif value is None:
+        result = "##f"
+    elif isinstance(value, _enums.Horizontal | _enums.Vertical):
+        result = rf"#{value.name.lower()}"
+    elif isinstance(value, tuple) and len(value) == 2:
+        result = f"#'({value[0]} . {value[1]})"
+    else:
+        assert isinstance(value, str), repr(value)
+        result = str(value)
     return result
 
 
-def format_scheme_value(
-    value: typing.Any, force_quotes: bool = False, verbatim: bool = False
-) -> str:
-    r"""
-    Formats ``value`` in a scheme-like way.
-
-    ..  container:: example
-
-        Some basic values:
-
-        >>> abjad.overrides.format_scheme_value(1)
-        '1'
-
-        >>> abjad.overrides.format_scheme_value('foo')
-        'foo'
-
-        >>> abjad.overrides.format_scheme_value('bar baz')
-        '"bar baz"'
-
-        >>> abjad.overrides.format_scheme_value([1.5, True, False])
-        '(1.5 #t #f)'
-
-    ..  container:: example
-
-        Strings without whitespace can be forcibly quoted via the
-        ``force_quotes`` keyword:
-
-        >>> abjad.overrides.format_scheme_value(
-        ...     'foo',
-        ...     force_quotes=True,
-        ... )
-        '"foo"'
-
-    ..  container:: example
-
-        Set verbatim to true to format value exactly (with only hash
-        preprended):
-
-        >>> string = '(lambda (grob) (grob-interpret-markup grob'
-        >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
-        >>> abjad.overrides.format_scheme_value(string, verbatim=True)
-        '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))'
-
-    ..  container:: example
-
-        Hash symbol at the beginning of a string does not result in quoted
-        output:
-
-        >>> string = '#1-finger'
-        >>> abjad.overrides.format_scheme_value(string)
-        '#1-finger'
-
-    """
-    if isinstance(value, str) and verbatim:
-        return value
-    elif isinstance(value, str) and not verbatim:
-        value = value.replace('"', r"\"")
-        if value.startswith("#"):
-            pass
-        elif value.startswith("\\"):
-            pass
-        elif force_quotes or " " in value or "#" in value:
-            return f'"{value}"'
-        return value
-    elif value is True:
-        return "#t"
-    elif value is False:
-        return "#f"
-    elif isinstance(value, list | tuple):
-        string = " ".join(format_scheme_value(_) for _ in value)
-        return f"({string})"
-    elif value is None:
-        return "#f"
-    elif hasattr(value, "string"):
-        return value.string
-    return str(value)
-
-
-def format_lilypond_attribute(attribute) -> str:
-    """
-    Formats LilyPond ``attribute``.
-    """
+def _format_lilypond_attribute(attribute):
     assert isinstance(attribute, str), repr(attribute)
     attribute = attribute.replace("__", ".")
     result = attribute.replace("_", "-")
     return result
 
 
-lilypond_color_constants = (
-    "black",
-    "blue",
-    "center",
-    "cyan",
-    "darkblue",
-    "darkcyan",
-    "darkgreen",
-    "darkmagenta",
-    "darkred",
-    "darkyellow",
-    "down",
-    "green",
-    "grey",
-    "left",
-    "magenta",
-    "red",
-    "right",
-    "up",
-    "white",
-    "yellow",
-)
-
-
-def format_lilypond_value(argument) -> str:
-    """
-    Formats LilyPond value.
-    """
-    if "_get_lilypond_format" in dir(argument):
-        return argument._get_lilypond_format()
-    if argument is True:
-        return "##t"
-    if argument is False:
-        return "##f"
-    if argument in (
-        _enums.UP,
-        _enums.DOWN,
-        _enums.LEFT,
-        _enums.RIGHT,
-        _enums.CENTER,
-    ):
-        # return rf"#{repr(argument).lower()}"
-        return rf"#{argument.name.lower()}"
-    if argument in lilypond_color_constants:
-        return rf"#{argument}"
-    if isinstance(argument, tuple) and len(argument) == 2:
-        return f"#'({argument[0]} . {argument[1]})"
-    return str(argument)
-
-
-def make_lilypond_override_string(
-    grob, attribute, value, context=None, once=False
-) -> str:
-    """
-    Makes LilyPond override string.
-    """
-    grob = _string.to_upper_camel_case(grob)
-    attribute = format_lilypond_attribute(attribute)
-    value = format_lilypond_value(value)
-    if context is not None:
-        context = _string.capitalize_start(context) + "."
-    else:
-        context = ""
-    if once is True:
-        once = r"\once "
-    else:
-        once = ""
-    result = rf"{once}\override {context}{grob}.{attribute} = {value}"
-    return result
-
-
-def make_lilypond_revert_string(grob, attribute, context=None) -> str:
-    """
-    Makes LilyPond revert string.
-    """
-    grob = _string.to_upper_camel_case(grob)
-    dotted = format_lilypond_attribute(attribute)
-    if context is not None:
-        context = _string.to_upper_camel_case(context)
-        context += "."
-    else:
-        context = ""
-    result = rf"\revert {context}{grob}.{dotted}"
-    return result
-
-
-def make_lilypond_tweak_string(
-    attribute, value, *, directed=True, grob=None, literal=None
-) -> str:
-    """
-    Makes LilyPond tweak string.
-    """
+def _make_lilypond_tweak_string(attribute, value, *, directed=True, grob=None) -> str:
     if grob is not None:
         grob = _string.to_upper_camel_case(grob)
         grob += "."
     else:
         grob = ""
-    attribute = format_lilypond_attribute(attribute)
-    if not literal:
-        value = format_lilypond_value(value)
+    attribute = _format_lilypond_attribute(attribute)
+    value = _format_scheme_value(value)
     string = rf"\tweak {grob}{attribute} {value}"
     if directed:
         string = "- " + string
     return string
 
 
-@dataclasses.dataclass(slots=True, unsafe_hash=True)
-class LilyPondLiteral:
+@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+class LilyPondOverride:
     r"""
-    LilyPond literal.
+    LilyPond grob override.
 
     ..  container:: example
 
-        Dotted slur:
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
-        >>> abjad.attach(literal, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \slurDotted
-                c'8
-                (
-                d'8
-                e'8
-                f'8
-                )
-            }
-
-    ..  container:: example
-
-        Use the absolute before and absolute after format slots like this:
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
-        >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral("", format_slot="absolute_before")
-        >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral(
-        ...     "% before all formatting",
-        ...     format_slot="absolute_before",
+        >>> override = abjad.LilyPondOverride(
+        ...    lilypond_type="Staff",
+        ...    grob_name="TextSpanner",
+        ...    once=True,
+        ...    property_path=(
+        ...        "bound-details",
+        ...        "left",
+        ...        "text",
+        ...    ),
+        ...    value=r"\markup \bold { over pressure }",
         ... )
-        >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral("", format_slot="absolute_after")
-        >>> abjad.attach(literal, staff[-1])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> print(override.override_string)
+        \once \override Staff.TextSpanner.bound-details.left.text = \markup \bold { over pressure }
 
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-            <BLANKLINE>
-                % before all formatting
-                \slurDotted
-                c'8
-                (
-                d'8
-                e'8
-                f'8
-                )
-            <BLANKLINE>
-            }
-
-    ..  container:: example
-
-        LilyPond literals can be tagged:
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
-        >>> abjad.attach(literal, staff[0], tag=abjad.Tag("+PARTS"))
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(staff, tags=True)
-        >>> print(string)
-        \new Staff
-        {
-            %! +PARTS
-            \slurDotted
-            c'8
-            (
-            d'8
-            e'8
-            f'8
-            )
-        }
-
-    ..  container:: example
-
-        Multiline input is allowed:
-
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.slur(staff[:])
-        >>> lines = [
-        ...     r"\stopStaff",
-        ...     r"\startStaff",
-        ...     r"\once \override Staff.StaffSymbol.color = #red",
-        ...     ]
-        >>> literal = abjad.LilyPondLiteral(lines)
-        >>> abjad.attach(literal, staff[2], tag=abjad.Tag("+PARTS"))
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(staff, tags=True)
-        >>> print(string)
-        \new Staff
-        {
-            c'8
-            (
-            d'8
-            %! +PARTS
-            \stopStaff
-            %! +PARTS
-            \startStaff
-            %! +PARTS
-            \once \override Staff.StaffSymbol.color = #red
-            e'8
-            f'8
-            )
-        }
-
-    ..  container:: example
-
-        REGRESSION. Duplicate literals are allowed:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral("% text")
-        >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral("% text")
-        >>> abjad.attach(literal, staff[0])
-
-        >>> string = abjad.lilypond(staff)
-        >>> print(string)
-        \new Staff
-        {
-            % text
-            % text
-            c'4
-            d'4
-            e'4
-            f'4
-        }
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-        >>> abjad.tweak(literal).color = "#blue"
-        >>> abjad.attach(literal, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                - \tweak color #blue
-                \f
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Directed literal:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-        >>> abjad.tweak(literal).color = "#blue"
-        >>> abjad.tweak(literal).DynamicLineSpanner.staff_padding = 5
-        >>> abjad.attach(literal, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                - \tweak DynamicLineSpanner.staff-padding 5
-                - \tweak color #blue
-                \f
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Nondirected literal:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral(
-        ...     r"\breathe",
-        ...     "after",
-        ...     directed=False,
+        >>> override = abjad.LilyPondOverride(
+        ...    lilypond_type="Staff",
+        ...    grob_name="TextSpanner",
+        ...    once=True,
+        ...    property_path="bound_details__left__text",
+        ...    value=r"\markup \bold { over pressure }",
         ... )
-        >>> abjad.tweak(literal).color = "#blue"
-        >>> abjad.attach(literal, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                \tweak color #blue
-                \breathe
-                d'4
-                e'4
-                f'4
-            }
-
-        Proper use of the ``directed`` property entails searching the LilyPond
-        docs to understand whether LilyPond treats any particular command as
-        directed or not. Most LilyPond commands are directed. LilyPond insists
-        that a few commands (include ``\breathe``, ``\key``, ``\mark``) must
-        not be directed.
+        >>> print(override.override_string)
+        \once \override Staff.TextSpanner.bound-details.left.text = \markup \bold { over pressure }
 
     """
 
-    argument: str | list[str] = ""
-    # TODO: probaby change default to "before"
-    format_slot: str = "opening"
-    directed: bool = False
-    tweaks: typing.Optional["TweakInterface"] = None
+    lilypond_type: str | None = None
+    grob_name: str = "NoteHead"
+    once: bool = False
+    is_revert: bool = False
+    property_path: str | typing.Sequence[str] = "color"
+    value: bool | int | float | str = "#red"
 
-    _allowable_format_slots = (
-        "absolute_after",
-        "absolute_before",
-        "after",
-        "before",
-        "closing",
-        "opening",
-    )
-
-    _can_attach_to_containers = True
-    _format_leaf_children = False
+    _format_leaf_children: typing.ClassVar[bool] = False
 
     def __post_init__(self):
-        assert self.format_slot in self._allowable_format_slots, repr(self.format_slot)
-        if self.directed is not None:
-            self.directed = bool(self.directed)
-        self.tweaks = TweakInterface.set_dataclass_tweaks(self, self.tweaks)
-
-    # TODO: activate this:
-    #    def _before_attach(self, component):
-    #        if self.format_slot not in component._allowable_format_slots:
-    #            message = f"{type(component).__name__} does not accept"
-    #            message += f" format slot {repr(self.format_slot)}."
-    #            raise Exception(message)
-
-    def _get_format_pieces(self):
-        if isinstance(self.argument, str):
-            return [self.argument]
-        assert isinstance(self.argument, list)
-        return self.argument[:]
+        if self.lilypond_type is not None:
+            assert isinstance(self.lilypond_type, str)
+        assert isinstance(self.grob_name, str)
+        assert isinstance(self.once, bool), repr(self.once)
+        assert isinstance(self.is_revert, bool)
+        property_path_: tuple[str, ...]
+        if isinstance(self.property_path, str):
+            property_path_ = (self.property_path,)
+        else:
+            property_path_ = tuple(self.property_path)
+        assert all(isinstance(_, str) for _ in property_path_)
+        self.property_path = property_path_
+        prototype = (
+            bool | int | float | str | _enums.Horizontal | _enums.Vertical | tuple
+        )
+        assert isinstance(self.value, prototype), repr(self.value)
 
     def _get_lilypond_format_bundle(self, component=None):
         bundle = _bundle.LilyPondFormatBundle()
-        format_slot = getattr(bundle, self.format_slot)
-        if self.tweaks:
-            tweaks = self.tweaks._list_format_contributions(directed=self.directed)
-            format_slot.commands.extend(tweaks)
-        pieces = self._get_format_pieces()
-        format_slot.commands.extend(pieces)
+        if not self.once:
+            revert_format = "\n".join(self.revert_format_pieces)
+            bundle.grob_reverts.append(revert_format)
+        if not self.is_revert:
+            override_format = "\n".join(self.override_format_pieces)
+            bundle.grob_overrides.append(override_format)
         return bundle
+
+    def _override_property_path_string(self):
+        parts = []
+        if self.lilypond_type is not None:
+            parts.append(self.lilypond_type)
+        parts.append(self.grob_name)
+        for part in self.property_path:
+            part = _format_lilypond_attribute(part)
+            parts.append(part)
+        path = ".".join(parts)
+        return path
+
+    def _revert_property_path_string(self):
+        parts = []
+        if self.lilypond_type is not None:
+            parts.append(self.lilypond_type)
+        parts.append(self.grob_name)
+        part = _format_lilypond_attribute(self.property_path[0])
+        parts.append(part)
+        path = ".".join(parts)
+        return path
+
+    @property
+    def override_format_pieces(self) -> tuple[str, ...]:
+        r"""
+        Gets LilyPond grob override \override format pieces.
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondOverride(
+            ...    lilypond_type="Staff",
+            ...    grob_name="TextSpanner",
+            ...    once=True,
+            ...    property_path=(
+            ...        "bound-details",
+            ...        "left",
+            ...        "text",
+            ...    ),
+            ...    value=r"\markup \bold { over pressure }",
+            ... )
+            >>> for line in override.override_format_pieces:
+            ...     line
+            ...
+            '\\once \\override Staff.TextSpanner.bound-details.left.text = \\markup \\bold { over pressure }'
+
+        """
+        result = []
+        if self.once:
+            result.append(r"\once")
+        result.append(r"\override")
+        result.append(self._override_property_path_string())
+        result.append("=")
+        string = _format_scheme_value(self.value)
+        value_pieces = string.split("\n")
+        result.append(value_pieces[0])
+        result[:] = [" ".join(result)]
+        result.extend(value_pieces[1:])
+        return tuple(result)
+
+    @property
+    def override_string(self) -> str:
+        r"""
+        Gets LilyPond grob override \override string.
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondOverride(
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value="#'zigzag",
+            ... )
+            >>> override.override_string
+            "\\override Glissando.style = #'zigzag"
+
+        """
+        return "\n".join(self.override_format_pieces)
+
+    @property
+    def revert_format_pieces(self) -> tuple[str, ...]:
+        r"""
+        Gets LilyPond grob override \revert format pieces.
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondOverride(
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value="#'zigzag",
+            ... )
+            >>> override.revert_format_pieces
+            ('\\revert Glissando.style',)
+
+        """
+        result = rf"\revert {self._revert_property_path_string()}"
+        return (result,)
+
+    @property
+    def revert_string(self) -> str:
+        r"""
+        Gets LilyPond grob override \revert string.
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondOverride(
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value="#'zigzag",
+            ... )
+            >>> override.revert_string
+            '\\revert Glissando.style'
+
+        """
+        return "\n".join(self.revert_format_pieces)
+
+    def tweak_string(self, directed=True, grob=False) -> str:
+        r"""
+        Gets LilyPond grob override \tweak string.
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondOverride(
+            ...     grob_name="Glissando",
+            ...     property_path="style",
+            ...     value="#'zigzag",
+            ... )
+            >>> override.tweak_string()
+            "- \\tweak style #'zigzag"
+
+        ..  container:: example
+
+            >>> override = abjad.LilyPondOverride(
+            ...     grob_name="RehearsalMark",
+            ...     property_path="color",
+            ...     value="#red",
+            ... )
+            >>> override.tweak_string(directed=False)
+            '\\tweak color #red'
+
+        """
+        if directed:
+            result = [r"- \tweak"]
+        else:
+            result = [r"\tweak"]
+        if grob:
+            property_path = [self.grob_name] + list(self.property_path)
+        else:
+            property_path = list(self.property_path)
+        string = ".".join(property_path)
+        result.append(string)
+        string = _format_scheme_value(self.value)
+        result.append(string)
+        return " ".join(result)
+
+
+@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+class LilyPondSetting:
+    r"""
+    LilyPond context setting.
+
+    ..  container:: example
+
+        >>> context_setting = abjad.LilyPondSetting(
+        ...    lilypond_type="Score",
+        ...    context_property="autoBeaming",
+        ...    value="##f",
+        ... )
+
+        >>> print("\n".join(context_setting.format_pieces))
+        \set Score.autoBeaming = ##f
+
+    """
+
+    lilypond_type: str | None = None
+    context_property: str = "autoBeaming"
+    is_unset: bool = False
+    value: typing.Any = False
+
+    _format_leaf_children: typing.ClassVar[bool] = False
+
+    def __post_init__(self):
+        if self.lilypond_type is not None:
+            assert isinstance(self.lilypond_type, str)
+        assert isinstance(self.context_property, str)
+        assert isinstance(self.is_unset, bool)
+        assert isinstance(self.value, bool | int | float | str), repr(self.value)
+
+    def _get_lilypond_format_bundle(self, component=None):
+        bundle = _bundle.LilyPondFormatBundle()
+        string = "\n".join(self.format_pieces)
+        bundle.context_settings.append(string)
+        return bundle
+
+    @property
+    def format_pieces(self) -> tuple[str, ...]:
+        r"""
+        Gets LilyPond context setting ``\set`` or ``\unset`` format pieces.
+        """
+        result = []
+        if not self.is_unset:
+            result.append(r"\set")
+        else:
+            result.append(r"\unset")
+        if self.lilypond_type is not None:
+            string = f"{self.lilypond_type}.{self.context_property}"
+            result.append(string)
+        else:
+            result.append(self.context_property)
+        result.append("=")
+        string = _format_scheme_value(self.value)
+        value_pieces = string.split("\n")
+        result.append(value_pieces[0])
+        result[:] = [" ".join(result)]
+        result.extend(value_pieces[1:])
+        return tuple(result)
 
 
 class Interface:
     """
-    LilyPond name manager.
-
-    Base class from which grob, setting and tweak managers inherit.
+    Base class from which grob, setting and tweak interfaces inherit.
     """
-
-    ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a LilyPond name manager with attribute
-        pairs equal to those of this LilyPond name manager.
+        Is true when ``argument`` is an interface with attribute pairs equal to those of
+        this interface.
 
         ..  container:: example
 
@@ -597,13 +436,13 @@ class Interface:
 
     def __hash__(self) -> int:
         """
-        Hashes LilyPond name manager.
+        Hashes interface.
         """
         return super().__hash__()
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation of LilyPond name manager.
+        Gets repr.
         """
         body_string = ""
         pairs = self._get_attribute_pairs()
@@ -618,559 +457,17 @@ class Interface:
         for key, value in state.items():
             self.__dict__[key] = value
 
-    ### PRIVATE METHODS ###
-
     def _get_attribute_pairs(self):
         return list(sorted(vars(self).items()))
 
 
-class LilyPondOverride:
-    r"""
-    LilyPond grob override.
-
-    ..  container:: example
-
-        >>> override = abjad.LilyPondOverride(
-        ...    lilypond_type="Staff",
-        ...    grob_name="TextSpanner",
-        ...    once=True,
-        ...    property_path=(
-        ...        "bound-details",
-        ...        "left",
-        ...        "text",
-        ...        ),
-        ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-        ... )
-
-        >>> print(override.override_string)
-        \once \override Staff.TextSpanner.bound-details.left.text = \markup \bold { over pressure }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        "_grob_name",
-        "_is_revert",
-        "_lilypond_type",
-        "_once",
-        "_property_path",
-        "_value",
-    )
-
-    _format_leaf_children = False
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        lilypond_type: str = None,
-        grob_name: str = "NoteHead",
-        once: bool = False,
-        is_revert: bool = False,
-        property_path: str | typing.Iterable[str] = "color",
-        value: typing.Any = "#red",
-    ) -> None:
-        if lilypond_type is not None:
-            lilypond_type = str(lilypond_type)
-        self._lilypond_type = lilypond_type
-        assert grob_name
-        self._grob_name = str(grob_name)
-        self._once = bool(once)
-        self._is_revert = bool(is_revert)
-        if isinstance(property_path, str):
-            property_path_: tuple[str, ...] = (property_path,)
-        else:
-            property_path_ = tuple(property_path)
-        assert isinstance(property_path_, tuple), repr(property_path_)
-        assert all(isinstance(_, str) for _ in property_path_)
-        assert all(_ != "" for _ in property_path_)
-        self._property_path = property_path_
-        self._value = value
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when ``argument`` is a LilyPond grob override with equivalent
-        keyword values.
-        """
-        return super().__eq__(argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes LilyPond grob override.
-        """
-        return super().__hash__()
-
-    ### PRIVATE METHODS ###
-
-    def _get_lilypond_format_bundle(self, component=None):
-        bundle = _bundle.LilyPondFormatBundle()
-        if not self.once:
-            revert_format = "\n".join(self.revert_format_pieces)
-            bundle.grob_reverts.append(revert_format)
-        if not self.is_revert:
-            override_format = "\n".join(self.override_format_pieces)
-            bundle.grob_overrides.append(override_format)
-        return bundle
-
-    def _override_property_path_string(self):
-        parts = []
-        if self.lilypond_type is not None:
-            parts.append(self.lilypond_type)
-        parts.append(self.grob_name)
-        parts.extend(self.property_path)
-        path = ".".join(parts)
-        return path
-
-    def _revert_property_path_string(self):
-        parts = []
-        if self.lilypond_type is not None:
-            parts.append(self.lilypond_type)
-        parts.append(self.grob_name)
-        parts.append(self.property_path[0])
-        path = ".".join(parts)
-        return path
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def grob_name(self) -> str:
-        r"""
-        Gets grob name.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> override.grob_name
-            'Glissando'
-
-        """
-        return self._grob_name
-
-    @property
-    def is_revert(self) -> bool:
-        r"""
-        Is true if grob override is a grob revert.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> override.is_revert
-            False
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     is_revert=True,
-            ...     property_path="style",
-            ... )
-            >>> override.is_revert
-            True
-
-        """
-        return self._is_revert
-
-    @property
-    def lilypond_type(self) -> str | None:
-        r"""
-        Gets LilyPond type of context.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type="Staff",
-            ...    grob_name="TextSpanner",
-            ...    once=True,
-            ...    property_path=(
-            ...        "bound-details",
-            ...        "left",
-            ...        "text",
-            ...        ),
-            ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ... )
-            >>> override.lilypond_type
-            'Staff'
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> override.lilypond_type is None
-            True
-
-        """
-        return self._lilypond_type
-
-    @property
-    def once(self) -> bool:
-        r"""
-        Is true when grob override is to be applied only once.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type="Staff",
-            ...    grob_name="TextSpanner",
-            ...    once=True,
-            ...    property_path=(
-            ...        "bound-details",
-            ...        "left",
-            ...        "text",
-            ...        ),
-            ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ... )
-            >>> bool(override.once)
-            True
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> bool(override.once)
-            False
-
-        """
-        return self._once
-
-    @property
-    def override_format_pieces(self) -> tuple[str, ...]:
-        r"""
-        Gets LilyPond grob override \override format pieces.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type="Staff",
-            ...    grob_name="TextSpanner",
-            ...    once=True,
-            ...    property_path=(
-            ...        "bound-details",
-            ...        "left",
-            ...        "text",
-            ...        ),
-            ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ... )
-            >>> for line in override.override_format_pieces:
-            ...     line
-            ...
-            '\\once \\override Staff.TextSpanner.bound-details.left.text = \\markup \\bold { over pressure }'
-
-        """
-        result = []
-        if self.once:
-            result.append(r"\once")
-        result.append(r"\override")
-        result.append(self._override_property_path_string())
-        result.append("=")
-        string = format_embedded_scheme_value(self.value)
-        # string = str(self.value)
-        value_pieces = string.split("\n")
-        result.append(value_pieces[0])
-        result[:] = [" ".join(result)]
-        result.extend(value_pieces[1:])
-        return tuple(result)
-
-    @property
-    def override_string(self) -> str:
-        r"""
-        Gets LilyPond grob override \override string.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> override.override_string
-            "\\override Glissando.style = #'zigzag"
-
-        """
-        return "\n".join(self.override_format_pieces)
-
-    @property
-    def property_path(self) -> tuple[str, ...]:
-        r"""
-        Gets LilyPond grob override property path.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type="Staff",
-            ...    grob_name="TextSpanner",
-            ...    once=True,
-            ...    property_path=(
-            ...        "bound-details",
-            ...        "left",
-            ...        "text",
-            ...        ),
-            ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ... )
-            >>> override.property_path
-            ('bound-details', 'left', 'text')
-
-        """
-        return self._property_path
-
-    @property
-    def revert_format_pieces(self) -> tuple[str, ...]:
-        r"""
-        Gets LilyPond grob override \revert format pieces.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> override.revert_format_pieces
-            ('\\revert Glissando.style',)
-
-        """
-        result = rf"\revert {self._revert_property_path_string()}"
-        return (result,)
-
-    @property
-    def revert_string(self) -> str:
-        r"""
-        Gets LilyPond grob override \revert string.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> override.revert_string
-            '\\revert Glissando.style'
-
-        """
-        return "\n".join(self.revert_format_pieces)
-
-    @property
-    def value(self) -> typing.Any:
-        r"""
-        Gets value of LilyPond grob override.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...    lilypond_type="Staff",
-            ...    grob_name="TextSpanner",
-            ...    once=True,
-            ...    property_path=(
-            ...        "bound-details",
-            ...        "left",
-            ...        "text",
-            ...        ),
-            ...    value=abjad.Markup(r"\markup \bold { over pressure }"),
-            ... )
-            >>> override.value
-            Markup(string='\\markup \\bold { over pressure }', tweaks=None)
-
-        """
-        return self._value
-
-    ### PUBLIC METHODS ###
-
-    def tweak_string(self, directed=True, grob=False) -> str:
-        r"""
-        Gets LilyPond grob override \tweak string.
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="Glissando",
-            ...     property_path="style",
-            ...     value="#'zigzag",
-            ... )
-            >>> override.tweak_string()
-            "- \\tweak style #'zigzag"
-
-        ..  container:: example
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="RehearsalMark",
-            ...     property_path="color",
-            ...     value="#red",
-            ... )
-            >>> override.tweak_string(directed=False)
-            '\\tweak color #red'
-
-        ..  container:: example
-
-            LilyPond literals are allowed:
-
-            >>> override = abjad.LilyPondOverride(
-            ...     grob_name="TextSpann",
-            ...     property_path=("bound-details", "left-broken", "text"),
-            ...     value=abjad.LilyPondLiteral(r"\markup \upright pont."),
-            ... )
-            >>> override.tweak_string(directed=False)
-            '\\tweak bound-details.left-broken.text \\markup \\upright pont.'
-
-        """
-        if directed:
-            result = [r"- \tweak"]
-        else:
-            result = [r"\tweak"]
-        if grob:
-            property_path = (self.grob_name,) + self.property_path
-        else:
-            property_path = self.property_path
-        string = ".".join(property_path)
-        result.append(string)
-        if isinstance(self.value, LilyPondLiteral):
-            assert isinstance(self.value.argument, str)
-            string = self.value.argument
-        else:
-            string = format_embedded_scheme_value(self.value)
-            # string = str(self.value)
-        result.append(string)
-        return " ".join(result)
-
-
-class LilyPondSetting:
-    r"""
-    LilyPond context setting.
-
-    ..  container:: example
-
-        >>> context_setting = abjad.LilyPondSetting(
-        ...    lilypond_type="Score",
-        ...    context_property="autoBeaming",
-        ...    value="##f",
-        ... )
-
-        >>> print("\n".join(context_setting.format_pieces))
-        \set Score.autoBeaming = ##f
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_context_property", "_lilypond_type", "_is_unset", "_value")
-
-    _format_leaf_children = False
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        lilypond_type: str = None,
-        context_property: str = "autoBeaming",
-        is_unset: bool = False,
-        value: typing.Any = False,
-    ) -> None:
-        if lilypond_type is not None:
-            lilypond_type = str(lilypond_type)
-        self._lilypond_type = lilypond_type
-        assert isinstance(context_property, str) and context_property
-        self._context_property = context_property
-        if is_unset is not None:
-            is_unset = bool(is_unset)
-        self._is_unset = is_unset
-        self._value = value
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when ``argument`` is a LilyPond context setting with
-        equivalent keyword values.
-        """
-        return super().__eq__(argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes LilyPond context setting.
-        """
-        return super().__hash__()
-
-    ### PRIVATE METHODS ###
-
-    def _get_lilypond_format_bundle(self, component=None):
-        bundle = _bundle.LilyPondFormatBundle()
-        string = "\n".join(self.format_pieces)
-        bundle.context_settings.append(string)
-        return bundle
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def context_property(self) -> str:
-        """
-        Gets LilyPond context property name.
-        """
-        return self._context_property
-
-    @property
-    def format_pieces(self) -> tuple[str, ...]:
-        r"""
-        Gets LilyPond context setting ``\set`` or ``\unset`` format pieces.
-        """
-        result = []
-        if not self.is_unset:
-            result.append(r"\set")
-        else:
-            result.append(r"\unset")
-        if self.lilypond_type is not None:
-            string = f"{self.lilypond_type}.{self.context_property}"
-            result.append(string)
-        else:
-            result.append(self.context_property)
-        result.append("=")
-        string = format_embedded_scheme_value(self.value)
-        # assert string == str(self.value), repr((str(self.value), string))
-        value_pieces = string.split("\n")
-        result.append(value_pieces[0])
-        result[:] = [" ".join(result)]
-        result.extend(value_pieces[1:])
-        return tuple(result)
-
-    @property
-    def is_unset(self) -> bool | None:
-        """
-        Is true if context setting unsets its value.
-        """
-        return self._is_unset
-
-    @property
-    def lilypond_type(self) -> str | None:
-        """
-        Gets LilyPond type.
-        """
-        return self._lilypond_type
-
-    @property
-    def value(self) -> typing.Any:
-        """
-        Gets value of LilyPond context setting.
-        """
-        return self._value
-
-
 class OverrideInterface(Interface):
     """
-    LilyPond grob name manager.
+    Override interface.
 
     ..  container:: example
 
-        OverrideInterface instances are created by the
-        ``abjad.override()`` factory function:
+        Override interfaces are created by the ``abjad.override()`` factory function:
 
         >>> note = abjad.Note("c'4")
         >>> abjad.override(note)
@@ -1178,16 +475,13 @@ class OverrideInterface(Interface):
 
     """
 
-    ### SPECIAL METHODS ###
-
-    def __getattr__(self, name) -> typing.Union[Interface, "OverrideInterface"]:
+    def __getattr__(self, name):
         r"""
         Gets Interface (or OverrideInterface) keyed to ``name``.
 
         ..  container:: example
 
-            Somewhat confusingly, getting a grob name returns a
-            Interface:
+            Somewhat confusingly, getting a grob name returns an interface:
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
             >>> abjad.override(staff[0]).NoteHead
@@ -1206,7 +500,7 @@ class OverrideInterface(Interface):
             Interface()
 
         Note that the dot-chained user syntax is unproblematic. But the class of each
-        manager returned in the chain is likely to be surprising at first encounter.
+        interface returned in the chain is likely to be surprising at first encounter.
         """
         camel_name = _string.to_upper_camel_case(name)
         if name.startswith("_"):
@@ -1237,13 +531,11 @@ class OverrideInterface(Interface):
                     f"{type_name!r} object has no attribute: {name!r}."
                 )
 
-    def __setattr__(self, attribute, value) -> None:
+    def __setattr__(self, attribute, value):
         """
-        Sets attribute ``attribute`` of grob name manager to ``value``.
+        Sets attribute ``attribute`` of override interface to ``value``.
         """
         object.__setattr__(self, attribute, value)
-
-    ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
         result = []
@@ -1264,7 +556,7 @@ class OverrideInterface(Interface):
         result.sort()
         return tuple(result)
 
-    def _list_format_contributions(self, contribution_type, once=False):
+    def _list_contributions(self, contribution_type, once=False):
         assert contribution_type in ("override", "revert")
         result = []
         for attribute_tuple in self._get_attribute_tuples():
@@ -1281,88 +573,32 @@ class OverrideInterface(Interface):
             else:
                 raise ValueError(f"invalid attribute tuple: {attribute_tuple!r}.")
             if contribution_type == "override":
-                override_string = make_lilypond_override_string(
-                    grob, attribute, value, context=context, once=once
+                override = LilyPondOverride(
+                    lilypond_type=context,
+                    grob_name=grob,
+                    once=once,
+                    is_revert=False,
+                    property_path=attribute,
+                    value=value,
                 )
+                override_string = override.override_string
                 result.append(override_string)
             else:
-                revert_string = make_lilypond_revert_string(
-                    grob, attribute, context=context
+                override = LilyPondOverride(
+                    lilypond_type=context,
+                    grob_name=grob,
+                    is_revert=True,
+                    property_path=attribute,
                 )
+                revert_string = override.revert_string
                 result.append(revert_string)
         result.sort()
         return result
 
 
-### FUNCTIONS ###
-
-
-def override(argument):
-    r"""
-    Makes LilyPond grob name manager.
-
-    ..  container:: example
-
-        Overrides staff symbol color:
-
-        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff).StaffSymbol.color = "#red"
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            \with
-            {
-                \override StaffSymbol.color = #red
-            }
-            {
-                c'4
-                e'4
-                d'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Specify grob context like this:
-
-        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> abjad.override(staff[0]).Staff.StaffSymbol.color = "#blue"
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \once \override Staff.StaffSymbol.color = #blue
-                c'4
-                e'4
-                d'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Returns LilyPond grob name manager:
-
-        >>> staff = abjad.Staff("c'4 e' d' f'")
-        >>> abjad.override(staff)
-        OverrideInterface()
-
-    """
-    if getattr(argument, "_overrides", None) is None:
-        argument._overrides = OverrideInterface()
-    return argument._overrides
-
-
 class SettingInterface(Interface):
     """
-    LilyPond setting name manager.
+    LilyPond setting interface.
 
     ..  container:: example
 
@@ -1372,17 +608,15 @@ class SettingInterface(Interface):
 
     """
 
-    ### SPECIAL METHODS ###
-
-    def __getattr__(self, name: str) -> typing.Any:
+    def __getattr__(self, name: str):
         r"""
         Gets arbitrary object keyed to ``name``.
 
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> markup = abjad.Markup(r'\markup "Vn. I"')
-            >>> abjad.setting(staff).instrumentName = markup
+            >>> string = r'\markup "Vn. I"'
+            >>> abjad.setting(staff).instrumentName = string
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1406,7 +640,7 @@ class SettingInterface(Interface):
             Returns arbitrary object keyed to ``name``:
 
             >>> abjad.setting(staff).instrumentName
-            Markup(string='\\markup "Vn. I"', tweaks=None)
+            '\\markup "Vn. I"'
 
         """
         camel_name = _string.to_upper_camel_case(name)
@@ -1430,8 +664,6 @@ class SettingInterface(Interface):
                 message = "{type(self).__name__!r} object has no attribute: {name!r}."
                 raise AttributeError(message)
 
-    ### PRIVATE METHODS ###
-
     def _format_in_with_block(self) -> list[str]:
         strings = []
         for key, value in vars(self).items():
@@ -1439,16 +671,15 @@ class SettingInterface(Interface):
             name = key.split("_")
             first = name[0:1]
             rest = name[1:]
-            rest = [x.title() for x in rest]
+            rest = [_.title() for _ in rest]
             name = first + rest
             string = "".join(name)
-            # assert key == string, repr((key, string))
-            value = format_lilypond_value(value)
+            value = _format_scheme_value(value)
             value_parts = value.split("\n")
             result = rf"{string!s} = {value_parts[0]!s}"
             pieces = [result]
             for part in value_parts[1:]:
-                pieces.append(_format.INDENT + part)
+                pieces.append(_indent.INDENT + part)
             string = "\n".join(pieces)
             strings.append(string)
         return strings
@@ -1473,14 +704,14 @@ class SettingInterface(Interface):
         name = name.split("_")
         first = name[0:1]
         rest = name[1:]
-        rest = [x.title() for x in rest]
+        rest = [_.title() for _ in rest]
         name = first + rest
         name = "".join(name)
-        value = format_lilypond_value(value)
+        value = _format_scheme_value(value)
         if context is not None:
             context_string = context[1:]
             context_string = context_string.split("_")
-            context_string = [x.title() for x in context_string]
+            context_string = [_.title() for _ in context_string]
             context_string = "".join(context_string)
             context_string += "."
         else:
@@ -1506,72 +737,26 @@ class SettingInterface(Interface):
         return result
 
 
-### FUNCTIONS ###
-
-
-def setting(argument):
-    r"""
-    Makes LilyPond setting name manager.
-
-    ..  container:: example
-
-        Sets instrument name:
-
-        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
-        >>> markup = abjad.Markup(r'\markup "Vn. I"')
-        >>> abjad.setting(staff).instrumentName = markup
-        >>> abjad.show(staff) # doctest: +SKIP
-
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            \with
-            {
-                instrumentName = \markup "Vn. I"
-            }
-            {
-                c'4
-                e'4
-                d'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Returns LilyPond setting name manager:
-
-        >>> abjad.setting(staff)
-        SettingInterface(('instrumentName', Markup(string='\\markup "Vn. I"', tweaks=None)))
-
-    """
-    if getattr(argument, "_lilypond_setting_name_manager", None) is None:
-        argument._lilypond_setting_name_manager = SettingInterface()
-    return argument._lilypond_setting_name_manager
-
-
 class TweakInterface(Interface):
     r"""
-    LilyPond tweak manager.
+    LilyPond tweak interface.
 
     ..  container:: example
 
-        Tweak managers are created by the ``abjad.tweak()`` factory function:
+        Tweak interfaces are created by the ``abjad.tweak()`` factory function:
 
         >>> markup = abjad.Markup(r"\markup Allegro")
         >>> abjad.tweak(markup)
-        TweakInterface(('_literal', False))
+        TweakInterface()
 
         Set an attribute like this:
 
         >>> abjad.tweak(markup).color = "#red"
 
-        The state of the tweak manager has changed:
+        The state of the tweak interface has changed:
 
         >>> abjad.tweak(markup)
-        TweakInterface(('_literal', False), ('color', '#red'))
+        TweakInterface(('color', '#red'))
 
         And the value of the attribute just set is available like this:
 
@@ -1587,21 +772,19 @@ class TweakInterface(Interface):
 
     """
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self, *, deactivate: bool = False, literal: bool = False, tag: _tag.Tag = None
-    ) -> None:
+    def __init__(self, *, deactivate: bool = False, tag: _tag.Tag = None) -> None:
+        assert isinstance(deactivate, bool), repr(bool)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
         self._currently_deactivated = bool(deactivate)
-        self._literal = bool(literal)
+        self._foo = "bar"
+        del self._foo
         if tag is not None:
             self._currently_tagging = tag
 
-    ### SPECIAL METHODS ###
-
-    def __getattr__(self, name) -> Interface | typing.Any:
+    def __getattr__(self, name):
         r"""
-        Gets Interface (or OverrideInterface) keyed to ``name``.
+        Gets interface (or override interface) keyed to ``name``.
 
         ..  container:: example
 
@@ -1678,38 +861,36 @@ class TweakInterface(Interface):
 
         ..  container:: example
 
-            Preloaded tweak managers can be made like this:
+            Preloaded tweak interfaces can be made like this:
 
             >>> tweaks = abjad.TweakInterface()
             >>> tweaks.color = "#red"
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            TweakInterface(('Y_offset', 6), ('_literal', False), ('color', '#red'))
+            TweakInterface(('Y_offset', 6), ('color', '#red'))
 
             Use the ``abjad.tweak()`` factory function for a shortcut:
 
             >>> tweaks = abjad.tweak("#red").color
             >>> tweaks
-            TweakInterface(('_literal', False), ('color', '#red'))
+            TweakInterface(('color', '#red'))
 
             >>> tweaks.Y_offset = 6
             >>> tweaks
-            TweakInterface(('Y_offset', 6), ('_literal', False), ('color', '#red'))
+            TweakInterface(('Y_offset', 6), ('color', '#red'))
 
         ..  container:: example
 
             Set long LilyPond grob chains like this:
 
             >>> abjad.tweak(False).bound_details__left_broken__text
-            TweakInterface(('_literal', False), ('bound_details__left_broken__text', False))
+            TweakInterface(('bound_details__left_broken__text', False))
 
         """
         if name == "_currently_deactivated":
             return vars(self).get("_currently_deactivated")
         if name == "_currently_tagging":
             return vars(self).get("_currently_tagging")
-        if name == "_literal":
-            return vars(self).get("_literal")
         if "_pending_value" in vars(self):
             _pending_value = self._pending_value
             self.__setattr__(name, _pending_value)
@@ -1741,13 +922,11 @@ class TweakInterface(Interface):
 
         ..  container:: example
 
-            Allows LilyPond colors:
-
             >>> abjad.tweak("#blue").color
-            TweakInterface(('_literal', False), ('color', '#blue'))
+            TweakInterface(('color', '#blue'))
 
             >>> abjad.tweak("#(x11-color 'ForestGreen)").color
-            TweakInterface(('_literal', False), ('color', "#(x11-color 'ForestGreen)"))
+            TweakInterface(('color', "#(x11-color 'ForestGreen)"))
 
         """
         tag = getattr(self, "_currently_tagging", None)
@@ -1769,14 +948,10 @@ class TweakInterface(Interface):
         except AttributeError:
             pass
 
-    ### PRIVATE METHODS ###
-
-    def _get_attribute_tuples(self) -> list[tuple]:
-        result: list[tuple] = []
+    def _get_attribute_tuples(self):
+        result = []
         for name, value in vars(self).items():
             if name == "_currently_tagging":
-                continue
-            if name == "_literal":
                 continue
             if type(value) is Interface:
                 grob_name = name
@@ -1793,7 +968,7 @@ class TweakInterface(Interface):
         result.sort()
         return result
 
-    def _list_format_contributions(self, directed=True):
+    def _list_contributions(self, directed=True):
         result = []
         for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 2:
@@ -1814,12 +989,11 @@ class TweakInterface(Interface):
                 value = value[1]
             else:
                 tag = None
-            string = make_lilypond_tweak_string(
+            string = _make_lilypond_tweak_string(
                 attribute,
                 value,
                 directed=directed,
                 grob=grob,
-                literal=self._literal,
             )
             strings = [string]
             if tag is not None:
@@ -1827,103 +1001,160 @@ class TweakInterface(Interface):
             result.extend(strings)
         return result
 
-    ### PUBLIC METHODS ###
 
-    # TODO: move this somewhere clearer
-    @staticmethod
-    def set_tweaks(
-        argument, manager: typing.Optional["TweakInterface"]
-    ) -> typing.Optional["TweakInterface"]:
-        r"""
-        Sets tweaks on ``argument``.
+IndexedTweakInterface: typing.TypeAlias = typing.Union[
+    TweakInterface | tuple[TweakInterface, int]
+]
 
-        """
-        if not hasattr(argument, "_tweaks"):
-            try:
-                argument._tweaks = None
-            except AttributeError:
-                name = type(argument).__name__
-                raise NotImplementedError(f"{name} does not implement tweaks.")
-        if manager is None:
-            return None
-        if not isinstance(manager, TweakInterface):
-            raise Exception(f"must be tweak manager (not {manager!r}).")
-        if argument._tweaks is None:
-            argument._tweaks = TweakInterface(literal=manager._literal)
-        existing_manager = argument._tweaks
-        for tuple_ in manager._get_attribute_tuples():
-            if len(tuple_) == 2:
-                attribute, value = tuple_
-                value = copy.copy(value)
-                setattr(existing_manager, attribute, value)
-            elif len(tuple_) == 3:
-                grob, attribute, value = tuple_
-                value = copy.copy(value)
-                grob = getattr(existing_manager, grob)
-                setattr(grob, attribute, value)
-            else:
-                message = "tweak tuple must have length 2 or 3"
-                message += f" (not {tuple_!r})."
-                raise ValueError(message)
-        return existing_manager
-
-    # TODO: move this somewhere clearer
-    @staticmethod
-    def set_dataclass_tweaks(
-        argument, manager: typing.Optional["TweakInterface"]
-    ) -> typing.Optional["TweakInterface"]:
-        """
-        Sets tweaks on ``argument``.
-
-        ..  container:: example
-
-            >>> glissando = abjad.Glissando()
-            >>> glissando.tweaks is None
-            True
-
-            >>> tweaks = abjad.tweak("blue").color
-            >>> abjad.TweakInterface.set_dataclass_tweaks(glissando, tweaks)
-            TweakInterface(('_literal', False), ('color', 'blue'))
-
-            >>> abjad.tweak(glissando)
-            TweakInterface(('_literal', False), ('color', 'blue'))
-
-        """
-        if manager is None:
-            return None
-        if not isinstance(manager, TweakInterface):
-            raise Exception(f"must be tweak manager (not {manager!r}).")
-        if argument.tweaks is None:
-            argument.tweaks = TweakInterface(literal=manager._literal)
-        existing_manager = argument.tweaks
-        for tuple_ in manager._get_attribute_tuples():
-            if len(tuple_) == 2:
-                attribute, value = tuple_
-                value = copy.copy(value)
-                setattr(existing_manager, attribute, value)
-            elif len(tuple_) == 3:
-                grob, attribute, value = tuple_
-                value = copy.copy(value)
-                grob = getattr(existing_manager, grob)
-                setattr(grob, attribute, value)
-            else:
-                message = "tweak tuple must have length 2 or 3"
-                message += f" (not {tuple_!r})."
-                raise ValueError(message)
-        return existing_manager
+IndexedTweakInterfaces: typing.TypeAlias = tuple[IndexedTweakInterface, ...]
 
 
-IndexedTweakManager = typing.Union[TweakInterface, tuple[TweakInterface, int]]
-
-IndexedTweakManagers = tuple[IndexedTweakManager, ...]
-
-
-### FUNCTIONS ###
-
-
-def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None):
+def override(argument):
     r"""
-    Makes LilyPond tweak manager.
+    Makes LilyPond grob override interface.
+
+    ..  container:: example
+
+        Overrides staff symbol color:
+
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.override(staff).StaffSymbol.color = "#red"
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                \override StaffSymbol.color = #red
+            }
+            {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Specify grob context like this:
+
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> abjad.override(staff[0]).Staff.StaffSymbol.color = "#blue"
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \once \override Staff.StaffSymbol.color = #blue
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Returns LilyPond grob override interface.
+
+        >>> staff = abjad.Staff("c'4 e' d' f'")
+        >>> abjad.override(staff)
+        OverrideInterface()
+
+    """
+    if getattr(argument, "_overrides", None) is None:
+        argument._overrides = OverrideInterface()
+    return argument._overrides
+
+
+def set_tweaks(argument, interface: TweakInterface) -> TweakInterface:
+    """
+    Sets tweaks on ``argument``.
+
+    ..  container:: example
+
+        >>> glissando = abjad.Glissando()
+        >>> glissando.tweaks is None
+        True
+
+        >>> tweaks = abjad.tweak("blue").color
+        >>> abjad.overrides.set_tweaks(glissando, tweaks)
+        TweakInterface(('color', 'blue'))
+
+        >>> abjad.tweak(glissando)
+        TweakInterface(('color', 'blue'))
+
+    """
+    assert isinstance(interface, TweakInterface), repr(interface)
+    if argument.tweaks is None:
+        argument.tweaks = TweakInterface()
+    existing_interface = argument.tweaks
+    for tuple_ in interface._get_attribute_tuples():
+        if len(tuple_) == 2:
+            attribute, value = tuple_
+            value = copy.copy(value)
+            setattr(existing_interface, attribute, value)
+        elif len(tuple_) == 3:
+            grob, attribute, value = tuple_
+            value = copy.copy(value)
+            grob = getattr(existing_interface, grob)
+            setattr(grob, attribute, value)
+        else:
+            raise Exception("tweak tuple must have length 2 or 3 (not {tuple_!r}).")
+    return existing_interface
+
+
+def setting(argument):
+    r"""
+    Makes LilyPond setting name interface.
+
+    ..  container:: example
+
+        Sets instrument name:
+
+        >>> staff = abjad.Staff("c'4 e'4 d'4 f'4")
+        >>> string = r'\markup "Vn. I"'
+        >>> abjad.setting(staff).instrumentName = string
+        >>> abjad.show(staff) # doctest: +SKIP
+
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                instrumentName = \markup "Vn. I"
+            }
+            {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Returns LilyPond setting name interface:
+
+        >>> abjad.setting(staff)
+        SettingInterface(('instrumentName', '\\markup "Vn. I"'))
+
+    """
+    if getattr(argument, "_lilypond_setting_name_manager", None) is None:
+        argument._lilypond_setting_name_manager = SettingInterface()
+    return argument._lilypond_setting_name_manager
+
+
+def tweak(argument, *, deactivate=False, tag=None):
+    r"""
+    Makes LilyPond tweak interface.
 
     ..  container:: example
 
@@ -2142,47 +1373,39 @@ def tweak(argument, *, deactivate=None, expression=None, literal=None, tag=None)
 
     ..  container:: example
 
-        Returns LilyPond tweak manager:
+        Returns LilyPond tweak interface:
 
         >>> abjad.tweak(markup_1)
-        TweakInterface(('_literal', False), ('color', '#red'))
+        TweakInterface(('color', '#red'))
 
     ..  container:: example
 
         Tweak expressions work like this:
 
         >>> abjad.tweak("#red").color
-        TweakInterface(('_literal', False), ('color', '#red'))
+        TweakInterface(('color', '#red'))
 
         >>> abjad.tweak(6).Y_offset
-        TweakInterface(('Y_offset', 6), ('_literal', False))
+        TweakInterface(('Y_offset', 6))
 
         >>> abjad.tweak(False).bound_details__left_broken__text
-        TweakInterface(('_literal', False), ('bound_details__left_broken__text', False))
+        TweakInterface(('bound_details__left_broken__text', False))
 
     """
-    if tag is not None and not isinstance(tag, _tag.Tag):
-        raise Exception(f"must be be tag: {repr(tag)}")
-    constants = (_enums.DOWN, _enums.LEFT, _enums.RIGHT, _enums.UP)
-    prototype = (bool, int, float, str, tuple)
-    if expression is True or argument in constants or isinstance(argument, prototype):
-        interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
+    assert isinstance(deactivate, bool), repr(deactivate)
+    if tag is not None:
+        assert isinstance(tag, _tag.Tag), repr(tag)
+    prototype = (bool, int, float, str, tuple, _enums.Horizontal, _enums.Vertical)
+    if isinstance(argument, prototype):
+        interface = TweakInterface(deactivate=deactivate, tag=tag)
         interface._pending_value = argument
-        return interface
-    if hasattr(argument, "_tweaks"):
-        if argument._tweaks is None:
-            interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
-            argument._tweaks = interface
-        else:
-            interface = argument._tweaks
-            interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
     elif hasattr(argument, "tweaks"):
         if argument.tweaks is None:
-            interface = TweakInterface(deactivate=deactivate, literal=literal, tag=tag)
+            interface = TweakInterface(deactivate=deactivate, tag=tag)
             argument.tweaks = interface
         else:
             interface = argument.tweaks
-            interface.__init__(deactivate=deactivate, literal=literal, tag=tag)
+            interface.__init__(deactivate=deactivate, tag=tag)
     else:
         name = type(argument).__name__
         raise NotImplementedError(f"{name} does not allow tweaks (yet).")

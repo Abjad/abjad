@@ -390,7 +390,7 @@ class Wrapper:
                 bundle = self.indicator._get_lilypond_format_bundle(
                     component=self.component
                 )
-            bundle.tag_format_contributions(self.tag, deactivate=self.deactivate)
+            bundle.tag_contributions(self.tag, deactivate=self.deactivate)
             return bundle
         try:
             context = self._get_effective_context()
@@ -439,16 +439,16 @@ class Wrapper:
             attributes={"command": command},
             unwrap=False,
         )
-        wrapper_format_slot = None
+        wrapper_site = None
         if wrapper is not None:
-            wrapper_format_slot = getattr(wrapper.indicator, "format_slot", None)
-        my_format_slot = getattr(self.indicator, "format_slot", None)
+            wrapper_site = getattr(wrapper.indicator, "site", None)
+        my_site = getattr(self.indicator, "site", None)
         if (
             wrapper is None
             or wrapper.context is None
             or wrapper.deactivate is True
             or wrapper.start_offset != self.start_offset
-            or wrapper_format_slot != my_format_slot
+            or wrapper_site != my_site
         ):
             return
         my_leak = getattr(self.indicator, "leak", None)

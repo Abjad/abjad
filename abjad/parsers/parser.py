@@ -15,17 +15,16 @@ from ply.yacc import (  # type: ignore
     format_stack_entry,
 )
 
+from .. import _indent
 from .. import bind as _bind
 from .. import duration as _duration
 from .. import dynamic as _dynamic
 from .. import exceptions as _exceptions
-from .. import format as _format
 from .. import indicators as _indicators
 from .. import lilypondfile as _lilypondfile
 from .. import lyconst as _lyconst
 from .. import lyenv as _lyenv
 from .. import markups as _markups
-from .. import overrides as _overrides
 from .. import pitch as _pitch
 from .. import score as _score
 from .. import string as _string
@@ -111,14 +110,11 @@ class MarkupCommand:
                     result.extend(item.splitlines())
                     result.append('"')
                 else:
-                    formatted = _overrides.format_scheme_value(item)
-                    if isinstance(item, str):
-                        result.append(formatted)
-                    else:
-                        result.append(f"#{formatted}")
+                    assert isinstance(item, str), repr(item)
+                    result.append(item)
             return [f"{indent}{item}" for item in result]
 
-        indent = _format.INDENT
+        indent = _indent.INDENT
         parts = [rf"\{self.name}"]
         parts.extend(recurse(self.arguments))
         return parts
@@ -287,7 +283,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\breathe`` command.
         """
-        return _overrides.LilyPondLiteral(r"\breathe", "after")
+        return _indicators.LilyPondLiteral(r"\breathe", "after")
 
     def clef(self, string):
         r"""
@@ -339,13 +335,13 @@ class GuileProxy:
         """
         if label is None:
             label = r"\default"
-        return _overrides.LilyPondLiteral(r"\mark %s" % label)
+        return _indicators.LilyPondLiteral(r"\mark %s" % label)
 
     def oneVoice(self):
         r"""
         Handles LilyPond ``\oneVoice`` command.
         """
-        return _overrides.LilyPondLiteral(r"\oneVoice")
+        return _indicators.LilyPondLiteral(r"\oneVoice")
 
     # pitchedTrill
 
@@ -480,25 +476,25 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\voiceFour`` command.
         """
-        return _overrides.LilyPondLiteral(r"\voiceFour")
+        return _indicators.LilyPondLiteral(r"\voiceFour")
 
     def voiceOne(self):
         r"""
         Handles LilyPond ``\voiceOnce`` command.
         """
-        return _overrides.LilyPondLiteral(r"\voiceOne")
+        return _indicators.LilyPondLiteral(r"\voiceOne")
 
     def voiceThree(self):
         r"""
         Handles LilyPond ``\voiceThree`` command.
         """
-        return _overrides.LilyPondLiteral(r"\voiceThree")
+        return _indicators.LilyPondLiteral(r"\voiceThree")
 
     def voiceTwo(self):
         r"""
         Handles LilyPond ``\voiceTwo`` command.
         """
-        return _overrides.LilyPondLiteral(r"\voiceTwo")
+        return _indicators.LilyPondLiteral(r"\voiceTwo")
 
     ### HELPER FUNCTIONS ###
 
@@ -2851,7 +2847,7 @@ class LilyPondParser(Parser):
             else:
                 if isinstance(x, _indicators.BarLine):
                     apply_backward.append(x)
-                elif isinstance(x, _overrides.LilyPondLiteral) and x.argument in (
+                elif isinstance(x, _indicators.LilyPondLiteral) and x.argument in (
                     r"\break",
                     r"\breathe",
                     r"\pageBreak",
@@ -2945,7 +2941,7 @@ class LilyPondParser(Parser):
             _dynamic.Dynamic,
             _indicators.Glissando,
             _indicators.StartHairpin,
-            _overrides.LilyPondLiteral,
+            _indicators.LilyPondLiteral,
             _indicators.StartBeam,
             _indicators.StartGroup,
             _indicators.StartPhrasingSlur,
@@ -3046,9 +3042,9 @@ class LilyPondParser(Parser):
         elif name == "GlissandoEvent":
             return _indicators.Glissando()
         elif name == "LaissezVibrerEvent":
-            return _overrides.LilyPondLiteral(r"\laissezVibrer", "after")
+            return _indicators.LilyPondLiteral(r"\laissezVibrer", "after")
         elif name == "LineBreakEvent":
-            return _overrides.LilyPondLiteral(r"\break")
+            return _indicators.LilyPondLiteral(r"\break")
         elif name == "NoteGroupingEvent":
             if lookup["span-direction"] == -1:
                 return _indicators.StartGroup()

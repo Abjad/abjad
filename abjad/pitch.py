@@ -4506,9 +4506,6 @@ class Pitch:
         raise NotImplementedError
 
 
-PitchTyping = typing.Union[int, str, Pitch]
-
-
 @functools.total_ordering
 class NamedPitch(Pitch):
     r"""
@@ -4854,7 +4851,7 @@ class NamedPitch(Pitch):
     def _get_lilypond_format(self):
         return self.name
 
-    def _list_format_contributions(self):
+    def _list_contributions(self):
         contributions = []
         if self.arrow is None:
             return contributions

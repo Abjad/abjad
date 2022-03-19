@@ -4,10 +4,7 @@ from . import tag as _tag
 
 
 @dataclasses.dataclass(slots=True)
-class SlotContributions:
-    """
-    Slot contributions.
-    """
+class _ContributionsByType:
 
     articulations: list[str] = dataclasses.field(default_factory=list)
     commands: list[str] = dataclasses.field(default_factory=list)
@@ -20,8 +17,6 @@ class SlotContributions:
     spanner_stops: list[str] = dataclasses.field(default_factory=list)
     stem_tremolos: list[str] = dataclasses.field(default_factory=list)
     trill_spanner_starts: list[str] = dataclasses.field(default_factory=list)
-
-    __documentation_section__ = "LilyPond formatting"
 
     def tag(self, tag, deactivate=None):
         """
@@ -42,60 +37,65 @@ class SlotContributions:
         self.spanner_stops = _tag.double_tag(self.spanner_stops, tag, deactivate)
         self.stem_tremolos = _tag.double_tag(self.stem_tremolos, tag, deactivate)
 
-    def update(self, slot_contributions):
+    def update(self, contributions):
         """
         Updates contributions.
         """
-        assert isinstance(slot_contributions, type(self))
-        self.articulations.extend(slot_contributions.articulations)
-        self.commands.extend(slot_contributions.commands)
-        self.comments.extend(slot_contributions.comments)
-        self.indicators.extend(slot_contributions.indicators)
-        self.leaks.extend(slot_contributions.leaks)
-        self.markup.extend(slot_contributions.markup)
-        self.spanners.extend(slot_contributions.spanners)
-        self.spanner_starts.extend(slot_contributions.spanner_starts)
-        self.spanner_stops.extend(slot_contributions.spanner_stops)
-        self.stem_tremolos.extend(slot_contributions.stem_tremolos)
-        self.trill_spanner_starts.extend(slot_contributions.trill_spanner_starts)
+        assert isinstance(contributions, type(self))
+        self.articulations.extend(contributions.articulations)
+        self.commands.extend(contributions.commands)
+        self.comments.extend(contributions.comments)
+        self.indicators.extend(contributions.indicators)
+        self.leaks.extend(contributions.leaks)
+        self.markup.extend(contributions.markup)
+        self.spanners.extend(contributions.spanners)
+        self.spanner_starts.extend(contributions.spanner_starts)
+        self.spanner_stops.extend(contributions.spanner_stops)
+        self.stem_tremolos.extend(contributions.stem_tremolos)
+        self.trill_spanner_starts.extend(contributions.trill_spanner_starts)
 
 
 @dataclasses.dataclass(slots=True)
 class LilyPondFormatBundle:
     """
     LilyPond format bundle.
-
-    Transient class created to hold the collection of all format contributions generated
-    on behalf of a single component.
     """
 
-    absolute_after: SlotContributions = dataclasses.field(
-        default_factory=SlotContributions
+    absolute_after: _ContributionsByType = dataclasses.field(
+        default_factory=_ContributionsByType
     )
-    absolute_before: SlotContributions = dataclasses.field(
-        default_factory=SlotContributions
+    absolute_before: _ContributionsByType = dataclasses.field(
+        default_factory=_ContributionsByType
     )
-    before: SlotContributions = dataclasses.field(default_factory=SlotContributions)
-    after: SlotContributions = dataclasses.field(default_factory=SlotContributions)
-    opening: SlotContributions = dataclasses.field(default_factory=SlotContributions)
-    closing: SlotContributions = dataclasses.field(default_factory=SlotContributions)
+    before: _ContributionsByType = dataclasses.field(
+        default_factory=_ContributionsByType
+    )
+    after: _ContributionsByType = dataclasses.field(
+        default_factory=_ContributionsByType
+    )
+    opening: _ContributionsByType = dataclasses.field(
+        default_factory=_ContributionsByType
+    )
+    closing: _ContributionsByType = dataclasses.field(
+        default_factory=_ContributionsByType
+    )
     context_settings: list = dataclasses.field(default_factory=list)
     grob_overrides: list = dataclasses.field(default_factory=list)
     grob_reverts: list = dataclasses.field(default_factory=list)
 
     __documentation_section__ = "LilyPond formatting"
 
-    def sort_overrides(self):
+    def freeze_overrides(self):
         """
-        Makes each slot immutable.
+        Makes each site immutable.
         """
         self.context_settings = tuple(sorted(set(self.context_settings)))
         self.grob_overrides = tuple(sorted(set(self.grob_overrides)))
         self.grob_reverts = tuple(sorted(set(self.grob_reverts)))
 
-    def tag_format_contributions(self, tag, deactivate=None):
+    def tag_contributions(self, tag, deactivate=None):
         """
-        Tags format contributions with string ``tag``.
+        Tags contributions with string ``tag``.
         """
         self.absolute_before.tag(tag, deactivate)
         self.absolute_after.tag(tag, deactivate)
@@ -109,7 +109,7 @@ class LilyPondFormatBundle:
 
     def update(self, bundle):
         """
-        Updates format bundle with all format contributions in ``bundle``.
+        Updates format bundle with contributions in ``bundle``.
         """
         assert isinstance(bundle, type(self))
         self.absolute_before.update(bundle.absolute_before)
