@@ -225,15 +225,15 @@ def attach_markup_struts(lilypond_file):
     first_leaf = _get.leaf(rhythmic_staff, 0)
     markup = _markups.Markup(r"\markup I", direction=_enums.UP)
     _bind.attach(markup, first_leaf)
-    _overrides.tweak(markup).staff_padding = 11
-    _overrides.tweak(markup).transparent = "##t"
+    _overrides.tweaks(markup, r"- \tweak staff-padding 11")
+    _overrides.tweaks(markup, r"- \tweak transparent ##t")
     duration = _get.duration(rhythmic_staff)
     if _duration.Duration(6, 4) < duration:
         last_leaf = _get.leaf(rhythmic_staff, -1)
         markup = _markups.Markup(r"\markup I", direction=_enums.UP)
         _bind.attach(markup, last_leaf)
-        _overrides.tweak(markup).staff_padding = 18
-        _overrides.tweak(markup).transparent = "##t"
+        _overrides.tweaks(markup, r"- \tweak staff-padding 18")
+        _overrides.tweaks(markup, r"- \tweak transparent ##t")
 
 
 def illustrate(item, **keywords):
@@ -272,7 +272,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         REGRESSION. Function preserves tweaks:
 
         >>> note = abjad.Note("c'4")
-        >>> abjad.tweak(note.note_head).color = "#red"
+        >>> abjad.tweak(note.note_head, r"\tweak color #red")
         >>> score = abjad.illustrators.make_piano_score([note])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -299,10 +299,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             >>
 
         >>> chord = abjad.Chord("<c d a' bf'>4")
-        >>> abjad.tweak(chord.note_heads[0]).color = "#red"
-        >>> abjad.tweak(chord.note_heads[1]).color = "#red"
-        >>> abjad.tweak(chord.note_heads[2]).color = "#blue"
-        >>> abjad.tweak(chord.note_heads[3]).color = "#blue"
+        >>> abjad.tweak(chord.note_heads[0], r"\tweak color #red")
+        >>> abjad.tweak(chord.note_heads[1], r"\tweak color #red")
+        >>> abjad.tweak(chord.note_heads[2], r"\tweak color #blue")
+        >>> abjad.tweak(chord.note_heads[3], r"\tweak color #blue")
         >>> score = abjad.illustrators.make_piano_score([chord])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -430,7 +430,6 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         for wrapper in markup_wrappers:
             markup = wrapper.indicator
             markup_copy = copy.copy(markup)
-            # if markup.direction in (_enums.UP, None):
             if wrapper.direction in (_enums.UP, None):
                 _bind.attach(markup_copy, treble_leaf, direction=wrapper.direction)
             else:

@@ -844,6 +844,7 @@ def double_tag(strings, tag_, deactivate=None):
     """
     Double tags ``strings``.
     """
+    assert all(isinstance(_, str) for _ in strings), repr(strings)
     assert isinstance(tag_, Tag), repr(tag_)
     before_tags = []
     if tag_:

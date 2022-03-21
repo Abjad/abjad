@@ -2638,8 +2638,8 @@ def illustrate_meter_list(
             ps_x_offset = float(rational_x_offset + offset)
             ps_x_offset *= postscript_scale
             ps_x_offset += 1
-            postscript_strings.append(f"{_markups._fpa(ps_x_offset)} -2 moveto")
-            postscript_strings.append(f"0 {_markups._fpa(weight)} rlineto")
+            postscript_strings.append(f"{_timespan._fpa(ps_x_offset)} -2 moveto")
+            postscript_strings.append(f"0 {_timespan._fpa(weight)} rlineto")
             postscript_strings.append("stroke")
         rational_x_offset += meter.duration
     fraction_pairs = []

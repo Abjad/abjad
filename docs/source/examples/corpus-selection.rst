@@ -374,14 +374,14 @@ can start building our score.
     ...     abjad.attach(clef, leaf)
     ...     leaves = abjad.select.leaves(score["RH_Voice"])
     ...     groups = abjad.select.group_by_measure(leaves)
-    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up)
-    ...     abjad.tweak(strut).staff_padding = 10
-    ...     abjad.tweak(strut).transparent = True
-    ...     abjad.attach(strut, groups[0][0])
-    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up)
-    ...     abjad.tweak(strut).staff_padding = 10
-    ...     abjad.tweak(strut).transparent = True
-    ...     abjad.attach(strut, groups[-1][0])
+    ...     strut = abjad.Markup(r"\markup A")
+    ...     abjad.tweak(strut, r"- \tweak staff-padding 10")
+    ...     abjad.tweak(strut, r"- \tweak transparent ##t")
+    ...     abjad.attach(strut, groups[0][0], direction=abjad.UP)
+    ...     strut = abjad.Markup(r"\markup A")
+    ...     abjad.tweak(strut, r"- \tweak staff-padding 10")
+    ...     abjad.tweak(strut, r"- \tweak transparent ##t")
+    ...     abjad.attach(strut, groups[-1][0], direction=abjad.UP)
     ...     return score
 
 ::

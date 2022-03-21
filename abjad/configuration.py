@@ -392,7 +392,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
 
         >>> for class_ in abjad.list_all_classes(modules="abjad"): class_
         <class 'abjad.bind.Wrapper'>
-        <class 'abjad.bundle.LilyPondFormatBundle'>
         <class 'abjad.configuration.Configuration'>
         <class 'abjad.contextmanagers.ContextManager'>
         <class 'abjad.contextmanagers.FilesystemState'>
@@ -403,6 +402,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.contextmanagers.TemporaryDirectory'>
         <class 'abjad.contextmanagers.TemporaryDirectoryChange'>
         <class 'abjad.contextmanagers.Timer'>
+        <class 'abjad.contributions.ContributionsBySite'>
         <class 'abjad.cyclictuple.CyclicTuple'>
         <class 'abjad.duration.Duration'>
         <class 'abjad.duration.Multiplier'>
@@ -536,7 +536,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.overrides.LilyPondSetting'>
         <class 'abjad.overrides.OverrideInterface'>
         <class 'abjad.overrides.SettingInterface'>
-        <class 'abjad.overrides.TweakInterface'>
         <class 'abjad.parentage.Parentage'>
         <class 'abjad.parsers.base.Parser'>
         <class 'abjad.parsers.parser.ContextSpeccedMusic'>
@@ -615,8 +614,9 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.timespan.OffsetCounter'>
         <class 'abjad.timespan.Timespan'>
         <class 'abjad.timespan.TimespanList'>
+        <class 'abjad.tweaks.Bundle'>
+        <class 'abjad.tweaks.Tweak'>
         <class 'abjad.verticalmoment.VerticalMoment'>
-        tuple[typing.Union[abjad.overrides.TweakInterface, tuple[abjad.overrides.TweakInterface, int]], ...]
 
     """
     all_classes = set()

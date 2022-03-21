@@ -12,8 +12,8 @@ Rotation, by row index
     >>> def make_rotation_chart(permutation, label):
     ...     rotations = [0, -1, -2, -3, -4, -5]
     ...     source_staff = abjad.Staff([abjad.Note(_, (1, 16)) for _ in permutation])
-    ...     markup = abjad.Markup(rf'\markup "{label}"', direction=abjad.Up)
-    ...     abjad.attach(markup, source_staff[0])
+    ...     markup = abjad.Markup(rf'\markup "{label}"')
+    ...     abjad.attach(markup, source_staff[0], direction=abjad.UP)
     ...     score = abjad.Score([source_staff], name="Score")
     ...     group = abjad.StaffGroup(name="Staff_Group")
     ...     hexachords = [
@@ -42,21 +42,20 @@ Rotation, by row index
     ...             .transpose(hexachords[1][0]),
     ...         ]
     ...         names = [
-    ...             abjad.Markup(r"\markup \box α", direction=abjad.Up),
-    ...             abjad.Markup(r"\markup \box β", direction=abjad.Up),
-    ...             abjad.Markup(r"\markup \box γ", direction=abjad.Up),
-    ...             abjad.Markup(r"\markup \box δ", direction=abjad.Up),
+    ...             abjad.Markup(r"\markup \box α"),
+    ...             abjad.Markup(r"\markup \box β"),
+    ...             abjad.Markup(r"\markup \box γ"),
+    ...             abjad.Markup(r"\markup \box δ"),
     ...         ]
     ...         for set, name in zip(sets, names):
     ...             voice = abjad.Voice([abjad.Note(_, (1, 16)) for _ in set])
     ...             for leaf in abjad.select.leaves(voice):
     ...                 markup = abjad.Markup(
     ...                     rf"\markup {abjad.NumberedPitchClass(leaf.written_pitch)}",
-    ...                     direction=abjad.Up,
     ...                 )
-    ...                 abjad.tweak(markup).staff_padding = "3"
-    ...                 abjad.attach(markup, leaf)
-    ...             abjad.tweak(name).staff_padding = "3"
+    ...                 abjad.tweak(markup, r"- \tweak staff-padding 3")
+    ...                 abjad.attach(markup, leaf, direction=abjad.UP)
+    ...             abjad.tweak(name, r"- \tweak staff-padding 3")
     ...             abjad.attach(name, voice[0])
     ...             time_signature = abjad.TimeSignature((6, 16))
     ...             abjad.attach(time_signature, voice[0])

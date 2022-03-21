@@ -172,8 +172,8 @@ class OffsetCounter:
             offset -= postscript_x_offset
             postscript_strings.extend(
                 [
-                    f"{_markups._fpa(offset)} -1 moveto",
-                    f"0 {_markups._fpa((float(count) * -3) + 1)} rlineto",
+                    f"{_fpa(offset)} -1 moveto",
+                    f"0 {_fpa((float(count) * -3) + 1)} rlineto",
                     "stroke",
                 ]
             )
@@ -776,14 +776,14 @@ class Timespan:
         stop = float(self.stop_offset) * postscript_scale
         stop -= postscript_x_offset
         strings = [
-            f"{_markups._fpa(start)} {_markups._fpa(postscript_y_offset)} moveto",
-            f"{_markups._fpa(stop)} {_markups._fpa(postscript_y_offset)} lineto",
+            f"{_fpa(start)} {_fpa(postscript_y_offset)} moveto",
+            f"{_fpa(stop)} {_fpa(postscript_y_offset)} lineto",
             "stroke",
-            f"{_markups._fpa(start)} {_markups._fpa(postscript_y_offset + 0.75)} moveto",
-            f"{_markups._fpa(start)} {_markups._fpa(postscript_y_offset - 0.75)} lineto",
+            f"{_fpa(start)} {_fpa(postscript_y_offset + 0.75)} moveto",
+            f"{_fpa(start)} {_fpa(postscript_y_offset - 0.75)} lineto",
             "stroke",
-            f"{_markups._fpa(stop)} {_markups._fpa(postscript_y_offset + 0.75)} moveto",
-            f"{_markups._fpa(stop)} {_markups._fpa(postscript_y_offset - 0.75)} lineto",
+            f"{_fpa(stop)} {_fpa(postscript_y_offset + 0.75)} moveto",
+            f"{_fpa(stop)} {_fpa(postscript_y_offset - 0.75)} lineto",
             "stroke",
         ]
         return strings
@@ -4822,6 +4822,27 @@ class TimespanList(list):
         return self
 
 
+def _format_postscript_argument(argument):
+    if isinstance(argument, str):
+        if argument.startswith("/"):
+            return argument
+        return f"({argument})"
+    elif isinstance(argument, collections.abc.Sequence):
+        if not argument:
+            return "[ ]"
+        string = " ".join(_format_postscript_argument(_) for _ in argument)
+        return f"[ {string} ]"
+    elif isinstance(argument, bool):
+        return str(argument).lower()
+    elif isinstance(argument, int | float):
+        argument = _math.integer_equivalent_number_to_integer(argument)
+        return str(argument)
+    return str(argument)
+
+
+_fpa = _format_postscript_argument
+
+
 def _make_timespan_list_markup(
     timespans,
     postscript_x_offset,
@@ -4875,8 +4896,8 @@ def _make_timespan_list_markup(
         x_offset -= postscript_x_offset
         postscript_strings.extend(
             [
-                f"{_markups._fpa(x_offset)} {_markups._fpa(height + 1.5)} moveto",
-                f"{_markups._fpa(x_offset)} {_markups._fpa(height - (level * 3))} lineto",
+                f"{_fpa(x_offset)} {_fpa(height + 1.5)} moveto",
+                f"{_fpa(x_offset)} {_fpa(height - (level * 3))} lineto",
                 "stroke",
             ]
         )

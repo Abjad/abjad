@@ -4,12 +4,12 @@ from . import duration as _duration
 from . import indicators as _indicators
 from . import iterate as iterate_
 from . import mutate as _mutate
-from . import overrides as _overrides
 from . import parentage as _parentage
 from . import score as _score
 from . import select as _select
 from . import spanners as _spanners
 from . import tag as _tag
+from . import tweaks as _tweaks
 from . import typings as _typings
 
 
@@ -150,15 +150,15 @@ class OnBeatGraceContainer(_score.Container):
     def _format_invocation(self):
         return r'\context Voice = "On_Beat_Grace_Container"'
 
-    def _format_open_brackets_site(self, bundle):
+    def _format_open_brackets_site(self, contributions):
         result = []
         if self.identifier:
             open_bracket = f"{{   {self.identifier}"
         else:
             open_bracket = "{"
         brackets_open = [open_bracket]
-        overrides = bundle.grob_overrides
-        settings = bundle.context_settings
+        overrides = contributions.grob_overrides
+        settings = contributions.context_settings
         if overrides or settings:
             contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
@@ -251,8 +251,8 @@ class OnBeatGraceContainer(_score.Container):
             if highest_pitch not in first_grace.note_heads:
                 first_grace.note_heads.append(highest_pitch)
             grace_mate_head = first_grace.note_heads.get(highest_pitch)
-            _overrides.tweak(grace_mate_head).font_size = 0
-            _overrides.tweak(grace_mate_head).transparent = True
+            _tweaks.tweak(grace_mate_head, r"\tweak font-size 0")
+            _tweaks.tweak(grace_mate_head, r"\tweak transparent ##t")
 
     def _set_leaf_durations(self):
         if self.leaf_duration is None:

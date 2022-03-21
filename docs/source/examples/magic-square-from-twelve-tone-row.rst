@@ -41,8 +41,8 @@ example:
     ...         string = r"\markup \larger { IT \hspace #-0.75 \sub "
     ...         string += str(number)
     ...         string += " }"
-    ...         markup = abjad.Markup(string, direction=abjad.Up)
-    ...         abjad.attach(markup, note)
+    ...         markup = abjad.Markup(string)
+    ...         abjad.attach(markup, note, direction=abjad.UP)
     ...     note = abjad.select.note(score, 0)
     ...     time_signature = abjad.TimeSignature((12, 4))
     ...     abjad.attach(time_signature, note)

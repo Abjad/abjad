@@ -16,6 +16,7 @@ class_to_default_values = {
     abjad.io.Player: (abjad.Note("c'4"),),
     abjad.parsers.parser.MarkupCommand: (r"\hcenter-in",),
     abjad.Articulation: ("staccato",),
+    abjad.Bundle: (abjad.Articulation("."),),
     abjad.ColorFingering: (0,),
     abjad.Line: ("text",),
     abjad.Markup: (r"\markup Allegro",),
@@ -23,6 +24,7 @@ class_to_default_values = {
     abjad.MetronomeMark: ((1, 4), 90),
     abjad.StringNumber: ([1],),
     abjad.TimeSignature: ((4, 4),),
+    abjad.Tweak: (r"\tweak color #red",),
 }
 
 
@@ -142,7 +144,7 @@ ignored_classes = (
     abjad.io.LilyPondIO,
     abjad.Configuration,
     abjad.LeafMaker,
-    abjad.LilyPondFormatBundle,
+    abjad.ContributionsBySite,
     abjad.LilyPondOverride,
     abjad.LilyPondSetting,
     abjad.Lineage,

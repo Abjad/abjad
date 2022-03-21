@@ -20,7 +20,7 @@ class Wrapper:
         >>> articulation = abjad.Articulation("accent")
         >>> abjad.attach(articulation, component, direction=abjad.UP)
         >>> abjad.get.wrapper(component)
-        Wrapper(annotation=None, context=None, deactivate=False, direction=<Vertical.UP: 1>, indicator=Articulation(name='accent', tweaks=None), synthetic_offset=None, tag=Tag(''))
+        Wrapper(annotation=None, context=None, deactivate=False, direction=<Vertical.UP: 1>, indicator=Articulation(name='accent', tweaks=()), synthetic_offset=None, tag=Tag(''))
 
     ..  container:: example
 
@@ -381,17 +381,17 @@ class Wrapper:
         result = []
         if self.annotation:
             return result
-        if hasattr(self.indicator, "_get_lilypond_format_bundle"):
+        if hasattr(self.indicator, "_get_contributions"):
             try:
-                bundle = self.indicator._get_lilypond_format_bundle(
+                contributions = self.indicator._get_contributions(
                     component=self.component, wrapper=self
                 )
             except TypeError:
-                bundle = self.indicator._get_lilypond_format_bundle(
+                contributions = self.indicator._get_contributions(
                     component=self.component
                 )
-            bundle.tag_contributions(self.tag, deactivate=self.deactivate)
-            return bundle
+            contributions.tag_contributions(self.tag, deactivate=self.deactivate)
+            return contributions
         try:
             context = self._get_effective_context()
             lilypond_format = self.indicator._get_lilypond_format(context=context)
@@ -501,7 +501,7 @@ class Wrapper:
             >>> articulation = abjad.Articulation("accent")
             >>> abjad.annotate(note, "foo", articulation)
             >>> abjad.get.annotation(note, "foo")
-            Articulation(name='accent', tweaks=None)
+            Articulation(name='accent', tweaks=())
 
         """
         return self._annotation
@@ -1011,7 +1011,8 @@ def detach(argument, target=None, by_id=False):
             }
 
         >>> abjad.detach(abjad.Articulation, staff[0])
-        (Articulation(name='>', tweaks=None),)
+        (Articulation(name='>', tweaks=()),)
+
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1086,8 +1087,8 @@ def detach(argument, target=None, by_id=False):
         >>> markups = abjad.detach(markup_2, staff[0])
         >>> for markup in markups:
         ...     markup
-        Markup(string='\\markup { with the others }', tweaks=None)
-        Markup(string='\\markup { with the others }', tweaks=None)
+        Markup(string='\\markup { with the others }', tweaks=())
+        Markup(string='\\markup { with the others }', tweaks=())
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1145,7 +1146,7 @@ def detach(argument, target=None, by_id=False):
         >>> markups = abjad.detach(markup_2, staff[0], by_id=True)
         >>> for markup in markups:
         ...     markup
-        Markup(string='\\markup { with the others }', tweaks=None)
+        Markup(string='\\markup { with the others }', tweaks=())
 
         >>> abjad.show(staff) # doctest: +SKIP
 

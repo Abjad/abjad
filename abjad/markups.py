@@ -1,13 +1,12 @@
 """
-Tools for modeling LilyPond markup.
+Markup.
 """
-import collections
+import copy
 import dataclasses
 import typing
 
-from . import math as _math
-from . import overrides as _overrides
 from . import string as _string
+from . import tweaks as tweaksmodule
 
 
 @dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
@@ -17,35 +16,8 @@ class Markup:
 
     ..  container:: example
 
-        Initializes from string:
-
-        >>> string = r'\markup \italic "Allegro assai"'
-        >>> markup = abjad.Markup(string)
-        >>> string = abjad.lilypond(markup)
-        >>> print(string)
-        \markup \italic "Allegro assai"
-
-        >>> abjad.show(markup) # doctest: +SKIP
-
-        >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"')
-        >>> markup = abjad.Markup(markup.string)
-        >>> string = abjad.lilypond(markup)
-        >>> print(string)
-        \markup \italic "Allegro assai"
-
-        >>> abjad.show(markup) # doctest: +SKIP
-
-    ..  container:: example
-
-        Attaches markup to score components:
-
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> string = r'\markup \italic "Allegro assai"'
-        >>> markup = abjad.Markup(string)
-        >>> string = abjad.lilypond(markup)
-        >>> print(string)
-        \markup \italic "Allegro assai"
-
+        >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"')
         >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -62,12 +34,55 @@ class Markup:
                 f'8
             }
 
-    Set ``direction`` to ``Up``, ``Down``, ``"neutral"``, ``"^"``, ``"_"``, ``"-"`` or
-    None.
+    ..  container:: example
+
+        Tweak markup like this:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup(r'\markup \bold "Allegro assai"')
+        >>> abjad.tweak(markup, r"- \tweak color #blue")
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                - \tweak color #blue
+                ^ \markup \bold "Allegro assai"
+                d'4
+                e'4
+                f'4
+            }
+
+        Works even when markup has no direction:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup(r'\markup \bold "Allegro assai"')
+        >>> abjad.tweak(markup, r"- \tweak color #blue")
+        >>> abjad.attach(markup, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                - \tweak color #blue
+                - \markup \bold "Allegro assai"
+                d'4
+                e'4
+                f'4
+            }
 
     ..  container:: example
 
-        Markup can be tagged:
+        Tag markup like this:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r"\markup \italic Allegro")
@@ -87,9 +102,7 @@ class Markup:
             f'4
         }
 
-    ..  container:: example
-
-        Markup can be deactively tagged:
+        Tag deactivated markup like this:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r"\markup \italic Allegro")
@@ -117,8 +130,7 @@ class Markup:
 
     ..  container:: example
 
-        REGRESSION: make sure the first italic markup doesn't disappear after the second
-        italic markup is attached:
+        REGRESSION: markup 1 doesn't disappear after markup 2 is attached:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup_1 = abjad.Markup(r"\markup \italic Allegro")
@@ -127,25 +139,26 @@ class Markup:
         >>> abjad.attach(markup_2, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
-        >>> print(string)
-        \new Staff
-        {
-            c'4
-            ^ \markup \italic Allegro
-            ^ \markup \italic "non troppo"
-            d'4
-            e'4
-            f'4
-        }
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                ^ \markup \italic Allegro
+                ^ \markup \italic "non troppo"
+                d'4
+                e'4
+                f'4
+            }
 
     ..  container:: example
 
-        Works with tweaks:
+        Tweak markup like this:
 
-        >>> string = r'\markup \bold "Allegro assai"'
-        >>> markup = abjad.Markup(string)
-        >>> abjad.tweak(markup).color = "#blue"
+        >>> markup = abjad.Markup(r'\markup \bold "Allegro assai"')
+        >>> abjad.tweak(markup, r"- \tweak color #blue")
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(markup, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -164,11 +177,10 @@ class Markup:
                 f'4
             }
 
-        Even if markup has no direction:
+        Works even when markup has no direction:
 
-        >>> string = r'\markup \bold "Allegro assai"'
-        >>> markup = abjad.Markup(string)
-        >>> abjad.tweak(markup).color = "#blue"
+        >>> markup = abjad.Markup(r'\markup \bold "Allegro assai"')
+        >>> abjad.tweak(markup, r"- \tweak color #blue")
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(markup, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -187,107 +199,29 @@ class Markup:
                 f'4
             }
 
-    ..  container:: example
-
-        Equality:
-
-        >>> markup_1 = abjad.Markup(r"\markup Allegro")
-        >>> markup_2 = abjad.Markup(r"\markup Allegro")
-        >>> markup_3 = abjad.Markup(r'\markup "Allegro assai"')
-
-        >>> markup_1 == markup_1
-        True
-        >>> markup_1 == markup_2
-        True
-        >>> markup_1 == markup_3
-        False
-        >>> markup_2 == markup_1
-        True
-        >>> markup_2 == markup_2
-        True
-        >>> markup_2 == markup_3
-        False
-        >>> markup_3 == markup_1
-        False
-        >>> markup_3 == markup_2
-        False
-        >>> markup_3 == markup_3
-        True
-
-    ..  container:: example
-
-        Unsafe hash:
-
-        >>> hash_1 = hash(abjad.Markup(r"\markup Allegro"))
-        >>> hash_2 = hash(abjad.Markup(r"\markup Allegro"))
-        >>> hash_3 = hash(abjad.Markup(r'\markup "Allegro assai"'))
-
-        >>> hash_1 == hash_1
-        True
-        >>> hash_1 == hash_2
-        True
-        >>> hash_1 == hash_3
-        False
-        >>> hash_2 == hash_1
-        True
-        >>> hash_2 == hash_2
-        True
-        >>> hash_2 == hash_3
-        False
-        >>> hash_3 == hash_1
-        False
-        >>> hash_3 == hash_2
-        False
-        >>> hash_3 == hash_3
-        True
-
-    ..  container:: example
-
-        Order:
-
-        >>> markup_1 = abjad.Markup(r"\markup Allegro")
-        >>> markup_2 = abjad.Markup(r"\markup assai")
-
-        >>> markup_1 < markup_2
-        True
-        >>> markup_2 < markup_1
-        False
-
-    ..  container:: example
-
-        Copy:
-
-        >>> import copy
-        >>> markup_1 = abjad.Markup(r"\markup Allegro assai")
-        >>> markup_2 = copy.copy(markup_1)
-
-        >>> markup_1
-        Markup(string='\\markup Allegro assai', tweaks=None)
-
-        >>> markup_2
-        Markup(string='\\markup Allegro assai', tweaks=None)
-
-        >>> markup_1 == markup_2
-        True
-
-        >>> markup_1 is markup_2
-        False
-
     """
 
     string: str
-    tweaks: _overrides.TweakInterface | None = None
+    tweaks: tuple[tweaksmodule.Tweak, ...] = dataclasses.field(
+        default_factory=tuple, compare=False
+    )
 
     directed: typing.ClassVar[bool] = True
+    post_event: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        if self.tweaks:
-            self.tweaks = _overrides.set_tweaks(self, self.tweaks)
+        self.tweaks = tuple(tweaksmodule.Tweak(_) for _ in self.tweaks)
+
+    def __copy__(self, *arguments):
+        result = type(self)(string=self.string)
+        result.tweaks = tuple(list(copy.deepcopy(self.tweaks)))
+        return result
 
     def _get_format_pieces(self, *, wrapper=None):
         tweaks = []
-        if self.tweaks:
-            tweaks = self.tweaks._list_contributions()
+        for tweak in sorted(self.tweaks):
+            strings = tweak._list_contributions()
+            tweaks.extend(strings)
         if wrapper:
             direction = wrapper.direction or "-"
             direction = _string.to_tridirectional_lilypond_symbol(direction)
@@ -299,24 +233,3 @@ class Markup:
     def _get_lilypond_format(self, *, wrapper=None):
         pieces = self._get_format_pieces(wrapper=wrapper)
         return "\n".join(pieces)
-
-
-def _format_postscript_argument(argument):
-    if isinstance(argument, str):
-        if argument.startswith("/"):
-            return argument
-        return f"({argument})"
-    elif isinstance(argument, collections.abc.Sequence):
-        if not argument:
-            return "[ ]"
-        string = " ".join(_format_postscript_argument(_) for _ in argument)
-        return f"[ {string} ]"
-    elif isinstance(argument, bool):
-        return str(argument).lower()
-    elif isinstance(argument, int | float):
-        argument = _math.integer_equivalent_number_to_integer(argument)
-        return str(argument)
-    return str(argument)
-
-
-_fpa = _format_postscript_argument

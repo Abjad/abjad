@@ -15,6 +15,7 @@ from . import pitch as _pitch
 from . import score as _score
 from . import select as _select
 from . import setclass as _setclass
+from . import tweaks as _tweaks
 from . import verticalmoment as _verticalmoment
 
 
@@ -276,16 +277,16 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
                 pc = _pitch.NumberedPitchClass(number)
                 color = color_map.get(pc, None)
                 if color is not None:
-                    _overrides.tweak(note_head).Accidental.color = color
-                    _overrides.tweak(note_head).color = color
+                    _tweaks.tweak(note_head, rf"\tweak Accidental.color {color}")
+                    _tweaks.tweak(note_head, rf"\tweak color {color}")
         elif isinstance(leaf, _score.Note):
             note_head = leaf.note_head
             number = note_head.written_pitch.number
             pc = _pitch.NumberedPitchClass(number)
             color = color_map[pc.number]
             if color is not None:
-                _overrides.tweak(leaf.note_head).Accidental.color = color
-                _overrides.tweak(leaf.note_head).color = color
+                _tweaks.tweak(leaf.note_head, rf"\tweak Accidental.color {color}")
+                _tweaks.tweak(leaf.note_head, rf"\tweak color {color}")
 
 
 def remove_markup(argument) -> None:
