@@ -6,6 +6,7 @@ from . import bind as _bind
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
+from . import indicators as _indicators
 from . import iterate as iterate_
 from . import markups as _markups
 from . import overrides as _overrides
@@ -24,12 +25,12 @@ def _attach(label, leaf, *, deactivate=False, direction=None, tag=None):
 def _color_leaf(leaf, color, *, deactivate=False, tag=None):
     if isinstance(leaf, _score.Skip):
         color = color[1:]
-        comment = _overrides.LilyPondLiteral(f"% {color}", format_slot="before")
+        comment = _indicators.LilyPondLiteral(f"% {color}", site="before")
         _attach(comment, leaf, deactivate=deactivate, tag=tag)
     else:
         assert color.startswith("#")
         string = rf"\abjad-color-music #'{color[1:]}"
-        literal = _overrides.LilyPondLiteral(string)
+        literal = _indicators.LilyPondLiteral(string)
         _attach(literal, leaf)
     return leaf
 
@@ -275,7 +276,7 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
                 pc = _pitch.NumberedPitchClass(number)
                 color = color_map.get(pc, None)
                 if color is not None:
-                    _overrides.tweak(note_head, literal=True).Accidental.color = color
+                    _overrides.tweak(note_head).Accidental.color = color
                     _overrides.tweak(note_head).color = color
         elif isinstance(leaf, _score.Note):
             note_head = leaf.note_head
@@ -283,7 +284,7 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
             pc = _pitch.NumberedPitchClass(number)
             color = color_map[pc.number]
             if color is not None:
-                _overrides.tweak(leaf.note_head, literal=True).Accidental.color = color
+                _overrides.tweak(leaf.note_head).Accidental.color = color
                 _overrides.tweak(leaf.note_head).color = color
 
 

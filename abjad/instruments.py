@@ -90,7 +90,7 @@ class Instrument:
         "_starting_clefs",
     )
 
-    _format_slot = "opening"
+    _site = "opening"
 
     _latent = True
 

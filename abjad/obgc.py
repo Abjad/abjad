@@ -1,7 +1,7 @@
-from . import _iterate
+from . import _indent, _iterate
 from . import bind as _bind
 from . import duration as _duration
-from . import format as _format
+from . import indicators as _indicators
 from . import iterate as iterate_
 from . import mutate as _mutate
 from . import overrides as _overrides
@@ -135,9 +135,7 @@ class OnBeatGraceContainer(_score.Container):
         anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
         final_anchor_leaf = _iterate._get_leaf(anchor_voice, -1)
         next_leaf = _iterate._get_leaf(final_anchor_leaf, 1)
-        literal = _overrides.LilyPondLiteral(
-            r"\oneVoice", format_slot="absolute_before"
-        )
+        literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
         if next_leaf._has_indicator(literal):
             return
         if isinstance(next_leaf._parent, OnBeatGraceContainer):
@@ -152,7 +150,7 @@ class OnBeatGraceContainer(_score.Container):
     def _format_invocation(self):
         return r'\context Voice = "On_Beat_Grace_Container"'
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         if self.identifier:
             open_bracket = f"{{   {self.identifier}"
@@ -167,12 +165,12 @@ class OnBeatGraceContainer(_score.Container):
             contributions = tuple(contributions)
             identifier_pair = ("context_brackets", "open")
             result.append((identifier_pair, contributions))
-            contributions = [_format.INDENT + _ for _ in overrides]
+            contributions = [_indent.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("overrides", "overrides")
             result.append((identifier_pair, contributions))
-            contributions = [_format.INDENT + _ for _ in settings]
+            contributions = [_indent.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("settings", "settings")
@@ -846,12 +844,12 @@ def on_beat_grace_container(
         raise Exception(message)
     if font_size is not None:
         string = rf"\set fontSize = #{font_size}"
-        literal = _overrides.LilyPondLiteral(string)
+        literal = _indicators.LilyPondLiteral(string)
         _bind.attach(literal, on_beat_grace_container, tag=_site(1))
     if not do_not_beam:
         _spanners.beam(on_beat_grace_container[:])
     if not do_not_slash:
-        literal = _overrides.LilyPondLiteral(r"\slash")
+        literal = _indicators.LilyPondLiteral(r"\slash")
         _bind.attach(literal, on_beat_grace_container[0], tag=_site(2))
     if not do_not_slur:
         _spanners.slur(on_beat_grace_container[:])
@@ -862,24 +860,22 @@ def on_beat_grace_container(
         4: r"\voiceFour",
     }
     first_grace = _iterate._get_leaf(on_beat_grace_container, 0)
-    one_voice_literal = _overrides.LilyPondLiteral(
-        r"\oneVoice", format_slot="absolute_before"
+    one_voice_literal = _indicators.LilyPondLiteral(
+        r"\oneVoice", site="absolute_before"
     )
     string = voice_number_to_string.get(grace_voice_number, None)
     if string is not None:
         literal
         _bind.detach(one_voice_literal, anchor_leaf)
-        _bind.attach(_overrides.LilyPondLiteral(string), first_grace, tag=_site(3))
+        _bind.attach(_indicators.LilyPondLiteral(string), first_grace, tag=_site(3))
     string = voice_number_to_string.get(anchor_voice_number, None)
     if string is not None:
         _bind.detach(one_voice_literal, anchor_leaf)
-        _bind.attach(_overrides.LilyPondLiteral(string), anchor_leaf, tag=_site(4))
+        _bind.attach(_indicators.LilyPondLiteral(string), anchor_leaf, tag=_site(4))
     if not do_not_stop_polyphony:
         last_anchor_leaf = _iterate._get_leaf(anchor_voice_selection, -1)
         next_leaf = _iterate._get_leaf(last_anchor_leaf, 1)
         if next_leaf is not None:
-            literal = _overrides.LilyPondLiteral(
-                r"\oneVoice", format_slot="absolute_before"
-            )
+            literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
             _bind.attach(literal, next_leaf, tag=_site(5))
     return on_beat_grace_container

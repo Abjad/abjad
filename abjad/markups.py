@@ -281,12 +281,13 @@ class Markup:
     directed: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
+        if self.tweaks:
+            self.tweaks = _overrides.set_tweaks(self, self.tweaks)
 
     def _get_format_pieces(self, *, wrapper=None):
         tweaks = []
         if self.tweaks:
-            tweaks = self.tweaks._list_format_contributions()
+            tweaks = self.tweaks._list_contributions()
         if wrapper:
             direction = wrapper.direction or "-"
             direction = _string.to_tridirectional_lilypond_symbol(direction)

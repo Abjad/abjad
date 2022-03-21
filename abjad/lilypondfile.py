@@ -1,7 +1,7 @@
 import dataclasses
 
+from . import _indent
 from . import configuration as _configuration
-from . import format as _format
 from . import iterate as iterate_
 from . import score as _score
 from . import tag as _tag
@@ -133,7 +133,7 @@ class Block:
 
     @staticmethod
     def _format_item(item, depth=1):
-        indent = depth * _format.INDENT
+        indent = depth * _indent.INDENT
         result = []
         if isinstance(item, str):
             if item.isspace():

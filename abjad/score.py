@@ -6,7 +6,7 @@ import typing
 
 import quicktions
 
-from . import _update
+from . import _indent, _update
 from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
@@ -142,40 +142,40 @@ class Component:
                 return True
         return False
 
-    def _format_absolute_after_slot(self, bundle):
+    def _format_absolute_after_site(self, bundle):
         result = []
         result.append(("literals", bundle.absolute_after.commands))
         return result
 
-    def _format_absolute_before_slot(self, bundle):
+    def _format_absolute_before_site(self, bundle):
         result = []
         result.append(("literals", bundle.absolute_before.commands))
         return result
 
-    def _format_after_slot(self, bundle):
+    def _format_after_site(self, bundle):
         return []
 
-    def _format_before_slot(self, bundle):
+    def _format_before_site(self, bundle):
         return []
 
-    def _format_close_brackets_slot(self, bundle):
+    def _format_close_brackets_site(self, bundle):
         return []
 
-    def _format_closing_slot(self, bundle):
+    def _format_closing_site(self, bundle):
         return []
 
     def _format_component(self, pieces=False):
         result = []
-        bundle = _format.bundle_format_contributions(self)
-        result.extend(self._format_absolute_before_slot(bundle))
-        result.extend(self._format_before_slot(bundle))
-        result.extend(self._format_open_brackets_slot(bundle))
-        result.extend(self._format_opening_slot(bundle))
-        result.extend(self._format_contents_slot(bundle))
-        result.extend(self._format_closing_slot(bundle))
-        result.extend(self._format_close_brackets_slot(bundle))
-        result.extend(self._format_after_slot(bundle))
-        result.extend(self._format_absolute_after_slot(bundle))
+        bundle = _format.bundle_contributions(self)
+        result.extend(self._format_absolute_before_site(bundle))
+        result.extend(self._format_before_site(bundle))
+        result.extend(self._format_open_brackets_site(bundle))
+        result.extend(self._format_opening_site(bundle))
+        result.extend(self._format_contents_site(bundle))
+        result.extend(self._format_closing_site(bundle))
+        result.extend(self._format_close_brackets_site(bundle))
+        result.extend(self._format_after_site(bundle))
+        result.extend(self._format_absolute_after_site(bundle))
         contributions = []
         for contributor, contribution in result:
             for line in contribution:
@@ -189,25 +189,25 @@ class Component:
             result_ = "\n".join(contributions)
         return result_
 
-    def _format_contents_slot(self, bundle):
+    def _format_contents_site(self, bundle):
         return []
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         return []
 
-    def _format_opening_slot(self, bundle):
+    def _format_opening_site(self, bundle):
         return []
 
     @staticmethod
-    def _format_slot_contributions_with_indent(slot):
+    def _contributions_with_indent(pairs):
         result = []
-        for contributor, contributions in slot:
+        for contributor, contributions in pairs:
             strings = []
             for string in contributions:
                 if string.isspace():
                     string = ""
                 else:
-                    string = _format.INDENT + string
+                    string = _indent.INDENT + string
                 strings.append(string)
             pair = (contributor, strings)
             result.append(pair)
@@ -238,11 +238,11 @@ class Component:
             duration *= multiplier
         return duration
 
-    def _get_format_contributions_for_slot(self, slot_identifier, bundle=None):
+    def _get_contributions_for_site(self, site_identifier, bundle=None):
         result = []
         if bundle is None:
-            bundle = _format.bundle_format_contributions(self)
-        slot_names = (
+            bundle = _format.bundle_contributions(self)
+        site_names = (
             "before",
             "open_brackets",
             "opening",
@@ -251,14 +251,14 @@ class Component:
             "close_brackets",
             "after",
         )
-        if isinstance(slot_identifier, int):
-            assert slot_identifier in range(1, 7 + 1)
-            slot_index = slot_identifier - 1
-            slot_name = slot_names[slot_index]
-        elif isinstance(slot_identifier, str):
-            slot_name = slot_identifier.replace(" ", "_")
-            assert slot_name in slot_names
-        method_name = f"_format_{slot_name}_slot"
+        if isinstance(site_identifier, int):
+            assert site_identifier in range(1, 7 + 1)
+            site_index = site_identifier - 1
+            site_name = site_names[site_index]
+        elif isinstance(site_identifier, str):
+            site_name = site_identifier.replace(" ", "_")
+            assert site_name in site_names
+        method_name = f"_format_{site_name}_site"
         method = getattr(self, method_name)
         for source, contributions in method(bundle):
             result.extend(contributions)
@@ -458,7 +458,7 @@ class Leaf(Component):
 
     ### CLASS VARIABLES ##
 
-    _allowable_format_slots = (
+    _allowable_sites = (
         "absolute_before",
         "before",
         "after",
@@ -540,7 +540,7 @@ class Leaf(Component):
             result.append(r"\afterGrace")
         return result
 
-    def _format_after_slot(self, bundle):
+    def _format_after_site(self, bundle):
         result = []
         result.append(("stem_tremolos", bundle.after.stem_tremolos))
         result.append(("articulations", bundle.after.articulations))
@@ -549,7 +549,7 @@ class Leaf(Component):
         result.append(("spanner_stops", bundle.after.spanner_stops))
         result.append(("spanner_starts", bundle.after.spanner_starts))
         # NOTE: LilyPond demands \startTrillSpan appear after almost all
-        #       other format contributions; pitched trills dangerously
+        #       other contributions; pitched trills dangerously
         #       suppress markup and the starts of other spanners when
         #       \startTrillSpan appears lexically prior to those commands;
         #       but \startTrillSpan must appear before calls to \set.
@@ -560,7 +560,7 @@ class Leaf(Component):
         result.append(("comments", bundle.after.comments))
         return result
 
-    def _format_before_slot(self, bundle):
+    def _format_before_site(self, bundle):
         result = []
         result.append(("grace body", self._format_grace_body()))
         result.append(("comments", bundle.before.comments))
@@ -572,7 +572,7 @@ class Leaf(Component):
         result.append(("spanners", bundle.before.spanners))
         return result
 
-    def _format_closing_slot(self, bundle):
+    def _format_closing_site(self, bundle):
         result = []
         result.append(("spanners", bundle.closing.spanners))
         result.append(("commands", bundle.closing.commands))
@@ -580,7 +580,7 @@ class Leaf(Component):
         result.append(("comments", bundle.closing.comments))
         return result
 
-    def _format_contents_slot(self, bundle):
+    def _format_contents_site(self, bundle):
         result = []
         result.append(("leaf body", self._format_leaf_body(bundle)))
         return result
@@ -602,7 +602,7 @@ class Leaf(Component):
             strings = _tag.double_tag(strings, self.tag)
         return strings
 
-    def _format_opening_slot(self, bundle):
+    def _format_opening_site(self, bundle):
         result = []
         result.append(("comments", bundle.opening.comments))
         result.append(("indicators", bundle.opening.indicators))
@@ -654,12 +654,12 @@ class Leaf(Component):
         for contributor, contributions in contribution_packet:
             if contributions:
                 if isinstance(contributor, tuple):
-                    contributor = _format.INDENT + contributor[0] + ":\n"
+                    contributor = _indent.INDENT + contributor[0] + ":\n"
                 else:
-                    contributor = _format.INDENT + contributor + ":\n"
+                    contributor = _indent.INDENT + contributor + ":\n"
                 result += contributor
                 for contribution in contributions:
-                    contribution = (_format.INDENT * 2) + contribution + "\n"
+                    contribution = (_indent.INDENT * 2) + contribution + "\n"
                     result += contribution
         return result
 
@@ -822,7 +822,7 @@ class Container(Component):
 
     ### CLASS VARIABLES ###
 
-    _allowable_format_slots = (
+    _allowable_sites = (
         "absolute_before",
         "before",
         "opening",
@@ -1122,19 +1122,19 @@ class Container(Component):
         self._components[:] = []
         return contents
 
-    def _format_after_slot(self, bundle):
+    def _format_after_site(self, bundle):
         result = []
         result.append(("commands", bundle.after.commands))
         result.append(("comments", bundle.after.comments))
         return tuple(result)
 
-    def _format_before_slot(self, bundle):
+    def _format_before_site(self, bundle):
         result = []
         result.append(("comments", bundle.before.comments))
         result.append(("commands", bundle.before.commands))
         return tuple(result)
 
-    def _format_close_brackets_slot(self, bundle):
+    def _format_close_brackets_site(self, bundle):
         result = []
         strings = []
         if self.simultaneous:
@@ -1153,12 +1153,12 @@ class Container(Component):
         result.append([("close brackets", ""), strings])
         return tuple(result)
 
-    def _format_closing_slot(self, bundle):
+    def _format_closing_site(self, bundle):
         result = []
         result.append(("grob reverts", bundle.grob_reverts))
         result.append(("commands", bundle.closing.commands))
         result.append(("comments", bundle.closing.comments))
-        return self._format_slot_contributions_with_indent(result)
+        return self._contributions_with_indent(result)
 
     def _format_content_pieces(self):
         strings = []
@@ -1168,16 +1168,16 @@ class Container(Component):
                 if string.isspace():
                     string = ""
                 else:
-                    string = _format.INDENT + string
+                    string = _indent.INDENT + string
                 strings.append(string)
         return strings
 
-    def _format_contents_slot(self, bundle):
+    def _format_contents_site(self, bundle):
         result = []
         result.append([("contents", "_contents"), self._format_content_pieces()])
         return tuple(result)
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         strings = []
         if self.simultaneous:
@@ -1196,13 +1196,13 @@ class Container(Component):
         result.append([("open brackets", ""), strings])
         return tuple(result)
 
-    def _format_opening_slot(self, bundle):
+    def _format_opening_site(self, bundle):
         result = []
         result.append(("comments", bundle.opening.comments))
         result.append(("commands", bundle.opening.commands))
         result.append(("grob overrides", bundle.grob_overrides))
         result.append(("context settings", bundle.context_settings))
-        return self._format_slot_contributions_with_indent(result)
+        return self._contributions_with_indent(result)
 
     def _get_abbreviated_string_format(self):
         if 0 < len(self):
@@ -1982,7 +1982,7 @@ class AfterGraceContainer(Container):
     def __init__(
         self, components=None, *, language: str = "english", tag: _tag.Tag = None
     ) -> None:
-        # _main_leaf slot must be initialized before container initialization
+        # _main_leaf must be initialized before container initialization
         self._main_leaf = None
         Container.__init__(self, components, language=language, tag=tag)
 
@@ -2011,7 +2011,7 @@ class AfterGraceContainer(Container):
             self._main_leaf = None
         return self
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         result.append([("grace_brackets", "open"), ["{"]])
         return tuple(result)
@@ -2236,7 +2236,7 @@ class BeforeGraceContainer(Container):
             self._main_leaf = None
         return self
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         string = f"{self.command} {{"
         result.append([("grace_brackets", "open"), [string]])
@@ -2688,7 +2688,7 @@ class Chord(Leaf):
 
     ### PRIVATE METHODS ###
 
-    def _format_before_slot(self, bundle):
+    def _format_before_site(self, bundle):
         result = []
         result.append(("grace body", self._format_grace_body()))
         result.append(("comments", bundle.before.comments))
@@ -2707,7 +2707,7 @@ class Chord(Leaf):
             for note_head in note_heads:
                 current_format = note_head._get_lilypond_format()
                 format_list = current_format.split("\n")
-                format_list = [_format.INDENT + _ for _ in format_list]
+                format_list = [_indent.INDENT + _ for _ in format_list]
                 result.extend(format_list)
             result.insert(0, "<")
             result.append(">")
@@ -2893,7 +2893,7 @@ class Cluster(Container):
 
     __slots__ = ()
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         contributor = ("self_brackets", "open")
         if self.simultaneous:
@@ -3041,12 +3041,12 @@ class Context(Container):
 
     ### PRIVATE METHODS ###
 
-    def _format_closing_slot(self, bundle):
+    def _format_closing_site(self, bundle):
         result = []
         result.append(("indicators", bundle.closing.indicators))
         result.append(("commands", bundle.closing.commands))
         result.append(("comments", bundle.closing.comments))
-        return self._format_slot_contributions_with_indent(result)
+        return self._contributions_with_indent(result)
 
     def _format_consists_commands(self):
         result = []
@@ -3062,7 +3062,7 @@ class Context(Container):
             string = rf"\new {self.lilypond_type}"
         return string
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         if self.simultaneous:
             if self.identifier:
@@ -3085,22 +3085,22 @@ class Context(Container):
             contributions = tuple(contributions)
             identifier_pair = ("context_brackets", "open")
             result.append((identifier_pair, contributions))
-            contributions = [_format.INDENT + _ for _ in remove_commands]
+            contributions = [_indent.INDENT + _ for _ in remove_commands]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("engraver removals", "remove_commands")
             result.append((identifier_pair, contributions))
-            contributions = [_format.INDENT + _ for _ in consists_commands]
+            contributions = [_indent.INDENT + _ for _ in consists_commands]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("engraver consists", "consists_commands")
             result.append((identifier_pair, contributions))
-            contributions = [_format.INDENT + _ for _ in overrides]
+            contributions = [_indent.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("overrides", "overrides")
             result.append((identifier_pair, contributions))
-            contributions = [_format.INDENT + _ for _ in settings]
+            contributions = [_indent.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
             contributions = tuple(contributions)
             identifier_pair = ("settings", "settings")
@@ -3122,12 +3122,12 @@ class Context(Container):
             result.append((identifier_pair, contributions))
         return tuple(result)
 
-    def _format_opening_slot(self, bundle):
+    def _format_opening_site(self, bundle):
         result = []
         result.append(("comments", bundle.opening.comments))
         result.append(("indicators", bundle.opening.indicators))
         result.append(("commands", bundle.opening.commands))
-        return self._format_slot_contributions_with_indent(result)
+        return self._contributions_with_indent(result)
 
     def _format_remove_commands(self):
         result = []
@@ -3326,7 +3326,7 @@ class MultimeasureRest(Leaf):
     def _get_body(self):
         """
         Gets list of string representation of body of rest.
-        Picked up as format contribution at format-time.
+        Picked up as contribution at format-time.
         """
         result = "R" + str(self._get_formatted_duration())
         return [result]
@@ -3359,7 +3359,7 @@ class MultimeasureRest(Leaf):
 
 @functools.total_ordering
 class NoteHead:
-    """
+    r"""
     Note-head.
 
     ..  container:: example
@@ -3369,6 +3369,81 @@ class NoteHead:
 
         >>> note.note_head
         NoteHead("cs''")
+
+    ..  container:: example
+
+        >>> note_head = abjad.NoteHead("cs''")
+        >>> note_head.tweaks is None
+        True
+
+        >>> abjad.tweak(note_head).color = "#red"
+        >>> note_head.tweaks
+        TweakInterface(('color', '#red'))
+
+        >>> string = abjad.lilypond(note_head)
+        >>> print(string)
+        \tweak color #red
+        cs''
+
+    ..  container:: example
+
+        >>> chord = abjad.Chord([0, 2, 10], (1, 4))
+
+        >>> abjad.tweak(chord.note_heads[0]).color = "#red"
+        >>> abjad.tweak(chord.note_heads[0]).thickness = 2
+
+        >>> abjad.tweak(chord.note_heads[1]).color = "#red"
+        >>> abjad.tweak(chord.note_heads[1]).thickness = 2
+
+        >>> abjad.tweak(chord.note_heads[2]).color = "#blue"
+
+        >>> abjad.show(chord) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(chord)
+            >>> print(string)
+            <
+                \tweak color #red
+                \tweak thickness 2
+                c'
+                \tweak color #red
+                \tweak thickness 2
+                d'
+                \tweak color #blue
+                bf'
+            >4
+
+        >>> tweaks_1 = chord.note_heads[0].tweaks
+        >>> tweaks_2 = chord.note_heads[1].tweaks
+        >>> tweaks_3 = chord.note_heads[2].tweaks
+
+        >>> tweaks_1 == tweaks_1
+        True
+
+        >>> tweaks_1 == tweaks_2
+        True
+
+        >>> tweaks_1 != tweaks_3
+        True
+
+        >>> tweaks_2 == tweaks_1
+        True
+
+        >>> tweaks_2 == tweaks_2
+        True
+
+        >>> tweaks_2 != tweaks_3
+        True
+
+        >>> tweaks_3 != tweaks_1
+        True
+
+        >>> tweaks_3 != tweaks_2
+        True
+
+        >>> tweaks_3 == tweaks_3
+        True
 
     """
 
@@ -3381,8 +3456,8 @@ class NoteHead:
         "_is_cautionary",
         "_is_forced",
         "_is_parenthesized",
-        "_tweaks",
         "_written_pitch",
+        "tweaks",
     )
 
     ### INITIALIZER ###
@@ -3408,9 +3483,9 @@ class NoteHead:
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
-        if tweaks is not None:
-            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
-        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
+        self.tweaks = None
+        if tweaks:
+            self.tweaks = _overrides.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -3515,7 +3590,7 @@ class NoteHead:
         if self.is_parenthesized:
             result.append(r"\parenthesize")
         if self.tweaks:
-            strings = self.tweaks._list_format_contributions(directed=False)
+            strings = self.tweaks._list_contributions(directed=False)
             result.extend(strings)
         written_pitch = self.written_pitch
         if isinstance(written_pitch, _pitch.NamedPitch):
@@ -3770,89 +3845,6 @@ class NoteHead:
 
         """
         return self.written_pitch
-
-    @property
-    def tweaks(self) -> _overrides.TweakInterface | None:
-        r"""
-        Gets tweaks.
-
-        ..  container:: example
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.tweaks is None
-            True
-
-            >>> abjad.tweak(note_head).color = "#red"
-            >>> note_head.tweaks
-            TweakInterface(('_literal', False), ('color', '#red'))
-
-            >>> string = abjad.lilypond(note_head)
-            >>> print(string)
-            \tweak color #red
-            cs''
-
-        ..  container:: example
-
-            >>> chord = abjad.Chord([0, 2, 10], (1, 4))
-
-            >>> abjad.tweak(chord.note_heads[0]).color = "#red"
-            >>> abjad.tweak(chord.note_heads[0]).thickness = 2
-
-            >>> abjad.tweak(chord.note_heads[1]).color = "#red"
-            >>> abjad.tweak(chord.note_heads[1]).thickness = 2
-
-            >>> abjad.tweak(chord.note_heads[2]).color = "#blue"
-
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(chord)
-                >>> print(string)
-                <
-                    \tweak color #red
-                    \tweak thickness 2
-                    c'
-                    \tweak color #red
-                    \tweak thickness 2
-                    d'
-                    \tweak color #blue
-                    bf'
-                >4
-
-            >>> tweaks_1 = chord.note_heads[0].tweaks
-            >>> tweaks_2 = chord.note_heads[1].tweaks
-            >>> tweaks_3 = chord.note_heads[2].tweaks
-
-            >>> tweaks_1 == tweaks_1
-            True
-
-            >>> tweaks_1 == tweaks_2
-            True
-
-            >>> tweaks_1 != tweaks_3
-            True
-
-            >>> tweaks_2 == tweaks_1
-            True
-
-            >>> tweaks_2 == tweaks_2
-            True
-
-            >>> tweaks_2 != tweaks_3
-            True
-
-            >>> tweaks_3 != tweaks_1
-            True
-
-            >>> tweaks_3 != tweaks_2
-            True
-
-            >>> tweaks_3 == tweaks_3
-            True
-
-        """
-        return self._tweaks
 
     @property
     def written_pitch(self) -> _pitch.NamedPitch:
@@ -4933,7 +4925,7 @@ class TremoloContainer(Container):
         """
         return (self.count,)
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         string = rf"\repeat tremolo {self.count} {{"
         result.append([("tremolo_brackets", "open"), [string]])
@@ -5110,6 +5102,67 @@ class Tuplet(Container):
                 }
             }
 
+    ..  container:: example
+
+        >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
+        >>> abjad.tweak(tuplet_1).color = "#red"
+        >>> abjad.tweak(tuplet_1).staff_padding = 2
+
+        >>> tuplet_2 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
+        >>> abjad.tweak(tuplet_2).color = "#green"
+        >>> abjad.tweak(tuplet_2).staff_padding = 2
+
+        >>> tuplet_3 = abjad.Tuplet((5, 4), [tuplet_1, tuplet_2])
+        >>> abjad.tweak(tuplet_3).color = "#blue"
+        >>> abjad.tweak(tuplet_3).staff_padding = 4
+
+        >>> staff = abjad.Staff([tuplet_3])
+        >>> leaves = abjad.select.leaves(staff)
+        >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
+        >>> literal = abjad.LilyPondLiteral(r'\set tupletFullLength = ##t')
+        >>> abjad.attach(literal, staff)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \set tupletFullLength = ##t
+                \tweak text #tuplet-number::calc-fraction-text
+                \tweak color #blue
+                \tweak staff-padding 4
+                \times 5/4
+                {
+                    \tweak color #red
+                    \tweak staff-padding 2
+                    \times 2/3
+                    {
+                        \time 5/4
+                        c'4
+                        (
+                        d'4
+                        e'4
+                        )
+                    }
+                    \tweak color #green
+                    \tweak staff-padding 2
+                    \times 2/3
+                    {
+                        c'4
+                        (
+                        d'4
+                        e'4
+                        )
+                    }
+                }
+            }
+
+        ..  todo:: Report LilyPond bug that results from removing tupletFullLength
+            in the example above: blue tuplet bracket shrinks to encompass only the
+            second underlying tuplet.
+
     """
 
     ### CLASS VARIABLES ###
@@ -5121,7 +5174,7 @@ class Tuplet(Container):
         "_force_fraction",
         "_hide",
         "_multiplier",
-        "_tweaks",
+        "tweaks",
     )
 
     ### INITIALIZER ###
@@ -5147,9 +5200,9 @@ class Tuplet(Container):
         self.denominator = denominator
         self.force_fraction = force_fraction
         self.hide = hide
-        if tweaks is not None:
-            assert isinstance(tweaks, _overrides.TweakInterface), repr(tweaks)
-        self._tweaks = _overrides.TweakInterface.set_tweaks(self, tweaks)
+        self.tweaks = None
+        if tweaks:
+            self.tweaks = _overrides.set_tweaks(self, tweaks)
 
     ### SPECIAL METHODS ###
 
@@ -5163,18 +5216,19 @@ class Tuplet(Container):
         """
         Gets repr.
         """
-        return f"{type(self).__name__}({self.colon_string!r}, {self._get_contents_summary()!r})"
+        string = self._get_contents_summary()
+        return f"{type(self).__name__}({self.colon_string!r}, {string!r})"
 
     ### PRIVATE METHODS ###
 
-    def _format_after_slot(self, bundle):
+    def _format_after_site(self, bundle):
         result = []
         result.append(("grob reverts", bundle.grob_reverts))
         result.append(("commands", bundle.after.commands))
         result.append(("comments", bundle.after.comments))
         return tuple(result)
 
-    def _format_before_slot(self, bundle):
+    def _format_before_site(self, bundle):
         result = []
         result.append(("comments", bundle.before.comments))
         result.append(("commands", bundle.before.commands))
@@ -5182,7 +5236,7 @@ class Tuplet(Container):
         result.append(("context settings", bundle.context_settings))
         return tuple(result)
 
-    def _format_close_brackets_slot(self, bundle):
+    def _format_close_brackets_site(self, bundle):
         result = []
         if self.multiplier:
             strings = ["}"]
@@ -5191,11 +5245,11 @@ class Tuplet(Container):
             result.append([("self_brackets", "close"), strings])
         return tuple(result)
 
-    def _format_closing_slot(self, bundle):
+    def _format_closing_site(self, bundle):
         result = []
         result.append(("commands", bundle.closing.commands))
         result.append(("comments", bundle.closing.comments))
-        return self._format_slot_contributions_with_indent(result)
+        return self._contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
         if self.hide:
@@ -5211,7 +5265,7 @@ class Tuplet(Container):
             return r"\tweak text #tuplet-number::calc-fraction-text"
         return ""
 
-    def _format_open_brackets_slot(self, bundle):
+    def _format_open_brackets_site(self, bundle):
         result = []
         if self.multiplier:
             if self.hide:
@@ -5229,9 +5283,7 @@ class Tuplet(Container):
                 edge_height_tweak_string = self._get_edge_height_tweak_string()
                 if edge_height_tweak_string:
                     contributions.append(edge_height_tweak_string)
-                strings = _overrides.tweak(self)._list_format_contributions(
-                    directed=False
-                )
+                strings = _overrides.tweak(self)._list_contributions(directed=False)
                 contributions.extend(strings)
                 times_command_string = self._get_times_command_string()
                 contributions.append(times_command_string)
@@ -5241,11 +5293,11 @@ class Tuplet(Container):
             result.append([contributor, contributions])
         return tuple(result)
 
-    def _format_opening_slot(self, bundle):
+    def _format_opening_site(self, bundle):
         result = []
         result.append(("comments", bundle.opening.comments))
         result.append(("commands", bundle.opening.commands))
-        return self._format_slot_contributions_with_indent(result)
+        return self._contributions_with_indent(result)
 
     def _get_compact_representation(self):
         if not self:
@@ -5509,8 +5561,8 @@ class Tuplet(Container):
             >>> duration = abjad.get.duration(tuplet)
             >>> note = abjad.Note.from_pitch_and_duration(0, duration)
             >>> string = abjad.illustrators.selection_to_score_markup_string([note])
-            >>> markup = abjad.Markup(rf"\markup {{ {string} }}")
-            >>> abjad.override(tuplet).TupletNumber.text = markup
+            >>> string = rf"\markup {{ {string} }}"
+            >>> abjad.override(tuplet).TupletNumber.text = string
             >>> staff = abjad.Staff([tuplet])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -5767,75 +5819,6 @@ class Tuplet(Container):
 
         """
         return super().tag
-
-    @property
-    def tweaks(self) -> _overrides.TweakInterface | None:
-        r"""
-        Gets tweaks.
-
-        ..  container:: example
-
-            >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
-            >>> abjad.tweak(tuplet_1).color = "#red"
-            >>> abjad.tweak(tuplet_1).staff_padding = 2
-
-            >>> tuplet_2 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
-            >>> abjad.tweak(tuplet_2).color = "#green"
-            >>> abjad.tweak(tuplet_2).staff_padding = 2
-
-            >>> tuplet_3 = abjad.Tuplet((5, 4), [tuplet_1, tuplet_2])
-            >>> abjad.tweak(tuplet_3).color = "#blue"
-            >>> abjad.tweak(tuplet_3).staff_padding = 4
-
-            >>> staff = abjad.Staff([tuplet_3])
-            >>> leaves = abjad.select.leaves(staff)
-            >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
-            >>> literal = abjad.LilyPondLiteral(r'\set tupletFullLength = ##t')
-            >>> abjad.attach(literal, staff)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \set tupletFullLength = ##t
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tweak color #blue
-                    \tweak staff-padding 4
-                    \times 5/4
-                    {
-                        \tweak color #red
-                        \tweak staff-padding 2
-                        \times 2/3
-                        {
-                            \time 5/4
-                            c'4
-                            (
-                            d'4
-                            e'4
-                            )
-                        }
-                        \tweak color #green
-                        \tweak staff-padding 2
-                        \times 2/3
-                        {
-                            c'4
-                            (
-                            d'4
-                            e'4
-                            )
-                        }
-                    }
-                }
-
-            ..  todo:: Report LilyPond bug that results from removing tupletFullLength
-                in the example above: blue tuplet bracket shrinks to encompass only the
-                second underlying tuplet.
-
-        """
-        return self._tweaks
 
     ### PUBLIC METHODS ###
 

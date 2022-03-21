@@ -4,7 +4,6 @@ import dataclasses
 from . import bind as _bind
 from . import duration as _duration
 from . import enums as _enums
-from . import format as _format
 from . import get as _get
 from . import indicators as _indicators
 from . import iterate as iterate_
@@ -18,6 +17,7 @@ from . import pitch as _pitch
 from . import score as _score
 from . import select as _select
 from . import spanners as _spanners
+from . import tag as _tag
 from . import timespan as _timespan
 
 
@@ -185,7 +185,7 @@ def _illustrate_pitch_class_segment(
     bar_line = _indicators.BarLine("|.")
     _bind.attach(bar_line, leaf)
     string = r"\override Score.BarLine.transparent = ##f"
-    command = _overrides.LilyPondLiteral(string, "after")
+    command = _indicators.LilyPondLiteral(string, "after")
     last_leaf = _select.leaf(score, -1)
     _bind.attach(command, last_leaf)
     lilypond_file = _lilypondfile.LilyPondFile([preamble, score])
@@ -250,6 +250,19 @@ def illustrate(item, **keywords):
     return method(item, **keywords)
 
 
+def lilypond(argument, tags=False):
+    """
+    Gets LilyPond format of ``argument``.
+    """
+    if not hasattr(argument, "_get_lilypond_format"):
+        raise Exception(f"no LilyPond format defined for {argument!r}.")
+    string = argument._get_lilypond_format()
+    if tags:
+        return string
+    string = _tag.remove_tags(string)
+    return string
+
+
 def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     r"""
     Makes piano score from ``leaves``.
@@ -259,7 +272,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         REGRESSION. Function preserves tweaks:
 
         >>> note = abjad.Note("c'4")
-        >>> abjad.tweak(note.note_head).color = "red"
+        >>> abjad.tweak(note.note_head).color = "#red"
         >>> score = abjad.illustrators.make_piano_score([note])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -286,10 +299,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             >>
 
         >>> chord = abjad.Chord("<c d a' bf'>4")
-        >>> abjad.tweak(chord.note_heads[0]).color = "red"
-        >>> abjad.tweak(chord.note_heads[1]).color = "red"
-        >>> abjad.tweak(chord.note_heads[2]).color = "blue"
-        >>> abjad.tweak(chord.note_heads[3]).color = "blue"
+        >>> abjad.tweak(chord.note_heads[0]).color = "#red"
+        >>> abjad.tweak(chord.note_heads[1]).color = "#red"
+        >>> abjad.tweak(chord.note_heads[2]).color = "#blue"
+        >>> abjad.tweak(chord.note_heads[3]).color = "#blue"
         >>> score = abjad.illustrators.make_piano_score([chord])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -499,8 +512,8 @@ def selection_to_score_markup_string(selection):
     _overrides.setting(score).proportionalNotationDuration = False
     indent = 4 * " "
     strings = [r"\score", indent + "{"]
-    strings.extend([2 * indent + _ for _ in _format.lilypond(score).split("\n")])
-    strings.extend([2 * indent + _ for _ in _format.lilypond(layout_block).split("\n")])
+    strings.extend([2 * indent + _ for _ in lilypond(score).split("\n")])
+    strings.extend([2 * indent + _ for _ in lilypond(layout_block).split("\n")])
     strings.append(indent + "}")
     string = "\n".join(strings)
     return string

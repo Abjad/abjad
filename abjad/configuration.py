@@ -393,7 +393,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         >>> for class_ in abjad.list_all_classes(modules="abjad"): class_
         <class 'abjad.bind.Wrapper'>
         <class 'abjad.bundle.LilyPondFormatBundle'>
-        <class 'abjad.bundle.SlotContributions'>
         <class 'abjad.configuration.Configuration'>
         <class 'abjad.contextmanagers.ContextManager'>
         <class 'abjad.contextmanagers.FilesystemState'>
@@ -433,6 +432,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.KeyCluster'>
         <class 'abjad.indicators.KeySignature'>
         <class 'abjad.indicators.LaissezVibrer'>
+        <class 'abjad.indicators.LilyPondLiteral'>
         <class 'abjad.indicators.MarginMarkup'>
         <class 'abjad.indicators.MetronomeMark'>
         <class 'abjad.indicators.Mode'>
@@ -532,7 +532,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.metricmodulation.MetricModulation'>
         <class 'abjad.obgc.OnBeatGraceContainer'>
         <class 'abjad.overrides.Interface'>
-        <class 'abjad.overrides.LilyPondLiteral'>
         <class 'abjad.overrides.LilyPondOverride'>
         <class 'abjad.overrides.LilyPondSetting'>
         <class 'abjad.overrides.OverrideInterface'>

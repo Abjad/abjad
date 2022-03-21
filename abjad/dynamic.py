@@ -769,8 +769,8 @@ class Dynamic:
                 assert isinstance(ordinal_, prototype), repr(ordinal_)
                 ordinal = ordinal_
             self.ordinal = ordinal
-        # self._ordinal = ordinal
-        self.tweaks = _overrides.TweakInterface.set_dataclass_tweaks(self, self.tweaks)
+        if self.tweaks:
+            self.tweaks = _overrides.set_tweaks(self, self.tweaks)
 
     context = "Voice"
     parameter = "DYNAMIC"
@@ -852,7 +852,7 @@ class Dynamic:
         6: "fffff",
     }
 
-    _format_slot = "after"
+    _site = "after"
 
     _lilypond_dynamic_commands = [_ for _ in _dynamic_names if not _ == "niente"]
 
@@ -962,7 +962,7 @@ class Dynamic:
         if self.leak:
             bundle.after.leaks.append("<>")
         if self.tweaks:
-            tweaks = self.tweaks._list_format_contributions()
+            tweaks = self.tweaks._list_contributions()
             if self.leak:
                 bundle.after.leaks.extend(tweaks)
             else:

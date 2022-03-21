@@ -1,41 +1,7 @@
 from . import bundle as _bundle
 from . import enums as _enums
-from . import format as _format
 from . import overrides as _overrides
 from . import tag as _tag
-
-INDENT = 4 * " "
-
-
-def lilypond(argument, tags=False):
-    """
-    Gets LilyPond format of ``argument``.
-    """
-    if not hasattr(argument, "_get_lilypond_format"):
-        raise Exception(f"no LilyPond format defined for {argument!r}.")
-    string = argument._get_lilypond_format()
-    if tags:
-        return string
-    string = remove_tags(string)
-    return string
-
-
-def remove_tags(string) -> str:
-    """
-    Removes all tags from ``string``.
-    """
-    lines = []
-    for line in string.split("\n"):
-        if "%!" not in line:
-            lines.append(line)
-            continue
-        tag_start = line.find("%!")
-        line = line[:tag_start]
-        line = line.rstrip()
-        if line:
-            lines.append(line)
-    string = "\n".join(lines)
-    return string
 
 
 def _collect_indicators(component):
@@ -94,7 +60,7 @@ def _collect_indicators(component):
     return indicators
 
 
-def _populate_context_setting_format_contributions(component, bundle):
+def _bundle_context_setting_contributions(component, bundle):
     result = []
     if hasattr(component, "_lilypond_type"):
         strings = _overrides.setting(component)._format_in_with_block()
@@ -106,21 +72,21 @@ def _populate_context_setting_format_contributions(component, bundle):
     bundle.context_settings.extend(result)
 
 
-def _populate_context_wrapper_format_contributions(component, bundle, context_wrappers):
+def _bundle_context_wrapper_contributions(component, bundle, context_wrappers):
     for wrapper in context_wrappers:
         format_pieces = wrapper._get_format_pieces()
         if isinstance(format_pieces, type(bundle)):
             bundle.update(format_pieces)
         else:
-            format_slot = wrapper.indicator._format_slot
-            getattr(bundle, format_slot).indicators.extend(format_pieces)
+            site = wrapper.indicator._site
+            getattr(bundle, site).indicators.extend(format_pieces)
 
 
-def _populate_grob_override_format_contributions(component, bundle):
+def _bundle_grob_override_contributions(component, bundle):
     result = []
     once = hasattr(component, "_written_duration")
     grob = _overrides.override(component)
-    contributions = grob._list_format_contributions("override", once=once)
+    contributions = grob._list_contributions("override", once=once)
     for string in result[:]:
         if "NoteHead" in string and "pitch" in string:
             contributions.remove(string)
@@ -130,20 +96,18 @@ def _populate_grob_override_format_contributions(component, bundle):
     except AttributeError:
         arrow = None
     if arrow in (_enums.UP, _enums.DOWN):
-        contributions_ = written_pitch._list_format_contributions()
+        contributions_ = written_pitch._list_contributions()
         contributions.extend(contributions_)
     bundle.grob_overrides.extend(contributions)
 
 
-def _populate_grob_revert_format_contributions(component, bundle):
+def _bundle_grob_revert_contributions(component, bundle):
     if not hasattr(component, "_written_duration"):
-        contributions = _overrides.override(component)._list_format_contributions(
-            "revert"
-        )
+        contributions = _overrides.override(component)._list_contributions("revert")
         bundle.grob_reverts.extend(contributions)
 
 
-def _populate_indicator_format_contributions(component, bundle):
+def _bundle_indicator_contributions(component, bundle):
     (
         up_markup_wrappers,
         down_markup_wrappers,
@@ -151,20 +115,18 @@ def _populate_indicator_format_contributions(component, bundle):
         context_wrappers,
         noncontext_wrappers,
     ) = _collect_indicators(component)
-    _populate_markup_format_contributions(
+    _bundle_markup_contributions(
         component,
         bundle,
         up_markup_wrappers,
         down_markup_wrappers,
         neutral_markup_wrappers,
     )
-    _populate_context_wrapper_format_contributions(component, bundle, context_wrappers)
-    _populate_noncontext_wrapper_format_contributions(
-        component, bundle, noncontext_wrappers
-    )
+    _bundle_context_wrapper_contributions(component, bundle, context_wrappers)
+    _bundle_noncontext_wrapper_contributions(component, bundle, noncontext_wrappers)
 
 
-def _populate_markup_format_contributions(
+def _bundle_markup_contributions(
     component,
     bundle,
     up_markup_wrappers,
@@ -185,9 +147,7 @@ def _populate_markup_format_contributions(
             bundle.after.markup.extend(format_pieces)
 
 
-def _populate_noncontext_wrapper_format_contributions(
-    component, bundle, noncontext_wrappers
-):
+def _bundle_noncontext_wrapper_contributions(component, bundle, noncontext_wrappers):
     for wrapper in noncontext_wrappers:
         indicator = wrapper.indicator
         try:
@@ -195,71 +155,18 @@ def _populate_noncontext_wrapper_format_contributions(
         except TypeError:
             bundle_ = indicator._get_lilypond_format_bundle()
         if wrapper.tag:
-            bundle_.tag_format_contributions(wrapper.tag, deactivate=wrapper.deactivate)
+            bundle_.tag_contributions(wrapper.tag, deactivate=wrapper.deactivate)
         bundle.update(bundle_)
 
 
-def _report_leaf_format_contributions(leaf):
-    bundle = bundle_format_contributions(leaf)
-    report = ""
-    report += 'slot "absolute before":\n'
-    packet = leaf._format_absolute_before_slot(bundle)
-    report += leaf._process_contribution_packet(packet)
-    report += 'slot "before":\n'
-    packet = leaf._format_before_slot(bundle)
-    report += leaf._process_contribution_packet(packet)
-    report += 'slot "opening":\n'
-    packet = leaf._format_opening_slot(bundle)
-    report += leaf._process_contribution_packet(packet)
-    report += 'slot "contents slot":\n'
-    report += _format.INDENT + "leaf body:\n"
-    string = leaf._format_contents_slot(bundle)[0][1][0]
-    report += (2 * _format.INDENT) + string + "\n"
-    report += 'slot "closing":\n'
-    packet = leaf._format_closing_slot(bundle)
-    report += leaf._process_contribution_packet(packet)
-    report += 'slot "after":\n'
-    packet = leaf._format_after_slot(bundle)
-    report += leaf._process_contribution_packet(packet)
-    report += 'slot "absolute after":\n'
-    packet = leaf._format_absolute_after_slot(bundle)
-    report += leaf._process_contribution_packet(packet)
-    while report[-1] == "\n":
-        report = report[:-1]
-    return report
-
-
-def bundle_format_contributions(component) -> _bundle.LilyPondFormatBundle:
+def bundle_contributions(component) -> _bundle.LilyPondFormatBundle:
     """
-    Gets all format contributions for ``component``.
+    Bundles contributions for ``component``.
     """
     bundle = _bundle.LilyPondFormatBundle()
-    _populate_indicator_format_contributions(component, bundle)
-    _populate_context_setting_format_contributions(component, bundle)
-    _populate_grob_override_format_contributions(component, bundle)
-    _populate_grob_revert_format_contributions(component, bundle)
-    bundle.sort_overrides()
+    _bundle_indicator_contributions(component, bundle)
+    _bundle_context_setting_contributions(component, bundle)
+    _bundle_grob_override_contributions(component, bundle)
+    _bundle_grob_revert_contributions(component, bundle)
+    bundle.freeze_overrides()
     return bundle
-
-
-def left_shift_tags(text, realign=None) -> str:
-    """
-    Left shifts tags in ``strings`` and realigns to column ``realign``.
-    """
-    strings = text.split("\n")
-    strings_ = []
-    for string in strings:
-        if "%@% " not in string or "%!" not in string:
-            strings_.append(string)
-            continue
-        if not string.startswith(4 * " "):
-            strings_.append(string)
-            continue
-        string_ = string[4:]
-        tag_start = string_.find("%!")
-        string_ = list(string_)
-        string_[tag_start:tag_start] = _format.INDENT
-        string_ = "".join(string_)
-        strings_.append(string_)
-    text = "\n".join(strings_)
-    return text
