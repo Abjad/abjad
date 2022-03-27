@@ -85,13 +85,17 @@ Define helper functions:
     ...         cent_string = f"+{remainder}"
     ...     string = rf"\markup {cent_string}"
     ...     markup = abjad.Markup(string)
-    ...     abjad.tweak(markup, r"- \tweak parent-alignment-X 0") 
-    ...     abjad.tweak(markup, r"- \tweak self-alignment-X 0.25") 
     ...     if pitch <= -8:
-    ...         abjad.tweak(markup, r"- \tweak padding 1")
+    ...         padding = r"- \tweak padding 1"
     ...     else:
-    ...         abjad.tweak(markup, r"- \tweak padding 2.5")
-    ...     return markup, direction
+    ...         padding = r"- \tweak padding 2.5"
+    ...     bundle = abjad.bundle(
+    ...         markup,
+    ...         padding,
+    ...         r"- \tweak parent-alignment-X 0", 
+    ...         r"- \tweak self-alignment-X 0.25", 
+    ...     )
+    ...     return bundle, direction
     ...
 
 ::
@@ -116,9 +120,12 @@ Define helper functions:
     ...     for measure_number in (1, 11, 21, 31):
     ...         note = abjad.select.note(staff_1, measure_number - 1)
     ...         markup = abjad.Markup(r"\markup A")
-    ...         abjad.tweak(markup, r"- \tweak staff-padding 8")
-    ...         abjad.tweak(markup, r"- \tweak transparent ##t")
-    ...         abjad.attach(markup, note, direction=abjad.UP)
+    ...         bundle = abjad.bundle(
+    ...             markup,
+    ...             r"- \tweak staff-padding 8",
+    ...             r"- \tweak transparent ##t",
+    ...         )
+    ...         abjad.attach(bundle, note, direction=abjad.UP)
     ...     interface = abjad.override(staff_1).vertical_axis_group
     ...     interface.staff_staff_spacing__minimum_distance = 12
     ...     interface = abjad.override(staff_2).vertical_axis_group

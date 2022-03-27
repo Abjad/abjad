@@ -24,7 +24,6 @@ from .. import indicators as _indicators
 from .. import lilypondfile as _lilypondfile
 from .. import lyconst as _lyconst
 from .. import lyenv as _lyenv
-from .. import markups as _markups
 from .. import pitch as _pitch
 from .. import score as _score
 from .. import string as _string
@@ -95,7 +94,7 @@ class MarkupCommand:
             f"{type(self).__name__}(name={self.name!r}, arguments={self.arguments!r})"
         )
 
-    def _get_format_pieces(self):
+    def _get_lilypond_format(self):
         def recurse(iterable):
             result = []
             for item in iterable:
@@ -103,8 +102,10 @@ class MarkupCommand:
                     result.append("{")
                     result.extend(recurse(item))
                     result.append("}")
-                elif hasattr(item, "_get_format_pieces"):
-                    result.extend(item._get_format_pieces())
+                elif isinstance(item, MarkupCommand):
+                    string = item._get_lilypond_format()
+                    pieces = string.split("\n")
+                    result.extend(pieces)
                 elif isinstance(item, str) and "\n" in item:
                     result.append('#"')
                     result.extend(item.splitlines())
@@ -117,10 +118,8 @@ class MarkupCommand:
         indent = _indent.INDENT
         parts = [rf"\{self.name}"]
         parts.extend(recurse(self.arguments))
-        return parts
-
-    def _get_lilypond_format(self):
-        return "\n".join(self._get_format_pieces())
+        string = "\n".join(parts)
+        return string
 
 
 class Music:
@@ -306,7 +305,9 @@ class GuileProxy:
         """
         if number_list is None:
             number_list = "major"
-        return _indicators.KeySignature(notename_pitch, number_list)
+        return _indicators.KeySignature(
+            _pitch.NamedPitchClass(notename_pitch), _indicators.Mode(number_list)
+        )
 
     def language(self, string):
         r"""
@@ -430,12 +431,16 @@ class GuileProxy:
         def recurse(music):
             key_signatures = music._get_indicators(_indicators.KeySignature)
             if key_signatures:
-                for x in key_signatures:
-                    tonic = _pitch.NamedPitch((x.tonic.name, 4))
-                    # TODO: cheating to assign to a read-only property
-                    x.tonic = LilyPondParser._transpose_enharmonically(
-                        from_pitch, to_pitch, tonic
+                for key_signature in key_signatures:
+                    new_tonic = _pitch.NamedPitch((key_signature.tonic.name, 4))
+                    new_tonic = LilyPondParser._transpose_enharmonically(
+                        from_pitch, to_pitch, new_tonic
                     ).pitch_class
+                    new_key_signature = _indicators.KeySignature(
+                        new_tonic, key_signature.mode
+                    )
+                    _bind.detach(key_signature, music)
+                    _bind.attach(new_key_signature, music)
             if isinstance(music, _score.Note):
                 music.written_pitch = LilyPondParser._transpose_enharmonically(
                     from_pitch, to_pitch, music.written_pitch
@@ -446,8 +451,8 @@ class GuileProxy:
                         from_pitch, to_pitch, note_head.written_pitch
                     )
             elif isinstance(music, _score.Container):
-                for x in music:
-                    recurse(x)
+                for component in music:
+                    recurse(component)
 
         self._make_unrelativable(music)
         recurse(music)
@@ -2453,8 +2458,8 @@ class LilyPondParser(Parser):
                 \ppp
                 \<
                 g'8
-                \startTrillSpan
                 \(
+                \startTrillSpan
                 a'8
                 \)
                 b'8
@@ -2941,6 +2946,7 @@ class LilyPondParser(Parser):
             _indicators.BarLine,
             _indicators.Glissando,
             _indicators.LilyPondLiteral,
+            _indicators.Markup,
             _indicators.StartBeam,
             _indicators.StartGroup,
             _indicators.StartHairpin,
@@ -2957,7 +2963,6 @@ class LilyPondParser(Parser):
             _indicators.StopTextSpan,
             _indicators.StopTrillSpan,
             _indicators.Tie,
-            _markups.Markup,
         )
         for post_event in post_events:
             if isinstance(post_event, prototype):
@@ -4771,7 +4776,7 @@ class LilyPondSyntacticalDefinition:
                 parts.append(item)
         string = " ".join(parts)
         string = rf"\markup {{ {string} }}"
-        p[0] = _markups.Markup(string)
+        p[0] = _indicators.Markup(string)
         self.client._lexer.pop_state()
         self.client._relex_lookahead()
 
@@ -5263,7 +5268,7 @@ class LilyPondSyntacticalDefinition:
     def p_gen_text_def__simple_string(self, p):
         "gen_text_def : simple_string"
         # assert isinstance(p[1], str), repr(p[1])
-        p[0] = _markups.Markup(rf"\markup {{ {p[1]} }}")
+        p[0] = _indicators.Markup(rf"\markup {{ {p[1]} }}")
 
     ### grouped_music_list ###
 
@@ -6017,7 +6022,7 @@ class LilyPondSyntacticalDefinition:
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         "post_event_nofinger : script_dir direction_reqd_event"
-        #        if isinstance(p[2], _markups.Markup):
+        #        if isinstance(p[2], _indicators.Markup):
         #            direction = _string.to_tridirectional_ordinal_constant(p[1])
         #            p[2].direction = direction
         #        else:

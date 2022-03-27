@@ -87,7 +87,9 @@ The functions we'll use:
     ...     first_note = abjad.select.note(lh_staff, 0)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, first_note)
-    ...     key_signature = abjad.KeySignature("b", "major")
+    ...     key_signature = abjad.KeySignature(
+    ...         abjad.NamedPitchClass("b"), abjad.Mode("major")
+    ...     )
     ...     abjad.attach(key_signature, first_note)
     ...     return score
 

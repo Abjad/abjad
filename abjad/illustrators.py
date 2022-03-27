@@ -9,7 +9,6 @@ from . import indicators as _indicators
 from . import iterate as iterate_
 from . import lilypondfile as _lilypondfile
 from . import makers as _makers
-from . import markups as _markups
 from . import metricmodulation as _metricmodulation
 from . import overrides as _overrides
 from . import pcollections as _pcollections
@@ -151,7 +150,7 @@ def _illustrate_pitch_class_segment(
         notes.append(note)
     markup = None
     if isinstance(figure_name, str):
-        figure_name = _markups.Markup(rf"\markup {figure_name}")
+        figure_name = _indicators.Markup(rf"\markup {figure_name}")
     if figure_name is not None:
         markup = figure_name
     if markup is not None:
@@ -200,7 +199,7 @@ def _illustrate_timespan(timespan):
 _class_to_method = dict(
     [
         (_score.Component, _illustrate_component),
-        (_markups.Markup, _illustrate_markup),
+        (_indicators.Markup, _illustrate_markup),
         (_metricmodulation.MetricModulation, _illustrate_metric_modulation),
         (_pcollections.PitchClassSegment, _illustrate_pitch_class_segment),
         (_pcollections.PitchSegment, _illustrate_pitch_segment),
@@ -223,14 +222,14 @@ def attach_markup_struts(lilypond_file):
     """
     rhythmic_staff = lilypond_file[_score.Score][-1]
     first_leaf = _get.leaf(rhythmic_staff, 0)
-    markup = _markups.Markup(r"\markup I", direction=_enums.UP)
+    markup = _indicators.Markup(r"\markup I", direction=_enums.UP)
     _bind.attach(markup, first_leaf)
     _overrides.tweaks(markup, r"- \tweak staff-padding 11")
     _overrides.tweaks(markup, r"- \tweak transparent ##t")
     duration = _get.duration(rhythmic_staff)
     if _duration.Duration(6, 4) < duration:
         last_leaf = _get.leaf(rhythmic_staff, -1)
-        markup = _markups.Markup(r"\markup I", direction=_enums.UP)
+        markup = _indicators.Markup(r"\markup I", direction=_enums.UP)
         _bind.attach(markup, last_leaf)
         _overrides.tweaks(markup, r"- \tweak staff-padding 18")
         _overrides.tweaks(markup, r"- \tweak transparent ##t")
@@ -395,7 +394,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     score = _score.Score(name="Score")
     score.append(staff_group)
     for leaf in leaves:
-        markup_wrappers = _get.indicators(leaf, _markups.Markup, unwrap=False)
+        markup_wrappers = _get.indicators(leaf, _indicators.Markup, unwrap=False)
         written_duration = leaf.written_duration
         if isinstance(leaf, _score.Note):
             if leaf.written_pitch < lowest_treble_pitch:
@@ -428,7 +427,8 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             treble_leaf = copy.copy(leaf)
             bass_leaf = copy.copy(leaf)
         for wrapper in markup_wrappers:
-            markup = wrapper.indicator
+            # markup = wrapper.indicator
+            markup = wrapper.unbundle_indicator()
             markup_copy = copy.copy(markup)
             if wrapper.direction in (_enums.UP, None):
                 _bind.attach(markup_copy, treble_leaf, direction=wrapper.direction)

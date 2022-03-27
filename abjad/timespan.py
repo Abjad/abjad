@@ -8,7 +8,7 @@ import typing
 
 from . import duration as _duration
 from . import enums as _enums
-from . import markups as _markups
+from . import indicators as _indicators
 from . import math as _math
 from . import ratio as _ratio
 from . import sequence as _sequence
@@ -80,7 +80,7 @@ class OffsetCounter:
     def _coerce_item(self, item):
         return _duration.Offset(item)
 
-    def _make_markup(self, range_=None, scale=None) -> _markups.Markup:
+    def _make_markup(self, range_=None, scale=None) -> _indicators.Markup:
         r"""
         Illustrates offset counter.
 
@@ -148,7 +148,7 @@ class OffsetCounter:
 
         """
         if not self:
-            return _markups.Markup(r"\markup \null")
+            return _indicators.Markup(r"\markup \null")
         if isinstance(range_, Timespan):
             minimum, maximum = range_.start_offset, range_.stop_offset
         elif range_ is not None:
@@ -197,7 +197,7 @@ class OffsetCounter:
             strings.append(string)
         strings.append("}")
         string = "\n".join(strings)
-        markup = _markups.Markup(string)
+        markup = _indicators.Markup(string)
         return markup
 
 
@@ -2339,7 +2339,7 @@ class TimespanList(list):
         sort_callable=None,
         sortkey=None,
         scale=None,
-    ) -> _markups.Markup:
+    ) -> _indicators.Markup:
         r"""
         Makes markup.
 
@@ -2605,7 +2605,7 @@ class TimespanList(list):
 
         """
         if not self:
-            return _markups.Markup(r"\markup \null")
+            return _indicators.Markup(r"\markup \null")
         maximum: _duration.Offset | _math.Infinity
         minimum: _duration.Offset | _math.NegativeInfinity
         if isinstance(range_, Timespan):
@@ -2626,7 +2626,7 @@ class TimespanList(list):
             string = _make_timespan_list_markup(
                 self, postscript_x_offset, postscript_scale, sortkey=sortkey
             )
-            markup = _markups.Markup(rf"\markup {string}")
+            markup = _indicators.Markup(rf"\markup {string}")
         else:
             timespan_lists = {}
             for timespan in self:
@@ -2654,7 +2654,7 @@ class TimespanList(list):
                 )
                 strings.append(string)
             string = "\n".join(strings)
-            markup = _markups.Markup(f"\\markup\n\\left-column {{\n{string}\n}}")
+            markup = _indicators.Markup(f"\\markup\n\\left-column {{\n{string}\n}}")
         return markup
 
     def __invert__(self) -> "TimespanList":
@@ -4882,7 +4882,7 @@ def _make_timespan_list_markup(
             '"',
         ]
         string = "\n".join(strings)
-        markup = _markups.Markup(string)
+        markup = _indicators.Markup(string)
         return markup
     postscript_strings.extend(
         [

@@ -56,43 +56,128 @@ class Tweak:
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Bundle:
-    """
+    r"""
     Bundled indicator.
+
+    ..  container:: example
+
+        Raises exception on duplicate attributes:
+
+        >>> abjad.Bundle(
+        ...     indicator=abjad.Articulation("."),
+        ...     tweaks=(
+        ...         abjad.Tweak(r"- \tweak color #blue"),
+        ...         abjad.Tweak(r"- \tweak color #red"),
+        ...     ),
+        ... )
+        Traceback (most recent call last):
+            ...
+        Exception: duplicate 'color' attribute.
+
     """
 
     indicator: typing.Any
-    tweaks: tuple[Tweak, ...] = dataclasses.field(default_factory=tuple)
+    tweaks: tuple[Tweak, ...] = ()
 
     def __post_init__(self):
+        assert not isinstance(self.indicator, Bundle), repr(self.indicator)
         assert isinstance(self.tweaks, tuple), repr(self.tweaks)
         assert all(isinstance(_, Tweak) for _ in self.tweaks)
+        attributes = [_.attribute() for _ in self.tweaks]
+        for attribute in attributes:
+            if 1 < attributes.count(attribute):
+                raise Exception(f"duplicate {attribute!r} attribute.")
 
     def _get_contributions(self, *, component=None, wrapper=None):
-        contributions = self.indicator._get_contributions(
-            component=component, wrapper=wrapper
-        )
+        try:
+            contributions = self.indicator._get_contributions(
+                component=component, wrapper=wrapper
+            )
+        except TypeError:
+            component = component or wrapper.component
+            contributions = self.indicator._get_contributions(component=component)
         lists = contributions.get_contribution_lists()
+        if len(lists) == 2 and ["<>"] in lists:
+            lists.remove(["<>"])
+        if len(lists) == 2 and [r"\pitchedTrill"] in lists:
+            lists.remove([r"\pitchedTrill"])
         assert len(lists) == 1, repr(lists)
         for list_ in lists:
-            prefix = list_[0][0]
-            if prefix in ("-", "_", "^"):
-                strings = [prefix + " " + _.string for _ in self.tweaks]
-            else:
-                strings = [_.string for _ in self.tweaks]
+            strings = []
+            for tweak in sorted(self.tweaks):
+                strings.extend(tweak._list_contributions())
             list_[0:0] = strings
         return contributions
 
+    def get_attribute(self, attribute: str) -> Tweak | None:
+        r"""
+        Gets tweak with ``attribute``.
 
-def bundle(indicator: typing.Any, *tweaks: str) -> Bundle:
+        ..  container:: example
+
+            >>> markup = abjad.Markup(r"\markup Allegro")
+            >>> bundle = abjad.bundle(
+            ...     markup,
+            ...     r"- \tweak color #red",
+            ...     r"- \tweak font-size 3",
+            ... )
+            >>> bundle.get_attribute("color")
+            Tweak(string='- \\tweak color #red', tag=None)
+
+            >>> bundle.get_attribute("style") is None
+            True
+
+        """
+        tweaks = [_ for _ in self.tweaks if _.attribute() == attribute]
+        assert len(tweaks) in (0, 1)
+        if tweaks:
+            tweak = tweaks[0]
+            return tweak
+        return None
+
+    def remove(self, tweak: Tweak) -> "Bundle":
+        r"""
+        Removes ``tweak`` from bundle and returns new bundle.
+
+        ..  container:: example
+
+            >>> markup = abjad.Markup(r"\markup Allegro")
+            >>> bundle_1 = abjad.bundle(markup, r"- \tweak color #red")
+            >>> tweak = bundle_1.get_attribute("color")
+
+            >>> bundle_2 = bundle_1.remove(tweak)
+            >>> bundle_2
+            Bundle(indicator=Markup(string='\\markup Allegro'), tweaks=())
+
+            >>> bundle_3 = abjad.bundle(bundle_2, r"- \tweak color #blue")
+            >>> bundle_3.tweaks
+            (Tweak(string='- \\tweak color #blue', tag=None),)
+
+        """
+        assert tweak in self.tweaks, repr(tweak)
+        tweaks = list(self.tweaks)
+        tweaks.remove(tweak)
+        new_bundle = dataclasses.replace(self, tweaks=tuple(tweaks))
+        return new_bundle
+
+
+def bundle(
+    indicator: typing.Any,
+    *tweaks: str | Tweak,
+    tag: _tag.Tag = None,
+    overwrite: bool = False,
+) -> Bundle:
     r"""
     Bundles ``indicator`` with ``tweaks``.
 
     ..  container:: example
 
+        Bundles indicator:
+
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> bundle = abjad.bundle(
         ...     abjad.Articulation("."),
-        ...     r"\tweak color #red",
+        ...     r"- \tweak color #red",
         ... )
         >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -111,29 +196,14 @@ def bundle(indicator: typing.Any, *tweaks: str) -> Bundle:
                 f'4
             }
 
-    """
-    tweaks_ = tuple([Tweak(_) for _ in tweaks])
-    return Bundle(indicator, tweaks=tweaks_)
-
-
-def tweak(
-    indicator: typing.Any,
-    *tweaks: str | Tweak,
-    overwrite: bool = False,
-    tag: _tag.Tag = None,
-) -> None:
-    r"""
-    Appends ``tweaks`` to ``indicator``.
-
     ..  container:: example
 
+        Bundles existing bundle:
+
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> articulation = abjad.Articulation(".")
-        >>> abjad.tweak(
-        ...     articulation,
-        ...     r"- \tweak color #red",
-        ... )
-        >>> abjad.attach(articulation, staff[0])
+        >>> bundle = abjad.bundle(abjad.Articulation("."), r"- \tweak color #red")
+        >>> bundle = abjad.bundle(bundle, r"- \tweak font-size 3")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -144,6 +214,7 @@ def tweak(
             {
                 c'4
                 - \tweak color #red
+                - \tweak font-size 3
                 - \staccato
                 d'4
                 e'4
@@ -152,38 +223,117 @@ def tweak(
 
     ..  container:: example
 
-        Raises exception on conflicting tweaks:
+        Raises exception on duplicate attribute:
 
-        >>> articulation = abjad.Articulation(".")
-        >>> abjad.tweak(
-        ...     articulation,
-        ...     r"- \tweak color #red",
+        >>> bundle = abjad.bundle(
+        ...     abjad.Articulation("."),
         ...     r"- \tweak color #blue",
+        ...     r"- \tweak color #red",
         ... )
         Traceback (most recent call last):
             ...
-        Exception: conflicting tweaks:
-            - \tweak color #red
-            - \tweak color #blue
+        Exception: duplicate 'color' attribute:
+        Tweak(string='- \\tweak color #blue', tag=None)
+        Tweak(string='- \\tweak color #red', tag=None)
 
-        Raises exception on conflicting tweaks:
+        Unless ``overwrite=True``:
 
-        >>> articulation = abjad.Articulation(".")
-        >>> abjad.tweak(
-        ...     articulation,
-        ...     r"- \tweak color #red",
-        ... )
-        >>> abjad.tweak(
-        ...     articulation,
+        >>> bundle = abjad.bundle(
+        ...     abjad.Articulation("."),
         ...     r"- \tweak color #blue",
+        ...     r"- \tweak color #red",
+        ...     overwrite=True,
+        ... )
+        >>> for _ in bundle.tweaks: _
+        Tweak(string='- \\tweak color #red', tag=None)
+
+    ..  container:: example
+
+        Also raises exception on duplicate attribute:
+
+        >>> bundle = abjad.bundle(
+        ...     abjad.Articulation("."),
+        ...     r"- \tweak color #blue",
+        ... )
+        >>> bundle = abjad.bundle(
+        ...     bundle,
+        ...     r"- \tweak color #red",
         ... )
         Traceback (most recent call last):
             ...
-        Exception: conflicting tweaks:
-            - \tweak color #red
-            - \tweak color #blue
+        Exception: duplicate 'color' attribute:
+        OLD: Tweak(string='- \\tweak color #blue', tag=None)
+        NEW: Tweak(string='- \\tweak color #red', tag=None)
+
+        Unless ``overwrite=True``:
+
+        >>> bundle = abjad.bundle(
+        ...     abjad.Articulation("."),
+        ...     r"- \tweak color #blue",
+        ... )
+        >>> bundle = abjad.bundle(
+        ...     bundle,
+        ...     r"- \tweak color #red",
+        ...     overwrite=True,
+        ... )
+        >>> for _ in bundle.tweaks: _
+        Tweak(string='- \\tweak color #red', tag=None)
 
     """
+    input_tweaks: list[Tweak] = []
+    for item in tweaks:
+        if isinstance(item, Tweak):
+            tweak = item
+        else:
+            assert isinstance(item, str)
+            tweak = Tweak(item, tag=tag)
+        tweak_attribute = tweak.attribute()
+        for input_tweak in input_tweaks[:]:
+            if input_tweak.attribute() == tweak_attribute:
+                if overwrite is True:
+                    input_tweaks.remove(input_tweak)
+                else:
+                    message = f"duplicate {tweak_attribute!r} attribute:\n"
+                    message += repr(input_tweak) + "\n"
+                    message += repr(tweak)
+                    raise Exception(message)
+        input_tweaks.append(tweak)
+    if isinstance(indicator, Bundle):
+        bundle_tweaks = list(indicator.tweaks)
+        for input_tweak in input_tweaks:
+            input_tweak_attribute = input_tweak.attribute()
+            for bundle_tweak in bundle_tweaks[:]:
+                if bundle_tweak.attribute() == input_tweak_attribute:
+                    if overwrite is True:
+                        bundle_tweaks.remove(bundle_tweak)
+                    else:
+                        message = f"duplicate {input_tweak.attribute()!r} attribute:\n"
+                        message += f"OLD: {bundle_tweak!r}\n"
+                        message += f"NEW: {input_tweak!r}"
+                        raise Exception(message)
+            bundle_tweaks.append(input_tweak)
+        indicator = indicator.indicator
+        input_tweaks = bundle_tweaks
+    input_tweaks.sort()
+    return Bundle(indicator, tweaks=tuple(input_tweaks))
+
+
+def tweak(
+    indicator: typing.Any,
+    *tweaks: str | Tweak,
+    overwrite: bool = False,
+    tag: _tag.Tag = None,
+) -> None:
+    """
+    Appends ``tweaks`` to ``indicator``.
+    """
+    from . import score as _score
+
+    prototype = (
+        _score.NoteHead,
+        _score.Tuplet,
+    )
+    assert isinstance(indicator, prototype), repr(indicator)
     try:
         tweaks_ = list(indicator.tweaks)
     except AttributeError:
@@ -224,4 +374,7 @@ def tweak(
         if not duplicate:
             tweaks_.append(tweak)
     tweaks_.sort()
-    indicator.tweaks = tuple(tweaks_)
+    try:
+        indicator.tweaks = tuple(tweaks_)
+    except dataclasses.FrozenInstanceError:
+        raise Exception(indicator, tweaks_)

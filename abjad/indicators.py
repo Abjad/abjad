@@ -12,17 +12,17 @@ import quicktions
 from . import contributions as _contributions
 from . import duration as _duration
 from . import enums as _enums
-from . import markups as _markups
 from . import math as _math
 from . import overrides as _overrides
 from . import pitch as _pitch
 from . import sequence as _sequence
 from . import string as _string
-from . import tweaks as _tweaks
 from . import typings as _typings
 
+_EMPTY_CHORD = "<>"
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Arpeggio:
     r"""
     Arpeggio.
@@ -74,8 +74,8 @@ class Arpeggio:
 
         >>> chord = abjad.Chord("<c' e' g' c''>4")
         >>> arpeggio = abjad.Arpeggio()
-        >>> abjad.tweak(arpeggio, r"- \tweak color #blue")
-        >>> abjad.attach(arpeggio, chord)
+        >>> bundle = abjad.bundle(arpeggio, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, chord)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -93,25 +93,18 @@ class Arpeggio:
     """
 
     direction: _enums.Vertical | None = None
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     post_event: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        self.direction = _string.to_tridirectional_ordinal_constant(self.direction)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
+        if self.direction is not None:
+            assert isinstance(self.direction, _enums.Vertical), repr(self.direction)
 
     def _get_lilypond_format(self):
         return r"\arpeggio"
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.articulations.extend(tweaks)
         contributions.after.articulations.append(r"\arpeggio")
         if self.direction in (_enums.UP, _enums.DOWN):
             if self.direction is _enums.UP:
@@ -122,7 +115,7 @@ class Arpeggio:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Articulation:
     r"""
     Articulation.
@@ -130,10 +123,10 @@ class Articulation:
     ..  container:: example
 
         >>> abjad.Articulation("staccato")
-        Articulation(name='staccato', tweaks=())
+        Articulation(name='staccato')
 
         >>> abjad.Articulation(".")
-        Articulation(name='.', tweaks=())
+        Articulation(name='.')
 
         Use ``direction=abjad.UP`` like this:
 
@@ -163,44 +156,16 @@ class Articulation:
             c'4
             _ \staccato
 
-        Use ``abjad.tweak()`` like this:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> articulation = abjad.Articulation(".")
-        >>> abjad.tweak(
-        ...     articulation,
-        ...     r"- \tweak color #red",
-        ... )
-        >>> abjad.attach(articulation, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                - \tweak color #red
-                - \staccato
-                d'4
-                e'4
-                f'4
-            }
-
         Use ``dataclasses.replace()`` like this:
 
         >>> import dataclasses
         >>> articulation = abjad.Articulation(".")
         >>> dataclasses.replace(articulation)
-        Articulation(name='.', tweaks=())
+        Articulation(name='.')
 
     """
 
     name: str
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     _shortcut_to_word: typing.ClassVar[dict[str, str]] = {
         "^": "marcato",
@@ -215,8 +180,6 @@ class Articulation:
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _get_lilypond_format(self, wrapper=None):
         if self.name:
@@ -236,15 +199,12 @@ class Articulation:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.articulations.extend(tweaks)
         string = self._get_lilypond_format(wrapper=wrapper)
         contributions.after.articulations.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BarLine:
     r"""
     Bar line.
@@ -310,8 +270,7 @@ class BarLine:
 
     _context: typing.ClassVar[str] = "Score"
 
-    # scraped from LilyPond docs because LilyPond fails to error
-    # on unrecognized string
+    # scraped from LilyPond docs because LilyPond fails to error on unrecognized string
     _known_abbreviations = (
         "",
         "|",
@@ -334,8 +293,6 @@ class BarLine:
         ":|.",
         "'",
     )
-
-    ### PRIVATE METHODS ###
 
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'
@@ -362,7 +319,7 @@ class BarLine:
         return self._context
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BeamCount:
     r"""
     LilyPond ``\setLeftBeamCount``, ``\setRightBeamCount`` command.
@@ -386,7 +343,7 @@ class BeamCount:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BendAfter:
     r"""
     Fall or doit.
@@ -429,8 +386,8 @@ class BendAfter:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> bend_after = abjad.BendAfter(-4)
-        >>> abjad.tweak(bend_after, r"- \tweak color #blue")
-        >>> abjad.attach(bend_after, staff[0])
+        >>> bundle = abjad.bundle(bend_after, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -450,58 +407,27 @@ class BendAfter:
     """
 
     bend_amount: _typings.Number = -4
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     _site: typing.ClassVar[str] = "after"
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     post_event: typing.ClassVar[bool] = True
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _get_lilypond_format(self):
         return rf"- \bendAfter #'{self.bend_amount}"
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.articulations.extend(tweaks)
-        contributions.after.articulations.append(self._get_lilypond_format())
+        string = self._get_lilypond_format()
+        contributions.after.articulations.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BreathMark:
     r"""
     Breath mark.
 
     ..  container:: example
-
-        Attached to a single note:
-
-        >>> note = abjad.Note("c'4")
-        >>> breath_mark = abjad.BreathMark()
-        >>> abjad.attach(breath_mark, note)
-        >>> staff = abjad.Staff([note])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                \breathe
-            }
-
-    ..  container:: example
-
-        Attached to notes in a staff:
 
         >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
         >>> abjad.beam(staff[:4])
@@ -554,12 +480,12 @@ class BreathMark:
 
     ..  container:: example
 
-        Works with tweaks:
+        Tweaks:
 
         >>> note = abjad.Note("c'4")
         >>> breath = abjad.BreathMark()
-        >>> abjad.tweak(breath, r"\tweak color #blue")
-        >>> abjad.attach(breath, note)
+        >>> bundle = abjad.bundle(breath, r"\tweak color #blue")
+        >>> abjad.attach(bundle, note)
         >>> staff = abjad.Staff([note])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -576,31 +502,22 @@ class BreathMark:
 
     """
 
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
-
+    # TODO: change _site to site?
     _site: typing.ClassVar[str] = "after"
+    # TODO: change _time_orientation to time_orientation?
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _get_lilypond_format(self):
         return r"\breathe"
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.articulations.extend(tweaks)
         string = self._get_lilypond_format()
         contributions.after.commands.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Clef:
     r"""
     Clef.
@@ -758,10 +675,10 @@ class Clef:
 
         Middle-C position:
 
-        >>> abjad.Clef("treble").middle_c_position
+        >>> abjad.Clef("treble").middle_c_position()
         StaffPosition(number=-6)
 
-        >>> abjad.Clef("alto").middle_c_position
+        >>> abjad.Clef("alto").middle_c_position()
         StaffPosition(number=0)
 
 
@@ -800,7 +717,6 @@ class Clef:
 
     name: str = "treble"
     hide: bool = False
-    middle_c_position: _pitch.StaffPosition = dataclasses.field(init=False, repr=False)
 
     _clef_name_to_middle_c_position = {
         "treble": -6,
@@ -835,9 +751,6 @@ class Clef:
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
-        middle_c_position = self._calculate_middle_c_position(self.name)
-        middle_c_position = _pitch.StaffPosition(middle_c_position)
-        self.middle_c_position = middle_c_position
 
     def _calculate_middle_c_position(self, clef_name):
         alteration = 0
@@ -927,6 +840,14 @@ class Clef:
             return class_("bass")
         else:
             return class_("treble")
+
+    def middle_c_position(self):
+        """
+        Gets middle C position.
+        """
+        middle_c_position = self._calculate_middle_c_position(self.name)
+        middle_c_position = _pitch.StaffPosition(middle_c_position)
+        return middle_c_position
 
     def to_pitch(self, staff_position) -> _pitch.NamedPitch:
         """
@@ -1027,7 +948,7 @@ class Clef:
         """
         assert isinstance(staff_position, _pitch.StaffPosition), repr(staff_position)
         offset_staff_position_number = staff_position.number
-        offset_staff_position_number -= self.middle_c_position.number
+        offset_staff_position_number -= self.middle_c_position().number
         offset_staff_position = _pitch.StaffPosition(offset_staff_position_number)
         octave_number = offset_staff_position.number // 7 + 4
         diatonic_pc_number = offset_staff_position.number % 7
@@ -1181,19 +1102,17 @@ class Clef:
         """
         assert isinstance(pitch, _pitch.NamedPitch)
         staff_position_number = pitch._get_diatonic_pitch_number()
-        staff_position_number += self.middle_c_position.number
+        staff_position_number += self.middle_c_position().number
         staff_position = _pitch.StaffPosition(staff_position_number)
         return staff_position
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ColorFingering:
     r"""
     Color fingering.
 
     ..  container:: example
-
-        First color fingering:
 
         >>> fingering = abjad.ColorFingering(1)
         >>> note = abjad.Note("c'4")
@@ -1210,32 +1129,12 @@ class ColorFingering:
 
     ..  container:: example
 
-        Second color fingering:
-
-        >>> fingering = abjad.ColorFingering(2)
-        >>> note = abjad.Note("c'4")
-        >>> abjad.attach(fingering, note, direction=abjad.UP)
-
-        >>> abjad.show(note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(note)
-            >>> print(string)
-            c'4
-            ^ \markup { \override #'(circle-padding . 0.25) \circle \finger 2 }
-
-    Color fingerings indicate alternate woodwind fingerings by amount of pitch of timbre
-    deviation.
-
-    ..  container:: example
-
         Tweaks:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> fingering = abjad.ColorFingering(1)
-        >>> abjad.tweak(fingering, r"- \tweak color #blue")
-        >>> abjad.attach(fingering, staff[0], direction=abjad.UP)
+        >>> bundle = abjad.bundle(fingering, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1252,36 +1151,25 @@ class ColorFingering:
                 f'4
             }
 
+    Color fingerings indicate alternate woodwind fingerings by amount of pitch of timbre
+    deviation.
+
     """
 
     number: int
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     _site: typing.ClassVar[str] = "after"
     directed: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
 
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
-
     def _get_lilypond_format(self):
         return self.markup._get_lilypond_format()
 
     def _get_contributions(self, *, component=None, wrapper=None):
-        contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.markup.extend(tweaks)
-        markup = self.markup
-        markup_format_pieces = markup._get_format_pieces(wrapper=wrapper)
-        contributions.after.markup.extend(markup_format_pieces)
-        return contributions
+        return self.markup._get_contributions(component=component, wrapper=wrapper)
 
     @property
-    def markup(self) -> _markups.Markup | None:
+    def markup(self) -> typing.Optional["Markup"]:
         r"""
         Gets markup of color fingering.
 
@@ -1294,25 +1182,16 @@ class ColorFingering:
             >>> print(string)
             \markup { \override #'(circle-padding . 0.25) \circle \finger 1 }
 
-        ..  container:: example
-
-            Second color fingering:
-
-            >>> fingering = abjad.ColorFingering(2)
-            >>> string = abjad.lilypond(fingering.markup)
-            >>> print(string)
-            \markup { \override #'(circle-padding . 0.25) \circle \finger 2 }
-
         """
         if self.number is None:
             return None
         string = rf"\override #'(circle-padding . 0.25) \circle \finger {self.number}"
         string = rf"\markup {{ {string} }}"
-        markup = _markups.Markup(string)
+        markup = Markup(string)
         return markup
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Fermata:
     r"""
     Fermata.
@@ -1411,8 +1290,8 @@ class Fermata:
 
         >>> note = abjad.Note("c'4")
         >>> fermata = abjad.Fermata()
-        >>> abjad.tweak(fermata, r"- \tweak color #blue")
-        >>> abjad.attach(fermata, note)
+        >>> bundle = abjad.bundle(fermata, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, note)
         >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
@@ -1426,9 +1305,6 @@ class Fermata:
     """
 
     command: str = "fermata"
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     _allowable_commands: typing.ClassVar = (
         "fermata",
@@ -1440,23 +1316,16 @@ class Fermata:
     context: typing.ClassVar[str] = "Score"
     post_event: typing.ClassVar[bool] = True
 
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
-
     def _get_lilypond_format(self):
         return rf"\{self.command}"
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.articulations.extend(tweaks)
         contributions.after.articulations.append(self._get_lilypond_format())
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Glissando:
     r"""
     LilyPond ``\glissando`` command.
@@ -1465,8 +1334,8 @@ class Glissando:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> glissando = abjad.Glissando()
-        >>> abjad.tweak(glissando, r"- \tweak color #blue")
-        >>> abjad.attach(glissando, staff[0])
+        >>> bundle = abjad.bundle(glissando, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1481,111 +1350,6 @@ class Glissando:
                 d'4
                 e'4
                 f'4
-            }
-
-    ..  container:: example
-
-        >>> abjad.Glissando()
-        Glissando(allow_repeats=False, allow_ties=False, parenthesize_repeats=False, stems=False, style=None, zero_padding=False, tweaks=())
-
-    ..  container:: example
-
-        Tweaks;
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> glissando = abjad.Glissando()
-        >>> abjad.tweak(glissando, r"- \tweak color #blue")
-        >>> abjad.attach(glissando, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                - \tweak color #blue
-                \glissando
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Set ``zero_padding=True`` when glissando formats with zero padding and no extra
-        space for dots:
-
-        >>> staff = abjad.Staff("d'8 d'4. d'4. d'8")
-        >>> abjad.glissando(
-        ...     staff[:],
-        ...     allow_repeats=True,
-        ...     zero_padding=True,
-        ... )
-        >>> for note in staff[1:]:
-        ...     abjad.override(note).NoteHead.transparent = True
-        ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
-        ...
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                d'8
-                - \abjad-zero-padding-glissando
-                \glissando
-                \once \override NoteHead.X-extent = #'(0 . 0)
-                \once \override NoteHead.transparent = ##t
-                d'4.
-                - \abjad-zero-padding-glissando
-                \glissando
-                \once \override NoteHead.X-extent = #'(0 . 0)
-                \once \override NoteHead.transparent = ##t
-                d'4.
-                - \abjad-zero-padding-glissando
-                \glissando
-                \once \override NoteHead.X-extent = #'(0 . 0)
-                \once \override NoteHead.transparent = ##t
-                d'8
-            }
-
-        >>> staff = abjad.Staff("c'8. d'8. e'8. f'8.")
-        >>> abjad.glissando(
-        ...     staff[:],
-        ...     zero_padding=True,
-        ... )
-        >>> for note in staff[1:-1]:
-        ...     abjad.override(note).NoteHead.transparent = True
-        ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
-        ...
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'8.
-                - \abjad-zero-padding-glissando
-                \glissando
-                \once \override NoteHead.X-extent = #'(0 . 0)
-                \once \override NoteHead.transparent = ##t
-                d'8.
-                - \abjad-zero-padding-glissando
-                \glissando
-                \once \override NoteHead.X-extent = #'(0 . 0)
-                \once \override NoteHead.transparent = ##t
-                e'8.
-                - \abjad-zero-padding-glissando
-                \glissando
-                f'8.
             }
 
     """
@@ -1596,61 +1360,25 @@ class Glissando:
     stems: bool = False
     style: str | None = None
     zero_padding: bool = False
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Voice"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         strings = []
         if self.zero_padding:
             strings.append(r"- \abjad-zero-padding-glissando")
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            strings.extend(tweaks)
         strings.append(r"\glissando")
         contributions.after.spanner_starts.extend(strings)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class KeyCluster:
     r"""
     Key cluster.
-
-    ..  container:: example
-
-        Default values:
-
-        >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = abjad.KeyCluster()
-        >>> abjad.attach(key_cluster, chord, direction=abjad.UP)
-        >>> staff = abjad.Staff([chord])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
-            }
 
     ..  container:: example
 
@@ -1676,34 +1404,6 @@ class KeyCluster:
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
                 ^ \markup \center-align \concat { \natural \flat }
-            }
-
-        Default behavior.
-
-    ..  container:: example
-
-        Does not include flat markup:
-
-        >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = abjad.KeyCluster(include_flat_markup=False)
-        >>> abjad.attach(key_cluster, chord, direction=abjad.UP)
-        >>> staff = abjad.Staff([chord])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \natural
             }
 
     ..  container:: example
@@ -1732,33 +1432,9 @@ class KeyCluster:
                 ^ \markup \center-align \concat { \natural \flat }
             }
 
-        Does not include natural markup:
-
-        >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = abjad.KeyCluster(include_natural_markup=False)
-        >>> abjad.attach(key_cluster, chord, direction=abjad.UP)
-        >>> staff = abjad.Staff([chord])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \once \override Accidental.stencil = ##f
-                \once \override AccidentalCautionary.stencil = ##f
-                \once \override Arpeggio.X-offset = #-2
-                \once \override NoteHead.stencil = #ly:text-interface::print
-                \once \override NoteHead.text =
-                \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
-                <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \flat
-            }
-
     ..  container:: example
 
-        Key cluster formats LilyPond overrides instead of tweaks:
+        Key cluster output includes overrides instead of tweaks:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
         >>> key_cluster = abjad.KeyCluster()
@@ -1806,13 +1482,11 @@ class KeyCluster:
             string = rf"^ {string}"
         elif wrapper.direction is _enums.DOWN:
             string = rf"_ {string}"
-        markup = _markups.Markup(string)
-        markup_format_pieces = markup._get_format_pieces()
-        contributions.after.markup.extend(markup_format_pieces)
+        contributions.after.markup.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class LilyPondLiteral:
     r"""
     LilyPond literal.
@@ -1913,7 +1587,7 @@ class LilyPondLiteral:
         ...     r"\stopStaff",
         ...     r"\startStaff",
         ...     r"\once \override Staff.StaffSymbol.color = #red",
-        ...     ]
+        ... ]
         >>> literal = abjad.LilyPondLiteral(lines)
         >>> abjad.attach(literal, staff[2], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1960,35 +1634,16 @@ class LilyPondLiteral:
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-        >>> abjad.tweak(literal, r"- \tweak color #blue")
-        >>> abjad.attach(literal, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                - \tweak color #blue
-                \f
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
         Directed literal:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
-        >>> abjad.tweak(literal, r"- \tweak color #blue")
-        >>> abjad.tweak(literal, r"- \tweak DynamicLineSpanner.staff-padding 5")
-        >>> abjad.attach(literal, staff[0])
+        >>> bundle = abjad.bundle(
+        ...     literal,
+        ...     r"- \tweak color #blue",
+        ...     r"- \tweak DynamicLineSpanner.staff-padding 5",
+        ... )
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2016,8 +1671,8 @@ class LilyPondLiteral:
         ...     "after",
         ...     directed=False,
         ... )
-        >>> abjad.tweak(literal, r"\tweak color #blue")
-        >>> abjad.attach(literal, staff[0])
+        >>> bundle = abjad.bundle(literal, r"\tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2040,15 +1695,36 @@ class LilyPondLiteral:
         that a few commands (include ``\breathe``, ``\key``, ``\mark``) must
         not be directed.
 
+    ..  container:: example
+
+        Tweaks:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
+        >>> bundle = abjad.bundle(literal, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                - \tweak color #blue
+                \f
+                d'4
+                e'4
+                f'4
+            }
+
     """
 
     argument: str | list[str] = ""
     # TODO: probaby change default to "before"
     site: str = "opening"
     directed: bool = False
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     _allowable_sites: typing.ClassVar = (
         "absolute_after",
@@ -2063,10 +1739,7 @@ class LilyPondLiteral:
 
     def __post_init__(self):
         assert self.site in self._allowable_sites, repr(self.site)
-        if self.directed is not None:
-            self.directed = bool(self.directed)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
+        assert isinstance(self.directed, bool), repr(self.directed)
 
     # TODO: activate this:
     #    def _before_attach(self, component):
@@ -2075,19 +1748,14 @@ class LilyPondLiteral:
     #            message += f" format site {repr(self.site)}."
     #            raise Exception(message)
 
-    def _get_format_pieces(self):
-        if isinstance(self.argument, str):
-            return [self.argument]
-        assert isinstance(self.argument, list)
-        return self.argument[:]
-
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            site.commands.extend(tweaks)
-        pieces = self._get_format_pieces()
+        if isinstance(self.argument, str):
+            pieces = [self.argument]
+        else:
+            assert isinstance(self.argument, list)
+            pieces = self.argument[:]
         site.commands.extend(pieces)
         return contributions
 
@@ -2099,7 +1767,7 @@ class LilyPondLiteral:
         return self.directed
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Mode:
     """
     Mode.
@@ -2166,7 +1834,7 @@ class Mode:
         return intervals
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class KeySignature:
     r"""
     Key signature.
@@ -2174,7 +1842,9 @@ class KeySignature:
     ..  container:: example
 
         >>> staff = abjad.Staff("e'8 fs'8 gs'8 a'8")
-        >>> key_signature = abjad.KeySignature("e", "major")
+        >>> key_signature = abjad.KeySignature(
+        ...     abjad.NamedPitchClass("e"), abjad.Mode("major")
+        ... )
         >>> abjad.attach(key_signature, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2194,7 +1864,9 @@ class KeySignature:
     ..  container:: example
 
         >>> staff = abjad.Staff("e'8 fs'8 g'8 a'8")
-        >>> key_signature = abjad.KeySignature("e", "minor")
+        >>> key_signature = abjad.KeySignature(
+        ...     abjad.NamedPitchClass("e"), abjad.Mode("minor")
+        ... )
         >>> abjad.attach(key_signature, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2216,9 +1888,11 @@ class KeySignature:
         Tweaks:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> key = abjad.KeySignature("e", "minor")
-        >>> abjad.tweak(key, r"\tweak color #blue")
-        >>> abjad.attach(key, staff[0])
+        >>> key_signature = abjad.KeySignature(
+        ...     abjad.NamedPitchClass("e"), abjad.Mode("minor")
+        ... )
+        >>> bundle = abjad.bundle(key_signature, r"\tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2239,21 +1913,14 @@ class KeySignature:
 
     tonic: _pitch.NamedPitchClass = _pitch.NamedPitchClass("c")
     mode: Mode = Mode("major")
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Staff"
     persistent: typing.ClassVar[bool] = True
     redraw: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        if not isinstance(self.tonic, _pitch.NamedPitchClass):
-            self.tonic = _pitch.NamedPitchClass(self.tonic)
-        if not isinstance(self.mode, Mode):
-            self.mode = Mode(self.mode)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
+        assert isinstance(self.tonic, _pitch.NamedPitchClass), repr(self.tonic)
+        assert isinstance(self.mode, Mode), repr(self.mod)
 
     def _get_lilypond_format(self):
         assert isinstance(self.mode, Mode), repr(self.mode)
@@ -2261,9 +1928,6 @@ class KeySignature:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.before.commands.extend(tweaks)
         string = self._get_lilypond_format()
         contributions.before.commands.append(string)
         return contributions
@@ -2275,16 +1939,10 @@ class KeySignature:
 
         ..  container:: example
 
-            E major:
-
-            >>> key_signature = abjad.KeySignature("e", "major")
-            >>> key_signature.name
+            >>> abjad.KeySignature(abjad.NamedPitchClass("e"), abjad.Mode("major")).name
             'E major'
 
-            e minor:
-
-            >>> key_signature = abjad.KeySignature("e", "minor")
-            >>> key_signature.name
+            >>> abjad.KeySignature(abjad.NamedPitchClass("e"), abjad.Mode("minor")).name
             'e minor'
 
         """
@@ -2296,7 +1954,7 @@ class KeySignature:
         return f"{tonic!s} {self.mode.name}"
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class LaissezVibrer:
     r"""
     Laissez vibrer.
@@ -2321,8 +1979,8 @@ class LaissezVibrer:
 
         >>> note = abjad.Note("c'4")
         >>> lv = abjad.LaissezVibrer()
-        >>> abjad.tweak(lv, r"- \tweak color #blue")
-        >>> abjad.attach(lv, note)
+        >>> bundle = abjad.bundle(lv, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, note)
         >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
@@ -2335,31 +1993,20 @@ class LaissezVibrer:
 
     """
 
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
-
     _site: typing.ClassVar[str] = "after"
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     post_event: typing.ClassVar[bool] = True
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _get_lilypond_format(self):
         return r"\laissezVibrer"
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.articulations.extend(tweaks)
         contributions.after.articulations.append(self._get_lilypond_format())
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class MarginMarkup:
     r"""
     Margin markup.
@@ -2414,7 +2061,7 @@ class MarginMarkup:
 
     context: str = "Staff"
     site: str = "before"
-    markup: str | _markups.Markup | None = None
+    markup: typing.Union[str, "Markup", None] = None
 
     latent: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
@@ -2437,11 +2084,10 @@ class MarginMarkup:
             context = context.lilypond_type
         else:
             context = self._lilypond_type
-        if isinstance(self.markup, _markups.Markup):
-            markup = self.markup
-            pieces = markup._get_format_pieces()
+        if isinstance(self.markup, Markup):
             result.append(rf"\set {context!s}.shortInstrumentName =")
-            result.extend(pieces)
+            string = self.markup.string
+            result.append(string)
         else:
             assert isinstance(self.markup, str)
             string = rf"\set {context!s}.shortInstrumentName = {self.markup}"
@@ -2455,6 +2101,154 @@ class MarginMarkup:
         return contributions
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class Markup:
+    r"""
+    LilyPond markup.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> markup = abjad.Markup(r'\markup \italic "Allegro assai"')
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'8
+                ^ \markup \italic "Allegro assai"
+                d'8
+                e'8
+                f'8
+            }
+
+    ..  container:: example
+
+        Tweaks:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup(r'\markup \bold "Allegro assai"')
+        >>> bundle = abjad.bundle(markup, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0], direction=abjad.UP)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                - \tweak color #blue
+                ^ \markup \bold "Allegro assai"
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        Markup can be tagged:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup(r"\markup \italic Allegro")
+        >>> abjad.attach(markup, staff[0], direction=abjad.UP, tag=abjad.Tag("RED:M1"))
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> string = abjad.lilypond(staff, tags=True)
+        >>> print(string)
+        \new Staff
+        {
+            c'4
+            %! RED
+            %! M1
+            ^ \markup \italic Allegro
+            d'4
+            e'4
+            f'4
+        }
+
+        Tagged markup can be deactivated:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup = abjad.Markup(r"\markup \italic Allegro")
+        >>> abjad.attach(
+        ...     markup,
+        ...     staff[0],
+        ...     deactivate=True,
+        ...     direction=abjad.UP,
+        ...     tag=abjad.Tag("RED:M1"),
+        ... )
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        >>> string = abjad.lilypond(staff, tags=True)
+        >>> print(string)
+        \new Staff
+        {
+            c'4
+            %! RED
+            %! M1
+            %@% ^ \markup \italic Allegro
+            d'4
+            e'4
+            f'4
+        }
+
+    ..  container:: example
+
+        REGRESSION: markup 1 doesn't disappear after markup 2 is attached:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> markup_1 = abjad.Markup(r"\markup \italic Allegro")
+        >>> markup_2 = abjad.Markup(r'\markup \italic "non troppo"')
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP)
+        >>> abjad.attach(markup_2, staff[0], direction=abjad.UP)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                c'4
+                ^ \markup \italic Allegro
+                ^ \markup \italic "non troppo"
+                d'4
+                e'4
+                f'4
+            }
+
+    """
+
+    string: str
+
+    directed: typing.ClassVar[bool] = True
+    post_event: typing.ClassVar[bool] = True
+
+    def __post_init__(self):
+        assert isinstance(self.string, str), repr(self.string)
+
+    def _get_contributions(self, *, component=None, wrapper=None):
+        contributions = _contributions.ContributionsBySite()
+        string = self._get_lilypond_format(wrapper=wrapper)
+        contributions.after.markup.append(string)
+        return contributions
+
+    def _get_lilypond_format(self, *, wrapper=None):
+        string = self.string
+        if wrapper:
+            direction = wrapper.direction or "-"
+            direction = _string.to_tridirectional_lilypond_symbol(direction)
+            string = rf"{direction} {self.string}"
+        return string
+
+
+# TODO: frozen=True
 @functools.total_ordering
 @dataclasses.dataclass(slots=True, unsafe_hash=True)
 class MetronomeMark:
@@ -2712,7 +2506,7 @@ class MetronomeMark:
     reference_duration: _typings.DurationTyping | None = None
     units_per_minute: int | quicktions.Fraction = None
     textual_indication: str | None = None
-    custom_markup: _markups.Markup | None = None
+    custom_markup: Markup | None = None
     decimal: bool | str = False
     hide: bool = False
 
@@ -2739,7 +2533,7 @@ class MetronomeMark:
             assert all(isinstance(_, item_prototype) for _ in self.units_per_minute)
             self.units_per_minute = tuple(sorted(self.units_per_minute))
         if self.custom_markup is not None:
-            assert isinstance(self.custom_markup, _markups.Markup)
+            assert isinstance(self.custom_markup, Markup)
         if self.decimal is not None:
             assert isinstance(self.decimal, bool | str), repr(self.decimal)
         assert isinstance(self.hide, bool), repr(self.hide)
@@ -2868,7 +2662,7 @@ class MetronomeMark:
         string += f" #{self.reference_duration.dot_count}"
         string += f" #{stem_height}"
         string += f' #"{self.units_per_minute}"'
-        markup = _markups.Markup(rf"\markup {string}")
+        markup = Markup(rf"\markup {string}")
         return markup
 
     # TODO: refactor to return dict
@@ -2988,7 +2782,7 @@ class MetronomeMark:
     @staticmethod
     def make_tempo_equation_markup(
         reference_duration, units_per_minute, *, decimal=False
-    ) -> _markups.Markup:
+    ) -> Markup:
         r"""
         Makes tempo equation markup.
 
@@ -3053,7 +2847,7 @@ class MetronomeMark:
                 else:
                     assert isinstance(decimal, str), repr(decimal)
                     decimal_ = decimal
-                markup = _markups.Markup(
+                markup = Markup(
                     r"\markup \abjad-metronome-mark-markup"
                     f' #{log} #{dots} #{stem} #"{decimal_}"'
                 )
@@ -3062,20 +2856,20 @@ class MetronomeMark:
                 base = int(nonreduced)
                 remainder = nonreduced - base
                 n, d = remainder.pair
-                markup = _markups.Markup(
+                markup = Markup(
                     r"\markup \abjad-metronome-mark-mixed-number-markup"
                     f" #{log} #{dots} #{stem}"
                     f' #"{base}" #"{n}" #"{d}"'
                 )
         else:
-            markup = _markups.Markup(
+            markup = Markup(
                 r"\markup \abjad-metronome-mark-markup"
                 f' #{log} #{dots} #{stem} #"{units_per_minute}"'
             )
         return markup
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Ottava:
     r"""
     LilyPond ``\ottava`` command.
@@ -3122,7 +2916,7 @@ class Ottava:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class RehearsalMark:
     r"""
     Rehearsal mark.
@@ -3164,8 +2958,8 @@ class RehearsalMark:
 
         >>> note = abjad.Note("c'4")
         >>> mark = abjad.RehearsalMark(markup="A")
-        >>> abjad.tweak(mark, r"\tweak color #blue")
-        >>> abjad.attach(mark, note)
+        >>> bundle = abjad.bundle(mark, r"\tweak color #blue")
+        >>> abjad.attach(bundle, note)
         >>> staff = abjad.Staff([note])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -3178,87 +2972,14 @@ class RehearsalMark:
                 \tweak color #blue
                 \mark A
                 c'4
-            }
-
-    ..  container:: example
-
-        Copy:
-
-        >>> note = abjad.Note("c'4")
-        >>> mark = abjad.RehearsalMark(markup='A')
-        >>> abjad.tweak(mark, r"\tweak color #blue")
-        >>> abjad.attach(mark, note)
-        >>> staff = abjad.Staff([note])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \tweak color #blue
-                \mark A
-                c'4
-            }
-
-    ..  container:: example
-
-        Copy preserves tweaks:
-
-        >>> import copy
-        >>> mark = abjad.RehearsalMark(number=1)
-        >>> abjad.tweak(mark, r"\tweak color #red")
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(mark, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \tweak color #red
-                \mark #1
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-        >>> mark = copy.copy(mark)
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(mark, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \tweak color #red
-                \mark #1
-                c'4
-                d'4
-                e'4
-                f'4
             }
 
     """
 
-    markup: _markups.Markup | str | None = None
+    markup: Markup | str | None = None
     number: int | None = None
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Score"
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _get_lilypond_format(self):
         if self.markup is not None:
@@ -3271,9 +2992,6 @@ class RehearsalMark:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.opening.commands.extend(tweaks)
         string = self._get_lilypond_format()
         contributions.opening.commands.append(string)
         return contributions
@@ -3286,27 +3004,27 @@ class RehearsalMark:
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("A")
-            RehearsalMark(markup=None, number=1, tweaks=())
+            RehearsalMark(markup=None, number=1)
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("AA")
-            RehearsalMark(markup=None, number=27, tweaks=())
+            RehearsalMark(markup=None, number=27)
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("AB")
-            RehearsalMark(markup=None, number=28, tweaks=())
+            RehearsalMark(markup=None, number=28)
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("BA")
-            RehearsalMark(markup=None, number=53, tweaks=())
+            RehearsalMark(markup=None, number=53)
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("BB")
-            RehearsalMark(markup=None, number=54, tweaks=())
+            RehearsalMark(markup=None, number=54)
 
         """
         number = 0
@@ -3318,7 +3036,7 @@ class RehearsalMark:
         return RehearsalMark(number=number)
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Repeat:
     r"""
     Repeat.
@@ -3400,7 +3118,7 @@ class Repeat:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class RepeatTie:
     r"""
     LilyPond ``\repeatTie`` command.
@@ -3409,8 +3127,8 @@ class RepeatTie:
 
         >>> staff = abjad.Staff("c'4 c' d' d'")
         >>> repeat_tie = abjad.RepeatTie()
-        >>> abjad.tweak(repeat_tie, r"- \tweak color #blue")
-        >>> abjad.attach(repeat_tie, staff[1])
+        >>> bundle = abjad.bundle(repeat_tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3427,6 +3145,13 @@ class RepeatTie:
                 d'4
             }
 
+        >>> abjad.get.indicators(staff[1], abjad.RepeatTie)
+        [RepeatTie()]
+
+        >>> wrapper = abjad.get.indicator(staff[1], abjad.RepeatTie, unwrap=False)
+        >>> wrapper.get_item()
+        Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', tag=None),))
+
         >>> for leaf in staff:
         ...     leaf, abjad.get.logical_tie(leaf)
         ...
@@ -3441,11 +3166,11 @@ class RepeatTie:
 
         >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
         >>> tie = abjad.RepeatTie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[1])
+        >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[1])
         >>> tie = abjad.RepeatTie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[3])
+        >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[3])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3468,11 +3193,11 @@ class RepeatTie:
 
         >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
         >>> tie = abjad.RepeatTie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[1], direction=abjad.UP)
+        >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[1], direction=abjad.UP)
         >>> tie = abjad.RepeatTie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[3], direction=abjad.UP)
+        >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[3], direction=abjad.UP)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3497,11 +3222,11 @@ class RepeatTie:
 
         >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
         >>> tie = abjad.RepeatTie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[1], direction=abjad.DOWN)
+        >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[1], direction=abjad.DOWN)
         >>> tie = abjad.RepeatTie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[3], direction=abjad.DOWN)
+        >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[3], direction=abjad.DOWN)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -3520,30 +3245,6 @@ class RepeatTie:
                 - \tweak color #blue
                 _
                 \repeatTie
-            }
-
-    ..  container:: example
-
-        Tweaks:
-
-        >>> staff = abjad.Staff("c'4 c' d' d'")
-        >>> repeat_tie = abjad.RepeatTie()
-        >>> abjad.tweak(repeat_tie, r"- \tweak color #blue")
-        >>> abjad.attach(repeat_tie, staff[1])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                c'4
-                - \tweak color #blue
-                \repeatTie
-                d'4
-                d'4
             }
 
     """
@@ -3552,13 +3253,6 @@ class RepeatTie:
     directed: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _attachment_test_all(self, argument):
         if not (
@@ -3570,26 +3264,21 @@ class RepeatTie:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanners.extend(tweaks)
         strings = []
         if wrapper.direction is not None:
             string = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             strings.append(string)
         strings.append(r"\repeatTie")
-        contributions.after.spanners.extend(strings)
+        contributions.after.spanner_starts.extend(strings)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StaffChange:
     r"""
     Staff change.
 
     ..  container:: example
-
-        Explicit staff change:
 
         >>> staff_group = abjad.StaffGroup()
         >>> staff_group.lilypond_type = "PianoStaff"
@@ -3620,21 +3309,6 @@ class StaffChange:
                 }
             >>
 
-    ..  container:: example
-
-        Default staff change:
-
-        >>> staff_change = abjad.StaffChange()
-        >>> staff_change.staff is None
-        True
-
-        Explicit staff change:
-
-        >>> lh_staff = abjad.Staff("s2", name="LH_Staff")
-        >>> staff_change = abjad.StaffChange("LH_Staff")
-        >>> staff_change.staff
-        'LH_Staff'
-
     """
 
     staff: str | None = None
@@ -3656,7 +3330,7 @@ class StaffChange:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartBeam:
     r"""
     LilyPond ``[`` command.
@@ -3665,8 +3339,8 @@ class StartBeam:
 
         >>> staff = abjad.Staff("c'8 d' e' f'")
         >>> start_beam = abjad.StartBeam()
-        >>> abjad.tweak(start_beam, r"- \tweak color #blue")
-        >>> abjad.attach(start_beam, staff[0])
+        >>> bundle = abjad.bundle(start_beam, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_beam = abjad.StopBeam()
         >>> abjad.attach(stop_beam, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -3688,12 +3362,12 @@ class StartBeam:
 
     ..  container:: example
 
-        Direction:
+        With ``direction=abjad.DOWN``:
 
         >>> staff = abjad.Staff("c'8 d' e' f'")
         >>> start_beam = abjad.StartBeam()
-        >>> abjad.tweak(start_beam, r"- \tweak color #blue")
-        >>> abjad.attach(start_beam, staff[0], direction=abjad.DOWN)
+        >>> bundle = abjad.bundle(start_beam, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0], direction=abjad.DOWN)
         >>> stop_beam = abjad.StopBeam()
         >>> abjad.attach(stop_beam, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -3713,28 +3387,7 @@ class StartBeam:
                 ]
             }
 
-    ..  container:: example
-
-        >>> abjad.StartBeam()
-        StartBeam(tweaks=())
-
-    ..  container:: example
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> start_beam = abjad.StartBeam()
-        >>> abjad.tweak(start_beam, r"- \tweak color #blue")
-
-        >>> start_beam_2 = copy.copy(start_beam)
-        >>> start_beam_2.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
     """
-
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
@@ -3742,10 +3395,6 @@ class StartBeam:
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _add_direction(self, string, wrapper):
         if wrapper.direction is not None:
@@ -3755,15 +3404,12 @@ class StartBeam:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanner_starts.extend(tweaks)
         string = self._add_direction("[", wrapper)
-        contributions.after.spanner_starts.append(string)
+        contributions.after.start_beam.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartGroup:
     r"""
     LilyPond ``\startGroup`` command.
@@ -3772,8 +3418,8 @@ class StartGroup:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_group = abjad.StartGroup()
-        >>> abjad.tweak(start_group, r"- \tweak color #blue")
-        >>> abjad.attach(start_group, staff[0])
+        >>> bundle = abjad.bundle(start_group, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_group = abjad.StopGroup()
         >>> abjad.attach(stop_group, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -3793,48 +3439,20 @@ class StartGroup:
                 \stopGroup
             }
 
-    ..  container:: example
-
-        >>> abjad.StartGroup()
-        StartGroup(tweaks=())
-
-    ..  container:: example
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> start_group = abjad.StartGroup()
-        >>> abjad.tweak(start_group, r"- \tweak color #blue")
-
-        >>> start_group_2 = copy.copy(start_group)
-        >>> start_group_2.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
     """
-
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
 
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
-
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanner_starts.extend(tweaks)
         string = r"\startGroup"
         contributions.after.spanner_starts.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartHairpin:
     r"""
     Hairpin indicator.
@@ -3985,7 +3603,7 @@ class StartHairpin:
 
     ..  container:: example
 
-        Decrescendo:
+        Diminuendo:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic('f'), staff[0])
@@ -4013,7 +3631,7 @@ class StartHairpin:
                 \p
             }
 
-        Decrescendo al niente:
+        Diminuendo al niente:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic('f'), staff[0])
@@ -4042,7 +3660,7 @@ class StartHairpin:
                 \!
             }
 
-        Subito decrescendo:
+        Subito diminuendo:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic('f'), staff[0])
@@ -4071,7 +3689,7 @@ class StartHairpin:
                 \p
             }
 
-        Subito decrescendo al niente:
+        Subito diminuendo al niente:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic('f'), staff[0])
@@ -4139,8 +3757,8 @@ class StartHairpin:
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic('p'), staff[0])
         >>> start_hairpin = abjad.StartHairpin('<')
-        >>> abjad.tweak(start_hairpin, r"- \tweak color #blue")
-        >>> abjad.attach(start_hairpin, staff[0])
+        >>> bundle = abjad.bundle(start_hairpin, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
         >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4.5
         >>> abjad.show(staff) # doctest: +SKIP
@@ -4168,9 +3786,6 @@ class StartHairpin:
     """
 
     shape: str = "<"
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     _crescendo_start: typing.ClassVar[str] = r"\<"
     _decrescendo_start: typing.ClassVar[str] = r"\>"
@@ -4185,10 +3800,6 @@ class StartHairpin:
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
     trend: typing.ClassVar[bool] = True
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks), repr(self.tweaks)
 
     def _add_direction(self, string, *, wrapper=None):
         if wrapper.direction is not None:
@@ -4250,24 +3861,15 @@ class StartHairpin:
         return strings
 
     def _get_contributions(self, *, component=None, wrapper=None):
-        r"""
-        hairpin contributes formatting to the 'spanners' site (rather than the 'commands'
-        site). The reason for this is that the LilyPond \startTrillSpan [pitch] command
-        must appear after \< and \> but before \set and other commmands.
-        """
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanners.extend(tweaks)
         strings = self._get_lilypond_format(wrapper=wrapper)
-        contributions.after.spanners.extend(strings)
+        contributions.after.spanner_starts.extend(strings)
         return contributions
 
     @property
     def known_shapes(self) -> tuple[str, ...]:
         r"""
-
-        Gets known shapes.
+        Gets known hairpin shapes.
 
         ..  container:: example
 
@@ -4287,7 +3889,7 @@ class StartHairpin:
         return self._known_shapes
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartMarkup:
     r"""
     Start markup.
@@ -4373,7 +3975,7 @@ class StartMarkup:
 
     """
 
-    markup: str | _markups.Markup = "instrument name"
+    markup: str | Markup = "instrument name"
     context: str = "Staff"
     site: str = "before"
 
@@ -4394,11 +3996,9 @@ class StartMarkup:
             context = context.lilypond_type
         else:
             context = self._lilypond_type
-        if isinstance(self.markup, _markups.Markup):
-            markup = self.markup
-            pieces = markup._get_format_pieces()
+        if isinstance(self.markup, Markup):
             result.append(rf"\set {context!s}.instrumentName =")
-            result.extend(pieces)
+            result.append(self.markup.string)
         else:
             assert isinstance(self.markup, str)
             string = rf"\set {context!s}.instrumentName = {self.markup}"
@@ -4412,7 +4012,7 @@ class StartMarkup:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartPhrasingSlur:
     r"""
     LilyPond ``(`` command.
@@ -4421,8 +4021,8 @@ class StartPhrasingSlur:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(start_phrasing_slur, r"- \tweak color #blue")
-        >>> abjad.attach(start_phrasing_slur, staff[0])
+        >>> bundle = abjad.bundle(start_phrasing_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_phrasing_slur = abjad.StopPhrasingSlur()
         >>> abjad.attach(stop_phrasing_slur, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -4442,28 +4042,7 @@ class StartPhrasingSlur:
                 \)
             }
 
-    ..  container:: example
-
-        >>> abjad.StartPhrasingSlur()
-        StartPhrasingSlur(tweaks=())
-
-    ..  container:: example
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> start_phrasing_slur = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(start_phrasing_slur, r"- \tweak color #blue")
-
-        >>> start_phrasing_slur_2 = copy.copy(start_phrasing_slur)
-        >>> start_phrasing_slur_2.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
     """
-
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
@@ -4471,10 +4050,6 @@ class StartPhrasingSlur:
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _add_direction(self, string, *, wrapper=None):
         if wrapper.direction is not None:
@@ -4484,15 +4059,12 @@ class StartPhrasingSlur:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanner_starts.extend(tweaks)
         string = self._add_direction(r"\(", wrapper=wrapper)
         contributions.after.spanner_starts.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartPianoPedal:
     r"""
     LilyPond ``\sustainOn``, ``\sostenutoOn``, ``\unaCorda`` commands.
@@ -4501,21 +4073,24 @@ class StartPianoPedal:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak color #blue")
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak parent-alignment-X #center")
-        >>> abjad.attach(start_piano_pedal, staff[0])
+        >>> bundle = abjad.bundle(
+        ...     start_piano_pedal,
+        ...     r"- \tweak color #blue",
+        ...     r"- \tweak parent-alignment-X #center",
+        ... )
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[1])
 
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak color #red")
-        >>> abjad.attach(start_piano_pedal, staff[1])
+        >>> bundle = abjad.bundle(start_piano_pedal, r"- \tweak color #red")
+        >>> abjad.attach(bundle, staff[1])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[2])
 
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak color #green")
-        >>> abjad.attach(start_piano_pedal, staff[2])
+        >>> bundle = abjad.bundle(start_piano_pedal, r"- \tweak color #green")
+        >>> abjad.attach(bundle, staff[2])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
         >>> abjad.attach(stop_piano_pedal, staff[3])
 
@@ -4550,24 +4125,9 @@ class StartPianoPedal:
                 \sustainOff
             }
 
-    ..  container:: example
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak color #blue")
-
-        >>> start_piano_pedal_2 = copy.copy(start_piano_pedal)
-        >>> start_piano_pedal_2.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
     """
 
     kind: str | None = None
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "StaffGroup"
     parameter: typing.ClassVar[str] = "PEDAL"
@@ -4578,14 +4138,9 @@ class StartPianoPedal:
     def __post_init__(self):
         if self.kind is not None:
             assert self.kind in ("sustain", "sostenuto", "corda"), repr(self.kind)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanner_starts.extend(tweaks)
         if self.kind == "corda":
             string = r"\unaCorda"
         elif self.kind == "sostenuto":
@@ -4597,7 +4152,7 @@ class StartPianoPedal:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartSlur:
     r"""
     LilyPond ``(`` command.
@@ -4606,8 +4161,8 @@ class StartSlur:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_slur = abjad.StartSlur()
-        >>> abjad.tweak(start_slur, r"- \tweak color #blue")
-        >>> abjad.attach(start_slur, staff[0])
+        >>> bundle = abjad.bundle(start_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_slur = abjad.StopSlur()
         >>> abjad.attach(stop_slur, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -4626,11 +4181,6 @@ class StartSlur:
                 f'4
                 )
             }
-
-    ..  container:: example
-
-        >>> abjad.StartSlur()
-        StartSlur(tweaks=())
 
     ..  container:: example
 
@@ -4721,23 +4271,7 @@ class StartSlur:
                 )
             }
 
-    ..  container:: example
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> start_slur = abjad.StartSlur()
-        >>> abjad.tweak(start_slur, r"- \tweak color #blue")
-
-        >>> start_slur_2 = copy.copy(start_slur)
-        >>> start_slur_2.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
     """
-
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
@@ -4745,10 +4279,6 @@ class StartSlur:
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     def _add_direction(self, string, *, wrapper=None):
         if wrapper.direction is not None:
@@ -4758,15 +4288,12 @@ class StartSlur:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanner_starts.extend(tweaks)
         string = self._add_direction("(", wrapper=wrapper)
         contributions.after.spanner_starts.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartTextSpan:
     r"""
     LilyPond ``\startTextSpan`` command.
@@ -4779,8 +4306,8 @@ class StartTextSpan:
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="solid-line-with-arrow",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4793,10 +4320,10 @@ class StartTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4807,7 +4334,7 @@ class StartTextSpan:
     ..  container:: example
 
         >>> abjad.StartTextSpan()
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=())
+        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None)
 
     ..  container:: example
 
@@ -4818,9 +4345,12 @@ class StartTextSpan:
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak color #blue")
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(
+        ...     start_text_span,
+        ...     r"- \tweak color #blue",
+        ...     r"- \tweak staff-padding 2.5",
+        ... )
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
 
@@ -4830,15 +4360,18 @@ class StartTextSpan:
         ...     right_text=abjad.Markup(r"\markup \upright B"),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak color #red")
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 6")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(
+        ...     start_text_span,
+        ...     r"- \tweak color #red",
+        ...     r"- \tweak staff-padding 6",
+        ... )
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan(command=r"\stopTextSpanOne")
         >>> abjad.attach(stop_text_span, staff[-1])
 
         >>> markup = abjad.Markup(r"\markup SPACER")
-        >>> abjad.tweak(markup, r"- \tweak transparent ##t")
-        >>> abjad.attach(markup, staff[0], direction=abjad.UP)
+        >>> bundle = abjad.bundle(markup, r"- \tweak transparent ##t")
+        >>> abjad.attach(bundle, staff[0], direction=abjad.UP)
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -4851,17 +4384,17 @@ class StartTextSpan:
                 c'4
                 - \tweak transparent ##t
                 ^ \markup SPACER
+                - \tweak color #blue
+                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak color #blue
-                - \tweak staff-padding 2.5
                 \startTextSpan
+                - \tweak color #red
+                - \tweak staff-padding 6
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright A \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright B
-                - \tweak color #red
-                - \tweak staff-padding 6
                 \startTextSpanOne
                 d'4
                 e'4
@@ -4886,8 +4419,8 @@ class StartTextSpan:
         ...     right_text=right_text,
         ...     style='solid-line-with-arrow',
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4900,10 +4433,10 @@ class StartTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4921,8 +4454,8 @@ class StartTextSpan:
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4935,10 +4468,10 @@ class StartTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4953,8 +4486,8 @@ class StartTextSpan:
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     style="dashed-line-with-hook",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4967,9 +4500,9 @@ class StartTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-hook
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4985,8 +4518,8 @@ class StartTextSpan:
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="invisible-line",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4999,10 +4532,10 @@ class StartTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-invisible-line
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -5018,8 +4551,8 @@ class StartTextSpan:
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="solid-line-with-arrow",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5032,10 +4565,10 @@ class StartTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -5050,8 +4583,8 @@ class StartTextSpan:
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     style="solid-line-with-hook",
         ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(start_text_span, staff[0])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, staff[-1])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -5064,9 +4597,9 @@ class StartTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-hook
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -5078,44 +4611,16 @@ class StartTextSpan:
         ``'invisible-line'``, ``'solid-line-with-arrow'``, ``'solid-line-with-hook'``,
         none.
 
-    ..  container:: example
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> start_text_span = abjad.StartTextSpan(
-        ...     style='dashed-line-with-arrow',
-        ... )
-        >>> abjad.tweak(start_text_span, r"- \tweak color #blue")
-        >>> abjad.tweak(start_text_span, r"- \tweak staff-padding 2.5")
-        >>> start_text_span
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=(Tweak(string='- \\tweak color #blue', tag=None), Tweak(string='- \\tweak staff-padding 2.5', tag=None)))
-
-        >>> start_text_span_2 = copy.copy(start_text_span)
-        >>> start_text_span_2
-        StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style='dashed-line-with-arrow', tweaks=(Tweak(string='- \\tweak color #blue', tag=None), Tweak(string='- \\tweak staff-padding 2.5', tag=None)))
-
-        >>> for _ in start_text_span.tweaks: _
-        Tweak(string='- \\tweak color #blue', tag=None)
-        Tweak(string='- \\tweak staff-padding 2.5', tag=None)
-
-        >>> for _ in start_text_span_2.tweaks: _
-        Tweak(string='- \\tweak color #blue', tag=None)
-        Tweak(string='- \\tweak staff-padding 2.5', tag=None)
-
     """
 
     command: str = r"\startTextSpan"
     concat_hspace_left: int | float = 0.5
     concat_hspace_right: int | float | None = None
-    left_broken_text: bool | str | _markups.Markup | None = None
-    left_text: str | _markups.Markup | None = None
+    left_broken_text: bool | str | Markup | None = None
+    left_text: str | Markup | None = None
     right_padding: int | float | None = None
-    right_text: str | _markups.Markup | None = None
+    right_text: str | Markup | None = None
     style: str | None = None
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
@@ -5134,18 +4639,6 @@ class StartTextSpan:
         "solid-line-with-up-hook",
     )
 
-    def __post_init__(self):
-        tweaks = []
-        for item in self.tweaks:
-            if isinstance(item, str):
-                tweak = _tweaks.Tweak(item)
-            else:
-                assert isinstance(item, _tweaks.Tweak)
-                tweak = item
-            tweaks.append(tweak)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
-
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         if self.style is not None:
@@ -5163,15 +4656,6 @@ class StartTextSpan:
         if self.right_padding:
             string = self._get_right_padding_tweak()
             contributions.after.spanner_starts.append(string)
-        tweaks = []
-        for tweak in sorted(self.tweaks):
-            strings = tweak._list_contributions()
-            tweaks.extend(strings)
-        # tweaks.sort()
-        contributions.after.spanner_starts.extend(tweaks)
-        #        if self.tweaks:
-        #            tweaks = self.tweaks._list_contributions()
-        #            contributions.after.spanner_starts.extend(tweaks)
         string = self._add_direction(self.command, wrapper=wrapper)
         contributions.after.spanner_starts.append(string)
         return contributions
@@ -5201,9 +4685,7 @@ class StartTextSpan:
         left_text_string = self.left_text.string
         left_text_string = left_text_string.removeprefix(r"\markup").strip()
         hspace_string = rf"\hspace #{self.concat_hspace_left}"
-        markup = _markups.Markup(
-            rf"\markup \concat {{ {left_text_string} {hspace_string} }}"
-        )
+        markup = Markup(rf"\markup \concat {{ {left_text_string} {hspace_string} }}")
         override = _overrides.LilyPondOverride(
             grob_name="TextSpanner",
             property_path=("bound-details", "left", "text"),
@@ -5229,15 +4711,13 @@ class StartTextSpan:
         if self.concat_hspace_right is not None:
             number = self.concat_hspace_right
             right_text = self.right_text.string
-            markup = _markups.Markup(
-                rf"\markup \concat {{ {right_text} \hspace #{number} }}"
-            )
+            markup = Markup(rf"\markup \concat {{ {right_text} \hspace #{number} }}")
         else:
             markup = self.right_text
         if isinstance(markup, str):
             value = markup
         else:
-            assert isinstance(markup, _markups.Markup)
+            assert isinstance(markup, Markup)
             value = markup.string
         override = _overrides.LilyPondOverride(
             grob_name="TextSpanner",
@@ -5253,7 +4733,7 @@ class StartTextSpan:
         return rf"\start{string}"
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StartTrillSpan:
     r"""
     LilyPond ``\startTrillSpan`` command.
@@ -5262,8 +4742,8 @@ class StartTrillSpan:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_trill_span = abjad.StartTrillSpan()
-        >>> abjad.tweak(start_trill_span, r"- \tweak color #blue")
-        >>> abjad.attach(start_trill_span, staff[0])
+        >>> bundle = abjad.bundle(start_trill_span, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_trill_span = abjad.StopTrillSpan()
         >>> abjad.attach(stop_trill_span, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5288,9 +4768,9 @@ class StartTrillSpan:
         With interval:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start_trill_span = abjad.StartTrillSpan(interval='M2')
-        >>> abjad.tweak(start_trill_span, r"- \tweak color #blue")
-        >>> abjad.attach(start_trill_span, staff[0])
+        >>> start_trill_span = abjad.StartTrillSpan(interval=abjad.NamedInterval("M2"))
+        >>> bundle = abjad.bundle(start_trill_span, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_trill_span = abjad.StopTrillSpan()
         >>> abjad.attach(stop_trill_span, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5316,9 +4796,9 @@ class StartTrillSpan:
         With pitch:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> start_trill_span = abjad.StartTrillSpan(pitch='C#4')
-        >>> abjad.tweak(start_trill_span, r"- \tweak color #blue")
-        >>> abjad.attach(start_trill_span, staff[0])
+        >>> start_trill_span = abjad.StartTrillSpan(pitch=abjad.NamedPitch("C#4"))
+        >>> bundle = abjad.bundle(start_trill_span, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_trill_span = abjad.StopTrillSpan()
         >>> abjad.attach(stop_trill_span, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5339,27 +4819,10 @@ class StartTrillSpan:
                 \stopTrillSpan
             }
 
-    ..  container:: example
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> start_trill_span = abjad.StartTrillSpan()
-        >>> abjad.tweak(start_trill_span, r"- \tweak color #blue")
-        >>> start_trill_span.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
-        >>> start_trill_span_2 = copy.copy(start_trill_span)
-        >>> start_trill_span_2.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
     """
 
     interval: str | _pitch.NamedInterval | None = None
     pitch: str | _pitch.NamedPitch | None = None
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "TRILL"
@@ -5369,30 +4832,26 @@ class StartTrillSpan:
 
     def __post_init__(self):
         if self.interval is not None:
-            self.interval = _pitch.NamedInterval(self.interval)
+            assert isinstance(self.interval, _pitch.NamedInterval), repr(self.interval)
         if self.pitch is not None:
-            self.pitch = _pitch.NamedPitch(self.pitch)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
+            assert isinstance(self.pitch, _pitch.NamedPitch), repr(self.pitch)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self, *, component=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanner_starts.extend(tweaks)
         string = r"\startTrillSpan"
         if self.interval or self.pitch:
-            contributions.opening.spanners.append(r"\pitchedTrill")
+            contributions.opening.pitched_trill.append(r"\pitchedTrill")
             if self.pitch:
                 pitch = self.pitch
             else:
                 pitch = component.written_pitch + self.interval
             string = string + f" {pitch.name}"
-        contributions.after.spanner_starts.append(string)
+        # NOTE: crucial to use after.trill_spanner_starts here:
+        contributions.after.trill_spanner_starts.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StemTremolo:
     r"""
     Stem tremolo.
@@ -5487,15 +4946,10 @@ class StemTremolo:
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopBeam:
     r"""
     LilyPond ``]`` command.
-
-    ..  container:: example
-
-        >>> abjad.StopBeam()
-        StopBeam(leak=False)
 
     ..  container:: example
 
@@ -5503,8 +4957,8 @@ class StopBeam:
 
         >>> staff = abjad.Staff("c'8 d' e' r")
         >>> start_beam = abjad.StartBeam()
-        >>> abjad.tweak(start_beam, r"- \tweak color #blue")
-        >>> abjad.attach(start_beam, staff[0])
+        >>> bundle = abjad.bundle(start_beam, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_beam = abjad.StopBeam()
         >>> abjad.attach(stop_beam, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5527,11 +4981,11 @@ class StopBeam:
         With leak:
 
         >>> staff = abjad.Staff("c'8 d' e' r")
-        >>> command = abjad.StartBeam()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopBeam(leak=True)
-        >>> abjad.attach(command, staff[-2])
+        >>> start_beam = abjad.StartBeam()
+        >>> bundle = abjad.bundle(start_beam, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_beam = abjad.StopBeam(leak=True)
+        >>> abjad.attach(stop_beam, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5545,13 +4999,14 @@ class StopBeam:
                 [
                 d'8
                 e'8
-                <> ]
+                <>
+                ]
                 r8
             }
 
     """
 
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
@@ -5563,35 +5018,28 @@ class StopBeam:
         contributions = _contributions.ContributionsBySite()
         string = "]"
         if self.leak:
-            string = f"<> {string}"
+            contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
-            # contributions.after.spanner_stops.append(string)
-            # starts (instead of stops) so [ ] is possible on single leaf:
-            contributions.after.spanner_starts.append(string)
+            contributions.after.stop_beam.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopGroup:
     r"""
     LilyPond ``\stopGroup`` command.
 
     ..  container:: example
 
-        >>> abjad.StopGroup()
-        StopGroup(leak=False)
-
-    ..  container:: example
-
         Without leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartGroup()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopGroup()
-        >>> abjad.attach(command, staff[-2])
+        >>> start_group = abjad.StartGroup()
+        >>> bundle = abjad.bundle(start_group, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_group = abjad.StopGroup()
+        >>> abjad.attach(stop_group, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5612,11 +5060,11 @@ class StopGroup:
         With leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartGroup()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopGroup(leak=True)
-        >>> abjad.attach(command, staff[-2])
+        >>> start_group = abjad.StartGroup()
+        >>> bundle = abjad.bundle(start_group, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_group = abjad.StopGroup(leak=True)
+        >>> abjad.attach(stop_group, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5630,7 +5078,8 @@ class StopGroup:
                 \startGroup
                 d'4
                 e'4
-                <> \stopGroup
+                <>
+                \stopGroup
                 r4
             }
 
@@ -5640,11 +5089,11 @@ class StopGroup:
 
         >>> staff = abjad.Staff("c'8 d' e' f' r2")
         >>> abjad.beam(staff[:4])
-        >>> command = abjad.StartGroup()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopGroup(leak=True)
-        >>> abjad.attach(command, staff[3])
+        >>> start_group = abjad.StartGroup()
+        >>> bundle = abjad.bundle(start_group, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_group = abjad.StopGroup(leak=True)
+        >>> abjad.attach(stop_group, staff[3])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5661,7 +5110,8 @@ class StopGroup:
                 e'8
                 f'8
                 ]
-                <> \stopGroup
+                <>
+                \stopGroup
                 r2
             }
 
@@ -5669,7 +5119,7 @@ class StopGroup:
 
     """
 
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     persistent: typing.ClassVar[bool] = True
@@ -5679,22 +5129,17 @@ class StopGroup:
         contributions = _contributions.ContributionsBySite()
         string = r"\stopGroup"
         if self.leak:
-            string = f"<> {string}"
+            contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
             contributions.after.spanner_stops.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopHairpin:
     r"""
     LilyPond ``\!`` command.
-
-    ..  container:: example
-
-        >>> abjad.StopHairpin()
-        StopHairpin(leak=False)
 
     ..  container:: example
 
@@ -5702,8 +5147,8 @@ class StopHairpin:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_hairpin = abjad.StartHairpin('<')
-        >>> abjad.tweak(start_hairpin, r"- \tweak color #blue")
-        >>> abjad.attach(start_hairpin, staff[0])
+        >>> bundle = abjad.bundle(start_hairpin, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_hairpin = abjad.StopHairpin()
         >>> abjad.attach(stop_hairpin, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5727,8 +5172,8 @@ class StopHairpin:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_hairpin = abjad.StartHairpin('<')
-        >>> abjad.tweak(start_hairpin, r"- \tweak color #blue")
-        >>> abjad.attach(start_hairpin, staff[0])
+        >>> bundle = abjad.bundle(start_hairpin, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_hairpin = abjad.StopHairpin(leak=True)
         >>> abjad.attach(stop_hairpin, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -5744,13 +5189,14 @@ class StopHairpin:
                 \<
                 d'4
                 e'4
-                <> \!
+                <>
+                \!
                 r4
             }
 
     """
 
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     context: typing.ClassVar[str] = "Voice"
     # parameter: typing.ClassVar[str] = "DYNAMIC"
@@ -5761,33 +5207,29 @@ class StopHairpin:
         contributions = _contributions.ContributionsBySite()
         string = r"\!"
         if self.leak:
-            string = f"<> {string}"
+            contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
+            # TODO: contributions.after.spanner_stops.append()?
             contributions.after.articulations.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopPhrasingSlur:
     r"""
     LilyPond ``\)`` command.
 
     ..  container:: example
 
-        >>> abjad.StopPhrasingSlur()
-        StopPhrasingSlur(leak=False)
-
-    ..  container:: example
-
         Without leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopPhrasingSlur()
-        >>> abjad.attach(command, staff[-2])
+        >>> start_phrasing_slur = abjad.StartPhrasingSlur()
+        >>> bundle = abjad.bundle(start_phrasing_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_phrasing_slur = abjad.StopPhrasingSlur()
+        >>> abjad.attach(stop_phrasing_slur, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5808,11 +5250,11 @@ class StopPhrasingSlur:
         With leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopPhrasingSlur(leak=True)
-        >>> abjad.attach(command, staff[-2])
+        >>> start_phrasing_slur = abjad.StartPhrasingSlur()
+        >>> bundle = abjad.bundle(start_phrasing_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_phrasing_slur = abjad.StopPhrasingSlur(leak=True)
+        >>> abjad.attach(stop_phrasing_slur, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5826,7 +5268,8 @@ class StopPhrasingSlur:
                 \(
                 d'4
                 e'4
-                <> \)
+                <>
+                \)
                 r4
             }
 
@@ -5836,11 +5279,11 @@ class StopPhrasingSlur:
 
         >>> staff = abjad.Staff("c'8 d' e' f' r2")
         >>> abjad.beam(staff[:4])
-        >>> command = abjad.StartPhrasingSlur()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopPhrasingSlur(leak=True)
-        >>> abjad.attach(command, staff[3])
+        >>> start_phrasing_slur = abjad.StartPhrasingSlur()
+        >>> bundle = abjad.bundle(start_phrasing_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_phrasing_slur = abjad.StopPhrasingSlur(leak=True)
+        >>> abjad.attach(stop_phrasing_slur, staff[3])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5857,7 +5300,8 @@ class StopPhrasingSlur:
                 e'8
                 f'8
                 ]
-                <> \)
+                <>
+                \)
                 r2
             }
 
@@ -5865,7 +5309,7 @@ class StopPhrasingSlur:
 
     """
 
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "PHRASING_SLUR"
@@ -5876,14 +5320,14 @@ class StopPhrasingSlur:
         contributions = _contributions.ContributionsBySite()
         string = r"\)"
         if self.leak:
-            string = f"<> {string}"
+            contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
             contributions.after.spanner_stops.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopPianoPedal:
     r"""
     LilyPond ``\sostenutoOff``, ``\sustainOff``, ``\treCorde`` commands.
@@ -5894,13 +5338,19 @@ class StopPianoPedal:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak color #blue")
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak parent-alignment-X #center")
-        >>> abjad.attach(start_piano_pedal, staff[0])
+        >>> bundle = abjad.bundle(
+        ...     start_piano_pedal,
+        ...     r"- \tweak color #blue",
+        ...     r"- \tweak parent-alignment-X #center",
+        ... )
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_piano_pedal = abjad.StopPianoPedal()
-        >>> abjad.tweak(stop_piano_pedal, r"- \tweak color #red")
-        >>> abjad.tweak(stop_piano_pedal, r"- \tweak parent-alignment-X #center")
-        >>> abjad.attach(stop_piano_pedal, staff[-2])
+        >>> bundle = abjad.bundle(
+        ...     stop_piano_pedal,
+        ...     r"- \tweak color #red",
+        ...     r"- \tweak parent-alignment-X #center",
+        ... )
+        >>> abjad.attach(bundle, staff[-2])
         >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -5930,13 +5380,19 @@ class StopPianoPedal:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
         >>> start_piano_pedal = abjad.StartPianoPedal()
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak color #blue")
-        >>> abjad.tweak(start_piano_pedal, r"- \tweak parent-alignment-X #center")
-        >>> abjad.attach(start_piano_pedal, staff[0])
+        >>> bundle = abjad.bundle(
+        ...     start_piano_pedal,
+        ...     r"- \tweak color #blue",
+        ...     r"- \tweak parent-alignment-X #center",
+        ... )
+        >>> abjad.attach(bundle, staff[0])
         >>> stop_piano_pedal = abjad.StopPianoPedal(leak=True)
-        >>> abjad.tweak(stop_piano_pedal, r"- \tweak color #red")
-        >>> abjad.tweak(stop_piano_pedal, r"- \tweak parent-alignment-X #center")
-        >>> abjad.attach(stop_piano_pedal, staff[-2])
+        >>> bundle = abjad.bundle(
+        ...     stop_piano_pedal,
+        ...     r"- \tweak color #red",
+        ...     r"- \tweak parent-alignment-X #center",
+        ... )
+        >>> abjad.attach(bundle, staff[-2])
         >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -5963,25 +5419,10 @@ class StopPianoPedal:
                 r4
             }
 
-    ..  container:: example
-
-        REGRESSION. Tweaks survive copy:
-
-        >>> import copy
-        >>> stop_piano_pedal = abjad.StopPianoPedal()
-        >>> abjad.tweak(stop_piano_pedal, r"- \tweak color #blue")
-
-        >>> stop_piano_pedal_2 = copy.copy(stop_piano_pedal)
-        >>> stop_piano_pedal_2.tweaks
-        (Tweak(string='- \\tweak color #blue', tag=None),)
-
     """
 
     kind: str | None = None
-    leak: bool = False
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "StaffGroup"
@@ -5993,53 +5434,40 @@ class StopPianoPedal:
     def __post_init__(self):
         if self.kind is not None:
             assert self.kind in ("sustain", "sostenuto", "corda")
-        if self.leak is not None:
-            self.leak = bool(self.leak)
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
+        assert isinstance(self.leak, bool), repr(self.leak)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        strings = []
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            strings.extend(tweaks)
         if self.kind == "corda":
-            string = r"\treCorde"
+            command = r"\treCorde"
         elif self.kind == "sostenuto":
-            string = r"\sostenutoOff"
+            command = r"\sostenutoOff"
         else:
             assert self.kind in ("sustain", None)
-            string = r"\sustainOff"
-        strings.append(string)
+            command = r"\sustainOff"
         if self.leak:
-            strings.insert(0, "<>")
-            contributions.after.leaks.extend(strings)
+            contributions.after.leak.append(_EMPTY_CHORD)
+            contributions.after.leaks.append(command)
         else:
-            contributions.after.spanner_stops.extend(strings)
+            contributions.after.spanner_stops.append(command)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopSlur:
     r"""
     LilyPond ``)`` command.
 
     ..  container:: example
 
-        >>> abjad.StopSlur()
-        StopSlur(leak=False)
-
-    ..  container:: example
-
         Without leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartSlur()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopSlur()
-        >>> abjad.attach(command, staff[-2])
+        >>> start_slur = abjad.StartSlur()
+        >>> bundle = abjad.bundle(start_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_slur = abjad.StopSlur()
+        >>> abjad.attach(stop_slur, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6060,11 +5488,11 @@ class StopSlur:
         With leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartSlur()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopSlur(leak=True)
-        >>> abjad.attach(command, staff[-2])
+        >>> start_slur = abjad.StartSlur()
+        >>> bundle = abjad.bundle(start_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_slur = abjad.StopSlur(leak=True)
+        >>> abjad.attach(stop_slur, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6078,21 +5506,23 @@ class StopSlur:
                 (
                 d'4
                 e'4
-                <> )
+                <>
+                )
                 r4
             }
 
     ..  container:: example
 
-        REGRESSION. Leaked contributions appear last in postevent format site:
+        REGRESSION. Leaked contributions appear last in postevent format site.
+        The leaked text spanner above does not inadvertantly leak the beam:
 
         >>> staff = abjad.Staff("c'8 d' e' f' r2")
         >>> abjad.beam(staff[:4])
-        >>> command = abjad.StartSlur()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopSlur(leak=True)
-        >>> abjad.attach(command, staff[3])
+        >>> start_slur = abjad.StartSlur()
+        >>> bundle = abjad.bundle(start_slur, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_slur = abjad.StopSlur(leak=True)
+        >>> abjad.attach(stop_slur, staff[3])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6109,15 +5539,15 @@ class StopSlur:
                 e'8
                 f'8
                 ]
-                <> )
+                <>
+                )
                 r2
             }
 
-        The leaked text spanner above does not inadvertantly leak the beam.
 
     """
 
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
@@ -6126,44 +5556,38 @@ class StopSlur:
     spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        if self.leak is not None:
-            self.leak = bool(self.leak)
+        assert isinstance(self.leak, bool), repr(self.leak)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         string = ")"
         if self.leak:
-            string = f"<> {string}"
+            contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
             contributions.after.spanner_stops.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopTextSpan:
     r"""
     LilyPond ``\stopTextSpan`` command.
 
     ..  container:: example
 
-        >>> abjad.StopTextSpan()
-        StopTextSpan(command='\\stopTextSpan', leak=False)
-
-    ..  container:: example
-
         Without leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartTextSpan(
+        >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.tweak(command, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopTextSpan()
-        >>> abjad.attach(command, staff[-2])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_text_span = abjad.StopTextSpan()
+        >>> abjad.attach(stop_text_span, staff[-2])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -6174,10 +5598,10 @@ class StopTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -6188,15 +5612,15 @@ class StopTextSpan:
         With leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartTextSpan(
+        >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.tweak(command, r"- \tweak staff-padding 2.5")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopTextSpan(leak=True)
-        >>> abjad.attach(command, staff[-2])
+        >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_text_span = abjad.StopTextSpan(leak=True)
+        >>> abjad.attach(stop_text_span, staff[-2])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -6207,21 +5631,22 @@ class StopTextSpan:
             \new Staff
             {
                 c'4
+                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
-                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
-                <> \stopTextSpan
+                <>
+                \stopTextSpan
                 r4
             }
 
     """
 
     command: str = r"\stopTextSpan"
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     context: typing.ClassVar[str] = "Voice"
     enchained: typing.ClassVar[bool] = True
@@ -6232,40 +5657,34 @@ class StopTextSpan:
     def __post_init__(self):
         assert isinstance(self.command, str), repr(self.command)
         assert self.command.startswith("\\"), repr(self.command)
-        if self.leak is not None:
-            self.leak = bool(self.leak)
+        assert isinstance(self.leak, bool), repr(self.leak)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         string = self.command
         if self.leak:
-            string = f"<> {string}"
+            contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
             contributions.after.spanner_stops.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StopTrillSpan:
     r"""
     LilyPond ``\stopTrillSpan`` command.
 
     ..  container:: example
 
-        >>> abjad.StopTrillSpan()
-        StopTrillSpan(leak=False)
-
-    ..  container:: example
-
         Without leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartTrillSpan()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopTrillSpan()
-        >>> abjad.attach(command, staff[-2])
+        >>> start_trill_span = abjad.StartTrillSpan()
+        >>> bundle = abjad.bundle(start_trill_span, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_trill_span = abjad.StopTrillSpan()
+        >>> abjad.attach(stop_trill_span, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6286,11 +5705,11 @@ class StopTrillSpan:
         With leak:
 
         >>> staff = abjad.Staff("c'4 d' e' r")
-        >>> command = abjad.StartTrillSpan()
-        >>> abjad.tweak(command, r"- \tweak color #blue")
-        >>> abjad.attach(command, staff[0])
-        >>> command = abjad.StopTrillSpan(leak=True)
-        >>> abjad.attach(command, staff[-2])
+        >>> start_trill_span = abjad.StartTrillSpan()
+        >>> bundle = abjad.bundle(start_trill_span, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
+        >>> stop_trill_span = abjad.StopTrillSpan(leak=True)
+        >>> abjad.attach(stop_trill_span, staff[-2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6304,13 +5723,14 @@ class StopTrillSpan:
                 \startTrillSpan
                 d'4
                 e'4
-                <> \stopTrillSpan
+                <>
+                \stopTrillSpan
                 r4
             }
 
     """
 
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
 
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     context: typing.ClassVar[str] = "Voice"
@@ -6319,21 +5739,20 @@ class StopTrillSpan:
     spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        if self.leak is not None:
-            self.leak = bool(self.leak)
+        assert isinstance(self.leak, bool), repr(self.leak)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         string = r"\stopTrillSpan"
         if self.leak:
-            string = f"<> {string}"
+            contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
             contributions.after.spanner_stops.append(string)
         return contributions
 
 
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Tie:
     r"""
     LilyPond ``~`` command.
@@ -6342,8 +5761,8 @@ class Tie:
 
         >>> staff = abjad.Staff("c'4 c' d' d'")
         >>> tie = abjad.Tie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[0])
+        >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -6434,40 +5853,7 @@ class Tie:
                 c''4
             }
 
-
-    ..  container:: example
-
-        Tweaks:
-
-        >>> staff = abjad.Staff("c'4 c' d' d'")
-        >>> tie = abjad.Tie()
-        >>> abjad.tweak(tie, r"- \tweak color #blue")
-        >>> abjad.attach(tie, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                - \tweak color #blue
-                ~
-                c'4
-                d'4
-                d'4
-            }
-
     """
-
-    tweaks: tuple[_tweaks.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
-
-    def __post_init__(self):
-        assert isinstance(self.tweaks, tuple), repr(self.tweaks)
-        assert all(isinstance(_, _tweaks.Tweak) for _ in self.tweaks)
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
@@ -6490,15 +5876,13 @@ class Tie:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
-        for tweak in sorted(self.tweaks):
-            tweaks = tweak._list_contributions()
-            contributions.after.spanner_starts.extend(tweaks)
         string = self._add_direction("~", wrapper=wrapper)
         strings = [string]
         contributions.after.spanner_starts.extend(strings)
         return contributions
 
 
+# TODO: frozen=True
 @dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
 class TimeSignature:
     r"""
@@ -6642,6 +6026,7 @@ class TimeSignature:
     partial: _duration.Duration | None = None
 
     _site: typing.ClassVar[str] = "opening"
+    check_effective_context: typing.ClassVar[bool] = True
     # TODO: context should probably be "Score"
     context: typing.ClassVar[str] = "Staff"
     persistent: typing.ClassVar[bool] = True
@@ -6673,6 +6058,12 @@ class TimeSignature:
                 if self.denominator == argument.denominator:
                     return True
         return False
+
+    def _get_contributions(self, *, component=None, wrapper=None):
+        contributions = _contributions.ContributionsBySite()
+        strings = self._get_lilypond_format()
+        contributions.opening.commands.extend(strings)
+        return contributions
 
     def _get_lilypond_format(self):
         result = []

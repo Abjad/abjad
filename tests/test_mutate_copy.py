@@ -29,9 +29,9 @@ def test_mutate_copy_01():
             {
                 \time 2/8
                 c'8
+                [
                 (
                 \startTrillSpan
-                [
                 d'8
             }
             {
@@ -96,9 +96,9 @@ def test_mutate_copy_02():
             {
                 \time 2/8
                 c'8
+                [
                 (
                 \startTrillSpan
-                [
                 d'8
             }
             {
@@ -165,9 +165,9 @@ def test_mutate_copy_03():
             {
                 \time 2/8
                 c'8
+                [
                 (
                 \startTrillSpan
-                [
                 d'8
             }
             {

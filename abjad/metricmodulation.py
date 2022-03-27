@@ -3,7 +3,7 @@ import typing
 from . import _inspect
 from . import contributions as _contributions
 from . import illustrators as _illustrators
-from . import markups as _markups
+from . import indicators as _indicators
 from . import ratio as _ratio
 from . import score as _score
 from . import typings as _typings
@@ -349,8 +349,8 @@ class MetricModulation:
         right_rhythm,
         *,
         hide: bool = False,
-        left_markup: _markups.Markup = None,
-        right_markup: _markups.Markup = None,
+        left_markup: _indicators.Markup = None,
+        right_markup: _indicators.Markup = None,
         scale: tuple[_typings.Number, _typings.Number] = (1, 1),
     ) -> None:
         self._hide = bool(hide)
@@ -360,10 +360,10 @@ class MetricModulation:
         self._right_rhythm = right_rhythm
         self._right_rhythm = right_rhythm
         if left_markup is not None:
-            assert isinstance(left_markup, _markups.Markup)
+            assert isinstance(left_markup, _indicators.Markup)
         self._left_markup = left_markup
         if right_markup is not None:
-            assert isinstance(right_markup, _markups.Markup)
+            assert isinstance(right_markup, _indicators.Markup)
         self._right_markup = right_markup
         assert isinstance(scale, tuple), repr(scale)
         self._scale = scale
@@ -475,14 +475,15 @@ class MetricModulation:
         contributions = _contributions.ContributionsBySite()
         if not self.hide:
             markup = self._get_markup()
-            markup_format_pieces = markup._get_format_pieces(wrapper=wrapper)
-            contributions.after.markup.extend(markup_format_pieces)
+            contributions = markup._get_contributions(
+                component=component, wrapper=wrapper
+            )
         return contributions
 
     def _get_markup(self):
         string = self._get_lilypond_command_string()
         if string is not None:
-            markup = _markups.Markup(rf"\markup {string}")
+            markup = _indicators.Markup(rf"\markup {string}")
             return markup
         strings = []
         string = _illustrators.selection_to_score_markup_string(self.left_rhythm)
@@ -493,7 +494,7 @@ class MetricModulation:
         strings.extend(string.split("\n"))
         string = "\n".join(strings)
         string = rf"\markup {{ {string} }}"
-        markup = _markups.Markup(string)
+        markup = _indicators.Markup(string)
         return markup
 
     def _get_markup_arguments(self):
@@ -583,7 +584,7 @@ class MetricModulation:
         return self._hide
 
     @property
-    def left_markup(self) -> _markups.Markup | None:
+    def left_markup(self) -> _indicators.Markup | None:
         """
         Gets left markup of metric modulation.
 
@@ -638,7 +639,7 @@ class MetricModulation:
         return ratio
 
     @property
-    def right_markup(self) -> _markups.Markup | None:
+    def right_markup(self) -> _indicators.Markup | None:
         r"""Gets right markup of metric modulation.
 
         ..  container:: example

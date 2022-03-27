@@ -4,6 +4,7 @@ import typing
 
 from . import _update
 from . import duration as _duration
+from . import dynamic as _dynamic
 from . import exceptions as _exceptions
 from . import indicators as _indicators
 from . import instruments as _instruments
@@ -43,7 +44,8 @@ def _get_annotation(component, annotation, default=None, unwrap: bool = True):
     for wrapper in _get_annotation_wrappers(component):
         if wrapper.annotation == annotation:
             if unwrap is True:
-                return wrapper.indicator
+                # return wrapper.indicator
+                return wrapper.get_item()
             else:
                 return wrapper
     return default
@@ -118,13 +120,19 @@ def _get_effective(
         for wrapper in component_._wrappers:
             if wrapper.annotation:
                 continue
-            if isinstance(wrapper.indicator, prototype):
+            # if isinstance(wrapper.indicator, prototype):
+            if isinstance(wrapper.unbundle_indicator(), prototype):
                 append_wrapper = True
-                if command is not None and wrapper.indicator.command != command:
+                # if command is not None and wrapper.indicator.command != command:
+                if (
+                    command is not None
+                    and wrapper.unbundle_indicator().command != command
+                ):
                     continue
                 if attributes is not None:
                     for name, value in attributes.items():
-                        if getattr(wrapper.indicator, name, None) != value:
+                        # if getattr(wrapper.indicator, name, None) != value:
+                        if getattr(wrapper.unbundle_indicator(), name, None) != value:
                             append_wrapper = False
                 if not append_wrapper:
                     continue
@@ -142,13 +150,19 @@ def _get_effective(
         for wrapper in component_._dependent_wrappers:
             if wrapper.annotation:
                 continue
-            if isinstance(wrapper.indicator, prototype):
+            # if isinstance(wrapper.indicator, prototype):
+            if isinstance(wrapper.unbundle_indicator(), prototype):
                 append_wrapper = True
-                if command is not None and wrapper.indicator.command != command:
+                # if command is not None and wrapper.indicator.command != command:
+                if (
+                    command is not None
+                    and wrapper.unbundle_indicator().command != command
+                ):
                     continue
                 if attributes is not None:
                     for name, value in attributes.items():
-                        if getattr(wrapper.indicator, name, None) != value:
+                        # if getattr(wrapper.indicator, name, None) != value:
+                        if getattr(wrapper.unbundle_indicator(), name, None) != value:
                             append_wrapper = False
                 if not append_wrapper:
                     continue
@@ -165,7 +179,8 @@ def _get_effective(
         return
     wrapper = candidate_wrappers[all_offsets[index]][0]
     if unwrap:
-        return wrapper.indicator
+        # return wrapper.indicator
+        return wrapper.unbundle_indicator()
     return wrapper
 
 
@@ -254,10 +269,12 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
     for wrapper in dependent_wrappers:
         if wrapper.annotation:
             continue
-        indicator = wrapper.indicator
-        if not getattr(indicator, "persistent", False):
+        # indicator = wrapper.indicator
+        # if not getattr(indicator, "persistent", False):
+        if not getattr(wrapper.unbundle_indicator(), "persistent", False):
             continue
-        assert isinstance(indicator.persistent, bool)
+        # assert isinstance(indicator.persistent, bool)
+        assert isinstance(wrapper.unbundle_indicator().persistent, bool)
         should_omit = False
         if omit_with_indicator is not None:
             for component in wrapper.component._get_parentage():
@@ -266,14 +283,34 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
                     continue
         if should_omit:
             continue
-        if hasattr(indicator, "parameter"):
-            key = indicator.parameter
-        elif isinstance(indicator, _instruments.Instrument):
+        # if hasattr(indicator, "parameter"):
+        if hasattr(wrapper.unbundle_indicator(), "parameter"):
+            # key = indicator.parameter
+            key = wrapper.unbundle_indicator().parameter
+        # elif isinstance(indicator, _instruments.Instrument):
+        elif isinstance(wrapper.unbundle_indicator(), _instruments.Instrument):
             key = "Instrument"
         else:
-            key = str(type(indicator))
-        if key not in wrappers or wrappers[key].start_offset <= wrapper.start_offset:
+            # key = str(type(indicator))
+            key = str(type(wrapper.unbundle_indicator()))
+        if key not in wrappers:
             wrappers[key] = wrapper
+        elif wrappers[key].start_offset < wrapper.start_offset:
+            wrappers[key] = wrapper
+        elif wrappers[key].start_offset == wrapper.start_offset:
+            if isinstance(
+                wrappers[key].unbundle_indicator(), _indicators.StartHairpin
+            ) and isinstance(wrapper.unbundle_indicator(), _dynamic.Dynamic):
+                pass
+            elif (
+                getattr(wrapper.unbundle_indicator(), "spanner_start", False) is True
+                or getattr(wrapper.unbundle_indicator(), "spanner_stop", False) is True
+                or getattr(wrapper.unbundle_indicator(), "trend", False) is True
+            ):
+                wrappers[key] = wrapper
+            # this branch can be removed after rerendering scores:
+            elif wrapper.unbundle_indicator() == wrappers[key].unbundle_indicator():
+                wrappers[key] = wrapper
     return wrappers
 
 

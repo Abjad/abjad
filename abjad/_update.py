@@ -73,7 +73,7 @@ def _get_measure_start_offsets(component):
     for wrapper in wrappers:
         component = wrapper.component
         start_offset = component._get_timespan().start_offset
-        time_signature = wrapper.indicator
+        time_signature = wrapper.unbundle_indicator()
         pair = start_offset, time_signature
         pairs.append(pair)
     offset_zero = _duration.Offset(0)

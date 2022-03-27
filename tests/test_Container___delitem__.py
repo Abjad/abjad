@@ -16,8 +16,8 @@ def test_Container___delitem___01():
         {
             {
                 c'8
-                (
                 [
+                (
                 d'8
                 )
             }
@@ -58,8 +58,8 @@ def test_Container___delitem___01():
         r"""
         {
             c'8
-            (
             [
+            (
             d'8
             )
         }

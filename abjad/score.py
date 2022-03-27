@@ -11,9 +11,9 @@ from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
 from . import format as _format
+from . import indicators as _indicators
 from . import lyconst as _lyconst
 from . import lyproxy as _lyproxy
-from . import markups as _markups
 from . import math as _math
 from . import overrides as _overrides
 from . import pitch as _pitch
@@ -145,12 +145,12 @@ class Component:
 
     def _format_absolute_after_site(self, contributions):
         result = []
-        result.append(("literals", contributions.absolute_after.commands))
+        result.extend(contributions.absolute_after.commands)
         return result
 
     def _format_absolute_before_site(self, contributions):
         result = []
-        result.append(("literals", contributions.absolute_before.commands))
+        result.extend(contributions.absolute_before.commands)
         return result
 
     def _format_after_site(self, contributions):
@@ -165,31 +165,6 @@ class Component:
     def _format_closing_site(self, contributions):
         return []
 
-    def _format_component(self, pieces=False):
-        result = []
-        contributions = _format.get_contributions_by_site(self)
-        result.extend(self._format_absolute_before_site(contributions))
-        result.extend(self._format_before_site(contributions))
-        result.extend(self._format_open_brackets_site(contributions))
-        result.extend(self._format_opening_site(contributions))
-        result.extend(self._format_contents_site(contributions))
-        result.extend(self._format_closing_site(contributions))
-        result.extend(self._format_close_brackets_site(contributions))
-        result.extend(self._format_after_site(contributions))
-        result.extend(self._format_absolute_after_site(contributions))
-        contributions = []
-        for contributor, contribution in result:
-            for line in contribution:
-                if line.isspace():
-                    contributions.append("")
-                else:
-                    contributions.append(line)
-        if pieces:
-            result_ = contributions
-        else:
-            result_ = "\n".join(contributions)
-        return result_
-
     def _format_contents_site(self, contributions):
         return []
 
@@ -200,18 +175,25 @@ class Component:
         return []
 
     @staticmethod
-    def _contributions_with_indent(pairs):
+    def _contributions_with_indent(lists):
         result = []
-        for contributor, contributions in pairs:
+        for list_ in lists:
             strings = []
-            for string in contributions:
-                if string.isspace():
-                    string = ""
+            if isinstance(list_, list):
+                for string in list_:
+                    if string.isspace():
+                        string = ""
+                    else:
+                        string = _indent.INDENT + string
+                    strings.append(string)
+            else:
+                assert isinstance(list_, str)
+                if list_.isspace():
+                    strings.append("")
                 else:
-                    string = _indent.INDENT + string
-                strings.append(string)
-            pair = (contributor, strings)
-            result.append(pair)
+                    strings.append(_indent.INDENT + list_)
+            result.extend(strings)
+        assert all(isinstance(_, str) for _ in result), repr(result)
         return result
 
     @staticmethod
@@ -238,35 +220,6 @@ class Component:
             multiplier = getattr(parent, "implied_prolation", _duration.Multiplier(1))
             duration *= multiplier
         return duration
-
-    def _get_contributions_for_site(self, site_identifier, contributions=None):
-        result = []
-        if contributions is None:
-            contributions = _format.get_contributions_by_site(self)
-        site_names = (
-            "before",
-            "open_brackets",
-            "opening",
-            "contents",
-            "closing",
-            "close_brackets",
-            "after",
-        )
-        if isinstance(site_identifier, int):
-            assert site_identifier in range(1, 7 + 1)
-            site_index = site_identifier - 1
-            site_name = site_names[site_index]
-        elif isinstance(site_identifier, str):
-            site_name = site_identifier.replace(" ", "_")
-            assert site_name in site_names
-        method_name = f"_format_{site_name}_site"
-        method = getattr(self, method_name)
-        for source, contributions in method(contributions):
-            result.extend(contributions)
-        return result
-
-    def _get_format_pieces(self):
-        return self._format_component(pieces=True)
 
     def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
         indicators = self._get_indicators(
@@ -299,35 +252,40 @@ class Component:
                 result.append(wrapper)
             elif any(wrapper == _ for _ in prototype_objects):
                 result.append(wrapper)
-            elif isinstance(wrapper.indicator, prototype_classes):
+            elif isinstance(wrapper.unbundle_indicator(), prototype_classes):
                 result.append(wrapper)
-            elif any(wrapper.indicator == _ for _ in prototype_objects):
+            elif any(wrapper.unbundle_indicator() == _ for _ in prototype_objects):
                 result.append(wrapper)
         if attributes is not None:
             result_ = []
             for wrapper in result:
                 for name, value in attributes.items():
-                    if getattr(wrapper.indicator, name, None) != value:
+                    # if getattr(wrapper.indicator, name, None) != value:
+                    if getattr(wrapper.unbundle_indicator(), name, None) != value:
                         break
                 else:
                     result_.append(wrapper)
             result = result_
         if unwrap:
-            result = [_.indicator for _ in result]
-        result = tuple(result)
+            indicators = []
+            for wrapper in result:
+                indicators.append(wrapper.unbundle_indicator())
+            result = indicators
+        result = result
         return result
 
     def _get_lilypond_format(self):
         _update._update_now(self, indicators=True)
-        return self._format_component()
+        string = _format.format_component(self)
+        return string
 
     def _get_markup(self, direction=None):
-        wrappers = self._get_indicators(_markups.Markup, unwrap=False)
+        wrappers = self._get_indicators(_indicators.Markup, unwrap=False)
         if direction is _enums.UP:
-            return tuple(_.indicator for _ in wrappers if _.direction is _enums.UP)
+            return tuple(_.get_item() for _ in wrappers if _.direction is _enums.UP)
         elif direction is _enums.DOWN:
-            return tuple(_.indicator for _ in wrappers if _.direction is _enums.DOWN)
-        indicators = [_.indicator for _ in wrappers]
+            return tuple(_.get_item() for _ in wrappers if _.direction is _enums.DOWN)
+        indicators = [_.get_item() for _ in wrappers]
         return indicators
 
     def _get_parentage(self):
@@ -532,7 +490,8 @@ class Leaf(Component):
         result = []
         container = self._after_grace_container
         if container is not None:
-            result.append(container._get_lilypond_format())
+            string = container._get_lilypond_format()
+            result.append(string)
         return result
 
     def _format_after_grace_command(self):
@@ -543,49 +502,42 @@ class Leaf(Component):
 
     def _format_after_site(self, contributions):
         result = []
-        result.append(("stem_tremolos", contributions.after.stem_tremolos))
-        result.append(("articulations", contributions.after.articulations))
-        result.append(("markup", contributions.after.markup))
-        result.append(("spanners", contributions.after.spanners))
-        result.append(("spanner_stops", contributions.after.spanner_stops))
-        result.append(("spanner_starts", contributions.after.spanner_starts))
+        result.extend(contributions.after.stem_tremolos)
+        result.extend(contributions.after.articulations)
+        result.extend(contributions.after.markup)
+        result.extend(contributions.after.spanner_stops)
+        result.extend(contributions.after.start_beam)
+        result.extend(contributions.after.stop_beam)
+        result.extend(contributions.after.spanner_starts)
         # NOTE: LilyPond demands \startTrillSpan appear after almost all
         #       other contributions; pitched trills dangerously
         #       suppress markup and the starts of other spanners when
         #       \startTrillSpan appears lexically prior to those commands;
         #       but \startTrillSpan must appear before calls to \set.
-        result.append(
-            ("trill_spanner_starts", contributions.after.trill_spanner_starts)
-        )
-        result.append(("commands", contributions.after.commands))
-        result.append(("commands", contributions.after.leaks))
-        result.append(("after grace body", self._format_after_grace_body()))
-        result.append(("comments", contributions.after.comments))
+        result.extend(contributions.after.trill_spanner_starts)
+        result.extend(contributions.after.commands)
+        result.extend(contributions.after.leak)
+        result.extend(contributions.after.leaks)
+        result.extend(self._format_after_grace_body())
         return result
 
     def _format_before_site(self, contributions):
         result = []
-        result.append(("grace body", self._format_grace_body()))
-        result.append(("comments", contributions.before.comments))
-        result.append(("commands", contributions.before.commands))
-        result.append(("indicators", contributions.before.indicators))
-        result.append(("grob reverts", contributions.grob_reverts))
-        result.append(("grob overrides", contributions.grob_overrides))
-        result.append(("context settings", contributions.context_settings))
-        result.append(("spanners", contributions.before.spanners))
+        result.extend(self._format_grace_body())
+        result.extend(contributions.before.commands)
+        result.extend(contributions.grob_reverts)
+        result.extend(contributions.grob_overrides)
+        result.extend(contributions.context_settings)
         return result
 
     def _format_closing_site(self, contributions):
         result = []
-        result.append(("spanners", contributions.closing.spanners))
-        result.append(("commands", contributions.closing.commands))
-        result.append(("indicators", contributions.closing.indicators))
-        result.append(("comments", contributions.closing.comments))
+        result.extend(contributions.closing.commands)
         return result
 
     def _format_contents_site(self, contributions):
         result = []
-        result.append(("leaf body", self._format_leaf_body(contributions)))
+        result.extend(self._format_leaf_body(contributions))
         return result
 
     def _format_grace_body(self):
@@ -601,25 +553,22 @@ class Leaf(Component):
 
     def _format_leaf_nucleus(self):
         strings = self._get_body()
-        if self.tag:
+        if self.tag is not None and self.tag.string:
             strings = _tag.double_tag(strings, self.tag)
         return strings
 
     def _format_opening_site(self, contributions):
         result = []
-        result.append(("comments", contributions.opening.comments))
-        result.append(("indicators", contributions.opening.indicators))
-        result.append(("commands", contributions.opening.commands))
-        result.append(("spanners", contributions.opening.spanners))
-        # IMPORTANT: LilyPond \afterGrace must appear IMMEDIATELY before leaf!
-        result.append(("after grace command", self._format_after_grace_command()))
+        result.extend(contributions.opening.commands)
+        result.extend(contributions.opening.pitched_trill)
+        # IMPORTANT: LilyPond \pitchedTrill must appear immediately before leaf!
+        # IMPORTANT: LilyPond \afterGrace must appear immediately before leaf!
+        # TODO: figure out \pitchedTrill, \afterGrace ordering
+        result.extend(self._format_after_grace_command())
         return result
 
     def _get_compact_representation(self):
         return f"({self._get_formatted_duration()})"
-
-    def _get_format_pieces(self):
-        return self._get_lilypond_format().split("\n")
 
     def _get_formatted_duration(self):
         strings = []
@@ -953,7 +902,7 @@ class Container(Component):
             First tuplet must have start slur removed:
 
             >>> abjad.detach(abjad.StartSlur, tuplet_1[0])
-            (StartSlur(tweaks=()),)
+            (StartSlur(),)
 
             >>> abjad.show(tuplet_1) # doctest: +SKIP
 
@@ -1127,15 +1076,13 @@ class Container(Component):
 
     def _format_after_site(self, contributions):
         result = []
-        result.append(("commands", contributions.after.commands))
-        result.append(("comments", contributions.after.comments))
-        return tuple(result)
+        result.extend(contributions.after.commands)
+        return result
 
     def _format_before_site(self, contributions):
         result = []
-        result.append(("comments", contributions.before.comments))
-        result.append(("commands", contributions.before.commands))
-        return tuple(result)
+        result.extend(contributions.before.commands)
+        return result
 
     def _format_close_brackets_site(self, contributions):
         result = []
@@ -1153,15 +1100,15 @@ class Container(Component):
         strings.append(string)
         if self.tag is not None:
             strings = _tag.double_tag(strings, self.tag)
-        result.append([("close brackets", ""), strings])
-        return tuple(result)
+        result.extend(strings)
+        return result
 
     def _format_closing_site(self, contributions):
         result = []
-        result.append(("grob reverts", contributions.grob_reverts))
-        result.append(("commands", contributions.closing.commands))
-        result.append(("comments", contributions.closing.comments))
-        return self._contributions_with_indent(result)
+        result.extend(contributions.grob_reverts)
+        result.extend(contributions.closing.commands)
+        result = self._contributions_with_indent(result)
+        return result
 
     def _format_content_pieces(self):
         strings = []
@@ -1177,8 +1124,8 @@ class Container(Component):
 
     def _format_contents_site(self, contributions):
         result = []
-        result.append([("contents", "_contents"), self._format_content_pieces()])
-        return tuple(result)
+        result.extend(self._format_content_pieces())
+        return result
 
     def _format_open_brackets_site(self, contributions):
         result = []
@@ -1196,15 +1143,14 @@ class Container(Component):
         strings.append(string)
         if self.tag is not None:
             strings = _tag.double_tag(strings, self.tag)
-        result.append([("open brackets", ""), strings])
-        return tuple(result)
+        result.extend(strings)
+        return result
 
     def _format_opening_site(self, contributions):
         result = []
-        result.append(("comments", contributions.opening.comments))
-        result.append(("commands", contributions.opening.commands))
-        result.append(("grob overrides", contributions.grob_overrides))
-        result.append(("context settings", contributions.context_settings))
+        result.extend(contributions.opening.commands)
+        result.extend(contributions.grob_overrides)
+        result.extend(contributions.context_settings)
         return self._contributions_with_indent(result)
 
     def _get_abbreviated_string_format(self):
@@ -2016,8 +1962,8 @@ class AfterGraceContainer(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        result.append([("grace_brackets", "open"), ["{"]])
-        return tuple(result)
+        result.extend(["{"])
+        return result
 
 
 class BeforeGraceContainer(Container):
@@ -2242,8 +2188,8 @@ class BeforeGraceContainer(Container):
     def _format_open_brackets_site(self, contributions):
         result = []
         string = f"{self.command} {{"
-        result.append([("grace_brackets", "open"), [string]])
-        return tuple(result)
+        result.extend([string])
+        return result
 
     ### PUBLIC PROPERTIES ###
 
@@ -2695,14 +2641,10 @@ class Chord(Leaf):
 
     def _format_before_site(self, contributions):
         result = []
-        result.append(("grace body", self._format_grace_body()))
-        result.append(("comments", contributions.before.comments))
-        commands = contributions.before.commands
-        result.append(("commands", commands))
-        result.append(("indicators", contributions.before.indicators))
-        result.append(("grob overrides", contributions.grob_overrides))
-        result.append(("context settings", contributions.context_settings))
-        result.append(("spanners", contributions.before.spanners))
+        result.extend(self._format_grace_body())
+        result.extend(contributions.before.commands)
+        result.extend(contributions.grob_overrides)
+        result.extend(contributions.context_settings)
         return result
 
     def _format_leaf_nucleus(self):
@@ -2900,14 +2842,13 @@ class Cluster(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        contributor = ("self_brackets", "open")
         if self.simultaneous:
             brackets_open = ["<<"]
         else:
             brackets_open = ["{"]
         contributions = [rf"\makeClusters {brackets_open[0]}"]
-        result.append([contributor, contributions])
-        return tuple(result)
+        result.extend(contributions)
+        return result
 
 
 class Context(Container):
@@ -3048,9 +2989,7 @@ class Context(Container):
 
     def _format_closing_site(self, contributions):
         result = []
-        result.append(("indicators", contributions.closing.indicators))
-        result.append(("commands", contributions.closing.commands))
-        result.append(("comments", contributions.closing.comments))
+        result.extend(contributions.closing.commands)
         return self._contributions_with_indent(result)
 
     def _format_consists_commands(self):
@@ -3087,51 +3026,35 @@ class Context(Container):
         if remove_commands or consists_commands or overrides or settings:
             contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [_indent.INDENT + _ for _ in remove_commands]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("engraver removals", "remove_commands")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [_indent.INDENT + _ for _ in consists_commands]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("engraver consists", "consists_commands")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [_indent.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("overrides", "overrides")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [_indent.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("settings", "settings")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [f"}} {brackets_open[0]}"]
             contributions = ["}", open_bracket]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
         else:
             contribution = self._format_invocation()
             contribution += f" {brackets_open[0]}"
             contributions = [contribution]
             contributions = [self._format_invocation(), open_bracket]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
-        return tuple(result)
+            result.extend(contributions)
+        return result
 
     def _format_opening_site(self, contributions):
         result = []
-        result.append(("comments", contributions.opening.comments))
-        result.append(("indicators", contributions.opening.indicators))
-        result.append(("commands", contributions.opening.commands))
+        result.extend(contributions.opening.commands)
         return self._contributions_with_indent(result)
 
     def _format_remove_commands(self):
@@ -3140,9 +3063,6 @@ class Context(Container):
             string = rf"\remove {engraver}"
             result.append(string)
         return result
-
-    def _get_format_pieces(self):
-        return self._format_component(pieces=True)
 
     ### PUBLIC PROPERTIES ###
 
@@ -3550,7 +3470,7 @@ class NoteHead:
                 result += "?"
         return result
 
-    def _get_format_pieces(self):
+    def _get_note_head_strings(self):
         assert self.written_pitch
         result = []
         if self.is_parenthesized:
@@ -3574,12 +3494,12 @@ class NoteHead:
         return result
 
     def _get_lilypond_format(self, duration=None):
-        pieces = self._get_format_pieces()
+        pieces = self._get_note_head_strings()
         if duration is not None:
             pieces[-1] = pieces[-1] + duration
         if self.alternative:
             pieces = _tag.double_tag(pieces, self.alternative[2])
-            pieces_ = self.alternative[0]._get_format_pieces()
+            pieces_ = self.alternative[0]._get_note_head_strings()
             if duration is not None:
                 pieces_[-1] = pieces_[-1] + duration
             pieces_ = _tag.double_tag(pieces_, self.alternative[1], deactivate=True)
@@ -4893,8 +4813,8 @@ class TremoloContainer(Container):
     def _format_open_brackets_site(self, contributions):
         result = []
         string = rf"\repeat tremolo {self.count} {{"
-        result.append([("tremolo_brackets", "open"), [string]])
-        return tuple(result)
+        result.append(string)
+        return result
 
     def _get_preprolated_duration(self):
         return self.implied_prolation * self._get_contents_duration()
@@ -5186,18 +5106,16 @@ class Tuplet(Container):
 
     def _format_after_site(self, contributions):
         result = []
-        result.append(("grob reverts", contributions.grob_reverts))
-        result.append(("commands", contributions.after.commands))
-        result.append(("comments", contributions.after.comments))
-        return tuple(result)
+        result.extend(contributions.grob_reverts)
+        result.extend(contributions.after.commands)
+        return result
 
     def _format_before_site(self, contributions):
         result = []
-        result.append(("comments", contributions.before.comments))
-        result.append(("commands", contributions.before.commands))
-        result.append(("grob overrides", contributions.grob_overrides))
-        result.append(("context settings", contributions.context_settings))
-        return tuple(result)
+        result.extend(contributions.before.commands)
+        result.extend(contributions.grob_overrides)
+        result.extend(contributions.context_settings)
+        return result
 
     def _format_close_brackets_site(self, contributions):
         result = []
@@ -5205,13 +5123,12 @@ class Tuplet(Container):
             strings = ["}"]
             if self.tag is not None:
                 strings = _tag.double_tag(strings, self.tag)
-            result.append([("self_brackets", "close"), strings])
-        return tuple(result)
+            result.extend(strings)
+        return result
 
     def _format_closing_site(self, contributions):
         result = []
-        result.append(("commands", contributions.closing.commands))
-        result.append(("comments", contributions.closing.comments))
+        result.extend(contributions.closing.commands)
         return self._contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
@@ -5232,11 +5149,9 @@ class Tuplet(Container):
         result = []
         if self.multiplier:
             if self.hide:
-                contributor = (self, "hide")
                 string = self._get_scale_durations_command_string()
                 contributions = [string, "{"]
             else:
-                contributor = ("self_brackets", "open")
                 contributions = []
                 fraction_command_string = (
                     self._format_lilypond_fraction_command_string()
@@ -5254,13 +5169,12 @@ class Tuplet(Container):
                 contributions.append("{")
             if self.tag is not None:
                 contributions = _tag.double_tag(contributions, self.tag)
-            result.append([contributor, contributions])
-        return tuple(result)
+            result.extend(contributions)
+        return result
 
     def _format_opening_site(self, contributions):
         result = []
-        result.append(("comments", contributions.opening.comments))
-        result.append(("commands", contributions.opening.commands))
+        result.extend(contributions.opening.commands)
         return self._contributions_with_indent(result)
 
     def _get_compact_representation(self):
@@ -6895,15 +6809,15 @@ class Voice(Context):
         ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
-        Note("e''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
-        Note("d''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
-        Note("c''4") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
-        Note("b'4") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
-        Note("c''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+        Note("e''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
+        Note("d''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
+        Note("c''4") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
+        Note("b'4") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
+        Note("c''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
         Note("e'4") None
         Note("f'4") None
         Note("e'8") None
-        Note("d''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+        Note("d''8") Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
 
     ..  container:: example
 
@@ -6973,9 +6887,9 @@ class Voice(Context):
         Note("c''4") None
         Note("b'4") None
         Note("c''8") None
-        Note("e'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=())
-        Note("f'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=())
-        Note("e'8") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=())
+        Note("e'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2)
+        Note("f'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2)
+        Note("e'8") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2)
         Note("d''8") None
 
     ..  container:: example
@@ -7043,13 +6957,13 @@ class Voice(Context):
         ...
         Note("e''8") None
         Note("d''8") None
-        Note("c''4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
-        Note("b'4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
-        Note("c''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
+        Note("c''4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
+        Note("b'4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
+        Note("c''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
         Note("e'4") None
         Note("f'4") None
         Note("e'8") None
-        Note("d''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
+        Note("d''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
 
     ..  container:: example
 
@@ -7119,13 +7033,13 @@ class Voice(Context):
         ...
         Note("e''8") None
         Note("d''8") None
-        Note("c''4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
-        Note("b'4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
-        Note("c''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
-        Note("e'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=())
-        Note("f'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=())
-        Note("e'8") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2, tweaks=())
-        Note("d''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
+        Note("c''4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
+        Note("b'4") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
+        Note("c''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
+        Note("e'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2)
+        Note("f'4") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2)
+        Note("e'8") Dynamic(name='p', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=-2)
+        Note("d''8") Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
 
     ..  container:: example
 

@@ -573,7 +573,7 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
     violators, total = [], 0
 
     def key(wrapper):
-        if isinstance(wrapper.indicator, _indicators.StartTextSpan):
+        if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
             priority = 1
         else:
             priority = 0
@@ -584,9 +584,9 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
         wrappers.sort(key=key)
         open_spanners: dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, _indicators.StartTextSpan):
+            if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
-                command = wrapper.indicator.command
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("start", "")
                 command = command.replace("Start", "")
                 if command not in open_spanners:
@@ -594,8 +594,8 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
                 if open_spanners[command]:
                     violators.append(wrapper.component)
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, _indicators.StopTextSpan):
-                command = wrapper.indicator.command
+            elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
                 if command in open_spanners and open_spanners[command]:
@@ -671,16 +671,16 @@ def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         open_spanners: dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, _indicators.StartTextSpan):
+            if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
-                command = wrapper.indicator.command
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("start", "")
                 command = command.replace("Start", "")
                 if command not in open_spanners:
                     open_spanners[command] = []
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, _indicators.StopTextSpan):
-                command = wrapper.indicator.command
+            elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
                 if command not in open_spanners or not open_spanners[command]:
@@ -819,13 +819,13 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
         last_tag = _tag.Tag()
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         for wrapper in wrappers:
-            parameter = getattr(wrapper.indicator, "parameter", None)
+            parameter = getattr(wrapper.unbundle_indicator(), "parameter", None)
             if parameter == "DYNAMIC" or isinstance(
-                wrapper.indicator, _indicators.StopHairpin
+                wrapper.unbundle_indicator(), _indicators.StopHairpin
             ):
-                last_dynamic = wrapper.indicator
+                last_dynamic = wrapper.unbundle_indicator()
                 last_tag = wrapper.tag
-                if isinstance(wrapper.indicator, _indicators.StartHairpin):
+                if isinstance(wrapper.unbundle_indicator(), _indicators.StartHairpin):
                     total += 1
         if (
             isinstance(last_dynamic, _indicators.StartHairpin)
@@ -903,16 +903,16 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         open_spanners: dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, _indicators.StartTextSpan):
+            if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
-                command = wrapper.indicator.command
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("start", "")
                 command = command.replace("Start", "")
                 if command not in open_spanners:
                     open_spanners[command] = []
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, _indicators.StopTextSpan):
-                command = wrapper.indicator.command
+            elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
                 if command not in open_spanners or not open_spanners[command]:

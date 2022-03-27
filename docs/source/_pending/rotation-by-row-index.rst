@@ -53,10 +53,10 @@ Rotation, by row index
     ...                 markup = abjad.Markup(
     ...                     rf"\markup {abjad.NumberedPitchClass(leaf.written_pitch)}",
     ...                 )
-    ...                 abjad.tweak(markup, r"- \tweak staff-padding 3")
-    ...                 abjad.attach(markup, leaf, direction=abjad.UP)
-    ...             abjad.tweak(name, r"- \tweak staff-padding 3")
-    ...             abjad.attach(name, voice[0])
+    ...                 bundle = abjad.bundle(markup, r"- \tweak staff-padding 3")
+    ...                 abjad.attach(bundle, leaf, direction=abjad.UP)
+    ...             bundle = abjad.bundle(name, r"- \tweak staff-padding 3")
+    ...             abjad.attach(bundle, voice[0])
     ...             time_signature = abjad.TimeSignature((6, 16))
     ...             abjad.attach(time_signature, voice[0])
     ...             staff.append(voice)

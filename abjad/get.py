@@ -5,7 +5,6 @@ from . import _inspect, _iterate, _update
 from . import duration as _duration
 from . import indicators as _indicators
 from . import iterate as iterate_
-from . import markups as _markups
 from . import parentage as _parentage
 from . import pitch as _pitch
 from . import score as _score
@@ -202,8 +201,8 @@ def annotation_wrappers(argument):
             }
 
         >>> for wrapper in abjad.get.annotation_wrappers(staff[0]): wrapper
-        Wrapper(annotation='default_instrument', context=None, deactivate=False, direction=None, indicator=Cello(), synthetic_offset=None, tag=Tag(''))
-        Wrapper(annotation='default_clef', context=None, deactivate=False, direction=None, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag(''))
+        Wrapper(annotation='default_instrument', context=None, deactivate=False, direction=None, indicator=Cello(), synthetic_offset=None, tag=Tag(string=''))
+        Wrapper(annotation='default_clef', context=None, deactivate=False, direction=None, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag(string=''))
 
     """
     return _inspect._get_annotation_wrappers(argument)
@@ -1313,10 +1312,10 @@ def effective(
         >>> for note in abjad.select.notes(staff):
         ...     note, abjad.get.effective(note, abjad.StartTextSpan)
         ...
-        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=()))
-        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=()))
-        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=()))
-        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=()))
+        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
+        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
+        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
+        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
 
         >>> for note in abjad.select.notes(staff):
         ...     note, abjad.get.effective(note, abjad.StopTextSpan)
@@ -1336,9 +1335,9 @@ def effective(
         ...     print(f"{note!r}:")
         ...     print(f"    {indicator!r}")
         Note("c'4"):
-            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=())
+            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None)
         Note("d'4"):
-            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None, tweaks=())
+            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None)
         Note("e'4"):
             StopTextSpan(command='\\stopTextSpan', leak=False)
         Note("f'4"):
@@ -1373,12 +1372,12 @@ def effective(
         ...     start_beam = abjad.get.effective(leaf, abjad.StartBeam)
         ...     stop_beam = abjad.get.effective(leaf, abjad.StopBeam)
         ...     leaf, start_beam, stop_beam
-        (Note("c'8"), StartBeam(tweaks=()), None)
-        (Note("d'8"), StartBeam(tweaks=()), None)
-        (Note("e'8"), StartBeam(tweaks=()), None)
-        (Note("f'8"), StartBeam(tweaks=()), StopBeam(leak=False))
-        (Note("g'4"), StartBeam(tweaks=()), StopBeam(leak=False))
-        (Note("a'4"), StartBeam(tweaks=()), StopBeam(leak=False))
+        (Note("c'8"), StartBeam(), None)
+        (Note("d'8"), StartBeam(), None)
+        (Note("e'8"), StartBeam(), None)
+        (Note("f'8"), StartBeam(), StopBeam(leak=False))
+        (Note("g'4"), StartBeam(), StopBeam(leak=False))
+        (Note("a'4"), StartBeam(), StopBeam(leak=False))
 
     ..  container:: example
 
@@ -1646,27 +1645,27 @@ def effective_wrapper(
         Note("d'4")
             None
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Chord("<e' g'>16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("gs'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("a'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("as'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Voice("e'4", name='Music_Voice')
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("e'4")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("f'4")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         AfterGraceContainer("fs'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("fs'16")
-            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
 
     """
     if attributes is not None:
@@ -2372,35 +2371,35 @@ def indicators(
         Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
             []
         Note("c'4"):
-            [Articulation(name='.', tweaks=())]
+            [Articulation(name='.')]
         BeforeGraceContainer("cs'16"):
             []
         Note("cs'16"):
-            [Articulation(name='.', tweaks=())]
+            [Articulation(name='.')]
         Note("d'4"):
-            [Articulation(name='.', tweaks=())]
+            [Articulation(name='.')]
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
-            [LilyPondLiteral(argument='\\set fontSize = #-3', site='opening', directed=False, tweaks=())]
+            [LilyPondLiteral(argument='\\set fontSize = #-3', site='opening', directed=False)]
         Chord("<e' g'>16"):
-            [StartBeam(tweaks=()), LilyPondLiteral(argument='\\slash', site='opening', directed=False, tweaks=()), StartSlur(tweaks=()), LilyPondLiteral(argument='\\voiceOne', site='opening', directed=False, tweaks=()), Clef(name='alto', hide=False), Articulation(name='>', tweaks=())]
+            [StartBeam(), LilyPondLiteral(argument='\\slash', site='opening', directed=False), StartSlur(), LilyPondLiteral(argument='\\voiceOne', site='opening', directed=False), Clef(name='alto', hide=False), Articulation(name='>')]
         Note("gs'16"):
-            [Articulation(name='.', tweaks=())]
+            [Articulation(name='.')]
         Note("a'16"):
-            [Articulation(name='.', tweaks=())]
+            [Articulation(name='.')]
         Note("as'16"):
-            [StopBeam(leak=False), StopSlur(leak=False), Articulation(name='.', tweaks=())]
+            [StopBeam(leak=False), StopSlur(leak=False), Articulation(name='.')]
         Voice("e'4", name='Music_Voice'):
             []
         Note("e'4"):
-            [LilyPondLiteral(argument='\\voiceTwo', site='opening', directed=False, tweaks=()), Articulation(name='.', tweaks=())]
+            [LilyPondLiteral(argument='\\voiceTwo', site='opening', directed=False), Articulation(name='.')]
         Note("f'4"):
-            [LilyPondLiteral(argument='\\oneVoice', site='absolute_before', directed=False, tweaks=()), Articulation(name='.', tweaks=())]
+            [LilyPondLiteral(argument='\\oneVoice', site='absolute_before', directed=False), Articulation(name='.')]
         AfterGraceContainer("fs'16"):
             []
         Note("fs'16"):
-            [Articulation(name='.', tweaks=())]
+            [Articulation(name='.')]
 
     ..  container:: example
 
@@ -2447,13 +2446,13 @@ def indicators(
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") []
         TremoloContainer("c'16 e'16")  []
-        Note("c'16")                   [Articulation(name='.', tweaks=())]
-        Note("e'16")                   [Articulation(name='.', tweaks=())]
-        Note("cs'4")                   [Articulation(name='.', tweaks=())]
+        Note("c'16")                   [Articulation(name='.')]
+        Note("e'16")                   [Articulation(name='.')]
+        Note("cs'4")                   [Articulation(name='.')]
         TremoloContainer("d'16 f'16")  []
-        Note("d'16")                   [Clef(name='alto', hide=False), Articulation(name='.', tweaks=())]
-        Note("f'16")                   [Articulation(name='.', tweaks=())]
-        Note("ds'4")                   [Articulation(name='.', tweaks=())]
+        Note("d'16")                   [Clef(name='alto', hide=False), Articulation(name='.')]
+        Note("f'16")                   [Articulation(name='.')]
+        Note("ds'4")                   [Articulation(name='.')]
 
     """
     # TODO: extend to any non-none argument
@@ -3101,7 +3100,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
     return _select.LogicalTie(leaves)
 
 
-def markup(argument, *, direction: int = None) -> list[_markups.Markup]:
+def markup(argument, *, direction: int = None) -> list[_indicators.Markup]:
     """
     Gets markup.
     """
@@ -4036,35 +4035,35 @@ def wrapper(
         Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
             None
         Note("c'4"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         BeforeGraceContainer("cs'16"):
             None
         Note("cs'16"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         Note("d'4"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             None
         Chord("<e' g'>16"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>'), synthetic_offset=None, tag=Tag(string=''))
         Note("gs'16"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         Note("a'16"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         Note("as'16"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         Voice("e'4", name='Music_Voice'):
             None
         Note("e'4"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         Note("f'4"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         AfterGraceContainer("fs'16"):
             None
         Note("fs'16"):
-            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
 
     Raises exception when more than one indicator of ``prototype`` attach to
     ``argument``.
@@ -4172,35 +4171,35 @@ def wrappers(
         Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
             []
         Note("c'4"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         BeforeGraceContainer("cs'16"):
             []
         Note("cs'16"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         Note("d'4"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             []
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             []
         Chord("<e' g'>16"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>'), synthetic_offset=None, tag=Tag(string=''))]
         Note("gs'16"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         Note("a'16"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         Note("as'16"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         Voice("e'4", name='Music_Voice'):
             []
         Note("e'4"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         Note("f'4"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         AfterGraceContainer("fs'16"):
             []
         Note("fs'16"):
-            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.', tweaks=()), synthetic_offset=None, tag=Tag(''))]
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
 
     """
     if attributes is not None:

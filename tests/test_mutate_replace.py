@@ -18,8 +18,8 @@ def test_mutate_replace_01():
         \new Staff
         {
             c'8
-            \<
             [
+            \<
             d'8
             ]
             e'8
@@ -47,8 +47,8 @@ def test_mutate_replace_01():
         \new Staff
         {
             c'8
-            \<
             [
+            \<
             c''16
             c''16
             c''16

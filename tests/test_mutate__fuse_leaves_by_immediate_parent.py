@@ -236,8 +236,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_08():
             \grace {
                 b'16
             }
-            \time 3/4
             \clef "alto"
+            \time 3/4
             c'4
             - \staccato
             - \accent
@@ -335,8 +335,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_10():
             \grace {
                 b'16
             }
-            \time 3/4
             \clef "alto"
+            \time 3/4
             c'4
             :16
             - \staccato

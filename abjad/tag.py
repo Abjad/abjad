@@ -4,6 +4,7 @@ import typing
 from . import _indent
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Tag:
     """
     Tag.
@@ -11,17 +12,17 @@ class Tag:
     ..  container:: example
 
         >>> abjad.Tag("YELLOW")
-        Tag('YELLOW')
+        Tag(string='YELLOW')
 
         >>> abjad.Tag("YELLOW:RED")
-        Tag('YELLOW:RED')
+        Tag(string='YELLOW:RED')
 
-        Removes duplicate words at initialization:
+        Raises exception on duplicate words in tag:
 
         >>> abjad.Tag("YELLOW:RED:RED")
-        Tag('YELLOW:RED')
-
-    ..  container:: example
+        Traceback (most recent call last):
+        ...
+        Exception: duplicate words in tag: 'YELLOW:RED:RED'
 
         Raises exception on multiple only-edition tags:
 
@@ -29,8 +30,6 @@ class Tag:
         Traceback (most recent call last):
             ...
         Exception: at most one only-edition tag: ['+SEGMENT', '+PARTS'].
-
-    ..  container:: example
 
         Raises exception on mixed only-edition / not-edition tags:
 
@@ -43,199 +42,30 @@ class Tag:
 
     """
 
-    __slots__ = ("_string", "_words")
+    string: str = ""
 
-    def __init__(self, string: str = "") -> None:
-        assert isinstance(string, str), repr(string)
-        assert not string.startswith(":"), repr(string)
-        words = string.split(":")
-        assert isinstance(words, list), repr(words)
-        words_: list[str] = []
-        for word in words:
-            if word not in words_:
-                words_.append(word)
-        only_edition_tags, not_edition_tags = [], []
-        for word_ in words_:
-            if word_.startswith("+"):
-                only_edition_tags.append(word_)
-            if word_.startswith("-"):
-                not_edition_tags.append(word_)
-        if 1 < len(only_edition_tags):
-            raise Exception(f"at most one only-edition tag: {only_edition_tags!r}.")
-        if only_edition_tags and not_edition_tags:
-            message = "only-edition and not-edition forbidden in same tag:\n\n"
-            message += f"  {only_edition_tags} / {not_edition_tags}"
-            raise Exception(message)
-        self._words = words_
-        if bool(string):
-            string = ":".join(words_)
-            assert not string.startswith(":"), repr(string)
-        else:
-            string = ""
-        self._string = string
+    def __post_init__(self):
+        assert isinstance(self.string, str), repr(self.string)
+        self.words()
 
-    def __bool__(self):
-        """
-        Is true when tag has words.
-
-        ..  container:: example
-
-            >>> bool(abjad.Tag())
-            False
-
-            >>> bool(abjad.Tag("+PARTS"))
-            True
-
-        """
-        return bool(self.string)
-
-    def __contains__(self, argument) -> bool:
-        """
-        Is true when ``argument`` is word in tag.
-
-        ..  container:: example
-
-            >>> tag = abjad.Tag("-PARTS")
-            >>> tag = tag.append(abjad.Tag("DEFAULT_CLEF"))
-
-            >>> "PARTS" in tag
-            False
-
-            >>> "-PARTS" in tag
-            True
-
-            >>> abjad.Tag("DEFAULT_CLEF") in tag
-            True
-
-        """
-        if isinstance(argument, str):
-            return argument in self.words
-        else:
-            return argument.string in self.words
-
-    def __eq__(self, argument):
-        """
-        Is true when ``argument`` is tag with same string representation.
-
-        ..  container:: example
-
-            >>> tag_1 = abjad.Tag()
-            >>> tag_2 = abjad.Tag()
-            >>> tag_3 = abjad.Tag("+PARTS")
-
-            >>> tag_1 == tag_1
-            True
-            >>> tag_1 == tag_2
-            True
-            >>> tag_1 == tag_3
-            False
-
-            >>> tag_2 == tag_1
-            True
-            >>> tag_2 == tag_2
-            True
-            >>> tag_2 == tag_3
-            False
-
-            >>> tag_3 == tag_1
-            False
-            >>> tag_3 == tag_2
-            False
-            >>> tag_3 == tag_3
-            True
-
-        """
-        if isinstance(argument, Tag):
-            return self.string == argument.string
-        return False
-
-    def __hash__(self):
-        """
-        Hashes tag.
-
-        ..  container:: example
-
-            REGRESSION. Tags compare equal when strings compare equal:
-
-            >>> tag_1 = abjad.Tag("MEASURE_1")
-            >>> tag_2 = abjad.Tag("MEASURE_1")
-            >>> hash(tag_1) == hash(tag_2)
-            True
-
-        """
-        return hash(self.__class__.__name__ + self.string)
-
-    def __iter__(self):
-        """
-        Iterates words in tag.
-
-        ..  container:: example
-
-            >>> tag = abjad.Tag("-PARTS:-SCORE:DEFAULT_CLEF")
-            >>> for word  in tag:
-            ...     word
-            ...
-            '-PARTS'
-            '-SCORE'
-            'DEFAULT_CLEF'
-
-        """
-        return iter(self.words)
-
-    def __repr__(self):
-        """
-        Gets repr.
-        """
-        if self.string is None:
-            return f"{type(self).__name__}()"
-        else:
-            return f"{type(self).__name__}({self.string!r})"
-
-    @property
-    def string(self) -> str:
-        """
-        Gets string.
-
-        ..  container:: example
-
-            >>> abjad.Tag().string
-            ''
-
-            >>> abjad.Tag("-PARTS:DEFAULT_CLEF").string
-            '-PARTS:DEFAULT_CLEF'
-
-        """
-        return self._string
-
-    @property
-    def words(self) -> list[str]:
-        """
-        Gets words.
-
-        ..  container:: example
-
-            >>> abjad.Tag("-PARTS:DEFAULT_CLEF").words
-            ['-PARTS', 'DEFAULT_CLEF']
-
-        """
-        return list(self._words)
-
-    def append(self, word: typing.Optional["Tag"]) -> "Tag":
+    def append(self, word: "Tag") -> "Tag":
         """
         Appends ``word`` to tag.
 
         ..  container:: example
 
             >>> abjad.Tag("-PARTS").append(abjad.Tag("DEFAULT_CLEF"))
-            Tag('-PARTS:DEFAULT_CLEF')
+            Tag(string='-PARTS:DEFAULT_CLEF')
 
         """
-        if not bool(word):
+        if not bool(word.string):
             return Tag(self.string)
         assert isinstance(word, Tag), repr(word)
         words = []
         if self.string:
             words.append(self.string)
+        if word.string in self.string:
+            raise Exception(f"{word} duplicates {self}.")
         words.append(word.string)
         string = ":".join(words)
         return Tag(string)
@@ -250,23 +80,23 @@ class Tag:
             []
 
             >>> abjad.Tag("+SEGMENT").only_edition()
-            Tag('+SEGMENT')
+            Tag(string='+SEGMENT')
 
             >>> abjad.Tag("+SEGMENT:FOO").only_edition()
-            Tag('+SEGMENT')
+            Tag(string='+SEGMENT')
 
             >>> abjad.Tag("-SEGMENT").editions()
-            [Tag('-SEGMENT')]
+            [Tag(string='-SEGMENT')]
 
             >>> abjad.Tag("-SEGMENT:FOO").editions()
-            [Tag('-SEGMENT')]
+            [Tag(string='-SEGMENT')]
 
             >>> abjad.Tag("-SEGMENT:-PARTS").editions()
-            [Tag('-SEGMENT'), Tag('-PARTS')]
+            [Tag(string='-SEGMENT'), Tag(string='-PARTS')]
 
         """
         result = []
-        for word in self:
+        for word in self.words():
             if word.startswith("+") or word.startswith("-"):
                 result.append(Tag(word))
         return result
@@ -278,17 +108,17 @@ class Tag:
         ..  container:: example
 
             >>> abjad.Tag("FOO").invert_edition_tags()
-            Tag('FOO')
+            Tag(string='FOO')
 
             >>> abjad.Tag("FOO:-PARTS").invert_edition_tags()
-            Tag('FOO:+PARTS')
+            Tag(string='FOO:+PARTS')
 
             >>> abjad.Tag("FOO:+PARTS").invert_edition_tags()
-            Tag('FOO:-PARTS')
+            Tag(string='FOO:-PARTS')
 
         """
         words = []
-        for word in self.words:
+        for word in self.words():
             if word.startswith("+"):
                 word_ = "-" + word[1:]
             elif word.startswith("-"):
@@ -310,17 +140,17 @@ class Tag:
             []
 
             >>> abjad.Tag("-SEGMENT").not_editions()
-            [Tag('-SEGMENT')]
+            [Tag(string='-SEGMENT')]
 
             >>> abjad.Tag("-SEGMENT:FOO").not_editions()
-            [Tag('-SEGMENT')]
+            [Tag(string='-SEGMENT')]
 
             >>> abjad.Tag("-SEGMENT:-PARTS").not_editions()
-            [Tag('-SEGMENT'), Tag('-PARTS')]
+            [Tag(string='-SEGMENT'), Tag(string='-PARTS')]
 
         """
         result = []
-        for word in self:
+        for word in self.words():
             if word.startswith("-"):
                 result.append(Tag(word))
         return result
@@ -335,20 +165,53 @@ class Tag:
             True
 
             >>> abjad.Tag("+SEGMENT").only_edition()
-            Tag('+SEGMENT')
+            Tag(string='+SEGMENT')
 
             >>> abjad.Tag("+SEGMENT:FOO").only_edition()
-            Tag('+SEGMENT')
+            Tag(string='+SEGMENT')
 
         """
-        for word in self:
+        for word in self.words():
             if word.startswith("+"):
                 return Tag(word)
         else:
             return None
 
+    def words(self) -> list[str]:
+        """
+        Gets words.
 
-@dataclasses.dataclass(slots=True)
+        ..  container:: example
+
+            >>> abjad.Tag("-PARTS:DEFAULT_CLEF").words()
+            ['-PARTS', 'DEFAULT_CLEF']
+
+        """
+        assert not self.string.startswith(":"), repr(self.string)
+        words = self.string.split(":")
+        assert isinstance(words, list), repr(words)
+        words_ = []
+        for word in words:
+            if word in words_:
+                raise Exception(f"duplicate words in tag: {self.string!r}")
+            words_.append(word)
+        only_edition_tags, not_edition_tags = [], []
+        for word_ in words_:
+            if word_.startswith("+"):
+                only_edition_tags.append(word_)
+            if word_.startswith("-"):
+                not_edition_tags.append(word_)
+        if 1 < len(only_edition_tags):
+            raise Exception(f"at most one only-edition tag: {only_edition_tags!r}.")
+        if only_edition_tags and not_edition_tags:
+            message = "only-edition and not-edition forbidden in same tag:\n\n"
+            message += f"  {only_edition_tags} / {not_edition_tags}"
+            raise Exception(message)
+        assert all(isinstance(_, str) for _ in words_), repr(words_)
+        return words_
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Line:
     r"""
     Line in a LilyPond file.
@@ -371,7 +234,7 @@ class Line:
 
             >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
             >>> abjad.Line(string).get_tags()
-            [Tag('MEASURE_NUMBER'), Tag('SM31')]
+            [Tag(string='MEASURE_NUMBER'), Tag(string='SM31')]
 
         ..  container:: example
 
@@ -380,7 +243,7 @@ class Line:
             >>> string = r"    %@%  \with-color %! SM31 %! SM32"
             >>> line = abjad.Line(string)
             >>> line.get_tags()
-            [Tag('SM31'), Tag('SM32')]
+            [Tag(string='SM31'), Tag(string='SM32')]
 
         Returns list of zero or more strings.
         """
@@ -533,14 +396,18 @@ class Line:
 
 
 def _match_line(line, tag, current_tags):
+    assert all(isinstance(_, Tag) for _ in current_tags), repr(current_tags)
     if tag in current_tags:
         return True
     if callable(tag):
         return tag(current_tags)
+    assert isinstance(tag, Tag), repr(tag)
     return False
 
 
-def activate(text, tag, skipped=False):
+def activate(
+    text: str, tag: Tag | typing.Callable, skipped: bool = False
+) -> tuple[str, int] | tuple[str, int, int]:
     r"""
     Activates ``tag`` in ``text``.
 
@@ -637,8 +504,10 @@ def activate(text, tag, skipped=False):
 
     Count gives number of activated tags.
     """
+    assert isinstance(text, str), repr(text)
     assert isinstance(tag, Tag) or callable(tag), repr(tag)
-    lines, count, skipped_count = [], 0, 0
+    lines: list[str] = []
+    count, skipped_count = 0, 0
     treated_last_line = False
     found_already_active_on_last_line = False
     text_lines = text.split("\n")
@@ -687,7 +556,12 @@ def activate(text, tag, skipped=False):
         return text, count
 
 
-def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
+def deactivate(
+    text: str,
+    tag: Tag | typing.Callable,
+    prepend_empty_chord: bool = False,
+    skipped: bool = False,
+) -> tuple[str, int] | tuple[str, int, int]:
     r"""
     Deactivates ``tag`` in ``text``.
 
@@ -783,8 +657,10 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
 
     Count gives number of deactivated tags.
     """
+    assert isinstance(text, str), repr(text)
     assert isinstance(tag, Tag) or callable(tag), repr(tag)
-    lines, count, skipped_count = [], 0, 0
+    lines: list[str] = []
+    count, skipped_count = 0, 0
     treated_last_line, last_index = False, None
     found_already_deactivated_on_last_line = False
     text_lines = text.split("\n")
@@ -840,14 +716,14 @@ def deactivate(text, tag, prepend_empty_chord=False, skipped=False):
         return text, count
 
 
-def double_tag(strings, tag_, deactivate=None):
+def double_tag(strings: list[str], tag_: Tag, deactivate: bool = False) -> list[str]:
     """
     Double tags ``strings``.
     """
     assert all(isinstance(_, str) for _ in strings), repr(strings)
     assert isinstance(tag_, Tag), repr(tag_)
     before_tags = []
-    if tag_:
+    if tag_.string:
         line = tag_.string
         lines = line.split(":")
         lines = ["%! " + _ for _ in lines]
@@ -865,9 +741,9 @@ def double_tag(strings, tag_, deactivate=None):
     return result
 
 
-def left_shift_tags(text, realign=None) -> str:
+def left_shift_tags(text: str) -> str:
     """
-    Left shifts tags in ``strings`` and realigns to column ``realign``.
+    Left shifts tags in ``strings``.
     """
     strings = text.split("\n")
     strings_ = []
@@ -880,15 +756,15 @@ def left_shift_tags(text, realign=None) -> str:
             continue
         string_ = string[4:]
         tag_start = string_.find("%!")
-        string_ = list(string_)
-        string_[tag_start:tag_start] = _indent.INDENT
-        string_ = "".join(string_)
+        strings__ = list(string_)
+        strings__[tag_start:tag_start] = _indent.INDENT
+        string_ = "".join(strings__)
         strings_.append(string_)
     text = "\n".join(strings_)
     return text
 
 
-def remove_tags(string) -> str:
+def remove_tags(string: str) -> str:
     """
     Removes all tags from ``string``.
     """

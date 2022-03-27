@@ -162,35 +162,25 @@ class OnBeatGraceContainer(_score.Container):
         if overrides or settings:
             contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [_indent.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("overrides", "overrides")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [_indent.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("settings", "settings")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [f"}} {brackets_open[0]}"]
             contributions = ["}", open_bracket]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
         else:
             contribution = self._format_invocation()
             contribution += f" {brackets_open[0]}"
             contributions = [contribution]
             contributions = [self._format_invocation(), open_bracket]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
-        return tuple(result)
+            result.extend(contributions)
+        return result
 
     def _get_on_beat_anchor_leaf(self):
         container = self._parent

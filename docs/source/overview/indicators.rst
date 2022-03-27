@@ -25,7 +25,9 @@ compose:
 
 ::
 
-    >>> key_signature = abjad.KeySignature("g", "major")
+    >>> key_signature = abjad.KeySignature(
+    ...     abjad.NamedPitchClass("g"), abjad.Mode("major")
+    ... )
     >>> abjad.attach(key_signature, voice[0])
     >>> time_signature = abjad.TimeSignature((2, 4), partial=(1, 8))
     >>> abjad.attach(time_signature, voice[0])
