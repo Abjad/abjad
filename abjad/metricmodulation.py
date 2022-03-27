@@ -1,7 +1,7 @@
 import typing
 
 from . import _inspect
-from . import bundle as _bundle
+from . import contributions as _contributions
 from . import illustrators as _illustrators
 from . import markups as _markups
 from . import ratio as _ratio
@@ -471,13 +471,13 @@ class MetricModulation:
         markup = self._get_markup()
         return markup.string
 
-    def _get_lilypond_format_bundle(self, *, component=None, wrapper=None):
-        bundle = _bundle.LilyPondFormatBundle()
+    def _get_contributions(self, *, component=None, wrapper=None):
+        contributions = _contributions.ContributionsBySite()
         if not self.hide:
             markup = self._get_markup()
             markup_format_pieces = markup._get_format_pieces(wrapper=wrapper)
-            bundle.after.markup.extend(markup_format_pieces)
-        return bundle
+            contributions.after.markup.extend(markup_format_pieces)
+        return contributions
 
     def _get_markup(self):
         string = self._get_lilypond_command_string()

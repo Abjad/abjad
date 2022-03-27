@@ -2935,36 +2935,34 @@ class LilyPondParser(Parser):
             self._scope_stack.pop()
 
     def _process_post_events(self, leaf, post_events):
-        nonspanner_post_event_types = (
+        prototype = (
+            _dynamic.Dynamic,
             _indicators.Articulation,
             _indicators.BarLine,
-            _dynamic.Dynamic,
             _indicators.Glissando,
-            _indicators.StartHairpin,
             _indicators.LilyPondLiteral,
             _indicators.StartBeam,
             _indicators.StartGroup,
+            _indicators.StartHairpin,
             _indicators.StartPhrasingSlur,
             _indicators.StartSlur,
             _indicators.StartTextSpan,
             _indicators.StartTrillSpan,
+            _indicators.StemTremolo,
             _indicators.StopBeam,
             _indicators.StopGroup,
             _indicators.StopHairpin,
-            _indicators.StopSlur,
             _indicators.StopPhrasingSlur,
+            _indicators.StopSlur,
             _indicators.StopTextSpan,
             _indicators.StopTrillSpan,
-            _indicators.StemTremolo,
             _indicators.Tie,
             _markups.Markup,
         )
         for post_event in post_events:
-            if isinstance(post_event, nonspanner_post_event_types):
+            if isinstance(post_event, prototype):
                 _bind.attach(post_event, leaf)
-            if isinstance(post_event, tuple) and isinstance(
-                post_event[0], nonspanner_post_event_types
-            ):
+            if isinstance(post_event, tuple) and isinstance(post_event[0], prototype):
                 indicator, direction = post_event
                 _bind.attach(indicator, leaf, direction=direction)
 

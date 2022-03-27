@@ -72,14 +72,14 @@ descents are treated one way; the final descent in each voice is treated another
     ...         for scalar_descent in scalar_descents[:-1]:
     ...             pitch_pair_descent = []
     ...             for pitch in scalar_descent:
-    ...                 pitch_class = str(pitch.pitch_class)
+    ...                 pitch_class = pitch.pitch_class.name
     ...                 shadow_pitch = pitch + pc_to_interval[pitch_class]
     ...                 pitch_pair = (shadow_pitch, pitch)
     ...                 pitch_pair_descent.append(pitch_pair)
     ...             pitch_pair_descents.append(tuple(pitch_pair_descent))
     ...         final_pitch_pair_descent = []
     ...         for pitch in scalar_descents[-1][:-1]:
-    ...             pitch_class = str(pitch.pitch_class)
+    ...             pitch_class = pitch.pitch_class.name
     ...             shadow_pitch = pitch + pc_to_interval[pitch_class]
     ...             pitch_pair = (shadow_pitch, pitch)
     ...             final_pitch_pair_descent.append(pitch_pair)
@@ -161,8 +161,8 @@ Let's see what a few of these look like. Here are the first ten violin 1 descent
     >>> descents = voice_to_descents["Violin_1"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
-    ...     markup = abjad.Markup(string, direction=abjad.Up)
-    ...     abjad.attach(markup, descent[0])
+    ...     markup = abjad.Markup(string)
+    ...     abjad.attach(markup, descent[0], direction=abjad.UP)
     ...
 
     >>> leaves = abjad.sequence.flatten(descents)
@@ -179,8 +179,8 @@ Here are the first ten violin 2 descents:
     >>> descents = voice_to_descents["Violin_2"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
-    ...     markup = abjad.Markup(string, direction=abjad.Up)
-    ...     abjad.attach(markup, descent[0])
+    ...     markup = abjad.Markup(string)
+    ...     abjad.attach(markup, descent[0], direction=abjad.UP)
     ...
 
     >>> leaves = abjad.sequence.flatten(descents)
@@ -198,8 +198,8 @@ too:
     >>> descents = voice_to_descents["Viola"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
-    ...     markup = abjad.Markup(string, direction=abjad.Up)
-    ...     abjad.attach(markup, descent[0])
+    ...     markup = abjad.Markup(string)
+    ...     abjad.attach(markup, descent[0], direction=abjad.UP)
     ...
 
     >>> notes = abjad.sequence.flatten(descents)
@@ -487,13 +487,13 @@ We define more functions:
     ...         if len(command) == 5:
     ...             direction = command[4]
     ...         else:
-    ...             direction = abjad.Up
+    ...             direction = abjad.UP
     ...         voice_name = voice_name + "_Voice"
     ...         voice = score[voice_name]
     ...         leaf = voice[measure_index][leaf_index]
     ...         string = r"\markup " + string
-    ...         markup = abjad.Markup(string, direction=direction)
-    ...         abjad.attach(markup, leaf)
+    ...         markup = abjad.Markup(string)
+    ...         abjad.attach(markup, leaf, direction=direction)
 
     >>> def attach_rehearsal_marks(score, measure_indices):
     ...     bell_voice = score["Bell_Voice"]
@@ -617,17 +617,17 @@ We define commands like this:
     ...     ("Cello", 10, 0, "div."),
     ...     ("Cello", 74, 0, "uniti"),
     ...     ("Cello", 84, 1, "uniti"),
-    ...     ("Cello", 86, 0, r"\italic { espr. }", abjad.Down),
-    ...     ("Cello", 88, 1, r"\italic { molto espr. }", abjad.Down),
+    ...     ("Cello", 86, 0, r"\italic { espr. }", abjad.DOWN),
+    ...     ("Cello", 88, 1, r"\italic { molto espr. }", abjad.DOWN),
     ...     ("Bass", 14, 0, "div."),
-    ...     ("Bass", 86, 0, r"\italic { espr. }", abjad.Down),
-    ...     ("Bass", 88, 1, r"\italic { molto espr. }", abjad.Down),
+    ...     ("Bass", 86, 0, r"\italic { espr. }", abjad.DOWN),
+    ...     ("Bass", 88, 1, r"\italic { molto espr. }", abjad.DOWN),
     ...     ("Bass", 99, 1, "uniti"),
-    ...     ("Violin_1", 102, 0, r"\italic { (non dim.) }", abjad.Down),
-    ...     ("Violin_2", 102, 0, r"\italic { (non dim.) }", abjad.Down),
-    ...     ("Viola", 102, 0, r"\italic { (non dim.) }", abjad.Down),
-    ...     ("Cello", 102, 0, r"\italic { (non dim.) }", abjad.Down),
-    ...     ("Bass", 102, 0, r"\italic { (non dim.) }", abjad.Down),
+    ...     ("Violin_1", 102, 0, r"\italic { (non dim.) }", abjad.DOWN),
+    ...     ("Violin_2", 102, 0, r"\italic { (non dim.) }", abjad.DOWN),
+    ...     ("Viola", 102, 0, r"\italic { (non dim.) }", abjad.DOWN),
+    ...     ("Cello", 102, 0, r"\italic { (non dim.) }", abjad.DOWN),
+    ...     ("Bass", 102, 0, r"\italic { (non dim.) }", abjad.DOWN),
     ... )
 
 ::

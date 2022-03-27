@@ -60,9 +60,9 @@ Define helper functions:
     ...     parts = math.modf(semitones)
     ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
     ...     if bass is False or pitch <= -8:
-    ...         direction = abjad.Down
+    ...         direction = abjad.DOWN
     ...     else:
-    ...         direction = abjad.Up
+    ...         direction = abjad.UP
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
@@ -84,14 +84,14 @@ Define helper functions:
     ...     else:
     ...         cent_string = f"+{remainder}"
     ...     string = rf"\markup {cent_string}"
-    ...     markup = abjad.Markup(string, direction=direction)
-    ...     abjad.tweak(markup).parent_alignment_X = 0 
-    ...     abjad.tweak(markup).self_alignment_X = 0.25 
+    ...     markup = abjad.Markup(string)
+    ...     abjad.tweak(markup, r"- \tweak parent-alignment-X 0") 
+    ...     abjad.tweak(markup, r"- \tweak self-alignment-X 0.25") 
     ...     if pitch <= -8:
-    ...         abjad.tweak(markup).padding = 1
+    ...         abjad.tweak(markup, r"- \tweak padding 1")
     ...     else:
-    ...         abjad.tweak(markup).padding = 2.5
-    ...     return markup
+    ...         abjad.tweak(markup, r"- \tweak padding 2.5")
+    ...     return markup, direction
     ...
 
 ::
@@ -110,15 +110,15 @@ Define helper functions:
     ...             bass = False
     ...             if i == 2:
     ...                 bass = True
-    ...             markup = return_cent_markup(note.note_head, ratio, bass=bass)
-    ...             abjad.attach(markup, note)
+    ...             markup, direction = return_cent_markup(note.note_head, ratio, bass=bass)
+    ...             abjad.attach(markup, note, direction=direction)
     ...             staff.append(note)
     ...     for measure_number in (1, 11, 21, 31):
     ...         note = abjad.select.note(staff_1, measure_number - 1)
-    ...         markup = abjad.Markup(r"\markup A", direction=abjad.Up)
-    ...         abjad.tweak(markup).staff_padding = 8
-    ...         abjad.tweak(markup).transparent = True
-    ...         abjad.attach(markup, note)
+    ...         markup = abjad.Markup(r"\markup A")
+    ...         abjad.tweak(markup, r"- \tweak staff-padding 8")
+    ...         abjad.tweak(markup, r"- \tweak transparent ##t")
+    ...         abjad.attach(markup, note, direction=abjad.UP)
     ...     interface = abjad.override(staff_1).vertical_axis_group
     ...     interface.staff_staff_spacing__minimum_distance = 12
     ...     interface = abjad.override(staff_2).vertical_axis_group

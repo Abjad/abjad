@@ -1,4 +1,4 @@
-from . import bundle as _bundle
+from . import contributions as _contributions
 from . import enums as _enums
 from . import overrides as _overrides
 from . import tag as _tag
@@ -19,7 +19,7 @@ def _collect_indicators(component):
         # skip nonprinting indicators like annotation
         indicator = wrapper.indicator
         if not hasattr(indicator, "_get_lilypond_format") and not hasattr(
-            indicator, "_get_lilypond_format_bundle"
+            indicator, "_get_contributions"
         ):
             continue
         elif wrapper.annotation is not None:
@@ -60,7 +60,7 @@ def _collect_indicators(component):
     return indicators
 
 
-def _bundle_context_setting_contributions(component, bundle):
+def _get_context_setting_contributions(component, contributions):
     result = []
     if hasattr(component, "_lilypond_type"):
         strings = _overrides.setting(component)._format_in_with_block()
@@ -69,45 +69,45 @@ def _bundle_context_setting_contributions(component, bundle):
         strings = _overrides.setting(component)._format_inline()
         result.extend(strings)
     result.sort()
-    bundle.context_settings.extend(result)
+    contributions.context_settings.extend(result)
 
 
-def _bundle_context_wrapper_contributions(component, bundle, context_wrappers):
+def _get_context_wrapper_contributions(component, contributions, context_wrappers):
     for wrapper in context_wrappers:
         format_pieces = wrapper._get_format_pieces()
-        if isinstance(format_pieces, type(bundle)):
-            bundle.update(format_pieces)
+        if isinstance(format_pieces, type(contributions)):
+            contributions.update(format_pieces)
         else:
             site = wrapper.indicator._site
-            getattr(bundle, site).indicators.extend(format_pieces)
+            getattr(contributions, site).indicators.extend(format_pieces)
 
 
-def _bundle_grob_override_contributions(component, bundle):
+def _get_grob_override_contributions(component, contributions):
     result = []
     once = hasattr(component, "_written_duration")
     grob = _overrides.override(component)
-    contributions = grob._list_contributions("override", once=once)
+    contributions_ = grob._list_contributions("override", once=once)
     for string in result[:]:
         if "NoteHead" in string and "pitch" in string:
-            contributions.remove(string)
+            contributions_.remove(string)
     try:
         written_pitch = component.written_pitch
         arrow = written_pitch.arrow
     except AttributeError:
         arrow = None
     if arrow in (_enums.UP, _enums.DOWN):
-        contributions_ = written_pitch._list_contributions()
-        contributions.extend(contributions_)
-    bundle.grob_overrides.extend(contributions)
+        contributions__ = written_pitch._list_contributions()
+        contributions_.extend(contributions__)
+    contributions.grob_overrides.extend(contributions_)
 
 
-def _bundle_grob_revert_contributions(component, bundle):
+def _get_grob_revert_contributions(component, contributions):
     if not hasattr(component, "_written_duration"):
-        contributions = _overrides.override(component)._list_contributions("revert")
-        bundle.grob_reverts.extend(contributions)
+        contributions_ = _overrides.override(component)._list_contributions("revert")
+        contributions.grob_reverts.extend(contributions_)
 
 
-def _bundle_indicator_contributions(component, bundle):
+def _get_indicator_contributions(component, contributions):
     (
         up_markup_wrappers,
         down_markup_wrappers,
@@ -115,20 +115,20 @@ def _bundle_indicator_contributions(component, bundle):
         context_wrappers,
         noncontext_wrappers,
     ) = _collect_indicators(component)
-    _bundle_markup_contributions(
+    _get_markup_contributions(
         component,
-        bundle,
+        contributions,
         up_markup_wrappers,
         down_markup_wrappers,
         neutral_markup_wrappers,
     )
-    _bundle_context_wrapper_contributions(component, bundle, context_wrappers)
-    _bundle_noncontext_wrapper_contributions(component, bundle, noncontext_wrappers)
+    _get_context_wrapper_contributions(component, contributions, context_wrappers)
+    _get_noncontext_wrapper_contributions(component, contributions, noncontext_wrappers)
 
 
-def _bundle_markup_contributions(
+def _get_markup_contributions(
     component,
-    bundle,
+    contributions,
     up_markup_wrappers,
     down_markup_wrappers,
     neutral_markup_wrappers,
@@ -144,29 +144,31 @@ def _bundle_markup_contributions(
             format_pieces = _tag.double_tag(
                 format_pieces, wrapper.tag, deactivate=wrapper.deactivate
             )
-            bundle.after.markup.extend(format_pieces)
+            contributions.after.markup.extend(format_pieces)
 
 
-def _bundle_noncontext_wrapper_contributions(component, bundle, noncontext_wrappers):
+def _get_noncontext_wrapper_contributions(
+    component, contributions, noncontext_wrappers
+):
     for wrapper in noncontext_wrappers:
         indicator = wrapper.indicator
         try:
-            bundle_ = indicator._get_lilypond_format_bundle(wrapper=wrapper)
+            contributions_ = indicator._get_contributions(wrapper=wrapper)
         except TypeError:
-            bundle_ = indicator._get_lilypond_format_bundle()
+            contributions_ = indicator._get_contributions()
         if wrapper.tag:
-            bundle_.tag_contributions(wrapper.tag, deactivate=wrapper.deactivate)
-        bundle.update(bundle_)
+            contributions_.tag_contributions(wrapper.tag, deactivate=wrapper.deactivate)
+        contributions.update(contributions_)
 
 
-def bundle_contributions(component) -> _bundle.LilyPondFormatBundle:
+def get_contributions_by_site(component) -> _contributions.ContributionsBySite:
     """
-    Bundles contributions for ``component``.
+    Gets contributions by site for ``component``.
     """
-    bundle = _bundle.LilyPondFormatBundle()
-    _bundle_indicator_contributions(component, bundle)
-    _bundle_context_setting_contributions(component, bundle)
-    _bundle_grob_override_contributions(component, bundle)
-    _bundle_grob_revert_contributions(component, bundle)
-    bundle.freeze_overrides()
-    return bundle
+    contributions = _contributions.ContributionsBySite()
+    _get_indicator_contributions(component, contributions)
+    _get_context_setting_contributions(component, contributions)
+    _get_grob_override_contributions(component, contributions)
+    _get_grob_revert_contributions(component, contributions)
+    contributions.freeze_overrides()
+    return contributions

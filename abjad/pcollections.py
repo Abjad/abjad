@@ -645,14 +645,14 @@ class PitchRange:
         if isinstance(range_string, type(self)):
             range_string = range_string.range_string
         assert isinstance(range_string, str), repr(range_string)
-        bundle = self._parse_range_string(range_string)
-        assert isinstance(bundle.start_pitch, _pitch.NamedPitch | type(None))
-        assert isinstance(bundle.stop_pitch, _pitch.NamedPitch | type(None))
-        self._close_bracket = bundle.close_bracket
-        self._open_bracket = bundle.open_bracket
-        self._range_string = bundle.range_string
-        self._start_pitch = bundle.start_pitch
-        self._stop_pitch = bundle.stop_pitch
+        namespace = self._parse_range_string(range_string)
+        assert isinstance(namespace.start_pitch, _pitch.NamedPitch | type(None))
+        assert isinstance(namespace.stop_pitch, _pitch.NamedPitch | type(None))
+        self._close_bracket = namespace.close_bracket
+        self._open_bracket = namespace.open_bracket
+        self._range_string = namespace.range_string
+        self._start_pitch = namespace.start_pitch
+        self._stop_pitch = namespace.stop_pitch
 
     def __contains__(self, argument) -> bool:
         """

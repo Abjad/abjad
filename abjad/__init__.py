@@ -20,7 +20,6 @@ from . import (
 )
 from ._version import __version__, __version_info__
 from .bind import Wrapper, annotate, attach, detach
-from .bundle import LilyPondFormatBundle
 from .configuration import (
     Configuration,
     list_all_classes,
@@ -38,6 +37,7 @@ from .contextmanagers import (
     TemporaryDirectoryChange,
     Timer,
 )
+from .contributions import ContributionsBySite
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
 from .dynamic import Dynamic
@@ -180,17 +180,13 @@ from .meter import Meter, MetricAccentKernel
 from .metricmodulation import MetricModulation
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
 from .overrides import (
-    IndexedTweakInterface,
-    IndexedTweakInterfaces,
     Interface,
     LilyPondOverride,
     LilyPondSetting,
     OverrideInterface,
     SettingInterface,
-    TweakInterface,
     override,
     setting,
-    tweak,
 )
 from .parentage import Parentage
 from .parsers import parser
@@ -265,6 +261,7 @@ from .spanners import (
 )
 from .tag import Line, Tag, activate, deactivate
 from .timespan import OffsetCounter, Timespan, TimespanList
+from .tweaks import Bundle, Tweak, bundle, tweak
 from .typings import (
     DurationSequenceTyping,
     DurationTyping,
@@ -318,6 +315,7 @@ __all__ = [
     "BendAfter",
     "Block",
     "BreathMark",
+    "Bundle",
     "Cello",
     "CENTER",
     "Chord",
@@ -362,8 +360,6 @@ __all__ = [
     "Harpsichord",
     "Horizontal",
     "ImpreciseMetronomeMarkError",
-    "IndexedTweakInterface",
-    "IndexedTweakInterfaces",
     "Infinity",
     "Instrument",
     "IntegerPair",
@@ -381,7 +377,7 @@ __all__ = [
     "LilyPondContext",
     "LilyPondEngraver",
     "LilyPondFile",
-    "LilyPondFormatBundle",
+    "ContributionsBySite",
     "LilyPondGrob",
     "LilyPondGrobInterface",
     "LilyPondLiteral",
@@ -510,7 +506,7 @@ __all__ = [
     "Tuba",
     "Tuning",
     "Tuplet",
-    "TweakInterface",
+    "Tweak",
     "TwelveToneRow",
     "UnboundedTimeIntervalError",
     "UP",
@@ -530,6 +526,7 @@ __all__ = [
     "annotate",
     "attach",
     "beam",
+    "bundle",
     "deactivate",
     "deprecated",
     "detach",

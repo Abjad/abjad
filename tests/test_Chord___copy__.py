@@ -51,7 +51,7 @@ def test_Chord___copy___04():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.note_heads[0]).color = "#red"
+    abjad.tweak(chord_1.note_heads[0], r"\tweak color #red")
     chord_2 = copy.copy(chord_1)
 
     assert abjad.lilypond(chord_1) == abjad.string.normalize(

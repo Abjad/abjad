@@ -162,14 +162,14 @@ This function enumerates scales in any mode:
     ...         name = notes[0].written_pitch.get_name(locale="us")
     ...         name = name[:-1]
     ...         string = fr'\markup {{ "{name} {mode_name}" }}'
-    ...         markup = abjad.Markup(string, direction=abjad.Up)
-    ...         abjad.attach(markup, notes[0])
+    ...         markup = abjad.Markup(string)
+    ...         abjad.attach(markup, notes[0], direction=abjad.UP)
     ...         bar_line = abjad.BarLine("||")
     ...         abjad.attach(bar_line, notes[-1])
     ...         string = r"\markup \transparent A"
-    ...         strut = abjad.Markup(string, direction=abjad.Up)
-    ...         abjad.tweak(strut).staff_padding = 8 
-    ...         abjad.attach(strut, notes[-1])
+    ...         strut = abjad.Markup(string)
+    ...         abjad.tweak(strut, r"- \tweak staff-padding 8")
+    ...         abjad.attach(strut, notes[-1], direction=abjad.UP)
     ...         voice.extend(notes)
     ...     time_signature = abjad.TimeSignature((15, 4))
     ...     abjad.attach(time_signature, voice[0])

@@ -18,6 +18,22 @@ class _ContributionsByType:
     stem_tremolos: list[str] = dataclasses.field(default_factory=list)
     trill_spanner_starts: list[str] = dataclasses.field(default_factory=list)
 
+    def __iter__(self):
+        for type_ in (
+            self.articulations,
+            self.commands,
+            self.comments,
+            self.indicators,
+            self.leaks,
+            self.markup,
+            self.spanners,
+            self.spanner_starts,
+            self.spanner_stops,
+            self.stem_tremolos,
+            self.trill_spanner_starts,
+        ):
+            yield type_
+
     def tag(self, tag, deactivate=None):
         """
         Tags contributions.
@@ -56,9 +72,9 @@ class _ContributionsByType:
 
 
 @dataclasses.dataclass(slots=True)
-class LilyPondFormatBundle:
+class ContributionsBySite:
     """
-    LilyPond format bundle.
+    LilyPond format contributions.
     """
 
     absolute_after: _ContributionsByType = dataclasses.field(
@@ -83,7 +99,19 @@ class LilyPondFormatBundle:
     grob_overrides: list = dataclasses.field(default_factory=list)
     grob_reverts: list = dataclasses.field(default_factory=list)
 
-    __documentation_section__ = "LilyPond formatting"
+    def __iter__(self):
+        for site in (
+            self.absolute_before,
+            self.absolute_after,
+            self.before,
+            self.after,
+            self.opening,
+            self.closing,
+            self.context_settings,
+            self.grob_overrides,
+            self.grob_reverts,
+        ):
+            yield site
 
     def freeze_overrides(self):
         """
@@ -93,9 +121,17 @@ class LilyPondFormatBundle:
         self.grob_overrides = tuple(sorted(set(self.grob_overrides)))
         self.grob_reverts = tuple(sorted(set(self.grob_reverts)))
 
+    def get_contribution_lists(self):
+        lists = []
+        for site in self:
+            for list_ in site:
+                if list_:
+                    lists.append(list_)
+        return lists
+
     def tag_contributions(self, tag, deactivate=None):
         """
-        Tags contributions with string ``tag``.
+        Tags contributions with ``tag``.
         """
         self.absolute_before.tag(tag, deactivate)
         self.absolute_after.tag(tag, deactivate)
@@ -107,17 +143,17 @@ class LilyPondFormatBundle:
         self.grob_overrides = _tag.double_tag(self.grob_overrides, tag, deactivate)
         self.grob_reverts = _tag.double_tag(self.grob_reverts, tag, deactivate)
 
-    def update(self, bundle):
+    def update(self, contributions):
         """
-        Updates format bundle with contributions in ``bundle``.
+        Updates format contributions with contributions in ``contributions``.
         """
-        assert isinstance(bundle, type(self))
-        self.absolute_before.update(bundle.absolute_before)
-        self.absolute_after.update(bundle.absolute_after)
-        self.before.update(bundle.before)
-        self.after.update(bundle.after)
-        self.opening.update(bundle.opening)
-        self.closing.update(bundle.closing)
-        self.context_settings.extend(bundle.context_settings)
-        self.grob_overrides.extend(bundle.grob_overrides)
-        self.grob_reverts.extend(bundle.grob_reverts)
+        assert isinstance(contributions, type(self)), repr(contributions)
+        self.absolute_before.update(contributions.absolute_before)
+        self.absolute_after.update(contributions.absolute_after)
+        self.before.update(contributions.before)
+        self.after.update(contributions.after)
+        self.opening.update(contributions.opening)
+        self.closing.update(contributions.closing)
+        self.context_settings.extend(contributions.context_settings)
+        self.grob_overrides.extend(contributions.grob_overrides)
+        self.grob_reverts.extend(contributions.grob_reverts)

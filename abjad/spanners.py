@@ -10,33 +10,32 @@ from . import dynamic as _dynamic
 from . import enums as _enums
 from . import indicators as _indicators
 from . import iterate as iterate_
-from . import overrides as _overrides
 from . import parentage as _parentage
 from . import score as _score
 from . import select as _select
 from . import sequence as _sequence
 from . import tag as _tag
+from . import tweaks as _tweaks
 from . import typings as _typings
 
 
 def _apply_tweaks(argument, tweaks, i=None, total=None):
     if not tweaks:
         return
-    manager = _overrides.tweak(argument)
+    if i is not None:
+        assert isinstance(i, int), repr(i)
+    if total is not None:
+        assert isinstance(total, int), repr(total)
     for item in tweaks:
         if isinstance(item, tuple):
             assert len(item) == 2
-            manager_, i_ = item
-            if 0 <= i_ and i_ != i:
+            item, index = item
+            if 0 <= index and index != i:
                 continue
-            if i_ < 0 and i_ != -(total - i):
+            if index < 0 and index != -(total - i):
                 continue
-        else:
-            manager_ = item
-        assert isinstance(manager_, _overrides.TweakInterface)
-        tuples = manager_._get_attribute_tuples()
-        for attribute, value in tuples:
-            setattr(manager, attribute, value)
+        assert isinstance(item, _tweaks.Tweak), repr(item)
+        _tweaks.tweak(argument, item)
 
 
 def beam(
@@ -255,7 +254,7 @@ def beam(
 
 def glissando(
     argument,
-    *tweaks: _overrides.IndexedTweakInterface,
+    *tweaks,
     allow_repeats: bool = False,
     allow_ties: bool = False,
     hide_middle_note_heads: bool = False,
@@ -800,7 +799,7 @@ def glissando(
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
         ...     staff[:],
-        ...     abjad.tweak("#'trill").style,
+        ...     abjad.Tweak(r"- \tweak style #'trill"),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -908,8 +907,8 @@ def glissando(
         >>> staff = abjad.Staff("d'4 d' d' d'")
         >>> abjad.glissando(
         ...     staff[:],
-        ...     (abjad.tweak("#red").color, 0),
-        ...     (abjad.tweak("#red").color, -1),
+        ...     (abjad.Tweak(r"- \tweak color #red"), 0),
+        ...     (abjad.Tweak(r"- \tweak color #red"), -1),
         ...     allow_repeats=True,
         ...     zero_padding=True,
         ... )
@@ -1215,7 +1214,7 @@ def hairpin(
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_dynamic = abjad.Dynamic("niente", command=r"\!")
         >>> start_hairpin = abjad.StartHairpin("o<|")
-        >>> abjad.tweak(start_hairpin).color = "#blue"
+        >>> abjad.tweak(start_hairpin, r"- \tweak color #blue")
         >>> stop_dynamic = abjad.Dynamic('"f"')
         >>> abjad.hairpin([start_dynamic, start_hairpin, stop_dynamic], staff[:])
         >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
