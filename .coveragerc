@@ -7,3 +7,4 @@ source =
 [report]
 exclude_lines = 
     raise NotImplementedError
+
