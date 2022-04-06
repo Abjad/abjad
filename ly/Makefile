@@ -15,3 +15,4 @@ all:
 	# echo "" >> ../abjad/lyscrape.py
 	lilypond -dno-print-pages music_glyphs.ly >> ../abjad/lyscrape.py
 	black --target-version=py38 ../abjad/lyscrape.py
+
