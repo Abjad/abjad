@@ -84,6 +84,7 @@ from .indicators import (
     LaissezVibrer,
     LilyPondLiteral,
     MarginMarkup,
+    Markup,
     MetronomeMark,
     Mode,
     Ottava,
@@ -174,7 +175,6 @@ from .lyproxy import (
     LilyPondGrobInterface,
 )
 from .makers import LeafMaker, NoteMaker
-from .markups import Markup
 from .math import Infinity, NegativeInfinity
 from .meter import Meter, MetricAccentKernel
 from .metricmodulation import MetricModulation

@@ -32,37 +32,6 @@ def test_LilyPondParser__spanners__Hairpin_01():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
-# def test_LilyPondParser__spanners__Hairpin_02():
-#
-#    maker = abjad.NoteMaker()
-#    target = abjad.Container(maker([0] * 4, [(1, 4)]))
-#    abjad.hairpin('< !', target[0:2])
-#    abjad.hairpin('< !', target[1:3])
-#    abjad.hairpin('< !', target[2:])
-#
-#    assert abjad.lilypond(target) == abjad.string.normalize(
-#        r"""
-#        {
-#            c'4
-#            \<
-#            c'4
-#            \!
-#            \<
-#            c'4
-#            \!
-#            \<
-#            c'4
-#            \!
-#        }
-#        """
-#        )
-#
-#    string = r"""\relative c' { c \< c \< c \< c \! }"""
-#    parser = abjad.parser.LilyPondParser()
-#    result = parser(string)
-#    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
 def test_LilyPondParser__spanners__Hairpin_02():
     """
     Dynamics can terminate hairpins.

@@ -2,6 +2,7 @@ import dataclasses
 
 from . import _indent
 from . import configuration as _configuration
+from . import indicators as _indicators
 from . import iterate as iterate_
 from . import score as _score
 from . import tag as _tag
@@ -129,7 +130,7 @@ class Block:
     items: list = dataclasses.field(default_factory=list)
 
     def __post_init__(self):
-        self.items = list(self.items or [])
+        assert isinstance(self.items, list), repr(self.items)
 
     @staticmethod
     def _format_item(item, depth=1):
@@ -141,25 +142,29 @@ class Block:
             else:
                 string = indent + item
             result.append(string)
-        else:
-            pieces = item._get_format_pieces()
+        elif hasattr(item, "_get_lilypond_format"):
+            string = item._get_lilypond_format()
+            pieces = string.split("\n")
             for piece in pieces:
                 if piece.isspace():
                     piece = ""
                 else:
                     piece = indent + piece
                 result.append(piece)
+        else:
+            assert isinstance(item, _indicators.Markup), repr(item)
+            string = indent + item.string
+            result.append(string)
         return result
 
-    def _get_format_pieces(self, tag=None):
+    def _get_lilypond_format(self, tag=None):
         result = []
         if not len(self.items):
             if self.name:
                 string = rf"\{self.name} {{}}"
             else:
                 string = "{}"
-            result.append(string)
-            return result
+            return string
         strings = []
         if self.name:
             strings.append(rf"\{self.name}")
@@ -174,10 +179,8 @@ class Block:
         if tag is not None:
             strings = _tag.double_tag(strings, tag)
         result.extend(strings)
-        return result
-
-    def _get_lilypond_format(self, tag=None):
-        return "\n".join(self._get_format_pieces(tag=tag))
+        string = "\n".join(result)
+        return string
 
 
 @dataclasses.dataclass(slots=True)
@@ -464,7 +467,7 @@ class LilyPondFile:
                         return component
         raise KeyError(f"no block or component with name {argument!r}.")
 
-    def _get_format_pieces(self, tag=None):
+    def _get_lilypond_format(self):
         result = []
         strings = []
         if self.lilypond_version_token is True:
@@ -476,24 +479,22 @@ class LilyPondFile:
         if self.lilypond_language_token is True:
             string = r'\language "english"'
             strings.append(string)
+        # TODO: change to abjad.LilyPondFile._get_lilypond_format()
         tag = _tag.Tag("abjad.LilyPondFile._get_format_pieces()")
         tag = self.get_tag(tag)
         strings = _tag.double_tag(strings, tag)
         result.extend(strings)
         for item in self.items:
-            if "_get_lilypond_format" in dir(item):
+            if isinstance(item, str):
+                result.append(item)
+            else:
                 try:
                     string = item._get_lilypond_format(tag=tag)
                 except TypeError:
                     string = item._get_lilypond_format()
                 assert isinstance(string, str), repr(string)
                 result.append(string)
-            else:
-                result.append(str(item))
-        return result
-
-    def _get_lilypond_format(self):
-        strings = self._get_format_pieces()
+        strings = result
         string = "\n".join(strings)
         lines = []
         for line in string.split("\n"):

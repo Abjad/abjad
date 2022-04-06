@@ -59,8 +59,8 @@ def test_mutate__set_leaf_duration_02():
         \new Voice
         {
             c'8
-            ~
             [
+            ~
             c'8
             ]
             c'8

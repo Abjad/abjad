@@ -21,11 +21,12 @@ from . import typings as _typings
 
 def _apply_tweaks(argument, tweaks, i=None, total=None):
     if not tweaks:
-        return
+        return argument
     if i is not None:
         assert isinstance(i, int), repr(i)
     if total is not None:
         assert isinstance(total, int), repr(total)
+    tweak_objects = []
     for item in tweaks:
         if isinstance(item, tuple):
             assert len(item) == 2
@@ -35,7 +36,9 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
             if index < 0 and index != -(total - i):
                 continue
         assert isinstance(item, _tweaks.Tweak), repr(item)
-        _tweaks.tweak(argument, item)
+        tweak_objects.append(item)
+    bundle = _tweaks.bundle(argument, *tweak_objects)
+    return bundle
 
 
 def beam(
@@ -406,8 +409,8 @@ def glissando(
                 a8
                 \glissando
                 b8
-                ~
                 \glissando
+                ~
                 b8
                 \glissando
                 c'8
@@ -415,13 +418,13 @@ def glissando(
                 c'8
                 \glissando
                 d'8
-                ~
                 \glissando
+                ~
                 d'8
             }
 
-        Ties are excluded when repeated pitches are not allowed because all
-        ties comprise repeated pitches.
+        Ties are excluded when repeated pitches are not allowed because all ties
+        comprise repeated pitches.
 
     ..  container:: example
 
@@ -500,7 +503,7 @@ def glissando(
 
     ..  container:: example
 
-        With ``hide_middle_note_heads`` set to true:
+        With ``hide_middle_note_heads=True``:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -532,8 +535,7 @@ def glissando(
 
     ..  container:: example
 
-        With ``hide_middle_note_heads`` and ``hide_middle_stems`` both set to
-        true:
+        With ``hide_middle_note_heads=True`` and ``hide_middle_stems=True``:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -569,11 +571,11 @@ def glissando(
             }
 
         ..  note:: Respects ``hide_middle_stems`` only when
-            ``hide_middle_note_heads`` is set to true.
+            ``hide_middle_note_heads=True``.
 
     ..  container:: example
 
-        With right-broken set to true:
+        With ``right_broken=True``:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -605,8 +607,7 @@ def glissando(
 
     ..  container:: example
 
-        With right-broken set to true and ``hide_middle_note_heads`` set to
-        true:
+        With ``right_broken=True`` and ``hide_middle_note_heads=True``:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -664,8 +665,8 @@ def glissando(
 
     ..  container:: example
 
-        With ``right_broken``, ``hide_middle_note_heads`` and
-        ``right_broken_show_next`` all set to true:
+        With ``right_broken=True``, ``hide_middle_note_heads=True`` and
+        ``right_broken_show_next=True``:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -740,8 +741,7 @@ def glissando(
 
     ..  container:: example
 
-        With left-broken set to true (and ``hide_middle_note_heads`` set to
-        true):
+        With ``left_broken=True`` (and ``hide_middle_note_heads=True``):
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -789,12 +789,11 @@ def glissando(
             f'8
         }
 
-        ..  note:: Respects left-broken only with ``hide_middle_note_heads``
-            set to true.
+        ..  note:: Respects left-broken only with ``hide_middle_note_heads=True``.
 
     ..  container:: example
 
-        With tweaks applied to every glissando command:
+        Tweaks apply to every glissando:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.glissando(
@@ -823,9 +822,10 @@ def glissando(
 
     ..  container:: example
 
-        With zero padding on fixed pitch:
+        With ``zero_padding=True`` on fixed pitch:
 
         >>> staff = abjad.Staff("d'8 d'4. d'4. d'8")
+
         >>> abjad.glissando(
         ...     staff[:],
         ...     allow_repeats=True,
@@ -864,7 +864,7 @@ def glissando(
 
     ..  container:: example
 
-        With zero padding on moving pitch:
+        With ``zero_padding=True`` on changing pitches:
 
         >>> staff = abjad.Staff("c'8. d'8. e'8. f'8.")
         >>> abjad.glissando(
@@ -926,8 +926,8 @@ def glissando(
             \new Staff
             {
                 d'4
-                - \abjad-zero-padding-glissando
                 - \tweak color #red
+                - \abjad-zero-padding-glissando
                 \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
@@ -937,8 +937,8 @@ def glissando(
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4
-                - \abjad-zero-padding-glissando
                 - \tweak color #red
+                - \abjad-zero-padding-glissando
                 \glissando
                 d'4
             }
@@ -1140,7 +1140,7 @@ def glissando(
                     )
         if should_attach_glissando:
             glissando = _indicators.Glissando(zero_padding=zero_padding)
-            _apply_tweaks(glissando, tweaks, i=i, total=total)
+            glissando = _apply_tweaks(glissando, tweaks, i=i, total=total)
             tag_ = tag.append(_tag.Tag("abjad.glissando(7)"))
             if deactivate_glissando:
                 tag_ = tag_.append(_tag.Tag("SHOW_TO_JOIN_BROKEN_SPANNERS"))
@@ -1214,9 +1214,9 @@ def hairpin(
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_dynamic = abjad.Dynamic("niente", command=r"\!")
         >>> start_hairpin = abjad.StartHairpin("o<|")
-        >>> abjad.tweak(start_hairpin, r"- \tweak color #blue")
+        >>> bundle = abjad.bundle(start_hairpin, r"- \tweak color #blue")
         >>> stop_dynamic = abjad.Dynamic('"f"')
-        >>> abjad.hairpin([start_dynamic, start_hairpin, stop_dynamic], staff[:])
+        >>> abjad.hairpin([start_dynamic, bundle, stop_dynamic], staff[:])
         >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
         >>> abjad.show(staff) # doctest: +SKIP
 

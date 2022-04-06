@@ -8,7 +8,6 @@ from . import duration as _duration
 from . import enums as _enums
 from . import indicators as _indicators
 from . import iterate as iterate_
-from . import markups as _markups
 from . import overrides as _overrides
 from . import pcollections as _pcollections
 from . import pitch as _pitch
@@ -332,7 +331,7 @@ def remove_markup(argument) -> None:
 
     """
     for leaf in iterate_.leaves(argument):
-        _bind.detach(_markups.Markup, leaf)
+        _bind.detach(_indicators.Markup, leaf)
 
 
 def vertical_moments(
@@ -753,7 +752,7 @@ def vertical_moments(
         else:
             raise TypeError(f"unknown prototype {prototype!r}.")
         assert string is not None
-        label = _markups.Markup(rf"\markup \tiny {string}")
+        label = _indicators.Markup(rf"\markup \tiny {string}")
         if direction is _enums.UP:
             leaf = vertical_moment.start_leaves[0]
         else:
@@ -832,7 +831,7 @@ def with_durations(
             duration = duration.with_denominator(denominator)
         pair = duration.pair
         numerator, denominator = pair
-        label = _markups.Markup(rf"\markup \fraction {numerator} {denominator}")
+        label = _indicators.Markup(rf"\markup \fraction {numerator} {denominator}")
         _attach(label, logical_tie.head, direction=direction)
 
 
@@ -1038,7 +1037,7 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
         generator = iterate_.components(argument, prototype=prototype)
     items = list(generator)
     for index, item in enumerate(items):
-        label = _markups.Markup(rf"\markup {index}")
+        label = _indicators.Markup(rf"\markup {index}")
         leaves = _select.leaves(item)
         first_leaf = leaves[0]
         _attach(label, first_leaf, direction=direction)
@@ -1256,13 +1255,13 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
             interval = _pitch.NamedInterval.from_pitch_carriers(note, next_leaf)
             interval = prototype(interval)
             if hasattr(interval, "name"):
-                label = _markups.Markup(rf"\markup {interval.name}")
+                label = _indicators.Markup(rf"\markup {interval.name}")
             elif isinstance(interval, _pitch.NumberedInversionEquivalentIntervalClass):
-                label = _markups.Markup(rf"\markup {interval.number}")
+                label = _indicators.Markup(rf"\markup {interval.number}")
             elif isinstance(
                 interval, _pitch.NumberedIntervalClass | _pitch.NumberedInterval
             ):
-                label = _markups.Markup(rf"\markup {interval.signed_string}")
+                label = _indicators.Markup(rf"\markup {interval.signed_string}")
             if label is not None:
                 _attach(label, note, direction=direction)
 
@@ -1537,7 +1536,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
                 string = leaf.written_pitch.get_name(locale=locale)
                 if "#" in string:
                     string = '"' + string + '"'
-                label = _markups.Markup(rf"\markup {{ {string} }}")
+                label = _indicators.Markup(rf"\markup {{ {string} }}")
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
@@ -1547,27 +1546,27 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
                     name = '"' + name + '"'
                     names.append(name)
                 string = " ".join(names)
-                label = _markups.Markup(rf"\markup \column {{ {string} }}")
+                label = _indicators.Markup(rf"\markup \column {{ {string} }}")
         elif prototype is _pitch.NumberedPitch:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.number
-                label = _markups.Markup(rf"\markup {pitch}")
+                label = _indicators.Markup(rf"\markup {pitch}")
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
                 pitches = [str(_.number) for _ in pitches]
                 string = " ".join(pitches)
-                label = _markups.Markup(rf"\markup \column {{ {string} }}")
+                label = _indicators.Markup(rf"\markup \column {{ {string} }}")
         elif prototype is _pitch.NumberedPitchClass:
             if isinstance(leaf, _score.Note):
                 pitch = leaf.written_pitch.pitch_class.number
-                label = _markups.Markup(rf"\markup {pitch}")
+                label = _indicators.Markup(rf"\markup {pitch}")
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
                 pitches = [str(_.pitch_class.number) for _ in pitches]
                 string = " ".join(pitches)
-                label = _markups.Markup(rf"\markup \column {{ {string} }}")
+                label = _indicators.Markup(rf"\markup \column {{ {string} }}")
         if label is not None:
             _attach(label, leaf, direction=direction)
 
@@ -1730,7 +1729,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None):
             transposition_only=prototype.transposition_only,
         )
         string = str(set_class)
-        label = _markups.Markup(rf'\markup \tiny \line {{ "{string}" }}')
+        label = _indicators.Markup(rf'\markup \tiny \line {{ "{string}" }}')
         leaf = selection[0]
         _attach(label, leaf, direction=direction)
 
@@ -1888,9 +1887,9 @@ def with_start_offsets(
         if brackets:
             string = f"[{string}]"
         if markup_command is not None:
-            label = _markups.Markup(rf"{markup_command} {{ {string} }}")
+            label = _indicators.Markup(rf"{markup_command} {{ {string} }}")
         else:
-            label = _markups.Markup(rf"\markup {{ {string} }}")
+            label = _indicators.Markup(rf"\markup {{ {string} }}")
         _attach(label, logical_tie.head, direction=direction)
     total_duration = _duration.Duration(timespan.stop_offset)
     if global_offset is not None:

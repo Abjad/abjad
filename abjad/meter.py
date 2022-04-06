@@ -10,7 +10,6 @@ from . import _inspect, _iterate
 from . import duration as _duration
 from . import indicators as _indicators
 from . import lilypondfile as _lilypondfile
-from . import markups as _markups
 from . import math as _math
 from . import mutate as _mutate
 from . import parentage as _parentage
@@ -2672,7 +2671,7 @@ def illustrate_meter_list(
     strings.append('"')
     strings.append("}")
     string = "\n".join(strings)
-    markup = _markups.Markup(string)
+    markup = _indicators.Markup(string)
     lilypond_file = _lilypondfile.LilyPondFile()
     lilypond_file.items.append(markup)
     return lilypond_file

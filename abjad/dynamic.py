@@ -5,9 +5,12 @@ from . import contributions as _contributions
 from . import enums as _enums
 from . import math as _math
 from . import string as _string
-from . import tweaks as tweaksmodule
+
+_EMPTY_CHORD = "<>"
 
 
+# TODO: move to indicators.py
+# TODO: frozen=True
 @dataclasses.dataclass(eq=False, slots=True, unsafe_hash=True)
 class Dynamic:
     r"""
@@ -44,17 +47,17 @@ class Dynamic:
         >>> dynamic_2 = abjad.Dynamic(dynamic_1)
 
         >>> dynamic_1
-        Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+        Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
 
         >>> dynamic_2
-        Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+        Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
 
     ..  container:: example
 
         Initializes niente:
 
         >>> abjad.Dynamic("niente")
-        Dynamic(name='niente', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=())
+        Dynamic(name='niente', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity())
 
     ..  container:: example
 
@@ -104,15 +107,15 @@ class Dynamic:
         ...     print(f"{leaf!r}:")
         ...     print(f"    {dynamic!r}")
         Note("e'8"):
-            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
         Note("g'8"):
-            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
         Note("f'8"):
-            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
         Note("a'8"):
-            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
         Note("c'2"):
-            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1, tweaks=())
+            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=1)
 
     ..  container:: example exception
 
@@ -152,45 +155,8 @@ class Dynamic:
 
         >>> note = abjad.Note("c'4")
         >>> dynamic = abjad.Dynamic("f")
-        >>> abjad.tweak(dynamic, r"- \tweak color #blue")
-        >>> abjad.attach(dynamic, note)
-        >>> abjad.show(note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(note)
-            >>> print(string)
-            c'4
-            - \tweak color #blue
-            \f
-
-        Tweaks survive copy:
-
-        >>> import copy
-        >>> dynamic_1 = abjad.Dynamic("f")
-        >>> abjad.tweak(dynamic_1, r"- \tweak color #blue")
-        >>> dynamic_2 = copy.copy(dynamic_1)
-        >>> note = abjad.Note("c'4")
-        >>> abjad.attach(dynamic_2, note)
-        >>> abjad.show(note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(note)
-            >>> print(string)
-            c'4
-            - \tweak color #blue
-            \f
-
-        Tweaks survive replace:
-
-        >>> import copy
-        >>> import dataclasses
-        >>> dynamic_1 = abjad.Dynamic("f")
-        >>> abjad.tweak(dynamic_1, r"- \tweak color #blue")
-        >>> dynamic_2 = dataclasses.replace(dynamic_1)
-        >>> note = abjad.Note("c'4")
-        >>> abjad.attach(dynamic_2, note)
+        >>> bundle = abjad.bundle(dynamic, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, note)
         >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
@@ -385,13 +351,13 @@ class Dynamic:
         ...     print(f"{leaf!r}:")
         ...     print(f"    {dynamic!r}")
         Note("c'4"):
-            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
         Note("d'4"):
-            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2, tweaks=())
+            Dynamic(name='f', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=False, ordinal=2)
         Note("e'4"):
-            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1, tweaks=())
+            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1)
         Note("f'4"):
-            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1, tweaks=())
+            Dynamic(name='mf', command=None, format_hairpin_stop=False, hide=True, leak=False, name_is_textual=False, ordinal=1)
 
     ..  container:: example
 
@@ -486,8 +452,8 @@ class Dynamic:
             {
                 c'8
                 \mf
-                \>
                 [
+                \>
                 d'8
                 e'8
                 ]
@@ -513,7 +479,8 @@ class Dynamic:
             {
                 c'4
                 \f
-                <> \p
+                <>
+                \p
                 d'4
                 e'4
                 f'4
@@ -526,8 +493,8 @@ class Dynamic:
 
         >>> staff = abjad.Staff("r4 d' e' f'")
         >>> dynamic = abjad.Dynamic("f", leak=True)
-        >>> abjad.tweak(dynamic, r"- \tweak color #blue")
-        >>> abjad.attach(dynamic, staff[0])
+        >>> bundle = abjad.bundle(dynamic, r"- \tweak color #blue")
+        >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff)
@@ -550,7 +517,7 @@ class Dynamic:
         >>> import copy
         >>> dynamic = abjad.Dynamic("pp", leak=True)
         >>> copy.copy(dynamic)
-        Dynamic(name='pp', command=None, format_hairpin_stop=False, hide=False, leak=True, name_is_textual=False, ordinal=-3, tweaks=())
+        Dynamic(name='pp', command=None, format_hairpin_stop=False, hide=False, leak=True, name_is_textual=False, ordinal=-3)
 
     ..  container:: example
 
@@ -655,11 +622,11 @@ class Dynamic:
         >>> import dataclasses
         >>> dynamic = abjad.Dynamic("niente")
         >>> dataclasses.replace(dynamic)
-        Dynamic(name='niente', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity(), tweaks=())
+        Dynamic(name='niente', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=NegativeInfinity())
 
         >>> dynamic = abjad.Dynamic("appena udibile", name_is_textual=True)
         >>> dataclasses.replace(dynamic)
-        Dynamic(name='appena udibile', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=None, tweaks=())
+        Dynamic(name='appena udibile', command=None, format_hairpin_stop=False, hide=False, leak=False, name_is_textual=True, ordinal=None)
 
     ..  container:: example
 
@@ -710,15 +677,16 @@ class Dynamic:
     command: str | None = None
     format_hairpin_stop: bool = False
     hide: bool = False
-    leak: bool = False
+    leak: bool = dataclasses.field(default=False, compare=False)
     name_is_textual: bool = False
     ordinal: int | _math.Infinity | _math.NegativeInfinity | None = None
-    tweaks: tuple[tweaksmodule.Tweak, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
 
+    context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
+    parameter: typing.ClassVar[str] = "DYNAMIC"
+    persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         if self.name is not None:
@@ -738,8 +706,6 @@ class Dynamic:
         if self.command is not None:
             assert isinstance(self.command, str), repr(self.command)
             assert self.command.startswith("\\"), repr(self.command)
-        # if self.name == "niente" or self.effort:
-        #     self.direction = _enums.DOWN
         assert isinstance(self.format_hairpin_stop, bool), repr(
             self.format_hairpin_stop
         )
@@ -772,12 +738,6 @@ class Dynamic:
                 assert isinstance(ordinal_, prototype), repr(ordinal_)
                 ordinal = ordinal_
             self.ordinal = ordinal
-        self.tweaks = tuple(self.tweaks)
-
-    context: typing.ClassVar[str] = "Voice"
-    parameter: typing.ClassVar[str] = "DYNAMIC"
-    persistent: typing.ClassVar[bool] = True
-    spanner_stop: typing.ClassVar[bool] = True
 
     _composite_dynamic_name_to_steady_state_dynamic_name: typing.ClassVar = {
         "fp": "p",
@@ -967,22 +927,14 @@ class Dynamic:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        command = self._get_lilypond_format(wrapper=wrapper)
         if self.leak:
-            contributions.after.leaks.append("<>")
-        tweaks = []
-        for tweak in sorted(self.tweaks):
-            strings = tweak._list_contributions()
-            tweaks.extend(strings)
-        if self.leak:
-            contributions.after.leaks.extend(tweaks)
+            contributions.after.leak.append(_EMPTY_CHORD)
+            if not self.hide:
+                contributions.after.leaks.append(command)
         else:
-            contributions.after.articulations.extend(tweaks)
-        if not self.hide:
-            string = self._get_lilypond_format(wrapper=wrapper)
-            if self.leak:
-                contributions.after.leaks.append(string)
-            else:
-                contributions.after.articulations.append(string)
+            if not self.hide:
+                contributions.after.articulations.append(command)
         return contributions
 
     # TODO: make markup function and shorten docstring

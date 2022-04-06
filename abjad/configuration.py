@@ -434,6 +434,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.LaissezVibrer'>
         <class 'abjad.indicators.LilyPondLiteral'>
         <class 'abjad.indicators.MarginMarkup'>
+        <class 'abjad.indicators.Markup'>
         <class 'abjad.indicators.MetronomeMark'>
         <class 'abjad.indicators.Mode'>
         <class 'abjad.indicators.Ottava'>
@@ -524,7 +525,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.lyproxy.LilyPondGrobInterface'>
         <class 'abjad.makers.LeafMaker'>
         <class 'abjad.makers.NoteMaker'>
-        <class 'abjad.markups.Markup'>
         <class 'abjad.math.Infinity'>
         <class 'abjad.math.NegativeInfinity'>
         <class 'abjad.meter.Meter'>

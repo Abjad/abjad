@@ -6516,16 +6516,16 @@ def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
                 \sustainOff
                 \abjad-color-music #'blue
                 d'8
-                ~
                 \sustainOn
+                ~
                 \abjad-color-music #'blue
                 d'8
                 \abjad-color-music #'blue
                 \abjad-color-music #'red
                 e'8
                 \sustainOff
-                ~
                 \sustainOn
+                ~
                 \abjad-color-music #'red
                 e'8
                 \abjad-color-music #'red

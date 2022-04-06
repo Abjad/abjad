@@ -70,8 +70,8 @@ def test_LilyPondParser__spanners__Beam_03():
             [
             c'8
             c'8
-            ]
             [
+            ]
             c'8
             ]
         }

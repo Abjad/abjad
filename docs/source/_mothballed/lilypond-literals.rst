@@ -45,7 +45,9 @@ Use ``attach()`` to attach a LilyPond literal to any Abjad leaf:
     >>> staff.extend("{ f''16 ( e''16 d''16 c''16 ) }")
     >>> staff.extend("{ cs''16 ( d''16 f''16 d''16 ) }")
     >>> staff.extend("{ a'8 b'8 c''2 }")
-    >>> key_signature = abjad.KeySignature('f', 'major')
+    >>> key_signature = abjad.KeySignature(
+    ...     abjad.NamedPitchClass("f"), abjad.Mode("major")
+    ... )
     >>> leaf = abjad.get.leaf(staff, 0)
     >>> abjad.attach(key_signature, leaf)
 

@@ -15,7 +15,9 @@ Use string input to "write" a scale directly:
     >>> voice = abjad.Voice("a'4 b' cs'' d'' e'' fs'' gs'' a''", name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
     >>> note = abjad.select.note(staff, 0)
-    >>> key_signature = abjad.KeySignature("a", "major") 
+    >>> key_signature = abjad.KeySignature(
+    ...     abjad.NamedPitchClass("a"), abjad.Mode("major")
+    ... ) 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)
 
@@ -86,7 +88,9 @@ Change pitches to notes like this:
     >>> voice = abjad.Voice(notes, name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
     >>> note = abjad.select.note(staff, 0)
-    >>> key_signature = abjad.KeySignature("a", "major") 
+    >>> key_signature = abjad.KeySignature(
+    ...     abjad.NamedPitchClass("a"), abjad.Mode("major")
+    ... ) 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)
 
@@ -101,7 +105,9 @@ Reverse scale direction like this:
     >>> voice = abjad.Voice(notes, name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
     >>> note = abjad.select.note(staff, 0)
-    >>> key_signature = abjad.KeySignature("a", "major") 
+    >>> key_signature = abjad.KeySignature(
+    ...     abjad.NamedPitchClass("a"), abjad.Mode("major")
+    ... ) 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)
 
@@ -119,7 +125,9 @@ Join ascending and descending segments like this:
     >>> voice = abjad.Voice(notes, name="Example_Voice")
     >>> staff = abjad.Staff([voice], name="Example_Staff")
     >>> note = abjad.select.note(staff, 0)
-    >>> key_signature = abjad.KeySignature("a", "major") 
+    >>> key_signature = abjad.KeySignature(
+    ...     abjad.NamedPitchClass("a"), abjad.Mode("major")
+    ... ) 
     >>> abjad.attach(key_signature, note)
     >>> abjad.show(staff)
 
@@ -151,7 +159,9 @@ This function enumerates scales in any mode:
     ...     intervals = intervals.split()
     ...     intervals = [abjad.NamedInterval(_) for _ in intervals]
     ...     for tonic in tonics:
-    ...         key_signature = abjad.KeySignature(tonic, mode_name)
+    ...         pitch_class = abjad.NamedPitchClass(tonic)
+    ...         mode = abjad.Mode(mode_name)
+    ...         key_signature = abjad.KeySignature(pitch_class, mode)
     ...         pitches = []
     ...         ascending = make_scale(tonic, intervals)
     ...         pitches.extend(ascending)
@@ -168,8 +178,8 @@ This function enumerates scales in any mode:
     ...         abjad.attach(bar_line, notes[-1])
     ...         string = r"\markup \transparent A"
     ...         strut = abjad.Markup(string)
-    ...         abjad.tweak(strut, r"- \tweak staff-padding 8")
-    ...         abjad.attach(strut, notes[-1], direction=abjad.UP)
+    ...         bundle = abjad.bundle(strut, r"- \tweak staff-padding 8")
+    ...         abjad.attach(bundle, notes[-1], direction=abjad.UP)
     ...         voice.extend(notes)
     ...     time_signature = abjad.TimeSignature((15, 4))
     ...     abjad.attach(time_signature, voice[0])

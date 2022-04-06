@@ -5,8 +5,9 @@ import copy
 import dataclasses
 import typing
 
+from . import contributions as _contributions
 from . import enumerate as _enumerate
-from . import markups as _markups
+from . import indicators as _indicators
 from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import string as _string
@@ -73,8 +74,6 @@ class Instrument:
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = (
         "_allowable_clefs",
         "_context",
@@ -90,15 +89,11 @@ class Instrument:
         "_starting_clefs",
     )
 
-    _site = "opening"
-
-    _latent = True
-
-    _persistent = True
-
-    _redraw = True
-
-    ### INITIALIZER ###
+    _site: typing.ClassVar[str] = "opening"
+    _latent: typing.ClassVar[bool] = True
+    _persistent: typing.ClassVar[bool] = True
+    _redraw: typing.ClassVar[bool] = True
+    check_effective_context: typing.ClassVar[bool] = True
 
     def __init__(
         self,
@@ -118,13 +113,13 @@ class Instrument:
             name = str(name)
         self._name = name
         if markup is not None:
-            markup = _markups.Markup(str(markup))
+            markup = _indicators.Markup(str(markup))
         self._name_markup = markup
         if short_name is not None:
             short_name = str(short_name)
         self._short_name = short_name
         if short_markup is not None:
-            short_markup = _markups.Markup(str(short_markup))
+            short_markup = _indicators.Markup(str(short_markup))
         self._short_name_markup = short_markup
         allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
@@ -145,8 +140,6 @@ class Instrument:
         self._primary = primary
         self._performer_names = ["instrumentalist"]
         self._starting_clefs = copy.copy(allowable_clefs)
-
-    ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
         """
@@ -178,8 +171,6 @@ class Instrument:
         """
         return f"{type(self).__name__}()"
 
-    ### PRIVATE PROPERTIES ###
-
     @property
     def _lilypond_type(self):
         if isinstance(self.context, type):
@@ -189,14 +180,19 @@ class Instrument:
         else:
             return type(self.context).__name__
 
-    ### PRIVATE METHODS ###
-
     def _attachment_test_all(self, leaf):
         assert hasattr(leaf, "written_duration")
         if leaf._has_indicator(Instrument):
             string = f"Already has instrument: {leaf}."
             return string
         return True
+
+    def _get_contributions(self, *, component=None, wrapper=None):
+        contributions = _contributions.ContributionsBySite()
+        strings = self._get_lilypond_format()
+        assert isinstance(strings, list), repr(strings)
+        contributions.opening.commands.extend(strings)
+        return contributions
 
     def _get_lilypond_format(self, context=None):
         return []
@@ -206,7 +202,7 @@ class Instrument:
             if self.name:
                 string = self.name
                 string = _string.capitalize_start(string)
-                markup = _markups.Markup(rf"\markup {string}")
+                markup = _indicators.Markup(rf"\markup {string}")
                 self._name_markup = markup
             else:
                 self._name_markup = None
@@ -214,11 +210,9 @@ class Instrument:
             if self.short_name:
                 string = self.short_name
                 string = _string.capitalize_start(string)
-                markup = _markups.Markup(rf"\markup {string}")
+                markup = _indicators.Markup(rf"\markup {string}")
             else:
                 self._short_name_markup = None
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def allowable_clefs(self):
@@ -266,9 +260,9 @@ class Instrument:
             self._initialize_default_name_markups()
         if self._name_markup is None:
             return
-        if not isinstance(self._name_markup, _markups.Markup):
+        if not isinstance(self._name_markup, _indicators.Markup):
             assert isinstance(self._name_markup, str), repr(self._name_markup)
-            markup = _markups.Markup(rf"\markup {self._name_markup}")
+            markup = _indicators.Markup(rf"\markup {self._name_markup}")
             self._name_markup = markup
         if self._name_markup.string:
             return self._name_markup
@@ -339,11 +333,11 @@ class Instrument:
             self._initialize_default_name_markups()
         if self._short_name_markup is None:
             return
-        if not isinstance(self._short_name_markup, _markups.Markup):
+        if not isinstance(self._short_name_markup, _indicators.Markup):
             assert isinstance(self._short_name_markup, str), repr(
                 self._short_name_markup
             )
-            markup = _markups.Markup(rf"\markup {self._short_name_markup}")
+            markup = _indicators.Markup(rf"\markup {self._short_name_markup}")
             self._short_name_markup = markup
         if self._short_name_markup.string:
             return self._short_name_markup

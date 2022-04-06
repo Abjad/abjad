@@ -1,6 +1,8 @@
+import dataclasses
 import typing
 
 from . import _inspect
+from . import bind as _bind
 from . import get as _get
 from . import indicators as _indicators
 from . import instruments as _instruments
@@ -233,11 +235,22 @@ def transpose_from_sounding_pitch(argument) -> None:
         elif hasattr(leaf, "written_pitches"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             leaf.written_pitches = pitches
-        start_trill_span = _get.indicator(leaf, _indicators.StartTrillSpan)
-        if start_trill_span is not None:
-            pitch = start_trill_span.pitch
-            pitch = interval.transpose(pitch)
-            start_trill_span.pitch = pitch
+        wrapper = _get.indicator(leaf, _indicators.StartTrillSpan, unwrap=False)
+        if wrapper is not None:
+            start_trill_span = wrapper.unbundle_indicator()
+            new_pitch = interval.transpose(start_trill_span.pitch)
+            new_start_trill_span = dataclasses.replace(
+                start_trill_span, pitch=new_pitch
+            )
+            wrapper_tag = wrapper.tag
+            _bind.detach(wrapper, leaf)
+            if wrapper.bundled():
+                new_bundle = dataclasses.replace(
+                    wrapper.get_item(), indicator=new_start_trill_span
+                )
+                _bind.attach(new_bundle, leaf, tag=wrapper_tag)
+            else:
+                _bind.attach(new_start_trill_span, leaf, tag=wrapper_tag)
 
 
 def transpose_from_written_pitch(argument) -> None:
@@ -292,8 +305,18 @@ def transpose_from_written_pitch(argument) -> None:
         elif hasattr(leaf, "written_pitches"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             leaf.written_pitches = pitches
-        start_trill_span = _get.indicator(leaf, _indicators.StartTrillSpan)
-        if start_trill_span is not None:
-            pitch = start_trill_span.pitch
-            pitch = interval.transpose(pitch)
-            start_trill_span.pitch = pitch
+        wrapper = _get.indicator(leaf, _indicators.StartTrillSpan, unwrap=False)
+        if wrapper is not None:
+            start_trill_span = wrapper.unbundle_indicator()
+            new_pitch = interval.transpose(start_trill_span.pitch)
+            new_start_trill_span = dataclasses.replace(
+                start_trill_span, pitch=new_pitch
+            )
+            _bind.detach(wrapper, leaf)
+            if wrapper.bundled():
+                new_bundle = dataclasses.replace(
+                    wrapper.get_item, indicator=new_start_trill_span
+                )
+                _bind.attach(new_bundle, leaf)
+            else:
+                _bind.attach(new_start_trill_span, leaf)
