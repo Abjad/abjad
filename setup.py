@@ -60,8 +60,8 @@ classifiers = [
 ]
 
 extras_require = {
-    "nauert": ["abjad-ext-nauert>=3.7"],
-    "rmakers": ["abjad-ext-rmakers>=3.7"],
+    "nauert": ["abjad-ext-nauert>=3.8"],
+    "rmakers": ["abjad-ext-rmakers>=3.8"],
 }
 
 keywords = [
