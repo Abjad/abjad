@@ -1069,7 +1069,7 @@ def flatten(argument, depth: int = 1) -> list:
 
 def get(
     argument,
-    indices: typing.Sequence[int] | _pattern.Pattern,
+    indices: typing.Sequence[int] | tuple[list[int], int] | _pattern.Pattern,
     period: int = None,
 ) -> list:
     r"""
@@ -1221,6 +1221,12 @@ def get(
     if isinstance(indices, _pattern.Pattern):
         assert period is None
         pattern = indices
+    elif isinstance(indices, tuple):
+        assert len(indices) == 2, repr(indices)
+        indices, period = indices
+        assert isinstance(indices, list), repr(indices)
+        assert isinstance(period, int), repr(period)
+        pattern = _pattern.Pattern(indices, period=period)
     else:
         pattern = _pattern.Pattern(indices, period=period)
     items = _sequence.retain_pattern(argument, pattern)
