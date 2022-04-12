@@ -1071,6 +1071,8 @@ def get(
     argument,
     indices: typing.Sequence[int] | tuple[list[int], int] | _pattern.Pattern,
     period: int = None,
+    *,
+    invert: bool = False
 ) -> list:
     r"""
     Gets items in ``argument`` at ``indices`` according to ``period``.
@@ -1229,6 +1231,8 @@ def get(
         pattern = _pattern.Pattern(indices, period=period)
     else:
         pattern = _pattern.Pattern(indices, period=period)
+    if invert is True:
+        pattern = ~pattern
     items = _sequence.retain_pattern(argument, pattern)
     return list(items)
 
