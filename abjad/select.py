@@ -1072,7 +1072,7 @@ def get(
     indices: typing.Sequence[int] | tuple[list[int], int] | _pattern.Pattern,
     period: int = None,
     *,
-    invert: bool = False
+    invert: bool = False,
 ) -> list:
     r"""
     Gets items in ``argument`` at ``indices`` according to ``period``.
