@@ -95,7 +95,7 @@ class OnBeatGraceContainer(_score.Container):
         self,
         components=None,
         identifier: str = None,
-        leaf_duration: _typings.DurationTyping = None,
+        leaf_duration: _typings.Duration = None,
         name: str = None,
         tag: _tag.Tag = None,
     ) -> None:

@@ -16,7 +16,6 @@ from . import select as _select
 from . import sequence as _sequence
 from . import tag as _tag
 from . import tweaks as _tweaks
-from . import typings as _typings
 
 
 def _apply_tweaks(argument, tweaks, i=None, total=None):
@@ -51,7 +50,7 @@ def beam(
     selector: typing.Callable = lambda _: _select.leaves(_),
     span_beam_count: int = None,
     start_beam: _indicators.StartBeam = None,
-    stemlet_length: _typings.Number = None,
+    stemlet_length: int | float | None = None,
     stop_beam: _indicators.StopBeam = None,
     tag: _tag.Tag = None,
 ) -> None:
@@ -1683,7 +1682,7 @@ def tie(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    repeat: bool | _typings.IntegerPair | typing.Callable = False,
+    repeat: bool | tuple[int, int] | typing.Callable = False,
     selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag = None,
 ) -> None:

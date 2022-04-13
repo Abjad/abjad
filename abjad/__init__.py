@@ -16,6 +16,7 @@ from . import (
     mutate,
     persist,
     string,
+    typings,
     wf,
 )
 from ._version import __version__, __version_info__
@@ -262,21 +263,6 @@ from .spanners import (
 from .tag import Line, Tag, activate, deactivate
 from .timespan import OffsetCounter, Timespan, TimespanList
 from .tweaks import Bundle, Tweak, bundle, tweak
-from .typings import (
-    DurationSequenceTyping,
-    DurationTyping,
-    IntegerPair,
-    IntegerSequence,
-    Number,
-    NumberPair,
-    OffsetSequenceTyping,
-    OffsetTyping,
-    PatternTyping,
-    Prototype,
-    RatioSequenceTyping,
-    RatioTyping,
-    Strings,
-)
 from .verticalmoment import (
     VerticalMoment,
     iterate_leaf_pairs,
@@ -341,8 +327,6 @@ __all__ = [
     "DOWN",
     "DrumNoteHead",
     "Duration",
-    "DurationSequenceTyping",
-    "DurationTyping",
     "Dynamic",
     "EnglishHorn",
     "EXACT",
@@ -363,7 +347,6 @@ __all__ = [
     "Infinity",
     "Instrument",
     "IntegerPair",
-    "IntegerSequence",
     "Interface",
     "Interval",
     "IntervalClass",
@@ -429,8 +412,6 @@ __all__ = [
     "Octave",
     "Offset",
     "OffsetCounter",
-    "OffsetSequenceTyping",
-    "OffsetTyping",
     "OnBeatGraceContainer",
     "Ottava",
     "OverrideInterface",
@@ -439,7 +420,6 @@ __all__ = [
     "Parser",
     "Pattern",
     "PatternTuple",
-    "PatternTyping",
     "Percussion",
     "PersistentIndicatorError",
     "Piano",
@@ -448,10 +428,7 @@ __all__ = [
     "PitchClass",
     "PitchRange",
     "ProgressIndicator",
-    "Prototype",
     "Ratio",
-    "RatioSequenceTyping",
-    "RatioTyping",
     "RedirectedStreams",
     "RehearsalMark",
     "Repeat",
@@ -489,7 +466,6 @@ __all__ = [
     "StopTextSpan",
     "StopTrillSpan",
     "StringNumber",
-    "Strings",
     "Tag",
     "TemporaryDirectory",
     "TemporaryDirectoryChange",
@@ -574,6 +550,7 @@ __all__ = [
     "tie",
     "trill_spanner",
     "tweak",
+    "typings",
     "wf",
     "yield_all_modules",
 ]
