@@ -6,7 +6,6 @@ from . import illustrators as _illustrators
 from . import indicators as _indicators
 from . import ratio as _ratio
 from . import score as _score
-from . import typings as _typings
 
 
 class MetricModulation:
@@ -351,7 +350,7 @@ class MetricModulation:
         hide: bool = False,
         left_markup: _indicators.Markup = None,
         right_markup: _indicators.Markup = None,
-        scale: tuple[_typings.Number, _typings.Number] = (1, 1),
+        scale: tuple[int | float, int | float] = (1, 1),
     ) -> None:
         self._hide = bool(hide)
         left_rhythm = self._initialize_rhythm(left_rhythm)
@@ -671,7 +670,7 @@ class MetricModulation:
         return self._right_rhythm
 
     @property
-    def scale(self) -> tuple[_typings.Number, _typings.Number]:
+    def scale(self) -> tuple[int | float, int | float]:
         r"""
         Gets scale of output markup.
 

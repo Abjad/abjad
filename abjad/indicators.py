@@ -406,7 +406,7 @@ class BendAfter:
 
     """
 
-    bend_amount: _typings.Number = -4
+    bend_amount: int | float = -4
 
     _site: typing.ClassVar[str] = "after"
     _time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
@@ -2503,7 +2503,7 @@ class MetronomeMark:
 
     """
 
-    reference_duration: _typings.DurationTyping | None = None
+    reference_duration: _typings.Duration | None = None
     units_per_minute: int | quicktions.Fraction = None
     textual_indication: str | None = None
     custom_markup: Markup | None = None

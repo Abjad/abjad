@@ -2531,7 +2531,7 @@ class Chord(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.DurationTyping = None,
+        multiplier: _typings.Duration = None,
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -3238,7 +3238,7 @@ class MultimeasureRest(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.DurationTyping = None,
+        multiplier: _typings.Duration = None,
         tag: _tag.Tag = None,
     ) -> None:
         if len(arguments) == 0:
@@ -4067,7 +4067,7 @@ class Note(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.DurationTyping = None,
+        multiplier: _typings.Duration = None,
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -4348,7 +4348,7 @@ class Rest(Leaf):
         written_duration=None,
         *,
         language: str = "english",
-        multiplier: _typings.DurationTyping = None,
+        multiplier: _typings.Duration = None,
         tag: _tag.Tag = None,
     ) -> None:
         original_input = written_duration
@@ -4542,7 +4542,7 @@ class Skip(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.DurationTyping = None,
+        multiplier: _typings.Duration = None,
         tag: _tag.Tag = None,
     ) -> None:
         input_leaf = None
@@ -5974,7 +5974,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: _typings.DurationTyping, components, *, tag: _tag.Tag = None
+        duration: _typings.Duration, components, *, tag: _tag.Tag = None
     ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``components``.
