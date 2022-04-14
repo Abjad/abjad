@@ -1,8 +1,8 @@
-from . import _indent, _iterate
+from . import _indentlib, _iterlib
 from . import bind as _bind
 from . import duration as _duration
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import mutate as _mutate
 from . import parentage as _parentage
 from . import score as _score
@@ -133,8 +133,8 @@ class OnBeatGraceContainer(_score.Container):
     def _attach_lilypond_one_voice(self):
         anchor_leaf = self._get_on_beat_anchor_leaf()
         anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
-        final_anchor_leaf = _iterate._get_leaf(anchor_voice, -1)
-        next_leaf = _iterate._get_leaf(final_anchor_leaf, 1)
+        final_anchor_leaf = _iterlib._get_leaf(anchor_voice, -1)
+        next_leaf = _iterlib._get_leaf(final_anchor_leaf, 1)
         literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
         if next_leaf._has_indicator(literal):
             return
@@ -163,10 +163,10 @@ class OnBeatGraceContainer(_score.Container):
             contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
-            contributions = [_indent.INDENT + _ for _ in overrides]
+            contributions = [_indentlib.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
-            contributions = [_indent.INDENT + _ for _ in settings]
+            contributions = [_indentlib.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
             contributions = [f"}} {brackets_open[0]}"]
@@ -222,7 +222,7 @@ class OnBeatGraceContainer(_score.Container):
         return False
 
     def _match_anchor_leaf(self):
-        first_grace = _iterate._get_leaf(self, 0)
+        first_grace = _iterlib._get_leaf(self, 0)
         if not isinstance(first_grace, _score.Note | _score.Chord):
             message = "must start with note or chord:\n"
             message += f"    {repr(self)}"
@@ -235,7 +235,7 @@ class OnBeatGraceContainer(_score.Container):
                 chord = _score.Chord(first_grace)
                 _mutate.replace(first_grace, chord)
                 first_grace = chord
-            generator = iterate_.pitches(anchor_leaf)
+            generator = _iterate.pitches(anchor_leaf)
             anchor_pitches = list(generator)
             highest_pitch = list(sorted(anchor_pitches))[-1]
             if highest_pitch not in first_grace.note_heads:
@@ -815,7 +815,7 @@ def on_beat_grace_container(
     on_beat_grace_container = OnBeatGraceContainer(
         contents, leaf_duration=leaf_duration
     )
-    anchor_leaf = _iterate._get_leaf(anchor_voice_selection, 0)
+    anchor_leaf = _iterlib._get_leaf(anchor_voice_selection, 0)
     anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
     if anchor_voice.name is None:
         raise Exception(f"anchor voice must be named:\n   {repr(anchor_voice)}")
@@ -849,7 +849,7 @@ def on_beat_grace_container(
         3: r"\voiceThree",
         4: r"\voiceFour",
     }
-    first_grace = _iterate._get_leaf(on_beat_grace_container, 0)
+    first_grace = _iterlib._get_leaf(on_beat_grace_container, 0)
     one_voice_literal = _indicators.LilyPondLiteral(
         r"\oneVoice", site="absolute_before"
     )
@@ -863,8 +863,8 @@ def on_beat_grace_container(
         _bind.detach(one_voice_literal, anchor_leaf)
         _bind.attach(_indicators.LilyPondLiteral(string), anchor_leaf, tag=_site(4))
     if not do_not_stop_polyphony:
-        last_anchor_leaf = _iterate._get_leaf(anchor_voice_selection, -1)
-        next_leaf = _iterate._get_leaf(last_anchor_leaf, 1)
+        last_anchor_leaf = _iterlib._get_leaf(anchor_voice_selection, -1)
+        next_leaf = _iterlib._get_leaf(last_anchor_leaf, 1)
         if next_leaf is not None:
             literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
             _bind.attach(literal, next_leaf, tag=_site(5))

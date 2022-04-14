@@ -1,7 +1,8 @@
 import collections
+import enum
 import typing
 
-from . import _inspect
+from . import _getlib
 from . import indicators as _indicators
 from . import score as _score
 from . import select as _select
@@ -10,7 +11,7 @@ from . import select as _select
 def _coerce_exclude(exclude):
     if exclude is None:
         exclude = ()
-    elif isinstance(exclude, str):
+    elif isinstance(exclude, str | enum.Enum):
         exclude = (exclude,)
     else:
         exclude = tuple(exclude)
@@ -95,8 +96,8 @@ def _iterate_components(
         if isinstance(argument, prototype):
             if (
                 grace is None
-                or (grace is True and _inspect._get_grace_container(argument))
-                or (grace is False and not _inspect._get_grace_container(argument))
+                or (grace is True and _getlib._get_grace_container(argument))
+                or (grace is False and not _getlib._get_grace_container(argument))
             ):
                 if not _should_exclude(argument, exclude):
                     yield argument
@@ -140,8 +141,8 @@ def _iterate_components(
         if isinstance(argument, prototype):
             if (
                 grace is None
-                or (grace is True and _inspect._get_grace_container(argument))
-                or (grace is False and not _inspect._get_grace_container(argument))
+                or (grace is True and _getlib._get_grace_container(argument))
+                or (grace is False and not _getlib._get_grace_container(argument))
             ):
                 if not _should_exclude(argument, exclude):
                     yield argument
@@ -226,10 +227,10 @@ def _get_leaf(argument, n: int = 0):
         message += f"   {repr(n)}"
         raise Exception(message)
     if isinstance(argument, _score.Leaf):
-        candidate = _inspect._get_sibling_with_graces(argument, n)
+        candidate = _getlib._get_sibling_with_graces(argument, n)
         if isinstance(candidate, _score.Leaf):
             return candidate
-        return _inspect._get_leaf_from_leaf(argument, n)
+        return _getlib._get_leaf_from_leaf(argument, n)
     if 0 <= n:
         reverse = False
     else:

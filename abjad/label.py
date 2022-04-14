@@ -1,13 +1,13 @@
 import dataclasses
 import typing
 
-from . import _inspect, _iterate
+from . import _getlib, _iterlib
 from . import bind as _bind
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import overrides as _overrides
 from . import pcollections as _pcollections
 from . import pitch as _pitch
@@ -151,7 +151,7 @@ def color_leaves(argument, color="#red", *, deactivate=False, tag=None) -> None:
             }
 
     """
-    for leaf in iterate_.leaves(argument):
+    for leaf in _iterate.leaves(argument):
         _color_leaf(leaf, color, deactivate=deactivate, tag=tag)
 
 
@@ -269,7 +269,7 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
 
     """
     color_map = color_map or pc_number_to_color
-    for leaf in iterate_.leaves(argument):
+    for leaf in _iterate.leaves(argument):
         if isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
                 number = note_head.written_pitch.number
@@ -330,7 +330,7 @@ def remove_markup(argument) -> None:
             }
 
     """
-    for leaf in iterate_.leaves(argument):
+    for leaf in _iterate.leaves(argument):
         _bind.detach(_indicators.Markup, leaf)
 
 
@@ -673,7 +673,7 @@ def vertical_moments(
             string = str(index)
         elif prototype is _pitch.NumberedPitch:
             leaves = vertical_moment.leaves
-            generator = iterate_.pitches(leaves)
+            generator = _iterate.pitches(leaves)
             pitches = _pcollections.PitchSegment(generator)
             if not pitches:
                 continue
@@ -681,7 +681,7 @@ def vertical_moments(
             string = rf'\column {{ {" ".join(pitch_numbers)} }}'
         elif prototype is _pitch.NumberedPitchClass:
             leaves = vertical_moment.leaves
-            generator = iterate_.pitches(leaves)
+            generator = _iterate.pitches(leaves)
             pitches = _pcollections.PitchSegment(generator)
             if not pitches:
                 continue
@@ -734,7 +734,7 @@ def vertical_moments(
                 prototype = prototype()
             assert isinstance(prototype, _setclass.SetClass)
             leaves = vertical_moment.leaves
-            generator = iterate_.pitches(leaves)
+            generator = _iterate.pitches(leaves)
             pitch_class_set = _pcollections.PitchClassSet(generator)
             if not pitch_class_set:
                 continue
@@ -747,7 +747,7 @@ def vertical_moments(
             string = rf'\line {{ "{string}" }}'
         elif callable(prototype):
             leaves = vertical_moment.leaves
-            generator = iterate_.pitches(leaves)
+            generator = _iterate.pitches(leaves)
             string = prototype(generator)
         else:
             raise TypeError(f"unknown prototype {prototype!r}.")
@@ -824,8 +824,8 @@ def with_durations(
 
     Returns none.
     """
-    for logical_tie in iterate_.logical_ties(argument):
-        duration = _inspect._get_duration(logical_tie, in_seconds=in_seconds)
+    for logical_tie in _iterate.logical_ties(argument):
+        duration = _getlib._get_duration(logical_tie, in_seconds=in_seconds)
         if denominator is not None:
             duration = _duration.NonreducedFraction(duration)
             duration = duration.with_denominator(denominator)
@@ -1032,9 +1032,9 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
 
     """
     if prototype is None:
-        generator = iterate_.logical_ties(argument)
+        generator = _iterate.logical_ties(argument)
     else:
-        generator = iterate_.components(argument, prototype=prototype)
+        generator = _iterate.components(argument, prototype=prototype)
     items = list(generator)
     for index, item in enumerate(items):
         label = _indicators.Markup(rf"\markup {index}")
@@ -1248,9 +1248,9 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
     """
     prototype = prototype or _pitch.NamedInterval
-    for note in iterate_.leaves(argument, _score.Note):
+    for note in _iterate.leaves(argument, _score.Note):
         label = None
-        next_leaf = _iterate._get_leaf(note, 1)
+        next_leaf = _iterlib._get_leaf(note, 1)
         if isinstance(next_leaf, _score.Note):
             interval = _pitch.NamedInterval.from_pitch_carriers(note, next_leaf)
             interval = prototype(interval)
@@ -1527,7 +1527,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
     Returns none.
     """
     prototype = prototype or _pitch.NamedPitch
-    logical_ties = iterate_.logical_ties(argument)
+    logical_ties = _iterate.logical_ties(argument)
     for logical_tie in logical_ties:
         leaf = logical_tie.head
         label = None
@@ -1719,7 +1719,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None):
         prototype = prototype()
     assert isinstance(prototype, _setclass.SetClass), repr(prototype)
     for selection in argument:
-        generator = iterate_.pitches(selection)
+        generator = _iterate.pitches(selection)
         pitch_class_set = _pcollections.PitchClassSet(generator)
         if not pitch_class_set:
             continue
@@ -1871,7 +1871,7 @@ def with_start_offsets(
     direction = direction or _enums.UP
     if global_offset is not None:
         assert isinstance(global_offset, _duration.Duration)
-    for logical_tie in iterate_.logical_ties(argument):
+    for logical_tie in _iterate.logical_ties(argument):
         if clock_time:
             timespan = logical_tie.head._get_timespan(in_seconds=True)
             start_offset = timespan.start_offset

@@ -2,11 +2,11 @@ import collections
 import itertools
 import typing
 
-from . import _inspect, _iterate, _update
+from . import _getlib, _iterlib, _updatelib
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import parentage as _parentage
 from . import pattern as _pattern
 from . import pcollections as _pcollections
@@ -20,7 +20,7 @@ def _head_filter_subresult(result, head):
     result_ = []
     for item in result:
         if isinstance(item, _score.Component):
-            leaves = _iterate._get_logical_tie_leaves(item)
+            leaves = _iterlib._get_logical_tie_leaves(item)
             if head == (item is leaves[0]):
                 result_.append(item)
             else:
@@ -30,7 +30,7 @@ def _head_filter_subresult(result, head):
                 raise NotImplementedError(item)
             selection = []
             for component in item:
-                leaves = _iterate._get_logical_tie_leaves(component)
+                leaves = _iterlib._get_logical_tie_leaves(component)
                 if head == leaves[0]:
                     selection.append(item)
                 else:
@@ -52,7 +52,7 @@ def _tail_filter_subresult(result, tail):
     result_ = []
     for item in result:
         if isinstance(item, _score.Component):
-            leaves = _iterate._get_logical_tie_leaves(item)
+            leaves = _iterlib._get_logical_tie_leaves(item)
             if tail == (item is leaves[-1]):
                 result_.append(item)
             else:
@@ -62,7 +62,7 @@ def _tail_filter_subresult(result, tail):
                 raise NotImplementedError(item)
             selection = []
             for component in item:
-                leaves = _iterate._get_logical_tie_leaves(component)
+                leaves = _iterlib._get_logical_tie_leaves(component)
                 if tail == leaves[-1]:
                     selection.append(item)
                 else:
@@ -244,7 +244,7 @@ class LogicalTie(collections.abc.Sequence):
 
 
 def chord(
-    argument, n: int, *, exclude: _typings.Strings = None, grace: bool = None
+    argument, n: int, *, exclude: _typings.Exclude = None, grace: bool = None
 ) -> _score.Chord:
     r"""
     Selects chord ``n`` in ``argument``.
@@ -331,7 +331,7 @@ def chord(
 
 
 def chords(
-    argument, *, exclude: _typings.Strings = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude = None, grace: bool = None
 ) -> list[_score.Chord]:
     r"""
     Selects chords in ``argument``.
@@ -444,7 +444,7 @@ def components(
     argument,
     prototype=None,
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     reverse: bool = None,
 ) -> list[_score.Component]:
@@ -668,7 +668,7 @@ def components(
             }
 
     """
-    generator = _iterate._public_iterate_components(
+    generator = _iterlib._public_iterate_components(
         argument, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
     )
     return list(generator)
@@ -1663,8 +1663,8 @@ def group_by_contiguity(argument) -> list[list]:
     selection = []
     selection.extend(argument[:1])
     for item in argument[1:]:
-        this_timespan = _inspect._get_timespan(selection[-1])
-        that_timespan = _inspect._get_timespan(item)
+        this_timespan = _getlib._get_timespan(selection[-1])
+        that_timespan = _getlib._get_timespan(item)
         # remove displacement
         this_stop_offset = this_timespan.stop_offset
         this_stop_offset = _duration.Offset(this_stop_offset.pair)
@@ -1748,7 +1748,7 @@ def group_by_duration(argument) -> list[list]:
     """
 
     def predicate(argument):
-        return _inspect._get_duration(argument)
+        return _getlib._get_duration(argument)
 
     return group_by(argument, predicate=predicate)
 
@@ -2179,7 +2179,7 @@ def group_by_measure(argument) -> list[list]:
 
     selections = []
     first_component = _get_first_component(argument)
-    _update._update_measure_numbers(first_component)
+    _updatelib._update_measure_numbers(first_component)
     pairs = itertools.groupby(argument, _get_measure_number)
     for value, group in pairs:
         selections.append(list(group))
@@ -2251,7 +2251,7 @@ def group_by_pitch(argument) -> list[list]:
     """
 
     def predicate(argument):
-        generator = iterate_.pitches(argument)
+        generator = _iterate.pitches(argument)
         return _pcollections.PitchSet(generator)
 
     return group_by(argument, predicate)
@@ -2261,7 +2261,7 @@ def leaf(
     argument,
     n: int,
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     head: bool = None,
     pitched: bool = None,
@@ -2368,7 +2368,7 @@ def leaf(
 def leaves(
     argument,
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     head: bool = None,
     pitched: bool = None,
@@ -2384,7 +2384,7 @@ def leaves(
     argument,
     prototype: typing.Type[_score.Chord],
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     head: bool = None,
     pitched: bool = None,
@@ -2400,7 +2400,7 @@ def leaves(
     argument,
     prototype: typing.Type[_score.MultimeasureRest],
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     head: bool = None,
     pitched: bool = None,
@@ -2416,7 +2416,7 @@ def leaves(
     argument,
     prototype: typing.Type[_score.Note],
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     head: bool = None,
     pitched: bool = None,
@@ -2431,7 +2431,7 @@ def leaves(
     argument,
     prototype=None,
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     head: bool = None,
     pitched: bool = None,
@@ -3306,7 +3306,7 @@ def leaves(
     if not isinstance(prototype, tuple):
         prototype = (prototype,)
     result = []
-    generator = _iterate._public_iterate_components(
+    generator = _iterlib._public_iterate_components(
         argument, prototype, exclude=exclude, grace=grace
     )
     components = list(generator)
@@ -3325,7 +3325,7 @@ def logical_tie(
     argument,
     n: int = 0,
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     nontrivial: bool = None,
     pitched: bool = None,
@@ -3354,7 +3354,7 @@ def logical_tie(
 def logical_ties(
     argument,
     *,
-    exclude: _typings.Strings = None,
+    exclude: _typings.Exclude = None,
     grace: bool = None,
     nontrivial: bool = None,
     pitched: bool = None,
@@ -3822,7 +3822,7 @@ def logical_ties(
             }
 
     '''
-    generator = _iterate._iterate_logical_ties(
+    generator = _iterlib._iterate_logical_ties(
         argument,
         exclude=exclude,
         grace=grace,
@@ -3887,7 +3887,7 @@ def nontrivial(argument) -> list:
 
 
 def note(
-    argument, n: int, *, exclude: _typings.Strings = None, grace: bool = None
+    argument, n: int, *, exclude: _typings.Exclude = None, grace: bool = None
 ) -> _score.Note:
     r"""
     Selects note ``n`` in ``argument``.
@@ -3974,7 +3974,7 @@ def note(
 
 
 def notes(
-    argument, *, exclude: _typings.Strings = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude = None, grace: bool = None
 ) -> list[_score.Note]:
     r"""
     Selects notes in ``argument``.
@@ -5365,7 +5365,7 @@ def partition_by_durations(
             break
         component_duration = component._get_duration()
         if in_seconds:
-            component_duration = _inspect._get_duration_in_seconds(component)
+            component_duration = _getlib._get_duration_in_seconds(component)
         candidate_duration = cumulative_duration + component_duration
         if candidate_duration < target_duration:
             part.append(component)
@@ -5387,10 +5387,10 @@ def partition_by_durations(
                 result.append(part)
                 part = [component]
                 if in_seconds:
-                    sum_ = sum([_inspect._get_duration_in_seconds(_) for _ in part])
+                    sum_ = sum([_getlib._get_duration_in_seconds(_) for _ in part])
                     cumulative_duration = _duration.Duration(sum_)
                 else:
-                    sum_ = sum([_inspect._get_duration(_) for _ in part])
+                    sum_ = sum([_getlib._get_duration(_) for _ in part])
                     cumulative_duration = _duration.Duration(sum_)
                 current_duration_index += 1
                 try:
@@ -5543,7 +5543,7 @@ def partition_by_ratio(argument, ratio) -> list[list]:
 
 
 def rest(
-    argument, n: int, *, exclude: _typings.Strings = None, grace: bool = None
+    argument, n: int, *, exclude: _typings.Exclude = None, grace: bool = None
 ) -> _score.Rest | _score.MultimeasureRest:
     r"""
     Selects rest ``n`` in ``argument``.
@@ -5630,7 +5630,7 @@ def rest(
 
 
 def rests(
-    argument, *, exclude: _typings.Strings = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude = None, grace: bool = None
 ) -> list[_score.Rest | _score.MultimeasureRest]:
     r"""
     Selects rests in ``argument``.
@@ -5727,7 +5727,7 @@ def rests(
     return items
 
 
-def run(argument, n: int, *, exclude: _typings.Strings = None) -> list[_score.Leaf]:
+def run(argument, n: int, *, exclude: _typings.Exclude = None) -> list[_score.Leaf]:
     r"""
     Selects run ``n`` in ``argument``.
 
@@ -5817,7 +5817,7 @@ def run(argument, n: int, *, exclude: _typings.Strings = None) -> list[_score.Le
 
 
 def runs(
-    argument, *, exclude: _typings.Strings = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude = None, grace: bool = None
 ) -> list[list]:
     r"""
     Selects runs in ``argument``.
@@ -6017,7 +6017,7 @@ def runs(
     return groups
 
 
-def top(argument, *, exclude: _typings.Strings = None) -> list[_score.Component]:
+def top(argument, *, exclude: _typings.Exclude = None) -> list[_score.Component]:
     r"""
     Selects top components in ``argument``.
 
@@ -6081,7 +6081,7 @@ def top(argument, *, exclude: _typings.Strings = None) -> list[_score.Component]
 
     """
     result = []
-    for component in _iterate._public_iterate_components(argument, exclude=exclude):
+    for component in _iterlib._public_iterate_components(argument, exclude=exclude):
         for component_ in _parentage.Parentage(component):
             if (
                 _is_immediate_child_of_outermost_voice(component_)
@@ -6092,7 +6092,7 @@ def top(argument, *, exclude: _typings.Strings = None) -> list[_score.Component]
 
 
 def tuplet(
-    argument, n: int, *, exclude: _typings.Strings = None, level: int = None
+    argument, n: int, *, exclude: _typings.Exclude = None, level: int = None
 ) -> _score.Tuplet:
     r"""
     Selects tuplet ``n`` in ``argument``.
@@ -6184,7 +6184,7 @@ def tuplet(
 
 
 def tuplets(
-    argument, *, exclude: _typings.Strings = None, level: int = None
+    argument, *, exclude: _typings.Exclude = None, level: int = None
 ) -> list[_score.Tuplet]:
     r"""
     Selects tuplets in ``argument``.
@@ -6359,7 +6359,7 @@ def tuplets(
         result = []
         for tuplet in tuplets:
             count = 0
-            for component in _iterate._iterate_descendants(tuplet):
+            for component in _iterlib._iterate_descendants(tuplet):
                 if isinstance(component, _score.Tuplet):
                     count += 1
             if -count == level:
@@ -6642,13 +6642,13 @@ def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
     items = leaves(argument)
     previous_leaf = items[-1]
     while True:
-        next_leaf = _iterate._get_leaf(previous_leaf, n=1)
+        next_leaf = _iterlib._get_leaf(previous_leaf, n=1)
         if next_leaf is None:
             break
         if (
             grace is None
-            or (grace is True and _inspect._get_grace_container(next_leaf))
-            or (grace is False and not _inspect._get_grace_container(next_leaf))
+            or (grace is True and _getlib._get_grace_container(next_leaf))
+            or (grace is False and not _getlib._get_grace_container(next_leaf))
         ):
             items.append(next_leaf)
             break
@@ -6852,7 +6852,7 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
 
     """
     items = leaves(argument)
-    previous_leaf = _iterate._get_leaf(items[0], n=-1)
+    previous_leaf = _iterlib._get_leaf(items[0], n=-1)
     if previous_leaf is not None:
         items.insert(0, previous_leaf)
     return items

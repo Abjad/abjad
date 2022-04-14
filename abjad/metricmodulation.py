@@ -1,6 +1,6 @@
 import typing
 
-from . import _inspect
+from . import _getlib
 from . import contributions as _contributions
 from . import illustrators as _illustrators
 from . import indicators as _indicators
@@ -631,8 +631,8 @@ class MetricModulation:
             Ratio(numbers=(2, 3))
 
         """
-        left_duration = _inspect._get_duration(self.left_rhythm)
-        right_duration = _inspect._get_duration(self.right_rhythm)
+        left_duration = _getlib._get_duration(self.left_rhythm)
+        right_duration = _getlib._get_duration(self.right_rhythm)
         duration = left_duration / right_duration
         ratio = _ratio.Ratio(duration.pair)
         return ratio

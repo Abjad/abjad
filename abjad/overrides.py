@@ -2,7 +2,7 @@ import copy
 import dataclasses
 import typing
 
-from . import _indent
+from . import _indentlib
 from . import contributions as _contributions
 from . import enums as _enums
 from . import lyenv as _lyenv
@@ -678,7 +678,7 @@ class SettingInterface(Interface):
             result = rf"{string!s} = {value_parts[0]!s}"
             pieces = [result]
             for part in value_parts[1:]:
-                pieces.append(_indent.INDENT + part)
+                pieces.append(_indentlib.INDENT + part)
             string = "\n".join(pieces)
             strings.append(string)
         return strings

@@ -3,13 +3,13 @@ Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
 """
 import typing
 
-from . import _iterate
+from . import _iterlib
 from . import bind as _bind
 from . import duration as _duration
 from . import dynamic as _dynamic
 from . import enums as _enums
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import parentage as _parentage
 from . import score as _score
 from . import select as _select
@@ -80,7 +80,7 @@ def beam(
     """
     assert callable(selector)
     argument = selector(argument)
-    original_leaves = list(iterate_.leaves(argument))
+    original_leaves = list(_iterate.leaves(argument))
     silent_prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
 
     def _is_beamable(argument, beam_rests=False):
@@ -954,11 +954,11 @@ def glissando(
         raise Exception(message)
 
     def _is_last_in_tie_chain(leaf):
-        logical_tie = _iterate._get_logical_tie_leaves(leaf)
+        logical_tie = _iterlib._get_logical_tie_leaves(leaf)
         return leaf is logical_tie[-1]
 
     def _next_leaf_changes_current_pitch(leaf):
-        next_leaf = _iterate._get_leaf(leaf, 1)
+        next_leaf = _iterlib._get_leaf(leaf, 1)
         if (
             isinstance(leaf, _score.Note)
             and isinstance(next_leaf, _score.Note)
@@ -981,7 +981,7 @@ def glissando(
                 note_head.is_parenthesized = True
 
     def _previous_leaf_changes_current_pitch(leaf):
-        previous_leaf = _iterate._get_leaf(leaf, -1)
+        previous_leaf = _iterlib._get_leaf(leaf, -1)
         if (
             isinstance(leaf, _score.Note)
             and isinstance(previous_leaf, _score.Note)

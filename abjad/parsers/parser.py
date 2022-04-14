@@ -15,7 +15,7 @@ from ply.yacc import (  # type: ignore
     format_stack_entry,
 )
 
-from .. import _indent
+from .. import _indentlib
 from .. import bind as _bind
 from .. import duration as _duration
 from .. import dynamic as _dynamic
@@ -115,7 +115,7 @@ class MarkupCommand:
                     result.append(item)
             return [f"{indent}{item}" for item in result]
 
-        indent = _indent.INDENT
+        indent = _indentlib.INDENT
         parts = [rf"\{self.name}"]
         parts.extend(recurse(self.arguments))
         string = "\n".join(parts)

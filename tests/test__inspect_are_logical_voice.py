@@ -14,7 +14,7 @@ def test__inspect_are_logical_voice_01():
         abjad.Note("e'8"),
         abjad.Note("f'8"),
     ]
-    assert abjad._inspect._are_logical_voice(notes)
+    assert abjad._getlib._are_logical_voice(notes)
 
 
 def test__inspect_are_logical_voice_02():
@@ -34,7 +34,7 @@ def test__inspect_are_logical_voice_02():
     """
 
     components = abjad.select.components(container)
-    assert abjad._inspect._are_logical_voice(components)
+    assert abjad._getlib._are_logical_voice(components)
 
 
 def test__inspect_are_logical_voice_03():
@@ -54,7 +54,7 @@ def test__inspect_are_logical_voice_03():
     """
 
     components = abjad.select.components(tuplet)
-    assert abjad._inspect._are_logical_voice(components)
+    assert abjad._getlib._are_logical_voice(components)
 
 
 def test__inspect_are_logical_voice_04():
@@ -74,7 +74,7 @@ def test__inspect_are_logical_voice_04():
     """
 
     components = abjad.select.components(voice)
-    assert abjad._inspect._are_logical_voice(components)
+    assert abjad._getlib._are_logical_voice(components)
 
 
 def test__inspect_are_logical_voice_05():
@@ -94,7 +94,7 @@ def test__inspect_are_logical_voice_05():
     """
 
     components = abjad.select.components(staff)
-    assert abjad._inspect._are_logical_voice(components)
+    assert abjad._getlib._are_logical_voice(components)
 
 
 def test__inspect_are_logical_voice_06():
@@ -140,7 +140,7 @@ def test__inspect_are_logical_voice_06():
     )
 
     components = abjad.select.components(voice)
-    assert abjad._inspect._are_logical_voice(components)
+    assert abjad._getlib._are_logical_voice(components)
 
 
 def test__inspect_are_logical_voice_07():
@@ -186,7 +186,7 @@ def test__inspect_are_logical_voice_07():
     )
 
     components = abjad.select.components(voice)
-    assert abjad._inspect._are_logical_voice(components)
+    assert abjad._getlib._are_logical_voice(components)
 
 
 def test__inspect_are_logical_voice_08():
@@ -234,10 +234,10 @@ def test__inspect_are_logical_voice_08():
     )
 
     leaves = abjad.select.leaves(staff)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
-    assert not abjad._inspect._are_logical_voice(staff[:])
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
+    assert not abjad._getlib._are_logical_voice(staff[:])
 
 
 def test__inspect_are_logical_voice_09():
@@ -285,7 +285,7 @@ def test__inspect_are_logical_voice_09():
     )
 
     leaves = abjad.select.leaves(staff)
-    assert abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_10():
@@ -325,7 +325,7 @@ def test__inspect_are_logical_voice_10():
     )
 
     leaves = abjad.select.leaves(staff)
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_11():
@@ -375,7 +375,7 @@ def test__inspect_are_logical_voice_11():
     )
 
     leaves = abjad.select.leaves(container)
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_12():
@@ -443,7 +443,7 @@ def test__inspect_are_logical_voice_12():
     )
 
     leaves = abjad.select.leaves(container)
-    assert not abjad._inspect._are_logical_voice(leaves[:4])
+    assert not abjad._getlib._are_logical_voice(leaves[:4])
 
 
 def test__inspect_are_logical_voice_13():
@@ -481,7 +481,7 @@ def test__inspect_are_logical_voice_13():
     )
 
     leaves = abjad.select.leaves(voice)
-    assert abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_14():
@@ -529,8 +529,8 @@ def test__inspect_are_logical_voice_14():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_15():
@@ -576,9 +576,9 @@ def test__inspect_are_logical_voice_15():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_16():
@@ -624,9 +624,9 @@ def test__inspect_are_logical_voice_16():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_17():
@@ -652,9 +652,9 @@ def test__inspect_are_logical_voice_17():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_18():
@@ -700,9 +700,9 @@ def test__inspect_are_logical_voice_18():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_19():
@@ -748,9 +748,9 @@ def test__inspect_are_logical_voice_19():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_20():
@@ -796,9 +796,9 @@ def test__inspect_are_logical_voice_20():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_21():
@@ -840,9 +840,9 @@ def test__inspect_are_logical_voice_21():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_22():
@@ -884,9 +884,9 @@ def test__inspect_are_logical_voice_22():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_23():
@@ -928,9 +928,9 @@ def test__inspect_are_logical_voice_23():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_24():
@@ -975,9 +975,9 @@ def test__inspect_are_logical_voice_24():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_25():
@@ -1019,9 +1019,9 @@ def test__inspect_are_logical_voice_25():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_26():
@@ -1063,9 +1063,9 @@ def test__inspect_are_logical_voice_26():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_27():
@@ -1099,9 +1099,9 @@ def test__inspect_are_logical_voice_27():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_28():
@@ -1133,9 +1133,9 @@ def test__inspect_are_logical_voice_28():
     """
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_29():
@@ -1172,9 +1172,9 @@ def test__inspect_are_logical_voice_29():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_30():
@@ -1209,9 +1209,9 @@ def test__inspect_are_logical_voice_30():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_31():
@@ -1254,8 +1254,8 @@ def test__inspect_are_logical_voice_31():
     )
 
     leaves = abjad.select.leaves(container)
-    assert not abjad._inspect._are_logical_voice(leaves[:8])
-    assert not abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves[:8])
+    assert not abjad._getlib._are_logical_voice(leaves[4:])
 
 
 def test__inspect_are_logical_voice_32():
@@ -1314,8 +1314,8 @@ def test__inspect_are_logical_voice_32():
     )
 
     leaves = abjad.select.leaves(container)
-    assert not abjad._inspect._are_logical_voice(leaves[:8])
-    assert not abjad._inspect._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves[:8])
+    assert not abjad._getlib._are_logical_voice(leaves[4:])
 
 
 def test__inspect_are_logical_voice_33():
@@ -1375,10 +1375,10 @@ def test__inspect_are_logical_voice_33():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in middle])
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in middle])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._getlib._are_logical_voice(leaves[:4])
 
 
 def test__inspect_are_logical_voice_34():
@@ -1439,10 +1439,10 @@ def test__inspect_are_logical_voice_34():
     )
 
     leaves = abjad.select.leaves(staff)
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in middle])
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._inspect._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in middle])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._getlib._are_logical_voice(leaves[:4])
 
 
 def test__inspect_are_logical_voice_35():
@@ -1495,7 +1495,7 @@ def test__inspect_are_logical_voice_35():
     )
 
     components = abjad.select.components(container)
-    assert abjad._inspect._are_logical_voice(components)
+    assert abjad._getlib._are_logical_voice(components)
 
 
 def test__inspect_are_logical_voice_36():
@@ -1548,9 +1548,9 @@ def test__inspect_are_logical_voice_36():
     inner = (2, 3, 4, 5)
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_37():
@@ -1600,9 +1600,9 @@ def test__inspect_are_logical_voice_37():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_38():
@@ -1660,9 +1660,9 @@ def test__inspect_are_logical_voice_38():
     inner = (2, 3, 4, 5)
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_39():
@@ -1734,9 +1734,9 @@ def test__inspect_are_logical_voice_39():
     inner = (6, 7, 8, 9)
 
     leaves = abjad.select.leaves(voice)
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_40():
@@ -1791,12 +1791,12 @@ def test__inspect_are_logical_voice_40():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice(leaves[:4])
-    assert abjad._inspect._are_logical_voice(leaves[4:8])
-    assert abjad._inspect._are_logical_voice(leaves[8:])
-    assert not abjad._inspect._are_logical_voice(leaves[:8])
-    assert not abjad._inspect._are_logical_voice(leaves[4:])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice(leaves[:4])
+    assert abjad._getlib._are_logical_voice(leaves[4:8])
+    assert abjad._getlib._are_logical_voice(leaves[8:])
+    assert not abjad._getlib._are_logical_voice(leaves[:8])
+    assert not abjad._getlib._are_logical_voice(leaves[4:])
+    assert not abjad._getlib._are_logical_voice(leaves)
 
 
 def test__inspect_are_logical_voice_41():
@@ -1857,8 +1857,8 @@ def test__inspect_are_logical_voice_41():
     outer = (0, 1, 10, 11)
 
     leaves = abjad.select.leaves(container)
-    assert abjad._inspect._are_logical_voice([leaves[i] for i in outer])
-    assert abjad._inspect._are_logical_voice(leaves[2:6])
-    assert abjad._inspect._are_logical_voice(leaves[6:10])
-    assert not abjad._inspect._are_logical_voice(leaves[:6])
-    assert not abjad._inspect._are_logical_voice(leaves)
+    assert abjad._getlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._getlib._are_logical_voice(leaves[2:6])
+    assert abjad._getlib._are_logical_voice(leaves[6:10])
+    assert not abjad._getlib._are_logical_voice(leaves[:6])
+    assert not abjad._getlib._are_logical_voice(leaves)

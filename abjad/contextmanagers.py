@@ -8,7 +8,7 @@ import sys
 import tempfile
 import time
 
-from . import _update
+from . import _updatelib
 from . import configuration as _configuration
 from . import string as _string
 
@@ -189,7 +189,7 @@ class ForbidUpdate(ContextManager):
         Returns context manager.
         """
         if self.component is not None:
-            _update._update_now(self.component, offsets=True)
+            _updatelib._update_now(self.component, offsets=True)
             self.component._is_forbidden_to_update = True
         return self
 
@@ -202,7 +202,7 @@ class ForbidUpdate(ContextManager):
         if self.component is not None:
             self.component._is_forbidden_to_update = False
             if self.update_on_exit:
-                _update._update_now(self.component, offsets=True)
+                _updatelib._update_now(self.component, offsets=True)
 
     ### PUBLIC PROPERTIES ###
 
