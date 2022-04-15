@@ -1,6 +1,6 @@
 import typing
 
-from . import _iterate
+from . import _iterlib
 from . import duration as _duration
 from . import pcollections as _pcollections
 from . import pitch as _pitch
@@ -226,7 +226,7 @@ def components(
         Note("c'4")
 
     """
-    return _iterate._public_iterate_components(
+    return _iterlib._public_iterate_components(
         argument,
         prototype,
         exclude=exclude,
@@ -468,7 +468,7 @@ def leaves(
         Rest('r8')
 
     """
-    return _iterate._public_iterate_leaves(
+    return _iterlib._public_iterate_leaves(
         argument,
         prototype=prototype,
         exclude=exclude,
@@ -830,7 +830,7 @@ def logical_ties(
         LogicalTie(items=[Note("c'8"), Note("c'8"), Note("c'8")])
 
     """
-    return _iterate._iterate_logical_ties(
+    return _iterlib._iterate_logical_ties(
         argument,
         exclude=exclude,
         grace=grace,

@@ -1,9 +1,9 @@
 import dataclasses
 
-from . import _indent
+from . import _indentlib
 from . import configuration as _configuration
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import score as _score
 from . import tag as _tag
 
@@ -134,7 +134,7 @@ class Block:
 
     @staticmethod
     def _format_item(item, depth=1):
-        indent = depth * _indent.INDENT
+        indent = depth * _indentlib.INDENT
         result = []
         if isinstance(item, str):
             if item.isspace():
@@ -458,11 +458,11 @@ class LilyPondFile:
                     if getattr(item_, "name", None) == argument:
                         return item_
                     if isinstance(item_, _score.Component):
-                        for component in iterate_.components(item_):
+                        for component in _iterate.components(item_):
                             if getattr(component, "name", None) == argument:
                                 return component
             elif isinstance(item, _score.Component):
-                for component in iterate_.components(item):
+                for component in _iterate.components(item):
                     if getattr(component, "name", None) == argument:
                         return component
         raise KeyError(f"no block or component with name {argument!r}.")

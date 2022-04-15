@@ -6,7 +6,7 @@ import typing
 
 import quicktions
 
-from . import _indent, _update
+from . import _indentlib, _updatelib
 from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
@@ -19,7 +19,7 @@ from . import overrides as _overrides
 from . import pitch as _pitch
 from . import tag as _tag
 from . import timespan as _timespan
-from . import tweaks as tweaksmodule
+from . import tweaks as _tweaks
 from . import typings as _typings
 
 
@@ -184,14 +184,14 @@ class Component:
                     if string.isspace():
                         string = ""
                     else:
-                        string = _indent.INDENT + string
+                        string = _indentlib.INDENT + string
                     strings.append(string)
             else:
                 assert isinstance(list_, str)
                 if list_.isspace():
                     strings.append("")
                 else:
-                    strings.append(_indent.INDENT + list_)
+                    strings.append(_indentlib.INDENT + list_)
             result.extend(strings)
         assert all(isinstance(_, str) for _ in result), repr(result)
         return result
@@ -275,7 +275,7 @@ class Component:
         return result
 
     def _get_lilypond_format(self):
-        _update._update_now(self, indicators=True)
+        _updatelib._update_now(self, indicators=True)
         string = _format.format_component(self)
         return string
 
@@ -316,7 +316,7 @@ class Component:
 
     def _get_timespan(self, in_seconds=False):
         if in_seconds:
-            _update._update_now(self, offsets_in_seconds=True)
+            _updatelib._update_now(self, offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise _exceptions.MissingMetronomeMarkError
             return _timespan.Timespan(
@@ -324,7 +324,7 @@ class Component:
                 stop_offset=self._stop_offset_in_seconds,
             )
         else:
-            _update._update_now(self, offsets=True)
+            _updatelib._update_now(self, offsets=True)
             return self._timespan
 
     def _has_indicator(self, prototype=None, *, attributes=None):
@@ -606,12 +606,12 @@ class Leaf(Component):
         for contributor, contributions in contribution_packet:
             if contributions:
                 if isinstance(contributor, tuple):
-                    contributor = _indent.INDENT + contributor[0] + ":\n"
+                    contributor = _indentlib.INDENT + contributor[0] + ":\n"
                 else:
-                    contributor = _indent.INDENT + contributor + ":\n"
+                    contributor = _indentlib.INDENT + contributor + ":\n"
                 result += contributor
                 for contribution in contributions:
-                    contribution = (_indent.INDENT * 2) + contribution + "\n"
+                    contribution = (_indentlib.INDENT * 2) + contribution + "\n"
                     result += contribution
         return result
 
@@ -1118,7 +1118,7 @@ class Container(Component):
                 if string.isspace():
                     string = ""
                 else:
-                    string = _indent.INDENT + string
+                    string = _indentlib.INDENT + string
                 strings.append(string)
         return strings
 
@@ -2654,7 +2654,7 @@ class Chord(Leaf):
             for note_head in note_heads:
                 current_format = note_head._get_lilypond_format()
                 format_list = current_format.split("\n")
-                format_list = [_indent.INDENT + _ for _ in format_list]
+                format_list = [_indentlib.INDENT + _ for _ in format_list]
                 result.extend(format_list)
             result.insert(0, "<")
             result.append(">")
@@ -3027,16 +3027,16 @@ class Context(Container):
             contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
-            contributions = [_indent.INDENT + _ for _ in remove_commands]
+            contributions = [_indentlib.INDENT + _ for _ in remove_commands]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
-            contributions = [_indent.INDENT + _ for _ in consists_commands]
+            contributions = [_indentlib.INDENT + _ for _ in consists_commands]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
-            contributions = [_indent.INDENT + _ for _ in overrides]
+            contributions = [_indentlib.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
-            contributions = [_indent.INDENT + _ for _ in settings]
+            contributions = [_indentlib.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
             contributions = [f"}} {brackets_open[0]}"]
@@ -3355,10 +3355,10 @@ class NoteHead:
         tweaks=None,
     ):
         self._alternative = None
-        _tweaks = ()
+        tweaks_ = ()
         if isinstance(written_pitch, NoteHead):
             note_head = written_pitch
-            _tweaks = copy.deepcopy(note_head.tweaks)
+            tweaks_ = copy.deepcopy(note_head.tweaks)
             written_pitch = note_head.written_pitch
             is_cautionary = note_head.is_cautionary
             is_forced = note_head.is_forced
@@ -3370,9 +3370,9 @@ class NoteHead:
         self.is_parenthesized = is_parenthesized
         self.tweaks = None
         if tweaks is not None:
-            assert all(isinstance(_, tweaksmodule.Tweak) for _ in tweaks)
-            _tweaks = _tweaks + tuple(tweaks)
-        self.tweaks = _tweaks
+            assert all(isinstance(_, _tweaks.Tweak) for _ in tweaks)
+            tweaks_ = tweaks_ + tuple(tweaks)
+        self.tweaks = tweaks_
 
     def __copy__(self, *arguments) -> "NoteHead":
         """
@@ -3779,7 +3779,7 @@ class DrumNoteHead(NoteHead):
         is_cautionary: bool = False,
         is_forced: bool = False,
         is_parenthesized: bool = False,
-        tweaks: tweaksmodule.Tweak = None,
+        tweaks: _tweaks.Tweak = None,
     ) -> None:
         NoteHead.__init__(
             self,
@@ -5074,7 +5074,7 @@ class Tuplet(Container):
         hide: bool = False,
         language: str = "english",
         tag: _tag.Tag = None,
-        tweaks: tweaksmodule.Tweak = None,
+        tweaks: _tweaks.Tweak = None,
     ) -> None:
         Container.__init__(self, components, language=language, tag=tag)
         self.tweaks = ()

@@ -1,8 +1,11 @@
-from . import _inspect
+import enum
+import typing
+
+from . import _getlib
 from . import duration as _duration
 from . import indicators as _indicators
 from . import instruments as _instruments
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import iterpitches as _iterpitches
 from . import parentage as _parentage
 from . import score as _score
@@ -17,7 +20,7 @@ def _aggregate_context_wrappers(argument):
     This method aggregates all Special_Voice wrappers for checks.
     """
     name_to_wrappers: dict = {}
-    for context in iterate_.components(argument, _score.Context):
+    for context in _iterate.components(argument, _score.Context):
         if context.name not in name_to_wrappers:
             name_to_wrappers[context.name] = []
         wrappers = context._dependent_wrappers[:]
@@ -140,16 +143,16 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
     voice-persistent.
     """
     violators, total = [], 0
-    for leaf in iterate_.leaves(argument):
+    for leaf in _iterate.leaves(argument):
         total += 1
         if leaf.written_duration < _duration.Duration((1, 4)):
             continue
-        start_wrapper = _inspect._get_effective(
+        start_wrapper = _getlib._get_effective(
             leaf, _indicators.StartBeam, unwrap=False
         )
         if start_wrapper is None:
             continue
-        stop_wrapper = _inspect._get_effective(leaf, _indicators.StopBeam, unwrap=False)
+        stop_wrapper = _getlib._get_effective(leaf, _indicators.StopBeam, unwrap=False)
         if stop_wrapper is None:
             violators.append(leaf)
             continue
@@ -167,7 +170,7 @@ def check_duplicate_ids(argument) -> tuple[list, int]:
     Checks duplicate IDs.
     """
     violators = []
-    components = iterate_.components(argument)
+    components = _iterate.components(argument)
     total_ids = [id(_) for _ in components]
     unique_ids = _sequence.remove_repeats(total_ids)
     if len(unique_ids) < len(total_ids):
@@ -204,7 +207,7 @@ def check_empty_containers(argument) -> tuple[list, int]:
 
     """
     violators, containers = [], set()
-    for container in iterate_.components(argument, _score.Container):
+    for container in _iterate.components(argument, _score.Container):
         containers.add(container)
         if len(container) == 0:
             violators.append(container)
@@ -216,7 +219,7 @@ def check_missing_parents(argument) -> tuple[list, int]:
     Checks missing parents.
     """
     violators, total = [], set()
-    components = iterate_.components(argument)
+    components = _iterate.components(argument)
     for i, component in enumerate(components):
         total.add(component)
         if 0 < i:
@@ -304,12 +307,12 @@ def check_notes_on_wrong_clef(argument) -> tuple[list, int]:
 
     """
     violators, total = [], set()
-    for leaf in iterate_.leaves(argument):
+    for leaf in _iterate.leaves(argument):
         total.add(leaf)
-        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             continue
-        effective_clef = _inspect._get_effective(leaf, _indicators.Clef)
+        effective_clef = _getlib._get_effective(leaf, _indicators.Clef)
         if effective_clef is None:
             continue
         allowable_clefs = []
@@ -324,7 +327,9 @@ def check_notes_on_wrong_clef(argument) -> tuple[list, int]:
     return violators, len(total)
 
 
-def check_out_of_range_pitches(argument) -> tuple[list, int]:
+def check_out_of_range_pitches(
+    argument, *, allow_indicators: typing.Sequence[str | enum.Enum] = ()
+) -> tuple[list, int]:
     r"""
     Checks out-of-range notes.
 
@@ -364,7 +369,7 @@ def check_out_of_range_pitches(argument) -> tuple[list, int]:
 
     ..  container:: example
 
-        Allows out-of-range pitches:
+        Using ``allow_indicators``:
 
         >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
         >>> violin = abjad.Violin()
@@ -384,33 +389,35 @@ def check_out_of_range_pitches(argument) -> tuple[list, int]:
                 r8
             }
 
-        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
-        >>> print(string)
-        0 /    4 beamed long notes
-        0 /    5 duplicate ids
-        0 /    1 empty containers
-        0 /    5 missing parents
-        0 /    4 notes on wrong clef
-        0 /    2 out of range pitches
-        0 /    0 overlapping text spanners
-        0 /    0 unmatched stop text spans
-        0 /    0 unterminated hairpins
-        0 /    0 unterminated text spanners
+        Does not check for indicator:
+
+        >>> violators, total = abjad.wf.check_out_of_range_pitches(staff)
+        >>> violators
+        [Chord('<d fs>8')]
+
+        Does check for indicator:
+
+        >>> violators, total = abjad.wf.check_out_of_range_pitches(
+        ...     staff, allow_indicators=["ALLOW_OUT_OF_RANGE"]
+        ... )
+        >>> violators
+        []
 
     """
     violators, total = [], set()
-    for leaf in iterate_.leaves(argument, pitched=True):
+    for leaf in _iterate.leaves(argument, pitched=True):
         total.add(leaf)
-        if leaf._has_indicator("ALLOW_OUT_OF_RANGE"):
-            continue
-        if leaf._has_indicator("HIDDEN"):
+        ok = False
+        for indicator in allow_indicators or ():
+            if leaf._has_indicator(indicator):
+                ok = True
+        if ok is True:
             continue
         if "unpitched" in argument._get_indicators(str):
             continue
-        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             continue
-        # if leaf not in instrument.pitch_range:
         if not _iterpitches.sounding_pitches_are_in_range(leaf, instrument.pitch_range):
             violators.append(leaf)
     return violators, len(total)

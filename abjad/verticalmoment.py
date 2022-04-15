@@ -1,5 +1,5 @@
 from . import enumerate as _enumerate
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import parentage as _parentage
 from . import score as _score
 from . import select as _select
@@ -821,19 +821,19 @@ def iterate_pitch_pairs(components):
     Returns generator.
     """
     for leaf_pair in iterate_leaf_pairs(components):
-        pitches = sorted(iterate_.pitches(leaf_pair[0]))
+        pitches = sorted(_iterate.pitches(leaf_pair[0]))
         for pair in _enumerate.yield_pairs(pitches):
             yield tuple(pair)
         if isinstance(leaf_pair, set):
-            pitches = sorted(iterate_.pitches(leaf_pair))
+            pitches = sorted(_iterate.pitches(leaf_pair))
             for pair in _enumerate.yield_pairs(pitches):
                 yield tuple(pair)
         else:
-            pitches_1 = sorted(iterate_.pitches(leaf_pair[0]))
-            pitches_2 = sorted(iterate_.pitches(leaf_pair[1]))
+            pitches_1 = sorted(_iterate.pitches(leaf_pair[0]))
+            pitches_2 = sorted(_iterate.pitches(leaf_pair[1]))
             sequences = [pitches_1, pitches_2]
             for pair in _enumerate.outer_product(sequences):
                 yield tuple(pair)
-        pitches = sorted(iterate_.pitches(leaf_pair[1]))
+        pitches = sorted(_iterate.pitches(leaf_pair[1]))
         for pair in _enumerate.yield_pairs(pitches):
             yield tuple(pair)

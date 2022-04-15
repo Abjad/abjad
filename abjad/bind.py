@@ -1,8 +1,9 @@
 import copy
+import enum
 import importlib
 import typing
 
-from . import _inspect, _update
+from . import _getlib, _updatelib
 from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
@@ -84,7 +85,7 @@ class Wrapper:
 
     def __init__(
         self,
-        annotation: str = None,
+        annotation: str | enum.Enum | None = None,
         check_duplicate_indicator=False,
         component=None,
         context: str = None,
@@ -96,7 +97,7 @@ class Wrapper:
     ) -> None:
         assert not isinstance(indicator, type(self)), repr(indicator)
         if annotation is not None:
-            assert isinstance(annotation, str), repr(annotation)
+            assert isinstance(annotation, str | enum.Enum), repr(annotation)
         self._annotation = annotation
         if component is not None:
             assert isinstance(component, _score.Component), repr(component)
@@ -378,7 +379,7 @@ class Wrapper:
 
     def _get_effective_context(self):
         if self.component is not None:
-            _update._update_now(self.component, indicators=True)
+            _updatelib._update_now(self.component, indicators=True)
         return self._effective_context
 
     def _unbind_component(self):
@@ -408,7 +409,7 @@ class Wrapper:
             indicator = self.indicator
         prototype = type(indicator)
         command = getattr(indicator, "command", None)
-        wrapper = _inspect._get_effective(
+        wrapper = _getlib._get_effective(
             component,
             prototype,
             attributes={"command": command},
@@ -455,7 +456,7 @@ class Wrapper:
         raise _exceptions.PersistentIndicatorError(message)
 
     @property
-    def annotation(self) -> str | None:
+    def annotation(self) -> str | enum.Enum | None:
         """
         Gets wrapper annotation.
 
@@ -467,8 +468,6 @@ class Wrapper:
             >>> wrapper = abjad.get.wrapper(note)
             >>> wrapper.annotation is None
             True
-
-        ..  container:: example
 
             >>> note = abjad.Note("c'4")
             >>> articulation = abjad.Articulation("accent")
@@ -672,7 +671,7 @@ def annotate(component, annotation, indicator) -> None:
         message = "use the tag=None keyword instead of annotate():\n"
         message += f"   {repr(annotation)}"
         raise Exception(message)
-    assert isinstance(annotation, str), repr(annotation)
+    assert isinstance(annotation, str | enum.Enum), repr(annotation)
     Wrapper(annotation=annotation, component=component, indicator=indicator)
 
 
@@ -928,7 +927,6 @@ def attach(  # noqa: 302
             message = "\n".join(result)
             raise Exception(message)
 
-    # HERE:
     prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
     if isinstance(nonbundle_attachable, prototype):
         if not hasattr(target, "written_duration"):
@@ -940,7 +938,9 @@ def attach(  # noqa: 302
 
     if isinstance(target, _score.Container):
         acceptable = False
-        if isinstance(nonbundle_attachable, dict | str | _tag.Tag | Wrapper):
+        if isinstance(
+            nonbundle_attachable, dict | str | enum.Enum | _tag.Tag | Wrapper
+        ):
             acceptable = True
         if getattr(nonbundle_attachable, "_can_attach_to_containers", False):
             acceptable = True

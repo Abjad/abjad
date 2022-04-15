@@ -1,7 +1,7 @@
 import dataclasses
 import typing
 
-from . import _inspect
+from . import _getlib
 from . import bind as _bind
 from . import get as _get
 from . import indicators as _indicators
@@ -42,7 +42,7 @@ def iterate_out_of_range(argument) -> typing.Iterator[_score.Leaf]:
 
     """
     for leaf in _iterate.leaves(argument, pitched=True):
-        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             raise ValueError("no instrument found.")
         if not sounding_pitches_are_in_range(leaf, instrument.pitch_range):
@@ -166,10 +166,10 @@ def sounding_pitches_are_in_range(argument, pitch_range) -> bool:
     if isinstance(argument, _pitch.Pitch):
         return argument in pitch_range
     if hasattr(argument, "written_pitch"):
-        sounding_pitch = _inspect._get_sounding_pitch(argument)
+        sounding_pitch = _getlib._get_sounding_pitch(argument)
         return sounding_pitch in pitch_range
     if hasattr(argument, "written_pitches"):
-        sounding_pitches = _inspect._get_sounding_pitches(argument)
+        sounding_pitches = _getlib._get_sounding_pitches(argument)
         return all(_ in pitch_range for _ in sounding_pitches)
     pitches = list(_iterate.pitches(argument))
     if pitches:
@@ -222,7 +222,7 @@ def transpose_from_sounding_pitch(argument) -> None:
 
     """
     for leaf in _iterate.leaves(argument, pitched=True):
-        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch
@@ -293,7 +293,7 @@ def transpose_from_written_pitch(argument) -> None:
 
     """
     for leaf in _iterate.leaves(argument, pitched=True):
-        instrument = _inspect._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch

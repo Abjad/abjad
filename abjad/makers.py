@@ -2,7 +2,7 @@ import collections
 import math
 import numbers
 
-from . import _inspect
+from . import _getlib
 from . import duration as _duration
 from . import exceptions as _exceptions
 from . import math as _math
@@ -1675,7 +1675,7 @@ def tuplet_from_leaf_and_ratio(
             _duration.Duration(_, denominator) for _ in proportions.numbers
         ]
         notes = list(maker(0, note_durations))
-    contents_duration = _inspect._get_duration(notes)
+    contents_duration = _getlib._get_duration(notes)
     multiplier = target_duration / contents_duration
     tuplet = _score.Tuplet(multiplier, notes)
     tuplet.normalize_multiplier()
@@ -1882,7 +1882,7 @@ def tuplet_from_ratio_and_pair(
             except _exceptions.AssignabilityError:
                 note_maker = NoteMaker(tag=tag)
                 notes = note_maker(0, duration)
-                duration = _inspect._get_duration(notes)
+                duration = _getlib._get_duration(notes)
                 return _score.Tuplet.from_duration(duration, notes, tag=tag)
         elif ratio.numbers[0] < 0:
             try:
@@ -1892,7 +1892,7 @@ def tuplet_from_ratio_and_pair(
             except _exceptions.AssignabilityError:
                 leaf_maker = LeafMaker(tag=tag)
                 rests = leaf_maker([None], duration)
-                duration = _inspect._get_duration(rests)
+                duration = _getlib._get_duration(rests)
                 return _score.Tuplet.from_duration(duration, rests, tag=tag)
         else:
             raise ValueError("no divide zero values.")

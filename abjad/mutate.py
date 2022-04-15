@@ -2,14 +2,14 @@ import collections
 import copy as python_copy
 import itertools
 
-from . import _inspect
+from . import _getlib
 from . import bind as _bind
 from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
 from . import get as _get
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import makers as _makers
 from . import parentage as _parentage
 from . import pitch as _pitch
@@ -405,13 +405,13 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
     # OnBeatGraceContainer is a proper container
     grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
     while current is not None:
-        sibling = _inspect._get_sibling_with_graces(current, 1)
+        sibling = _getlib._get_sibling_with_graces(current, 1)
         while (
             ignore_before_after_grace
             and sibling is not None
             and isinstance(sibling._parent, grace_prototype)
         ):
-            sibling = _inspect._get_sibling_with_graces(sibling, 1)
+            sibling = _getlib._get_sibling_with_graces(sibling, 1)
         if sibling is None:
             current = current._parent
         else:
@@ -601,7 +601,7 @@ def _split_container_by_duration(CONTAINER, duration):
     # in order to start upward crawl through duration-crossing containers
     else:
         duration_crossing_containers = duration_crossing_descendants[:]
-        for leaf in iterate_.leaves(bottom):
+        for leaf in _iterate.leaves(bottom):
             timespan = _get.timespan(leaf)
             if timespan.start_offset == global_split_point:
                 leaf_right_of_split = leaf
@@ -2445,7 +2445,7 @@ def transpose(argument, interval):
     Returns none.
     """
     named_interval = _pitch.NamedInterval(interval)
-    for item in iterate_.components(argument, (_score.Note, _score.Chord)):
+    for item in _iterate.components(argument, (_score.Note, _score.Chord)):
         if isinstance(item, _score.Note):
             old_written_pitch = item.note_head.written_pitch
             new_written_pitch = old_written_pitch.transpose(named_interval)

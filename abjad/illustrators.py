@@ -6,7 +6,7 @@ from . import duration as _duration
 from . import enums as _enums
 from . import get as _get
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import lilypondfile as _lilypondfile
 from . import makers as _makers
 from . import metricmodulation as _metricmodulation
@@ -87,7 +87,7 @@ def _illustrate_pitch_range(range_):
         _bind.attach(_indicators.StaffChange("Treble_Staff"), bass_staff[1])
         _bind.attach(_indicators.Clef("treble"), treble_staff[0])
         _bind.attach(_indicators.Clef("bass"), bass_staff[0])
-    for leaf in iterate_.leaves(score):
+    for leaf in _iterate.leaves(score):
         leaf.multiplier = (1, 4)
     _overrides.override(score).BarLine.stencil = False
     _overrides.override(score).SpanBar.stencil = False
@@ -105,7 +105,7 @@ def _illustrate_pitch_segment(segment):
     _overrides.override(score).TimeSignature.stencil = False
     _overrides.override(score).BarLine.stencil = False
     _overrides.override(score).SpanBar.stencil = False
-    for leaf in iterate_.leaves(score):
+    for leaf in _iterate.leaves(score):
         leaf.multiplier = (1, 8)
     _overrides.override(score).Rest.transparent = True
     lilypond_file = _lilypondfile.LilyPondFile([score])

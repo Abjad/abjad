@@ -1,7 +1,7 @@
 import dataclasses
 import typing
 
-from . import _indent
+from . import _indentlib
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -757,7 +757,7 @@ def left_shift_tags(text: str) -> str:
         string_ = string[4:]
         tag_start = string_.find("%!")
         strings__ = list(string_)
-        strings__[tag_start:tag_start] = _indent.INDENT
+        strings__[tag_start:tag_start] = _indentlib.INDENT
         string_ = "".join(strings__)
         strings_.append(string_)
     text = "\n".join(strings_)

@@ -1,4 +1,4 @@
-from .. import _iterate
+from .. import _iterlib
 from .. import bind as _bind
 from .. import duration as _duration
 from .. import enums as _enums
@@ -417,7 +417,7 @@ class ReducedLyParser(Parser):
         measure = _score.Container()
         for x in p[3]:
             measure.append(x)
-        leaf = _iterate._get_leaf(measure, 0)
+        leaf = _iterlib._get_leaf(measure, 0)
         time_signature = _indicators.TimeSignature(p[2].pair)
         _bind.attach(time_signature, leaf)
         p[0] = measure

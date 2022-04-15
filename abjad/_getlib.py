@@ -1,8 +1,9 @@
 import bisect
 import collections
+import enum
 import typing
 
-from . import _update
+from . import _updatelib
 from . import duration as _duration
 from . import dynamic as _dynamic
 from . import exceptions as _exceptions
@@ -40,7 +41,7 @@ def _are_logical_voice(components, prototype=None):
 
 
 def _get_annotation(component, annotation, default=None, unwrap: bool = True):
-    assert isinstance(annotation, str), repr(annotation)
+    assert isinstance(annotation, str | enum.Enum), repr(annotation)
     for wrapper in _get_annotation_wrappers(component):
         if wrapper.annotation == annotation:
             if unwrap is True:
@@ -103,7 +104,7 @@ def _get_duration_in_seconds(component):
 def _get_effective(
     component, prototype, *, attributes=None, command=None, n=0, unwrap=True
 ):
-    _update._update_now(component, indicators=True)
+    _updatelib._update_now(component, indicators=True)
     candidate_wrappers = {}
     parentage = component._get_parentage()
     enclosing_voice_name = None

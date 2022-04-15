@@ -6,7 +6,7 @@ import collections
 
 import uqbar.graphs
 
-from . import _inspect, _iterate
+from . import _getlib, _iterlib
 from . import duration as _duration
 from . import indicators as _indicators
 from . import lilypondfile as _lilypondfile
@@ -2295,7 +2295,7 @@ class Meter:
             logical_tie_duration = sum(
                 _._get_preprolated_duration() for _ in logical_tie
             )
-            logical_tie_timespan = _inspect._get_timespan(logical_tie)
+            logical_tie_timespan = _getlib._get_timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
@@ -3252,7 +3252,7 @@ class _MeterManager:
         current_leaf_group_is_silent = False
         for component in argument:
             if isinstance(component, _score.Note | _score.Chord):
-                this_tie_leaves = _iterate._get_logical_tie_leaves(component)
+                this_tie_leaves = _iterlib._get_logical_tie_leaves(component)
                 this_tie = _select.LogicalTie(this_tie_leaves)
                 if current_leaf_group is None:
                     current_leaf_group = []

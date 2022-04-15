@@ -10,7 +10,7 @@ Updates start offsets, stop offsets and indicators everywhere in score.
 """
 from . import duration as _duration
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import math as _math
 from . import obgc as _obgc
 from . import parentage as _parentage
@@ -152,8 +152,8 @@ def _iterate_entire_score(root):
     """
     NOTE: RETURNS GRACE NOTES LAST (AND OUT-OF-ORDER).
     """
-    components = list(iterate_.components(root, grace=False))
-    graces = iterate_.components(root, grace=True)
+    components = list(_iterate.components(root, grace=False))
+    graces = _iterate.components(root, grace=True)
     components.extend(graces)
     return components
 

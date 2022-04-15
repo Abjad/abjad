@@ -1,10 +1,10 @@
 import collections
 import typing
 
-from . import _inspect, _iterate, _update
+from . import _getlib, _iterlib, _updatelib
 from . import duration as _duration
 from . import indicators as _indicators
-from . import iterate as iterate_
+from . import iterate as _iterate
 from . import parentage as _parentage
 from . import pitch as _pitch
 from . import score as _score
@@ -172,9 +172,7 @@ def annotation(
         True
 
     """
-    return _inspect._get_annotation(
-        argument, annotation, default=default, unwrap=unwrap
-    )
+    return _getlib._get_annotation(argument, annotation, default=default, unwrap=unwrap)
 
 
 def annotation_wrappers(argument):
@@ -205,7 +203,7 @@ def annotation_wrappers(argument):
         Wrapper(annotation='default_clef', context=None, deactivate=False, direction=None, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag(string=''))
 
     """
-    return _inspect._get_annotation_wrappers(argument)
+    return _getlib._get_annotation_wrappers(argument)
 
 
 def bar_line_crossing(argument) -> bool:
@@ -242,7 +240,7 @@ def bar_line_crossing(argument) -> bool:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
-    time_signature = _inspect._get_effective(argument, _indicators.TimeSignature)
+    time_signature = _getlib._get_effective(argument, _indicators.TimeSignature)
     if time_signature is None:
         time_signature_duration = _duration.Duration(4, 4)
     else:
@@ -707,7 +705,7 @@ def descendants(argument) -> list[_score.Component]:
         argument = [argument]
     components = []
     for item in argument:
-        generator = _iterate._iterate_descendants(item)
+        generator = _iterlib._iterate_descendants(item)
         for component in generator:
             if component not in components:
                 components.append(component)
@@ -909,7 +907,7 @@ def duration(
         (LogicalTie(items=[Note("d'4"), Note("d'4")]), Duration(1, 3), Duration(1, 2))
 
     """
-    return _inspect._get_duration(
+    return _getlib._get_duration(
         argument, in_seconds=in_seconds, preprolated=preprolated
     )
 
@@ -1417,7 +1415,7 @@ def effective(
         raise Exception("can only get effective on components.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    result = _inspect._get_effective(
+    result = _getlib._get_effective(
         argument, prototype, attributes=attributes, n=n, unwrap=unwrap
     )
     if result is None:
@@ -1537,7 +1535,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get effective staff on components.")
-    staff_change = _inspect._get_effective(argument, _indicators.StaffChange)
+    staff_change = _getlib._get_effective(argument, _indicators.StaffChange)
     if staff_change is not None:
         for component in argument._get_parentage():
             root = component
@@ -1768,7 +1766,7 @@ def grace(argument) -> bool:
         Note("fs'16")                  True
 
     """
-    return _inspect._get_grace_container(argument)
+    return _getlib._get_grace_container(argument)
 
 
 def has_effective_indicator(
@@ -1920,7 +1918,7 @@ def has_effective_indicator(
         raise Exception("can only get effective indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    indicator = _inspect._get_effective(argument, prototype, attributes=attributes)
+    indicator = _getlib._get_effective(argument, prototype, attributes=attributes)
     return indicator is not None
 
 
@@ -2269,7 +2267,7 @@ def indicator(
 
     Returns default when no indicator of ``prototype`` attaches to ``argument``.
     """
-    return _inspect._get_indicator(argument, prototype, default=default, unwrap=unwrap)
+    return _getlib._get_indicator(argument, prototype, default=default, unwrap=unwrap)
 
 
 def indicators(
@@ -2711,7 +2709,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
         ---
 
     """
-    return _iterate._get_leaf(argument, n=n)
+    return _iterlib._get_leaf(argument, n=n)
 
 
 def lineage(argument) -> "Lineage":
@@ -3096,7 +3094,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
     """
     if not isinstance(argument, _score.Leaf):
         raise Exception("can only get logical tie on leaf.")
-    leaves = _iterate._get_logical_tie_leaves(argument)
+    leaves = _iterlib._get_logical_tie_leaves(argument)
     return _select.LogicalTie(leaves)
 
 
@@ -3282,7 +3280,7 @@ def measure_number(argument) -> int:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get measure number on component.")
-    _update._update_measure_numbers(argument)
+    _updatelib._update_measure_numbers(argument)
     assert isinstance(argument._measure_number, int)
     return argument._measure_number
 
@@ -3637,7 +3635,7 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
             NamedPitch("fs'")
 
     """
-    generator = iterate_.pitches(argument)
+    generator = _iterate.pitches(argument)
     return set(generator)
 
 
@@ -3676,7 +3674,7 @@ def sounding_pitch(argument) -> _pitch.NamedPitch:
     """
     if not isinstance(argument, _score.Note):
         raise Exception("can only get sounding pitch of note.")
-    return _inspect._get_sounding_pitch(argument)
+    return _getlib._get_sounding_pitch(argument)
 
 
 def sounding_pitches(argument) -> set[_pitch.NamedPitch]:
@@ -3716,7 +3714,7 @@ def sounding_pitches(argument) -> set[_pitch.NamedPitch]:
     # TODO: extend to any non-none argument
     if not isinstance(argument, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
-    pitches = _inspect._get_sounding_pitches(argument)
+    pitches = _getlib._get_sounding_pitches(argument)
     return set(pitches)
 
 
@@ -3934,7 +3932,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         Timespan(Offset((0, 1)), Offset((3, 4)))
 
     """
-    return _inspect._get_timespan(argument, in_seconds=in_seconds)
+    return _getlib._get_timespan(argument, in_seconds=in_seconds)
 
 
 def wrapper(
