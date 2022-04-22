@@ -2164,8 +2164,8 @@ class Markup:
         \new Staff
         {
             c'4
-            %! RED
             %! M1
+            %! RED
             ^ \markup \italic Allegro
             d'4
             e'4
@@ -2190,8 +2190,8 @@ class Markup:
         \new Staff
         {
             c'4
-            %! RED
             %! M1
+            %! RED
             %@% ^ \markup \italic Allegro
             d'4
             e'4

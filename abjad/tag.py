@@ -722,22 +722,21 @@ def double_tag(strings: list[str], tag_: Tag, deactivate: bool = False) -> list[
     """
     assert all(isinstance(_, str) for _ in strings), repr(strings)
     assert isinstance(tag_, Tag), repr(tag_)
-    before_tags = []
+    tag_lines = []
     if tag_.string:
-        line = tag_.string
-        lines = line.split(":")
-        lines = ["%! " + _ for _ in lines]
-        before_tags.extend(lines)
-    right_tagged_lines = strings
+        tag_lines_ = tag_.string.split(":")
+        tag_lines_ = ["%! " + _ for _ in tag_lines_]
+        tag_lines.extend(tag_lines_)
+        tag_lines.sort()
     if deactivate is True:
-        right_tagged_lines = ["%@% " + _ for _ in right_tagged_lines]
+        strings = ["%@% " + _ for _ in strings]
     result = []
-    for right_tagged_line in right_tagged_lines:
-        if right_tagged_line.strip().startswith("%!"):
-            result.append(right_tagged_line)
+    for string in strings:
+        if string.strip().startswith("%!"):
+            result.append(string)
             continue
-        result.extend(before_tags)
-        result.append(right_tagged_line)
+        result.extend(tag_lines)
+        result.append(string)
     return result
 
 

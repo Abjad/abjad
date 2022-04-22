@@ -172,8 +172,8 @@ class Wrapper:
             >>> print(string)
             \new Staff
             {
-                %! RED
                 %! M1
+                %! RED
                 \clef "alto"
                 c'4
                 d'4
@@ -190,8 +190,8 @@ class Wrapper:
             >>> print(string)
             \new Staff
             {
-                %! RED
                 %! M1
+                %! RED
                 \clef "alto"
                 c'4
                 d'4
@@ -218,8 +218,8 @@ class Wrapper:
             >>> print(string)
             \new Staff
             {
-                %! RED
                 %! M1
+                %! RED
                 %@% \clef "alto"
                 c'4
                 d'4
@@ -236,8 +236,8 @@ class Wrapper:
             >>> print(string)
             \new Staff
             {
-                %! RED
                 %! M1
+                %! RED
                 %@% \clef "alto"
                 c'4
                 d'4
