@@ -933,8 +933,8 @@ def flatten(argument, depth: int = 1) -> list:
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 10/9
                     {
-                        \time 7/4
                         \abjad-color-music #'red
+                        \time 7/4
                         r16
                         \abjad-color-music #'red
                         bf'16
@@ -1023,8 +1023,8 @@ def flatten(argument, depth: int = 1) -> list:
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 10/9
                     {
-                        \time 7/4
                         \abjad-color-music #'red
+                        \time 7/4
                         r16
                         \abjad-color-music #'blue
                         bf'16
@@ -1863,8 +1863,8 @@ def group_by_measure(argument) -> list[list]:
                 autoBeaming = ##f
             }
             {
-                \time 2/8
                 \abjad-color-music #'red
+                \time 2/8
                 c'8
                 \abjad-color-music #'red
                 d'8
@@ -1872,15 +1872,15 @@ def group_by_measure(argument) -> list[list]:
                 e'8
                 \abjad-color-music #'blue
                 f'8
-                \time 3/8
                 \abjad-color-music #'red
+                \time 3/8
                 g'8
                 \abjad-color-music #'red
                 a'8
                 \abjad-color-music #'red
                 b'8
-                \time 1/8
                 \abjad-color-music #'blue
+                \time 1/8
                 c''8
             }
 
@@ -1918,8 +1918,8 @@ def group_by_measure(argument) -> list[list]:
                 autoBeaming = ##f
             }
             {
-                \time 2/8
                 \abjad-color-music #'red
+                \time 2/8
                 c'8
                 \abjad-color-music #'red
                 d'8
@@ -1927,15 +1927,15 @@ def group_by_measure(argument) -> list[list]:
                 e'8
                 \abjad-color-music #'red
                 f'8
-                \time 3/8
                 \abjad-color-music #'blue
+                \time 3/8
                 g'8
                 \abjad-color-music #'blue
                 a'8
                 \abjad-color-music #'blue
                 b'8
-                \time 1/8
                 \abjad-color-music #'blue
+                \time 1/8
                 c''8
             }
 
@@ -1973,20 +1973,20 @@ def group_by_measure(argument) -> list[list]:
                 autoBeaming = ##f
             }
             {
-                \time 2/8
                 \abjad-color-music #'red
+                \time 2/8
                 c'8
                 d'8
                 \abjad-color-music #'blue
                 e'8
                 f'8
-                \time 3/8
                 \abjad-color-music #'red
+                \time 3/8
                 g'8
                 a'8
                 b'8
-                \time 1/8
                 \abjad-color-music #'blue
+                \time 1/8
                 c''8
             }
 
@@ -2037,8 +2037,8 @@ def group_by_measure(argument) -> list[list]:
                 a'8
                 \abjad-color-music #'red
                 b'8
-                \time 1/8
                 \abjad-color-music #'blue
+                \time 1/8
                 c''8
             }
 
@@ -2125,8 +2125,8 @@ def group_by_measure(argument) -> list[list]:
                 autoBeaming = ##f
             }
             {
-                \time 2/8
                 \abjad-color-music #'red
+                \time 2/8
                 c'8
                 \abjad-color-music #'red
                 d'8
@@ -2136,16 +2136,16 @@ def group_by_measure(argument) -> list[list]:
                 \abjad-color-music #'blue
                 e'8
                 ~
-                \time 3/8
                 \abjad-color-music #'blue
+                \time 3/8
                 e'8
                 \abjad-color-music #'red
                 f'8
                 \abjad-color-music #'red
                 g'8
                 ~
-                \time 1/8
                 \abjad-color-music #'red
+                \time 1/8
                 g'8
             }
 
@@ -4620,29 +4620,29 @@ def partition_by_durations(
             }
             {
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'red
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     e'8
                     \abjad-color-music #'blue
                     f'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'blue
+                    \time 2/8
                     g'8
                     \abjad-color-music #'blue
                     a'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     b'8
                     \abjad-color-music #'red
                     c''8
@@ -4694,15 +4694,15 @@ def partition_by_durations(
             }
             {
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'red
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     e'8
                     f'8
                 }
@@ -4768,29 +4768,29 @@ def partition_by_durations(
             }
             {
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'red
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'blue
+                    \time 2/8
                     e'8
                     \abjad-color-music #'red
                     f'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     g'8
                     \abjad-color-music #'blue
                     a'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     b'8
                     \abjad-color-music #'red
                     c''8
@@ -4849,29 +4849,29 @@ def partition_by_durations(
             }
             {
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'blue
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     e'8
                     \abjad-color-music #'blue
                     f'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     g'8
                     \abjad-color-music #'blue
                     a'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     b'8
                     c''8
                 }
@@ -4923,8 +4923,8 @@ def partition_by_durations(
             }
             {
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     d'8
                 }
@@ -4996,22 +4996,22 @@ def partition_by_durations(
             {
                 {
                     \tempo 4=60
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'red
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     e'8
                     \abjad-color-music #'blue
                     f'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'blue
+                    \time 2/8
                     g'8
                     \abjad-color-music #'blue
                     a'8
@@ -5075,29 +5075,29 @@ def partition_by_durations(
             {
                 {
                     \tempo 4=60
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'red
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     e'8
                     \abjad-color-music #'blue
                     f'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'blue
+                    \time 2/8
                     g'8
                     \abjad-color-music #'blue
                     a'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     b'8
                     \abjad-color-music #'red
                     c''8
@@ -5154,15 +5154,15 @@ def partition_by_durations(
             {
                 {
                     \tempo 4=60
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'red
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     e'8
                     f'8
                 }
@@ -5234,29 +5234,29 @@ def partition_by_durations(
             {
                 {
                     \tempo 4=60
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     \abjad-color-music #'blue
                     d'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     e'8
                     \abjad-color-music #'blue
                     f'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     g'8
                     \abjad-color-music #'blue
                     a'8
                 }
                 {
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     b'8
                     c''8
                 }
@@ -5312,8 +5312,8 @@ def partition_by_durations(
             {
                 {
                     \tempo 4=60
-                    \time 2/8
                     \abjad-color-music #'red
+                    \time 2/8
                     c'8
                     d'8
                 }
@@ -5682,8 +5682,8 @@ def rests(
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 10/9
                     {
-                        \time 7/4
                         \abjad-color-music #'red
+                        \time 7/4
                         r16
                         bf'16
                         <a'' b''>16
@@ -5971,9 +5971,9 @@ def runs(
                         \context Voice = "On_Beat_Grace_Container"
                         {
                             \set fontSize = #-3
+                            \abjad-color-music #'blue
                             \slash
                             \voiceOne
-                            \abjad-color-music #'blue
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -5994,8 +5994,8 @@ def runs(
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo
                             \abjad-color-music #'blue
+                            \voiceTwo
                             e'4
                             r8
                         }
@@ -6221,14 +6221,14 @@ def tuplets(
                     c'2
                     \times 2/3
                     {
-                        \abjad-color-music #'red
                         \abjad-color-music #'blue
+                        \abjad-color-music #'red
                         d'8
-                        \abjad-color-music #'red
                         \abjad-color-music #'blue
+                        \abjad-color-music #'red
                         e'8
-                        \abjad-color-music #'red
                         \abjad-color-music #'blue
+                        \abjad-color-music #'red
                         f'8
                     }
                 }
@@ -6600,9 +6600,9 @@ def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
                         \context Voice = "On_Beat_Grace_Container"
                         {
                             \set fontSize = #-3
+                            \abjad-color-music #'blue
                             \slash
                             \voiceOne
-                            \abjad-color-music #'blue
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -6623,8 +6623,8 @@ def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
                         }
                         \context Voice = "Music_Voice"
                         {
-                            \voiceTwo
                             \abjad-color-music #'blue
+                            \voiceTwo
                             e'4
                         }
                     >>
@@ -6812,9 +6812,9 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
                         \context Voice = "On_Beat_Grace_Container"
                         {
                             \set fontSize = #-3
+                            \abjad-color-music #'blue
                             \slash
                             \voiceOne
-                            \abjad-color-music #'blue
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t

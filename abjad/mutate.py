@@ -1394,8 +1394,8 @@ def replace(argument, recipients, wrappers=False):
                 {
                     c'4
                     \p
-                    \<
                     (
+                    \<
                     d'4
                     e'4
                 }
@@ -2331,8 +2331,8 @@ def swap(argument, container):
                     \time 3/4
                     c'4
                     \p
-                    \<
                     (
+                    \<
                     d'4
                     e'4
                 }
@@ -2362,8 +2362,8 @@ def swap(argument, container):
                     \time 3/4
                     c'4
                     \p
-                    \<
                     (
+                    \<
                     d'4
                     e'4
                     d'4

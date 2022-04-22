@@ -1,6 +1,45 @@
 import dataclasses
+import enum
 
 from . import tag as _tag
+
+
+class Sites(enum.Enum):
+    """
+    Contribution sites.
+    """
+
+    ABSOLUTE_BEFORE = enum.auto()
+    BEFORE = enum.auto()
+    OPEN_BRACKETS = enum.auto()
+    OPENING = enum.auto()
+    CONTENTS = enum.auto()
+    CLOSING = enum.auto()
+    CLOSE_BRACKETS = enum.auto()
+    AFTER = enum.auto()
+    ABSOLUTE_AFTER = enum.auto()
+
+
+class Types(enum.Enum):
+    """
+    Contribution types.
+    """
+
+    ARTICULATIONS = enum.auto()
+    COMMANDS = enum.auto()
+    CONTEXT_SETTINGS = enum.auto()
+    GROB_OVERRIDES = enum.auto()
+    GROB_REVERTS = enum.auto()
+    LEAK = enum.auto()
+    LEAKS = enum.auto()
+    MARKUP = enum.auto()
+    PITCHED_TRILL = enum.auto()
+    SPANNER_STARTS = enum.auto()
+    SPANNER_STOPS = enum.auto()
+    START_BEAM = enum.auto()
+    STEM_TREMOLOS = enum.auto()
+    STOP_BEAM = enum.auto()
+    TRILL_SPANNER_STARTS = enum.auto()
 
 
 @dataclasses.dataclass(slots=True)
@@ -57,21 +96,33 @@ class _ContributionsByType:
 
     def update(self, contributions):
         """
-        Updates contributions.
+        Updates contributions with ``contributions``.
         """
         assert isinstance(contributions, type(self))
-        self.articulations.extend(contributions.articulations)
-        self.commands.extend(contributions.commands)
-        self.leak.extend(contributions.leak)
-        self.leaks.extend(contributions.leaks)
-        self.markup.extend(contributions.markup)
-        self.pitched_trill.extend(contributions.pitched_trill)
-        self.spanner_starts.extend(contributions.spanner_starts)
-        self.spanner_stops.extend(contributions.spanner_stops)
-        self.start_beam.extend(contributions.start_beam)
-        self.stem_tremolos.extend(contributions.stem_tremolos)
-        self.stop_beam.extend(contributions.stop_beam)
-        self.trill_spanner_starts.extend(contributions.trill_spanner_starts)
+        if contributions.articulations:
+            self.articulations.append(contributions.articulations)
+        if contributions.commands:
+            self.commands.append(contributions.commands)
+        if contributions.leak:
+            self.leak.append(contributions.leak)
+        if contributions.leaks:
+            self.leaks.append(contributions.leaks)
+        if contributions.markup:
+            self.markup.append(contributions.markup)
+        if contributions.pitched_trill:
+            self.pitched_trill.append(contributions.pitched_trill)
+        if contributions.spanner_starts:
+            self.spanner_starts.append(contributions.spanner_starts)
+        if contributions.spanner_stops:
+            self.spanner_stops.append(contributions.spanner_stops)
+        if contributions.start_beam:
+            self.start_beam.append(contributions.start_beam)
+        if contributions.stem_tremolos:
+            self.stem_tremolos.append(contributions.stem_tremolos)
+        if contributions.stop_beam:
+            self.stop_beam.append(contributions.stop_beam)
+        if contributions.trill_spanner_starts:
+            self.trill_spanner_starts.append(contributions.trill_spanner_starts)
 
 
 @dataclasses.dataclass(slots=True)
@@ -116,6 +167,24 @@ class ContributionsBySite:
         ):
             yield site
 
+    @staticmethod
+    def alphabetize(lists):
+        assert isinstance(lists, list)
+        for item in lists:
+            assert isinstance(item, list), repr(item)
+
+        def key(list_):
+            list_ = [_ for _ in list_ if not _.lstrip().startswith("%! ")]
+            list_ = [_.removeprefix("%@% ") for _ in list_]
+            return list_
+
+        lists_ = lists[:]
+        lists_.sort(key=key)
+        strings = []
+        for list_ in lists_:
+            strings.extend(list_)
+        return strings
+
     # TODO: rename or remove?
     def freeze_overrides(self):
         """
@@ -149,7 +218,7 @@ class ContributionsBySite:
 
     def update(self, contributions):
         """
-        Updates format contributions with contributions in ``contributions``.
+        Updates contributions with ``contributions``.
         """
         assert isinstance(contributions, type(self)), repr(contributions)
         self.absolute_before.update(contributions.absolute_before)

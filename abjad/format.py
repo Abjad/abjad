@@ -1,3 +1,4 @@
+from . import _indentlib
 from . import contributions as _contributions
 from . import enums as _enums
 from . import indicators as _indicators
@@ -127,24 +128,57 @@ def format_component(component) -> str:
     strings = []
     contributions = _get_contributions_by_site(component)
     strings_ = component._format_absolute_before_site(contributions)
-    strings.extend(strings_)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.ABSOLUTE_BEFORE.name}:")
+        strings.extend(strings_)
     strings_ = component._format_before_site(contributions)
-    strings.extend(strings_)
-    strings_ = component._format_open_brackets_site(contributions)
-    strings.extend(strings_)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.BEFORE.name}:")
+        strings.extend(strings_)
+    if hasattr(component, "_format_open_brackets_site"):
+        strings_ = component._format_open_brackets_site(contributions)
+        if strings_:
+            strings.append(f"% {_contributions.Sites.OPEN_BRACKETS.name}:")
+            strings.extend(strings_)
     strings_ = component._format_opening_site(contributions)
-    strings.extend(strings_)
-    strings_ = component._format_contents_site(contributions)
-    strings.extend(strings_)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.OPENING.name}:")
+        strings.extend(strings_)
+    strings_ = component._format_contents()
+    if strings_:
+        strings.extend(strings_)
     strings_ = component._format_closing_site(contributions)
-    strings.extend(strings_)
-    strings_ = component._format_close_brackets_site(contributions)
-    strings.extend(strings_)
+    if strings_:
+        strings.append(_indentlib.INDENT + f"% {_contributions.Sites.CLOSING.name}:")
+        strings.extend(strings_)
+    if hasattr(component, "_format_close_brackets"):
+        strings_ = component._format_close_brackets()
+        if strings_:
+            strings.append(f"% {_contributions.Sites.CLOSE_BRACKETS.name}:")
+            strings.extend(strings_)
     strings_ = component._format_after_site(contributions)
-    strings.extend(strings_)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.AFTER.name}:")
+        strings.extend(strings_)
     strings_ = component._format_absolute_after_site(contributions)
-    strings.extend(strings_)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.ABSOLUTE_AFTER.name}:")
+        strings.extend(strings_)
     assert all(isinstance(_, str) for _ in strings), repr(strings)
     strings = ["" if _.isspace() else _ for _ in strings]
     string = "\n".join(strings)
+    return string
+
+
+def remove_site_comments(string) -> str:
+    """
+    Removes site comments from ``string``.
+    """
+    site_comments = []
+    for site in _contributions.Sites:
+        site_comments.append(f"% {site.name}:")
+    for type_ in _contributions.Types:
+        site_comments.append(f"% {type_.name}:")
+    lines = [_ for _ in string.split("\n") if _.strip() not in site_comments]
+    string = "\n".join(lines)
     return string

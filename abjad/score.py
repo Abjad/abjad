@@ -7,6 +7,7 @@ import typing
 import quicktions
 
 from . import _indentlib, _updatelib
+from . import contributions as _contributions
 from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
@@ -21,6 +22,18 @@ from . import tag as _tag
 from . import timespan as _timespan
 from . import tweaks as _tweaks
 from . import typings as _typings
+
+
+def _indent_strings(strings):
+    result = []
+    for string in strings:
+        assert isinstance(string, str)
+        if string.isspace():
+            result.append("")
+        else:
+            result.append(_indentlib.INDENT + string)
+    assert all(isinstance(_, str) for _ in result), repr(result)
+    return result
 
 
 class Component:
@@ -145,55 +158,21 @@ class Component:
 
     def _format_absolute_after_site(self, contributions):
         result = []
-        result.extend(contributions.absolute_after.commands)
+        strings = contributions.alphabetize(contributions.absolute_after.commands)
+        if strings:
+            assert isinstance(
+                self, AfterGraceContainer | BeforeGraceContainer | Leaf
+            ), repr(self)
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
         return result
 
     def _format_absolute_before_site(self, contributions):
         result = []
-        result.extend(contributions.absolute_before.commands)
-        return result
-
-    def _format_after_site(self, contributions):
-        return []
-
-    def _format_before_site(self, contributions):
-        return []
-
-    def _format_close_brackets_site(self, contributions):
-        return []
-
-    def _format_closing_site(self, contributions):
-        return []
-
-    def _format_contents_site(self, contributions):
-        return []
-
-    def _format_open_brackets_site(self, contributions):
-        return []
-
-    def _format_opening_site(self, contributions):
-        return []
-
-    @staticmethod
-    def _contributions_with_indent(lists):
-        result = []
-        for list_ in lists:
-            strings = []
-            if isinstance(list_, list):
-                for string in list_:
-                    if string.isspace():
-                        string = ""
-                    else:
-                        string = _indentlib.INDENT + string
-                    strings.append(string)
-            else:
-                assert isinstance(list_, str)
-                if list_.isspace():
-                    strings.append("")
-                else:
-                    strings.append(_indentlib.INDENT + list_)
+        strings = contributions.alphabetize(contributions.absolute_before.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
             result.extend(strings)
-        assert all(isinstance(_, str) for _ in result), repr(result)
         return result
 
     @staticmethod
@@ -260,7 +239,6 @@ class Component:
             result_ = []
             for wrapper in result:
                 for name, value in attributes.items():
-                    # if getattr(wrapper.indicator, name, None) != value:
                     if getattr(wrapper.unbundle_indicator(), name, None) != value:
                         break
                 else:
@@ -486,69 +464,98 @@ class Leaf(Component):
             wrapper_._component = self
             wrapper_._bind_component(self)
 
-    def _format_after_grace_body(self):
-        result = []
-        container = self._after_grace_container
-        if container is not None:
-            string = container._get_lilypond_format()
-            result.append(string)
-        return result
-
-    def _format_after_grace_command(self):
-        result = []
-        if self._after_grace_container is not None:
-            result.append(r"\afterGrace")
-        return result
-
     def _format_after_site(self, contributions):
         result = []
-        result.extend(contributions.after.stem_tremolos)
-        result.extend(contributions.after.articulations)
-        result.extend(contributions.after.markup)
-        result.extend(contributions.after.spanner_stops)
-        result.extend(contributions.after.start_beam)
-        result.extend(contributions.after.stop_beam)
-        result.extend(contributions.after.spanner_starts)
+        strings = contributions.alphabetize(contributions.after.stem_tremolos)
+        if strings:
+            result.append(f"% {_contributions.Types.STEM_TREMOLOS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.articulations)
+        if strings:
+            result.append(f"% {_contributions.Types.ARTICULATIONS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.markup)
+        if strings:
+            result.append(f"% {_contributions.Types.MARKUP.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.spanner_stops)
+        if strings:
+            result.append(f"% {_contributions.Types.SPANNER_STOPS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.start_beam)
+        if strings:
+            result.append(f"% {_contributions.Types.START_BEAM.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.stop_beam)
+        if strings:
+            result.append(f"% {_contributions.Types.STOP_BEAM.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.spanner_starts)
+        if strings:
+            result.append(f"% {_contributions.Types.SPANNER_STARTS.name}:")
+            result.extend(strings)
         # NOTE: LilyPond demands \startTrillSpan appear after almost all
         #       other contributions; pitched trills dangerously
         #       suppress markup and the starts of other spanners when
         #       \startTrillSpan appears lexically prior to those commands;
         #       but \startTrillSpan must appear before calls to \set.
-        result.extend(contributions.after.trill_spanner_starts)
-        result.extend(contributions.after.commands)
-        result.extend(contributions.after.leak)
-        result.extend(contributions.after.leaks)
-        result.extend(self._format_after_grace_body())
+        strings = contributions.alphabetize(contributions.after.trill_spanner_starts)
+        if strings:
+            result.append(f"% {_contributions.Types.TRILL_SPANNER_STARTS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.leak)
+        if strings:
+            result.append(f"% {_contributions.Types.LEAK.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.leaks)
+        if strings:
+            result.append(f"% {_contributions.Types.LEAKS.name}:")
+            result.extend(strings)
+        if self._after_grace_container is not None:
+            string = self._after_grace_container._get_lilypond_format()
+            result.append(string)
         return result
 
     def _format_before_site(self, contributions):
         result = []
-        result.extend(self._format_grace_body())
-        result.extend(contributions.before.commands)
-        result.extend(contributions.grob_reverts)
-        result.extend(contributions.grob_overrides)
-        result.extend(contributions.context_settings)
+        if self._before_grace_container is not None:
+            string = self._before_grace_container._get_lilypond_format()
+            result.append(string)
+        strings = contributions.alphabetize(contributions.before.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        strings = contributions.grob_reverts
+        if strings:
+            result.append(f"% {_contributions.Types.GROB_REVERTS.name}:")
+            result.extend(strings)
+        strings = contributions.grob_overrides
+        if strings:
+            result.append(f"% {_contributions.Types.GROB_OVERRIDES.name}:")
+            result.extend(strings)
+        strings = contributions.context_settings
+        if strings:
+            result.append(f"% {_contributions.Types.CONTEXT_SETTINGS.name}:")
+            result.extend(strings)
         return result
 
     def _format_closing_site(self, contributions):
         result = []
-        result.extend(contributions.closing.commands)
+        strings = contributions.alphabetize(contributions.closing.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        result = _indent_strings(result)
         return result
 
-    def _format_contents_site(self, contributions):
+    def _format_contents(self):
         result = []
-        result.extend(self._format_leaf_body(contributions))
-        return result
-
-    def _format_grace_body(self):
-        result = []
-        container = self._before_grace_container
-        if container is not None:
-            result.append(container._get_lilypond_format())
-        return result
-
-    def _format_leaf_body(self, contributions):
-        result = self._format_leaf_nucleus()
+        strings = self._format_leaf_nucleus()
+        result.extend(strings)
         return result
 
     def _format_leaf_nucleus(self):
@@ -559,12 +566,19 @@ class Leaf(Component):
 
     def _format_opening_site(self, contributions):
         result = []
-        result.extend(contributions.opening.commands)
-        result.extend(contributions.opening.pitched_trill)
+        strings = contributions.alphabetize(contributions.opening.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.opening.pitched_trill)
+        if strings:
+            result.append(f"% {_contributions.Types.PITCHED_TRILL.name}:")
+            result.extend(strings)
         # IMPORTANT: LilyPond \pitchedTrill must appear immediately before leaf!
         # IMPORTANT: LilyPond \afterGrace must appear immediately before leaf!
         # TODO: figure out \pitchedTrill, \afterGrace ordering
-        result.extend(self._format_after_grace_command())
+        if self._after_grace_container is not None:
+            result.append(r"\afterGrace")
         return result
 
     def _get_compact_representation(self):
@@ -1076,15 +1090,21 @@ class Container(Component):
 
     def _format_after_site(self, contributions):
         result = []
-        result.extend(contributions.after.commands)
+        strings = contributions.alphabetize(contributions.after.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
         return result
 
     def _format_before_site(self, contributions):
         result = []
-        result.extend(contributions.before.commands)
+        strings = contributions.alphabetize(contributions.before.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
         return result
 
-    def _format_close_brackets_site(self, contributions):
+    def _format_close_brackets(self):
         result = []
         strings = []
         if self.simultaneous:
@@ -1105,9 +1125,15 @@ class Container(Component):
 
     def _format_closing_site(self, contributions):
         result = []
-        result.extend(contributions.grob_reverts)
-        result.extend(contributions.closing.commands)
-        result = self._contributions_with_indent(result)
+        strings = contributions.grob_reverts
+        if strings:
+            result.append(f"% {_contributions.Types.GROB_REVERTS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.closing.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        result = _indent_strings(result)
         return result
 
     def _format_content_pieces(self):
@@ -1122,9 +1148,10 @@ class Container(Component):
                 strings.append(string)
         return strings
 
-    def _format_contents_site(self, contributions):
+    def _format_contents(self):
         result = []
-        result.extend(self._format_content_pieces())
+        strings = self._format_content_pieces()
+        result.extend(strings)
         return result
 
     def _format_open_brackets_site(self, contributions):
@@ -1148,10 +1175,20 @@ class Container(Component):
 
     def _format_opening_site(self, contributions):
         result = []
-        result.extend(contributions.opening.commands)
-        result.extend(contributions.grob_overrides)
-        result.extend(contributions.context_settings)
-        return self._contributions_with_indent(result)
+        strings = contributions.alphabetize(contributions.opening.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        strings = contributions.grob_overrides
+        if strings:
+            result.append(f"% {_contributions.Types.GROB_OVERRIDES.name}:")
+            result.extend(strings)
+        strings = contributions.context_settings
+        if strings:
+            result.append(f"% {_contributions.Types.CONTEXT_SETTINGS.name}:")
+            result.extend(strings)
+        result = _indent_strings(result)
+        return result
 
     def _get_abbreviated_string_format(self):
         if 0 < len(self):
@@ -2641,10 +2678,21 @@ class Chord(Leaf):
 
     def _format_before_site(self, contributions):
         result = []
-        result.extend(self._format_grace_body())
-        result.extend(contributions.before.commands)
-        result.extend(contributions.grob_overrides)
-        result.extend(contributions.context_settings)
+        if self._before_grace_container is not None:
+            string = self._before_grace_container._get_lilypond_format()
+            result.append(string)
+        strings = contributions.alphabetize(contributions.before.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        strings = contributions.grob_overrides
+        if strings:
+            result.append(f"% {_contributions.Types.GROB_OVERRIDES.name}:")
+            result.extend(strings)
+        strings = contributions.context_settings
+        if strings:
+            result.append(f"% {_contributions.Types.CONTEXT_SETTINGS.name}:")
+            result.extend(strings)
         return result
 
     def _format_leaf_nucleus(self):
@@ -2846,8 +2894,8 @@ class Cluster(Container):
             brackets_open = ["<<"]
         else:
             brackets_open = ["{"]
-        contributions = [rf"\makeClusters {brackets_open[0]}"]
-        result.extend(contributions)
+        string = rf"\makeClusters {brackets_open[0]}"
+        result.append(string)
         return result
 
 
@@ -2989,8 +3037,12 @@ class Context(Container):
 
     def _format_closing_site(self, contributions):
         result = []
-        result.extend(contributions.closing.commands)
-        return self._contributions_with_indent(result)
+        strings = contributions.alphabetize(contributions.closing.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        result = _indent_strings(result)
+        return result
 
     def _format_consists_commands(self):
         result = []
@@ -3054,8 +3106,12 @@ class Context(Container):
 
     def _format_opening_site(self, contributions):
         result = []
-        result.extend(contributions.opening.commands)
-        return self._contributions_with_indent(result)
+        strings = contributions.alphabetize(contributions.opening.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        result = _indent_strings(result)
+        return result
 
     def _format_remove_commands(self):
         result = []
@@ -5106,18 +5162,33 @@ class Tuplet(Container):
 
     def _format_after_site(self, contributions):
         result = []
-        result.extend(contributions.grob_reverts)
-        result.extend(contributions.after.commands)
+        strings = contributions.grob_reverts
+        if strings:
+            result.append(f"% {_contributions.Types.GROB_REVERTS.name}:")
+            result.extend(strings)
+        strings = contributions.alphabetize(contributions.after.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
         return result
 
     def _format_before_site(self, contributions):
         result = []
-        result.extend(contributions.before.commands)
-        result.extend(contributions.grob_overrides)
-        result.extend(contributions.context_settings)
+        strings = contributions.alphabetize(contributions.before.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        strings = contributions.grob_overrides
+        if strings:
+            result.append(f"% {_contributions.Types.GROB_OVERRIDES.name}:")
+            result.extend(strings)
+        strings = contributions.context_settings
+        if strings:
+            result.append(f"% {_contributions.Types.CONTEXT_SETTINGS.name}:")
+            result.extend(strings)
         return result
 
-    def _format_close_brackets_site(self, contributions):
+    def _format_close_brackets(self):
         result = []
         if self.multiplier:
             strings = ["}"]
@@ -5128,8 +5199,12 @@ class Tuplet(Container):
 
     def _format_closing_site(self, contributions):
         result = []
-        result.extend(contributions.closing.commands)
-        return self._contributions_with_indent(result)
+        strings = contributions.alphabetize(contributions.closing.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        result = _indent_strings(result)
+        return result
 
     def _format_lilypond_fraction_command_string(self):
         if self.hide:
@@ -5174,8 +5249,12 @@ class Tuplet(Container):
 
     def _format_opening_site(self, contributions):
         result = []
-        result.extend(contributions.opening.commands)
-        return self._contributions_with_indent(result)
+        strings = contributions.alphabetize(contributions.opening.commands)
+        if strings:
+            result.append(f"% {_contributions.Types.COMMANDS.name}:")
+            result.extend(strings)
+        result = _indent_strings(result)
+        return result
 
     def _get_compact_representation(self):
         if not self:
