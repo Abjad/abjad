@@ -141,8 +141,8 @@ def test_LilyPondParser__spanners__Hairpin_07():
         {
             c'4
             \p
-            \<
             (
+            \<
             d'4
             e'4
             f'4

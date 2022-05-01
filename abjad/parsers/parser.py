@@ -2447,8 +2447,8 @@ class LilyPondParser(Parser):
             {
                 c'8
                 \f
-                \>
                 (
+                \>
                 d'8
                 - \portato
                 [
@@ -2466,8 +2466,8 @@ class LilyPondParser(Parser):
                 \stopTrillSpan
                 ]
                 c''8
-                \sfz
                 - \accent
+                \sfz
                 )
             }
 

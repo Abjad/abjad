@@ -239,8 +239,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_08():
             \clef "alto"
             \time 3/4
             c'4
-            - \staccato
             - \accent
+            - \staccato
             ~
             c'16
             r16
@@ -291,8 +291,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
                 b'16
             }
             c'8
-            - \staccato
             - \accent
+            - \staccato
             ~
             c'32
             ]
@@ -339,8 +339,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_10():
             \time 3/4
             c'4
             :16
-            - \staccato
             - \accent
+            - \staccato
             ~
             c'16
             :16

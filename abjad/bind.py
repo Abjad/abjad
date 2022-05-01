@@ -810,11 +810,11 @@ def attach(  # noqa: 302
             >>> print(string)
             \new Staff
             {
-                \clef "treble"
                 %! +PARTS
                 %@% \clef "alto"
                 %! +PARTS
                 %@% \clef "tenor"
+                \clef "treble"
                 c'4
                 d'4
                 e'4

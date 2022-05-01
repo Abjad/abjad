@@ -652,22 +652,16 @@ def deactivate(
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     Tags can toggle indefinitely.
-
-    Returns text, count pair.
-
-    Count gives number of deactivated tags.
     """
     assert isinstance(text, str), repr(text)
     assert isinstance(tag, Tag) or callable(tag), repr(tag)
-    lines: list[str] = []
     count, skipped_count = 0, 0
-    treated_last_line, last_index = False, None
+    treated_last_line = False
     found_already_deactivated_on_last_line = False
+    previous_line_was_tweak = False
     text_lines = text.split("\n")
     text_lines = [_ + "\n" for _ in text_lines[:-1]] + text_lines[-1:]
-    lines = []
-    previous_line_was_tweak = False
-    current_tags = []
+    lines, current_tags = [], []
     for line in text_lines:
         if line.lstrip().startswith("%! "):
             lines.append(line)
@@ -676,15 +670,12 @@ def deactivate(
             continue
         if not _match_line(line, tag, current_tags):
             lines.append(line)
-            treated_last_line, last_index = False, None
+            treated_last_line = False
             found_already_deactivated_on_last_line = False
             current_tags = []
             continue
-        first_nonwhitespace_index = len(line) - len(line.lstrip())
-        index = first_nonwhitespace_index
-        if line[index] != "%":
-            if last_index is None:
-                last_index = index
+        start_column = len(line) - len(line.lstrip())
+        if line[start_column] != "%":
             if " %@%" in line:
                 prefix = "%@% "
                 line = line.replace(" %@%", "")
@@ -692,10 +683,10 @@ def deactivate(
                 prefix = "%%% "
             if prepend_empty_chord and not previous_line_was_tweak:
                 prefix += "<> "
-            target = line[last_index - 4 : last_index]
-            assert target == "    ", repr((line, target, index, tag))
+            target = line[start_column - 4 : start_column]
+            assert target == "    ", repr((line, target, start_column, tag))
             characters = list(line)
-            characters[last_index - 4 : last_index] = list(prefix)
+            characters[start_column - 4 : start_column] = list(prefix)
             line = "".join(characters)
             if not treated_last_line:
                 count += 1
@@ -722,10 +713,11 @@ def double_tag(strings: list[str], tag_: Tag, deactivate: bool = False) -> list[
     """
     assert all(isinstance(_, str) for _ in strings), repr(strings)
     assert isinstance(tag_, Tag), repr(tag_)
+    half_indent = 2 * " "
     tag_lines = []
     if tag_.string:
         tag_lines_ = tag_.string.split(":")
-        tag_lines_ = ["%! " + _ for _ in tag_lines_]
+        tag_lines_ = [half_indent + "%! " + _ for _ in tag_lines_]
         tag_lines.extend(tag_lines_)
         tag_lines.sort()
     if deactivate is True:

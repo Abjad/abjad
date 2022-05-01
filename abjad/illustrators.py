@@ -4,6 +4,7 @@ import dataclasses
 from . import bind as _bind
 from . import duration as _duration
 from . import enums as _enums
+from . import format as _format
 from . import get as _get
 from . import indicators as _indicators
 from . import iterate as _iterate
@@ -249,16 +250,17 @@ def illustrate(item, **keywords):
     return method(item, **keywords)
 
 
-def lilypond(argument, tags=False):
+def lilypond(argument, *, site_comments=False, tags=False):
     """
     Gets LilyPond format of ``argument``.
     """
     if not hasattr(argument, "_get_lilypond_format"):
         raise Exception(f"no LilyPond format defined for {argument!r}.")
     string = argument._get_lilypond_format()
-    if tags:
-        return string
-    string = _tag.remove_tags(string)
+    if site_comments is False:
+        string = _format.remove_site_comments(string)
+    if tags is False:
+        string = _tag.remove_tags(string)
     return string
 
 
