@@ -155,7 +155,7 @@ class LilyPondIO:
         directories = []
         path = getattr(abjad, "__path__")
         abjad_path = pathlib.Path(path[0])
-        directory = abjad_path / "_stylesheets"
+        directory = abjad_path / "scm"
         directories.append(directory)
         if "sphinx_stylesheets_directory" in configuration:
             string = configuration["sphinx_stylesheets_directory"]

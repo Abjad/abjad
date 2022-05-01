@@ -12,7 +12,6 @@
     :hidden:
     :maxdepth: 0
 
-    overview/about-the-docs
     overview/containers
     overview/containers-basic-operations-on
     overview/containers-retrieving-by-name
