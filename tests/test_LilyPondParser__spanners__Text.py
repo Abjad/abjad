@@ -13,7 +13,7 @@ def test_LilyPondParser__spanners__Text_01():
     abjad.text_spanner(container[2:])
     abjad.text_spanner(container[:3])
 
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'4
@@ -45,7 +45,7 @@ def test_LilyPondParser__spanners__Text_02():
     abjad.text_spanner(target[2:])
     abjad.text_spanner(target[:3])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4

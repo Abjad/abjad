@@ -8,7 +8,7 @@ def test_LilyPondParser__contexts__context_ids_01():
     target = abjad.Staff(notes)
     target.name = "foo"
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \context Staff = "foo"
         {

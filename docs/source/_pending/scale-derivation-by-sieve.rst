@@ -12,11 +12,11 @@ First we define a function to illustrate the examples that follow:
 ::
 
     >>> def illustrate_scale(pattern, length, transposition):
-    ...     pitches = abjad.Sequence(range(length))
-    ...     pitches = pitches.retain_pattern(pattern)
+    ...     pitches = list(range(length))
+    ...     pitches = abjad.sequence.retain_pattern(pitches, pattern)
     ...     notes = [abjad.Note(_ + transposition, (1, 16)) for _ in pitches]
-    ...     containers = abjad.illustrators.make_piano_score(notes)
-    ...     score, treble_staff, bass_staff = containers
+    ...     score = abjad.illustrators.make_piano_score(notes)
+    ...     treble_staff = score["Treble_Staff"]
     ...     abjad.override(score).BarLine.stencil = False
     ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).Beam.stencil = False
@@ -29,12 +29,12 @@ First we define a function to illustrate the examples that follow:
     ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 25)"
     ...     lilypond_file = abjad.LilyPondFile(
     ...         items=[
+    ...             "#(set-global-staff-size 16)",
     ...             score,
-    ...             abjad.Block(name="layout"),
+    ...             abjad.Block("layout"),
     ...         ],
-    ...         global_staff_size=16,
     ...     )
-    ...     lilypond_file.layout_block.indent = "#0"
+    ...     lilypond_file["layout"].items.append("indent = #0")
     ...     return lilypond_file
 
 ----

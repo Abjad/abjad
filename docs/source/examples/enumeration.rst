@@ -41,12 +41,12 @@ The following functions recreate Malt's results in Abjad:
     ...         label = f'"1 : ({outer} | {inner})"'
     ...         contents = [lone_note, inner_tuplet]
     ...     outer_tuplet = abjad.Tuplet(outer_string, contents)
-    ...     markup = abjad.Markup(rf"\markup {label}", direction=abjad.Up, literal=True)
-    ...     note = abjad.select(outer_tuplet).note(0)
-    ...     abjad.attach(markup, note)
+    ...     markup = abjad.Markup(rf"\markup {label}")
+    ...     note = abjad.select.note(outer_tuplet, 0)
+    ...     abjad.attach(markup, note, direction=abjad.UP)
     ...     outer_tuplet.hide = outer_tuplet.trivial()
-    ...     abjad.tweak(inner_tuplet).staff_padding = 0
-    ...     abjad.tweak(outer_tuplet).staff_padding = 2
+    ...     abjad.tweak(inner_tuplet, r"\tweak staff-padding 0")
+    ...     abjad.tweak(outer_tuplet, r"\tweak staff-padding 2")
     ...     return outer_tuplet
 
 ::
@@ -71,7 +71,7 @@ The following functions recreate Malt's results in Abjad:
 
 ::
 
-    >>> preamble =r"""#(set-global-staff-size 12)
+    >>> preamble = r"""#(set-global-staff-size 12)
     ...
     ... \layout {
     ...     \context {
@@ -91,26 +91,23 @@ The following functions recreate Malt's results in Abjad:
     ...         proportionalNotationDuration = #(ly:make-moment 1 40)
     ...         tupletFullLength = ##t
     ...     }
-    ... }"""
+    ... }
+    ... """
 
 ----
 
 Here are 11 rows and 6 columns:
 
-::
-
     >>> score = make_score(11, 6)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 ----
 
 Here's the rhythmic retrograde of the same:
 
-::
-
     >>> score = make_score(11, 6, retrograde=True)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Bača (1.1, 3.2)]`

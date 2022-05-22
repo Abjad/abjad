@@ -21,7 +21,7 @@ def test_Voice___delitem___01():
         """
     )
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -43,7 +43,7 @@ def test_Voice___delitem___01():
     container = voice[1]
     del voice[1:2]
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {

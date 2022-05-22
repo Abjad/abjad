@@ -5,7 +5,7 @@ import abjad
 ### GENERAL SPHINX SETTINGS ###
 ### https://www.sphinx-doc.org/en/master/usage/configuration.html ###
 
-copyright = "2008-2021, Trevor Bača & Josiah Wolf Oberholtzer."
+copyright = "2008-2022, Trevor Bača & Josiah Wolf Oberholtzer."
 extensions = [
     "abjad.ext.sphinx",
     "sphinx.ext.autodoc",
@@ -39,7 +39,7 @@ html_theme_options = {
     # navigation_depth=1 makes sidebar completely flat;
     # leave flat navigation in place forever:
     "navigation_depth": 1,
-    "style_nav_header_background": "#cc0044",
+    "style_nav_header_background": "#336699",
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 project = "Abjad"
@@ -118,6 +118,6 @@ graphviz_output_format = "svg"
 intersphinx_mapping = {
     "http://josiahwolfoberholtzer.com/uqbar/": None,
     "http://www.sphinx-doc.org/en/master/": None,
-    "https://docs.python.org/3.9/": None,
+    "https://docs.python.org/3.10/": None,
 }
 todo_include_todos = True

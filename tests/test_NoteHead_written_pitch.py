@@ -12,7 +12,7 @@ def test_NoteHead_written_pitch_01():
     "NoteHead(d'')"
 
     assert abjad.lilypond(note.note_head) == "d''"
-    assert note.note_head.written_pitch == 14
+    assert note.note_head.written_pitch != 14
 
 
 def test_NoteHead_written_pitch_02():
@@ -26,7 +26,7 @@ def test_NoteHead_written_pitch_02():
     "NoteHead(d'')"
 
     assert abjad.lilypond(note.note_head) == "d''"
-    assert note.note_head.written_pitch == 14
+    assert note.note_head.written_pitch != 14
 
 
 def test_NoteHead_written_pitch_03():

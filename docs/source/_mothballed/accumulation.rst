@@ -59,7 +59,7 @@ The functions we'll use:
     ...         measure.append(container)
     ...     duration = duration.with_denominator(8)
     ...     time_signature = abjad.TimeSignature(duration)
-    ...     first_note = abjad.select(measure).note(0)
+    ...     first_note = abjad.select.note(measure, 0)
     ...     abjad.attach(time_signature, first_note)
     ...     return measure
 
@@ -77,17 +77,19 @@ The functions we'll use:
     >>> def make_score(rh_pitches, lh_pitches):
     ...     rh_staff = make_staff(rh_pitches, "RH")
     ...     lh_staff = make_staff(lh_pitches, "LH")
-    ...     leaves = abjad.select(lh_staff).leaves()
+    ...     leaves = abjad.select.leaves(lh_staff)
     ...     abjad.iterpitches.respell_with_sharps(leaves)
     ...     staves = [rh_staff, lh_staff]
     ...     piano_staff = abjad.StaffGroup(
     ...         staves, lilypond_type="PianoStaff", name="Piano_Staff"
     ...     )
     ...     score = abjad.Score([piano_staff], name="Score")
-    ...     first_note = abjad.select(lh_staff).note(0)
+    ...     first_note = abjad.select.note(lh_staff, 0)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, first_note)
-    ...     key_signature = abjad.KeySignature("b", "major")
+    ...     key_signature = abjad.KeySignature(
+    ...         abjad.NamedPitchClass("b"), abjad.Mode("major")
+    ...     )
     ...     abjad.attach(key_signature, first_note)
     ...     return score
 
@@ -274,11 +276,8 @@ The final result:
     ...     "as, cs ds fs gs | as, cs ds",
     ... ]
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> score = make_score(rh_pitches, lh_pitches)
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Adán (2.0), Bača (3.2)]`

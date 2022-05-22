@@ -2,90 +2,45 @@
 Enumerations.
 """
 
-import uqbar.enums
+import enum
 
 
-class Comparison(uqbar.enums.StrictEnumeration):
+class Comparison(enum.Enum):
     """
     Enumeration of amount comparisons.
     """
 
-    Less = -1
-    Exact = 0
-    More = 1
-
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name
+    LESS = -1
+    EXACT = 0
+    MORE = 1
 
 
-class HorizontalAlignment(uqbar.enums.StrictEnumeration):
+class Horizontal(enum.Enum):
     """
     Enumeration of horizontal alignments.
     """
 
-    Left = -1
-    Middle = 0
-    Right = 1
-
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name
+    LEFT = -1
+    MIDDLE = 0
+    RIGHT = 1
 
 
-class VerticalAlignment(uqbar.enums.StrictEnumeration):
+class Vertical(enum.Enum):
     """
     Enumeration of vertical alignments.
     """
 
-    Down = -1
-    Center = 0
-    Up = 1
-
-    def __repr__(self):
-        return self.name
-
-    def __str__(self):
-        return self.name
-
-    def _get_lilypond_format(self):
-        return {self.Down: "_", self.Up: "^", self.Center: "-"}[self]
-
-    @classmethod
-    def from_expr(cls, expr):
-        lilypond_symbols = {"^": cls.Up, "-": cls.Center, "_": cls.Down}
-        result = lilypond_symbols.get(expr)
-        if result is not None:
-            return result
-        return super().from_expr(expr)
+    DOWN = -1
+    CENTER = 0
+    UP = 1
 
 
-Center = VerticalAlignment.Center
-Down = VerticalAlignment.Down
-Exact = Comparison.Exact
-Left = HorizontalAlignment.Left
-Less = Comparison.Less
-Middle = HorizontalAlignment.Middle
-More = Comparison.More
-Right = HorizontalAlignment.Right
-Up = VerticalAlignment.Up
-
-
-__all__ = [
-    "Center",
-    "Comparison",
-    "Down",
-    "Exact",
-    "HorizontalAlignment",
-    "Left",
-    "Less",
-    "Middle",
-    "More",
-    "Right",
-    "Up",
-    "VerticalAlignment",
-]
+CENTER = Vertical.CENTER
+DOWN = Vertical.DOWN
+EXACT = Comparison.EXACT
+LEFT = Horizontal.LEFT
+LESS = Comparison.LESS
+MIDDLE = Horizontal.MIDDLE
+MORE = Comparison.MORE
+RIGHT = Horizontal.RIGHT
+UP = Vertical.UP

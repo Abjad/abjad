@@ -7,7 +7,7 @@ def test_LilyPondParser__indicators__Clef_01():
     clef = abjad.Clef("bass")
     abjad.attach(clef, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {

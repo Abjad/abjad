@@ -1,17 +1,13 @@
 """
 Abjad's math library.
 """
+import collections
 import itertools
 import math
 import numbers
 import typing
-from collections import abc as collections_abc
 
 import quicktions
-
-from .storage import FormatSpecification, StorageFormatManager
-
-### FUNCTIONS ###
 
 
 def all_are_equal(argument) -> bool:
@@ -241,7 +237,7 @@ def are_relatively_prime(argument) -> bool:
         True
 
     """
-    if not isinstance(argument, collections_abc.Iterable):
+    if not isinstance(argument, collections.abc.Iterable):
         return False
     if not all(isinstance(_, numbers.Number) for _ in argument):
         return False
@@ -255,7 +251,7 @@ def are_relatively_prime(argument) -> bool:
     return True
 
 
-def arithmetic_mean(argument) -> typing.Union[int, float]:
+def arithmetic_mean(argument) -> int | float:
     """
     Gets arithmetic mean of ``argument``.
 
@@ -272,7 +268,7 @@ def arithmetic_mean(argument) -> typing.Union[int, float]:
 
     Raises exception when ``argument`` is not iterable.
     """
-    if not isinstance(argument, collections_abc.Sequence):
+    if not isinstance(argument, collections.abc.Sequence):
         raise TypeError(argument)
     total = sum(argument)
     length = len(argument)
@@ -324,7 +320,7 @@ def cumulative_products(argument):
 
     Returns new object of ``argument`` type.
     """
-    if not isinstance(argument, collections_abc.Iterable):
+    if not isinstance(argument, collections.abc.Iterable):
         raise TypeError(argument)
     if len(argument) == 0:
         return type(argument)([])
@@ -383,7 +379,7 @@ def difference_series(argument):
     return type(argument)(result)
 
 
-def divisors(n) -> typing.List[int]:
+def divisors(n) -> list[int]:
     """
     Gets positive divisors of ``n`` in increasing order.
 
@@ -432,7 +428,7 @@ def divisors(n) -> typing.List[int]:
     return divisors
 
 
-def factors(n) -> typing.List[int]:
+def factors(n) -> list[int]:
     """
     Gets prime factors less than or equal to ``n`` .
 
@@ -474,7 +470,7 @@ def factors(n) -> typing.List[int]:
 
 def fraction_to_proper_fraction(
     rational,
-) -> typing.Tuple[int, quicktions.Fraction]:
+) -> tuple[int, quicktions.Fraction]:
     """
     Changes ``rational`` to proper fraction.
 
@@ -560,7 +556,7 @@ def greatest_power_of_two_less_equal(n, i=0) -> int:
     return 2 ** (int(math.log(n, 2)) - i)
 
 
-def integer_equivalent_number_to_integer(number) -> typing.Union[int, float]:
+def integer_equivalent_number_to_integer(number) -> int | float:
     """
     Changes integer-equivalent ``number`` to integer.
 
@@ -585,7 +581,7 @@ def integer_equivalent_number_to_integer(number) -> typing.Union[int, float]:
         return number
 
 
-def integer_to_base_k_tuple(n, k) -> typing.Tuple[int, ...]:
+def integer_to_base_k_tuple(n, k) -> tuple[int, ...]:
     """
     Changes nonnegative integer ``n`` to base-`k` tuple.
 
@@ -619,7 +615,7 @@ def integer_to_base_k_tuple(n, k) -> typing.Tuple[int, ...]:
     current_exponent = math.trunc(math.log(n, k))
     remainder = n
     while 0 <= current_exponent:
-        current_power = k ** current_exponent
+        current_power = k**current_exponent
         current_digit = remainder // current_power
         result.append(current_digit)
         remainder -= current_digit * current_power
@@ -963,7 +959,7 @@ def _least_common_multiple_helper(m, n):
 
 def partition_integer_into_canonic_parts(
     n, decrease_parts_monotonically=True
-) -> typing.Tuple[int, ...]:
+) -> tuple[int, ...]:
     """
     Partitions integer ``n`` into canonic parts.
 
@@ -1095,7 +1091,7 @@ def weight(argument) -> int:
     return sum([abs(_) for _ in argument])
 
 
-def yield_all_compositions_of_integer(n) -> typing.Generator:
+def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]]:
     """
     Yields all compositions of positive integer ``n``.
 
@@ -1148,9 +1144,6 @@ def yield_all_compositions_of_integer(n) -> typing.Generator:
         yield composition
 
 
-### CLASSES ###
-
-
 class Infinity:
     """
     Infinity.
@@ -1197,9 +1190,9 @@ class Infinity:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is also infinity.
+        Compares type.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        return isinstance(argument, type(self))
 
     def __float__(self):
         """
@@ -1228,15 +1221,8 @@ class Infinity:
     def __hash__(self):
         """
         Hashes infinity.
-
-        Redefined with ``__eq__()``.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __le__(self, argument):
         """
@@ -1256,9 +1242,9 @@ class Infinity:
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return f"{type(self).__name__}()"
 
     def __sub__(self, argument):
         """
@@ -1269,15 +1255,6 @@ class Infinity:
         if argument is self:
             return 0
         return self
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_text=type(self).__name__,
-            storage_format_text=type(self).__name__,
-        )
 
 
 class NegativeInfinity(Infinity):

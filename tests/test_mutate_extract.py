@@ -10,7 +10,7 @@ def test_mutate_extract_01():
     abjad.beam(voice[:])
     abjad.glissando(voice[:])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -30,7 +30,7 @@ def test_mutate_extract_01():
     note = voice[1]
     abjad.mutate.extract(note)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -58,7 +58,7 @@ def test_mutate_extract_02():
     abjad.beam(voice[:])
     abjad.glissando(voice[:])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -79,7 +79,7 @@ def test_mutate_extract_02():
     for note in notes:
         abjad.mutate.extract(note)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -105,10 +105,10 @@ def test_mutate_extract_03():
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
     staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -129,7 +129,7 @@ def test_mutate_extract_03():
     container = staff[0]
     abjad.mutate.extract(container)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -158,11 +158,11 @@ def test_mutate_extract_04():
     voice.append(abjad.Container("c'8 d'8"))
     voice.append(abjad.Container("e'8 f'8"))
     voice.append(abjad.Container("g'8 a'8"))
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
     abjad.glissando(leaves)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -193,7 +193,7 @@ def test_mutate_extract_04():
     for container in containers:
         abjad.mutate.extract(container)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {

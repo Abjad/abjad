@@ -1,17 +1,11 @@
-from .. import _iterate
-from ..attach import attach, detach
-from ..duration import Duration, NonreducedFraction
-from ..enums import Left, Right
-from ..indicators.StartBeam import StartBeam
-from ..indicators.StartSlur import StartSlur
-from ..indicators.StopBeam import StopBeam
-from ..indicators.StopSlur import StopSlur
-from ..indicators.Tie import Tie
-from ..indicators.TimeSignature import TimeSignature
-from ..pitch.pitchclasses import NamedPitchClass
-from ..pitch.pitches import NamedPitch
-from ..score import Chord, Container, Note, Rest, Tuplet
-from ..select import Selection
+from .. import _iterlib
+from .. import bind as _bind
+from .. import duration as _duration
+from .. import enums as _enums
+from .. import indicators as _indicators
+from .. import pitch as _pitch
+from .. import score as _score
+from .. import select as _select
 from .base import Parser
 
 
@@ -109,12 +103,14 @@ class ReducedLyParser(Parser):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3 {
+            \times 2/3
+            {
                 c'4
                 c'4
                 \tweak text #tuplet-number::calc-fraction-text
                 \tweak edge-height #'(0.7 . 0)
-                \times 3/5 {
+                \times 3/5
+                {
                     c'8
                     c'8
                     c'8
@@ -186,7 +182,7 @@ class ReducedLyParser(Parser):
     ### INITIALIZER ###
 
     def __init__(self, debug=False):
-        self._default_duration = Duration((1, 4))
+        self._default_duration = _duration.Duration((1, 4))
         self._toplevel_component_count = None
         Parser.__init__(self, debug=debug)
 
@@ -239,7 +235,7 @@ class ReducedLyParser(Parser):
     def t_FRACTION(self, t):
         r"([1-9]\d*/[1-9]\d*)"
         parts = t.value.split("/")
-        t.value = NonreducedFraction(int(parts[0]), int(parts[1]))
+        t.value = _duration.NonreducedFraction(int(parts[0]), int(parts[1]))
         return t
 
     def t_INTEGER_N(self, t):
@@ -254,7 +250,7 @@ class ReducedLyParser(Parser):
 
     def t_PITCHNAME(self, t):
         r"[a-g](ff|ss|f|s|tqf|tqs|qs|qf)?"
-        t.value = NamedPitchClass(t.value)
+        t.value = _pitch.NamedPitchClass(t.value)
         return t
 
     def t_error(self, t):
@@ -283,25 +279,25 @@ class ReducedLyParser(Parser):
         """
         beam : BRACKET_L
         """
-        p[0] = (StartBeam, Left)
+        p[0] = (_indicators.StartBeam, _enums.LEFT)
 
     def p_beam__BRACKET_R(self, p):
         """
         beam : BRACKET_R
         """
-        p[0] = (StopBeam, Right)
+        p[0] = (_indicators.StopBeam, _enums.RIGHT)
 
     def p_chord_body__chord_pitches(self, p):
         """
         chord_body : chord_pitches
         """
-        p[0] = Chord(p[1], self._default_duration)
+        p[0] = _score.Chord(p[1], self._default_duration)
 
     def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
         """
         chord_body : chord_pitches positive_leaf_duration
         """
-        p[0] = Chord(p[1], p[2])
+        p[0] = _score.Chord(p[1], p[2])
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
         """
@@ -359,7 +355,7 @@ class ReducedLyParser(Parser):
 
     def p_container__BRACE_L__component_list__BRACE_R(self, p):
         r"""container : BRACE_L component_list BRACE_R"""
-        p[0] = Container()
+        p[0] = _score.Container()
         for component in p[2]:
             p[0].append(component)
 
@@ -394,7 +390,7 @@ class ReducedLyParser(Parser):
         p[0] = p[1]
         if p[2]:
             annotation = {"post events": p[2]}
-            attach(annotation, p[0])
+            _bind.attach(annotation, p[0])
 
     def p_leaf_body__chord_body(self, p):
         """
@@ -418,12 +414,12 @@ class ReducedLyParser(Parser):
         """
         measure : PIPE FRACTION component_list PIPE
         """
-        measure = Container()
+        measure = _score.Container()
         for x in p[3]:
             measure.append(x)
-        leaf = _iterate._get_leaf(measure, 0)
-        time_signature = TimeSignature(p[2].pair)
-        attach(time_signature, leaf)
+        leaf = _iterlib._get_leaf(measure, 0)
+        time_signature = _indicators.TimeSignature(p[2].pair)
+        _bind.attach(time_signature, leaf)
         p[0] = measure
 
     def p_negative_leaf_duration__INTEGER_N__dots(self, p):
@@ -433,7 +429,7 @@ class ReducedLyParser(Parser):
         duration_log = p[1]
         dots = "." * p[2]
         string = f"{abs(duration_log)}{dots}"
-        duration = Duration.from_lilypond_duration_string(string)
+        duration = _duration.Duration.from_lilypond_duration_string(string)
         self._default_duration = duration
         p[0] = duration
 
@@ -441,37 +437,37 @@ class ReducedLyParser(Parser):
         """
         note_body : pitch
         """
-        p[0] = Note(p[1], self._default_duration)
+        p[0] = _score.Note(p[1], self._default_duration)
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
         """
         note_body : pitch positive_leaf_duration
         """
-        p[0] = Note(p[1], p[2])
+        p[0] = _score.Note(p[1], p[2])
 
     def p_note_body__positive_leaf_duration(self, p):
         """
         note_body : positive_leaf_duration
         """
-        p[0] = Note(0, p[1])
+        p[0] = _score.Note(0, p[1])
 
     def p_pitch__PITCHNAME(self, p):
         """
         pitch : PITCHNAME
         """
-        p[0] = NamedPitch(str(p[1]))
+        p[0] = _pitch.NamedPitch(p[1].name)
 
     def p_pitch__PITCHNAME__apostrophes(self, p):
         """
         pitch : PITCHNAME apostrophes
         """
-        p[0] = NamedPitch(str(p[1]) + "'" * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name + "'" * p[2])
 
     def p_pitch__PITCHNAME__commas(self, p):
         """
         pitch : PITCHNAME commas
         """
-        p[0] = NamedPitch(str(p[1]) + "," * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name + "," * p[2])
 
     def p_pitches__pitch(self, p):
         """
@@ -491,7 +487,9 @@ class ReducedLyParser(Parser):
         """
         duration_log = p[1]
         dots = "." * p[2]
-        duration = Duration.from_lilypond_duration_string(f"{abs(duration_log)}{dots}")
+        duration = _duration.Duration.from_lilypond_duration_string(
+            f"{abs(duration_log)}{dots}"
+        )
         self._default_duration = duration
         p[0] = duration
 
@@ -534,31 +532,31 @@ class ReducedLyParser(Parser):
         """
         rest_body : RESTNAME
         """
-        p[0] = Rest(self._default_duration)
+        p[0] = _score.Rest(self._default_duration)
 
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
         """
         rest_body : RESTNAME positive_leaf_duration
         """
-        p[0] = Rest(p[2])
+        p[0] = _score.Rest(p[2])
 
     def p_rest_body__negative_leaf_duration(self, p):
         """
         rest_body : negative_leaf_duration
         """
-        p[0] = Rest(p[1])
+        p[0] = _score.Rest(p[1])
 
     def p_slur__PAREN_L(self, p):
         """
         slur : PAREN_L
         """
-        p[0] = (StartSlur, Left)
+        p[0] = (_indicators.StartSlur, _enums.LEFT)
 
     def p_slur__PAREN_R(self, p):
         """
         slur : PAREN_R
         """
-        p[0] = (StopSlur, Right)
+        p[0] = (_indicators.StopSlur, _enums.RIGHT)
 
     def p_start__EMPTY(self, p):
         """
@@ -585,16 +583,16 @@ class ReducedLyParser(Parser):
         """
         tie : TILDE
         """
-        p[0] = (Tie, Left)
+        p[0] = (_indicators.Tie, _enums.LEFT)
 
     def p_tuplet__FRACTION__container(self, p):
         """
         tuplet : FRACTION container
         """
-        assert isinstance(p[2], Container)
+        assert isinstance(p[2], _score.Container)
         leaves = p[2][:]
         p[2][:] = []
-        p[0] = Tuplet(p[1], leaves)
+        p[0] = _score.Tuplet(p[1], leaves)
 
     ### PRIVATE METHODS ###
 
@@ -603,41 +601,41 @@ class ReducedLyParser(Parser):
             span_events = self._get_span_events(leaf)
             for current_class, directions in span_events.items():
                 if current_class in (
-                    StartSlur,
-                    StopSlur,
+                    _indicators.StartSlur,
+                    _indicators.StopSlur,
                 ):
                     indicator = current_class()
-                    attach(indicator, leaf)
+                    _bind.attach(indicator, leaf)
                     continue
                 if current_class in (
-                    StartBeam,
-                    StopBeam,
+                    _indicators.StartBeam,
+                    _indicators.StopBeam,
                 ):
                     indicator = current_class()
-                    attach(indicator, leaf)
+                    _bind.attach(indicator, leaf)
                     continue
-                if current_class is Tie:
+                if current_class is _indicators.Tie:
                     indicator = current_class()
-                    attach(indicator, leaf)
+                    _bind.attach(indicator, leaf)
                     continue
 
     def _cleanup(self, parsed):
-        container = Container()
+        container = _score.Container()
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = Selection(parsed).leaves()
+        leaves = _select.leaves(parsed)
         if leaves:
             self._attach_indicators(leaves)
         for leaf in leaves:
-            detach(dict, leaf)
+            _bind.detach(dict, leaf)
         if 1 < self._toplevel_component_count:
             return parsed
         return parsed[0]
 
     def _get_span_events(self, leaf):
         annotations = leaf._get_indicators(dict)
-        detach(dict, leaf)
+        _bind.detach(dict, leaf)
         annotations = [x for x in annotations if "post events" in x]
         if annotations:
             return annotations[0]["post events"]
@@ -645,7 +643,7 @@ class ReducedLyParser(Parser):
 
     def _setup(self):
         self._toplevel_component_count = 0
-        self._default_duration = Duration((1, 4))
+        self._default_duration = _duration.Duration((1, 4))
 
     ### PUBLIC PROPERTIES ###
 
@@ -676,7 +674,7 @@ class ReducedLyParser(Parser):
 ### FUNCTIONS ###
 
 
-def parse_reduced_ly_syntax(string) -> Container:
+def parse_reduced_ly_syntax(string) -> _score.Container:
     """
     Parse the reduced LilyPond rhythmic syntax:
 
@@ -685,7 +683,7 @@ def parse_reduced_ly_syntax(string) -> Container:
         >>> string = '4 -4. 8.. 5/3 { } 4'
         >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
         >>> container
-        <{5}>
+        Container("c'4 r4. c'8.. { 5/3 } c'4")
 
         >>> for component in container:
         ...     component

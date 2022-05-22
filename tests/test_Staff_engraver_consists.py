@@ -8,7 +8,7 @@ def test_Staff_engraver_consists_01():
     staff.consists_commands.append("Instrument_name_engraver")
 
     assert abjad.wf.wellformed(staff)
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         \with

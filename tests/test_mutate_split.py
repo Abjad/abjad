@@ -9,12 +9,12 @@ def test_mutate_split_01():
     staff = abjad.Staff()
     staff.append(abjad.Container("c'8 d'8"))
     staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -39,7 +39,7 @@ def test_mutate_split_01():
     notes = staff[0][1:2]
     result = abjad.mutate.split(notes, [abjad.Duration(3, 64)], cyclic=True)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -78,12 +78,12 @@ def test_mutate_split_02():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -109,7 +109,7 @@ def test_mutate_split_02():
 
     result = abjad.mutate.split(leaves, [abjad.Duration(3, 32)], cyclic=True)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -154,12 +154,12 @@ def test_mutate_split_03():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -186,7 +186,7 @@ def test_mutate_split_03():
     notes = staff[0][1:]
     result = abjad.mutate.split(notes, [abjad.Duration(1, 32)], cyclic=True)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -229,12 +229,12 @@ def test_mutate_split_04():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -260,7 +260,7 @@ def test_mutate_split_04():
 
     result = abjad.mutate.split(leaves, [abjad.Duration(1, 16)], cyclic=True)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -305,12 +305,12 @@ def test_mutate_split_05():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -337,7 +337,7 @@ def test_mutate_split_05():
     measures = staff[:1]
     result = abjad.mutate.split(measures, [abjad.Duration(1, 16)], cyclic=True)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -384,12 +384,12 @@ def test_mutate_split_06():
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -416,7 +416,7 @@ def test_mutate_split_06():
     measures = staff[:]
     result = abjad.mutate.split(measures, [abjad.Duration(3, 32)], cyclic=True)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -470,13 +470,13 @@ def test_mutate_split_07():
     voice = abjad.Voice()
     voice.append(abjad.Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(abjad.Tuplet((2, 3), "f'8 g'8 a'8"))
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
     tuplets = voice[1:2]
     abjad.mutate.split(tuplets, [abjad.Duration(1, 12)])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -514,13 +514,13 @@ def test_mutate_split_08():
     voice = abjad.Voice()
     voice.append(abjad.Container("c'8 d'8 e'8"))
     voice.append(abjad.Container("f'8 g'8 a'8"))
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
     measures = voice[1:2]
     abjad.mutate.split(measures, [abjad.Duration(1, 8)])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -559,7 +559,7 @@ def test_mutate_split_09():
     voice_1 = result[0][0]
     voice_2 = result[1][0]
 
-    assert abjad.lilypond(voice_1) == abjad.String.normalize(
+    assert abjad.lilypond(voice_1) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -571,7 +571,7 @@ def test_mutate_split_09():
 
     assert abjad.wf.wellformed(voice_1)
 
-    assert abjad.lilypond(voice_2) == abjad.String.normalize(
+    assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -597,7 +597,7 @@ def test_mutate_split_10():
     left = result[0][0]
     right = result[1][0]
 
-    assert abjad.lilypond(left) == abjad.String.normalize(
+    assert abjad.lilypond(left) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -607,7 +607,7 @@ def test_mutate_split_10():
         """
     ), print(abjad.lilypond(left))
 
-    assert abjad.lilypond(right) == abjad.String.normalize(
+    assert abjad.lilypond(right) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -617,7 +617,7 @@ def test_mutate_split_10():
         """
     ), print(abjad.lilypond(right))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -625,7 +625,7 @@ def test_mutate_split_10():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -653,7 +653,7 @@ def test_mutate_split_11():
 
     staff = abjad.Staff([abjad.Container("c'8 d'8 e'8 f'8")])
     voice = staff[0]
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves)
 
     result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
@@ -661,7 +661,7 @@ def test_mutate_split_11():
     left = result[0][0]
     right = result[1][0]
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -679,7 +679,7 @@ def test_mutate_split_11():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.lilypond(left) == abjad.String.normalize(
+    assert abjad.lilypond(left) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -689,7 +689,7 @@ def test_mutate_split_11():
         """
     ), print(abjad.lilypond(left))
 
-    assert abjad.lilypond(right) == abjad.String.normalize(
+    assert abjad.lilypond(right) == abjad.string.normalize(
         r"""
         {
             e'8
@@ -699,14 +699,14 @@ def test_mutate_split_11():
         """
     ), print(abjad.lilypond(right))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         {
         }
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -742,7 +742,7 @@ def test_mutate_split_12():
     left = result[0][0]
     right = result[1][0]
 
-    assert abjad.lilypond(left) == abjad.String.normalize(
+    assert abjad.lilypond(left) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
         \times 4/5
@@ -754,7 +754,7 @@ def test_mutate_split_12():
         """
     ), print(abjad.lilypond(left))
 
-    assert abjad.lilypond(right) == abjad.String.normalize(
+    assert abjad.lilypond(right) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
         \times 4/5
@@ -767,7 +767,7 @@ def test_mutate_split_12():
         """
     ), print(abjad.lilypond(right))
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \times 4/5
         {
@@ -775,7 +775,7 @@ def test_mutate_split_12():
         """
     ), print(abjad.lilypond(tuplet))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -798,7 +798,7 @@ def test_mutate_split_12():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -833,11 +833,11 @@ def test_mutate_split_13():
     """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
     abjad.slur(leaves)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -862,7 +862,7 @@ def test_mutate_split_13():
     note = voice[0]
     abjad.mutate.split(note, [abjad.Duration(1, 8), abjad.Duration(3, 8)], cyclic=True)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -899,11 +899,11 @@ def test_mutate_split_14():
     """
 
     voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
     abjad.slur(leaves)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -924,7 +924,7 @@ def test_mutate_split_14():
     container = voice[0]
     abjad.mutate.split(container, [abjad.Duration(1, 8)], cyclic=True)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -961,7 +961,7 @@ def test_mutate_split_15():
     notes = staff[:1]
     abjad.mutate.split(notes, [abjad.Duration(5, 24)])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

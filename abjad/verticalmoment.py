@@ -1,11 +1,9 @@
-from . import enumerate
-from .iterate import Iteration
-from .ordereddict import OrderedDict
-from .parentage import Parentage
-from .pitch.segments import PitchSegment
-from .score import Chord, Leaf, Note
-from .select import Selection
-from .sequence import Sequence
+from . import enumerate as _enumerate
+from . import iterate as _iterate
+from . import parentage as _parentage
+from . import score as _score
+from . import select as _select
+from . import sequence as _sequence
 
 
 class VerticalMoment:
@@ -57,8 +55,6 @@ class VerticalMoment:
     '''
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Selections"
 
     __slots__ = ("_components", "_governors", "_offset")
 
@@ -150,7 +146,8 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
+                        \times 4/3
+                        {
                             d''8
                             c''8
                             b'8
@@ -248,7 +245,8 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
+                        \times 4/3
+                        {
                             d''8
                             c''8
                             b'8
@@ -285,7 +283,7 @@ class VerticalMoment:
         """
         leaves = []
         for leaf in self.start_leaves:
-            if isinstance(leaf, (Note, Chord)):
+            if isinstance(leaf, _score.Note | _score.Chord):
                 leaves.append(leaf)
         return len(leaves)
 
@@ -307,7 +305,7 @@ class VerticalMoment:
         return self._governors
 
     @property
-    def leaves(self):
+    def leaves(self) -> list[_score.Leaf]:
         r"""
         Tuple of zero or more leaves at vertical moment.
 
@@ -349,7 +347,8 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3 {
+                        \times 4/3
+                        {
                             d''8
                             c''8
                             b'8
@@ -376,19 +375,18 @@ class VerticalMoment:
             >>> for moment in abjad.iterate_vertical_moments(score):
             ...     print(moment.offset, moment.leaves)
             ...
-            0 Selection([Note("d''8"), Note("a'4"), Note("f'8")])
-            1/8 Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-            1/6 Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-            1/4 Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-            1/3 Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-            3/8 Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+            0 [Note("d''8"), Note("a'4"), Note("f'8")]
+            1/8 [Note("d''8"), Note("a'4"), Note("e'8")]
+            1/6 [Note("c''8"), Note("a'4"), Note("e'8")]
+            1/4 [Note("c''8"), Note("g'4"), Note("d'8")]
+            1/3 [Note("b'8"), Note("g'4"), Note("d'8")]
+            3/8 [Note("b'8"), Note("g'4"), Note("c'8")]
 
         """
         result = []
         for component in self.components:
-            if isinstance(component, Leaf):
+            if isinstance(component, _score.Leaf):
                 result.append(component)
-        result = Selection(result)
         return result
 
     @property
@@ -398,7 +396,7 @@ class VerticalMoment:
         """
         result = []
         for component in self.components:
-            if isinstance(component, Note):
+            if isinstance(component, _score.Note):
                 result.append(component)
         result = tuple(result)
         return result
@@ -409,7 +407,7 @@ class VerticalMoment:
         Tuple of zero or more notes and chords at vertical moment.
         """
         result = []
-        prototype = (Chord, Note)
+        prototype = (_score.Chord, _score.Note)
         for component in self.components:
             if isinstance(component, prototype):
                 result.append(component)
@@ -442,7 +440,7 @@ class VerticalMoment:
         Tuple of leaves in vertical moment starting before vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.overlap_components if isinstance(x, Leaf)]
+        result = [x for x in self.overlap_components if isinstance(x, _score.Leaf)]
         result = tuple(result)
         return result
 
@@ -453,7 +451,7 @@ class VerticalMoment:
         ordered by score index.
         """
         result = self.overlap_components
-        result = [_ for _ in result if isinstance(_, Note)]
+        result = [_ for _ in result if isinstance(_, _score.Note)]
         result = tuple(result)
         return result
 
@@ -476,7 +474,7 @@ class VerticalMoment:
         Tuple of leaves in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.start_components if isinstance(x, Leaf)]
+        result = [x for x in self.start_components if isinstance(x, _score.Leaf)]
         result = tuple(result)
         return result
 
@@ -486,7 +484,7 @@ class VerticalMoment:
         Tuple of notes in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.start_components if isinstance(x, Note)]
+        result = [x for x in self.start_components if isinstance(x, _score.Note)]
         result = tuple(result)
         return result
 
@@ -521,7 +519,8 @@ def iterate_vertical_moments(components, reverse=None):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 4/3 {
+                    \times 4/3
+                    {
                         d''8
                         c''8
                         b'8
@@ -548,20 +547,20 @@ def iterate_vertical_moments(components, reverse=None):
         >>> for vertical_moment in abjad.iterate_vertical_moments(score):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("d''8"), Note("a'4"), Note("f'8")])
-        Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-        Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-        Selection([Note("b'8"), Note("g'4"), Note("c'8")])
+        [Note("d''8"), Note("a'4"), Note("f'8")]
+        [Note("d''8"), Note("a'4"), Note("e'8")]
+        [Note("c''8"), Note("a'4"), Note("e'8")]
+        [Note("c''8"), Note("g'4"), Note("d'8")]
+        [Note("b'8"), Note("g'4"), Note("d'8")]
+        [Note("b'8"), Note("g'4"), Note("c'8")]
 
         >>> for vertical_moment in abjad.iterate_vertical_moments(staff_group):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("a'4"), Note("f'8")])
-        Selection([Note("a'4"), Note("e'8")])
-        Selection([Note("g'4"), Note("d'8")])
-        Selection([Note("g'4"), Note("c'8")])
+        [Note("a'4"), Note("f'8")]
+        [Note("a'4"), Note("e'8")]
+        [Note("g'4"), Note("d'8")]
+        [Note("g'4"), Note("c'8")]
 
     ..  container:: example
 
@@ -586,7 +585,8 @@ def iterate_vertical_moments(components, reverse=None):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 4/3 {
+                    \times 4/3
+                    {
                         d''8
                         c''8
                         b'8
@@ -613,12 +613,12 @@ def iterate_vertical_moments(components, reverse=None):
         >>> for vertical_moment in abjad.iterate_vertical_moments(score, reverse=True):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("b'8"), Note("g'4"), Note("c'8")])
-        Selection([Note("b'8"), Note("g'4"), Note("d'8")])
-        Selection([Note("c''8"), Note("g'4"), Note("d'8")])
-        Selection([Note("c''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("d''8"), Note("a'4"), Note("e'8")])
-        Selection([Note("d''8"), Note("a'4"), Note("f'8")])
+        [Note("b'8"), Note("g'4"), Note("c'8")]
+        [Note("b'8"), Note("g'4"), Note("d'8")]
+        [Note("c''8"), Note("g'4"), Note("d'8")]
+        [Note("c''8"), Note("a'4"), Note("e'8")]
+        [Note("d''8"), Note("a'4"), Note("e'8")]
+        [Note("d''8"), Note("a'4"), Note("f'8")]
 
         >>> for vertical_moment in abjad.iterate_vertical_moments(
         ...     staff_group,
@@ -626,17 +626,17 @@ def iterate_vertical_moments(components, reverse=None):
         ...     ):
         ...     vertical_moment.leaves
         ...
-        Selection([Note("g'4"), Note("c'8")])
-        Selection([Note("g'4"), Note("d'8")])
-        Selection([Note("a'4"), Note("e'8")])
-        Selection([Note("a'4"), Note("f'8")])
+        [Note("g'4"), Note("c'8")]
+        [Note("g'4"), Note("d'8")]
+        [Note("a'4"), Note("e'8")]
+        [Note("a'4"), Note("f'8")]
 
     Returns tuple.
     '''
     moments = []
-    components = list(Selection(components).components())
+    components = _select.components(components)
     components.sort(key=lambda _: _._get_timespan().start_offset)
-    offset_to_components = OrderedDict()
+    offset_to_components = dict()
     for component in components:
         start_offset = component._get_timespan().start_offset
         if start_offset not in offset_to_components:
@@ -656,7 +656,7 @@ def iterate_vertical_moments(components, reverse=None):
                 break
     moments = []
     for offset, list_ in offset_to_components.items():
-        list_.sort(key=lambda _: Parentage(_).score_index())
+        list_.sort(key=lambda _: _parentage.Parentage(_).score_index())
         moment = VerticalMoment(components=list_, offset=offset)
         moments.append(moment)
     if reverse is True:
@@ -701,36 +701,36 @@ def iterate_leaf_pairs(components):
 
         >>> for leaf_pair in abjad.iterate_leaf_pairs(score):
         ...     leaf_pair
-        Selection([Note("c'8"), Note('c4')])
-        Selection([Note("c'8"), Note("d'8")])
-        Selection([Note('c4'), Note("d'8")])
-        Selection([Note("d'8"), Note("e'8")])
-        Selection([Note("d'8"), Note('a,4')])
-        Selection([Note('c4'), Note("e'8")])
-        Selection([Note('c4'), Note('a,4')])
-        Selection([Note("e'8"), Note('a,4')])
-        Selection([Note("e'8"), Note("f'8")])
-        Selection([Note('a,4'), Note("f'8")])
-        Selection([Note("f'8"), Note("g'4")])
-        Selection([Note("f'8"), Note('g,4')])
-        Selection([Note('a,4'), Note("g'4")])
-        Selection([Note('a,4'), Note('g,4')])
-        Selection([Note("g'4"), Note('g,4')])
+        [Note("c'8"), Note('c4')]
+        [Note("c'8"), Note("d'8")]
+        [Note('c4'), Note("d'8")]
+        [Note("d'8"), Note("e'8")]
+        [Note("d'8"), Note('a,4')]
+        [Note('c4'), Note("e'8")]
+        [Note('c4'), Note('a,4')]
+        [Note("e'8"), Note('a,4')]
+        [Note("e'8"), Note("f'8")]
+        [Note('a,4'), Note("f'8")]
+        [Note("f'8"), Note("g'4")]
+        [Note("f'8"), Note('g,4')]
+        [Note('a,4'), Note("g'4")]
+        [Note('a,4'), Note('g,4')]
+        [Note("g'4"), Note('g,4')]
 
     Iterates leaf pairs left-to-right and top-to-bottom.
 
     Returns generator.
     """
     vertical_moments = iterate_vertical_moments(components)
-    for moment_1, moment_2 in Sequence(vertical_moments).nwise():
-        for pair in enumerate.yield_pairs(moment_1.start_leaves):
-            yield Selection(pair)
+    for moment_1, moment_2 in _sequence.nwise(vertical_moments):
+        for pair in _enumerate.yield_pairs(moment_1.start_leaves):
+            yield list(pair)
         sequences = [moment_1.leaves, moment_2.start_leaves]
-        for pair in enumerate.yield_outer_product(sequences):
-            yield Selection(pair)
+        for pair in _enumerate.outer_product(sequences):
+            yield list(pair)
     else:
-        for pair in enumerate.yield_pairs(moment_2.start_leaves):
-            yield Selection(pair)
+        for pair in _enumerate.yield_pairs(moment_2.start_leaves):
+            yield list(pair)
 
 
 def iterate_pitch_pairs(components):
@@ -772,21 +772,21 @@ def iterate_pitch_pairs(components):
 
         >>> for pair in abjad.iterate_pitch_pairs(score):
         ...     pair
-        PitchSegment("c' c")
-        PitchSegment("c' d'")
-        PitchSegment("c d'")
-        PitchSegment("d' e'")
-        PitchSegment("d' a,")
-        PitchSegment("c e'")
-        PitchSegment("c a,")
-        PitchSegment("e' a,")
-        PitchSegment("e' f'")
-        PitchSegment("a, f'")
-        PitchSegment("f' g'")
-        PitchSegment("f' g,")
-        PitchSegment("a, g'")
-        PitchSegment("a, g,")
-        PitchSegment("g' g,")
+        (NamedPitch("c'"), NamedPitch('c'))
+        (NamedPitch("c'"), NamedPitch("d'"))
+        (NamedPitch('c'), NamedPitch("d'"))
+        (NamedPitch("d'"), NamedPitch("e'"))
+        (NamedPitch("d'"), NamedPitch('a,'))
+        (NamedPitch('c'), NamedPitch("e'"))
+        (NamedPitch('c'), NamedPitch('a,'))
+        (NamedPitch("e'"), NamedPitch('a,'))
+        (NamedPitch("e'"), NamedPitch("f'"))
+        (NamedPitch('a,'), NamedPitch("f'"))
+        (NamedPitch("f'"), NamedPitch("g'"))
+        (NamedPitch("f'"), NamedPitch('g,'))
+        (NamedPitch('a,'), NamedPitch("g'"))
+        (NamedPitch('a,'), NamedPitch('g,'))
+        (NamedPitch("g'"), NamedPitch('g,'))
 
     ..  container:: example
 
@@ -807,33 +807,33 @@ def iterate_pitch_pairs(components):
         >>> for pair in abjad.iterate_pitch_pairs(staff):
         ...     pair
         ...
-        PitchSegment("c' d'")
-        PitchSegment("c' e'")
-        PitchSegment("d' e'")
-        PitchSegment("c' f''")
-        PitchSegment("c' g''")
-        PitchSegment("d' f''")
-        PitchSegment("d' g''")
-        PitchSegment("e' f''")
-        PitchSegment("e' g''")
-        PitchSegment("f'' g''")
+        (NamedPitch("c'"), NamedPitch("d'"))
+        (NamedPitch("c'"), NamedPitch("e'"))
+        (NamedPitch("d'"), NamedPitch("e'"))
+        (NamedPitch("c'"), NamedPitch("f''"))
+        (NamedPitch("c'"), NamedPitch("g''"))
+        (NamedPitch("d'"), NamedPitch("f''"))
+        (NamedPitch("d'"), NamedPitch("g''"))
+        (NamedPitch("e'"), NamedPitch("f''"))
+        (NamedPitch("e'"), NamedPitch("g''"))
+        (NamedPitch("f''"), NamedPitch("g''"))
 
     Returns generator.
     """
     for leaf_pair in iterate_leaf_pairs(components):
-        pitches = sorted(Iteration(leaf_pair[0]).pitches())
-        for pair in enumerate.yield_pairs(pitches):
-            yield PitchSegment(pair)
+        pitches = sorted(_iterate.pitches(leaf_pair[0]))
+        for pair in _enumerate.yield_pairs(pitches):
+            yield tuple(pair)
         if isinstance(leaf_pair, set):
-            pitches = sorted(Iteration(leaf_pair).pitches())
-            for pair in enumerate.yield_pairs(pitches):
-                yield PitchSegment(pair)
+            pitches = sorted(_iterate.pitches(leaf_pair))
+            for pair in _enumerate.yield_pairs(pitches):
+                yield tuple(pair)
         else:
-            pitches_1 = sorted(Iteration(leaf_pair[0]).pitches())
-            pitches_2 = sorted(Iteration(leaf_pair[1]).pitches())
+            pitches_1 = sorted(_iterate.pitches(leaf_pair[0]))
+            pitches_2 = sorted(_iterate.pitches(leaf_pair[1]))
             sequences = [pitches_1, pitches_2]
-            for pair in enumerate.yield_outer_product(sequences):
-                yield PitchSegment(pair)
-        pitches = sorted(Iteration(leaf_pair[1]).pitches())
-        for pair in enumerate.yield_pairs(pitches):
-            yield PitchSegment(pair)
+            for pair in _enumerate.outer_product(sequences):
+                yield tuple(pair)
+        pitches = sorted(_iterate.pitches(leaf_pair[1]))
+        for pair in _enumerate.yield_pairs(pitches):
+            yield tuple(pair)

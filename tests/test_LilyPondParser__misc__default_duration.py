@@ -10,7 +10,7 @@ def test_LilyPondParser__misc__default_duration_01():
     target[-2].multiplier = (5, 17)
     target[-1].multiplier = (5, 17)
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4

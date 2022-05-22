@@ -176,14 +176,11 @@ def test_Staff___getitem___08():
 
     assert len(staff) == 5
     assert abjad.wf.wellformed(staff)
-    selection = staff[:]
-    assert len(selection) == 5
-    assert isinstance(selection, abjad.Selection)
-    assert isinstance(selection[0], abjad.Note)
-    assert isinstance(selection[1], abjad.Rest)
-    assert isinstance(selection[2], abjad.Chord)
-    assert isinstance(selection[3], abjad.Skip)
-    assert isinstance(selection[4], abjad.Tuplet)
-    for x in selection:
-        assert x._parent == staff
-    assert abjad.wf.wellformed(staff)
+    components = staff[:]
+    assert len(components) == 5
+    assert isinstance(components[0], abjad.Note)
+    assert isinstance(components[1], abjad.Rest)
+    assert isinstance(components[2], abjad.Chord)
+    assert isinstance(components[3], abjad.Skip)
+    assert isinstance(components[4], abjad.Tuplet)
+    assert all(_._parent is staff for _ in staff)

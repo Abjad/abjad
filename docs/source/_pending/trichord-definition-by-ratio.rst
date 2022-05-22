@@ -60,9 +60,9 @@ Define helper functions:
     ...     parts = math.modf(semitones)
     ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
     ...     if bass is False or pitch <= -8:
-    ...         direction = abjad.Down
+    ...         direction = abjad.DOWN
     ...     else:
-    ...         direction = abjad.Up
+    ...         direction = abjad.UP
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
@@ -83,14 +83,19 @@ Define helper functions:
     ...         cent_string = f"{remainder}"
     ...     else:
     ...         cent_string = f"+{remainder}"
-    ...     markup = abjad.Markup(cent_string, direction=direction)
-    ...     abjad.tweak(markup).parent_alignment_X = 0 
-    ...     abjad.tweak(markup).self_alignment_X = 0.25 
+    ...     string = rf"\markup {cent_string}"
+    ...     markup = abjad.Markup(string)
     ...     if pitch <= -8:
-    ...         abjad.tweak(markup).padding = 1
+    ...         padding = r"- \tweak padding 1"
     ...     else:
-    ...         abjad.tweak(markup).padding = 2.5
-    ...     return markup
+    ...         padding = r"- \tweak padding 2.5"
+    ...     bundle = abjad.bundle(
+    ...         markup,
+    ...         padding,
+    ...         r"- \tweak parent-alignment-X 0", 
+    ...         r"- \tweak self-alignment-X 0.25", 
+    ...     )
+    ...     return bundle, direction
     ...
 
 ::
@@ -109,20 +114,23 @@ Define helper functions:
     ...             bass = False
     ...             if i == 2:
     ...                 bass = True
-    ...             markup = return_cent_markup(note.note_head, ratio, bass=bass)
-    ...             abjad.attach(markup, note)
+    ...             markup, direction = return_cent_markup(note.note_head, ratio, bass=bass)
+    ...             abjad.attach(markup, note, direction=direction)
     ...             staff.append(note)
     ...     for measure_number in (1, 11, 21, 31):
-    ...         note = abjad.select(staff_1).note(measure_number - 1)
-    ...         markup = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
-    ...         abjad.tweak(markup).staff_padding = 8
-    ...         abjad.tweak(markup).transparent = True
-    ...         abjad.attach(markup, note)
+    ...         note = abjad.select.note(staff_1, measure_number - 1)
+    ...         markup = abjad.Markup(r"\markup A")
+    ...         bundle = abjad.bundle(
+    ...             markup,
+    ...             r"- \tweak staff-padding 8",
+    ...             r"- \tweak transparent ##t",
+    ...         )
+    ...         abjad.attach(bundle, note, direction=abjad.UP)
     ...     interface = abjad.override(staff_1).vertical_axis_group
     ...     interface.staff_staff_spacing__minimum_distance = 12
     ...     interface = abjad.override(staff_2).vertical_axis_group
     ...     interface.staff_staff_spacing__minimum_distance = 14
-    ...     note = abjad.select(staff_3).note(0)
+    ...     note = abjad.select.note(staff_3, 0)
     ...     abjad.attach(abjad.Clef("bass"), note)
     ...     abjad.override(score).BarLine.stencil = False
     ...     abjad.override(score).BarNumber.stencil = False
@@ -131,12 +139,14 @@ Define helper functions:
     ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
     ...     abjad.override(score).TimeSignature.stencil = False
     ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 5)"
-    ...     items= [score, abjad.Block(name="layout"), abjad.Block(name="paper")]
-    ...     lilypond_file = abjad.LilyPondFile(items=items, global_staff_size=16)
-    ...     lilypond_file.layout_block.indent = "#0"
+    ...     items = [score, abjad.Block(name="layout"), abjad.Block(name="paper")]
+    ...     string = "#(set-global-staff-size 16)"
+    ...     items.insert(0, string)
+    ...     lilypond_file = abjad.LilyPondFile(items)
+    ...     lilypond_file["layout"].items.append("indent = #0")
     ...     space = "system-system-spacing = #'((basic-distance . 13)"
     ...     space += " (minimum-distance . 13) (padding . 4))"
-    ...     lilypond_file.paper_block.items.append(space)
+    ...     lilypond_file["paper"].items.append(space)
     ...     return lilypond_file
     ...
 

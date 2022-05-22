@@ -9,7 +9,7 @@ def test_mutate__set_leaf_duration_01():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -25,7 +25,7 @@ def test_mutate__set_leaf_duration_01():
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -54,13 +54,13 @@ def test_mutate__set_leaf_duration_02():
     abjad.tie(voice[:2])
     abjad.beam(voice[:2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
             c'8
-            ~
             [
+            ~
             c'8
             ]
             c'8
@@ -71,7 +71,7 @@ def test_mutate__set_leaf_duration_02():
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -100,7 +100,7 @@ def test_mutate__set_leaf_duration_03():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -116,7 +116,7 @@ def test_mutate__set_leaf_duration_03():
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(3, 16))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -142,7 +142,7 @@ def test_mutate__set_leaf_duration_04():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -158,7 +158,7 @@ def test_mutate__set_leaf_duration_04():
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 48))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -190,7 +190,7 @@ def test_mutate__set_leaf_duration_05():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -206,7 +206,7 @@ def test_mutate__set_leaf_duration_05():
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(1, 12))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -320,7 +320,7 @@ def test_mutate__set_leaf_duration_11():
     voice = abjad.Voice("c'8 r8 e'8 f'8")
     abjad.beam(voice[:3])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -336,7 +336,7 @@ def test_mutate__set_leaf_duration_11():
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {

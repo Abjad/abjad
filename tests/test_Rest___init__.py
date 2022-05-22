@@ -50,7 +50,7 @@ def test_Rest___init___04():
     tuplet = abjad.Tuplet((2, 3), chords)
     rest = abjad.Rest(tuplet[0])
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r4
         """
@@ -70,7 +70,7 @@ def test_Rest___init___05():
     abjad.beam(staff[:])
     rest = abjad.Rest(staff[0])
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r8
         [
@@ -88,7 +88,7 @@ def test_Rest___init___06():
     skip = abjad.Skip("s4")
     rest = abjad.Rest(skip)
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r4
         """
@@ -105,7 +105,7 @@ def test_Rest___init___07():
     tuplet = abjad.Tuplet((2, 3), "s4 s4 s4")
     rest = abjad.Rest(tuplet[0])
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r4
         """
@@ -122,7 +122,7 @@ def test_Rest___init___08():
     staff = abjad.Staff("c'8 [ s4 c'd ]")
     rest = abjad.Rest(staff[1])
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r4
         """
@@ -139,7 +139,7 @@ def test_Rest___init___09():
     note = abjad.Note("c'4")
     rest = abjad.Rest(note)
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r4
         """
@@ -156,7 +156,7 @@ def test_Rest___init___10():
     tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
     rest = abjad.Rest(tuplet[0])
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r4
         """
@@ -173,7 +173,7 @@ def test_Rest___init___11():
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
     rest = abjad.Rest(staff[0])
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r8
         [
@@ -193,7 +193,7 @@ def test_Rest___init___12():
         rest = abjad.Rest(note)
         abjad.mutate.replace(note, rest)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -217,7 +217,7 @@ def test_Rest___init___13():
 
     rest = abjad.Rest()
 
-    assert abjad.lilypond(rest) == abjad.String.normalize(
+    assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""
         r4
         """

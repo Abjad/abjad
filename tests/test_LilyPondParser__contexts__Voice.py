@@ -5,7 +5,7 @@ def test_LilyPondParser__contexts__Voice_01():
 
     target = abjad.Voice([])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
         {

@@ -24,7 +24,7 @@ def test_Component__sibling_03():
 
     staff = abjad.Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -40,7 +40,7 @@ def test_Component__sibling_03():
         """
     )
 
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     tuplet = staff[1]
 
     assert leaves[0]._sibling(-1) is None

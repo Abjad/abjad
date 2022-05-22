@@ -4,10 +4,10 @@ import abjad
 def test_LilyPondParser__indicators__Markup_01():
 
     target = abjad.Staff([abjad.Note(0, 1)])
-    markup = abjad.Markup("hello!", direction=abjad.Up)
-    abjad.attach(markup, target[0])
+    markup = abjad.Markup(r"\markup { hello! }")
+    abjad.attach(markup, target[0], direction=abjad.UP)
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -28,12 +28,10 @@ def test_LilyPondParser__indicators__Markup_01():
 def test_LilyPondParser__indicators__Markup_02():
 
     target = abjad.Staff([abjad.Note(0, (1, 4))])
-    markup = abjad.Markup(
-        r'\markup { X Y Z "a b c" }', direction=abjad.Down, literal=True
-    )
-    abjad.attach(markup, target[0])
+    markup = abjad.Markup(r'\markup { X Y Z "a b c" }')
+    abjad.attach(markup, target[0], direction=abjad.DOWN)
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -51,12 +49,12 @@ def test_LilyPondParser__indicators__Markup_03():
     """
 
     target = abjad.Staff([abjad.Note(0, (1, 4)), abjad.Note(2, (1, 4))])
-    markup = abjad.Markup("hello", direction=abjad.Up)
-    abjad.attach(markup, target[0])
+    markup = abjad.Markup(r"\markup { hello }")
+    abjad.attach(markup, target[0], direction=abjad.UP)
     articulation = abjad.Articulation(".")
     abjad.attach(articulation, target[0])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -78,18 +76,16 @@ def test_LilyPondParser__indicators__Markup_03():
 
 def test_LilyPondParser__indicators__Markup_04():
 
-    string_1 = r"""\markup {
-    \bold
-        {
-            A
-            B
-            C
-        }
-    \italic
-        123
-    }"""
+    string_1 = r"""\markup { \bold { A B C } \italic 123 }"""
+
+    string_2 = r"""\markup { \bold
+    {
+        A
+        B
+        C
+    } \italic
+    123 }"""
 
     parser = abjad.parser.LilyPondParser()
     markup = parser(string_1)
-    string_2 = abjad.lilypond(markup)
-    assert string_1 == string_2
+    assert abjad.lilypond(markup) == string_2

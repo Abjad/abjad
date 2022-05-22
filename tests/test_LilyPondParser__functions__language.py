@@ -7,7 +7,7 @@ def test_LilyPondParser__functions__language_01():
         [abjad.Note("cs'8"), abjad.Note("ds'8"), abjad.Note("ff'8")]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             cs'8

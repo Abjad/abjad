@@ -1,11 +1,14 @@
 import os
+import pathlib
 import re
 import shutil
 import tempfile
 
-from . import io
-from .contextmanagers import Timer
-from .illustrators import illustrate
+from . import contextmanagers as _contextmanagers
+from . import illustrators as _illustrators
+from . import io as _io
+from . import lilypondfile as _lilypondfile
+from . import tag as _tag
 
 
 def as_ly(
@@ -13,6 +16,7 @@ def as_ly(
     ly_file_path,
     *,
     illustrate_function=None,
+    tags=False,
     **keywords,
 ):
     """
@@ -20,27 +24,29 @@ def as_ly(
 
     Returns output path and elapsed formatting time when LilyPond output is written.
     """
-    if illustrate_function is not None:
+    if isinstance(argument, _lilypondfile.LilyPondFile):
+        lilypond_file = argument
+    elif illustrate_function is not None:
         lilypond_file = illustrate_function(**keywords)
-    elif hasattr(argument, "__illustrate__"):
-        lilypond_file = argument.__illustrate__(**keywords)
     else:
-        lilypond_file = illustrate(argument, **keywords)
+        lilypond_file = _illustrators.illustrate(argument, **keywords)
     assert ly_file_path is not None, repr(ly_file_path)
     ly_file_path = str(ly_file_path)
     ly_file_path = os.path.expanduser(ly_file_path)
-    assert ly_file_path.endswith(".ly"), ly_file_path
-    timer = Timer()
+    timer = _contextmanagers.Timer()
     with timer:
         string = lilypond_file._get_lilypond_format()
+    if not tags:
+        string = _tag.remove_tags(string)
     abjad_formatting_time = timer.elapsed_time
     directory = os.path.dirname(ly_file_path)
-    io._ensure_directory_existence(directory)
+    _io._ensure_directory_existence(directory)
     with open(ly_file_path, "w") as file_pointer:
-        file_pointer.write(string)
+        print(string, file=file_pointer)
     return ly_file_path, abjad_formatting_time
 
 
+# TODO: remove remove_ly keyword
 def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     """
     Persists ``argument`` as MIDI file.
@@ -48,22 +54,19 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     Returns 4-tuple of output MIDI path, Abjad formatting time, LilyPond rendering time
     and success boolean.
     """
-    if hasattr(argument, "score_block"):
+    if isinstance(argument, _lilypondfile.LilyPondFile) and "score" in argument:
         lilypond_file = argument
     else:
-        lilypond_file = illustrate(argument, **keywords)
-    assert hasattr(lilypond_file, "score_block")
-    if midi_file_path is not None:
-        midi_file_path = os.path.expanduser(midi_file_path)
-        without_extension = os.path.splitext(midi_file_path)[0]
-        ly_file_path = f"{without_extension}.ly"
-    else:
-        ly_file_path = None
-    result = as_ly(argument, ly_file_path, **keywords)
-    ly_file_path, abjad_formatting_time = result
-    timer = Timer()
+        lilypond_file = _illustrators.illustrate(argument, **keywords)
+    assert "score" in lilypond_file, repr(lilypond_file)
+    assert midi_file_path is not None, repr(midi_file_path)
+    midi_file_path = os.path.expanduser(midi_file_path)
+    midi_file_path = pathlib.Path(midi_file_path)
+    ly_file_path = midi_file_path.with_suffix(".ly")
+    ly_file_path, abjad_formatting_time = as_ly(argument, ly_file_path, **keywords)
+    timer = _contextmanagers.Timer()
     with timer:
-        success = io.run_lilypond(ly_file_path)
+        success = _io.run_lilypond(ly_file_path)
     lilypond_rendering_time = timer.elapsed_time
     if remove_ly:
         os.remove(ly_file_path)
@@ -81,12 +84,14 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     )
 
 
+# TODO: remove remove_ly keyword
 def as_pdf(
     argument,
     pdf_file_path,
     *,
     illustrate_function=None,
     remove_ly=False,
+    tags=False,
     **keywords,
 ):
     """
@@ -106,14 +111,15 @@ def as_pdf(
         argument,
         ly_file_path,
         illustrate_function=illustrate_function,
+        tags=tags,
         **keywords,
     )
     ly_file_path, abjad_formatting_time = result
     without_extension = os.path.splitext(ly_file_path)[0]
     pdf_file_path = f"{without_extension}.pdf"
-    timer = Timer()
+    timer = _contextmanagers.Timer()
     with timer:
-        success = io.run_lilypond(ly_file_path)
+        success = _io.run_lilypond(ly_file_path)
     lilypond_rendering_time = timer.elapsed_time
     if remove_ly:
         os.remove(ly_file_path)
@@ -125,6 +131,7 @@ def as_pdf(
     )
 
 
+# TODO: remove remove_ly keyword
 def as_png(
     argument,
     png_file_path,
@@ -134,6 +141,7 @@ def as_png(
     preview=False,
     remove_ly=False,
     resolution=False,
+    tags=False,
     **keywords,
 ):
     """
@@ -150,7 +158,11 @@ def as_png(
     else:
         ly_file_path = None
     result = as_ly(
-        argument, ly_file_path, illustrate_function=illustrate_function, **keywords
+        argument,
+        ly_file_path,
+        illustrate_function=illustrate_function,
+        tags=tags,
+        **keywords,
     )
     ly_file_path, abjad_formatting_time = result
     original_directory = os.path.split(ly_file_path)[0]
@@ -165,9 +177,9 @@ def as_png(
         flags = "-dpreview"
     if resolution and isinstance(resolution, int):
         flags += f" -dresolution={resolution}"
-    timer = Timer()
+    timer = _contextmanagers.Timer()
     with timer:
-        success = io.run_lilypond(temporary_ly_file_path, flags=flags)
+        success = _io.run_lilypond(temporary_ly_file_path, flags=flags)
     lilypond_rendering_time = timer.elapsed_time
     png_file_paths = []
     for file_name in os.listdir(temporary_directory):

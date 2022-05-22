@@ -1,54 +1,19 @@
+import dataclasses
 import typing
 
 from ply import lex
 
 from .. import exceptions
-from ..storage import StorageFormatManager
 from .base import Parser
 
 
+@dataclasses.dataclass(slots=True)
 class Scheme:
     """
     Abjad model of Scheme code.
     """
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_value",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        value: typing.Any = None,
-    ) -> None:
-        self._value = value
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when all initialization values of Abjad value object equal the
-        initialization values of ``argument``.
-
-        Returns true or false.
-        """
-        return StorageFormatManager.compare_objects(self, argument)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return StorageFormatManager(self).get_repr_format()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def value(self) -> typing.Any:
-        """
-        Gets value.
-        """
-        return self._value
+    value: typing.Any = None
 
 
 class SchemeParser(Parser):
@@ -201,7 +166,7 @@ class SchemeParser(Parser):
         return t
 
     def t_quote(self, t):
-        r"\""
+        r"\" "
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         t.lexer.push_state("quote")
@@ -223,7 +188,7 @@ class SchemeParser(Parser):
         pass
 
     def t_quote_446(self, t):
-        r"\""
+        r"\" "
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         t.lexer.pop_state()
@@ -677,13 +642,6 @@ class SchemeParser(Parser):
         list : L_PAREN data datum PERIOD datum R_PAREN
         """
         p.slice[0].cursor_end = p.slice[-1].cursor_end
-        result = p[2] + [p[3]] + [p[5]]
-        if len(result) == 2:
-            raise Exception(result, "CCC")
-            p[0] = Scheme(f"({result[0]} . {result[1]})", verbatim=True)
-        else:
-            raise Exception(result, "DDD")
-            p[0] = Scheme(result)
         self.expression_depth -= 1
 
     ### abbreviation ###

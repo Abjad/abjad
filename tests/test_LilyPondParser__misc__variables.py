@@ -28,7 +28,7 @@ def test_LilyPondParser__misc__variables_01():
         ]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
         {

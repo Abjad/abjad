@@ -8,10 +8,10 @@ def test_NoteHeadList_append_01():
 
     chord = abjad.Chord("<c' d'>4")
     note_head = abjad.NoteHead("b'")
-    abjad.tweak(note_head).style = "#'harmonic"
+    abjad.tweak(note_head, r"\tweak style #'harmonic")
     chord.note_heads.append(note_head)
 
-    assert abjad.lilypond(chord) == abjad.String.normalize(
+    assert abjad.lilypond(chord) == abjad.string.normalize(
         r"""
         <
             c'
@@ -21,5 +21,3 @@ def test_NoteHeadList_append_01():
         >4
         """
     )
-
-    assert note_head._client is chord

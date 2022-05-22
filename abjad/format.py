@@ -1,286 +1,184 @@
-from . import bundle as _bundle
-from . import enums, overrides, storage
-from . import tag as _tag
-from .new import new
+from . import _indentlib
+from . import contributions as _contributions
+from . import enums as _enums
+from . import indicators as _indicators
+from . import overrides as _overrides
 
 
-def remove_tags(string) -> str:
-    """
-    Removes all tags from ``string``.
-    """
-    lines = []
-    for line in string.split("\n"):
-        if "%!" not in line:
-            lines.append(line)
+def _get_context_setting_contributions(component, contributions):
+    result = []
+    if hasattr(component, "_lilypond_type"):
+        strings = _overrides.setting(component)._format_in_with_block()
+        result.extend(strings)
+    else:
+        strings = _overrides.setting(component)._format_inline()
+        result.extend(strings)
+    contributions.context_settings.extend(result)
+    contributions.context_settings.sort()
+
+
+def _get_grob_override_contributions(component, contributions):
+    result = []
+    once = hasattr(component, "_written_duration")
+    grob = _overrides.override(component)
+    contributions_ = grob._list_contributions("override", once=once)
+    for string in result[:]:
+        if "NoteHead" in string and "pitch" in string:
+            contributions_.remove(string)
+    try:
+        written_pitch = component.written_pitch
+        arrow = written_pitch.arrow
+    except AttributeError:
+        arrow = None
+    if arrow in (_enums.UP, _enums.DOWN):
+        contributions__ = written_pitch._list_contributions()
+        contributions_.extend(contributions__)
+    contributions.grob_overrides.extend(contributions_)
+    contributions.grob_overrides.sort()
+
+
+def _get_grob_revert_contributions(component, contributions):
+    if not hasattr(component, "_written_duration"):
+        contributions_ = _overrides.override(component)._list_contributions("revert")
+        contributions.grob_reverts.extend(contributions_)
+    contributions.grob_reverts.sort()
+
+
+def _get_indicator_contributions(component, contributions):
+    wrappers = []
+    for parent in component._get_parentage():
+        wrappers_ = parent._get_indicators(unwrap=False)
+        wrappers.extend(wrappers_)
+    up_markup_wrappers = []
+    down_markup_wrappers = []
+    neutral_markup_wrappers = []
+    context_wrappers = []
+    noncontext_wrappers = []
+    for wrapper in wrappers:
+        if wrapper.annotation:
             continue
-        tag_start = line.find("%!")
-        line = line[:tag_start]
-        line = line.rstrip()
-        if line:
-            lines.append(line)
-    string = "\n".join(lines)
-    return string
-
-
-class LilyPondFormatManager:
-    """
-    Manages LilyPond formatting logic.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "LilyPond formatting"
-
-    __slots__ = ()
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return storage.StorageFormatManager(self).get_repr_format()
-
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _collect_indicators(component):
-        wrappers = []
-        for parent in component._get_parentage():
-            wrappers_ = parent._get_indicators(unwrap=False)
-            wrappers.extend(wrappers_)
-        up_markup_wrappers = []
-        down_markup_wrappers = []
-        neutral_markup_wrappers = []
-        context_wrappers = []
-        noncontext_wrappers = []
-        # classify wrappers attached to component
-        for wrapper in wrappers:
-            # skip nonprinting indicators like annotation
-            indicator = wrapper.indicator
-            if not hasattr(indicator, "_get_lilypond_format") and not hasattr(
-                indicator, "_get_lilypond_format_bundle"
-            ):
-                continue
-            elif wrapper.annotation is not None:
-                continue
-            # skip comments and commands unless attached directly to us
-            elif (
-                wrapper.context is None
-                and hasattr(wrapper.indicator, "_format_leaf_children")
-                and not getattr(wrapper.indicator, "_format_leaf_children")
-                and wrapper.component is not component
-            ):
-                continue
-            # store markup wrappers
-            elif wrapper.indicator.__class__.__name__ == "Markup":
-                if wrapper.indicator.direction is enums.Up:
-                    up_markup_wrappers.append(wrapper)
-                elif wrapper.indicator.direction is enums.Down:
-                    down_markup_wrappers.append(wrapper)
-                elif wrapper.indicator.direction in (enums.Center, None):
-                    neutral_markup_wrappers.append(wrapper)
-            # store context wrappers
-            elif wrapper.context is not None:
-                if wrapper.annotation is None and wrapper.component is component:
-                    context_wrappers.append(wrapper)
-            # store noncontext wrappers
-            else:
-                noncontext_wrappers.append(wrapper)
-        indicators = (
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
-            context_wrappers,
-            noncontext_wrappers,
-        )
-        return indicators
-
-    @staticmethod
-    def _populate_context_setting_format_contributions(component, bundle):
-        result = []
-        if hasattr(component, "_lilypond_type"):
-            strings = overrides.setting(component)._format_in_with_block()
-            result.extend(strings)
+        elif not hasattr(wrapper.get_item(), "_get_contributions"):
+            continue
+        elif (
+            wrapper.context is None
+            and hasattr(wrapper.get_item(), "_format_leaf_children")
+            and not getattr(wrapper.get_item(), "_format_leaf_children")
+            and wrapper.component is not component
+        ):
+            continue
+        elif isinstance(wrapper.unbundle_indicator(), _indicators.Markup):
+            if wrapper.direction is _enums.UP:
+                up_markup_wrappers.append(wrapper)
+            elif wrapper.direction is _enums.DOWN:
+                down_markup_wrappers.append(wrapper)
+            elif wrapper.direction in (_enums.CENTER, None):
+                neutral_markup_wrappers.append(wrapper)
+        elif wrapper.context is not None:
+            if wrapper.component is component:
+                context_wrappers.append(wrapper)
         else:
-            strings = overrides.setting(component)._format_inline()
-            result.extend(strings)
-        result.sort()
-        bundle.context_settings.extend(result)
-
-    @staticmethod
-    def _populate_context_wrapper_format_contributions(
-        component, bundle, context_wrappers
-    ):
-        for wrapper in context_wrappers:
-            format_pieces = wrapper._get_format_pieces()
-            if isinstance(format_pieces, type(bundle)):
-                bundle.update(format_pieces)
-            else:
-                format_slot = wrapper.indicator._format_slot
-                bundle.get(format_slot).indicators.extend(format_pieces)
-
-    @staticmethod
-    def _populate_grob_override_format_contributions(component, bundle):
-        result = []
-        once = hasattr(component, "_written_duration")
-        grob = overrides.override(component)
-        contributions = grob._list_format_contributions("override", once=once)
-        for string in result[:]:
-            if "NoteHead" in string and "pitch" in string:
-                contributions.remove(string)
-        try:
-            written_pitch = component.written_pitch
-            arrow = written_pitch.arrow
-        except AttributeError:
-            arrow = None
-        if arrow in (enums.Up, enums.Down):
-            contributions_ = written_pitch._list_format_contributions()
-            contributions.extend(contributions_)
-        bundle.grob_overrides.extend(contributions)
-
-    @staticmethod
-    def _populate_grob_revert_format_contributions(component, bundle):
-        if not hasattr(component, "_written_duration"):
-            contributions = overrides.override(component)._list_format_contributions(
-                "revert"
-            )
-            bundle.grob_reverts.extend(contributions)
-
-    @staticmethod
-    def _populate_indicator_format_contributions(component, bundle):
-        (
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
-            context_wrappers,
-            noncontext_wrappers,
-        ) = LilyPondFormatManager._collect_indicators(component)
-        LilyPondFormatManager._populate_markup_format_contributions(
-            component,
-            bundle,
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
-        )
-        LilyPondFormatManager._populate_context_wrapper_format_contributions(
-            component, bundle, context_wrappers
-        )
-        LilyPondFormatManager._populate_noncontext_wrapper_format_contributions(
-            component, bundle, noncontext_wrappers
-        )
-
-    @staticmethod
-    def _populate_markup_format_contributions(
-        component,
-        bundle,
+            noncontext_wrappers.append(wrapper)
+    context_wrappers.sort(key=lambda _: type(_.unbundle_indicator()).__name__)
+    noncontext_wrappers.sort(key=lambda _: type(_.unbundle_indicator()).__name__)
+    for wrappers in (
         up_markup_wrappers,
         down_markup_wrappers,
         neutral_markup_wrappers,
+        context_wrappers,
+        noncontext_wrappers,
     ):
-        for wrappers in (
-            up_markup_wrappers,
-            down_markup_wrappers,
-            neutral_markup_wrappers,
-        ):
-            for wrapper in wrappers:
-                if wrapper.indicator.direction is None:
-                    markup = new(wrapper.indicator, direction="-")
-                else:
-                    markup = wrapper.indicator
-                format_pieces = markup._get_format_pieces()
-                format_pieces = _tag.double_tag(
-                    format_pieces, wrapper.tag, deactivate=wrapper.deactivate
-                )
-                bundle.after.markup.extend(format_pieces)
-
-    @staticmethod
-    def _populate_noncontext_wrapper_format_contributions(
-        component, bundle, noncontext_wrappers
-    ):
-        for wrapper in noncontext_wrappers:
-            indicator = wrapper.indicator
-            if hasattr(indicator, "_get_lilypond_format_bundle"):
-                bundle_ = indicator._get_lilypond_format_bundle()
-                if wrapper.tag:
-                    bundle_.tag_format_contributions(
-                        wrapper.tag, deactivate=wrapper.deactivate
+        for wrapper in wrappers:
+            item = wrapper.get_item()
+            contributions_ = None
+            try:
+                contributions_ = item._get_contributions(wrapper=wrapper)
+            except TypeError:
+                pass
+            if contributions_ is None:
+                try:
+                    contributions_ = item._get_contributions(
+                        component=wrapper.component
                     )
-                if bundle_ is not None:
-                    bundle.update(bundle_)
+                except TypeError:
+                    pass
+            if contributions_ is None:
+                contributions_ = item._get_contributions()
+            contributions_.tag_contributions(wrapper.tag, deactivate=wrapper.deactivate)
+            if getattr(item, "check_effective_context", False) is True:
+                if wrapper._get_effective_context() is None:
+                    for list_ in contributions_.get_contribution_lists():
+                        list_[:] = [rf"%%% {_} %%%" for _ in list_]
+            contributions.update(contributions_)
 
-    @staticmethod
-    def _report_leaf_format_contributions(leaf):
-        bundle = LilyPondFormatManager.bundle_format_contributions(leaf)
-        report = ""
-        report += 'slot "absolute before":\n'
-        packet = leaf._format_absolute_before_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "before":\n'
-        packet = leaf._format_before_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "opening":\n'
-        packet = leaf._format_opening_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "contents slot":\n'
-        report += _bundle.LilyPondFormatBundle.indent + "leaf body:\n"
-        string = leaf._format_contents_slot(bundle)[0][1][0]
-        report += (2 * _bundle.LilyPondFormatBundle.indent) + string + "\n"
-        report += 'slot "closing":\n'
-        packet = leaf._format_closing_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "after":\n'
-        packet = leaf._format_after_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        report += 'slot "absolute after":\n'
-        packet = leaf._format_absolute_after_slot(bundle)
-        report += leaf._process_contribution_packet(packet)
-        while report[-1] == "\n":
-            report = report[:-1]
-        return report
 
-    ### PUBLIC METHODS ###
+def _get_contributions_by_site(component) -> _contributions.ContributionsBySite:
+    contributions = _contributions.ContributionsBySite()
+    _get_indicator_contributions(component, contributions)
+    _get_context_setting_contributions(component, contributions)
+    _get_grob_override_contributions(component, contributions)
+    _get_grob_revert_contributions(component, contributions)
+    contributions.freeze_overrides()
+    return contributions
 
-    @staticmethod
-    def bundle_format_contributions(component) -> "_bundle.LilyPondFormatBundle":
-        """
-        Gets all format contributions for ``component``.
-        """
-        bundle = _bundle.LilyPondFormatBundle()
-        LilyPondFormatManager._populate_indicator_format_contributions(
-            component, bundle
-        )
-        LilyPondFormatManager._populate_context_setting_format_contributions(
-            component, bundle
-        )
-        LilyPondFormatManager._populate_grob_override_format_contributions(
-            component, bundle
-        )
-        LilyPondFormatManager._populate_grob_revert_format_contributions(
-            component, bundle
-        )
-        bundle.sort_overrides()
-        return bundle
 
-    @staticmethod
-    def left_shift_tags(text, realign=None) -> str:
-        """
-        Left shifts tags in ``strings`` and realigns to column ``realign``.
-        """
-        strings = text.split("\n")
-        strings_ = []
-        for string in strings:
-            if "%@% " not in string or "%!" not in string:
-                strings_.append(string)
-                continue
-            if not string.startswith(4 * " "):
-                strings_.append(string)
-                continue
-            string_ = string[4:]
-            tag_start = string_.find("%!")
-            string_ = list(string_)
-            string_[tag_start:tag_start] = _bundle.LilyPondFormatBundle.indent
-            string_ = "".join(string_)
-            strings_.append(string_)
-        text = "\n".join(strings_)
-        return text
+def format_component(component) -> str:
+    """
+    Formats ``component``.
+    """
+    strings = []
+    contributions = _get_contributions_by_site(component)
+    strings_ = component._format_absolute_before_site(contributions)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.ABSOLUTE_BEFORE.name}:")
+        strings.extend(strings_)
+    strings_ = component._format_before_site(contributions)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.BEFORE.name}:")
+        strings.extend(strings_)
+    if hasattr(component, "_format_open_brackets_site"):
+        strings_ = component._format_open_brackets_site(contributions)
+        if strings_:
+            strings.append(f"% {_contributions.Sites.OPEN_BRACKETS.name}:")
+            strings.extend(strings_)
+    strings_ = component._format_opening_site(contributions)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.OPENING.name}:")
+        strings.extend(strings_)
+    strings_ = component._format_contents()
+    if strings_:
+        strings.extend(strings_)
+    strings_ = component._format_closing_site(contributions)
+    if strings_:
+        strings.append(_indentlib.INDENT + f"% {_contributions.Sites.CLOSING.name}:")
+        strings.extend(strings_)
+    if hasattr(component, "_format_close_brackets"):
+        strings_ = component._format_close_brackets()
+        if strings_:
+            strings.append(f"% {_contributions.Sites.CLOSE_BRACKETS.name}:")
+            strings.extend(strings_)
+    strings_ = component._format_after_site(contributions)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.AFTER.name}:")
+        strings.extend(strings_)
+    strings_ = component._format_absolute_after_site(contributions)
+    if strings_:
+        strings.append(f"% {_contributions.Sites.ABSOLUTE_AFTER.name}:")
+        strings.extend(strings_)
+    assert all(isinstance(_, str) for _ in strings), repr(strings)
+    strings = ["" if _.isspace() else _ for _ in strings]
+    string = "\n".join(strings)
+    return string
+
+
+def remove_site_comments(string) -> str:
+    """
+    Removes site comments from ``string``.
+    """
+    site_comments = []
+    for site in _contributions.Sites:
+        site_comments.append(f"% {site.name}:")
+    for type_ in _contributions.Types:
+        site_comments.append(f"% {type_.name}:")
+    lines = [_ for _ in string.split("\n") if _.strip() not in site_comments]
+    string = "\n".join(lines)
+    return string

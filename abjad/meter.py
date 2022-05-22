@@ -3,33 +3,31 @@ Tools for modeling musical meter.
 """
 import bisect
 import collections
-import typing
 
 import uqbar.graphs
 
-from . import _inspect, _iterate, markups, math, mutate, rhythmtrees
-from .duration import Duration, Multiplier, NonreducedFraction, Offset
-from .indicators.TimeSignature import TimeSignature
-from .lilypondfile import LilyPondFile
-from .new import new
-from .parentage import Parentage
-from .score import Chord, Container, Note, Rest, Skip, Tuplet
-from .select import LogicalTie, Selection
-from .sequence import Sequence
-from .storage import FormatSpecification, StorageFormatManager
-from .timespan import OffsetCounter, Timespan, TimespanList
-from .typedcollections import TypedList
+from . import _getlib, _iterlib
+from . import duration as _duration
+from . import indicators as _indicators
+from . import lilypondfile as _lilypondfile
+from . import math as _math
+from . import mutate as _mutate
+from . import parentage as _parentage
+from . import rhythmtrees as _rhythmtrees
+from . import score as _score
+from . import select as _select
+from . import sequence as _sequence
+from . import timespan as _timespan
 
 
 class Meter:
     """
     Meter.
 
-    Meter models a common practice understanding of beats and other levels of
-    rhythmic organization structured as a tree. Meter structure corresponds to
-    the monotonically increasing sequence of factors in the numerator of a
-    given time signature. Successively deeper levels of the tree divide time by
-    successive factors.
+    Meter models a common practice understanding of beats and other levels of rhythmic
+    organization structured as a tree. Meter structure corresponds to the monotonically
+    increasing sequence of factors in the numerator of a given time signature.
+    Successively deeper levels of the tree divide time by successive factors.
 
     ..  container:: example
 
@@ -243,10 +241,9 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-    Prime divisions greater than ``3`` are converted to sequences of ``2``
-    and ``3`` summing to that prime. Summands are arranged from greatest
-    to least by default. This means that ``5`` becomes ``3+2`` and ``7``
-    becomes ``3+2+2`` in the examples above.
+    Prime divisions greater than ``3`` are converted to sequences of ``2`` and ``3``
+    summing to that prime. Summands are arranged from greatest to least by default. This
+    means that ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2`` in the examples above.
     """
 
     ### CLASS VARIABLES ###
@@ -268,7 +265,7 @@ class Meter:
         preferred_boundary_depth=None,
     ):
         argument = argument or (4, 4)
-        assert isinstance(preferred_boundary_depth, (int, type(None)))
+        assert isinstance(preferred_boundary_depth, int | type(None))
         self._preferred_boundary_depth = preferred_boundary_depth
 
         def recurse(node, factors, denominator, increase_monotonic):
@@ -279,7 +276,7 @@ class Meter:
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            child = rhythmtrees.RhythmTreeContainer(
+                            child = _rhythmtrees.RhythmTreeContainer(
                                 preprolated_duration=preprolated_duration
                             )
                             node.append(child)
@@ -287,7 +284,7 @@ class Meter:
                     else:
                         for _ in range(factor):
                             node.append(
-                                rhythmtrees.RhythmTreeLeaf(
+                                _rhythmtrees.RhythmTreeLeaf(
                                     preprolated_duration=(1, denominator)
                                 )
                             )
@@ -301,12 +298,12 @@ class Meter:
                             parts.insert(0, 2)
                         total += 2
                     for part in parts:
-                        grouping = rhythmtrees.RhythmTreeContainer(
+                        grouping = _rhythmtrees.RhythmTreeContainer(
                             preprolated_duration=part * preprolated_duration
                         )
                         if factors:
                             for _ in range(part):
-                                child = rhythmtrees.RhythmTreeContainer(
+                                child = _rhythmtrees.RhythmTreeContainer(
                                     preprolated_duration=preprolated_duration
                                 )
                                 grouping.append(child)
@@ -319,7 +316,7 @@ class Meter:
                         else:
                             for _ in range(part):
                                 grouping.append(
-                                    rhythmtrees.RhythmTreeLeaf(
+                                    _rhythmtrees.RhythmTreeLeaf(
                                         preprolated_duration=(1, denominator)
                                     )
                                 )
@@ -327,7 +324,7 @@ class Meter:
             else:
                 node.extend(
                     [
-                        rhythmtrees.RhythmTreeLeaf(
+                        _rhythmtrees.RhythmTreeLeaf(
                             preprolated_duration=(1, denominator)
                         )
                         for _ in range(node.preprolated_duration.numerator)
@@ -345,9 +342,9 @@ class Meter:
             root = argument.root_node
             numerator, denominator = argument.numerator, argument.denominator
             increase_monotonic = argument.increase_monotonic
-        elif isinstance(argument, (str, rhythmtrees.RhythmTreeContainer)):
+        elif isinstance(argument, str | _rhythmtrees.RhythmTreeContainer):
             if isinstance(argument, str):
-                parsed = rhythmtrees.RhythmTreeParser()(argument)
+                parsed = _rhythmtrees.RhythmTreeParser()(argument)
                 assert len(parsed) == 1
                 root = parsed[0]
             else:
@@ -358,15 +355,17 @@ class Meter:
             denominator = root.preprolated_duration.denominator
         elif is_fraction_like or isinstance(argument, tuple):
             if isinstance(argument, tuple):
-                fraction = NonreducedFraction(argument)
+                fraction = _duration.NonreducedFraction(argument)
             else:
-                fraction = NonreducedFraction(argument.numerator, argument.denominator)
+                fraction = _duration.NonreducedFraction(
+                    argument.numerator, argument.denominator
+                )
             numerator, denominator = fraction.numerator, fraction.denominator
-            factors = math.factors(numerator)
+            factors = _math.factors(numerator)
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = rhythmtrees.RhythmTreeContainer(preprolated_duration=fraction)
+            root = _rhythmtrees.RhythmTreeContainer(preprolated_duration=fraction)
             recurse(root, factors, denominator, increase_monotonic)
         else:
             name = type(self).__name__
@@ -381,12 +380,17 @@ class Meter:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a meter with an rtm format equal to that
-        of this meter.
-
-        Returns true or false.
+        Compares ``numerator``, ``denominator``, ``increase_monotonic``,
+        ``preferred_boundary_depth``.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return (
+                self.numerator == argument.numerator
+                and self.denominator == argument.denominator
+                and self.increase_monotonic == argument.increase_monotonic
+                and self.preferred_boundary_depth == argument.preferred_boundary_depth
+            )
+        return False
 
     def __graph__(self, **keywords):
         """
@@ -532,7 +536,7 @@ class Meter:
             else:
                 offset_node = uqbar.graphs.Node(attributes={"shape": "Mrecord"})
             offset_field = uqbar.graphs.RecordField(label=str(offset))
-            weight_field = uqbar.graphs.RecordField(label="+" * offsets[offset])
+            weight_field = uqbar.graphs.RecordField(label="+" * offsets.items[offset])
             group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
@@ -546,7 +550,7 @@ class Meter:
                 edge.attach(leaf_two_node, offset_node)
 
         offsets = MetricAccentKernel.count_offsets(
-            Sequence(self.depthwise_offset_inventory).flatten(depth=-1)
+            _sequence.flatten(self.depthwise_offset_inventory, depth=-1)
         )
         graph = uqbar.graphs.Graph(
             name="G",
@@ -566,7 +570,7 @@ class Meter:
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
             graphviz_node.attributes["label"] = str(node.preprolated_duration)
-            if isinstance(node, rhythmtrees.RhythmTreeContainer):
+            if isinstance(node, _rhythmtrees.RhythmTreeContainer):
                 graphviz_node.attributes["shape"] = "triangle"
             else:
                 graphviz_node.attributes["shape"] = "box"
@@ -582,7 +586,7 @@ class Meter:
         )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
-        for one, two in Sequence(leaves).nwise():
+        for one, two in _sequence.nwise(leaves):
             offset = one.stop_offset
             make_offset_node(offset, one, two)
         offset = leaves[-1].stop_offset
@@ -625,7 +629,7 @@ class Meter:
         def recurse(node):
             result = []
             for child in node:
-                if isinstance(child, rhythmtrees.RhythmTreeLeaf):
+                if isinstance(child, _rhythmtrees.RhythmTreeLeaf):
                     result.append(child)
                 else:
                     result.extend(recurse(child))
@@ -634,50 +638,17 @@ class Meter:
 
         result = recurse(self.root_node)
         for node in result:
-            start_offset = NonreducedFraction(node.start_offset)
+            start_offset = _duration.NonreducedFraction(node.start_offset)
             start_offset = start_offset.with_denominator(self.denominator)
-            stop_offset = NonreducedFraction(node.stop_offset)
+            stop_offset = _duration.NonreducedFraction(node.stop_offset)
             stop_offset = stop_offset.with_denominator(self.denominator)
             yield start_offset, stop_offset
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return StorageFormatManager(self).get_repr_format()
-
-    def __str__(self) -> str:
-        """
-        Gets string representation of meter.
-
-        ..  container:: example
-
-            Gets string representation of meters over ``8``:
-
-            >>> for numerator in range(1, 9):
-            ...     meter = abjad.Meter((numerator, 8))
-            ...     print(str(meter))
-            1/8
-            2/8
-            3/8
-            4/8
-            5/8
-            6/8
-            7/8
-            8/8
-
-        """
-        return f"{self.numerator}/{self.denominator}"
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_args_values=[self.rtm_format],
-            storage_format_keyword_names=[],
-        )
+        return f"{type(self).__name__}({self.rtm_format!r})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -715,10 +686,10 @@ class Meter:
         """
         inventory = []
         all_offsets = set()
-        all_offsets.add(Offset(self.numerator, self.denominator))
+        all_offsets.add(_duration.Offset(self.numerator, self.denominator))
         for depth, nodes in sorted(self.root_node._depthwise_inventory().items()):
             for node in nodes:
-                all_offsets.add(Offset(node.start_offset))
+                all_offsets.add(_duration.Offset(node.start_offset))
             inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
@@ -735,7 +706,14 @@ class Meter:
 
         Returns duration.
         """
-        return Duration(self.numerator, self.denominator)
+        return _duration.Duration(self.numerator, self.denominator)
+
+    @property
+    def fraction(self):
+        """
+        Gets nonreduced fraction.
+        """
+        return _duration.NonreducedFraction(self.pair)
 
     @property
     def implied_time_signature(self):
@@ -745,14 +723,14 @@ class Meter:
         ..  container:: example
 
             >>> abjad.Meter((4, 4)).implied_time_signature
-            TimeSignature((4, 4))
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         Returns time signature.
         """
-        return TimeSignature(self.root_node.preprolated_duration)
+        return _indicators.TimeSignature(self.root_node.preprolated_duration)
 
     @property
-    def increase_monotonic(self) -> typing.Optional[bool]:
+    def increase_monotonic(self) -> bool | None:
         """
         Is true when meter divides large primes into collections of ``2``
         and ``3`` that increase monotonically.
@@ -825,7 +803,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 4))
             ...     string = True if meter.is_compound else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/4
             2/4
@@ -847,7 +825,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 8))
             ...     string = True if meter.is_compound else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/8
             2/8
@@ -862,12 +840,12 @@ class Meter:
             11/8
             12/8    True
 
-        Compound meters defined equal to those meters with a numerator
-        divisible by ``3`` (but not equal to ``3``).
+        Compound meters defined equal to those meters with a numerator divisible by ``3``
+        (but not equal to ``3``).
 
         Returns true or false.
         """
-        if 3 in math.divisors(self.numerator):
+        if 3 in _math.divisors(self.numerator):
             if not self.numerator == 3:
                 return True
         return False
@@ -884,7 +862,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 4))
             ...     string = True if meter.is_simple else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/4     True
             2/4     True
@@ -906,7 +884,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 8))
             ...     string = True if meter.is_simple else ''
-            ...     print(str(meter), string)
+            ...     print(str(meter.fraction), string)
             ...
             1/8     True
             2/8     True
@@ -921,8 +899,8 @@ class Meter:
             11/8    True
             12/8
 
-        Simple meters defined equal to those meters with a numerator
-        not divisible by ``3``.
+        Simple meters defined equal to those meters with a numerator not divisible by
+        ``3``.
 
         Meters with numerator equal to ``3`` are also defined as simple.
 
@@ -1026,55 +1004,10 @@ class Meter:
         ..  container:: example
 
             >>> meter = abjad.Meter((7, 4))
-            >>> print(abjad.storage(meter.root_node))
-            abjad.rhythmtrees.RhythmTreeContainer(
-                children=(
-                    abjad.rhythmtrees.RhythmTreeContainer(
-                        children=(
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            ),
-                        preprolated_duration=abjad.NonreducedFraction(3, 4),
-                        ),
-                    abjad.rhythmtrees.RhythmTreeContainer(
-                        children=(
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            ),
-                        preprolated_duration=abjad.NonreducedFraction(2, 4),
-                        ),
-                    abjad.rhythmtrees.RhythmTreeContainer(
-                        children=(
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            abjad.rhythmtrees.RhythmTreeLeaf(
-                                preprolated_duration=abjad.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                            ),
-                        preprolated_duration=abjad.NonreducedFraction(2, 4),
-                        ),
-                    ),
-                preprolated_duration=abjad.NonreducedFraction(7, 4),
-                )
+            >>> for _ in meter.root_node: _
+            RhythmTreeContainer((3, 4))
+            RhythmTreeContainer((2, 4))
+            RhythmTreeContainer((2, 4))
 
         Returns rhythm tree node.
         """
@@ -1107,8 +1040,8 @@ class Meter:
         starting_offset=None,
     ):
         """
-        Finds the best-matching sequence of meters for the offsets
-        contained in ``argument``.
+        Finds the best-matching sequence of meters for the offsets contained in
+        ``argument``.
 
         ..  container:: example
 
@@ -1123,10 +1056,10 @@ class Meter:
             >>> for meter in abjad.Meter.fit_meters(argument, meters):
             ...     print(meter.implied_time_signature)
             ...
-            4/4
-            4/4
-            4/4
-            4/4
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         ..  container:: example
 
@@ -1136,16 +1069,13 @@ class Meter:
             >>> for meter in abjad.Meter.fit_meters(argument, meters):
             ...     print(meter.implied_time_signature)
             ...
-            3/4
-            4/4
-            3/4
-            5/4
-            5/4
+            TimeSignature(pair=(3, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(3, 4), hide=False, partial=None)
+            TimeSignature(pair=(5, 4), hide=False, partial=None)
+            TimeSignature(pair=(5, 4), hide=False, partial=None)
 
-        Coerces offsets from ``argument`` via
-        ``MetricAccentKernel.count_offsets()``.
-
-        Coerces Meters from ``meters`` via ``MeterList``.
+        Coerces offsets from ``argument`` via ``MetricAccentKernel.count_offsets()``.
 
         Returns list.
         """
@@ -1160,11 +1090,9 @@ class Meter:
 
     def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
         r"""
-        Generates a dictionary of all offsets in a meter up
-        to ``denominator``.
+        Generates a dictionary of all offsets in a meter up to ``denominator``.
 
-        Keys are the offsets and the values are the normalized weights of
-        those offsets.
+        Keys are the offsets and the values are the normalized weights of those offsets.
 
         ..  container:: example
 
@@ -1183,20 +1111,20 @@ class Meter:
             7/8     1/16
             1       3/16
 
-        This is useful for testing how strongly a collection of offsets
-        responds to a given meter.
+        This is useful for testing how strongly a collection of offsets responds to a
+        given meter.
 
         Returns dictionary.
         """
-        assert math.is_positive_integer_power_of_two(denominator // self.denominator)
+        assert _math.is_positive_integer_power_of_two(denominator // self.denominator)
         inventory = list(self.depthwise_offset_inventory)
-        old_flag_count = Duration(1, self.denominator).flag_count
-        new_flag_count = Duration(1, denominator).flag_count
+        old_flag_count = _duration.Duration(1, self.denominator).flag_count
+        new_flag_count = _duration.Duration(1, denominator).flag_count
         extra_depth = new_flag_count - old_flag_count
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in Sequence(old_offsets).nwise():
+            for first, second in _sequence.nwise(old_offsets):
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])
@@ -1211,9 +1139,10 @@ class Meter:
                 total += 1
         if normalize:
             for offset, response in kernel.items():
-                kernel[offset] = Multiplier(response, total)
+                kernel[offset] = _duration.Multiplier(response, total)
         return MetricAccentKernel(kernel)
 
+    @staticmethod
     def rewrite_meter(
         components,
         meter,
@@ -1227,8 +1156,8 @@ class Meter:
 
         ..  container:: example
 
-            Rewrites the contents of a measure in a staff using the default
-            meter for that measure's time signature:
+            Rewrites the contents of a measure in a staff using the default meter for
+            that measure's time signature:
 
             >>> lily_string = "| 2/4 c'2 ~ |"
             >>> lily_string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
@@ -1380,8 +1309,7 @@ class Meter:
 
         ..  container:: example
 
-            Limit the maximum number of dots per leaf using
-            ``maximum_dot_count``:
+            Limit the maximum number of dots per leaf using ``maximum_dot_count``:
 
             >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1562,9 +1490,9 @@ class Meter:
 
         ..  container:: example
 
-            Split logical ties at different depths of the ``Meter``, if those
-            logical ties cross any offsets at that depth, but do not also both
-            begin and end at any of those offsets.
+            Split logical ties at different depths of the ``Meter``, if those logical
+            ties cross any offsets at that depth, but do not also both begin and end at
+            any of those offsets.
 
             Consider the default meter for ``9/8``:
 
@@ -1584,8 +1512,7 @@ class Meter:
                     1/8
                     1/8))))
 
-            We can establish that meter without specifying
-            a ``boundary_depth``:
+            We can establish that meter without specifying a ``boundary_depth``:
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1631,10 +1558,10 @@ class Meter:
                     }
                 }
 
-            With a ``boundary_depth`` of ``1`` logical ties which cross any
-            offsets created by nodes with a depth of ``1`` in this Meter's rhythm
-            tree - i.e.  ``0/8`` ``3/8`` ``6/8`` and ``9/8`` - which do not also
-            begin and end at any of those offsets, will be split:
+            With a ``boundary_depth`` of ``1`` logical ties which cross any offsets
+            created by nodes with a depth of ``1`` in this Meter's rhythm tree - i.e.
+            ``0/8`` ``3/8`` ``6/8`` and ``9/8`` - which do not also begin and end at any
+            of those offsets, will be split:
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1670,9 +1597,9 @@ class Meter:
                     }
                 }
 
-            For this ``9/8`` meter, and this input notation, A ``boundary_depth``
-            of ``2`` causes no change, as all logical ties already align to
-            multiples of ``1/8``
+            For this ``9/8`` meter, and this input notation, A ``boundary_depth`` of
+            ``2`` causes no change, as all logical ties already align to multiples of
+            ``1/8``
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1722,9 +1649,8 @@ class Meter:
             >>> staff_2[:] = container
             >>> score = abjad.Score([staff_1, staff_2])
 
-            In order to see the different time signatures on each staff,
-            we need to move some engravers from the Score context to the
-            Staff context:
+            In order to see the different time signatures on each staff, we need to move
+            some engravers from the Score context to the Staff context:
 
             >>> engravers = [
             ...     'Timing_translator',
@@ -2044,8 +1970,7 @@ class Meter:
                     }
                 >>
 
-            Note that the two time signatures are much more clearly
-            disambiguated above.
+            Note that the two time signatures are much more clearly disambiguated above.
 
         ..  container:: example
 
@@ -2087,11 +2012,10 @@ class Meter:
                     }
                 }
 
-            When establishing a meter on a selection of components which
-            contain containers, like tuplets or containers, ``rewrite_meter()``
-            will recurse into those containers, treating them as measures whose
-            time signature is derived from the preprolated preprolated_duration
-            of the container's contents:
+            When establishing a meter on a selection of components which contain
+            containers, like tuplets or containers, ``rewrite_meter()`` will recurse into
+            those containers, treating them as measures whose time signature is derived
+            from the preprolated preprolated_duration of the container's contents:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
@@ -2139,9 +2063,9 @@ class Meter:
 
         ..  container:: example
 
-            Default rewrite behavior doesn't subdivide the first note in this
-            measure because the first note in the measure starts at the
-            beginning of a level-0 beat in meter:
+            Default rewrite behavior doesn't subdivide the first note in this measure
+            because the first note in the measure starts at the beginning of a level-0
+            beat in meter:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
@@ -2162,8 +2086,7 @@ class Meter:
                     c'4
                 }
 
-            Setting boundary depth to 1 subdivides the first note in this
-            measure:
+            Setting boundary depth to 1 subdivides the first note in this measure:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
@@ -2186,8 +2109,8 @@ class Meter:
                     c'4
                 }
 
-            Another way of doing this is by setting preferred boundary depth on
-            the meter itself:
+            Another way of doing this is by setting preferred boundary depth on the meter
+            itself:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
@@ -2213,8 +2136,7 @@ class Meter:
                     c'4
                 }
 
-            This makes it possible to divide different meters in different
-            ways.
+            This makes it possible to divide different meters in different ways.
 
         ..  container:: example
 
@@ -2290,8 +2212,8 @@ class Meter:
                     c'4.
                 }
 
-            The tied note rewriting is good while the tuplet rewriting
-            could use some adjustment.
+            The tied note rewriting is good while the tuplet rewriting could use some
+            adjustment.
 
             Rewrites notes but not tuplets:
 
@@ -2370,8 +2292,10 @@ class Meter:
             logical_tie=None,
         ):
             offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-            logical_tie_duration = logical_tie._get_preprolated_duration()
-            logical_tie_timespan = _inspect._get_timespan(logical_tie)
+            logical_tie_duration = sum(
+                _._get_preprolated_duration() for _ in logical_tie
+            )
+            logical_tie_timespan = _getlib._get_timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
@@ -2394,8 +2318,8 @@ class Meter:
                         break
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
-                    shards = mutate.split(logical_tie[:], [split_offset])
-                    logical_ties = [LogicalTie(_) for _ in shards]
+                    shards = _mutate.split(logical_tie[:], [split_offset])
+                    logical_ties = [_select.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
                             boundary_depth=boundary_depth,
@@ -2426,8 +2350,8 @@ class Meter:
                         break
                 assert split_offset is not None
                 split_offset -= logical_tie_start_offset
-                shards = mutate.split(logical_tie[:], [split_offset])
-                logical_ties = [LogicalTie(shard) for shard in shards]
+                shards = _mutate.split(logical_tie[:], [split_offset])
+                logical_ties = [_select.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
                         boundary_depth=boundary_depth,
@@ -2436,16 +2360,11 @@ class Meter:
                         logical_tie=logical_tie,
                     )
             else:
-                mutate._fuse(logical_tie[:])
+                _mutate._fuse(logical_tie[:])
 
-        assert isinstance(components, Selection), repr(components)
         if not isinstance(meter, Meter):
             meter = Meter(meter)
         boundary_depth = boundary_depth or meter.preferred_boundary_depth
-        # Validate arguments.
-        assert Selection(components).are_contiguous_logical_voice(
-            ignore_before_after_grace=True
-        )
         if not isinstance(meter, Meter):
             meter = Meter(meter)
         if boundary_depth is not None:
@@ -2454,8 +2373,8 @@ class Meter:
             maximum_dot_count = int(maximum_dot_count)
             assert 0 <= maximum_dot_count
         if initial_offset is None:
-            initial_offset = Offset(0)
-        initial_offset = Offset(initial_offset)
+            initial_offset = _duration.Offset(0)
+        initial_offset = _duration.Offset(initial_offset)
         first_start_offset = components[0]._get_timespan().start_offset
         last_start_offset = components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
@@ -2466,7 +2385,7 @@ class Meter:
         if components[0]._parent is None:
             prolation = 1
         else:
-            parentage = Parentage(components[0]._parent)
+            parentage = _parentage.Parentage(components[0]._parent)
             prolation = parentage.prolation
         offset_inventory = []
         for offsets in meter.depthwise_offset_inventory:
@@ -2482,21 +2401,23 @@ class Meter:
         iterator = _MeterManager.iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
-            if isinstance(item, LogicalTie):
+            if isinstance(item, _select.LogicalTie):
                 recurse(
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
                     depth=0,
                     logical_tie=item,
                 )
-            elif isinstance(item, Tuplet) and not rewrite_tuplets:
+            elif isinstance(item, _score.Tuplet) and not rewrite_tuplets:
                 pass
             else:
                 preprolated_duration = sum(
                     [_._get_preprolated_duration() for _ in item]
                 )
                 if preprolated_duration.numerator == 1:
-                    preprolated_duration = NonreducedFraction(preprolated_duration)
+                    preprolated_duration = _duration.NonreducedFraction(
+                        preprolated_duration
+                    )
                     preprolated_duration = preprolated_duration.with_denominator(
                         preprolated_duration.denominator * 4
                     )
@@ -2512,257 +2433,248 @@ class Meter:
                 )
 
 
-class MeterList(TypedList):
-    """
-    Meter list.
+def illustrate_meter_list(
+    meter_list, denominator=16, range_=None, scale=None
+) -> _lilypondfile.LilyPondFile:
+    r"""
+    Illustrates meters.
 
     ..  container:: example
 
-        >>> meters = abjad.MeterList([
-        ...     (3, 4), (5, 16), (7, 8),
-        ...     ])
+        >>> meters = [abjad.Meter(_) for _ in [(3, 4), (5, 16), (7, 8)]]
+        >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-        >>> string = abjad.storage(meters)
-        >>> print(string)
-        abjad.MeterList(
-            [
-                abjad.Meter(
-                    '(3/4 (1/4 1/4 1/4))'
-                    ),
-                abjad.Meter(
-                    '(5/16 ((3/16 (1/16 1/16 1/16)) (2/16 (1/16 1/16))))'
-                    ),
-                abjad.Meter(
-                    '(7/8 ((3/8 (1/8 1/8 1/8)) (2/8 (1/8 1/8)) (2/8 (1/8 1/8))))'
-                    ),
-                ]
-            )
+        ..  docs::
 
-        >>> abjad.show(meters, scale=0.5) # doctest: +SKIP
+            >>> lilypond_file = abjad.meter.illustrate_meter_list(meters)
+            >>> markup = lilypond_file.items[0]
+            >>> string = abjad.lilypond(markup)
+            >>> print(string)
+            \markup
+            \column
+            {
+            \combine
+            \combine
+            \translate #'(1.0 . 1)
+            \sans \fontsize #-3 \center-align \fraction 3 4
+            \translate #'(49.38709677419355 . 1)
+            \sans \fontsize #-3 \center-align \fraction 5 16
+            \translate #'(69.54838709677419 . 1)
+            \sans \fontsize #-3 \center-align \fraction 7 8
+            \combine
+            \postscript
+            #"
+            0.2 setlinewidth
+            1 0.5 moveto
+            49.38709677419355 0.5 lineto
+            stroke
+            1 1.25 moveto
+            1 -0.25 lineto
+            stroke
+            49.38709677419355 1.25 moveto
+            49.38709677419355 -0.25 lineto
+            stroke
+            49.38709677419355 0.5 moveto
+            69.54838709677419 0.5 lineto
+            stroke
+            49.38709677419355 1.25 moveto
+            49.38709677419355 -0.25 lineto
+            stroke
+            69.54838709677419 1.25 moveto
+            69.54838709677419 -0.25 lineto
+            stroke
+            69.54838709677419 0.5 moveto
+            126 0.5 lineto
+            stroke
+            69.54838709677419 1.25 moveto
+            69.54838709677419 -0.25 lineto
+            stroke
+            126 1.25 moveto
+            126 -0.25 lineto
+            stroke
+            "
+            \postscript
+            #"
+            1 -2 moveto
+            0 -6.153846153846154 rlineto
+            stroke
+            5.032258064516129 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            9.064516129032258 -2 moveto
+            0 -3.076923076923077 rlineto
+            stroke
+            13.096774193548388 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            17.129032258064516 -2 moveto
+            0 -4.615384615384616 rlineto
+            stroke
+            21.161290322580644 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            25.193548387096776 -2 moveto
+            0 -3.076923076923077 rlineto
+            stroke
+            29.225806451612904 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            33.25806451612903 -2 moveto
+            0 -4.615384615384616 rlineto
+            stroke
+            37.29032258064516 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            41.32258064516129 -2 moveto
+            0 -3.076923076923077 rlineto
+            stroke
+            45.354838709677416 -2 moveto
+            0 -1.5384615384615385 rlineto
+            stroke
+            49.38709677419355 -2 moveto
+            0 -6.153846153846154 rlineto
+            stroke
+            49.38709677419355 -2 moveto
+            0 -10.909090909090908 rlineto
+            stroke
+            53.41935483870968 -2 moveto
+            0 -3.6363636363636367 rlineto
+            stroke
+            57.45161290322581 -2 moveto
+            0 -3.6363636363636367 rlineto
+            stroke
+            61.483870967741936 -2 moveto
+            0 -7.272727272727273 rlineto
+            stroke
+            65.51612903225806 -2 moveto
+            0 -3.6363636363636367 rlineto
+            stroke
+            69.54838709677419 -2 moveto
+            0 -10.909090909090908 rlineto
+            stroke
+            69.54838709677419 -2 moveto
+            0 -5.517241379310345 rlineto
+            stroke
+            73.58064516129032 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            77.61290322580645 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            81.64516129032258 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            85.6774193548387 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            89.70967741935483 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            93.74193548387096 -2 moveto
+            0 -4.137931034482759 rlineto
+            stroke
+            97.7741935483871 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            101.80645161290323 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            105.83870967741936 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            109.87096774193549 -2 moveto
+            0 -4.137931034482759 rlineto
+            stroke
+            113.90322580645162 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            117.93548387096774 -2 moveto
+            0 -2.7586206896551726 rlineto
+            stroke
+            121.96774193548387 -2 moveto
+            0 -1.3793103448275863 rlineto
+            stroke
+            126 -2 moveto
+            0 -5.517241379310345 rlineto
+            stroke
+            "
+            }
 
     """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### SPECIAL METHODS ###
-
-    def __illustrate__(self, denominator=16, range_=None, scale=None) -> LilyPondFile:
-        r"""
-        Illustrates meters.
-
-        ..  container:: example
-
-            >>> meters = abjad.MeterList([(3, 4), (5, 16), (7, 8)])
-            >>> abjad.show(meters, scale=0.5) # doctest: +SKIP
-
-            ..  doctest
-
-                >>> lilypond_file = meters.__illustrate__()
-                >>> markup = lilypond_file.items[0]
-                >>> string = abjad.lilypond(markup)
-                >>> print(string)
-                \markup { \column { \combine \combine \translate #'(1.0 . 1) \sans \fontsize #-3 \center-align \fraction 3 4 \translate #'(49.38709677419355 . 1) \sans \fontsize #-3 \center-align \fraction 5 16 \translate #'(69.54838709677419 . 1) \sans \fontsize #-3 \center-align \fraction 7 8 \combine \postscript
-                    #"
-                    0.2 setlinewidth
-                    1 0.5 moveto
-                    49.38709677419355 0.5 lineto
-                    stroke
-                    1 1.25 moveto
-                    1 -0.25 lineto
-                    stroke
-                    49.38709677419355 1.25 moveto
-                    49.38709677419355 -0.25 lineto
-                    stroke
-                    49.38709677419355 0.5 moveto
-                    69.54838709677419 0.5 lineto
-                    stroke
-                    49.38709677419355 1.25 moveto
-                    49.38709677419355 -0.25 lineto
-                    stroke
-                    69.54838709677419 1.25 moveto
-                    69.54838709677419 -0.25 lineto
-                    stroke
-                    69.54838709677419 0.5 moveto
-                    126 0.5 lineto
-                    stroke
-                    69.54838709677419 1.25 moveto
-                    69.54838709677419 -0.25 lineto
-                    stroke
-                    126 1.25 moveto
-                    126 -0.25 lineto
-                    stroke
-                    " \postscript #"1 -2 moveto
-                0 -6.153846153846154 rlineto
-                stroke
-                5.032258064516129 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                9.064516129032258 -2 moveto
-                0 -3.076923076923077 rlineto
-                stroke
-                13.096774193548388 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                17.129032258064516 -2 moveto
-                0 -4.615384615384616 rlineto
-                stroke
-                21.161290322580644 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                25.193548387096776 -2 moveto
-                0 -3.076923076923077 rlineto
-                stroke
-                29.225806451612904 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                33.25806451612903 -2 moveto
-                0 -4.615384615384616 rlineto
-                stroke
-                37.29032258064516 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                41.32258064516129 -2 moveto
-                0 -3.076923076923077 rlineto
-                stroke
-                45.354838709677416 -2 moveto
-                0 -1.5384615384615385 rlineto
-                stroke
-                49.38709677419355 -2 moveto
-                0 -6.153846153846154 rlineto
-                stroke
-                49.38709677419355 -2 moveto
-                0 -10.909090909090908 rlineto
-                stroke
-                53.41935483870968 -2 moveto
-                0 -3.6363636363636367 rlineto
-                stroke
-                57.45161290322581 -2 moveto
-                0 -3.6363636363636367 rlineto
-                stroke
-                61.483870967741936 -2 moveto
-                0 -7.272727272727273 rlineto
-                stroke
-                65.51612903225806 -2 moveto
-                0 -3.6363636363636367 rlineto
-                stroke
-                69.54838709677419 -2 moveto
-                0 -10.909090909090908 rlineto
-                stroke
-                69.54838709677419 -2 moveto
-                0 -5.517241379310345 rlineto
-                stroke
-                73.58064516129032 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                77.61290322580645 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                81.64516129032258 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                85.6774193548387 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                89.70967741935483 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                93.74193548387096 -2 moveto
-                0 -4.137931034482759 rlineto
-                stroke
-                97.7741935483871 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                101.80645161290323 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                105.83870967741936 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                109.87096774193549 -2 moveto
-                0 -4.137931034482759 rlineto
-                stroke
-                113.90322580645162 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                117.93548387096774 -2 moveto
-                0 -2.7586206896551726 rlineto
-                stroke
-                121.96774193548387 -2 moveto
-                0 -1.3793103448275863 rlineto
-                stroke
-                126 -2 moveto
-                0 -5.517241379310345 rlineto
-                stroke" } }
-
-        Returns LilyPond file.
-        """
-        durations = [_.duration for _ in self]
-        total_duration = sum(durations)
-        offsets = math.cumulative_sums(durations, start=0)
-        timespans = TimespanList()
-        for one, two in Sequence(offsets).nwise():
-            timespan = Timespan(start_offset=one, stop_offset=two)
-            timespans.append(timespan)
-        if range_ is not None:
-            minimum, maximum = range_
-        else:
-            minimum, maximum = 0, total_duration
-        minimum = float(Offset(minimum))
-        maximum = float(Offset(maximum))
-        if scale is None:
-            scale = 1.0
-        assert 0 < scale
-        postscript_scale = 125.0 / (maximum - minimum)
-        postscript_scale *= float(scale)
-        postscript_x_offset = (minimum * postscript_scale) - 1
-        timespan_markup = timespans._make_timespan_list_markup(
-            timespans,
-            postscript_x_offset,
-            postscript_scale,
-            draw_offsets=False,
-        )
-        timespan_string = timespan_markup.contents[0]
-        ps = markups.Postscript()
-        rational_x_offset = Offset(0)
-        for meter in self:
-            kernel_denominator = denominator or meter.denominator
-            kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
-            for offset, weight in sorted(kernel.kernel.items()):
-                weight = float(weight) * -40
-                ps_x_offset = float(rational_x_offset + offset)
-                ps_x_offset *= postscript_scale
-                ps_x_offset += 1
-                ps = ps.moveto(ps_x_offset, -2)
-                ps = ps.rlineto(0, weight)
-                ps = ps.stroke()
-            rational_x_offset += meter.duration
-        ps_markup = rf'\postscript #"{ps}"'
-        lines_string = rf"\combine {timespan_string} {ps_markup}"
-        fraction_markups = []
-        for meter, offset in zip(self, offsets):
-            numerator, denominator = meter.numerator, meter.denominator
-            x_translation = float(offset) * postscript_scale
-            x_translation -= postscript_x_offset
-            string = rf"\translate #'({x_translation} . 1) \sans \fontsize #-3"
-            string += rf" \center-align \fraction {numerator} {denominator}"
-            fraction = markups.Markup(string, literal=True)
-            fraction_markups.append(fraction)
-        fraction_markup = str(fraction_markups[0].contents[0])
-        for markup in fraction_markups[1:]:
-            fraction_markup = rf"\combine {fraction_markup} {markup.contents[0]}"
-        string = rf"\markup {{ \column {{ {fraction_markup} {lines_string} }} }}"
-        markup = markups.Markup(string, literal=True)
-        lilypond_file = LilyPondFile()
-        markup = new(markup, direction=None)
-        lilypond_file.items.append(markup)
-        return lilypond_file
-
-    ### PRIVATE METHODS ###
-
-    def _coerce_item(self, item):
-        return Meter(item)
+    durations = [_.duration for _ in meter_list]
+    total_duration = sum(durations)
+    offsets = _math.cumulative_sums(durations, start=0)
+    timespans = _timespan.TimespanList()
+    for one, two in _sequence.nwise(offsets):
+        timespan = _timespan.Timespan(start_offset=one, stop_offset=two)
+        timespans.append(timespan)
+    if range_ is not None:
+        minimum, maximum = range_
+    else:
+        minimum, maximum = 0, total_duration
+    minimum = float(_duration.Offset(minimum))
+    maximum = float(_duration.Offset(maximum))
+    if scale is None:
+        scale = 1.0
+    assert 0 < scale
+    postscript_scale = 125.0 / (maximum - minimum)
+    postscript_scale *= float(scale)
+    postscript_x_offset = (minimum * postscript_scale) - 1
+    timespan_markup = _timespan._make_timespan_list_markup(
+        timespans,
+        postscript_x_offset,
+        postscript_scale,
+        draw_offsets=False,
+    )
+    postscript_strings = []
+    rational_x_offset = _duration.Offset(0)
+    for meter in meter_list:
+        kernel_denominator = denominator or meter.denominator
+        kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
+        for offset, weight in sorted(kernel.kernel.items()):
+            weight = float(weight) * -40
+            ps_x_offset = float(rational_x_offset + offset)
+            ps_x_offset *= postscript_scale
+            ps_x_offset += 1
+            postscript_strings.append(f"{_timespan._fpa(ps_x_offset)} -2 moveto")
+            postscript_strings.append(f"0 {_timespan._fpa(weight)} rlineto")
+            postscript_strings.append("stroke")
+        rational_x_offset += meter.duration
+    fraction_pairs = []
+    for meter, offset in zip(meter_list, offsets):
+        numerator, denominator = meter.numerator, meter.denominator
+        x_translation = float(offset) * postscript_scale
+        x_translation -= postscript_x_offset
+        top_string = rf"\translate #'({x_translation} . 1)"
+        bottom_string = r"\sans \fontsize #-3 \center-align"
+        bottom_string = bottom_string + rf" \fraction {numerator} {denominator}"
+        pair = (top_string, bottom_string)
+        fraction_pairs.append(pair)
+    fraction_strings = []
+    fraction_strings.append(fraction_pairs[0][0])
+    fraction_strings.append(fraction_pairs[0][1])
+    for pair in fraction_pairs[1:]:
+        fraction_strings.insert(0, r"\combine")
+        fraction_strings.append(pair[0])
+        fraction_strings.append(pair[1])
+    strings = []
+    strings.append(r"\markup")
+    strings.append(r"\column")
+    strings.append("{")
+    strings.extend(fraction_strings)
+    strings.append(r"\combine")
+    strings.append(timespan_markup.string)
+    strings.append(r"\postscript")
+    strings.append('#"')
+    strings.extend(postscript_strings)
+    strings.append('"')
+    strings.append("}")
+    string = "\n".join(strings)
+    markup = _indicators.Markup(string)
+    lilypond_file = _lilypondfile.LilyPondFile()
+    lilypond_file.items.append(markup)
+    return lilypond_file
 
 
 class MetricAccentKernel:
@@ -2774,21 +2686,10 @@ class MetricAccentKernel:
         >>> hierarchy = abjad.Meter((7, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
-        MetricAccentKernel(
-            {
-                Offset((0, 1)): Multiplier(3, 14),
-                Offset((1, 8)): Multiplier(1, 14),
-                Offset((1, 4)): Multiplier(1, 14),
-                Offset((3, 8)): Multiplier(1, 7),
-                Offset((1, 2)): Multiplier(1, 14),
-                Offset((5, 8)): Multiplier(1, 7),
-                Offset((3, 4)): Multiplier(1, 14),
-                Offset((7, 8)): Multiplier(3, 14),
-                }
-            )
+        MetricAccentKernel(kernel={Offset((0, 1)): Multiplier(3, 14), Offset((7, 8)): Multiplier(3, 14), Offset((3, 8)): Multiplier(1, 7), Offset((5, 8)): Multiplier(1, 7), Offset((1, 8)): Multiplier(1, 14), Offset((1, 4)): Multiplier(1, 14), Offset((1, 2)): Multiplier(1, 14), Offset((3, 4)): Multiplier(1, 14)})
 
-    Call the kernel against an expression from which offsets can be counted
-    to receive an impulse-response:
+    Call the kernel against an expression from which offsets can be counted to receive an
+    impulse-response:
 
     ..  container:: example
 
@@ -2808,8 +2709,8 @@ class MetricAccentKernel:
         kernel = kernel or {}
         assert isinstance(kernel, dict)
         for key, value in kernel.items():
-            assert isinstance(key, Offset)
-            assert isinstance(value, Multiplier)
+            assert isinstance(key, _duration.Offset)
+            assert isinstance(value, _duration.Multiplier)
         self._kernel = kernel.copy()
         self._offsets = tuple(sorted(self._kernel))
 
@@ -2830,8 +2731,8 @@ class MetricAccentKernel:
         Returns float.
         """
         offset_count = self.count_offsets(argument)
-        response = Multiplier(0, 1)
-        for offset, count in offset_count.items():
+        response = _duration.Multiplier(0, 1)
+        for offset, count in offset_count.items.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]
                 weighted_count = weight * count
@@ -2840,8 +2741,8 @@ class MetricAccentKernel:
 
     def __eq__(self, argument):
         """
-        Is true when ``argument`` is a metrical accent kernal with a kernal
-        equal to that of this metrical accent kernel.
+        Is true when ``argument`` is a metrical accent kernal with a kernal equal to that
+        of this metrical accent kernel.
 
         Returns true or false.
         """
@@ -2851,27 +2752,15 @@ class MetricAccentKernel:
         """
         Hashes metric accent kernel.
 
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
         Returns integer.
         """
         return super().__hash__()
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return StorageFormatManager(self).get_repr_format()
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return FormatSpecification(
-            client=self,
-            repr_is_indented=True,
-            storage_format_args_values=[self.kernel],
-            storage_format_keyword_names=[],
-        )
+        return f"{type(self).__name__}(kernel={self.kernel})"
 
     ### PUBLIC PROPERTIES ###
 
@@ -2880,7 +2769,7 @@ class MetricAccentKernel:
         """
         Gets duration.
         """
-        return Duration(self._offsets[-1])
+        return _duration.Duration(self._offsets[-1])
 
     @property
     def kernel(self):
@@ -2894,7 +2783,7 @@ class MetricAccentKernel:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def count_offsets(argument) -> OffsetCounter:
+    def count_offsets(argument) -> _timespan.OffsetCounter:
         r"""
         Count offsets in ``argument``.
 
@@ -2929,9 +2818,9 @@ class MetricAccentKernel:
             >>> abjad.show(score) # doctest: +SKIP
 
             >>> MetricAccentKernel = abjad.MetricAccentKernel
-            >>> leaves = abjad.select(score).leaves()
+            >>> leaves = abjad.select.leaves(score)
             >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
-            >>> for offset, count in sorted(counter.items()):
+            >>> for offset, count in sorted(counter.items.items()):
             ...     offset, count
             (Offset((0, 1)), 2)
             (Offset((1, 8)), 2)
@@ -2947,7 +2836,7 @@ class MetricAccentKernel:
             >>> c = abjad.Timespan(15, 20)
 
             >>> counter = MetricAccentKernel.count_offsets((a, b, c))
-            >>> for offset, count in sorted(counter.items()):
+            >>> for offset, count in sorted(counter.items.items()):
             ...     offset, count
             (Offset((0, 1)), 1)
             (Offset((5, 1)), 1)
@@ -2957,7 +2846,7 @@ class MetricAccentKernel:
 
         Returns counter.
         """
-        return OffsetCounter(argument)
+        return _timespan.OffsetCounter(argument)
 
     @staticmethod
     def from_meter(meter, denominator=32, normalize=True):
@@ -3013,10 +2902,10 @@ class _MeterFittingSession:
             self._offset_counter = MetricAccentKernel.count_offsets(offset_counter)
         else:
             self._offset_counter = {}
-        self._ordered_offsets = tuple(sorted(self.offset_counter))
+        self._ordered_offsets = tuple(sorted(self.offset_counter.items))
         meters = meters or ()
         self._meters = tuple(Meter(_) for _ in meters)
-        self._kernel_denominator = Duration(kernel_denominator)
+        self._kernel_denominator = _duration.Duration(kernel_denominator)
         self._kernels = {}
         for meter in self._meters:
             kernel = meter.generate_offset_kernel_to_denominator(
@@ -3037,7 +2926,7 @@ class _MeterFittingSession:
         Returns meter list.
         """
         selected_kernels = []
-        current_offset = Offset(0)
+        current_offset = _duration.Offset(0)
         while current_offset < self.ordered_offsets[-1]:
             kernel_scores = []
             kernels = self._get_kernels(selected_kernels)
@@ -3069,7 +2958,6 @@ class _MeterFittingSession:
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
         selected_meters = (self.kernels[_] for _ in selected_kernels)
-        selected_meters = MeterList(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###
@@ -3096,7 +2984,7 @@ class _MeterFittingSession:
             return offset_counter
         offset = self.ordered_offsets[index]
         while offset <= stop_offset:
-            count = self.offset_counter[offset]
+            count = self.offset_counter.items[offset]
             offset_counter[offset - start_offset] = count
             index += 1
             if index == len(self.ordered_offsets):
@@ -3201,11 +3089,11 @@ class _MeterManager:
         while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
-            for first, second in Sequence(old_offsets).nwise():
+            for first, second in _sequence.nwise(old_offsets):
                 new_offsets.append(first)
                 difference = second - first
                 half = (first + second) / 2
-                if Duration(1, 8) < difference:
+                if _duration.Duration(1, 8) < difference:
                     new_offsets.append(half)
                 else:
                     one_quarter = (first + half) / 2
@@ -3267,8 +3155,8 @@ class _MeterManager:
     @staticmethod
     def iterate_rewrite_inputs(argument):
         r"""
-        Iterates topmost masked logical ties, rest groups and containers
-        in ``argument``, masked by ``argument``.
+        Iterates topmost masked logical ties, rest groups and containers in ``argument``,
+        masked by ``argument``.
 
         >>> string = "! 2/4 c'4 d'4 ~ !"
         >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
@@ -3331,31 +3219,31 @@ class _MeterManager:
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[0]): x
         ...
-        LogicalTie([Note("c'4")])
-        LogicalTie([Note("d'4")])
+        LogicalTie(items=[Note("c'4")])
+        LogicalTie(items=[Note("d'4")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[1]): x
         ...
-        LogicalTie([Note("d'8.")])
-        LogicalTie([Rest('r16'), Rest('r8.')])
-        LogicalTie([Note("e'16")])
+        LogicalTie(items=[Note("d'8.")])
+        LogicalTie(items=[Rest('r16'), Rest('r8.')])
+        LogicalTie(items=[Note("e'16")])
         Tuplet('3:2', "e'8 e'8 f'8")
-        LogicalTie([Note("f'4")])
+        LogicalTie(items=[Note("f'4")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[2]): x
         ...
-        LogicalTie([Note("f'8")])
-        LogicalTie([Note("g'8"), Note("g'4")])
-        LogicalTie([Note("a'4"), Note("a'8")])
-        LogicalTie([Note("b'8")])
+        LogicalTie(items=[Note("f'8")])
+        LogicalTie(items=[Note("g'8"), Note("g'4")])
+        LogicalTie(items=[Note("a'4"), Note("a'8")])
+        LogicalTie(items=[Note("b'8")])
 
         >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
         ...     staff[3]): x
         ...
-        LogicalTie([Note("b'4")])
-        LogicalTie([Note("c''4")])
+        LogicalTie(items=[Note("b'4")])
+        LogicalTie(items=[Note("c''4")])
 
         Returns generator.
         """
@@ -3363,9 +3251,9 @@ class _MeterManager:
         current_leaf_group = None
         current_leaf_group_is_silent = False
         for component in argument:
-            if isinstance(component, (Note, Chord)):
-                this_tie_leaves = _iterate._get_logical_tie_leaves(component)
-                this_tie = LogicalTie(this_tie_leaves)
+            if isinstance(component, _score.Note | _score.Chord):
+                this_tie_leaves = _iterlib._get_logical_tie_leaves(component)
+                this_tie = _select.LogicalTie(this_tie_leaves)
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif (
@@ -3373,27 +3261,27 @@ class _MeterManager:
                     or this_tie is None
                     or last_tie != this_tie
                 ):
-                    yield LogicalTie(current_leaf_group)
+                    yield _select.LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = False
                 current_leaf_group.append(component)
                 last_tie = this_tie
-            elif isinstance(component, (Rest, Skip)):
+            elif isinstance(component, _score.Rest | _score.Skip):
                 if current_leaf_group is None:
                     current_leaf_group = []
                 elif not current_leaf_group_is_silent:
-                    yield LogicalTie(current_leaf_group)
+                    yield _select.LogicalTie(current_leaf_group)
                     current_leaf_group = []
                 current_leaf_group_is_silent = True
                 current_leaf_group.append(component)
                 last_tie = None
-            elif isinstance(component, Container):
+            elif isinstance(component, _score.Container):
                 if current_leaf_group is not None:
-                    yield LogicalTie(current_leaf_group)
+                    yield _select.LogicalTie(current_leaf_group)
                     current_leaf_group = None
                     last_tie = None
                 yield component
             else:
                 raise Exception(f"unhandled component: {component!r}.")
         if current_leaf_group is not None:
-            yield LogicalTie(current_leaf_group)
+            yield _select.LogicalTie(current_leaf_group)

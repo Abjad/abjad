@@ -12,7 +12,7 @@ def test_Container___copy___01():
     container_1.simultaneous = True
     container_2 = copy.copy(container_1)
 
-    assert abjad.lilypond(container_1) == abjad.String.normalize(
+    assert abjad.lilypond(container_1) == abjad.string.normalize(
         r"""
         <<
             \new Voice
@@ -29,7 +29,7 @@ def test_Container___copy___01():
         """
     )
 
-    assert abjad.lilypond(container_2) == abjad.String.normalize(
+    assert abjad.lilypond(container_2) == abjad.string.normalize(
         r"""
         <<
         >>

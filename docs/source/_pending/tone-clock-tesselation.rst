@@ -24,7 +24,8 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
     ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).SpanBar.stencil = False
     ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 5)"
-    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     string = "#(set-global-staff-size 16)"
+    ...     lilypond_file = abjad.LilyPondFile([string, score])
     ...     return lilypond_file
     ...
 
@@ -53,29 +54,29 @@ Trichord reservoir in Jenny McLeod's **Tone Clock Piece I**:
 ::
 
     >>> ipf = abjad.PitchSegment([0, 2, 7])
-    >>> steering = abjad.PitchSegment([0, 1, 3, 4])
+    >>> steering = [abjad.NumberedInterval(_) for _ in [0, 1, 3, 4]]
     >>> tesselation = tesselate_segment(
     ...     ipf,
     ...     steering,
     ...     [False, True, False, True],
     ... )
     ...
-    >>> file = illustrate_trichords(tesselation)
-    >>> abjad.show(file)
+    >>> lilypond_file = illustrate_trichords(tesselation)
+    >>> abjad.show(lilypond_file)
 
 Alternate reservoir:
 
 ::
 
     >>> ipf = abjad.PitchSegment([0, 1, 6])
-    >>> steering = abjad.PitchSegment([0, 1, 4, 6])
+    >>> steering = [abjad.NumberedInterval(_) for _ in [0, 1, 4, 6]]
     >>> tesselation = tesselate_segment(
     ...     ipf,
     ...     steering,
     ...     [False, False, True, True],
     ... )
     ...
-    >>> file = illustrate_trichords(tesselation)
-    >>> abjad.show(file)
+    >>> lilypond_file = illustrate_trichords(tesselation)
+    >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2)]`
+:author:`[Evans (3.2), Bača (3.7)]`

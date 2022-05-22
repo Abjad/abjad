@@ -10,7 +10,8 @@ Abjad numbers pitches like this:
 
 ::
 
-    >>> score, treble_staff, bass_staff = abjad.illustrators.make_piano_score()
+    >>> score = abjad.illustrators.make_piano_score()
+    >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
     >>> duration = abjad.Duration(1, 32)
     >>> pitches = range(-12, 12 + 1)
     >>> for pitch in pitches:
@@ -23,11 +24,12 @@ Abjad numbers pitches like this:
     ...         treble_staff.append(rest)
     ...         bass_staff.append(note)
     ...     number = note.written_pitch.number
-    ...     markup = abjad.Markup(str(number), direction=abjad.Down)
-    ...     abjad.attach(markup, bass_staff[-1])
+    ...     string = rf"\markup {number}"
+    ...     markup = abjad.Markup(string)
+    ...     abjad.attach(markup, bass_staff[-1], direction=abjad.DOWN)
     ...
     >>> clef = abjad.Clef("bass")
-    >>> note = abjad.select(bass_staff).note(0)
+    >>> note = abjad.select.note(bass_staff, 0)
     >>> abjad.attach(clef, note)
 
 ::
@@ -47,10 +49,7 @@ Abjad numbers pitches like this:
     ...     }
     ... }"""
 
-..  book::
-    :lilypond/no-stylesheet:
-
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 Diatonic pitch numbers
@@ -60,7 +59,8 @@ Abjad numbers diatonic pitches like this:
 
 ::
 
-    >>> score, treble_staff, bass_staff = abjad.illustrators.make_piano_score()
+    >>> score = abjad.illustrators.make_piano_score()
+    >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
     >>> duration = abjad.Duration(1, 32)
     >>> pitches = []
     >>> diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
@@ -79,17 +79,15 @@ Abjad numbers diatonic pitches like this:
     ...         treble_staff.append(rest)
     ...         bass_staff.append(note)
     ...     number = note.written_pitch._get_diatonic_pitch_number()
-    ...     markup = abjad.Markup(str(number), direction=abjad.Down)
-    ...     abjad.attach(markup, bass_staff[-1])
+    ...     string = rf"\markup {number}"
+    ...     markup = abjad.Markup(string)
+    ...     abjad.attach(markup, bass_staff[-1], direction=abjad.DOWN)
     ...
     >>> clef = abjad.Clef("bass")
-    >>> note = abjad.select(bass_staff).note(0)
+    >>> note = abjad.select.note(bass_staff, 0)
     >>> abjad.attach(clef, note)
 
-..  book::
-    :lilypond/no-stylesheet:
-
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
 Accidental abbreviations

@@ -51,10 +51,10 @@ def test_Chord___copy___04():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.note_heads[0]).color = "#red"
+    abjad.tweak(chord_1.note_heads[0], r"\tweak color #red")
     chord_2 = copy.copy(chord_1)
 
-    assert abjad.lilypond(chord_1) == abjad.String.normalize(
+    assert abjad.lilypond(chord_1) == abjad.string.normalize(
         r"""
         <
             \tweak color #red
@@ -65,7 +65,7 @@ def test_Chord___copy___04():
         """
     )
 
-    assert abjad.lilypond(chord_2) == abjad.String.normalize(
+    assert abjad.lilypond(chord_2) == abjad.string.normalize(
         r"""
         <
             \tweak color #red
@@ -75,10 +75,6 @@ def test_Chord___copy___04():
         >4
         """
     )
-
-    assert chord_2.note_heads[0]._client is chord_2
-    assert chord_2.note_heads[1]._client is chord_2
-    assert chord_2.note_heads[2]._client is chord_2
 
     assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
@@ -100,7 +96,7 @@ def test_Chord___copy___05():
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
     articulation_1 = abjad.Articulation("staccato")
     abjad.attach(articulation_1, chord_1)
-    markup_1 = abjad.Markup("foo", direction=abjad.Up)
+    markup_1 = abjad.Markup(r"\markup foo")
     abjad.attach(markup_1, chord_1)
 
     chord_2 = copy.copy(chord_1)

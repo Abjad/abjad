@@ -11,8 +11,10 @@ Many Abjad objects can be transformed into LilyPond input:
 
     >>> string = r"\tuplet 3/2 { gs''32 \sfp ( b'' cs''' } b''4.. \trill )"
     >>> voice_1 = abjad.Voice(4 * string, name="Voice_1")
-    >>> note = abjad.select(voice_1).note(0)
-    >>> key_signature = abjad.KeySignature("e", "major")
+    >>> note = abjad.select.note(voice_1, 0)
+    >>> key_signature = abjad.KeySignature(
+    ...     abjad.NamedPitchClass("e"), abjad.Mode("major")
+    ... )
     >>> abjad.attach(key_signature, note)
     >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
     >>> abjad.attach(literal, note)
@@ -50,7 +52,7 @@ Here's LilyPond input for the very first note:
 
 ::
 
-    >>> note = abjad.select(score).note(0)
+    >>> note = abjad.select.note(score, 0)
     >>> string = abjad.lilypond(note)
     >>> print(string)
 

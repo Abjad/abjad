@@ -8,18 +8,16 @@ def test_mutate_fuse_01():
     Works with list of leaves.
     """
 
-    notes = abjad.Selection(
-        [
-            abjad.Note("c'4"),
-            abjad.Note("c'4"),
-            abjad.Note("c'4"),
-            abjad.Note("c'4"),
-            abjad.Note("c'4"),
-            abjad.Note("c'4"),
-            abjad.Note("c'4"),
-            abjad.Note("c'4"),
-        ]
-    )
+    notes = [
+        abjad.Note("c'4"),
+        abjad.Note("c'4"),
+        abjad.Note("c'4"),
+        abjad.Note("c'4"),
+        abjad.Note("c'4"),
+        abjad.Note("c'4"),
+        abjad.Note("c'4"),
+        abjad.Note("c'4"),
+    ]
     fused = abjad.mutate.fuse(notes)
 
     assert len(fused) == 1
@@ -28,7 +26,7 @@ def test_mutate_fuse_01():
 
 def test_mutate_fuse_02():
     """
-    Works with Leaf component.
+    Works with leaf.
     """
 
     fused = abjad.mutate.fuse(abjad.Note("c'4"))
@@ -50,13 +48,13 @@ def test_mutate_fuse_03():
 
 def test_mutate_fuse_04():
     """
-    Fusion results in tied notes.
+    Makes tied notes.
     """
 
     voice = abjad.Voice([abjad.Note(0, (2, 16)), abjad.Note(9, (3, 16))])
     abjad.mutate.fuse(voice[:])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -72,14 +70,14 @@ def test_mutate_fuse_04():
 
 def test_mutate_fuse_05():
     """
-    Fuses leaves with differing LilyPond multipliers.
+    Works with multiplied durations.
     """
 
     staff = abjad.Staff([abjad.Skip((1, 1)), abjad.Skip((1, 1))])
     staff[0].multiplier = (1, 16)
     staff[1].multiplier = (5, 16)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -93,7 +91,7 @@ def test_mutate_fuse_05():
 
     abjad.mutate.fuse(staff[:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -108,7 +106,7 @@ def test_mutate_fuse_05():
 
 def test_mutate_fuse_06():
     """
-    Fuses two unincorporated tuplets with same multiplier.
+    Fuses two tuplets with same multiplier.
     """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
@@ -116,7 +114,7 @@ def test_mutate_fuse_06():
     tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
     abjad.slur(tuplet_2[:])
 
-    assert abjad.lilypond(tuplet_1) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet_1) == abjad.string.normalize(
         r"""
         \times 2/3
         {
@@ -129,7 +127,7 @@ def test_mutate_fuse_06():
         """
     ), print(abjad.lilypond(tuplet_1))
 
-    assert abjad.lilypond(tuplet_2) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet_2) == abjad.string.normalize(
         r"""
         \times 2/3
         {
@@ -142,10 +140,10 @@ def test_mutate_fuse_06():
         """
     ), print(abjad.lilypond(tuplet_2))
 
-    tuplets = abjad.select([tuplet_1, tuplet_2])
+    tuplets = [tuplet_1, tuplet_2]
     new = abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(new) == abjad.String.normalize(
+    assert abjad.lilypond(new) == abjad.string.normalize(
         r"""
         \times 2/3
         {
@@ -180,7 +178,7 @@ def test_mutate_fuse_07():
     abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -207,7 +205,7 @@ def test_mutate_fuse_07():
     tuplets = voice[:]
     abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -242,7 +240,7 @@ def test_mutate_fuse_08():
     abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -272,7 +270,7 @@ def test_mutate_fuse_08():
     tuplets = voice[:]
     abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -301,12 +299,12 @@ def test_mutate_fuse_08():
 
 def test_mutate_fuse_09():
     """
-    Tuplets must carry same multiplier.
+    Raises exception when tuplet multipliers differ.
     """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     tuplet_2 = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
-    tuplets = abjad.select([tuplet_1, tuplet_2])
+    tuplets = [tuplet_1, tuplet_2]
 
     with pytest.raises(Exception):
         abjad.mutate.fuse(tuplets)
@@ -317,10 +315,10 @@ def test_mutate_fuse_10():
     tuplet_1 = abjad.Tuplet((2, 3), "c'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
     voice = abjad.Voice([tuplet_1, tuplet_2, abjad.Note("c'4")])
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.slur(leaves)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -344,7 +342,7 @@ def test_mutate_fuse_10():
     tuplets = voice[:2]
     abjad.mutate.fuse(tuplets)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -365,9 +363,9 @@ def test_mutate_fuse_10():
 
 def test_mutate_fuse_11():
     """
-    Fusing empty selection returns none.
+    Returns empty output on empty input.
     """
 
     staff = abjad.Staff()
     result = abjad.mutate.fuse(staff[:])
-    assert result == abjad.Selection()
+    assert result == []

@@ -7,17 +7,17 @@ def test_Container___delitem___01():
     """
 
     voice = abjad.Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
             {
                 c'8
-                (
                 [
+                (
                 d'8
                 )
             }
@@ -36,7 +36,7 @@ def test_Container___delitem___01():
     del voice[0]
 
     # container no longer appears in score
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -54,12 +54,12 @@ def test_Container___delitem___01():
     assert abjad.wf.wellformed(voice)
 
     # container leaves are still slurred
-    assert abjad.lilypond(container) == abjad.String.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
-            (
             [
+            (
             d'8
             )
         }
@@ -77,7 +77,7 @@ def test_Container___delitem___02():
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     del voice[1]
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -101,7 +101,7 @@ def test_Container___delitem___03():
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     del voice[1:3]
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -124,7 +124,7 @@ def test_Container___delitem___04():
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     del voice[:2]
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -146,7 +146,7 @@ def test_Container___delitem___05():
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     del voice[2:]
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -168,7 +168,7 @@ def test_Container___delitem___06():
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     del voice[:]
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -187,7 +187,7 @@ def test_Container___delitem___07():
     tuplet = abjad.Tuplet(abjad.Multiplier((2, 3)), "c'8 [ d'8 e'8 ]")
     del tuplet[1]
 
-    assert abjad.lilypond(tuplet) == abjad.String.normalize(
+    assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
         \times 2/3
@@ -209,11 +209,11 @@ def test_Container___delitem___08():
     """
 
     voice = abjad.Voice("c'8 [ { d'8 e'8 } f'8 ]")
-    leaves = abjad.select(voice).leaves()
+    leaves = abjad.select.leaves(voice)
     abjad.glissando(leaves)
 
     string = abjad.lilypond(voice)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -236,7 +236,7 @@ def test_Container___delitem___08():
     del voice[1][0]
 
     string = abjad.lilypond(voice)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \new Voice
         {

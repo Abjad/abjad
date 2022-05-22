@@ -1,12 +1,10 @@
 import math
 import re
-import typing
 
 import quicktions
 
-from . import exceptions
+from . import exceptions as _exceptions
 from . import math as _math
-from . import storage
 
 
 class Duration(quicktions.Fraction):
@@ -255,8 +253,6 @@ class Duration(quicktions.Fraction):
     def __hash__(self) -> int:
         """
         Hashes duration.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
         return super().__hash__()
 
@@ -398,9 +394,9 @@ class Duration(quicktions.Fraction):
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return f"{type(self).__name__}({self.numerator}, {self.denominator})"
 
     def __rmod__(self, *arguments):
         """
@@ -467,14 +463,6 @@ class Duration(quicktions.Fraction):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_specification(self):
-        return storage.FormatSpecification(
-            client=self,
-            storage_format_args_values=[self.numerator, self.denominator],
-            storage_format_is_indented=False,
-            storage_format_keyword_names=[],
-        )
-
     @staticmethod
     def _group_by_implied_prolation(durations):
         durations = [NonreducedFraction(duration) for duration in durations]
@@ -495,7 +483,7 @@ class Duration(quicktions.Fraction):
 
     @staticmethod
     def _initialize_from_lilypond_duration_string(duration_string):
-        numeric_body_strings = [str(2 ** n) for n in range(8)]
+        numeric_body_strings = [str(2**n) for n in range(8)]
         other_body_strings = [r"\\breve", r"\\longa", r"\\maxima"]
         body_strings = numeric_body_strings + other_body_strings
         body_strings = "|".join(body_strings)
@@ -519,7 +507,7 @@ class Duration(quicktions.Fraction):
         rational = body_duration
         for n in range(len(dots_string)):
             exponent = n + 1
-            denominator = 2 ** exponent
+            denominator = 2**exponent
             multiplier = quicktions.Fraction(1, denominator)
             addend = multiplier * body_duration
             rational += addend
@@ -533,7 +521,7 @@ class Duration(quicktions.Fraction):
         general, return the ``i`` th integer power of 2 greater than the least
         integer power of 2 greater than or equal to ``n``.
         """
-        assert isinstance(n, (int, float, quicktions.Fraction)), repr(n)
+        assert isinstance(n, int | float | quicktions.Fraction), repr(n)
         assert 0 <= n, repr(n)
         result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
         return result
@@ -582,7 +570,7 @@ class Duration(quicktions.Fraction):
         Raises assignability error when duration is not assignable.
         """
         if not self.is_assignable:
-            raise exceptions.AssignabilityError
+            raise _exceptions.AssignabilityError
         binary_string = _math.integer_to_binary_string(self.numerator)
         digit_sum = sum([int(x) for x in list(binary_string)])
         dot_count = digit_sum - 1
@@ -941,7 +929,7 @@ class Duration(quicktions.Fraction):
         Raises assignability error when duration is not assignable.
         """
         if not self.is_assignable:
-            raise exceptions.AssignabilityError(self)
+            raise _exceptions.AssignabilityError(self)
         undotted_rational = self.equal_or_lesser_power_of_two
         if undotted_rational <= 1:
             undotted_duration_string = str(undotted_rational.denominator)
@@ -959,7 +947,7 @@ class Duration(quicktions.Fraction):
         return dotted_duration_string
 
     @property
-    def pair(self) -> typing.Tuple[int, int]:
+    def pair(self) -> tuple[int, int]:
         """
         Gets numerator and denominator.
 
@@ -1007,8 +995,8 @@ class Duration(quicktions.Fraction):
 
     @staticmethod
     def durations_to_nonreduced_fractions(
-        durations: typing.List,
-    ) -> typing.List["NonreducedFraction"]:
+        durations: list,
+    ) -> list["NonreducedFraction"]:
         """
         Changes ``durations`` to nonreduced fractions sharing least common
         denominator.
@@ -1118,9 +1106,9 @@ class Duration(quicktions.Fraction):
             >>> clock_string
             "1'57''"
 
-            >>> string = f'"{clock_string}"'
-            >>> markup = abjad.Markup(string, direction=abjad.Up)
-            >>> abjad.attach(markup, note)
+            >>> string = rf"\markup {{ {clock_string} }}"
+            >>> markup = abjad.Markup(string)
+            >>> abjad.attach(markup, note, direction=abjad.UP)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -1294,7 +1282,7 @@ class Multiplier(Duration):
         """
         assert isinstance(dot_count, int), repr(dot_count)
         assert 0 <= dot_count, repr(dot_count)
-        denominator = 2 ** dot_count
+        denominator = 2**dot_count
         numerator = 2 ** (dot_count + 1) - 1
         return Multiplier(numerator, denominator)
 
@@ -1417,16 +1405,6 @@ class Offset(Duration):
 
         >>> isinstance(abjad.Offset(3, 16), numbers.Number)
         True
-
-    ..  container:: example exception
-
-        REGRESSION. Raises exception when new is attempted:
-
-        >>> abjad.new(abjad.Offset((3, 16)))
-        Traceback (most recent call last):
-            ...
-        Exception: low-level class not equipped for new():
-            Offset((3, 16))
 
     """
 
@@ -1692,8 +1670,6 @@ class Offset(Duration):
     def __hash__(self) -> int:
         """
         Hashes offset.
-
-        Redefined in tandem with __eq__.
         """
         return super().__hash__()
 
@@ -1845,7 +1821,11 @@ class Offset(Duration):
             Offset((1, 4), displacement=Duration(-1, 16))
 
         """
-        return super().__repr__()
+        if self.displacement is None:
+            return f"{type(self).__name__}({self.pair})"
+        else:
+            string = f"{self.pair}, displacement={self.displacement!r}"
+            return f"{type(self).__name__}({string})"
 
     def __sub__(self, argument):
         """
@@ -1887,18 +1867,6 @@ class Offset(Duration):
         if self.displacement is None:
             return Duration(0)
         return self.displacement
-
-    def _get_format_specification(self):
-        names = []
-        values = [(self.numerator, self.denominator)]
-        if self._get_displacement():
-            names = ["displacement"]
-        return storage.FormatSpecification(
-            client=self,
-            storage_format_args_values=values,
-            storage_format_is_indented=False,
-            storage_format_keyword_names=names,
-        )
 
     ### PUBLIC PROPERTIES ###
 
@@ -2048,14 +2016,6 @@ class NonreducedFraction(quicktions.Fraction):
         self._numerator = numerator
         self._denominator = denominator
         return self
-
-    ### INITIALIZER ###
-
-    def __init__(self, *arguments):
-        """
-        Dummy initializer to satisfy mypy.
-        """
-        pass
 
     ### SPECIAL METHODS ###
 
@@ -2214,8 +2174,6 @@ class NonreducedFraction(quicktions.Fraction):
     def __hash__(self) -> int:
         """
         Hashes nonreduced fraction.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
         """
         return super().__hash__()
 
@@ -2330,7 +2288,7 @@ class NonreducedFraction(quicktions.Fraction):
             NonreducedFraction(3, 6)
 
         """
-        return storage.StorageFormatManager(self).get_repr_format()
+        return f"{type(self).__name__}({self.numerator}, {self.denominator})"
 
     def __rmul__(self, argument) -> "NonreducedFraction":
         """
@@ -2408,15 +2366,6 @@ class NonreducedFraction(quicktions.Fraction):
         result = result.with_denominator(denominator)
         return result
 
-    def _get_format_specification(self):
-        return storage.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_args_values=[self.numerator, self.denominator],
-            storage_format_is_indented=False,
-            storage_format_keyword_names=[],
-        )
-
     @staticmethod
     def _parse_input_string(string):
         if "/" in string:
@@ -2432,8 +2381,8 @@ class NonreducedFraction(quicktions.Fraction):
 
     @staticmethod
     def durations_to_nonreduced_fractions(
-        durations: typing.List,
-    ) -> typing.List["NonreducedFraction"]:
+        durations: list,
+    ) -> list["NonreducedFraction"]:
         """
         Changes ``durations`` to nonreduced fractions sharing least common
         denominator.
@@ -2740,7 +2689,7 @@ class NonreducedFraction(quicktions.Fraction):
         return self._numerator
 
     @property
-    def pair(self) -> typing.Tuple[int, int]:
+    def pair(self) -> tuple[int, int]:
         """
         Gets (numerator, denominator) pair of nonreduced fraction.
 

@@ -13,7 +13,7 @@ def test_LilyPondParser__spanners__PhrasingSlur_01():
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4
@@ -43,7 +43,7 @@ def test_LilyPondParser__spanners__PhrasingSlur_02():
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4

@@ -5,7 +5,6 @@ import os
 import pathlib
 import shutil
 import subprocess
-import typing
 
 import sphinx
 from docutils.nodes import (
@@ -24,12 +23,13 @@ from sphinx.util.osutil import copyfile, ensuredir
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
+from .. import format as _format
+from .. import lilypondfile as _lilypondfile
+from .. import tag as _tag
 from ..configuration import Configuration
 from ..contextmanagers import TemporaryDirectoryChange
-from ..format import remove_tags
 from ..illustrators import illustrate
 from ..io import Illustrator, LilyPondIO, Player
-from ..lilypondfile import Block, LilyPondVersionToken
 
 configuration = Configuration()
 logger = logging.getLogger(__name__)
@@ -50,7 +50,7 @@ class HiddenDoctestDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = True
-    option_spec: typing.Dict[str, str] = {}
+    option_spec: dict[str, str] = {}
 
     ### PUBLIC METHODS ###
 
@@ -77,7 +77,7 @@ class ShellDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = False
-    option_spec: typing.Dict[str, str] = {}
+    option_spec: dict[str, str] = {}
 
     ### PUBLIC METHODS ###
 
@@ -235,64 +235,40 @@ class LilyPondExtension(Extension):
             latex=[cls.visit_block_latex, None],
             text=[cls.visit_block_text, cls.depart_block_text],
         )
-        cls.add_option("lilypond/no-stylesheet", directives.flag)
         cls.add_option("lilypond/no-trim", directives.flag)
         cls.add_option("lilypond/pages", directives.unchanged)
-        cls.add_option("lilypond/stylesheet", directives.unchanged)
         cls.add_option("lilypond/with-columns", int)
 
     def __init__(
         self,
         illustrable,
         kind,
-        no_stylesheet=None,
         no_trim=None,
         pages=None,
-        stylesheet=None,
         with_columns=None,
         **keywords,
     ):
         self.illustrable = copy.deepcopy(illustrable)
         self.keywords = keywords
         self.kind = kind
-        self.no_stylesheet = no_stylesheet
         self.no_trim = no_trim
         self.pages = pages
-        self.stylesheet = stylesheet
         self.with_columns = with_columns
 
     def to_docutils(self):
-        if hasattr(self.illustrable, "__illustrate__"):
-            illustration = self.illustrable.__illustrate__(**self.keywords)
+        if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
+            illustration = self.illustrable
         else:
             illustration = illustrate(self.illustrable, **self.keywords)
         if self.kind == self.Kind.AUDIO:
-            block = Block(name="midi")
-            illustration.score_block.items.append(block)
-        if illustration.header_block:
-            if getattr(illustration.header_block, "tagline") == "##f":
-                # default.ily stylesheet already sets tagline = ##f
-                delattr(illustration.header_block, "tagline")
-            if illustration.header_block.empty():
-                illustration.items.remove(illustration.header_block)
-        if illustration.layout_block and illustration.layout_block.empty():
-            illustration.items.remove(illustration.layout_block)
-        if illustration.paper_block and illustration.paper_block.empty():
-            illustration.items.remove(illustration.paper_block)
-        token = LilyPondVersionToken("2.19.83")
-        illustration._lilypond_version_token = token
-        stylesheet = self.stylesheet or "default.ily"
-        if self.no_stylesheet:
-            stylesheet = None
-        if stylesheet and not illustration.includes:
-            illustration._use_relative_includes = True
-            includes = [stylesheet]
-            illustration._includes = tuple(includes)
+            block = _lilypondfile.Block("midi")
+            illustration["score"].items.append(block)
+        illustration.lilypond_version_token = r'\version "2.19.83"'
         code = illustration._get_lilypond_format()
-        code = remove_tags(code)
+        code = _format.remove_site_comments(code)
+        code = _tag.remove_tags(code)
         node = self.lilypond_block(code, code)
         node["kind"] = self.kind.name.lower()
-        node["no-stylesheet"] = self.no_stylesheet
         node["no-trim"] = self.no_trim
         node["pages"] = self.pages
         node["with-columns"] = self.with_columns

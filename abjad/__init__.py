@@ -1,22 +1,26 @@
 from quicktions import Fraction
 
 from . import (
+    _updatelib,
     deprecated,
     enumerate,
+    format,
     get,
     illustrators,
     io,
+    iterate,
     iterpitches,
     lyconst,
     lyenv,
     makers,
     mutate,
     persist,
+    string,
+    typings,
     wf,
 )
 from ._version import __version__, __version_info__
-from .attach import Wrapper, annotate, attach, detach
-from .bundle import LilyPondFormatBundle, SlotContributions
+from .bind import Wrapper, annotate, attach, detach
 from .configuration import (
     Configuration,
     list_all_classes,
@@ -34,21 +38,23 @@ from .contextmanagers import (
     TemporaryDirectoryChange,
     Timer,
 )
+from .contributions import ContributionsBySite
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Multiplier, NonreducedFraction, Offset
+from .dynamic import Dynamic
 from .enums import (
-    Center,
+    CENTER,
+    DOWN,
+    EXACT,
+    LEFT,
+    LESS,
+    MIDDLE,
+    MORE,
+    RIGHT,
+    UP,
     Comparison,
-    Down,
-    Exact,
-    HorizontalAlignment,
-    Left,
-    Less,
-    Middle,
-    More,
-    Right,
-    Up,
-    VerticalAlignment,
+    Horizontal,
+    Vertical,
 )
 from .exceptions import (
     AssignabilityError,
@@ -61,57 +67,53 @@ from .exceptions import (
     UnboundedTimeIntervalError,
     WellformednessError,
 )
-from .expression import Expression
-from .format import LilyPondFormatManager
-from .get import Descendants, Lineage
-from .illustrators import illustrate
-from .indicators.Arpeggio import Arpeggio
-from .indicators.Articulation import Articulation
-from .indicators.BarLine import BarLine
-from .indicators.BeamCount import BeamCount
-from .indicators.BendAfter import BendAfter
-from .indicators.BowContactPoint import BowContactPoint
-from .indicators.BowMotionTechnique import BowMotionTechnique
-from .indicators.BowPressure import BowPressure
-from .indicators.BreathMark import BreathMark
-from .indicators.Clef import Clef, StaffPosition
-from .indicators.ColorFingering import ColorFingering
-from .indicators.Dynamic import Dynamic
-from .indicators.Fermata import Fermata
-from .indicators.Glissando import Glissando
-from .indicators.KeyCluster import KeyCluster
-from .indicators.KeySignature import KeySignature
-from .indicators.LaissezVibrer import LaissezVibrer
-from .indicators.LilyPondComment import LilyPondComment
-from .indicators.MarginMarkup import MarginMarkup
-from .indicators.MetronomeMark import MetronomeMark
-from .indicators.Mode import Mode
-from .indicators.Ottava import Ottava
-from .indicators.RehearsalMark import RehearsalMark
-from .indicators.Repeat import Repeat
-from .indicators.RepeatTie import RepeatTie
-from .indicators.StaffChange import StaffChange
-from .indicators.StartBeam import StartBeam
-from .indicators.StartGroup import StartGroup
-from .indicators.StartHairpin import StartHairpin
-from .indicators.StartMarkup import StartMarkup
-from .indicators.StartPhrasingSlur import StartPhrasingSlur
-from .indicators.StartPianoPedal import StartPianoPedal
-from .indicators.StartSlur import StartSlur
-from .indicators.StartTextSpan import StartTextSpan
-from .indicators.StartTrillSpan import StartTrillSpan
-from .indicators.StemTremolo import StemTremolo
-from .indicators.StopBeam import StopBeam
-from .indicators.StopGroup import StopGroup
-from .indicators.StopHairpin import StopHairpin
-from .indicators.StopPhrasingSlur import StopPhrasingSlur
-from .indicators.StopPianoPedal import StopPianoPedal
-from .indicators.StopSlur import StopSlur
-from .indicators.StopTextSpan import StopTextSpan
-from .indicators.StopTrillSpan import StopTrillSpan
-from .indicators.StringContactPoint import StringContactPoint
-from .indicators.Tie import Tie
-from .indicators.TimeSignature import TimeSignature
+from .get import Lineage
+from .illustrators import illustrate, lilypond
+from .indicators import (
+    Arpeggio,
+    Articulation,
+    BarLine,
+    BeamCount,
+    BendAfter,
+    BreathMark,
+    Clef,
+    ColorFingering,
+    Fermata,
+    Glissando,
+    KeyCluster,
+    KeySignature,
+    LaissezVibrer,
+    LilyPondLiteral,
+    MarginMarkup,
+    Markup,
+    MetronomeMark,
+    Mode,
+    Ottava,
+    RehearsalMark,
+    Repeat,
+    RepeatTie,
+    StaffChange,
+    StartBeam,
+    StartGroup,
+    StartHairpin,
+    StartMarkup,
+    StartPhrasingSlur,
+    StartPianoPedal,
+    StartSlur,
+    StartTextSpan,
+    StartTrillSpan,
+    StemTremolo,
+    StopBeam,
+    StopGroup,
+    StopHairpin,
+    StopPhrasingSlur,
+    StopPianoPedal,
+    StopSlur,
+    StopTextSpan,
+    StopTrillSpan,
+    Tie,
+    TimeSignature,
+)
 from .instruments import (
     Accordion,
     AltoFlute,
@@ -164,20 +166,9 @@ from .instruments import (
     Violin,
     Xylophone,
 )
-from .io import graph, play, show
-from .iterate import Iteration, iterate
-from .label import ColorMap, Label
-from .lilypond import lilypond
-from .lilypondfile import (
-    Block,
-    ContextBlock,
-    DateTimeToken,
-    LilyPondDimension,
-    LilyPondFile,
-    LilyPondLanguageToken,
-    LilyPondVersionToken,
-    PackageGitCommitToken,
-)
+from .io import graph, show
+from .label import ColorMap
+from .lilypondfile import Block, LilyPondFile
 from .lyproxy import (
     LilyPondContext,
     LilyPondEngraver,
@@ -185,70 +176,50 @@ from .lyproxy import (
     LilyPondGrobInterface,
 )
 from .makers import LeafMaker, NoteMaker
-from .markups import Markup, Postscript, PostscriptOperator
 from .math import Infinity, NegativeInfinity
-from .meter import Meter, MeterList, MetricAccentKernel, OffsetCounter
+from .meter import Meter, MetricAccentKernel
 from .metricmodulation import MetricModulation
-from .new import new
 from .obgc import OnBeatGraceContainer, on_beat_grace_container
-from .ordereddict import OrderedDict
 from .overrides import (
-    IndexedTweakManager,
-    IndexedTweakManagers,
     Interface,
-    LilyPondLiteral,
     LilyPondOverride,
     LilyPondSetting,
     OverrideInterface,
     SettingInterface,
-    TweakInterface,
     override,
     setting,
-    tweak,
 )
 from .parentage import Parentage
 from .parsers import parser
 from .parsers.base import Parser
 from .parsers.parse import parse
 from .pattern import Pattern, PatternTuple
-from .pitch.Accidental import Accidental
-from .pitch.Octave import Octave
-from .pitch.PitchRange import PitchRange
-from .pitch.SetClass import SetClass
-from .pitch.intervalclasses import (
-    IntervalClass,
-    NamedIntervalClass,
-    NamedInversionEquivalentIntervalClass,
-    NumberedIntervalClass,
-    NumberedInversionEquivalentIntervalClass,
-)
-from .pitch.intervals import Interval, NamedInterval, NumberedInterval
-from .pitch.operators import (
-    CompoundOperator,
-    Duplication,
-    Inversion,
-    Multiplication,
-    Retrograde,
-    Rotation,
-    Transposition,
-)
-from .pitch.pitchclasses import NamedPitchClass, NumberedPitchClass, PitchClass
-from .pitch.pitches import NamedPitch, NumberedPitch, Pitch, PitchTyping
-from .pitch.segments import (
-    IntervalClassSegment,
-    IntervalSegment,
+from .pcollections import (
     PitchClassSegment,
+    PitchClassSet,
+    PitchRange,
     PitchSegment,
-    Segment,
+    PitchSet,
     TwelveToneRow,
 )
-from .pitch.sets import IntervalClassSet, IntervalSet, PitchClassSet, PitchSet, Set
-from .pitch.vectors import (
-    IntervalClassVector,
-    IntervalVector,
-    PitchClassVector,
-    PitchVector,
-    Vector,
+from .pitch import (
+    Accidental,
+    Interval,
+    IntervalClass,
+    NamedInterval,
+    NamedIntervalClass,
+    NamedInversionEquivalentIntervalClass,
+    NamedPitch,
+    NamedPitchClass,
+    NumberedInterval,
+    NumberedIntervalClass,
+    NumberedInversionEquivalentIntervalClass,
+    NumberedPitch,
+    NumberedPitchClass,
+    Octave,
+    Pitch,
+    PitchClass,
+    StaffPosition,
 )
 from .ratio import NonreducedRatio, Ratio
 from .score import (
@@ -274,20 +245,10 @@ from .score import (
     Tuplet,
     Voice,
 )
-from .segmentmaker import SegmentMaker
-from .select import (
-    DurationInequality,
-    Inequality,
-    LengthInequality,
-    LogicalTie,
-    PitchInequality,
-    Selection,
-    select,
-)
-from .sequence import Sequence
+from .select import LogicalTie
+from .setclass import SetClass
 from .spanners import (
     beam,
-    bow_contact_spanner,
     glissando,
     hairpin,
     horizontal_bracket,
@@ -299,43 +260,9 @@ from .spanners import (
     tie,
     trill_spanner,
 )
-from .storage import (
-    FormatSpecification,
-    StorageFormatManager,
-    StorageFormatSpecification,
-    storage,
-)
-from .string import String
 from .tag import Line, Tag, activate, deactivate
-from .templates import (
-    GroupedRhythmicStavesScoreTemplate,
-    GroupedStavesScoreTemplate,
-    ScoreTemplate,
-    StringOrchestraScoreTemplate,
-    StringQuartetScoreTemplate,
-    TwoStaffPianoScoreTemplate,
-)
-from .timespan import AnnotatedTimespan, Timespan, TimespanList
-from .typedcollections import (
-    TypedCollection,
-    TypedCounter,
-    TypedFrozenset,
-    TypedList,
-    TypedTuple,
-)
-from .typings import (
-    DurationSequenceTyping,
-    DurationTyping,
-    IntegerPair,
-    IntegerSequence,
-    Number,
-    NumberPair,
-    PatternTyping,
-    Prototype,
-    RatioSequenceTyping,
-    RatioTyping,
-    Strings,
-)
+from .timespan import OffsetCounter, Timespan, TimespanList
+from .tweaks import Bundle, Tweak, bundle, tweak
 from .verticalmoment import (
     VerticalMoment,
     iterate_leaf_pairs,
@@ -357,7 +284,6 @@ __all__ = [
     "AltoSaxophone",
     "AltoTrombone",
     "AltoVoice",
-    "AnnotatedTimespan",
     "Arpeggio",
     "Articulation",
     "AssignabilityError",
@@ -374,12 +300,10 @@ __all__ = [
     "BeforeGraceContainer",
     "BendAfter",
     "Block",
-    "BowContactPoint",
-    "BowMotionTechnique",
-    "BowPressure",
     "BreathMark",
+    "Bundle",
     "Cello",
-    "Center",
+    "CENTER",
     "Chord",
     "ClarinetInA",
     "ClarinetInBFlat",
@@ -390,11 +314,9 @@ __all__ = [
     "ColorMap",
     "Comparison",
     "Component",
-    "CompoundOperator",
     "Configuration",
     "Container",
     "Context",
-    "ContextBlock",
     "ContextManager",
     "Contrabass",
     "ContrabassClarinet",
@@ -402,77 +324,49 @@ __all__ = [
     "ContrabassSaxophone",
     "Contrabassoon",
     "CyclicTuple",
-    "DateTimeToken",
-    "Descendants",
-    "Down",
+    "DOWN",
     "DrumNoteHead",
-    "Duplication",
     "Duration",
-    "DurationInequality",
-    "DurationSequenceTyping",
-    "DurationTyping",
     "Dynamic",
     "EnglishHorn",
-    "Exact",
+    "EXACT",
     "Expression",
     "Fermata",
     "FilesystemState",
     "Flute",
     "ForbidUpdate",
-    "FormatSpecification",
     "Fraction",
     "FrenchHorn",
     "Glissando",
     "Glockenspiel",
-    "GroupedRhythmicStavesScoreTemplate",
-    "GroupedStavesScoreTemplate",
     "Guitar",
     "Harp",
     "Harpsichord",
-    "HorizontalAlignment",
+    "Horizontal",
     "ImpreciseMetronomeMarkError",
-    "IndexedTweakManager",
-    "IndexedTweakManagers",
-    "Inequality",
     "Infinity",
     "Instrument",
     "IntegerPair",
-    "IntegerSequence",
     "Interface",
     "Interval",
     "IntervalClass",
-    "IntervalClassSegment",
-    "IntervalClassSet",
-    "IntervalClassVector",
-    "IntervalSegment",
-    "IntervalSet",
-    "IntervalVector",
-    "Inversion",
-    "Iteration",
     "KeyCluster",
     "KeySignature",
-    "Label",
     "LaissezVibrer",
     "Leaf",
     "LeafMaker",
-    "Left",
-    "LengthInequality",
-    "Less",
-    "LilyPondComment",
+    "LEFT",
+    "LESS",
     "LilyPondContext",
-    "LilyPondDimension",
     "LilyPondEngraver",
     "LilyPondFile",
-    "LilyPondFormatBundle",
-    "LilyPondFormatManager",
+    "ContributionsBySite",
     "LilyPondGrob",
     "LilyPondGrobInterface",
-    "LilyPondLanguageToken",
     "LilyPondLiteral",
     "LilyPondOverride",
     "LilyPondParserError",
     "LilyPondSetting",
-    "LilyPondVersionToken",
     "Line",
     "Lineage",
     "LogicalTie",
@@ -480,17 +374,15 @@ __all__ = [
     "Marimba",
     "Markup",
     "Meter",
-    "MeterList",
     "MetricAccentKernel",
     "MetricModulation",
     "MetronomeMark",
     "MezzoSopranoVoice",
-    "Middle",
+    "MIDDLE",
     "MissingMetronomeMarkError",
     "Mode",
-    "More",
+    "MORE",
     "MultimeasureRest",
-    "Multiplication",
     "Multiplier",
     "NamedInterval",
     "NamedIntervalClass",
@@ -512,63 +404,42 @@ __all__ = [
     "NumberedInversionEquivalentIntervalClass",
     "NumberedPitch",
     "NumberedPitchClass",
+    "PitchClassSegment",
+    "PitchClassSet",
+    "PitchSegment",
+    "PitchSet",
     "Oboe",
     "Octave",
     "Offset",
     "OffsetCounter",
     "OnBeatGraceContainer",
-    "OrderedDict",
     "Ottava",
     "OverrideInterface",
-    "PackageGitCommitToken",
     "Parentage",
     "ParentageError",
     "Parser",
     "Pattern",
     "PatternTuple",
-    "PatternTyping",
     "Percussion",
     "PersistentIndicatorError",
     "Piano",
     "Piccolo",
     "Pitch",
     "PitchClass",
-    "PitchClassSegment",
-    "PitchClassSet",
-    "PitchClassVector",
-    "PitchInequality",
     "PitchRange",
-    "PitchSegment",
-    "PitchSet",
-    "PitchTyping",
-    "PitchVector",
-    "Postscript",
-    "PostscriptOperator",
     "ProgressIndicator",
-    "Prototype",
     "Ratio",
-    "RatioSequenceTyping",
-    "RatioTyping",
     "RedirectedStreams",
     "RehearsalMark",
     "Repeat",
     "RepeatTie",
     "Rest",
-    "Retrograde",
-    "Right",
-    "Rotation",
+    "RIGHT",
     "SchemeParserFinishedError",
     "Score",
-    "ScoreTemplate",
-    "Segment",
-    "SegmentMaker",
-    "Selection",
-    "Sequence",
-    "Set",
     "SetClass",
     "SettingInterface",
     "Skip",
-    "SlotContributions",
     "SopraninoSaxophone",
     "SopranoSaxophone",
     "SopranoVoice",
@@ -594,14 +465,7 @@ __all__ = [
     "StopSlur",
     "StopTextSpan",
     "StopTrillSpan",
-    "StorageFormatManager",
-    "StorageFormatSpecification",
-    "String",
-    "StringContactPoint",
     "StringNumber",
-    "StringOrchestraScoreTemplate",
-    "StringQuartetScoreTemplate",
-    "Strings",
     "Tag",
     "TemporaryDirectory",
     "TemporaryDirectoryChange",
@@ -613,24 +477,16 @@ __all__ = [
     "Timer",
     "Timespan",
     "TimespanList",
-    "Transposition",
     "TremoloContainer",
     "Trumpet",
     "Tuba",
     "Tuning",
     "Tuplet",
-    "TweakInterface",
+    "Tweak",
     "TwelveToneRow",
-    "TwoStaffPianoScoreTemplate",
-    "TypedCollection",
-    "TypedCounter",
-    "TypedFrozenset",
-    "TypedList",
-    "TypedTuple",
     "UnboundedTimeIntervalError",
-    "Up",
-    "Vector",
-    "VerticalAlignment",
+    "UP",
+    "Vertical",
     "VerticalMoment",
     "Vibraphone",
     "Viola",
@@ -641,15 +497,17 @@ __all__ = [
     "Xylophone",
     "__version__",
     "__version_info__",
+    "_updatelib",
     "activate",
     "annotate",
     "attach",
     "beam",
-    "bow_contact_spanner",
+    "bundle",
     "deactivate",
     "deprecated",
     "detach",
     "enumerate",
+    "format",
     "glissando",
     "graph",
     "hairpin",
@@ -667,14 +525,14 @@ __all__ = [
     "iterate_pitch_pairs",
     "iterate_vertical_moments",
     "iterpitches",
-    "lilypond",
+    "label",
     "list_all_classes",
     "list_all_functions",
+    "lilypond",
     "lyconst",
     "lyenv",
     "makers",
     "mutate",
-    "new",
     "on_beat_grace_container",
     "ottava",
     "override",
@@ -683,17 +541,16 @@ __all__ = [
     "persist",
     "phrasing_slur",
     "piano_pedal",
-    "pitch_class_segment",
-    "play",
     "select",
     "setting",
     "show",
     "slur",
-    "storage",
+    "string",
     "text_spanner",
     "tie",
     "trill_spanner",
     "tweak",
+    "typings",
     "wf",
     "yield_all_modules",
 ]

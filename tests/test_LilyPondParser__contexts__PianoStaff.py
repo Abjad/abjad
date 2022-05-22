@@ -12,7 +12,7 @@ def test_LilyPondParser__contexts__PianoStaff_01():
     )
     target.lilypond_type = "PianoStaff"
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new PianoStaff
         <<

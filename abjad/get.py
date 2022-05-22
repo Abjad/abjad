@@ -1,22 +1,17 @@
 import collections
 import typing
 
-from . import _inspect, _iterate, enums, typings
-from .duration import Duration
-from .format import LilyPondFormatManager
-from .indicators.StaffChange import StaffChange
-from .indicators.TimeSignature import TimeSignature
-from .markups import Markup
-from .parentage import Parentage
-from .pitch.pitches import NamedPitch
-from .pitch.sets import PitchSet
-from .score import Chord, Component, Container, Leaf, Note, Staff
-from .select import LogicalTie, Selection
-from .storage import StorageFormatManager
-from .tag import Tag
-from .timespan import Timespan
-
-### FUNCTIONS ###
+from . import _getlib, _iterlib, _updatelib
+from . import duration as _duration
+from . import indicators as _indicators
+from . import iterate as _iterate
+from . import parentage as _parentage
+from . import pitch as _pitch
+from . import score as _score
+from . import select as _select
+from . import tag as _tag
+from . import timespan as _timespan
+from . import typings as _typings
 
 
 def after_grace_container(argument):
@@ -37,7 +32,8 @@ def after_grace_container(argument):
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -88,16 +84,16 @@ def after_grace_container(argument):
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     container = abjad.get.after_grace_container(component)
         ...     print(f"{repr(component):30} {repr(container)}")
-        <Staff{1}>                     None
-        <Voice-"Music_Voice"{4}>       None
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
         Note("c'4")                    None
-        BeforeGraceContainer("cs'16")        None
+        BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
         Note("d'4")                    None
-        <<<2>>>                        None
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
         Chord("<e' g'>16")             None
         Note("gs'16")                  None
@@ -176,9 +172,7 @@ def annotation(
         True
 
     """
-    return _inspect._get_annotation(
-        argument, annotation, default=default, unwrap=unwrap
-    )
+    return _getlib._get_annotation(argument, annotation, default=default, unwrap=unwrap)
 
 
 def annotation_wrappers(argument):
@@ -204,53 +198,17 @@ def annotation_wrappers(argument):
                 f'4
             }
 
-        >>> for wrapper in abjad.get.annotation_wrappers(staff[0]):
-        ...     string = abjad.storage(wrapper)
-        ...     print(string)
-        ...
-        abjad.Wrapper(
-            annotation='default_instrument',
-            indicator=abjad.Cello(
-                name='cello',
-                short_name='vc.',
-                markup=abjad.Markup(
-                    contents=['Cello'],
-                    ),
-                short_markup=abjad.Markup(
-                    contents=['Vc.'],
-                    ),
-                allowable_clefs=('bass', 'tenor', 'treble'),
-                context='Staff',
-                default_tuning=abjad.Tuning(
-                    pitches=abjad.PitchSegment(
-                        (
-                            abjad.NamedPitch('c,'),
-                            abjad.NamedPitch('g,'),
-                            abjad.NamedPitch('d'),
-                            abjad.NamedPitch('a'),
-                            ),
-                        item_class=abjad.NamedPitch,
-                        ),
-                    ),
-                middle_c_sounding_pitch=abjad.NamedPitch("c'"),
-                pitch_range=abjad.PitchRange('[C2, G5]'),
-                primary=True,
-                ),
-            tag=abjad.Tag(),
-            )
-        abjad.Wrapper(
-            annotation='default_clef',
-            indicator=abjad.Clef('tenor'),
-            tag=abjad.Tag(),
-            )
+        >>> for wrapper in abjad.get.annotation_wrappers(staff[0]): wrapper
+        Wrapper(annotation='default_instrument', context=None, deactivate=False, direction=None, indicator=Cello(), synthetic_offset=None, tag=Tag(string=''))
+        Wrapper(annotation='default_clef', context=None, deactivate=False, direction=None, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag(string=''))
 
     """
-    return _inspect._get_annotation_wrappers(argument)
+    return _getlib._get_annotation_wrappers(argument)
 
 
 def bar_line_crossing(argument) -> bool:
     r"""
-    Is true when client crosses bar line.
+    Is true when ``argument`` crosses bar line.
 
     ..  container:: example
 
@@ -275,21 +233,20 @@ def bar_line_crossing(argument) -> bool:
         ...     result = abjad.get.bar_line_crossing(note)
         ...     print(note, result)
         ...
-        c'4 False
-        d'4 True
-        e'4 False
+        Note("c'4") False
+        Note("d'4") True
+        Note("e'4") False
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
-    time_signature = _inspect._get_effective(argument, TimeSignature)
+    time_signature = _getlib._get_effective(argument, _indicators.TimeSignature)
     if time_signature is None:
-        time_signature_duration = Duration(4, 4)
+        time_signature_duration = _duration.Duration(4, 4)
     else:
         time_signature_duration = time_signature.duration
     partial = getattr(time_signature, "partial", 0)
     partial = partial or 0
-    # start_offset = Inspection(self.client).timespan().start_offset
     start_offset = timespan(argument).start_offset
     shifted_start = start_offset - partial
     shifted_start %= time_signature_duration
@@ -317,7 +274,8 @@ def before_grace_container(argument):
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -368,16 +326,16 @@ def before_grace_container(argument):
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     container = abjad.get.before_grace_container(component)
         ...     print(f"{repr(component):30} {repr(container)}")
-        <Staff{1}>                     None
-        <Voice-"Music_Voice"{4}>       None
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
         Note("c'4")                    None
-        BeforeGraceContainer("cs'16")        None
+        BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
         Note("d'4")                    BeforeGraceContainer("cs'16")
-        <<<2>>>                        None
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
         Chord("<e' g'>16")             None
         Note("gs'16")                  None
@@ -393,7 +351,7 @@ def before_grace_container(argument):
     return getattr(argument, "_before_grace_container", None)
 
 
-def contents(argument) -> typing.Optional["Selection"]:
+def contents(argument) -> list[_score.Component]:
     r"""
     Gets contents.
 
@@ -411,7 +369,8 @@ def contents(argument) -> typing.Optional["Selection"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -462,19 +421,19 @@ def contents(argument) -> typing.Optional["Selection"]:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     contents = abjad.get.contents(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in contents:
         ...         print(f"    {repr(component_)}")
-        <Staff{1}>:
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-        <Voice-"Music_Voice"{4}>:
-            <Voice-"Music_Voice"{4}>
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("c'4")
             Note("d'4")
-            <<<2>>>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             Note("f'4")
         Note("c'4"):
             Note("c'4")
@@ -485,8 +444,8 @@ def contents(argument) -> typing.Optional["Selection"]:
             Note("cs'16")
         Note("d'4"):
             Note("d'4")
-        <<<2>>>:
-            <<<2>>>
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Voice("e'4", name='Music_Voice')
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
@@ -545,13 +504,13 @@ def contents(argument) -> typing.Optional["Selection"]:
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     contents = abjad.get.contents(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in contents:
         ...         print(f"    {repr(component_)}")
-        <Staff{4}>:
-            <Staff{4}>
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"):
+            Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4")
             TremoloContainer("c'16 e'16")
             Note("cs'4")
             TremoloContainer("d'16 f'16")
@@ -578,15 +537,15 @@ def contents(argument) -> typing.Optional["Selection"]:
             Note("ds'4")
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get contents of component.")
     result = []
     result.append(argument)
     result.extend(getattr(argument, "components", []))
-    return Selection(result)
+    return result
 
 
-def descendants(argument) -> typing.Union["Descendants", "Selection"]:
+def descendants(argument) -> list[_score.Component]:
     r"""
     Gets descendants.
 
@@ -604,7 +563,8 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -655,19 +615,19 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     descendants = abjad.get.descendants(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in descendants:
         ...         print(f"    {repr(component_)}")
-        <Staff{1}>:
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
             Note("d'4")
-            <<<2>>>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
@@ -678,13 +638,13 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
             Note("f'4")
             AfterGraceContainer("fs'16")
             Note("fs'16")
-        <Voice-"Music_Voice"{4}>:
-            <Voice-"Music_Voice"{4}>
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
             Note("d'4")
-            <<<2>>>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
@@ -704,8 +664,8 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
             Note("cs'16")
         Note("d'4"):
             Note("d'4")
-        <<<2>>>:
-            <<<2>>>
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
@@ -741,20 +701,20 @@ def descendants(argument) -> typing.Union["Descendants", "Selection"]:
             Note("fs'16")
 
     """
-    if isinstance(argument, Component):
-        return Descendants(argument)
-    descendants_: typing.List[Component] = []
-    assert isinstance(argument, Selection)
-    for argument_ in argument:
-        descendants__ = descendants(argument_)
-        for descendant_ in descendants__:
-            if descendant_ not in descendants_:
-                descendants_.append(descendant_)
-    result = Selection(descendants_)
-    return result
+    if isinstance(argument, _score.Component):
+        argument = [argument]
+    components = []
+    for item in argument:
+        generator = _iterlib._iterate_descendants(item)
+        for component in generator:
+            if component not in components:
+                components.append(component)
+    return components
 
 
-def duration(argument, in_seconds: bool = None) -> Duration:
+def duration(
+    argument, in_seconds: bool = False, preprolated: bool = False
+) -> _duration.Duration:
     r"""
     Gets duration.
 
@@ -772,7 +732,8 @@ def duration(argument, in_seconds: bool = None) -> Duration:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -823,16 +784,16 @@ def duration(argument, in_seconds: bool = None) -> Duration:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
-        <Staff{1}>                     Duration(1, 1)
-        <Voice-"Music_Voice"{4}>       Duration(1, 1)
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Duration(1, 1)
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Duration(1, 1)
         Note("c'4")                    Duration(1, 4)
-        BeforeGraceContainer("cs'16")        Duration(1, 16)
+        BeforeGraceContainer("cs'16")  Duration(1, 16)
         Note("cs'16")                  Duration(1, 16)
         Note("d'4")                    Duration(1, 4)
-        <<<2>>>                        Duration(1, 4)
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Duration(1, 4)
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Duration(1, 4)
         Chord("<e' g'>16")             Duration(1, 16)
         Note("gs'16")                  Duration(1, 16)
@@ -873,10 +834,10 @@ def duration(argument, in_seconds: bool = None) -> Duration:
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
-        <Staff{4}>                     Duration(1, 1)
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") Duration(1, 1)
         TremoloContainer("c'16 e'16")  Duration(1, 4)
         Note("c'16")                   Duration(1, 8)
         Note("e'16")                   Duration(1, 8)
@@ -909,15 +870,53 @@ def duration(argument, in_seconds: bool = None) -> Duration:
         >>> abjad.get.duration(selection)
         Duration(3, 4)
 
+    ..  container:: example
+
+        Gets preprolated duration:
+
+        >>> staff = abjad.Staff(r"\times 2/3 { c'4 ~ c' } \times 2/3 { d' ~ d' }")
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \tweak edge-height #'(0.7 . 0)
+                \times 2/3
+                {
+                    c'4
+                    ~
+                    c'4
+                }
+                \tweak edge-height #'(0.7 . 0)
+                \times 2/3
+                {
+                    d'4
+                    ~
+                    d'4
+                }
+            }
+
+        >>> for lt in abjad.select.logical_ties(staff):
+        ...     duration = abjad.get.duration(lt)
+        ...     preprolated = abjad.get.duration(lt, preprolated=True)
+        ...     lt, duration, preprolated
+        (LogicalTie(items=[Note("c'4"), Note("c'4")]), Duration(1, 3), Duration(1, 2))
+        (LogicalTie(items=[Note("d'4"), Note("d'4")]), Duration(1, 3), Duration(1, 2))
+
     """
-    return _inspect._get_duration(argument, in_seconds=in_seconds)
+    return _getlib._get_duration(
+        argument, in_seconds=in_seconds, preprolated=preprolated
+    )
 
 
 def effective(
     argument,
-    prototype: typings.Prototype,
+    prototype: _typings.Prototype,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
     default: typing.Any = None,
     n: int = 0,
     unwrap: bool = True,
@@ -940,7 +939,8 @@ def effective(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -992,26 +992,26 @@ def effective(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     clef = abjad.get.effective(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
-        <Staff{1}>                     None
-        <Voice-"Music_Voice"{4}>       None
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
         Note("c'4")                    None
-        BeforeGraceContainer("cs'16")        None
+        BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
         Note("d'4")                    None
-        <<<2>>>                        Clef('alto')
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Clef('alto')
-        Chord("<e' g'>16")             Clef('alto')
-        Note("gs'16")                  Clef('alto')
-        Note("a'16")                   Clef('alto')
-        Note("as'16")                  Clef('alto')
-        Voice("e'4", name='Music_Voice') Clef('alto')
-        Note("e'4")                    Clef('alto')
-        Note("f'4")                    Clef('alto')
-        AfterGraceContainer("fs'16")   Clef('alto')
-        Note("fs'16")                  Clef('alto')
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Clef(name='alto', hide=False)
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Clef(name='alto', hide=False)
+        Chord("<e' g'>16")             Clef(name='alto', hide=False)
+        Note("gs'16")                  Clef(name='alto', hide=False)
+        Note("a'16")                   Clef(name='alto', hide=False)
+        Note("as'16")                  Clef(name='alto', hide=False)
+        Voice("e'4", name='Music_Voice') Clef(name='alto', hide=False)
+        Note("e'4")                    Clef(name='alto', hide=False)
+        Note("f'4")                    Clef(name='alto', hide=False)
+        AfterGraceContainer("fs'16")   Clef(name='alto', hide=False)
+        Note("fs'16")                  Clef(name='alto', hide=False)
 
     ..  container:: example
 
@@ -1044,18 +1044,18 @@ def effective(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     clef = abjad.get.effective(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
-        <Staff{4}>                     None
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") None
         TremoloContainer("c'16 e'16")  None
         Note("c'16")                   None
         Note("e'16")                   None
         Note("cs'4")                   None
-        TremoloContainer("d'16 f'16")  Clef('alto')
-        Note("d'16")                   Clef('alto')
-        Note("f'16")                   Clef('alto')
-        Note("ds'4")                   Clef('alto')
+        TremoloContainer("d'16 f'16")  Clef(name='alto', hide=False)
+        Note("d'16")                   Clef(name='alto', hide=False)
+        Note("f'16")                   Clef(name='alto', hide=False)
+        Note("ds'4")                   Clef(name='alto', hide=False)
 
     ..  container:: example
 
@@ -1077,15 +1077,15 @@ def effective(
                 f'8
             }
 
-        >>> for component in abjad.iterate(staff).components():
+        >>> for component in abjad.iterate.components(staff):
         ...     string = abjad.get.effective(component, str)
         ...     print(component, repr(string))
         ...
         Staff("c'8 d'8 e'8 f'8") None
-        c'8 None
-        d'8 'color'
-        e'8 'color'
-        f'8 'color'
+        Note("c'8") None
+        Note("d'8") 'color'
+        Note("e'8") 'color'
+        Note("f'8") 'color'
 
     ..  container:: example
 
@@ -1181,16 +1181,16 @@ def effective(
         ...     clef = abjad.get.effective(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
-        (Note("c'4"), Clef('alto'))
-        (Note("d'4"), Clef('alto'))
-        (Note("e'4"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
+        (Note("c'4"), Clef(name='alto', hide=False))
+        (Note("d'4"), Clef(name='alto', hide=False))
+        (Note("e'4"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
 
         >>> abjad.get.effective(staff[0], abjad.Clef)
-        Clef('alto')
+        Clef(name='alto', hide=False)
 
         >>> abjad.get.effective(staff[0], abjad.Clef, n=-1)
-        Clef('treble', hide=True)
+        Clef(name='treble', hide=True)
 
         >>> abjad.get.effective(staff[0], abjad.Clef, n=-2) is None
         True
@@ -1231,16 +1231,16 @@ def effective(
         ...     clef = abjad.get.effective(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
-        (Note("c'4"), Clef('treble'))
-        (Note("d'4"), Clef('treble'))
-        (Note("e'4"), Clef('treble'))
-        (Note("f'4"), Clef('treble'))
+        (Note("c'4"), Clef(name='treble', hide=False))
+        (Note("d'4"), Clef(name='treble', hide=False))
+        (Note("e'4"), Clef(name='treble', hide=False))
+        (Note("f'4"), Clef(name='treble', hide=False))
 
         >>> abjad.get.effective(staff[-1], abjad.Clef)
-        Clef('treble')
+        Clef(name='treble', hide=False)
 
         >>> abjad.get.effective(staff[-1], abjad.Clef, n=1)
-        Clef('alto', hide=True)
+        Clef(name='alto', hide=True)
 
         >>> abjad.get.effective(staff[-1], abjad.Clef, n=2) is None
         True
@@ -1250,7 +1250,7 @@ def effective(
         Gets effective time signature:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1268,15 +1268,15 @@ def effective(
             }
 
         >>> prototype = abjad.TimeSignature
-        >>> for component in abjad.iterate(staff).components():
+        >>> for component in abjad.iterate.components(staff):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
-        Staff("c'4 d'4 e'4 f'4") 3/8
-        c'4 3/8
-        d'4 3/8
-        e'4 3/8
-        f'4 3/8
+        Staff("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("c'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("d'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("e'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
 
     ..  container:: example
 
@@ -1307,40 +1307,43 @@ def effective(
                 }
             }
 
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     note, abjad.get.effective(note, abjad.StartTextSpan)
         ...
-        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
+        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
+        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
+        (Note("e'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
+        (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
 
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     note, abjad.get.effective(note, abjad.StopTextSpan)
         ...
         (Note("c'4"), None)
         (Note("d'4"), None)
-        (Note("e'4"), StopTextSpan(command='\\stopTextSpan'))
-        (Note("f'4"), StopTextSpan(command='\\stopTextSpan'))
+        (Note("e'4"), StopTextSpan(command='\\stopTextSpan', leak=False))
+        (Note("f'4"), StopTextSpan(command='\\stopTextSpan', leak=False))
 
         >>> attributes = {'parameter': 'TEXT_SPANNER'}
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     indicator = abjad.get.effective(
         ...         note,
         ...         object,
         ...         attributes=attributes,
         ...         )
-        ...     note, indicator
-        ...
-        (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5))
-        (Note("e'4"), StopTextSpan(command='\\stopTextSpan'))
-        (Note("f'4"), StopTextSpan(command='\\stopTextSpan'))
+        ...     print(f"{note!r}:")
+        ...     print(f"    {indicator!r}")
+        Note("c'4"):
+            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None)
+        Note("d'4"):
+            StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None)
+        Note("e'4"):
+            StopTextSpan(command='\\stopTextSpan', leak=False)
+        Note("f'4"):
+            StopTextSpan(command='\\stopTextSpan', leak=False)
 
     ..  container:: example
 
-        REGRESSION. Matching start-beam and stop-beam indicators work
-        correctly:
+        REGRESSION. Matching start-beam and stop-beam indicators work correctly:
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8 g'4 a'4")
         >>> abjad.attach(abjad.StartBeam(), voice[0])
@@ -1363,18 +1366,16 @@ def effective(
                 a'4
             }
 
-        >>> for leaf in abjad.select(voice).leaves():
+        >>> for leaf in abjad.select.leaves(voice):
         ...     start_beam = abjad.get.effective(leaf, abjad.StartBeam)
         ...     stop_beam = abjad.get.effective(leaf, abjad.StopBeam)
         ...     leaf, start_beam, stop_beam
         (Note("c'8"), StartBeam(), None)
         (Note("d'8"), StartBeam(), None)
         (Note("e'8"), StartBeam(), None)
-        (Note("f'8"), StartBeam(), StopBeam())
-        (Note("g'4"), StartBeam(), StopBeam())
-        (Note("a'4"), StartBeam(), StopBeam())
-
-        # TODO: make this work.
+        (Note("f'8"), StartBeam(), StopBeam(leak=False))
+        (Note("g'4"), StartBeam(), StopBeam(leak=False))
+        (Note("a'4"), StartBeam(), StopBeam(leak=False))
 
     ..  container:: example
 
@@ -1401,20 +1402,20 @@ def effective(
                 }
             >>
 
-        >>> for leaf in abjad.select(score).leaves():
+        >>> for leaf in abjad.select.leaves(score):
         ...     bar_line = abjad.get.effective(leaf, abjad.BarLine)
         ...     leaf, bar_line
         (Note("c'2"), None)
-        (Note("d'2"), BarLine('||', format_slot='after'))
-        (Note("e'2"), BarLine('||', format_slot='after'))
-        (Note("f'2"), BarLine('||', format_slot='after'))
+        (Note("d'2"), BarLine(abbreviation='||', site='after'))
+        (Note("e'2"), BarLine(abbreviation='||', site='after'))
+        (Note("f'2"), BarLine(abbreviation='||', site='after'))
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get effective on components.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    result = _inspect._get_effective(
+    result = _getlib._get_effective(
         argument, prototype, attributes=attributes, n=n, unwrap=unwrap
     )
     if result is None:
@@ -1422,7 +1423,7 @@ def effective(
     return result
 
 
-def effective_staff(argument) -> typing.Optional["Staff"]:
+def effective_staff(argument) -> typing.Optional["_score.Staff"]:
     r"""
     Gets effective staff.
 
@@ -1440,7 +1441,8 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1491,38 +1493,56 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     staff = abjad.get.effective_staff(component)
-        ...     print(f"{repr(component):30} {repr(staff)}")
-        <Staff{1}>                     <Staff{1}>
-        <Voice-"Music_Voice"{4}>       <Staff{1}>
-        Note("c'4")                    <Staff{1}>
-        BeforeGraceContainer("cs'16")        <Staff{1}>
-        Note("cs'16")                  <Staff{1}>
-        Note("d'4")                    <Staff{1}>
-        <<<2>>>                        <Staff{1}>
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") <Staff{1}>
-        Chord("<e' g'>16")             <Staff{1}>
-        Note("gs'16")                  <Staff{1}>
-        Note("a'16")                   <Staff{1}>
-        Note("as'16")                  <Staff{1}>
-        Voice("e'4", name='Music_Voice') <Staff{1}>
-        Note("e'4")                    <Staff{1}>
-        Note("f'4")                    <Staff{1}>
-        AfterGraceContainer("fs'16")   <Staff{1}>
-        Note("fs'16")                  <Staff{1}>
+        ...     print(f"{component!r}:")
+        ...     print(f"    {staff!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("c'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        BeforeGraceContainer("cs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("cs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("d'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Chord("<e' g'>16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("gs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("a'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("as'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Voice("e'4", name='Music_Voice'):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("e'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("f'4"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        AfterGraceContainer("fs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Note("fs'16"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get effective staff on components.")
-    staff_change = _inspect._get_effective(argument, StaffChange)
+    staff_change = _getlib._get_effective(argument, _indicators.StaffChange)
     if staff_change is not None:
         for component in argument._get_parentage():
             root = component
         effective_staff = root[staff_change.staff]
         return effective_staff
     for component in argument._get_parentage():
-        if isinstance(component, Staff):
+        if isinstance(component, _score.Staff):
             effective_staff = component
             break
     return effective_staff
@@ -1530,9 +1550,9 @@ def effective_staff(argument) -> typing.Optional["Staff"]:
 
 def effective_wrapper(
     argument,
-    prototype: typings.Prototype,
+    prototype: _typings.Prototype,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
     n: int = 0,
 ):
     r"""
@@ -1553,7 +1573,8 @@ def effective_wrapper(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1605,13 +1626,13 @@ def effective_wrapper(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     wrapper = abjad.get.effective_wrapper(component, abjad.Clef)
         ...     print(f"{repr(component):}")
         ...     print(f"    {repr(wrapper)}")
-        <Staff{1}>
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             None
-        <Voice-"Music_Voice"{4}>
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             None
         Note("c'4")
             None
@@ -1621,28 +1642,28 @@ def effective_wrapper(
             None
         Note("d'4")
             None
-        <<<2>>>
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Chord("<e' g'>16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("gs'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("a'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("as'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Voice("e'4", name='Music_Voice')
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("e'4")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("f'4")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         AfterGraceContainer("fs'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("fs'16")
-            Wrapper(context='Staff', indicator=Clef('alto'), tag=Tag())
+            Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
 
     """
     if attributes is not None:
@@ -1652,7 +1673,7 @@ def effective_wrapper(
 
 def grace(argument) -> bool:
     r"""
-    Is true when client is grace music.
+    Is true when ``argument`` is grace music.
 
     Grace music defined equal to grace container, after-grace container and
     contents of those containers.
@@ -1671,7 +1692,8 @@ def grace(argument) -> bool:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1722,16 +1744,16 @@ def grace(argument) -> bool:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.grace(component)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{1}>                     False
-        <Voice-"Music_Voice"{4}>       False
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
         Note("c'4")                    False
-        BeforeGraceContainer("cs'16")        True
+        BeforeGraceContainer("cs'16")  True
         Note("cs'16")                  True
         Note("d'4")                    False
-        <<<2>>>                        False
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") False
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") True
         Chord("<e' g'>16")             True
         Note("gs'16")                  True
@@ -1743,19 +1765,18 @@ def grace(argument) -> bool:
         AfterGraceContainer("fs'16")   True
         Note("fs'16")                  True
 
-
     """
-    return _inspect._get_grace_container(argument)
+    return _getlib._get_grace_container(argument)
 
 
 def has_effective_indicator(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ) -> bool:
     r"""
-    Is true when client has effective indicator.
+    Is true when ``argument`` has effective indicator.
 
     ..  container:: example
 
@@ -1772,7 +1793,8 @@ def has_effective_indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1824,17 +1846,17 @@ def has_effective_indicator(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     function = abjad.get.has_effective_indicator
         ...     result = function(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{1}>                     False
-        <Voice-"Music_Voice"{4}>       False
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
         Note("c'4")                    False
-        BeforeGraceContainer("cs'16")        False
+        BeforeGraceContainer("cs'16")  False
         Note("cs'16")                  False
         Note("d'4")                    False
-        <<<2>>>                        True
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") True
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") True
         Chord("<e' g'>16")             True
         Note("gs'16")                  True
@@ -1877,11 +1899,11 @@ def has_effective_indicator(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     function = abjad.get.has_effective_indicator
         ...     result = function(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{4}>                     False
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") False
         TremoloContainer("c'16 e'16")  False
         Note("c'16")                   False
         Note("e'16")                   False
@@ -1892,22 +1914,22 @@ def has_effective_indicator(
         Note("ds'4")                   True
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get effective indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    indicator = _inspect._get_effective(argument, prototype, attributes=attributes)
+    indicator = _getlib._get_effective(argument, prototype, attributes=attributes)
     return indicator is not None
 
 
 def has_indicator(
     argument,
-    prototype: typing.Union[str, typings.Prototype] = None,
+    prototype: str | _typings.Prototype | None = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ) -> bool:
     r"""
-    Is true when client has one or more indicators.
+    Is true when ``argument`` has one or more indicators.
 
     ..  container:: example
 
@@ -1924,7 +1946,8 @@ def has_indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -1976,16 +1999,16 @@ def has_indicator(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.has_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{1}>                     False
-        <Voice-"Music_Voice"{4}>       False
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
         Note("c'4")                    False
-        BeforeGraceContainer("cs'16")        False
+        BeforeGraceContainer("cs'16")  False
         Note("cs'16")                  False
         Note("d'4")                    False
-        <<<2>>>                        False
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") False
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") False
         Chord("<e' g'>16")             True
         Note("gs'16")                  False
@@ -2028,10 +2051,10 @@ def has_indicator(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.has_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{4}>                     False
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") False
         TremoloContainer("c'16 e'16")  False
         Note("c'16")                   False
         Note("e'16")                   False
@@ -2087,9 +2110,9 @@ def has_indicator(
 
 
     """
-    if isinstance(prototype, Tag):
+    if isinstance(prototype, _tag.Tag):
         raise Exception("do not attach tags; use tag=None keyword.")
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
@@ -2098,7 +2121,7 @@ def has_indicator(
 
 def indicator(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
     default: typing.Any = None,
     unwrap: bool = True,
@@ -2121,7 +2144,8 @@ def indicator(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2173,18 +2197,18 @@ def indicator(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{1}>                     None
-        <Voice-"Music_Voice"{4}>       None
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
         Note("c'4")                    None
-        BeforeGraceContainer("cs'16")        None
+        BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
         Note("d'4")                    None
-        <<<2>>>                        None
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-        Chord("<e' g'>16")             Clef('alto')
+        Chord("<e' g'>16")             Clef(name='alto', hide=False)
         Note("gs'16")                  None
         Note("a'16")                   None
         Note("as'16")                  None
@@ -2225,34 +2249,34 @@ def indicator(
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{4}>                     None
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") None
         TremoloContainer("c'16 e'16")  None
         Note("c'16")                   None
         Note("e'16")                   None
         Note("cs'4")                   None
         TremoloContainer("d'16 f'16")  None
-        Note("d'16")                   Clef('alto')
+        Note("d'16")                   Clef(name='alto', hide=False)
         Note("f'16")                   None
         Note("ds'4")                   None
 
-    Raises exception when more than one indicator of ``prototype`` attach
-    to client.
+    Raises exception when more than one indicator of ``prototype`` attach to
+    ``argument``.
 
-    Returns default when no indicator of ``prototype`` attaches to client.
+    Returns default when no indicator of ``prototype`` attaches to ``argument``.
     """
-    return _inspect._get_indicator(argument, prototype, default=default, unwrap=unwrap)
+    return _getlib._get_indicator(argument, prototype, default=default, unwrap=unwrap)
 
 
 def indicators(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
     unwrap: bool = True,
-) -> typing.List:
+) -> list:
     r"""
     Get indicators.
 
@@ -2271,10 +2295,11 @@ def indicators(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2335,26 +2360,44 @@ def indicators(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.indicators(component)
-        ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{1}>                     []
-        <Voice-"Music_Voice"{4}>       []
-        Note("c'4")                    [Articulation('.')]
-        BeforeGraceContainer("cs'16")  []
-        Note("cs'16")                  [Articulation('.')]
-        Note("d'4")                    [Articulation('.')]
-        <<<2>>>                        []
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") [LilyPondLiteral('\\set fontSize = #-3', format_slot='opening')]
-        Chord("<e' g'>16")             [StartBeam(), LilyPondLiteral('\\slash', format_slot='opening'), StartSlur(), LilyPondLiteral('\\voiceOne', format_slot='opening'), Clef('alto'), Articulation('>')]
-        Note("gs'16")                  [Articulation('.')]
-        Note("a'16")                   [Articulation('.')]
-        Note("as'16")                  [StopBeam(), StopSlur(), Articulation('.')]
-        Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [LilyPondLiteral('\\voiceTwo', format_slot='opening'), Articulation('.')]
-        Note("f'4")                    [LilyPondLiteral('\\oneVoice', format_slot='absolute_before'), Articulation('.')]
-        AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Articulation('.')]
+        ...     print(f"{component!r}:")
+        ...     print(f"    {result!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            []
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            []
+        Note("c'4"):
+            [Articulation(name='.')]
+        BeforeGraceContainer("cs'16"):
+            []
+        Note("cs'16"):
+            [Articulation(name='.')]
+        Note("d'4"):
+            [Articulation(name='.')]
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            []
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            [LilyPondLiteral(argument='\\set fontSize = #-3', site='opening', directed=False)]
+        Chord("<e' g'>16"):
+            [StartBeam(), LilyPondLiteral(argument='\\slash', site='opening', directed=False), StartSlur(), LilyPondLiteral(argument='\\voiceOne', site='opening', directed=False), Clef(name='alto', hide=False), Articulation(name='>')]
+        Note("gs'16"):
+            [Articulation(name='.')]
+        Note("a'16"):
+            [Articulation(name='.')]
+        Note("as'16"):
+            [StopBeam(leak=False), StopSlur(leak=False), Articulation(name='.')]
+        Voice("e'4", name='Music_Voice'):
+            []
+        Note("e'4"):
+            [LilyPondLiteral(argument='\\voiceTwo', site='opening', directed=False), Articulation(name='.')]
+        Note("f'4"):
+            [LilyPondLiteral(argument='\\oneVoice', site='absolute_before', directed=False), Articulation(name='.')]
+        AfterGraceContainer("fs'16"):
+            []
+        Note("fs'16"):
+            [Articulation(name='.')]
 
     ..  container:: example
 
@@ -2366,7 +2409,7 @@ def indicators(
         >>> staff.append(abjad.TremoloContainer(2, "d'16 f'"))
         >>> abjad.attach(abjad.Clef("alto"), staff[-1][0])
         >>> staff.append("ds'4")
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     abjad.attach(abjad.Articulation("."), note)
 
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2396,22 +2439,22 @@ def indicators(
                 - \staccato
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.indicators(component)
         ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{4}>                     []
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") []
         TremoloContainer("c'16 e'16")  []
-        Note("c'16")                   [Articulation('.')]
-        Note("e'16")                   [Articulation('.')]
-        Note("cs'4")                   [Articulation('.')]
+        Note("c'16")                   [Articulation(name='.')]
+        Note("e'16")                   [Articulation(name='.')]
+        Note("cs'4")                   [Articulation(name='.')]
         TremoloContainer("d'16 f'16")  []
-        Note("d'16")                   [Clef('alto'), Articulation('.')]
-        Note("f'16")                   [Articulation('.')]
-        Note("ds'4")                   [Articulation('.')]
+        Note("d'16")                   [Clef(name='alto', hide=False), Articulation(name='.')]
+        Note("f'16")                   [Articulation(name='.')]
+        Note("ds'4")                   [Articulation(name='.')]
 
     """
-    # TODO: extend to any non-none client
-    if not isinstance(argument, Component):
+    # TODO: extend to any non-none argument
+    if not isinstance(argument, _score.Component):
         message = "can only get indicators on component"
         message += f" (not {argument!r})."
         raise Exception(message)
@@ -2423,11 +2466,11 @@ def indicators(
     return list(result)
 
 
-def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
+def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
     r"""
     Gets leaf ``n``.
 
-    :param n: constrained to -1, 0, 1 for previous, current, next leaf.
+    ``n`` constrained to -1, 0, 1 for previous, current, next leaf.
 
     ..  container:: example
 
@@ -2460,7 +2503,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
 
     ..  container:: example
 
-        Gets leaf **FROM** client when client is a leaf:
+        Gets leaf **FROM** ``argument`` when ``argument`` is a leaf:
 
         >>> leaf = staff[0][1]
 
@@ -2475,7 +2518,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
 
     ..  container:: example
 
-        Gets leaf **IN** client when client is a container:
+        Gets leaf **IN** ``argument`` when ``argument`` is a container:
 
         >>> voice = staff[0]
 
@@ -2503,7 +2546,8 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2555,7 +2599,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
                 }
             }
 
-        >>> for current_leaf in abjad.select(staff).leaves():
+        >>> for current_leaf in abjad.select.leaves(staff):
         ...     previous_leaf = abjad.get.leaf(current_leaf, -1)
         ...     next_leaf = abjad.get.leaf(current_leaf, 1)
         ...     print(f"previous leaf: {repr(previous_leaf)}")
@@ -2632,7 +2676,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
                 ds'4
             }
 
-        >>> for current_leaf in abjad.select(staff).leaves():
+        >>> for current_leaf in abjad.select.leaves(staff):
         ...     previous_leaf = abjad.get.leaf(current_leaf, -1)
         ...     next_leaf = abjad.get.leaf(current_leaf, 1)
         ...     print(f"previous leaf: {repr(previous_leaf)}")
@@ -2665,7 +2709,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["Leaf"]:
         ---
 
     """
-    return _iterate._get_leaf(argument, n=n)
+    return _iterlib._get_leaf(argument, n=n)
 
 
 def lineage(argument) -> "Lineage":
@@ -2686,7 +2730,8 @@ def lineage(argument) -> "Lineage":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2737,19 +2782,19 @@ def lineage(argument) -> "Lineage":
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     lineage = abjad.get.lineage(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in lineage:
         ...         print(f"    {repr(component_)}")
-        <Staff{1}>:
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
             Note("d'4")
-            <<<2>>>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
@@ -2760,14 +2805,14 @@ def lineage(argument) -> "Lineage":
             Note("f'4")
             AfterGraceContainer("fs'16")
             Note("fs'16")
-        <Voice-"Music_Voice"{4}>:
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
             Note("d'4")
-            <<<2>>>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
@@ -2779,27 +2824,27 @@ def lineage(argument) -> "Lineage":
             AfterGraceContainer("fs'16")
             Note("fs'16")
         Note("c'4"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("c'4")
         BeforeGraceContainer("cs'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             BeforeGraceContainer("cs'16")
             Note("cs'16")
         Note("cs'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             BeforeGraceContainer("cs'16")
             Note("cs'16")
         Note("d'4"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("d'4")
-        <<<2>>>:
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
@@ -2808,72 +2853,72 @@ def lineage(argument) -> "Lineage":
             Voice("e'4", name='Music_Voice')
             Note("e'4")
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
             Note("a'16")
             Note("as'16")
         Chord("<e' g'>16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
         Note("gs'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("gs'16")
         Note("a'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("a'16")
         Note("as'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("as'16")
         Voice("e'4", name='Music_Voice'):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             Voice("e'4", name='Music_Voice')
             Note("e'4")
         Note("e'4"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
-            <<<2>>>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             Voice("e'4", name='Music_Voice')
             Note("e'4")
         Note("f'4"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("f'4")
         AfterGraceContainer("fs'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             AfterGraceContainer("fs'16")
             Note("fs'16")
         Note("fs'16"):
-            <Staff{1}>
-            <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             AfterGraceContainer("fs'16")
             Note("fs'16")
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get lineage on component.")
     return Lineage(argument)
 
 
-def logical_tie(argument) -> "LogicalTie":
+def logical_tie(argument) -> "_select.LogicalTie":
     r"""
     Gets logical tie.
 
@@ -2891,7 +2936,8 @@ def logical_tie(argument) -> "LogicalTie":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2942,19 +2988,19 @@ def logical_tie(argument) -> "LogicalTie":
                 }
             }
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.select.leaves(staff):
         ...     lt = abjad.get.logical_tie(leaf)
         ...     print(f"{repr(leaf):30} {repr(lt)}")
-        Note("c'4")                    LogicalTie([Note("c'4")])
-        Note("cs'16")                  LogicalTie([Note("cs'16")])
-        Note("d'4")                    LogicalTie([Note("d'4")])
-        Chord("<e' g'>16")             LogicalTie([Chord("<e' g'>16")])
-        Note("gs'16")                  LogicalTie([Note("gs'16")])
-        Note("a'16")                   LogicalTie([Note("a'16")])
-        Note("as'16")                  LogicalTie([Note("as'16")])
-        Note("e'4")                    LogicalTie([Note("e'4")])
-        Note("f'4")                    LogicalTie([Note("f'4")])
-        Note("fs'16")                  LogicalTie([Note("fs'16")])
+        Note("c'4")                    LogicalTie(items=[Note("c'4")])
+        Note("cs'16")                  LogicalTie(items=[Note("cs'16")])
+        Note("d'4")                    LogicalTie(items=[Note("d'4")])
+        Chord("<e' g'>16")             LogicalTie(items=[Chord("<e' g'>16")])
+        Note("gs'16")                  LogicalTie(items=[Note("gs'16")])
+        Note("a'16")                   LogicalTie(items=[Note("a'16")])
+        Note("as'16")                  LogicalTie(items=[Note("as'16")])
+        Note("e'4")                    LogicalTie(items=[Note("e'4")])
+        Note("f'4")                    LogicalTie(items=[Note("f'4")])
+        Note("fs'16")                  LogicalTie(items=[Note("fs'16")])
 
     ..  container:: example
 
@@ -2985,15 +3031,15 @@ def logical_tie(argument) -> "LogicalTie":
                 ds'4
             }
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.select.leaves(staff):
         ...     lt = abjad.get.logical_tie(leaf)
         ...     print(f"{repr(leaf):30} {repr(lt)}")
-        Note("c'16")                   LogicalTie([Note("c'16")])
-        Note("e'16")                   LogicalTie([Note("e'16")])
-        Note("cs'4")                   LogicalTie([Note("cs'4")])
-        Note("d'16")                   LogicalTie([Note("d'16")])
-        Note("f'16")                   LogicalTie([Note("f'16")])
-        Note("ds'4")                   LogicalTie([Note("ds'4")])
+        Note("c'16")                   LogicalTie(items=[Note("c'16")])
+        Note("e'16")                   LogicalTie(items=[Note("e'16")])
+        Note("cs'4")                   LogicalTie(items=[Note("cs'4")])
+        Note("d'16")                   LogicalTie(items=[Note("d'16")])
+        Note("f'16")                   LogicalTie(items=[Note("f'16")])
+        Note("ds'4")                   LogicalTie(items=[Note("ds'4")])
 
     ..  container:: example
 
@@ -3016,10 +3062,10 @@ def logical_tie(argument) -> "LogicalTie":
             }
 
         >>> abjad.get.logical_tie(staff[0])
-        LogicalTie([Note("c'4")])
+        LogicalTie(items=[Note("c'4")])
 
         >>> abjad.get.logical_tie(staff[1])
-        LogicalTie([Rest('r4')])
+        LogicalTie(items=[Rest('r4')])
 
         Omits spurious rest when user repeat-ties into rest from note:
 
@@ -3040,26 +3086,24 @@ def logical_tie(argument) -> "LogicalTie":
             }
 
         >>> abjad.get.logical_tie(staff[0])
-        LogicalTie([Rest('r4')])
+        LogicalTie(items=[Rest('r4')])
 
         >>> abjad.get.logical_tie(staff[1])
-        LogicalTie([Note("c'4")])
+        LogicalTie(items=[Note("c'4")])
 
     """
-    if not isinstance(argument, Leaf):
+    if not isinstance(argument, _score.Leaf):
         raise Exception("can only get logical tie on leaf.")
-    leaves = _iterate._get_logical_tie_leaves(argument)
-    return LogicalTie(leaves)
+    leaves = _iterlib._get_logical_tie_leaves(argument)
+    return _select.LogicalTie(leaves)
 
 
-def markup(
-    argument, *, direction: enums.VerticalAlignment = None
-) -> typing.List[Markup]:
+def markup(argument, *, direction: int = None) -> list[_indicators.Markup]:
     """
     Gets markup.
     """
-    # TODO: extend to any non-none client
-    if not isinstance(argument, Component):
+    # TODO: extend to any non-none argument
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get markup on component.")
     result = argument._get_markup(direction=direction)
     return list(result)
@@ -3083,7 +3127,8 @@ def measure_number(argument) -> int:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3134,16 +3179,16 @@ def measure_number(argument) -> int:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     measure_number = abjad.get.measure_number(component)
         ...     print(f"{repr(component):30} {measure_number}")
-        <Staff{1}>                     1
-        <Voice-"Music_Voice"{4}>       1
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") 1
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') 1
         Note("c'4")                    1
-        BeforeGraceContainer("cs'16")        1
+        BeforeGraceContainer("cs'16")  1
         Note("cs'16")                  1
         Note("d'4")                    1
-        <<<2>>>                        1
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") 1
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") 1
         Chord("<e' g'>16")             1
         Note("gs'16")                  1
@@ -3157,8 +3202,7 @@ def measure_number(argument) -> int:
 
     ..  container:: example
 
-        REGRESSION. Measure number of score-initial grace notes is set
-        equal to 0:
+        REGRESSION. Measure number of score-initial grace notes is set equal to 0:
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> container = abjad.BeforeGraceContainer("b16")
@@ -3180,7 +3224,7 @@ def measure_number(argument) -> int:
                 f'4
             }
 
-        >>> for component in abjad.select(voice).components():
+        >>> for component in abjad.select.components(voice):
         ...     measure_number = abjad.get.measure_number(component)
         ...     print(f"{repr(component):30} {measure_number}")
         Voice("c'4 d'4 e'4 f'4")       1
@@ -3220,10 +3264,10 @@ def measure_number(argument) -> int:
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     measure_number = abjad.get.measure_number(component)
         ...     print(f"{repr(component):30} {measure_number}")
-        <Staff{4}>                     1
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") 1
         TremoloContainer("c'16 e'16")  1
         Note("c'16")                   1
         Note("e'16")                   1
@@ -3234,14 +3278,14 @@ def measure_number(argument) -> int:
         Note("ds'4")                   1
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         raise Exception("can only get measure number on component.")
-    argument._update_measure_numbers()
+    _updatelib._update_measure_numbers(argument)
     assert isinstance(argument._measure_number, int)
     return argument._measure_number
 
 
-def parentage(argument) -> "Parentage":
+def parentage(argument) -> "_parentage.Parentage":
     r"""
     Gets parentage.
 
@@ -3257,7 +3301,8 @@ def parentage(argument) -> "Parentage":
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3308,90 +3353,90 @@ def parentage(argument) -> "Parentage":
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     parentage = abjad.get.parentage(component)
         ...     print(f"{repr(component)}:")
         ...     for component_ in parentage[:]:
         ...         print(f"    {repr(component_)}")
-        <Staff{1}>:
-            <Staff{1}>
-        <Voice-"Music_Voice"{4}>:
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("c'4"):
             Note("c'4")
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         BeforeGraceContainer("cs'16"):
             BeforeGraceContainer("cs'16")
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("cs'16"):
             Note("cs'16")
             BeforeGraceContainer("cs'16")
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("d'4"):
             Note("d'4")
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
-        <<<2>>>:
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Chord("<e' g'>16"):
             Chord("<e' g'>16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("gs'16"):
             Note("gs'16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("a'16"):
             Note("a'16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("as'16"):
             Note("as'16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Voice("e'4", name='Music_Voice'):
             Voice("e'4", name='Music_Voice')
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("e'4"):
             Note("e'4")
             Voice("e'4", name='Music_Voice')
-            <<<2>>>
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("f'4"):
             Note("f'4")
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         AfterGraceContainer("fs'16"):
             AfterGraceContainer("fs'16")
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("fs'16"):
             Note("fs'16")
             AfterGraceContainer("fs'16")
-            <Voice-"Music_Voice"{4}>
-            <Staff{1}>
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
     ..  container:: example
 
@@ -3422,38 +3467,38 @@ def parentage(argument) -> "Parentage":
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     parentage = abjad.get.parentage(component)
         ...     print(f"{repr(component)}:")
         ...     print(f"    {repr(parentage[:])}")
-        <Staff{4}>:
-            (<Staff{4}>,)
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"):
+            (Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"),)
         TremoloContainer("c'16 e'16"):
-            (TremoloContainer("c'16 e'16"), <Staff{4}>)
+            (TremoloContainer("c'16 e'16"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
         Note("c'16"):
-            (Note("c'16"), TremoloContainer("c'16 e'16"), <Staff{4}>)
+            (Note("c'16"), TremoloContainer("c'16 e'16"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
         Note("e'16"):
-            (Note("e'16"), TremoloContainer("c'16 e'16"), <Staff{4}>)
+            (Note("e'16"), TremoloContainer("c'16 e'16"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
         Note("cs'4"):
-            (Note("cs'4"), <Staff{4}>)
+            (Note("cs'4"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
         TremoloContainer("d'16 f'16"):
-            (TremoloContainer("d'16 f'16"), <Staff{4}>)
+            (TremoloContainer("d'16 f'16"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
         Note("d'16"):
-            (Note("d'16"), TremoloContainer("d'16 f'16"), <Staff{4}>)
+            (Note("d'16"), TremoloContainer("d'16 f'16"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
         Note("f'16"):
-            (Note("f'16"), TremoloContainer("d'16 f'16"), <Staff{4}>)
+            (Note("f'16"), TremoloContainer("d'16 f'16"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
         Note("ds'4"):
-            (Note("ds'4"), <Staff{4}>)
+            (Note("ds'4"), Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4"))
 
     """
-    if not isinstance(argument, Component):
+    if not isinstance(argument, _score.Component):
         message = "can only get parentage on component"
         message += f" (not {argument})."
         raise Exception(message)
-    return Parentage(argument)
+    return _parentage.Parentage(argument)
 
 
-def pitches(argument) -> typing.Optional[PitchSet]:
+def pitches(argument) -> set[_pitch.NamedPitch]:
     r"""
     Gets pitches.
 
@@ -3471,7 +3516,8 @@ def pitches(argument) -> typing.Optional[PitchSet]:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3522,133 +3568,78 @@ def pitches(argument) -> typing.Optional[PitchSet]:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     pitches = abjad.get.pitches(component)
-        ...     print(f"{repr(component):30} {repr(pitches)}")
-        <Staff{1}>                     PitchSet(["c'", "cs'", "d'", "e'", "f'", "fs'", "g'", "gs'", "a'", "as'"])
-        <Voice-"Music_Voice"{4}>       PitchSet(["c'", "cs'", "d'", "e'", "f'", "fs'", "g'", "gs'", "a'", "as'"])
-        Note("c'4")                    PitchSet(["c'"])
-        BeforeGraceContainer("cs'16")        PitchSet(["cs'"])
-        Note("cs'16")                  PitchSet(["cs'"])
-        Note("d'4")                    PitchSet(["d'"])
-        <<<2>>>                        PitchSet(["e'", "g'", "gs'", "a'", "as'"])
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") PitchSet(["e'", "g'", "gs'", "a'", "as'"])
-        Chord("<e' g'>16")             PitchSet(["e'", "g'"])
-        Note("gs'16")                  PitchSet(["gs'"])
-        Note("a'16")                   PitchSet(["a'"])
-        Note("as'16")                  PitchSet(["as'"])
-        Voice("e'4", name='Music_Voice') PitchSet(["e'"])
-        Note("e'4")                    PitchSet(["e'"])
-        Note("f'4")                    PitchSet(["f'"])
-        AfterGraceContainer("fs'16")   PitchSet(["fs'"])
-        Note("fs'16")                  PitchSet(["fs'"])
+        ...     component
+        ...     for _ in sorted(pitches): print(f"    {_!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            NamedPitch("c'")
+            NamedPitch("cs'")
+            NamedPitch("d'")
+            NamedPitch("e'")
+            NamedPitch("f'")
+            NamedPitch("fs'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            NamedPitch("c'")
+            NamedPitch("cs'")
+            NamedPitch("d'")
+            NamedPitch("e'")
+            NamedPitch("f'")
+            NamedPitch("fs'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        Note("c'4")
+            NamedPitch("c'")
+        BeforeGraceContainer("cs'16")
+            NamedPitch("cs'")
+        Note("cs'16")
+            NamedPitch("cs'")
+        Note("d'4")
+            NamedPitch("d'")
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            NamedPitch("e'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
+            NamedPitch("e'")
+            NamedPitch("g'")
+            NamedPitch("gs'")
+            NamedPitch("a'")
+            NamedPitch("as'")
+        Chord("<e' g'>16")
+            NamedPitch("e'")
+            NamedPitch("g'")
+        Note("gs'16")
+            NamedPitch("gs'")
+        Note("a'16")
+            NamedPitch("a'")
+        Note("as'16")
+            NamedPitch("as'")
+        Voice("e'4", name='Music_Voice')
+            NamedPitch("e'")
+        Note("e'4")
+            NamedPitch("e'")
+        Note("f'4")
+            NamedPitch("f'")
+        AfterGraceContainer("fs'16")
+            NamedPitch("fs'")
+        Note("fs'16")
+            NamedPitch("fs'")
 
     """
-    if not argument:
-        return None
-    selection = Selection(argument)
-    return PitchSet.from_selection(selection)
+    generator = _iterate.pitches(argument)
+    return set(generator)
 
 
-def report_modifications(argument) -> str:
-    r"""
-    Reports modifications.
-
-    ..  container:: example
-
-        Reports container modifications:
-
-        >>> container = abjad.Container("c'8 d'8 e'8 f'8")
-        >>> abjad.override(container).NoteHead.color = "#red"
-        >>> abjad.override(container).NoteHead.style = "#'harmonic"
-        >>> abjad.show(container) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(container)
-            >>> print(string)
-            {
-                \override NoteHead.color = #red
-                \override NoteHead.style = #'harmonic
-                c'8
-                d'8
-                e'8
-                f'8
-                \revert NoteHead.color
-                \revert NoteHead.style
-            }
-
-        >>> report = abjad.get.report_modifications(container)
-        >>> print(report)
-        {
-            \override NoteHead.color = #red
-            \override NoteHead.style = #'harmonic
-            %%% 4 components omitted %%%
-            \revert NoteHead.color
-            \revert NoteHead.style
-        }
-
-    ..  container:: example
-
-        Reports leaf modifications:
-
-        >>> container = abjad.Container("c'8 d'8 e'8 f'8")
-        >>> abjad.attach(abjad.Clef('alto'), container[0])
-        >>> abjad.override(container[0]).NoteHead.color = "#red"
-        >>> abjad.override(container[0]).Stem.color = "#red"
-        >>> abjad.show(container) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(container)
-            >>> print(string)
-            {
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
-                \clef "alto"
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-
-        >>> report = abjad.get.report_modifications(container[0])
-        >>> print(report)
-        slot "absolute before":
-        slot "before":
-            grob overrides:
-                \once \override NoteHead.color = #red
-                \once \override Stem.color = #red
-        slot "opening":
-            commands:
-                \clef "alto"
-        slot "contents slot":
-            leaf body:
-                c'8
-        slot "closing":
-        slot "after":
-        slot "absolute after":
-
-    """
-    if isinstance(argument, Container):
-        bundle = LilyPondFormatManager.bundle_format_contributions(argument)
-        result: typing.List[str] = []
-        for slot in ("before", "open brackets", "opening"):
-            lines = argument._get_format_contributions_for_slot(slot, bundle)
-            result.extend(lines)
-        line = f"    %%% {len(argument)} components omitted %%%"
-        result.append(line)
-        for slot in ("closing", "close brackets", "after"):
-            lines = argument._get_format_contributions_for_slot(slot, bundle)
-            result.extend(lines)
-        return "\n".join(result)
-    elif isinstance(argument, Leaf):
-        return LilyPondFormatManager._report_leaf_format_contributions(argument)
-    else:
-        return f"only defined for components: {argument}."
-
-
-def sounding_pitch(argument) -> NamedPitch:
+def sounding_pitch(argument) -> _pitch.NamedPitch:
     r"""
     Gets sounding pitch of note.
 
@@ -3672,7 +3663,7 @@ def sounding_pitch(argument) -> NamedPitch:
                 g'8
             }
 
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     pitch = abjad.get.sounding_pitch(note)
         ...     print(f"{repr(note):10} {repr(pitch)}")
         Note("d'8") NamedPitch("d''")
@@ -3681,12 +3672,12 @@ def sounding_pitch(argument) -> NamedPitch:
         Note("g'8") NamedPitch("g''")
 
     """
-    if not isinstance(argument, Note):
+    if not isinstance(argument, _score.Note):
         raise Exception("can only get sounding pitch of note.")
-    return _inspect._get_sounding_pitch(argument)
+    return _getlib._get_sounding_pitch(argument)
 
 
-def sounding_pitches(argument) -> PitchSet:
+def sounding_pitches(argument) -> set[_pitch.NamedPitch]:
     r"""
     Gets sounding pitches.
 
@@ -3708,23 +3699,28 @@ def sounding_pitches(argument) -> PitchSet:
                 <d' fs'>4
             }
 
-        >>> for chord in abjad.select(staff).chords():
+        >>> for chord in abjad.select.chords(staff):
         ...     pitches = abjad.get.sounding_pitches(chord)
-        ...     print(f"{repr(chord):20} {repr(pitches)}")
-        Chord("<c' e'>4")    PitchSet(["c'''", "e'''"])
-        Chord("<d' fs'>4")   PitchSet(["d'''", "fs'''"])
+        ...     chord
+        ...     for _ in sorted(pitches): print(f"    {_!r}")
+        Chord("<c' e'>4")
+            NamedPitch("c'''")
+            NamedPitch("e'''")
+        Chord("<d' fs'>4")
+            NamedPitch("d'''")
+            NamedPitch("fs'''")
 
     """
-    # TODO: extend to any non-none client
-    if not isinstance(argument, Chord):
+    # TODO: extend to any non-none argument
+    if not isinstance(argument, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
-    result = _inspect._get_sounding_pitches(argument)
-    return PitchSet(result)
+    pitches = _getlib._get_sounding_pitches(argument)
+    return set(pitches)
 
 
 def sustained(argument) -> bool:
     r"""
-    Is true when client is sustained.
+    Is true when ``argument`` is sustained.
 
     ..  container:: example
 
@@ -3749,8 +3745,7 @@ def sustained(argument) -> bool:
 
     """
     lt_head_count = 0
-    leaves = Selection(argument).leaves()
-    assert isinstance(leaves, Selection), repr(leaves)
+    leaves = _select.leaves(argument)
     for leaf in leaves:
         lt = logical_tie(leaf)
         if lt.head is leaf:
@@ -3763,7 +3758,7 @@ def sustained(argument) -> bool:
     return False
 
 
-def timespan(argument, in_seconds: bool = False) -> Timespan:
+def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
     r"""
     Gets timespan.
 
@@ -3781,7 +3776,8 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3832,26 +3828,44 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     timespan = abjad.get.timespan(component)
-        ...     print(f"{repr(component):30} {repr(timespan)}")
-        <Staff{1}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
-        <Voice-"Music_Voice"{4}>       Timespan(Offset((0, 1)), Offset((1, 1)))
-        Note("c'4")                    Timespan(Offset((0, 1)), Offset((1, 4)))
-        BeforeGraceContainer("cs'16")        Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
-        Note("cs'16")                  Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
-        Note("d'4")                    Timespan(Offset((1, 4)), Offset((1, 2)))
-        <<<2>>>                        Timespan(Offset((1, 2)), Offset((3, 4)))
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 4)))
-        Chord("<e' g'>16")             Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 16)))
-        Note("gs'16")                  Timespan(Offset((1, 2), displacement=Duration(1, 16)), Offset((1, 2), displacement=Duration(1, 8)))
-        Note("a'16")                   Timespan(Offset((1, 2), displacement=Duration(1, 8)), Offset((1, 2), displacement=Duration(3, 16)))
-        Note("as'16")                  Timespan(Offset((1, 2), displacement=Duration(3, 16)), Offset((1, 2), displacement=Duration(1, 4)))
-        Voice("e'4", name='Music_Voice') Timespan(Offset((1, 2)), Offset((3, 4)))
-        Note("e'4")                    Timespan(Offset((1, 2), displacement=Duration(1, 4)), Offset((3, 4)))
-        Note("f'4")                    Timespan(Offset((3, 4)), Offset((1, 1)))
-        AfterGraceContainer("fs'16")   Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
-        Note("fs'16")                  Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
+        ...     print(f"{component!r}:")
+        ...     print(f"    {timespan!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            Timespan(Offset((0, 1)), Offset((1, 1)))
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            Timespan(Offset((0, 1)), Offset((1, 1)))
+        Note("c'4"):
+            Timespan(Offset((0, 1)), Offset((1, 4)))
+        BeforeGraceContainer("cs'16"):
+            Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
+        Note("cs'16"):
+            Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
+        Note("d'4"):
+            Timespan(Offset((1, 4)), Offset((1, 2)))
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            Timespan(Offset((1, 2)), Offset((3, 4)))
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 4)))
+        Chord("<e' g'>16"):
+            Timespan(Offset((1, 2)), Offset((1, 2), displacement=Duration(1, 16)))
+        Note("gs'16"):
+            Timespan(Offset((1, 2), displacement=Duration(1, 16)), Offset((1, 2), displacement=Duration(1, 8)))
+        Note("a'16"):
+            Timespan(Offset((1, 2), displacement=Duration(1, 8)), Offset((1, 2), displacement=Duration(3, 16)))
+        Note("as'16"):
+            Timespan(Offset((1, 2), displacement=Duration(3, 16)), Offset((1, 2), displacement=Duration(1, 4)))
+        Voice("e'4", name='Music_Voice'):
+            Timespan(Offset((1, 2)), Offset((3, 4)))
+        Note("e'4"):
+            Timespan(Offset((1, 2), displacement=Duration(1, 4)), Offset((3, 4)))
+        Note("f'4"):
+            Timespan(Offset((3, 4)), Offset((1, 1)))
+        AfterGraceContainer("fs'16"):
+            Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
+        Note("fs'16"):
+            Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
 
     ..  container:: example
 
@@ -3882,10 +3896,10 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
                 ds'4
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     timespan = abjad.get.timespan(component)
         ...     print(f"{repr(component):30} {repr(timespan)}")
-        <Staff{4}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") Timespan(Offset((0, 1)), Offset((1, 1)))
         TremoloContainer("c'16 e'16")  Timespan(Offset((0, 1)), Offset((1, 4)))
         Note("c'16")                   Timespan(Offset((0, 1)), Offset((1, 8)))
         Note("e'16")                   Timespan(Offset((1, 8)), Offset((1, 4)))
@@ -3918,14 +3932,14 @@ def timespan(argument, in_seconds: bool = False) -> Timespan:
         Timespan(Offset((0, 1)), Offset((3, 4)))
 
     """
-    return _inspect._get_timespan(argument, in_seconds=in_seconds)
+    return _getlib._get_timespan(argument, in_seconds=in_seconds)
 
 
 def wrapper(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ):
     r"""
     Gets wrapper.
@@ -3943,10 +3957,11 @@ def wrapper(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -4009,29 +4024,47 @@ def wrapper(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     wrapper = abjad.get.wrapper(component, abjad.Articulation)
-        ...     print(f"{repr(component):30} {repr(wrapper)}")
-        <Staff{1}>                     None
-        <Voice-"Music_Voice"{4}>       None
-        Note("c'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
-        BeforeGraceContainer("cs'16")  None
-        Note("cs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("d'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
-        <<<2>>>                        None
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-        Chord("<e' g'>16")             Wrapper(indicator=Articulation('>'), tag=Tag())
-        Note("gs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("a'16")                   Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("as'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
-        Voice("e'4", name='Music_Voice') None
-        Note("e'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
-        Note("f'4")                    Wrapper(indicator=Articulation('.'), tag=Tag())
-        AfterGraceContainer("fs'16")   None
-        Note("fs'16")                  Wrapper(indicator=Articulation('.'), tag=Tag())
+        ...     print(f"{component!r}:")
+        ...     print(f"    {wrapper!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            None
+        Note("c'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        BeforeGraceContainer("cs'16"):
+            None
+        Note("cs'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        Note("d'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            None
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            None
+        Chord("<e' g'>16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>'), synthetic_offset=None, tag=Tag(string=''))
+        Note("gs'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        Note("a'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        Note("as'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        Voice("e'4", name='Music_Voice'):
+            None
+        Note("e'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        Note("f'4"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
+        AfterGraceContainer("fs'16"):
+            None
+        Note("fs'16"):
+            Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
 
-    Raises exception when more than one indicator of ``prototype`` attach
-    to client.
+    Raises exception when more than one indicator of ``prototype`` attach to
+    ``argument``.
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
@@ -4040,9 +4073,9 @@ def wrapper(
 
 def wrappers(
     argument,
-    prototype: typings.Prototype = None,
+    prototype: _typings.Prototype = None,
     *,
-    attributes: typing.Dict = None,
+    attributes: dict = None,
 ):
     r"""
     Gets wrappers.
@@ -4062,10 +4095,11 @@ def wrappers(
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
-        >>> for note in abjad.select(staff).notes():
+        >>> for note in abjad.select.notes(staff):
         ...     abjad.attach(abjad.Articulation("."), note)
 
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -4126,210 +4160,49 @@ def wrappers(
                 }
             }
 
-        >>> for component in abjad.select(staff).components():
+        >>> for component in abjad.select.components(staff):
         ...     result = abjad.get.wrappers(component, abjad.Articulation)
-        ...     print(f"{repr(component):30} {repr(result)}")
-        <Staff{1}>                     []
-        <Voice-"Music_Voice"{4}>       []
-        Note("c'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        BeforeGraceContainer("cs'16")  []
-        Note("cs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("d'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        <<<2>>>                        []
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") []
-        Chord("<e' g'>16")             [Wrapper(indicator=Articulation('>'), tag=Tag())]
-        Note("gs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("a'16")                   [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("as'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Voice("e'4", name='Music_Voice') []
-        Note("e'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        Note("f'4")                    [Wrapper(indicator=Articulation('.'), tag=Tag())]
-        AfterGraceContainer("fs'16")   []
-        Note("fs'16")                  [Wrapper(indicator=Articulation('.'), tag=Tag())]
+        ...     print(f"{component!r}:")
+        ...     print(f"    {result!r}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+            []
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+            []
+        Note("c'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        BeforeGraceContainer("cs'16"):
+            []
+        Note("cs'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        Note("d'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+            []
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
+            []
+        Chord("<e' g'>16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='>'), synthetic_offset=None, tag=Tag(string=''))]
+        Note("gs'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        Note("a'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        Note("as'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        Voice("e'4", name='Music_Voice'):
+            []
+        Note("e'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        Note("f'4"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
+        AfterGraceContainer("fs'16"):
+            []
+        Note("fs'16"):
+            [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
 
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
     return indicators(argument, prototype=prototype, unwrap=False)
-
-
-### CLASSES ###
-
-
-class Descendants(collections.abc.Sequence):
-    r'''
-    Descendants of a component.
-
-    ..  container:: example
-
-        >>> score = abjad.Score()
-        >>> staff = abjad.Staff(
-        ...     r"""\new Voice = "Treble_Voice" { c'4 }""",
-        ...     name="Treble_Staff",
-        ...     )
-        >>> score.append(staff)
-        >>> bass = abjad.Staff(
-        ...     r"""\new Voice = "Bass_Voice" { b,4 }""",
-        ...     name="Bass_Staff",
-        ...     )
-        >>> score.append(bass)
-        >>> abjad.show(score) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(score)
-            >>> print(string)
-            \new Score
-            <<
-                \context Staff = "Treble_Staff"
-                {
-                    \context Voice = "Treble_Voice"
-                    {
-                        c'4
-                    }
-                }
-                \context Staff = "Bass_Staff"
-                {
-                    \context Voice = "Bass_Voice"
-                    {
-                        b,4
-                    }
-                }
-            >>
-
-        >>> for component in abjad.get.descendants(score):
-        ...     component
-        ...
-        <Score<<2>>>
-        <Staff-"Treble_Staff"{1}>
-        Voice("c'4", name='Treble_Voice')
-        Note("c'4")
-        <Staff-"Bass_Staff"{1}>
-        Voice('b,4', name='Bass_Voice')
-        Note('b,4')
-
-        >>> bass_voice = score["Bass_Voice"]
-        >>> for component in abjad.get.descendants(bass_voice):
-        ...     component
-        ...
-        Voice('b,4', name='Bass_Voice')
-        Note('b,4')
-
-    '''
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Selections"
-
-    __slots__ = ("_component", "_components")
-
-    ### INITIALIZER ###
-
-    def __init__(self, component=None, cross_offset=None):
-        assert isinstance(component, (Component, type(None)))
-        self._component = component
-        if component is not None:
-            descendants = _iterate._iterate_descendants(component)
-        else:
-            descendants = ()
-        self._components = descendants
-
-    ### SPECIAL METHODS ###
-
-    def __getitem__(self, argument):
-        """
-        Gets ``argument``.
-
-        Returns component or tuple of components.
-        """
-        return self.components.__getitem__(argument)
-
-    def __len__(self) -> int:
-        """
-        Gets length of descendants.
-        """
-        return len(self._components)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return StorageFormatManager(self).get_repr_format()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def component(self) -> Component:
-        """
-        Gets component.
-        """
-        return self._component
-
-    @property
-    def components(self) -> typing.Tuple[Component]:
-        """
-        Gets components.
-        """
-        return self._components
-
-    def count(self, prototype=None) -> int:
-        r"""
-        Gets number of ``prototype`` in descendants.
-
-        ..  container:: example
-
-            Gets tuplet count:
-
-            >>> staff = abjad.Staff(
-            ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
-            ... )
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \times 2/3 {
-                        c'2
-                        \times 2/3 {
-                            d'8
-                            e'8
-                            f'8
-                        }
-                    }
-                    \times 2/3 {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                }
-
-            >>> for component in abjad.select(staff).components():
-            ...     parentage = abjad.get.descendants(component)
-            ...     count = parentage.count(abjad.Tuplet)
-            ...     print(f"{repr(component):55} {repr(count)}")
-            <Staff{2}>                                              3
-            Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")                2
-            Note("c'2")                                             0
-            Tuplet('3:2', "d'8 e'8 f'8")                            1
-            Note("d'8")                                             0
-            Note("e'8")                                             0
-            Note("f'8")                                             0
-            Tuplet('3:2', "c'4 d'4 e'4")                            1
-            Note("c'4")                                             0
-            Note("d'4")                                             0
-            Note("e'4")                                             0
-
-        """
-        n = 0
-        if prototype is None:
-            prototype = Component
-        for component in self:
-            if isinstance(component, prototype):
-                n += 1
-        return n
 
 
 class Lineage(collections.abc.Sequence):
@@ -4375,11 +4248,11 @@ class Lineage(collections.abc.Sequence):
         >>> for component in abjad.get.lineage(score):
         ...     component
         ...
-        <Score<<2>>>
-        <Staff-"Treble_Staff"{1}>
+        Score("{ { c'4 } } { { b,4 } }", simultaneous=True)
+        Staff("{ c'4 }", name='Treble_Staff')
         Voice("c'4", name='Treble_Voice')
         Note("c'4")
-        <Staff-"Bass_Staff"{1}>
+        Staff('{ b,4 }', name='Bass_Staff')
         Voice('b,4', name='Bass_Voice')
         Note('b,4')
 
@@ -4387,20 +4260,14 @@ class Lineage(collections.abc.Sequence):
         >>> for component in abjad.get.lineage(bass_voice):
         ...     component
         ...
-        <Score<<2>>>
-        <Staff-"Bass_Staff"{1}>
+        Score("{ { c'4 } } { { b,4 } }", simultaneous=True)
+        Staff('{ b,4 }', name='Bass_Staff')
         Voice('b,4', name='Bass_Voice')
         Note('b,4')
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Selections"
-
     __slots__ = ("_component", "_components")
-
-    ### INITIALIZER ###
 
     def __init__(self, component=None):
         if component is not None:
@@ -4412,8 +4279,6 @@ class Lineage(collections.abc.Sequence):
             components.append(component)
             components.extend(descendants(component)[1:])
         self._components = components
-
-    ### SPECIAL METHODS ###
 
     def __getitem__(self, argument):
         """
@@ -4430,14 +4295,6 @@ class Lineage(collections.abc.Sequence):
         Returns int.
         """
         return len(self._components)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return StorageFormatManager(self).get_repr_format()
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def component(self):

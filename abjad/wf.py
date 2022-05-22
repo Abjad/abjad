@@ -1,23 +1,16 @@
+import enum
 import typing
 
-from . import _inspect
-from .duration import Duration
-from .indicators.Clef import Clef
-from .indicators.StartBeam import StartBeam
-from .indicators.StartHairpin import StartHairpin
-from .indicators.StartTextSpan import StartTextSpan
-from .indicators.StopBeam import StopBeam
-from .indicators.StopHairpin import StopHairpin
-from .indicators.StopTextSpan import StopTextSpan
-from .instruments import Instrument
-from .iterate import Iteration
-from .iterpitches import sounding_pitches_are_in_range
-from .parentage import Parentage
-from .score import Container, Context
-from .sequence import Sequence
-from .tag import Tag
-
-### PRIVATE FUNCTIONS ###
+from . import _getlib
+from . import duration as _duration
+from . import indicators as _indicators
+from . import instruments as _instruments
+from . import iterate as _iterate
+from . import iterpitches as _iterpitches
+from . import parentage as _parentage
+from . import score as _score
+from . import sequence as _sequence
+from . import tag as _tag
 
 
 def _aggregate_context_wrappers(argument):
@@ -26,8 +19,8 @@ def _aggregate_context_wrappers(argument):
     This currently happens with OnBeatGraceContainer.
     This method aggregates all Special_Voice wrappers for checks.
     """
-    name_to_wrappers: typing.Dict = {}
-    for context in Iteration(argument).components(Context):
+    name_to_wrappers: dict = {}
+    for context in _iterate.components(argument, _score.Context):
         if context.name not in name_to_wrappers:
             name_to_wrappers[context.name] = []
         wrappers = context._dependent_wrappers[:]
@@ -35,10 +28,7 @@ def _aggregate_context_wrappers(argument):
     return name_to_wrappers
 
 
-### PUBLIC FUNCTIONS ###
-
-
-def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
+def check_beamed_long_notes(argument) -> tuple[list, int]:
     r"""
     Checks beamed long notes.
 
@@ -53,7 +43,8 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(voice))
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -64,17 +55,18 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
                 f'4
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        2 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        2 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    0 unterminated text spanners
 
         Beamed eighth notes are wellformed:
 
@@ -85,7 +77,8 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(voice))
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'8
@@ -96,17 +89,18 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
                 f'8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    0 unterminated text spanners
 
     ..  container:: example
 
@@ -120,7 +114,8 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(voice))
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'8
@@ -131,30 +126,33 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
                 f'2
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    0 unterminated text spanners
 
     The examples above feature Abjad voice containers because beams are
     voice-persistent.
     """
     violators, total = [], 0
-    for leaf in Iteration(argument).leaves():
+    for leaf in _iterate.leaves(argument):
         total += 1
-        if leaf.written_duration < Duration((1, 4)):
+        if leaf.written_duration < _duration.Duration((1, 4)):
             continue
-        start_wrapper = _inspect._get_effective(leaf, StartBeam, unwrap=False)
+        start_wrapper = _getlib._get_effective(
+            leaf, _indicators.StartBeam, unwrap=False
+        )
         if start_wrapper is None:
             continue
-        stop_wrapper = _inspect._get_effective(leaf, StopBeam, unwrap=False)
+        stop_wrapper = _getlib._get_effective(leaf, _indicators.StopBeam, unwrap=False)
         if stop_wrapper is None:
             violators.append(leaf)
             continue
@@ -167,14 +165,14 @@ def check_beamed_long_notes(argument) -> typing.Tuple[typing.List, int]:
     return violators, total
 
 
-def check_duplicate_ids(argument) -> typing.Tuple[typing.List, int]:
+def check_duplicate_ids(argument) -> tuple[list, int]:
     """
     Checks duplicate IDs.
     """
     violators = []
-    components = Iteration(argument).components()
+    components = _iterate.components(argument)
     total_ids = [id(_) for _ in components]
-    unique_ids = Sequence(total_ids).remove_repeats()
+    unique_ids = _sequence.remove_repeats(total_ids)
     if len(unique_ids) < len(total_ids):
         for current_id in unique_ids:
             if 1 < total_ids.count(current_id):
@@ -182,7 +180,7 @@ def check_duplicate_ids(argument) -> typing.Tuple[typing.List, int]:
     return violators, len(total_ids)
 
 
-def check_empty_containers(argument) -> typing.Tuple[typing.List, int]:
+def check_empty_containers(argument) -> tuple[list, int]:
     r"""
     Checks empty containers.
 
@@ -191,7 +189,8 @@ def check_empty_containers(argument) -> typing.Tuple[typing.List, int]:
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> staff.append(abjad.Container())
 
-        >>> print(abjad.lilypond(staff))
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
         \new Staff
         {
             c'4
@@ -208,29 +207,29 @@ def check_empty_containers(argument) -> typing.Tuple[typing.List, int]:
 
     """
     violators, containers = [], set()
-    for container in Iteration(argument).components(Container):
+    for container in _iterate.components(argument, _score.Container):
         containers.add(container)
         if len(container) == 0:
             violators.append(container)
     return violators, len(containers)
 
 
-def check_missing_parents(argument) -> typing.Tuple[typing.List, int]:
+def check_missing_parents(argument) -> tuple[list, int]:
     """
     Checks missing parents.
     """
     violators, total = [], set()
-    components = Iteration(argument).components()
+    components = _iterate.components(argument)
     for i, component in enumerate(components):
         total.add(component)
         if 0 < i:
             # TODO: figure out why "if component._parent is None" doesn't work
-            if Parentage(component).parent is None:
+            if _parentage.Parentage(component).parent is None:
                 violators.append(component)
     return violators, len(total)
 
 
-def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
+def check_notes_on_wrong_clef(argument) -> tuple[list, int]:
     r"""
     Checks notes and chords on wrong clef.
 
@@ -245,7 +244,8 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(staff))
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "alto"
@@ -255,17 +255,18 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
                 f'8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        4 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        4 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    0 unterminated text spanners
 
     ..  container:: example
 
@@ -280,7 +281,8 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(staff))
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 \clef "percussion"
@@ -290,36 +292,44 @@ def check_notes_on_wrong_clef(argument) -> typing.Tuple[typing.List, int]:
                 f'8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    0 unterminated text spanners
 
     """
     violators, total = [], set()
-    for leaf in Iteration(argument).leaves():
+    for leaf in _iterate.leaves(argument):
         total.add(leaf)
-        instrument = _inspect._get_effective(leaf, Instrument)
+        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             continue
-        clef = _inspect._get_effective(leaf, Clef)
-        if clef is None:
+        effective_clef = _getlib._get_effective(leaf, _indicators.Clef)
+        if effective_clef is None:
             continue
-        allowable_clefs = [Clef(_) for _ in instrument.allowable_clefs]
-        allowable_clefs.append(Clef("percussion"))
-        if clef not in allowable_clefs:
+        allowable_clefs = []
+        for clef in instrument.allowable_clefs:
+            if isinstance(clef, str):
+                clef = _indicators.Clef(clef)
+            assert isinstance(clef, _indicators.Clef), repr(clef)
+            allowable_clefs.append(clef)
+        allowable_clefs.append(_indicators.Clef("percussion"))
+        if effective_clef not in allowable_clefs:
             violators.append(leaf)
     return violators, len(total)
 
 
-def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
+def check_out_of_range_pitches(
+    argument, *, allow_indicators: typing.Sequence[str | enum.Enum] = ()
+) -> tuple[list, int]:
     r"""
     Checks out-of-range notes.
 
@@ -334,7 +344,8 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(staff))
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -343,21 +354,22 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
                 r8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        1 /     2 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(staff)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        1 /    2 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    0 unterminated text spanners
 
     ..  container:: example
 
-        Allows out-of-range pitches:
+        Using ``allow_indicators``:
 
         >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
         >>> violin = abjad.Violin()
@@ -367,7 +379,8 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(staff))
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
             \new Staff
             {
                 c'8
@@ -376,38 +389,41 @@ def check_out_of_range_pitches(argument) -> typing.Tuple[typing.List, int]:
                 r8
             }
 
-        >>> print(abjad.wf.tabulate_wellformedness(staff))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     2 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        Does not check for indicator:
+
+        >>> violators, total = abjad.wf.check_out_of_range_pitches(staff)
+        >>> violators
+        [Chord('<d fs>8')]
+
+        Does check for indicator:
+
+        >>> violators, total = abjad.wf.check_out_of_range_pitches(
+        ...     staff, allow_indicators=["ALLOW_OUT_OF_RANGE"]
+        ... )
+        >>> violators
+        []
 
     """
     violators, total = [], set()
-    for leaf in Iteration(argument).leaves(pitched=True):
+    for leaf in _iterate.leaves(argument, pitched=True):
         total.add(leaf)
-        if leaf._has_indicator("ALLOW_OUT_OF_RANGE"):
-            continue
-        if leaf._has_indicator("HIDDEN"):
+        ok = False
+        for indicator in allow_indicators or ():
+            if leaf._has_indicator(indicator):
+                ok = True
+        if ok is True:
             continue
         if "unpitched" in argument._get_indicators(str):
             continue
-        instrument = _inspect._get_effective(leaf, Instrument)
+        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
         if instrument is None:
             continue
-        # if leaf not in instrument.pitch_range:
-        if not sounding_pitches_are_in_range(leaf, instrument.pitch_range):
+        if not _iterpitches.sounding_pitches_are_in_range(leaf, instrument.pitch_range):
             violators.append(leaf)
     return violators, len(total)
 
 
-def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
+def check_overlapping_text_spanners(argument) -> tuple[list, int]:
     r"""
     Checks overlapping text spanners.
 
@@ -418,7 +434,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> abjad.text_spanner(voice)
         >>> abjad.text_spanner(voice[1:3])
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'4
@@ -431,17 +448,18 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        1 /     2 overlapping text spanners
-        0 /     2 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     2 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        1 /    2 overlapping text spanners
+        0 /    2 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    2 unterminated text spanners
 
     ..  container:: example
 
@@ -455,7 +473,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         >>> command = r'\stopTextSpanOne'
         >>> stop_text_span = abjad.StopTextSpan(command=command)
         >>> abjad.attach(stop_text_span, voice[2])
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'4
@@ -468,17 +487,18 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     2 overlapping text spanners
-        0 /     2 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     2 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    2 overlapping text spanners
+        0 /    2 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    2 unterminated text spanners
 
     ..  container:: example
 
@@ -487,7 +507,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> abjad.text_spanner(voice[:3])
         >>> abjad.text_spanner(voice[-2:])
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'4
@@ -500,17 +521,18 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     2 overlapping text spanners
-        0 /     2 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     2 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    2 overlapping text spanners
+        0 /    2 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    2 unterminated text spanners
 
     ..  container:: example
 
@@ -527,7 +549,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
         >>> abjad.attach(stop_text_span, voice[3])
         >>> abjad.show(voice) # doctest: +SKIP
 
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'2
@@ -540,23 +563,24 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     2 overlapping text spanners
-        0 /     2 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     2 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    2 overlapping text spanners
+        0 /    2 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    2 unterminated text spanners
 
     """
     violators, total = [], 0
 
     def key(wrapper):
-        if isinstance(wrapper.indicator, StartTextSpan):
+        if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
             priority = 1
         else:
             priority = 0
@@ -565,11 +589,11 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         wrappers.sort(key=key)
-        open_spanners: typing.Dict = {}
+        open_spanners: dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, StartTextSpan):
+            if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
-                command = wrapper.indicator.command
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("start", "")
                 command = command.replace("Start", "")
                 if command not in open_spanners:
@@ -577,8 +601,8 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
                 if open_spanners[command]:
                     violators.append(wrapper.component)
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, StopTextSpan):
-                command = wrapper.indicator.command
+            elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
                 if command in open_spanners and open_spanners[command]:
@@ -586,7 +610,7 @@ def check_overlapping_text_spanners(argument) -> typing.Tuple[typing.List, int]:
     return violators, total
 
 
-def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
+def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
     r"""
     Checks unmatched stop text spans.
 
@@ -597,7 +621,8 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> stop_text_span = abjad.StopTextSpan()
         >>> abjad.attach(stop_text_span, voice[-1])
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'4
@@ -607,17 +632,18 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
             \stopTextSpan
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        1 /     0 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        1 /    0 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        0 /    0 unterminated text spanners
 
         Matched stop text span is wellformed:
 
@@ -630,7 +656,8 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(voice))
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -649,18 +676,18 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         wrappers.sort(key=lambda _: _.leaked_start_offset)
-        open_spanners: typing.Dict = {}
+        open_spanners: dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, StartTextSpan):
+            if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
-                command = wrapper.indicator.command
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("start", "")
                 command = command.replace("Start", "")
                 if command not in open_spanners:
                     open_spanners[command] = []
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, StopTextSpan):
-                command = wrapper.indicator.command
+            elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
                 if command not in open_spanners or not open_spanners[command]:
@@ -670,7 +697,7 @@ def check_unmatched_stop_text_spans(argument) -> typing.Tuple[typing.List, int]:
     return violators, total
 
 
-def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
+def check_unterminated_hairpins(argument) -> tuple[list, int]:
     r"""
     Checks unterminated hairpins.
 
@@ -681,7 +708,8 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> start_hairpin = abjad.StartHairpin('<')
         >>> abjad.attach(start_hairpin, voice[0])
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'4
@@ -691,17 +719,18 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
             c'4
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        1 /     1 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        1 /    1 unterminated hairpins
+        0 /    0 unterminated text spanners
 
         Even with start dynamic:
 
@@ -710,7 +739,8 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
         >>> abjad.attach(dynamic, voice[0])
         >>> start_hairpin = abjad.StartHairpin('<')
         >>> abjad.attach(start_hairpin, voice[0])
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'4
@@ -721,17 +751,18 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
             c'4
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     0 overlapping text spanners
-        0 /     0 unmatched stop text spans
-        1 /     1 unterminated hairpins
-        0 /     0 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    0 overlapping text spanners
+        0 /    0 unmatched stop text spans
+        1 /    1 unterminated hairpins
+        0 /    0 unterminated text spanners
 
         Terminated crescendo is wellformed:
 
@@ -744,7 +775,8 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(voice))
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -771,7 +803,8 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
 
         ..  docs::
 
-            >>> print(abjad.lilypond(voice))
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -790,23 +823,26 @@ def check_unterminated_hairpins(argument) -> typing.Tuple[typing.List, int]:
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         last_dynamic = None
-        last_tag = None
+        last_tag = _tag.Tag()
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         for wrapper in wrappers:
-            parameter = getattr(wrapper.indicator, "parameter", None)
-            if parameter == "DYNAMIC" or isinstance(wrapper.indicator, StopHairpin):
-                last_dynamic = wrapper.indicator
+            parameter = getattr(wrapper.unbundle_indicator(), "parameter", None)
+            if parameter == "DYNAMIC" or isinstance(
+                wrapper.unbundle_indicator(), _indicators.StopHairpin
+            ):
+                last_dynamic = wrapper.unbundle_indicator()
                 last_tag = wrapper.tag
-                if isinstance(wrapper.indicator, StartHairpin):
+                if isinstance(wrapper.unbundle_indicator(), _indicators.StartHairpin):
                     total += 1
-        if isinstance(last_dynamic, StartHairpin) and str(
-            Tag("RIGHT_BROKEN")
-        ) not in str(last_tag):
+        if (
+            isinstance(last_dynamic, _indicators.StartHairpin)
+            and _tag.Tag("RIGHT_BROKEN").string not in last_tag.string
+        ):
             violators.append(wrapper.component)
     return violators, total
 
 
-def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]:
+def check_unterminated_text_spanners(argument) -> tuple[list, int]:
     r"""
     Checks unterminated text spanners.
 
@@ -817,7 +853,8 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> start_text_span = abjad.StartTextSpan()
         >>> abjad.attach(start_text_span, voice[0])
-        >>> print(abjad.lilypond(voice))
+        >>> string = abjad.lilypond(voice)
+        >>> print(string)
         \new Voice
         {
             c'4
@@ -827,17 +864,18 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
             c'4
         }
 
-        >>> print(abjad.wf.tabulate_wellformedness(voice))
-        0 /     4 beamed long notes
-        0 /     5 duplicate ids
-        0 /     1 empty containers
-        0 /     5 missing parents
-        0 /     4 notes on wrong clef
-        0 /     4 out of range pitches
-        0 /     1 overlapping text spanners
-        0 /     1 unmatched stop text spans
-        0 /     0 unterminated hairpins
-        1 /     1 unterminated text spanners
+        >>> count, string = abjad.wf.tabulate_wellformedness(voice)
+        >>> print(string)
+        0 /    4 beamed long notes
+        0 /    5 duplicate ids
+        0 /    1 empty containers
+        0 /    5 missing parents
+        0 /    4 notes on wrong clef
+        0 /    4 out of range pitches
+        0 /    1 overlapping text spanners
+        0 /    1 unmatched stop text spans
+        0 /    0 unterminated hairpins
+        1 /    1 unterminated text spanners
 
         Terminated text span is wellformed:
 
@@ -850,7 +888,8 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
 
         ..  docs::
 
-            >>> print(abjad.lilypond(voice))
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
             \new Voice
             {
                 c'4
@@ -869,18 +908,18 @@ def check_unterminated_text_spanners(argument) -> typing.Tuple[typing.List, int]
     name_to_wrappers = _aggregate_context_wrappers(argument)
     for name, wrappers in name_to_wrappers.items():
         wrappers.sort(key=lambda _: _.leaked_start_offset)
-        open_spanners: typing.Dict = {}
+        open_spanners: dict = {}
         for wrapper in wrappers:
-            if isinstance(wrapper.indicator, StartTextSpan):
+            if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
-                command = wrapper.indicator.command
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("start", "")
                 command = command.replace("Start", "")
                 if command not in open_spanners:
                     open_spanners[command] = []
                 open_spanners[command].append(wrapper.component)
-            elif isinstance(wrapper.indicator, StopTextSpan):
-                command = wrapper.indicator.command
+            elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
+                command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
                 if command not in open_spanners or not open_spanners[command]:
@@ -966,7 +1005,7 @@ def tabulate_wellformedness(
     check_unmatched_stop_text_spans: bool = True,
     check_unterminated_hairpins: bool = True,
     check_unterminated_text_spanners: bool = True,
-) -> str:
+) -> tuple[int, str]:
     """
     Tabulates wellformedness.
     """
@@ -984,13 +1023,15 @@ def tabulate_wellformedness(
         check_unterminated_text_spanners=check_unterminated_text_spanners,
     )
     strings = []
+    total_violators = 0
     for violators, total, name in triples:
         violator_count = len(violators)
         name = name.replace("check_", "")
         name = name.replace("_", " ")
         string = f"{violator_count} /    {total} {name}"
         strings.append(string)
-    return "\n".join(strings)
+        total_violators += violator_count
+    return total_violators, "\n".join(strings)
 
 
 def wellformed(

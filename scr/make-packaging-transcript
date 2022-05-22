@@ -5,47 +5,18 @@ import subprocess
 import abjad
 
 template = """\
-Abjad {abjad_version}
-    Build start date: {build_start_date}
-    Build complete date:
-    MD5 hash of Abjad Github repository: {md5_hash}
+Abjad {abjad_version} ({build_start_date}) packaging environment
 
-    Packaging environment:
-        0. workstation description:
-        1. uname -v: {kernel_version}
-        2. git --version: {git_version}
-        3. python --version: {python_version}
-        4. pip --version: {pip_version}
-        5. py.test --version: {pytest_version}
-        6. sphinx-build --version: {sphinx_build_version}
-        7. lilypond --version: {lilypond_version}
-        8. convert --version: {imagemagick_version}
-        9. dot -V: {graphviz_version}
-
-    Python 3.5.2 (OSX) test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
-        5. sanity check test results:
-        6. experimental HTML build results:
-        7. mainline HTML build results:
-
-    Python 3.5.2 (Windows) test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
-        5. sanity check test results:
-
-    Python 2.7.12 (OSX) test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
-        5. sanity check test results:
-
-
+    1. MD5 hash of Abjad Github repository: {md5_hash}
+    2. uname -v: {kernel_version}
+    3. git --version: {git_version}
+    4. python --version: {python_version}
+    5. pip --version: {pip_version}
+    6. py.test --version: {pytest_version}
+    7. sphinx-build --version: {sphinx_build_version}
+    8. lilypond --version: {lilypond_version}
+    9. convert --version: {imagemagick_version}
+    10. dot -V: {graphviz_version}
 """
 
 

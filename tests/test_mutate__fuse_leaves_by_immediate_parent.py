@@ -7,13 +7,13 @@ def test_mutate__fuse_leaves_by_immediate_parent_01():
     """
 
     staff = abjad.Staff([abjad.Container("c'8 c'8"), abjad.Container("c'8 c'8")])
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.tie(leaves)
 
     logical_tie = abjad.get.logical_tie(leaves[1])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -40,7 +40,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_02():
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
     abjad.tie(staff[:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -58,7 +58,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_02():
     logical_tie = abjad.get.logical_tie(staff[1])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -92,7 +92,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_04():
     logical_tie = abjad.get.logical_tie(voice[0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -122,7 +122,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_05():
     logical_tie = abjad.get.logical_tie(voice[0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -155,7 +155,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_06():
     logical_tie = abjad.get.logical_tie(voice[0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -186,7 +186,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_07():
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
     staff = abjad.Staff([voice])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -229,18 +229,18 @@ def test_mutate__fuse_leaves_by_immediate_parent_08():
     logical_tie = abjad.get.logical_tie(staff[0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
             \grace {
                 b'16
             }
-            \time 3/4
             \clef "alto"
+            \time 3/4
             c'4
-            - \staccato
             - \accent
+            - \staccato
             ~
             c'16
             r16
@@ -280,7 +280,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
     logical_tie = abjad.get.logical_tie(staff[1])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -291,8 +291,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
                 b'16
             }
             c'8
-            - \staccato
             - \accent
+            - \staccato
             ~
             c'32
             ]
@@ -328,19 +328,19 @@ def test_mutate__fuse_leaves_by_immediate_parent_10():
     logical_tie = abjad.get.logical_tie(staff[0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
             \grace {
                 b'16
             }
-            \time 3/4
             \clef "alto"
+            \time 3/4
             c'4
             :16
-            - \staccato
             - \accent
+            - \staccato
             ~
             c'16
             :16

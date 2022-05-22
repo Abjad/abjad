@@ -9,10 +9,10 @@ def test_Chord___deepcopy___01():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.note_heads[0]).color = "#red"
+    abjad.tweak(chord_1.note_heads[0], r"\tweak color #red")
     chord_2 = copy.deepcopy(chord_1)
 
-    assert abjad.lilypond(chord_1) == abjad.String.normalize(
+    assert abjad.lilypond(chord_1) == abjad.string.normalize(
         r"""
         <
             \tweak color #red
@@ -23,7 +23,7 @@ def test_Chord___deepcopy___01():
         """
     )
 
-    assert abjad.lilypond(chord_2) == abjad.String.normalize(
+    assert abjad.lilypond(chord_2) == abjad.string.normalize(
         r"""
         <
             \tweak color #red
@@ -33,10 +33,6 @@ def test_Chord___deepcopy___01():
         >4
         """
     )
-
-    assert chord_2.note_heads[0]._client is chord_2
-    assert chord_2.note_heads[1]._client is chord_2
-    assert chord_2.note_heads[2]._client is chord_2
 
     assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2

@@ -122,7 +122,7 @@ function to do the same:
     >>> aggregate = recombine(hexachord)
     >>> segment = voice(aggregate, -24)
     >>> score = make_score(segment)
-    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> lilypond_file = abjad.LilyPondFile([score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -142,7 +142,7 @@ Now we recombine our source hexachord, followed by three transforms.
     >>> aggregate = recombine(hexachord)
     >>> segment = voice(aggregate, -24)
     >>> score = make_score(segment)
-    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> lilypond_file = abjad.LilyPondFile([score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -157,7 +157,7 @@ Now we recombine our source hexachord, followed by three transforms.
     >>> aggregate = recombine(transform)
     >>> segment = voice(aggregate, -24)
     >>> score = make_score(segment)
-    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> lilypond_file = abjad.LilyPondFile([score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -175,7 +175,7 @@ Now we recombine our source hexachord, followed by three transforms.
     >>> aggregate = recombine(transform)
     >>> segment = voice(aggregate, -24)
     >>> score = make_score(segment)
-    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> lilypond_file = abjad.LilyPondFile([score])
     >>> abjad.show(lilypond_file)
 
 ----
@@ -195,8 +195,8 @@ its complement:
     >>> aggregate = recombine(transform)
     >>> segment = voice(aggregate, -24)
     >>> score = make_score(segment)
-    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> lilypond_file = abjad.LilyPondFile([score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2); ex. Elliott Carter's concept of parallel-inverted all-interval
-collections; hexachords appear in Carter's Harmony Book.]`
+:author:`[Evans (3.2), Bača (3.7); ex. Elliott Carter's concept of parallel-inverted
+all-interval collections; hexachords appear in Carter's Harmony Book.]`

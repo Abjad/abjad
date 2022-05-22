@@ -11,7 +11,7 @@ def test_Container_insert_01():
     voice.insert(0, abjad.Rest((1, 8)))
 
     assert abjad.wf.wellformed(voice)
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -34,7 +34,7 @@ def test_Container_insert_02():
     voice.insert(1, abjad.Note(1, (1, 8)))
 
     assert abjad.wf.wellformed(voice)
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -57,7 +57,7 @@ def test_Container_insert_03():
     staff.insert(4, abjad.Rest((1, 4)))
 
     assert abjad.wf.wellformed(staff)
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -83,7 +83,7 @@ def test_Container_insert_04():
     staff.insert(1000, abjad.Rest((1, 4)))
 
     assert abjad.wf.wellformed(staff)
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -109,7 +109,7 @@ def test_Container_insert_05():
     voice.insert(-1, abjad.Note(4.5, (1, 8)))
 
     assert abjad.wf.wellformed(voice)
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -135,7 +135,7 @@ def test_Container_insert_06():
     voice.insert(-1000, abjad.Rest((1, 8)))
 
     assert abjad.wf.wellformed(voice)
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -175,7 +175,7 @@ def test_Container_insert_08():
     staff.insert(1, abjad.Note("cs'8"))
 
     assert abjad.wf.wellformed(staff)
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

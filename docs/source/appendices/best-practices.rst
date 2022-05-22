@@ -72,11 +72,11 @@ Abjad.
 
     Not so good: ::
 
-        abjad.Markup(r'\bold italic \font-size #4 "Allegro con moto"')
+        abjad.Markup(r'\markup \bold italic \font-size #4 "Allegro con moto"')
 
     Good: ::
 
-        abjad.Markup(r"\my-score-allegro-con-moto", literal=True) 
+        abjad.Markup(r"\my-score-allegro-con-moto")
 
 **8. Externalize LilyPond context, layout, paper settings in a separate file.** Rather
 than defining them with Abjad.

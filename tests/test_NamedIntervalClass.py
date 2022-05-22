@@ -1,10 +1,8 @@
-import typing
-
 import pytest
 
 import abjad
 
-values: typing.List[typing.Tuple] = []
+values: list[tuple] = []
 
 values.extend(
     [

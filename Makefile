@@ -1,10 +1,10 @@
 .PHONY: docs build gh-pages
 
 black-check:
-	black --check --diff --target-version=py38 .
+	black --check --diff .
 
 black-reformat:
-	black --target-version=py38 .
+	black .
 
 build:
 	python setup.py sdist

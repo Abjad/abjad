@@ -2,16 +2,15 @@
 Instrument classes.
 """
 import copy
+import dataclasses
 import typing
 
-from . import enumerate
-from .markups import Markup
-from .pitch.PitchRange import PitchRange
-from .pitch.pitchclasses import NamedPitchClass
-from .pitch.pitches import NamedPitch
-from .pitch.segments import PitchSegment
-from .storage import FormatSpecification, StorageFormatManager
-from .string import String
+from . import contributions as _contributions
+from . import enumerate as _enumerate
+from . import indicators as _indicators
+from . import pcollections as _pcollections
+from . import pitch as _pitch
+from . import string as _string
 
 
 class Instrument:
@@ -25,15 +24,15 @@ class Instrument:
         >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
         >>> flute = abjad.Flute()
         >>> abjad.attach(flute, voice_1[0], context='Voice')
-        >>> flute_markup = abjad.Markup('(flute)', direction=abjad.Up)
-        >>> abjad.attach(flute_markup, voice_1[0])
+        >>> flute_markup = abjad.Markup(r'\markup (flute)')
+        >>> abjad.attach(flute_markup, voice_1[0], direction=abjad.UP)
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
         >>> voice_2 = abjad.Voice("c'2")
         >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
         >>> viola = abjad.Viola()
         >>> abjad.attach(viola, voice_2[0], context='Voice')
-        >>> viola_markup = abjad.Markup('(viola)', direction=abjad.Down)
-        >>> abjad.attach(viola_markup, voice_2[0])
+        >>> viola_markup = abjad.Markup(r'\markup (viola)')
+        >>> abjad.attach(viola_markup, voice_2[0], direction=abjad.DOWN)
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -47,7 +46,7 @@ class Instrument:
                 {
                     \voiceOne
                     e'8
-                    ^ \markup { (flute) }
+                    ^ \markup (flute)
                     g'8
                     f'8
                     a'8
@@ -56,11 +55,11 @@ class Instrument:
                 {
                     \voiceTwo
                     c'2
-                    _ \markup { (viola) }
+                    _ \markup (viola)
                 }
             >>
 
-        >>> for leaf in abjad.select(voice_1).leaves():
+        >>> for leaf in abjad.select.leaves(voice_1):
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("e'8"), Flute())
@@ -68,14 +67,12 @@ class Instrument:
         (Note("f'8"), Flute())
         (Note("a'8"), Flute())
 
-        >>> for leaf in abjad.select(voice_2).leaves():
+        >>> for leaf in abjad.select.leaves(voice_2):
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'2"), Viola())
 
     """
-
-    ### CLASS VARIABLES ###
 
     __slots__ = (
         "_allowable_clefs",
@@ -92,15 +89,11 @@ class Instrument:
         "_starting_clefs",
     )
 
-    _format_slot = "opening"
-
-    _latent = True
-
-    _persistent = True
-
-    _redraw = True
-
-    ### INITIALIZER ###
+    _site: typing.ClassVar[str] = "opening"
+    _latent: typing.ClassVar[bool] = True
+    _persistent: typing.ClassVar[bool] = True
+    _redraw: typing.ClassVar[bool] = True
+    check_effective_context: typing.ClassVar[bool] = True
 
     def __init__(
         self,
@@ -120,27 +113,27 @@ class Instrument:
             name = str(name)
         self._name = name
         if markup is not None:
-            markup = Markup(markup)
+            markup = _indicators.Markup(str(markup))
         self._name_markup = markup
         if short_name is not None:
             short_name = str(short_name)
         self._short_name = short_name
         if short_markup is not None:
-            short_markup = Markup(short_markup)
+            short_markup = _indicators.Markup(str(short_markup))
         self._short_name_markup = short_markup
         allowable_clefs = allowable_clefs or ("treble",)
         self._allowable_clefs = allowable_clefs
         if isinstance(pitch_range, str):
-            pitch_range = PitchRange(pitch_range)
-        elif isinstance(pitch_range, PitchRange):
+            pitch_range = _pcollections.PitchRange(pitch_range)
+        elif isinstance(pitch_range, _pcollections.PitchRange):
             pitch_range = copy.copy(pitch_range)
         elif pitch_range is None:
-            pitch_range = PitchRange()
+            pitch_range = _pcollections.PitchRange()
         else:
             raise TypeError(pitch_range)
         self._pitch_range = pitch_range
-        middle_c_sounding_pitch = middle_c_sounding_pitch or NamedPitch("c'")
-        middle_c_sounding_pitch = NamedPitch(middle_c_sounding_pitch)
+        middle_c_sounding_pitch = middle_c_sounding_pitch or _pitch.NamedPitch("c'")
+        middle_c_sounding_pitch = _pitch.NamedPitch(middle_c_sounding_pitch)
         self._middle_c_sounding_pitch = middle_c_sounding_pitch
         if primary is not None:
             primary = bool(primary)
@@ -148,33 +141,35 @@ class Instrument:
         self._performer_names = ["instrumentalist"]
         self._starting_clefs = copy.copy(allowable_clefs)
 
-    ### SPECIAL METHODS ###
-
     def __eq__(self, argument) -> bool:
         """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
+        Compares all nine initializer parameters.
         """
-        return StorageFormatManager.compare_objects(self, argument)
+        if isinstance(argument, type(self)):
+            return (
+                self.allowable_clefs == argument.allowable_clefs
+                and self.context == argument.context
+                and self.markup == argument.markup
+                and self.middle_c_sounding_pitch == argument.middle_c_sounding_pitch
+                and self.name == argument.name
+                and self.pitch_range == argument.pitch_range
+                and self.primary == argument.primary
+                and self.short_name == argument.short_name
+                and self.short_markup == argument.short_markup
+            )
+        return False
 
     def __hash__(self) -> int:
         """
-        Hashes Abjad value object.
+        Hashes instrument.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return StorageFormatManager(self).get_repr_format()
-
-    ### PRIVATE PROPERTIES ###
+        return f"{type(self).__name__}()"
 
     @property
     def _lilypond_type(self):
@@ -185,8 +180,6 @@ class Instrument:
         else:
             return type(self.context).__name__
 
-    ### PRIVATE METHODS ###
-
     def _attachment_test_all(self, leaf):
         assert hasattr(leaf, "written_duration")
         if leaf._has_indicator(Instrument):
@@ -194,14 +187,12 @@ class Instrument:
             return string
         return True
 
-    def _get_format_specification(self):
-        keywords = []
-        return FormatSpecification(
-            self,
-            repr_args_values=[],
-            repr_is_indented=False,
-            repr_keyword_names=keywords,
-        )
+    def _get_contributions(self, *, component=None, wrapper=None):
+        contributions = _contributions.ContributionsBySite()
+        strings = self._get_lilypond_format()
+        assert isinstance(strings, list), repr(strings)
+        contributions.opening.commands.extend(strings)
+        return contributions
 
     def _get_lilypond_format(self, context=None):
         return []
@@ -210,21 +201,18 @@ class Instrument:
         if self._name_markup is None:
             if self.name:
                 string = self.name
-                string = String(string).capitalize_start()
-                markup = Markup(contents=string)
+                string = _string.capitalize_start(string)
+                markup = _indicators.Markup(rf"\markup {string}")
                 self._name_markup = markup
             else:
                 self._name_markup = None
         if self._short_name_markup is None:
             if self.short_name:
                 string = self.short_name
-                string = String(string).capitalize_start()
-                markup = Markup(contents=string)
-                self._short_name_markup = markup
+                string = _string.capitalize_start(string)
+                markup = _indicators.Markup(rf"\markup {string}")
             else:
                 self._short_name_markup = None
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def allowable_clefs(self):
@@ -270,10 +258,13 @@ class Instrument:
         """
         if self._name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(self._name_markup, Markup):
-            markup = Markup(contents=self._name_markup)
+        if self._name_markup is None:
+            return
+        if not isinstance(self._name_markup, _indicators.Markup):
+            assert isinstance(self._name_markup, str), repr(self._name_markup)
+            markup = _indicators.Markup(rf"\markup {self._name_markup}")
             self._name_markup = markup
-        if self._name_markup.contents != ("",):
+        if self._name_markup.string:
             return self._name_markup
 
     @property
@@ -340,10 +331,15 @@ class Instrument:
         """
         if self._short_name_markup is None:
             self._initialize_default_name_markups()
-        if not isinstance(self._short_name_markup, Markup):
-            markup = Markup(contents=self._short_name_markup)
+        if self._short_name_markup is None:
+            return
+        if not isinstance(self._short_name_markup, _indicators.Markup):
+            assert isinstance(self._short_name_markup, str), repr(
+                self._short_name_markup
+            )
+            markup = _indicators.Markup(rf"\markup {self._short_name_markup}")
             self._short_name_markup = markup
-        if self._short_name_markup.contents != ("",):
+        if self._short_name_markup.string:
             return self._short_name_markup
 
     @property
@@ -356,6 +352,7 @@ class Instrument:
         return self._short_name
 
 
+@dataclasses.dataclass(slots=True)
 class StringNumber:
     """
     String number.
@@ -364,88 +361,27 @@ class StringNumber:
 
         String I:
 
-        >>> indicator = abjad.StringNumber(1)
-        >>> string = abjad.storage(indicator)
-        >>> print(string)
-        abjad.StringNumber(
-            numbers=(1,),
-            )
-
-    ..  container:: example
+        >>> abjad.StringNumber((1,))
+        StringNumber(numbers=(1,))
 
         Strings II and III:
 
-        >>> indicator = abjad.StringNumber((2, 3))
-        >>> string = abjad.storage(indicator)
-        >>> print(string)
-        abjad.StringNumber(
-            numbers=(2, 3),
-            )
+        >>> abjad.StringNumber((2, 3))
+        StringNumber(numbers=(2, 3))
 
     """
 
-    ### CLASS VARIABLES
+    numbers: typing.Iterable[int]
 
-    __slots__ = ("_numbers",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, numbers: typing.Union[int, typing.Iterable[int]] = None) -> None:
-        if numbers is None:
-            numbers_: typing.Tuple[int, ...] = ()
-        elif isinstance(numbers, int):
-            numbers_ = (numbers,)
-        else:
-            numbers_ = tuple(numbers)
+    def __post_init__(self):
+        numbers_ = tuple(self.numbers)
         assert isinstance(numbers_, tuple), repr(numbers_)
         numbers_ = tuple(int(_) for _ in numbers_)
         assert all(0 < _ < 7 for _ in numbers_)
-        self._numbers = numbers_
-
-    ### SPECIAL METHDOS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
-        """
-        return StorageFormatManager.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes Abjad value object.
-        """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
-
-    ### PUBLIC PROPERTIES ###
+        self.numbers = numbers_
 
     @property
-    def numbers(self) -> typing.Tuple[int, ...]:
-        """
-        Gets numbers.
-
-        ..  container:: example
-
-            String I:
-
-            >>> indicator = abjad.StringNumber(1)
-            >>> indicator.numbers
-            (1,)
-
-            >>> indicator = abjad.StringNumber((2, 3))
-            >>> indicator.numbers
-            (2, 3)
-
-        """
-        return self._numbers
-
-    @property
-    def roman_numerals(self) -> typing.Tuple[str, ...]:
+    def roman_numerals(self) -> tuple[str, ...]:
         """
         Gets roman numerals of string number indicator.
 
@@ -453,11 +389,9 @@ class StringNumber:
 
             String I:
 
-            >>> indicator = abjad.StringNumber(1)
+            >>> indicator = abjad.StringNumber((1,))
             >>> indicator.roman_numerals
             ('i',)
-
-        ..  container:: example
 
             Strings II and III:
 
@@ -473,14 +407,8 @@ class StringNumber:
             result.append(numeral)
         return tuple(result)
 
-    @property
-    def tweaks(self) -> None:
-        """
-        Are not implemented on string number.
-        """
-        pass
 
-
+@dataclasses.dataclass(slots=True, unsafe_hash=True)
 class Tuning:
     """
     Tuning.
@@ -489,71 +417,18 @@ class Tuning:
 
         Violin tuning:
 
-        >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-        >>> string = abjad.storage(indicator)
-        >>> print(string)
-        abjad.Tuning(
-            pitches=abjad.PitchSegment(
-                (
-                    abjad.NamedPitch('g'),
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("a'"),
-                    abjad.NamedPitch("e''"),
-                    ),
-                item_class=abjad.NamedPitch,
-                ),
-            )
+        >>> abjad.Tuning(pitches=("G3", "D4", "A4", "E5"))
+        Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''")))
 
     """
 
-    ### CLASS VARIABLES ###
+    pitches: typing.Sequence[_pitch.NamedPitch] = ()
 
-    __slots__ = ("_pitches",)
-
-    ### INITIALIZER ###
-
-    def __init__(self, pitches: typing.Union["Tuning", typing.Iterable] = None) -> None:
-        if pitches is not None:
-            if isinstance(pitches, type(self)):
-                pitches = pitches.pitches
-            pitches = PitchSegment(items=pitches, item_class=NamedPitch)
-        self._pitches: typing.Optional[PitchSegment] = pitches
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when all initialization values of Abjad value object equal
-        the initialization values of ``argument``.
-        """
-        return StorageFormatManager.compare_objects(self, argument)
-
-    def __hash__(self) -> int:
-        """
-        Hashes Abjad value object.
-        """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return StorageFormatManager(self).get_repr_format()
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        return FormatSpecification(client=self)
-
-    ### PUBLIC PROPERTIES ###
+    def __post_init__(self):
+        self.pitches = tuple(_pitch.NamedPitch(_) for _ in self.pitches)
 
     @property
-    def pitch_ranges(self) -> typing.List[PitchRange]:
+    def pitch_ranges(self) -> list[_pcollections.PitchRange]:
         """
         Gets two-octave pitch-ranges for each pitch in this tuning.
 
@@ -562,54 +437,23 @@ class Tuning:
             >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
             >>> for range_ in indicator.pitch_ranges:
             ...     range_
-            PitchRange('[G3, G5]')
-            PitchRange('[D4, D6]')
-            PitchRange('[A4, A6]')
-            PitchRange('[E5, E7]')
+            PitchRange(range_string='[G3, G5]')
+            PitchRange(range_string='[D4, D6]')
+            PitchRange(range_string='[A4, A6]')
+            PitchRange(range_string='[E5, E7]')
 
         """
         result = []
         for pitch in self.pitches or []:
-            pitch_range = PitchRange.from_pitches(pitch, pitch + 24)
+            pitch_range = _pcollections.PitchRange(
+                f"[{pitch.name}, {(pitch + 24).name}]"
+            )
             result.append(pitch_range)
         return result
 
-    @property
-    def pitches(self) -> typing.Optional[PitchSegment]:
-        """
-        Gets pitches of tuning.
-
-        ..  container:: example
-
-            >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-            >>> pitches = indicator.pitches
-            >>> string = abjad.storage(pitches)
-            >>> print(string)
-            abjad.PitchSegment(
-                (
-                    abjad.NamedPitch('g'),
-                    abjad.NamedPitch("d'"),
-                    abjad.NamedPitch("a'"),
-                    abjad.NamedPitch("e''"),
-                    ),
-                item_class=abjad.NamedPitch,
-                )
-
-        """
-        return self._pitches
-
-    @property
-    def tweaks(self) -> None:
-        """
-        Are not implemented on tuning.
-        """
-        pass
-
-    ### PUBLIC METHODS ###
-
     def get_pitch_ranges_by_string_number(
         self, string_number: StringNumber
-    ) -> typing.Tuple[PitchRange, ...]:
+    ) -> tuple[_pcollections.PitchRange, ...]:
         """
         Gets tuning pitch ranges by string number.
 
@@ -620,7 +464,7 @@ class Tuning:
             >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
             >>> string_number = abjad.StringNumber((2, 3))
             >>> tuning.get_pitch_ranges_by_string_number(string_number)
-            (PitchRange('[A4, A6]'), PitchRange('[D4, D6]'))
+            (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
 
         """
         if not isinstance(string_number, StringNumber):
@@ -636,7 +480,7 @@ class Tuning:
 
     def get_pitches_by_string_number(
         self, string_number: StringNumber
-    ) -> typing.Tuple[NamedPitch, ...]:
+    ) -> tuple[_pitch.NamedPitch, ...]:
         """
         Gets tuning pitches by string number.
 
@@ -685,7 +529,7 @@ class Tuning:
             >>> voicings = tuning.voice_pitch_classes(
             ...     ('a', 'd'),
             ...     allow_open_strings=False,
-            ...     )
+            ... )
             >>> for voicing in voicings:
             ...     voicing
             ...
@@ -740,16 +584,16 @@ class Tuning:
 
         """
         assert self.pitches is not None
-        pitch_classes = [NamedPitchClass(_) for _ in pitch_classes]
+        pitch_classes = [_pitch.NamedPitchClass(_) for _ in pitch_classes]
         pitch_classes.extend([None] * (len(self.pitches) - len(pitch_classes)))
-        permutations = enumerate.yield_permutations(pitch_classes)
+        permutations = _enumerate.yield_permutations(pitch_classes)
         permutations = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
-        result: typing.List[typing.Tuple[typing.Union[NamedPitch, None], ...]] = []
+        result: list[tuple[_pitch.NamedPitch | None, ...]] = []
         for permutation in permutations:
-            sequences: typing.List = []
+            sequences: list = []
             for pitch_range, pitch_class in zip(pitch_ranges, permutation):
-                pitches: typing.List[typing.Optional[NamedPitch]]
+                pitches: list[_pitch.NamedPitch | None]
                 if pitch_class is None:
                     sequences.append([None])
                     continue
@@ -761,7 +605,7 @@ class Tuning:
                 if not pitches:
                     pitches = [None]
                 sequences.append(pitches)
-            subresult = enumerate.yield_outer_product(sequences)
+            subresult = _enumerate.outer_product(sequences)
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
         result.sort()
@@ -1607,7 +1451,7 @@ class Cello(Instrument):
 
             >>> cello = abjad.Cello()
             >>> cello.default_tuning
-            Tuning(pitches=PitchSegment(['c,', 'g,', 'd', 'a']))
+            Tuning(pitches=(NamedPitch('c,'), NamedPitch('g,'), NamedPitch('d'), NamedPitch('a')))
 
         Returns tuning.
         """
@@ -1859,7 +1703,7 @@ class Contrabass(Instrument):
 
             >>> contrabass = abjad.Contrabass()
             >>> contrabass.default_tuning
-            Tuning(pitches=PitchSegment(['c,,', 'a,,', 'd,', 'g,']))
+            Tuning(pitches=(NamedPitch('c,,'), NamedPitch('a,,'), NamedPitch('d,'), NamedPitch('g,')))
 
         Returns tuning.
         """
@@ -2191,7 +2035,7 @@ class Flute(Instrument):
             fs'4
         }
 
-        >>> for leaf in abjad.select(staff).leaves():
+        >>> for leaf in abjad.select.leaves(staff):
         ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
         ...
         (Note("c'4"), Flute())
@@ -2418,7 +2262,7 @@ class Guitar(Instrument):
 
             >>> guitar = abjad.Guitar()
             >>> guitar.default_tuning
-            Tuning(pitches=PitchSegment(['e,', 'a,', 'd', 'g', 'b', "e'"]))
+            Tuning(pitches=(NamedPitch('e,'), NamedPitch('a,'), NamedPitch('d'), NamedPitch('g'), NamedPitch('b'), NamedPitch("e'")))
 
         Returns tuning.
         """
@@ -2507,7 +2351,7 @@ class Harpsichord(Instrument):
         >>> staff_group = abjad.StaffGroup(
         ...     [upper_staff, lower_staff],
         ...     lilypond_type='PianoStaff',
-        ...     )
+        ... )
         >>> harpsichord = abjad.Harpsichord()
         >>> abjad.attach(harpsichord, staff_group[0][0])
         >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
@@ -3579,7 +3423,7 @@ class Viola(Instrument):
 
             >>> viola = abjad.Viola()
             >>> viola.default_tuning
-            Tuning(pitches=PitchSegment(['c', 'g', "d'", "a'"]))
+            Tuning(pitches=(NamedPitch('c'), NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'")))
 
         Returns tuning.
         """
@@ -3656,7 +3500,7 @@ class Violin(Instrument):
 
             >>> violin = abjad.Violin()
             >>> violin.default_tuning
-            Tuning(pitches=PitchSegment(['g', "d'", "a'", "e''"]))
+            Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''")))
 
         Returns tuning.
         """

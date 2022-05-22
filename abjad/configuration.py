@@ -1,4 +1,5 @@
 import collections
+import configparser
 import importlib
 import os
 import pathlib
@@ -9,10 +10,7 @@ import traceback
 import types
 import typing
 
-import six
 import uqbar.apis
-
-from . import storage
 
 
 class Configuration:
@@ -53,7 +51,7 @@ class Configuration:
     _configuration_file_name = "abjad.cfg"
 
     # for caching
-    _lilypond_version_string: typing.Optional[str] = None
+    _lilypond_version_string: typing.ClassVar[str | None] = None
 
     ### INITIALIZER ###
 
@@ -77,7 +75,7 @@ class Configuration:
         if not self._compare_configurations(old_contents, new_contents):
             try:
                 with open(str(self.configuration_file_path), "w") as file_pointer:
-                    file_pointer.write(new_contents)
+                    print(new_contents, file=file_pointer)
             except (IOError, OSError):
                 traceback.print_exc()
         self._settings = configuration
@@ -97,18 +95,12 @@ class Configuration:
         """
         return self._settings.__getitem__(argument)
 
-    def __iter__(self) -> typing.Generator:
+    def __iter__(self) -> typing.Iterator[str]:
         """
         Iterates configuration settings.
         """
         for key in self._settings:
             yield key
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation.
-        """
-        return storage.StorageFormatManager(self).get_repr_format()
 
     def __setitem__(self, i, argument) -> None:
         """
@@ -126,16 +118,11 @@ class Configuration:
     def _configuration_from_string(self, string):
         if "[main]" not in string:
             string = "[main]\n" + string
-        config_parser = six.moves.configparser.ConfigParser()
+        config_parser = configparser.ConfigParser()
         try:
-            if six.PY3:
-                config_parser.read_string(string)
-                configuration = dict(config_parser["main"].items())
-            else:
-                string_io = six.moves.StringIO(string)
-                config_parser.readfp(string_io)
-                configuration = dict(config_parser.items("main"))
-        except six.moves.configparser.ParsingError:
+            config_parser.read_string(string)
+            configuration = dict(config_parser["main"].items())
+        except configparser.ParsingError:
             configuration = {}
         return configuration
 
@@ -206,41 +193,6 @@ class Configuration:
                     "Defaults to $HOME/.abjad/output/",
                 ],
                 "default": os.path.join(str(self.configuration_directory), "output"),
-                "validator": str,
-            },
-            "composer_email": {
-                "comment": ["Your email."],
-                "default": "first.last@domain.com",
-                "validator": str,
-            },
-            "composer_full_name": {
-                "comment": ["Your full name."],
-                "default": "Full Name",
-                "validator": str,
-            },
-            "composer_github_username": {
-                "comment": ["Your GitHub username."],
-                "default": "username",
-                "validator": str,
-            },
-            "composer_last_name": {
-                "comment": ["Your last name."],
-                "default": "Name",
-                "validator": str,
-            },
-            "composer_scores_directory": {
-                "comment": ["Your scores directory."],
-                "default": str(self.home_directory / "scores"),
-                "validator": str,
-            },
-            "composer_uppercase_name": {
-                "comment": ["Your full name in uppercase for score covers."],
-                "default": "FULL NAME",
-                "validator": str,
-            },
-            "composer_website": {
-                "comment": ["Your website."],
-                "default": "www.composername.com",
                 "validator": str,
             },
             "lilypond_path": {
@@ -330,57 +282,6 @@ class Configuration:
         Gets Abjad boilerplate directory.
         """
         return self.abjad_directory.parent / "boilerplate"
-
-    @property
-    def composer_email(self) -> str:
-        """
-        Gets composer email.
-        """
-        return self._settings["composer_email"]
-
-    @property
-    def composer_full_name(self) -> str:
-        """
-        Gets composer full name.
-        """
-        return self._settings["composer_full_name"]
-
-    @property
-    def composer_github_username(self) -> str:
-        """
-        Gets GitHub username.
-        """
-        return self._settings["composer_github_username"]
-
-    @property
-    def composer_last_name(self) -> str:
-        """
-        Gets composer last name.
-        """
-        return self._settings["composer_last_name"]
-
-    @property
-    def composer_scores_directory(self) -> pathlib.Path:
-        """
-        Gets composer scores directory.
-        """
-        if "composer_scores_directory" in self._settings:
-            return pathlib.Path(self._settings["composer_scores_directory"])
-        return self.home_directory / "Scores"
-
-    @property
-    def composer_uppercase_name(self) -> str:
-        """
-        Gets composer uppercase name.
-        """
-        return self._settings["composer_uppercase_name"]
-
-    @property
-    def composer_website(self) -> str:
-        """
-        Gets composer website.
-        """
-        return self._settings["composer_website"]
 
     @property
     def configuration_directory(self) -> pathlib.Path:
@@ -483,32 +384,257 @@ class Configuration:
         return lilypond_version_string
 
 
-### FUNCTIONS ###
-
-
 def list_all_classes(modules="abjad", ignored_classes=None):
     """
     Lists all public classes defined in ``path``.
 
     ..  container:: example
 
-        >>> all_classes = abjad.list_all_classes(modules="abjad")
+        >>> for class_ in abjad.list_all_classes(modules="abjad"): class_
+        <class 'abjad.bind.Wrapper'>
+        <class 'abjad.configuration.Configuration'>
+        <class 'abjad.contextmanagers.ContextManager'>
+        <class 'abjad.contextmanagers.FilesystemState'>
+        <class 'abjad.contextmanagers.ForbidUpdate'>
+        <class 'abjad.contextmanagers.NullContextManager'>
+        <class 'abjad.contextmanagers.ProgressIndicator'>
+        <class 'abjad.contextmanagers.RedirectedStreams'>
+        <class 'abjad.contextmanagers.TemporaryDirectory'>
+        <class 'abjad.contextmanagers.TemporaryDirectoryChange'>
+        <class 'abjad.contextmanagers.Timer'>
+        <class 'abjad.contributions.ContributionsBySite'>
+        <class 'abjad.cyclictuple.CyclicTuple'>
+        <class 'abjad.duration.Duration'>
+        <class 'abjad.duration.Multiplier'>
+        <class 'abjad.duration.NonreducedFraction'>
+        <class 'abjad.duration.Offset'>
+        <class 'abjad.dynamic.Dynamic'>
+        <class 'abjad.exceptions.AssignabilityError'>
+        <class 'abjad.exceptions.ImpreciseMetronomeMarkError'>
+        <class 'abjad.exceptions.LilyPondParserError'>
+        <class 'abjad.exceptions.MissingMetronomeMarkError'>
+        <class 'abjad.exceptions.ParentageError'>
+        <class 'abjad.exceptions.PersistentIndicatorError'>
+        <class 'abjad.exceptions.SchemeParserFinishedError'>
+        <class 'abjad.exceptions.UnboundedTimeIntervalError'>
+        <class 'abjad.exceptions.WellformednessError'>
+        <class 'abjad.get.Lineage'>
+        <class 'abjad.indicators.Arpeggio'>
+        <class 'abjad.indicators.Articulation'>
+        <class 'abjad.indicators.BarLine'>
+        <class 'abjad.indicators.BeamCount'>
+        <class 'abjad.indicators.BendAfter'>
+        <class 'abjad.indicators.BreathMark'>
+        <class 'abjad.indicators.Clef'>
+        <class 'abjad.indicators.ColorFingering'>
+        <class 'abjad.indicators.Fermata'>
+        <class 'abjad.indicators.Glissando'>
+        <class 'abjad.indicators.KeyCluster'>
+        <class 'abjad.indicators.KeySignature'>
+        <class 'abjad.indicators.LaissezVibrer'>
+        <class 'abjad.indicators.LilyPondLiteral'>
+        <class 'abjad.indicators.MarginMarkup'>
+        <class 'abjad.indicators.Markup'>
+        <class 'abjad.indicators.MetronomeMark'>
+        <class 'abjad.indicators.Mode'>
+        <class 'abjad.indicators.Ottava'>
+        <class 'abjad.indicators.RehearsalMark'>
+        <class 'abjad.indicators.Repeat'>
+        <class 'abjad.indicators.RepeatTie'>
+        <class 'abjad.indicators.StaffChange'>
+        <class 'abjad.indicators.StartBeam'>
+        <class 'abjad.indicators.StartGroup'>
+        <class 'abjad.indicators.StartHairpin'>
+        <class 'abjad.indicators.StartMarkup'>
+        <class 'abjad.indicators.StartPhrasingSlur'>
+        <class 'abjad.indicators.StartPianoPedal'>
+        <class 'abjad.indicators.StartSlur'>
+        <class 'abjad.indicators.StartTextSpan'>
+        <class 'abjad.indicators.StartTrillSpan'>
+        <class 'abjad.indicators.StemTremolo'>
+        <class 'abjad.indicators.StopBeam'>
+        <class 'abjad.indicators.StopGroup'>
+        <class 'abjad.indicators.StopHairpin'>
+        <class 'abjad.indicators.StopPhrasingSlur'>
+        <class 'abjad.indicators.StopPianoPedal'>
+        <class 'abjad.indicators.StopSlur'>
+        <class 'abjad.indicators.StopTextSpan'>
+        <class 'abjad.indicators.StopTrillSpan'>
+        <class 'abjad.indicators.Tie'>
+        <class 'abjad.indicators.TimeSignature'>
+        <class 'abjad.instruments.Accordion'>
+        <class 'abjad.instruments.AltoFlute'>
+        <class 'abjad.instruments.AltoSaxophone'>
+        <class 'abjad.instruments.AltoTrombone'>
+        <class 'abjad.instruments.AltoVoice'>
+        <class 'abjad.instruments.BaritoneSaxophone'>
+        <class 'abjad.instruments.BaritoneVoice'>
+        <class 'abjad.instruments.BassClarinet'>
+        <class 'abjad.instruments.BassFlute'>
+        <class 'abjad.instruments.BassSaxophone'>
+        <class 'abjad.instruments.BassTrombone'>
+        <class 'abjad.instruments.BassVoice'>
+        <class 'abjad.instruments.Bassoon'>
+        <class 'abjad.instruments.Cello'>
+        <class 'abjad.instruments.ClarinetInA'>
+        <class 'abjad.instruments.ClarinetInBFlat'>
+        <class 'abjad.instruments.ClarinetInEFlat'>
+        <class 'abjad.instruments.Contrabass'>
+        <class 'abjad.instruments.ContrabassClarinet'>
+        <class 'abjad.instruments.ContrabassFlute'>
+        <class 'abjad.instruments.ContrabassSaxophone'>
+        <class 'abjad.instruments.Contrabassoon'>
+        <class 'abjad.instruments.EnglishHorn'>
+        <class 'abjad.instruments.Flute'>
+        <class 'abjad.instruments.FrenchHorn'>
+        <class 'abjad.instruments.Glockenspiel'>
+        <class 'abjad.instruments.Guitar'>
+        <class 'abjad.instruments.Harp'>
+        <class 'abjad.instruments.Harpsichord'>
+        <class 'abjad.instruments.Instrument'>
+        <class 'abjad.instruments.Marimba'>
+        <class 'abjad.instruments.MezzoSopranoVoice'>
+        <class 'abjad.instruments.Oboe'>
+        <class 'abjad.instruments.Percussion'>
+        <class 'abjad.instruments.Piano'>
+        <class 'abjad.instruments.Piccolo'>
+        <class 'abjad.instruments.SopraninoSaxophone'>
+        <class 'abjad.instruments.SopranoSaxophone'>
+        <class 'abjad.instruments.SopranoVoice'>
+        <class 'abjad.instruments.StringNumber'>
+        <class 'abjad.instruments.TenorSaxophone'>
+        <class 'abjad.instruments.TenorTrombone'>
+        <class 'abjad.instruments.TenorVoice'>
+        <class 'abjad.instruments.Trumpet'>
+        <class 'abjad.instruments.Tuba'>
+        <class 'abjad.instruments.Tuning'>
+        <class 'abjad.instruments.Vibraphone'>
+        <class 'abjad.instruments.Viola'>
+        <class 'abjad.instruments.Violin'>
+        <class 'abjad.instruments.Xylophone'>
+        <class 'abjad.io.AbjadGrapher'>
+        <class 'abjad.io.Illustrator'>
+        <class 'abjad.io.LilyPondIO'>
+        <class 'abjad.io.Player'>
+        <class 'abjad.label.ColorMap'>
+        <class 'abjad.lilypondfile.Block'>
+        <class 'abjad.lilypondfile.LilyPondFile'>
+        <class 'abjad.lyproxy.LilyPondContext'>
+        <class 'abjad.lyproxy.LilyPondEngraver'>
+        <class 'abjad.lyproxy.LilyPondGrob'>
+        <class 'abjad.lyproxy.LilyPondGrobInterface'>
+        <class 'abjad.makers.LeafMaker'>
+        <class 'abjad.makers.NoteMaker'>
+        <class 'abjad.math.Infinity'>
+        <class 'abjad.math.NegativeInfinity'>
+        <class 'abjad.meter.Meter'>
+        <class 'abjad.meter.MetricAccentKernel'>
+        <class 'abjad.metricmodulation.MetricModulation'>
+        <class 'abjad.obgc.OnBeatGraceContainer'>
+        <class 'abjad.overrides.Interface'>
+        <class 'abjad.overrides.LilyPondOverride'>
+        <class 'abjad.overrides.LilyPondSetting'>
+        <class 'abjad.overrides.OverrideInterface'>
+        <class 'abjad.overrides.SettingInterface'>
+        <class 'abjad.parentage.Parentage'>
+        <class 'abjad.parsers.base.Parser'>
+        <class 'abjad.parsers.parser.ContextSpeccedMusic'>
+        <class 'abjad.parsers.parser.GuileProxy'>
+        <class 'abjad.parsers.parser.LilyPondDuration'>
+        <class 'abjad.parsers.parser.LilyPondEvent'>
+        <class 'abjad.parsers.parser.LilyPondFraction'>
+        <class 'abjad.parsers.parser.LilyPondGrammarGenerator'>
+        <class 'abjad.parsers.parser.LilyPondLexicalDefinition'>
+        <class 'abjad.parsers.parser.LilyPondParser'>
+        <class 'abjad.parsers.parser.LilyPondSyntacticalDefinition'>
+        <class 'abjad.parsers.parser.MarkupCommand'>
+        <class 'abjad.parsers.parser.Music'>
+        <class 'abjad.parsers.parser.SequentialMusic'>
+        <class 'abjad.parsers.parser.SimultaneousMusic'>
+        <class 'abjad.parsers.parser.SyntaxNode'>
+        <class 'abjad.parsers.reduced.ReducedLyParser'>
+        <class 'abjad.parsers.scheme.Scheme'>
+        <class 'abjad.parsers.scheme.SchemeParser'>
+        <class 'abjad.pattern.Pattern'>
+        <class 'abjad.pattern.PatternTuple'>
+        <class 'abjad.pcollections.PitchClassSegment'>
+        <class 'abjad.pcollections.PitchClassSet'>
+        <class 'abjad.pcollections.PitchRange'>
+        <class 'abjad.pcollections.PitchSegment'>
+        <class 'abjad.pcollections.PitchSet'>
+        <class 'abjad.pcollections.TwelveToneRow'>
+        <class 'abjad.pitch.Accidental'>
+        <class 'abjad.pitch.Interval'>
+        <class 'abjad.pitch.IntervalClass'>
+        <class 'abjad.pitch.NamedInterval'>
+        <class 'abjad.pitch.NamedIntervalClass'>
+        <class 'abjad.pitch.NamedInversionEquivalentIntervalClass'>
+        <class 'abjad.pitch.NamedPitch'>
+        <class 'abjad.pitch.NamedPitchClass'>
+        <class 'abjad.pitch.NumberedInterval'>
+        <class 'abjad.pitch.NumberedIntervalClass'>
+        <class 'abjad.pitch.NumberedInversionEquivalentIntervalClass'>
+        <class 'abjad.pitch.NumberedPitch'>
+        <class 'abjad.pitch.NumberedPitchClass'>
+        <class 'abjad.pitch.Octave'>
+        <class 'abjad.pitch.Pitch'>
+        <class 'abjad.pitch.PitchClass'>
+        <class 'abjad.pitch.StaffPosition'>
+        <class 'abjad.ratio.NonreducedRatio'>
+        <class 'abjad.ratio.Ratio'>
+        <class 'abjad.rhythmtrees.RhythmTreeContainer'>
+        <class 'abjad.rhythmtrees.RhythmTreeLeaf'>
+        <class 'abjad.rhythmtrees.RhythmTreeMixin'>
+        <class 'abjad.rhythmtrees.RhythmTreeParser'>
+        <class 'abjad.score.AfterGraceContainer'>
+        <class 'abjad.score.BeforeGraceContainer'>
+        <class 'abjad.score.Chord'>
+        <class 'abjad.score.Cluster'>
+        <class 'abjad.score.Component'>
+        <class 'abjad.score.Container'>
+        <class 'abjad.score.Context'>
+        <class 'abjad.score.DrumNoteHead'>
+        <class 'abjad.score.Leaf'>
+        <class 'abjad.score.MultimeasureRest'>
+        <class 'abjad.score.Note'>
+        <class 'abjad.score.NoteHead'>
+        <class 'abjad.score.NoteHeadList'>
+        <class 'abjad.score.Rest'>
+        <class 'abjad.score.Score'>
+        <class 'abjad.score.Skip'>
+        <class 'abjad.score.Staff'>
+        <class 'abjad.score.StaffGroup'>
+        <class 'abjad.score.TremoloContainer'>
+        <class 'abjad.score.Tuplet'>
+        <class 'abjad.score.Voice'>
+        <class 'abjad.select.LogicalTie'>
+        <class 'abjad.setclass.SetClass'>
+        <class 'abjad.tag.Line'>
+        <class 'abjad.tag.Tag'>
+        <class 'abjad.timespan.OffsetCounter'>
+        <class 'abjad.timespan.Timespan'>
+        <class 'abjad.timespan.TimespanList'>
+        <class 'abjad.tweaks.Bundle'>
+        <class 'abjad.tweaks.Tweak'>
+        <class 'abjad.verticalmoment.VerticalMoment'>
 
     """
     all_classes = set()
     for module in yield_all_modules(modules):
         name = module.__name__.split(".")[-1]
-        if name.startswith("_"):
-            continue
-        if not hasattr(module, name):
-            continue
-        obj = getattr(module, name)
-        if isinstance(obj, type):
-            all_classes.add(obj)
+        for name in dir(module):
+            item = getattr(module, name)
+            if isinstance(item, type):
+                if "sphinx" in repr(item):
+                    continue
+                if item.__name__.startswith("_"):
+                    continue
+                if "abjad" in repr(item):
+                    all_classes.add(item)
     if ignored_classes:
         ignored_classes = set(ignored_classes)
         all_classes.difference_update(ignored_classes)
-    return list(sorted(all_classes, key=lambda x: (x.__module__, x.__name__)))
+    return list(sorted(all_classes, key=lambda _: (_.__module__, _.__name__)))
 
 
 def list_all_functions(modules="abjad"):
@@ -517,7 +643,9 @@ def list_all_functions(modules="abjad"):
 
     ..  container:: example
 
-        >>> all_functions = abjad.list_all_functions(modules="abjad")
+        >>> functions = abjad.list_all_functions(modules="abjad")
+        >>> names = [_.__name__ for _ in functions]
+        >>> # for name in sorted(names): name
 
     """
     all_functions = set()
@@ -525,12 +653,17 @@ def list_all_functions(modules="abjad"):
         name = module.__name__.split(".")[-1]
         if name.startswith("_"):
             continue
-        if not hasattr(module, name):
+        if "sphinx" in repr(module):
             continue
-        obj = getattr(module, name)
-        if isinstance(obj, types.FunctionType):
-            all_functions.add(obj)
-    return list(sorted(all_functions, key=lambda x: (x.__module__, x.__name__)))
+        for name in sorted(dir(module)):
+            item = getattr(module, name)
+            if isinstance(item, types.FunctionType):
+                if item.__name__.startswith("_"):
+                    continue
+                if "abjad" not in repr(item.__module__):
+                    continue
+                all_functions.add(item)
+    return list(sorted(all_functions, key=lambda _: (_.__module__, _.__name__)))
 
 
 configuration = Configuration()

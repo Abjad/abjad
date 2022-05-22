@@ -7,7 +7,7 @@ def test_LilyPondParser__functions__relative_01():
     pitches = [2, 5, 9, 7, 12, 11, 5, 2]
     target = abjad.Container(maker(pitches, (1, 4)))
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             d'4
@@ -34,7 +34,7 @@ def test_LilyPondParser__functions__relative_02():
     pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
     target = abjad.Container(maker(pitches, (1, 4)))
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             b'4
@@ -65,7 +65,7 @@ def test_LilyPondParser__functions__relative_03():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker(pitches, (1, 4)))
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             a'4
@@ -99,7 +99,7 @@ def test_LilyPondParser__functions__relative_04():
     leaves = maker(pitches, 1)
     target = abjad.Container(leaves)
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             <a' c'' e''>1
@@ -123,7 +123,7 @@ def test_LilyPondParser__functions__relative_05():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker(pitches, [(1, 4)]))
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c4
@@ -163,7 +163,7 @@ def test_LilyPondParser__functions__relative_06():
         ]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4
@@ -204,7 +204,7 @@ def test_LilyPondParser__functions__relative_07():
         ]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             d'4
@@ -238,7 +238,7 @@ def test_LilyPondParser__functions__relative_08():
         ]
     )
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c'4
@@ -262,7 +262,7 @@ def test_LilyPondParser__functions__relative_09():
     maker = abjad.NoteMaker()
     target = abjad.Container(maker(pitches, [(1, 2)]))
 
-    assert abjad.lilypond(target) == abjad.String.normalize(
+    assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
             c''2

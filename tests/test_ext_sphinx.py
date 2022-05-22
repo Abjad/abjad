@@ -19,38 +19,38 @@ def test_ext_sphinx_01(app, status, warning, rm_dirs):
     assert not warning.getvalue().strip()
     images_path = pathlib.Path(app.outdir) / "_images"
     assert sorted(path.name for path in images_path.iterdir()) == [
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.cropped.svg",
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.ly",
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d.cropped.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d.ly",
+        "lilypond-2065254c213caa1da7f276b113c411fe735780505cfebb626eb6af1832248d37.cropped.svg",
+        "lilypond-2065254c213caa1da7f276b113c411fe735780505cfebb626eb6af1832248d37.ly",
+        "lilypond-2065254c213caa1da7f276b113c411fe735780505cfebb626eb6af1832248d37.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-1.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-2.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-3.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-4.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef.cropped.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef.ly",
     ]
 
     index_path = pathlib.Path(app.srcdir) / "_build" / "html" / "index.html"
     index_source = index_path.read_text()
     assert re.findall(r"lilypond-\w{64}(?:-\d+|.cropped)?\.svg", index_source) == [
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.cropped.svg",
-        "lilypond-1b04f9f8fd31f6d75e5d921820d087ed565936b5fffd3298d46750eba5a4d433.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d.cropped.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-1.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-2.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-3.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
-        "lilypond-dc77e95b8af18eb69dd49918ff1a2411b50d5d6ffbf734e33f36272be3ffff7d-4.svg",
+        "lilypond-2065254c213caa1da7f276b113c411fe735780505cfebb626eb6af1832248d37.cropped.svg",
+        "lilypond-2065254c213caa1da7f276b113c411fe735780505cfebb626eb6af1832248d37.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef.cropped.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-1.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-2.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-3.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-4.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-2.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-3.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-1.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-1.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-1.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-2.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-2.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-3.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-3.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-4.svg",
+        "lilypond-2e1d3707c4c266f8abec146c8af80dd191b7ab568a99eb82417c2bed8a8872ef-4.svg",
     ]
 
 
@@ -71,9 +71,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
-
            \score
            {
                \new Staff
@@ -91,9 +88,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
-
            \score
            {
                \new Staff
@@ -109,16 +103,13 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            >>> multipage_staff = abjad.Staff("c'1 d'1 e'1 f'1")
            >>> for note in multipage_staff:
-           ...     page_break = abjad.LilyPondLiteral(r"\pageBreak", format_slot="after")
+           ...     page_break = abjad.LilyPondLiteral(r"\pageBreak", site="after")
            ...     abjad.attach(page_break, note)
            ...
            >>> abjad.show(multipage_staff)
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
-
            \score
            {
                \new Staff
@@ -141,9 +132,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
-
            \score
            {
                \new Staff
@@ -165,9 +153,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
-
            \score
            {
                \new Staff
@@ -189,9 +174,6 @@ def test_ext_sphinx_02(app, status, warning, rm_dirs):
 
            \version "2.19.83"
            \language "english"
-           #(ly:set-option 'relative-includes #t)
-           \include "default.ily"
-
            \score
            {
                \new Staff

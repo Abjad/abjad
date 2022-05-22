@@ -53,8 +53,8 @@ First we define functions to illustrate the examples that follow:
     ...         note = abjad.Note(fundamental, (1, 16))
     ...         tune_to_ratio(note.note_head, ratio, quarter_tones=with_quarter_tones)
     ...         notes.append(note)
-    ...     containers = abjad.illustrators.make_piano_score(notes)
-    ...     score, treble_staff, bass_staff = containers
+    ...     score = abjad.illustrators.make_piano_score(notes)
+    ...     treble_staff = score["Treble_Staff"]
     ...     abjad.override(score).BarLine.stencil = False
     ...     abjad.override(score).BarNumber.stencil = False
     ...     abjad.override(score).Beam.stencil = False
@@ -65,7 +65,8 @@ First we define functions to illustrate the examples that follow:
     ...     abjad.override(score).Stem.stencil = False
     ...     abjad.override(score).TimeSignature.stencil = False
     ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 25)"
-    ...     lilypond_file = abjad.LilyPondFile(items=[score], global_staff_size=16)
+    ...     string = "#(set-global-staff-size 16)"
+    ...     lilypond_file = abjad.LilyPondFile([string, score])
     ...     return lilypond_file
 
 ----

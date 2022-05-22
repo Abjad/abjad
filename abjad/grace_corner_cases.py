@@ -14,7 +14,8 @@ r"""
     ... )
     >>> abjad.attach(abjad.Articulation(">"), container[0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -72,7 +73,8 @@ r"""
     >>> container = abjad.BeforeGraceContainer("gs'16")
     >>> abjad.attach(container, music_voice[1][1][0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -131,7 +133,8 @@ r"""
     ... )
     >>> abjad.attach(abjad.Articulation(">"), container[0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -213,10 +216,10 @@ r"""
             }
         }
 
-    >>> for component in abjad.iterate(staff).components():
+    >>> for component in abjad.iterate.components(staff):
     ...     timespan = abjad.get.timespan(component)
     ...     print(f"{repr(component):30} {repr(timespan)}")
-    <Staff{1}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
+    Staff("{ b4 d'4 e'4 f'4 }")    Timespan(Offset((0, 1)), Offset((1, 1)))
     Voice("b4 d'4 e'4 f'4", name='Music_Voice') Timespan(Offset((0, 1)), Offset((1, 1)))
     Note('b4')                     Timespan(Offset((0, 1)), Offset((1, 4)))
     AfterGraceContainer("c'16")    Timespan(Offset((1, 4), displacement=Duration(-1, 8)), Offset((1, 4), displacement=Duration(-1, 16)))
@@ -239,7 +242,8 @@ r"""
     ... )
     >>> abjad.attach(abjad.Articulation(">"), container[0])
     >>> staff = abjad.Staff([music_voice])
-    >>> abjad.show(staff) # doctest: +SKIP
+    >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+    >>> abjad.show(lilypond_file) # doctest: +SKIP
 
     ..  docs::
 
@@ -287,15 +291,15 @@ r"""
             }
         }
 
-    >>> for component in abjad.iterate(staff).components():
+    >>> for component in abjad.iterate.components(staff):
     ...     timespan = abjad.get.timespan(component)
     ...     print(f"{repr(component):30} {repr(timespan)}")
-    <Staff{1}>                     Timespan(Offset((0, 1)), Offset((1, 1)))
-    <Voice-"Music_Voice"{3}>       Timespan(Offset((0, 1)), Offset((1, 1)))
+    Staff("{ b4 { { <d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3 } { d'4 e'4 } } f'4 }") Timespan(Offset((0, 1)), Offset((1, 1)))
+    Voice("b4 { { <d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3 } { d'4 e'4 } } f'4", name='Music_Voice') Timespan(Offset((0, 1)), Offset((1, 1)))
     Note('b4')                     Timespan(Offset((0, 1)), Offset((1, 4)))
     AfterGraceContainer("c'16")    Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
     Note("c'16")                   Timespan(Offset((1, 4), displacement=Duration(-1, 16)), Offset((1, 4)))
-    <<<2>>>                        Timespan(Offset((1, 4)), Offset((3, 4)))
+    Container("{ <d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3 } { d'4 e'4 }") Timespan(Offset((1, 4)), Offset((3, 4)))
     OnBeatGraceContainer("<d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3") Timespan(Offset((1, 4)), Offset((1, 4), displacement=Duration(1, 6)))
     Chord("<d' a'>8 * 1/3")        Timespan(Offset((1, 4)), Offset((1, 4), displacement=Duration(1, 24)))
     Note("b'8 * 1/3")              Timespan(Offset((1, 4), displacement=Duration(1, 24)), Offset((1, 4), displacement=Duration(1, 12)))

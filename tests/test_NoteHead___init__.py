@@ -28,8 +28,8 @@ def test_NoteHead___init___03():
     new = abjad.NoteHead(notehead)
 
     assert notehead is not new
-    assert notehead.written_pitch == 6
-    assert new.written_pitch == 6
+    assert notehead.written_pitch == "fs'"
+    assert new.written_pitch != 6
 
 
 def test_NoteHead___init___04():
@@ -37,6 +37,6 @@ def test_NoteHead___init___04():
     Initialize note-head with tweak manager.
     """
 
-    note_head = abjad.NoteHead("cs''", tweaks=abjad.tweak("#red").color)
+    note_head = abjad.NoteHead("cs''", tweaks=[abjad.Tweak(r"\tweak color #red")])
 
     assert abjad.lilypond(note_head) == "\\tweak color #red\ncs''"

@@ -1,50 +1,316 @@
+import collections
 import copy as python_copy
 import itertools
 
-from . import enums, exceptions, get
-from .attach import attach, detach
-from .duration import Duration
-from .indicators.RepeatTie import RepeatTie
-from .indicators.Tie import Tie
-from .iterate import Iteration
-from .makers import NoteMaker
-from .pitch.intervals import NamedInterval
-from .ratio import Ratio
-from .score import BeforeGraceContainer, Chord, Component, Container, Leaf, Note, Tuplet
-from .select import Selection
-from .sequence import Sequence
-from .spanners import tie
+from . import _getlib
+from . import bind as _bind
+from . import duration as _duration
+from . import enums as _enums
+from . import exceptions as _exceptions
+from . import get as _get
+from . import indicators as _indicators
+from . import iterate as _iterate
+from . import makers as _makers
+from . import parentage as _parentage
+from . import pitch as _pitch
+from . import ratio as _ratio
+from . import score as _score
+from . import select as _select
+from . import sequence as _sequence
+from . import spanners as _spanners
 
-### PRIVATE FUNCTIONS ###
+
+def _are_contiguous_logical_voice(
+    selection, prototype=None, *, ignore_before_after_grace=None
+) -> bool:
+    r"""
+    Is true when items in selection are contiguous components in the same logical voice.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> abjad.mutate._are_contiguous_logical_voice(staff[:])
+        True
+
+        >>> staves = [staff[0], staff[-1]]
+        >>> abjad.mutate._are_contiguous_logical_voice(staves)
+        False
+
+    ..  container:: example
+
+        REGRESSION. Before-grace music may be ignored:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.BeforeGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                c'4
+                \grace {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
+
+        >>> abjad.mutate._are_contiguous_logical_voice(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_logical_voice(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+        After-grace music may be ignored, too:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.AfterGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                \afterGrace
+                c'4
+                {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
+
+        >>> abjad.mutate._are_contiguous_logical_voice(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_logical_voice(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+    """
+    if not isinstance(selection, collections.abc.Sequence):
+        return False
+    prototype = prototype or (_score.Component,)
+    if not isinstance(prototype, tuple):
+        prototype = (prototype,)
+    assert isinstance(prototype, tuple)
+    if len(selection) == 0:
+        return True
+    if all(isinstance(_, prototype) and _._parent is None for _ in selection):
+        return True
+    first = selection[0]
+    if not isinstance(first, prototype):
+        return False
+    first_parentage = _parentage.Parentage(first)
+    first_logical_voice = first_parentage.logical_voice()
+    first_root = first_parentage.root
+    previous = first
+    for current in selection[1:]:
+        current_parentage = _parentage.Parentage(current)
+        current_logical_voice = current_parentage.logical_voice()
+        # false if wrong type of component found
+        if not isinstance(current, prototype):
+            return False
+        # false if in different logical voices
+        if current_logical_voice != first_logical_voice:
+            return False
+        # false if components are in same score and are discontiguous
+        if current_parentage.root == first_root:
+            if not _immediately_precedes(
+                previous,
+                current,
+                ignore_before_after_grace=ignore_before_after_grace,
+            ):
+                return False
+        previous = current
+    return True
 
 
-def _extract(COMPONENT):
-    selection = Selection([COMPONENT])
-    parent, start, stop = selection._get_parent_and_start_stop_indices()
+def _are_contiguous_same_parent(
+    self, prototype=None, *, ignore_before_after_grace=None
+) -> bool:
+    r"""
+    Is true when items in selection are all contiguous components in the same parent.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> abjad.mutate._are_contiguous_same_parent(staff[:])
+        True
+
+        >>> staves = [staff[0], staff[-1]]
+        >>> abjad.mutate._are_contiguous_same_parent(staves)
+        False
+
+    ..  container:: example
+
+        REGRESSION. Before-grace music music may be ignored:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.BeforeGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                c'4
+                \grace {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
+
+        >>> abjad.mutate._are_contiguous_same_parent(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_same_parent(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+        After-grace music may be ignored, too:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> container = abjad.AfterGraceContainer("cs'16")
+        >>> abjad.attach(container, voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                \afterGrace
+                c'4
+                {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
+        >>> voice[:]
+        [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
+
+        >>> abjad.mutate._are_contiguous_same_parent(voice[:])
+        False
+
+        >>> abjad.mutate._are_contiguous_same_parent(
+        ...     voice[:],
+        ...     ignore_before_after_grace=True
+        ... )
+        True
+
+    """
+    prototype = prototype or (_score.Component,)
+    if not isinstance(prototype, tuple):
+        prototype = (prototype,)
+    assert isinstance(prototype, tuple)
+    if len(self) == 0:
+        return True
+    if all(isinstance(_, prototype) and _._parent is None for _ in self):
+        return True
+    first = self[0]
+    if not isinstance(first, prototype):
+        return False
+    first_parent = first._parent
+    same_parent = True
+    strictly_contiguous = True
+    previous = first
+    for current in self[1:]:
+        if not isinstance(current, prototype):
+            return False
+        if current._parent is not first_parent:
+            same_parent = False
+        if not _immediately_precedes(
+            previous,
+            current,
+            ignore_before_after_grace=ignore_before_after_grace,
+        ):
+            strictly_contiguous = False
+        if current._parent is not None and (not same_parent or not strictly_contiguous):
+            return False
+        previous = current
+    return True
+
+
+def _attach_tie_to_leaves(selection):
+    for leaf in selection[:-1]:
+        _bind.detach(_indicators.Tie, leaf)
+        _bind.attach(_indicators.Tie(), leaf)
+
+
+def _copy_selection(selection):
+    assert _are_contiguous_logical_voice(selection)
+    new_components = []
+    for component in selection:
+        if isinstance(component, _score.Container):
+            new_component = component._copy_with_children()
+        else:
+            new_component = component.__copy__()
+        new_components.append(new_component)
+    new_components = type(selection)(new_components)
+    return new_components
+
+
+def _extract(component):
+    selection = [component]
+    parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:
-        components = list(getattr(COMPONENT, "components", ()))
+        components = list(getattr(component, "components", ()))
         parent.__setitem__(slice(start, stop + 1), components)
-    return COMPONENT
+    return component
 
 
-def _fuse(SELECTION):
-    assert SELECTION.are_contiguous_logical_voice()
-    if SELECTION.are_leaves():
-        return _fuse_leaves(SELECTION)
-    elif all(isinstance(_, Tuplet) for _ in SELECTION):
-        return _fuse_tuplets(SELECTION)
+def _fuse(components):
+    assert _are_contiguous_logical_voice(components)
+    if all(isinstance(_, _score.Leaf) for _ in components):
+        return _fuse_leaves(components)
+    elif all(isinstance(_, _score.Tuplet) for _ in components):
+        return _fuse_tuplets(components)
     else:
-        raise Exception(f"can only fuse leaves and tuplets (not {SELECTION}).")
+        raise Exception(f"can only fuse leaves and tuplets (not {components}).")
 
 
-def _fuse_leaves(SELECTION):
-    assert SELECTION.are_leaves()
-    assert SELECTION.are_contiguous_logical_voice()
-    leaves = SELECTION
+def _fuse_leaves(leaves):
+    assert all(isinstance(_, _score.Leaf) for _ in leaves)
+    assert _are_contiguous_logical_voice(leaves)
     if len(leaves) <= 1:
         return leaves
-    originally_tied = SELECTION[-1]._has_indicator(Tie)
-    total_preprolated = leaves._get_preprolated_duration()
+    originally_tied = leaves[-1]._has_indicator(_indicators.Tie)
+    total_preprolated = sum(_._get_preprolated_duration() for _ in leaves)
     for leaf in leaves[1:]:
         parent = leaf._parent
         if parent:
@@ -52,98 +318,161 @@ def _fuse_leaves(SELECTION):
             del parent[index]
     result = _set_leaf_duration(leaves[0], total_preprolated)
     if not originally_tied:
-        last_leaf = Selection(result).leaf(-1)
-        detach(Tie, last_leaf)
+        last_leaf = _select.leaf(result, -1)
+        _bind.detach(_indicators.Tie, last_leaf)
     return result
 
 
-def _fuse_leaves_by_immediate_parent(SELECTION):
+def _fuse_leaves_by_immediate_parent(leaves):
     result = []
-    parts = _get_leaves_grouped_by_immediate_parents(SELECTION)
+    parts = _get_leaves_grouped_by_immediate_parents(leaves)
     for part in parts:
         fused = _fuse(part)
         result.append(fused)
     return result
 
 
-def _fuse_tuplets(SELECTION):
-    assert SELECTION.are_contiguous_same_parent(prototype=Tuplet)
-    if len(SELECTION) == 0:
+def _fuse_tuplets(tuplets):
+    assert _are_contiguous_same_parent(tuplets, prototype=_score.Tuplet)
+    if len(tuplets) == 0:
         return None
-    first = SELECTION[0]
+    first = tuplets[0]
     first_multiplier = first.multiplier
-    for tuplet in SELECTION[1:]:
+    for tuplet in tuplets[1:]:
         if tuplet.multiplier != first_multiplier:
             raise ValueError("tuplets must carry same multiplier.")
-    assert isinstance(first, Tuplet)
-    new_tuplet = Tuplet(first_multiplier, [])
+    assert isinstance(first, _score.Tuplet)
+    new_tuplet = _score.Tuplet(first_multiplier, [])
     wrapped = False
-    if get.parentage(SELECTION[0]).root is not get.parentage(SELECTION[-1]).root:
-        dummy_container = Container(SELECTION)
+    if _get.parentage(tuplets[0]).root is not _get.parentage(tuplets[-1]).root:
+        dummy_container = _score.Container(tuplets)
         wrapped = True
-    swap(SELECTION, new_tuplet)
+    swap(tuplets, new_tuplet)
     if wrapped:
         del dummy_container[:]
     return new_tuplet
 
 
-def _get_leaves_grouped_by_immediate_parents(SELECTION):
+def _get_leaves_grouped_by_immediate_parents(leaves):
     result = []
-    pairs_generator = itertools.groupby(SELECTION, lambda x: id(x._parent))
+    pairs_generator = itertools.groupby(leaves, lambda _: id(_._parent))
     for key, values_generator in pairs_generator:
-        group = Selection(list(values_generator))
+        group = list(values_generator)
         result.append(group)
     return result
 
 
+def _give_components_to_empty_container(selection, container):
+    assert _are_contiguous_same_parent(selection)
+    assert isinstance(container, _score.Container)
+    assert not container
+    components = []
+    for component in selection:
+        components.extend(getattr(component, "components", ()))
+    container._components.extend(components)
+    _set_parents(container)
+
+
+def _get_parent_and_start_stop_indices(selection, ignore_before_after_grace=None):
+    assert _are_contiguous_same_parent(
+        selection, ignore_before_after_grace=ignore_before_after_grace
+    )
+    if selection:
+        first, last = selection[0], selection[-1]
+        parent = first._parent
+        if parent is not None:
+            first_index = parent.index(first)
+            last_index = parent.index(last)
+            return parent, first_index, last_index
+    return None, None, None
+
+
+def _give_position_in_parent_to_container(selection, container):
+    assert _are_contiguous_same_parent(selection)
+    assert isinstance(container, _score.Container)
+    parent, start, stop = _get_parent_and_start_stop_indices(selection)
+    if parent is not None:
+        parent._components.__setitem__(slice(start, start), [container])
+        container._set_parent(parent)
+        for component in selection:
+            component._set_parent(None)
+
+
+def _immediately_precedes(component_1, component_2, ignore_before_after_grace=None):
+    successors = []
+    current = component_1
+    # do not include OnBeatGraceContainer here because
+    # OnBeatGraceContainer is a proper container
+    grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
+    while current is not None:
+        sibling = _getlib._get_sibling_with_graces(current, 1)
+        while (
+            ignore_before_after_grace
+            and sibling is not None
+            and isinstance(sibling._parent, grace_prototype)
+        ):
+            sibling = _getlib._get_sibling_with_graces(sibling, 1)
+        if sibling is None:
+            current = current._parent
+        else:
+            descendants = sibling._get_descendants_starting_with()
+            successors = descendants
+            break
+    return component_2 in successors
+
+
 def _move_indicators(donor_component, recipient_component):
-    for wrapper in get.wrappers(donor_component):
-        detach(wrapper, donor_component)
-        attach(wrapper, recipient_component)
+    for wrapper in _get.wrappers(donor_component):
+        _bind.detach(wrapper, donor_component)
+        _bind.attach(wrapper, recipient_component)
 
 
 def _set_leaf_duration(leaf, new_duration):
-    new_duration = Duration(new_duration)
+    new_duration = _duration.Duration(new_duration)
     if leaf.multiplier is not None:
         multiplier = new_duration.__div__(leaf.written_duration)
         leaf.multiplier = multiplier
-        return Selection(leaf)
+        return [leaf]
     try:
         leaf.written_duration = new_duration
-        return Selection(leaf)
-    except exceptions.AssignabilityError:
+        return [leaf]
+    except _exceptions.AssignabilityError:
         pass
-    maker = NoteMaker()
+    maker = _makers.NoteMaker()
     components = maker(0, new_duration)
-    new_leaves = Selection(components).leaves()
+    new_leaves = _select.leaves(components)
     following_leaf_count = len(new_leaves) - 1
     following_leaves = []
     for i in range(following_leaf_count):
         following_leaf = copy(leaf)
-        for indicator in get.indicators(following_leaf):
+        for indicator in _get.indicators(following_leaf):
             if i != following_leaf_count - 1:
-                if getattr(indicator, "_time_orientation", enums.Left) != enums.Middle:
-                    detach(indicator, following_leaf)
+                if (
+                    getattr(indicator, "_time_orientation", _enums.LEFT)
+                    != _enums.MIDDLE
+                ):
+                    _bind.detach(indicator, following_leaf)
             elif (
-                getattr(indicator, "_time_orientation", enums.Left) != enums.Right
-                and getattr(indicator, "_time_orientation", enums.Left) != enums.Middle
+                getattr(indicator, "_time_orientation", _enums.LEFT) != _enums.RIGHT
+                and getattr(indicator, "_time_orientation", _enums.LEFT)
+                != _enums.MIDDLE
             ):
-                detach(indicator, following_leaf)
-        detach(BeforeGraceContainer, following_leaf)
+                _bind.detach(indicator, following_leaf)
+        _bind.detach(_score.BeforeGraceContainer, following_leaf)
         following_leaves.append(following_leaf)
     if following_leaf_count > 0:
-        for indicator in get.indicators(leaf):
-            if getattr(indicator, "_time_orientation", enums.Left) == enums.Right:
-                detach(indicator, leaf)
+        for indicator in _get.indicators(leaf):
+            if getattr(indicator, "_time_orientation", _enums.LEFT) == _enums.RIGHT:
+                _bind.detach(indicator, leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
     for all_leaf, new_leaf in zip(all_leaves, new_leaves):
         all_leaf.written_duration = new_leaf.written_duration
-    logical_tie = get.logical_tie(leaf)
-    logical_tie_leaves = list(logical_tie.leaves)
+    logical_tie = _get.logical_tie(leaf)
+    logical_tie_leaves = list(logical_tie)
     for leaf_ in logical_tie:
-        detach(Tie, leaf_)
-        detach(RepeatTie, leaf_)
+        _bind.detach(_indicators.Tie, leaf_)
+        _bind.detach(_indicators.RepeatTie, leaf_)
     if leaf._parent is not None:
         index = leaf._parent.index(leaf)
         next_ = index + 1
@@ -151,20 +480,25 @@ def _set_leaf_duration(leaf, new_duration):
     index = logical_tie_leaves.index(leaf)
     next_ = index + 1
     logical_tie_leaves[next_:next_] = following_leaves
-    if 1 < len(logical_tie_leaves) and isinstance(leaf, (Note, Chord)):
-        tie(logical_tie_leaves)
-    if isinstance(components[0], Leaf):
-        return Selection(all_leaves)
+    if 1 < len(logical_tie_leaves) and isinstance(leaf, _score.Note | _score.Chord):
+        _spanners.tie(logical_tie_leaves)
+    if isinstance(components[0], _score.Leaf):
+        assert isinstance(all_leaves, list)
+        return all_leaves
     else:
-        assert isinstance(components[0], Tuplet)
+        assert isinstance(components[0], _score.Tuplet)
         assert len(components) == 1
         tuplet = components[0]
         multiplier = tuplet.multiplier
-        tuplet = Tuplet(multiplier, [])
-        if not isinstance(all_leaves, Selection):
-            all_leaves = Selection(all_leaves)
+        tuplet = _score.Tuplet(multiplier, [])
+        assert isinstance(all_leaves, list)
         wrap(all_leaves, tuplet)
-        return Selection(tuplet)
+        return [tuplet]
+
+
+def _set_parents(container):
+    for component in container:
+        component._set_parent(container)
 
 
 def _split_container_at_index(CONTAINER, i):
@@ -184,7 +518,7 @@ def _split_container_at_index(CONTAINER, i):
     left_components = CONTAINER[:i]
     right_components = CONTAINER[i:]
     # instantiate new left and right containers
-    if isinstance(CONTAINER, Tuplet):
+    if isinstance(CONTAINER, _score.Tuplet):
         multiplier = CONTAINER.multiplier
         left = type(CONTAINER)(multiplier, [])
         wrap(left_components, left)
@@ -199,8 +533,8 @@ def _split_container_at_index(CONTAINER, i):
     halves = (left, right)
     nonempty_halves = [half for half in halves if len(half)]
     # incorporate left and right parents in score if possible
-    selection = Selection(CONTAINER)
-    parent, start, stop = selection._get_parent_and_start_stop_indices()
+    selection = [CONTAINER]
+    parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:
         parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
         for part in nonempty_halves:
@@ -215,19 +549,19 @@ def _split_container_at_index(CONTAINER, i):
 def _split_container_by_duration(CONTAINER, duration):
     if CONTAINER.simultaneous:
         return _split_simultaneous_by_duration(CONTAINER, duration=duration)
-    duration = Duration(duration)
+    duration = _duration.Duration(duration)
     assert 0 <= duration, repr(duration)
     if duration == 0:
         # TODO: disallow and raise Exception
         return [], CONTAINER
     # get split point score offset
-    timespan = get.timespan(CONTAINER)
+    timespan = _get.timespan(CONTAINER)
     global_split_point = timespan.start_offset + duration
     # get any duration-crossing descendents
     cross_offset = timespan.start_offset + duration
     duration_crossing_descendants = []
-    for descendant in get.descendants(CONTAINER):
-        timespan = get.timespan(descendant)
+    for descendant in _get.descendants(CONTAINER):
+        timespan = _get.timespan(descendant)
         start_offset = timespan.start_offset
         stop_offset = timespan.stop_offset
         if start_offset < cross_offset < stop_offset:
@@ -236,11 +570,11 @@ def _split_container_by_duration(CONTAINER, duration):
     bottom = duration_crossing_descendants[-1]
     did_split_leaf = False
     # if split point necessitates leaf split
-    if isinstance(bottom, Leaf):
-        assert isinstance(bottom, Leaf)
+    if isinstance(bottom, _score.Leaf):
+        assert isinstance(bottom, _score.Leaf)
         original_bottom_parent = bottom._parent
         did_split_leaf = True
-        timespan = get.timespan(bottom)
+        timespan = _get.timespan(bottom)
         split_point_in_bottom = global_split_point - timespan.start_offset
         new_leaves = _split_leaf_by_durations(
             bottom,
@@ -248,14 +582,14 @@ def _split_container_by_duration(CONTAINER, duration):
         )
         if new_leaves[0]._parent is not original_bottom_parent:
             new_leaves_tuplet_wrapper = new_leaves[0]._parent
-            assert isinstance(new_leaves_tuplet_wrapper, Tuplet)
+            assert isinstance(new_leaves_tuplet_wrapper, _score.Tuplet)
             assert new_leaves_tuplet_wrapper._parent is original_bottom_parent
             _split_container_by_duration(
                 new_leaves_tuplet_wrapper,
                 split_point_in_bottom,
             )
         for leaf in new_leaves:
-            timespan = get.timespan(leaf)
+            timespan = _get.timespan(leaf)
             if timespan.stop_offset == global_split_point:
                 leaf_left_of_split = leaf
             if timespan.start_offset == global_split_point:
@@ -267,11 +601,11 @@ def _split_container_by_duration(CONTAINER, duration):
     # in order to start upward crawl through duration-crossing containers
     else:
         duration_crossing_containers = duration_crossing_descendants[:]
-        for leaf in Iteration(bottom).leaves():
-            timespan = get.timespan(leaf)
+        for leaf in _iterate.leaves(bottom):
+            timespan = _get.timespan(leaf)
             if timespan.start_offset == global_split_point:
                 leaf_right_of_split = leaf
-                leaf_left_of_split = get.leaf(leaf, -1)
+                leaf_left_of_split = _get.leaf(leaf, -1)
                 break
         else:
             raise Exception("can not split empty container {bottom!r}.")
@@ -288,23 +622,22 @@ def _split_container_by_duration(CONTAINER, duration):
     # crawl back up through duration-crossing containers and split each
     previous = highest_level_component_right_of_split
     for container in reversed(duration_crossing_containers):
-        assert isinstance(container, Container)
+        assert isinstance(container, _score.Container)
         index = container.index(previous)
         left, right = _split_container_at_index(container, index)
         previous = right
     # reapply tie here if crawl above killed tie applied to leaves
     if did_split_leaf:
-        if isinstance(leaf_left_of_split, Note):
+        if isinstance(leaf_left_of_split, _score.Note):
             if (
-                get.parentage(leaf_left_of_split).root
-                is get.parentage(leaf_right_of_split).root
+                _get.parentage(leaf_left_of_split).root
+                is _get.parentage(leaf_right_of_split).root
             ):
                 leaves_around_split = (
                     leaf_left_of_split,
                     leaf_right_of_split,
                 )
-                selection = Selection(leaves_around_split)
-                selection._attach_tie_to_leaves()
+                _attach_tie_to_leaves(leaves_around_split)
     # return list-wrapped halves of container
     return [left], [right]
 
@@ -317,102 +650,95 @@ def _split_simultaneous_by_duration(CONTAINER, duration):
         left_components_, right_components_ = halves
         left_components.extend(left_components_)
         right_components.extend(right_components_)
-    left_components = Selection(left_components)
-    right_components = Selection(right_components)
     left_container = CONTAINER.__copy__()
     right_container = CONTAINER.__copy__()
     left_container.extend(left_components)
     right_container.extend(right_components)
-    if get.parentage(CONTAINER).parent is not None:
-        containers = Selection([left_container, right_container])
+    if _get.parentage(CONTAINER).parent is not None:
+        containers = [left_container, right_container]
         replace(CONTAINER, containers)
     # return list-wrapped halves of container
     return [left_container], [right_container]
 
 
-def _split_leaf_by_durations(LEAF, durations, cyclic=False):
-    durations = [Duration(_) for _ in durations]
-    durations = Sequence(durations)
-    leaf_duration = get.duration(LEAF)
+def _split_leaf_by_durations(leaf, durations, cyclic=False):
+    durations = [_duration.Duration(_) for _ in durations]
+    leaf_duration = _get.duration(leaf)
     if cyclic:
-        durations = durations.repeat_to_weight(leaf_duration)
+        durations = _sequence.repeat_to_weight(durations, leaf_duration)
     if sum(durations) < leaf_duration:
         last_duration = leaf_duration - sum(durations)
         durations = list(durations)
         durations.append(last_duration)
-        durations = Sequence(durations)
-    durations = durations.truncate(weight=leaf_duration)
-    originally_tied = LEAF._has_indicator(Tie)
-    originally_repeat_tied = LEAF._has_indicator(RepeatTie)
+    durations = _sequence.truncate(durations, weight=leaf_duration)
+    originally_tied = leaf._has_indicator(_indicators.Tie)
+    originally_repeat_tied = leaf._has_indicator(_indicators.RepeatTie)
     result_selections = []
     # detach grace containers
-    before_grace_container = LEAF._before_grace_container
+    before_grace_container = leaf._before_grace_container
     if before_grace_container is not None:
-        detach(before_grace_container, LEAF)
-    after_grace_container = LEAF._after_grace_container
+        _bind.detach(before_grace_container, leaf)
+    after_grace_container = leaf._after_grace_container
     if after_grace_container is not None:
-        detach(after_grace_container, LEAF)
+        _bind.detach(after_grace_container, leaf)
     # do other things
-    leaf_prolation = get.parentage(LEAF).prolation
+    leaf_prolation = _get.parentage(leaf).prolation
     for duration in durations:
-        new_leaf = python_copy.copy(LEAF)
+        new_leaf = python_copy.copy(leaf)
         preprolated_duration = duration / leaf_prolation
         selection = _set_leaf_duration(new_leaf, preprolated_duration)
         result_selections.append(selection)
-    result_components = Sequence(result_selections).flatten(depth=-1)
-    result_components = Selection(result_components)
-    result_leaves = Selection(result_components).leaves(grace=False)
-    assert all(isinstance(_, Selection) for _ in result_selections)
-    assert all(isinstance(_, Component) for _ in result_components)
-    assert result_leaves.are_leaves()
+    result_components = _sequence.flatten(result_selections, depth=-1)
+    result_leaves = _select.leaves(result_components, grace=False)
+    assert all(isinstance(_, _score.Component) for _ in result_components)
+    assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     # strip result leaves of all indicators
-    for leaf in result_leaves:
-        detach(object, leaf)
+    for leaf_ in result_leaves:
+        _bind.detach(object, leaf_)
     # replace leaf with flattened result
-    if get.parentage(LEAF).parent is not None:
-        replace(LEAF, result_components)
+    if _get.parentage(leaf).parent is not None:
+        replace(leaf, result_components)
     # move indicators
     first_result_leaf = result_leaves[0]
     last_result_leaf = result_leaves[-1]
-    for indicator in get.indicators(LEAF):
-        detach(indicator, LEAF)
-        direction = getattr(indicator, "_time_orientation", enums.Left)
-        if direction is enums.Left:
-            attach(indicator, first_result_leaf)
-        elif direction == enums.Right:
-            attach(indicator, last_result_leaf)
-        elif direction == enums.Middle:
-            attach(indicator, first_result_leaf)
+    for indicator in _get.indicators(leaf):
+        _bind.detach(indicator, leaf)
+        direction = getattr(indicator, "_time_orientation", _enums.LEFT)
+        if direction is _enums.LEFT:
+            _bind.attach(indicator, first_result_leaf)
+        elif direction == _enums.RIGHT:
+            _bind.attach(indicator, last_result_leaf)
+        elif direction == _enums.MIDDLE:
+            _bind.attach(indicator, first_result_leaf)
             indicator_copy = python_copy.copy(indicator)
-            attach(indicator_copy, last_result_leaf)
+            _bind.attach(indicator_copy, last_result_leaf)
         else:
             raise ValueError(direction)
     # reattach grace containers
     if before_grace_container is not None:
-        attach(before_grace_container, first_result_leaf)
+        _bind.attach(before_grace_container, first_result_leaf)
     if after_grace_container is not None:
-        attach(after_grace_container, last_result_leaf)
+        _bind.attach(after_grace_container, last_result_leaf)
     # fuse tuplets
-    if isinstance(result_components[0], Tuplet):
+    if isinstance(result_components[0], _score.Tuplet):
         fuse(result_components)
     # tie split notes
-    if isinstance(LEAF, (Note, Chord)) and 1 < len(result_leaves):
-        result_leaves._attach_tie_to_leaves()
-    if originally_repeat_tied and not result_leaves[0]._has_indicator(RepeatTie):
-        attach(RepeatTie(), result_leaves[0])
-    if originally_tied and not result_leaves[-1]._has_indicator(Tie):
-        attach(Tie(), result_leaves[-1])
-    assert isinstance(result_leaves, Selection)
-    assert all(isinstance(_, Leaf) for _ in result_leaves)
+    if isinstance(leaf, _score.Note | _score.Chord) and 1 < len(result_leaves):
+        _attach_tie_to_leaves(result_leaves)
+    if originally_repeat_tied and not result_leaves[0]._has_indicator(
+        _indicators.RepeatTie
+    ):
+        _bind.attach(_indicators.RepeatTie(), result_leaves[0])
+    if originally_tied and not result_leaves[-1]._has_indicator(_indicators.Tie):
+        _bind.attach(_indicators.Tie(), result_leaves[-1])
+    assert isinstance(result_leaves, list)
+    assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
     return result_leaves
 
 
-### PUBLIC FUNCTIONS ###
-
-
-def copy(argument, n=1):
+def copy(argument, n=1) -> list[_score.Component]:
     r"""
-    Copies client.
+    Copies argument.
 
     ..  container:: example
 
@@ -508,7 +834,7 @@ def copy(argument, n=1):
             }
 
         >>> selection = staff[2:4]
-        >>> result = selection._copy()
+        >>> result = abjad.mutate.copy(selection)
         >>> new_staff = abjad.Staff(result)
         >>> abjad.show(new_staff) # doctest: +SKIP
 
@@ -525,15 +851,14 @@ def copy(argument, n=1):
         >>> staff[2] is new_staff[0]
         False
 
-    Returns selection of new components.
     """
-    if isinstance(argument, Component):
-        selection = Selection(argument)
+    if isinstance(argument, _score.Component):
+        selection = [argument]
     else:
         selection = argument
     if n == 1:
-        result = selection._copy()
-        if isinstance(argument, Component):
+        result = _copy_selection(selection)
+        if isinstance(argument, _score.Component):
             if len(result) == 1:
                 result = result[0]
         return result
@@ -573,11 +898,11 @@ def eject_contents(argument):
 
         >>> contents = abjad.mutate.eject_contents(container)
         >>> contents
-        Selection([Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")])
+        [Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")]
 
         Container contents can be safely added to a new container:
 
-        >>> staff = abjad.Staff(contents, lilypond_type='RhythmicStaff')
+        >>> staff = abjad.Staff(contents, lilypond_type="RhythmicStaff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -611,9 +936,9 @@ def eject_contents(argument):
 
 def extract(argument):
     r"""
-    Extracts mutation client from score.
+    Extracts ``argument`` from score.
 
-    Leaves children of mutation client in score.
+    Leaves children of ``argument`` in score.
 
     ..  container:: example
 
@@ -622,7 +947,7 @@ def extract(argument):
         >>> staff = abjad.Staff()
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
         >>> abjad.hairpin('p < f', leaves)
@@ -635,7 +960,8 @@ def extract(argument):
             \new Staff
             {
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     \time 3/4
                     c'4
                     \p
@@ -643,7 +969,8 @@ def extract(argument):
                     e'4
                 }
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     d'4
                     f'4
                     \f
@@ -677,7 +1004,7 @@ def extract(argument):
         >>> staff = abjad.Staff()
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
@@ -690,7 +1017,8 @@ def extract(argument):
             \new Staff
             {
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     \time 3/4
                     c'4
                     \p
@@ -698,7 +1026,8 @@ def extract(argument):
                     e'4
                 }
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2 {
+                \times 3/2
+                {
                     d'4
                     f'4
                     \f
@@ -740,7 +1069,8 @@ def extract(argument):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/2 {
+            \times 3/2
+            {
                 c'4
                 e'4
             }
@@ -755,19 +1085,20 @@ def extract(argument):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/2 {
+            \times 3/2
+            {
                 c'4
                 e'4
             }
 
-    Returns mutation client.
+    Returns ``argument``.
     """
     return _extract(argument)
 
 
-def fuse(argument):
+def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
     r"""
-    Fuses mutation client.
+    Fuses ``argument``.
 
     ..  container:: example
 
@@ -777,7 +1108,8 @@ def fuse(argument):
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> abjad.mutate.fuse(staff[1:])
-        Selection([Note("d'4.")])
+        [Note("d'4.")]
+
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -807,14 +1139,16 @@ def fuse(argument):
             >>> print(string)
             \new Staff
             {
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     [
                     d'8
                     e'8
                     ]
                 }
-                \times 2/3 {
+                \times 2/3
+                {
                     c'16
                     (
                     d'16
@@ -834,7 +1168,8 @@ def fuse(argument):
             >>> print(string)
             \new Staff
             {
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     [
                     d'8
@@ -881,9 +1216,9 @@ def fuse(argument):
                 d'32
             }
 
-        >>> logical_tie = abjad.select(staff[0]).logical_tie()
+        >>> logical_tie = abjad.select.logical_tie(staff[0])
         >>> abjad.mutate.fuse(logical_tie)
-        Selection([Note("d'8..")])
+        [Note("d'8..")]
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -900,17 +1235,17 @@ def fuse(argument):
         >>> abjad.get.has_indicator(staff[0], abjad.Tie)
         False
 
-    Returns selection.
     """
-    if isinstance(argument, Component):
-        selection = Selection(argument)
-        return _fuse(selection)
-    elif isinstance(argument, Selection) and argument.are_contiguous_logical_voice():
-        selection = Selection(argument)
-        return _fuse(selection)
+    _are_contiguous_logical_voice(argument)
+    if isinstance(argument, _score.Component):
+        result = _fuse([argument])
+    else:
+        result = _fuse(list(argument))
+    assert isinstance(result, list | _score.Tuplet), repr(result)
+    return result
 
 
-def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
+def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
     r"""
     Changes logical tie to tuplet.
 
@@ -946,7 +1281,7 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
                 \f
             }
 
-        >>> logical_tie = abjad.select(staff[1]).logical_tie()
+        >>> logical_tie = abjad.select.logical_tie(staff[1])
         >>> abjad.mutate.logical_tie_to_tuplet(logical_tie, [2, 1, 1, 1])
         Tuplet('5:3', "c'8 c'16 c'16 c'16")
 
@@ -965,7 +1300,8 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
                 \p
                 \<
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/5 {
+                \times 3/5
+                {
                     c'8
                     c'16
                     c'16
@@ -1007,30 +1343,33 @@ def logical_tie_to_tuplet(argument, proportions) -> Tuplet:
             }
 
     """
-    proportions = Ratio(proportions)
-    target_duration = argument._get_preprolated_duration()
+    proportions = _ratio.Ratio(proportions)
+    target_duration = sum(_._get_preprolated_duration() for _ in argument)
+    assert isinstance(target_duration, _duration.Duration)
     prolated_duration = target_duration / sum(proportions.numbers)
     basic_written_duration = prolated_duration.equal_or_greater_power_of_two
     written_durations = [_ * basic_written_duration for _ in proportions.numbers]
-    maker = NoteMaker()
+    notes: list[_score.Note | _score.Tuplet]
     try:
-        notes = Selection([Note(0, _) for _ in written_durations])
-    except exceptions.AssignabilityError:
+        notes = [_score.Note(0, _) for _ in written_durations]
+    except _exceptions.AssignabilityError:
         denominator = target_duration._denominator
-        note_durations = [Duration(_, denominator) for _ in proportions.numbers]
+        note_durations = [
+            _duration.Duration(_, denominator) for _ in proportions.numbers
+        ]
+        maker = _makers.NoteMaker()
         notes = maker(0, note_durations)
-    tuplet = Tuplet.from_duration(target_duration, notes)
+    tuplet = _score.Tuplet.from_duration(target_duration, notes)
     for leaf in argument:
-        detach(Tie, leaf)
-        detach(RepeatTie, leaf)
+        _bind.detach(_indicators.Tie, leaf)
+        _bind.detach(_indicators.RepeatTie, leaf)
     replace(argument, tuplet)
     return tuplet
 
 
 def replace(argument, recipients, wrappers=False):
     r"""
-    Replaces mutation client (and contents of mutation client) with
-    ``recipients``.
+    Replaces ``argument`` (and contents of ``argument``) with ``recipients``.
 
     ..  container:: example
 
@@ -1040,7 +1379,7 @@ def replace(argument, recipients, wrappers=False):
         >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
         >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
         >>> staff = abjad.Staff([tuplet_1, tuplet_2])
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
         >>> abjad.slur(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1051,15 +1390,17 @@ def replace(argument, recipients, wrappers=False):
             >>> print(string)
             \new Staff
             {
-                \times 2/3 {
+                \times 2/3
+                {
                     c'4
                     \p
-                    \<
                     (
+                    \<
                     d'4
                     e'4
                 }
-                \times 2/3 {
+                \times 2/3
+                {
                     d'4
                     e'4
                     f'4
@@ -1091,7 +1432,8 @@ def replace(argument, recipients, wrappers=False):
                 d'16
                 e'16
                 f'16
-                \times 2/3 {
+                \times 2/3
+                {
                     d'4
                     e'4
                     f'4
@@ -1125,9 +1467,9 @@ def replace(argument, recipients, wrappers=False):
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
-        (Note("c'2"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
-        (Note("g'4"), Clef('alto'))
+        (Note("c'2"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("g'4"), Clef(name='alto', hide=False))
 
         >>> chord = abjad.Chord("<d' e'>2")
         >>> abjad.mutate.replace(staff[0], chord)
@@ -1179,9 +1521,9 @@ def replace(argument, recipients, wrappers=False):
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
-        (Note("c'2"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
-        (Note("g'4"), Clef('alto'))
+        (Note("c'2"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("g'4"), Clef(name='alto', hide=False))
 
         >>> chord = abjad.Chord("<d' e'>2")
         >>> abjad.mutate.replace(staff[0], chord, wrappers=True)
@@ -1202,9 +1544,9 @@ def replace(argument, recipients, wrappers=False):
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective(leaf, abjad.Clef)
         ...
-        (Chord("<d' e'>2"), Clef('alto'))
-        (Note("f'4"), Clef('alto'))
-        (Note("g'4"), Clef('alto'))
+        (Chord("<d' e'>2"), Clef(name='alto', hide=False))
+        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("g'4"), Clef(name='alto', hide=False))
 
         >>> abjad.wf.wellformed(staff)
         True
@@ -1232,25 +1574,28 @@ def replace(argument, recipients, wrappers=False):
 
     Returns none.
     """
-    if isinstance(argument, Selection):
-        donors = argument
+    if isinstance(argument, _score.Component):
+        donors = [argument]
     else:
-        donors = Selection(argument)
-    assert donors.are_contiguous_same_parent()
-    if not isinstance(recipients, Selection):
-        recipients = Selection(recipients)
-    assert recipients.are_contiguous_same_parent()
+        donors = argument
+    assert _are_contiguous_same_parent(donors)
+    if not isinstance(recipients, list):
+        if isinstance(recipients, _score.Component):
+            recipients = [recipients]
+        else:
+            recipients = list(recipients)
+    assert _are_contiguous_same_parent(recipients)
     if not donors:
         return
     if wrappers is True:
-        if 1 < len(donors) or not isinstance(donors[0], Leaf):
+        if 1 < len(donors) or not isinstance(donors[0], _score.Leaf):
             raise Exception(f"set wrappers only with single leaf: {donors!r}.")
-        if 1 < len(recipients) or not isinstance(recipients[0], Leaf):
+        if 1 < len(recipients) or not isinstance(recipients[0], _score.Leaf):
             raise Exception(f"set wrappers only with single leaf: {recipients!r}.")
         donor = donors[0]
-        wrappers = get.wrappers(donor)
+        wrappers = _get.wrappers(donor)
         recipient = recipients[0]
-    parent, start, stop = donors._get_parent_and_start_stop_indices()
+    parent, start, stop = _get_parent_and_start_stop_indices(donors)
     assert parent is not None, repr(donors)
     parent.__setitem__(slice(start, stop + 1), recipients)
     if not wrappers:
@@ -1271,7 +1616,7 @@ def replace(argument, recipients, wrappers=False):
 
 def scale(argument, multiplier) -> None:
     r"""
-    Scales mutation client by ``multiplier``.
+    Scales ``argument`` by ``multiplier``.
 
     ..  container:: example
 
@@ -1320,7 +1665,7 @@ def scale(argument, multiplier) -> None:
                 d'8
             }
 
-        >>> logical_tie = abjad.select(staff[0]).logical_tie()
+        >>> logical_tie = abjad.select.logical_tie(staff[0])
         >>> logical_tie = abjad.mutate.scale(logical_tie, abjad.Multiplier(3, 2))
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1392,7 +1737,8 @@ def scale(argument, multiplier) -> None:
             >>> print(string)
             \new Staff
             {
-                \times 4/5 {
+                \times 4/5
+                {
                     \time 4/8
                     c'8
                     d'8
@@ -1411,7 +1757,8 @@ def scale(argument, multiplier) -> None:
             >>> print(string)
             \new Staff
             {
-                \times 4/5 {
+                \times 4/5
+                {
                     \time 4/8
                     c'4
                     d'4
@@ -1447,7 +1794,7 @@ def scale(argument, multiplier) -> None:
     if hasattr(argument, "_scale"):
         argument._scale(multiplier)
     else:
-        assert isinstance(argument, Selection)
+        assert isinstance(argument, list)
         for component in argument:
             component._scale(multiplier)
 
@@ -1457,7 +1804,7 @@ def scale(argument, multiplier) -> None:
 # TODO: add example showing grace and after grace handling.
 def split(argument, durations, cyclic=False):
     r"""
-    Splits mutation client by ``durations``.
+    Splits ``argument`` by ``durations``.
 
     ..  container:: example
 
@@ -1633,13 +1980,13 @@ def split(argument, durations, cyclic=False):
         ...     r"c'4 \p \< cs' d' ds' \f",
         ...     name='Voice_2',
         ...     )
-        >>> abjad.override(voice_1).Stem.direction = abjad.Up
-        >>> abjad.override(voice_1).Slur.direction = abjad.Up
+        >>> abjad.override(voice_1).Stem.direction = abjad.UP
+        >>> abjad.override(voice_1).Slur.direction = abjad.UP
         >>> container = abjad.Container(
         ...     [voice_1, voice_2],
         ...     simultaneous=True,
         ...     )
-        >>> abjad.override(voice_2).Stem.direction = abjad.Down
+        >>> abjad.override(voice_2).Stem.direction = abjad.DOWN
         >>> staff = abjad.Staff([container])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1842,25 +2189,22 @@ def split(argument, durations, cyclic=False):
     Returns list of selections.
     """
     components = argument
-    if isinstance(components, Component):
-        components = Selection(components)
-    assert all(isinstance(_, Component) for _ in components)
-    if not isinstance(components, Selection):
-        components = Selection(components)
-    durations = [Duration(_) for _ in durations]
+    if isinstance(components, _score.Component):
+        components = [components]
+    assert all(isinstance(_, _score.Component) for _ in components)
+    durations = [_duration.Duration(_) for _ in durations]
     assert len(durations), repr(durations)
-    total_component_duration = get.duration(components)
+    total_component_duration = _get.duration(components)
     total_split_duration = sum(durations)
     if cyclic:
-        durations = Sequence(durations)
-        durations = durations.repeat_to_weight(total_component_duration)
+        durations = _sequence.repeat_to_weight(durations, total_component_duration)
         durations = list(durations)
     elif total_split_duration < total_component_duration:
         final_offset = total_component_duration - sum(durations)
         durations.append(final_offset)
     elif total_component_duration < total_split_duration:
         weight = total_component_duration
-        durations = Sequence(durations).truncate(weight=weight)
+        durations = _sequence.truncate(durations, weight=weight)
         durations = list(durations)
     # keep copy of durations to partition result components
     durations_copy = durations[:]
@@ -1868,7 +2212,7 @@ def split(argument, durations, cyclic=False):
     assert total_split_duration == total_component_duration
     result, shard = [], []
     offset_index = 0
-    current_shard_duration = Duration(0)
+    current_shard_duration = _duration.Duration(0)
     remaining_components = list(components[:])
     advance_to_next_offset = True
     # build shards:
@@ -1885,27 +2229,27 @@ def split(argument, durations, cyclic=False):
             break
         current_component = remaining_components.pop(0)
         # find where current component endpoint will position us
-        duration_ = get.duration(current_component)
+        duration_ = _get.duration(current_component)
         candidate_shard_duration = current_shard_duration + duration_
         # if current component would fill current shard exactly
         if candidate_shard_duration == next_split_point:
             shard.append(current_component)
             result.append(shard)
             shard = []
-            current_shard_duration = Duration(0)
+            current_shard_duration = _duration.Duration(0)
             offset_index += 1
         # if current component would exceed current shard
         elif next_split_point < candidate_shard_duration:
             local_split_duration = next_split_point
             local_split_duration -= current_shard_duration
-            if isinstance(current_component, Leaf):
+            if isinstance(current_component, _score.Leaf):
                 leaf_split_durations = [local_split_duration]
-                duration_ = get.duration(current_component)
+                duration_ = _get.duration(current_component)
                 current_duration = duration_
                 additional_required_duration = current_duration
                 additional_required_duration -= local_split_duration
-                split_durations = Sequence(durations)
-                split_durations = split_durations.split(
+                split_durations = _sequence.split(
+                    durations,
                     [additional_required_duration],
                     cyclic=False,
                     overhang=True,
@@ -1923,7 +2267,7 @@ def split(argument, durations, cyclic=False):
                 result.append(shard)
                 offset_index += len(additional_durations)
             else:
-                assert isinstance(current_component, Container)
+                assert isinstance(current_component, _score.Container)
                 pair = _split_container_by_duration(
                     current_component,
                     local_split_duration,
@@ -1934,11 +2278,11 @@ def split(argument, durations, cyclic=False):
                 remaining_components.__setitem__(slice(0, 0), right_list)
             shard = []
             offset_index += 1
-            current_shard_duration = Duration(0)
+            current_shard_duration = _duration.Duration(0)
         # if current component would not fill current shard
         elif candidate_shard_duration < next_split_point:
             shard.append(current_component)
-            duration_ = get.duration(current_component)
+            duration_ = _get.duration(current_component)
             current_shard_duration += duration_
             advance_to_next_offset = False
         else:
@@ -1952,16 +2296,16 @@ def split(argument, durations, cyclic=False):
     if len(remaining_components):
         result.append(remaining_components)
     # partition split components according to input durations
-    result = Sequence(result).flatten(depth=-1)
-    result = Selection(result).partition_by_durations(durations_copy, fill=enums.Exact)
+    result = _sequence.flatten(result, depth=-1)
+    result = _select.partition_by_durations(result, durations_copy, fill=_enums.EXACT)
     # return list of shards
-    assert all(isinstance(_, Selection) for _ in result)
+    assert all(isinstance(_, list) for _ in result)
     return result
 
 
 def swap(argument, container):
     r"""
-    Swaps mutation client for empty ``container``.
+    Swaps ``argument`` for empty ``container``.
 
     ..  container:: example
 
@@ -1971,7 +2315,7 @@ def swap(argument, container):
         >>> staff.append(abjad.Container("c'4 d'4 e'4"))
         >>> staff.append(abjad.Container("d'4 e'4 f'4"))
         >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0][0])
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
         >>> measures = staff[:]
         >>> abjad.slur(leaves)
@@ -1987,8 +2331,8 @@ def swap(argument, container):
                     \time 3/4
                     c'4
                     \p
-                    \<
                     (
+                    \<
                     d'4
                     e'4
                 }
@@ -2013,12 +2357,13 @@ def swap(argument, container):
             >>> print(string)
             \new Staff
             {
-                \times 4/6 {
+                \times 4/6
+                {
                     \time 3/4
                     c'4
                     \p
-                    \<
                     (
+                    \<
                     d'4
                     e'4
                     d'4
@@ -2031,16 +2376,16 @@ def swap(argument, container):
 
     Returns none.
     """
-    if isinstance(argument, Selection):
+    if isinstance(argument, list):
         donors = argument
     else:
-        donors = Selection(argument)
-    assert donors.are_contiguous_same_parent()
-    assert isinstance(container, Container)
+        assert isinstance(argument, _score.Component)
+        donors = [argument]
+    assert _are_contiguous_same_parent(donors)
+    assert isinstance(container, _score.Container)
     assert not container, repr(container)
-    donors._give_components_to_empty_container(container)
-    # donors._give_dominant_spanners([container])
-    donors._give_position_in_parent_to_container(container)
+    _give_components_to_empty_container(donors, container)
+    _give_position_in_parent_to_container(donors, container)
 
 
 def transpose(argument, interval):
@@ -2099,14 +2444,14 @@ def transpose(argument, interval):
 
     Returns none.
     """
-    named_interval = NamedInterval(interval)
-    for x in Iteration(argument).components((Note, Chord)):
-        if isinstance(x, Note):
-            old_written_pitch = x.note_head.written_pitch
+    named_interval = _pitch.NamedInterval(interval)
+    for item in _iterate.components(argument, (_score.Note, _score.Chord)):
+        if isinstance(item, _score.Note):
+            old_written_pitch = item.note_head.written_pitch
             new_written_pitch = old_written_pitch.transpose(named_interval)
-            x.note_head.written_pitch = new_written_pitch
+            item.note_head.written_pitch = new_written_pitch
         else:
-            for note_head in x.note_heads:
+            for note_head in item.note_heads:
                 old_written_pitch = note_head.written_pitch
                 new_written_pitch = old_written_pitch.transpose(named_interval)
                 note_head.written_pitch = new_written_pitch
@@ -2114,7 +2459,7 @@ def transpose(argument, interval):
 
 def wrap(argument, container):
     r"""
-    Wraps mutation client in empty ``container``.
+    Wraps ``argument`` in empty ``container``.
 
     ..  container:: example
 
@@ -2162,7 +2507,8 @@ def wrap(argument, container):
                 e'8
                 )
                 ]
-                \times 2/3 {
+                \times 2/3
+                {
                     c'8
                     [
                     (
@@ -2187,7 +2533,8 @@ def wrap(argument, container):
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 2/3 {
+            \times 2/3
+            {
                 c'8
                 d'8
                 e'8
@@ -2243,19 +2590,23 @@ def wrap(argument, container):
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     c'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     cs'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     d'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3 {
+                \times 2/3
+                {
                     ef'1
                 }
             }
@@ -2278,7 +2629,7 @@ def wrap(argument, container):
         wrap:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> leaves = abjad.select(staff).leaves()
+        >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> container = abjad.Container()
         >>> abjad.mutate.wrap(leaves, container)
@@ -2300,35 +2651,34 @@ def wrap(argument, container):
             }
 
         >>> prototype = abjad.TimeSignature
-        >>> for component in abjad.iterate(staff).components():
+        >>> for component in abjad.iterate.components(staff):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
-        <Staff{1}> 3/8
-        Container("c'4 d'4 e'4 f'4") 3/8
-        c'4 3/8
-        d'4 3/8
-        e'4 3/8
-        f'4 3/8
+        Staff("{ c'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Container("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("c'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("d'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("e'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Note("f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
 
     Returns none.
     """
-    if not isinstance(container, Container) or 0 < len(container):
+    if not isinstance(container, _score.Container) or 0 < len(container):
         raise Exception(f"must be empty container: {container!r}.")
-    if isinstance(argument, Component):
-        selection = Selection(argument)
+    if isinstance(argument, _score.Component):
+        selection = [argument]
     else:
         selection = argument
-    assert isinstance(selection, Selection), repr(selection)
-    parent, start, stop = selection._get_parent_and_start_stop_indices(
-        ignore_before_after_grace=True
+    parent, start, stop = _get_parent_and_start_stop_indices(
+        selection, ignore_before_after_grace=True
     )
-    if not selection.are_contiguous_logical_voice(ignore_before_after_grace=True):
+    if not _are_contiguous_logical_voice(selection, ignore_before_after_grace=True):
         message = "must be contiguous components in same logical voice:\n"
         message += f"   {selection!r}."
         raise Exception(message)
     container._components = list(selection)
-    container[:]._set_parents(container)
+    _set_parents(container)
     if parent is not None:
         parent._components.insert(start, container)
         container._set_parent(parent)

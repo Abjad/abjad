@@ -1,11 +1,9 @@
-import typing
-
 import pytest
 
 import abjad
 from abjad import math
 
-values: typing.List[typing.Tuple] = []
+values: list[tuple] = []
 
 values.extend((x, ((abs(x) % 12) or 12) * math.sign(x)) for x in range(-48, 49))
 

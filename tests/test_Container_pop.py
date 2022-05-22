@@ -11,7 +11,7 @@ def test_Container_pop_01():
     abjad.slur(voice[:])
     abjad.beam(voice[1:2], beam_lone_notes=True)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -29,7 +29,7 @@ def test_Container_pop_01():
 
     result = voice.pop(1)
 
-    assert abjad.lilypond(voice) == abjad.String.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
@@ -56,10 +56,10 @@ def test_Container_pop_02():
     """
 
     staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select(staff).leaves()
+    leaves = abjad.select.leaves(staff)
     abjad.beam(leaves)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -79,7 +79,7 @@ def test_Container_pop_02():
 
     sequential = staff.pop()
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -94,7 +94,7 @@ def test_Container_pop_02():
 
     assert abjad.wf.wellformed(staff)
 
-    assert abjad.lilypond(sequential) == abjad.String.normalize(
+    assert abjad.lilypond(sequential) == abjad.string.normalize(
         r"""
         {
             e'8

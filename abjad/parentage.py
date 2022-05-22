@@ -1,19 +1,8 @@
 import collections
-import typing
 
-from . import math
-from .duration import Multiplier
-from .ordereddict import OrderedDict
-from .score import (
-    AfterGraceContainer,
-    BeforeGraceContainer,
-    Component,
-    Score,
-    Staff,
-    StaffGroup,
-    Voice,
-)
-from .storage import StorageFormatManager
+from . import duration as _duration
+from . import math as _math
+from . import score as _score
 
 
 class Parentage(collections.abc.Sequence):
@@ -63,14 +52,12 @@ class Parentage(collections.abc.Sequence):
         ...
         Note('c4')
         Voice('c4', name='Bass_Voice')
-        <Staff-"Bass_Staff"{1}>
-        <Score<<2>>>
+        Staff('{ c4 }', name='Bass_Staff')
+        Score("{ { e'4 } } { { c4 } }", simultaneous=True)
 
     '''
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Selections"
 
     __slots__ = ("_component", "_components")
 
@@ -79,7 +66,7 @@ class Parentage(collections.abc.Sequence):
     def __init__(self, component=None):
         components = []
         if component is not None:
-            assert isinstance(component, Component), repr(component)
+            assert isinstance(component, _score.Component), repr(component)
             components.extend(component._get_parentage())
         self._component = component
         self._components = tuple(components)
@@ -100,11 +87,11 @@ class Parentage(collections.abc.Sequence):
         """
         return len(self.components)
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return StorageFormatManager(self).get_repr_format()
+        return f"{type(self).__name__}(component={self.component!r})"
 
     ### PRIVATE METHODS ###
 
@@ -116,7 +103,7 @@ class Parentage(collections.abc.Sequence):
 
     def _prolations(self):
         prolations = []
-        default = Multiplier(1)
+        default = _duration.Multiplier(1)
         for parent in self:
             prolation = getattr(parent, "implied_prolation", default)
             prolations.append(prolation)
@@ -125,7 +112,7 @@ class Parentage(collections.abc.Sequence):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def component(self) -> Component:
+    def component(self) -> _score.Component:
         r"""
         Gets component.
 
@@ -143,7 +130,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -194,16 +182,16 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.component)}")
-            <Staff{1}>                     <Staff{1}>
-            <Voice-"Music_Voice"{4}>       <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("c'4")                    Note("c'4")
-            BeforeGraceContainer("cs'16")        BeforeGraceContainer("cs'16")
+            BeforeGraceContainer("cs'16")  BeforeGraceContainer("cs'16")
             Note("cs'16")                  Note("cs'16")
             Note("d'4")                    Note("d'4")
-            <<<2>>>                        <<<2>>>
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")             Chord("<e' g'>16")
             Note("gs'16")                  Note("gs'16")
@@ -219,7 +207,7 @@ class Parentage(collections.abc.Sequence):
         return self._component
 
     @property
-    def components(self) -> typing.Tuple[Component]:
+    def components(self) -> tuple[_score.Component]:
         r"""
         Gets components.
 
@@ -237,7 +225,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -288,91 +277,91 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     components = parentage.components
             ...     print(f"{repr(component)}:")
             ...     for component_ in components:
             ...         print(f"    {repr(component_)}")
-            <Staff{1}>:
-                <Staff{1}>
-            <Voice-"Music_Voice"{4}>:
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("c'4"):
                 Note("c'4")
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             BeforeGraceContainer("cs'16"):
                 BeforeGraceContainer("cs'16")
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("cs'16"):
                 Note("cs'16")
                 BeforeGraceContainer("cs'16")
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("d'4"):
                 Note("d'4")
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
-            <<<2>>>:
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Chord("<e' g'>16"):
                 Chord("<e' g'>16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("gs'16"):
                 Note("gs'16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("a'16"):
                 Note("a'16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("as'16"):
                 Note("as'16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Voice("e'4", name='Music_Voice'):
                 Voice("e'4", name='Music_Voice')
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("e'4"):
                 Note("e'4")
                 Voice("e'4", name='Music_Voice')
-                <<<2>>>
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("f'4"):
                 Note("f'4")
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             AfterGraceContainer("fs'16"):
                 AfterGraceContainer("fs'16")
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("fs'16"):
                 Note("fs'16")
                 AfterGraceContainer("fs'16")
-                <Voice-"Music_Voice"{4}>
-                <Staff{1}>
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
         """
         return self._components
@@ -396,7 +385,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -447,16 +437,16 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.orphan)}")
-            <Staff{1}>                     True
-            <Voice-"Music_Voice"{4}>       False
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") True
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
             Note("c'4")                    False
-            BeforeGraceContainer("cs'16")        False
+            BeforeGraceContainer("cs'16")  False
             Note("cs'16")                  False
             Note("d'4")                    False
-            <<<2>>>                        False
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") False
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") False
             Chord("<e' g'>16")             False
             Note("gs'16")                  False
@@ -472,7 +462,7 @@ class Parentage(collections.abc.Sequence):
         return self.parent is None
 
     @property
-    def parent(self) -> typing.Optional[Component]:
+    def parent(self) -> _score.Component | None:
         r"""
         Gets parent.
 
@@ -490,7 +480,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -541,32 +532,32 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.parent)}")
-            <Staff{1}>                     None
-            <Voice-"Music_Voice"{4}>       <Staff{1}>
-            Note("c'4")                    <Voice-"Music_Voice"{4}>
-            BeforeGraceContainer("cs'16")        <Voice-"Music_Voice"{4}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("c'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            BeforeGraceContainer("cs'16")  Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("cs'16")                  BeforeGraceContainer("cs'16")
-            Note("d'4")                    <Voice-"Music_Voice"{4}>
-            <<<2>>>                        <Voice-"Music_Voice"{4}>
-            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") <<<2>>>
+            Note("d'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             Chord("<e' g'>16")             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("gs'16")                  OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("a'16")                   OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("as'16")                  OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Voice("e'4", name='Music_Voice') <<<2>>>
+            Voice("e'4", name='Music_Voice') Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             Note("e'4")                    Voice("e'4", name='Music_Voice')
-            Note("f'4")                    <Voice-"Music_Voice"{4}>
-            AfterGraceContainer("fs'16")   <Voice-"Music_Voice"{4}>
+            Note("f'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            AfterGraceContainer("fs'16")   Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
             Note("fs'16")                  AfterGraceContainer("fs'16")
 
         """
         return self.get(n=1)
 
     @property
-    def prolation(self) -> Multiplier:
+    def prolation(self) -> _duration.Multiplier:
         r"""
         Gets prolation.
 
@@ -588,7 +579,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[1][2])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -642,19 +634,19 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
-            <Staff{1}>                     Multiplier(1, 1)
-            <Voice-"Music_Voice"{2}>       Multiplier(1, 1)
-            Tuplet('3:2', "c'4 d'4 e'4") Multiplier(2, 3)
+            Staff("{ { 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Multiplier(1, 1)
+            Voice("{ 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='Music_Voice') Multiplier(1, 1)
+            Tuplet('3:2', "c'4 d'4 e'4")   Multiplier(2, 3)
             Note("c'4")                    Multiplier(2, 3)
-            BeforeGraceContainer("cs'16")        Multiplier(2, 3)
+            BeforeGraceContainer("cs'16")  Multiplier(2, 3)
             Note("cs'16")                  Multiplier(2, 3)
             Note("d'4")                    Multiplier(2, 3)
             Note("e'4")                    Multiplier(2, 3)
             Tuplet('3:2', "{ { <f' a'>8 b'8 } { f'4 } } g'4 a'4") Multiplier(2, 3)
-            <<<2>>>                        Multiplier(2, 3)
+            Container("{ <f' a'>8 b'8 } { f'4 }") Multiplier(2, 3)
             OnBeatGraceContainer("<f' a'>8 b'8") Multiplier(2, 3)
             Chord("<f' a'>8")              Multiplier(2, 3)
             Note("b'8")                    Multiplier(2, 3)
@@ -666,12 +658,12 @@ class Parentage(collections.abc.Sequence):
             Note("fs'16")                  Multiplier(2, 3)
 
         """
-        prolations = [Multiplier(1)] + self._prolations()
-        products = math.cumulative_products(prolations)
+        prolations = [_duration.Multiplier(1)] + self._prolations()
+        products = _math.cumulative_products(prolations)
         return products[-1]
 
     @property
-    def root(self) -> Component:
+    def root(self) -> _score.Component:
         r"""
         Gets root.
 
@@ -689,7 +681,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -740,30 +733,30 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.root)}")
-            <Staff{1}>                     <Staff{1}>
-            <Voice-"Music_Voice"{4}>       <Staff{1}>
-            Note("c'4")                    <Staff{1}>
-            BeforeGraceContainer("cs'16")        <Staff{1}>
-            Note("cs'16")                  <Staff{1}>
-            Note("d'4")                    <Staff{1}>
-            <<<2>>>                        <Staff{1}>
-            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") <Staff{1}>
-            Chord("<e' g'>16")             <Staff{1}>
-            Note("gs'16")                  <Staff{1}>
-            Note("a'16")                   <Staff{1}>
-            Note("as'16")                  <Staff{1}>
-            Voice("e'4", name='Music_Voice') <Staff{1}>
-            Note("e'4")                    <Staff{1}>
-            Note("f'4")                    <Staff{1}>
-            AfterGraceContainer("fs'16")   <Staff{1}>
-            Note("fs'16")                  <Staff{1}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("c'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            BeforeGraceContainer("cs'16")  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("cs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("d'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Chord("<e' g'>16")             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("gs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("a'16")                   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("as'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("e'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("e'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("f'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            AfterGraceContainer("fs'16")   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("fs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
         """
         root = self.get(n=-1)
-        assert isinstance(root, Component), repr(root)
+        assert isinstance(root, _score.Component), repr(root)
         return root
 
     ### PUBLIC METHODS ###
@@ -802,11 +795,11 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     count = parentage.count(abjad.Tuplet)
             ...     print(f"{repr(component):55} {repr(count)}")
-            <Staff{2}>                                              0
+            Staff("{ 2/3 c'2 { 2/3 d'8 e'8 f'8 } } { 2/3 c'4 d'4 e'4 }") 0
             Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")                1
             Note("c'2")                                             1
             Tuplet('3:2', "d'8 e'8 f'8")                            2
@@ -877,19 +870,19 @@ class Parentage(collections.abc.Sequence):
                     d''8
                 }
 
-            >>> for leaf in abjad.iterate(outer_red_voice).leaves():
+            >>> for leaf in abjad.iterate.leaves(outer_red_voice):
             ...     depth = abjad.get.parentage(leaf).count(abjad.Voice)
             ...     print(leaf, depth)
             ...
-            e''8 1
-            d''8 1
-            c''4 2
-            b'4 2
-            c''8 2
-            e'4 2
-            f'4 2
-            e'8 2
-            d''8 1
+            Note("e''8") 1
+            Note("d''8") 1
+            Note("c''4") 2
+            Note("b'4") 2
+            Note("c''8") 2
+            Note("e'4") 2
+            Note("f'4") 2
+            Note("e'8") 2
+            Note("d''8") 1
 
         ..  container:: example
 
@@ -905,7 +898,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -956,17 +950,17 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     count = parentage.count(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(count)}")
-            <Staff{1}>                     1
-            <Voice-"Music_Voice"{4}>       1
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") 1
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') 1
             Note("c'4")                    1
-            BeforeGraceContainer("cs'16")        1
+            BeforeGraceContainer("cs'16")  1
             Note("cs'16")                  1
             Note("d'4")                    1
-            <<<2>>>                        1
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") 1
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") 1
             Chord("<e' g'>16")             1
             Note("gs'16")                  1
@@ -981,13 +975,13 @@ class Parentage(collections.abc.Sequence):
         """
         n = 0
         if prototype is None:
-            prototype = Component
+            prototype = _score.Component
         for component in self:
             if isinstance(component, prototype):
                 n += 1
         return n
 
-    def get(self, prototype=None, n=0) -> typing.Optional[Component]:
+    def get(self, prototype=None, n=0) -> _score.Component | None:
         r"""
         Gets instance ``n`` of ``prototype`` in parentage.
 
@@ -1067,10 +1061,10 @@ class Parentage(collections.abc.Sequence):
                 Voice("c''4 b'4 c''8", name='Red_Voice')
 
                 >>> parentage.get(abjad.Component, 2)
-                <<<2>>>
+                Container("{ c''4 b'4 c''8 } { e'4 f'4 e'8 }")
 
                 >>> parentage.get(abjad.Component, 3)
-                <Voice-"Red_Voice"{4}>
+                Voice("e''8 d''8 { { c''4 b'4 c''8 } { e'4 f'4 e'8 } } d''8", name='Red_Voice')
 
                 Returns none with ``n`` greater than score depth:
 
@@ -1086,12 +1080,12 @@ class Parentage(collections.abc.Sequence):
                 Returns score root with ``n=-1``:
 
                 >>> parentage.get(abjad.Component, -1)
-                <Voice-"Red_Voice"{4}>
+                Voice("e''8 d''8 { { c''4 b'4 c''8 } { e'4 f'4 e'8 } } d''8", name='Red_Voice')
 
                 With other negative ``n``:
 
                 >>> parentage.get(abjad.Component, -2)
-                <<<2>>>
+                Container("{ c''4 b'4 c''8 } { e'4 f'4 e'8 }")
 
                 >>> parentage.get(abjad.Component, -3)
                 Voice("c''4 b'4 c''8", name='Red_Voice')
@@ -1125,7 +1119,7 @@ class Parentage(collections.abc.Sequence):
                 Voice("c''4 b'4 c''8", name='Red_Voice')
 
                 >>> parentage.get(abjad.Voice, 1)
-                <Voice-"Red_Voice"{4}>
+                Voice("e''8 d''8 { { c''4 b'4 c''8 } { e'4 f'4 e'8 } } d''8", name='Red_Voice')
 
                 >>> parentage.get(abjad.Voice, 2) is None
                 True
@@ -1136,7 +1130,7 @@ class Parentage(collections.abc.Sequence):
                 Negative ``n``:
 
                 >>> parentage.get(abjad.Voice, -1)
-                <Voice-"Red_Voice"{4}>
+                Voice("e''8 d''8 { { c''4 b'4 c''8 } { e'4 f'4 e'8 } } d''8", name='Red_Voice')
 
                 >>> parentage.get(abjad.Voice, -2)
                 Voice("c''4 b'4 c''8", name='Red_Voice')
@@ -1161,7 +1155,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1212,31 +1207,31 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     result = parentage.get(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(result)}")
-            <Staff{1}>                     <Staff{1}>
-            <Voice-"Music_Voice"{4}>       <Staff{1}>
-            Note("c'4")                    <Staff{1}>
-            BeforeGraceContainer("cs'16")        <Staff{1}>
-            Note("cs'16")                  <Staff{1}>
-            Note("d'4")                    <Staff{1}>
-            <<<2>>>                        <Staff{1}>
-            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") <Staff{1}>
-            Chord("<e' g'>16")             <Staff{1}>
-            Note("gs'16")                  <Staff{1}>
-            Note("a'16")                   <Staff{1}>
-            Note("as'16")                  <Staff{1}>
-            Voice("e'4", name='Music_Voice') <Staff{1}>
-            Note("e'4")                    <Staff{1}>
-            Note("f'4")                    <Staff{1}>
-            AfterGraceContainer("fs'16")   <Staff{1}>
-            Note("fs'16")                  <Staff{1}>
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("c'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            BeforeGraceContainer("cs'16")  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("cs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("d'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Chord("<e' g'>16")             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("gs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("a'16")                   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("as'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("e'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("e'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("f'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            AfterGraceContainer("fs'16")   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("fs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
         """
         if prototype is None:
-            prototype = (Component,)
+            prototype = (_score.Component,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
         if 0 <= n:
@@ -1255,7 +1250,7 @@ class Parentage(collections.abc.Sequence):
                     i -= 1
         return None
 
-    def logical_voice(self) -> OrderedDict:
+    def logical_voice(self) -> dict:
         r"""
         Gets logical voice.
 
@@ -1288,17 +1283,8 @@ class Parentage(collections.abc.Sequence):
 
             >>> note = voice[0]
             >>> parentage = abjad.get.parentage(note)
-            >>> logical_voice = parentage.logical_voice()
-            >>> string = abjad.storage(logical_voice)
-            >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', "Score-'Score'"),
-                    ('staff', "Staff-'Music_Staff'"),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
-                )
+            >>> parentage.logical_voice()
+            {'score': "Score-'Score'", 'staff group': '', 'staff': "Staff-'Music_Staff'", 'voice': "Voice-'Music_Voice'"}
 
         ..  container:: example
 
@@ -1330,74 +1316,29 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> lv = abjad.get.parentage(voice).logical_voice()
-            >>> string = abjad.storage(lv)
-            >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
-                )
+            >>> abjad.get.parentage(voice).logical_voice()
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
 
-            >>> lv = abjad.get.parentage(container_1).logical_voice()
-            >>> string = abjad.storage(lv)
-            >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
-                )
+            >>> abjad.get.parentage(container_1).logical_voice()
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
 
-            >>> lv = abjad.get.parentage(container_1[0]).logical_voice()
-            >>> string = abjad.storage(lv)
-            >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
-                )
+            >>> abjad.get.parentage(container_1[0]).logical_voice()
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
 
-            >>> lv = abjad.get.parentage(container_2).logical_voice()
-            >>> string = abjad.storage(lv)
-            >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
-                )
+            >>> abjad.get.parentage(container_2).logical_voice()
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
 
-            >>> lv = abjad.get.parentage(container_2[0]).logical_voice()
-            >>> string = abjad.storage(lv)
-            >>> print(string)
-            abjad.OrderedDict(
-                [
-                    ('score', ''),
-                    ('staff', ''),
-                    ('staff group', ''),
-                    ('voice', "Voice-'Music_Voice'"),
-                    ]
-                )
+            >>> abjad.get.parentage(container_2[0]).logical_voice()
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
 
         """
         keys = ("score", "staff group", "staff", "voice")
-        logical_voice = collections.OrderedDict.fromkeys(keys, "")
+        logical_voice = dict.fromkeys(keys, "")
         for component in self:
-            if isinstance(component, Voice):
+            if isinstance(component, _score.Voice):
                 if not logical_voice["voice"]:
                     logical_voice["voice"] = self._id_string(component)
-            elif isinstance(component, Staff):
+            elif isinstance(component, _score.Staff):
                 if not logical_voice["staff"]:
                     logical_voice["staff"] = self._id_string(component)
                     # explicit staff demands a nested voice:
@@ -1405,16 +1346,16 @@ class Parentage(collections.abc.Sequence):
                     # create implicit voice here with random integer
                     if not logical_voice["voice"]:
                         logical_voice["voice"] = str(id(component))
-            elif isinstance(component, StaffGroup):
+            elif isinstance(component, _score.StaffGroup):
                 if not logical_voice["staff group"]:
                     logical_voice["staff group"] = self._id_string(component)
-            elif isinstance(component, Score):
+            elif isinstance(component, _score.Score):
                 if not logical_voice["score"]:
                     logical_voice["score"] = self._id_string(component)
-        logical_voice_ = OrderedDict(logical_voice)
+        logical_voice_ = dict(logical_voice)
         return logical_voice_
 
-    def score_index(self) -> typing.Tuple[typing.Union[int, str], ...]:
+    def score_index(self) -> tuple[int | str, ...]:
         r"""
         Gets score index.
 
@@ -1446,12 +1387,12 @@ class Parentage(collections.abc.Sequence):
                     }
                 >>
 
-            >>> for component in abjad.select(score).components():
+            >>> for component in abjad.select.components(score):
             ...     parentage = abjad.get.parentage(component)
             ...     component, parentage.score_index()
             ...
-            (<Score<<2>>>, ())
-            (<Staff{1}>, (0,))
+            (Score("{ { 2/3 c''2 b'2 a'2 } } { c'2 d'2 }", simultaneous=True), ())
+            (Staff("{ 2/3 c''2 b'2 a'2 }"), (0,))
             (Tuplet('3:2', "c''2 b'2 a'2"), (0, 0))
             (Note("c''2"), (0, 0, 0))
             (Note("b'2"), (0, 0, 1))
@@ -1476,7 +1417,8 @@ class Parentage(collections.abc.Sequence):
             >>> container = abjad.AfterGraceContainer("fs'16")
             >>> abjad.attach(container, music_voice[3])
             >>> staff = abjad.Staff([music_voice])
-            >>> abjad.show(staff) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 
@@ -1527,17 +1469,17 @@ class Parentage(collections.abc.Sequence):
                     }
                 }
 
-            >>> for component in abjad.select(staff).components():
+            >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     score_index = parentage.score_index()
             ...     print(f"{repr(component):30} {repr(score_index)}")
-            <Staff{1}>                     ()
-            <Voice-"Music_Voice"{4}>       (0,)
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") ()
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') (0,)
             Note("c'4")                    (0, 0)
-            BeforeGraceContainer("cs'16")        (0, 0, 1, '-G')
+            BeforeGraceContainer("cs'16")  (0, 0, 1, '-G')
             Note("cs'16")                  (0, 0, 1, '-G', 0)
             Note("d'4")                    (0, 1)
-            <<<2>>>                        (0, 2)
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") (0, 2)
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") (0, 2, 0)
             Chord("<e' g'>16")             (0, 2, 0, 0)
             Note("gs'16")                  (0, 2, 0, 1)
@@ -1550,14 +1492,14 @@ class Parentage(collections.abc.Sequence):
             Note("fs'16")                  (0, 0, 3, '+G', 0)
 
         """
-        result: typing.List[typing.Union[int, str]] = []
+        result: list[int | str] = []
         current = self[0]
         for parent in self[1:]:
-            if isinstance(current, BeforeGraceContainer):
+            if isinstance(current, _score.BeforeGraceContainer):
                 tuple_ = type(self)(current._main_leaf).score_index()
                 list_ = list(tuple_) + ["-G"]
                 result[0:0] = list_
-            elif isinstance(current, AfterGraceContainer):
+            elif isinstance(current, _score.AfterGraceContainer):
                 tuple_ = type(self)(current._main_leaf).score_index()
                 list_ = list(tuple_) + ["+G"]
                 result[0:0] = list_

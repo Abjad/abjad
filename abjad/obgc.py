@@ -1,19 +1,19 @@
-import typing
+from . import _indentlib, _iterlib
+from . import bind as _bind
+from . import duration as _duration
+from . import indicators as _indicators
+from . import iterate as _iterate
+from . import mutate as _mutate
+from . import parentage as _parentage
+from . import score as _score
+from . import select as _select
+from . import spanners as _spanners
+from . import tag as _tag
+from . import tweaks as _tweaks
+from . import typings as _typings
 
-from . import _iterate, mutate, typings
-from .attach import attach, detach
-from .bundle import LilyPondFormatBundle
-from .duration import Duration
-from .overrides import LilyPondLiteral, tweak
-from .parentage import Parentage
-from .pitch.sets import PitchSet
-from .score import Chord, Container, Note, Voice
-from .select import Selection
-from .spanners import beam, slur
-from .tag import Tag
 
-
-class OnBeatGraceContainer(Container):
+class OnBeatGraceContainer(_score.Container):
     r"""
     On-beat grace container.
 
@@ -31,7 +31,8 @@ class OnBeatGraceContainer(Container):
         ... )
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -94,13 +95,13 @@ class OnBeatGraceContainer(Container):
         self,
         components=None,
         identifier: str = None,
-        leaf_duration: typings.DurationTyping = None,
+        leaf_duration: _typings.Duration = None,
         name: str = None,
-        tag: Tag = None,
+        tag: _tag.Tag = None,
     ) -> None:
         super().__init__(components, identifier=identifier, name=name, tag=tag)
         if leaf_duration is not None:
-            leaf_duration = Duration(leaf_duration)
+            leaf_duration = _duration.Duration(leaf_duration)
         self._leaf_duration = leaf_duration
 
     ### SPECIAL METHODS ###
@@ -131,10 +132,10 @@ class OnBeatGraceContainer(Container):
     # happen later.
     def _attach_lilypond_one_voice(self):
         anchor_leaf = self._get_on_beat_anchor_leaf()
-        anchor_voice = Parentage(anchor_leaf).get(Voice)
-        final_anchor_leaf = _iterate._get_leaf(anchor_voice, -1)
-        next_leaf = _iterate._get_leaf(final_anchor_leaf, 1)
-        literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
+        anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
+        final_anchor_leaf = _iterlib._get_leaf(anchor_voice, -1)
+        next_leaf = _iterlib._get_leaf(final_anchor_leaf, 1)
+        literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
         if next_leaf._has_indicator(literal):
             return
         if isinstance(next_leaf._parent, OnBeatGraceContainer):
@@ -142,55 +143,44 @@ class OnBeatGraceContainer(Container):
         if self._is_on_beat_anchor_voice(next_leaf._parent):
             return
         site = "abjad.OnBeatGraceContainer._attach_lilypond_one_voice()"
-        tag = Tag(site)
-        tag = tag.append(Tag("ONE_VOICE_COMMAND"))
-        attach(literal, next_leaf, tag=tag)
+        tag = _tag.Tag(site)
+        tag = tag.append(_tag.Tag("ONE_VOICE_COMMAND"))
+        _bind.attach(literal, next_leaf, tag=tag)
 
     def _format_invocation(self):
         return r'\context Voice = "On_Beat_Grace_Container"'
 
-    def _format_open_brackets_slot(self, bundle):
-        indent = LilyPondFormatBundle.indent
+    def _format_open_brackets_site(self, contributions):
         result = []
         if self.identifier:
             open_bracket = f"{{   {self.identifier}"
         else:
             open_bracket = "{"
         brackets_open = [open_bracket]
-        overrides = bundle.grob_overrides
-        settings = bundle.context_settings
+        overrides = contributions.grob_overrides
+        settings = contributions.context_settings
         if overrides or settings:
             contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
-            contributions = [indent + _ for _ in overrides]
+            result.extend(contributions)
+            contributions = [_indentlib.INDENT + _ for _ in overrides]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("overrides", "overrides")
-            result.append((identifier_pair, contributions))
-            contributions = [indent + _ for _ in settings]
+            result.extend(contributions)
+            contributions = [_indentlib.INDENT + _ for _ in settings]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("settings", "settings")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
             contributions = [f"}} {brackets_open[0]}"]
             contributions = ["}", open_bracket]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
+            result.extend(contributions)
         else:
             contribution = self._format_invocation()
             contribution += f" {brackets_open[0]}"
             contributions = [contribution]
             contributions = [self._format_invocation(), open_bracket]
             contributions = self._tag_strings(contributions)
-            contributions = tuple(contributions)
-            identifier_pair = ("context_brackets", "open")
-            result.append((identifier_pair, contributions))
-        return tuple(result)
+            result.extend(contributions)
+        return result
 
     def _get_on_beat_anchor_leaf(self):
         container = self._parent
@@ -203,7 +193,7 @@ class OnBeatGraceContainer(Container):
         else:
             assert container.index(self) == 1
             anchor_voice = container[0]
-        anchor_leaf = Selection(anchor_voice).leaf(0, grace=False)
+        anchor_leaf = _select.leaf(anchor_voice, 0, grace=False)
         return anchor_leaf
 
     @staticmethod
@@ -211,7 +201,7 @@ class OnBeatGraceContainer(Container):
         wrapper = CONTAINER._parent
         if wrapper is None:
             return False
-        if not isinstance(CONTAINER, Voice):
+        if not isinstance(CONTAINER, _score.Voice):
             return False
         return OnBeatGraceContainer._is_on_beat_wrapper(wrapper)
 
@@ -222,42 +212,42 @@ class OnBeatGraceContainer(Container):
         if len(CONTAINER) != 2:
             return False
         if isinstance(CONTAINER[0], OnBeatGraceContainer) and isinstance(
-            CONTAINER[1], Voice
+            CONTAINER[1], _score.Voice
         ):
             return True
-        if isinstance(CONTAINER[0], Voice) and isinstance(
+        if isinstance(CONTAINER[0], _score.Voice) and isinstance(
             CONTAINER[1], OnBeatGraceContainer
         ):
             return True
         return False
 
     def _match_anchor_leaf(self):
-        first_grace = _iterate._get_leaf(self, 0)
-        if not isinstance(first_grace, (Note, Chord)):
+        first_grace = _iterlib._get_leaf(self, 0)
+        if not isinstance(first_grace, _score.Note | _score.Chord):
             message = "must start with note or chord:\n"
             message += f"    {repr(self)}"
             raise Exception(message)
         anchor_leaf = self._get_on_beat_anchor_leaf()
-        if isinstance(anchor_leaf, (Note, Chord)) and isinstance(
-            first_grace, (Note, Chord)
+        if isinstance(anchor_leaf, _score.Note | _score.Chord) and isinstance(
+            first_grace, (_score.Note, _score.Chord)
         ):
-            if isinstance(first_grace, Note):
-                chord = Chord(first_grace)
-                mutate.replace(first_grace, chord)
+            if isinstance(first_grace, _score.Note):
+                chord = _score.Chord(first_grace)
+                _mutate.replace(first_grace, chord)
                 first_grace = chord
-            selection = Selection(anchor_leaf)
-            anchor_pitches = PitchSet.from_selection(selection)
+            generator = _iterate.pitches(anchor_leaf)
+            anchor_pitches = list(generator)
             highest_pitch = list(sorted(anchor_pitches))[-1]
             if highest_pitch not in first_grace.note_heads:
                 first_grace.note_heads.append(highest_pitch)
             grace_mate_head = first_grace.note_heads.get(highest_pitch)
-            tweak(grace_mate_head).font_size = 0
-            tweak(grace_mate_head).transparent = True
+            _tweaks.tweak(grace_mate_head, r"\tweak font-size 0")
+            _tweaks.tweak(grace_mate_head, r"\tweak transparent ##t")
 
     def _set_leaf_durations(self):
         if self.leaf_duration is None:
             return
-        for leaf in Selection(self).leaves():
+        for leaf in _select.leaves(self):
             duration = leaf._get_duration()
             if duration != self.leaf_duration:
                 multiplier = self.leaf_duration / duration
@@ -266,14 +256,11 @@ class OnBeatGraceContainer(Container):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def leaf_duration(self) -> typing.Optional[Duration]:
+    def leaf_duration(self) -> _duration.Duration | None:
         """
         Gets leaf duration.
         """
         return self._leaf_duration
-
-
-### FACTORY FUNCTIONS ###
 
 
 def on_beat_grace_container(
@@ -304,7 +291,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -364,7 +352,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -422,7 +411,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -483,7 +473,8 @@ def on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -550,7 +541,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -614,7 +606,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -676,7 +669,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -741,7 +735,8 @@ def on_beat_grace_container(
         ...     leaf_duration=(1, 30),
         ... )
         >>> staff = abjad.Staff([music_voice])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -809,11 +804,10 @@ def on_beat_grace_container(
     """
 
     def _site(n):
-        return Tag(f"abjad.on_beat_grace_container({n})")
+        return _tag.Tag(f"abjad.on_beat_grace_container({n})")
 
-    assert isinstance(anchor_voice_selection, Selection)
-    if not anchor_voice_selection.are_contiguous_same_parent(
-        ignore_before_after_grace=True
+    if not _mutate._are_contiguous_same_parent(
+        anchor_voice_selection, ignore_before_after_grace=True
     ):
         message = "selection must be contiguous in same parent:\n"
         message += f"   {repr(anchor_voice_selection)}"
@@ -821,16 +815,14 @@ def on_beat_grace_container(
     on_beat_grace_container = OnBeatGraceContainer(
         contents, leaf_duration=leaf_duration
     )
-    if not isinstance(anchor_voice_selection, Selection):
-        raise Exception(f"must be selection:\n {repr(anchor_voice_selection)}")
-    anchor_leaf = _iterate._get_leaf(anchor_voice_selection, 0)
-    anchor_voice = Parentage(anchor_leaf).get(Voice)
+    anchor_leaf = _iterlib._get_leaf(anchor_voice_selection, 0)
+    anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
     if anchor_voice.name is None:
         raise Exception(f"anchor voice must be named:\n   {repr(anchor_voice)}")
-    anchor_voice_insert = Voice(name=anchor_voice.name)
-    mutate.wrap(anchor_voice_selection, anchor_voice_insert)
-    container = Container(simultaneous=True)
-    mutate.wrap(anchor_voice_insert, container)
+    anchor_voice_insert = _score.Voice(name=anchor_voice.name)
+    _mutate.wrap(anchor_voice_selection, anchor_voice_insert)
+    container = _score.Container(simultaneous=True)
+    _mutate.wrap(anchor_voice_insert, container)
     container.insert(0, on_beat_grace_container)
     on_beat_grace_container._match_anchor_leaf()
     on_beat_grace_container._set_leaf_durations()
@@ -842,36 +834,38 @@ def on_beat_grace_container(
         raise Exception(message)
     if font_size is not None:
         string = rf"\set fontSize = #{font_size}"
-        literal = LilyPondLiteral(string)
-        attach(literal, on_beat_grace_container, tag=_site(1))
+        literal = _indicators.LilyPondLiteral(string)
+        _bind.attach(literal, on_beat_grace_container, tag=_site(1))
     if not do_not_beam:
-        beam(on_beat_grace_container[:])
+        _spanners.beam(on_beat_grace_container[:])
     if not do_not_slash:
-        literal = LilyPondLiteral(r"\slash")
-        attach(literal, on_beat_grace_container[0], tag=_site(2))
+        literal = _indicators.LilyPondLiteral(r"\slash")
+        _bind.attach(literal, on_beat_grace_container[0], tag=_site(2))
     if not do_not_slur:
-        slur(on_beat_grace_container[:])
+        _spanners.slur(on_beat_grace_container[:])
     voice_number_to_string = {
         1: r"\voiceOne",
         2: r"\voiceTwo",
         3: r"\voiceThree",
         4: r"\voiceFour",
     }
-    first_grace = _iterate._get_leaf(on_beat_grace_container, 0)
-    one_voice_literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
+    first_grace = _iterlib._get_leaf(on_beat_grace_container, 0)
+    one_voice_literal = _indicators.LilyPondLiteral(
+        r"\oneVoice", site="absolute_before"
+    )
     string = voice_number_to_string.get(grace_voice_number, None)
     if string is not None:
         literal
-        detach(one_voice_literal, anchor_leaf)
-        attach(LilyPondLiteral(string), first_grace, tag=_site(3))
+        _bind.detach(one_voice_literal, anchor_leaf)
+        _bind.attach(_indicators.LilyPondLiteral(string), first_grace, tag=_site(3))
     string = voice_number_to_string.get(anchor_voice_number, None)
     if string is not None:
-        detach(one_voice_literal, anchor_leaf)
-        attach(LilyPondLiteral(string), anchor_leaf, tag=_site(4))
+        _bind.detach(one_voice_literal, anchor_leaf)
+        _bind.attach(_indicators.LilyPondLiteral(string), anchor_leaf, tag=_site(4))
     if not do_not_stop_polyphony:
-        last_anchor_leaf = _iterate._get_leaf(anchor_voice_selection, -1)
-        next_leaf = _iterate._get_leaf(last_anchor_leaf, 1)
+        last_anchor_leaf = _iterlib._get_leaf(anchor_voice_selection, -1)
+        next_leaf = _iterlib._get_leaf(last_anchor_leaf, 1)
         if next_leaf is not None:
-            literal = LilyPondLiteral(r"\oneVoice", format_slot="absolute_before")
-            attach(literal, next_leaf, tag=_site(5))
+            literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
+            _bind.attach(literal, next_leaf, tag=_site(5))
     return on_beat_grace_container

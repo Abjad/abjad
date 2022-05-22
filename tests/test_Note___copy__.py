@@ -57,7 +57,7 @@ def test_Note___copy___04():
     grace_container_1 = abjad.AfterGraceContainer([abjad.Note("d'32")])
     abjad.attach(grace_container_1, note_1)
 
-    assert abjad.lilypond(note_1) == abjad.String.normalize(
+    assert abjad.lilypond(note_1) == abjad.string.normalize(
         r"""
         \afterGrace
         c'4
@@ -70,7 +70,7 @@ def test_Note___copy___04():
     note_2 = copy.copy(note_1)
     grace_container_2 = abjad.get.after_grace_container(note_2)
 
-    assert abjad.lilypond(note_2) == abjad.String.normalize(
+    assert abjad.lilypond(note_2) == abjad.string.normalize(
         r"""
         \afterGrace
         c'4
@@ -97,7 +97,7 @@ def test_Note___copy___05():
     abjad.attach(grace, note)
     abjad.override(note).NoteHead.color = "#red"
 
-    assert abjad.lilypond(note) == abjad.String.normalize(
+    assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         \grace {
             d'16
@@ -127,7 +127,7 @@ def test_Note___copy___06():
     abjad.attach(grace, note)
     abjad.override(note).NoteHead.color = "#red"
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -164,11 +164,11 @@ def test_Note___copy___07():
     """
 
     note = abjad.Note("c'4")
-    abjad.tweak(note.note_head).color = "#red"
-    abjad.tweak(note.note_head).Accidental.color = "#red"
+    abjad.tweak(note.note_head, r"\tweak color #red")
+    abjad.tweak(note.note_head, r"\tweak Accidental.color #red")
     copied_note = copy.copy(note)
     string = abjad.lilypond(copied_note)
-    assert string == abjad.String.normalize(
+    assert string == abjad.string.normalize(
         r"""
         \tweak Accidental.color #red
         \tweak color #red

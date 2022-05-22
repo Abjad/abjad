@@ -364,23 +364,30 @@ can start building our score.
     ...         score["RH_Voice"].append(treble)
     ...         score["LH_Voice"].append(bass)
     ...     time_signature = abjad.TimeSignature((3, 8))
-    ...     leaf = abjad.select(score["RH_Voice"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["RH_Voice"], 0)
     ...     abjad.attach(time_signature, leaf)
     ...     bar_line = abjad.BarLine("|.")
-    ...     leaf = abjad.select(score["LH_Voice"]).leaf(-1)
+    ...     leaf = abjad.select.leaf(score["LH_Voice"], -1)
     ...     abjad.attach(bar_line, leaf)
-    ...     leaf = abjad.select(score["LH_Voice"]).leaf(0)
+    ...     leaf = abjad.select.leaf(score["LH_Voice"], 0)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, leaf)
-    ...     groups = abjad.select(score["RH_Voice"]).leaves().group_by_measure()
-    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
-    ...     abjad.tweak(strut).staff_padding = 10
-    ...     abjad.tweak(strut).transparent = True
-    ...     abjad.attach(strut, groups[0][0])
-    ...     strut = abjad.Markup(r"\markup A", direction=abjad.Up, literal=True)
-    ...     abjad.tweak(strut).staff_padding = 10
-    ...     abjad.tweak(strut).transparent = True
-    ...     abjad.attach(strut, groups[-1][0])
+    ...     leaves = abjad.select.leaves(score["RH_Voice"])
+    ...     groups = abjad.select.group_by_measure(leaves)
+    ...     strut = abjad.Markup(r"\markup A")
+    ...     bundle = abjad.bundle(
+    ...         strut,
+    ...         r"- \tweak staff-padding 10",
+    ...         r"- \tweak transparent ##t",
+    ...     )
+    ...     abjad.attach(bundle, groups[0][0], direction=abjad.UP)
+    ...     strut = abjad.Markup(r"\markup A")
+    ...     bundle = abjad.bundle(
+    ...         strut,
+    ...         r"- \tweak staff-padding 10",
+    ...         r"- \tweak transparent ##t",
+    ...     )
+    ...     abjad.attach(bundle, groups[-1][0], direction=abjad.UP)
     ...     return score
 
 ::
@@ -390,22 +397,21 @@ can start building our score.
     ...     string = "-".join(string)
     ...     string = f"[{string}]"
     ...     string = r'\header { subtitle = \markup "' + string + '" }'
+    ...     string += "\n"
     ...     return string
 
 ::
 
-    >>> lilypond_preamble = r"""#(set-global-staff-size 16)
+    >>> preamble = r"""#(set-global-staff-size 16)
     ... 
     ... \layout { indent = #0 }
     ...
-    ... \header { title = \markup "Ein Musikalisches Wuerfelspiel" }"""
+    ... \header { title = \markup "Ein Musikalisches Wuerfelspiel" }
+    ... """
 
 ----
 
 **Example 1.** Here's the minuet resulting from a random seed of 1:
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> random.seed(1)
     >>> choices = [random.randint(1, _) for _ in counts]
@@ -413,15 +419,12 @@ can start building our score.
 
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile(items=[lilypond_preamble, subtitle,  score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, subtitle,  score])
     >>> abjad.show(lilypond_file)
 
 ----
 
 **Example 2.** Here's the minuet resulting from a random seed of 2:
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> random.seed(2)
     >>> choices = [random.randint(1, _) for _ in counts]
@@ -429,20 +432,17 @@ can start building our score.
 
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile(items=[lilypond_preamble, subtitle, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, subtitle, score])
     >>> abjad.show(lilypond_file)
 
 ----
 
 **Example 3.** And here's a minuet resulting from measure choices made by hand:
 
-..  book::
-    :lilypond/no-stylesheet:
-
     >>> choices = [9, 10, 9, 10, 9, 10, 9, 2, 9, 10, 9, 10, 9, 10, 9, 2]
     >>> score = make_score(choices)
     >>> subtitle = make_subtitle(choices)
-    >>> lilypond_file = abjad.LilyPondFile(items=[lilypond_preamble, subtitle, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, subtitle, score])
     >>> abjad.show(lilypond_file)
 
 :author:`[Oberholtzer (2.19), Bača (3.2); attr. W. A. Mozart.]`

@@ -5,7 +5,7 @@ import sys
 import setuptools
 
 CURRENT_PYTHON = sys.version_info[:2]
-REQUIRED_PYTHON = (3, 6)
+REQUIRED_PYTHON = (3, 10)
 
 if CURRENT_PYTHON < REQUIRED_PYTHON:
     sys.stderr.write(
@@ -54,17 +54,14 @@ author_email = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "License :: OSI Approved :: GNU General Public License (GPL)",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Artistic Software",
 ]
 
 extras_require = {
-    "ipython": ["abjad-ext-ipython>=3.2"],
-    "nauert": ["abjad-ext-nauert==3.3"],
-    "rmakers": ["abjad-ext-rmakers==3.3"],
+    "nauert": ["abjad-ext-nauert>=3.9"],
+    "rmakers": ["abjad-ext-rmakers>=3.9"],
 }
 
 keywords = [
@@ -74,19 +71,18 @@ keywords = [
 ]
 
 install_requires = [
-    "black>=20.8b1",
-    "flake8",
-    "isort",
-    "mypy>=0.770",
-    "ply",
-    "pytest>=5.4.3",
-    "pytest-cov>=2.7.1",
-    "pytest-helpers-namespace",
-    "quicktions>=1.3",
-    "roman",
-    "six",
-    "sphinx-autodoc-typehints",
-    "uqbar>=0.4.4, <0.5.0",
+    "black>=22.1.0",
+    "flake8>=4.0.1",
+    "isort>=5.10.1",
+    "mypy>=0.940",
+    "ply>=3.11",
+    "pytest>=6.2.5",
+    "pytest-cov>=3.0.0",
+    "pytest-helpers-namespace>=2021.12.29",
+    "quicktions>=1.13",
+    "roman>=1.4",
+    "sphinx-autodoc-typehints>=1.16.0",
+    "uqbar>=0.5.9",
 ]
 
 if __name__ == "__main__":

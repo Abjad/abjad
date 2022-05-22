@@ -21,7 +21,7 @@ This will show the single-SVG cropped version of the 4-page staff:
 
     >>> multipage_staff = abjad.Staff("c'1 d'1 e'1 f'1")
     >>> for note in multipage_staff:
-    ...     page_break = abjad.LilyPondLiteral(r"\pageBreak", format_slot="after")
+    ...     page_break = abjad.LilyPondLiteral(r"\pageBreak", site="after")
     ...     abjad.attach(page_break, note)
     ...
     >>> abjad.show(multipage_staff)

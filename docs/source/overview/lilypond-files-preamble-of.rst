@@ -9,7 +9,7 @@ score:
     >>> voice = abjad.Voice("c'4 d'4 e'4 f'4", name="Violin_Voice")
     >>> staff = abjad.Staff([voice], name="Violin_Staff")
     >>> score = abjad.Score([staff], name="Score")
-    >>> lilypond_file = abjad.LilyPondFile(items=[score])
+    >>> lilypond_file = abjad.LilyPondFile([score])
 
 LilyPond version and language commands are inserted automatically:
 
@@ -38,7 +38,7 @@ Bundle the preamble and score like this:
 
 ::
 
-    >>> lilypond_file = abjad.LilyPondFile(items=[preamble, score])
+    >>> lilypond_file = abjad.LilyPondFile([preamble, score])
 
 Then everything appears together:
 
@@ -49,8 +49,5 @@ Then everything appears together:
 
 Click on the image below. Abjad generates this same LilyPond input behind the scenes when
 you call show:
-
-..  book::
-    :lilypond/no-stylesheet:
 
     >>> abjad.show(lilypond_file)

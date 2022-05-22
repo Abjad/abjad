@@ -13,13 +13,13 @@ def test_mutate_replace_01():
     abjad.beam(staff[2:])
     abjad.hairpin("< !", staff[:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
             c'8
-            \<
             [
+            \<
             d'8
             ]
             e'8
@@ -32,24 +32,23 @@ def test_mutate_replace_01():
     ), print(abjad.lilypond(staff))
 
     old_notes = staff[1:3]
-    new_notes = abjad.Selection(
-        [
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-        ]
-    )
+    new_notes = [
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+    ]
+
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
             c'8
-            \<
             [
+            \<
             c''16
             c''16
             c''16
@@ -76,7 +75,7 @@ def test_mutate_replace_02():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -93,18 +92,16 @@ def test_mutate_replace_02():
     ), print(abjad.lilypond(staff))
 
     old_notes = staff[:1]
-    new_notes = abjad.Selection(
-        [
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-        ]
-    )
+    new_notes = [
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+    ]
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -137,7 +134,7 @@ def test_mutate_replace_03():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -154,18 +151,16 @@ def test_mutate_replace_03():
     ), print(abjad.lilypond(staff))
 
     old_notes = staff[:2]
-    new_notes = abjad.Selection(
-        [
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-        ]
-    )
+    new_notes = [
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+    ]
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -196,7 +191,7 @@ def test_mutate_replace_04():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -213,18 +208,16 @@ def test_mutate_replace_04():
     ), print(abjad.lilypond(staff))
 
     old_notes = staff[:3]
-    new_notes = abjad.Selection(
-        [
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-        ]
-    )
+    new_notes = [
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+    ]
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -253,7 +246,7 @@ def test_mutate_replace_05():
     abjad.beam(staff[:2])
     abjad.beam(staff[2:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -270,18 +263,16 @@ def test_mutate_replace_05():
     ), print(abjad.lilypond(staff))
 
     old_notes = staff[:]
-    new_notes = abjad.Selection(
-        [
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-            abjad.Note("c''16"),
-        ]
-    )
+    new_notes = [
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+        abjad.Note("c''16"),
+    ]
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -311,7 +302,7 @@ def test_mutate_replace_06():
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8")])
     abjad.beam(staff[0][:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
@@ -332,7 +323,7 @@ def test_mutate_replace_06():
     voice = voice_selection[0]
     abjad.mutate.replace(voice_selection, staff[0][:])
 
-    assert abjad.lilypond(staff) == abjad.String.normalize(
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {

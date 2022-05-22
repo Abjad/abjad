@@ -1,18 +1,16 @@
 import typing
 
-from . import _inspect, enums, illustrators, score, typings
-from .bundle import LilyPondFormatBundle
-from .markups import Markup
-from .new import new
-from .ratio import Ratio
-from .select import Selection
-from .storage import StorageFormatManager
+from . import _getlib
+from . import contributions as _contributions
+from . import illustrators as _illustrators
+from . import indicators as _indicators
+from . import ratio as _ratio
+from . import score as _score
 
 
 class MetricModulation:
     r"""
     Metric modulation.
-
 
     ..  container:: example
 
@@ -21,13 +19,17 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'8."),
         ...     right_rhythm=abjad.Note("c'4."),
-        ...     )
+        ... )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [r'\include "abjad.ily"', metric_modulation]
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation #3 #1 #2 #1 #'(1 . 1)
 
     ..  container:: example
@@ -37,25 +39,33 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Tuplet((4, 5), "c'4"),
         ...     right_rhythm=abjad.Note("c'4"),
-        ...     )
+        ... )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [r'\include "abjad.ily"', metric_modulation]
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #4 #5 #2 #0 #'(1 . 1)
 
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=abjad.Tuplet((4, 5), "c'4"),
-        ...     )
+        ... )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [r'\include "abjad.ily"', metric_modulation]
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation-tuplet-rhs #2 #0 #2 #0 #4 #5 #'(1 . 1)
 
     ..  container:: example
@@ -65,13 +75,17 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c16."),
         ...     right_rhythm=abjad.Tuplet((2, 3), "c8"),
-        ...     )
+        ... )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [r'\include "abjad.ily"', metric_modulation]
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup \abjad-metric-modulation-tuplet-rhs #4 #1 #3 #0 #2 #3 #'(1 . 1)
 
     ..  container:: example
@@ -83,23 +97,27 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=notes,
-        ...     )
+        ... )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [r'\include "abjad.ily"', metric_modulation]
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup { \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -120,7 +138,8 @@ class MetricModulation:
                             c'4
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -129,14 +148,14 @@ class MetricModulation:
             \hspace #-0.5
             \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -159,7 +178,8 @@ class MetricModulation:
                             c'16
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -175,23 +195,27 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=tuplet,
-        ...     )
+        ... )
 
-        >>> abjad.show(metric_modulation) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile(
+        ...     [r'\include "abjad.ily"', metric_modulation]
+        ... )
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> print(abjad.lilypond(metric_modulation))
+            >>> string = abjad.lilypond(metric_modulation)
+            >>> print(string)
             \markup { \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -212,7 +236,8 @@ class MetricModulation:
                             c'4
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -221,14 +246,14 @@ class MetricModulation:
             \hspace #-0.5
             \score
                 {
-                    \new Score
+                    \context Score = "Score"
                     \with
                     {
                         \override SpacingSpanner.spacing-increment = 0.5
                         proportionalNotationDuration = ##f
                     }
                     <<
-                        \new RhythmicStaff
+                        \context RhythmicStaff = "Rhythmic_Staff"
                         \with
                         {
                             \remove Time_signature_engraver
@@ -247,14 +272,16 @@ class MetricModulation:
                         }
                         {
                             \tweak edge-height #'(0.7 . 0)
-                            \times 2/3 {
+                            \times 2/3
+                            {
                                 c'4
                                 ~
                                 c'16
                             }
                         }
                     >>
-                    \layout {
+                    \layout
+                    {
                         indent = 0
                         ragged-right = ##t
                     }
@@ -272,11 +299,12 @@ class MetricModulation:
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c4"),
         ...     right_rhythm=abjad.Note("c8."),
-        ...     )
-        >>> abjad.attach(metric_modulation, staff[3])
+        ... )
+        >>> abjad.attach(metric_modulation, staff[3], direction=abjad.UP)
         >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
-        >>> abjad.show(score) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -303,8 +331,6 @@ class MetricModulation:
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = (
         "_hide",
         "_left_markup",
@@ -314,36 +340,32 @@ class MetricModulation:
         "_scale",
     )
 
-    ### INITIALIZER ###
+    directed: typing.ClassVar[bool] = True
 
     def __init__(
         self,
         left_rhythm,
         right_rhythm,
         *,
-        hide: bool = None,
-        left_markup: Markup = None,
-        right_markup: Markup = None,
-        scale: typing.Tuple[typings.Number, typings.Number] = (1, 1),
+        hide: bool = False,
+        left_markup: _indicators.Markup = None,
+        right_markup: _indicators.Markup = None,
+        scale: tuple[int | float, int | float] = (1, 1),
     ) -> None:
-        if hide is not None:
-            hide = bool(hide)
-        self._hide = hide
+        self._hide = bool(hide)
         left_rhythm = self._initialize_rhythm(left_rhythm)
         self._left_rhythm = left_rhythm
         right_rhythm = self._initialize_rhythm(right_rhythm)
         self._right_rhythm = right_rhythm
         self._right_rhythm = right_rhythm
         if left_markup is not None:
-            assert isinstance(left_markup, Markup)
+            assert isinstance(left_markup, _indicators.Markup)
         self._left_markup = left_markup
         if right_markup is not None:
-            assert isinstance(right_markup, Markup)
+            assert isinstance(right_markup, _indicators.Markup)
         self._right_markup = right_markup
         assert isinstance(scale, tuple), repr(scale)
         self._scale = scale
-
-    ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
         """
@@ -355,24 +377,24 @@ class MetricModulation:
             >>> metric_modulation_1 = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation_2 = abjad.MetricModulation(
             ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
-            ...     )
+            ... )
             >>> maker = abjad.NoteMaker()
             >>> notes = maker([0], [(5, 16)])
             >>> metric_modulation_3 = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=notes,
-            ...     )
+            ... )
 
             >>> metric_modulation_1.ratio
-            Ratio((2, 3))
+            Ratio(numbers=(2, 3))
             >>> metric_modulation_2.ratio
-            Ratio((2, 3))
+            Ratio(numbers=(2, 3))
             >>> metric_modulation_3.ratio
-            Ratio((4, 5))
+            Ratio(numbers=(4, 5))
 
             >>> metric_modulation_1 == metric_modulation_1
             True
@@ -405,38 +427,14 @@ class MetricModulation:
     def __hash__(self) -> int:
         """
         Hashes metric modulation.
-
-        Redefined in tandem with __eq__.
         """
-        hash_values = StorageFormatManager(self).get_hash_values()
-        try:
-            result = hash(hash_values)
-        except TypeError:
-            raise TypeError(f"unhashable type: {self}")
-        return result
+        return hash(self.__class__.__name__ + str(self))
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation.
+        Gets repr.
         """
-        return StorageFormatManager(self).get_repr_format()
-
-    def __str__(self) -> str:
-        r"""
-        Gets string representation of metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
-            ...     right_rhythm=abjad.Note("c'4"),
-            ...     )
-
-            >>> print(str(metric_modulation))
-            \markup \abjad-metric-modulation-tuplet-lhs #2 #0 #2 #3 #2 #0 #'(1 . 1)
-
-        """
-        return str(self._get_markup())
+        return f"{type(self).__name__}(left_rhythm={self.left_rhythm!r}, right_rhythm={self.right_rhythm!r})"
 
     ### PRIVATE METHODS ###
 
@@ -469,32 +467,33 @@ class MetricModulation:
         return string
 
     def _get_lilypond_format(self):
-        return str(self)
+        markup = self._get_markup()
+        return markup.string
 
-    def _get_lilypond_format_bundle(self, component=None):
-        bundle = LilyPondFormatBundle()
+    def _get_contributions(self, *, component=None, wrapper=None):
+        contributions = _contributions.ContributionsBySite()
         if not self.hide:
             markup = self._get_markup()
-            markup = new(markup, direction=enums.Up)
-            markup_format_pieces = markup._get_format_pieces()
-            bundle.after.markup.extend(markup_format_pieces)
-        return bundle
+            contributions = markup._get_contributions(
+                component=component, wrapper=wrapper
+            )
+        return contributions
 
     def _get_markup(self):
         string = self._get_lilypond_command_string()
         if string is not None:
-            markup = Markup(rf"\markup {string}", literal=True)
+            markup = _indicators.Markup(rf"\markup {string}")
             return markup
         strings = []
-        string = illustrators.selection_to_score_markup_string(self.left_rhythm)
+        string = _illustrators.selection_to_score_markup_string(self.left_rhythm)
         strings.extend(string.split("\n"))
         strings.append("=")
         strings.append(r"\hspace #-0.5")
-        string = illustrators.selection_to_score_markup_string(self.right_rhythm)
+        string = _illustrators.selection_to_score_markup_string(self.right_rhythm)
         strings.extend(string.split("\n"))
         string = "\n".join(strings)
         string = rf"\markup {{ {string} }}"
-        markup = Markup(string, literal=True)
+        markup = _indicators.Markup(string)
         return markup
 
     def _get_markup_arguments(self):
@@ -538,18 +537,17 @@ class MetricModulation:
             raise Exception("implement tied note values.")
 
     def _initialize_rhythm(self, rhythm):
-        if not hasattr(rhythm, "_items"):
-            selection = Selection([rhythm])
+        if isinstance(rhythm, _score.Component):
+            selection = [rhythm]
         else:
-            assert hasattr(rhythm, "_items"), repr(rhythm)
             selection = rhythm
         return selection
 
     def _lhs_tuplet(self):
         if (
-            isinstance(self.left_rhythm[0], score.Tuplet)
+            isinstance(self.left_rhythm[0], _score.Tuplet)
             and len(self.left_rhythm[0]) == 1
-            and isinstance(self.right_rhythm[0], score.Note)
+            and isinstance(self.right_rhythm[0], _score.Note)
             and len(self.right_rhythm) == 1
         ):
             return True
@@ -557,9 +555,9 @@ class MetricModulation:
 
     def _note_to_note(self):
         if (
-            isinstance(self.left_rhythm[0], score.Note)
+            isinstance(self.left_rhythm[0], _score.Note)
             and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], score.Note)
+            and isinstance(self.right_rhythm[0], _score.Note)
             and len(self.right_rhythm) == 1
         ):
             return True
@@ -567,9 +565,9 @@ class MetricModulation:
 
     def _rhs_tuplet(self):
         if (
-            isinstance(self.left_rhythm[0], score.Note)
+            isinstance(self.left_rhythm[0], _score.Note)
             and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], score.Tuplet)
+            and isinstance(self.right_rhythm[0], _score.Tuplet)
             and len(self.right_rhythm[0]) == 1
         ):
             return True
@@ -578,14 +576,14 @@ class MetricModulation:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def hide(self) -> typing.Optional[bool]:
+    def hide(self) -> bool:
         """
         Is true when metric modulation generates no LilyPond output.
         """
         return self._hide
 
     @property
-    def left_markup(self) -> typing.Optional[Markup]:
+    def left_markup(self) -> _indicators.Markup | None:
         """
         Gets left markup of metric modulation.
 
@@ -594,7 +592,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.left_markup
 
         """
@@ -610,16 +608,16 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.left_rhythm
-            Selection([Note("c'4")])
+            [Note("c'4")]
 
         Returns selection.
         """
         return self._left_rhythm
 
     @property
-    def ratio(self) -> Ratio:
+    def ratio(self) -> _ratio.Ratio:
         """
         Gets ratio of metric modulation.
 
@@ -628,19 +626,19 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
-            ...     )
+            ... )
             >>> metric_modulation.ratio
-            Ratio((2, 3))
+            Ratio(numbers=(2, 3))
 
         """
-        left_duration = _inspect._get_duration(self.left_rhythm)
-        right_duration = _inspect._get_duration(self.right_rhythm)
+        left_duration = _getlib._get_duration(self.left_rhythm)
+        right_duration = _getlib._get_duration(self.right_rhythm)
         duration = left_duration / right_duration
-        ratio = Ratio(duration.pair)
+        ratio = _ratio.Ratio(duration.pair)
         return ratio
 
     @property
-    def right_markup(self) -> typing.Optional[Markup]:
+    def right_markup(self) -> _indicators.Markup | None:
         r"""Gets right markup of metric modulation.
 
         ..  container:: example
@@ -648,7 +646,7 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.right_markup
 
         """
@@ -664,15 +662,15 @@ class MetricModulation:
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=abjad.Note("c'4."),
-            ...     )
+            ... )
             >>> metric_modulation.right_rhythm
-            Selection([Note("c'4.")])
+            [Note("c'4.")]
 
         """
         return self._right_rhythm
 
     @property
-    def scale(self) -> typing.Tuple[typings.Number, typings.Number]:
+    def scale(self) -> tuple[int | float, int | float]:
         r"""
         Gets scale of output markup.
 
@@ -686,11 +684,12 @@ class MetricModulation:
             ...     left_rhythm=abjad.Note("c4"),
             ...     right_rhythm=abjad.Note("c8."),
             ...     scale=(0.5, 0.5),
-            ...     )
-            >>> abjad.attach(metric_modulation, staff[3])
+            ... )
+            >>> abjad.attach(metric_modulation, staff[3], direction=abjad.UP)
             >>> abjad.override(staff).TextScript.staff_padding = 2.5
 
-            >>> abjad.show(score) # doctest: +SKIP
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
 
             ..  docs::
 

@@ -17,14 +17,14 @@ import uqbar
 
 import abjad
 
-from .configuration import Configuration
-from .contextmanagers import Timer
-from .illustrators import illustrate
-from .lilypondfile import Block
-from .parentage import Parentage
-from .score import Container, Leaf, Tuplet
+from . import configuration as _configuration
+from . import contextmanagers as _contextmanagers
+from . import illustrators as _illustrators
+from . import lilypondfile as _lilypondfile
+from . import parentage as _parentage
+from . import score as _score
 
-configuration = Configuration()
+configuration = _configuration.Configuration()
 
 
 class AbjadGrapher(uqbar.graphs.Grapher):
@@ -32,12 +32,8 @@ class AbjadGrapher(uqbar.graphs.Grapher):
     Abjad grapher.
     """
 
-    ### INTIALIZER ###
-
     def __init__(self, graphable, format_="pdf", layout="dot"):
         uqbar.graphs.Grapher.__init__(self, graphable, format_=format_, layout=layout)
-
-    ### PUBLIC METHODS ###
 
     def get_output_directory(self) -> pathlib.Path:
         return pathlib.Path(configuration["abjad_output_directory"])
@@ -50,8 +46,6 @@ class LilyPondIO:
     """
     LilyPond IO.
     """
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -76,10 +70,8 @@ class LilyPondIO:
         self.should_persist_log = bool(should_persist_log)
         self.string = string
 
-    ### SPECIAL METHODS ###
-
     def __call__(self):
-        with Timer() as format_timer:
+        with _contextmanagers.Timer() as format_timer:
             string = self.string or self.get_string()
         format_time = format_timer.elapsed_time
         render_prefix = self.render_prefix or self.get_render_prefix(string)
@@ -90,7 +82,7 @@ class LilyPondIO:
         if self.should_copy_stylesheets:
             self.copy_stylesheets(render_directory)
         render_command = self.get_render_command(input_path, lilypond_path)
-        with Timer() as render_timer:
+        with _contextmanagers.Timer() as render_timer:
             log, success = self.run_command(render_command)
         render_time = render_timer.elapsed_time
         if self.should_persist_log:
@@ -108,8 +100,6 @@ class LilyPondIO:
                 self.open_output_path(output_path)
         return openable_paths, format_time, render_time, success, log
 
-    ### PUBLIC METHODS ###
-
     def copy_stylesheets(self, render_directory):
         for directory in self.get_stylesheets_directories():
             for path in directory.glob("*.*ly"):
@@ -125,7 +115,9 @@ class LilyPondIO:
                 lilypond_path = "lilypond"
         return lilypond_path
 
-    def get_openable_paths(self, output_paths) -> typing.Generator:
+    def get_openable_paths(
+        self, output_paths: typing.Iterable[pathlib.Path]
+    ) -> typing.Iterator[pathlib.Path]:
         for path in output_paths:
             if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
                 yield path
@@ -153,22 +145,23 @@ class LilyPondIO:
         return f"{timestamp}-{checksum}"
 
     def get_string(self) -> str:
-        if hasattr(self.illustrable, "__illustrate__"):
-            lilypond_file = self.illustrable.__illustrate__(**self.keywords)
+        if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
+            lilypond_file = self.illustrable
         else:
-            lilypond_file = illustrate(self.illustrable, **self.keywords)
+            lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
         return lilypond_file._get_lilypond_format()
 
-    def get_stylesheets_directories(self) -> typing.List[pathlib.Path]:
+    def get_stylesheets_directories(self) -> list[pathlib.Path]:
         directories = []
         path = getattr(abjad, "__path__")
         abjad_path = pathlib.Path(path[0])
-        directory = abjad_path / ".." / "docs" / "source" / "_stylesheets"
+        directory = abjad_path / "scm"
         directories.append(directory)
         if "sphinx_stylesheets_directory" in configuration:
             string = configuration["sphinx_stylesheets_directory"]
-            directory = pathlib.Path(string)
-            directories.append(directory)
+            for path in string.split(":"):
+                directory = pathlib.Path(path)
+                directories.append(directory)
         return directories
 
     def migrate_assets(
@@ -209,9 +202,7 @@ class Illustrator(LilyPondIO):
     Illustrator.
     """
 
-    ### PUBLIC METHODS ###
-
-    def get_openable_paths(self, output_paths) -> typing.Generator:
+    def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
         for path in output_paths:
             if path.suffix == ".pdf":
                 yield path
@@ -222,26 +213,21 @@ class Player(LilyPondIO):
     Player.
     """
 
-    ### PUBLIC METHODS ###
-
-    def get_openable_paths(self, output_paths) -> typing.Generator:
+    def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
         for path in output_paths:
             if path.suffix in (".mid", ".midi"):
                 yield path
 
     def get_string(self) -> str:
-        lilypond_file = illustrate(self.illustrable, **self.keywords)
-        assert hasattr(lilypond_file, "score_block")
-        block = Block(name="midi")
-        lilypond_file.score_block.items.append(block)
+        lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
+        assert "score" in lilypond_file, repr(lilypond_file)
+        block = _lilypondfile.Block("midi")
+        lilypond_file["score"].items.append(block)
         return lilypond_file._get_lilypond_format()
 
 
-### PRIVATE FUCTIONS ###
-
-
 def _as_graphviz_node(component):
-    score_index = Parentage(component).score_index()
+    score_index = _parentage.Parentage(component).score_index()
     score_index = "_".join(str(_) for _ in score_index)
     class_name = type(component).__name__
     if score_index:
@@ -252,7 +238,7 @@ def _as_graphviz_node(component):
     table = uqbar.graphs.Table(attributes={"border": 2, "cellpadding": 5})
     node.append(table)
 
-    if isinstance(component, Container):
+    if isinstance(component, _score.Container):
         node[0].append(
             uqbar.graphs.TableRow(
                 [
@@ -263,7 +249,7 @@ def _as_graphviz_node(component):
             )
         )
 
-    if isinstance(component, Tuplet):
+    if isinstance(component, _score.Tuplet):
         node[0].extend(
             [
                 uqbar.graphs.TableRow(
@@ -285,7 +271,7 @@ def _as_graphviz_node(component):
             ]
         )
 
-    if isinstance(component, Leaf):
+    if isinstance(component, _score.Leaf):
         lilypond_format = component._get_compact_representation()
         lilypond_format = lilypond_format.replace("<", "&lt;")
         lilypond_format = lilypond_format.replace(">", "&gt;")
@@ -309,13 +295,13 @@ def _as_graphviz_node(component):
 
 
 def _graph_container(container):
-    assert isinstance(container, Container), repr(container)
+    assert isinstance(container, _score.Container), repr(container)
 
     def recurse(component, leaf_cluster):
         component_node = _as_graphviz_node(component)
         node_mapping[component] = component_node
         node_order = [component_node.name]
-        if isinstance(component, Container):
+        if isinstance(component, _score.Container):
             graph.append(component_node)
             this_leaf_cluster = uqbar.graphs.Graph(
                 name=component_node.name,
@@ -324,7 +310,7 @@ def _graph_container(container):
             all_are_leaves = True
             pending_node_order = []
             for child in component:
-                if not isinstance(child, Leaf):
+                if not isinstance(child, _score.Leaf):
                     all_are_leaves = False
                 child_node, child_node_order = recurse(child, this_leaf_cluster)
                 pending_node_order.extend(child_node_order)
@@ -362,7 +348,7 @@ def _compare_backup(path):
         paths = [path]
     elif isinstance(path, pathlib.Path):
         paths = [str(path)]
-    elif isinstance(path, (tuple, list)):
+    elif isinstance(path, tuple | list):
         paths = [str(_) for _ in path]
     else:
         raise TypeError(path)
@@ -458,9 +444,6 @@ def _read_from_pipe(pipe):
     return "\n".join(lines)
 
 
-### FUNCTIONS ###
-
-
 def count_function_calls(
     argument: str,
     *,
@@ -484,7 +467,6 @@ def count_function_calls(
             last_result = current_result
             string = profile(
                 argument,
-                print_to_terminal=False,
                 global_context=global_context,
                 local_context=local_context,
             )
@@ -493,7 +475,6 @@ def count_function_calls(
         return current_result
     result = profile(
         argument,
-        print_to_terminal=False,
         global_context=global_context,
         local_context=local_context,
     )
@@ -521,7 +502,8 @@ def graph(
 
         ..  docs::
 
-            >>> print(format(staff.__graph__(), "graphviz"))
+            >>> graph = abjad.io._graph_container(staff)
+            >>> print(format(graph, "graphviz"))
             digraph G {
                 graph [style=rounded];
                 node [fontname=Arial,
@@ -625,36 +607,10 @@ def graph(
 
     Opens image in default image viewer.
     """
+    if isinstance(graphable, _score.Container):
+        graphable = _graph_container(graphable)
     grapher = AbjadGrapher(graphable, format_=format_, layout=layout, **keywords)
     result = grapher()
-    if not result:
-        return
-    _, format_time, render_time, success, log = result
-    if not success:
-        print(log)
-    if return_timing:
-        return format_time, render_time
-
-
-def play(illustrable, return_timing=False, **keywords):
-    """
-    Plays ``argument``.
-
-    ..  container:: example
-
-        >>> note = abjad.Note("c'4")
-        >>> abjad.play(note) # doctest: +SKIP
-
-    Makes MIDI file.
-
-    Appends ``.mid`` filename extension under Windows.
-
-    Appends ``.midi`` filename extension under other operating systems.
-
-    Opens MIDI file.
-    """
-    player = Player(illustrable, **keywords)
-    result = player()
     if not result:
         return
     _, format_time, render_time, success, log = result
@@ -761,8 +717,8 @@ def compare_files(path_1, path_2):
 
 
 def execute_file(
-    path: str = None, *, attribute_names: typing.Tuple[str] = None
-) -> typing.Optional[typing.Tuple[str]]:
+    path: str = None, *, attribute_names: tuple[str] = None
+) -> tuple[str] | None:
     """
     Executes file ``path``.
 
@@ -788,7 +744,7 @@ def execute_file(
 def execute_string(
     string: str,
     *,
-    attribute_names: typing.Tuple[str] = None,
+    attribute_names: tuple[str] = None,
     local_namespace: dict = None,
 ):
     """
@@ -825,7 +781,7 @@ def execute_string(
     return tuple(result)
 
 
-def find_executable(name: str, *, flags: int = os.X_OK) -> typing.List[pathlib.Path]:
+def find_executable(name: str, *, flags: int = os.X_OK) -> list[pathlib.Path]:
     """
     Finds executable ``name``.
 
@@ -879,7 +835,7 @@ def open_file(
     *,
     application: str = None,
     line_number: int = None,
-    test: bool = None,
+    test: bool = False,
 ):
     """
     Opens ``file_path``.
@@ -928,77 +884,63 @@ def open_last_log() -> None:
 
 
 def profile(
-    argument: str,
+    string: str,
     *,
     global_context: dict = None,
     line_count: int = 12,
     local_context: dict = None,
     print_callers: bool = False,
     print_callees: bool = False,
-    print_to_terminal: bool = True,
     sort_by: str = "cumulative",
     strip_dirs: bool = True,
-) -> typing.Optional[str]:
+) -> str | None:
     """
-    Profiles ``argument``.
+    Profiles ``string``.
 
     ..  container:: example
 
         ::
 
-            >>> argument = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-            >>> abjad.io.profile(
-            ...     argument,
-            ...     global_context=globals(),
-            ...     ) # doctest: +SKIP
-            Tue Apr  5 20:32:40 2011    _tmp_abj_profile
+            >>> string = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
+            >>> result = abjad.io.profile(string, global_context=globals())
+            >>> print(result) # doctest: +SKIP
+            Fri Sep 03 12:53:36 2021
 
-                    2852 function calls (2829 primitive calls) in 0.006 CPU seconds
+                    62795 function calls (61272 primitive calls) in 0.043 seconds
 
             Ordered by: cumulative time
-            List reduced from 118 to 12 due to restriction <12>
+            List reduced from 453 to 12 due to restriction <12>
 
             ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-                    1    0.000    0.000    0.006    0.006 <string>:1(<module>)
-                    1    0.001    0.001    0.003    0.003 make_notes.py:12(make_not
-                    1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
-                    1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
-                    1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
-                    1    0.000    0.000    0.003    0.003 Container.py:271(_initial
-                    2    0.000    0.000    0.002    0.001 all_are_logical_voice_con
-                52    0.001    0.000    0.002    0.000 component_to_logical_voic
-                    1    0.000    0.000    0.002    0.002 _construct_unprolated_not
-                    8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_
-                    8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_
+                 1    0.000    0.000    0.043    0.043 {built-in method builtins.exec}
+                 1    0.000    0.000    0.043    0.043 <string>:1(<module>)
+                 1    0.000    0.000    0.043    0.043 score.py:4989(__init__)
+                 1    0.000    0.000    0.043    0.043 score.py:3099(__init__)
+               2/1    0.000    0.000    0.043    0.043 score.py:918(__init__)
+               2/1    0.000    0.000    0.043    0.043 score.py:1343(_initialize_componen
+                 1    0.000    0.000    0.042    0.042 score.py:1378(_parse_string)
+                 1    0.000    0.000    0.042    0.042 score.py:57(_parse_lilypond_string
+                 1    0.000    0.000    0.042    0.042 parse.py:9(parse)
+                 1    0.000    0.000    0.035    0.035 parser.py:2728(__init__)
+                 1    0.000    0.000    0.035    0.035 base.py:34(__init__)
+                 1    0.000    0.000    0.023    0.023 lex.py:862(lex)
 
-    Wraps the built-in Python ``cProfile`` module.
-
-    Set ``argument`` to any string of Abjad input.
+    Wraps Python's built-in ``cProfile`` module.
 
     Set ``sort_by`` to ``'cumulative'``, ``'time'`` or ``'calls'``.
 
-    Set ``line_count`` to any nonnegative integer.
-
-    Set ``strip_dirs`` to true to strip directory names from output lines.
-
-    See the `Python docs <http://docs.python.org/library/profile.html>`_
-    for more information on the Python profilers.
-
-    Returns none when ``print_to_terminal`` is false.
-
-    Returns string when ``print_to_terminal`` is true.
+    See `Python's docs <https://docs.python.org/3/library/profile.html>`_ for more
+    information.
     """
     now_string = datetime.datetime.today().strftime("%a %b %d %H:%M:%S %Y")
     profile = cProfile.Profile()
     local_context = local_context or locals()
     if global_context is None:
-        profile = profile.run(argument)
+        profile = profile.run(string)
     else:
-        profile = profile.runctx(argument, global_context, local_context)
+        profile = profile.runctx(string, global_context, local_context)
     stats_stream = io.StringIO()
     stats = pstats.Stats(profile, stream=stats_stream)
-    if sort_by == "cum":
-        sort_by = "cumulative"
     if strip_dirs:
         stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
     else:
@@ -1009,13 +951,10 @@ def profile(
         stats.sort_stats(sort_by).print_callees(line_count)
     result = now_string + "\n\n" + stats_stream.getvalue()
     stats_stream.close()
-    if print_to_terminal:
-        print(result)
-        return None
     return result
 
 
-def run_command(command: str) -> typing.List[str]:
+def run_command(command: str) -> list[str]:
     """
     Runs command in subprocess.
 
@@ -1030,38 +969,30 @@ def run_command(command: str) -> typing.List[str]:
 def run_lilypond(
     ly_path: str,
     *,
-    flags: str = None,
+    flags: str = "",
     lilypond_log_file_path: pathlib.Path = None,
-) -> bool:
+) -> int:
     """
     Runs LilyPond on ``ly_path``.
 
-    Writes redirected output of Unix ``date`` to top line of LilyPond log
-    file.
+    Writes redirected output of Unix ``date`` to top line of LilyPond log file.
 
-    Then appends redirected output of LilyPond output to the LilyPond log
-    file.
+    Then appends redirected output of LilyPond output to the LilyPond log file.
     """
-    ly_path = str(ly_path)
-    lilypond_path_ = configuration.get("lilypond_path")
-    if lilypond_path_ is not None:
-        assert isinstance(lilypond_path_, str), repr(lilypond_path_)
-    if not lilypond_path_:
+    lilypond_path = configuration.get("lilypond_path")
+    if lilypond_path is not None:
+        assert isinstance(lilypond_path, str), repr(lilypond_path)
+    if not lilypond_path:
         lilypond_paths = find_executable("lilypond")
         if lilypond_paths:
-            lilypond_path_ = str(lilypond_paths[0])
+            lilypond_path = str(lilypond_paths[0])
         else:
-            lilypond_path_ = "lilypond"
-    lilypond_base, extension = os.path.splitext(ly_path)
-    flags = flags or ""
-    date = datetime.datetime.now().strftime("%c")
+            lilypond_path = "lilypond"
     if lilypond_log_file_path is None:
-        log_file_path = configuration.lilypond_log_file_path
-    else:
-        log_file_path = lilypond_log_file_path
-    command = "{} {} -dno-point-and-click -o {} {}".format(
-        lilypond_path_, flags, lilypond_base, ly_path
-    )
+        lilypond_log_file_path = configuration.lilypond_log_file_path
+    ly_path_ = pathlib.Path(ly_path)
+    command = "{} {} -dno-point-and-click --output={} {}"
+    command = command.format(lilypond_path, flags, ly_path_.with_suffix(""), ly_path)
     process = subprocess.Popen(
         command,
         shell=True,
@@ -1071,18 +1002,14 @@ def run_lilypond(
     subprocess_output, _ = process.communicate()
     subprocess_output_string = subprocess_output.decode(errors="ignore")
     exit_code = process.returncode
-    with open(log_file_path, "w") as file_pointer:
-        file_pointer.write(date + "\n")
-        file_pointer.write(subprocess_output_string)
-    postscript_path = ly_path.replace(".ly", ".ps")
-    try:
-        os.remove(postscript_path)
-    except OSError:
-        pass
-    # TODO: maybe just 'return exit_code'?
-    if exit_code:
-        return False
-    return True
+    date = datetime.datetime.now().strftime("%c")
+    with open(lilypond_log_file_path, "w") as file_pointer:
+        print(date, file=file_pointer)
+        print(subprocess_output_string, file=file_pointer)
+    postscript_path = ly_path_.with_suffix(".ps")
+    if postscript_path.is_file():
+        postscript_path.unlink()
+    return exit_code
 
 
 def spawn_subprocess(command: str) -> int:

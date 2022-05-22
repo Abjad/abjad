@@ -1,77 +1,26 @@
-# C extensions
-*.so
+# docs
+docs/build
+docs/source/api
+docs/source/_static/uqbar.css
 
-# Emacs
-*~
-\#*\#
-
-# Installer logs
-pip-log.txt
-
-# IPython
-.ipynb_checkpoints
-
-# LaTeX intermediate files
-*.synctex.gz
-
-# Misc.
-*.bak
-*.pkl
-.cache
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
-/.settings
-
-# MyPy
-.mypy_cache
-
-# OS X
+# macOS
 .DS_Store
 
-# Packages
-*.egg
-*.egg-info
-dist
-*/docs/build
-#build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
-.installed.cfg
-lib
-lib64
-__pycache__
+# mypy
+.mypy_cache
 
-# Pycharm
-.idea/
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Pytest
+# pytest
+.coverage
 .pytest_cache
 htmlcov
 
-# Python
+# python
+*.egg
+*.egg-info
 *.py[cod]
+__pycache__
 
-# Translations
-*.mo
-
-# Unit test / coverage reports
-.coverage
-.tox
-nosetests.xml
-
-# Vim
-*.swp
-
-# Virtual Environments
-venv/
-Envs/
-ENV/
-.virtualenvs
-.python-version

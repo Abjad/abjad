@@ -48,13 +48,13 @@ Attach time signatures:
 ::
 
     >>> time_signature = abjad.TimeSignature((2, 4))
-    >>> note = abjad.select(rh_voice).note(0)
+    >>> note = abjad.select.note(rh_voice, 0)
     >>> abjad.attach(time_signature, note)
     >>> time_signature = abjad.TimeSignature((3, 4))
-    >>> note = abjad.select(rh_voice).note(4)
+    >>> note = abjad.select.note(rh_voice, 4)
     >>> abjad.attach(time_signature, note)
     >>> time_signature = abjad.TimeSignature((2, 4))
-    >>> note = abjad.select(rh_voice).note(9)
+    >>> note = abjad.select.note(rh_voice, 9)
     >>> abjad.attach(time_signature, note)
 
 Attach a clef and final bar line:
@@ -62,18 +62,16 @@ Attach a clef and final bar line:
 ::
 
     >>> clef = abjad.Clef("bass")
-    >>> note = abjad.select(lh_voice_2).note(0)
+    >>> note = abjad.select.note(lh_voice_2, 0)
     >>> abjad.attach(clef, note)
     >>> bar_line = abjad.BarLine("|.")
-    >>> note = abjad.select(lh_voice_2).note(-1)
+    >>> note = abjad.select.note(lh_voice_2, -1)
     >>> abjad.attach(bar_line, note)
 
 Override LilyPond's hairpin formatting:
 
-::
-
-    >>> note = abjad.select(rh_voice).note(-2)
-    >>> abjad.override(note).hairpin.to_barline = False
+    >>> note = abjad.select.note(rh_voice, -2)
+    >>> abjad.override(note).Hairpin.to_barline = False
     >>> abjad.show(score)
 
 :author:`[Adán (1.1), Bača (3.2); ex. Béla Bartók, "Wandering," Mikrokosmos, vol. III]`

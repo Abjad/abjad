@@ -13,8 +13,8 @@ First we define functions to illustrate the examples that follow:
 
     >>> def illustrate_row(row):
     ...     notes = [abjad.Note(_, (1, 8)) for _ in row]
-    ...     containers = abjad.illustrators.make_piano_score(notes)
-    ...     score, treble_staff, bass_staff = containers
+    ...     score = abjad.illustrators.make_piano_score(notes)
+    ...     treble_staff = score["Treble_Staff"]
     ...     abjad.override(treble_staff).BarLine.stencil = False
     ...     abjad.override(treble_staff).BarNumber.stencil = False
     ...     abjad.override(treble_staff).Beam.stencil = False
@@ -26,7 +26,8 @@ First we define functions to illustrate the examples that follow:
     ...     abjad.override(treble_staff).TimeSignature.stencil = False
     ...     string = "#(ly:make-moment 1 25)"
     ...     abjad.setting(treble_staff).proportionalNotationDuration = string
-    ...     lilypond_file = abjad.LilyPondFile(items=[treble_staff], global_staff_size=16)
+    ...     string = "#(set-global-staff-size 16)"
+    ...     lilypond_file = abjad.LilyPondFile([string, treble_staff])
     ...     return lilypond_file
 
 ----
@@ -71,4 +72,4 @@ Show retrograde inversion:
     >>> file = illustrate_row(row.invert().retrograde())
     >>> abjad.show(file)
 
-:author:`[Evans (3.2)]`
+:author:`[Evans (3.2), Bača (3.7)]`
