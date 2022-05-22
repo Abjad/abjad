@@ -205,7 +205,7 @@ class VerticalMoment:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attack_count(self):
+    def attack_count(self) -> int:
         r"""
         Positive integer number of pitch carriers starting at vertical
         moment.
