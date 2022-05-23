@@ -3,24 +3,6 @@ import pytest
 import abjad
 
 values = [
-    ("'", 4),
-    ("''", 5),
-    ("'''", 6),
-    ("''''", 7),
-    ("", 3),
-    (",", 2),
-    (",,", 1),
-    (",,,", 0),
-    ("-0", 0),
-    ("-1", -1),
-    ("-2", -2),
-    ("-3", -3),
-    ("-4", -4),
-    ("0", 0),
-    ("1", 1),
-    ("2", 2),
-    ("3", 3),
-    ("4", 4),
     (-1, -1),
     (-2, -2),
     (-3, -3),
@@ -43,6 +25,28 @@ def test_init(input_, expected_number):
             abjad.Octave(input_)
         return
     octave = abjad.Octave(input_)
+    assert octave.number == expected_number
+
+
+values = [
+    ("'", 4),
+    ("''", 5),
+    ("'''", 6),
+    ("''''", 7),
+    ("", 3),
+    (",", 2),
+    (",,", 1),
+    (",,,", 0),
+]
+
+
+@pytest.mark.parametrize("input_, expected_number", values)
+def test_from_ticks(input_, expected_number):
+    if isinstance(expected_number, type) and issubclass(expected_number, Exception):
+        with pytest.raises(expected_number):
+            abjad.Octave.from_ticks(input_)
+        return
+    octave = abjad.Octave.from_ticks(input_)
     assert octave.number == expected_number
 
 

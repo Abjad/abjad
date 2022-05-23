@@ -965,13 +965,6 @@ class Octave:
 
     ..  container:: example
 
-        Initializes octave from octave-tick string:
-
-        >>> abjad.Octave(",,")
-        Octave(number=1)
-
-    ..  container:: example
-
         Initializes octave from named pitch:
 
         >>> abjad.Octave(abjad.NamedPitch("cs''"))
@@ -1016,19 +1009,7 @@ class Octave:
     number: int = 4
 
     def __post_init__(self):
-        if isinstance(self.number, str):
-            match = _comprehensive_octave_regex.match(self.number)
-            group_dict = match.groupdict()
-            number = 3
-            if group_dict["octave_number"]:
-                number = int(group_dict["octave_number"])
-            elif group_dict["octave_tick"]:
-                if group_dict["octave_tick"].startswith("'"):
-                    number += group_dict["octave_tick"].count("'")
-                else:
-                    number -= group_dict["octave_tick"].count(",")
-            self.number = number
-        elif isinstance(self.number, int | float):
+        if isinstance(self.number, int | float):
             self.number = int(self.number)
         elif hasattr(self.number, "octave"):
             self.number = self.number.octave.number
@@ -1139,7 +1120,29 @@ class Octave:
         match = re.match(r"^([a-z]+)(\,*|'*)$", name)
         assert match is not None, repr(match)
         name, ticks = match.groups()
-        return class_(ticks)
+        return class_.from_ticks(ticks)
+
+    @classmethod
+    def from_ticks(class_, ticks: str):
+        """
+        Makes octave from ``ticks`` string.
+
+        ..  container:: example
+
+            >>> abjad.Octave.from_ticks("'")
+            Octave(number=4)
+
+            >>> abjad.Octave.from_ticks(",,")
+            Octave(number=1)
+
+        """
+        assert isinstance(ticks, str), repr(ticks)
+        number = 3
+        if ticks.startswith("'"):
+            number += ticks.count("'")
+        else:
+            number -= ticks.count(",")
+        return class_(number)
 
 
 @functools.total_ordering
@@ -4303,7 +4306,13 @@ class Pitch:
             _dpc_name = group_dict["diatonic_pc_name"].lower()
             _dpc_number = _diatonic_pc_name_to_diatonic_pc_number[_dpc_name]
             _alteration = Accidental(group_dict["comprehensive_accidental"]).semitones
-            _octave = Octave(group_dict.get("comprehensive_octave", "")).number
+            foo = group_dict.get("comprehensive_octave", "")
+            assert isinstance(foo, str), repr(foo)
+            if foo.isdigit():
+                number = int(foo)
+                _octave = Octave(number).number
+            else:
+                _octave = Octave.from_ticks(foo).number
             self._from_named_parts(_dpc_number, _alteration, _octave)
         elif isinstance(argument, numbers.Number):
             self._from_number(argument)
