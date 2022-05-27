@@ -151,69 +151,92 @@ def is_lilypond_identifier(string: str) -> bool:
 
     ..  container:: example
 
-        >>> abjad.string.is_lilypond_identifier('ViolinOne')
+        >>> abjad.string.is_lilypond_identifier("ViolinOne")
         True
 
-        >>> abjad.string.is_lilypond_identifier('Violin_One')
+        >>> abjad.string.is_lilypond_identifier("Violin_One")
         True
 
-        >>> abjad.string.is_lilypond_identifier('Violin One')
+        >>> abjad.string.is_lilypond_identifier("Violin One")
         False
 
     ..  container:: example
 
-        >>> abjad.string.is_lilypond_identifier('ViolinI')
+        >>> abjad.string.is_lilypond_identifier("ViolinI")
         True
 
-        >>> abjad.string.is_lilypond_identifier('Violin_I')
+        >>> abjad.string.is_lilypond_identifier("Violin_I")
         True
 
-        >>> abjad.string.is_lilypond_identifier('Violin I')
+        >>> abjad.string.is_lilypond_identifier("Violin I")
         False
 
     ..  container:: example
 
-        >>> abjad.string.is_lilypond_identifier('Violin1')
+        >>> abjad.string.is_lilypond_identifier("Violin1")
         False
 
-        >>> abjad.string.is_lilypond_identifier('Violin_1')
+        >>> abjad.string.is_lilypond_identifier("Violin_1")
         False
 
-        >>> abjad.string.is_lilypond_identifier('Violin 1')
+        >>> abjad.string.is_lilypond_identifier("Violin 1")
         False
 
     ..  container:: example
 
-        >>> abjad.string.is_lilypond_identifier('Violin.1')
+        >>> abjad.string.is_lilypond_identifier("Violin.1")
         True
 
-        >>> abjad.string.is_lilypond_identifier('Violin.1.1')
-        True
-
-        >>> abjad.string.is_lilypond_identifier('Violin.1_1')
+        >>> abjad.string.is_lilypond_identifier("Violin.1.1")
         False
 
-        >>> abjad.string.is_lilypond_identifier('Violin_1.1')
+        >>> abjad.string.is_lilypond_identifier("Violin.1_1")
+        False
+
+        >>> abjad.string.is_lilypond_identifier("Violin_1.1")
+        False
+
+    ..  container:: example
+
+        >>> abjad.string.is_lilypond_identifier("Violin.1.Music_Voice.1")
+        True
+
+        >>> abjad.string.is_lilypond_identifier("Violin.1.1.Music_Voice")
+        False
+
+        >>> abjad.string.is_lilypond_identifier("Violin.1_Music_Voice")
+        False
+
+        >>> abjad.string.is_lilypond_identifier("Violin.Music_Voice_1")
+        False
+
+        >>> abjad.string.is_lilypond_identifier("Violin.1_Music_Voice")
         False
 
     """
-    if string and string[0] == "_":
+    if not string:
         return False
-    if string and string[0] == ".":
+    if string[0] in "_.":
         return False
-    if "_" in string:
-        for character in string:
-            if not (character.isalpha() or character == "_"):
-                return False
-        return True
-    if "." in string:
-        for character in string:
-            if not (character.isalnum() or character == "."):
-                return False
-        return True
+    if string[0].isdigit():
+        return False
     for character in string:
-        if not character.isalpha():
+        if not (character.isalnum() or character == "_" or character == "."):
             return False
+    words = string.split(".")
+    if words[0].isdigit():
+        return False
+    previous_word_ends_in_digit = False
+    for word in words:
+        if previous_word_ends_in_digit and word[0].isdigit():
+            return False
+        if any(_.isdigit() for _ in word):
+            if any(not _.isdigit() for _ in word):
+                return False
+        if word[-1].isdigit():
+            previous_word_ends_in_digit = True
+        else:
+            previous_word_ends_in_digit = False
     return True
 
 
