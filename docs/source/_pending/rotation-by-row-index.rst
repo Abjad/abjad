@@ -21,15 +21,15 @@ Rotation, by row index
     ...         [_.number for _ in permutation[6:]],
     ...     ]
     ...     markup = abjad.Markup(rf'\markup \box "{label}"')
-    ...     margin_markups = [
-    ...         abjad.StartMarkup(markup=markup),
-    ...         abjad.StartMarkup(markup="I"),
-    ...         abjad.StartMarkup(markup="II"),
-    ...         abjad.StartMarkup(markup="III"),
-    ...         abjad.StartMarkup(markup="IV"),
-    ...         abjad.StartMarkup(markup="V"),
+    ...     instrument_names = [
+    ...         abjad.InstrumentName(markup),
+    ...         abjad.InstrumentName("I"),
+    ...         abjad.InstrumentName("II"),
+    ...         abjad.InstrumentName("III"),
+    ...         abjad.InstrumentName("IV"),
+    ...         abjad.InstrumentName("V"),
     ...     ]
-    ...     for r, margin_markup in zip(rotations, margin_markups):
+    ...     for r, instrument_name in zip(rotations, instrument_names):
     ...         staff = abjad.Staff()
     ...         sets = [
     ...             abjad.PitchClassSegment(hexachords[0]).rotate(r),
@@ -61,7 +61,7 @@ Rotation, by row index
     ...             abjad.attach(time_signature, voice[0])
     ...             staff.append(voice)
     ...         leaf = abjad.select.leaf(staff, 0)
-    ...         abjad.attach(margin_markup, leaf)
+    ...         abjad.attach(instrument_name, leaf)
     ...         group.append(staff)
     ...     score.append(group)
     ...     return score

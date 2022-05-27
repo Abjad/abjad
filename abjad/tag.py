@@ -64,7 +64,7 @@ class Tag:
         words = []
         if self.string:
             words.append(self.string)
-        if word.string in self.string:
+        if word.string in self.words():
             raise Exception(f"{word} duplicates {self}.")
         words.append(word.string)
         string = ":".join(words)

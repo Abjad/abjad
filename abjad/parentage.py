@@ -120,7 +120,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -139,7 +139,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -167,7 +167,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -186,7 +186,7 @@ class Parentage(collections.abc.Sequence):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.component)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")                    Note("c'4")
             BeforeGraceContainer("cs'16")  BeforeGraceContainer("cs'16")
             Note("cs'16")                  Note("cs'16")
@@ -197,7 +197,7 @@ class Parentage(collections.abc.Sequence):
             Note("gs'16")                  Note("gs'16")
             Note("a'16")                   Note("a'16")
             Note("as'16")                  Note("as'16")
-            Voice("e'4", name='Music_Voice') Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice') Voice("e'4", name='MusicVoice')
             Note("e'4")                    Note("e'4")
             Note("f'4")                    Note("f'4")
             AfterGraceContainer("fs'16")   AfterGraceContainer("fs'16")
@@ -215,7 +215,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -234,7 +234,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -262,7 +262,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -285,82 +285,82 @@ class Parentage(collections.abc.Sequence):
             ...         print(f"    {repr(component_)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("c'4"):
                 Note("c'4")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             BeforeGraceContainer("cs'16"):
                 BeforeGraceContainer("cs'16")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("cs'16"):
                 Note("cs'16")
                 BeforeGraceContainer("cs'16")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("d'4"):
                 Note("d'4")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Chord("<e' g'>16"):
                 Chord("<e' g'>16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("gs'16"):
                 Note("gs'16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("a'16"):
                 Note("a'16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("as'16"):
                 Note("as'16")
                 OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("e'4", name='Music_Voice'):
-                Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice'):
+                Voice("e'4", name='MusicVoice')
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("e'4"):
                 Note("e'4")
-                Voice("e'4", name='Music_Voice')
+                Voice("e'4", name='MusicVoice')
                 Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("f'4"):
                 Note("f'4")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             AfterGraceContainer("fs'16"):
                 AfterGraceContainer("fs'16")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("fs'16"):
                 Note("fs'16")
                 AfterGraceContainer("fs'16")
-                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+                Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
                 Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
         """
@@ -375,7 +375,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -394,7 +394,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -422,7 +422,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -441,7 +441,7 @@ class Parentage(collections.abc.Sequence):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.orphan)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") True
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
             Note("c'4")                    False
             BeforeGraceContainer("cs'16")  False
             Note("cs'16")                  False
@@ -452,7 +452,7 @@ class Parentage(collections.abc.Sequence):
             Note("gs'16")                  False
             Note("a'16")                   False
             Note("as'16")                  False
-            Voice("e'4", name='Music_Voice') False
+            Voice("e'4", name='MusicVoice') False
             Note("e'4")                    False
             Note("f'4")                    False
             AfterGraceContainer("fs'16")   False
@@ -470,7 +470,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -489,7 +489,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -517,7 +517,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -536,21 +536,21 @@ class Parentage(collections.abc.Sequence):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.parent)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Note("c'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
-            BeforeGraceContainer("cs'16")  Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Note("c'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
+            BeforeGraceContainer("cs'16")  Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("cs'16")                  BeforeGraceContainer("cs'16")
-            Note("d'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
-            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Note("d'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             Chord("<e' g'>16")             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("gs'16")                  OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("a'16")                   OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("as'16")                  OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Voice("e'4", name='Music_Voice') Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Note("e'4")                    Voice("e'4", name='Music_Voice')
-            Note("f'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
-            AfterGraceContainer("fs'16")   Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice') Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
+            Note("e'4")                    Voice("e'4", name='MusicVoice')
+            Note("f'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
+            AfterGraceContainer("fs'16")   Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("fs'16")                  AfterGraceContainer("fs'16")
 
         """
@@ -567,7 +567,7 @@ class Parentage(collections.abc.Sequence):
 
             >>> music_voice = abjad.Voice(
             ...     r"\times 2/3 { c'4 d' e' } \times 2/3 { f' g' a' }",
-            ...     name="Music_Voice"
+            ...     name="MusicVoice"
             ... )
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[0][1])
@@ -588,7 +588,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         \times 2/3 {
                             c'4
@@ -617,7 +617,7 @@ class Parentage(collections.abc.Sequence):
                                     )
                                     ]
                                 }
-                                \context Voice = "Music_Voice"
+                                \context Voice = "MusicVoice"
                                 {
                                     \voiceTwo
                                     f'4
@@ -638,7 +638,7 @@ class Parentage(collections.abc.Sequence):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
             Staff("{ { 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Multiplier(1, 1)
-            Voice("{ 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='Music_Voice') Multiplier(1, 1)
+            Voice("{ 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='MusicVoice') Multiplier(1, 1)
             Tuplet('3:2', "c'4 d'4 e'4")   Multiplier(2, 3)
             Note("c'4")                    Multiplier(2, 3)
             BeforeGraceContainer("cs'16")  Multiplier(2, 3)
@@ -650,7 +650,7 @@ class Parentage(collections.abc.Sequence):
             OnBeatGraceContainer("<f' a'>8 b'8") Multiplier(2, 3)
             Chord("<f' a'>8")              Multiplier(2, 3)
             Note("b'8")                    Multiplier(2, 3)
-            Voice("f'4", name='Music_Voice') Multiplier(2, 3)
+            Voice("f'4", name='MusicVoice') Multiplier(2, 3)
             Note("f'4")                    Multiplier(2, 3)
             Note("g'4")                    Multiplier(2, 3)
             Note("a'4")                    Multiplier(2, 3)
@@ -671,7 +671,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -690,7 +690,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -718,7 +718,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -737,7 +737,7 @@ class Parentage(collections.abc.Sequence):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.root)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("c'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             BeforeGraceContainer("cs'16")  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("cs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -748,7 +748,7 @@ class Parentage(collections.abc.Sequence):
             Note("gs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("a'16")                   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("as'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("e'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("e'4", name='MusicVoice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("e'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("f'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             AfterGraceContainer("fs'16")   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -888,7 +888,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -907,7 +907,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -935,7 +935,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -955,7 +955,7 @@ class Parentage(collections.abc.Sequence):
             ...     count = parentage.count(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(count)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") 1
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') 1
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') 1
             Note("c'4")                    1
             BeforeGraceContainer("cs'16")  1
             Note("cs'16")                  1
@@ -966,7 +966,7 @@ class Parentage(collections.abc.Sequence):
             Note("gs'16")                  1
             Note("a'16")                   1
             Note("as'16")                  1
-            Voice("e'4", name='Music_Voice') 1
+            Voice("e'4", name='MusicVoice') 1
             Note("e'4")                    1
             Note("f'4")                    1
             AfterGraceContainer("fs'16")   1
@@ -1145,7 +1145,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -1164,7 +1164,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -1192,7 +1192,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -1212,7 +1212,7 @@ class Parentage(collections.abc.Sequence):
             ...     result = parentage.get(abjad.Staff)
             ...     print(f"{repr(component):30} {repr(result)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("c'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             BeforeGraceContainer("cs'16")  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("cs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -1223,7 +1223,7 @@ class Parentage(collections.abc.Sequence):
             Note("gs'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("a'16")                   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("as'16")                  Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("e'4", name='Music_Voice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+            Voice("e'4", name='MusicVoice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("e'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("f'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             AfterGraceContainer("fs'16")   Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -1258,7 +1258,7 @@ class Parentage(collections.abc.Sequence):
 
             Gets logical voice of note:
 
-            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4", name="Music_Voice")
+            >>> voice = abjad.Voice("c'4 d'4 e'4 f'4", name="MusicVoice")
             >>> staff = abjad.Staff([voice], name="Music_Staff")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.show(score) # doctest: +SKIP
@@ -1271,7 +1271,7 @@ class Parentage(collections.abc.Sequence):
                 <<
                     \context Staff = "Music_Staff"
                     {
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             c'4
                             d'4
@@ -1284,13 +1284,13 @@ class Parentage(collections.abc.Sequence):
             >>> note = voice[0]
             >>> parentage = abjad.get.parentage(note)
             >>> parentage.logical_voice()
-            {'score': "Score-'Score'", 'staff group': '', 'staff': "Staff-'Music_Staff'", 'voice': "Voice-'Music_Voice'"}
+            {'score': "Score-'Score'", 'staff group': '', 'staff': "Staff-'Music_Staff'", 'voice': "Voice-'MusicVoice'"}
 
         ..  container:: example
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container_1 = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container_1, voice[1])
             >>> container_2 = abjad.AfterGraceContainer("fs'16")
@@ -1301,7 +1301,7 @@ class Parentage(collections.abc.Sequence):
 
                 >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -1317,19 +1317,19 @@ class Parentage(collections.abc.Sequence):
                 }
 
             >>> abjad.get.parentage(voice).logical_voice()
-            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'MusicVoice'"}
 
             >>> abjad.get.parentage(container_1).logical_voice()
-            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'MusicVoice'"}
 
             >>> abjad.get.parentage(container_1[0]).logical_voice()
-            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'MusicVoice'"}
 
             >>> abjad.get.parentage(container_2).logical_voice()
-            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'MusicVoice'"}
 
             >>> abjad.get.parentage(container_2[0]).logical_voice()
-            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'Music_Voice'"}
+            {'score': '', 'staff group': '', 'staff': '', 'voice': "Voice-'MusicVoice'"}
 
         """
         keys = ("score", "staff group", "staff", "voice")
@@ -1407,7 +1407,7 @@ class Parentage(collections.abc.Sequence):
 
             REGRESSION. Works with grace notes (and containers):
 
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
             >>> container = abjad.BeforeGraceContainer("cs'16")
             >>> abjad.attach(container, music_voice[1])
             >>> container = abjad.on_beat_grace_container(
@@ -1426,7 +1426,7 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \context Voice = "Music_Voice"
+                    \context Voice = "MusicVoice"
                     {
                         c'4
                         \grace {
@@ -1454,7 +1454,7 @@ class Parentage(collections.abc.Sequence):
                                 )
                                 ]
                             }
-                            \context Voice = "Music_Voice"
+                            \context Voice = "MusicVoice"
                             {
                                 \voiceTwo
                                 e'4
@@ -1474,7 +1474,7 @@ class Parentage(collections.abc.Sequence):
             ...     score_index = parentage.score_index()
             ...     print(f"{repr(component):30} {repr(score_index)}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") ()
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') (0,)
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') (0,)
             Note("c'4")                    (0, 0)
             BeforeGraceContainer("cs'16")  (0, 0, 1, '-G')
             Note("cs'16")                  (0, 0, 1, '-G', 0)
@@ -1485,7 +1485,7 @@ class Parentage(collections.abc.Sequence):
             Note("gs'16")                  (0, 2, 0, 1)
             Note("a'16")                   (0, 2, 0, 2)
             Note("as'16")                  (0, 2, 0, 3)
-            Voice("e'4", name='Music_Voice') (0, 2, 1)
+            Voice("e'4", name='MusicVoice') (0, 2, 1)
             Note("e'4")                    (0, 2, 1, 0)
             Note("f'4")                    (0, 3)
             AfterGraceContainer("fs'16")   (0, 0, 3, '+G')

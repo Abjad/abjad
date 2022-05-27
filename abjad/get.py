@@ -22,7 +22,7 @@ def after_grace_container(argument):
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -41,7 +41,7 @@ def after_grace_container(argument):
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -69,7 +69,7 @@ def after_grace_container(argument):
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -88,7 +88,7 @@ def after_grace_container(argument):
         ...     container = abjad.get.after_grace_container(component)
         ...     print(f"{repr(component):30} {repr(container)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') None
         Note("c'4")                    None
         BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
@@ -99,7 +99,7 @@ def after_grace_container(argument):
         Note("gs'16")                  None
         Note("a'16")                   None
         Note("as'16")                  None
-        Voice("e'4", name='Music_Voice') None
+        Voice("e'4", name='MusicVoice') None
         Note("e'4")                    None
         Note("f'4")                    AfterGraceContainer("fs'16")
         AfterGraceContainer("fs'16")   None
@@ -264,7 +264,7 @@ def before_grace_container(argument):
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -283,7 +283,7 @@ def before_grace_container(argument):
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -311,7 +311,7 @@ def before_grace_container(argument):
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -330,7 +330,7 @@ def before_grace_container(argument):
         ...     container = abjad.get.before_grace_container(component)
         ...     print(f"{repr(component):30} {repr(container)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') None
         Note("c'4")                    None
         BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
@@ -341,7 +341,7 @@ def before_grace_container(argument):
         Note("gs'16")                  None
         Note("a'16")                   None
         Note("as'16")                  None
-        Voice("e'4", name='Music_Voice') None
+        Voice("e'4", name='MusicVoice') None
         Note("e'4")                    None
         Note("f'4")                    None
         AfterGraceContainer("fs'16")   None
@@ -359,7 +359,7 @@ def contents(argument) -> list[_score.Component]:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -378,7 +378,7 @@ def contents(argument) -> list[_score.Component]:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -406,7 +406,7 @@ def contents(argument) -> list[_score.Component]:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -428,9 +428,9 @@ def contents(argument) -> list[_score.Component]:
         ...         print(f"    {repr(component_)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")
             Note("d'4")
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
@@ -447,7 +447,7 @@ def contents(argument) -> list[_score.Component]:
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
@@ -462,8 +462,8 @@ def contents(argument) -> list[_score.Component]:
             Note("a'16")
         Note("as'16"):
             Note("as'16")
-        Voice("e'4", name='Music_Voice'):
-            Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice'):
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
         Note("e'4"):
             Note("e'4")
@@ -553,7 +553,7 @@ def descendants(argument) -> list[_score.Component]:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -572,7 +572,7 @@ def descendants(argument) -> list[_score.Component]:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -600,7 +600,7 @@ def descendants(argument) -> list[_score.Component]:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -622,7 +622,7 @@ def descendants(argument) -> list[_score.Component]:
         ...         print(f"    {repr(component_)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
@@ -633,13 +633,13 @@ def descendants(argument) -> list[_score.Component]:
             Note("gs'16")
             Note("a'16")
             Note("as'16")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
             Note("f'4")
             AfterGraceContainer("fs'16")
             Note("fs'16")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
@@ -650,7 +650,7 @@ def descendants(argument) -> list[_score.Component]:
             Note("gs'16")
             Note("a'16")
             Note("as'16")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
             Note("f'4")
             AfterGraceContainer("fs'16")
@@ -671,7 +671,7 @@ def descendants(argument) -> list[_score.Component]:
             Note("gs'16")
             Note("a'16")
             Note("as'16")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
@@ -687,8 +687,8 @@ def descendants(argument) -> list[_score.Component]:
             Note("a'16")
         Note("as'16"):
             Note("as'16")
-        Voice("e'4", name='Music_Voice'):
-            Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice'):
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
         Note("e'4"):
             Note("e'4")
@@ -722,7 +722,7 @@ def duration(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -741,7 +741,7 @@ def duration(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -769,7 +769,7 @@ def duration(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -788,7 +788,7 @@ def duration(
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Duration(1, 1)
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') Duration(1, 1)
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Duration(1, 1)
         Note("c'4")                    Duration(1, 4)
         BeforeGraceContainer("cs'16")  Duration(1, 16)
         Note("cs'16")                  Duration(1, 16)
@@ -799,7 +799,7 @@ def duration(
         Note("gs'16")                  Duration(1, 16)
         Note("a'16")                   Duration(1, 16)
         Note("as'16")                  Duration(1, 16)
-        Voice("e'4", name='Music_Voice') Duration(1, 4)
+        Voice("e'4", name='MusicVoice') Duration(1, 4)
         Note("e'4")                    Duration(1, 4)
         Note("f'4")                    Duration(1, 4)
         AfterGraceContainer("fs'16")   Duration(1, 16)
@@ -928,7 +928,7 @@ def effective(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -948,7 +948,7 @@ def effective(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -977,7 +977,7 @@ def effective(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -996,7 +996,7 @@ def effective(
         ...     clef = abjad.get.effective(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') None
         Note("c'4")                    None
         BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
@@ -1007,7 +1007,7 @@ def effective(
         Note("gs'16")                  Clef(name='alto', hide=False)
         Note("a'16")                   Clef(name='alto', hide=False)
         Note("as'16")                  Clef(name='alto', hide=False)
-        Voice("e'4", name='Music_Voice') Clef(name='alto', hide=False)
+        Voice("e'4", name='MusicVoice') Clef(name='alto', hide=False)
         Note("e'4")                    Clef(name='alto', hide=False)
         Note("f'4")                    Clef(name='alto', hide=False)
         AfterGraceContainer("fs'16")   Clef(name='alto', hide=False)
@@ -1431,7 +1431,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1450,7 +1450,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -1478,7 +1478,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -1499,7 +1499,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
         ...     print(f"    {staff!r}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("c'4"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -1521,7 +1521,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("as'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("e'4", name='Music_Voice'):
+        Voice("e'4", name='MusicVoice'):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("e'4"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -1562,7 +1562,7 @@ def effective_wrapper(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1582,7 +1582,7 @@ def effective_wrapper(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -1611,7 +1611,7 @@ def effective_wrapper(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -1632,7 +1632,7 @@ def effective_wrapper(
         ...     print(f"    {repr(wrapper)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             None
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             None
         Note("c'4")
             None
@@ -1654,7 +1654,7 @@ def effective_wrapper(
             Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("as'16")
             Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
-        Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice')
             Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
         Note("e'4")
             Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
@@ -1682,7 +1682,7 @@ def grace(argument) -> bool:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1701,7 +1701,7 @@ def grace(argument) -> bool:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -1729,7 +1729,7 @@ def grace(argument) -> bool:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -1748,7 +1748,7 @@ def grace(argument) -> bool:
         ...     result = abjad.get.grace(component)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
         Note("c'4")                    False
         BeforeGraceContainer("cs'16")  True
         Note("cs'16")                  True
@@ -1759,7 +1759,7 @@ def grace(argument) -> bool:
         Note("gs'16")                  True
         Note("a'16")                   True
         Note("as'16")                  True
-        Voice("e'4", name='Music_Voice') False
+        Voice("e'4", name='MusicVoice') False
         Note("e'4")                    False
         Note("f'4")                    False
         AfterGraceContainer("fs'16")   True
@@ -1782,7 +1782,7 @@ def has_effective_indicator(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1802,7 +1802,7 @@ def has_effective_indicator(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -1831,7 +1831,7 @@ def has_effective_indicator(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -1851,7 +1851,7 @@ def has_effective_indicator(
         ...     result = function(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
         Note("c'4")                    False
         BeforeGraceContainer("cs'16")  False
         Note("cs'16")                  False
@@ -1862,7 +1862,7 @@ def has_effective_indicator(
         Note("gs'16")                  True
         Note("a'16")                   True
         Note("as'16")                  True
-        Voice("e'4", name='Music_Voice') True
+        Voice("e'4", name='MusicVoice') True
         Note("e'4")                    True
         Note("f'4")                    True
         AfterGraceContainer("fs'16")   True
@@ -1935,7 +1935,7 @@ def has_indicator(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1955,7 +1955,7 @@ def has_indicator(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -1984,7 +1984,7 @@ def has_indicator(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -2003,7 +2003,7 @@ def has_indicator(
         ...     result = abjad.get.has_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') False
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
         Note("c'4")                    False
         BeforeGraceContainer("cs'16")  False
         Note("cs'16")                  False
@@ -2014,7 +2014,7 @@ def has_indicator(
         Note("gs'16")                  False
         Note("a'16")                   False
         Note("as'16")                  False
-        Voice("e'4", name='Music_Voice') False
+        Voice("e'4", name='MusicVoice') False
         Note("e'4")                    False
         Note("f'4")                    False
         AfterGraceContainer("fs'16")   False
@@ -2133,7 +2133,7 @@ def indicator(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2153,7 +2153,7 @@ def indicator(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -2182,7 +2182,7 @@ def indicator(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -2201,7 +2201,7 @@ def indicator(
         ...     result = abjad.get.indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(result)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') None
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') None
         Note("c'4")                    None
         BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
@@ -2212,7 +2212,7 @@ def indicator(
         Note("gs'16")                  None
         Note("a'16")                   None
         Note("as'16")                  None
-        Voice("e'4", name='Music_Voice') None
+        Voice("e'4", name='MusicVoice') None
         Note("e'4")                    None
         Note("f'4")                    None
         AfterGraceContainer("fs'16")   None
@@ -2284,7 +2284,7 @@ def indicators(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2307,7 +2307,7 @@ def indicators(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     - \staccato
@@ -2342,7 +2342,7 @@ def indicators(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -2366,7 +2366,7 @@ def indicators(
         ...     print(f"    {result!r}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             []
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
             []
         Note("c'4"):
             [Articulation(name='.')]
@@ -2388,7 +2388,7 @@ def indicators(
             [Articulation(name='.')]
         Note("as'16"):
             [StopBeam(leak=False), StopSlur(leak=False), Articulation(name='.')]
-        Voice("e'4", name='Music_Voice'):
+        Voice("e'4", name='MusicVoice'):
             []
         Note("e'4"):
             [LilyPondLiteral(argument='\\voiceTwo', site='opening', directed=False), Articulation(name='.')]
@@ -2535,7 +2535,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2555,7 +2555,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -2584,7 +2584,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -2720,7 +2720,7 @@ def lineage(argument) -> "Lineage":
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2739,7 +2739,7 @@ def lineage(argument) -> "Lineage":
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -2767,7 +2767,7 @@ def lineage(argument) -> "Lineage":
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -2789,7 +2789,7 @@ def lineage(argument) -> "Lineage":
         ...         print(f"    {repr(component_)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
@@ -2800,14 +2800,14 @@ def lineage(argument) -> "Lineage":
             Note("gs'16")
             Note("a'16")
             Note("as'16")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
             Note("f'4")
             AfterGraceContainer("fs'16")
             Note("fs'16")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")
             BeforeGraceContainer("cs'16")
             Note("cs'16")
@@ -2818,43 +2818,43 @@ def lineage(argument) -> "Lineage":
             Note("gs'16")
             Note("a'16")
             Note("as'16")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
             Note("f'4")
             AfterGraceContainer("fs'16")
             Note("fs'16")
         Note("c'4"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")
         BeforeGraceContainer("cs'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             BeforeGraceContainer("cs'16")
             Note("cs'16")
         Note("cs'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             BeforeGraceContainer("cs'16")
             Note("cs'16")
         Note("d'4"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("d'4")
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
             Note("gs'16")
             Note("a'16")
             Note("as'16")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
@@ -2863,52 +2863,52 @@ def lineage(argument) -> "Lineage":
             Note("as'16")
         Chord("<e' g'>16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Chord("<e' g'>16")
         Note("gs'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("gs'16")
         Note("a'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("a'16")
         Note("as'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Note("as'16")
-        Voice("e'4", name='Music_Voice'):
+        Voice("e'4", name='MusicVoice'):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
         Note("e'4"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Note("e'4")
         Note("f'4"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("f'4")
         AfterGraceContainer("fs'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             AfterGraceContainer("fs'16")
             Note("fs'16")
         Note("fs'16"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             AfterGraceContainer("fs'16")
             Note("fs'16")
 
@@ -2926,7 +2926,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2945,7 +2945,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -2973,7 +2973,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -3117,7 +3117,7 @@ def measure_number(argument) -> int:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -3136,7 +3136,7 @@ def measure_number(argument) -> int:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -3164,7 +3164,7 @@ def measure_number(argument) -> int:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -3183,7 +3183,7 @@ def measure_number(argument) -> int:
         ...     measure_number = abjad.get.measure_number(component)
         ...     print(f"{repr(component):30} {measure_number}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") 1
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice') 1
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') 1
         Note("c'4")                    1
         BeforeGraceContainer("cs'16")  1
         Note("cs'16")                  1
@@ -3194,7 +3194,7 @@ def measure_number(argument) -> int:
         Note("gs'16")                  1
         Note("a'16")                   1
         Note("as'16")                  1
-        Voice("e'4", name='Music_Voice') 1
+        Voice("e'4", name='MusicVoice') 1
         Note("e'4")                    1
         Note("f'4")                    1
         AfterGraceContainer("fs'16")   1
@@ -3291,7 +3291,7 @@ def parentage(argument) -> "_parentage.Parentage":
 
     ..  container:: example
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -3310,7 +3310,7 @@ def parentage(argument) -> "_parentage.Parentage":
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -3338,7 +3338,7 @@ def parentage(argument) -> "_parentage.Parentage":
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -3360,82 +3360,82 @@ def parentage(argument) -> "_parentage.Parentage":
         ...         print(f"    {repr(component_)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("c'4"):
             Note("c'4")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         BeforeGraceContainer("cs'16"):
             BeforeGraceContainer("cs'16")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("cs'16"):
             Note("cs'16")
             BeforeGraceContainer("cs'16")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("d'4"):
             Note("d'4")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Chord("<e' g'>16"):
             Chord("<e' g'>16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("gs'16"):
             Note("gs'16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("a'16"):
             Note("a'16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("as'16"):
             Note("as'16")
             OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("e'4", name='Music_Voice'):
-            Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice'):
+            Voice("e'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("e'4"):
             Note("e'4")
-            Voice("e'4", name='Music_Voice')
+            Voice("e'4", name='MusicVoice')
             Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("f'4"):
             Note("f'4")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         AfterGraceContainer("fs'16"):
             AfterGraceContainer("fs'16")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
         Note("fs'16"):
             Note("fs'16")
             AfterGraceContainer("fs'16")
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
     ..  container:: example
@@ -3506,7 +3506,7 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -3525,7 +3525,7 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -3553,7 +3553,7 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -3583,7 +3583,7 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
             NamedPitch("gs'")
             NamedPitch("a'")
             NamedPitch("as'")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             NamedPitch("c'")
             NamedPitch("cs'")
             NamedPitch("d'")
@@ -3623,7 +3623,7 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
             NamedPitch("a'")
         Note("as'16")
             NamedPitch("as'")
-        Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice')
             NamedPitch("e'")
         Note("e'4")
             NamedPitch("e'")
@@ -3766,7 +3766,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -3785,7 +3785,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -3813,7 +3813,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -3834,7 +3834,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         ...     print(f"    {timespan!r}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             Timespan(Offset((0, 1)), Offset((1, 1)))
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
             Timespan(Offset((0, 1)), Offset((1, 1)))
         Note("c'4"):
             Timespan(Offset((0, 1)), Offset((1, 4)))
@@ -3856,7 +3856,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
             Timespan(Offset((1, 2), displacement=Duration(1, 8)), Offset((1, 2), displacement=Duration(3, 16)))
         Note("as'16"):
             Timespan(Offset((1, 2), displacement=Duration(3, 16)), Offset((1, 2), displacement=Duration(1, 4)))
-        Voice("e'4", name='Music_Voice'):
+        Voice("e'4", name='MusicVoice'):
             Timespan(Offset((1, 2)), Offset((3, 4)))
         Note("e'4"):
             Timespan(Offset((1, 2), displacement=Duration(1, 4)), Offset((3, 4)))
@@ -3946,7 +3946,7 @@ def wrapper(
 
     ..  container:: example
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -3969,7 +3969,7 @@ def wrapper(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     - \staccato
@@ -4004,7 +4004,7 @@ def wrapper(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -4030,7 +4030,7 @@ def wrapper(
         ...     print(f"    {wrapper!r}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             None
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
             None
         Note("c'4"):
             Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
@@ -4052,7 +4052,7 @@ def wrapper(
             Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
         Note("as'16"):
             Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
-        Voice("e'4", name='Music_Voice'):
+        Voice("e'4", name='MusicVoice'):
             None
         Note("e'4"):
             Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
@@ -4084,7 +4084,7 @@ def wrappers(
 
         REGRESSION. Works with grace notes (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -4107,7 +4107,7 @@ def wrappers(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     - \staccato
@@ -4142,7 +4142,7 @@ def wrappers(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -4166,7 +4166,7 @@ def wrappers(
         ...     print(f"    {result!r}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
             []
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice'):
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
             []
         Note("c'4"):
             [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
@@ -4188,7 +4188,7 @@ def wrappers(
             [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
         Note("as'16"):
             [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
-        Voice("e'4", name='Music_Voice'):
+        Voice("e'4", name='MusicVoice'):
             []
         Note("e'4"):
             [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]

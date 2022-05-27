@@ -1376,6 +1376,120 @@ class Glissando:
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class InstrumentName:
+    r"""
+    LilyPond ``\instrumentName`` setting.
+
+    ..  container:: example
+
+        Set instrument name to markup like this:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> markup = abjad.Markup(r"\markup Cellos")
+        >>> instrument_name = abjad.InstrumentName(markup)
+        >>> abjad.attach(instrument_name, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \set Staff.instrumentName = \markup Cellos
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        Set instrument name to custom-defined function like this:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> instrument_name = abjad.InstrumentName(r"\my_instrument_name")
+        >>> abjad.attach(instrument_name, staff[0])
+
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
+        \new Staff
+        {
+            \set Staff.instrumentName = \my_instrument_name
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+
+    ..  container:: example
+
+        Equality testing:
+
+        >>> name_1 = abjad.InstrumentName(r"\markup Harp", context="PianoStaff")
+        >>> name_2 = abjad.InstrumentName(r"\markup Harp", context="PianoStaff")
+        >>> name_3 = abjad.InstrumentName(r"\markup Harp", context="Staff")
+
+        >>> name_1 == name_1
+        True
+        >>> name_1 == name_2
+        True
+        >>> name_1 == name_3
+        False
+
+        >>> name_2 == name_1
+        True
+        >>> name_2 == name_2
+        True
+        >>> name_2 == name_3
+        False
+
+        >>> name_3 == name_1
+        False
+        >>> name_3 == name_2
+        False
+        >>> name_3 == name_3
+        True
+
+    """
+
+    markup: typing.Union[str, "Markup"] = "instrument name"
+    _: dataclasses.KW_ONLY
+    context: str = "Staff"
+    site: str = "before"
+
+    @property
+    def _lilypond_type(self):
+        if isinstance(self.context, type):
+            return self.context.__name__
+        elif isinstance(self.context, str):
+            return self.context
+        else:
+            return type(self.context).__name__
+
+    def _get_lilypond_format(self, context=None):
+        result = []
+        if isinstance(context, str):
+            pass
+        elif context is not None:
+            context = context.lilypond_type
+        else:
+            context = self._lilypond_type
+        if isinstance(self.markup, Markup):
+            string = self.markup.string
+        else:
+            assert isinstance(self.markup, str)
+            string = self.markup
+        string = rf"\set {context!s}.instrumentName = {string}"
+        result.append(string)
+        return result
+
+    def _get_contributions(self, component=None):
+        contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
+        site.commands.extend(self._get_lilypond_format())
+        return contributions
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class KeyCluster:
     r"""
     Key cluster.
@@ -2003,101 +2117,6 @@ class LaissezVibrer:
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         contributions.after.articulations.append(self._get_lilypond_format())
-        return contributions
-
-
-@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
-class MarginMarkup:
-    r"""
-    Margin markup.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> margin_markup = abjad.MarginMarkup(
-        ...     markup=abjad.Markup(r"\markup Vc.")
-        ... )
-        >>> abjad.attach(margin_markup, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \set Staff.shortInstrumentName =
-                \markup Vc.
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Set markup to externally defined command string like this:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> margin_markup = abjad.MarginMarkup(
-        ...     markup=r"\my_custom_instrument_name",
-        ... )
-        >>> abjad.attach(margin_markup, staff[0])
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \set Staff.shortInstrumentName = \my_custom_instrument_name
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-    """
-
-    context: str = "Staff"
-    site: str = "before"
-    markup: typing.Union[str, "Markup", None] = None
-
-    latent: typing.ClassVar[bool] = True
-    persistent: typing.ClassVar[bool] = True
-    redraw: typing.ClassVar[bool] = True
-
-    @property
-    def _lilypond_type(self):
-        if isinstance(self.context, type):
-            return self.context.__name__
-        elif isinstance(self.context, str):
-            return self.context
-        else:
-            return type(self.context).__name__
-
-    def _get_lilypond_format(self, context=None):
-        result = []
-        if isinstance(context, str):
-            pass
-        elif context is not None:
-            context = context.lilypond_type
-        else:
-            context = self._lilypond_type
-        if isinstance(self.markup, Markup):
-            result.append(rf"\set {context!s}.shortInstrumentName =")
-            string = self.markup.string
-            result.append(string)
-        else:
-            assert isinstance(self.markup, str)
-            string = rf"\set {context!s}.shortInstrumentName = {self.markup}"
-            result.append(string)
-        return result
-
-    def _get_contributions(self, component=None):
-        contributions = _contributions.ContributionsBySite()
-        site = getattr(contributions, self.site)
-        site.commands.extend(self._get_lilypond_format())
         return contributions
 
 
@@ -3274,6 +3293,97 @@ class RepeatTie:
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class ShortInstrumentName:
+    r"""
+    LilyPond ``\shortInstrumentName`` command.
+
+    ..  container:: example
+
+        Set ``\shortInstrumentName`` to markup like this:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> short_instrument_name = abjad.ShortInstrumentName(r"\markup Vc.")
+        >>> abjad.attach(short_instrument_name, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \set Staff.shortInstrumentName =
+                \markup Vc.
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        Set ``\shortInstrumentName`` to custom function like this:
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> short_instrument_name = abjad.ShortInstrumentName(r"\my_custom_function")
+        >>> abjad.attach(short_instrument_name, staff[0])
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \set Staff.shortInstrumentName = \my_custom_function
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    """
+
+    markup: typing.Union[str, "Markup", None] = None
+    _: dataclasses.KW_ONLY
+    context: str = "Staff"
+    site: str = "before"
+
+    latent: typing.ClassVar[bool] = True
+    persistent: typing.ClassVar[bool] = True
+    redraw: typing.ClassVar[bool] = True
+
+    @property
+    def _lilypond_type(self):
+        if isinstance(self.context, type):
+            return self.context.__name__
+        elif isinstance(self.context, str):
+            return self.context
+        else:
+            return type(self.context).__name__
+
+    def _get_lilypond_format(self, context=None):
+        result = []
+        if isinstance(context, str):
+            pass
+        elif context is not None:
+            context = context.lilypond_type
+        else:
+            context = self._lilypond_type
+        if isinstance(self.markup, Markup):
+            string = self.markup.string
+        else:
+            assert isinstance(self.markup, str)
+            string = self.markup
+        string = rf"\set {context!s}.shortInstrumentName = {string}"
+        result.append(string)
+        return result
+
+    def _get_contributions(self, component=None):
+        contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
+        site.commands.extend(self._get_lilypond_format())
+        return contributions
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StaffChange:
     r"""
     Staff change.
@@ -3887,129 +3997,6 @@ class StartHairpin:
 
         """
         return self._known_shapes
-
-
-@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
-class StartMarkup:
-    r"""
-    Start markup.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> markup = abjad.Markup(r"\markup Cellos")
-        >>> start_markup = abjad.StartMarkup(markup=markup)
-        >>> abjad.attach(start_markup, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \set Staff.instrumentName =
-                \markup Cellos
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-    ..  container:: example
-
-        Set instrument name to custom-defined LilyPond function like this:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> start_markup = abjad.StartMarkup(markup=r'\my_instrument_name')
-        >>> abjad.attach(start_markup, staff[0])
-
-        >>> string = abjad.lilypond(staff)
-        >>> print(string)
-        \new Staff
-        {
-            \set Staff.instrumentName = \my_instrument_name
-            c'4
-            d'4
-            e'4
-            f'4
-        }
-
-    ..  container:: example
-
-        Equality testing:
-
-        >>> start_markup_1 = abjad.StartMarkup(
-        ...     context='PianoStaff',
-        ...     markup=abjad.Markup(r"\markup Harp"),
-        ...     )
-        >>> start_markup_2 = abjad.StartMarkup(
-        ...     context="PianoStaff",
-        ...     markup=abjad.Markup(r"\markup Harp"),
-        ...     )
-        >>> start_markup_3 = abjad.StartMarkup(
-        ...     context="Staff",
-        ...     markup=abjad.Markup(r"\markup Harp"),
-        ...     )
-
-        >>> start_markup_1 == start_markup_1
-        True
-        >>> start_markup_1 == start_markup_2
-        True
-        >>> start_markup_1 == start_markup_3
-        False
-
-        >>> start_markup_2 == start_markup_1
-        True
-        >>> start_markup_2 == start_markup_2
-        True
-        >>> start_markup_2 == start_markup_3
-        False
-
-        >>> start_markup_3 == start_markup_1
-        False
-        >>> start_markup_3 == start_markup_2
-        False
-        >>> start_markup_3 == start_markup_3
-        True
-
-    """
-
-    markup: str | Markup = "instrument name"
-    context: str = "Staff"
-    site: str = "before"
-
-    @property
-    def _lilypond_type(self):
-        if isinstance(self.context, type):
-            return self.context.__name__
-        elif isinstance(self.context, str):
-            return self.context
-        else:
-            return type(self.context).__name__
-
-    def _get_lilypond_format(self, context=None):
-        result = []
-        if isinstance(context, str):
-            pass
-        elif context is not None:
-            context = context.lilypond_type
-        else:
-            context = self._lilypond_type
-        if isinstance(self.markup, Markup):
-            result.append(rf"\set {context!s}.instrumentName =")
-            result.append(self.markup.string)
-        else:
-            assert isinstance(self.markup, str)
-            string = rf"\set {context!s}.instrumentName = {self.markup}"
-            result.append(string)
-        return result
-
-    def _get_contributions(self, component=None):
-        contributions = _contributions.ContributionsBySite()
-        site = getattr(contributions, self.site)
-        site.commands.extend(self._get_lilypond_format())
-        return contributions
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)

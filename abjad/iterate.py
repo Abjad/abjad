@@ -70,7 +70,7 @@ def components(
 
         Grace iteration is controlled by a ternary flag.
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -89,7 +89,7 @@ def components(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -117,7 +117,7 @@ def components(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -138,7 +138,7 @@ def components(
         >>> for component in abjad.iterate.components(staff):
         ...     component
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
         Note("c'4")
         BeforeGraceContainer("cs'16")
         Note("cs'16")
@@ -149,7 +149,7 @@ def components(
         Note("gs'16")
         Note("a'16")
         Note("as'16")
-        Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice')
         Note("e'4")
         Note("f'4")
         AfterGraceContainer("fs'16")
@@ -158,12 +158,12 @@ def components(
         >>> for component in abjad.iterate.components(staff, reverse=True):
         ...     component
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
         AfterGraceContainer("fs'16")
         Note("fs'16")
         Note("f'4")
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-        Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice')
         Note("e'4")
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
         Note("as'16")
@@ -206,21 +206,21 @@ def components(
         >>> for component in abjad.iterate.components(staff, grace=False):
         ...     component
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
         Note("c'4")
         Note("d'4")
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-        Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice')
         Note("e'4")
         Note("f'4")
 
         >>> for component in abjad.iterate.components(staff, grace=False, reverse=True):
         ...     component
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='Music_Voice')
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
         Note("f'4")
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-        Voice("e'4", name='Music_Voice')
+        Voice("e'4", name='MusicVoice')
         Note("e'4")
         Note("d'4")
         Note("c'4")
@@ -291,7 +291,7 @@ def leaves(
 
         Grace iteration is controlled by a ternary flag.
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -310,7 +310,7 @@ def leaves(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -338,7 +338,7 @@ def leaves(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -529,7 +529,7 @@ def logical_ties(
 
         Grace iteration is controlled by a ternary flag.
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -548,7 +548,7 @@ def logical_ties(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -576,7 +576,7 @@ def logical_ties(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4
@@ -1003,7 +1003,7 @@ def timeline(
 
         REGRESSION. Works with grace note (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1022,7 +1022,7 @@ def timeline(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -1050,7 +1050,7 @@ def timeline(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4

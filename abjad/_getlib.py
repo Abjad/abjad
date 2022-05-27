@@ -270,11 +270,8 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
     for wrapper in dependent_wrappers:
         if wrapper.annotation:
             continue
-        # indicator = wrapper.indicator
-        # if not getattr(indicator, "persistent", False):
         if not getattr(wrapper.unbundle_indicator(), "persistent", False):
             continue
-        # assert isinstance(indicator.persistent, bool)
         assert isinstance(wrapper.unbundle_indicator().persistent, bool)
         should_omit = False
         if omit_with_indicator is not None:
@@ -284,15 +281,11 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
                     continue
         if should_omit:
             continue
-        # if hasattr(indicator, "parameter"):
         if hasattr(wrapper.unbundle_indicator(), "parameter"):
-            # key = indicator.parameter
             key = wrapper.unbundle_indicator().parameter
-        # elif isinstance(indicator, _instruments.Instrument):
         elif isinstance(wrapper.unbundle_indicator(), _instruments.Instrument):
             key = "Instrument"
         else:
-            # key = str(type(indicator))
             key = str(type(wrapper.unbundle_indicator()))
         if key not in wrappers:
             wrappers[key] = wrapper
@@ -308,9 +301,6 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
                 or getattr(wrapper.unbundle_indicator(), "spanner_stop", False) is True
                 or getattr(wrapper.unbundle_indicator(), "trend", False) is True
             ):
-                wrappers[key] = wrapper
-            # this branch can be removed after rerendering scores:
-            elif wrapper.unbundle_indicator() == wrappers[key].unbundle_indicator():
                 wrappers[key] = wrapper
     return wrappers
 
