@@ -138,7 +138,7 @@ def annotation(
 
         >>> string = 'default_instrument'
         >>> abjad.get.annotation(staff[0], string)
-        Cello()
+        Cello(clefs=('bass', 'tenor', 'treble'), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C2, G5]'), tuning=Tuning(pitches=(NamedPitch('c,'), NamedPitch('g,'), NamedPitch('d'), NamedPitch('a'))))
 
         >>> abjad.get.annotation(staff[1], string) is None
         True
@@ -152,7 +152,7 @@ def annotation(
         Returns default when no annotation is found:
 
         >>> abjad.get.annotation(staff[3], string, abjad.Violin())
-        Violin()
+        Violin(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[G3, G7]'), tuning=Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''"))))
 
     ..  container:: example
 
@@ -199,7 +199,7 @@ def annotation_wrappers(argument):
             }
 
         >>> for wrapper in abjad.get.annotation_wrappers(staff[0]): wrapper
-        Wrapper(annotation='default_instrument', context=None, deactivate=False, direction=None, indicator=Cello(), synthetic_offset=None, tag=Tag(string=''))
+        Wrapper(annotation='default_instrument', context=None, deactivate=False, direction=None, indicator=Cello(clefs=('bass', 'tenor', 'treble'), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C2, G5]'), tuning=Tuning(pitches=(NamedPitch('c,'), NamedPitch('g,'), NamedPitch('d'), NamedPitch('a')))), synthetic_offset=None, tag=Tag(string=''))
         Wrapper(annotation='default_clef', context=None, deactivate=False, direction=None, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag(string=''))
 
     """

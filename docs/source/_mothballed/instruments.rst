@@ -62,36 +62,6 @@ Use ``abjad.detach()`` to detach an instrument from a component:
     >>> abjad.detach(violin, staff[0])
     >>> abjad.show(staff)
 
-Getting the name of an instrument
----------------------------------
-
-Use ``name`` to get the name of any instrument:
-
-::
-
-    >>> violin.name
-
-Use ``markup`` to get the instrument name markup of any instrument:
-
-::
-
-    >>> violin.markup
-
-Getting the short name of an instrument
----------------------------------------
-
-Use ``short_name`` to get the short name of any instrument:
-
-::
-
-    >>> violin.short_name
-
-Use ``short_markup`` to get the short instrument name markup of any instrument:
-
-::
-
-    >>> violin.short_markup
-
 Getting an instrument's range
 -----------------------------
 
@@ -137,16 +107,14 @@ You can change the properties of any instrument at initialization:
 ::
 
     >>> viola = abjad.Viola(
-    ...     name='Bratsche',
-    ...     short_name='Br.',
-    ...     allowable_clefs=['alto', 'treble'],
-    ...     pitch_range='[C3, C6]',
+    ...     allowable_clefs=("alto", "treble"),
+    ...     pitch_range=abjad.PitchRange("[C3, C6]"),
     ... )
 
 ::
 
     >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
     >>> abjad.attach(viola, staff[0])
-    >>> clef = abjad.Clef('alto')
+    >>> clef = abjad.Clef("alto")
     >>> abjad.attach(clef, staff[0])
     >>> abjad.show(staff)

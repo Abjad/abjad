@@ -22,7 +22,6 @@ class_to_default_values = {
     abjad.Markup: (r"\markup Allegro",),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
     abjad.MetronomeMark: ((1, 4), 90),
-    abjad.StringNumber: ([1],),
     abjad.TimeSignature: ((4, 4),),
     abjad.Tweak: (r"\tweak color #red",),
 }
