@@ -1,93 +1,136 @@
+r"""
+Instruments.
+
+..  container:: example
+
+    Default ranges of each instrument:
+
+    >>> names = [_ for _ in dir(abjad.instruments) if _[0].isupper()]
+    >>> for name in names:
+    ...     class_ = abjad.__dict__[name]
+    ...     if issubclass(class_, abjad.Instrument):
+    ...         instrument = class_()
+    ...         instrument_name = instrument.__class__.__name__
+    ...         range_string = instrument.pitch_range.range_string
+    ...         print(f"{instrument_name}: {range_string}")
+    Accordion: [E1, C8]
+    AltoFlute: [G3, G6]
+    AltoSaxophone: [Db3, A5]
+    AltoTrombone: [A2, Bb5]
+    AltoVoice: [F3, G5]
+    BaritoneSaxophone: [C2, Ab4]
+    BaritoneVoice: [A2, A4]
+    BassClarinet: [Bb1, G5]
+    BassFlute: [C3, C6]
+    BassSaxophone: [Ab2, E4]
+    BassTrombone: [C2, F4]
+    BassVoice: [E2, F4]
+    Bassoon: [Bb1, Eb5]
+    Cello: [C2, G5]
+    ClarinetInA: [Db3, A6]
+    ClarinetInBFlat: [D3, Bb6]
+    ClarinetInEFlat: [F3, C7]
+    Contrabass: [C1, G4]
+    ContrabassClarinet: [Bb0, G4]
+    ContrabassFlute: [G2, G5]
+    ContrabassSaxophone: [C1, Ab3]
+    Contrabassoon: [Bb0, Bb4]
+    EnglishHorn: [E3, C6]
+    Flute: [C4, D7]
+    FrenchHorn: [B1, F5]
+    Glockenspiel: [G5, C8]
+    Guitar: [E2, E5]
+    Harp: [B0, G#7]
+    Harpsichord: [C2, C7]
+    Instrument: [-inf, +inf]
+    Marimba: [F2, C7]
+    MezzoSopranoVoice: [A3, C6]
+    Oboe: [Bb3, A6]
+    Percussion: [-inf, +inf]
+    Piano: [A0, C8]
+    Piccolo: [D5, C8]
+    SopraninoSaxophone: [Db4, F#6]
+    SopranoSaxophone: [Ab3, E6]
+    SopranoVoice: [C4, E6]
+    TenorSaxophone: [Ab2, E5]
+    TenorTrombone: [E2, Eb5]
+    TenorVoice: [C3, D5]
+    Trumpet: [F#3, D6]
+    Tuba: [D1, F4]
+    Vibraphone: [F3, F6]
+    Viola: [C3, D6]
+    Violin: [G3, G7]
+    Xylophone: [C4, C7]
+
+..  container:: example
+
+    Two instruments active on a single staff:
+
+    >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
+    >>> flute = abjad.Flute()
+    >>> abjad.attach(flute, voice_1[0], context="Voice")
+    >>> abjad.attach(abjad.LilyPondLiteral(r"\voiceOne"), voice_1)
+    >>> voice_2 = abjad.Voice("c'2")
+    >>> abjad.attach(abjad.LilyPondLiteral(r"\voiceTwo"), voice_2)
+    >>> viola = abjad.Viola()
+    >>> abjad.attach(viola, voice_2[0], context="Voice")
+    >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
+    >>> abjad.show(staff) # doctest: +SKIP
+
+    ..  docs::
+
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
+        \new Staff
+        <<
+            \new Voice
+            {
+                \voiceOne
+                e'8
+                g'8
+                f'8
+                a'8
+            }
+            \new Voice
+            {
+                \voiceTwo
+                c'2
+            }
+        >>
+
+    >>> for leaf in abjad.select.leaves(voice_1):
+    ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
+    ...
+    (Note("e'8"), Flute(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C4, D7]')))
+    (Note("g'8"), Flute(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C4, D7]')))
+    (Note("f'8"), Flute(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C4, D7]')))
+    (Note("a'8"), Flute(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C4, D7]')))
+
+    >>> for leaf in abjad.select.leaves(voice_2):
+    ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
+    ...
+    (Note("c'2"), Viola(clefs=('alto', 'treble'), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C3, D6]'), tuning=Tuning(pitches=(NamedPitch('c'), NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'")))))
+
 """
-Instrument classes.
-"""
-import copy
 import dataclasses
 import typing
 
 from . import contributions as _contributions
 from . import enumerate as _enumerate
-from . import indicators as _indicators
 from . import pcollections as _pcollections
 from . import pitch as _pitch
-from . import string as _string
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Instrument:
-    r"""
+    """
     Instrument.
-
-    ..  container:: example
-
-        Two instruments active on a single staff:
-
-        >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
-        >>> flute = abjad.Flute()
-        >>> abjad.attach(flute, voice_1[0], context='Voice')
-        >>> flute_markup = abjad.Markup(r'\markup (flute)')
-        >>> abjad.attach(flute_markup, voice_1[0], direction=abjad.UP)
-        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceOne'), voice_1)
-        >>> voice_2 = abjad.Voice("c'2")
-        >>> abjad.attach(abjad.LilyPondLiteral(r'\voiceTwo'), voice_2)
-        >>> viola = abjad.Viola()
-        >>> abjad.attach(viola, voice_2[0], context='Voice')
-        >>> viola_markup = abjad.Markup(r'\markup (viola)')
-        >>> abjad.attach(viola_markup, voice_2[0], direction=abjad.DOWN)
-        >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            <<
-                \new Voice
-                {
-                    \voiceOne
-                    e'8
-                    ^ \markup (flute)
-                    g'8
-                    f'8
-                    a'8
-                }
-                \new Voice
-                {
-                    \voiceTwo
-                    c'2
-                    _ \markup (viola)
-                }
-            >>
-
-        >>> for leaf in abjad.select.leaves(voice_1):
-        ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
-        ...
-        (Note("e'8"), Flute())
-        (Note("g'8"), Flute())
-        (Note("f'8"), Flute())
-        (Note("a'8"), Flute())
-
-        >>> for leaf in abjad.select.leaves(voice_2):
-        ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
-        ...
-        (Note("c'2"), Viola())
-
     """
 
-    __slots__ = (
-        "_allowable_clefs",
-        "_context",
-        "_middle_c_sounding_pitch",
-        "_name",
-        "_name_markup",
-        "_primary",
-        "_middle_c_sounding_pitch",
-        "_performer_names",
-        "_pitch_range",
-        "_short_name",
-        "_short_name_markup",
-        "_starting_clefs",
-    )
+    clefs: tuple[str, ...] = ()
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[-inf, +inf]")
 
     _site: typing.ClassVar[str] = "opening"
     _latent: typing.ClassVar[bool] = True
@@ -95,81 +138,16 @@ class Instrument:
     _redraw: typing.ClassVar[bool] = True
     check_effective_context: typing.ClassVar[bool] = True
 
-    def __init__(
-        self,
-        *,
-        allowable_clefs=None,
-        context=None,
-        markup=None,
-        middle_c_sounding_pitch=None,
-        name=None,
-        pitch_range=None,
-        primary=None,
-        short_name=None,
-        short_markup=None,
-    ):
-        self._context = context or "Staff"
-        if name is not None:
-            name = str(name)
-        self._name = name
-        if markup is not None:
-            markup = _indicators.Markup(str(markup))
-        self._name_markup = markup
-        if short_name is not None:
-            short_name = str(short_name)
-        self._short_name = short_name
-        if short_markup is not None:
-            short_markup = _indicators.Markup(str(short_markup))
-        self._short_name_markup = short_markup
-        allowable_clefs = allowable_clefs or ("treble",)
-        self._allowable_clefs = allowable_clefs
-        if isinstance(pitch_range, str):
-            pitch_range = _pcollections.PitchRange(pitch_range)
-        elif isinstance(pitch_range, _pcollections.PitchRange):
-            pitch_range = copy.copy(pitch_range)
-        elif pitch_range is None:
-            pitch_range = _pcollections.PitchRange()
-        else:
-            raise TypeError(pitch_range)
-        self._pitch_range = pitch_range
-        middle_c_sounding_pitch = middle_c_sounding_pitch or _pitch.NamedPitch("c'")
-        middle_c_sounding_pitch = _pitch.NamedPitch(middle_c_sounding_pitch)
-        self._middle_c_sounding_pitch = middle_c_sounding_pitch
-        if primary is not None:
-            primary = bool(primary)
-        self._primary = primary
-        self._performer_names = ["instrumentalist"]
-        self._starting_clefs = copy.copy(allowable_clefs)
-
-    def __eq__(self, argument) -> bool:
-        """
-        Compares all nine initializer parameters.
-        """
-        if isinstance(argument, type(self)):
-            return (
-                self.allowable_clefs == argument.allowable_clefs
-                and self.context == argument.context
-                and self.markup == argument.markup
-                and self.middle_c_sounding_pitch == argument.middle_c_sounding_pitch
-                and self.name == argument.name
-                and self.pitch_range == argument.pitch_range
-                and self.primary == argument.primary
-                and self.short_name == argument.short_name
-                and self.short_markup == argument.short_markup
-            )
-        return False
-
-    def __hash__(self) -> int:
-        """
-        Hashes instrument.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets repr.
-        """
-        return f"{type(self).__name__}()"
+    def __post_init__(self):
+        assert isinstance(self.context, str), repr(self.context)
+        assert isinstance(self.clefs, tuple), repr(self.clefs)
+        assert all(isinstance(_, str) for _ in self.clefs)
+        assert isinstance(self.pitch_range, _pcollections.PitchRange), repr(
+            self.pitch_range
+        )
+        assert isinstance(self.middle_c_sounding_pitch, _pitch.NamedPitch), repr(
+            self.middle_c_sounding_pitch
+        )
 
     @property
     def _lilypond_type(self):
@@ -197,93 +175,14 @@ class Instrument:
     def _get_lilypond_format(self, context=None):
         return []
 
-    def _initialize_default_name_markups(self):
-        if self._name_markup is None:
-            if self.name:
-                string = self.name
-                string = _string.capitalize_start(string)
-                markup = _indicators.Markup(rf"\markup {string}")
-                self._name_markup = markup
-            else:
-                self._name_markup = None
-        if self._short_name_markup is None:
-            if self.short_name:
-                string = self.short_name
-                string = _string.capitalize_start(string)
-                markup = _indicators.Markup(rf"\markup {string}")
-            else:
-                self._short_name_markup = None
-
     @property
-    def allowable_clefs(self):
-        """
-        Gets allowable clefs.
-
-        Returns clef list.
-        """
-        if self._allowable_clefs is None:
-            self._allowable_clefs = ("treble",)
-        return self._allowable_clefs
-
-    @property
-    def context(self):
-        """
-        Gets (historically conventional) context of instrument.
-
-        Defaults to ``'Staff'``.
-
-        Returns lilypond type of context.
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
-
-    @property
-    def latent(self):
+    def latent(self) -> bool:
         """
         Is true for all instruments.
 
         Class constant.
-
-        Returns true.
         """
         return self._latent
-
-    @property
-    def markup(self):
-        """
-        Gets instrument name markup.
-
-        Returns markup.
-        """
-        if self._name_markup is None:
-            self._initialize_default_name_markups()
-        if self._name_markup is None:
-            return
-        if not isinstance(self._name_markup, _indicators.Markup):
-            assert isinstance(self._name_markup, str), repr(self._name_markup)
-            markup = _indicators.Markup(rf"\markup {self._name_markup}")
-            self._name_markup = markup
-        if self._name_markup.string:
-            return self._name_markup
-
-    @property
-    def middle_c_sounding_pitch(self):
-        """
-        Gets sounding pitch of written middle C.
-
-        Returns named pitch.
-        """
-        return self._middle_c_sounding_pitch
-
-    @property
-    def name(self):
-        """
-        Gets instrument name.
-
-        Returns string.
-        """
-        return self._name
 
     @property
     def persistent(self) -> bool:
@@ -295,64 +194,16 @@ class Instrument:
         return self._persistent
 
     @property
-    def pitch_range(self):
-        """
-        Gets pitch range.
-
-        Returns pitch range.
-        """
-        return self._pitch_range
-
-    @property
-    def primary(self):
-        """
-        Is true when instrument is historically conventional primary instrument
-        (eg, flute) rather than doubling (eg, piccolo).
-        """
-        return self._primary
-
-    @property
-    def redraw(self):
+    def redraw(self) -> bool:
         """
         Is true for all instruments.
 
         Class constant.
-
-        Returns true.
         """
         return self._redraw
 
-    @property
-    def short_markup(self):
-        """
-        Gets short instrument name markup.
 
-        Returns markup.
-        """
-        if self._short_name_markup is None:
-            self._initialize_default_name_markups()
-        if self._short_name_markup is None:
-            return
-        if not isinstance(self._short_name_markup, _indicators.Markup):
-            assert isinstance(self._short_name_markup, str), repr(
-                self._short_name_markup
-            )
-            markup = _indicators.Markup(rf"\markup {self._short_name_markup}")
-            self._short_name_markup = markup
-        if self._short_name_markup.string:
-            return self._short_name_markup
-
-    @property
-    def short_name(self):
-        """
-        Gets short instrument name.
-
-        Returns string.
-        """
-        return self._short_name
-
-
-@dataclasses.dataclass(slots=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class StringNumber:
     """
     String number.
@@ -371,14 +222,11 @@ class StringNumber:
 
     """
 
-    numbers: typing.Iterable[int]
+    numbers: tuple[int, ...] = (1,)
 
     def __post_init__(self):
-        numbers_ = tuple(self.numbers)
-        assert isinstance(numbers_, tuple), repr(numbers_)
-        numbers_ = tuple(int(_) for _ in numbers_)
-        assert all(0 < _ < 7 for _ in numbers_)
-        self.numbers = numbers_
+        assert isinstance(self.numbers, tuple), repr(self.numbers)
+        assert all(0 < _ < 7 for _ in self.numbers)
 
     @property
     def roman_numerals(self) -> tuple[str, ...]:
@@ -408,7 +256,7 @@ class StringNumber:
         return tuple(result)
 
 
-@dataclasses.dataclass(slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Tuning:
     """
     Tuning.
@@ -417,15 +265,17 @@ class Tuning:
 
         Violin tuning:
 
-        >>> abjad.Tuning(pitches=("G3", "D4", "A4", "E5"))
+        >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
+        >>> abjad.Tuning(tuple(pitches))
         Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''")))
 
     """
 
-    pitches: typing.Sequence[_pitch.NamedPitch] = ()
+    pitches: tuple[_pitch.NamedPitch, ...] = ()
 
     def __post_init__(self):
-        self.pitches = tuple(_pitch.NamedPitch(_) for _ in self.pitches)
+        assert isinstance(self.pitches, tuple), repr(self.pitches)
+        assert all(isinstance(_, _pitch.NamedPitch) for _ in self.pitches)
 
     @property
     def pitch_ranges(self) -> list[_pcollections.PitchRange]:
@@ -434,8 +284,9 @@ class Tuning:
 
         ..  container:: example
 
-            >>> indicator = abjad.Tuning(pitches=('G3', 'D4', 'A4', 'E5'))
-            >>> for range_ in indicator.pitch_ranges:
+            >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
+            >>> tuning = abjad.Tuning(tuple(pitches))
+            >>> for range_ in tuning.pitch_ranges:
             ...     range_
             PitchRange(range_string='[G3, G5]')
             PitchRange(range_string='[D4, D6]')
@@ -445,7 +296,7 @@ class Tuning:
         """
         result = []
         for pitch in self.pitches or []:
-            pitch_range = _pcollections.PitchRange(
+            pitch_range: _pcollections.PitchRange = _pcollections.PitchRange(
                 f"[{pitch.name}, {(pitch + 24).name}]"
             )
             result.append(pitch_range)
@@ -461,7 +312,8 @@ class Tuning:
 
             Violin tuning:
 
-            >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
+            >>> tuning = abjad.Tuning(tuple(pitches))
             >>> string_number = abjad.StringNumber((2, 3))
             >>> tuning.get_pitch_ranges_by_string_number(string_number)
             (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
@@ -474,7 +326,7 @@ class Tuning:
         result = []
         for number in string_number.numbers:
             index = -number
-            pitch_range = pitch_ranges[index]
+            pitch_range: _pcollections.PitchRange = pitch_ranges[index]
             result.append(pitch_range)
         return tuple(result)
 
@@ -488,7 +340,8 @@ class Tuning:
 
             Violin tuning:
 
-            >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
+            >>> tuning = abjad.Tuning(tuple(pitches))
             >>> string_number = abjad.StringNumber((2, 3))
             >>> tuning.get_pitches_by_string_number(string_number)
             (NamedPitch("a'"), NamedPitch("d'"))
@@ -511,7 +364,8 @@ class Tuning:
 
         ..  container:: example
 
-            >>> tuning = abjad.Tuning(('G3', 'D4', 'A4', 'E5'))
+            >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
+            >>> tuning = abjad.Tuning(tuple(pitches))
             >>> voicings = tuning.voice_pitch_classes(('a',))
             >>> for voicing in voicings:
             ...     voicing
@@ -527,7 +381,7 @@ class Tuning:
             (NamedPitch("a'"), None, None, None)
 
             >>> voicings = tuning.voice_pitch_classes(
-            ...     ('a', 'd'),
+            ...     ("a", "d"),
             ...     allow_open_strings=False,
             ... )
             >>> for voicing in voicings:
@@ -612,2012 +466,312 @@ class Tuning:
         return tuple(result)
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Accordion(Instrument):
-    r"""
-    Accordion.
 
-    ..  container:: example
-
-        >>> staff_group = abjad.StaffGroup(lilypond_type='PianoStaff')
-        >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
-        >>> staff_group.append(abjad.Staff("c'2 b2"))
-        >>> accordion = abjad.Accordion()
-        >>> abjad.attach(accordion, staff_group[0][0])
-        >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
-        >>> abjad.show(staff_group) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff_group)
-            >>> print(string)
-            \new PianoStaff
-            <<
-                \new Staff
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-                \new Staff
-                {
-                    \clef "bass"
-                    c'2
-                    b2
-                }
-            >>
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        allowable_clefs=("treble", "bass"),
-        context="StaffGroup",
-        name="accordion",
-        markup=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[E1, C8]",
-        primary=True,
-        short_markup=None,
-        short_name="acc.",
-    ):
-        Instrument.__init__(
-            self,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            name=name,
-            markup=markup,
-            short_markup=short_markup,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            short_name=short_name,
-        )
+    clefs: tuple[str, ...] = ("treble", "bass")
+    context: str = "StaffGroup"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[E1, C8]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoFlute(Instrument):
-    r"""
-    Alto flute.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> alto_flute = abjad.AltoFlute()
-        >>> abjad.attach(alto_flute, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="alto flute",
-        short_name="alt. fl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="G3",
-        pitch_range="[G3, G6]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("G3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[G3, G6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoSaxophone(Instrument):
-    r"""
-    Alto saxophone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> alto_saxophone = abjad.AltoSaxophone()
-        >>> abjad.attach(alto_saxophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="alto saxophone",
-        short_name="alt. sax.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Eb3",
-        pitch_range="[Db3, A5]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Db3, A5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoTrombone(Instrument):
-    r"""
-    Alto trombone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c4 d4 e4 fs4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> alto_trombone = abjad.AltoTrombone()
-        >>> abjad.attach(alto_trombone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c4
-                d4
-                e4
-                fs4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="alto trombone",
-        short_name="alt. trb.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass", "tenor"),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[A2, Bb5]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("bass", "tenor")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[A2, Bb5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoVoice(Instrument):
-    r"""
-    Alto voice.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> alto = abjad.AltoVoice()
-        >>> abjad.attach(alto, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    performer_abbreviation = "alto"
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="alto",
-        short_name="alto",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[F3, G5]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[F3, G5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BaritoneSaxophone(Instrument):
-    r"""
-    Baritone saxophone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> baritone_saxophone = abjad.BaritoneSaxophone()
-        >>> abjad.attach(baritone_saxophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="baritone saxophone",
-        short_name="bar. sax.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Eb2",
-        pitch_range="[C2, Ab4]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb2")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C2, Ab4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BaritoneVoice(Instrument):
-    r"""
-    Baritone voice.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c4 d4 e4 fs4")
-        >>> baritone = abjad.BaritoneVoice()
-        >>> abjad.attach(baritone, staff[0])
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c4
-                d4
-                e4
-                fs4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    performer_abbreviation = "bar."
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="baritone",
-        short_name="bar.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass",),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[A2, A4]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("bass",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[A2, A4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassClarinet(Instrument):
-    r"""
-    Bass clarinet.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> bass_clarinet = abjad.BassClarinet()
-        >>> abjad.attach(bass_clarinet, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="bass clarinet",
-        short_name="bass cl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("treble", "bass"),
-        context=None,
-        middle_c_sounding_pitch="Bb2",
-        pitch_range="[Bb1, G5]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble", "bass")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb2")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Bb1, G5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassFlute(Instrument):
-    r"""
-    Bass flute.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> bass_flute = abjad.BassFlute()
-        >>> abjad.attach(bass_flute, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="bass flute",
-        short_name="bass fl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="C3",
-        pitch_range="[C3, C6]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C3, C6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassSaxophone(Instrument):
-    r"""
-    Bass saxophone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> bass_saxophone = abjad.BassSaxophone()
-        >>> abjad.attach(bass_saxophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="bass saxophone",
-        short_name="bass sax.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Bb1",
-        pitch_range="[Ab2, E4]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb1")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Ab2, E4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassTrombone(Instrument):
-    r"""
-    Bass trombone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> bass_trombone = abjad.BassTrombone()
-        >>> abjad.attach(bass_trombone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="bass trombone",
-        short_name="bass trb.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass",),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[C2, F4]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("bass",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C2, F4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassVoice(Instrument):
-    r"""
-    Bass voice.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c4 d4 e4 fs4")
-        >>> bass = abjad.BassVoice()
-        >>> abjad.attach(bass, staff[0])
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c4
-                d4
-                e4
-                fs4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="bass",
-        short_name="bass",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass",),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[E2, F4]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("bass",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[E2, F4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Bassoon(Instrument):
-    r"""
-    Bassoon.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> bassoon = abjad.Bassoon()
-        >>> abjad.attach(bassoon, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="bassoon",
-        short_name="bsn.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass", "tenor"),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[Bb1, Eb5]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("bass", "tenor")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Bb1, Eb5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Cello(Instrument):
-    r"""
-    Cello.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> cello = abjad.Cello()
-        >>> abjad.attach(cello, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_default_tuning",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="cello",
-        short_name="vc.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass", "tenor", "treble"),
-        context=None,
-        default_tuning=("C2", "G2", "D3", "A3"),
-        middle_c_sounding_pitch=None,
-        pitch_range="[C2, G5]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
-        self._default_tuning = Tuning(default_tuning)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_tuning(self):
-        """
-        Gets cello's default tuning.
-
-        ..  container:: example
-
-            >>> cello = abjad.Cello()
-            >>> cello.default_tuning
-            Tuning(pitches=(NamedPitch('c,'), NamedPitch('g,'), NamedPitch('d'), NamedPitch('a')))
-
-        Returns tuning.
-        """
-        return self._default_tuning
+    clefs: tuple[str, ...] = ("bass", "tenor", "treble")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C2, G5]")
+    tuning: Tuning = Tuning(
+        tuple([_pitch.NamedPitch(_) for _ in "C2 G2 D3 A3".split()])
+    )
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ClarinetInA(Instrument):
-    r"""
-    Clarinet in A.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clarinet = abjad.ClarinetInA()
-        >>> abjad.attach(clarinet, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="clarinet in A",
-        short_name=r"cl. A \natural",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="A3",
-        pitch_range="[Db3, A6]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("A3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Db3, A6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ClarinetInBFlat(Instrument):
-    r"""
-    Clarinet in B-flat.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clarinet = abjad.ClarinetInBFlat()
-        >>> abjad.attach(clarinet, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    performer_abbreviation = "cl."
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="clarinet in B-flat",
-        short_name="cl. in B-flat",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Bb3",
-        pitch_range="[D3, Bb6]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[D3, Bb6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ClarinetInEFlat(Instrument):
-    r"""
-    Clarinet in E-flat.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clarinet = abjad.ClarinetInEFlat()
-        >>> abjad.attach(clarinet, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="clarinet in E-flat",
-        short_name="cl. E-flat",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Eb4",
-        pitch_range="[F3, C7]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[F3, C7]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Contrabass(Instrument):
-    r"""
-    Contrabass.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> contrabass = abjad.Contrabass()
-        >>> abjad.attach(contrabass, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_default_tuning",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="contrabass",
-        short_name="cb.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass", "treble"),
-        context=None,
-        default_tuning=("C1", "A1", "D2", "G2"),
-        middle_c_sounding_pitch="C3",
-        pitch_range="[C1, G4]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
-        self._default_tuning = Tuning(default_tuning)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_tuning(self):
-        """
-        Gets contrabass's default tuning.
-
-        ..  container:: example
-
-            >>> contrabass = abjad.Contrabass()
-            >>> contrabass.default_tuning
-            Tuning(pitches=(NamedPitch('c,,'), NamedPitch('a,,'), NamedPitch('d,'), NamedPitch('g,')))
-
-        Returns tuning.
-        """
-        return self._default_tuning
+    clefs: tuple[str, ...] = ("bass", "treble")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C1, G4]")
+    tuning: Tuning = Tuning(
+        tuple([_pitch.NamedPitch(_) for _ in "C1 A1 D2 G2".split()])
+    )
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ContrabassClarinet(Instrument):
-    r"""
-    Contrassbass clarinet.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> contrabass_clarinet = abjad.ContrabassClarinet()
-        >>> abjad.attach(contrabass_clarinet, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="contrabass clarinet",
-        short_name="cbass. cl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("treble", "bass"),
-        context=None,
-        middle_c_sounding_pitch="Bb1",
-        pitch_range="[Bb0, G4]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble", "bass")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb1")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Bb0, G4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ContrabassFlute(Instrument):
-    r"""
-    Contrabass flute.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> contrabass_flute = abjad.ContrabassFlute()
-        >>> abjad.attach(contrabass_flute, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="contrabass flute",
-        short_name="cbass. fl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="G2",
-        pitch_range="[G2, G5]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("G2")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[G2, G5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ContrabassSaxophone(Instrument):
-    r"""
-    Contrabass saxophone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> contrabass_saxophone = abjad.ContrabassSaxophone()
-        >>> abjad.attach(contrabass_saxophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="contrabass saxophone",
-        short_name="cbass. sax.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Eb1",
-        pitch_range="[C1, Ab3]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb1")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C1, Ab3]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Contrabassoon(Instrument):
-    r"""
-    Contrabassoon.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> contrabassoon = abjad.Contrabassoon()
-        >>> abjad.attach(contrabassoon, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="contrabassoon",
-        short_name="contrabsn.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass",),
-        context=None,
-        middle_c_sounding_pitch="C3",
-        pitch_range="[Bb0, Bb4]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("bass",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Bb0, Bb4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class EnglishHorn(Instrument):
-    r"""
-    English horn.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> english_horn = abjad.EnglishHorn()
-        >>> abjad.attach(english_horn, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="English horn",
-        short_name="Eng. hn.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="F3",
-        pitch_range="[E3, C6]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("F3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[E3, C6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Flute(Instrument):
-    r"""
-    Flute.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> flute = abjad.Flute()
-        >>> abjad.attach(flute, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    ..  container:: example
-
-        Instrument markup can be hidden:
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> flute = abjad.Flute()
-        >>> abjad.attach(flute, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> string = abjad.lilypond(staff)
-        >>> print(string)
-        \new Staff
-        {
-            c'4
-            d'4
-            e'4
-            fs'4
-        }
-
-        >>> for leaf in abjad.select.leaves(staff):
-        ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
-        ...
-        (Note("c'4"), Flute())
-        (Note("d'4"), Flute())
-        (Note("e'4"), Flute())
-        (Note("fs'4"), Flute())
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="flute",
-        short_name="fl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[C4, D7]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C4, D7]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class FrenchHorn(Instrument):
-    r"""
-    French horn.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> french_horn = abjad.FrenchHorn()
-        >>> abjad.attach(french_horn, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="horn",
-        short_name="hn.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass", "treble"),
-        context=None,
-        middle_c_sounding_pitch="F3",
-        pitch_range="[B1, F5]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("bass", "treble")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("F3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[B1, F5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Glockenspiel(Instrument):
-    r"""
-    Glockenspiel.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> glockenspiel = abjad.Glockenspiel()
-        >>> abjad.attach(glockenspiel, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="glockenspiel",
-        short_name="gkspl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="C6",
-        pitch_range="[G5, C8]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C6")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[G5, C8]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Guitar(Instrument):
-    r"""
-    Guitar.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> guitar = abjad.Guitar()
-        >>> abjad.attach(guitar, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_default_tuning",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="guitar",
-        short_name="gt.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        default_tuning=("E2", "A2", "D3", "G3", "B3", "E4"),
-        middle_c_sounding_pitch="C3",
-        pitch_range="[E2, E5]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
-        self._default_tuning = Tuning(default_tuning)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_tuning(self):
-        """
-        Gets guitar's default tuning.
-
-        ..  container:: example
-
-            >>> guitar = abjad.Guitar()
-            >>> guitar.default_tuning
-            Tuning(pitches=(NamedPitch('e,'), NamedPitch('a,'), NamedPitch('d'), NamedPitch('g'), NamedPitch('b'), NamedPitch("e'")))
-
-        Returns tuning.
-        """
-        return self._default_tuning
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[E2, E5]")
+    tuning: Tuning = Tuning(
+        tuple([_pitch.NamedPitch(_) for _ in "E2 A2 D3 G3 B3 E4".split()])
+    )
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Harp(Instrument):
-    r"""
-    Harp.
 
-    ..  container:: example
-
-        >>> staff_group = abjad.StaffGroup(lilypond_type='PianoStaff')
-        >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
-        >>> staff_group.append(abjad.Staff("c'2 b2"))
-        >>> harp = abjad.Harp()
-        >>> abjad.attach(harp, staff_group[0][0])
-        >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
-        >>> abjad.show(staff_group) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff_group)
-            >>> print(string)
-            \new PianoStaff
-            <<
-                \new Staff
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-                \new Staff
-                {
-                    \clef "bass"
-                    c'2
-                    b2
-                }
-            >>
-
-    The harp targets piano staff context by default.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="harp",
-        short_name="hp.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("treble", "bass"),
-        context="StaffGroup",
-        middle_c_sounding_pitch=None,
-        pitch_range="[B0, G#7]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble", "bass")
+    context: str = "StaffGroup"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[B0, G#7]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Harpsichord(Instrument):
-    r"""
-    Harpsichord.
 
-    ..  container:: example
-
-        >>> upper_staff = abjad.Staff("c'4 d'4 e'4 f'4")
-        >>> lower_staff = abjad.Staff("c'2 b2")
-        >>> staff_group = abjad.StaffGroup(
-        ...     [upper_staff, lower_staff],
-        ...     lilypond_type='PianoStaff',
-        ... )
-        >>> harpsichord = abjad.Harpsichord()
-        >>> abjad.attach(harpsichord, staff_group[0][0])
-        >>> abjad.attach(abjad.Clef('bass'), lower_staff[0])
-        >>> abjad.show(staff_group) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff_group)
-            >>> print(string)
-            \new PianoStaff
-            <<
-                \new Staff
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-                \new Staff
-                {
-                    \clef "bass"
-                    c'2
-                    b2
-                }
-            >>
-
-    The harpsichord targets piano staff context by default.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="harpsichord",
-        short_name="hpschd.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("treble", "bass"),
-        context="StaffGroup",
-        middle_c_sounding_pitch=None,
-        pitch_range="[C2, C7]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble", "bass")
+    context: str = "StaffGroup"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C2, C7]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Marimba(Instrument):
-    r"""
-    Marimba.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> marimba = abjad.Marimba()
-        >>> abjad.attach(marimba, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="marimba",
-        short_name="mb.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("treble", "bass"),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[F2, C7]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble", "bass")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[F2, C7]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class MezzoSopranoVoice(Instrument):
-    r"""
-    Mezzo-soprano voice.
 
-    ..  container:: example
-
-
-        >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
-        >>> mezzo_soprano = abjad.MezzoSopranoVoice()
-        >>> abjad.attach(mezzo_soprano, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c''4
-                d''4
-                e''4
-                fs''4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    performer_abbreviation = "ms."
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="mezzo-soprano",
-        short_name="mezz.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[A3, C6]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[A3, C6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Oboe(Instrument):
-    r"""
-    Oboe.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> oboe = abjad.Oboe()
-        >>> abjad.attach(oboe, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="oboe",
-        short_name="ob.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[Bb3, A6]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Bb3, A6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Percussion(Instrument):
-    r"""
-    Percussion instrument.
 
-    ..  container:: example
+    clefs: tuple[str, ...] = ("percussion",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[-inf, +inf]")
 
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> percussion = abjad.Percussion()
-        >>> abjad.attach(percussion, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    known_percussion = list(
+    known_percussion = tuple(
         sorted(
             set(
                 [
@@ -2673,891 +827,134 @@ class Percussion(Instrument):
         )
     )
 
-    ### INITIALIZER ###
 
-    def __init__(
-        self,
-        *,
-        name="percussion",
-        short_name="perc.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("percussion",),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range=None,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
-
-
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Piano(Instrument):
-    r"""
-    Piano.
 
-    ..  container:: example
-
-        >>> staff_group = abjad.StaffGroup(lilypond_type='PianoStaff')
-        >>> staff_group.append(abjad.Staff("c'4 d'4 e'4 f'4"))
-        >>> staff_group.append(abjad.Staff("c'2 b2"))
-        >>> piano = abjad.Piano()
-        >>> abjad.attach(piano, staff_group[0][0])
-        >>> abjad.attach(abjad.Clef('bass'), staff_group[1][0])
-        >>> abjad.show(staff_group) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff_group)
-            >>> print(string)
-            \new PianoStaff
-            <<
-                \new Staff
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-                \new Staff
-                {
-                    \clef "bass"
-                    c'2
-                    b2
-                }
-            >>
-
-    The piano targets piano staff context by default.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="piano",
-        short_name="pf.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("treble", "bass"),
-        context="StaffGroup",
-        middle_c_sounding_pitch=None,
-        pitch_range="[A0, C8]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble", "bass")
+    context: str = "StaffGroup"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[A0, C8]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Piccolo(Instrument):
-    r"""
-    Piccolo.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> piccolo = abjad.Piccolo()
-        >>> abjad.attach(piccolo, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="piccolo",
-        short_name="picc.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="C5",
-        pitch_range="[D5, C8]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C5")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[D5, C8]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class SopraninoSaxophone(Instrument):
-    r"""
-    Sopranino saxophone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> sopranino_saxophone = abjad.SopraninoSaxophone()
-        >>> abjad.attach(sopranino_saxophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="sopranino saxophone",
-        short_name="sopranino sax.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Eb4",
-        pitch_range="[Db4, F#6]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Db4, F#6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class SopranoSaxophone(Instrument):
-    r"""
-    Soprano saxophone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> soprano_saxophone = abjad.SopranoSaxophone()
-        >>> abjad.attach(soprano_saxophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="soprano saxophone",
-        short_name="sop. sax.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Bb3",
-        pitch_range="[Ab3, E6]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb3")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Ab3, E6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class SopranoVoice(Instrument):
-    r"""
-    Soprano voice.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c''4 d''4 e''4 fs''4")
-        >>> soprano = abjad.SopranoVoice()
-        >>> abjad.attach(soprano, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c''4
-                d''4
-                e''4
-                fs''4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    performer_abbreviation = "sop."
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="soprano",
-        short_name="sop.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[C4, E6]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C4, E6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class TenorSaxophone(Instrument):
-    r"""
-    Tenor saxophone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> tenor_saxophone = abjad.TenorSaxophone()
-        >>> abjad.attach(tenor_saxophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="tenor saxophone",
-        short_name="ten. sax.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="Bb2",
-        pitch_range="[Ab2, E5]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb2")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[Ab2, E5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class TenorTrombone(Instrument):
-    r"""
-    Tenor trombone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> tenor_trombone = abjad.TenorTrombone()
-        >>> abjad.attach(tenor_trombone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="tenor trombone",
-        short_name="ten. trb.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("tenor", "bass"),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[E2, Eb5]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("tenor", "bass")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[E2, Eb5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class TenorVoice(Instrument):
-    r"""
-    Tenor voice.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> tenor = abjad.TenorVoice()
-        >>> abjad.attach(tenor, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    performer_abbreviation = "ten."
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="tenor",
-        short_name="ten.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[C3, D5]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C3, D5]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Trumpet(Instrument):
-    r"""
-    Trumpet.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> trumpet = abjad.Trumpet()
-        >>> abjad.attach(trumpet, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="trumpet",
-        short_name="tp.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[F#3, D6]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[F#3, D6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Tuba(Instrument):
-    r"""
-    Tuba.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('bass')
-        >>> abjad.attach(clef, staff[0])
-        >>> tuba = abjad.Tuba()
-        >>> abjad.attach(tuba, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "bass"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="tuba",
-        short_name="tb.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("bass",),
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[D1, F4]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
+    clefs: tuple[str, ...] = ("bass",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[D1, F4]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Vibraphone(Instrument):
-    r"""
-    Vibraphone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> vibraphone = abjad.Vibraphone()
-        >>> abjad.attach(vibraphone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="vibraphone",
-        short_name="vibr.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch=None,
-        pitch_range="[F3, F6]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[F3, F6]")
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Viola(Instrument):
-    r"""
-    Viola.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> clef = abjad.Clef('alto')
-        >>> abjad.attach(clef, staff[0])
-        >>> viola = abjad.Viola()
-        >>> abjad.attach(viola, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "alto"
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_default_tuning",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="viola",
-        short_name="va.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=("alto", "treble"),
-        context=None,
-        default_tuning=("C3", "G3", "D4", "A4"),
-        middle_c_sounding_pitch=None,
-        pitch_range="[C3, D6]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
-        self._default_tuning = Tuning(default_tuning)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_tuning(self):
-        """
-        Gets viola's default tuning.
-
-        ..  container:: example
-
-            >>> viola = abjad.Viola()
-            >>> viola.default_tuning
-            Tuning(pitches=(NamedPitch('c'), NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'")))
-
-        Returns tuning.
-        """
-        return self._default_tuning
+    clefs: tuple[str, ...] = ("alto", "treble")
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C3, D6]")
+    tuning: Tuning = Tuning(
+        tuple([_pitch.NamedPitch(_) for _ in "C3 G3 D4 A4".split()])
+    )
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Violin(Instrument):
-    r"""
-    Violin.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> violin = abjad.Violin()
-        >>> abjad.attach(violin, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ("_default_tuning",)
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="violin",
-        short_name="vn.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        default_tuning=("G3", "D4", "A4", "E5"),
-        middle_c_sounding_pitch=None,
-        pitch_range="[G3, G7]",
-        primary=True,
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-            primary=primary,
-        )
-        self._default_tuning = Tuning(default_tuning)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_tuning(self):
-        """
-        Gets violin's default tuning.
-
-        ..  container:: example
-
-            >>> violin = abjad.Violin()
-            >>> violin.default_tuning
-            Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''")))
-
-        Returns tuning.
-        """
-        return self._default_tuning
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[G3, G7]")
+    tuning: Tuning = Tuning(
+        tuple([_pitch.NamedPitch(_) for _ in "G3 D4 A4 E5".split()])
+    )
 
 
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Xylophone(Instrument):
-    r"""
-    Xylphone.
 
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4 fs'4")
-        >>> xylophone = abjad.Xylophone()
-        >>> abjad.attach(xylophone, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                fs'4
-            }
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        name="xylophone",
-        short_name="xyl.",
-        markup=None,
-        short_markup=None,
-        allowable_clefs=None,
-        context=None,
-        middle_c_sounding_pitch="C5",
-        pitch_range="[C4, C7]",
-    ):
-        Instrument.__init__(
-            self,
-            name=name,
-            short_name=short_name,
-            markup=markup,
-            short_markup=short_markup,
-            allowable_clefs=allowable_clefs,
-            context=context,
-            middle_c_sounding_pitch=middle_c_sounding_pitch,
-            pitch_range=pitch_range,
-        )
+    clefs: tuple[str, ...] = ("treble",)
+    context: str = "Staff"
+    middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C5")
+    pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[C4, C7]")

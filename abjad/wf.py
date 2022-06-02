@@ -315,14 +315,14 @@ def check_notes_on_wrong_clef(argument) -> tuple[list, int]:
         effective_clef = _getlib._get_effective(leaf, _indicators.Clef)
         if effective_clef is None:
             continue
-        allowable_clefs = []
-        for clef in instrument.allowable_clefs:
+        clefs = []
+        for clef in instrument.clefs:
             if isinstance(clef, str):
                 clef = _indicators.Clef(clef)
             assert isinstance(clef, _indicators.Clef), repr(clef)
-            allowable_clefs.append(clef)
-        allowable_clefs.append(_indicators.Clef("percussion"))
-        if effective_clef not in allowable_clefs:
+            clefs.append(clef)
+        clefs.append(_indicators.Clef("percussion"))
+        if effective_clef not in clefs:
             violators.append(leaf)
     return violators, len(total)
 
