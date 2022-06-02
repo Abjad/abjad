@@ -60,8 +60,8 @@ classifiers = [
 ]
 
 extras_require = {
-    "nauert": ["abjad-ext-nauert>=3.9"],
-    "rmakers": ["abjad-ext-rmakers>=3.9"],
+    "nauert": ["abjad-ext-nauert>=3.10"],
+    "rmakers": ["abjad-ext-rmakers>=3.10"],
 }
 
 keywords = [
@@ -74,7 +74,7 @@ install_requires = [
     "black>=22.1.0",
     "flake8>=4.0.1",
     "isort>=5.10.1",
-    "mypy>=0.940",
+    "mypy>=0.960",
     "ply>=3.11",
     "pytest>=6.2.5",
     "pytest-cov>=3.0.0",

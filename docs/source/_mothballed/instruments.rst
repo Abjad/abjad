@@ -90,14 +90,14 @@ Use ``middle_c_sounding_pitch`` to get an instrument's level of transposition:
     >>> note = abjad.Note(violin.middle_c_sounding_pitch, 4)
     >>> abjad.show(note)
 
-Getting an instrument's allowable clefs
----------------------------------------
+Getting an instrument's clefs
+-----------------------------
 
-Use ``allowable_clefs`` to get clefs on which an instrument is conventionally notated:
+Use ``clefs`` to get clefs on which an instrument is conventionally notated:
 
 ::
 
-    >>> violin.allowable_clefs
+    >>> violin.clefs
 
 Customizing instrument properties
 ---------------------------------
@@ -107,7 +107,7 @@ You can change the properties of any instrument at initialization:
 ::
 
     >>> viola = abjad.Viola(
-    ...     allowable_clefs=("alto", "treble"),
+    ...     clefs=("alto", "treble"),
     ...     pitch_range=abjad.PitchRange("[C3, C6]"),
     ... )
 
