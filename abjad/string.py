@@ -198,10 +198,10 @@ def is_lilypond_identifier(string: str) -> bool:
 
     ..  container:: example
 
-        >>> abjad.string.is_lilypond_identifier("Violin.1.Music_Voice.1")
+        >>> abjad.string.is_lilypond_identifier("Violin.1.MusicVoice.1")
         True
 
-        >>> abjad.string.is_lilypond_identifier("Violin.1.1.Music_Voice")
+        >>> abjad.string.is_lilypond_identifier("Violin.1.1.MusicVoice")
         False
 
         >>> abjad.string.is_lilypond_identifier("Violin.1_Music_Voice")

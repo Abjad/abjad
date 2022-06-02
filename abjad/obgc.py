@@ -24,7 +24,7 @@ class OnBeatGraceContainer(_score.Container):
         On-beat grace containers implement custom formatting not available in
         LilyPond:
 
-        >>> music_voice = abjad.Voice("c'4 d'4 e'4 f'4", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d'4 e'4 f'4", name="MusicVoice")
         >>> string = "<d' g'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> container = abjad.on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 24)
@@ -40,7 +40,7 @@ class OnBeatGraceContainer(_score.Container):
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     <<
@@ -71,7 +71,7 @@ class OnBeatGraceContainer(_score.Container):
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             d'4
@@ -285,7 +285,7 @@ def on_beat_grace_container(
 
         Note-to-note anchor:
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> string = "g'8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> result = abjad.on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
@@ -300,7 +300,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     <<
@@ -330,7 +330,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             d'4
@@ -345,7 +345,7 @@ def on_beat_grace_container(
         Note-to-chord anchor:
 
         >>> music_voice = abjad.Voice(
-        ...     "<a c'>4 <b d'> <c' e'> <d' f'>", name="Music_Voice"
+        ...     "<a c'>4 <b d'> <c' e'> <d' f'>", name="MusicVoice"
         ... )
         >>> string = "g'8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> result = abjad.on_beat_grace_container(
@@ -361,7 +361,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     <a c'>4
                     <<
@@ -391,7 +391,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             <b d'>4
@@ -405,7 +405,7 @@ def on_beat_grace_container(
 
         Chord-to-note anchor:
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> string = "<g' b'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> result = abjad.on_beat_grace_container(
         ...     string, music_voice[1:3], leaf_duration=(1, 30)
@@ -420,7 +420,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     <<
@@ -451,7 +451,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             d'4
@@ -466,7 +466,7 @@ def on_beat_grace_container(
         Chord-to-chord anchor:
 
         >>> music_voice = abjad.Voice(
-        ...     "<a c'>4 <b d'> <c' e'> <d' f'>", name="Music_Voice"
+        ...     "<a c'>4 <b d'> <c' e'> <d' f'>", name="MusicVoice"
         ... )
         >>> string = "<g' b'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> result = abjad.on_beat_grace_container(
@@ -482,7 +482,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     <a c'>4
                     <<
@@ -513,7 +513,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             <b d'>4
@@ -531,7 +531,7 @@ def on_beat_grace_container(
 
         Note-to-note anchor:
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> string = "g8 a b c' d' c' b a b c' d'"
         >>> result = abjad.on_beat_grace_container(
         ...     string,
@@ -550,7 +550,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     <<
@@ -580,7 +580,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceOne
                             d'4
@@ -595,7 +595,7 @@ def on_beat_grace_container(
         Note-to-chord anchor:
 
         >>> music_voice = abjad.Voice(
-        ...     "<c' e'>4 <d' f'> <e' g'> <f' a'>", name="Music_Voice"
+        ...     "<c' e'>4 <d' f'> <e' g'> <f' a'>", name="MusicVoice"
         ... )
         >>> string = "g8 a b c' d' c' b a b c' d'"
         >>> result = abjad.on_beat_grace_container(
@@ -615,7 +615,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     <c' e'>4
                     <<
@@ -645,7 +645,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceOne
                             <d' f'>4
@@ -659,7 +659,7 @@ def on_beat_grace_container(
 
         Chord-to-note anchor:
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> string = "<e g>8 a b c' d' c' b a b c' d'"
         >>> result = abjad.on_beat_grace_container(
         ...     string,
@@ -678,7 +678,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     <<
@@ -709,7 +709,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceOne
                             d'4
@@ -724,7 +724,7 @@ def on_beat_grace_container(
         Chord-to-chord anchor:
 
         >>> music_voice = abjad.Voice(
-        ...     "<c' e'>4 <d' f'> <e' g'> <f' a'>", name="Music_Voice"
+        ...     "<c' e'>4 <d' f'> <e' g'> <f' a'>", name="MusicVoice"
         ... )
         >>> string = "<e g>8 a b c' d' c' b a b c' d'"
         >>> result = abjad.on_beat_grace_container(
@@ -744,7 +744,7 @@ def on_beat_grace_container(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     <c' e'>4
                     <<
@@ -775,7 +775,7 @@ def on_beat_grace_container(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceOne
                             <d' f'>4
@@ -792,7 +792,7 @@ def on_beat_grace_container(
         Raises exception when duration of on-beat grace container exceeds
         duration of anchor container:
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> string = "g'8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> result = abjad.on_beat_grace_container(
         ...     string, music_voice[1:2], leaf_duration=(1, 8)

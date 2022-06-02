@@ -5922,7 +5922,7 @@ def runs(
         REGRESSION. Works with grace note (and containers):
 
         >>> music_voice = abjad.Voice(
-        ...     "c'16 d' e' r d'4 e' r8 f'", name="Music_Voice"
+        ...     "c'16 d' e' r d'4 e' r8 f'", name="MusicVoice"
         ... )
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[4])
@@ -5952,7 +5952,7 @@ def runs(
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     \abjad-color-music #'red
                     c'16
@@ -5992,7 +5992,7 @@ def runs(
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \abjad-color-music #'blue
                             \voiceTwo
@@ -6551,7 +6551,7 @@ def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
 
         REGRESSION. Works with grace note (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -6587,7 +6587,7 @@ def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     c'4
                     \grace {
@@ -6621,7 +6621,7 @@ def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \abjad-color-music #'blue
                             \voiceTwo
@@ -6762,7 +6762,7 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
 
         REGRESSION. Works with grace note (and containers):
 
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="Music_Voice")
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -6798,7 +6798,7 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
             >>> print(string)
             \new Staff
             {
-                \context Voice = "Music_Voice"
+                \context Voice = "MusicVoice"
                 {
                     \abjad-color-music #'red
                     c'4
@@ -6833,7 +6833,7 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
                             )
                             ]
                         }
-                        \context Voice = "Music_Voice"
+                        \context Voice = "MusicVoice"
                         {
                             \voiceTwo
                             e'4

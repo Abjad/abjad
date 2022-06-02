@@ -429,11 +429,11 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.ColorFingering'>
         <class 'abjad.indicators.Fermata'>
         <class 'abjad.indicators.Glissando'>
+        <class 'abjad.indicators.InstrumentName'>
         <class 'abjad.indicators.KeyCluster'>
         <class 'abjad.indicators.KeySignature'>
         <class 'abjad.indicators.LaissezVibrer'>
         <class 'abjad.indicators.LilyPondLiteral'>
-        <class 'abjad.indicators.MarginMarkup'>
         <class 'abjad.indicators.Markup'>
         <class 'abjad.indicators.MetronomeMark'>
         <class 'abjad.indicators.Mode'>
@@ -441,11 +441,11 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.RehearsalMark'>
         <class 'abjad.indicators.Repeat'>
         <class 'abjad.indicators.RepeatTie'>
+        <class 'abjad.indicators.ShortInstrumentName'>
         <class 'abjad.indicators.StaffChange'>
         <class 'abjad.indicators.StartBeam'>
         <class 'abjad.indicators.StartGroup'>
         <class 'abjad.indicators.StartHairpin'>
-        <class 'abjad.indicators.StartMarkup'>
         <class 'abjad.indicators.StartPhrasingSlur'>
         <class 'abjad.indicators.StartPianoPedal'>
         <class 'abjad.indicators.StartSlur'>
