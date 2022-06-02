@@ -1,5 +1,5 @@
-Abjad 3.9
-=========
+Abjad 3.10
+==========
 
 Abjad helps composers build up complex pieces of music notation in iterative and
 incremental ways. Use Abjad to create a symbolic representation of all the notes, rests,
@@ -42,7 +42,7 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     $ lilypond --version
-    GNU LilyPond 2.23.8
+    GNU LilyPond 2.23.9
 
     Copyright (c) 1996--2022 by
     Han-Wen Nienhuys <hanwen@xs4all.nl>

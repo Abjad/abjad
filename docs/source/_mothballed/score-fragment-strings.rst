@@ -393,7 +393,7 @@ We define more functions:
     ...     abjad.attach(metronome_mark, leaf)
     ...     time_signature = abjad.TimeSignature((6, 4))
     ...     abjad.attach(time_signature, leaf)
-    ...     instrument = abjad.Instrument(pitch_range="[C4, C6]")
+    ...     instrument = abjad.Instrument(pitch_range=abjad.PitchRange("[C4, C6]"))
     ...     abjad.attach(instrument, leaf)
     ...     string = r'\markup "Campana (La)"'
     ...     string = rf'\set Staff.instrumentName = {string}'
