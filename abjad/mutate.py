@@ -870,9 +870,9 @@ def copy(argument, n=1) -> list[_score.Component]:
         return result
 
 
-def eject_contents(argument):
+def eject_contents(container: _score.Container) -> list[_score.Component]:
     r"""
-    Ejects contents from outside-of-score container.
+    Ejects ``container`` contents.
 
     ..  container:: example
 
@@ -894,15 +894,13 @@ def eject_contents(argument):
                 d'4
             }
 
-        Returns container contents as a selection with spanners preserved:
-
-        >>> contents = abjad.mutate.eject_contents(container)
-        >>> contents
+        >>> leaves = abjad.mutate.eject_contents(container)
+        >>> leaves
         [Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")]
 
-        Container contents can be safely added to a new container:
+        Leaves can be added to a new container:
 
-        >>> staff = abjad.Staff(contents, lilypond_type="RhythmicStaff")
+        >>> staff = abjad.Staff(leaves, lilypond_type="RhythmicStaff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -919,19 +917,16 @@ def eject_contents(argument):
                 d'4
             }
 
-        New container is well formed:
-
-        >>> abjad.wf.wellformed(staff)
-        True
-
         Old container is empty:
 
         >>> container
         Container()
 
-    Returns container contents as selection.
     """
-    return argument._eject_contents()
+    assert isinstance(container, _score.Container), repr(container)
+    components = container[:]
+    container[:] = []
+    return components
 
 
 def extract(argument):

@@ -18,7 +18,6 @@ class_to_default_values = {
     abjad.Articulation: ("staccato",),
     abjad.Bundle: (abjad.Articulation("."),),
     abjad.ColorFingering: (0,),
-    abjad.Line: ("text",),
     abjad.Markup: (r"\markup Allegro",),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
     abjad.MetronomeMark: ((1, 4), 90),
@@ -85,7 +84,6 @@ def test_abjad___repr___01(class_):
     """
     _allowed_to_be_empty_string = (
         abjad.Accidental,
-        abjad.Line,
         abjad.Tag,
     )
     if inspect.isabstract(class_):

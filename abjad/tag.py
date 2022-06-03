@@ -211,190 +211,6 @@ class Tag:
         return words_
 
 
-@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
-class Line:
-    r"""
-    Line in a LilyPond file.
-
-    ..  container:: example
-
-        >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
-        >>> abjad.Line(string)
-        Line(string='    %@%  \\with-color %! MEASURE_NUMBER:SM31')
-
-    """
-
-    string: str
-
-    def get_tags(self):
-        r"""
-        Gets tags.
-
-        ..  container:: example
-
-            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
-            >>> abjad.Line(string).get_tags()
-            [Tag(string='MEASURE_NUMBER'), Tag(string='SM31')]
-
-        ..  container:: example
-
-            REGRESSION. Works with multiple ``%!`` prefixes:
-
-            >>> string = r"    %@%  \with-color %! SM31 %! SM32"
-            >>> line = abjad.Line(string)
-            >>> line.get_tags()
-            [Tag(string='SM31'), Tag(string='SM32')]
-
-        Returns list of zero or more strings.
-        """
-        tags = []
-        if " %! " in self.string:
-            for chunk in self.string.split(" %! ")[1:]:
-                parts = chunk.split()
-                parts = parts[0].split(":")
-                tags_ = [Tag(_) for _ in parts]
-                tags.extend(tags_)
-        return tags
-
-    def is_active(self):
-        r"""
-        Is true when line is active.
-
-        ..  container:: example
-
-            >>> string = '              \\clef "treble" %! EXPLICT_CLEF'
-            >>> abjad.Line(string).is_active()
-            True
-
-            >>> string = '          %@% \\clef "treble" %! EXPLICT_CLEF'
-            >>> abjad.Line(string).is_active()
-            False
-
-            >>> string = '          %%% \\clef "treble" %! EXPLICT_CLEF'
-            >>> abjad.Line(string).is_active()
-            False
-
-        Returns true or false.
-        """
-        return not self.is_deactivated()
-
-    def is_deactivated(self):
-        r"""
-        Is true when line is deactivated.
-
-        ..  container:: example
-
-            >>> string = '              \\clef "treble" %! EXPLICT_CLEF'
-            >>> abjad.Line(string).is_deactivated()
-            False
-
-            >>> string = '          %@% \\clef "treble" %! EXPLICT_CLEF'
-            >>> abjad.Line(string).is_deactivated()
-            True
-
-            >>> string = '          %%% \\clef "treble" %! EXPLICT_CLEF'
-            >>> abjad.Line(string).is_deactivated()
-            True
-
-        Returns true or false.
-        """
-        string = self.string.strip()
-        if string.startswith("%@%"):
-            return True
-        if string.startswith("%%%"):
-            return True
-        return False
-
-    def match(self, predicate):
-        r"""
-        Is true when ``predicate`` matches tags.
-
-        ..  container:: example
-
-            >>> string = r"    %@%  \with-color %! MEASURE_NUMBER:SM31"
-            >>> line = abjad.Line(string)
-
-        ..  container:: example
-
-            Tags:
-
-            >>> line.match(abjad.Tag("MEASURE_NUMBER"))
-            True
-
-            >>> line.match(abjad.Tag("SM31"))
-            True
-
-            >>> line.match(abjad.Tag("%@%"))
-            False
-
-            >>> line.match(abjad.Tag("with-color"))
-            False
-
-            >>> line.match(abjad.Tag("%!"))
-            False
-
-        ..  container:: example
-
-            Lambdas:
-
-            >>> line.match(lambda x: any(_ for _ in x if _.string.startswith("M")))
-            True
-
-            >>> line.match(lambda x: any(_ for _ in x if _.string.startswith("S")))
-            True
-
-            >>> line.match(lambda x: any(_ for _ in x if _.string[0] in "SM"))
-            True
-
-        ..  container:: example
-
-            Functions:
-
-            >>> def predicate(tags):
-            ...     if abjad.Tag("SM31") in tags and abjad.Tag("MEASURE_NUMBER") in tags:
-            ...         return True
-            ...     else:
-            ...         return False
-
-            >>> line.match(predicate)
-            True
-
-            >>> def predicate(tags):
-            ...     if abjad.Tag("SM31") in tags and abjad.Tag("MEASURE_NUMBER") not in tags:
-            ...         return True
-            ...     else:
-            ...         return False
-
-            >>> line.match(predicate)
-            False
-
-        ..  container:: example
-
-            REGRESSION. Works with multiple ``%!`` prefixes:
-
-            >>> string = r"    %@%  \with-color %! SM31 %! SM32"
-            >>> line = abjad.Line(string)
-
-            >>> line.match(abjad.Tag("SM31"))
-            True
-
-            >>> line.match(abjad.Tag("SM32"))
-            True
-
-        Returns true or false.
-        """
-        if not callable(predicate) and not isinstance(predicate, Tag):
-            raise Exception(f"must be callable or tag: {predicate!r}")
-        tags = self.get_tags()
-        if not tags:
-            return False
-        if predicate in tags:
-            return True
-        if not callable(predicate):
-            return False
-        return predicate(tags)
-
-
 def _match_line(line, tag, current_tags):
     assert all(isinstance(_, Tag) for _ in current_tags), repr(current_tags)
     if tag in current_tags:
@@ -413,12 +229,10 @@ def activate(
 
     ..  container:: example
 
-        Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond
-        input:
+        Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond input:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> string = r"\markup { \with-color #red Allegro }"
-        >>> markup = abjad.Markup(string)
+        >>> markup = abjad.Markup(r"\markup { \with-color #red Allegro }")
         >>> abjad.attach(
         ...     markup,
         ...     staff[0],
@@ -449,7 +263,7 @@ def activate(
         {
             c'4
             %! RED_MARKUP
-                - \markup { \with-color #red Allegro } %@%
+            - \markup { \with-color #red Allegro } %@%
             d'4
             e'4
             f'4
@@ -487,7 +301,7 @@ def activate(
         {
             c'4
             %! RED_MARKUP
-                - \markup { \with-color #red Allegro } %@%
+            - \markup { \with-color #red Allegro } %@%
             d'4
             e'4
             f'4
@@ -530,9 +344,10 @@ def activate(
         index = first_nonwhitespace_index
         if line[index : index + 4] in ("%%% ", "%@% "):
             if "%@% " in line:
-                line = line.replace("%@%", "   ")
+                line = line.replace("%@% ", "")
                 suffix = " %@%"
             else:
+                # TODO: replace with "" instead of "    "?
                 line = line.replace("%%%", "   ")
                 suffix = None
             assert line.endswith("\n"), repr(line)

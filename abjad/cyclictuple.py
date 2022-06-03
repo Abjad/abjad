@@ -1,3 +1,4 @@
+import collections
 import dataclasses
 import typing
 
@@ -121,3 +122,6 @@ class CyclicTuple:
             indices = range(start_index, stop_index)
         result = [self[n] for n in indices]
         return tuple(result)
+
+
+collections.abc.Sequence.register(CyclicTuple)
