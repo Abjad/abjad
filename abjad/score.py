@@ -1079,15 +1079,6 @@ class Container(Component):
             new_container.append(new_component)
         return new_container
 
-    def _eject_contents(self):
-        if self._parent is not None:
-            raise Exception("can not eject contents of in-score container.")
-        contents = self[:]
-        for component in contents:
-            component._set_parent(None)
-        self._components[:] = []
-        return contents
-
     def _format_after_site(self, contributions):
         result = []
         strings = contributions.alphabetize(contributions.after.commands)

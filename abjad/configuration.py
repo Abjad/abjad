@@ -609,7 +609,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.score.Voice'>
         <class 'abjad.select.LogicalTie'>
         <class 'abjad.setclass.SetClass'>
-        <class 'abjad.tag.Line'>
         <class 'abjad.tag.Tag'>
         <class 'abjad.timespan.OffsetCounter'>
         <class 'abjad.timespan.Timespan'>

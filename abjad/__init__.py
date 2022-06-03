@@ -260,7 +260,7 @@ from .spanners import (
     tie,
     trill_spanner,
 )
-from .tag import Line, Tag, activate, deactivate
+from .tag import Tag, activate, deactivate
 from .timespan import OffsetCounter, Timespan, TimespanList
 from .tweaks import Bundle, Tweak, bundle, tweak
 from .verticalmoment import (
@@ -368,7 +368,6 @@ __all__ = [
     "LilyPondOverride",
     "LilyPondParserError",
     "LilyPondSetting",
-    "Line",
     "Lineage",
     "LogicalTie",
     "Marimba",
