@@ -814,7 +814,7 @@ class Clef:
             >>> abjad.Clef.from_pitches(pitches)
             Clef(name='bass', hide=False)
 
-            Choses between treble and bass based on minimal number of ledger lines.
+            Chooses between treble and bass based on minimal number of ledger lines.
 
         """
         diatonic_pitch_numbers = [
