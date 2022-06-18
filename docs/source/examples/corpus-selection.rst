@@ -277,7 +277,7 @@ actually the first-and-second-ending for the repeat of the first phrase. The sub
 the corpus for measure eight contains only the first and second ending definitions, and
 both of those measures should appear in the final piece, always in the same order. We'll
 have to intercept that sublist while we iterate through the corpus and apply different
-logic. The easist way to intercept measure eight is to use the Python builtin enumerate
+logic. The easiest way to intercept measure eight is to use the Python builtin enumerate
 function, which allows you to iterate through a collection while also getting the index
 of each element in that collection. The result will be a seventeen-item-long list of
 measure definitions:
