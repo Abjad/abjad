@@ -1,4 +1,4 @@
-Abjad 3.10
+Abjad 3.11
 ==========
 
 Abjad helps composers build up complex pieces of music notation in iterative and
@@ -31,7 +31,7 @@ Abjad requires Python 3.10 or later:
 ..  code-block::
 
     ~$ python --version
-    Python 3.10.2
+    Python 3.10.5
 
 Abjad requires LilyPond 2.23.6 or later.
 
@@ -42,7 +42,7 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     $ lilypond --version
-    GNU LilyPond 2.23.9
+    GNU LilyPond 2.23.12
 
     Copyright (c) 1996--2022 by
     Han-Wen Nienhuys <hanwen@xs4all.nl>
@@ -67,7 +67,7 @@ Start Python, import Abjad, start making music notation:
 ..  code-block::
 
     ~$ python
-    Python 3.10.2 (v3.10.2:a58ebcc701, Jan 13 2022, 14:50:16)
+    Python 3.10.5 (v3.10.5:f377153967, Jun  6 2022, 12:36:10)
     [Clang 13.0.0 (clang-1300.0.29.30)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import abjad
