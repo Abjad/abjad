@@ -82,6 +82,7 @@ install_requires = [
     "quicktions>=1.13",
     "roman>=1.4",
     "sphinx-autodoc-typehints>=1.16.0",
+    "sphinx-rtd-theme>=1.0.0",
     "uqbar>=0.5.9",
 ]
 
