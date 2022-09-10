@@ -22,8 +22,6 @@ from . import timespan as _timespan
 
 class Meter:
     """
-    Meter.
-
     Meter models a common practice understanding of beats and other levels of rhythmic
     organization structured as a tree. Meter structure corresponds to the monotonically
     increasing sequence of factors in the numerator of a given time signature.
@@ -1152,7 +1150,7 @@ class Meter:
         rewrite_tuplets=True,
     ):
         r"""
-        Rewrites the contents of logical ties in an expression to match ``meter``.
+        Rewrites ``components`` according to ``meter``.
 
         ..  container:: example
 
