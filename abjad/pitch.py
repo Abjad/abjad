@@ -1089,7 +1089,7 @@ class Octave:
         return ""
 
     @classmethod
-    def from_pitch(class_, pitch) -> "Octave":
+    def from_pitch(class_, pitch: int | float | str) -> "Octave":
         """
         Makes octave from ``pitch``.
 
