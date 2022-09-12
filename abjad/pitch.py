@@ -1123,7 +1123,7 @@ class Octave:
         return class_.from_ticks(ticks)
 
     @classmethod
-    def from_ticks(class_, ticks: str):
+    def from_ticks(class_, ticks: str) -> "Octave":
         """
         Makes octave from ``ticks`` string.
 
