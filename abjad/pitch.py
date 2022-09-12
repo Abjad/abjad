@@ -1137,12 +1137,12 @@ class Octave:
 
         """
         assert isinstance(ticks, str), repr(ticks)
-        number = 3
+        middle_c = 3
         if ticks.startswith("'"):
-            number += ticks.count("'")
+            middle_c += ticks.count("'")
         else:
-            number -= ticks.count(",")
-        return class_(number)
+            middle_c -= ticks.count(",")
+        return class_(middle_c)
 
 
 @functools.total_ordering
