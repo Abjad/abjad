@@ -1,4 +1,5 @@
 import collections
+import dataclasses
 import math
 import numbers
 
@@ -15,18 +16,181 @@ from . import tag as _tag
 from . import typings as _typings
 
 
-class LeafMaker:
+def _make_leaf_on_pitch(
+    pitch,
+    duration,
+    *,
+    increase_monotonic=None,
+    forbidden_note_duration=None,
+    forbidden_rest_duration=None,
+    skips_instead_of_rests=None,
+    tag=None,
+    use_multimeasure_rests=None,
+):
+    note_prototype = (
+        numbers.Number,
+        str,
+        _pitch.NamedPitch,
+        _pitch.NumberedPitch,
+        _pitch.PitchClass,
+    )
+    chord_prototype = (tuple, list)
+    rest_prototype = (type(None),)
+    if isinstance(pitch, note_prototype):
+        leaves = _make_tied_leaf(
+            _score.Note,
+            duration,
+            increase_monotonic=increase_monotonic,
+            forbidden_duration=forbidden_note_duration,
+            pitches=pitch,
+            tag=tag,
+        )
+    elif isinstance(pitch, chord_prototype):
+        leaves = _make_tied_leaf(
+            _score.Chord,
+            duration,
+            increase_monotonic=increase_monotonic,
+            forbidden_duration=forbidden_note_duration,
+            pitches=pitch,
+            tag=tag,
+        )
+    elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
+        leaves = _make_tied_leaf(
+            _score.Skip,
+            duration,
+            increase_monotonic=increase_monotonic,
+            forbidden_duration=forbidden_rest_duration,
+            pitches=None,
+            tag=tag,
+        )
+    elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
+        leaves = _make_tied_leaf(
+            _score.Rest,
+            duration,
+            increase_monotonic=increase_monotonic,
+            forbidden_duration=forbidden_rest_duration,
+            pitches=None,
+            tag=tag,
+        )
+    elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
+        multimeasure_rest = _score.MultimeasureRest((1), tag=tag)
+        multimeasure_rest.multiplier = duration
+        leaves = (multimeasure_rest,)
+    else:
+        raise ValueError(f"unknown pitch: {pitch!r}.")
+    return leaves
+
+
+def _make_tied_leaf(
+    class_,
+    duration,
+    increase_monotonic=None,
+    forbidden_duration=None,
+    multiplier=None,
+    pitches=None,
+    tag=None,
+    tie_parts=True,
+):
+    duration = _duration.Duration(duration)
+    if forbidden_duration is not None:
+        assert forbidden_duration.is_assignable
+        assert forbidden_duration.numerator == 1
+    # find preferred numerator of written durations if necessary
+    if forbidden_duration is not None and forbidden_duration <= duration:
+        denominators = [
+            2 * forbidden_duration.denominator,
+            duration.denominator,
+        ]
+        denominator = _math.least_common_multiple(*denominators)
+        forbidden_duration = _duration.NonreducedFraction(forbidden_duration)
+        forbidden_duration = forbidden_duration.with_denominator(denominator)
+        duration = _duration.NonreducedFraction(duration)
+        duration = duration.with_denominator(denominator)
+        forbidden_numerator = forbidden_duration.numerator
+        assert forbidden_numerator % 2 == 0
+        preferred_numerator = forbidden_numerator / 2
+    # make written duration numerators
+    numerators = []
+    parts = _math.partition_integer_into_canonic_parts(duration.numerator)
+    if forbidden_duration is not None and forbidden_duration <= duration:
+        for part in parts:
+            if forbidden_numerator <= part:
+                better_parts = _partition_less_than_double(part, preferred_numerator)
+                numerators.extend(better_parts)
+            else:
+                numerators.append(part)
+    else:
+        numerators = parts
+    # reverse numerators if necessary
+    if increase_monotonic:
+        numerators = list(reversed(numerators))
+    # make one leaf per written duration
+    result = []
+    for numerator in numerators:
+        written_duration = _duration.Duration(numerator, duration.denominator)
+        if pitches is not None:
+            arguments = (pitches, written_duration)
+        else:
+            arguments = (written_duration,)
+        result.append(class_(*arguments, multiplier=multiplier, tag=tag))
+    # tie if required
+    if tie_parts and 1 < len(result):
+        if not issubclass(class_, (_score.Rest, _score.Skip)):
+            _spanners.tie(result)
+    return result
+
+
+def _make_unprolated_notes(pitches, durations, increase_monotonic=None, tag=None):
+    assert len(pitches) == len(durations)
+    result = []
+    for pitch, duration in zip(pitches, durations):
+        result.extend(
+            _make_tied_leaf(
+                _score.Note,
+                duration,
+                pitches=pitch,
+                increase_monotonic=increase_monotonic,
+                tag=tag,
+            )
+        )
+    return result
+
+
+def _partition_less_than_double(n, m):
+    assert _math.is_positive_integer_equivalent_number(n)
+    assert _math.is_positive_integer_equivalent_number(m)
+    n, m = int(n), int(m)
+    result = []
+    current_value = n
+    double_m = 2 * m
+    while double_m <= current_value:
+        result.append(m)
+        current_value -= m
+    result.append(current_value)
+    return tuple(result)
+
+
+def make_leaves(
+    pitches,
+    durations,
+    *,
+    forbidden_note_duration: _typings.Duration = None,
+    forbidden_rest_duration: _typings.Duration = None,
+    skips_instead_of_rests: bool = False,
+    increase_monotonic: bool = False,
+    tag: _tag.Tag = None,
+    use_multimeasure_rests: bool = False,
+):
     r"""
-    Leaf-maker.
+    Makes leaves from ``pitches`` and ``durations``.
 
     ..  container:: example
 
         Integer and string elements in ``pitches`` result in notes:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = [2, 4, "F#5", "G#5"]
         >>> duration = abjad.Duration(1, 4)
-        >>> leaves = maker(pitches, duration)
+        >>> leaves = abjad.makers.make_leaves(pitches, duration)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -46,10 +210,9 @@ class LeafMaker:
 
         Tuple elements in ``pitches`` result in chords:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = [(0, 2, 4), ("F#5", "G#5", "A#5")]
         >>> duration = abjad.Duration(1, 2)
-        >>> leaves = maker(pitches, duration)
+        >>> leaves = abjad.makers.make_leaves(pitches, duration)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -67,10 +230,9 @@ class LeafMaker:
 
         None-valued elements in ``pitches`` result in rests:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = 4 * [None]
         >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves, lilypond_type="RhythmicStaff")
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -90,10 +252,9 @@ class LeafMaker:
 
         You can mix and match values passed to ``pitches``:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = [(0, 2, 4), None, "C#5", "D#5"]
         >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -113,10 +274,9 @@ class LeafMaker:
 
         Works with segments:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = "e'' ef'' d'' df'' c''"
         >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -138,10 +298,9 @@ class LeafMaker:
         Reads ``pitches`` cyclically when the length of ``pitches`` is less than the
         length of ``durations``:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = ["C5"]
         >>> durations = 2 * [abjad.Duration(3, 8), abjad.Duration(1, 8)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -162,10 +321,9 @@ class LeafMaker:
         Reads ``durations`` cyclically when the length of ``durations`` is less than the
         length of ``pitches``:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = "c'' d'' e'' f''"
         >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -186,10 +344,9 @@ class LeafMaker:
         Elements in ``durations`` with non-power-of-two denominators result in
         tuplet-nested leaves:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = ["D5"]
         >>> durations = 3 * [abjad.Duration(1, 3)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -212,10 +369,9 @@ class LeafMaker:
         Set ``increase_monotonic`` to false to return nonassignable durations tied from
         greatest to least:
 
-        >>> maker = abjad.LeafMaker(increase_monotonic=False)
         >>> pitches = ["D#5"]
         >>> durations = [abjad.Duration(13, 16)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> time_signature = abjad.TimeSignature((13, 16))
         >>> abjad.attach(time_signature, staff[0])
@@ -238,10 +394,9 @@ class LeafMaker:
         Set ``increase_monotonic`` to true to return nonassignable durations tied from
         least to greatest:
 
-        >>> maker = abjad.LeafMaker(increase_monotonic=True)
         >>> pitches = ["E5"]
         >>> durations = [abjad.Duration(13, 16)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations, increase_monotonic=True)
         >>> staff = abjad.Staff(leaves)
         >>> time_signature = abjad.TimeSignature((13, 16))
         >>> abjad.attach(time_signature, staff[0])
@@ -264,12 +419,10 @@ class LeafMaker:
         Set ``forbidden_note_duration`` to avoid notes greater than or equal to a certain
         written duration:
 
-        >>> maker = abjad.LeafMaker(
-        ...     forbidden_note_duration=abjad.Duration(1, 2),
-        ... )
         >>> pitches = "f' g'"
         >>> durations = [abjad.Duration(5, 8)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations,
+        ...     forbidden_note_duration=abjad.Duration(1, 2))
         >>> staff = abjad.Staff(leaves)
         >>> time_signature = abjad.TimeSignature((5, 4))
         >>> abjad.attach(time_signature, staff[0])
@@ -298,13 +451,13 @@ class LeafMaker:
 
         You may set ``forbidden_note_duration`` and ``increase_monotonic`` together:
 
-        >>> maker = abjad.LeafMaker(
+        >>> pitches = "f' g'"
+        >>> durations = [abjad.Duration(5, 8)]
+        >>> leaves = abjad.makers.make_leaves(
+        ...     pitches, durations,
         ...     forbidden_note_duration=abjad.Duration(1, 2),
         ...     increase_monotonic=True,
         ... )
-        >>> pitches = "f' g'"
-        >>> durations = [abjad.Duration(5, 8)]
-        >>> leaves = maker(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> time_signature = abjad.TimeSignature((5, 4))
         >>> abjad.attach(time_signature, staff[0])
@@ -333,10 +486,9 @@ class LeafMaker:
 
         Produces diminished tuplets:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = "f'"
         >>> durations = [abjad.Duration(5, 14)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> time_signature = abjad.TimeSignature((5, 14))
         >>> leaf = abjad.get.leaf(staff, 0)
@@ -367,10 +519,10 @@ class LeafMaker:
         None-valued elements in ``pitches`` result in multimeasure rests when the
         multimeasure rest keyword is set:
 
-        >>> maker = abjad.LeafMaker(use_multimeasure_rests=True)
         >>> pitches = [None]
         >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations,
+        ...     use_multimeasure_rests=True)
         >>> leaves
         [MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')]
 
@@ -395,10 +547,9 @@ class LeafMaker:
 
         Works with numbered pitch-class:
 
-        >>> maker = abjad.LeafMaker()
         >>> pitches = [abjad.NumberedPitchClass(6)]
         >>> durations = [abjad.Duration(13, 16)]
-        >>> leaves = maker(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves(pitches, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -417,356 +568,119 @@ class LeafMaker:
 
         Makes skips instead of rests:
 
-        >>> maker = abjad.LeafMaker(skips_instead_of_rests=True)
         >>> pitches = [None]
         >>> durations = [abjad.Duration(13, 16)]
-        >>> maker(pitches, durations)
+        >>> abjad.makers.make_leaves(pitches, durations, skips_instead_of_rests=True)
         [Skip('s2.'), Skip('s16')]
 
+    ..  container:: example
+
+        Integer and string elements in ``pitches`` result in notes:
+
+        >>> tag = abjad.Tag("leaf_maker")
+        >>> pitches = [2, 4, "F#5", "G#5"]
+        >>> duration = abjad.Duration(1, 4)
+        >>> leaves = abjad.makers.make_leaves(pitches, duration, tag=tag)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff, tags=True)
+            >>> print(string)
+            \new Staff
+            {
+                %! leaf_maker
+                d'4
+                %! leaf_maker
+                e'4
+                %! leaf_maker
+                fs''4
+                %! leaf_maker
+                gs''4
+            }
+
     """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Makers"
-
-    __slots__ = (
-        "_increase_monotonic",
-        "_forbidden_note_duration",
-        "_forbidden_rest_duration",
-        "_skips_instead_of_rests",
-        "_tag",
-        "_use_multimeasure_rests",
+    if isinstance(pitches, str):
+        pitches = pitches.split()
+    if not isinstance(pitches, collections.abc.Iterable):
+        pitches = [pitches]
+    if isinstance(durations, numbers.Number | tuple):
+        durations = [durations]
+    if forbidden_note_duration is not None:
+        forbidden_note_duration = _duration.Duration(forbidden_note_duration)
+    if forbidden_rest_duration is not None:
+        forbidden_rest_duration = _duration.Duration(forbidden_rest_duration)
+    nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
+    size = max(len(nonreduced_fractions), len(pitches))
+    nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
+    pitches = _sequence.repeat_to_length(pitches, size)
+    duration_groups = _duration.Duration._group_by_implied_prolation(
+        nonreduced_fractions
     )
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        *,
-        increase_monotonic: bool = False,
-        forbidden_note_duration: _typings.Duration = None,
-        forbidden_rest_duration: _typings.Duration = None,
-        skips_instead_of_rests: bool = False,
-        tag: _tag.Tag = None,
-        use_multimeasure_rests: bool = False,
-    ) -> None:
-        if increase_monotonic is not None:
-            increase_monotonic = bool(increase_monotonic)
-        self._increase_monotonic = increase_monotonic
-        if forbidden_note_duration is None:
-            forbidden_note_duration_ = None
+    result: list[_score.Tuplet | _score.Leaf] = []
+    for duration_group in duration_groups:
+        factors_ = _math.factors(duration_group[0].denominator)
+        factors = set(factors_)
+        factors.discard(1)
+        factors.discard(2)
+        current_pitches = pitches[0 : len(duration_group)]
+        pitches = pitches[len(duration_group) :]
+        if len(factors) == 0:
+            for pitch, duration in zip(current_pitches, duration_group):
+                leaves = _make_leaf_on_pitch(
+                    pitch,
+                    duration,
+                    increase_monotonic=increase_monotonic,
+                    forbidden_note_duration=forbidden_note_duration,
+                    forbidden_rest_duration=forbidden_rest_duration,
+                    skips_instead_of_rests=skips_instead_of_rests,
+                    tag=tag,
+                    use_multimeasure_rests=use_multimeasure_rests,
+                )
+                result.extend(leaves)
         else:
-            forbidden_note_duration_ = _duration.Duration(forbidden_note_duration)
-        self._forbidden_note_duration = forbidden_note_duration_
-        if forbidden_rest_duration is None:
-            forbidden_rest_duration_ = None
-        else:
-            forbidden_rest_duration_ = _duration.Duration(forbidden_rest_duration)
-        self._forbidden_rest_duration = forbidden_rest_duration_
-        if skips_instead_of_rests is not None:
-            skips_instead_of_rests = bool(skips_instead_of_rests)
-        self._skips_instead_of_rests = skips_instead_of_rests
-        if tag is not None:
-            assert isinstance(tag, _tag.Tag), repr(tag)
-        self._tag = tag
-        if use_multimeasure_rests is not None:
-            use_multimeasure_rests = bool(use_multimeasure_rests)
-        self._use_multimeasure_rests = use_multimeasure_rests
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self, pitches, durations) -> list[_score.Leaf | _score.Tuplet]:
-        """
-        Calls leaf-maker on ``pitches`` and ``durations``.
-        """
-        if isinstance(pitches, str):
-            pitches = pitches.split()
-        if not isinstance(pitches, collections.abc.Iterable):
-            pitches = [pitches]
-        if isinstance(durations, numbers.Number | tuple):
-            durations = [durations]
-        nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
-        size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
-        pitches = _sequence.repeat_to_length(pitches, size)
-        duration_groups = _duration.Duration._group_by_implied_prolation(
-            nonreduced_fractions
-        )
-        result: list[_score.Tuplet | _score.Leaf] = []
-        for duration_group in duration_groups:
-            # get factors in denominator of duration group other than 1, 2.
-            factors_ = _math.factors(duration_group[0].denominator)
-            factors = set(factors_)
-            factors.discard(1)
-            factors.discard(2)
-            current_pitches = pitches[0 : len(duration_group)]
-            pitches = pitches[len(duration_group) :]
-            if len(factors) == 0:
-                for pitch, duration in zip(current_pitches, duration_group):
-                    leaves = self._make_leaf_on_pitch(
-                        pitch,
-                        duration,
-                        increase_monotonic=self.increase_monotonic,
-                        forbidden_note_duration=self.forbidden_note_duration,
-                        forbidden_rest_duration=self.forbidden_rest_duration,
-                        skips_instead_of_rests=self.skips_instead_of_rests,
-                        tag=self.tag,
-                        use_multimeasure_rests=self.use_multimeasure_rests,
-                    )
-                    result.extend(leaves)
-            else:
-                # compute tuplet prolation
-                denominator = duration_group[0].denominator
-                numerator = _math.greatest_power_of_two_less_equal(denominator)
-                multiplier = (numerator, denominator)
-                ratio = 1 / _duration.Duration(*multiplier)
-                duration_group = [
-                    ratio * _duration.Duration(duration) for duration in duration_group
-                ]
-                # make tuplet leaves
-                tuplet_leaves: list[_score.Leaf] = []
-                for pitch, duration in zip(current_pitches, duration_group):
-                    leaves = self._make_leaf_on_pitch(
-                        pitch,
-                        duration,
-                        increase_monotonic=self.increase_monotonic,
-                        skips_instead_of_rests=self.skips_instead_of_rests,
-                        tag=self.tag,
-                        use_multimeasure_rests=self.use_multimeasure_rests,
-                    )
-                    tuplet_leaves.extend(leaves)
-                tuplet = _score.Tuplet(multiplier, tuplet_leaves)
-                result.append(tuplet)
-        return result
-
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _make_leaf_on_pitch(
-        pitch,
-        duration,
-        *,
-        increase_monotonic=None,
-        forbidden_note_duration=None,
-        forbidden_rest_duration=None,
-        skips_instead_of_rests=None,
-        tag=None,
-        use_multimeasure_rests=None,
-    ):
-        note_prototype = (
-            numbers.Number,
-            str,
-            _pitch.NamedPitch,
-            _pitch.NumberedPitch,
-            _pitch.PitchClass,
-        )
-        chord_prototype = (tuple, list)
-        rest_prototype = (type(None),)
-        if isinstance(pitch, note_prototype):
-            leaves = LeafMaker._make_tied_leaf(
-                _score.Note,
-                duration,
-                increase_monotonic=increase_monotonic,
-                forbidden_duration=forbidden_note_duration,
-                pitches=pitch,
-                tag=tag,
-            )
-        elif isinstance(pitch, chord_prototype):
-            leaves = LeafMaker._make_tied_leaf(
-                _score.Chord,
-                duration,
-                increase_monotonic=increase_monotonic,
-                forbidden_duration=forbidden_note_duration,
-                pitches=pitch,
-                tag=tag,
-            )
-        elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
-            leaves = LeafMaker._make_tied_leaf(
-                _score.Skip,
-                duration,
-                increase_monotonic=increase_monotonic,
-                forbidden_duration=forbidden_rest_duration,
-                pitches=None,
-                tag=tag,
-            )
-        elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
-            leaves = LeafMaker._make_tied_leaf(
-                _score.Rest,
-                duration,
-                increase_monotonic=increase_monotonic,
-                forbidden_duration=forbidden_rest_duration,
-                pitches=None,
-                tag=tag,
-            )
-        elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
-            multimeasure_rest = _score.MultimeasureRest((1), tag=tag)
-            multimeasure_rest.multiplier = duration
-            leaves = (multimeasure_rest,)
-        else:
-            raise ValueError(f"unknown pitch: {pitch!r}.")
-        return leaves
-
-    @staticmethod
-    def _make_tied_leaf(
-        class_,
-        duration,
-        increase_monotonic=None,
-        forbidden_duration=None,
-        multiplier=None,
-        pitches=None,
-        tag=None,
-        tie_parts=True,
-    ):
-        duration = _duration.Duration(duration)
-        if forbidden_duration is not None:
-            assert forbidden_duration.is_assignable
-            assert forbidden_duration.numerator == 1
-        # find preferred numerator of written durations if necessary
-        if forbidden_duration is not None and forbidden_duration <= duration:
-            denominators = [
-                2 * forbidden_duration.denominator,
-                duration.denominator,
+            denominator = duration_group[0].denominator
+            numerator = _math.greatest_power_of_two_less_equal(denominator)
+            multiplier = (numerator, denominator)
+            ratio = 1 / _duration.Duration(*multiplier)
+            duration_group = [
+                ratio * _duration.Duration(duration) for duration in duration_group
             ]
-            denominator = _math.least_common_multiple(*denominators)
-            forbidden_duration = _duration.NonreducedFraction(forbidden_duration)
-            forbidden_duration = forbidden_duration.with_denominator(denominator)
-            duration = _duration.NonreducedFraction(duration)
-            duration = duration.with_denominator(denominator)
-            forbidden_numerator = forbidden_duration.numerator
-            assert forbidden_numerator % 2 == 0
-            preferred_numerator = forbidden_numerator / 2
-        # make written duration numerators
-        numerators = []
-        parts = _math.partition_integer_into_canonic_parts(duration.numerator)
-        if forbidden_duration is not None and forbidden_duration <= duration:
-            for part in parts:
-                if forbidden_numerator <= part:
-                    better_parts = LeafMaker._partition_less_than_double(
-                        part, preferred_numerator
-                    )
-                    numerators.extend(better_parts)
-                else:
-                    numerators.append(part)
-        else:
-            numerators = parts
-        # reverse numerators if necessary
-        if increase_monotonic:
-            numerators = list(reversed(numerators))
-        # make one leaf per written duration
-        result = []
-        for numerator in numerators:
-            written_duration = _duration.Duration(numerator, duration.denominator)
-            if pitches is not None:
-                arguments = (pitches, written_duration)
-            else:
-                arguments = (written_duration,)
-            result.append(class_(*arguments, multiplier=multiplier, tag=tag))
-        # tie if required
-        if tie_parts and 1 < len(result):
-            if not issubclass(class_, (_score.Rest, _score.Skip)):
-                _spanners.tie(result)
-        return result
-
-    @staticmethod
-    def _partition_less_than_double(n, m):
-        assert _math.is_positive_integer_equivalent_number(n)
-        assert _math.is_positive_integer_equivalent_number(m)
-        n, m = int(n), int(m)
-        result = []
-        current_value = n
-        double_m = 2 * m
-        while double_m <= current_value:
-            result.append(m)
-            current_value -= m
-        result.append(current_value)
-        return tuple(result)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def forbidden_note_duration(self) -> _duration.Duration | None:
-        """
-        Gets forbidden written duration.
-        """
-        return self._forbidden_note_duration
-
-    @property
-    def forbidden_rest_duration(self) -> _duration.Duration | None:
-        """
-        Gets forbidden written duration.
-        """
-        return self._forbidden_rest_duration
-
-    @property
-    def increase_monotonic(self) -> bool | None:
-        """
-        Is true when durations increase monotonically.
-        """
-        return self._increase_monotonic
-
-    @property
-    def skips_instead_of_rests(self) -> bool | None:
-        """
-        Is true when skips appear in place of rests.
-        """
-        return self._skips_instead_of_rests
-
-    @property
-    def tag(self) -> _tag.Tag | None:
-        r"""
-        Gets tag.
-
-        ..  container:: example
-
-            Integer and string elements in ``pitches`` result in notes:
-
-            >>> maker = abjad.LeafMaker(tag=abjad.Tag("leaf_maker"))
-            >>> pitches = [2, 4, "F#5", "G#5"]
-            >>> duration = abjad.Duration(1, 4)
-            >>> leaves = maker(pitches, duration)
-            >>> staff = abjad.Staff(leaves)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff, tags=True)
-                >>> print(string)
-                \new Staff
-                {
-                    %! leaf_maker
-                    d'4
-                    %! leaf_maker
-                    e'4
-                    %! leaf_maker
-                    fs''4
-                    %! leaf_maker
-                    gs''4
-                }
-
-        """
-        return self._tag
-
-    @property
-    def use_multimeasure_rests(self) -> bool | None:
-        """
-        Is true when rests are multimeasure.
-        """
-        return self._use_multimeasure_rests
+            tuplet_leaves: list[_score.Leaf] = []
+            for pitch, duration in zip(current_pitches, duration_group):
+                leaves = _make_leaf_on_pitch(
+                    pitch,
+                    duration,
+                    increase_monotonic=increase_monotonic,
+                    skips_instead_of_rests=skips_instead_of_rests,
+                    tag=tag,
+                    use_multimeasure_rests=use_multimeasure_rests,
+                )
+                tuplet_leaves.extend(leaves)
+            tuplet = _score.Tuplet(multiplier, tuplet_leaves)
+            result.append(tuplet)
+    return result
 
 
-class NoteMaker:
+def make_notes(
+    pitches, durations, *, increase_monotonic: bool = False, tag: _tag.Tag = None
+) -> list[_score.Note | _score.Tuplet]:
     r"""
-    Note-maker.
+    Makes notes from ``pitches`` and ``durations``.
 
-    Makes notes according to ``pitches`` and ``durations``.
+    Set ``pitches`` to a single pitch or a sequence of pitches.
+
+    Set ``durations`` to a single duration or a list of durations.
 
     ..  container:: example
 
         Cycles through ``pitches`` when the length of ``pitches`` is less than the length
         of ``durations``:
 
-        >>> maker = abjad.NoteMaker()
-        >>> notes = maker([0], [(1, 16), (1, 8), (1, 8)])
+        >>> pitches = [0]
+        >>> durations = [(1, 16), (1, 8), (1, 8)]
+        >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -786,11 +700,9 @@ class NoteMaker:
         Cycles through ``durations`` when the length of ``durations`` is less than the
         length of ``pitches``:
 
-        >>> maker = abjad.NoteMaker()
-        >>> notes = maker(
-        ...     [0, 2, 4, 5, 7],
-        ...     [(1, 16), (1, 8), (1, 8)],
-        ... )
+        >>> pitches = [0, 2, 4, 5, 7]
+        >>> durations = [(1, 16), (1, 8), (1, 8)]
+        >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -811,8 +723,9 @@ class NoteMaker:
 
         Creates ad hoc tuplets for nonassignable durations:
 
-        >>> maker = abjad.NoteMaker()
-        >>> notes = maker([0], [(1, 16), (1, 12), (1, 8)])
+        >>> pitches = [0]
+        >>> durations = [(1, 16), (1, 12), (1, 8)]
+        >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -833,10 +746,11 @@ class NoteMaker:
 
     ..  container:: example
 
-        Set ``increase_monotonic=False`` to express tied values in decreasing duration:
+        Tied values are written in decreasing duration by default:
 
-        >>> maker = abjad.NoteMaker(increase_monotonic=False)
-        >>> notes = maker([0], [(13, 16)])
+        >>> pitches = [0]
+        >>> durations = [(13, 16)]
+        >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -851,12 +765,11 @@ class NoteMaker:
                 c'16
             }
 
-    ..  container:: example
-
         Set ``increase_monotonic=True`` to express tied values in increasing duration:
 
-        >>> maker = abjad.NoteMaker(increase_monotonic=True)
-        >>> notes = maker([0], [(13, 16)])
+        >>> pitches = [0]
+        >>> durations = [(13, 16)]
+        >>> notes = abjad.makers.make_notes(pitches, durations, increase_monotonic=True)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -875,9 +788,9 @@ class NoteMaker:
 
         Works with pitch segments:
 
-        >>> maker = abjad.NoteMaker()
-        >>> segment = abjad.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
-        >>> notes = maker(segment, [(1, 8)])
+        >>> pitches = abjad.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+        >>> durations = [(1, 8)]
+        >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -895,133 +808,74 @@ class NoteMaker:
                 g'8
             }
 
-    Set ``pitches`` to a single pitch or a sequence of pitches.
+    ..  container:: example
 
-    Set ``durations`` to a single duration or a list of durations.
+        Tag output like this:
+
+        >>> pitches = [0]
+        >>> durations = [(1, 16), (1, 8), (1, 8)]
+        >>> tag = abjad.Tag("note_maker")
+        >>> notes = abjad.makers.make_notes(pitches, durations, tag=tag)
+        >>> staff = abjad.Staff(notes)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff, tags=True)
+            >>> print(string)
+            \new Staff
+            {
+                %! note_maker
+                c'16
+                %! note_maker
+                c'8
+                %! note_maker
+                c'8
+            }
+
     """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Makers"
-
-    __slots__ = ("_increase_monotonic", "_tag")
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self, *, increase_monotonic: bool = False, tag: _tag.Tag = None
-    ) -> None:
-        self._increase_monotonic = bool(increase_monotonic)
-        if tag is not None:
-            assert isinstance(tag, _tag.Tag), repr(tag)
-        self._tag = tag
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self, pitches, durations) -> list[_score.Note | _score.Tuplet]:
-        """
-        Calls note-maker on ``pitches`` and ``durations``.
-        """
-        if isinstance(pitches, str):
-            pitches = pitches.split()
-        if not isinstance(pitches, collections.abc.Iterable):
-            pitches = [pitches]
-        if isinstance(durations, numbers.Number | tuple):
-            durations = [durations]
-        nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
-        size = max(len(nonreduced_fractions), len(pitches))
-        nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
-        pitches = _sequence.repeat_to_length(pitches, size)
-        durations = _duration.Duration._group_by_implied_prolation(nonreduced_fractions)
-        result: list[_score.Note | _score.Tuplet] = []
-        for duration in durations:
-            # get factors in denominator of duration group duration not 1 or 2
-            factors = set(_math.factors(duration[0].denominator))
-            factors.discard(1)
-            factors.discard(2)
-            ps = pitches[0 : len(duration)]
-            pitches = pitches[len(duration) :]
-            if len(factors) == 0:
-                result.extend(
-                    self._make_unprolated_notes(
-                        ps,
-                        duration,
-                        increase_monotonic=self.increase_monotonic,
-                        tag=self.tag,
-                    )
-                )
-            else:
-                # compute prolation
-                denominator = duration[0].denominator
-                numerator = _math.greatest_power_of_two_less_equal(denominator)
-                multiplier = _duration.Multiplier(numerator, denominator)
-                ratio = multiplier.reciprocal
-                duration = [ratio * _duration.Duration(d) for d in duration]
-                ns = self._make_unprolated_notes(
+    if isinstance(pitches, str):
+        pitches = pitches.split()
+    if not isinstance(pitches, collections.abc.Iterable):
+        pitches = [pitches]
+    if isinstance(durations, numbers.Number | tuple):
+        durations = [durations]
+    nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
+    size = max(len(nonreduced_fractions), len(pitches))
+    nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
+    pitches = _sequence.repeat_to_length(pitches, size)
+    durations = _duration.Duration._group_by_implied_prolation(nonreduced_fractions)
+    result: list[_score.Note | _score.Tuplet] = []
+    for duration in durations:
+        factors = set(_math.factors(duration[0].denominator))
+        factors.discard(1)
+        factors.discard(2)
+        ps = pitches[0 : len(duration)]
+        pitches = pitches[len(duration) :]
+        if len(factors) == 0:
+            result.extend(
+                _make_unprolated_notes(
                     ps,
                     duration,
-                    increase_monotonic=self.increase_monotonic,
-                    tag=self.tag,
-                )
-                tuplet = _score.Tuplet(multiplier, ns)
-                result.append(tuplet)
-        return result
-
-    ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _make_unprolated_notes(pitches, durations, increase_monotonic=None, tag=None):
-        assert len(pitches) == len(durations)
-        result = []
-        for pitch, duration in zip(pitches, durations):
-            result.extend(
-                LeafMaker._make_tied_leaf(
-                    _score.Note,
-                    duration,
-                    pitches=pitch,
                     increase_monotonic=increase_monotonic,
                     tag=tag,
                 )
             )
-        return result
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def increase_monotonic(self) -> bool | None:
-        """
-        Is true when durations increase monotonically.
-        """
-        return self._increase_monotonic
-
-    @property
-    def tag(self) -> _tag.Tag | None:
-        r"""
-        Gets tag.
-
-        ..  container:: example
-
-            >>> maker = abjad.NoteMaker(tag=abjad.Tag("note_maker"))
-            >>> notes = maker([0], [(1, 16), (1, 8), (1, 8)])
-            >>> staff = abjad.Staff(notes)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff, tags=True)
-                >>> print(string)
-                \new Staff
-                {
-                    %! note_maker
-                    c'16
-                    %! note_maker
-                    c'8
-                    %! note_maker
-                    c'8
-                }
-
-        """
-        return self._tag
+        else:
+            denominator = duration[0].denominator
+            numerator = _math.greatest_power_of_two_less_equal(denominator)
+            multiplier = _duration.Multiplier(numerator, denominator)
+            ratio = multiplier.reciprocal
+            duration = [ratio * _duration.Duration(d) for d in duration]
+            ns = _make_unprolated_notes(
+                ps,
+                duration,
+                increase_monotonic=increase_monotonic,
+                tag=tag,
+            )
+            tuplet = _score.Tuplet(multiplier, ns)
+            result.append(tuplet)
+    return result
 
 
 def tuplet_from_duration_and_ratio(
@@ -1319,7 +1173,6 @@ def tuplet_from_duration_and_ratio(
     basic_prolated_duration = duration / _math.weight(ratio.numbers)
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
     written_durations = [x * basic_written_duration for x in ratio.numbers]
-    leaf_maker = LeafMaker(increase_monotonic=increase_monotonic, tag=tag)
     notes: list[_score.Leaf | _score.Tuplet]
     try:
         notes = [
@@ -1331,7 +1184,12 @@ def tuplet_from_duration_and_ratio(
         note_durations = [_duration.Duration(x, denominator) for x in ratio.numbers]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
-        notes = leaf_maker(pitches, leaf_durations)
+        notes = make_leaves(
+            pitches,
+            leaf_durations,
+            increase_monotonic=increase_monotonic,
+            tag=tag,
+        )
     tuplet = _score.Tuplet.from_duration(duration, notes, tag=tag)
     tuplet.normalize_multiplier()
     return tuplet
@@ -1665,8 +1523,7 @@ def tuplet_from_leaf_and_ratio(
     basic_prolated_duration = target_duration / sum(proportions.numbers)
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
     written_durations = [_ * basic_written_duration for _ in proportions.numbers]
-    maker = NoteMaker()
-    notes: list[_score.Leaf | _score.Tuplet]
+    notes: list[_score.Note | _score.Tuplet]
     try:
         notes = [_score.Note(0, x) for x in written_durations]
     except _exceptions.AssignabilityError:
@@ -1674,7 +1531,7 @@ def tuplet_from_leaf_and_ratio(
         note_durations = [
             _duration.Duration(_, denominator) for _ in proportions.numbers
         ]
-        notes = list(maker(0, note_durations))
+        notes = make_notes(0, note_durations)
     contents_duration = _getlib._get_duration(notes)
     multiplier = target_duration / contents_duration
     tuplet = _score.Tuplet(multiplier, notes)
@@ -1880,8 +1737,7 @@ def tuplet_from_ratio_and_pair(
                 tuplet = _score.Tuplet.from_duration(duration, [note], tag=tag)
                 return tuplet
             except _exceptions.AssignabilityError:
-                note_maker = NoteMaker(tag=tag)
-                notes = note_maker(0, duration)
+                notes = make_notes(0, duration, tag=tag)
                 duration = _getlib._get_duration(notes)
                 return _score.Tuplet.from_duration(duration, notes, tag=tag)
         elif ratio.numbers[0] < 0:
@@ -1890,8 +1746,7 @@ def tuplet_from_ratio_and_pair(
                 duration = rest._get_duration()
                 return _score.Tuplet.from_duration(duration, [rest], tag=tag)
             except _exceptions.AssignabilityError:
-                leaf_maker = LeafMaker(tag=tag)
-                rests = leaf_maker([None], duration)
+                rests = make_leaves([None], duration, tag=tag)
                 duration = _getlib._get_duration(rests)
                 return _score.Tuplet.from_duration(duration, rests, tag=tag)
         else:
@@ -1910,15 +1765,59 @@ def tuplet_from_ratio_and_pair(
                     note = _score.Note(0, (x, denominator), tag=tag)
                     components.append(note)
                 except _exceptions.AssignabilityError:
-                    maker = NoteMaker(tag=tag)
-                    notes = maker(0, (x, denominator))
+                    notes = make_notes(0, (x, denominator), tag=tag)
                     components.extend(notes)
             else:
                 try:
                     rest = _score.Rest((-x, denominator), tag=tag)
                     components.append(rest)
                 except _exceptions.AssignabilityError:
-                    leaf_maker = LeafMaker(tag=tag)
-                    rests = leaf_maker(None, (-x, denominator))
+                    rests = make_leaves(None, (-x, denominator), tag=tag)
                     components.extend(rests)
         return _score.Tuplet.from_duration(duration, components, tag=tag)
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class LeafMaker:
+    """
+    DEPRECATED; use ``abjad.makers.make_leaves()`` instead; removed in Abjad 3.13.
+    """
+
+    increase_monotonic: bool = False
+    forbidden_note_duration: _typings.Duration | None = None
+    forbidden_rest_duration: _typings.Duration | None = None
+    skips_instead_of_rests: bool = False
+    tag: _tag.Tag | None = None
+    use_multimeasure_rests: bool = False
+
+    def __call__(self, pitches, durations) -> list[_score.Leaf | _score.Tuplet]:
+        leaves = make_leaves(
+            pitches,
+            durations,
+            forbidden_note_duration=self.forbidden_note_duration,
+            forbidden_rest_duration=self.forbidden_rest_duration,
+            increase_monotonic=self.increase_monotonic,
+            skips_instead_of_rests=self.skips_instead_of_rests,
+            tag=self.tag,
+            use_multimeasure_rests=self.use_multimeasure_rests,
+        )
+        return leaves
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class NoteMaker:
+    """
+    DEPRECATED; use ``abjad.makers.make_notes()`` instead; removed in Abjad 3.13.
+    """
+
+    increase_monotonic: bool = False
+    tag: _tag.Tag | None = None
+
+    def __call__(self, pitches, durations) -> list[_score.Note | _score.Tuplet]:
+        """
+        Calls note-maker on ``pitches`` and ``durations``.
+        """
+        notes = make_notes(
+            pitches, durations, increase_monotonic=self.increase_monotonic, tag=self.tag
+        )
+        return notes

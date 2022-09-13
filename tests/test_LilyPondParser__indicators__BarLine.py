@@ -3,8 +3,9 @@ import abjad
 
 def test_LilyPondParser__indicators__BarLine_01():
 
-    maker = abjad.NoteMaker()
-    target = abjad.Staff(maker(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
+    target = abjad.Staff(
+        abjad.makers.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)])
+    )
     bar_line = abjad.BarLine("|.")
     abjad.attach(bar_line, target[-1])
 

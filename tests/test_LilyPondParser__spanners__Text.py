@@ -8,8 +8,7 @@ def test_LilyPondParser__spanners__Text_01():
     Successful text spanners, showing single leaf overlap.
     """
 
-    maker = abjad.NoteMaker()
-    container = abjad.Container(maker([0] * 4, [(1, 4)]))
+    container = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.text_spanner(container[2:])
     abjad.text_spanner(container[:3])
 
@@ -40,8 +39,7 @@ def test_LilyPondParser__spanners__Text_02():
     Swapped start and stop.
     """
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.text_spanner(target[2:])
     abjad.text_spanner(target[:3])
 

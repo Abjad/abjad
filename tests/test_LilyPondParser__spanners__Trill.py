@@ -8,8 +8,7 @@ def test_LilyPondParser__spanners__Trill_01():
     Successful trills, showing single leaf overlap.
     """
 
-    maker = abjad.NoteMaker()
-    notes = maker(4 * [0], [(1, 4)])
+    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
     target = abjad.Container(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
@@ -39,8 +38,7 @@ def test_LilyPondParser__spanners__Trill_02():
     Swapped start and stop.
     """
 
-    maker = abjad.NoteMaker()
-    notes = maker(4 * [0], [(1, 4)])
+    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
     target = abjad.Container(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])

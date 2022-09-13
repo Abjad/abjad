@@ -92,8 +92,7 @@ class MetricModulation:
 
         With ties:
 
-        >>> maker = abjad.NoteMaker()
-        >>> notes = maker([0], [(5, 16)])
+        >>> notes = abjad.makers.make_notes([0], [(5, 16)])
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=notes,
@@ -189,8 +188,7 @@ class MetricModulation:
 
         With ties and tuplets:
 
-        >>> maker = abjad.NoteMaker()
-        >>> notes = maker([0], [(5, 16)])
+        >>> notes = abjad.makers.make_notes([0], [(5, 16)])
         >>> tuplet = abjad.Tuplet((2, 3), notes)
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
@@ -382,8 +380,7 @@ class MetricModulation:
             ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
             ... )
-            >>> maker = abjad.NoteMaker()
-            >>> notes = maker([0], [(5, 16)])
+            >>> notes = abjad.makers.make_notes([0], [(5, 16)])
             >>> metric_modulation_3 = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c'4"),
             ...     right_rhythm=notes,

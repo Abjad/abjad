@@ -4,8 +4,7 @@ import abjad
 def test_LilyPondParser__functions__transpose_01():
 
     pitches = ["e'", "gs'", "b'", "e''"]
-    maker = abjad.NoteMaker()
-    target = abjad.Staff(maker(pitches, (1, 4)))
+    target = abjad.Staff(abjad.makers.make_notes(pitches, (1, 4)))
     key_signature = abjad.KeySignature(abjad.NamedPitchClass("e"), abjad.Mode("major"))
     abjad.attach(key_signature, target[0])
 
@@ -31,8 +30,7 @@ def test_LilyPondParser__functions__transpose_01():
 def test_LilyPondParser__functions__transpose_02():
 
     pitches = ["ef'", "f'", "g'", "bf'"]
-    maker = abjad.NoteMaker()
-    target = abjad.Staff(maker(pitches, (1, 4)))
+    target = abjad.Staff(abjad.makers.make_notes(pitches, (1, 4)))
     key_signature = abjad.KeySignature(abjad.NamedPitchClass("ef"), abjad.Mode("major"))
     abjad.attach(key_signature, target[0])
 
@@ -57,11 +55,14 @@ def test_LilyPondParser__functions__transpose_02():
 
 def test_LilyPondParser__functions__transpose_03():
 
-    maker = abjad.NoteMaker()
     target = abjad.Staff(
         [
-            abjad.Container(maker(["cs'", "ds'", "es'", "fs'"], (1, 4))),
-            abjad.Container(maker(["df'", "ef'", "f'", "gf'"], (1, 4))),
+            abjad.Container(
+                abjad.makers.make_notes(["cs'", "ds'", "es'", "fs'"], (1, 4))
+            ),
+            abjad.Container(
+                abjad.makers.make_notes(["df'", "ef'", "f'", "gf'"], (1, 4))
+            ),
         ]
     )
 

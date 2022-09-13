@@ -8,8 +8,7 @@ def test_LilyPondParser__spanners__PhrasingSlur_01():
     Successful slurs, showing single leaf overlap.
     """
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
 
@@ -38,8 +37,7 @@ def test_LilyPondParser__spanners__PhrasingSlur_02():
     Swapped start and stop.
     """
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
 

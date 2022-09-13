@@ -807,8 +807,7 @@ class Clef:
 
         ..  container:: example
 
-            >>> maker = abjad.NoteMaker()
-            >>> notes = maker(list(range(-12, -6)), [(1, 4)])
+            >>> notes = abjad.makers.make_notes(list(range(-12, -6)), [(1, 4)])
             >>> staff = abjad.Staff(notes)
             >>> pitches = abjad.iterate.pitches(staff)
             >>> abjad.Clef.from_pitches(pitches)

@@ -18,6 +18,7 @@ from . import score as _score
 from . import select as _select
 from . import sequence as _sequence
 from . import spanners as _spanners
+from . import tag as _tag
 
 
 def _are_contiguous_logical_voice(
@@ -294,17 +295,17 @@ def _extract(component):
     return component
 
 
-def _fuse(components):
+def _fuse(components, *, tag=None):
     assert _are_contiguous_logical_voice(components)
     if all(isinstance(_, _score.Leaf) for _ in components):
-        return _fuse_leaves(components)
+        return _fuse_leaves(components, tag=tag)
     elif all(isinstance(_, _score.Tuplet) for _ in components):
-        return _fuse_tuplets(components)
+        return _fuse_tuplets(components, tag=tag)
     else:
         raise Exception(f"can only fuse leaves and tuplets (not {components}).")
 
 
-def _fuse_leaves(leaves):
+def _fuse_leaves(leaves, *, tag=None):
     assert all(isinstance(_, _score.Leaf) for _ in leaves)
     assert _are_contiguous_logical_voice(leaves)
     if len(leaves) <= 1:
@@ -316,23 +317,23 @@ def _fuse_leaves(leaves):
         if parent:
             index = parent.index(leaf)
             del parent[index]
-    result = _set_leaf_duration(leaves[0], total_preprolated)
+    result = _set_leaf_duration(leaves[0], total_preprolated, tag=tag)
     if not originally_tied:
         last_leaf = _select.leaf(result, -1)
         _bind.detach(_indicators.Tie, last_leaf)
     return result
 
 
-def _fuse_leaves_by_immediate_parent(leaves):
+def _fuse_leaves_by_immediate_parent(leaves, *, tag=None):
     result = []
     parts = _get_leaves_grouped_by_immediate_parents(leaves)
     for part in parts:
-        fused = _fuse(part)
+        fused = _fuse(part, tag=tag)
         result.append(fused)
     return result
 
 
-def _fuse_tuplets(tuplets):
+def _fuse_tuplets(tuplets, *, tag=None):
     assert _are_contiguous_same_parent(tuplets, prototype=_score.Tuplet)
     if len(tuplets) == 0:
         return None
@@ -342,7 +343,7 @@ def _fuse_tuplets(tuplets):
         if tuplet.multiplier != first_multiplier:
             raise ValueError("tuplets must carry same multiplier.")
     assert isinstance(first, _score.Tuplet)
-    new_tuplet = _score.Tuplet(first_multiplier, [])
+    new_tuplet = _score.Tuplet(first_multiplier, [], tag=tag)
     wrapped = False
     if _get.parentage(tuplets[0]).root is not _get.parentage(tuplets[-1]).root:
         dummy_container = _score.Container(tuplets)
@@ -427,7 +428,7 @@ def _move_indicators(donor_component, recipient_component):
         _bind.attach(wrapper, recipient_component)
 
 
-def _set_leaf_duration(leaf, new_duration):
+def _set_leaf_duration(leaf, new_duration, *, tag=None):
     new_duration = _duration.Duration(new_duration)
     if leaf.multiplier is not None:
         multiplier = new_duration.__div__(leaf.written_duration)
@@ -438,8 +439,7 @@ def _set_leaf_duration(leaf, new_duration):
         return [leaf]
     except _exceptions.AssignabilityError:
         pass
-    maker = _makers.NoteMaker()
-    components = maker(0, new_duration)
+    components = _makers.make_notes(0, new_duration, tag=tag)
     new_leaves = _select.leaves(components)
     following_leaf_count = len(new_leaves) - 1
     following_leaves = []
@@ -546,9 +546,9 @@ def _split_container_at_index(CONTAINER, i):
     return halves
 
 
-def _split_container_by_duration(CONTAINER, duration):
+def _split_container_by_duration(CONTAINER, duration, *, tag=None):
     if CONTAINER.simultaneous:
-        return _split_simultaneous_by_duration(CONTAINER, duration=duration)
+        return _split_simultaneous_by_duration(CONTAINER, duration=duration, tag=tag)
     duration = _duration.Duration(duration)
     assert 0 <= duration, repr(duration)
     if duration == 0:
@@ -579,6 +579,7 @@ def _split_container_by_duration(CONTAINER, duration):
         new_leaves = _split_leaf_by_durations(
             bottom,
             [split_point_in_bottom],
+            tag=tag,
         )
         if new_leaves[0]._parent is not original_bottom_parent:
             new_leaves_tuplet_wrapper = new_leaves[0]._parent
@@ -587,6 +588,7 @@ def _split_container_by_duration(CONTAINER, duration):
             _split_container_by_duration(
                 new_leaves_tuplet_wrapper,
                 split_point_in_bottom,
+                tag=tag,
             )
         for leaf in new_leaves:
             timespan = _get.timespan(leaf)
@@ -642,11 +644,11 @@ def _split_container_by_duration(CONTAINER, duration):
     return [left], [right]
 
 
-def _split_simultaneous_by_duration(CONTAINER, duration):
+def _split_simultaneous_by_duration(CONTAINER, duration, *, tag=None):
     assert CONTAINER.simultaneous
     left_components, right_components = [], []
     for component in CONTAINER[:]:
-        halves = _split_container_by_duration(component, duration=duration)
+        halves = _split_container_by_duration(component, duration=duration, tag=tag)
         left_components_, right_components_ = halves
         left_components.extend(left_components_)
         right_components.extend(right_components_)
@@ -661,7 +663,7 @@ def _split_simultaneous_by_duration(CONTAINER, duration):
     return [left_container], [right_container]
 
 
-def _split_leaf_by_durations(leaf, durations, cyclic=False):
+def _split_leaf_by_durations(leaf, durations, *, cyclic=False, tag=None):
     durations = [_duration.Duration(_) for _ in durations]
     leaf_duration = _get.duration(leaf)
     if cyclic:
@@ -686,7 +688,7 @@ def _split_leaf_by_durations(leaf, durations, cyclic=False):
     for duration in durations:
         new_leaf = python_copy.copy(leaf)
         preprolated_duration = duration / leaf_prolation
-        selection = _set_leaf_duration(new_leaf, preprolated_duration)
+        selection = _set_leaf_duration(new_leaf, preprolated_duration, tag=tag)
         result_selections.append(selection)
     result_components = _sequence.flatten(result_selections, depth=-1)
     result_leaves = _select.leaves(result_components, grace=False)
@@ -1240,7 +1242,9 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
     return result
 
 
-def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
+def logical_tie_to_tuplet(
+    argument, proportions, *, tag: _tag.Tag = None
+) -> _score.Tuplet:
     r"""
     Changes logical tie to tuplet.
 
@@ -1352,9 +1356,8 @@ def logical_tie_to_tuplet(argument, proportions) -> _score.Tuplet:
         note_durations = [
             _duration.Duration(_, denominator) for _ in proportions.numbers
         ]
-        maker = _makers.NoteMaker()
-        notes = maker(0, note_durations)
-    tuplet = _score.Tuplet.from_duration(target_duration, notes)
+        notes = _makers.make_notes(0, note_durations, tag=tag)
+    tuplet = _score.Tuplet.from_duration(target_duration, notes, tag=tag)
     for leaf in argument:
         _bind.detach(_indicators.Tie, leaf)
         _bind.detach(_indicators.RepeatTie, leaf)
@@ -1404,8 +1407,7 @@ def replace(argument, recipients, wrappers=False):
                 }
             }
 
-        >>> maker = abjad.NoteMaker()
-        >>> notes = maker("c' d' e' f' c' d' e' f'", (1, 16))
+        >>> notes = abjad.makers.make_notes("c' d' e' f' c' d' e' f'", (1, 16))
         >>> abjad.mutate.replace([tuplet_1], notes)
         >>> abjad.attach(abjad.Dynamic('p'), staff[0])
         >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
@@ -1553,8 +1555,7 @@ def replace(argument, recipients, wrappers=False):
         Introduces duplicate ties:
 
         >>> staff = abjad.Staff("c'2 ~ c'2")
-        >>> maker = abjad.NoteMaker()
-        >>> tied_notes = maker(0, abjad.Duration(5, 8))
+        >>> tied_notes = abjad.makers.make_notes(0, abjad.Duration(5, 8))
         >>> abjad.mutate.replace(staff[:1], tied_notes)
 
         >>> string = abjad.lilypond(staff)
@@ -1797,7 +1798,7 @@ def scale(argument, multiplier) -> None:
 # TODO: add tests of tupletted notes and rests.
 # TODO: add examples that show indicator handling.
 # TODO: add example showing grace and after grace handling.
-def split(argument, durations, cyclic=False):
+def split(argument, durations, *, cyclic=False, tag=None):
     r"""
     Splits ``argument`` by ``durations``.
 
@@ -2257,6 +2258,7 @@ def split(argument, durations, cyclic=False):
                     current_component,
                     leaf_split_durations,
                     cyclic=False,
+                    tag=tag,
                 )
                 shard.extend(leaf_shards)
                 result.append(shard)
@@ -2266,6 +2268,7 @@ def split(argument, durations, cyclic=False):
                 pair = _split_container_by_duration(
                     current_component,
                     local_split_duration,
+                    tag=tag,
                 )
                 left_list, right_list = pair
                 shard.extend(left_list)
@@ -2518,8 +2521,7 @@ def wrap(argument, container):
 
         Wraps outside-score notes in tuplet:
 
-        >>> maker = abjad.NoteMaker()
-        >>> notes = maker([0, 2, 4], [(1, 8)])
+        >>> notes = abjad.makers.make_notes([0, 2, 4], [(1, 8)])
         >>> tuplet = abjad.Tuplet((2, 3), [])
         >>> abjad.mutate.wrap(notes, tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP
