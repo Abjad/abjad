@@ -100,8 +100,7 @@ def _illustrate_pitch_range(range_):
 
 def _illustrate_pitch_segment(segment):
     named_pitches = [_pitch.NamedPitch(x) for x in segment]
-    maker = _makers.NoteMaker()
-    notes = maker(named_pitches, [1])
+    notes = _makers.make_notes(named_pitches, [1])
     score = make_piano_score(leaves=notes)
     _overrides.override(score).TimeSignature.stencil = False
     _overrides.override(score).BarLine.stencil = False

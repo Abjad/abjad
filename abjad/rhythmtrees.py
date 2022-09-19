@@ -303,10 +303,9 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         """
         pulse_duration = _duration.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
-        maker = _makers.LeafMaker()
         if self.is_pitched:
-            return maker(0, total_duration)
-        return maker([None], total_duration)
+            return _makers.make_leaves(0, total_duration)
+        return _makers.make_leaves([None], total_duration)
 
     def __graph__(self, **keywords) -> uqbar.graphs.Graph:
         """

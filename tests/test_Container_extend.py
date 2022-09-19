@@ -275,12 +275,11 @@ def test_Container_extend_10():
     Lists must be flattened.
     """
 
-    maker = abjad.NoteMaker()
     lists = [
-        maker([0, 2], [abjad.Duration(1, 4)]),
-        maker([4, 5], [abjad.Duration(1, 4)]),
-        maker([7, 9], [abjad.Duration(1, 4)]),
-        maker([11, 12], [abjad.Duration(1, 4)]),
+        abjad.makers.make_notes([0, 2], [abjad.Duration(1, 4)]),
+        abjad.makers.make_notes([4, 5], [abjad.Duration(1, 4)]),
+        abjad.makers.make_notes([7, 9], [abjad.Duration(1, 4)]),
+        abjad.makers.make_notes([11, 12], [abjad.Duration(1, 4)]),
     ]
     components = abjad.sequence.flatten(lists, depth=-1)
     container = abjad.Container()

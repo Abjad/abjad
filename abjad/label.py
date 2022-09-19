@@ -1051,9 +1051,8 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         Labels consecutive notes with interval names:
 
-        >>> maker = abjad.NoteMaker()
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-        >>> notes = maker(pitch_numbers, [(1, 4)])
+        >>> notes = abjad.makers.make_notes(pitch_numbers, [(1, 4)])
         >>> staff = abjad.Staff(notes)
         >>> abjad.label.with_intervals(staff, prototype=None)
         >>> abjad.override(staff).TextScript.staff_padding = 4
@@ -1090,9 +1089,8 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         Labels consecutive notes with interval-class names:
 
-        >>> maker = abjad.NoteMaker()
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-        >>> notes = maker(pitch_numbers, [(1, 4)])
+        >>> notes = abjad.makers.make_notes(pitch_numbers, [(1, 4)])
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NamedIntervalClass
         >>> abjad.label.with_intervals(staff, prototype=prototype)
@@ -1130,9 +1128,8 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         Labels consecutive notes with interval numbers:
 
-        >>> maker = abjad.NoteMaker()
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-        >>> notes = maker(pitch_numbers, [(1, 4)])
+        >>> notes = abjad.makers.make_notes(pitch_numbers, [(1, 4)])
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NumberedInterval
         >>> abjad.label.with_intervals(staff, prototype=prototype)
@@ -1170,9 +1167,8 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         Labels consecutive notes with interval-class numbers:
 
-        >>> maker = abjad.NoteMaker()
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-        >>> notes = maker(pitch_numbers, [(1, 4)])
+        >>> notes = abjad.makers.make_notes(pitch_numbers, [(1, 4)])
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NumberedIntervalClass
         >>> abjad.label.with_intervals(staff, prototype=prototype)
@@ -1210,9 +1206,8 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         Labels consecutive notes with inversion-equivalent interval-class numbers:
 
-        >>> maker = abjad.NoteMaker()
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-        >>> notes = maker(pitch_numbers, [(1, 4)])
+        >>> notes = abjad.makers.make_notes(pitch_numbers, [(1, 4)])
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NumberedInversionEquivalentIntervalClass
         >>> abjad.label.with_intervals(staff, prototype=prototype)

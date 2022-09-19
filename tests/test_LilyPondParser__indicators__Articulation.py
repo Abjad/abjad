@@ -3,8 +3,7 @@ import abjad
 
 def test_LilyPondParser__indicators__Articulation_01():
 
-    maker = abjad.NoteMaker()
-    target = abjad.Staff(maker(["c''"], [(1, 4)] * 6 + [(1, 2)]))
+    target = abjad.Staff(abjad.makers.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
     articulation = abjad.Articulation("marcato")
     abjad.attach(articulation, target[0], direction=abjad.UP)
     articulation = abjad.Articulation("stopped")
@@ -79,9 +78,10 @@ def test_LilyPondParser__indicators__Articulation_02():
 
 def test_LilyPondParser__indicators__Articulation_03():
 
-    maker = abjad.NoteMaker()
     target = abjad.Container(
-        maker(["c''", "c''", "b'", "c''"], [(1, 4), (1, 4), (1, 2), (1, 1)])
+        abjad.makers.make_notes(
+            ["c''", "c''", "b'", "c''"], [(1, 4), (1, 4), (1, 2), (1, 1)]
+        )
     )
 
     articulation = abjad.Articulation("staccato")

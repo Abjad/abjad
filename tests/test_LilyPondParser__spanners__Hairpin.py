@@ -5,8 +5,7 @@ import abjad
 
 def test_LilyPondParser__spanners__Hairpin_01():
 
-    maker = abjad.NoteMaker()
-    target = abjad.Staff(maker([0] * 5, [(1, 4)]))
+    target = abjad.Staff(abjad.makers.make_notes([0] * 5, [(1, 4)]))
     abjad.hairpin("< !", target[:3])
     abjad.hairpin("> ppp", target[2:])
 
@@ -37,8 +36,7 @@ def test_LilyPondParser__spanners__Hairpin_02():
     Dynamics can terminate hairpins.
     """
 
-    maker = abjad.NoteMaker()
-    target = abjad.Staff(maker([0] * 3, [(1, 4)]))
+    target = abjad.Staff(abjad.makers.make_notes([0] * 3, [(1, 4)]))
     abjad.hairpin("<", target[0:2])
     abjad.hairpin("p > f", target[1:])
 
@@ -97,8 +95,7 @@ def test_LilyPondParser__spanners__Hairpin_06():
     With direction.
     """
 
-    maker = abjad.NoteMaker()
-    target = abjad.Staff(maker([0] * 5, [(1, 4)]))
+    target = abjad.Staff(abjad.makers.make_notes([0] * 5, [(1, 4)]))
     start_hairpin = abjad.StartHairpin("<")
     abjad.attach(start_hairpin, target[0], direction=abjad.UP)
     stop_hairpin = abjad.StopHairpin()

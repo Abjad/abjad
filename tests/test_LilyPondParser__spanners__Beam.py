@@ -5,8 +5,7 @@ import abjad
 
 def test_LilyPondParser__spanners__Beam_01():
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 8)]))
+    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 8)]))
     abjad.beam(target[0:3])
     abjad.beam(target[3:], beam_lone_notes=True)
 
@@ -32,8 +31,7 @@ def test_LilyPondParser__spanners__Beam_01():
 
 def test_LilyPondParser__spanners__Beam_02():
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 8)]))
+    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 8)]))
     abjad.beam(target[:])
     abjad.beam(target[1:3])
 
@@ -58,8 +56,7 @@ def test_LilyPondParser__spanners__Beam_02():
 
 def test_LilyPondParser__spanners__Beam_03():
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 8)]))
+    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 8)]))
     abjad.beam(target[:3])
     abjad.beam(target[2:])
 
@@ -94,8 +91,7 @@ def test_LilyPondParser__spanners__Beam_05():
     With direction.
     """
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker(4 * [0], [(1, 8)]))
+    target = abjad.Container(abjad.makers.make_notes(4 * [0], [(1, 8)]))
     start_beam = abjad.StartBeam()
     abjad.attach(start_beam, target[0], direction=abjad.UP)
     stop_beam = abjad.StopBeam()

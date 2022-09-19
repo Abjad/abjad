@@ -5,8 +5,7 @@ import abjad
 
 def test_LilyPondParser__spanners__HorizontalBracket_01():
 
-    maker = abjad.NoteMaker()
-    target = abjad.Container(maker([0] * 4, [(1, 4)]))
+    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.horizontal_bracket(target[:])
     abjad.horizontal_bracket(target[:2])
     abjad.horizontal_bracket(target[2:])

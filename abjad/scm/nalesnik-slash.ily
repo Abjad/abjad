@@ -8,7 +8,7 @@
 
 slash = { 
   #(remove-grace-property 'Voice 'Stem 'direction) 
-  \once \override Stem #'stencil = 
+  \once \override Stem.stencil = 
   #(lambda (grob) 
     (let* ((x-parent (ly:grob-parent grob X)) 
            (is-rest? (ly:grob? (ly:grob-object x-parent 'rest)))) 
