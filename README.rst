@@ -1,4 +1,4 @@
-Abjad 3.11
+Abjad 3.12
 ==========
 
 Abjad helps composers build up complex pieces of music notation in iterative and
