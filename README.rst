@@ -1,4 +1,4 @@
-Abjad 3.12
+Abjad 3.13
 ==========
 
 Abjad helps composers build up complex pieces of music notation in iterative and
@@ -42,7 +42,7 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     $ lilypond --version
-    GNU LilyPond 2.23.12
+    GNU LilyPond 2.23.13
 
     Copyright (c) 1996--2022 by
     Han-Wen Nienhuys <hanwen@xs4all.nl>
