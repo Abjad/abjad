@@ -1,4 +1,4 @@
-from quicktions import Fraction
+from fractions import Fraction
 
 from . import (
     _updatelib,

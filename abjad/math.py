@@ -2,12 +2,11 @@
 Abjad's math library.
 """
 import collections
+import fractions
 import itertools
 import math
 import numbers
 import typing
-
-import quicktions
 
 
 def all_are_equal(argument) -> bool:
@@ -50,8 +49,8 @@ def all_are_integer_equivalent(argument) -> bool:
 
     ..  container:: example
 
-        >>> import quicktions
-        >>> items = [1, '2', 3.0, quicktions.Fraction(4, 1)]
+        >>> import fractions
+        >>> items = [1, '2', 3.0, fractions.Fraction(4, 1)]
         >>> abjad.math.all_are_integer_equivalent(items)
         True
 
@@ -72,8 +71,8 @@ def all_are_integer_equivalent_numbers(argument) -> bool:
 
     ..  container:: example
 
-        >>> import quicktions
-        >>> items = [1, 2, 3.0, quicktions.Fraction(4, 1)]
+        >>> import fractions
+        >>> items = [1, 2, 3.0, fractions.Fraction(4, 1)]
         >>> abjad.math.all_are_integer_equivalent_numbers(items)
         True
 
@@ -94,12 +93,12 @@ def all_are_nonnegative_integer_equivalent_numbers(argument) -> bool:
 
     ..  container:: example
 
-        >>> import quicktions
-        >>> items = [0, 0.0, quicktions.Fraction(0), 2, 2.0, quicktions.Fraction(2)]
+        >>> import fractions
+        >>> items = [0, 0.0, fractions.Fraction(0), 2, 2.0, fractions.Fraction(2)]
         >>> abjad.math.all_are_nonnegative_integer_equivalent_numbers(items)
         True
 
-        >>> items = [0, 0.0, quicktions.Fraction(0), -2, 2.0, quicktions.Fraction(2)]
+        >>> items = [0, 0.0, fractions.Fraction(0), -2, 2.0, fractions.Fraction(2)]
         >>> abjad.math.all_are_nonnegative_integer_equivalent_numbers(items)
         False
 
@@ -274,7 +273,7 @@ def arithmetic_mean(argument) -> int | float:
     length = len(argument)
     if isinstance(total, float):
         return total / length
-    result = quicktions.Fraction(sum(argument), len(argument))
+    result = fractions.Fraction(sum(argument), len(argument))
     int_result = int(result)
     if int_result == result:
         return int_result
@@ -470,18 +469,18 @@ def factors(n) -> list[int]:
 
 def fraction_to_proper_fraction(
     rational,
-) -> tuple[int, quicktions.Fraction]:
+) -> tuple[int, fractions.Fraction]:
     """
     Changes ``rational`` to proper fraction.
 
     ..  container:: example
 
-        >>> import quicktions
-        >>> abjad.math.fraction_to_proper_fraction(quicktions.Fraction(116, 8))
+        >>> import fractions
+        >>> abjad.math.fraction_to_proper_fraction(fractions.Fraction(116, 8))
         (14, Fraction(1, 2))
 
     """
-    assert isinstance(rational, quicktions.Fraction), repr(rational)
+    assert isinstance(rational, fractions.Fraction), repr(rational)
     quotient = int(rational)
     residue = rational - quotient
     return quotient, residue
@@ -726,12 +725,12 @@ def is_integer_equivalent_n_tuple(argument, n) -> bool:
 
     ..  container:: example
 
-        >>> import quicktions
-        >>> tuple_ = (2.0, '3', quicktions.Fraction(4, 1))
+        >>> import fractions
+        >>> tuple_ = (2.0, '3', fractions.Fraction(4, 1))
         >>> abjad.math.is_integer_equivalent_n_tuple(tuple_, 3)
         True
 
-        >>> tuple_ = (2.5, '3', quicktions.Fraction(4, 1))
+        >>> tuple_ = (2.5, '3', fractions.Fraction(4, 1))
         >>> abjad.math.is_integer_equivalent_n_tuple(tuple_, 3)
         False
 
@@ -821,7 +820,7 @@ def is_nonnegative_integer_power_of_two(argument) -> bool:
     """
     if isinstance(argument, int):
         return not bool(argument & (argument - 1))
-    elif isinstance(argument, quicktions.Fraction):
+    elif isinstance(argument, fractions.Fraction):
         return is_nonnegative_integer_power_of_two(
             argument.numerator * argument.denominator
         )

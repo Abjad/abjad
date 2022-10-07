@@ -1,12 +1,11 @@
 import builtins
 import collections
 import copy
+import fractions
 import itertools
 import math
 import sys
 import typing
-
-import quicktions
 
 from . import cyclictuple as _cyclictuple
 from . import enums as _enums
@@ -814,7 +813,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
     items.append(sublist)
     current_cumulative_weight = cumulative_weights.pop(0)
     for item in sequence:
-        if not isinstance(item, int | float | quicktions.Fraction):
+        if not isinstance(item, int | float | fractions.Fraction):
             raise TypeError(f"must be number: {item!r}.")
         sublist.append(item)
         while current_cumulative_weight <= _math.weight(flatten(items, depth=-1)):

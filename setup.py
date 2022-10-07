@@ -79,7 +79,6 @@ install_requires = [
     "pytest>=7.1.3",
     "pytest-cov>=3.0.0",
     "pytest-helpers-namespace>=2021.12.29",
-    "quicktions>=1.13",
     "roman>=1.4",
     "sphinx-autodoc-typehints>=1.19.2",
     "sphinx-rtd-theme>=1.0.0",
