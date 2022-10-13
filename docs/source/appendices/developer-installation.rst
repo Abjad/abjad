@@ -25,7 +25,7 @@ install the clone in "editable" mode:
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
-    abjad$ python -m pip install --editable .
+    abjad$ python -m pip install --editable .[dev]
 
 "Cloned" installation of Abjad is necessary for users who want to develop Abjad. Cloned
 installation is also required for users who want to build Abjad's docs locally.

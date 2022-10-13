@@ -36,7 +36,7 @@ jobs:
         echo $PATH
     - name: Install Abjad
       run: |
-        pip install -e .
+        pip install -e .[dev]
         # echo the configuration file path to debug read-only-filesystem handling
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
