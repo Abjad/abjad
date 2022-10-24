@@ -533,7 +533,10 @@ class GuileProxy:
             _bind.attach(annotation, music)
 
     def _to_relative_octave(self, pitch, reference):
-        if pitch.pitch_class.number > reference.pitch_class.number:
+        if (
+            pitch.pitch_class.number > reference.pitch_class.number
+            and reference.pitch_class.number not in [9]
+        ):
             pair = (pitch.pitch_class.name, reference.octave.number)
             up_pitch = _pitch.NamedPitch(pair)
             pair = (pitch.pitch_class.name, reference.octave.number - 1)
