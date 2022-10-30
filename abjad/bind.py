@@ -112,9 +112,11 @@ class Wrapper:
         self._direction = direction
         self._effective_context = None
         self._indicator = indicator
+        self._synthetic_offset: _duration.Offset | None
         if synthetic_offset is not None:
-            synthetic_offset = _duration.Offset(synthetic_offset)
-        self._synthetic_offset = synthetic_offset
+            self._synthetic_offset = _duration.Offset(synthetic_offset)
+        else:
+            self._synthetic_offset = synthetic_offset
         if tag is not None:
             assert isinstance(tag, str | _tag.Tag)
         assert isinstance(tag, _tag.Tag), repr(tag)

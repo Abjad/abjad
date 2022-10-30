@@ -71,7 +71,7 @@ uqbar_api_member_documenter_classes = [
     "uqbar.apis.SummarizingClassDocumenter",
 ]
 
-uqbar_book_console_setup = ["import abjad", "from quicktions import Fraction"]
+uqbar_book_console_setup = ["import abjad", "from fractions import Fraction"]
 uqbar_book_console_teardown = []
 uqbar_book_extensions = [
     "uqbar.book.extensions.GraphExtension",

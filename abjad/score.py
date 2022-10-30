@@ -1,10 +1,9 @@
 import collections
 import copy
+import fractions
 import functools
 import math
 import typing
-
-import quicktions
 
 from . import _indentlib, _updatelib
 from . import contributions as _contributions
@@ -634,6 +633,7 @@ class Leaf(Component):
 
     ### PUBLIC PROPERTIES ###
 
+    # TODO: restrict to NonreducedFraction | None
     @property
     def multiplier(
         self,
@@ -2559,7 +2559,7 @@ class Chord(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.Duration = None,
+        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -3285,7 +3285,7 @@ class MultimeasureRest(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.Duration = None,
+        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
         tag: _tag.Tag = None,
     ) -> None:
         if len(arguments) == 0:
@@ -4114,7 +4114,7 @@ class Note(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.Duration = None,
+        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
         tag: _tag.Tag = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -4395,7 +4395,7 @@ class Rest(Leaf):
         written_duration=None,
         *,
         language: str = "english",
-        multiplier: _typings.Duration = None,
+        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
         tag: _tag.Tag = None,
     ) -> None:
         original_input = written_duration
@@ -4589,7 +4589,7 @@ class Skip(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _typings.Duration = None,
+        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
         tag: _tag.Tag = None,
     ) -> None:
         input_leaf = None
@@ -5730,7 +5730,7 @@ class Tuplet(Container):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, int | quicktions.Fraction):
+        if isinstance(argument, int | fractions.Fraction):
             multiplier = _duration.NonreducedFraction(argument)
         elif isinstance(argument, tuple):
             multiplier = _duration.NonreducedFraction(argument)
@@ -6790,7 +6790,7 @@ class Tuplet(Container):
                 component.written_duration *= self.multiplier
             else:
                 raise TypeError(component)
-        self.multiplier = _duration.Multiplier(1)
+        self.multiplier = _duration.NonreducedFraction(1)
 
 
 class Voice(Context):

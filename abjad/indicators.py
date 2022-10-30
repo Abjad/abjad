@@ -3,11 +3,10 @@ Indicators
 """
 import collections
 import dataclasses
+import fractions
 import functools
 import math
 import typing
-
-import quicktions
 
 from . import contributions as _contributions
 from . import duration as _duration
@@ -2304,11 +2303,11 @@ class MetronomeMark:
 
         Initializes rational-valued metronome mark:
 
-        >>> import quicktions
+        >>> import fractions
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark((1, 4), quicktions.Fraction(272, 3))
+        >>> mark = abjad.MetronomeMark((1, 4), fractions.Fraction(272, 3))
         >>> abjad.attach(mark, staff[0])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -2336,7 +2335,7 @@ class MetronomeMark:
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
-        ...     quicktions.Fraction(272, 3),
+        ...     fractions.Fraction(272, 3),
         ...     decimal="90.66",
         ... )
         >>> abjad.attach(mark, staff[0])
@@ -2366,7 +2365,7 @@ class MetronomeMark:
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
-        ...     quicktions.Fraction(901, 10),
+        ...     fractions.Fraction(901, 10),
         ...     decimal=True,
         ... )
         >>> abjad.attach(mark, staff[0])
@@ -2420,14 +2419,14 @@ class MetronomeMark:
 
         Custom markup:
 
-        >>> import quicktions
+        >>> import fractions
         >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
         ...     abjad.Duration(1, 4),
         ...     67.5,
         ...  )
         >>> mark = abjad.MetronomeMark(
         ...     reference_duration=(1, 4),
-        ...     units_per_minute=quicktions.Fraction(135, 2),
+        ...     units_per_minute=fractions.Fraction(135, 2),
         ...     custom_markup=markup,
         ...  )
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
@@ -2456,17 +2455,17 @@ class MetronomeMark:
 
         Decimal overrides:
 
-        >>> import quicktions
+        >>> import fractions
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
-        ...     quicktions.Fraction(272, 3),
+        ...     fractions.Fraction(272, 3),
         ... )
         >>> mark.decimal
         False
 
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
-        ...     quicktions.Fraction(272, 3),
+        ...     fractions.Fraction(272, 3),
         ...     decimal="90.66",
         ... )
         >>> mark.decimal
@@ -2474,7 +2473,7 @@ class MetronomeMark:
 
         >>> mark = abjad.MetronomeMark(
         ...     (1, 4),
-        ...     quicktions.Fraction(901, 10),
+        ...     fractions.Fraction(901, 10),
         ...     decimal=True,
         ... )
         >>> mark.decimal
@@ -2522,7 +2521,7 @@ class MetronomeMark:
     """
 
     reference_duration: _typings.Duration | None = None
-    units_per_minute: int | quicktions.Fraction = None
+    units_per_minute: int | fractions.Fraction | None = None
     textual_indication: str | None = None
     custom_markup: Markup | None = None
     decimal: bool | str = False
@@ -2543,7 +2542,7 @@ class MetronomeMark:
                 f"do not set units-per-minute to float ({self.units_per_minute});"
                 " use fraction with decimal override instead."
             )
-        prototype = (int, quicktions.Fraction, collections.abc.Sequence, type(None))
+        prototype = (int, fractions.Fraction, collections.abc.Sequence, type(None))
         assert isinstance(self.units_per_minute, prototype)
         if isinstance(self.units_per_minute, collections.abc.Sequence):
             assert len(self.units_per_minute) == 2
@@ -2615,9 +2614,9 @@ class MetronomeMark:
         assert isinstance(argument, type(self)), repr(argument)
         self_quarters_per_minute = self.quarters_per_minute or 0
         argument_quarters_per_minute = argument.quarters_per_minute or 0
-        assert isinstance(self_quarters_per_minute, int | float | quicktions.Fraction)
+        assert isinstance(self_quarters_per_minute, int | float | fractions.Fraction)
         assert isinstance(
-            argument_quarters_per_minute, (int, float, quicktions.Fraction)
+            argument_quarters_per_minute, (int, float, fractions.Fraction)
         )
         return self_quarters_per_minute < argument_quarters_per_minute
 
@@ -2633,7 +2632,7 @@ class MetronomeMark:
             first, second = self.units_per_minute
             string = f"{self._dotted}={first}-{second}"
             return string
-        elif isinstance(self.units_per_minute, quicktions.Fraction):
+        elif isinstance(self.units_per_minute, fractions.Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
                 self.reference_duration,
                 self.units_per_minute,
@@ -2740,7 +2739,7 @@ class MetronomeMark:
         return True
 
     @property
-    def quarters_per_minute(self) -> tuple | None | quicktions.Fraction:
+    def quarters_per_minute(self) -> tuple | None | fractions.Fraction:
         """
         Gets metronome mark quarters per minute.
 
@@ -2773,7 +2772,7 @@ class MetronomeMark:
         result = (
             _duration.Duration(1, 4) / self.reference_duration * self.units_per_minute
         )
-        return quicktions.Fraction(result)
+        return fractions.Fraction(result)
 
     def duration_to_milliseconds(self, duration) -> _duration.Duration:
         """
@@ -2836,10 +2835,10 @@ class MetronomeMark:
 
             Rational-valued metronome mark:
 
-            >>> import quicktions
+            >>> import fractions
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
             ...     abjad.Duration(1, 4),
-            ...     quicktions.Fraction(272, 3),
+            ...     fractions.Fraction(272, 3),
             ... )
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -2856,7 +2855,7 @@ class MetronomeMark:
         dots = reference_duration_.dot_count
         stem = 1
         if isinstance(
-            units_per_minute, quicktions.Fraction
+            units_per_minute, fractions.Fraction
         ) and not _math.is_integer_equivalent_number(units_per_minute):
             if decimal:
                 decimal_: float | str

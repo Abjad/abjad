@@ -1,11 +1,11 @@
 import collections
 import copy
+import fractions
 import itertools
 import sys
 import typing
 
 import ply
-import quicktions
 from ply import lex
 from ply.yacc import (  # type: ignore
     YaccProduction,
@@ -4758,7 +4758,7 @@ class LilyPondSyntacticalDefinition:
 
     def p_fraction__UNSIGNED__Chr47__UNSIGNED(self, p):
         "fraction : UNSIGNED '/' UNSIGNED"
-        p[0] = quicktions.Fraction(p[1], p[3])
+        p[0] = fractions.Fraction(p[1], p[3])
 
     ### full_markup ###
 
@@ -5644,7 +5644,7 @@ class LilyPondSyntacticalDefinition:
             p[0] = LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
             p[0] = LilyPondDuration(
-                p[1].duration, quicktions.Fraction(p[3].numerator, p[3].denominator)
+                p[1].duration, fractions.Fraction(p[3].numerator, p[3].denominator)
             )
 
     def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(self, p):

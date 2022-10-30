@@ -1,8 +1,7 @@
 import collections
 import dataclasses
+import fractions
 import typing
-
-import quicktions
 
 from . import duration as _duration
 from . import math as _math
@@ -119,7 +118,7 @@ class NonreducedRatio(collections.abc.Sequence):
         Returns list of fractions or list of floats.
         """
         denominator = sum(self.numbers)
-        factors = [quicktions.Fraction(_, denominator) for _ in self.numbers]
+        factors = [fractions.Fraction(_, denominator) for _ in self.numbers]
         result = [_ * number for _ in factors]
         return result
 
