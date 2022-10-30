@@ -44,6 +44,13 @@ class CyclicTuple:
     def __contains__(self, item) -> bool:
         """
         Is true when cyclic tuple contains ``item``.
+
+        ..  container:: example
+
+            >>> tuple_ = abjad.CyclicTuple('abcd')
+            >>> 'a' in tuple_
+            True
+
         """
         return self.items.__contains__(item)
 
