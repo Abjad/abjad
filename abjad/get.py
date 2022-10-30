@@ -1,4 +1,5 @@
 import collections
+import enum
 import typing
 
 from . import _getlib, _iterlib, _updatelib
@@ -1924,7 +1925,7 @@ def has_effective_indicator(
 
 def has_indicator(
     argument,
-    prototype: str | _typings.Prototype | None = None,
+    prototype: str | _typings.Prototype | enum.Enum | None = None,
     *,
     attributes: dict = None,
 ) -> bool:

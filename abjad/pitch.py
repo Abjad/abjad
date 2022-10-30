@@ -1,12 +1,11 @@
 import copy
 import dataclasses
+import fractions
 import functools
 import math
 import numbers
 import re
 import typing
-
-import quicktions
 
 from . import enums as _enums
 from . import math as _math
@@ -5652,9 +5651,9 @@ class NumberedPitch(Pitch):
 
         """
         try:
-            fraction = quicktions.Fraction(*fraction)
+            fraction = fractions.Fraction(*fraction)
         except TypeError:
-            fraction = quicktions.Fraction(fraction)
+            fraction = fractions.Fraction(fraction)
         assert 0 <= fraction <= 1, repr(fraction)
         stop_pitch = type(self)(stop_pitch)
         distance = stop_pitch - self

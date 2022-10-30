@@ -289,7 +289,13 @@ class Timespan:
 
         """
         argument = self._get_timespan(argument)
-        if not self.intersects_timespan(argument):
+        if not (
+            argument.start_offset <= self.start_offset
+            and self.start_offset < argument.stop_offset
+        ) and not (
+            self.start_offset <= argument.start_offset
+            and argument.start_offset < self.stop_offset
+        ):
             return TimespanList()
         new_start_offset = max(self.start_offset, argument.start_offset)
         new_stop_offset = min(self.stop_offset, argument.stop_offset)
@@ -344,7 +350,10 @@ class Timespan:
         else:
             timespan = type(self)(argument, argument)
         assert isinstance(timespan, type(self))
-        return self.contains_timespan_improperly(timespan)
+        return (
+            self.start_offset <= timespan.start_offset
+            and timespan.stop_offset <= self.stop_offset
+        )
 
     def __eq__(self, argument) -> bool:
         """
@@ -547,8 +556,10 @@ class Timespan:
 
         """
         argument = self._get_timespan(argument)
-        if not self.intersects_timespan(argument) and not self.is_tangent_to_timespan(
-            argument
+        if (
+            not bool(self & argument)
+            and not self.stop_offset == argument.start_offset
+            and not argument.stop_offset == self.start_offset
         ):
             result = TimespanList([self, argument])
             result.sort()
@@ -632,9 +643,12 @@ class Timespan:
         """
         argument = self._get_timespan(argument)
         timespans = TimespanList()
-        if not self.intersects_timespan(argument):
+        if not bool(self & argument):
             timespans.append(copy.deepcopy(self))
-        elif argument.trisects_timespan(self):
+        elif (
+            self.start_offset < argument.start_offset
+            and argument.stop_offset < self.stop_offset
+        ):
             new_start_offset = self.start_offset
             new_stop_offset = argument.start_offset
             timespan = dataclasses.replace(
@@ -651,9 +665,13 @@ class Timespan:
                 stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
-        elif argument.contains_timespan_improperly(self):
+        elif self in argument:
             pass
-        elif argument.overlaps_only_start_of_timespan(self):
+        elif (
+            argument.start_offset < self.start_offset
+            and self.start_offset < argument.stop_offset
+            and argument.stop_offset <= self.stop_offset
+        ):
             new_start_offset = argument.stop_offset
             new_stop_offset = self.stop_offset
             timespan = dataclasses.replace(
@@ -662,7 +680,11 @@ class Timespan:
                 stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
-        elif argument.overlaps_only_stop_of_timespan(self):
+        elif (
+            self.start_offset <= argument.start_offset
+            and argument.start_offset < self.stop_offset
+            and self.stop_offset < argument.stop_offset
+        ):
             new_start_offset = self.start_offset
             new_stop_offset = argument.start_offset
             timespan = dataclasses.replace(
@@ -740,8 +762,10 @@ class Timespan:
 
         """
         argument = self._get_timespan(argument)
-        if not self.intersects_timespan(argument) or self.is_tangent_to_timespan(
-            argument
+        if (
+            not bool(self & argument)
+            and not self.stop_offset == argument.start_offset
+            and not argument.stop_offset == self.start_offset
         ):
             result = TimespanList()
             result.append(copy.deepcopy(self))
@@ -790,9 +814,7 @@ class Timespan:
 
     def _can_fuse(self, argument):
         if isinstance(argument, type(self)):
-            return self.intersects_timespan(
-                argument
-            ) or self.stops_when_timespan_starts(argument)
+            return bool(self & argument) or self.stops_when_timespan_starts(argument)
         return False
 
     @staticmethod
@@ -3392,7 +3414,7 @@ class TimespanList(list):
         if 1 < len(self):
             result = self[0]
             for timespan in self:
-                if not timespan.intersects_timespan(result):
+                if not bool(timespan & result):
                     self[:] = []
                     return self
                 else:
@@ -3626,7 +3648,7 @@ class TimespanList(list):
                     continue
                 revised_timespan_1_fragments: list[Timespan] = []
                 for timespan_1_fragment in timespan_1_fragments:
-                    if timespan_2.intersects_timespan(timespan_1_fragment):
+                    if bool(timespan_2 & timespan_1_fragment):
                         result = timespan_1_fragment - timespan_2
                         revised_timespan_1_fragments.extend(result)
                     else:
@@ -3719,7 +3741,7 @@ class TimespanList(list):
         if timespan is None:
             timespan = self.timespan
         timespans = self.get_timespans_that_satisfy_time_relation(
-            lambda _: _.intersects_timespan(timespan)
+            lambda _: bool(_ & timespan)
         )
         total_overlap = _duration.Duration(
             sum(x.get_overlap_with_timespan(timespan) for x in timespans)

@@ -1,7 +1,8 @@
 """
 Tools for modeling IRCAM-style rhythm trees.
 """
-import quicktions
+import fractions
+
 import uqbar.containers
 import uqbar.graphs
 
@@ -182,7 +183,7 @@ class RhythmTreeMixin:
 
     @preprolated_duration.setter
     def preprolated_duration(self, argument):
-        if not isinstance(argument, quicktions.Fraction):
+        if not isinstance(argument, fractions.Fraction):
             argument = _duration.Duration(argument)
         assert 0 < argument
         self._duration = argument
