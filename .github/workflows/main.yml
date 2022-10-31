@@ -23,7 +23,7 @@ jobs:
     - name: Install LilyPond
       run: |
         lilypond_url=http://lilypond.org/download/binaries/linux-64/
-        lilypond_source=lilypond-2.20.0-1.linux-64.sh
+        lilypond_source=lilypond-2.23.0-1.linux-64.sh
         wget -q -O /tmp/lilypond $lilypond_url/$lilypond_source
         sh /tmp/lilypond --batch
         echo $HOME
