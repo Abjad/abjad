@@ -4,40 +4,31 @@ import sys
 
 import setuptools
 
-CURRENT_PYTHON = sys.version_info[:2]
-REQUIRED_PYTHON = (3, 10)
 
-if CURRENT_PYTHON < REQUIRED_PYTHON:
-    sys.stderr.write(
-        """
-==========================
-Unsupported Python version
-==========================
+def get_abjad_version():
+    version_file_path = os.path.join(os.path.dirname(__file__), "abjad", "_version.py")
+    with open(version_file_path, "r") as file_pointer:
+        file_contents_string = file_pointer.read()
+    local_dict: dict = {}
+    exec(file_contents_string, None, local_dict)
+    __version__ = local_dict["__version__"]
+    return __version__
 
-This version of Abjad requires Python {}.{}, but you're trying to
-install it on Python {}.{}.
 
-This may be because you are using a version of pip that doesn't
-understand the python_requires classifier. Make sure you
-have pip >= 9.0 and setuptools >= 24.2, then try again:
+def check_python_version(abjad_version):
+    CURRENT_PYTHON = sys.version_info[:2]
+    SUPPORTED_PYTHONS = [(3, 10), (3, 11)]
+    if CURRENT_PYTHON not in SUPPORTED_PYTHONS:
+        current_python = ".".join([str(_) for _ in CURRENT_PYTHON])
+        supported_pythons = ", ".join([f"{_[0]}.{_[1]}" for _ in SUPPORTED_PYTHONS])
+        string = f"This is Abjad {abjad_version},"
+        string += f" which supports Python {supported_pythons}.\n"
+        string += "\n"
+        string += "But it looks like you're trying to install Abjad"
+        string += f" with Python {current_python}."
+        sys.stderr.write(string)
+        sys.exit(1)
 
-    $ python -m pip install --upgrade pip setuptools
-    $ python -m pip install abjad
-
-This will install the latest version of Abjad which works on your
-version of Python.
-""".format(
-            *(REQUIRED_PYTHON + CURRENT_PYTHON)
-        )
-    )
-    sys.exit(1)
-
-version_file_path = os.path.join(os.path.dirname(__file__), "abjad", "_version.py")
-with open(version_file_path, "r") as file_pointer:
-    file_contents_string = file_pointer.read()
-local_dict: dict = {}
-exec(file_contents_string, None, local_dict)
-__version__ = local_dict["__version__"]
 
 description = "Abjad is a Python API for building LilyPond files."
 
@@ -88,6 +79,8 @@ install_requires = [
 ]
 
 if __name__ == "__main__":
+    version = get_abjad_version()
+    check_python_version(version)
     setuptools.setup(
         author=", ".join(author),
         author_email=", ".join(author_email),
@@ -104,5 +97,5 @@ if __name__ == "__main__":
         packages=["abjad"],
         platforms="Any",
         url="https://abjad.github.io",
-        version=__version__,
+        version=version,
     )
