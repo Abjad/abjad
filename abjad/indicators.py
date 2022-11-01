@@ -2644,22 +2644,17 @@ class MetronomeMark:
         return string
 
     def _get_lilypond_format(self):
-        text, equation = None, None
-        if self.textual_indication is not None:
-            text = self.textual_indication
-            assert isinstance(text, str)
-            if " " in text:
-                text = f'"{text}"'
+        equation = None
         if self.reference_duration is not None and self.units_per_minute is not None:
             equation = self._equation
         if self.custom_markup is not None:
             return rf"\tempo {self.custom_markup.string}"
-        elif text and equation:
-            return rf"\tempo {text} {equation}"
+        elif self.textual_indication and equation:
+            return rf"\tempo {self.textual_indication} {equation}"
         elif equation:
             return rf"\tempo {equation}"
-        elif text:
-            return rf"\tempo {text}"
+        elif self.textual_indication:
+            return rf"\tempo {self.textual_indication}"
         else:
             return r"\tempo \default"
 

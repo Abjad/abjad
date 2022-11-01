@@ -6524,16 +6524,24 @@ class LilyPondSyntacticalDefinition:
 
     def p_tempo_event__TEMPO__scalar(self, p):
         "tempo_event : TEMPO scalar"
-        p[0] = _indicators.MetronomeMark(textual_indication=str(p[2]))
+        if " " in p[2]:
+            string = f'"{p[2]}"'
+        else:
+            string = p[2]
+        p[0] = _indicators.MetronomeMark(textual_indication=string)
 
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(
         self, p
     ):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
+        if " " in p[2]:
+            string = f'"{p[2]}"'
+        else:
+            string = p[2]
         p[0] = _indicators.MetronomeMark(
             reference_duration=p[3].duration,
             units_per_minute=p[5],
-            textual_indication=str(p[2]),
+            textual_indication=string,
         )
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):

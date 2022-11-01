@@ -4,7 +4,7 @@ import abjad
 def test_LilyPondParser__indicators__MetronomeMark_01():
 
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
-    mark = abjad.MetronomeMark(textual_indication="As fast as possible")
+    mark = abjad.MetronomeMark(textual_indication='"As fast as possible"')
     abjad.attach(mark, target[0][0], context="Staff")
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -93,7 +93,7 @@ def test_LilyPondParser__indicators__MetronomeMark_04():
     mark = abjad.MetronomeMark(
         reference_duration=(1, 4),
         units_per_minute=60,
-        textual_indication="Like a majestic swan, alive with youth and vigour!",
+        textual_indication='"Like a majestic swan, alive with youth and vigour!"',
     )
     leaves = abjad.select.leaves(target)
     abjad.attach(mark, leaves[0], context="Staff")
@@ -126,7 +126,7 @@ def test_LilyPondParser__indicators__MetronomeMark_05():
     mark = abjad.MetronomeMark(
         reference_duration=(1, 16),
         units_per_minute=(34, 55),
-        textual_indication="Faster than a thousand suns",
+        textual_indication='"Brighter than a thousand suns"',
     )
     leaves = abjad.select.leaves(target)
     abjad.attach(mark, leaves[0], context="Staff")
@@ -137,7 +137,7 @@ def test_LilyPondParser__indicators__MetronomeMark_05():
         <<
             \new Staff
             {
-                \tempo "Faster than a thousand suns" 16=34-55
+                \tempo "Brighter than a thousand suns" 16=34-55
                 c'1
             }
         >>
