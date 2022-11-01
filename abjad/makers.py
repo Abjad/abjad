@@ -1,5 +1,4 @@
 import collections
-import dataclasses
 import math
 import numbers
 
@@ -1775,49 +1774,3 @@ def tuplet_from_ratio_and_pair(
                     rests = make_leaves(None, (-x, denominator), tag=tag)
                     components.extend(rests)
         return _score.Tuplet.from_duration(duration, components, tag=tag)
-
-
-@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
-class LeafMaker:
-    """
-    DEPRECATED; use ``abjad.makers.make_leaves()`` instead; removed in Abjad 3.13.
-    """
-
-    increase_monotonic: bool = False
-    forbidden_note_duration: _typings.Duration | None = None
-    forbidden_rest_duration: _typings.Duration | None = None
-    skips_instead_of_rests: bool = False
-    tag: _tag.Tag | None = None
-    use_multimeasure_rests: bool = False
-
-    def __call__(self, pitches, durations) -> list[_score.Leaf | _score.Tuplet]:
-        leaves = make_leaves(
-            pitches,
-            durations,
-            forbidden_note_duration=self.forbidden_note_duration,
-            forbidden_rest_duration=self.forbidden_rest_duration,
-            increase_monotonic=self.increase_monotonic,
-            skips_instead_of_rests=self.skips_instead_of_rests,
-            tag=self.tag,
-            use_multimeasure_rests=self.use_multimeasure_rests,
-        )
-        return leaves
-
-
-@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
-class NoteMaker:
-    """
-    DEPRECATED; use ``abjad.makers.make_notes()`` instead; removed in Abjad 3.13.
-    """
-
-    increase_monotonic: bool = False
-    tag: _tag.Tag | None = None
-
-    def __call__(self, pitches, durations) -> list[_score.Note | _score.Tuplet]:
-        """
-        Calls note-maker on ``pitches`` and ``durations``.
-        """
-        notes = make_notes(
-            pitches, durations, increase_monotonic=self.increase_monotonic, tag=self.tag
-        )
-        return notes

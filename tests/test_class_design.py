@@ -140,13 +140,11 @@ ignored_classes = (
     abjad.io.Player,
     abjad.io.LilyPondIO,
     abjad.Configuration,
-    abjad.LeafMaker,
     abjad.ContributionsBySite,
     abjad.LilyPondOverride,
     abjad.LilyPondSetting,
     abjad.Lineage,
     abjad.Meter,  # TODO: make abjad.Meter pickle
-    abjad.NoteMaker,
 )
 classes = abjad.list_all_classes(ignored_classes=ignored_classes)
 
