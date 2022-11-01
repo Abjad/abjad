@@ -175,7 +175,6 @@ from .lyproxy import (
     LilyPondGrob,
     LilyPondGrobInterface,
 )
-from .makers import LeafMaker, NoteMaker
 from .math import Infinity, NegativeInfinity
 from .meter import Meter, MetricAccentKernel
 from .metricmodulation import MetricModulation
@@ -355,7 +354,6 @@ __all__ = [
     "KeySignature",
     "LaissezVibrer",
     "Leaf",
-    "LeafMaker",
     "LEFT",
     "LESS",
     "LilyPondContext",
@@ -394,7 +392,6 @@ __all__ = [
     "Note",
     "NoteHead",
     "NoteHeadList",
-    "NoteMaker",
     "NullContextManager",
     "Number",
     "NumberPair",

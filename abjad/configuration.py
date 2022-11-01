@@ -523,8 +523,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.lyproxy.LilyPondEngraver'>
         <class 'abjad.lyproxy.LilyPondGrob'>
         <class 'abjad.lyproxy.LilyPondGrobInterface'>
-        <class 'abjad.makers.LeafMaker'>
-        <class 'abjad.makers.NoteMaker'>
         <class 'abjad.math.Infinity'>
         <class 'abjad.math.NegativeInfinity'>
         <class 'abjad.meter.Meter'>
