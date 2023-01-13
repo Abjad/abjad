@@ -346,8 +346,8 @@ class MetricModulation:
         right_rhythm,
         *,
         hide: bool = False,
-        left_markup: _indicators.Markup = None,
-        right_markup: _indicators.Markup = None,
+        left_markup: _indicators.Markup | None = None,
+        right_markup: _indicators.Markup | None = None,
         scale: tuple[int | float, int | float] = (1, 1),
     ) -> None:
         self._hide = bool(hide)

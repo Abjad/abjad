@@ -447,8 +447,8 @@ def _read_from_pipe(pipe):
 def count_function_calls(
     argument: str,
     *,
-    global_context: dict = None,
-    local_context: dict = None,
+    global_context: dict | None = None,
+    local_context: dict | None = None,
     fixed_point: bool = True,
 ) -> int:
     """
@@ -717,7 +717,7 @@ def compare_files(path_1, path_2):
 
 
 def execute_file(
-    path: str = None, *, attribute_names: tuple[str] = None
+    path: str | None = None, *, attribute_names: tuple[str] | None = None
 ) -> tuple[str] | None:
     """
     Executes file ``path``.
@@ -744,8 +744,8 @@ def execute_file(
 def execute_string(
     string: str,
     *,
-    attribute_names: tuple[str] = None,
-    local_namespace: dict = None,
+    attribute_names: tuple[str] | None = None,
+    local_namespace: dict | None = None,
 ):
     """
     Executes ``string``.
@@ -833,8 +833,8 @@ def make_subprocess(command: str) -> subprocess.Popen:
 def open_file(
     file_path: str,
     *,
-    application: str = None,
-    line_number: int = None,
+    application: str | None = None,
+    line_number: int | None = None,
     test: bool = False,
 ):
     """
@@ -886,9 +886,9 @@ def open_last_log() -> None:
 def profile(
     string: str,
     *,
-    global_context: dict = None,
+    global_context: dict | None = None,
     line_count: int = 12,
-    local_context: dict = None,
+    local_context: dict | None = None,
     print_callers: bool = False,
     print_callees: bool = False,
     sort_by: str = "cumulative",
@@ -970,7 +970,7 @@ def run_lilypond(
     ly_path: str,
     *,
     flags: str = "",
-    lilypond_log_file_path: pathlib.Path = None,
+    lilypond_log_file_path: pathlib.Path | None = None,
 ) -> int:
     """
     Runs LilyPond on ``ly_path``.

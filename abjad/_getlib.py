@@ -200,9 +200,9 @@ def _get_grace_container(component):
 
 def _get_indicator(
     component,
-    prototype: _typings.Prototype = None,
+    prototype: _typings.Prototype | None = None,
     *,
-    default: typing.Any = None,
+    default: typing.Any | None = None,
     unwrap: bool = True,
 ) -> typing.Any:
     if not isinstance(component, _score.Component):

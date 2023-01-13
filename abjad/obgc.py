@@ -94,10 +94,10 @@ class OnBeatGraceContainer(_score.Container):
     def __init__(
         self,
         components=None,
-        identifier: str = None,
-        leaf_duration: _typings.Duration = None,
-        name: str = None,
-        tag: _tag.Tag = None,
+        identifier: str | None = None,
+        leaf_duration: _typings.Duration | None = None,
+        name: str | None = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         super().__init__(components, identifier=identifier, name=name, tag=tag)
         if leaf_duration is not None:

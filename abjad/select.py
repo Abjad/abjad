@@ -244,7 +244,11 @@ class LogicalTie(collections.abc.Sequence):
 
 
 def chord(
-    argument, n: int, *, exclude: _typings.Exclude = None, grace: bool = None
+    argument,
+    n: int,
+    *,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
 ) -> _score.Chord:
     r"""
     Selects chord ``n`` in ``argument``.
@@ -331,7 +335,7 @@ def chord(
 
 
 def chords(
-    argument, *, exclude: _typings.Exclude = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude | None = None, grace: bool | None = None
 ) -> list[_score.Chord]:
     r"""
     Selects chords in ``argument``.
@@ -444,9 +448,9 @@ def components(
     argument,
     prototype=None,
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    reverse: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    reverse: bool | None = None,
 ) -> list[_score.Component]:
     r"""
     Selects components.
@@ -674,7 +678,7 @@ def components(
     return list(generator)
 
 
-def exclude(argument, indices: typing.Sequence[int], period: int = None) -> list:
+def exclude(argument, indices: typing.Sequence[int], period: int | None = None) -> list:
     r"""
     Excludes items at ``indices`` by ``period``.
 
@@ -1070,7 +1074,7 @@ def flatten(argument, depth: int = 1) -> list:
 def get(
     argument,
     indices: typing.Sequence[int] | tuple[list[int], int] | _pattern.Pattern,
-    period: int = None,
+    period: int | None = None,
     *,
     invert: bool = False,
 ) -> list:
@@ -2261,13 +2265,13 @@ def leaf(
     argument,
     n: int,
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    head: bool = None,
-    pitched: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    head: bool | None = None,
+    pitched: bool | None = None,
     prototype=None,
-    reverse: bool = None,
-    tail: bool = None,
+    reverse: bool | None = None,
+    tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> _score.Leaf:
     r"""
@@ -2368,12 +2372,12 @@ def leaf(
 def leaves(
     argument,
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    head: bool = None,
-    pitched: bool = None,
-    reverse: bool = None,
-    tail: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    head: bool | None = None,
+    pitched: bool | None = None,
+    reverse: bool | None = None,
+    tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Leaf]:
     ...
@@ -2384,12 +2388,12 @@ def leaves(
     argument,
     prototype: typing.Type[_score.Chord],
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    head: bool = None,
-    pitched: bool = None,
-    reverse: bool = None,
-    tail: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    head: bool | None = None,
+    pitched: bool | None = None,
+    reverse: bool | None = None,
+    tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Chord]:
     ...
@@ -2400,12 +2404,12 @@ def leaves(
     argument,
     prototype: typing.Type[_score.MultimeasureRest],
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    head: bool = None,
-    pitched: bool = None,
-    reverse: bool = None,
-    tail: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    head: bool | None = None,
+    pitched: bool | None = None,
+    reverse: bool | None = None,
+    tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.MultimeasureRest]:
     ...
@@ -2416,12 +2420,12 @@ def leaves(
     argument,
     prototype: typing.Type[_score.Note],
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    head: bool = None,
-    pitched: bool = None,
-    reverse: bool = None,
-    tail: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    head: bool | None = None,
+    pitched: bool | None = None,
+    reverse: bool | None = None,
+    tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Note]:
     ...
@@ -2431,12 +2435,12 @@ def leaves(
     argument,
     prototype=None,
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    head: bool = None,
-    pitched: bool = None,
-    reverse: bool = None,
-    tail: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    head: bool | None = None,
+    pitched: bool | None = None,
+    reverse: bool | None = None,
+    tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ):
     r'''
@@ -3325,11 +3329,11 @@ def logical_tie(
     argument,
     n: int = 0,
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    nontrivial: bool = None,
-    pitched: bool = None,
-    reverse: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    nontrivial: bool | None = None,
+    pitched: bool | None = None,
+    reverse: bool | None = None,
 ) -> LogicalTie:
     r"""
     Selects logical tie ``n`` in ``argument``.
@@ -3354,11 +3358,11 @@ def logical_tie(
 def logical_ties(
     argument,
     *,
-    exclude: _typings.Exclude = None,
-    grace: bool = None,
-    nontrivial: bool = None,
-    pitched: bool = None,
-    reverse: bool = None,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
+    nontrivial: bool | None = None,
+    pitched: bool | None = None,
+    reverse: bool | None = None,
 ) -> list[LogicalTie]:
     r'''
     Selects logical ties in ``argument``.
@@ -3887,7 +3891,11 @@ def nontrivial(argument) -> list:
 
 
 def note(
-    argument, n: int, *, exclude: _typings.Exclude = None, grace: bool = None
+    argument,
+    n: int,
+    *,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
 ) -> _score.Note:
     r"""
     Selects note ``n`` in ``argument``.
@@ -3974,7 +3982,7 @@ def note(
 
 
 def notes(
-    argument, *, exclude: _typings.Exclude = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude | None = None, grace: bool | None = None
 ) -> list[_score.Note]:
     r"""
     Selects notes in ``argument``.
@@ -5543,7 +5551,11 @@ def partition_by_ratio(argument, ratio) -> list[list]:
 
 
 def rest(
-    argument, n: int, *, exclude: _typings.Exclude = None, grace: bool = None
+    argument,
+    n: int,
+    *,
+    exclude: _typings.Exclude | None = None,
+    grace: bool | None = None,
 ) -> _score.Rest | _score.MultimeasureRest:
     r"""
     Selects rest ``n`` in ``argument``.
@@ -5630,7 +5642,7 @@ def rest(
 
 
 def rests(
-    argument, *, exclude: _typings.Exclude = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude | None = None, grace: bool | None = None
 ) -> list[_score.Rest | _score.MultimeasureRest]:
     r"""
     Selects rests in ``argument``.
@@ -5727,7 +5739,9 @@ def rests(
     return items
 
 
-def run(argument, n: int, *, exclude: _typings.Exclude = None) -> list[_score.Leaf]:
+def run(
+    argument, n: int, *, exclude: _typings.Exclude | None = None
+) -> list[_score.Leaf]:
     r"""
     Selects run ``n`` in ``argument``.
 
@@ -5817,7 +5831,7 @@ def run(argument, n: int, *, exclude: _typings.Exclude = None) -> list[_score.Le
 
 
 def runs(
-    argument, *, exclude: _typings.Exclude = None, grace: bool = None
+    argument, *, exclude: _typings.Exclude | None = None, grace: bool | None = None
 ) -> list[list]:
     r"""
     Selects runs in ``argument``.
@@ -6017,7 +6031,7 @@ def runs(
     return groups
 
 
-def top(argument, *, exclude: _typings.Exclude = None) -> list[_score.Component]:
+def top(argument, *, exclude: _typings.Exclude | None = None) -> list[_score.Component]:
     r"""
     Selects top components in ``argument``.
 
@@ -6092,7 +6106,11 @@ def top(argument, *, exclude: _typings.Exclude = None) -> list[_score.Component]
 
 
 def tuplet(
-    argument, n: int, *, exclude: _typings.Exclude = None, level: int = None
+    argument,
+    n: int,
+    *,
+    exclude: _typings.Exclude | None = None,
+    level: int | None = None,
 ) -> _score.Tuplet:
     r"""
     Selects tuplet ``n`` in ``argument``.
@@ -6184,7 +6202,7 @@ def tuplet(
 
 
 def tuplets(
-    argument, *, exclude: _typings.Exclude = None, level: int = None
+    argument, *, exclude: _typings.Exclude | None = None, level: int | None = None
 ) -> list[_score.Tuplet]:
     r"""
     Selects tuplets in ``argument``.
@@ -6374,7 +6392,7 @@ def tuplets(
     # TODO: write grace examples
 
 
-def with_next_leaf(argument, *, grace: bool = None) -> list[_score.Leaf]:
+def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
     r"""
     Extends ``argument`` with next leaf.
 

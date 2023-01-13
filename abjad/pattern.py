@@ -735,7 +735,7 @@ class Pattern:
 
     ### PUBLIC METHODS ###
 
-    def advance(self, count: int = None) -> "Pattern":
+    def advance(self, count: int | None = None) -> "Pattern":
         """
         Advances pattern.
 

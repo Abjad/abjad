@@ -919,14 +919,14 @@ class LilyPondContext:
     @classmethod
     def register(
         class_,
-        accepted_by: list[str] = None,
+        accepted_by: list[str] | None = None,
         accepts=None,
-        alias: typing.Union[str, "LilyPondContext"] = None,
+        alias: typing.Union[str, "LilyPondContext"] | None = None,
         consists=None,
         default_child=None,
         denies=None,
-        name: str = None,
-        removes: list[str] = None,
+        name: str | None = None,
+        removes: list[str] | None = None,
     ) -> "LilyPondContext":
         r"""
         Registers a new context.

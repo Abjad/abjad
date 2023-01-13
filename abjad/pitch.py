@@ -3753,7 +3753,7 @@ class NamedPitchClass(PitchClass):
         return f"{name}{accidental!s}"
 
     @property
-    def accidental(self) -> Accidental:
+    def accidental(self):
         """
         Gets accidental.
 
@@ -3808,7 +3808,7 @@ class NamedPitchClass(PitchClass):
         return result
 
     @property
-    def pitch_class_label(self) -> str:
+    def pitch_class_label(self):
         """
         Gets pitch-class label.
 
@@ -4132,7 +4132,7 @@ class NumberedPitchClass(PitchClass):
         return NamedPitchClass(self)._get_lilypond_format()
 
     @property
-    def accidental(self) -> Accidental:
+    def accidental(self):
         """
         Gets accidental.
 
@@ -4183,7 +4183,7 @@ class NumberedPitchClass(PitchClass):
         return self._number
 
     @property
-    def pitch_class_label(self) -> str:
+    def pitch_class_label(self):
         """
         Gets pitch-class / octave label.
 

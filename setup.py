@@ -96,7 +96,7 @@ if __name__ == "__main__":
         name="abjad",
         packages=["abjad"],
         platforms="Any",
-        python_requires="<3.12,>=3.10.*",
+        python_requires=">=3.10",
         url="https://abjad.github.io",
         version=version,
     )

@@ -1243,7 +1243,7 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
 
 
 def logical_tie_to_tuplet(
-    argument, proportions, *, tag: _tag.Tag = None
+    argument, proportions, *, tag: _tag.Tag | None = None
 ) -> _score.Tuplet:
     r"""
     Changes logical tie to tuplet.
