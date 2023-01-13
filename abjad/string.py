@@ -347,7 +347,7 @@ def normalize(argument: str, indent: int | str | None = None) -> str:
     return string
 
 
-def pluralize(string: str, count: int = None) -> str:
+def pluralize(string: str, count: int | None = None) -> str:
     """
     Pluralizes English string.
 

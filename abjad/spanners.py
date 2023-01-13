@@ -46,13 +46,13 @@ def beam(
     beam_lone_notes: bool = False,
     beam_rests: bool | None = True,
     direction: _enums.Vertical | None = None,
-    durations: typing.Sequence[_duration.Duration] = None,
+    durations: typing.Sequence[_duration.Duration] | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    span_beam_count: int = None,
-    start_beam: _indicators.StartBeam = None,
+    span_beam_count: int | None = None,
+    start_beam: _indicators.StartBeam | None = None,
     stemlet_length: int | float | None = None,
-    stop_beam: _indicators.StopBeam = None,
-    tag: _tag.Tag = None,
+    stop_beam: _indicators.StopBeam | None = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches beam indicators.
@@ -261,13 +261,13 @@ def glissando(
     allow_ties: bool = False,
     hide_middle_note_heads: bool = False,
     hide_middle_stems: bool = False,
-    hide_stem_selector: typing.Callable = None,
+    hide_stem_selector: typing.Callable | None = None,
     left_broken: bool = False,
     parenthesize_repeats: bool = False,
     right_broken: bool = False,
     right_broken_show_next: bool = False,
-    style: str = None,
-    tag: _tag.Tag = None,
+    style: str | None = None,
+    tag: _tag.Tag | None = None,
     zero_padding: bool = False,
 ):
     r"""
@@ -1152,7 +1152,7 @@ def hairpin(
     *,
     direction: _enums.Vertical | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    tag: _tag.Tag = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches hairpin indicators.
@@ -1309,9 +1309,9 @@ def horizontal_bracket(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    start_group: _indicators.StartGroup = None,
-    stop_group: _indicators.StopGroup = None,
-    tag: _tag.Tag = None,
+    start_group: _indicators.StartGroup | None = None,
+    stop_group: _indicators.StopGroup | None = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches group indicators.
@@ -1354,7 +1354,7 @@ def ottava(
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_ottava: _indicators.Ottava = _indicators.Ottava(n=1),
     stop_ottava: _indicators.Ottava = _indicators.Ottava(n=0, site="after"),
-    tag: _tag.Tag = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches ottava indicators.
@@ -1396,9 +1396,9 @@ def phrasing_slur(
     *,
     direction: _enums.Vertical | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    start_phrasing_slur: _indicators.StartPhrasingSlur = None,
-    stop_phrasing_slur: _indicators.StopPhrasingSlur = None,
-    tag: _tag.Tag = None,
+    start_phrasing_slur: _indicators.StartPhrasingSlur | None = None,
+    stop_phrasing_slur: _indicators.StopPhrasingSlur | None = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches phrasing slur indicators.
@@ -1442,9 +1442,9 @@ def piano_pedal(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    start_piano_pedal: _indicators.StartPianoPedal = None,
-    stop_piano_pedal: _indicators.StopPianoPedal = None,
-    tag: _tag.Tag = None,
+    start_piano_pedal: _indicators.StartPianoPedal | None = None,
+    stop_piano_pedal: _indicators.StopPianoPedal | None = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches piano pedal indicators.
@@ -1491,11 +1491,11 @@ def piano_pedal(
 def slur(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
-    direction: _enums.Vertical = None,
+    direction: _enums.Vertical | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    start_slur: _indicators.StartSlur = None,
-    stop_slur: _indicators.StopSlur = None,
-    tag: _tag.Tag = None,
+    start_slur: _indicators.StartSlur | None = None,
+    stop_slur: _indicators.StopSlur | None = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches slur indicators.
@@ -1538,9 +1538,9 @@ def text_spanner(
     *,
     direction: _enums.Vertical | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    start_text_span: _indicators.StartTextSpan = None,
-    stop_text_span: _indicators.StopTextSpan = None,
-    tag: _tag.Tag = None,
+    start_text_span: _indicators.StartTextSpan | None = None,
+    stop_text_span: _indicators.StopTextSpan | None = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches text span indicators.
@@ -1684,7 +1684,7 @@ def tie(
     direction: _enums.Vertical | None = None,
     repeat: bool | tuple[int, int] | typing.Callable = False,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    tag: _tag.Tag = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches tie indicators.
@@ -1913,9 +1913,9 @@ def trill_spanner(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     selector: typing.Callable = lambda _: _select.leaves(_),
-    start_trill_span: _indicators.StartTrillSpan = None,
-    stop_trill_span: _indicators.StopTrillSpan = None,
-    tag: _tag.Tag = None,
+    start_trill_span: _indicators.StartTrillSpan | None = None,
+    stop_trill_span: _indicators.StopTrillSpan | None = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     r"""
     Attaches trill spanner indicators.

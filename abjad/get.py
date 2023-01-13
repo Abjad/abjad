@@ -113,7 +113,7 @@ def after_grace_container(argument):
 def annotation(
     argument,
     annotation: typing.Any,
-    default: typing.Any = None,
+    default: typing.Any | None = None,
     unwrap: bool = True,
 ) -> typing.Any:
     r"""
@@ -917,8 +917,8 @@ def effective(
     argument,
     prototype: _typings.Prototype,
     *,
-    attributes: dict = None,
-    default: typing.Any = None,
+    attributes: dict | None = None,
+    default: typing.Any | None = None,
     n: int = 0,
     unwrap: bool = True,
 ) -> typing.Any:
@@ -1553,7 +1553,7 @@ def effective_wrapper(
     argument,
     prototype: _typings.Prototype,
     *,
-    attributes: dict = None,
+    attributes: dict | None = None,
     n: int = 0,
 ):
     r"""
@@ -1772,9 +1772,9 @@ def grace(argument) -> bool:
 
 def has_effective_indicator(
     argument,
-    prototype: _typings.Prototype = None,
+    prototype: _typings.Prototype | None = None,
     *,
-    attributes: dict = None,
+    attributes: dict | None = None,
 ) -> bool:
     r"""
     Is true when ``argument`` has effective indicator.
@@ -1927,7 +1927,7 @@ def has_indicator(
     argument,
     prototype: str | _typings.Prototype | enum.Enum | None = None,
     *,
-    attributes: dict = None,
+    attributes: dict | None = None,
 ) -> bool:
     r"""
     Is true when ``argument`` has one or more indicators.
@@ -2122,9 +2122,9 @@ def has_indicator(
 
 def indicator(
     argument,
-    prototype: _typings.Prototype = None,
+    prototype: _typings.Prototype | None = None,
     *,
-    default: typing.Any = None,
+    default: typing.Any | None = None,
     unwrap: bool = True,
 ) -> typing.Any:
     r"""
@@ -2273,9 +2273,9 @@ def indicator(
 
 def indicators(
     argument,
-    prototype: _typings.Prototype = None,
+    prototype: _typings.Prototype | None = None,
     *,
-    attributes: dict = None,
+    attributes: dict | None = None,
     unwrap: bool = True,
 ) -> list:
     r"""
@@ -3099,7 +3099,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
     return _select.LogicalTie(leaves)
 
 
-def markup(argument, *, direction: int = None) -> list[_indicators.Markup]:
+def markup(argument, *, direction: int | None = None) -> list[_indicators.Markup]:
     """
     Gets markup.
     """
@@ -3938,9 +3938,9 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
 
 def wrapper(
     argument,
-    prototype: _typings.Prototype = None,
+    prototype: _typings.Prototype | None = None,
     *,
-    attributes: dict = None,
+    attributes: dict | None = None,
 ):
     r"""
     Gets wrapper.
@@ -4074,9 +4074,9 @@ def wrapper(
 
 def wrappers(
     argument,
-    prototype: _typings.Prototype = None,
+    prototype: _typings.Prototype | None = None,
     *,
-    attributes: dict = None,
+    attributes: dict | None = None,
 ):
     r"""
     Gets wrappers.

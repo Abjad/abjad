@@ -173,11 +173,11 @@ def make_leaves(
     pitches,
     durations,
     *,
-    forbidden_note_duration: _typings.Duration = None,
-    forbidden_rest_duration: _typings.Duration = None,
+    forbidden_note_duration: _typings.Duration | None = None,
+    forbidden_rest_duration: _typings.Duration | None = None,
     skips_instead_of_rests: bool = False,
     increase_monotonic: bool = False,
-    tag: _tag.Tag = None,
+    tag: _tag.Tag | None = None,
     use_multimeasure_rests: bool = False,
 ):
     r"""
@@ -663,7 +663,7 @@ def make_leaves(
 
 
 def make_notes(
-    pitches, durations, *, increase_monotonic: bool = False, tag: _tag.Tag = None
+    pitches, durations, *, increase_monotonic: bool = False, tag: _tag.Tag | None = None
 ) -> list[_score.Note | _score.Tuplet]:
     r"""
     Makes notes from ``pitches`` and ``durations``.
@@ -878,7 +878,7 @@ def make_notes(
 
 
 def tuplet_from_duration_and_ratio(
-    duration, ratio, *, increase_monotonic: bool = False, tag: _tag.Tag = None
+    duration, ratio, *, increase_monotonic: bool = False, tag: _tag.Tag | None = None
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from ``duration`` and ``ratio``.
@@ -1542,7 +1542,7 @@ def tuplet_from_ratio_and_pair(
     ratio: tuple | _ratio.NonreducedRatio,
     fraction: tuple | _duration.NonreducedFraction,
     *,
-    tag: _tag.Tag = None,
+    tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.

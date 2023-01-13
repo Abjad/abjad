@@ -70,7 +70,7 @@ class Component:
 
         return parse(string, language=language)
 
-    def __init__(self, name: str = None, tag: _tag.Tag = None) -> None:
+    def __init__(self, name: str | None = None, tag: _tag.Tag | None = None) -> None:
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._measure_number = None
@@ -411,7 +411,7 @@ class Leaf(Component):
     ### INITIALIZER ###
 
     def __init__(
-        self, written_duration, *, multiplier=None, tag: _tag.Tag = None
+        self, written_duration, *, multiplier=None, tag: _tag.Tag | None = None
     ) -> None:
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
@@ -813,10 +813,10 @@ class Container(Component):
     def __init__(
         self,
         components=None,
-        identifier: str = None,
+        identifier: str | None = None,
         simultaneous: bool = False,
-        name: str = None,
-        tag: _tag.Tag = None,
+        name: str | None = None,
+        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
     ) -> None:
@@ -1957,7 +1957,7 @@ class AfterGraceContainer(Container):
     ### INITIALIZER ###
 
     def __init__(
-        self, components=None, *, language: str = "english", tag: _tag.Tag = None
+        self, components=None, *, language: str = "english", tag: _tag.Tag | None = None
     ) -> None:
         # _main_leaf must be initialized before container initialization
         self._main_leaf = None
@@ -2178,7 +2178,7 @@ class BeforeGraceContainer(Container):
         *,
         command: str = r"\grace",
         language: str = "english",
-        tag: _tag.Tag = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         if command not in self._commands:
             message = f"unknown command: {repr(command)}.\n"
@@ -2560,7 +2560,7 @@ class Chord(Leaf):
         *arguments,
         language: str = "english",
         multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
-        tag: _tag.Tag = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
         self._note_heads = NoteHeadList()
@@ -2954,8 +2954,8 @@ class Context(Container):
         components=None,
         lilypond_type: str = "Context",
         simultaneous: bool = False,
-        name: str = None,
-        tag: _tag.Tag = None,
+        name: str | None = None,
+        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
     ) -> None:
@@ -3286,7 +3286,7 @@ class MultimeasureRest(Leaf):
         *arguments,
         language: str = "english",
         multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
-        tag: _tag.Tag = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         if len(arguments) == 0:
             arguments = ((1, 4),)
@@ -3826,7 +3826,7 @@ class DrumNoteHead(NoteHead):
         is_cautionary: bool = False,
         is_forced: bool = False,
         is_parenthesized: bool = False,
-        tweaks: _tweaks.Tweak = None,
+        tweaks: _tweaks.Tweak | None = None,
     ) -> None:
         NoteHead.__init__(
             self,
@@ -4115,7 +4115,7 @@ class Note(Leaf):
         *arguments,
         language: str = "english",
         multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
-        tag: _tag.Tag = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
         if len(arguments) == 1 and isinstance(arguments[0], str):
@@ -4396,7 +4396,7 @@ class Rest(Leaf):
         *,
         language: str = "english",
         multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
-        tag: _tag.Tag = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         original_input = written_duration
         if isinstance(written_duration, Leaf):
@@ -4474,8 +4474,8 @@ class Score(Context):
         components=None,
         lilypond_type: str = "Score",
         simultaneous: bool = True,
-        name: str = None,
-        tag: _tag.Tag = None,
+        name: str | None = None,
+        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
     ) -> None:
@@ -4590,7 +4590,7 @@ class Skip(Leaf):
         *arguments,
         language: str = "english",
         multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
-        tag: _tag.Tag = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         input_leaf = None
         written_duration = None
@@ -4711,8 +4711,8 @@ class Staff(Context):
         components=None,
         lilypond_type: str = "Staff",
         simultaneous: bool = False,
-        name: str = None,
-        tag: _tag.Tag = None,
+        name: str | None = None,
+        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
     ) -> None:
@@ -4774,8 +4774,8 @@ class StaffGroup(Context):
         components=None,
         lilypond_type: str = "StaffGroup",
         simultaneous: bool = True,
-        name: str = None,
-        tag: _tag.Tag = None,
+        name: str | None = None,
+        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
     ) -> None:
@@ -4843,7 +4843,7 @@ class TremoloContainer(Container):
         components=None,
         *,
         language: str = "english",
-        tag: _tag.Tag = None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         assert _math.is_assignable_integer(count), repr(count)
         self._count = count
@@ -5116,12 +5116,12 @@ class Tuplet(Container):
         multiplier="3:2",
         components=None,
         *,
-        denominator: int = None,
+        denominator: int | None = None,
         force_fraction: bool = False,
         hide: bool = False,
         language: str = "english",
-        tag: _tag.Tag = None,
-        tweaks: _tweaks.Tweak = None,
+        tag: _tag.Tag | None = None,
+        tweaks: _tweaks.Tweak | None = None,
     ) -> None:
         Container.__init__(self, components, language=language, tag=tag)
         self.tweaks = ()
@@ -6044,7 +6044,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: _typings.Duration, components, *, tag: _tag.Tag = None
+        duration: _typings.Duration, components, *, tag: _tag.Tag | None = None
     ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``components``.
@@ -7136,8 +7136,8 @@ class Voice(Context):
         components=None,
         lilypond_type: str = "Voice",
         simultaneous: bool = False,
-        name: str = None,
-        tag: _tag.Tag = None,
+        name: str | None = None,
+        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
     ) -> None:

@@ -250,7 +250,7 @@ def are_relatively_prime(argument) -> bool:
     return True
 
 
-def arithmetic_mean(argument) -> int | float:
+def arithmetic_mean(argument) -> int | float | fractions.Fraction:
     """
     Gets arithmetic mean of ``argument``.
 

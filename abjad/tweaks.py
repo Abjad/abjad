@@ -164,7 +164,7 @@ class Bundle:
 def bundle(
     indicator: typing.Any,
     *tweaks: str | Tweak,
-    tag: _tag.Tag = None,
+    tag: _tag.Tag | None = None,
     overwrite: bool = False,
 ) -> Bundle:
     r"""
@@ -322,7 +322,7 @@ def tweak(
     indicator: typing.Any,
     *tweaks: str | Tweak,
     overwrite: bool = False,
-    tag: _tag.Tag = None,
+    tag: _tag.Tag | None = None,
 ) -> None:
     """
     Appends ``tweaks`` to ``indicator``.
