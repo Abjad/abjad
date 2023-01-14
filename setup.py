@@ -51,14 +51,14 @@ classifiers = [
 ]
 
 extras_require = {
-    "nauert": ["abjad-ext-nauert>=3.14"],
-    "rmakers": ["abjad-ext-rmakers>=3.14"],
+    "nauert": ["abjad-ext-nauert>=3.15"],
+    "rmakers": ["abjad-ext-rmakers>=3.15"],
     "dev": [
-        "black>=22.10.0",
-        "flake8>=5.0.4",
-        "isort>=5.10.1",
-        "mypy>=0.982",
-        "pytest>=7.2.0",
+        "black>=22.12.0",
+        "flake8>=6.0.0",
+        "isort>=5.11.4",
+        "mypy>=0.991",
+        "pytest>=7.2.1",
         "pytest-cov>=4.0.0",
         "pytest-helpers-namespace>=2021.12.29",
         "sphinx-autodoc-typehints>=1.19.4",
@@ -75,7 +75,7 @@ keywords = [
 install_requires = [
     "ply>=3.11",
     "roman>=1.4",
-    "uqbar>=0.6.4",
+    "uqbar>=0.6.8",
 ]
 
 if __name__ == "__main__":
