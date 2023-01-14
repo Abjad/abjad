@@ -15,9 +15,6 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
-    # temporarily comment out sphinx.ext.viewcode when heavily editing docs;
-    # prevents "highlighting module code ..." pass on every doc build;
-    # uncomment sphinx.ext.viewcode when building official release:
     "sphinx.ext.viewcode",
     "sphinx_autodoc_typehints",
     "uqbar.sphinx.api",
@@ -39,7 +36,7 @@ html_theme_options = {
     # navigation_depth=1 makes sidebar completely flat;
     # leave flat navigation in place forever:
     "navigation_depth": 1,
-    "style_nav_header_background": "#880088",
+    "style_nav_header_background": "#9922bb",
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 project = "Abjad"
