@@ -507,7 +507,7 @@ class Wrapper:
     @deactivate.setter
     def deactivate(self, argument):
         assert argument in (True, False, None)
-        self._deactivate: bool | None = argument
+        self._deactivate = argument
 
     @property
     def direction(self):

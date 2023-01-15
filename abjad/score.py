@@ -1355,7 +1355,7 @@ class Container(Component):
     @identifier.setter
     def identifier(self, argument):
         assert isinstance(argument, str | type(None)), repr(argument)
-        self._identifier: str | None = argument
+        self._identifier = argument
 
     @property
     def name(self) -> str | None:
