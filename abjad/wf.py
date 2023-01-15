@@ -19,7 +19,7 @@ def _aggregate_context_wrappers(argument):
     This currently happens with OnBeatGraceContainer.
     This method aggregates all Special_Voice wrappers for checks.
     """
-    name_to_wrappers: dict = {}
+    name_to_wrappers = {}
     for context in _iterate.components(argument, _score.Context):
         if context.name not in name_to_wrappers:
             name_to_wrappers[context.name] = []

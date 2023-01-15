@@ -97,7 +97,6 @@ class LilyPondOverride:
         assert isinstance(self.grob_name, str)
         assert isinstance(self.once, bool), repr(self.once)
         assert isinstance(self.is_revert, bool)
-        property_path_: tuple[str, ...]
         if isinstance(self.property_path, str):
             property_path_ = (self.property_path,)
         else:
