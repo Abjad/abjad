@@ -1575,40 +1575,6 @@ def join(sequence):
     return type(sequence)([item])
 
 
-# TODO: remove
-def map(sequence, operand=None):
-    r"""
-    Maps ``operand`` to sequence items.
-
-    ..  container:: example
-
-        Partitions sequence and sums parts:
-
-        >>> sequence = list(range(1, 10+1))
-        >>> sequence = abjad.sequence.partition_by_counts(sequence, [3], cyclic=True)
-        >>> sequence = abjad.sequence.map(sequence, sum)
-
-        >>> sequence
-        [6, 15, 24]
-
-        Maps identity:
-
-        >>> sequence = list([1, 2, 3, 4, 5, 6])
-        >>> abjad.sequence.map(sequence)
-        [1, 2, 3, 4, 5, 6]
-
-    Returns sequence type.
-    """
-    if operand is not None:
-        items = []
-        for i, item_ in enumerate(sequence):
-            item_ = operand(item_)
-            items.append(item_)
-    else:
-        items = list(sequence[:])
-    return type(sequence)(items)
-
-
 def nwise(sequence, n=2, cyclic=False, wrapped=False) -> typing.Iterator:
     """
     Iterates ``sequence`` ``n`` at a time.
@@ -1831,8 +1797,7 @@ def permute(sequence, permutation):
     return type(sequence)(result)
 
 
-# TODO: change input to pattern
-def remove(sequence, indices=None, period=None):
+def remove(sequence, pattern):
     """
     Removes items at ``indices``.
 
@@ -1840,39 +1805,37 @@ def remove(sequence, indices=None, period=None):
 
         >>> sequence = list(range(15))
 
-        >>> abjad.sequence.remove(sequence)
-        []
-
-        >>> abjad.sequence.remove(sequence, indices=[2, 3])
+        >>> abjad.sequence.remove(sequence, abjad.index([2, 3]))
         [0, 1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
         Removes elements and indices -2 and -3:
 
-        >>> abjad.sequence.remove(sequence, indices=[-2, -3])
+        >>> abjad.sequence.remove(sequence, abjad.index([-2, -3]))
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14]
 
-        >>> abjad.sequence.remove(sequence, indices=[2, 3], period=4)
+        >>> abjad.sequence.remove(sequence, abjad.index([2, 3], 4))
         [0, 1, 4, 5, 8, 9, 12, 13]
 
-        >>> abjad.sequence.remove(sequence, indices=[-2, -3], period=4)
+        >>> abjad.sequence.remove(sequence, abjad.index([-2, -3], 4))
         [2, 3, 6, 7, 10, 11, 14]
 
-        >>> abjad.sequence.remove(sequence, indices=[])
+        >>> abjad.sequence.remove(sequence, abjad.index([]))
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
-        >>> abjad.sequence.remove(sequence, indices=[97, 98, 99])
+        >>> abjad.sequence.remove(sequence, abjad.index([97, 98, 99]))
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
         Removes no elements:
 
-        >>> abjad.sequence.remove(sequence, indices=[-97, -98, -99])
+        >>> abjad.sequence.remove(sequence, abjad.index([-97, -98, -99]))
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
     Returns sequence type.
     """
     items = []
     length = len(sequence)
-    period = period or length
+    indices = pattern.indices
+    period = pattern.period or length
     if indices is None:
         indices = range(length)
     new_indices = []
@@ -2152,62 +2115,6 @@ def replace_at(sequence, indices, new_material):
     return type(sequence)(items)
 
 
-# TODO: remove in favor of retain_pattern()
-def retain(sequence, indices=None, period=None):
-    """
-    Retains items at ``indices``.
-
-    ..  container:: example
-
-        >>> sequence = list(range(10))
-
-        >>> abjad.sequence.retain(sequence)
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-        >>> abjad.sequence.retain(sequence, indices=[2, 3])
-        [2, 3]
-
-        >>> abjad.sequence.retain(sequence, indices=[-2, -3])
-        [7, 8]
-
-        >>> abjad.sequence.retain(sequence, indices=[2, 3], period=4)
-        [2, 3, 6, 7]
-
-        >>> abjad.sequence.retain(sequence, indices=[-2, -3], period=4)
-        [0, 3, 4, 7, 8]
-
-        >>> abjad.sequence.retain(sequence, indices=[])
-        []
-
-        >>> abjad.sequence.retain(sequence, indices=[97, 98, 99])
-        []
-
-        >>> abjad.sequence.retain(sequence, indices=[-97, -98, -99])
-        []
-
-    Returns sequence type.
-    """
-    length = len(sequence)
-    period = period or length
-    if indices is None:
-        indices = range(length)
-    new_indices = []
-    for i in indices:
-        if length < abs(i):
-            continue
-        if i < 0:
-            i = length + i
-        i = i % period
-        new_indices.append(i)
-    indices = new_indices
-    indices.sort()
-    items = []
-    for i, item in enumerate(sequence):
-        if i % period in indices:
-            items.append(item)
-    return type(sequence)(items)
-
-
 def retain_pattern(sequence, pattern):
     """
     Retains items at indices matching ``pattern``.
@@ -2326,56 +2233,6 @@ def rotate(sequence, n=0):
         for item in sequence[-n : len(sequence)] + sequence[:-n]:
             items.append(item)
     return type(sequence)(items)
-
-
-# TODO: remove
-def sort(sequence, key=None, reverse=False):
-    """
-    Sorts sequence.
-
-    ..  container:: example
-
-        >>> sequence = list([3, 2, 5, 4, 1, 6])
-        >>> abjad.sequence.sort(sequence)
-        [1, 2, 3, 4, 5, 6]
-
-        >>> sequence
-        [3, 2, 5, 4, 1, 6]
-
-    Returns sequence type.
-    """
-    items = list(sequence)
-    items.sort(key=key, reverse=reverse)
-    return type(sequence)(items)
-
-
-def sum(sequence):
-    r"""
-    Sums sequence.
-
-    ..  container:: example
-
-        Sums sequence of positive numbers:
-
-        >>> sequence = list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-
-        >>> abjad.sequence.sum(sequence)
-        55
-
-        Sum sequence of numbers with mixed signs:
-
-        >>> sequence = list([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
-
-        >>> abjad.sequence.sum(sequence)
-        5
-
-    """
-    if len(sequence) == 0:
-        return 0
-    result = sequence[0]
-    for item in sequence[1:]:
-        result += item
-    return result
 
 
 def sum_by_sign(sequence, sign=(-1, 0, 1)):
