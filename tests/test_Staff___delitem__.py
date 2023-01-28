@@ -2,7 +2,6 @@ import abjad
 
 
 def test_Staff___delitem___01():
-
     staff = abjad.Staff(
         [
             abjad.Note("c'4"),
@@ -42,7 +41,6 @@ def test_Staff___delitem___01():
 
 
 def test_Staff___delitem___02():
-
     staff = abjad.Staff(
         [
             abjad.Note("c'4"),
@@ -82,7 +80,6 @@ def test_Staff___delitem___02():
 
 
 def test_Staff___delitem___03():
-
     staff = abjad.Staff(
         [
             abjad.Note("c'4"),

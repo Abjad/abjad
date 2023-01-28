@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__functions__relative_01():
-
     pitches = [2, 5, 9, 7, 12, 11, 5, 2]
     notes = abjad.makers.make_notes(pitches, (1, 4))
     target = abjad.Container(notes)
@@ -29,7 +28,6 @@ def test_LilyPondParser__functions__relative_01():
 
 
 def test_LilyPondParser__functions__relative_02():
-
     pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
     notes = abjad.makers.make_notes(pitches, (1, 4))
     target = abjad.Container(notes)
@@ -60,7 +58,6 @@ def test_LilyPondParser__functions__relative_02():
 
 
 def test_LilyPondParser__functions__relative_03():
-
     pitches = [9, -3, 12, 5, 7, 31, 9, 17]
     notes = abjad.makers.make_notes(pitches, (1, 4))
     target = abjad.Container(notes)
@@ -87,7 +84,6 @@ def test_LilyPondParser__functions__relative_03():
 
 
 def test_LilyPondParser__functions__relative_04():
-
     pitches = [
         ["a'", "c''", "e''"],
         ["f'", "a'", "c''"],
@@ -117,7 +113,6 @@ def test_LilyPondParser__functions__relative_04():
 
 
 def test_LilyPondParser__functions__relative_05():
-
     pitches = ["c", "f", "b", "e'", "a'", "d''", "g''", "c'''"]
     leaves = abjad.makers.make_leaves(pitches, [(1, 4)])
     target = abjad.Container(leaves)
@@ -144,7 +139,6 @@ def test_LilyPondParser__functions__relative_05():
 
 
 def test_LilyPondParser__functions__relative_06():
-
     target = abjad.Container(
         [
             abjad.Note("c'", (1, 4)),
@@ -186,7 +180,6 @@ def test_LilyPondParser__functions__relative_06():
 
 
 def test_LilyPondParser__functions__relative_07():
-
     target = abjad.Container(
         [
             abjad.Note("d'", (1, 4)),
@@ -227,7 +220,6 @@ def test_LilyPondParser__functions__relative_07():
 
 
 def test_LilyPondParser__functions__relative_08():
-
     target = abjad.Container(
         [
             abjad.Note("c'", (1, 4)),
@@ -255,7 +247,6 @@ def test_LilyPondParser__functions__relative_08():
 
 
 def test_LilyPondParser__functions__relative_09():
-
     # http://lilypond.org/doc/v2.15/Documentation/c6/lily-8d84e2b9.ly
     pitches = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
     notes = abjad.makers.make_notes(pitches, [(1, 2)])

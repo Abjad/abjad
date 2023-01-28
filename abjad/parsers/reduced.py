@@ -235,7 +235,7 @@ class ReducedLyParser(Parser):
     def t_FRACTION(self, t):
         r"([1-9]\d*/[1-9]\d*)"
         parts = t.value.split("/")
-        t.value = _duration.NonreducedFraction(int(parts[0]), int(parts[1]))
+        t.value = int(parts[0]), int(parts[1])
         return t
 
     def t_INTEGER_N(self, t):
@@ -418,7 +418,7 @@ class ReducedLyParser(Parser):
         for x in p[3]:
             measure.append(x)
         leaf = _iterlib._get_leaf(measure, 0)
-        time_signature = _indicators.TimeSignature(p[2].pair)
+        time_signature = _indicators.TimeSignature(p[2])
         _bind.attach(time_signature, leaf)
         p[0] = measure
 

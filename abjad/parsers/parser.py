@@ -976,7 +976,6 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
-
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1024,7 +1023,6 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 return result
 
         if t is None:
-
             # --! DEBUG
             # debug.error('Error  : %s',
             #             ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
@@ -1318,7 +1316,6 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
-
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1366,7 +1363,6 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 return result
 
         if t is None:
-
             # --! DEBUG
             debug.error(
                 "Error  : %s",
@@ -2350,7 +2346,6 @@ class LilyPondLexicalDefinition:
         return "SCM_IDENTIFIER"
 
     def push_signature(self, signature, t):
-
         token = lex.LexToken()
         token.type = "EXPECT_NO_MORE_ARGS"
         token.value = None
@@ -2360,7 +2355,6 @@ class LilyPondLexicalDefinition:
 
         optional = False
         for predicate in signature:
-
             if predicate == "optional?":
                 optional = True
                 continue
@@ -4650,7 +4644,7 @@ class LilyPondSyntacticalDefinition:
         chord = _score.Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            multiplier = _duration.Multiplier(p[2].multiplier)
+            multiplier = fractions.Fraction(p[2].multiplier)
             chord.multiplier = multiplier
         self.client._process_post_events(chord, p[3])
         annotation = {"UnrelativableMusic": True}
@@ -4666,8 +4660,8 @@ class LilyPondSyntacticalDefinition:
         "event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events"
         rest = _score.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
-            multiplier = _duration.Multiplier(p[2].multiplier)
-            rest.multiplier = multiplier
+            multiplier = fractions.Fraction(p[2].multiplier)
+            rest.multiplier = _duration.pair(multiplier)
         self.client._process_post_events(rest, p[3])
         p[0] = rest
 
@@ -5793,8 +5787,8 @@ class LilyPondSyntacticalDefinition:
         post_events.extend(p[3])
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            multiplier = _duration.Multiplier(p[2].multiplier)
-            chord.multiplier = multiplier
+            multiplier = fractions.Fraction(p[2].multiplier)
+            chord.multiplier = _duration.pair(multiplier)
         self.client._process_post_events(chord, post_events)
         p[0] = chord
 
@@ -6295,8 +6289,8 @@ class LilyPondSyntacticalDefinition:
         else:
             rest = _score.Skip(p[2].duration)
         if p[2].multiplier is not None:
-            multiplier = _duration.Multiplier(p[2].multiplier)
-            rest.multiplier = multiplier
+            multiplier = fractions.Fraction(p[2].multiplier)
+            rest.multiplier = multiplier.pair
         p[0] = rest
 
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(
@@ -6310,8 +6304,8 @@ class LilyPondSyntacticalDefinition:
         else:
             leaf = _score.Rest(p[5].duration)
         if p[5].multiplier is not None:
-            multiplier = _duration.Multiplier(p[5].multiplier)
-            leaf.multiplier = multiplier
+            multiplier = fractions.Fraction(p[5].multiplier)
+            leaf.multiplier = _duration.pair(multiplier)
         # TODO: handle exclamations, questions, octave_check
         p[0] = leaf
 

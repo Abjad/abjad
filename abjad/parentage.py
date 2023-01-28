@@ -1,6 +1,6 @@
 import collections
+import fractions
 
-from . import duration as _duration
 from . import math as _math
 from . import score as _score
 
@@ -103,7 +103,7 @@ class Parentage(collections.abc.Sequence):
 
     def _prolations(self):
         prolations = []
-        default = _duration.Multiplier(1)
+        default = fractions.Fraction(1)
         for parent in self:
             prolation = getattr(parent, "implied_prolation", default)
             prolations.append(prolation)
@@ -557,7 +557,7 @@ class Parentage(collections.abc.Sequence):
         return self.get(n=1)
 
     @property
-    def prolation(self) -> _duration.Multiplier:
+    def prolation(self) -> fractions.Fraction:
         r"""
         Gets prolation.
 
@@ -637,28 +637,28 @@ class Parentage(collections.abc.Sequence):
             >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
-            Staff("{ { 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Multiplier(1, 1)
-            Voice("{ 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='MusicVoice') Multiplier(1, 1)
-            Tuplet('3:2', "c'4 d'4 e'4")   Multiplier(2, 3)
-            Note("c'4")                    Multiplier(2, 3)
-            BeforeGraceContainer("cs'16")  Multiplier(2, 3)
-            Note("cs'16")                  Multiplier(2, 3)
-            Note("d'4")                    Multiplier(2, 3)
-            Note("e'4")                    Multiplier(2, 3)
-            Tuplet('3:2', "{ { <f' a'>8 b'8 } { f'4 } } g'4 a'4") Multiplier(2, 3)
-            Container("{ <f' a'>8 b'8 } { f'4 }") Multiplier(2, 3)
-            OnBeatGraceContainer("<f' a'>8 b'8") Multiplier(2, 3)
-            Chord("<f' a'>8")              Multiplier(2, 3)
-            Note("b'8")                    Multiplier(2, 3)
-            Voice("f'4", name='MusicVoice') Multiplier(2, 3)
-            Note("f'4")                    Multiplier(2, 3)
-            Note("g'4")                    Multiplier(2, 3)
-            Note("a'4")                    Multiplier(2, 3)
-            AfterGraceContainer("fs'16")   Multiplier(2, 3)
-            Note("fs'16")                  Multiplier(2, 3)
+            Staff("{ { 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Fraction(1, 1)
+            Voice("{ 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='MusicVoice') Fraction(1, 1)
+            Tuplet('3:2', "c'4 d'4 e'4")   Fraction(2, 3)
+            Note("c'4")                    Fraction(2, 3)
+            BeforeGraceContainer("cs'16")  Fraction(2, 3)
+            Note("cs'16")                  Fraction(2, 3)
+            Note("d'4")                    Fraction(2, 3)
+            Note("e'4")                    Fraction(2, 3)
+            Tuplet('3:2', "{ { <f' a'>8 b'8 } { f'4 } } g'4 a'4") Fraction(2, 3)
+            Container("{ <f' a'>8 b'8 } { f'4 }") Fraction(2, 3)
+            OnBeatGraceContainer("<f' a'>8 b'8") Fraction(2, 3)
+            Chord("<f' a'>8")              Fraction(2, 3)
+            Note("b'8")                    Fraction(2, 3)
+            Voice("f'4", name='MusicVoice') Fraction(2, 3)
+            Note("f'4")                    Fraction(2, 3)
+            Note("g'4")                    Fraction(2, 3)
+            Note("a'4")                    Fraction(2, 3)
+            AfterGraceContainer("fs'16")   Fraction(2, 3)
+            Note("fs'16")                  Fraction(2, 3)
 
         """
-        prolations = [_duration.Multiplier(1)] + self._prolations()
+        prolations = [fractions.Fraction(1)] + self._prolations()
         products = _math.cumulative_products(prolations)
         return products[-1]
 

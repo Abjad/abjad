@@ -210,7 +210,6 @@ def test_mutate_copy_03():
 
 
 def test_mutate_copy_04():
-
     staff = abjad.Staff(
         [
             abjad.Container("c'8 d'"),
@@ -296,7 +295,6 @@ def test_mutate_copy_04():
 
 
 def test_mutate_copy_05():
-
     staff = abjad.Staff(
         [
             abjad.Container("c'8 d'"),
@@ -377,7 +375,6 @@ def test_mutate_copy_05():
 
 
 def test_mutate_copy_06():
-
     staff = abjad.Staff(
         [
             abjad.Container("c'8 d'"),
@@ -452,7 +449,6 @@ def test_mutate_copy_06():
 
 
 def test_mutate_copy_07():
-
     staff = abjad.Staff(
         [
             abjad.Container("c'8 d'"),

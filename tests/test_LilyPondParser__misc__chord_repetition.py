@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__misc__chord_repetition_01():
-
     target = abjad.Container(
         [
             abjad.Chord([0, 4, 7], (1, 4)),
@@ -30,7 +29,6 @@ def test_LilyPondParser__misc__chord_repetition_01():
 
 
 def test_LilyPondParser__misc__chord_repetition_02():
-
     target = abjad.Staff(
         [
             abjad.Chord([0, 4, 7], (1, 8)),
@@ -76,7 +74,6 @@ def test_LilyPondParser__misc__chord_repetition_02():
 
 
 def test_LilyPondParser__misc__chord_repetition_03():
-
     target = abjad.Container(
         [
             abjad.Chord([0, 4, 7], (1, 8)),

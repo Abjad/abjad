@@ -2,9 +2,8 @@ import abjad
 
 
 def test_LilyPondParser__containers__Tuplet_01():
-
     notes = abjad.makers.make_notes([0, 2, 4], (1, 8))
-    target = abjad.Tuplet(abjad.Multiplier(2, 3), notes)
+    target = abjad.Tuplet((2, 3), notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""

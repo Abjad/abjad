@@ -2,7 +2,6 @@ import abjad
 
 
 def test_NoteHead___cmp___01():
-
     note_head_1 = abjad.NoteHead(12)
     note_head_2 = abjad.NoteHead(12)
 
@@ -15,7 +14,6 @@ def test_NoteHead___cmp___01():
 
 
 def test_NoteHead___cmp___02():
-
     note_head_1 = abjad.NoteHead(12)
     note_head_2 = abjad.NoteHead(13)
 
@@ -28,7 +26,6 @@ def test_NoteHead___cmp___02():
 
 
 def test_NoteHead___cmp___03():
-
     note_head_1 = abjad.NoteHead(12)
     note_head_2 = abjad.NoteHead("c''")
 
@@ -41,7 +38,6 @@ def test_NoteHead___cmp___03():
 
 
 def test_NoteHead___cmp___04():
-
     note_head_1 = abjad.NoteHead(12)
     note_head_2 = 13
 

@@ -4,7 +4,6 @@ import abjad
 
 
 def test_Chord___copy___01():
-
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
     chord_2 = copy.copy(chord_1)
 

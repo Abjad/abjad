@@ -57,8 +57,8 @@ The functions we'll use:
     ...         container = make_cell(sublist, hand)
     ...         duration += abjad.get.duration(container)
     ...         measure.append(container)
-    ...     duration = duration.with_denominator(8)
-    ...     time_signature = abjad.TimeSignature(duration)
+    ...     pair = abjad.duration.with_denominator(duration, 8)
+    ...     time_signature = abjad.TimeSignature(pair)
     ...     first_note = abjad.select.note(measure, 0)
     ...     abjad.attach(time_signature, first_note)
     ...     return measure

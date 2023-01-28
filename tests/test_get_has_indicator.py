@@ -2,7 +2,6 @@ import abjad
 
 
 def test_get_has_indicator_01():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.attach("foo", staff[0])
 
@@ -14,7 +13,6 @@ def test_get_has_indicator_01():
 
 
 def test_get_has_indicator_02():
-
     staff = abjad.Staff("c'2 d'2")
     articulation = abjad.Articulation("staccato")
     abjad.attach(articulation, staff[0])
@@ -24,7 +22,6 @@ def test_get_has_indicator_02():
 
 
 def test_get_has_indicator_03():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     command = abjad.LilyPondLiteral(r"\break", "closing")
     abjad.attach(command, staff[-1])
@@ -36,7 +33,6 @@ def test_get_has_indicator_03():
 
 
 def test_get_has_indicator_04():
-
     staff = abjad.Staff("c'2 d'2")
     stem_tremolo = abjad.StemTremolo(16)
     abjad.attach(stem_tremolo, staff[0])
@@ -46,7 +42,6 @@ def test_get_has_indicator_04():
 
 
 def test_get_has_indicator_05():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     time_signature = abjad.TimeSignature((4, 8))
     abjad.attach(time_signature, staff[0])

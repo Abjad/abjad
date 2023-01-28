@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__indicators__Articulation_01():
-
     target = abjad.Staff(abjad.makers.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
     articulation = abjad.Articulation("marcato")
     abjad.attach(articulation, target[0], direction=abjad.UP)
@@ -51,7 +50,6 @@ def test_LilyPondParser__indicators__Articulation_01():
 
 
 def test_LilyPondParser__indicators__Articulation_02():
-
     target = abjad.Staff([abjad.Note("c'", (1, 4))])
     articulation = abjad.Articulation("marcato")
     abjad.attach(articulation, target[0], direction=abjad.UP)
@@ -77,7 +75,6 @@ def test_LilyPondParser__indicators__Articulation_02():
 
 
 def test_LilyPondParser__indicators__Articulation_03():
-
     target = abjad.Container(
         abjad.makers.make_notes(
             ["c''", "c''", "b'", "c''"], [(1, 4), (1, 4), (1, 2), (1, 1)]

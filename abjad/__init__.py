@@ -40,7 +40,7 @@ from .contextmanagers import (
 )
 from .contributions import ContributionsBySite
 from .cyclictuple import CyclicTuple
-from .duration import Duration, Multiplier, NonreducedFraction, Offset
+from .duration import Duration, Offset, durations
 from .dynamic import Dynamic
 from .enums import (
     CENTER,
@@ -220,7 +220,6 @@ from .pitch import (
     PitchClass,
     StaffPosition,
 )
-from .ratio import NonreducedRatio, Ratio
 from .score import (
     AfterGraceContainer,
     BeforeGraceContainer,
@@ -380,15 +379,12 @@ __all__ = [
     "Mode",
     "MORE",
     "MultimeasureRest",
-    "Multiplier",
     "NamedInterval",
     "NamedIntervalClass",
     "NamedInversionEquivalentIntervalClass",
     "NamedPitch",
     "NamedPitchClass",
     "NegativeInfinity",
-    "NonreducedFraction",
-    "NonreducedRatio",
     "Note",
     "NoteHead",
     "NoteHeadList",
@@ -424,7 +420,6 @@ __all__ = [
     "PitchClass",
     "PitchRange",
     "ProgressIndicator",
-    "Ratio",
     "RedirectedStreams",
     "RehearsalMark",
     "Repeat",
@@ -502,6 +497,7 @@ __all__ = [
     "deactivate",
     "deprecated",
     "detach",
+    "durations",
     "enumerate",
     "format",
     "glissando",

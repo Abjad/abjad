@@ -251,7 +251,7 @@ class OnBeatGraceContainer(_score.Container):
             duration = leaf._get_duration()
             if duration != self.leaf_duration:
                 multiplier = self.leaf_duration / duration
-                leaf.multiplier = multiplier
+                leaf.multiplier = _duration.pair(multiplier)
 
     ### PUBLIC PROPERTIES ###
 

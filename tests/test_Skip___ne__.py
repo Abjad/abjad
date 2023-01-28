@@ -2,7 +2,6 @@ import abjad
 
 
 def test_Skip___ne___01():
-
     skip_1 = abjad.Skip((1, 4))
     skip_2 = abjad.Skip((1, 4))
     skip_3 = abjad.Skip((1, 8))

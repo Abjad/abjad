@@ -31,7 +31,6 @@ class Parser:
     ### INITIALIZER ###
 
     def __init__(self, debug=False):
-
         self._debug = bool(debug)
         self._lexer = None
         self._parser = None

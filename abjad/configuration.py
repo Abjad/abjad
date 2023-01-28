@@ -405,8 +405,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.contributions.ContributionsBySite'>
         <class 'abjad.cyclictuple.CyclicTuple'>
         <class 'abjad.duration.Duration'>
-        <class 'abjad.duration.Multiplier'>
-        <class 'abjad.duration.NonreducedFraction'>
         <class 'abjad.duration.Offset'>
         <class 'abjad.dynamic.Dynamic'>
         <class 'abjad.exceptions.AssignabilityError'>
@@ -578,8 +576,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.pitch.Pitch'>
         <class 'abjad.pitch.PitchClass'>
         <class 'abjad.pitch.StaffPosition'>
-        <class 'abjad.ratio.NonreducedRatio'>
-        <class 'abjad.ratio.Ratio'>
         <class 'abjad.rhythmtrees.RhythmTreeContainer'>
         <class 'abjad.rhythmtrees.RhythmTreeLeaf'>
         <class 'abjad.rhythmtrees.RhythmTreeMixin'>

@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__containers__nesting_01():
-
     target = abjad.Container(
         [abjad.Container([]), abjad.Container([abjad.Container([])])]
     )

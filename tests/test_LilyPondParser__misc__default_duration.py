@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__misc__default_duration_01():
-
     target = abjad.Container(
         abjad.makers.make_notes(
             [0], [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]

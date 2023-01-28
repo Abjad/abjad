@@ -4,7 +4,6 @@ import abjad
 
 
 def test_Tuplet___copy___01():
-
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     abjad.override(tuplet_1).NoteHead.color = "#red"
 

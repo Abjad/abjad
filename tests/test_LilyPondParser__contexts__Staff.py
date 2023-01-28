@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__contexts__Staff_01():
-
     target = abjad.Staff([])
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -19,7 +18,6 @@ def test_LilyPondParser__contexts__Staff_01():
 
 
 def test_LilyPondParser__contexts__Staff_02():
-
     target = abjad.Staff([])
     target.simultaneous = True
     target.append(

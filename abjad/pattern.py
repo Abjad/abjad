@@ -1120,7 +1120,7 @@ class Pattern:
 
         ..  container:: example
 
-            Indexes first division for tie creation:
+            Indexes first item:
 
             >>> pattern = abjad.index_first(1)
             >>> pattern

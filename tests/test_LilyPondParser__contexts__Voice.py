@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__contexts__Voice_01():
-
     target = abjad.Voice([])
 
     assert abjad.lilypond(target) == abjad.string.normalize(

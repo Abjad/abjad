@@ -60,7 +60,6 @@ def test_Skip___init___04():
 
 
 def test_Skip___init___05():
-
     note = abjad.Note(2, (1, 8))
     duration = note.written_duration
     skip = abjad.Skip(note)
@@ -74,7 +73,6 @@ def test_Skip___init___05():
 
 
 def test_Skip___init___06():
-
     tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])

@@ -2693,9 +2693,8 @@ class MetronomeMark:
         if isinstance(self.decimal, str):
             return (duration_log, dot_count, stem_height, self.decimal)
         assert self.decimal is True, repr(self.decimal)
-        # TODO: add abjad.NonreducedFraction.mixed_number property
-        fraction = _duration.NonreducedFraction(self.units_per_minute)
-        n, d = fraction.pair
+        fraction = fractions.Fraction(self.units_per_minute)
+        n, d = fraction.numerator, fraction.denominator
         base = n // d
         n = n % d
         return (duration_log, dot_count, stem_height, base, n, d)
@@ -2785,9 +2784,9 @@ class MetronomeMark:
         assert isinstance(self.reference_duration, _duration.Duration)
         denominator = self.reference_duration.denominator
         numerator = self.reference_duration.numerator
-        whole_note_duration = 1000
-        whole_note_duration *= _duration.Multiplier(denominator, numerator)
-        whole_note_duration *= _duration.Multiplier(60, self.units_per_minute)
+        whole_note_duration = fractions.Fraction(1000)
+        whole_note_duration *= fractions.Fraction(denominator, numerator)
+        whole_note_duration *= fractions.Fraction(60, self.units_per_minute)
         duration = _duration.Duration(duration)
         return _duration.Duration(duration * whole_note_duration)
 
@@ -2864,10 +2863,10 @@ class MetronomeMark:
                     f' #{log} #{dots} #{stem} #"{decimal_}"'
                 )
             else:
-                nonreduced = _duration.NonreducedFraction(units_per_minute)
+                nonreduced = fractions.Fraction(units_per_minute)
                 base = int(nonreduced)
                 remainder = nonreduced - base
-                n, d = remainder.pair
+                n, d = remainder.numerator, remainder.denominator
                 markup = Markup(
                     r"\markup \abjad-metronome-mark-mixed-number-markup"
                     f" #{log} #{dots} #{stem}"
@@ -6135,7 +6134,7 @@ class TimeSignature:
         return not _math.is_nonnegative_integer_power_of_two(self.denominator)
 
     @property
-    def implied_prolation(self) -> _duration.Multiplier:
+    def implied_prolation(self) -> fractions.Fraction:
         """
         Gets implied prolation of time signature.
 
@@ -6144,12 +6143,12 @@ class TimeSignature:
             Implied prolation of dyadic time signature:
 
             >>> abjad.TimeSignature((3, 8)).implied_prolation
-            Multiplier(1, 1)
+            Fraction(1, 1)
 
             Implied prolation of nondyadic time signature:
 
             >>> abjad.TimeSignature((7, 12)).implied_prolation
-            Multiplier(2, 3)
+            Fraction(2, 3)
 
         """
         return _duration.Duration(1, self.denominator).implied_prolation
@@ -6231,10 +6230,10 @@ class TimeSignature:
             TimeSignature(pair=(6, 14), hide=False, partial=None)
 
         """
-        contents_multiplier = _duration.Multiplier(contents_multiplier)
-        contents_multiplier = _duration.Multiplier(contents_multiplier)
+        contents_multiplier = fractions.Fraction(contents_multiplier)
+        contents_multiplier = fractions.Fraction(contents_multiplier)
         non_power_of_two_denominator = self.denominator
-        if contents_multiplier == _duration.Multiplier(1):
+        if contents_multiplier == 1:
             power_of_two_denominator = _math.greatest_power_of_two_less_equal(
                 non_power_of_two_denominator
             )
@@ -6242,9 +6241,5 @@ class TimeSignature:
             power_of_two_denominator = _math.greatest_power_of_two_less_equal(
                 non_power_of_two_denominator, 1
             )
-        non_dyadic_rational_pair = _duration.NonreducedFraction(self.pair)
-        dyadic_rational = non_dyadic_rational_pair.with_denominator(
-            power_of_two_denominator
-        )
-        dyadic_rational_pair = dyadic_rational.pair
-        return type(self)(dyadic_rational_pair)
+        pair = _duration.with_denominator(self.pair, power_of_two_denominator)
+        return type(self)(pair)

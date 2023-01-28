@@ -36,7 +36,7 @@ The interprer representation of an tuplet contains three parts:
 
 ``Tuplet`` tells you the tuplet's class.
 
-``Multiplier(2, 3)`` tells you the tuplet's multiplier.
+``(2, 3)`` tells you the tuplet's multiplier.
 
 ``[fs'8, g'8, r8]`` tells you the top-level components the tuplet contains.
 

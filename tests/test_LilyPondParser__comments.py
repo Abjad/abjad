@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__comments_01():
-
     target = abjad.Container([abjad.Note(0, (1, 4))])
 
     string = r"""

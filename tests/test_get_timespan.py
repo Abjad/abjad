@@ -4,21 +4,18 @@ import abjad
 
 
 def test_get_timespan_01():
-
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     for i, x in enumerate(voice):
         assert abjad.get.timespan(x).start_offset == i * abjad.Offset(1, 8)
 
 
 def test_get_timespan_02():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     for i, x in enumerate(staff):
         assert abjad.get.timespan(x).start_offset == i * abjad.Offset(1, 8)
 
 
 def test_get_timespan_03():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[-1] = abjad.Rest((1, 8))
     for i, x in enumerate(staff):
@@ -26,7 +23,6 @@ def test_get_timespan_03():
 
 
 def test_get_timespan_04():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[10:10] = [abjad.Rest((1, 8))]
     for i, x in enumerate(staff):
@@ -34,7 +30,6 @@ def test_get_timespan_04():
 
 
 def test_get_timespan_05():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[10:12] = [abjad.Rest((1, 8))]
     for i, x in enumerate(staff):
@@ -56,14 +51,12 @@ def test_get_timespan_06():
 
 
 def test_get_timespan_07():
-
     tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     for i, x in enumerate(tuplet):
         assert abjad.get.timespan(x).start_offset == i * abjad.Offset(1, 12)
 
 
 def test_get_timespan_08():
-
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
     voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
     offset = 0
@@ -238,9 +231,9 @@ def test_get_timespan_19():
 
     voice = abjad.Voice(
         [
-            abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"),
-            abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"),
-            abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8"),
+            abjad.Tuplet((2, 3), "c'8 d'8 e'8"),
+            abjad.Tuplet((2, 3), "c'8 d'8 e'8"),
+            abjad.Tuplet((2, 3), "c'8 d'8 e'8"),
         ]
     )
     assert abjad.get.timespan(voice[0]).start_offset == 0 * abjad.Offset(1, 4)

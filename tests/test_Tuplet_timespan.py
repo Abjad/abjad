@@ -2,7 +2,6 @@ import abjad
 
 
 def test_Tuplet_timespan_01():
-
     staff = abjad.Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(

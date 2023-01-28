@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__functions__language_01():
-
     target = abjad.Container(
         [abjad.Note("cs'8"), abjad.Note("ds'8"), abjad.Note("ff'8")]
     )

@@ -4,7 +4,6 @@ import abjad
 
 
 def test_MultimeasureRest___copy___01():
-
     multi_measure_rest_1 = abjad.MultimeasureRest((1, 4))
     multi_measure_rest_2 = copy.copy(multi_measure_rest_1)
 

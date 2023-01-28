@@ -4,7 +4,6 @@ import abjad
 
 
 def test_LilyPondParser__spanners__Hairpin_01():
-
     target = abjad.Staff(abjad.makers.make_notes([0] * 5, [(1, 4)]))
     abjad.hairpin("< !", target[:3])
     abjad.hairpin("> ppp", target[2:])
@@ -128,7 +127,6 @@ def test_LilyPondParser__spanners__Hairpin_06():
 
 
 def test_LilyPondParser__spanners__Hairpin_07():
-
     string = r"\new Staff { c'4 ( \p \< d'4 e'4 f'4 ) \! }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)

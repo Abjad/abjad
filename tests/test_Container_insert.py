@@ -28,7 +28,6 @@ def test_Container_insert_01():
 
 
 def test_Container_insert_02():
-
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
     voice.insert(1, abjad.Note(1, (1, 8)))
@@ -51,7 +50,6 @@ def test_Container_insert_02():
 
 
 def test_Container_insert_03():
-
     staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
     abjad.beam(staff[:])
     staff.insert(4, abjad.Rest((1, 4)))
@@ -169,7 +167,6 @@ def test_Container_insert_07():
 
 
 def test_Container_insert_08():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.beam(staff[:])
     staff.insert(1, abjad.Note("cs'8"))

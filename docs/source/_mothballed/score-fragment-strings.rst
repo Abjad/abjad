@@ -118,7 +118,7 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...     for i, voice_name in enumerate(voice_names):
     ...         long_duration = abjad.Duration(1, 2) * (2 ** i)
     ...         short_duration = long_duration / 2
-    ...         rest_duration = abjad.Multiplier(3, 2) * long_duration
+    ...         rest_duration = abjad.Fraction(3, 2) * long_duration
     ...         div = rest_duration // abjad.Duration(3, 2)
     ...         mod = rest_duration % abjad.Duration(3, 2)
     ...         initial_rest = []

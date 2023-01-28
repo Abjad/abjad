@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser_accidentals_forced_01():
-
     string = "{ c!4 }"
     parsed = abjad.parser.LilyPondParser()(string)
 
@@ -11,7 +10,6 @@ def test_LilyPondParser_accidentals_forced_01():
 
 
 def test_LilyPondParser_accidentals_forced_02():
-
     string = "{ <c! e g!!>4 }"
     parsed = abjad.parser.LilyPondParser()(string)
 
