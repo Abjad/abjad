@@ -534,6 +534,8 @@ class GuileProxy:
 
     @staticmethod
     def _get_default_absolute_pitch(pitch, reference):
+        pitch_name = pitch.pitch_class.name
+        absolute_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
         diatonic_interval = pitch_pc_number - reference_pc_number
@@ -543,8 +545,6 @@ class GuileProxy:
             or diatonic_interval == 0
             and pitch.accidental > reference.accidental
         )
-        pitch_name = pitch.pitch_class.name
-        absolute_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
         if expect_higher_than_reference and absolute_pitch < reference:
             octave_transposition = 1
         elif not expect_higher_than_reference and absolute_pitch > reference:
