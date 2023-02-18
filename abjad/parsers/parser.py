@@ -537,7 +537,7 @@ class GuileProxy:
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
         interval = reference_pc_number - pitch_pc_number
-        default_direction_is_higher = interval % 7 <= 3
+        default_is_lower_or_same = interval % 7 <= 3
         pitch_name = pitch.pitch_class.name
         initial_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
         initial_pitch_is_higher = initial_pitch > reference
@@ -548,13 +548,13 @@ class GuileProxy:
             is_same_diatonic_pitch
             and pitch_accidental > reference_accidental
             or not is_same_diatonic_pitch
-            and not default_direction_is_higher
+            and not default_is_lower_or_same
         ) and not initial_pitch_is_higher
         initial_pitch_is_too_high = (
             is_same_diatonic_pitch
             and pitch_accidental < reference_accidental
             or not is_same_diatonic_pitch
-            and default_direction_is_higher
+            and default_is_lower_or_same
         ) and initial_pitch_is_higher
         if initial_pitch_is_too_low:
             octave_transposition = 1
