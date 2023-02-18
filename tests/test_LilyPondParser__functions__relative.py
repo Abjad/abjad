@@ -280,3 +280,55 @@ def test_LilyPondParser__functions__relative_09():
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__functions__relative_10():
+    pitches = ["c''", "bf''", "cf'''", "c'''", "cf'''", "c''", "cf''", "c''"]
+    notes = abjad.makers.make_notes(pitches, [(1, 4)])
+    target = abjad.Container(notes)
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        {
+            c''4
+            bf''4
+            cf'''4
+            c'''4
+            cf'''4
+            c''4
+            cf''4
+            c''4
+        }
+        """
+    )
+
+    string = r"""\relative c'' { c bf' cf c cf c, cf c }"""
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__functions__relative_11():
+    pitches = ["cs''", "b''", "bs''", "cs'''", "bs''", "cs''", "bs'", "cs''"]
+    notes = abjad.makers.make_notes(pitches, [(1, 4)])
+    target = abjad.Container(notes)
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        {
+            cs''4
+            b''4
+            bs''4
+            cs'''4
+            bs''4
+            cs''4
+            bs'4
+            cs''4
+        }
+        """
+    )
+
+    string = r"""\relative cs'' { cs b' bs cs bs cs, bs cs }"""
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
