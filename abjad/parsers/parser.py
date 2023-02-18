@@ -969,6 +969,7 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
+
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1016,6 +1017,7 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 return result
 
         if t is None:
+
             # --! DEBUG
             # debug.error('Error  : %s',
             #             ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
@@ -1309,6 +1311,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
+                    
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1356,6 +1359,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 return result
 
         if t is None:
+
             # --! DEBUG
             debug.error(
                 "Error  : %s",
@@ -2339,6 +2343,7 @@ class LilyPondLexicalDefinition:
         return "SCM_IDENTIFIER"
 
     def push_signature(self, signature, t):
+
         token = lex.LexToken()
         token.type = "EXPECT_NO_MORE_ARGS"
         token.value = None
@@ -2348,6 +2353,7 @@ class LilyPondLexicalDefinition:
 
         optional = False
         for predicate in signature:
+            
             if predicate == "optional?":
                 optional = True
                 continue
