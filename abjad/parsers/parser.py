@@ -547,22 +547,25 @@ class GuileProxy:
             or not is_same_letter_name
             and not default_direction_is_higher
         ) and not default_pitch_is_higher:
-            offset = 1
+            octave_offset = 1
         elif (
             is_same_letter_name
             and pitch.accidental < reference.accidental
             or not is_same_letter_name
             and default_direction_is_higher
         ) and default_pitch_is_higher:
-            offset = -1
+            octave_offset = -1
         else:
-            offset = 0
-        absolute_pitch_octave = default_pitch.octave.number + offset
+            octave_offset = 0
+        absolute_pitch_octave = default_pitch.octave.number + octave_offset
         absolute_pitch = _pitch.NamedPitch((pitch_name, absolute_pitch_octave))
         pitch_octave = pitch.octave.number
-        if pitch_octave == 3:
+        base_octave = 3
+        if pitch_octave == base_octave:
             return absolute_pitch
-        absolute_pitch.octave.number = absolute_pitch.octave.number + pitch_octave - 3
+        absolute_pitch.octave.number = (
+            absolute_pitch.octave.number + pitch_octave - base_octave
+        )
         return absolute_pitch
 
 
