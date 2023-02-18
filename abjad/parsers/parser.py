@@ -541,19 +541,19 @@ class GuileProxy:
         pitch_name = pitch.pitch_class.name
         initial_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
         initial_pitch_is_higher = initial_pitch > reference
-        is_same_letter_name = interval == 0
+        is_same_diatonic_pitch = interval == 0
         pitch_accidental = pitch.accidental
         reference_accidental = reference.accidental
         initial_pitch_is_too_low = (
-            is_same_letter_name
+            is_same_diatonic_pitch
             and pitch_accidental > reference_accidental
-            or not is_same_letter_name
+            or not is_same_diatonic_pitch
             and not default_direction_is_higher
         ) and not initial_pitch_is_higher
         initial_pitch_is_too_high = (
-            is_same_letter_name
+            is_same_diatonic_pitch
             and pitch_accidental < reference_accidental
-            or not is_same_letter_name
+            or not is_same_diatonic_pitch
             and default_direction_is_higher
         ) and initial_pitch_is_higher
         if initial_pitch_is_too_low:
