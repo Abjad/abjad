@@ -532,41 +532,52 @@ class GuileProxy:
             annotation = {"UnrelativableMusic": True}
             _bind.attach(annotation, music)
 
-    def _to_relative_octave(self, pitch, reference):
+    @staticmethod
+    def _get_default_absolute_pitch(pitch, reference):
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
         interval = reference_pc_number - pitch_pc_number
         default_direction_is_higher = interval % 7 <= 3
         pitch_name = pitch.pitch_class.name
-        default_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
-        default_pitch_is_higher = default_pitch > reference
+        initial_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
+        initial_pitch_is_higher = initial_pitch > reference
         is_same_letter_name = interval == 0
-        if (
+        pitch_accidental = pitch.accidental
+        reference_accidental = reference.accidental
+        initial_pitch_is_too_low = (
             is_same_letter_name
-            and pitch.accidental > reference.accidental
+            and pitch_accidental > reference_accidental
             or not is_same_letter_name
             and not default_direction_is_higher
-        ) and not default_pitch_is_higher:
-            octave_offset = 1
-        elif (
+        ) and not initial_pitch_is_higher
+        initial_pitch_is_too_high = (
             is_same_letter_name
-            and pitch.accidental < reference.accidental
+            and pitch_accidental < reference_accidental
             or not is_same_letter_name
             and default_direction_is_higher
-        ) and default_pitch_is_higher:
-            octave_offset = -1
+        ) and initial_pitch_is_higher
+        if initial_pitch_is_too_low:
+            octave_transposition = 1
+        elif initial_pitch_is_too_high:
+            octave_transposition = -1
         else:
-            octave_offset = 0
-        absolute_pitch_octave = default_pitch.octave.number + octave_offset
-        absolute_pitch = _pitch.NamedPitch((pitch_name, absolute_pitch_octave))
+            octave_transposition = 0
+        absolute_pitch_octave = initial_pitch.octave.number + octave_transposition
+        return _pitch.NamedPitch((pitch_name, absolute_pitch_octave))
+
+    @staticmethod
+    def _transpose_default_absolute_pitch(pitch, default_pitch):
         pitch_octave = pitch.octave.number
         base_octave = 3
         if pitch_octave == base_octave:
-            return absolute_pitch
-        absolute_pitch.octave.number = (
-            absolute_pitch.octave.number + pitch_octave - base_octave
-        )
-        return absolute_pitch
+            return default_pitch
+        octave_transposition = pitch_octave - base_octave
+        transposed_octave = default_pitch.octave.number + octave_transposition
+        return _pitch.NamedPitch((pitch.pitch_class.name, transposed_octave))
+
+    def _to_relative_octave(self, pitch, reference):
+        default_pitch = self._get_default_absolute_pitch(pitch, reference)
+        return self._transpose_default_absolute_pitch(pitch, default_pitch)
 
 
 class LilyPondEvent:
