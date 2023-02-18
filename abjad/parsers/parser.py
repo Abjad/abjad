@@ -1311,7 +1311,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
-                    
+
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -2353,7 +2353,7 @@ class LilyPondLexicalDefinition:
 
         optional = False
         for predicate in signature:
-            
+
             if predicate == "optional?":
                 optional = True
                 continue
