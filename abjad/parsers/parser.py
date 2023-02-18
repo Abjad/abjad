@@ -536,27 +536,29 @@ class GuileProxy:
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
         interval = reference_pc_number - pitch_pc_number
-        closest_pitch_is_lower = interval % 7 > 3
-        reference_octave = reference.octave.number
-        absolute_pitch = _pitch.NamedPitch((pitch.pitch_class.name, reference_octave))
-        absolute_pitch_is_higher = absolute_pitch > reference
+        default_direction_is_higher = interval % 7 <= 3
+        pitch_name = pitch.pitch_class.name
+        default_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
+        default_pitch_is_higher = default_pitch > reference
+        is_same_letter_name = interval == 0
         if (
-            interval == 0
-            and reference.accidental < pitch.accidental
-            or interval != 0
-            and closest_pitch_is_lower
-        ) and not absolute_pitch_is_higher:
+            is_same_letter_name
+            and pitch.accidental > reference.accidental
+            or not is_same_letter_name
+            and not default_direction_is_higher
+        ) and not default_pitch_is_higher:
             offset = 1
         elif (
-            interval == 0
-            and reference.accidental > pitch.accidental
-            or interval != 0
-            and not closest_pitch_is_lower
-        ) and absolute_pitch_is_higher:
+            is_same_letter_name
+            and pitch.accidental < reference.accidental
+            or not is_same_letter_name
+            and default_direction_is_higher
+        ) and default_pitch_is_higher:
             offset = -1
         else:
             offset = 0
-        absolute_pitch.octave.number = absolute_pitch.octave.number + offset
+        absolute_pitch_octave = default_pitch.octave.number + offset
+        absolute_pitch = _pitch.NamedPitch((pitch_name, absolute_pitch_octave))
         pitch_octave = pitch.octave.number
         if pitch_octave == 3:
             return absolute_pitch
@@ -967,7 +969,6 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
-
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1015,7 +1016,6 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 return result
 
         if t is None:
-
             # --! DEBUG
             # debug.error('Error  : %s',
             #             ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
@@ -1309,7 +1309,6 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
-
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1357,7 +1356,6 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 return result
 
         if t is None:
-
             # --! DEBUG
             debug.error(
                 "Error  : %s",
@@ -2341,7 +2339,6 @@ class LilyPondLexicalDefinition:
         return "SCM_IDENTIFIER"
 
     def push_signature(self, signature, t):
-
         token = lex.LexToken()
         token.type = "EXPECT_NO_MORE_ARGS"
         token.value = None
@@ -2351,7 +2348,6 @@ class LilyPondLexicalDefinition:
 
         optional = False
         for predicate in signature:
-
             if predicate == "optional?":
                 optional = True
                 continue
