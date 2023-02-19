@@ -532,40 +532,45 @@ class GuileProxy:
             annotation = {"UnrelativableMusic": True}
             _bind.attach(annotation, music)
 
-    def _to_relative_octave(self, pitch, reference):
-        if pitch.pitch_class.number > reference.pitch_class.number:
-            pair = (pitch.pitch_class.name, reference.octave.number)
-            up_pitch = _pitch.NamedPitch(pair)
-            pair = (pitch.pitch_class.name, reference.octave.number - 1)
-            down_pitch = _pitch.NamedPitch(pair)
-            up_octave = up_pitch.octave.number
-            down_octave = down_pitch.octave.number
+    @staticmethod
+    def _get_default_absolute_pitch(pitch, reference):
+        pitch_name = pitch.pitch_class.name
+        reference_octave = reference.octave.number
+        absolute_pitch = _pitch.NamedPitch((pitch_name, reference_octave))
+        reference_pc_number = reference._get_diatonic_pc_number()
+        pitch_pc_number = pitch._get_diatonic_pc_number()
+        number_of_diatonic_pitches = 7
+        diatonic_interval_up = (
+            pitch_pc_number - reference_pc_number
+        ) % number_of_diatonic_pitches
+        diatonic_interval_down = (
+            number_of_diatonic_pitches - diatonic_interval_up
+        ) % number_of_diatonic_pitches
+        expect_higher_than_reference = (
+            diatonic_interval_up < diatonic_interval_down
+            or diatonic_interval_up == diatonic_interval_down
+            and pitch.accidental > reference.accidental
+        )
+        if expect_higher_than_reference and absolute_pitch < reference:
+            octave_transposition = 1
+        elif not expect_higher_than_reference and absolute_pitch > reference:
+            octave_transposition = -1
         else:
-            pair = (pitch.pitch_class.name, reference.octave.number + 1)
-            up_pitch = _pitch.NamedPitch(pair)
-            pair = (pitch.pitch_class.name, reference.octave.number)
-            down_pitch = _pitch.NamedPitch(pair)
-            up_octave = up_pitch.octave.number
-            down_octave = down_pitch.octave.number
-        if abs(
-            float(up_pitch._get_diatonic_pitch_number())
-            - float(reference._get_diatonic_pitch_number())
-        ) < abs(
-            float(down_pitch._get_diatonic_pitch_number())
-            - float(reference._get_diatonic_pitch_number())
-        ):
-            pair = (
-                up_pitch.pitch_class.name,
-                up_octave + pitch.octave.number - 3,
-            )
-            pitch = _pitch.NamedPitch(pair)
-        else:
-            pair = (
-                down_pitch.pitch_class.name,
-                down_octave + pitch.octave.number - 3,
-            )
-            pitch = _pitch.NamedPitch(pair)
-        return pitch
+            octave_transposition = 0
+        absolute_pitch.octave.number += octave_transposition
+        return absolute_pitch
+
+    @staticmethod
+    def _apply_octave_transposition(pitch, absolute_pitch):
+        base_octave = 3
+        octave_transposition = pitch.octave.number - base_octave
+        absolute_pitch.octave.number += octave_transposition
+        return absolute_pitch
+
+    @classmethod
+    def _to_relative_octave(cls, pitch, reference):
+        default_absolute_pitch = cls._get_default_absolute_pitch(pitch, reference)
+        return cls._apply_octave_transposition(pitch, default_absolute_pitch)
 
 
 class LilyPondEvent:
