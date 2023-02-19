@@ -538,11 +538,16 @@ class GuileProxy:
         absolute_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
-        diatonic_interval_up = (pitch_pc_number - reference_pc_number) % 7
-        diatonic_interval_down = (7 - diatonic_interval_up) % 7
+        number_of_diatonic_pitches = 7
+        diatonic_interval_up = (
+            pitch_pc_number - reference_pc_number
+        ) % number_of_diatonic_pitches
+        diatonic_interval_down = (
+            number_of_diatonic_pitches - diatonic_interval_up
+        ) % number_of_diatonic_pitches
         expect_higher_than_reference = (
             diatonic_interval_up < diatonic_interval_down
-            or diatonic_interval_up == 0
+            or diatonic_interval_up == diatonic_interval_down
             and pitch.accidental > reference.accidental
         )
         if expect_higher_than_reference and absolute_pitch < reference:
@@ -557,13 +562,15 @@ class GuileProxy:
     @staticmethod
     def _apply_octave_transposition(pitch, absolute_pitch):
         pitch_octave = pitch.octave.number
-        octave_transposition = pitch_octave - 3
+        base_octave = 3
+        octave_transposition = pitch_octave - base_octave
         absolute_pitch.octave.number += octave_transposition
         return absolute_pitch
 
-    def _to_relative_octave(self, pitch, reference):
-        default_absolute_pitch = self._get_default_absolute_pitch(pitch, reference)
-        return self._apply_octave_transposition(pitch, default_absolute_pitch)
+    @classmethod
+    def _to_relative_octave(cls, pitch, reference):
+        default_absolute_pitch = cls._get_default_absolute_pitch(pitch, reference)
+        return cls._apply_octave_transposition(pitch, default_absolute_pitch)
 
 
 class LilyPondEvent:
