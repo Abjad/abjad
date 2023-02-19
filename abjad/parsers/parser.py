@@ -535,7 +535,8 @@ class GuileProxy:
     @staticmethod
     def _get_default_absolute_pitch(pitch, reference):
         pitch_name = pitch.pitch_class.name
-        absolute_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
+        reference_octave = reference.octave.number
+        absolute_pitch = _pitch.NamedPitch((pitch_name, reference_octave))
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
         number_of_diatonic_pitches = 7
@@ -561,9 +562,8 @@ class GuileProxy:
 
     @staticmethod
     def _apply_octave_transposition(pitch, absolute_pitch):
-        pitch_octave = pitch.octave.number
         base_octave = 3
-        octave_transposition = pitch_octave - base_octave
+        octave_transposition = pitch.octave.number - base_octave
         absolute_pitch.octave.number += octave_transposition
         return absolute_pitch
 
