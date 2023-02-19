@@ -538,11 +538,15 @@ class GuileProxy:
         absolute_pitch = _pitch.NamedPitch((pitch_name, reference.octave.number))
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
-        diatonic_interval = pitch_pc_number - reference_pc_number
+        diatonic_interval_up = (pitch_pc_number - reference_pc_number) % 7
+        is_same_diatonic_pitch = diatonic_interval_up == 0
+        if is_same_diatonic_pitch:
+            diatonic_interval_down = diatonic_interval_up
+        else:
+            diatonic_interval_down = 7 - diatonic_interval_up
         expect_higher_than_reference = (
-            0 < diatonic_interval < 4
-            or diatonic_interval < -3
-            or diatonic_interval == 0
+            diatonic_interval_up < diatonic_interval_down
+            or is_same_diatonic_pitch
             and pitch.accidental > reference.accidental
         )
         if expect_higher_than_reference and absolute_pitch < reference:
