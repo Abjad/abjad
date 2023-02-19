@@ -2360,7 +2360,7 @@ class LilyPondLexicalDefinition:
 
         optional = False
         for predicate in signature:
-            
+
             if predicate == "optional?":
                 optional = True
                 continue
