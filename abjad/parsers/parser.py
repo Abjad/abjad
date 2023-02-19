@@ -539,14 +539,10 @@ class GuileProxy:
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
         diatonic_interval_up = (pitch_pc_number - reference_pc_number) % 7
-        is_same_diatonic_pitch = diatonic_interval_up == 0
-        if is_same_diatonic_pitch:
-            diatonic_interval_down = diatonic_interval_up
-        else:
-            diatonic_interval_down = 7 - diatonic_interval_up
+        diatonic_interval_down = (7 - diatonic_interval_up) % 7
         expect_higher_than_reference = (
             diatonic_interval_up < diatonic_interval_down
-            or is_same_diatonic_pitch
+            or diatonic_interval_up == 0
             and pitch.accidental > reference.accidental
         )
         if expect_higher_than_reference and absolute_pitch < reference:
@@ -973,7 +969,6 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
-
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1021,7 +1016,6 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 return result
 
         if t is None:
-
             # --! DEBUG
             # debug.error('Error  : %s',
             #             ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
@@ -1315,7 +1309,6 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 else:
-
                     # --! TRACKING
                     if tracking:
                         sym.lineno = lexer.lineno
@@ -1363,7 +1356,6 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
                 return result
 
         if t is None:
-
             # --! DEBUG
             debug.error(
                 "Error  : %s",
@@ -2347,7 +2339,6 @@ class LilyPondLexicalDefinition:
         return "SCM_IDENTIFIER"
 
     def push_signature(self, signature, t):
-
         token = lex.LexToken()
         token.type = "EXPECT_NO_MORE_ARGS"
         token.value = None
@@ -2357,7 +2348,6 @@ class LilyPondLexicalDefinition:
 
         optional = False
         for predicate in signature:
-
             if predicate == "optional?":
                 optional = True
                 continue
