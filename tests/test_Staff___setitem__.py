@@ -4,7 +4,6 @@ import abjad
 
 
 def test_Staff___setitem___01():
-
     staff = abjad.Staff(
         [
             abjad.Note("c'4"),

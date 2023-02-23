@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__contexts__with_blocks_01():
-
     target = abjad.Staff([])
 
     r"""

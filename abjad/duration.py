@@ -1,7 +1,6 @@
 import fractions
 import math
 import re
-import typing
 
 from . import exceptions as _exceptions
 from . import math as _math
@@ -77,13 +76,6 @@ class Duration(fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from nonreduced fraction:
-
-        >>> abjad.Duration(abjad.NonreducedFraction(6, 32))
-        Duration(3, 16)
-
-    ..  container:: example
-
         Durations inherit from built-in fraction:
 
         >>> isinstance(abjad.Duration(3, 16), fractions.Fraction)
@@ -122,8 +114,6 @@ class Duration(fractions.Fraction):
             argument = arguments[0]
             if type(argument) is class_:
                 return argument
-            if isinstance(argument, NonreducedFraction):
-                return fractions.Fraction.__new__(class_, *argument.pair)
             try:
                 return fractions.Fraction.__new__(class_, *argument)
             except (AttributeError, TypeError):
@@ -187,44 +177,24 @@ class Duration(fractions.Fraction):
             >>> duration_1 + duration_2
             Duration(2, 1)
 
-        ..  container:: example
-
-            Returns nonreduced fraction when ``arguments`` is a nonreduced
-            fraction:
-
-            >>> duration = abjad.Duration(1, 2)
-            >>> nonreduced_fraction = abjad.NonreducedFraction(3, 6)
-            >>> duration + nonreduced_fraction
-            NonreducedFraction(6, 6)
-
         Returns duration.
         """
-        if len(arguments) == 1 and isinstance(arguments[0], NonreducedFraction):
-            result = arguments[0].__radd__(self)
-        else:
-            result = type(self)(fractions.Fraction.__add__(self, *arguments))
+        result = type(self)(fractions.Fraction.__add__(self, *arguments))
         return result
 
-    def __div__(self, *arguments):
+    def __div__(self, *arguments) -> fractions.Fraction:
         """
         Divides duration by ``arguments``.
 
         ..  container:: example
 
-            >>> abjad.Duration(1) / abjad.NonreducedFraction(3, 3)
-            NonreducedFraction(3, 3)
+            >>> abjad.Duration(1) / abjad.Duration(3, 3)
+            Fraction(1, 1)
 
-
-        >>> abjad.NonreducedFraction(3, 3) / abjad.Duration(1)
-        NonreducedFraction(3, 3)
-
-        Returns multiplier.
         """
         if len(arguments) == 1 and isinstance(arguments[0], type(self)):
             fraction = fractions.Fraction.__truediv__(self, *arguments)
-            result = Multiplier(fraction)
-        elif len(arguments) == 1 and isinstance(arguments[0], NonreducedFraction):
-            result = arguments[0].__rdiv__(self)
+            result = fractions.Fraction(fraction)
         else:
             result = type(self)(fractions.Fraction.__truediv__(self, *arguments))
         return result
@@ -297,21 +267,9 @@ class Duration(fractions.Fraction):
             >>> duration_1 * duration_2
             Duration(3, 4)
 
-        ..  container:: example
-
-            Returns nonreduced fraction when ``argument`` is a nonreduced fraction:
-
-            >>> duration = abjad.Duration(1, 2)
-            >>> nonreduced_fraction = abjad.NonreducedFraction(3, 6)
-            >>> duration * nonreduced_fraction
-            NonreducedFraction(3, 12)
-
-        Returns duration or nonreduced fraction.
+        Returns duration.
         """
-        if isinstance(argument, NonreducedFraction):
-            result = argument.__rmul__(self)
-        else:
-            result = type(self)(fractions.Fraction.__mul__(self, argument))
+        result = type(self)(fractions.Fraction.__mul__(self, argument))
         return result
 
     def __ne__(self, argument) -> bool:
@@ -449,18 +407,12 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            >>> abjad.Duration(1, 2) - abjad.NonreducedFraction(2, 8)
-            NonreducedFraction(2, 8)
-
-            >>> abjad.NonreducedFraction(4, 8) - abjad.Duration(1, 4)
-            NonreducedFraction(2, 8)
+            >>> abjad.Duration(1, 2) - abjad.Duration(2, 8)
+            Duration(1, 4)
 
         Returns new duration.
         """
-        if len(arguments) == 1 and isinstance(arguments[0], NonreducedFraction):
-            return arguments[0].__rsub__(self)
-        else:
-            return type(self)(fractions.Fraction.__sub__(self, *arguments))
+        return type(self)(fractions.Fraction.__sub__(self, *arguments))
 
     def __truediv__(self, *arguments):
         """
@@ -469,24 +421,6 @@ class Duration(fractions.Fraction):
         return self.__div__(*arguments)
 
     ### PRIVATE METHODS ###
-
-    @staticmethod
-    def _group_by_implied_prolation(durations):
-        durations = [NonreducedFraction(duration) for duration in durations]
-        assert 0 < len(durations)
-        group = [durations[0]]
-        result = [group]
-        for d in durations[1:]:
-            d_f = set(_math.factors(d.denominator))
-            d_f.discard(2)
-            gd_f = set(_math.factors(group[0].denominator))
-            gd_f.discard(2)
-            if d_f == gd_f:
-                group.append(d)
-            else:
-                group = [d]
-                result.append(group)
-        return result
 
     @staticmethod
     def _initialize_from_lilypond_duration_string(duration_string):
@@ -547,13 +481,13 @@ class Duration(fractions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     try:
             ...         duration = abjad.Duration(n, 16)
-            ...         sixteenths = duration.with_denominator(16)
+            ...         sixteenths = abjad.duration.with_denominator(duration, 16)
             ...         dot_count = duration.dot_count
-            ...         string = f"{sixteenths!s}\t{dot_count}"
+            ...         string = f"{sixteenths[0]}/{sixteenths[1]}\t{dot_count}"
             ...         print(string)
             ...     except abjad.AssignabilityError:
-            ...         sixteenths = duration.with_denominator(16)
-            ...         print(f"{sixteenths!s}\t--")
+            ...         sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...         print(f"{sixteenths[0]}/{sixteenths[1]}\t--")
             ...
             1/16    0
             2/16    0
@@ -596,8 +530,8 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_assignable
-            ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}\t{result!s}")
+            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -637,8 +571,8 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_power_of_two
-            ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}\t{result!s}")
+            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -673,8 +607,8 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_assignable
-            ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}\t{result!s}")
+            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -715,8 +649,8 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_power_of_two
-            ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}\t{result!s}")
+            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
             2/16    1/8
@@ -750,25 +684,25 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     exponent = duration.exponent
-            ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}    {duration.exponent!s}")
+            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.exponent!s}")
             ...
-            1/16    4
-            2/16    3
-            3/16    3
-            4/16    2
-            5/16    2
-            6/16    2
-            7/16    2
-            8/16    1
-            9/16    1
-            10/16    1
-            11/16    1
-            12/16    1
-            13/16    1
-            14/16    1
-            15/16    1
-            16/16    0
+            1/16	4
+            2/16	3
+            3/16	3
+            4/16	2
+            5/16	2
+            6/16	2
+            7/16	2
+            8/16	1
+            9/16	1
+            10/16	1
+            11/16	1
+            12/16	1
+            13/16	1
+            14/16	1
+            15/16	1
+            16/16	0
 
         """
         return -int(math.floor(math.log(self, 2)))
@@ -784,8 +718,8 @@ class Duration(fractions.Fraction):
 
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(n, 64)
-            ...     sixty_fourths = duration.with_denominator(64)
-            ...     print(f"{sixty_fourths!s}\t{duration.flag_count}")
+            ...     sixty_fourths = abjad.duration.with_denominator(duration, 64)
+            ...     print(f"{sixty_fourths[0]}/{sixty_fourths[1]}\t{duration.flag_count}")
             ...
             1/64    4
             2/64    3
@@ -847,7 +781,7 @@ class Duration(fractions.Fraction):
         return int(exponent) == exponent
 
     @property
-    def implied_prolation(self):
+    def implied_prolation(self) -> fractions.Fraction:
         r"""
         Gets implied prolation.
 
@@ -877,10 +811,9 @@ class Duration(fractions.Fraction):
             1/15    8/15
             1/16    1
 
-        Returns multipler.
         """
         numerator = _math.greatest_power_of_two_less_equal(self.denominator)
-        return Multiplier(numerator, self.denominator)
+        return fractions.Fraction(numerator, self.denominator)
 
     @property
     def is_assignable(self) -> bool:
@@ -893,8 +826,8 @@ class Duration(fractions.Fraction):
 
             >>> for numerator in range(0, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
-            ...     sixteenths = duration.with_denominator(16)
-            ...     print(f"{sixteenths!s}\t{duration.is_assignable}")
+            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.is_assignable}")
             ...
             0/16    False
             1/16    True
@@ -1001,34 +934,27 @@ class Duration(fractions.Fraction):
     ### PUBLIC FUNCTIONS ###
 
     @staticmethod
-    def durations_to_nonreduced_fractions(
-        durations: list,
-    ) -> list["NonreducedFraction"]:
+    def durations_to_nonreduced_fractions(durations: list) -> list[tuple[int, int]]:
         """
-        Changes ``durations`` to nonreduced fractions sharing least common
-        denominator.
+        Changes ``durations`` to pairs sharing least common denominator.
 
         ..  container:: example
-
-            Changes durations to nonreduced fractions:
 
             >>> durations = [abjad.Duration(2, 4), 3, (5, 16)]
             >>> result = abjad.Duration.durations_to_nonreduced_fractions(durations)
             >>> for x in result:
             ...     x
             ...
-            NonreducedFraction(8, 16)
-            NonreducedFraction(48, 16)
-            NonreducedFraction(5, 16)
+            (8, 16)
+            (48, 16)
+            (5, 16)
 
         """
         durations_ = [Duration(_) for _ in durations]
         denominators = [_.denominator for _ in durations_]
         lcd = _math.least_common_multiple(*denominators)
-        nonreduced_fractions = [
-            NonreducedFraction(_).with_denominator(lcd) for _ in durations_
-        ]
-        return nonreduced_fractions
+        pairs = [with_denominator(_, lcd) for _ in durations_]
+        return pairs
 
     @staticmethod
     def from_clock_string(clock_string) -> "Duration":
@@ -1059,6 +985,35 @@ class Duration(fractions.Fraction):
         seconds = int(seconds)
         seconds = 60 * minutes + seconds
         return Duration(seconds)
+
+    @staticmethod
+    def from_dot_count(dot_count: int) -> "Duration":
+        """
+        Makes duration from ``dot_count``.
+
+        ..  container:: example
+
+            >>> abjad.Duration.from_dot_count(0)
+            Duration(1, 1)
+
+            >>> abjad.Duration.from_dot_count(1)
+            Duration(3, 2)
+
+            >>> abjad.Duration.from_dot_count(2)
+            Duration(7, 4)
+
+            >>> abjad.Duration.from_dot_count(3)
+            Duration(15, 8)
+
+            >>> abjad.Duration.from_dot_count(4)
+            Duration(31, 16)
+
+        """
+        assert isinstance(dot_count, int), repr(dot_count)
+        assert 0 <= dot_count, repr(dot_count)
+        denominator = 2**dot_count
+        numerator = 2 ** (dot_count + 1) - 1
+        return Duration(numerator, denominator)
 
     @staticmethod
     def from_lilypond_duration_string(
@@ -1099,6 +1054,18 @@ class Duration(fractions.Fraction):
         except Exception:
             return False
 
+    def normalized(self) -> bool:
+        """
+        Is true when duration is greater than ``1/2`` and less than ``2``.
+
+        ..  container:: example
+
+            >>> abjad.Duration(3, 2).normalized()
+            True
+
+        """
+        return type(self)(1, 2) < self < type(self)(2)
+
     def to_clock_string(self) -> str:
         r"""
         Changes duration to clock string.
@@ -1131,188 +1098,6 @@ class Duration(fractions.Fraction):
         seconds = str(int(self - minutes * 60)).zfill(2)
         clock_string = f"{minutes}'{seconds}''"
         return clock_string
-
-    def with_denominator(self, denominator) -> "NonreducedFraction":
-        """
-        Changes duration to nonreduced fraction with ``denominator``.
-
-        ..  container:: example
-
-            Changes duration to nonreduced fraction:
-
-            >>> duration = abjad.Duration(1, 4)
-            >>> for denominator in (4, 8, 16, 32):
-            ...     print(duration.with_denominator(denominator))
-            ...
-            1/4
-            2/8
-            4/16
-            8/32
-
-        """
-        nonreduced_fraction = NonreducedFraction(self)
-        return nonreduced_fraction.with_denominator(denominator)
-
-
-class Multiplier(Duration):
-    """
-    Multiplier.
-
-    ..  container:: example
-
-        Initializes from integer numerator:
-
-        >>> abjad.Multiplier(3)
-        Multiplier(3, 1)
-
-    ..  container:: example
-
-        Initializes from integer numerator and denominator:
-
-        >>> abjad.Multiplier(3, 16)
-        Multiplier(3, 16)
-
-    ..  container:: example
-
-        Initializes from integer-equivalent numeric numerator:
-
-        >>> abjad.Multiplier(3.0)
-        Multiplier(3, 1)
-
-    ..  container:: example
-
-        Initializes from integer-equivalent numeric numerator and denominator:
-
-        >>> abjad.Multiplier(3.0, 16)
-        Multiplier(3, 16)
-
-    ..  container:: example
-
-        Initializes from integer-equivalent singleton:
-
-        >>> abjad.Multiplier((3,))
-        Multiplier(3, 1)
-
-    ..  container:: example
-
-        Initializes from integer-equivalent pair:
-
-        >>> abjad.Multiplier((3, 16))
-        Multiplier(3, 16)
-
-    ..  container:: example
-
-        Initializes from other duration:
-
-        >>> abjad.Multiplier(abjad.Duration(3, 16))
-        Multiplier(3, 16)
-
-    ..  container:: example
-
-        Intializes from fraction:
-
-        >>> import fractions
-        >>> abjad.Multiplier(fractions.Fraction(3, 16))
-        Multiplier(3, 16)
-
-    ..  container:: example
-
-        Initializes from solidus string:
-
-        >>> abjad.Multiplier('3/16')
-        Multiplier(3, 16)
-
-    ..  container:: example
-
-        Initializes from nonreduced fraction:
-
-        >>> abjad.Multiplier(abjad.NonreducedFraction(6, 32))
-        Multiplier(3, 16)
-
-    ..  container:: example
-
-        Multipliers inherit from built-in fraction:
-
-        >>> isinstance(abjad.Multiplier(3, 16), fractions.Fraction)
-        True
-
-    ..  container:: example
-
-        Multipliers are numbers:
-
-        >>> import numbers
-
-        >>> isinstance(abjad.Multiplier(3, 16), numbers.Number)
-        True
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### DUMMY INITIALIZER ###
-
-    # dummy initializer so that mypy knows about _denominator, _numerator
-    def __init__(self, *arguments):
-        self._denominator = self._denominator
-        self._numerator = self._numerator
-        return None
-
-    ### SPECIAL METHODS ###
-
-    def __mul__(self, *arguments):
-        """
-        Multiplier times duration gives duration.
-        """
-        if len(arguments) == 1 and type(arguments[0]) is Duration:
-            return Duration(Duration.__mul__(self, *arguments))
-        else:
-            return Duration.__mul__(self, *arguments)
-
-    ### PUBLIC PROPERTIES ###
-
-    @staticmethod
-    def from_dot_count(dot_count: int) -> "Multiplier":
-        """
-        Makes multiplier from ``dot_count``.
-
-        ..  container:: example
-
-            >>> abjad.Multiplier.from_dot_count(0)
-            Multiplier(1, 1)
-
-            >>> abjad.Multiplier.from_dot_count(1)
-            Multiplier(3, 2)
-
-            >>> abjad.Multiplier.from_dot_count(2)
-            Multiplier(7, 4)
-
-            >>> abjad.Multiplier.from_dot_count(3)
-            Multiplier(15, 8)
-
-            >>> abjad.Multiplier.from_dot_count(4)
-            Multiplier(31, 16)
-
-        """
-        assert isinstance(dot_count, int), repr(dot_count)
-        assert 0 <= dot_count, repr(dot_count)
-        denominator = 2**dot_count
-        numerator = 2 ** (dot_count + 1) - 1
-        return Multiplier(numerator, denominator)
-
-    def normalized(self):
-        """
-        Is true when mutliplier is greater than ``1/2`` and less than ``2``.
-
-        ..  container:: example
-
-            >>> abjad.Multiplier(3, 2).normalized()
-            True
-
-        Returns true or false.
-        """
-        return type(self)(1, 2) < self < type(self)(2)
 
 
 class Offset(Duration):
@@ -1396,13 +1181,6 @@ class Offset(Duration):
         Initializes from solidus string:
 
         >>> abjad.Offset('3/16')
-        Offset((3, 16))
-
-    ..  container:: example
-
-        Initializes from nonreduced fraction:
-
-        >>> abjad.Offset(abjad.NonreducedFraction(6, 32))
         Offset((3, 16))
 
     ..  container:: example
@@ -1930,824 +1708,152 @@ class Offset(Duration):
         return self._displacement
 
 
-class NonreducedFraction(fractions.Fraction):
-    """
-    Nonreduced fraction.
-
-    ..  container:: example
-
-        Initializes with an integer numerator and integer denominator:
-
-        >>> abjad.NonreducedFraction(3, 6)
-        NonreducedFraction(3, 6)
-
-    ..  container:: example
-
-        Initializes with only an integer denominator:
-
-        >>> abjad.NonreducedFraction(3)
-        NonreducedFraction(3, 1)
-
-    ..  container:: example
-
-        Initializes with an integer pair:
-
-        >>> abjad.NonreducedFraction((3, 6))
-        NonreducedFraction(3, 6)
-
-    ..  container:: example
-
-        Initializes with an integer singleton:
-
-        >>> abjad.NonreducedFraction((3,))
-        NonreducedFraction(3, 1)
-
-    ..  container:: example
-
-        Nonreduced fractions inherit from built-in fraction:
-
-        >>> import fractions
-        >>> isinstance(abjad.NonreducedFraction(3, 6), fractions.Fraction)
-        True
-
-    ..  container:: example
-
-        Nonreduced fractions are numbers:
-
-        >>> import numbers
-
-        >>> isinstance(abjad.NonreducedFraction(3, 6), numbers.Number)
-        True
-
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### DUMMY INITIALIZER ###
-
-    # dummy initializer so that mypy knows about _denominator, _numerator
-    def __init__(self, *arguments):
-        self._denominator = self._denominator
-        self._numerator = self._numerator
-        return None
-
-    ### CONSTRUCTOR ###
-
-    # dummy docstring prevents Sphinx warnings
-    def __new__(class_, *arguments):
-        """
-        Constructs nonreduced fraction.
-        """
-        is_fraction_like = False
-        if len(arguments) == 1:
-            try:
-                numerator = arguments[0].numerator
-                denominator = arguments[0].denominator
-                is_fraction_like = True
-            except AttributeError:
-                pass
-        if is_fraction_like:
-            pass
-        elif len(arguments) == 1 and isinstance(arguments[0], int):
-            numerator = arguments[0]
-            denominator = 1
-        elif (
-            len(arguments) == 1
-            and isinstance(arguments[0], tuple)
-            and len(arguments[0]) == 1
-        ):
-            numerator = arguments[0][0]
-            denominator = 1
-        elif (
-            len(arguments) == 1
-            and isinstance(arguments[0], tuple)
-            and isinstance(arguments[0][0], int)
-            and isinstance(arguments[0][1], int)
-        ):
-            numerator, denominator = arguments[0]
-        elif len(arguments) == 1 and isinstance(arguments[0], str):
-            numerator, denominator = class_._parse_input_string(arguments[0])
-        elif (
-            isinstance(arguments, tuple)
-            and len(arguments) == 2
-            and isinstance(arguments[0], int)
-            and isinstance(arguments[1], int)
-        ):
-            numerator = arguments[0]
-            denominator = arguments[1]
-        elif len(arguments) == 0:
-            numerator = 0
-            denominator = 1
-        else:
-            raise ValueError(f"can not initialize {class_.__name__}: {arguments!r}.")
-        numerator *= _math.sign(denominator)
-        denominator = abs(denominator)
-        self = fractions.Fraction.__new__(class_, numerator, denominator)
-        self._numerator = numerator
-        self._denominator = denominator
-        return self
-
-    ### SPECIAL METHODS ###
-
-    def __abs__(self) -> "NonreducedFraction":
-        """
-        Gets absolute value of nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abs(abjad.NonreducedFraction(-3, 3))
-            NonreducedFraction(3, 3)
-
-        """
-        pair = (abs(self.numerator), self.denominator)
-        return type(self)(pair)
-
-    def __add__(self, argument):
-        """
-        Adds ``argument`` to nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) + 1
-            NonreducedFraction(6, 3)
-
-            >>> 1 + abjad.NonreducedFraction(3, 3)
-            NonreducedFraction(6, 3)
-
-        """
-        if isinstance(argument, int):
-            numerator = self.numerator + argument * self.denominator
-            pair = (numerator, self.denominator)
-            return type(self)(pair)
-        if getattr(argument, "denominator", "foo") == "foo":
-            raise ValueError(argument)
-        if self.denominator == argument.denominator:
-            numerator = self.numerator + argument.numerator
-            pair = (numerator, self.denominator)
-            return type(self)(pair)
-        else:
-            denominators = [self.denominator, argument.denominator]
-            denominator = _math.least_common_multiple(*denominators)
-            self_multiplier = denominator // self.denominator
-            argument_multiplier = denominator // argument.denominator
-            self_numerator = self_multiplier * self.numerator
-            argument_numerator = argument_multiplier * argument.numerator
-            pair = (self_numerator + argument_numerator, denominator)
-            return type(self)(pair)
-
-    def __copy__(self, *arguments) -> "NonreducedFraction":
-        """
-        Copies nonreduced fraction.
-
-        >>> import copy
-
-        ..  container:: example
-
-            >>> fraction_1 = abjad.NonreducedFraction(4, 6)
-            >>> fraction_2 = copy.copy(fraction_1)
-
-            >>> fraction_1
-            NonreducedFraction(4, 6)
-
-            >>> fraction_2
-            NonreducedFraction(4, 6)
-
-            >>> fraction_1 == fraction_2
-            True
-
-            >>> fraction_1 is fraction_2
-            False
-
-        """
-        return type(self)(self.pair)
-
-    def __deepcopy__(self, *arguments) -> "NonreducedFraction":
-        """
-        Deep copies nonreduced fraction.
-
-        >>> import copy
-
-        ..  container:: example
-
-            >>> fraction_1 = abjad.NonreducedFraction(4, 6)
-            >>> fraction_2 = copy.deepcopy(fraction_1)
-
-            >>> fraction_1
-            NonreducedFraction(4, 6)
-
-            >>> fraction_2
-            NonreducedFraction(4, 6)
-
-            >>> fraction_1 == fraction_2
-            True
-
-            >>> fraction_1 is fraction_2
-            False
-
-        """
-        return self.__copy__(*arguments)
-
-    def __div__(self, argument) -> "NonreducedFraction":
-        """
-        Divides nonreduced fraction by ``argument``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) / 1
-            NonreducedFraction(3, 3)
-
-        """
-        denominators = [self.denominator]
-        if isinstance(argument, type(self)):
-            denominators.append(argument.denominator)
-            argument = argument.reduce()
-        fraction = self.reduce() / argument
-        return self._fraction_with_denominator(fraction, max(denominators))
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when ``argument`` equals nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) == 1
-            True
-
-        """
-        return self.reduce() == argument
-
-    def __ge__(self, argument) -> bool:
-        """
-        Is true when nonreduced fraction is greater than or equal to
-        ``argument``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) >= 1
-            True
-
-        """
-        return self.reduce() >= argument
-
-    def __gt__(self, argument) -> bool:
-        """
-        Is true when nonreduced fraction is greater than ``argument``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) > 1
-            False
-
-        """
-        return self.reduce() > argument
-
-    def __hash__(self) -> int:
-        """
-        Hashes nonreduced fraction.
-        """
-        return super().__hash__()
-
-    def __le__(self, argument) -> bool:
-        """
-        Is true when nonreduced fraction is less than or equal to ``argument``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) <= 1
-            True
-
-        """
-        return self.reduce() <= argument
-
-    def __lt__(self, argument) -> bool:
-        """
-        Is true when nonreduced fraction is less than ``argument``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) < 1
-            False
-
-        Returns true or false.
-        """
-        return self.reduce() < argument
-
-    def __mul__(self, argument):
-        """
-        Multiplies nonreduced fraction by ``argument``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) * 3
-            NonreducedFraction(9, 3)
-
-        """
-        denominators = [self.denominator]
-        if isinstance(argument, type(self)):
-            denominators.append(argument.denominator)
-            argument = argument.reduce()
-        fraction = self.reduce() * argument
-        return self._fraction_with_denominator(fraction, max(denominators))
-
-    def __neg__(self) -> "NonreducedFraction":
-        """
-        Negates nonreduced fraction.
-
-        ..  container:: example
-
-            >>> -abjad.NonreducedFraction(3, 3)
-            NonreducedFraction(-3, 3)
-
-        """
-        pair = (-self.numerator, self.denominator)
-        return type(self)(pair)
-
-    def __pow__(self, argument):
-        """
-        Raises nonreduced fraction to ``argument``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 6) ** -1
-            NonreducedFraction(6, 3)
-
-        """
-        if argument == -1:
-            pair = (self.denominator, self.numerator)
-            return type(self)(pair)
-        return super().__pow__(argument)
-
-    def __radd__(self, argument):
-        """
-        Adds nonreduced fraction to ``argument``.
-
-        ..  container:: example
-
-            >>> 1 + abjad.NonreducedFraction(3, 3)
-            NonreducedFraction(6, 3)
-
-        """
-        return self + argument
-
-    def __rdiv__(self, argument) -> "NonreducedFraction":
-        """
-        Divides ``argument`` by nonreduced fraction.
-
-        ..  container:: example
-
-            >>> 1 / abjad.NonreducedFraction(3, 3)
-            NonreducedFraction(3, 3)
-
-        """
-        denominators = [self.denominator]
-        if isinstance(argument, type(self)):
-            denominators.append(argument.denominator)
-            argument = argument.reduce()
-        fraction = argument / self.reduce()
-        return self._fraction_with_denominator(fraction, max(denominators))
-
-    def __rtruediv__(self, argument):
-        """
-        Aliases __rdiv__
-        """
-        result = self.__rdiv__(argument)
-        return result
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation of nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 6)
-            NonreducedFraction(3, 6)
-
-        """
-        return f"{type(self).__name__}({self.numerator}, {self.denominator})"
-
-    def __rmul__(self, argument):
-        """
-        Multiplies ``argument`` by nonreduced fraction.
-
-        ..  container:: example
-
-            >>> 3 * abjad.NonreducedFraction(3, 3)
-            NonreducedFraction(9, 3)
-
-        """
-        return self * argument
-
-    def __rsub__(self, argument):
-        """
-        Subtracts nonreduced fraction from ``argument``.
-
-        ..  container:: example
-
-            >>> 1 - abjad.NonreducedFraction(3, 3)
-            NonreducedFraction(0, 3)
-
-        """
-        return -self + argument
-
-    def __str__(self) -> str:
-        """
-        Gets string representation of nonreduced fraction.
-
-        ..  container:: example
-
-            >>> fraction = abjad.NonreducedFraction(-6, 3)
-
-            >>> str(fraction)
-            '-6/3'
-
-        """
-        return f"{self.numerator}/{self.denominator}"
-
-    def __sub__(self, argument):
-        """
-        Subtracts ``argument`` from nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 3) - 2
-            NonreducedFraction(-3, 3)
-
-            >>> abjad.NonreducedFraction(5, 4) - abjad.NonreducedFraction(18, 16)
-            NonreducedFraction(2, 16)
-
-            >>> abjad.NonreducedFraction(18, 16) - abjad.NonreducedFraction(5, 4)
-            NonreducedFraction(-2, 16)
-
-        """
-        denominators = [self.denominator]
-        if isinstance(argument, type(self)):
-            denominators.append(argument.denominator)
-            argument = argument.reduce()
-        fraction = self.reduce() - argument
-        return self._fraction_with_denominator(fraction, max(denominators))
-
-    def __truediv__(self, argument):
-        """
-        Divides nonreduced fraction in Python 3.
-        """
-        return self.__div__(argument)
-
-    ### PRIVATE METHODS ###
-
-    def _fraction_with_denominator(self, fraction, denominator):
-        denominators = [denominator, fraction.denominator]
+def add_pairs(pair_1, pair_2):
+    assert isinstance(pair_1, tuple), repr(pair_1)
+    assert isinstance(pair_2, tuple), repr(pair_2)
+    if pair_1[1] == pair_2[1]:
+        numerator = pair_1[0] + pair_2[0]
+        pair = (numerator, pair_1[1])
+    else:
+        denominators = [pair_1[1], pair_2[1]]
         denominator = _math.least_common_multiple(*denominators)
-        result = type(self)(fraction)
-        result = result.with_denominator(denominator)
-        return result
+        self_multiplier = denominator // pair_1[1]
+        argument_multiplier = denominator // pair_2[1]
+        self_numerator = self_multiplier * pair_1[0]
+        argument_numerator = argument_multiplier * pair_2[0]
+        pair = (self_numerator + argument_numerator, denominator)
+    return pair
 
-    @staticmethod
-    def _parse_input_string(string):
-        if "/" in string:
-            numerator, denominator = string.split("/")
-            numerator = int(numerator)
-            denominator = int(denominator)
-        else:
-            numerator = int(string)
-            denominator = 1
-        return numerator, denominator
 
-    ### PUBLIC METHODS ###
+def divide_pair(pair, n) -> tuple[int, int]:
+    """
+    Divides ``pair`` by integer ``n``.
+    """
+    assert isinstance(pair, tuple), repr(pair)
+    fraction = fractions.Fraction(*pair) / n
+    denominator = _math.least_common_multiple(pair[1], fraction.denominator)
+    pair = with_denominator(fraction, denominator)
+    return pair
 
-    @staticmethod
-    def durations_to_nonreduced_fractions(
-        durations: list,
-    ) -> list["NonreducedFraction"]:
-        """
-        Changes ``durations`` to nonreduced fractions sharing least common
-        denominator.
 
-        ..  container:: example
+def durations(durations) -> list[Duration]:
+    """
+    Changes ``durations`` to durations.
 
-            Changes durations to nonreduced fractions:
+    ..  container:: example
 
-            >>> durations = [abjad.Duration(2, 4), 3, (5, 16)]
-            >>> class_ = abjad.NonreducedFraction
-            >>> result = class_.durations_to_nonreduced_fractions(durations)
-            >>> for x in result:
-            ...     x
-            ...
-            NonreducedFraction(8, 16)
-            NonreducedFraction(48, 16)
-            NonreducedFraction(5, 16)
+        >>> abjad.durations([(15, 8), (3, 8)])
+        [Duration(15, 8), Duration(3, 8)]
 
-        """
-        durations_ = [Duration(_) for _ in durations]
-        denominators = [_.denominator for _ in durations_]
-        lcd = _math.least_common_multiple(*denominators)
-        nonreduced_fractions = [
-            NonreducedFraction(_).with_denominator(lcd) for _ in durations_
-        ]
-        return nonreduced_fractions
+    """
+    durations = [Duration(_) for _ in durations]
+    return durations
 
-    def multiply(self, multiplier, preserve_numerator=False) -> "NonreducedFraction":
-        """
-        Multiplies nonreduced fraction by ``multiplier`` with numerator
-        preservation where possible.
 
-        ..  container:: example
+def pair(argument) -> tuple[int, int]:
+    """
+    Changes ``argument`` to pair.
 
-            >>> fraction = abjad.NonreducedFraction(9, 16)
+    ..  container:: example
 
-            >>> fraction.multiply((2, 3), preserve_numerator=True)
-            NonreducedFraction(9, 24)
+        >>> abjad.duration.pair((3, 6))
+        (3, 6)
 
-            >>> fraction.multiply((1, 2), preserve_numerator=True)
-            NonreducedFraction(9, 32)
+        >>> abjad.duration.pair(abjad.Fraction(3, 6))
+        (1, 2)
 
-            >>> fraction.multiply((5, 6), preserve_numerator=True)
-            NonreducedFraction(45, 96)
+        >>> abjad.duration.pair(abjad.Duration(3, 6))
+        (1, 2)
 
-            >>> fraction = abjad.NonreducedFraction(3, 8)
+        >>> abjad.duration.pair(abjad.Offset((3, 6)))
+        (1, 2)
 
-            >>> fraction.multiply((2, 3), preserve_numerator=True)
-            NonreducedFraction(3, 12)
+        >>> abjad.duration.pair(abjad.TimeSignature((3, 6)))
+        (3, 6)
 
-        """
-        if preserve_numerator:
-            multiplier = fractions.Fraction(*multiplier)
-            self_denominator = self.denominator
-            candidate_result_denominator = self_denominator / multiplier
-            if candidate_result_denominator.denominator == 1:
-                pair = (self.numerator, candidate_result_denominator.numerator)
-                return type(self)(pair)
-            else:
-                denominator = candidate_result_denominator.denominator
-                result_numerator = self.numerator * denominator
-                result_denominator = candidate_result_denominator.numerator
-                pair = (result_numerator, result_denominator)
-                return type(self)(pair)
-        else:
-            return multiplier * self
+    """
+    if hasattr(argument, "numerator"):
+        return argument.numerator, argument.denominator
+    if isinstance(argument, tuple) and len(argument) == 2:
+        return argument[0], argument[1]
+    raise ValueError(argument)
 
-    def multiply_with_cross_cancelation(self, multiplier) -> "NonreducedFraction":
-        """
-        Multiplies nonreduced fraction by ``argument`` with cross-cancelation.
 
-        ..  container:: example
+def with_denominator(duration, denominator) -> tuple[int, int]:
+    """
+    Spells ``duration`` as pair with ``denominator``.
 
-            >>> fraction = abjad.NonreducedFraction(4, 8)
+    ..  container:: example
 
-            >>> fraction.multiply_with_cross_cancelation((2, 3))
-            NonreducedFraction(4, 12)
+        >>> abjad.duration.with_denominator(abjad.Duration(3, 6), 12)
+        (6, 12)
 
-            >>> fraction.multiply_with_cross_cancelation((4, 1))
-            NonreducedFraction(4, 2)
+    ..  container:: example
 
-            >>> fraction.multiply_with_cross_cancelation((3, 5))
-            NonreducedFraction(12, 40)
+        >>> for numerator in range(12):
+        ...     fraction = abjad.Fraction(numerator, 6)
+        ...     print(fraction, abjad.duration.with_denominator(fraction, 12))
+        ...
+        0 (0, 12)
+        1/6 (2, 12)
+        1/3 (4, 12)
+        1/2 (6, 12)
+        2/3 (8, 12)
+        5/6 (10, 12)
+        1 (12, 12)
+        7/6 (14, 12)
+        4/3 (16, 12)
+        3/2 (18, 12)
+        5/3 (20, 12)
+        11/6 (22, 12)
 
-            >>> fraction.multiply_with_cross_cancelation((6, 5))
-            NonreducedFraction(12, 20)
+        >>> for numerator in range(12):
+        ...     pair = (numerator, 6)
+        ...     print(pair, abjad.duration.with_denominator(pair, 8))
+        ...
+        (0, 6) (0, 8)
+        (1, 6) (1, 6)
+        (2, 6) (2, 6)
+        (3, 6) (4, 8)
+        (4, 6) (4, 6)
+        (5, 6) (5, 6)
+        (6, 6) (8, 8)
+        (7, 6) (7, 6)
+        (8, 6) (8, 6)
+        (9, 6) (12, 8)
+        (10, 6) (10, 6)
+        (11, 6) (11, 6)
 
-            >>> fraction = abjad.NonreducedFraction(5, 6)
-            >>> fraction.multiply_with_cross_cancelation((6, 5))
-            NonreducedFraction(1, 1)
+        >>> for numerator in range(12):
+        ...     pair = (numerator, 6)
+        ...     print(pair, abjad.duration.with_denominator(pair, 12))
+        ...
+        (0, 6) (0, 12)
+        (1, 6) (2, 12)
+        (2, 6) (4, 12)
+        (3, 6) (6, 12)
+        (4, 6) (8, 12)
+        (5, 6) (10, 12)
+        (6, 6) (12, 12)
+        (7, 6) (14, 12)
+        (8, 6) (16, 12)
+        (9, 6) (18, 12)
+        (10, 6) (20, 12)
+        (11, 6) (22, 12)
 
-        """
-        multiplier = fractions.Fraction(*multiplier)
-        self_numerator_factors = _math.factors(self.numerator)
-        multiplier_denominator_factors = _math.factors(multiplier.denominator)
-        for factor in multiplier_denominator_factors[:]:
-            if factor in self_numerator_factors:
-                self_numerator_factors.remove(factor)
-                multiplier_denominator_factors.remove(factor)
-        self_denominator_factors = _math.factors(self.denominator)
-        multiplier_numerator_factors = _math.factors(multiplier.numerator)
-        for factor in multiplier_numerator_factors[:]:
-            if factor in self_denominator_factors:
-                self_denominator_factors.remove(factor)
-                multiplier_numerator_factors.remove(factor)
-        result_numerator_factors = self_numerator_factors + multiplier_numerator_factors
-        result_denominator_factors = (
-            self_denominator_factors + multiplier_denominator_factors
+    """
+    if isinstance(duration, tuple):
+        current_numerator, current_denominator = duration
+    else:
+        current_numerator, current_denominator = (
+            duration.numerator,
+            duration.denominator,
         )
-        result_numerator = 1
-        for factor in result_numerator_factors:
-            result_numerator *= factor
-        result_denominator = 1
-        for factor in result_denominator_factors:
-            result_denominator *= factor
-        pair = (result_numerator, result_denominator)
-        return type(self)(pair)
-
-    def multiply_without_reducing(self, argument) -> "NonreducedFraction":
-        """
-        Multiplies nonreduced fraction by ``argument`` without reducing.
-
-        ..  container:: example
-
-            >>> fraction = abjad.NonreducedFraction(3, 8)
-
-            >>> fraction.multiply_without_reducing((3, 3))
-            NonreducedFraction(9, 24)
-
-            >>> fraction = abjad.NonreducedFraction(4, 8)
-
-            >>> fraction.multiply_without_reducing((4, 5))
-            NonreducedFraction(16, 40)
-
-            >>> fraction.multiply_without_reducing((3, 4))
-            NonreducedFraction(12, 32)
-
-        """
-        argument = type(self)(argument)
-        numerator = self.numerator * argument.numerator
-        denominator = self.denominator * argument.denominator
-        pair = (numerator, denominator)
-        return type(self)(pair)
-
-    def reduce(self) -> fractions.Fraction:
-        """
-        Reduces nonreduced fraction.
-
-        ..  container:: example
-
-            >>> fraction = abjad.NonreducedFraction(-6, 3)
-
-            >>> fraction.reduce()
-            Fraction(-2, 1)
-
-        """
-        return fractions.Fraction(self.numerator, self.denominator)
-
-    def with_denominator(self, denominator) -> "NonreducedFraction":
-        """
-        Returns new nonreduced fraction with integer ``denominator``.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(3, 6).with_denominator(12)
-            NonreducedFraction(6, 12)
-
-        ..  container:: example
-
-            >>> for numerator in range(12):
-            ...     fraction = abjad.NonreducedFraction(numerator, 6)
-            ...     print(fraction, fraction.with_denominator(12))
-            ...
-            0/6 0/12
-            1/6 2/12
-            2/6 4/12
-            3/6 6/12
-            4/6 8/12
-            5/6 10/12
-            6/6 12/12
-            7/6 14/12
-            8/6 16/12
-            9/6 18/12
-            10/6 20/12
-            11/6 22/12
-
-            >>> for numerator in range(12):
-            ...     fraction = abjad.NonreducedFraction(numerator, 6)
-            ...     print(fraction, fraction.with_denominator(8))
-            ...
-            0/6 0/8
-            1/6 1/6
-            2/6 2/6
-            3/6 4/8
-            4/6 4/6
-            5/6 5/6
-            6/6 8/8
-            7/6 7/6
-            8/6 8/6
-            9/6 12/8
-            10/6 10/6
-            11/6 11/6
-
-            >>> for numerator in range(12):
-            ...     fraction = abjad.NonreducedFraction(numerator, 6)
-            ...     print(fraction, fraction.with_denominator(12))
-            ...
-            0/6 0/12
-            1/6 2/12
-            2/6 4/12
-            3/6 6/12
-            4/6 8/12
-            5/6 10/12
-            6/6 12/12
-            7/6 14/12
-            8/6 16/12
-            9/6 18/12
-            10/6 20/12
-            11/6 22/12
-
-        """
-        current_numerator, current_denominator = self.pair
-        multiplier = fractions.Fraction(denominator, current_denominator)
-        new_numerator = multiplier * current_numerator
-        new_denominator = multiplier * current_denominator
-        if new_numerator.denominator == 1 and new_denominator.denominator == 1:
-            pair = (new_numerator.numerator, new_denominator.numerator)
-        else:
-            pair = (current_numerator, current_denominator)
-        return type(self)(pair)
-
-    def with_multiple_of_denominator(self, denominator) -> "NonreducedFraction":
-        """
-        Returns new nonreduced fraction with multiple of integer
-        ``denominator``.
-
-        ..  container:: example
-
-            >>> fraction = abjad.NonreducedFraction(3, 6)
-
-            >>> fraction.with_multiple_of_denominator(5)
-            NonreducedFraction(5, 10)
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(2)
-            NonreducedFraction(1, 2)
-
-            >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(4)
-            NonreducedFraction(2, 4)
-
-            >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(8)
-            NonreducedFraction(4, 8)
-
-            >>> abjad.NonreducedFraction(1, 2).with_multiple_of_denominator(16)
-            NonreducedFraction(8, 16)
-
-        """
-        result = self.with_denominator(denominator)
-        while not result.denominator == denominator:
-            denominator *= 2
-            result = result.with_denominator(denominator)
-        return result
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def denominator(self):
-        """
-        Gets denominator of nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(-6, 3).denominator
-            3
-
-        """
-        return self._denominator
-
-    @property
-    def imag(self) -> typing.Literal[0]:
-        """
-        Gets zero because nonreduced fractions have no imaginary part.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(-6, 3).imag
-            0
-
-        """
-        return 0
-
-    @property
-    def numerator(self) -> int:
-        """
-        Gets numerator of nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(-6, 3).numerator
-            -6
-
-        """
-        return self._numerator
-
-    @property
-    def pair(self) -> tuple[int, int]:
-        """
-        Gets (numerator, denominator) pair of nonreduced fraction.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(-6, 3).pair
-            (-6, 3)
-
-        """
-        return self.numerator, self.denominator
-
-    @property
-    def real(self) -> "NonreducedFraction":
-        """
-        Gets nonreduced fraction because nonreduced fractions are their own
-        real component.
-
-        ..  container:: example
-
-            >>> abjad.NonreducedFraction(-6, 3).real
-            NonreducedFraction(-6, 3)
-
-        """
-        return self
+    multiplier = fractions.Fraction(denominator, current_denominator)
+    new_numerator = multiplier * current_numerator
+    new_denominator = multiplier * current_denominator
+    if new_numerator.denominator == 1 and new_denominator.denominator == 1:
+        pair = (new_numerator.numerator, new_denominator.numerator)
+    else:
+        pair = (current_numerator, current_denominator)
+    return pair

@@ -2,7 +2,6 @@ import abjad
 
 
 def test_NoteHeadList___len___01():
-
     assert len(abjad.Chord("<>4").note_heads) == 0
     assert len(abjad.Chord("<ef'>4").note_heads) == 1
     assert len(abjad.Chord("<ef' cs''>4").note_heads) == 2

@@ -9,5 +9,5 @@ def test_Tuplet___init___01():
     tuplet = abjad.Tuplet()
 
     assert abjad.lilypond(tuplet) == "\\times 2/3\n{\n}"
-    assert tuplet.multiplier == abjad.Multiplier(2, 3)
+    assert tuplet.multiplier == (2, 3)
     assert not len(tuplet)

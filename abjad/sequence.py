@@ -10,7 +10,6 @@ import typing
 from . import cyclictuple as _cyclictuple
 from . import enums as _enums
 from . import math as _math
-from . import ratio as _ratio
 
 
 def _partition_sequence_cyclically_by_weights_at_least(
@@ -140,6 +139,7 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
 def partition_by_counts(
     sequence,
     counts,
+    *,
     cyclic=False,
     enchain=False,
     overhang=False,
@@ -635,7 +635,7 @@ def partition_by_counts(
     return result
 
 
-def partition_by_ratio_of_lengths(sequence, ratio) -> list:
+def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
     r"""
     Partitions sequence by ``ratio`` of lengths.
 
@@ -644,7 +644,7 @@ def partition_by_ratio_of_lengths(sequence, ratio) -> list:
         Partitions sequence by ``1:1:1`` ratio:
 
         >>> numbers = list(range(10))
-        >>> ratio = abjad.Ratio((1, 1, 1))
+        >>> ratio = (1, 1, 1)
 
         >>> for part in abjad.sequence.partition_by_ratio_of_lengths(numbers, ratio):
         ...     part
@@ -657,7 +657,7 @@ def partition_by_ratio_of_lengths(sequence, ratio) -> list:
         Partitions sequence by ``1:1:2`` ratio:
 
         >>> numbers = list(range(10))
-        >>> ratio = abjad.Ratio((1, 1, 2))
+        >>> ratio = (1, 1, 2)
 
         >>> for part in abjad.sequence.partition_by_ratio_of_lengths(numbers, ratio):
         ...     part
@@ -667,9 +667,9 @@ def partition_by_ratio_of_lengths(sequence, ratio) -> list:
 
     Returns list of sequences.
     """
-    ratio = _ratio.Ratio(ratio)
+    assert isinstance(ratio, tuple), repr(ratio)
     length = len(sequence)
-    counts = ratio.partition_integer(length)
+    counts = _math.partition_integer_by_ratio(length, ratio)
     parts = partition_by_counts(sequence, counts, cyclic=False, overhang=_enums.EXACT)
     return parts
 
@@ -680,7 +680,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([1, 1, 1])
+        >>> ratio = (1, 1, 1)
         >>> sequence = list(10 * [1])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -692,7 +692,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([1, 1, 1, 1])
+        >>> ratio = (1, 1, 1, 1)
         >>> sequence = list(10 * [1])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -705,7 +705,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([2, 2, 3])
+        >>> ratio = (2, 2, 3)
         >>> sequence = list(10 * [1])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -717,7 +717,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([3, 2, 2])
+        >>> ratio = (3, 2, 2)
         >>> sequence = list(10 * [1])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -729,7 +729,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([1, 1])
+        >>> ratio = (1, 1)
         >>> items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
         >>> sequence = list(items)
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
@@ -741,7 +741,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([1, 1, 1])
+        >>> ratio = (1, 1, 1)
         >>> items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
         >>> sequence = list(items)
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
@@ -754,7 +754,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([1, 1, 1])
+        >>> ratio = (1, 1, 1)
         >>> sequence = list([5, 5])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -766,7 +766,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([1, 1, 1, 1])
+        >>> ratio = (1, 1, 1, 1)
         >>> sequence = list([5, 5])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -779,7 +779,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([2, 2, 3])
+        >>> ratio = (2, 2, 3)
         >>> sequence = list([5, 5])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -791,7 +791,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     ..  container:: example
 
-        >>> ratio = abjad.Ratio([3, 2, 2])
+        >>> ratio = (3, 2, 2)
         >>> sequence = list([5, 5])
         >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
         >>> for item in sequence:
@@ -806,7 +806,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
     Returns list of sequences.
     """
     list_weight = _math.weight(sequence)
-    weights_parts = _ratio.Ratio(weights).partition_integer(list_weight)
+    weights_parts = _math.partition_integer_by_ratio(list_weight, weights)
     cumulative_weights = _math.cumulative_sums(weights_parts, start=None)
     items = []
     sublist: list[typing.Any] = []
@@ -1092,7 +1092,7 @@ def partition_by_weights(
     return result
 
 
-def split(sequence, weights, cyclic=False, overhang=False) -> list:
+def split(sequence, weights, *, cyclic=False, overhang=False) -> list:
     r"""
     Splits sequence by ``weights``.
 
@@ -1152,14 +1152,14 @@ def split(sequence, weights, cyclic=False, overhang=False) -> list:
 
     ..  container:: example
 
-        REGRESSION. Splits sequence of nonreduced fractions cyclically by weights
-        with overhang:
+        REGRESSION. Splits sequence of durations cyclically by weights
+        with overhang; then expresses durations as pairs with denominator:
 
         >>> sequence = list([
-        ...     abjad.NonreducedFraction(20, 2),
-        ...     abjad.NonreducedFraction(-20, 2),
-        ...     abjad.NonreducedFraction(20, 2),
-        ...     abjad.NonreducedFraction(-20, 2),
+        ...     abjad.Duration(20, 2),
+        ...     abjad.Duration(-20, 2),
+        ...     abjad.Duration(20, 2),
+        ...     abjad.Duration(-20, 2),
         ... ])
 
         >>> for part in abjad.sequence.split(
@@ -1168,14 +1168,14 @@ def split(sequence, weights, cyclic=False, overhang=False) -> list:
         ...     cyclic=True,
         ...     overhang=True,
         ... ):
-        ...     part
+        ...     [abjad.duration.with_denominator(_, 2) for _ in part]
         ...
-        [NonreducedFraction(6, 2)]
-        [NonreducedFraction(14, 2), NonreducedFraction(-16, 2)]
-        [NonreducedFraction(-4, 2), NonreducedFraction(2, 2)]
-        [NonreducedFraction(6, 2)]
-        [NonreducedFraction(12, 2), NonreducedFraction(-18, 2)]
-        [NonreducedFraction(-2, 2)]
+        [(6, 2)]
+        [(14, 2), (-16, 2)]
+        [(-4, 2), (2, 2)]
+        [(6, 2)]
+        [(12, 2), (-18, 2)]
+        [(-2, 2)]
 
     Returns list of sequences.
     """
@@ -1267,7 +1267,7 @@ def _flatten_helper(sequence, classes, depth):
                 yield item_
 
 
-def flatten(sequence, classes=None, depth=1):
+def flatten(sequence, *, classes=None, depth=1):
     r"""
     Flattens ``sequence``.
 
@@ -1378,7 +1378,7 @@ def has_duplicates(sequence):
     return len(set(sequence)) < len(sequence)
 
 
-def is_decreasing(sequence, strict=True) -> bool:
+def is_decreasing(sequence, *, strict=True) -> bool:
     """
     Is true when sequence decreases.
 
@@ -1439,7 +1439,7 @@ def is_decreasing(sequence, strict=True) -> bool:
             return False
 
 
-def is_increasing(sequence, strict=True) -> bool:
+def is_increasing(sequence, *, strict=True) -> bool:
     """
     Is true when sequence increases.
 
@@ -1500,7 +1500,7 @@ def is_increasing(sequence, strict=True) -> bool:
             return False
 
 
-def is_permutation(sequence, length=None) -> bool:
+def is_permutation(sequence, *, length=None) -> bool:
     """
     Is true when sequence is a permutation.
 
@@ -1575,7 +1575,7 @@ def join(sequence):
     return type(sequence)([item])
 
 
-def nwise(sequence, n=2, cyclic=False, wrapped=False) -> typing.Iterator:
+def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
     """
     Iterates ``sequence`` ``n`` at a time.
 
@@ -1897,7 +1897,7 @@ def repeat(sequence, n=1) -> list:
     return sequences
 
 
-def repeat_to_length(sequence, length=None, start=0):
+def repeat_to_length(sequence, length=None, *, start=0):
     """
     Repeats ``sequence`` to ``length``.
 
@@ -1934,7 +1934,7 @@ def repeat_to_length(sequence, length=None, start=0):
     return type(sequence)(items[start:stop_index])
 
 
-def repeat_to_weight(sequence, weight, allow_total=_enums.EXACT):
+def repeat_to_weight(sequence, weight, *, allow_total=_enums.EXACT):
     """
     Repeats sequence to ``weight``.
 
@@ -1955,13 +1955,13 @@ def repeat_to_weight(sequence, weight, allow_total=_enums.EXACT):
         >>> abjad.sequence.repeat_to_weight([5, -5, -5], 23, allow_total=abjad.LESS)
         [5, -5, -5, 5]
 
-        >>> sequence = [abjad.NonreducedFraction(3, 16)]
-        >>> weight = abjad.NonreducedFraction(5, 4)
+        >>> sequence = [abjad.Duration(3, 16)]
+        >>> weight = abjad.Duration(5, 4)
         >>> sequence = abjad.sequence.repeat_to_weight(sequence, weight)
         >>> sum(sequence)
-        NonreducedFraction(20, 16)
+        Duration(5, 4)
 
-        >>> [_.pair for _ in sequence]
+        >>> [abjad.duration.with_denominator(_, 16) for _ in sequence]
         [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
 
     Returns sequence type.
@@ -2154,7 +2154,7 @@ def retain_pattern(sequence, pattern):
     return type(sequence)(items)
 
 
-def reverse(sequence, recurse=False):
+def reverse(sequence, *, recurse=False):
     r"""
     Reverses sequence.
 
@@ -2235,7 +2235,7 @@ def rotate(sequence, n=0):
     return type(sequence)(items)
 
 
-def sum_by_sign(sequence, sign=(-1, 0, 1)):
+def sum_by_sign(sequence, *, sign=(-1, 0, 1)):
     """
     Sums consecutive sequence items by ``sign``.
 
@@ -2285,7 +2285,7 @@ def sum_by_sign(sequence, sign=(-1, 0, 1)):
     return type(sequence)(items)
 
 
-def truncate(sequence, sum_=None, weight=None):
+def truncate(sequence, *, sum_=None, weight=None):
     """
     Truncates sequence.
 
@@ -2410,7 +2410,7 @@ def weight(sequence) -> typing.Any:
     return sum(weights)
 
 
-def zip(sequences, cyclic=False, truncate=True) -> list[tuple]:
+def zip(sequences, *, cyclic=False, truncate=True) -> list[tuple]:
     """
     Zips sequences in sequence.
 

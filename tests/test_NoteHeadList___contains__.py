@@ -2,7 +2,6 @@ import abjad
 
 
 def test_NoteHeadList___contains___01():
-
     chord = abjad.Chord("<ef' cs'' f''>4")
 
     assert 17 not in chord.note_heads
@@ -14,7 +13,6 @@ def test_NoteHeadList___contains___01():
 
 
 def test_NoteHeadList___contains___02():
-
     chord = abjad.Chord("<ef' cs'' f''>4")
 
     assert 18 not in chord.note_heads

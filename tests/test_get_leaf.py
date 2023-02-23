@@ -2,7 +2,6 @@ import abjad
 
 
 def test_get_leaf_01():
-
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )

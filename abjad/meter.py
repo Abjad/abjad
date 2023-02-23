@@ -3,6 +3,7 @@ Tools for modeling musical meter.
 """
 import bisect
 import collections
+import fractions
 
 import uqbar.graphs
 
@@ -258,24 +259,24 @@ class Meter:
 
     def __init__(
         self,
-        argument=None,
+        argument=(4, 4),
         increase_monotonic=None,
         preferred_boundary_depth=None,
     ):
-        argument = argument or (4, 4)
         assert isinstance(preferred_boundary_depth, int | type(None))
         self._preferred_boundary_depth = preferred_boundary_depth
 
         def recurse(node, factors, denominator, increase_monotonic):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                preprolated_duration = node.preprolated_duration.__div__(factor)
-                # if factor in (2, 3, 4, 5):
+                assert isinstance(factor, int), repr(factor)
+                assert isinstance(node.preprolated_duration, tuple)
+                pair = _duration.divide_pair(node.preprolated_duration, factor)
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
                             child = _rhythmtrees.RhythmTreeContainer(
-                                preprolated_duration=preprolated_duration
+                                preprolated_duration=pair
                             )
                             node.append(child)
                             recurse(child, factors, denominator, increase_monotonic)
@@ -296,13 +297,14 @@ class Meter:
                             parts.insert(0, 2)
                         total += 2
                     for part in parts:
+                        assert isinstance(part, int)
                         grouping = _rhythmtrees.RhythmTreeContainer(
-                            preprolated_duration=part * preprolated_duration
+                            preprolated_duration=(part * pair[0], pair[1])
                         )
                         if factors:
                             for _ in range(part):
                                 child = _rhythmtrees.RhythmTreeContainer(
-                                    preprolated_duration=preprolated_duration
+                                    preprolated_duration=pair
                                 )
                                 grouping.append(child)
                                 recurse(
@@ -325,7 +327,7 @@ class Meter:
                         _rhythmtrees.RhythmTreeLeaf(
                             preprolated_duration=(1, denominator)
                         )
-                        for _ in range(node.preprolated_duration.numerator)
+                        for _ in range(node.pair[0])
                     ]
                 )
 
@@ -349,26 +351,22 @@ class Meter:
                 root = argument
             for node in [root] + list(root.depth_first()):
                 assert node.prolation == 1
-            numerator = root.preprolated_duration.numerator
-            denominator = root.preprolated_duration.denominator
+            numerator, denominator = root.pair
         elif is_fraction_like or isinstance(argument, tuple):
             if isinstance(argument, tuple):
-                fraction = _duration.NonreducedFraction(argument)
+                numerator, denominator = argument
             else:
-                fraction = _duration.NonreducedFraction(
-                    argument.numerator, argument.denominator
-                )
-            numerator, denominator = fraction.numerator, fraction.denominator
+                numerator, denominator = argument.pair
+            pair = (numerator, denominator)
             factors = _math.factors(numerator)
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = _rhythmtrees.RhythmTreeContainer(preprolated_duration=fraction)
+            root = _rhythmtrees.RhythmTreeContainer(preprolated_duration=pair)
             recurse(root, factors, denominator, increase_monotonic)
         else:
             name = type(self).__name__
             raise ValueError(f"can not initialize {name}: {argument!r}.")
-
         self._root_node = root
         self._numerator = numerator
         self._denominator = denominator
@@ -520,6 +518,7 @@ class Meter:
         """
 
         def make_offset_node(offset, leaf_one=None, leaf_two=None, is_last=False):
+            offset = _duration.Offset(offset)
             if not is_last:
                 offset_node = uqbar.graphs.Node(
                     attributes={
@@ -567,7 +566,7 @@ class Meter:
         leaves = [_ for _ in nodes if not hasattr(_, "children")]
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
-            graphviz_node.attributes["label"] = str(node.preprolated_duration)
+            graphviz_node.attributes["label"] = node._get_fraction_string()
             if isinstance(node, _rhythmtrees.RhythmTreeContainer):
                 graphviz_node.attributes["shape"] = "triangle"
             else:
@@ -612,14 +611,14 @@ class Meter:
                 >>> for pair in meter:
                 ...    pair
                 ...
-                (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
-                (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
-                (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
-                (NonreducedFraction(0, 4), NonreducedFraction(3, 4))
-                (NonreducedFraction(3, 4), NonreducedFraction(4, 4))
-                (NonreducedFraction(4, 4), NonreducedFraction(5, 4))
-                (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
-                (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
+                ((0, 4), (1, 4))
+                ((1, 4), (2, 4))
+                ((2, 4), (3, 4))
+                ((0, 4), (3, 4))
+                ((3, 4), (4, 4))
+                ((4, 4), (5, 4))
+                ((3, 4), (5, 4))
+                ((0, 4), (5, 4))
 
         Yields pairs.
         """
@@ -636,10 +635,10 @@ class Meter:
 
         result = recurse(self.root_node)
         for node in result:
-            start_offset = _duration.NonreducedFraction(node.start_offset)
-            start_offset = start_offset.with_denominator(self.denominator)
-            stop_offset = _duration.NonreducedFraction(node.stop_offset)
-            stop_offset = stop_offset.with_denominator(self.denominator)
+            pair = _duration.with_denominator(node.start_offset, self.denominator)
+            start_offset = pair
+            pair = _duration.with_denominator(node.stop_offset, self.denominator)
+            stop_offset = pair
             yield start_offset, stop_offset
 
     def __repr__(self) -> str:
@@ -707,11 +706,11 @@ class Meter:
         return _duration.Duration(self.numerator, self.denominator)
 
     @property
-    def fraction(self):
+    def fraction_string(self):
         """
-        Gets nonreduced fraction.
+        Gets fraction string.
         """
-        return _duration.NonreducedFraction(self.pair)
+        return f"{self.pair[0]}/{self.pair[1]}"
 
     @property
     def implied_time_signature(self):
@@ -801,7 +800,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 4))
             ...     string = True if meter.is_compound else ''
-            ...     print(str(meter.fraction), string)
+            ...     print(str(meter.fraction_string), string)
             ...
             1/4
             2/4
@@ -823,7 +822,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 8))
             ...     string = True if meter.is_compound else ''
-            ...     print(str(meter.fraction), string)
+            ...     print(str(meter.fraction_string), string)
             ...
             1/8
             2/8
@@ -860,7 +859,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 4))
             ...     string = True if meter.is_simple else ''
-            ...     print(str(meter.fraction), string)
+            ...     print(str(meter.fraction_string), string)
             ...
             1/4     True
             2/4     True
@@ -882,7 +881,7 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     meter = abjad.Meter((numerator, 8))
             ...     string = True if meter.is_simple else ''
-            ...     print(str(meter.fraction), string)
+            ...     print(str(meter.fraction_string), string)
             ...
             1/8     True
             2/8     True
@@ -1137,7 +1136,7 @@ class Meter:
                 total += 1
         if normalize:
             for offset, response in kernel.items():
-                kernel[offset] = _duration.Multiplier(response, total)
+                kernel[offset] = fractions.Fraction(response, total)
         return MetricAccentKernel(kernel)
 
     @staticmethod
@@ -2413,12 +2412,10 @@ class Meter:
                     [_._get_preprolated_duration() for _ in item]
                 )
                 if preprolated_duration.numerator == 1:
-                    preprolated_duration = _duration.NonreducedFraction(
-                        preprolated_duration
+                    pair = _duration.with_denominator(
+                        preprolated_duration, 4 * preprolated_duration.denominator
                     )
-                    preprolated_duration = preprolated_duration.with_denominator(
-                        preprolated_duration.denominator * 4
-                    )
+                    preprolated_duration = pair
                 sub_metrical_hierarchy = Meter(preprolated_duration)
                 sub_boundary_depth = 1
                 if boundary_depth is None:
@@ -2684,7 +2681,7 @@ class MetricAccentKernel:
         >>> hierarchy = abjad.Meter((7, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
-        MetricAccentKernel(kernel={Offset((0, 1)): Multiplier(3, 14), Offset((7, 8)): Multiplier(3, 14), Offset((3, 8)): Multiplier(1, 7), Offset((5, 8)): Multiplier(1, 7), Offset((1, 8)): Multiplier(1, 14), Offset((1, 4)): Multiplier(1, 14), Offset((1, 2)): Multiplier(1, 14), Offset((3, 4)): Multiplier(1, 14)})
+        MetricAccentKernel(kernel={Offset((0, 1)): Fraction(3, 14), Offset((7, 8)): Fraction(3, 14), Offset((3, 8)): Fraction(1, 7), Offset((5, 8)): Fraction(1, 7), Offset((1, 8)): Fraction(1, 14), Offset((1, 4)): Fraction(1, 14), Offset((1, 2)): Fraction(1, 14), Offset((3, 4)): Fraction(1, 14)})
 
     Call the kernel against an expression from which offsets can be counted to receive an
     impulse-response:
@@ -2693,7 +2690,7 @@ class MetricAccentKernel:
 
         >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
         >>> kernel(offsets)
-        Multiplier(1, 2)
+        Fraction(1, 2)
 
     """
 
@@ -2708,7 +2705,7 @@ class MetricAccentKernel:
         assert isinstance(kernel, dict)
         for key, value in kernel.items():
             assert isinstance(key, _duration.Offset)
-            assert isinstance(value, _duration.Multiplier)
+            assert isinstance(value, fractions.Fraction)
         self._kernel = kernel.copy()
         self._offsets = tuple(sorted(self._kernel))
 
@@ -2724,12 +2721,12 @@ class MetricAccentKernel:
 
         >>> kernel = abjad.MetricAccentKernel.from_meter((4, 4))
         >>> kernel(score)
-        Multiplier(10, 33)
+        Fraction(10, 33)
 
         Returns float.
         """
         offset_count = self.count_offsets(argument)
-        response = _duration.Multiplier(0, 1)
+        response = fractions.Fraction(0, 1)
         for offset, count in offset_count.items.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]

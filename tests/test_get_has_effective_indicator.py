@@ -2,7 +2,6 @@ import abjad
 
 
 def test_get_has_effective_indicator_01():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.attach("foo", staff[2], context="Staff")
 

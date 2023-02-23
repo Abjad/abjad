@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__contexts__StaffGroup_01():
-
     target = abjad.StaffGroup([])
 
     assert abjad.lilypond(target) == abjad.string.normalize(

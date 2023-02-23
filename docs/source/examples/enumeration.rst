@@ -32,7 +32,9 @@ The following functions recreate Malt's results in Abjad:
     ...     ratio = inner * [1]
     ...     maker = abjad.makers.tuplet_from_duration_and_ratio
     ...     inner_tuplet = maker(duration, ratio)
-    ...     inner_tuplet.multiplier = inner_tuplet.multiplier.with_denominator(inner)
+    ...     multiplier = abjad.Fraction(*inner_tuplet.multiplier)
+    ...     pair = abjad.duration.with_denominator(multiplier, inner)
+    ...     inner_tuplet.multiplier = pair
     ...     inner_tuplet.hide = inner_tuplet.trivial()
     ...     if retrograde:
     ...         contents = [inner_tuplet, lone_note]

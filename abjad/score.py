@@ -195,7 +195,7 @@ class Component:
         if self._parent is None:
             return duration
         for parent in self._parent._get_parentage():
-            multiplier = getattr(parent, "implied_prolation", _duration.Multiplier(1))
+            multiplier = getattr(parent, "implied_prolation", fractions.Fraction(1))
             duration *= multiplier
         return duration
 
@@ -587,7 +587,7 @@ class Leaf(Component):
         strings = []
         strings.append(self.written_duration.lilypond_duration_string)
         if self.multiplier is not None:
-            strings.append(str(self.multiplier))
+            strings.append(f"{self.multiplier[0]}/{self.multiplier[1]}")
         if hasattr(self._parent, "_leaf_multiplier"):
             multiplier = self._parent._leaf_multiplier()
             if multiplier is not None:
@@ -598,7 +598,7 @@ class Leaf(Component):
     def _get_multiplied_duration(self):
         if self.written_duration:
             if self.multiplier is not None:
-                duration = self.multiplier * self.written_duration
+                duration = _duration.Duration(self.multiplier) * self.written_duration
                 return _duration.Duration(duration)
             return _duration.Duration(self.written_duration)
 
@@ -633,11 +633,8 @@ class Leaf(Component):
 
     ### PUBLIC PROPERTIES ###
 
-    # TODO: restrict to NonreducedFraction | None
     @property
-    def multiplier(
-        self,
-    ) -> _duration.Multiplier | _duration.NonreducedFraction | None:
+    def multiplier(self) -> tuple[int, int] | None:
         """
         Gets multiplier.
         """
@@ -645,11 +642,12 @@ class Leaf(Component):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, _duration.NonreducedFraction | type(None)):
-            multiplier = argument
+        if argument is None:
+            self._multiplier = None
         else:
-            multiplier = _duration.Multiplier(argument)
-        self._multiplier = multiplier
+            assert isinstance(argument, tuple), repr(argument)
+            assert len(argument) == 2, repr(argument)
+            self._multiplier = argument
 
     @property
     def written_duration(self) -> _duration.Duration:
@@ -2559,7 +2557,7 @@ class Chord(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
+        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -3285,7 +3283,7 @@ class MultimeasureRest(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
+        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         if len(arguments) == 0:
@@ -4082,7 +4080,7 @@ class Note(Leaf):
 
             >>> string = abjad.lilypond(note)
             >>> print(string)
-            cs''4 * 1
+            cs''4 * 1/1
 
         >>> new_note = abjad.Note(note)
         >>> abjad.show(new_note) # doctest: +SKIP
@@ -4091,7 +4089,7 @@ class Note(Leaf):
 
             >>> string = abjad.lilypond(new_note)
             >>> print(string)
-            cs''4 * 1
+            cs''4 * 1/1
 
     ..  container:: example
 
@@ -4114,7 +4112,7 @@ class Note(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
+        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         assert len(arguments) in (0, 1, 2)
@@ -4395,7 +4393,7 @@ class Rest(Leaf):
         written_duration=None,
         *,
         language: str = "english",
-        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
+        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         original_input = written_duration
@@ -4589,7 +4587,7 @@ class Skip(Leaf):
         self,
         *arguments,
         language: str = "english",
-        multiplier: _duration.Multiplier | _duration.NonreducedFraction | None = None,
+        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         input_leaf = None
@@ -4881,7 +4879,7 @@ class TremoloContainer(Container):
         return self._count
 
     @property
-    def implied_prolation(self) -> _duration.Multiplier:
+    def implied_prolation(self) -> fractions.Fraction:
         r"""
         Gets implied prolation of tremolo container.
 
@@ -4893,11 +4891,11 @@ class TremoloContainer(Container):
             >>> abjad.show(tremolo_container) # doctest: +SKIP
 
             >>> tremolo_container.implied_prolation
-            Multiplier(2, 1)
+            Fraction(2, 1)
 
         """
-        multiplier = _duration.Multiplier(self.count)
-        return multiplier
+        fraction = fractions.Fraction(self.count)
+        return fraction
 
 
 class Tuplet(Container):
@@ -5128,8 +5126,13 @@ class Tuplet(Container):
         if isinstance(multiplier, str) and ":" in multiplier:
             strings = multiplier.split(":")
             numbers = [int(_) for _ in strings]
-            multiplier = _duration.NonreducedFraction(numbers[1], numbers[0])
-        self.multiplier = multiplier
+            pair = numbers[1], numbers[0]
+        elif isinstance(multiplier, tuple):
+            pair = multiplier[0], multiplier[1]
+        else:
+            message = f"tuplet multiplier must be pair or string (not {multiplier!r})."
+            raise ValueError(message)
+        self.multiplier = pair
         self.denominator = denominator
         self.force_fraction = force_fraction
         self.hide = hide
@@ -5205,7 +5208,7 @@ class Tuplet(Container):
         if (
             self.augmentation()
             or not self._is_dyadic_rational()
-            or self.multiplier.denominator == 1
+            or self.multiplier[1] == 1
             or self.force_fraction
         ):
             return r"\tweak text #tuplet-number::calc-fraction-text"
@@ -5248,9 +5251,10 @@ class Tuplet(Container):
         return result
 
     def _get_compact_representation(self):
+        n, d = self.multiplier
         if not self:
-            return f"{{ {self.multiplier!s} }}"
-        return f"{{ {self.multiplier!s} {self._get_contents_summary()} }}"
+            return f"{{ {n}/{d} }}"
+        return f"{{ {n}/{d} {self._get_contents_summary()} }}"
 
     def _get_edge_height_tweak_string(self):
         duration = self._get_preprolated_duration()
@@ -5259,21 +5263,16 @@ class Tuplet(Container):
             return r"\tweak edge-height #'(0.7 . 0)"
 
     def _get_multiplier_fraction_string(self):
+        numerator, denominator = self.multiplier
         if self.denominator is not None:
-            inverse_multiplier = _duration.Multiplier(
-                self.multiplier.denominator, self.multiplier.numerator
-            )
-            nonreduced_fraction = _duration.NonreducedFraction(inverse_multiplier)
-            nonreduced_fraction = nonreduced_fraction.with_denominator(self.denominator)
-            denominator, numerator = nonreduced_fraction.pair
-        else:
-            numerator = self.multiplier.numerator
-            denominator = self.multiplier.denominator
+            inverse_multiplier = fractions.Fraction(denominator, numerator)
+            pair = _duration.with_denominator(inverse_multiplier, self.denominator)
+            denominator, numerator = pair
         return f"{numerator}/{denominator}"
 
     def _is_dyadic_rational(self):
         if self.multiplier:
-            numerator = self.multiplier.numerator
+            numerator = self.multiplier[0]
             return _math.is_nonnegative_integer_power_of_two(numerator)
         else:
             return True
@@ -5282,19 +5281,15 @@ class Tuplet(Container):
         return self.multiplied_duration
 
     def _get_ratio_string(self):
-        multiplier = self.multiplier
-        if multiplier is not None:
-            numerator = multiplier.numerator
-            denominator = multiplier.denominator
+        if self.multiplier is not None:
+            numerator, denominator = self.multiplier
             ratio_string = f"{denominator}:{numerator}"
             return ratio_string
         else:
             return None
 
     def _get_scale_durations_command_string(self):
-        multiplier = _duration.Multiplier(self.multiplier)
-        numerator = multiplier.numerator
-        denominator = multiplier.denominator
+        numerator, denominator = self.multiplier
         string = rf"\scaleDurations #'({numerator} . {denominator})"
         return string
 
@@ -5309,7 +5304,7 @@ class Tuplet(Container):
         return string
 
     def _scale(self, multiplier):
-        multiplier = _duration.Multiplier(multiplier)
+        multiplier = fractions.Fraction(multiplier)
         for component in self[:]:
             if isinstance(component, Leaf):
                 component._scale(multiplier)
@@ -5342,7 +5337,7 @@ class Tuplet(Container):
             '3:2'
 
         """
-        numerator, denominator = self.multiplier.pair
+        numerator, denominator = self.multiplier
         return f"{denominator}:{numerator}"
 
     @property
@@ -5659,7 +5654,7 @@ class Tuplet(Container):
         self._hide = argument
 
     @property
-    def implied_prolation(self) -> _duration.Multiplier:
+    def implied_prolation(self) -> fractions.Fraction:
         r"""
         Gets implied prolation of tuplet.
 
@@ -5669,10 +5664,10 @@ class Tuplet(Container):
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.implied_prolation
-            Multiplier(2, 3)
+            Fraction(2, 3)
 
         """
-        return _duration.Multiplier(self.multiplier)
+        return fractions.Fraction(*self.multiplier)
 
     @property
     def multiplied_duration(self) -> _duration.Duration:
@@ -5689,10 +5684,12 @@ class Tuplet(Container):
             Duration(1, 4)
 
         """
-        return _duration.Duration(self.multiplier * self._get_contents_duration())
+        multiplier = fractions.Fraction(*self.multiplier)
+        contents_duration = self._get_contents_duration()
+        return _duration.Duration(multiplier * contents_duration)
 
     @property
-    def multiplier(self) -> _duration.NonreducedFraction:
+    def multiplier(self) -> tuple[int, int]:
         r"""
         Gets and sets multiplier of tuplet.
 
@@ -5704,13 +5701,13 @@ class Tuplet(Container):
                 >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.multiplier
-            NonreducedFraction(2, 3)
+            (2, 3)
 
         ..  container:: example
 
             Sets tuplet multiplier:
 
-                >>> tuplet.multiplier = abjad.Multiplier(4, 3)
+                >>> tuplet.multiplier = (4, 3)
                 >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5730,16 +5727,13 @@ class Tuplet(Container):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, int | fractions.Fraction):
-            multiplier = _duration.NonreducedFraction(argument)
-        elif isinstance(argument, tuple):
-            multiplier = _duration.NonreducedFraction(argument)
+        if isinstance(argument, tuple):
+            assert len(argument) == 2, repr(argument)
         else:
-            raise ValueError(f"can not set tuplet multiplier: {argument!r}.")
-        if 0 < multiplier:
-            self._multiplier = multiplier
-        else:
-            raise ValueError(f"tuplet multiplier must be positive: {argument!r}.")
+            raise ValueError(f"tuplet multiplier must be pair, not {argument!r}.")
+        if fractions.Fraction(*argument) <= 0:
+            raise ValueError(f"tuplet multiplier must be positive, not {argument!r}.")
+        self._multiplier = argument
 
     @property
     def tag(self) -> _tag.Tag | None:
@@ -5862,7 +5856,7 @@ class Tuplet(Container):
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
-            self.multiplier = multiplier
+            self.multiplier = _duration.pair(multiplier)
             assert self._get_duration() == old_duration
 
     def augmentation(self) -> bool:
@@ -5901,7 +5895,7 @@ class Tuplet(Container):
 
         """
         if self.multiplier:
-            return 1 < self.multiplier
+            return 1 < fractions.Fraction(*self.multiplier)
         else:
             return False
 
@@ -5941,7 +5935,7 @@ class Tuplet(Container):
 
         """
         if self.multiplier:
-            return self.multiplier < 1
+            return fractions.Fraction(*self.multiplier) < 1
         else:
             return False
 
@@ -6039,7 +6033,7 @@ class Tuplet(Container):
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
-            self.multiplier = multiplier
+            self.multiplier = _duration.pair(multiplier)
             assert self._get_duration() == old_duration
 
     @staticmethod
@@ -6071,10 +6065,10 @@ class Tuplet(Container):
         if not len(components):
             raise Exception(f"components must be nonempty: {components!r}.")
         target_duration = _duration.Duration(duration)
-        tuplet = Tuplet(1, components, tag=tag)
+        tuplet = Tuplet((1, 1), components, tag=tag)
         contents_duration = tuplet._get_duration()
         multiplier = target_duration / contents_duration
-        tuplet.multiplier = multiplier
+        tuplet.multiplier = _duration.pair(multiplier)
         return tuplet
 
     def normalize_multiplier(self) -> None:
@@ -6097,7 +6091,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> abjad.Multiplier(tuplet.multiplier).normalized()
+            >>> abjad.Duration(tuplet.multiplier).normalized()
             False
 
             >>> tuplet.normalize_multiplier()
@@ -6114,7 +6108,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> abjad.Multiplier(tuplet.multiplier).normalized()
+            >>> abjad.Duration(tuplet.multiplier).normalized()
             True
 
         ..  container:: example
@@ -6134,7 +6128,7 @@ class Tuplet(Container):
                     e'32
                 }
 
-            >>> abjad.Multiplier(tuplet.multiplier).normalized()
+            >>> abjad.Duration(tuplet.multiplier).normalized()
             False
 
             >>> tuplet.normalize_multiplier()
@@ -6152,7 +6146,7 @@ class Tuplet(Container):
                     e'16
                 }
 
-            >>> abjad.Multiplier(tuplet.multiplier).normalized()
+            >>> abjad.Duration(tuplet.multiplier).normalized()
             True
 
         ..  container:: example
@@ -6172,7 +6166,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> abjad.Multiplier(tuplet.multiplier).normalized()
+            >>> abjad.Duration(tuplet.multiplier).normalized()
             False
 
             >>> tuplet.normalize_multiplier()
@@ -6183,20 +6177,21 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 10/12
+                \times 5/6
                 {
                     c'8
                     d'8
                     e'8
                 }
 
-            >>> abjad.Multiplier(tuplet.multiplier).normalized()
+            >>> abjad.Duration(tuplet.multiplier).normalized()
             True
 
         """
         # find tuplet multiplier
-        integer_exponent = int(math.log(self.multiplier, 2))
-        leaf_multiplier = _duration.Multiplier(2) ** integer_exponent
+        multiplier = fractions.Fraction(*self.multiplier)
+        integer_exponent = int(math.log(multiplier, 2))
+        leaf_multiplier = fractions.Fraction(2) ** integer_exponent
         # scale leaves in tuplet by power of two
         for component in self:
             if isinstance(component, Leaf):
@@ -6204,9 +6199,11 @@ class Tuplet(Container):
                 new_written_duration = leaf_multiplier * old_written_duration
                 multiplier = new_written_duration / old_written_duration
                 component._scale(multiplier)
-        numerator, denominator = leaf_multiplier.pair
-        multiplier = _duration.Multiplier(denominator, numerator)
-        self.multiplier *= multiplier
+        numerator, denominator = _duration.pair(leaf_multiplier)
+        multiplier = fractions.Fraction(denominator, numerator)
+        multiplier *= fractions.Fraction(*self.multiplier)
+        pair = multiplier.numerator, multiplier.denominator
+        self.multiplier = pair
 
     def rest_filled(self) -> bool:
         r"""
@@ -6243,7 +6240,7 @@ class Tuplet(Container):
 
             Rewrites single dots as 3:2 prolation:
 
-            >>> tuplet = abjad.Tuplet(1, "c'8. c'8.")
+            >>> tuplet = abjad.Tuplet((1, 1), "c'8. c'8.")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6275,7 +6272,7 @@ class Tuplet(Container):
 
             Rewrites double dots as 7:4 prolation:
 
-            >>> tuplet = abjad.Tuplet(1, "c'8.. c'8..")
+            >>> tuplet = abjad.Tuplet((1, 1), "c'8.. c'8..")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6307,7 +6304,7 @@ class Tuplet(Container):
 
             Does nothing when dot counts differ:
 
-            >>> tuplet = abjad.Tuplet(1, "c'8. d'8. e'8")
+            >>> tuplet = abjad.Tuplet((1, 1), "c'8. d'8. e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6385,8 +6382,9 @@ class Tuplet(Container):
         global_dot_count = dot_counts.pop()
         if global_dot_count == 0:
             return
-        dot_multiplier = _duration.Multiplier.from_dot_count(global_dot_count)
-        self.multiplier *= dot_multiplier
+        dot_multiplier = _duration.Duration.from_dot_count(global_dot_count)
+        multiplier = fractions.Fraction(*self.multiplier) * dot_multiplier
+        self.multiplier = multiplier.pair
         dot_multiplier_reciprocal = dot_multiplier.reciprocal
         for component in self:
             component.written_duration *= dot_multiplier_reciprocal
@@ -6441,10 +6439,8 @@ class Tuplet(Container):
             self._get_preprolated_duration(),
             _duration.Duration(1, denominator),
         ]
-        nonreduced_fractions = _duration.Duration.durations_to_nonreduced_fractions(
-            durations
-        )
-        self.denominator = nonreduced_fractions[1].numerator
+        pairs = _duration.Duration.durations_to_nonreduced_fractions(durations)
+        self.denominator = pairs[1][0]
 
     def toggle_prolation(self) -> None:
         r"""
@@ -6526,7 +6522,7 @@ class Tuplet(Container):
 
             REGRESSION. Leaves trivial tuplets unchanged:
 
-            >>> tuplet = abjad.Tuplet(1, "c'4 d'4 e'4")
+            >>> tuplet = abjad.Tuplet((1, 1), "c'4 d'4 e'4")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6560,13 +6556,17 @@ class Tuplet(Container):
         """
         if self.diminution():
             while self.diminution():
-                self.multiplier *= 2
+                multiplier = 2 * fractions.Fraction(*self.multiplier)
+                pair = multiplier.numerator, multiplier.denominator
+                self.multiplier = pair
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component.written_duration /= 2
         elif self.augmentation():
             while not self.diminution():
-                self.multiplier /= 2
+                multiplier = fractions.Fraction(*self.multiplier) / 2
+                pair = multiplier.numerator, multiplier.denominator
+                self.multiplier = pair
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component.written_duration *= 2
@@ -6621,7 +6621,7 @@ class Tuplet(Container):
             False
 
         """
-        if self.multiplier != 1:
+        if self.multiplier != (1, 1):
             return False
         for component in self:
             if isinstance(component, Tuplet):
@@ -6740,7 +6740,8 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            duration = _duration.Duration(self.multiplier * component.written_duration)
+            fraction = fractions.Fraction(*self.multiplier) * component.written_duration
+            duration = _duration.Duration(fraction)
             if not duration.is_assignable:
                 return False
         return True
@@ -6785,12 +6786,15 @@ class Tuplet(Container):
             return
         for component in self:
             if isinstance(component, Tuplet):
-                component.multiplier *= self.multiplier
+                multiplier = fractions.Fraction(*component.multiplier)
+                multiplier *= fractions.Fraction(*self.multiplier)
+                pair = multiplier.numerator, multiplier.denominator
+                component.multiplier = pair
             elif isinstance(component, Leaf):
-                component.written_duration *= self.multiplier
+                component.written_duration *= fractions.Fraction(*self.multiplier)
             else:
                 raise TypeError(component)
-        self.multiplier = _duration.NonreducedFraction(1)
+        self.multiplier = (1, 1)
 
 
 class Voice(Context):

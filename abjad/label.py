@@ -826,10 +826,9 @@ def with_durations(
     """
     for logical_tie in _iterate.logical_ties(argument):
         duration = _getlib._get_duration(logical_tie, in_seconds=in_seconds)
-        if denominator is not None:
-            duration = _duration.NonreducedFraction(duration)
-            duration = duration.with_denominator(denominator)
         pair = duration.pair
+        if denominator is not None:
+            pair = _duration.with_denominator(duration, denominator)
         numerator, denominator = pair
         label = _indicators.Markup(rf"\markup \fraction {numerator} {denominator}")
         _attach(label, logical_tie.head, direction=direction)

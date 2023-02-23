@@ -44,7 +44,6 @@ class Types(enum.Enum):
 
 @dataclasses.dataclass(slots=True)
 class _ContributionsByType:
-
     articulations: list[str] = dataclasses.field(default_factory=list)
     commands: list[str] = dataclasses.field(default_factory=list)
     leak: list[str] = dataclasses.field(default_factory=list)

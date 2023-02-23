@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__indicators__MetronomeMark_01():
-
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     mark = abjad.MetronomeMark(textual_indication='"As fast as possible"')
     abjad.attach(mark, target[0][0], context="Staff")
@@ -30,7 +29,6 @@ def test_LilyPondParser__indicators__MetronomeMark_01():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_02():
-
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     leaves = abjad.select.leaves(target)
     mark = abjad.MetronomeMark((1, 4), 60)
@@ -59,7 +57,6 @@ def test_LilyPondParser__indicators__MetronomeMark_02():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_03():
-
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     leaves = abjad.select.leaves(target)
     mark = abjad.MetronomeMark((1, 4), (59, 63))
@@ -88,7 +85,6 @@ def test_LilyPondParser__indicators__MetronomeMark_03():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_04():
-
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     mark = abjad.MetronomeMark(
         reference_duration=(1, 4),
@@ -121,7 +117,6 @@ def test_LilyPondParser__indicators__MetronomeMark_04():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_05():
-
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     mark = abjad.MetronomeMark(
         reference_duration=(1, 16),

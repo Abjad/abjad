@@ -2,7 +2,6 @@ import abjad
 
 
 def test_Rest___cmp___01():
-
     rest_1 = abjad.Rest((1, 4))
     rest_2 = abjad.Rest((1, 4))
     rest_3 = abjad.Rest((1, 8))
@@ -13,7 +12,6 @@ def test_Rest___cmp___01():
 
 
 def test_Rest___cmp___02():
-
     rest_1 = abjad.Rest((1, 4))
     rest_2 = abjad.Rest((1, 4))
     rest_3 = abjad.Rest((1, 8))

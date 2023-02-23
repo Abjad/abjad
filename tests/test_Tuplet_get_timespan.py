@@ -2,7 +2,6 @@ import abjad
 
 
 def test_Tuplet_get_timespan_01():
-
     staff = abjad.Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
     leaves = abjad.select.leaves(staff)
     score = abjad.Score([staff])

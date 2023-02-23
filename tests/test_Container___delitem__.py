@@ -184,7 +184,7 @@ def test_Container___delitem___07():
     Deletes leaf from tuplet.
     """
 
-    tuplet = abjad.Tuplet(abjad.Multiplier((2, 3)), "c'8 [ d'8 e'8 ]")
+    tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
     del tuplet[1]
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(

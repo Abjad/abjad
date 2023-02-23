@@ -903,10 +903,6 @@ def attach(  # noqa: 302
     if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
 
-    if isinstance(nonbundle_attachable, _duration.Multiplier):
-        message = "use the Leaf.multiplier property to multiply leaf duration."
-        raise Exception(message)
-
     assert nonbundle_attachable is not None, repr(nonbundle_attachable)
     assert target is not None, repr(target)
 

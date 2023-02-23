@@ -2,10 +2,7 @@ import abjad
 
 
 def test_makers_tuplet_from_ratio_and_pair_01():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 4)), abjad.NonreducedFraction(6, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4), (6, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -21,10 +18,7 @@ def test_makers_tuplet_from_ratio_and_pair_01():
 
 
 def test_makers_tuplet_from_ratio_and_pair_02():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 1, 2, 4)), abjad.NonreducedFraction(6, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, 2, 4), (6, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -41,10 +35,7 @@ def test_makers_tuplet_from_ratio_and_pair_02():
 
 
 def test_makers_tuplet_from_ratio_and_pair_03():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((-2, 3, 7)), abjad.NonreducedFraction(7, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((-2, 3, 7), (7, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -60,10 +51,7 @@ def test_makers_tuplet_from_ratio_and_pair_03():
 
 
 def test_makers_tuplet_from_ratio_and_pair_04():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((7, 7, -4, -1)), abjad.NonreducedFraction(1, 4)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((7, 7, -4, -1), (1, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -79,10 +67,7 @@ def test_makers_tuplet_from_ratio_and_pair_04():
 
 
 def test_makers_tuplet_from_ratio_and_pair_05():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(12, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (12, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -98,10 +83,7 @@ def test_makers_tuplet_from_ratio_and_pair_05():
 
 
 def test_makers_tuplet_from_ratio_and_pair_06():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(12, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (12, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -117,10 +99,7 @@ def test_makers_tuplet_from_ratio_and_pair_06():
 
 
 def test_makers_tuplet_from_ratio_and_pair_07():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((4, 8, 8)), abjad.NonreducedFraction(12, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((4, 8, 8), (12, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -136,10 +115,7 @@ def test_makers_tuplet_from_ratio_and_pair_07():
 
 
 def test_makers_tuplet_from_ratio_and_pair_08():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((8, 16, 16)), abjad.NonreducedFraction(12, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((8, 16, 16), (12, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -155,10 +131,7 @@ def test_makers_tuplet_from_ratio_and_pair_08():
 
 
 def test_makers_tuplet_from_ratio_and_pair_09():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(3, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (3, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -174,10 +147,7 @@ def test_makers_tuplet_from_ratio_and_pair_09():
 
 
 def test_makers_tuplet_from_ratio_and_pair_10():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(6, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (6, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -193,10 +163,7 @@ def test_makers_tuplet_from_ratio_and_pair_10():
 
 
 def test_makers_tuplet_from_ratio_and_pair_11():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(12, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (12, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -212,10 +179,7 @@ def test_makers_tuplet_from_ratio_and_pair_11():
 
 
 def test_makers_tuplet_from_ratio_and_pair_12():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((2, 4, 4)), abjad.NonreducedFraction(24, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (24, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -231,10 +195,7 @@ def test_makers_tuplet_from_ratio_and_pair_12():
 
 
 def test_makers_tuplet_from_ratio_and_pair_13():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 2)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 2))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -250,10 +211,7 @@ def test_makers_tuplet_from_ratio_and_pair_13():
 
 
 def test_makers_tuplet_from_ratio_and_pair_14():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 4)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -269,10 +227,7 @@ def test_makers_tuplet_from_ratio_and_pair_14():
 
 
 def test_makers_tuplet_from_ratio_and_pair_15():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 8)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 8))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -288,10 +243,7 @@ def test_makers_tuplet_from_ratio_and_pair_15():
 
 
 def test_makers_tuplet_from_ratio_and_pair_16():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 2, 2)), abjad.NonreducedFraction(6, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -307,10 +259,7 @@ def test_makers_tuplet_from_ratio_and_pair_16():
 
 
 def test_makers_tuplet_from_ratio_and_pair_17():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, -1, -1)), abjad.NonreducedFraction(3, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, -1, -1), (3, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -326,10 +275,7 @@ def test_makers_tuplet_from_ratio_and_pair_17():
 
 
 def test_makers_tuplet_from_ratio_and_pair_18():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 1, -1, -1)), abjad.NonreducedFraction(4, 16)
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, -1, -1), (4, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -346,11 +292,7 @@ def test_makers_tuplet_from_ratio_and_pair_18():
 
 
 def test_makers_tuplet_from_ratio_and_pair_19():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 1, 1, -1, -1)),
-        abjad.NonreducedFraction(5, 16),
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, 1, -1, -1), (5, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -368,11 +310,7 @@ def test_makers_tuplet_from_ratio_and_pair_19():
 
 
 def test_makers_tuplet_from_ratio_and_pair_20():
-
-    tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        abjad.NonreducedRatio((1, 1, 1, 1, -1, -1)),
-        abjad.NonreducedFraction(6, 16),
-    )
+    tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, 1, 1, -1, -1), (6, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""

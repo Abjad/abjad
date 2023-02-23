@@ -42,7 +42,6 @@ def test_mutate__are_contiguous_logical_voice_02():
 
 
 def test_mutate__are_contiguous_logical_voice_03():
-
     notes = [
         abjad.Note("c'8"),
         abjad.Note("d'8"),

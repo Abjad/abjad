@@ -2,25 +2,21 @@ import abjad
 
 
 def test_Meter___init___01():
-
     time_signature = abjad.TimeSignature((2, 4))
     assert abjad.Meter(time_signature).rtm_format == "(2/4 (1/4 1/4))"
 
 
 def test_Meter___init___02():
-
     time_signature = abjad.TimeSignature((3, 4))
     assert abjad.Meter(time_signature).rtm_format == "(3/4 (1/4 1/4 1/4))"
 
 
 def test_Meter___init___03():
-
     time_signature = abjad.TimeSignature((4, 4))
     assert abjad.Meter(time_signature).rtm_format == "(4/4 (1/4 1/4 1/4 1/4))"
 
 
 def test_Meter___init___04():
-
     time_signature = abjad.TimeSignature((6, 8))
     assert (
         abjad.Meter(time_signature).rtm_format
@@ -29,7 +25,6 @@ def test_Meter___init___04():
 
 
 def test_Meter___init___05():
-
     time_signature = abjad.TimeSignature((5, 8))
     assert (
         abjad.Meter(time_signature).rtm_format
@@ -38,7 +33,6 @@ def test_Meter___init___05():
 
 
 def test_Meter___init___06():
-
     time_signature = abjad.TimeSignature((12, 4))
     assert (
         abjad.Meter(time_signature).rtm_format
@@ -47,13 +41,11 @@ def test_Meter___init___06():
 
 
 def test_Meter___init___07():
-
     time_signature = abjad.TimeSignature((1, 4))
     assert abjad.Meter(time_signature).rtm_format == "(1/4 (1/4))"
 
 
 def test_Meter___init___08():
-
     time_signature = abjad.TimeSignature((10, 4))
     assert (
         abjad.Meter(time_signature).rtm_format
@@ -62,7 +54,6 @@ def test_Meter___init___08():
 
 
 def test_Meter___init___09():
-
     time_signature = abjad.TimeSignature((11, 4))
     assert (
         abjad.Meter(time_signature).rtm_format

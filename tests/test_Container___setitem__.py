@@ -154,7 +154,7 @@ def test_Container___setitem___04():
         """
     ), print(abjad.lilypond(voice))
 
-    voice[1] = abjad.Tuplet(abjad.Multiplier(2, 3), "c'8 d'8 e'8")
+    voice[1] = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""

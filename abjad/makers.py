@@ -1,4 +1,5 @@
 import collections
+import fractions
 import math
 import numbers
 
@@ -7,12 +8,35 @@ from . import duration as _duration
 from . import exceptions as _exceptions
 from . import math as _math
 from . import pitch as _pitch
-from . import ratio as _ratio
 from . import score as _score
 from . import sequence as _sequence
 from . import spanners as _spanners
 from . import tag as _tag
 from . import typings as _typings
+
+
+def _group_by_implied_prolation(durations):
+    pairs = []
+    for duration in durations:
+        if isinstance(duration, tuple):
+            pairs.append(duration)
+        else:
+            pairs.append(duration.pair)
+    durations = pairs
+    assert 0 < len(durations)
+    group = [durations[0]]
+    result = [group]
+    for d in durations[1:]:
+        d_f = set(_math.factors(d[1]))
+        d_f.discard(2)
+        gd_f = set(_math.factors(group[0][1]))
+        gd_f.discard(2)
+        if d_f == gd_f:
+            group.append(d)
+        else:
+            group = [d]
+            result.append(group)
+    return result
 
 
 def _make_leaf_on_pitch(
@@ -91,27 +115,31 @@ def _make_tied_leaf(
     tie_parts=True,
 ):
     duration = _duration.Duration(duration)
+    duration_pair = duration.pair
     if forbidden_duration is not None:
         assert forbidden_duration.is_assignable
         assert forbidden_duration.numerator == 1
     # find preferred numerator of written durations if necessary
-    if forbidden_duration is not None and forbidden_duration <= duration:
+    if forbidden_duration is not None and forbidden_duration <= fractions.Fraction(
+        *duration_pair
+    ):
         denominators = [
             2 * forbidden_duration.denominator,
-            duration.denominator,
+            duration_pair[1],
         ]
         denominator = _math.least_common_multiple(*denominators)
-        forbidden_duration = _duration.NonreducedFraction(forbidden_duration)
-        forbidden_duration = forbidden_duration.with_denominator(denominator)
-        duration = _duration.NonreducedFraction(duration)
-        duration = duration.with_denominator(denominator)
-        forbidden_numerator = forbidden_duration.numerator
+        pair = _duration.with_denominator(forbidden_duration, denominator)
+        forbidden_numerator = pair[0]
         assert forbidden_numerator % 2 == 0
         preferred_numerator = forbidden_numerator / 2
+        pair = _duration.with_denominator(duration_pair, denominator)
+        duration_pair = pair
     # make written duration numerators
     numerators = []
-    parts = _math.partition_integer_into_canonic_parts(duration.numerator)
-    if forbidden_duration is not None and forbidden_duration <= duration:
+    parts = _math.partition_integer_into_canonic_parts(duration_pair[0])
+    if forbidden_duration is not None and fractions.Fraction(
+        forbidden_duration
+    ) <= fractions.Fraction(*duration_pair):
         for part in parts:
             if forbidden_numerator <= part:
                 better_parts = _partition_less_than_double(part, preferred_numerator)
@@ -126,7 +154,7 @@ def _make_tied_leaf(
     # make one leaf per written duration
     result = []
     for numerator in numerators:
-        written_duration = _duration.Duration(numerator, duration.denominator)
+        written_duration = _duration.Duration(numerator, duration_pair[1])
         if pitches is not None:
             arguments = (pitches, written_duration)
         else:
@@ -610,16 +638,14 @@ def make_leaves(
         forbidden_note_duration = _duration.Duration(forbidden_note_duration)
     if forbidden_rest_duration is not None:
         forbidden_rest_duration = _duration.Duration(forbidden_rest_duration)
-    nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
+    nonreduced_fractions = [_duration.Duration(_) for _ in durations]
     size = max(len(nonreduced_fractions), len(pitches))
     nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
     pitches = _sequence.repeat_to_length(pitches, size)
-    duration_groups = _duration.Duration._group_by_implied_prolation(
-        nonreduced_fractions
-    )
+    duration_groups = _group_by_implied_prolation(nonreduced_fractions)
     result: list[_score.Tuplet | _score.Leaf] = []
     for duration_group in duration_groups:
-        factors_ = _math.factors(duration_group[0].denominator)
+        factors_ = _math.factors(duration_group[0][1])
         factors = set(factors_)
         factors.discard(1)
         factors.discard(2)
@@ -639,7 +665,7 @@ def make_leaves(
                 )
                 result.extend(leaves)
         else:
-            denominator = duration_group[0].denominator
+            denominator = duration_group[0][1]
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / _duration.Duration(*multiplier)
@@ -839,14 +865,22 @@ def make_notes(
         pitches = [pitches]
     if isinstance(durations, numbers.Number | tuple):
         durations = [durations]
-    nonreduced_fractions = [_duration.NonreducedFraction(_) for _ in durations]
-    size = max(len(nonreduced_fractions), len(pitches))
-    nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
+    pairs = []
+    for duration in durations:
+        if isinstance(duration, tuple):
+            pairs.append(duration)
+        elif isinstance(duration, int):
+            pair = (duration, 1)
+            pairs.append(pair)
+        else:
+            pairs.append(duration.pair)
+    size = max(len(pairs), len(pitches))
+    pairs = _sequence.repeat_to_length(pairs, size)
     pitches = _sequence.repeat_to_length(pitches, size)
-    durations = _duration.Duration._group_by_implied_prolation(nonreduced_fractions)
+    durations = _group_by_implied_prolation(pairs)
     result: list[_score.Note | _score.Tuplet] = []
     for duration in durations:
-        factors = set(_math.factors(duration[0].denominator))
+        factors = set(_math.factors(duration[0][1]))
         factors.discard(1)
         factors.discard(2)
         ps = pitches[0 : len(duration)]
@@ -861,9 +895,9 @@ def make_notes(
                 )
             )
         else:
-            denominator = duration[0].denominator
+            denominator = duration[0][1]
             numerator = _math.greatest_power_of_two_less_equal(denominator)
-            multiplier = _duration.Multiplier(numerator, denominator)
+            multiplier = _duration.Duration(numerator, denominator)
             ratio = multiplier.reciprocal
             duration = [ratio * _duration.Duration(d) for d in duration]
             ns = _make_unprolated_notes(
@@ -872,13 +906,17 @@ def make_notes(
                 increase_monotonic=increase_monotonic,
                 tag=tag,
             )
-            tuplet = _score.Tuplet(multiplier, ns)
+            tuplet = _score.Tuplet(multiplier.pair, ns)
             result.append(tuplet)
     return result
 
 
 def tuplet_from_duration_and_ratio(
-    duration, ratio, *, increase_monotonic: bool = False, tag: _tag.Tag | None = None
+    duration,
+    ratio: tuple[int, ...],
+    *,
+    increase_monotonic: bool = False,
+    tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from ``duration`` and ``ratio``.
@@ -889,7 +927,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((1, 1, 1, -1, -1)),
+        ...     (1, 1, 1, -1, -1),
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
@@ -917,7 +955,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((1, -2, -2, 3, 3)),
+        ...     (1, -2, -2, 3, 3),
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
@@ -945,7 +983,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((5, -1, 5)),
+        ...     (5, -1, 5),
         ...     increase_monotonic=True,
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
@@ -973,7 +1011,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((1, 1, 1, -1, -1)),
+        ...     (1, 1, 1, -1, -1),
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
@@ -1000,7 +1038,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((5, -1, 5)),
+        ...     (5, -1, 5),
         ...     increase_monotonic=True,
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
@@ -1030,7 +1068,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((1, 1, 1, -1, -1)),
+        ...     (1, 1, 1, -1, -1),
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
@@ -1058,7 +1096,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((1, -2, -2, 3, 3)),
+        ...     (1, -2, -2, 3, 3),
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
@@ -1086,7 +1124,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((5, -1, 5)),
+        ...     (5, -1, 5),
         ...     increase_monotonic=True,
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
@@ -1114,7 +1152,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((1, 1, 1, -1, -1)),
+        ...     (1, 1, 1, -1, -1),
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
@@ -1141,7 +1179,7 @@ def tuplet_from_duration_and_ratio(
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),
-        ...     abjad.Ratio((5, -1, 5)),
+        ...     (5, -1, 5),
         ...     increase_monotonic=True,
         ... )
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
@@ -1168,10 +1206,10 @@ def tuplet_from_duration_and_ratio(
     Interprets negative ``ratio`` as rests.
     """
     duration = _duration.Duration(duration)
-    ratio = _ratio.Ratio(ratio)
-    basic_prolated_duration = duration / _math.weight(ratio.numbers)
+    assert isinstance(ratio, tuple), repr(ratio)
+    basic_prolated_duration = duration / _math.weight(ratio)
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
-    written_durations = [x * basic_written_duration for x in ratio.numbers]
+    written_durations = [x * basic_written_duration for x in ratio]
     notes: list[_score.Leaf | _score.Tuplet]
     try:
         notes = [
@@ -1180,7 +1218,7 @@ def tuplet_from_duration_and_ratio(
         ]
     except _exceptions.AssignabilityError:
         denominator = duration.denominator
-        note_durations = [_duration.Duration(x, denominator) for x in ratio.numbers]
+        note_durations = [_duration.Duration(x, denominator) for x in ratio]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
         notes = make_leaves(
@@ -1195,7 +1233,7 @@ def tuplet_from_duration_and_ratio(
 
 
 def tuplet_from_leaf_and_ratio(
-    leaf: _score.Leaf, ratio: list | _ratio.Ratio
+    leaf: _score.Leaf, ratio: tuple[int, ...]
 ) -> _score.Tuplet:
     r"""
     Makes tuplet from ``leaf`` and ``ratio``.
@@ -1204,10 +1242,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     abjad.Ratio((1,)),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1,))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1228,10 +1263,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1253,10 +1285,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     abjad.Ratio((1, 2, 2)),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1278,10 +1307,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2, 2, 3],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1294,7 +1320,7 @@ def tuplet_from_leaf_and_ratio(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 6/8
+            \times 3/4
             {
                 \time 3/16
                 c'32
@@ -1305,10 +1331,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2, 2, 3, 3],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1333,10 +1356,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     abjad.Ratio((1, 2, 2, 3, 3, 4)),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3, 4))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1361,10 +1381,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1,))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1385,10 +1402,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1410,10 +1424,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2, 2],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1435,10 +1446,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2, 2, 3],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1451,7 +1459,7 @@ def tuplet_from_leaf_and_ratio(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 6/8
+            \times 3/4
             {
                 \time 3/16
                 c'32
@@ -1462,10 +1470,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2, 2, 3, 3],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1490,10 +1495,7 @@ def tuplet_from_leaf_and_ratio(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(
-        ...     note,
-        ...     [1, 2, 2, 3, 3, 4],
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3, 4))
         >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1517,30 +1519,28 @@ def tuplet_from_leaf_and_ratio(
             }
 
     """
-    proportions = _ratio.Ratio(ratio)
+    assert isinstance(ratio, tuple), repr(ratio)
     target_duration = leaf.written_duration
-    basic_prolated_duration = target_duration / sum(proportions.numbers)
+    basic_prolated_duration = target_duration / sum(ratio)
     basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
-    written_durations = [_ * basic_written_duration for _ in proportions.numbers]
+    written_durations = [_ * basic_written_duration for _ in ratio]
     notes: list[_score.Note | _score.Tuplet]
     try:
         notes = [_score.Note(0, x) for x in written_durations]
     except _exceptions.AssignabilityError:
         denominator = target_duration.denominator
-        note_durations = [
-            _duration.Duration(_, denominator) for _ in proportions.numbers
-        ]
+        note_durations = [_duration.Duration(_, denominator) for _ in ratio]
         notes = make_notes(0, note_durations)
     contents_duration = _getlib._get_duration(notes)
     multiplier = target_duration / contents_duration
-    tuplet = _score.Tuplet(multiplier, notes)
+    tuplet = _score.Tuplet(_duration.pair(multiplier), notes)
     tuplet.normalize_multiplier()
     return tuplet
 
 
 def tuplet_from_ratio_and_pair(
-    ratio: tuple | _ratio.NonreducedRatio,
-    fraction: tuple | _duration.NonreducedFraction,
+    ratio: tuple,
+    fraction: tuple,
     *,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
@@ -1549,10 +1549,7 @@ def tuplet_from_ratio_and_pair(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        ...     abjad.NonreducedRatio((1,)),
-        ...     abjad.NonreducedFraction(7, 16),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1,), (7, 16))
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1571,10 +1568,7 @@ def tuplet_from_ratio_and_pair(
                 c'4..
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        ...     abjad.NonreducedRatio((1, 2)),
-        ...     abjad.NonreducedFraction(7, 16),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2), (7, 16))
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1594,10 +1588,7 @@ def tuplet_from_ratio_and_pair(
                 c'4
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        ...     abjad.NonreducedRatio((1, 2, 4)),
-        ...     abjad.NonreducedFraction(7, 16),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4), (7, 16))
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1618,10 +1609,7 @@ def tuplet_from_ratio_and_pair(
                 c'4
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        ...     abjad.NonreducedRatio((1, 2, 4, 1)),
-        ...     abjad.NonreducedFraction(7, 16),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4, 1), (7, 16))
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1643,10 +1631,7 @@ def tuplet_from_ratio_and_pair(
                 c'16
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        ...     abjad.NonreducedRatio((1, 2, 4, 1, 2)),
-        ...     abjad.NonreducedFraction(7, 16),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4, 1, 2), (7, 16))
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1669,10 +1654,7 @@ def tuplet_from_ratio_and_pair(
                 c'8
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair(
-        ...     abjad.NonreducedRatio((1, 2, 4, 1, 2, 4)),
-        ...     abjad.NonreducedFraction(7, 16),
-        ... )
+        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4, 1, 2, 4), (7, 16))
         >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
         >>> staff = abjad.Staff(
         ...     [tuplet],
@@ -1722,14 +1704,14 @@ def tuplet_from_ratio_and_pair(
 
     Interprets ``d`` as tuplet denominator.
     """
-    ratio = _ratio.NonreducedRatio(ratio)
-    if isinstance(fraction, tuple):
-        fraction = _duration.NonreducedFraction(*fraction)
-    numerator = fraction.numerator
-    denominator = fraction.denominator
+    if not isinstance(ratio, tuple):
+        raise ValueError(f"must be tuple, not {ratio!r}.")
+    if not isinstance(fraction, tuple):
+        raise ValueError(f"must be pair, not {fraction!r}.")
+    numerator, denominator = fraction
     duration = _duration.Duration(fraction)
-    if len(ratio.numbers) == 1:
-        if 0 < ratio.numbers[0]:
+    if len(ratio) == 1:
+        if 0 < ratio[0]:
             try:
                 note = _score.Note(0, duration, tag=tag)
                 duration = note._get_duration()
@@ -1739,7 +1721,7 @@ def tuplet_from_ratio_and_pair(
                 notes = make_notes(0, duration, tag=tag)
                 duration = _getlib._get_duration(notes)
                 return _score.Tuplet.from_duration(duration, notes, tag=tag)
-        elif ratio.numbers[0] < 0:
+        elif ratio[0] < 0:
             try:
                 rest = _score.Rest(duration, tag=tag)
                 duration = rest._get_duration()
@@ -1751,12 +1733,10 @@ def tuplet_from_ratio_and_pair(
         else:
             raise ValueError("no divide zero values.")
     else:
-        exponent = int(
-            math.log(_math.weight(ratio.numbers), 2) - math.log(numerator, 2)
-        )
+        exponent = int(math.log(_math.weight(ratio), 2) - math.log(numerator, 2))
         denominator = int(denominator * 2**exponent)
         components: list[_score.Leaf | _score.Tuplet] = []
-        for x in ratio.numbers:
+        for x in ratio:
             if not x:
                 raise ValueError("no divide zero values.")
             if 0 < x:

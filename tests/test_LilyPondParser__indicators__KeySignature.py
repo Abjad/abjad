@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__indicators__KeySignature_01():
-
     target = abjad.Staff([abjad.Note("fs'", 1)])
     key_signature = abjad.KeySignature(abjad.NamedPitchClass("g"), abjad.Mode("major"))
     abjad.attach(key_signature, target[0])

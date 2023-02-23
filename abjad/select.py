@@ -7,10 +7,10 @@ from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
 from . import iterate as _iterate
+from . import math as _math
 from . import parentage as _parentage
 from . import pattern as _pattern
 from . import pcollections as _pcollections
-from . import ratio as _ratio
 from . import score as _score
 from . import sequence as _sequence
 from . import typings as _typings
@@ -5542,9 +5542,8 @@ def partition_by_ratio(argument, ratio) -> list[list]:
             }
 
     """
-    ratio = ratio or _ratio.Ratio((1,))
-    ratio = _ratio.Ratio(ratio)
-    counts = ratio.partition_integer(len(argument))
+    ratio = ratio or (1,)
+    counts = _math.partition_integer_by_ratio(len(argument), ratio)
     parts = _sequence.partition_by_counts(argument, counts=counts)
     selections = [list(_) for _ in parts]
     return selections

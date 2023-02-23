@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__indicators__Clef_01():
-
     target = abjad.Staff([abjad.Note(0, 1)])
     clef = abjad.Clef("bass")
     abjad.attach(clef, target[0])

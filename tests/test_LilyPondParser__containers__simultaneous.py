@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__containers__simultaneous_01():
-
     target = abjad.Container()
     target.simultaneous = True
     parser = abjad.parser.LilyPondParser()

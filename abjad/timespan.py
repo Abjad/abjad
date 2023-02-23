@@ -4,13 +4,13 @@ Tools for modeling and manipulating timespans.
 import collections
 import copy
 import dataclasses
+import fractions
 import typing
 
 from . import duration as _duration
 from . import enums as _enums
 from . import indicators as _indicators
 from . import math as _math
-from . import ratio as _ratio
 from . import sequence as _sequence
 
 infinity = _math.Infinity()
@@ -187,7 +187,7 @@ class OffsetCounter:
             '"',
         ]
         for offset in sorted(self.items):
-            offset = _duration.Multiplier(offset)
+            offset = _duration.Offset(offset)
             n, d = offset.numerator, offset.denominator
             x_translation = float(offset) * postscript_scale
             x_translation -= postscript_x_offset
@@ -950,9 +950,8 @@ class Timespan:
         """
         if isinstance(ratio, int):
             ratio = ratio * (1,)
-        ratio = _ratio.Ratio(ratio)
-        unit_duration = self.duration / sum(ratio.numbers)
-        part_durations = [numerator * unit_duration for numerator in ratio.numbers]
+        unit_duration = self.duration / sum(ratio)
+        part_durations = [numerator * unit_duration for numerator in ratio]
         start_offsets = _math.cumulative_sums(
             [self.start_offset] + part_durations, start=None
         )
@@ -1059,7 +1058,7 @@ class Timespan:
             Timespan(Offset((0, 1)), Offset((0, 1)))
 
         """
-        multiplier = abs(_duration.Multiplier(multiplier))
+        multiplier = abs(fractions.Fraction(multiplier))
         assert 0 < multiplier
         new_start_offset = _duration.Offset(
             int(round(self.start_offset / multiplier)) * multiplier
@@ -1087,18 +1086,18 @@ class Timespan:
 
             Scale timespan relative to timespan start offset:
 
-            >>> timespan.scale(abjad.Multiplier(2))
+            >>> timespan.scale(abjad.Fraction(2))
             Timespan(Offset((3, 1)), Offset((9, 1)))
 
         ..  container:: example
 
             Scale timespan relative to timespan stop offset:
 
-            >>> timespan.scale(abjad.Multiplier(2), anchor=abjad.RIGHT)
+            >>> timespan.scale(abjad.Fraction(2), anchor=abjad.RIGHT)
             Timespan(Offset((0, 1)), Offset((6, 1)))
 
         """
-        multiplier = _duration.Multiplier(multiplier)
+        multiplier = fractions.Fraction(multiplier)
         assert 0 < multiplier
         new_duration = multiplier * self.duration
         if anchor == _enums.LEFT:
@@ -1256,47 +1255,39 @@ class Timespan:
 
             Stretch relative to timespan start offset:
 
-            >>> abjad.Timespan(3, 10).stretch(abjad.Multiplier(2))
+            >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2))
             Timespan(Offset((3, 1)), Offset((17, 1)))
 
         .. container:: example
 
             Stretch relative to timespan stop offset:
 
-            >>> abjad.Timespan(3, 10).stretch(
-            ...     abjad.Multiplier(2), abjad.Offset(10)
-            ... )
+            >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2), abjad.Offset(10))
             Timespan(Offset((-4, 1)), Offset((10, 1)))
 
         .. container:: example
 
             Stretch relative to offset prior to timespan:
 
-            >>> abjad.Timespan(3, 10).stretch(
-            ...     abjad.Multiplier(2), abjad.Offset(0, 1)
-            ... )
+            >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2), abjad.Offset(0, 1))
             Timespan(Offset((6, 1)), Offset((20, 1)))
 
         .. container:: example
 
             Stretch relative to offset after timespan:
 
-            >>> abjad.Timespan(3, 10).stretch(
-            ...     abjad.Multiplier(3), abjad.Offset(12)
-            ... )
+            >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(3), abjad.Offset(12))
             Timespan(Offset((-15, 1)), Offset((6, 1)))
 
         .. container:: example
 
             Stretch relative to offset that happens during timespan:
 
-            >>> abjad.Timespan(3, 10).stretch(
-            ...     abjad.Multiplier(2), abjad.Offset(4)
-            ... )
+            >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2), abjad.Offset(4))
             Timespan(Offset((2, 1)), Offset((16, 1)))
 
         """
-        multiplier = _duration.Multiplier(multiplier)
+        multiplier = fractions.Fraction(multiplier)
         assert 0 < multiplier
         if anchor is None:
             anchor = self.start_offset
@@ -2795,7 +2786,7 @@ class TimespanList(list):
         self.sort()
         return self
 
-    def compute_overlap_factor(self, timespan=None) -> _duration.Multiplier:
+    def compute_overlap_factor(self, timespan=None) -> fractions.Fraction:
         """
         Computes overlap factor of timespans.
 
@@ -2816,7 +2807,7 @@ class TimespanList(list):
             Computes overlap factor across the entire list:
 
             >>> timespans.compute_overlap_factor()
-            Multiplier(7, 6)
+            Fraction(7, 6)
 
         ..  container:: example
 
@@ -2824,14 +2815,14 @@ class TimespanList(list):
 
             >>> timespans.compute_overlap_factor(
             ...     timespan=abjad.Timespan(-15, 0))
-            Multiplier(0, 1)
+            Fraction(0, 1)
 
         ..  container:: example
 
             Computes overlap factor:
 
             >>> timespans.compute_overlap_factor(timespan=abjad.Timespan(-10, 5))
-            Multiplier(1, 3)
+            Fraction(1, 3)
 
         ..  container:: example
 
@@ -2839,7 +2830,7 @@ class TimespanList(list):
 
             >>> timespans.compute_overlap_factor(
             ...     timespan=abjad.Timespan(-5, 10))
-            Multiplier(1, 1)
+            Fraction(1, 1)
 
         ..  container:: example
 
@@ -2847,7 +2838,7 @@ class TimespanList(list):
 
             >>> timespans.compute_overlap_factor(
             ...     timespan=abjad.Timespan(0, 15))
-            Multiplier(4, 3)
+            Fraction(4, 3)
 
         ..  container:: example
 
@@ -2855,7 +2846,7 @@ class TimespanList(list):
 
             >>> timespans.compute_overlap_factor(
             ...     timespan=abjad.Timespan(5, 20))
-            Multiplier(1, 1)
+            Fraction(1, 1)
 
         ..  container:: example
 
@@ -2863,7 +2854,7 @@ class TimespanList(list):
 
             >>> timespans.compute_overlap_factor(
             ...     timespan=abjad.Timespan(10, 25))
-            Multiplier(1, 1)
+            Fraction(1, 1)
 
         ..  container:: example
 
@@ -2871,7 +2862,7 @@ class TimespanList(list):
 
             >>> timespans.compute_overlap_factor(
             ...     timespan=abjad.Timespan(15, 30))
-            Multiplier(1, 1)
+            Fraction(1, 1)
 
         """
         if timespan is None:
@@ -2882,7 +2873,7 @@ class TimespanList(list):
         total_overlap = _duration.Duration(
             sum(x.get_overlap_with_timespan(timespan) for x in timespans)
         )
-        overlap_factor = total_overlap / timespan.duration
+        overlap_factor = fractions.Fraction(total_overlap / timespan.duration)
         return overlap_factor
 
     def compute_overlap_factor_mapping(self) -> dict:
@@ -2905,12 +2896,12 @@ class TimespanList(list):
             >>> for timespan, overlap_factor in mapping.items():
             ...     timespan.start_offset, timespan.stop_offset, overlap_factor
             ...
-            (Offset((0, 1)), Offset((5, 1)), Multiplier(1, 1))
-            (Offset((5, 1)), Offset((10, 1)), Multiplier(2, 1))
-            (Offset((10, 1)), Offset((15, 1)), Multiplier(1, 1))
-            (Offset((15, 1)), Offset((20, 1)), Multiplier(0, 1))
-            (Offset((20, 1)), Offset((25, 1)), Multiplier(2, 1))
-            (Offset((25, 1)), Offset((30, 1)), Multiplier(1, 1))
+            (Offset((0, 1)), Offset((5, 1)), Fraction(1, 1))
+            (Offset((5, 1)), Offset((10, 1)), Fraction(2, 1))
+            (Offset((10, 1)), Offset((15, 1)), Fraction(1, 1))
+            (Offset((15, 1)), Offset((20, 1)), Fraction(0, 1))
+            (Offset((20, 1)), Offset((25, 1)), Fraction(2, 1))
+            (Offset((25, 1)), Offset((30, 1)), Fraction(1, 1))
 
         Returns mapping.
         """
@@ -4075,7 +4066,7 @@ def _make_timespan_list_markup(
     lines_string += f'\n\\postscript #"\n{postscript}"'
     fraction_strings = []
     for offset in sorted(offset_mapping):
-        offset = _duration.Multiplier(offset)
+        offset = _duration.Offset(offset)
         numerator, denominator = offset.numerator, offset.denominator
         x_translation = float(offset) * postscript_scale
         x_translation -= postscript_x_offset

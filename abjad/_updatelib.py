@@ -8,6 +8,8 @@ Updates start offsets, stop offsets and indicators everywhere in score.
     the implementation of the update manager.
 
 """
+import fractions
+
 from . import duration as _duration
 from . import indicators as _indicators
 from . import iterate as _iterate
@@ -186,7 +188,7 @@ def _make_metronome_mark_map(root):
         if stop_offset == 0:
             stop_offset = score_stop_offset
         duration = stop_offset - start_offset
-        multiplier = _duration.Multiplier(60, metronome_mark.units_per_minute)
+        multiplier = fractions.Fraction(60, metronome_mark.units_per_minute)
         clocktime_duration = duration / metronome_mark.reference_duration
         clocktime_duration *= multiplier
         timespan = _timespan.Timespan(

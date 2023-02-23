@@ -2,7 +2,6 @@ import abjad
 
 
 def test_mutate__immediately_precedes_01():
-
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
     assert abjad.mutate._immediately_precedes(voice[0], voice[1])
@@ -11,7 +10,6 @@ def test_mutate__immediately_precedes_01():
 
 
 def test_mutate__immediately_precedes_02():
-
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
     assert abjad.mutate._immediately_precedes(staff[0], staff[1])
@@ -20,7 +18,6 @@ def test_mutate__immediately_precedes_02():
 
 
 def test_mutate__immediately_precedes_03():
-
     container = abjad.Container("c'8 d'8 e'8 f'8")
 
     assert abjad.mutate._immediately_precedes(container[0], container[1])
@@ -29,7 +26,6 @@ def test_mutate__immediately_precedes_03():
 
 
 def test_mutate__immediately_precedes_04():
-
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
     assert abjad.mutate._immediately_precedes(tuplet[0], tuplet[1])
@@ -37,7 +33,6 @@ def test_mutate__immediately_precedes_04():
 
 
 def test_mutate__immediately_precedes_05():
-
     voice = abjad.Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -67,7 +62,6 @@ def test_mutate__immediately_precedes_05():
 
 
 def test_mutate__immediately_precedes_06():
-
     voice = abjad.Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -97,7 +91,6 @@ def test_mutate__immediately_precedes_06():
 
 
 def test_mutate__immediately_precedes_07():
-
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )
@@ -131,7 +124,6 @@ def test_mutate__immediately_precedes_07():
 
 
 def test_mutate__immediately_precedes_08():
-
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )
@@ -166,7 +158,6 @@ def test_mutate__immediately_precedes_08():
 
 
 def test_mutate__immediately_precedes_09():
-
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )
@@ -201,7 +192,6 @@ def test_mutate__immediately_precedes_09():
 
 
 def test_mutate__immediately_precedes_10():
-
     staff_1 = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8")])
     staff_2 = abjad.Staff([abjad.Voice("g'8 a'8 b'8 c''8")])
     container = abjad.Container([staff_1, staff_2])
@@ -247,7 +237,6 @@ def test_mutate__immediately_precedes_10():
 
 
 def test_mutate__immediately_precedes_11():
-
     upper_voice_1 = abjad.Voice("c''8 d''8 e''8 f''8")
     upper_voice_2 = abjad.Voice("g''8 a''8 b''8 c''8")
     lower_voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -331,7 +320,6 @@ def test_mutate__immediately_precedes_11():
 
 
 def test_mutate__immediately_precedes_12():
-
     voice = abjad.Voice("{ { c'8 d'8 e'8 f'8 } } { { g'8 a'8 b'8 c''8 } }")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(

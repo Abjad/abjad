@@ -2,7 +2,6 @@ import abjad
 
 
 def test_mutate__move_indicators_01():
-
     staff = abjad.Staff(r'\clef "bass" c \staccato d e f')
 
     assert abjad.lilypond(staff) == abjad.string.normalize(

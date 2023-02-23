@@ -4,7 +4,6 @@ import abjad
 
 
 def test_LilyPondParser__spanners__Tie_01():
-
     target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
     abjad.tie(target[:])
     parser = abjad.parser.LilyPondParser()
@@ -13,14 +12,12 @@ def test_LilyPondParser__spanners__Tie_01():
 
 
 def test_LilyPondParser__spanners__Tie_02():
-
     string = r"{ c ~ }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__spanners__Tie_03():
-
     string = r"{ ~ c }"
     with pytest.raises(Exception):
         abjad.LilyPondParser()(string)

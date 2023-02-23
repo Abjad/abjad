@@ -2,9 +2,9 @@ import typing
 
 from . import _getlib
 from . import contributions as _contributions
+from . import duration as _duration
 from . import illustrators as _illustrators
 from . import indicators as _indicators
-from . import ratio as _ratio
 from . import score as _score
 
 
@@ -387,11 +387,11 @@ class MetricModulation:
             ... )
 
             >>> metric_modulation_1.ratio
-            Ratio(numbers=(2, 3))
+            (2, 3)
             >>> metric_modulation_2.ratio
-            Ratio(numbers=(2, 3))
+            (2, 3)
             >>> metric_modulation_3.ratio
-            Ratio(numbers=(4, 5))
+            (4, 5)
 
             >>> metric_modulation_1 == metric_modulation_1
             True
@@ -503,8 +503,7 @@ class MetricModulation:
         elif self._lhs_tuplet():
             tuplet_exponent = self.left_rhythm[0][0].written_duration.exponent
             tuplet_dots = self.left_rhythm[0][0].written_duration.dot_count
-            tuplet_n = self.left_rhythm[0].multiplier.numerator
-            tuplet_d = self.left_rhythm[0].multiplier.denominator
+            tuplet_n, tuplet_d = self.left_rhythm[0].multiplier
             note_exponent = self.right_rhythm[0].written_duration.exponent
             note_dots = self.right_rhythm[0].written_duration.dot_count
             return (
@@ -520,8 +519,7 @@ class MetricModulation:
             note_dots = self.left_rhythm[0].written_duration.dot_count
             tuplet_exponent = self.right_rhythm[0][0].written_duration.exponent
             tuplet_dots = self.right_rhythm[0][0].written_duration.dot_count
-            tuplet_n = self.right_rhythm[0].multiplier.numerator
-            tuplet_d = self.right_rhythm[0].multiplier.denominator
+            tuplet_n, tuplet_d = self.right_rhythm[0].multiplier
             return (
                 note_exponent,
                 note_dots,
@@ -609,12 +607,12 @@ class MetricModulation:
             >>> metric_modulation.left_rhythm
             [Note("c'4")]
 
-        Returns selection.
+        Returns list.
         """
         return self._left_rhythm
 
     @property
-    def ratio(self) -> _ratio.Ratio:
+    def ratio(self) -> tuple[int, int]:
         """
         Gets ratio of metric modulation.
 
@@ -625,14 +623,14 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c'4"),
             ... )
             >>> metric_modulation.ratio
-            Ratio(numbers=(2, 3))
+            (2, 3)
 
         """
         left_duration = _getlib._get_duration(self.left_rhythm)
         right_duration = _getlib._get_duration(self.right_rhythm)
         duration = left_duration / right_duration
-        ratio = _ratio.Ratio(duration.pair)
-        return ratio
+        pair = _duration.pair(duration)
+        return pair
 
     @property
     def right_markup(self) -> _indicators.Markup | None:

@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__contexts__PianoStaff_01():
-
     target = abjad.StaffGroup(
         [
             abjad.Staff(abjad.makers.make_notes([0, 2, 4, 5, 7], (1, 8))),

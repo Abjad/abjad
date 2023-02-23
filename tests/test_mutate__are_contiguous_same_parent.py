@@ -75,7 +75,6 @@ def test_mutate__are_contiguous_same_parent_02():
 
 
 def test_mutate__are_contiguous_same_parent_03():
-
     notes = [
         abjad.Note("c'8"),
         abjad.Note("d'8"),

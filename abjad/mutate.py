@@ -13,7 +13,6 @@ from . import iterate as _iterate
 from . import makers as _makers
 from . import parentage as _parentage
 from . import pitch as _pitch
-from . import ratio as _ratio
 from . import score as _score
 from . import select as _select
 from . import sequence as _sequence
@@ -432,7 +431,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
     new_duration = _duration.Duration(new_duration)
     if leaf.multiplier is not None:
         multiplier = new_duration.__div__(leaf.written_duration)
-        leaf.multiplier = multiplier
+        leaf.multiplier = _duration.pair(multiplier)
         return [leaf]
     try:
         leaf.written_duration = new_duration
@@ -1031,9 +1030,9 @@ def extract(argument):
                 }
             }
 
-        >>> abjad.mutate.scale(staff[-1], abjad.Multiplier((3, 2)))
+        >>> abjad.mutate.scale(staff[-1], abjad.Fraction(3, 2))
         >>> empty_tuplet = abjad.mutate.extract(staff[-1])
-        >>> abjad.mutate.scale(staff[0], abjad.Multiplier((3, 2)))
+        >>> abjad.mutate.scale(staff[0], abjad.Fraction(3, 2))
         >>> empty_tuplet = abjad.mutate.extract(staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1342,20 +1341,18 @@ def logical_tie_to_tuplet(
             }
 
     """
-    proportions = _ratio.Ratio(proportions)
+    assert all(isinstance(_, int) for _ in proportions), repr(proportions)
     target_duration = sum(_._get_preprolated_duration() for _ in argument)
     assert isinstance(target_duration, _duration.Duration)
-    prolated_duration = target_duration / sum(proportions.numbers)
+    prolated_duration = target_duration / sum(proportions)
     basic_written_duration = prolated_duration.equal_or_greater_power_of_two
-    written_durations = [_ * basic_written_duration for _ in proportions.numbers]
+    written_durations = [_ * basic_written_duration for _ in proportions]
     notes: list[_score.Note | _score.Tuplet]
     try:
         notes = [_score.Note(0, _) for _ in written_durations]
     except _exceptions.AssignabilityError:
         denominator = target_duration._denominator
-        note_durations = [
-            _duration.Duration(_, denominator) for _ in proportions.numbers
-        ]
+        note_durations = [_duration.Duration(_, denominator) for _ in proportions]
         notes = _makers.make_notes(0, note_durations, tag=tag)
     tuplet = _score.Tuplet.from_duration(target_duration, notes, tag=tag)
     for leaf in argument:
@@ -1621,7 +1618,7 @@ def scale(argument, multiplier) -> None:
         >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> abjad.mutate.scale(staff[1], abjad.Multiplier(3, 2))
+        >>> abjad.mutate.scale(staff[1], abjad.Fraction(3, 2))
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1662,7 +1659,7 @@ def scale(argument, multiplier) -> None:
             }
 
         >>> logical_tie = abjad.select.logical_tie(staff[0])
-        >>> logical_tie = abjad.mutate.scale(logical_tie, abjad.Multiplier(3, 2))
+        >>> logical_tie = abjad.mutate.scale(logical_tie, abjad.Fraction(3, 2))
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1699,7 +1696,7 @@ def scale(argument, multiplier) -> None:
                 )
             }
 
-        >>> abjad.mutate.scale(container, abjad.Multiplier(3, 2))
+        >>> abjad.mutate.scale(container, abjad.Fraction(3, 2))
         >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
@@ -1744,7 +1741,7 @@ def scale(argument, multiplier) -> None:
                 }
             }
 
-        >>> abjad.mutate.scale(tuplet, abjad.Multiplier(2))
+        >>> abjad.mutate.scale(tuplet, abjad.Fraction(2))
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1777,7 +1774,7 @@ def scale(argument, multiplier) -> None:
             >>> print(string)
             c'8 * 1/2
 
-        >>> abjad.mutate.scale(note, abjad.Multiplier(1, 2))
+        >>> abjad.mutate.scale(note, abjad.Fraction(1, 2))
         >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::

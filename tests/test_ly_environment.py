@@ -2,7 +2,6 @@ import abjad
 
 
 def test_ly_environment_01():
-
     assert abjad.lyenv.contexts is not None
     print(abjad.lyenv.contexts)
 

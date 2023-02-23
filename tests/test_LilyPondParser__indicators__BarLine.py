@@ -2,7 +2,6 @@ import abjad
 
 
 def test_LilyPondParser__indicators__BarLine_01():
-
     target = abjad.Staff(
         abjad.makers.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)])
     )
