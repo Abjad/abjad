@@ -6290,7 +6290,7 @@ class LilyPondSyntacticalDefinition:
             rest = _score.Skip(p[2].duration)
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
-            rest.multiplier = multiplier.pair
+            rest.multiplier = _duration.pair(multiplier)
         p[0] = rest
 
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(

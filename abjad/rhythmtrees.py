@@ -584,7 +584,9 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
         pulse_duration = _duration.Duration(pulse_duration)
         assert 0 < pulse_duration
-        result = recurse(self, pulse_duration * self.preprolated_duration)
+        result = recurse(
+            self, pulse_duration * _duration.Duration(self.preprolated_duration)
+        )
         for component in result[:]:
             if isinstance(component, _score.Tuplet):
                 if component.trivial():

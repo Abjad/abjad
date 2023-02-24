@@ -29,7 +29,7 @@ The following functions recreate Malt's results in Abjad:
     ...     lone_note_duration = (1, lone_note_denominator)
     ...     lone_note = abjad.Note("c'", lone_note_duration)
     ...     duration = (outer, lone_note_denominator)
-    ...     ratio = inner * [1]
+    ...     ratio = inner * (1,)
     ...     maker = abjad.makers.tuplet_from_duration_and_ratio
     ...     inner_tuplet = maker(duration, ratio)
     ...     multiplier = abjad.Fraction(*inner_tuplet.multiplier)
