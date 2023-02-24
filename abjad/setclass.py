@@ -1037,9 +1037,9 @@ class SetClass:
         """
         Gets string representation.
 
-        ..  container:: example
+        Gets string of SG2 set-class with Forte rank:
 
-            Gets string of SG2 set-class with Forte rank:
+        ..  container:: example
 
             >>> set_class = abjad.SetClass(4, 29)
             >>> print(set_class)

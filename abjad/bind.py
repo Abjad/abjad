@@ -130,9 +130,9 @@ class Wrapper:
         r"""
         Copies wrapper.
 
-        ..  container:: example
+        Preserves annotation flag:
 
-            Preserves annotation flag:
+        ..  container:: example
 
             >>> old_staff = abjad.Staff("c'4 d'4 e'4 f'4")
             >>> abjad.annotate(old_staff[0], "bow_direction", abjad.DOWN)
@@ -639,9 +639,9 @@ def annotate(component, annotation, indicator) -> None:
     r"""
     Annotates ``component`` with ``indicator``.
 
-    ..  container:: example
+    Annotates first note in staff:
 
-        Annotates first note in staff:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.annotate(staff[0], "bow_direction", abjad.DOWN)

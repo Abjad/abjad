@@ -900,9 +900,9 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
     Creates rhythm tree from RTM ``string``; then calls rhythm tree on
     quarter-note pulse duration.
 
-    ..  container:: example
+    A single quarter note:
 
-        A single quarter note:
+    ..  container:: example
 
         >>> result = abjad.rhythmtrees.parse_rtm_syntax("1")
         >>> result

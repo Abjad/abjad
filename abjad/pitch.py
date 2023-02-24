@@ -5065,9 +5065,9 @@ class NamedPitch(Pitch):
         """
         Inverts named pitch around ``axis``.
 
-        ..  container:: example
+        Inverts pitch around middle C explicitly:
 
-            Inverts pitch around middle C explicitly:
+        ..  container:: example
 
             >>> abjad.NamedPitch("d'").invert("c'")
             NamedPitch('bf')
@@ -5190,9 +5190,9 @@ class NamedPitch(Pitch):
         """
         Transposes named pitch by index ``n``.
 
-        ..  container:: example
+        Transposes C4 up a minor second:
 
-            Transposes C4 up a minor second:
+        ..  container:: example
 
             >>> abjad.NamedPitch("c'").transpose(n="m2")
             NamedPitch("df'")
@@ -5615,9 +5615,9 @@ class NumberedPitch(Pitch):
         """
         Interpolates between numbered pitch and ``stop_pitch`` by ``fraction``.
 
-        ..  container:: example
+        Interpolates from C4 to C5:
 
-            Interpolates from C4 to C5:
+        ..  container:: example
 
             >>> start_pitch = abjad.NumberedPitch(0)
             >>> stop_pitch = abjad.NumberedPitch(12)
@@ -5677,9 +5677,9 @@ class NumberedPitch(Pitch):
         """
         Inverts numbered pitch around ``axis``.
 
-        ..  container:: example
+        Inverts pitch-class about pitch-class 0 explicitly:
 
-            Inverts pitch-class about pitch-class 0 explicitly:
+        ..  container:: example
 
             >>> abjad.NumberedPitch(2).invert(0)
             NumberedPitch(-2)

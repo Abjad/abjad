@@ -283,9 +283,9 @@ class Duration(fractions.Fraction):
 
         See https://bugs.python.org/issue4395#msg89533.
 
-        ..  container:: example
+        REGRESSION:
 
-            REGRESSION:
+        ..  container:: example
 
             >>> offset_1 = abjad.Offset(1)
             >>> offset_2 = abjad.Offset(1, displacement=(-1, 16))
@@ -1024,8 +1024,6 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Initializes duration from LilyPond duration string:
-
             >>> abjad.Duration.from_lilypond_duration_string('8.')
             Duration(3, 16)
 
@@ -1041,8 +1039,6 @@ class Duration(fractions.Fraction):
         Is true when ``argument`` correctly initializes a duration.
 
         ..  container:: example
-
-            Is true when expression is a duration token:
 
             >>> abjad.Duration.is_token('8.')
             True
@@ -1070,9 +1066,9 @@ class Duration(fractions.Fraction):
         r"""
         Changes duration to clock string.
 
-        ..  container:: example
+        Changes duration to clock string:
 
-            Changes duration to clock string:
+        ..  container:: example
 
             >>> note = abjad.Note("c'4")
             >>> duration = abjad.Duration(117)
@@ -1296,9 +1292,9 @@ class Offset(Duration):
         """
         Is true when offset equals ``argument``.
 
-        ..  container:: example
+        With equal numerators, denominators and displacement:
 
-            With equal numerators, denominators and displacement:
+        ..  container:: example
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
@@ -1355,9 +1351,9 @@ class Offset(Duration):
         """
         Is true when offset is greater than or equal to ``argument``.
 
-        ..  container:: example
+        With equal numerators, denominators and displacement:
 
-            With equal numerators, denominators and displacement:
+        ..  container:: example
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
@@ -1414,9 +1410,9 @@ class Offset(Duration):
         """
         Is true when offset is greater than ``argument``.
 
-        ..  container:: example
+        With equal numerators, denominators and displacement:
 
-            With equal numerators, denominators and displacement:
+        ..  container:: example
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
@@ -1479,9 +1475,9 @@ class Offset(Duration):
         """
         Is true when offset is less than or equal to ``argument``.
 
-        ..  container:: example
+        With equal numerators, denominators and displacement:
 
-            With equal numerators, denominators and displacement:
+        ..  container:: example
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
@@ -1538,9 +1534,9 @@ class Offset(Duration):
         """
         Is true when offset is less than ``argument``.
 
-        ..  container:: example
+        With equal numerators, denominators and displacement:
 
-            With equal numerators, denominators and displacement:
+        ..  container:: example
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))

@@ -1528,9 +1528,9 @@ class Container(Component):
         r"""
         Appends ``component`` to container.
 
-        ..  container:: example
+        Appends note to container:
 
-            Appends note to container:
+        ..  container:: example
 
             >>> container = abjad.Container("c'4 ( d'4 f'4 )")
             >>> abjad.show(container) # doctest: +SKIP
@@ -1575,9 +1575,9 @@ class Container(Component):
         r"""
         Extends container with ``argument``.
 
-        ..  container:: example
+        Extends container with three notes:
 
-            Extends container with three notes:
+        ..  container:: example
 
             >>> container = abjad.Container("c'4 ( d'4 f'4 )")
             >>> abjad.show(container) # doctest: +SKIP
@@ -1625,9 +1625,9 @@ class Container(Component):
         r"""
         Returns index of ``component`` in container.
 
-        ..  container:: example
+        Gets index of last element in container:
 
-            Gets index of last element in container:
+        ..  container:: example
 
             >>> container = abjad.Container("c'4 d'4 f'4 e'4")
             >>> abjad.show(container) # doctest: +SKIP
@@ -1663,9 +1663,9 @@ class Container(Component):
         r"""
         Inserts ``component`` at index ``i`` in container.
 
-        ..  container:: example
+        Inserts note.
 
-            Inserts note.
+        ..  container:: example
 
             >>> container = abjad.Container([])
             >>> container.extend("fs16 cs' e' a'")
@@ -1735,9 +1735,9 @@ class Container(Component):
         r"""
         Pops component from container at index ``i``.
 
-        ..  container:: example
+        Pops last element from container:
 
-            Pops last element from container:
+        ..  container:: example
 
             >>> container = abjad.Container("c'4 ( d'4 f'4 ) e'4")
             >>> abjad.show(container) # doctest: +SKIP
@@ -1781,9 +1781,9 @@ class Container(Component):
         r"""
         Removes ``component`` from container.
 
-        ..  container:: example
+        Removes note from container:
 
-            Removes note from container:
+        ..  container:: example
 
             >>> container = abjad.Container("c'4 d'4 f'4 e'4")
             >>> abjad.show(container) # doctest: +SKIP
@@ -3928,9 +3928,9 @@ class NoteHeadList(list):
         r"""
         Gets note-head by ``pitch``.
 
-        ..  container:: example
+        Gets note-head by pitch name:
 
-            Gets note-head by pitch name:
+        ..  container:: example
 
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
@@ -5774,9 +5774,9 @@ class Tuplet(Container):
         r"""
         Appends ``component`` to tuplet.
 
-        ..  container:: example
+        Appends note to tuplet:
 
-            Appends note to tuplet:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5863,9 +5863,9 @@ class Tuplet(Container):
         r"""
         Is true when tuplet multiplier is greater than ``1``.
 
-        ..  container:: example
+        Augmented tuplet:
 
-            Augmented tuplet:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5903,9 +5903,9 @@ class Tuplet(Container):
         r"""
         Is true when tuplet multiplier is less than ``1``.
 
-        ..  container:: example
+        Augmented tuplet:
 
-            Augmented tuplet:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5945,9 +5945,9 @@ class Tuplet(Container):
         r"""
         Extends tuplet with ``argument``.
 
-        ..  container:: example
+        Extends tuplet with three notes:
 
-            Extends tuplet with three notes:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -6043,9 +6043,9 @@ class Tuplet(Container):
         r"""
         Makes tuplet from ``duration`` and ``components``.
 
-        ..  container:: example
+        Makes diminution:
 
-            Makes diminution:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet.from_duration((2, 8), "c'8 d' e'")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -6236,9 +6236,9 @@ class Tuplet(Container):
         r"""
         Rewrites dots.
 
-        ..  container:: example
+        Rewrites single dots as 3:2 prolation:
 
-            Rewrites single dots as 3:2 prolation:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'8. c'8.")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -6393,9 +6393,9 @@ class Tuplet(Container):
         r"""
         Sets preferred denominator of tuplet to at least ``denominator``.
 
-        ..  container:: example
+        Sets preferred denominator of tuplet to ``8`` at least:
 
-            Sets preferred denominator of tuplet to ``8`` at least:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -6446,9 +6446,9 @@ class Tuplet(Container):
         r"""
         Changes augmented tuplets to diminished; changes diminished tuplets to augmented.
 
-        ..  container:: example
+        Changes augmented tuplet to diminished:
 
-            Changes augmented tuplet to diminished:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -6635,9 +6635,9 @@ class Tuplet(Container):
         r"""
         Is true when tuplet is trivializable (can be rewritten with a ratio of 1:1).
 
-        ..  container:: example
+        Redudant tuplet:
 
-            Redudant tuplet:
+        ..  container:: example
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'4 c'4")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), tuplet[0])

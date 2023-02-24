@@ -227,9 +227,9 @@ def activate(
     r"""
     Activates ``tag`` in ``text``.
 
-    ..  container:: example
+    Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond input:
 
-        Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond input:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r"\markup { \with-color #red Allegro }")
@@ -380,9 +380,9 @@ def deactivate(
     r"""
     Deactivates ``tag`` in ``text``.
 
-    ..  container:: example
+    Writes (active) tag into LilyPond input:
 
-        Writes (active) tag into LilyPond input:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> string = r"\markup { \with-color #red Allegro }"

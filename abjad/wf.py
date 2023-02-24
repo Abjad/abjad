@@ -32,9 +32,9 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
     r"""
     Checks beamed long notes.
 
-    ..  container:: example
+    Beamed quarter notes are not wellformed:
 
-        Beamed quarter notes are not wellformed:
+    ..  container:: example
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
         >>> abjad.attach(abjad.StartBeam(), voice[0])
@@ -333,9 +333,9 @@ def check_out_of_range_pitches(
     r"""
     Checks out-of-range notes.
 
-    ..  container:: example
+    Out of range:
 
-        Out of range:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
         >>> violin = abjad.Violin()
@@ -427,9 +427,9 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
     r"""
     Checks overlapping text spanners.
 
-    ..  container:: example
+    Overlapping text spanners are not wellformed:
 
-        Overlapping text spanners are not wellformed:
+    ..  container:: example
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> abjad.text_spanner(voice)
@@ -614,9 +614,9 @@ def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
     r"""
     Checks unmatched stop text spans.
 
-    ..  container:: example
+    Unmatched stop text span is not wellformed:
 
-        Unmatched stop text span is not wellformed:
+    ..  container:: example
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> stop_text_span = abjad.StopTextSpan()
@@ -701,9 +701,9 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
     r"""
     Checks unterminated hairpins.
 
-    ..  container:: example
+    Unterminated crescendo is not wellformed:
 
-        Unterminated crescendo is not wellformed:
+    ..  container:: example
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> start_hairpin = abjad.StartHairpin('<')
@@ -846,9 +846,9 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
     r"""
     Checks unterminated text spanners.
 
-    ..  container:: example
+    Unterminated text spanner is not wellformed:
 
-        Unterminated text spanner is not wellformed:
+    ..  container:: example
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> start_text_span = abjad.StartTextSpan()

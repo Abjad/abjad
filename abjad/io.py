@@ -899,31 +899,10 @@ def profile(
 
     ..  container:: example
 
-        ::
+        >>> string = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
+        >>> result = abjad.io.profile(string, global_context=globals())
 
-            >>> string = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-            >>> result = abjad.io.profile(string, global_context=globals())
-            >>> print(result) # doctest: +SKIP
-            Fri Sep 03 12:53:36 2021
-
-                    62795 function calls (61272 primitive calls) in 0.043 seconds
-
-            Ordered by: cumulative time
-            List reduced from 453 to 12 due to restriction <12>
-
-            ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-                 1    0.000    0.000    0.043    0.043 {built-in method builtins.exec}
-                 1    0.000    0.000    0.043    0.043 <string>:1(<module>)
-                 1    0.000    0.000    0.043    0.043 score.py:4989(__init__)
-                 1    0.000    0.000    0.043    0.043 score.py:3099(__init__)
-               2/1    0.000    0.000    0.043    0.043 score.py:918(__init__)
-               2/1    0.000    0.000    0.043    0.043 score.py:1343(_initialize_componen
-                 1    0.000    0.000    0.042    0.042 score.py:1378(_parse_string)
-                 1    0.000    0.000    0.042    0.042 score.py:57(_parse_lilypond_string
-                 1    0.000    0.000    0.042    0.042 parse.py:9(parse)
-                 1    0.000    0.000    0.035    0.035 parser.py:2728(__init__)
-                 1    0.000    0.000    0.035    0.035 base.py:34(__init__)
-                 1    0.000    0.000    0.023    0.023 lex.py:862(lex)
+    Then print result.
 
     Wraps Python's built-in ``cProfile`` module.
 

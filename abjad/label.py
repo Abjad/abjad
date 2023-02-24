@@ -78,8 +78,6 @@ def color_container(container, color="#red") -> None:
 
     ..  container:: example
 
-        Colors measure:
-
         >>> staff = abjad.Staff("c'8 d'8")
         >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
         >>> abjad.label.color_container(staff, "#red")
@@ -124,8 +122,6 @@ def color_leaves(argument, color="#red", *, deactivate=False, tag=None) -> None:
 
     ..  container:: example
 
-        Colors leaves red:
-
         >>> staff = abjad.Staff("cs'8. r8. s8. <c' cs' a'>8.")
         >>> abjad.beam(staff[:])
         >>> abjad.label.color_leaves(staff, "#red")
@@ -160,8 +156,6 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
     Colors note note-heads.
 
     ..  container:: example
-
-        Colors chord note-heads:
 
         >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
         >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
@@ -838,9 +832,9 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
     r"""
     Labels logical ties in ``argument`` with indices.
 
-    ..  container:: example
+    Labels logical tie indices:
 
-        Labels logical tie indices:
+    ..  container:: example
 
         >>> staff = abjad.Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
         >>> abjad.label.with_indices(staff)
@@ -1046,9 +1040,9 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
     r"""
     Labels consecutive notes in ``argument`` with intervals.
 
-    ..  container:: example
+    Labels consecutive notes with interval names:
 
-        Labels consecutive notes with interval names:
+    ..  container:: example
 
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
         >>> notes = abjad.makers.make_notes(pitch_numbers, [(1, 4)])
