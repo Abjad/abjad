@@ -148,9 +148,9 @@ def partition_by_counts(
     r"""
     Partitions sequence by ``counts``.
 
-    ..  container:: example
+    Partitions sequence once by counts without overhang:
 
-        Partitions sequence once by counts without overhang:
+    ..  container:: example
 
         >>> sequence = list(range(16))
         >>> sequence = abjad.sequence.partition_by_counts(
@@ -639,9 +639,9 @@ def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
     r"""
     Partitions sequence by ``ratio`` of lengths.
 
-    ..  container:: example
+    Partitions sequence by ``1:1:1`` ratio:
 
-        Partitions sequence by ``1:1:1`` ratio:
+    ..  container:: example
 
         >>> numbers = list(range(10))
         >>> ratio = (1, 1, 1)
@@ -1096,9 +1096,9 @@ def split(sequence, weights, *, cyclic=False, overhang=False) -> list:
     r"""
     Splits sequence by ``weights``.
 
-    ..  container:: example
+    Splits sequence cyclically by weights with overhang:
 
-        Splits sequence cyclically by weights with overhang:
+    ..  container:: example
 
         >>> sequence = list([10, -10, 10, -10])
 
@@ -1382,9 +1382,9 @@ def is_decreasing(sequence, *, strict=True) -> bool:
     """
     Is true when sequence decreases.
 
-    ..  container:: example
+    Is true when sequence is strictly decreasing:
 
-        Is true when sequence is strictly decreasing:
+    ..  container:: example
 
         >>> abjad.sequence.is_decreasing([5, 4, 3, 2, 1, 0], strict=True)
         True
@@ -1443,9 +1443,9 @@ def is_increasing(sequence, *, strict=True) -> bool:
     """
     Is true when sequence increases.
 
-    ..  container:: example
+    Is true when sequence is strictly increasing:
 
-        Is true when sequence is strictly increasing:
+    ..  container:: example
 
         >>> abjad.sequence.is_increasing([0, 1, 2, 3, 4, 5], strict=True)
         True
@@ -1504,9 +1504,9 @@ def is_permutation(sequence, *, length=None) -> bool:
     """
     Is true when sequence is a permutation.
 
-    ..  container:: example
+    Is true when sequence is a permutation:
 
-        Is true when sequence is a permutation:
+    ..  container:: example
 
         >>> abjad.sequence.is_permutation([4, 5, 0, 3, 2, 1])
         True
@@ -1524,9 +1524,9 @@ def is_repetition_free(sequence) -> bool:
     """
     Is true when sequence is repetition-free.
 
-    ..  container:: example
+    Is true when sequence is repetition-free:
 
-        Is true when sequence is repetition-free:
+    ..  container:: example
 
         >>> abjad.sequence.is_repetition_free([0, 1, 2, 6, 7, 8])
         True
@@ -1579,9 +1579,9 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
     """
     Iterates ``sequence`` ``n`` at a time.
 
-    ..  container:: example
+    Iterates iterable by pairs:
 
-        Iterates iterable by pairs:
+    ..  container:: example
 
         >>> sequence = list(range(10))
         >>> for item in abjad.sequence.nwise(sequence):
@@ -2414,9 +2414,9 @@ def zip(sequences, *, cyclic=False, truncate=True) -> list[tuple]:
     """
     Zips sequences in sequence.
 
-    ..  container:: example
+    Zips cyclically:
 
-        Zips cyclically:
+    ..  container:: example
 
         >>> sequence = list([[1, 2, 3], ['a', 'b']])
         >>> for item in abjad.sequence.zip(sequence, cyclic=True):

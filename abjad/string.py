@@ -9,9 +9,9 @@ def capitalize_start(string: str) -> str:
     """
     Capitalizes start of string.
 
-    ..  container:: example
+    Capitalizes only ``string[0]``; leaves noninitial characters unchanged:
 
-        Capitalizes only ``string[0]``; leaves noninitial characters unchanged:
+    ..  container:: example
 
         >>> abjad.string.capitalize_start("violin I")
         'Violin I'
@@ -351,9 +351,9 @@ def pluralize(string: str, count: int | None = None) -> str:
     """
     Pluralizes English string.
 
-    ..  container:: example
+    Changes terminal ``-y`` to ``-ies``:
 
-        Changes terminal ``-y`` to ``-ies``:
+    ..  container:: example
 
         >>> abjad.string.pluralize('catenary')
         'catenaries'

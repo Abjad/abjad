@@ -170,9 +170,9 @@ def bundle(
     r"""
     Bundles ``indicator`` with ``tweaks``.
 
-    ..  container:: example
+    Bundles indicator:
 
-        Bundles indicator:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> bundle = abjad.bundle(

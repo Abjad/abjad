@@ -247,9 +247,9 @@ def leaves(
     r"""
     Iterates leaves in ``argument``.
 
-    ..  container:: example
+    Set ``exclude=<annotation>`` to exclude leaves with annotation:
 
-        Set ``exclude=<annotation>`` to exclude leaves with annotation:
+    ..  container:: example
 
         >>> staff = abjad.Staff()
         >>> staff.extend("<c' bf'>8 <g' a'>8")
@@ -490,9 +490,9 @@ def logical_ties(
     r"""
     Iterates logical ties in ``argument``.
 
-    ..  container:: example
+    Iterates logical ties:
 
-        Iterates logical ties:
+    ..  container:: example
 
         >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
         >>> staff = abjad.Staff(string)
@@ -844,9 +844,9 @@ def pitches(argument) -> typing.Iterator[_pitch.NamedPitch]:
     r"""
     Iterates pitches in ``argument``.
 
-    ..  container:: example
+    Iterates pitches in container:
 
-        Iterates pitches in container:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.beam(staff[:])
@@ -944,9 +944,9 @@ def timeline(
     r"""
     Iterates leaves in ``argument`` in timeline order.
 
-    ..  container:: example
+    Timeline-iterates leaves:
 
-        Timeline-iterates leaves:
+    ..  container:: example
 
         >>> score = abjad.Score()
         >>> score.append(abjad.Staff("c'4 d'4 e'4 f'4"))

@@ -741,9 +741,9 @@ def copy(argument, n=1) -> list[_score.Component]:
     r"""
     Copies argument.
 
-    ..  container:: example
+    Copies explicit clefs:
 
-        Copies explicit clefs:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
         >>> clef = abjad.Clef('treble')
@@ -875,9 +875,9 @@ def eject_contents(container: _score.Container) -> list[_score.Component]:
     r"""
     Ejects ``container`` contents.
 
-    ..  container:: example
+    Ejects leaves from container:
 
-        Ejects leaves from container:
+    ..  container:: example
 
         >>> container = abjad.Container("c'4 ~ c'4 d'4 ~ d'4")
         >>> abjad.show(container) # doctest: +SKIP
@@ -1096,9 +1096,9 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
     r"""
     Fuses ``argument``.
 
-    ..  container:: example
+    Fuses in-score leaves:
 
-        Fuses in-score leaves:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1611,9 +1611,9 @@ def scale(argument, multiplier) -> None:
     r"""
     Scales ``argument`` by ``multiplier``.
 
-    ..  container:: example
+    Scales note duration by dot-generating multiplier:
 
-        Scales note duration by dot-generating multiplier:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
         >>> abjad.show(staff) # doctest: +SKIP

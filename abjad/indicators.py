@@ -851,9 +851,9 @@ class Clef:
         """
         Changes ``staff_position`` to pitch.
 
-        ..  container:: example
+        Treble clef:
 
-            Treble clef:
+        ..  container:: example
 
             >>> clef = abjad.Clef("treble")
             >>> for n in range(-6, 6):
@@ -962,9 +962,9 @@ class Clef:
         r"""
         Changes ``pitch`` to staff position.
 
-        ..  container:: example
+        Changes C#5 to absolute staff position:
 
-            Changes C#5 to absolute staff position:
+        ..  container:: example
 
             >>> pitch = abjad.NamedPitch("C#5")
 
@@ -2772,9 +2772,9 @@ class MetronomeMark:
         """
         Gets millisecond value of ``duration`` under a given metronome mark.
 
-        ..  container:: example
+        Dotted sixteenth lasts 1500 msec at quarter equals 60:
 
-            Dotted sixteenth lasts 1500 msec at quarter equals 60:
+        ..  container:: example
 
             >>> mark = abjad.MetronomeMark((1, 4), 60)
             >>> mark.duration_to_milliseconds((3, 8))
@@ -2797,9 +2797,9 @@ class MetronomeMark:
         r"""
         Makes tempo equation markup.
 
-        ..  container:: example
+        Integer-valued metronome mark:
 
-            Integer-valued metronome mark:
+        ..  container:: example
 
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup((1, 4),  90)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])

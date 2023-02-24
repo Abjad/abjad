@@ -1157,9 +1157,9 @@ def hairpin(
     r"""
     Attaches hairpin indicators.
 
-    ..  container:: example
+    With three-part string descriptor:
 
-        With three-part string descriptor:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.hairpin("p < f", staff[:], direction=abjad.UP)
@@ -1545,9 +1545,9 @@ def text_spanner(
     r"""
     Attaches text span indicators.
 
-    ..  container:: example
+    Single spanner:
 
-        Single spanner:
+    ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(

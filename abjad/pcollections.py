@@ -327,9 +327,9 @@ class PitchClassSet(frozenset):
         """
         Gets normal order.
 
-        ..  container:: example
+        Gets normal order of empty pitch-class set:
 
-            Gets normal order of empty pitch-class set:
+        ..  container:: example
 
             >>> pc_set = abjad.PitchClassSet()
             >>> pc_set.get_normal_order()
@@ -385,9 +385,9 @@ class PitchClassSet(frozenset):
         """
         Gets prime form.
 
-        ..  container:: example
+        Gets prime form of empty pitch-class set:
 
-            Gets prime form of empty pitch-class set:
+        ..  container:: example
 
             >>> pc_set = abjad.PitchClassSet()
             >>> pc_set.get_prime_form()
@@ -658,9 +658,9 @@ class PitchRange:
         """
         Is true when pitch range contains ``argument``.
 
-        ..  container:: example
+        Closed / closed range:
 
-            Closed / closed range:
+        ..  container:: example
 
             >>> range_ = abjad.PitchRange("[A0, C8]")
 
@@ -2289,9 +2289,9 @@ class TwelveToneRow(PitchClassSegment):
         r"""
         Multiplies row by ``argument``.
 
-        ..  container:: example
+        Multiplies row:
 
-            Multiplies row:
+        ..  container:: example
 
             >>> row = abjad.TwelveToneRow()
             >>> lilypond_file = abjad.illustrate(row)
@@ -2392,9 +2392,9 @@ class TwelveToneRow(PitchClassSegment):
         r"""
         Multiplies ``argument`` by row.
 
-        ..  container:: example
+        Multiplies integer by row:
 
-            Multiplies integer by row:
+        ..  container:: example
 
             >>> row = abjad.TwelveToneRow()
             >>> lilypond_file = abjad.illustrate(row)
@@ -2507,9 +2507,9 @@ class TwelveToneRow(PitchClassSegment):
         """
         Counts ``item`` in row.
 
-        ..  container:: example
+        Example row:
 
-            Example row:
+        ..  container:: example
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
             >>> row = abjad.TwelveToneRow(numbers)
@@ -2575,9 +2575,9 @@ class TwelveToneRow(PitchClassSegment):
         r"""
         Inverts row about optional ``axis``.
 
-        ..  container:: example
+        Example row:
 
-            Example row:
+        ..  container:: example
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
             >>> row = abjad.TwelveToneRow(numbers)
@@ -2725,9 +2725,9 @@ class TwelveToneRow(PitchClassSegment):
         r"""
         Multiplies pitch-classes in row by ``n``.
 
-        ..  container:: example
+        Example row:
 
-            Example row:
+        ..  container:: example
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
             >>> row = abjad.TwelveToneRow(numbers)
@@ -2834,9 +2834,9 @@ class TwelveToneRow(PitchClassSegment):
         r"""
         Gets retrograde of row.
 
-        ..  container:: example
+        Example row:
 
-            Example row:
+        ..  container:: example
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
             >>> row = abjad.TwelveToneRow(numbers)
@@ -2915,9 +2915,9 @@ class TwelveToneRow(PitchClassSegment):
         r"""
         Rotates row by index ``n``.
 
-        ..  container:: example
+        Example row:
 
-            Example row:
+        ..  container:: example
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
             >>> row = abjad.TwelveToneRow(numbers)
@@ -3027,9 +3027,9 @@ class TwelveToneRow(PitchClassSegment):
         r"""
         Transposes row by index ``n``.
 
-        ..  container:: example
+        Example row:
 
-            Example row:
+        ..  container:: example
 
             >>> numbers = [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
             >>> row = abjad.TwelveToneRow(numbers)
