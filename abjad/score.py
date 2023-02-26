@@ -70,7 +70,7 @@ class Component:
 
         return parse(string, language=language)
 
-    def __init__(self, name: str | None = None, tag: _tag.Tag | None = None) -> None:
+    def __init__(self, *, tag: _tag.Tag | None = None) -> None:
         self._indicators_are_current = False
         self._is_forbidden_to_update = False
         self._measure_number = None
@@ -103,7 +103,15 @@ class Component:
 
         Returns new component.
         """
-        component = type(self)(*self.__getnewargs__())
+        component = type(self)(*self.__getnewargs__(), tag=self.tag)
+        if hasattr(self, "identifier"):
+            component.identifier = self.identifier
+        if hasattr(self, "lilypond_type"):
+            component.lilypond_type = self.lilypond_type
+        if hasattr(self, "name"):
+            component.name = self.name
+        if hasattr(self, "simultaneous"):
+            component.simultaneous = self.simultaneous
         if getattr(self, "_overrides", None) is not None:
             component._overrides = copy.copy(_overrides.override(self))
         if getattr(self, "_lilypond_setting_name_manager", None) is not None:
@@ -807,16 +815,15 @@ class Container(Component):
 
     ### INITIALIZER ###
 
-    # TODO: make all keywords (after components) mandatory keywords
     def __init__(
         self,
         components=None,
-        identifier: str | None = None,
-        simultaneous: bool = False,
-        name: str | None = None,
-        tag: _tag.Tag | None = None,
         *,
+        identifier: str | None = None,
         language: str = "english",
+        name: str | None = None,
+        simultaneous: bool = False,
+        tag: _tag.Tag | None = None,
     ) -> None:
         components = components or []
         Component.__init__(self, tag=tag)
@@ -973,7 +980,7 @@ class Container(Component):
         """
         Gets new container arguments.
         """
-        return [], self.identifier, self.simultaneous, self.name, self.tag
+        return ([],)
 
     def __iter__(self):
         """
@@ -2946,16 +2953,15 @@ class Context(Container):
 
     ### INITIALIZER ###
 
-    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
-        lilypond_type: str = "Context",
-        simultaneous: bool = False,
-        name: str | None = None,
-        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
+        lilypond_type: str = "Context",
+        name: str | None = None,
+        simultaneous: bool = False,
+        tag: _tag.Tag | None = None,
     ) -> None:
         self._consists_commands: list[str] = []
         self._dependent_wrappers: list = []
@@ -2989,11 +2995,11 @@ class Context(Container):
 
     def __getnewargs__(self):
         """
-        Gets new container arguments.
+        Gets new context arguments.
 
         Returns tuple.
         """
-        return [], self.lilypond_type, self.simultaneous, self.name
+        return ([],)
 
     def __repr__(self) -> str:
         """
@@ -3394,6 +3400,7 @@ class NoteHead:
     def __init__(
         self,
         written_pitch=None,
+        *,
         is_cautionary=None,
         is_forced=None,
         is_parenthesized=None,
@@ -3431,14 +3438,12 @@ class NoteHead:
             NoteHead("cs''")
 
         """
-        arguments = (
+        result = type(self)(
             self.written_pitch,
-            self.is_cautionary,
-            self.is_forced,
-            self.is_parenthesized,
-            # self.tweaks,
+            is_cautionary=self.is_cautionary,
+            is_forced=self.is_forced,
+            is_parenthesized=self.is_parenthesized,
         )
-        result = type(self)(*arguments)
         tweaks = copy.deepcopy(self.tweaks)
         result.tweaks = tweaks
         return result
@@ -3821,6 +3826,7 @@ class DrumNoteHead(NoteHead):
     def __init__(
         self,
         written_pitch: str = "snare",
+        *,
         is_cautionary: bool = False,
         is_forced: bool = False,
         is_parenthesized: bool = False,
@@ -4466,16 +4472,15 @@ class Score(Context):
 
     ### INITIALIZER ###
 
-    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
-        lilypond_type: str = "Score",
-        simultaneous: bool = True,
-        name: str | None = None,
-        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
+        lilypond_type: str = "Score",
+        name: str | None = None,
+        simultaneous: bool = True,
+        tag: _tag.Tag | None = None,
     ) -> None:
         Context.__init__(
             self,
@@ -4703,16 +4708,15 @@ class Staff(Context):
 
     _default_lilypond_type = "Staff"
 
-    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
-        lilypond_type: str = "Staff",
-        simultaneous: bool = False,
-        name: str | None = None,
-        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
+        lilypond_type: str = "Staff",
+        name: str | None = None,
+        simultaneous: bool = False,
+        tag: _tag.Tag | None = None,
     ) -> None:
         Context.__init__(
             self,
@@ -4766,16 +4770,15 @@ class StaffGroup(Context):
 
     _default_lilypond_type = "StaffGroup"
 
-    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
-        lilypond_type: str = "StaffGroup",
-        simultaneous: bool = True,
-        name: str | None = None,
-        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
+        lilypond_type: str = "StaffGroup",
+        name: str | None = None,
+        simultaneous: bool = True,
+        tag: _tag.Tag | None = None,
     ) -> None:
         Context.__init__(
             self,
@@ -7134,16 +7137,15 @@ class Voice(Context):
 
     ### INITIALIZER ###
 
-    # TODO: make keywords mandatory
     def __init__(
         self,
         components=None,
-        lilypond_type: str = "Voice",
-        simultaneous: bool = False,
-        name: str | None = None,
-        tag: _tag.Tag | None = None,
         *,
         language: str = "english",
+        lilypond_type: str = "Voice",
+        name: str | None = None,
+        simultaneous: bool = False,
+        tag: _tag.Tag | None = None,
     ) -> None:
         Context.__init__(
             self,
