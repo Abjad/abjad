@@ -244,6 +244,8 @@ def components(
 ):
     """
     Wraps ``components`` in LilyPond file for doc examples.
+
+    Sets LilyPond ``proportionalSpacingDuration`` to 1/24.
     """
     time_signatures = time_signatures or []
     assert all(isinstance(_, _indicators.TimeSignature) for _ in time_signatures), repr(

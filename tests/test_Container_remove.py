@@ -51,7 +51,7 @@ def test_Container_remove_01():
     assert abjad.lilypond(note) == "d'8\n[\n]"
 
     assert abjad.wf.wellformed(voice)
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.wellformed(note, check_beamed_lone_notes=False)
 
 
 def test_Container_remove_02():

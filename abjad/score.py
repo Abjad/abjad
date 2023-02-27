@@ -4128,7 +4128,7 @@ class Note(Leaf):
             written_pitch = _pitch.NamedPitch("C4")
             written_duration = _duration.Duration(1, 4)
         else:
-            raise ValueError("can not initialize note from {arguments!r}.")
+            raise ValueError(f"can not initialize note from {arguments!r}.")
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if written_pitch is not None:
             if written_pitch not in _lyconst.drums:

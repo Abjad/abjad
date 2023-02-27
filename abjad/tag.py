@@ -221,9 +221,7 @@ def _match_line(line, tag, current_tags):
     return False
 
 
-def activate(
-    text: str, tag: Tag | typing.Callable, skipped: bool = False
-) -> tuple[str, int] | tuple[str, int, int]:
+def activate(text: str, tag: Tag | typing.Callable) -> tuple[str, int, int]:
     r"""
     Activates ``tag`` in ``text``.
 
@@ -257,7 +255,7 @@ def activate(
 
         Activates tag:
 
-        >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
+        >>> text, count, skipped = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff
         {
@@ -276,7 +274,7 @@ def activate(
 
         Deactivates tag again:
 
-        >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
+        >>> text, count, skipped = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff
         {
@@ -295,7 +293,7 @@ def activate(
 
         Activates tag again:
 
-        >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
+        >>> text, count, skipped = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff
         {
@@ -314,9 +312,11 @@ def activate(
 
     Tags can toggle indefinitely.
 
-    Returns text, count pair.
+    Returns (text, count, skipped) triple.
 
     Count gives number of activated tags.
+
+    Skipped gives number of skipped tags.
     """
     assert isinstance(text, str), repr(text)
     assert isinstance(tag, Tag) or callable(tag), repr(tag)
@@ -365,18 +365,14 @@ def activate(
         lines.append(line)
         current_tags = []
     text = "".join(lines)
-    if skipped is True:
-        return text, count, skipped_count
-    else:
-        return text, count
+    return text, count, skipped_count
 
 
 def deactivate(
     text: str,
     tag: Tag | typing.Callable,
     prepend_empty_chord: bool = False,
-    skipped: bool = False,
-) -> tuple[str, int] | tuple[str, int, int]:
+) -> tuple[str, int, int]:
     r"""
     Deactivates ``tag`` in ``text``.
 
@@ -411,7 +407,7 @@ def deactivate(
         Deactivates tag:
 
         >>> text = abjad.lilypond(staff, tags=True)
-        >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
+        >>> text, count, skipped = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff
         {
@@ -430,7 +426,7 @@ def deactivate(
 
         Activates tag again:
 
-        >>> text, count = abjad.activate(text, abjad.Tag("RED_MARKUP"))
+        >>> text, count, skipped = abjad.activate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff
         {
@@ -449,7 +445,7 @@ def deactivate(
 
         Deactivates tag again:
 
-        >>> text, count = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
+        >>> text, count, skipped = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff
         {
@@ -492,7 +488,7 @@ def deactivate(
         start_column = len(line) - len(line.lstrip())
         if line[start_column] != "%":
             if " %@%" in line:
-                prefix = "%@% "
+                prefix = "    " + "%@% "
                 line = line.replace(" %@%", "")
             else:
                 prefix = "%%% "
@@ -516,10 +512,7 @@ def deactivate(
         previous_line_was_tweak = "tweak" in line
         current_tags = []
     text = "".join(lines)
-    if skipped is True:
-        return text, count, skipped_count
-    else:
-        return text, count
+    return text, count, skipped_count
 
 
 def double_tag(strings: list[str], tag_: Tag, deactivate: bool = False) -> list[str]:

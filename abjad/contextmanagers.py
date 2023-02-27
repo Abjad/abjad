@@ -10,6 +10,7 @@ import time
 
 from . import _updatelib
 from . import configuration as _configuration
+from . import iterate as _iterate
 from . import string as _string
 
 configuration = _configuration.Configuration()
@@ -183,13 +184,35 @@ class ForbidUpdate(ContextManager):
     ### SPECIAL METHODS ###
 
     def __enter__(self):
-        """
+        r"""
         Enters context manager.
+
+        ..  container:: example
+
+            REGRESSION. Indicators need to be updated after swap; context
+            manager updates indicators before forbidding further updates:
+
+            >>> staff = abjad.Staff(r"\times 1/1 { c'4 d' }")
+            >>> abjad.attach(abjad.Clef("alto"), staff[0][0])
+            >>> container = abjad.Container()
+            >>> abjad.mutate.swap(staff[0], container)
+            >>> with abjad.ForbidUpdate(staff):
+            ...     for note in staff[0]:
+            ...         print(note)
+            ...         print(abjad.get.effective(note, abjad.Clef))
+            ...
+            Note("c'4")
+            Clef(name='alto', hide=False)
+            Note("d'4")
+            Clef(name='alto', hide=False)
 
         Returns context manager.
         """
         if self.component is not None:
-            _updatelib._update_now(self.component, offsets=True)
+            for component_ in _iterate.components(self.component):
+                _updatelib._update_now(
+                    component_, indicators=True, offsets=True, offsets_in_seconds=True
+                )
             self.component._is_forbidden_to_update = True
         return self
 
@@ -202,7 +225,13 @@ class ForbidUpdate(ContextManager):
         if self.component is not None:
             self.component._is_forbidden_to_update = False
             if self.update_on_exit:
-                _updatelib._update_now(self.component, offsets=True)
+                for component_ in _iterate.components(self.component):
+                    _updatelib._update_now(
+                        component_,
+                        indicators=True,
+                        offsets=True,
+                        offsets_in_seconds=True,
+                    )
 
     ### PUBLIC PROPERTIES ###
 

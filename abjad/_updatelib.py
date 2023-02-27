@@ -108,7 +108,7 @@ def _get_measure_start_offsets(component):
 
 def _get_on_beat_grace_leaf_offsets(leaf):
     container = leaf._parent
-    anchor_leaf = container._get_on_beat_anchor_leaf()
+    anchor_leaf = container.get_anchor_leaf()
     anchor_leaf_start_offset = anchor_leaf._start_offset
     assert anchor_leaf_start_offset is not None
     anchor_leaf_start_offset = _duration.Offset(anchor_leaf_start_offset.pair)
