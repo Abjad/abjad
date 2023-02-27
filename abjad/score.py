@@ -801,7 +801,7 @@ class Container(Component):
     ) -> None:
         components = components or []
         if not isinstance(components, str):
-            prototype = Component | str
+            prototype = (Component, str)
             assert all(isinstance(_, prototype) for _ in components), repr(components)
         Component.__init__(self, tag=tag)
         self._named_children: dict = {}
