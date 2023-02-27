@@ -706,34 +706,8 @@ class Container(Component):
         ...     abjad.Note("d'4"),
         ...     abjad.Note("e'8"),
         ...     abjad.Note("f'8"),
-        ...     ]
+        ... ]
         >>> container = abjad.Container(notes)
-        >>> abjad.show(container) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(container)
-            >>> print(string)
-            {
-                c'4
-                e'4
-                d'4
-                e'8
-                f'8
-            }
-
-    ..  container:: example
-
-        Intializes from mixed components and lists:
-
-        >>> items = [
-        ...     abjad.Note("c'4"),
-        ...     [abjad.Note("e'4")],
-        ...     [abjad.Note("d'4")],
-        ...     abjad.Note("e'8"),
-        ...     abjad.Note("f'8"),
-        ...     ]
-        >>> container = abjad.Container(items)
         >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
@@ -826,6 +800,9 @@ class Container(Component):
         tag: _tag.Tag | None = None,
     ) -> None:
         components = components or []
+        if not isinstance(components, str):
+            prototype = (Component, str)
+            assert all(isinstance(_, prototype) for _ in components), repr(components)
         Component.__init__(self, tag=tag)
         self._named_children: dict = {}
         self._is_simultaneous = None
@@ -1282,16 +1259,11 @@ class Container(Component):
                 if isinstance(item, str):
                     parsed = self._parse_string(item, language=language)
                     components_.append(parsed)
-                elif isinstance(item, collections.abc.Iterable) and not isinstance(
-                    item, Container
-                ):
-                    components_.extend(item)
                 else:
+                    assert isinstance(item, Component)
                     components_.append(item)
             components = components_
-            for component in components:
-                if not isinstance(component, Component):
-                    raise Exception(f"must be component: {component!r}.")
+            assert all(isinstance(_, Component) for _ in components), repr(components)
         if isinstance(components, str):
             parsed = self._parse_string(components, language=language)
             self._components = []
