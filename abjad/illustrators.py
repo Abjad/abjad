@@ -1,5 +1,6 @@
 import copy
 import dataclasses
+import typing
 
 from . import bind as _bind
 from . import duration as _duration
@@ -235,6 +236,90 @@ def attach_markup_struts(lilypond_file):
         _overrides.tweaks(markup, r"- \tweak transparent ##t")
 
 
+def components(
+    components: typing.Sequence[_score.Component],
+    time_signatures: typing.Sequence[_indicators.TimeSignature] | None = None,
+    *,
+    includes: typing.Sequence[str] | None = None,
+):
+    """
+    Wraps ``components`` in LilyPond file for doc examples.
+    """
+    time_signatures = time_signatures or []
+    assert all(isinstance(_, _indicators.TimeSignature) for _ in time_signatures), repr(
+        time_signatures
+    )
+    if not time_signatures:
+        duration = _get.duration(components)
+        time_signature = _indicators.TimeSignature(duration.pair)
+        _bind.attach(time_signature, _select.leaf(components, 0))
+    else:
+        leaves = _select.leaves(components, grace=False)
+        durations = [_.duration for _ in time_signatures]
+        parts = _select.partition_by_durations(leaves, durations)
+        assert len(parts) == len(time_signatures)
+        for time_signature, part in zip(time_signatures, parts):
+            assert isinstance(time_signature, _indicators.TimeSignature)
+            _bind.attach(time_signature, _select.leaf(part, 0))
+    staff = _score.Staff(components, name="Staff")
+    score = _score.Score([staff], name="Score")
+    items: list[_score.Component | str] = []
+    items.append(r'\include "abjad.ily"')
+    for include in includes or []:
+        items.append(rf'\include "{include}"')
+    string = r"""\layout
+{
+    \context
+    {
+        \Score
+        proportionalNotationDuration = #(ly:make-moment 1 24)
+    }
+}
+"""
+    items.append(string)
+    items.append(score)
+    lilypond_file = _lilypondfile.LilyPondFile(items)
+    return lilypond_file
+
+
+def components_to_score_markup_string(components: typing.Sequence[_score.Component]):
+    """
+    Changes ``components`` to score markup string.
+    """
+    assert all(isinstance(_, _score.Component) for _ in components), repr(components)
+    components = copy.deepcopy(components)
+    staff = _score.Staff(components, name="Rhythmic_Staff")
+    staff.lilypond_type = "RhythmicStaff"
+    staff.remove_commands.append("Time_signature_engraver")
+    staff.remove_commands.append("Staff_symbol_engraver")
+    _overrides.override(staff).Stem.direction = _enums.UP
+    _overrides.override(staff).Stem.length = 5
+    _overrides.override(staff).TupletBracket.bracket_visibility = True
+    _overrides.override(staff).TupletBracket.direction = _enums.UP
+    _overrides.override(staff).TupletBracket.minimum_length = 4
+    _overrides.override(staff).TupletBracket.padding = 1.25
+    _overrides.override(staff).TupletBracket.shorten_pair = "#'(-1 . -1.5)"
+    scheme = "#ly:spanner::set-spacing-rods"
+    _overrides.override(staff).TupletBracket.springs_and_rods = scheme
+    _overrides.override(staff).TupletNumber.font_size = 0
+    scheme = "#tuplet-number::calc-fraction-text"
+    _overrides.override(staff).TupletNumber.text = scheme
+    _overrides.setting(staff).tupletFullLength = True
+    layout_block = _lilypondfile.Block("layout")
+    layout_block.items.append("indent = 0")
+    layout_block.items.append("ragged-right = ##t")
+    score = _score.Score([staff], name="Score")
+    _overrides.override(score).SpacingSpanner.spacing_increment = 0.5
+    _overrides.setting(score).proportionalNotationDuration = False
+    indent = 4 * " "
+    strings = [r"\score", indent + "{"]
+    strings.extend([2 * indent + _ for _ in lilypond(score).split("\n")])
+    strings.extend([2 * indent + _ for _ in lilypond(layout_block).split("\n")])
+    strings.append(indent + "}")
+    string = "\n".join(strings)
+    return string
+
+
 def illustrate(item, **keywords):
     """
     Illustrates ``item``.
@@ -428,7 +513,6 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             treble_leaf = copy.copy(leaf)
             bass_leaf = copy.copy(leaf)
         for wrapper in markup_wrappers:
-            # markup = wrapper.indicator
             markup = wrapper.unbundle_indicator()
             markup_copy = copy.copy(markup)
             if wrapper.direction in (_enums.UP, None):
@@ -444,76 +528,3 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         clef = _indicators.Clef("bass")
         _bind.attach(clef, bass_staff[0])
     return score
-
-
-def selection(components, time_signatures=None, *, includes=None):
-    """
-    Wraps ``components`` in LilyPond file for doc examples.
-    """
-    if time_signatures is None:
-        duration = _get.duration(components)
-        time_signature = _indicators.TimeSignature(duration)
-        _bind.attach(time_signature, _select.leaf(components, 0))
-    else:
-        leaves = _select.leaves(components, grace=False)
-        parts = _select.partition_by_durations(leaves, time_signatures)
-        assert len(parts) == len(time_signatures)
-        for time_signature, part in zip(time_signatures, parts):
-            time_signature = _indicators.TimeSignature(time_signature)
-            _bind.attach(time_signature, _select.leaf(part, 0))
-    staff = _score.Staff(components, name="Staff")
-    score = _score.Score([staff], name="Score")
-    items = []
-    items.append(r'\include "abjad.ily"')
-    for include in includes or []:
-        items.append(rf'\include "{include}"')
-    string = r"""\layout
-{
-    \context
-    {
-        \Score
-        proportionalNotationDuration = #(ly:make-moment 1 24)
-    }
-}
-"""
-    items.append(string)
-    items.append(score)
-    lilypond_file = _lilypondfile.LilyPondFile(items)
-    return lilypond_file
-
-
-def selection_to_score_markup_string(selection):
-    """
-    Changes ``selection`` to score markup string.
-    """
-    selection = copy.deepcopy(selection)
-    staff = _score.Staff(selection, name="Rhythmic_Staff")
-    staff.lilypond_type = "RhythmicStaff"
-    staff.remove_commands.append("Time_signature_engraver")
-    staff.remove_commands.append("Staff_symbol_engraver")
-    _overrides.override(staff).Stem.direction = _enums.UP
-    _overrides.override(staff).Stem.length = 5
-    _overrides.override(staff).TupletBracket.bracket_visibility = True
-    _overrides.override(staff).TupletBracket.direction = _enums.UP
-    _overrides.override(staff).TupletBracket.minimum_length = 4
-    _overrides.override(staff).TupletBracket.padding = 1.25
-    _overrides.override(staff).TupletBracket.shorten_pair = "#'(-1 . -1.5)"
-    scheme = "#ly:spanner::set-spacing-rods"
-    _overrides.override(staff).TupletBracket.springs_and_rods = scheme
-    _overrides.override(staff).TupletNumber.font_size = 0
-    scheme = "#tuplet-number::calc-fraction-text"
-    _overrides.override(staff).TupletNumber.text = scheme
-    _overrides.setting(staff).tupletFullLength = True
-    layout_block = _lilypondfile.Block("layout")
-    layout_block.items.append("indent = 0")
-    layout_block.items.append("ragged-right = ##t")
-    score = _score.Score([staff], name="Score")
-    _overrides.override(score).SpacingSpanner.spacing_increment = 0.5
-    _overrides.setting(score).proportionalNotationDuration = False
-    indent = 4 * " "
-    strings = [r"\score", indent + "{"]
-    strings.extend([2 * indent + _ for _ in lilypond(score).split("\n")])
-    strings.extend([2 * indent + _ for _ in lilypond(layout_block).split("\n")])
-    strings.append(indent + "}")
-    string = "\n".join(strings)
-    return string
