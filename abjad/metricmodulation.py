@@ -482,11 +482,11 @@ class MetricModulation:
             markup = _indicators.Markup(rf"\markup {string}")
             return markup
         strings = []
-        string = _illustrators.selection_to_score_markup_string(self.left_rhythm)
+        string = _illustrators.components_to_score_markup_string(self.left_rhythm)
         strings.extend(string.split("\n"))
         strings.append("=")
         strings.append(r"\hspace #-0.5")
-        string = _illustrators.selection_to_score_markup_string(self.right_rhythm)
+        string = _illustrators.components_to_score_markup_string(self.right_rhythm)
         strings.extend(string.split("\n"))
         string = "\n".join(strings)
         string = rf"\markup {{ {string} }}"

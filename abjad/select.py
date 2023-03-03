@@ -264,7 +264,7 @@ def chord(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -351,7 +351,7 @@ def chords(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -901,7 +901,7 @@ def flatten(argument, depth: int = 1) -> list:
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -987,7 +987,7 @@ def flatten(argument, depth: int = 1) -> list:
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -2288,7 +2288,7 @@ def leaf(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -3911,7 +3911,7 @@ def note(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -3998,7 +3998,7 @@ def notes(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -5570,7 +5570,7 @@ def rest(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -5657,7 +5657,7 @@ def rests(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -5755,7 +5755,7 @@ def run(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -5846,7 +5846,7 @@ def runs(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
@@ -6125,7 +6125,7 @@ def tuplet(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> lilypond_file = abjad.illustrators.selection(tuplets)
+        >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.override(staff).TupletBracket.direction = abjad.UP
