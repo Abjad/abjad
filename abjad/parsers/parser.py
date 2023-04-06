@@ -348,7 +348,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\oneVoice`` command.
         """
-        return _indicators.LilyPondLiteral(r"\oneVoice")
+        return _indicators.VoiceNumber(None)
 
     # pitchedTrill
 
@@ -487,25 +487,25 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\voiceFour`` command.
         """
-        return _indicators.LilyPondLiteral(r"\voiceFour")
+        return _indicators.VoiceNumber(4)
 
     def voiceOne(self):
         r"""
         Handles LilyPond ``\voiceOnce`` command.
         """
-        return _indicators.LilyPondLiteral(r"\voiceOne")
+        return _indicators.VoiceNumber(1)
 
     def voiceThree(self):
         r"""
         Handles LilyPond ``\voiceThree`` command.
         """
-        return _indicators.LilyPondLiteral(r"\voiceThree")
+        return _indicators.VoiceNumber(3)
 
     def voiceTwo(self):
         r"""
         Handles LilyPond ``\voiceTwo`` command.
         """
-        return _indicators.LilyPondLiteral(r"\voiceTwo")
+        return _indicators.VoiceNumber(2)
 
     ### HELPER FUNCTIONS ###
 

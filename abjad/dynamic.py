@@ -65,12 +65,12 @@ class Dynamic:
 
         >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
         >>> abjad.attach(abjad.Dynamic('f'), voice_1[0], context='Voice')
-        >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
-        >>> abjad.attach(literal, voice_1)
+        >>> command = abjad.VoiceNumber(1)
+        >>> abjad.attach(command, voice_1[0])
         >>> abjad.override(voice_1).DynamicLineSpanner.direction = abjad.UP
         >>> voice_2 = abjad.Voice("c'2")
-        >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
-        >>> abjad.attach(literal, voice_2)
+        >>> command = abjad.VoiceNumber(2)
+        >>> abjad.attach(command, voice_2[0])
         >>> abjad.attach(abjad.Dynamic("mf"), voice_2[0], context="Voice")
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.show(staff) # doctest: +SKIP

@@ -99,9 +99,9 @@ def components(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -320,9 +320,9 @@ def leaves(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -558,9 +558,9 @@ def logical_ties(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1032,9 +1032,9 @@ def timeline(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t

@@ -596,14 +596,14 @@ class Clef:
 
         >>> voice_1 = abjad.Voice("e'8 g' f' a' g' b'")
         >>> abjad.attach(abjad.Clef("treble"), voice_1[0], context="Voice")
-        >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
-        >>> abjad.attach(literal, voice_1)
+        >>> command = abjad.VoiceNumber(1)
+        >>> abjad.attach(command, voice_1[0])
         >>> voice_1.consists_commands.append("Clef_engraver")
         >>> voice_2 = abjad.Voice("c'4. c,8 b,, a,,")
         >>> abjad.attach(abjad.Clef("treble"), voice_2[0], context="Voice")
         >>> abjad.attach(abjad.Clef("bass"), voice_2[1], context="Voice")
-        >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
-        >>> abjad.attach(literal, voice_2)
+        >>> command = abjad.VoiceNumber(2)
+        >>> abjad.attach(command, voice_2[0])
         >>> voice_2.consists_commands.append("Clef_engraver")
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> staff.remove_commands.append("Clef_engraver")
@@ -679,7 +679,6 @@ class Clef:
 
         >>> abjad.Clef("alto").middle_c_position()
         StaffPosition(number=0)
-
 
     ..  container:: example
 
@@ -6243,3 +6242,110 @@ class TimeSignature:
             )
         pair = _duration.with_denominator(self.pair, power_of_two_denominator)
         return type(self)(pair)
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class VoiceNumber:
+    r"""
+    LilyPond ``\voiceOne``, ``\voiceTwo``, ``\voiceThree``, ``\voiceFour``,
+    ``\oneVoice`` commands.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff()
+        >>> voice_1 = abjad.Voice("g'8 a' b' c''")
+        >>> command = abjad.VoiceNumber(n=1)
+        >>> abjad.attach(command, voice_1[0])
+        >>> voice_2 = abjad.Voice("e'8 f' g' a'")
+        >>> command = abjad.VoiceNumber(n=2)
+        >>> abjad.attach(command, voice_2[0])
+        >>> container = abjad.Container([voice_1, voice_2], simultaneous=True)
+        >>> staff.append(container)
+        >>> voice = abjad.Voice("c''4 a'")
+        >>> command = abjad.VoiceNumber()
+        >>> abjad.attach(command, voice[0])
+        >>> staff.append(voice)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                <<
+                    \new Voice
+                    {
+                        \voiceOne
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                    \new Voice
+                    {
+                        \voiceTwo
+                        e'8
+                        f'8
+                        g'8
+                        a'8
+                    }
+                >>
+                \new Voice
+                {
+                    \oneVoice
+                    c''4
+                    a'4
+                }
+            }
+
+        >>> for leaf in abjad.select.leaves(staff):
+        ...     command = abjad.get.effective(leaf, abjad.VoiceNumber)
+        ...     print(f"{leaf}, {command}")
+        Note("g'8"), VoiceNumber(n=1, leak=False)
+        Note("a'8"), VoiceNumber(n=1, leak=False)
+        Note("b'8"), VoiceNumber(n=1, leak=False)
+        Note("c''8"), VoiceNumber(n=1, leak=False)
+        Note("e'8"), VoiceNumber(n=2, leak=False)
+        Note("f'8"), VoiceNumber(n=2, leak=False)
+        Note("g'8"), VoiceNumber(n=2, leak=False)
+        Note("a'8"), VoiceNumber(n=2, leak=False)
+        Note("c''4"), VoiceNumber(n=None, leak=False)
+        Note("a'4"), VoiceNumber(n=None, leak=False)
+
+    """
+
+    n: int | None = None
+    leak: bool = dataclasses.field(default=False, compare=False)
+
+    check_effective_context: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Voice"
+    parameter: typing.ClassVar[str] = "VOICE_NUMBER"
+    persistent: typing.ClassVar[bool] = True
+
+    def __post_init__(self):
+        assert self.n in (1, 2, 3, 4, None), repr(self.n)
+
+    def _get_contributions(self, *, component=None, wrapper=None):
+        contributions = _contributions.ContributionsBySite()
+        string = self._get_lilypond_format()
+        if self.leak:
+            contributions.after.leak.append(_EMPTY_CHORD)
+            contributions.after.leaks.append(string)
+        else:
+            contributions.before.commands.append(string)
+        return contributions
+
+    def _get_lilypond_format(self):
+        if self.n == 1:
+            string = r"\voiceOne"
+        elif self.n == 2:
+            string = r"\voiceTwo"
+        elif self.n == 3:
+            string = r"\voiceThree"
+        elif self.n == 4:
+            string = r"\voiceFour"
+        else:
+            assert self.n is None
+            string = r"\oneVoice"
+        return string

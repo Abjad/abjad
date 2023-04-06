@@ -5983,10 +5983,10 @@ def runs(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3
-                            \abjad-color-music #'blue
-                            \slash
                             \voiceOne
+                            \abjad-color-music #'blue
+                            \set fontSize = #-3
+                            \slash
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -6007,8 +6007,8 @@ def runs(
                         }
                         \context Voice = "MusicVoice"
                         {
-                            \abjad-color-music #'blue
                             \voiceTwo
+                            \abjad-color-music #'blue
                             e'4
                             r8
                         }
@@ -6616,10 +6616,10 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3
-                            \abjad-color-music #'blue
-                            \slash
                             \voiceOne
+                            \abjad-color-music #'blue
+                            \set fontSize = #-3
+                            \slash
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -6640,8 +6640,8 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
                         }
                         \context Voice = "MusicVoice"
                         {
-                            \abjad-color-music #'blue
                             \voiceTwo
+                            \abjad-color-music #'blue
                             e'4
                         }
                     >>
@@ -6828,10 +6828,10 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \set fontSize = #-3
-                            \abjad-color-music #'blue
-                            \slash
                             \voiceOne
+                            \abjad-color-music #'blue
+                            \set fontSize = #-3
+                            \slash
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t

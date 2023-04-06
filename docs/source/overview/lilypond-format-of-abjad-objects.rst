@@ -16,8 +16,8 @@ Many Abjad objects can be transformed into LilyPond input:
     ...     abjad.NamedPitchClass("e"), abjad.Mode("major")
     ... )
     >>> abjad.attach(key_signature, note)
-    >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
-    >>> abjad.attach(literal, note)
+    >>> command = abjad.VoiceNumber(1)
+    >>> abjad.attach(command, note)
     >>> literal = abjad.LilyPondLiteral(r"\dynamicUp")
     >>> abjad.attach(literal, note)
     >>> string = r"""
