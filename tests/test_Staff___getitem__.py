@@ -39,8 +39,8 @@ def test_Staff___getitem___02():
 
     assert len(staff) == 5
     assert abjad.wf.wellformed(staff)
-    selection = staff[0:0]
-    assert len(selection) == 0
+    components = staff[0:0]
+    assert len(components) == 0
     assert abjad.wf.wellformed(staff)
 
 
@@ -57,9 +57,9 @@ def test_Staff___getitem___03():
 
     assert len(staff) == 5
     assert abjad.wf.wellformed(staff)
-    selection = staff[0:1]
-    assert len(selection) == 1
-    assert isinstance(selection[0], abjad.Note)
+    components = staff[0:1]
+    assert len(components) == 1
+    assert isinstance(components[0], abjad.Note)
     for x in staff:
         assert x._parent == staff
     assert abjad.wf.wellformed(staff)
@@ -78,10 +78,10 @@ def test_Staff___getitem___04():
 
     assert len(staff) == 5
     assert abjad.wf.wellformed(staff)
-    selection = staff[-1:]
-    assert len(selection) == 1
-    assert isinstance(selection[0], abjad.Tuplet)
-    for x in selection:
+    components = staff[-1:]
+    assert len(components) == 1
+    assert isinstance(components[0], abjad.Tuplet)
+    for x in components:
         assert x._parent == staff
     assert abjad.wf.wellformed(staff)
 
@@ -99,12 +99,12 @@ def test_Staff___getitem___05():
 
     assert len(staff) == 5
     assert abjad.wf.wellformed(staff)
-    selection = staff[1:-1]
-    assert len(selection) == 3
-    assert isinstance(selection[0], abjad.Rest)
-    assert isinstance(selection[1], abjad.Chord)
-    assert isinstance(selection[2], abjad.Skip)
-    for x in selection:
+    components = staff[1:-1]
+    assert len(components) == 3
+    assert isinstance(components[0], abjad.Rest)
+    assert isinstance(components[1], abjad.Chord)
+    assert isinstance(components[2], abjad.Skip)
+    for x in components:
         assert x._parent == staff
     assert abjad.wf.wellformed(staff)
 
@@ -122,12 +122,12 @@ def test_Staff___getitem___06():
 
     assert len(staff) == 5
     assert abjad.wf.wellformed(staff)
-    selection = staff[2:]
-    assert len(selection) == 3
-    assert isinstance(selection[0], abjad.Chord)
-    assert isinstance(selection[1], abjad.Skip)
-    assert isinstance(selection[2], abjad.Tuplet)
-    for x in selection:
+    components = staff[2:]
+    assert len(components) == 3
+    assert isinstance(components[0], abjad.Chord)
+    assert isinstance(components[1], abjad.Skip)
+    assert isinstance(components[2], abjad.Tuplet)
+    for x in components:
         assert x._parent == staff
     assert abjad.wf.wellformed(staff)
 
@@ -145,12 +145,12 @@ def test_Staff___getitem___07():
 
     assert len(staff) == 5
     assert abjad.wf.wellformed(staff)
-    selection = staff[:-2]
-    assert len(selection) == 3
-    assert isinstance(selection[0], abjad.Note)
-    assert isinstance(selection[1], abjad.Rest)
-    assert isinstance(selection[2], abjad.Chord)
-    for x in selection:
+    components = staff[:-2]
+    assert len(components) == 3
+    assert isinstance(components[0], abjad.Note)
+    assert isinstance(components[1], abjad.Rest)
+    assert isinstance(components[2], abjad.Chord)
+    for x in components:
         assert x._parent == staff
     assert abjad.wf.wellformed(staff)
 

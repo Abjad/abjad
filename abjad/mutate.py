@@ -2369,6 +2369,22 @@ def swap(argument, container):
                 }
             }
 
+        REGRESSION: context indicators survive swap:
+
+        >>> prototype = abjad.TimeSignature
+        >>> for component in abjad.iterate.components(staff):
+        ...     time_signature = abjad.get.effective(component, prototype)
+        ...     print(component, time_signature)
+        ...
+        Staff("{ 2/3 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Tuplet('3:2', "c'4 d'4 e'4 d'4 e'4 f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Note("c'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Note("d'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Note("e'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Note("d'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Note("e'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Note("f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+
     Returns none.
     """
     if isinstance(argument, list):
@@ -2676,7 +2692,3 @@ def wrap(argument, container):
     if parent is not None:
         parent._components.insert(start, container)
         container._set_parent(parent)
-    for component in selection:
-        for wrapper in component._wrappers:
-            wrapper._effective_context = None
-            wrapper._update_effective_context()

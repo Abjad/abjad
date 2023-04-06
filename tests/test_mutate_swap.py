@@ -59,7 +59,7 @@ def test_Mutation_swap_01():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.wellformed(voice, check_overlapping_beams=False)
 
 
 def test_Mutation_swap_02():

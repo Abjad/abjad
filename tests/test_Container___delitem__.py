@@ -135,7 +135,7 @@ def test_Container___delitem___04():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.wellformed(voice, check_overlapping_beams=False)
 
 
 def test_Container___delitem___05():

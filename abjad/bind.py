@@ -348,9 +348,9 @@ class Wrapper:
         return self
 
     def _find_correct_effective_context(self):
-        abjad = importlib.import_module("abjad")
         if self.context is None:
             return None
+        abjad = importlib.import_module("abjad")
         context = getattr(abjad, self.context, self.context)
         candidate = None
         parentage = self.component._get_parentage()
@@ -401,6 +401,9 @@ class Wrapper:
         correct_effective_context = self._find_correct_effective_context()
         if self._effective_context is not correct_effective_context:
             self._bind_effective_context(correct_effective_context)
+        if correct_effective_context is not None:
+            if self not in correct_effective_context._dependent_wrappers:
+                correct_effective_context._dependent_wrappers.append(self)
 
     def _warn_duplicate_indicator(self, component):
         if self.deactivate is True:

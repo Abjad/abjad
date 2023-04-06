@@ -27,6 +27,7 @@ from .. import lyenv as _lyenv
 from .. import pitch as _pitch
 from .. import score as _score
 from .. import string as _string
+from .. import tag as _tag
 from .base import Parser
 from .scheme import SchemeParser
 
@@ -233,8 +234,9 @@ class GuileProxy:
 
     ### INITIALIZER ###
 
-    def __init__(self, client=None):
+    def __init__(self, client=None, *, tag=None):
         self.client = client
+        self.tag = tag
 
     ### SPECIAL METHODS ###
 
@@ -260,7 +262,9 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\acciaccatura`` command.
         """
-        grace = _score.BeforeGraceContainer(music[:], command=r"\acciaccatura")
+        grace = _score.BeforeGraceContainer(
+            music[:], command=r"\acciaccatura", tag=self.tag
+        )
         return grace
 
     # afterGrace?
@@ -269,7 +273,9 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\appoggiatura`` command.
         """
-        grace = _score.BeforeGraceContainer(music[:], command=r"\appoggiatura")
+        grace = _score.BeforeGraceContainer(
+            music[:], command=r"\appoggiatura", tag=self.tag
+        )
         return grace
 
     def bar(self, string):
@@ -297,7 +303,7 @@ class GuileProxy:
         assert isinstance(music, _score.Container)
         leaves = music[:]
         music[:] = []
-        return _score.BeforeGraceContainer(leaves)
+        return _score.BeforeGraceContainer(leaves, tag=self.tag)
 
     def key(self, notename_pitch, number_list):
         r"""
@@ -328,7 +334,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\makeClusters`` command.
         """
-        return _score.Cluster(music[:])
+        return _score.Cluster(music[:], tag=self.tag)
 
     def mark(self, label):
         r"""
@@ -392,7 +398,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\skip`` command.
         """
-        leaf = _score.Skip(duration.duration)
+        leaf = _score.Skip(duration.duration, tag=self.tag)
         if duration.multiplier is not None:
             _bind.attach(duration.multiplier, leaf)
         return leaf
@@ -401,7 +407,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\slashedGrace`` command.
         """
-        grace = _score.BeforeGraceContainer(music[:])
+        grace = _score.BeforeGraceContainer(music[:], tag=self.tag)
         return grace
 
     def time(self, number_list, fraction):
@@ -420,8 +426,8 @@ class GuileProxy:
             assert isinstance(music, _score.Container), repr(music)
             leaves = music[:]
             music[:] = []
-            return _score.Tuplet((n, d), leaves)
-        return _score.Tuplet((n, d), [music])
+            return _score.Tuplet((n, d), leaves, tag=self.tag)
+        return _score.Tuplet((n, d), [music], tag=self.tag)
 
     def transpose(self, from_pitch, to_pitch, music):
         r"""
@@ -472,8 +478,8 @@ class GuileProxy:
             assert isinstance(music, _score.Container), repr(music)
             leaves = music[:]
             music[:] = []
-            return _score.Tuplet(string, leaves)
-        return _score.Tuplet(string, [music])
+            return _score.Tuplet(string, leaves, tag=self.tag)
+        return _score.Tuplet(string, [music], tag=self.tag)
 
     # tweak
 
@@ -1491,8 +1497,9 @@ class LilyPondLexicalDefinition:
 
     ### INITIALIZER ###
 
-    def __init__(self, client=None):
+    def __init__(self, client=None, *, tag: _tag.Tag | None = None):
         self.client = client
+        self.tag = tag
 
     states = (
         # lexer.ll:115
@@ -1952,7 +1959,9 @@ class LilyPondLexicalDefinition:
             t.type = "MULTI_MEASURE_REST"
         elif value == "q":
             if self.client._last_chord is None:
-                self.client._last_chord = _score.Chord(["c", "g", "c'"], (1, 4))
+                self.client._last_chord = _score.Chord(
+                    ["c", "g", "c'"], (1, 4), tag=self.tag
+                )
             t.type = "CHORD_REPETITION"
         else:
             t.type = "STRING"
@@ -2720,22 +2729,24 @@ class LilyPondParser(Parser):
         "_repeated_chords",
         "_scope_stack",
         "_syndef",
+        "tag",
     )
 
     ### INITIALIZER ###
 
-    def __init__(self, default_language="english", debug=False):
+    def __init__(self, default_language="english", *, debug=False, tag=None):
         # LilyPond emulation data
-        self._guile = GuileProxy(self)
+        self._guile = GuileProxy(self, tag=tag)
         self._current_module = _lyenv.current_module
         self._language_pitch_names = _lyenv.language_pitch_names
         self._markup_functions = _lyenv.markup_functions
         self._markup_list_functions = _lyenv.markup_list_functions
         self.default_language = default_language
+        self.tag = tag
 
         # attach parser and lexer rules
-        self._lexdef = LilyPondLexicalDefinition(self)
-        self._syndef = LilyPondSyntacticalDefinition(self)
+        self._lexdef = LilyPondLexicalDefinition(self, tag=tag)
+        self._syndef = LilyPondSyntacticalDefinition(self, tag=tag)
 
         # build PLY parser and lexer
         Parser.__init__(self, debug=debug)
@@ -2826,7 +2837,7 @@ class LilyPondParser(Parser):
         # indicator sorting could be rewritten into a single list using tuples
         # with t[0] being 'forward' or 'backward' and t[1] being the indicator
         # as this better preserves attachment order. Not clear if we need it.
-        container = _score.Container()
+        container = _score.Container(tag=self.tag)
         previous_leaf = None
         apply_forward = []
         apply_backward = []
@@ -2880,7 +2891,7 @@ class LilyPondParser(Parser):
                     return True
             return False
 
-        container = _score.Container()
+        container = _score.Container(tag=self.tag)
         container.simultaneous = True
         # check for voice separators
         groups = []
@@ -2895,7 +2906,9 @@ class LilyPondParser(Parser):
         else:
             for group in groups:
                 container.append(
-                    _score.Voice(self._construct_sequential_music(group)[:])
+                    _score.Voice(
+                        self._construct_sequential_music(group)[:], tag=self.tag
+                    )
                 )
         return container
 
@@ -3831,12 +3844,13 @@ class LilyPondSyntacticalDefinition:
 
     ### INITIALIZER ###
 
-    def __init__(self, client=None):
+    def __init__(self, client=None, *, tag=None):
         self.client = client
         if client is not None:
             self.tokens = self.client._lexdef.tokens
         else:
             self.tokens = []
+        self.tag = tag
 
     ### SYNTACTICAL RULES (ALPHABETICAL) ###
 
@@ -4641,7 +4655,7 @@ class LilyPondSyntacticalDefinition:
         "event_chord : CHORD_REPETITION optional_notemode_duration post_events"
         pitches = self.client._last_chord.written_pitches
         duration = p[2].duration
-        chord = _score.Chord(pitches, duration)
+        chord = _score.Chord(pitches, duration, tag=self.tag)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
@@ -4658,7 +4672,7 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events"
-        rest = _score.MultimeasureRest(p[2].duration)
+        rest = _score.MultimeasureRest(p[2].duration, tag=self.tag)
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
             rest.multiplier = _duration.pair(multiplier)
@@ -5777,7 +5791,7 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "note_chord_element : chord_body optional_notemode_duration post_events"
-        chord = _score.Chord([], p[2].duration)
+        chord = _score.Chord([], p[2].duration, tag=self.tag)
         pitches = []
         post_events = []
         for node in p[1]:
@@ -6285,9 +6299,9 @@ class LilyPondSyntacticalDefinition:
     def p_simple_element__RESTNAME__optional_notemode_duration(self, p):
         "simple_element : RESTNAME optional_notemode_duration"
         if p[1] == "r":
-            rest = _score.Rest(p[2].duration)
+            rest = _score.Rest(p[2].duration, tag=self.tag)
         else:
-            rest = _score.Skip(p[2].duration)
+            rest = _score.Skip(p[2].duration, tag=self.tag)
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
             rest.multiplier = _duration.pair(multiplier)
@@ -6298,11 +6312,11 @@ class LilyPondSyntacticalDefinition:
     ):
         "simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest"
         if not p[6]:
-            leaf = _score.Note(p[1], p[5].duration)
+            leaf = _score.Note(p[1], p[5].duration, tag=self.tag)
             leaf.note_head.is_forced = bool(p[2])
             leaf.note_head.is_cautionary = bool(p[3])
         else:
-            leaf = _score.Rest(p[5].duration)
+            leaf = _score.Rest(p[5].duration, tag=self.tag)
         if p[5].multiplier is not None:
             multiplier = fractions.Fraction(p[5].multiplier)
             leaf.multiplier = _duration.pair(multiplier)
@@ -6633,7 +6647,7 @@ class SequentialMusic(Music):
 
         Returns Abjad container.
         """
-        container = _score.Container()
+        container = _score.Container(tag=self.tag)
         for x in self.music:
             if isinstance(x, _score.Component):
                 container.append(x)

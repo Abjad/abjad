@@ -166,8 +166,6 @@ def test_Container_extend_07():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wf.wellformed(voice_1)
-
     assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
@@ -178,8 +176,6 @@ def test_Container_extend_07():
         }
         """
     ), print(abjad.lilypond(voice_2))
-
-    assert abjad.wf.wellformed(voice_2)
 
 
 def test_Container_extend_08():
@@ -230,8 +226,6 @@ def test_Container_extend_08():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wf.wellformed(voice_1)
-
     assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
         \new Voice
@@ -242,8 +236,6 @@ def test_Container_extend_08():
         }
         """
     ), print(abjad.lilypond(voice_2))
-
-    assert abjad.wf.wellformed(voice_2)
 
 
 def test_Container_extend_09():

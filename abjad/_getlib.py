@@ -234,7 +234,7 @@ def _get_leaf_from_leaf(leaf, n):
         if (
             isinstance(sibling, _score.Container)
             and len(sibling) == 2
-            and any(hasattr(_, "_leaf_duration") for _ in sibling)
+            and any(hasattr(_, "_grace_leaf_duration") for _ in sibling)
         ):
             if sibling[0].__class__.__name__ == "OnBeatGraceContainer":
                 main_voice = sibling[1]
@@ -326,7 +326,7 @@ def _get_sibling_with_graces(component, n):
         and component is component._parent[-1]
         and component._parent.__class__.__name__ == "OnBeatGraceContainer"
     ):
-        return component._parent._get_on_beat_anchor_leaf()
+        return component._parent.get_anchor_leaf()
     if (
         n == 1
         and getattr(component._parent, "_main_leaf", None)

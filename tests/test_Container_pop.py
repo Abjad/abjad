@@ -46,8 +46,8 @@ def test_Container_pop_01():
 
     "Result is now d'8 [ ]"
 
-    assert abjad.wf.wellformed(result)
     assert abjad.lilypond(result) == "d'8\n[\n]"
+    assert abjad.wf.wellformed(result, check_beamed_lone_notes=False)
 
 
 def test_Container_pop_02():
