@@ -40,6 +40,7 @@ class Types(enum.Enum):
     STEM_TREMOLOS = enum.auto()
     STOP_BEAM = enum.auto()
     TRILL_SPANNER_STARTS = enum.auto()
+    VOICE_NUMBER = enum.auto()
 
 
 @dataclasses.dataclass(slots=True)
@@ -56,6 +57,7 @@ class _ContributionsByType:
     stem_tremolos: list[str] = dataclasses.field(default_factory=list)
     stop_beam: list[str] = dataclasses.field(default_factory=list)
     trill_spanner_starts: list[str] = dataclasses.field(default_factory=list)
+    voice_number: list[str] = dataclasses.field(default_factory=list)
 
     def __iter__(self):
         for type_ in (
@@ -71,6 +73,7 @@ class _ContributionsByType:
             self.stem_tremolos,
             self.stop_beam,
             self.trill_spanner_starts,
+            self.voice_number,
         ):
             yield type_
 
@@ -92,6 +95,7 @@ class _ContributionsByType:
         self.trill_spanner_starts = _tag.double_tag(
             self.trill_spanner_starts, tag, deactivate
         )
+        self.voice_number = _tag.double_tag(self.voice_number, tag, deactivate)
 
     def update(self, contributions):
         """
@@ -122,6 +126,8 @@ class _ContributionsByType:
             self.stop_beam.append(contributions.stop_beam)
         if contributions.trill_spanner_starts:
             self.trill_spanner_starts.append(contributions.trill_spanner_starts)
+        if contributions.voice_number:
+            self.voice_number.append(contributions.voice_number)
 
 
 @dataclasses.dataclass(slots=True)

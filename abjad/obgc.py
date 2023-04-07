@@ -48,9 +48,9 @@ class OnBeatGraceContainer(_score.Container):
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -119,20 +119,6 @@ class OnBeatGraceContainer(_score.Container):
 
     ### PRIVATE METHODS ###
 
-    # NOTE: format="absolute_before" for \oneVoice so that this works:
-    #
-    #           \oneVoice
-    #           \override Stem.direction = #down
-    #
-    # ... because this ...
-    #
-    #           \override Stem.direction = #down
-    #           \oneVoice
-    #
-    # ... doesn't work.
-    #
-    # This is hackish, and some sort of longer term solution should
-    # happen later.
     def _attach_lilypond_one_voice(self):
         anchor_leaf = self.get_anchor_leaf()
         anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
@@ -140,8 +126,8 @@ class OnBeatGraceContainer(_score.Container):
         next_leaf = _iterlib._get_leaf(final_anchor_leaf, 1)
         if next_leaf is None:
             return
-        literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
-        if _get.has_indicator(next_leaf, literal):
+        command = _indicators.VoiceNumber()
+        if _get.has_indicator(next_leaf, command):
             return
         next_leaf_parent = _get.parentage(next_leaf).parent
         if isinstance(next_leaf_parent, OnBeatGraceContainer):
@@ -153,7 +139,7 @@ class OnBeatGraceContainer(_score.Container):
             _tag.Tag("abjad.OnBeatGraceContainer._attach_lilypond_one_voice()")
         )
         tag = tag.append(_tag.Tag("ONE_VOICE_COMMAND"))
-        _bind.attach(literal, next_leaf, tag=tag)
+        _bind.attach(command, next_leaf, tag=tag)
 
     def _format_invocation(self):
         return r'\context Voice = "On_Beat_Grace_Container"'
@@ -283,14 +269,14 @@ def on_beat_grace_container(
     grace_leaves: str | typing.Sequence[_score.Leaf],
     nongrace_leaves: typing.Sequence[_score.Leaf],
     *,
+    do_not_attach_one_voice_command: bool = False,
     do_not_beam: bool = False,
     do_not_slash: bool = False,
     do_not_slur: bool = False,
-    do_not_stop_polyphony: bool = False,
     grace_font_size: int = -3,
     grace_leaf_duration: _typings.Duration | None = None,
-    grace_polyphony_command: str = r"\voiceOne",
-    nongrace_polyphony_command: str = r"\voiceTwo",
+    grace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(1),
+    nongrace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(2),
     tag: _tag.Tag = _tag.Tag(),
 ) -> "OnBeatGraceContainer":
     r"""
@@ -302,11 +288,11 @@ def on_beat_grace_container(
         >>> def make_lilypond_file(anchor_voice_string, obgc_string, *, below=False):
         ...     music_voice = abjad.Voice(anchor_voice_string, name="MusicVoice")
         ...     if below is False:
-        ...         nongrace_polyphony_command = r"\voiceTwo"
-        ...         grace_polyphony_command = r"\voiceOne"
+        ...         nongrace_polyphony_command = abjad.VoiceNumber(2)
+        ...         grace_polyphony_command = abjad.VoiceNumber(1)
         ...     else:
-        ...         nongrace_polyphony_command = r"\voiceOne"
-        ...         grace_polyphony_command = r"\voiceTwo"
+        ...         nongrace_polyphony_command = abjad.VoiceNumber(1)
+        ...         grace_polyphony_command = abjad.VoiceNumber(2)
         ...     result = abjad.on_beat_grace_container(
         ...         obgc_string,
         ...         music_voice[1:3],
@@ -343,9 +329,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -400,9 +386,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -457,9 +443,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -515,9 +501,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceOne
                             \set fontSize = #-3
                             \slash
-                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -578,9 +564,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceTwo
                             \set fontSize = #-3
                             \slash
-                            \voiceTwo
                             <
                                 g
                                 \tweak font-size 0
@@ -636,9 +622,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceTwo
                             \set fontSize = #-3
                             \slash
-                            \voiceTwo
                             <
                                 g
                                 \tweak font-size 0
@@ -694,9 +680,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceTwo
                             \set fontSize = #-3
                             \slash
-                            \voiceTwo
                             <
                                 e
                                 g
@@ -753,9 +739,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \voiceTwo
                             \set fontSize = #-3
                             \slash
-                            \voiceTwo
                             <
                                 e
                                 g
@@ -799,9 +785,10 @@ def on_beat_grace_container(
         nongrace_leaves
     )
     assert isinstance(grace_font_size, int), repr(grace_font_size)
-    polyphony_commands = (r"\voiceOne", r"\voiceTwo", r"\voiceThree", r"\voiceFour")
-    assert grace_polyphony_command in polyphony_commands, repr(grace_polyphony_command)
-    assert nongrace_polyphony_command in polyphony_commands, repr(
+    assert isinstance(grace_polyphony_command, _indicators.VoiceNumber), repr(
+        grace_polyphony_command
+    )
+    assert isinstance(nongrace_polyphony_command, _indicators.VoiceNumber), repr(
         nongrace_polyphony_command
     )
     assert isinstance(tag, _tag.Tag), repr(tag)
@@ -833,9 +820,8 @@ def on_beat_grace_container(
         message = f"grace {repr(grace_container_duration)}"
         message += f" exceeds anchor {repr(insert_duration)}."
         raise Exception(message)
-    string = rf"\set fontSize = #{grace_font_size}"
-    literal = _indicators.LilyPondLiteral(string)
-    _bind.attach(literal, on_beat_grace_container, tag=tag)
+    literal = _indicators.LilyPondLiteral(rf"\set fontSize = #{grace_font_size}")
+    _bind.attach(literal, on_beat_grace_container[0], tag=tag)
     if not do_not_beam:
         _spanners.beam(on_beat_grace_container[:], tag=tag)
     if not do_not_slash:
@@ -844,25 +830,22 @@ def on_beat_grace_container(
     if not do_not_slur:
         _spanners.slur(on_beat_grace_container[:], tag=tag)
     first_grace = _iterlib._get_leaf(on_beat_grace_container, 0)
-    one_voice_literal = _indicators.LilyPondLiteral(
-        r"\oneVoice", site="absolute_before"
-    )
-    _bind.detach(one_voice_literal, anchor_leaf)
+    _bind.detach(_indicators.VoiceNumber(), anchor_leaf)
     _bind.attach(
-        _indicators.LilyPondLiteral(grace_polyphony_command),
+        grace_polyphony_command,
         first_grace,
         tag=tag,
     )
-    _bind.detach(one_voice_literal, anchor_leaf)
+    _bind.detach(_indicators.VoiceNumber(), anchor_leaf)
     _bind.attach(
-        _indicators.LilyPondLiteral(nongrace_polyphony_command),
+        nongrace_polyphony_command,
         anchor_leaf,
         tag=tag,
     )
-    if not do_not_stop_polyphony:
+    if not do_not_attach_one_voice_command:
         last_anchor_leaf = _iterlib._get_leaf(nongrace_leaves, -1)
         next_leaf = _iterlib._get_leaf(last_anchor_leaf, 1)
         if next_leaf is not None:
-            literal = _indicators.LilyPondLiteral(r"\oneVoice", site="absolute_before")
-            _bind.attach(literal, next_leaf, tag=tag)
+            command = _indicators.VoiceNumber()
+            _bind.attach(command, next_leaf, tag=tag)
     return on_beat_grace_container

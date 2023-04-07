@@ -27,8 +27,8 @@ The functions we'll use:
     ...     abjad.attach(dynamic, notes[0])
     ...     dynamic = abjad.Dynamic("p")
     ...     abjad.attach(dynamic, notes[1])
-    ...     literal = abjad.LilyPondLiteral(r"\voiceTwo")
-    ...     abjad.attach(literal, notes[0])
+    ...     command = abjad.VoiceNumber(2)
+    ...     abjad.attach(command, notes[0])
     ...     numerator = int(math.ceil(len(pitches) / 2.0))
     ...     duration = (numerator, 8)
     ...     lower_pitch = abjad.NamedPitch(pitches[0])
@@ -37,8 +37,8 @@ The functions we'll use:
     ...     chord = abjad.Chord(octave_pitches, duration)
     ...     articulation = abjad.Articulation(">")
     ...     abjad.attach(articulation, chord)
-    ...     literal = abjad.LilyPondLiteral(r"\voiceOne")
-    ...     abjad.attach(literal, chord)
+    ...     command = abjad.VoiceNumber(2)
+    ...     abjad.attach(command, chord)
     ...     rh_upper_voice = abjad.Voice([chord], name=f"{hand}_Upper_Voice")
     ...     voices = [rh_lower_voice, rh_upper_voice]
     ...     container = abjad.Container(voices, simultaneous=True)
@@ -164,8 +164,8 @@ stems of the notes point down.
     >>> abjad.attach(dynamic, notes[0])
     >>> dynamic = abjad.Dynamic("p")
     >>> abjad.attach(dynamic, notes[1])
-    >>> literal = abjad.LilyPondLiteral(r"\voiceTwo")
-    >>> abjad.attach(literal, notes[0])
+    >>> command = abjad.VoiceNumber(2)
+    >>> abjad.attach(command, notes[0])
     >>> abjad.show(rh_lower_voice)
 
 
@@ -186,8 +186,8 @@ articulation marking and finally add the chord to a voice. We attach a LilyPond
     >>> articulation = abjad.Articulation(">")
     >>> abjad.attach(articulation, chord)
     >>> rh_upper_voice = abjad.Voice([chord], name="RH_Upper_Voice")
-    >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
-    >>> abjad.attach(literal, rh_upper_voice)
+    >>> command = abjad.VoiceNumber(1)
+    >>> abjad.attach(command, rh_upper_voice[0])
     >>> abjad.show(rh_upper_voice)
 
 

@@ -43,10 +43,10 @@ create it. The staff below initializes as simultaneous to allow two-voice polyph
     >>> voice_1 = abjad.Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata")
     >>> voice_2 = abjad.Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
     >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
-    >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
-    >>> abjad.attach(literal, voice_1)
-    >>> literal = abjad.LilyPondLiteral(r"\voiceTwo")
-    >>> abjad.attach(literal, voice_2)
+    >>> command = abjad.VoiceNumber(1)
+    >>> abjad.attach(command, voice_1[0])
+    >>> command = abjad.VoiceNumber(2)
+    >>> abjad.attach(command, voice_2[0])
     >>> abjad.show(staff)
 
 ----
@@ -63,10 +63,10 @@ you initialization:
     >>> voice_1 = abjad.Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata")
     >>> voice_2 = abjad.Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
     >>> staff = abjad.Staff([voice_1, voice_2])
-    >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
-    >>> abjad.attach(literal, voice_1)
-    >>> literal = abjad.LilyPondLiteral(r"\voiceTwo")
-    >>> abjad.attach(literal, voice_2)
+    >>> command = abjad.VoiceNumber(1)
+    >>> abjad.attach(command, voice_1[0])
+    >>> command = abjad.VoiceNumber(2)
+    >>> abjad.attach(command, voice_2[0])
     >>> abjad.show(staff)
 
     >>> staff.simultaneous = True

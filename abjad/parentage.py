@@ -149,9 +149,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t
@@ -244,9 +244,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t
@@ -404,9 +404,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t
@@ -499,9 +499,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t
@@ -602,9 +602,9 @@ class Parentage(collections.abc.Sequence):
                             <<
                                 \context Voice = "On_Beat_Grace_Container"
                                 {
+                                    \voiceOne
                                     \set fontSize = #-3
                                     \slash
-                                    \voiceOne
                                     <
                                         \tweak font-size 0
                                         \tweak transparent ##t
@@ -700,9 +700,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t
@@ -825,11 +825,11 @@ class Parentage(collections.abc.Sequence):
             >>> outer_red_voice.append(container)
             >>> outer_red_voice.extend("d''8")
             >>> abjad.override(outer_red_voice).NoteHead.color = "#red"
-            >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
-            >>> abjad.attach(literal, outer_red_voice[0])
+            >>> command = abjad.VoiceNumber(1)
+            >>> abjad.attach(command, outer_red_voice[0])
             >>> abjad.override(inner_blue_voice).NoteHead.color = "#blue"
-            >>> literal = abjad.LilyPondLiteral(r"\voiceTwo")
-            >>> abjad.attach(literal, inner_blue_voice[0])
+            >>> command = abjad.VoiceNumber(2)
+            >>> abjad.attach(command, inner_blue_voice[0])
             >>> dynamic = abjad.Dynamic("f")
             >>> abjad.attach(dynamic, outer_red_voice[0])
             >>> abjad.show(outer_red_voice) # doctest: +SKIP
@@ -917,9 +917,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t
@@ -997,11 +997,11 @@ class Parentage(collections.abc.Sequence):
             >>> outer_red_voice.append(container)
             >>> outer_red_voice.extend("d''8")
             >>> abjad.override(outer_red_voice).NoteHead.color = "#red"
-            >>> literal = abjad.LilyPondLiteral(r"\voiceOne")
-            >>> abjad.attach(literal, outer_red_voice[0])
+            >>> command = abjad.VoiceNumber(1)
+            >>> abjad.attach(command, outer_red_voice[0])
             >>> abjad.override(inner_blue_voice).NoteHead.color = "#blue"
-            >>> literal = abjad.LilyPondLiteral(r"\voiceTwo")
-            >>> abjad.attach(literal, inner_blue_voice[0])
+            >>> command = abjad.VoiceNumber(2)
+            >>> abjad.attach(command, inner_blue_voice[0])
             >>> dynamic = abjad.Dynamic("f")
             >>> abjad.attach(dynamic, outer_red_voice[0])
             >>> abjad.show(outer_red_voice) # doctest: +SKIP
@@ -1174,9 +1174,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t
@@ -1436,9 +1436,9 @@ class Parentage(collections.abc.Sequence):
                         <<
                             \context Voice = "On_Beat_Grace_Container"
                             {
+                                \voiceOne
                                 \set fontSize = #-3
                                 \slash
-                                \voiceOne
                                 <
                                     \tweak font-size 0
                                     \tweak transparent ##t

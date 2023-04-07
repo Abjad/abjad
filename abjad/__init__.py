@@ -113,6 +113,7 @@ from .indicators import (
     StopTrillSpan,
     Tie,
     TimeSignature,
+    VoiceNumber,
 )
 from .instruments import (
     Accordion,
@@ -483,6 +484,7 @@ __all__ = [
     "Viola",
     "Violin",
     "Voice",
+    "VoiceNumber",
     "WellformednessError",
     "Wrapper",
     "Xylophone",

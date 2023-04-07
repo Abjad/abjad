@@ -260,11 +260,11 @@ class LilyPondFile:
             Searches score:
 
             >>> voice_1 = abjad.Voice("c''4 b' a' g'", name="Voice_1")
-            >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
-            >>> abjad.attach(literal, voice_1)
+            >>> command = abjad.VoiceNumber(1)
+            >>> abjad.attach(command, voice_1[0])
             >>> voice_2 = abjad.Voice("c'4 d' e' f'", name="Voice_2")
-            >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
-            >>> abjad.attach(literal, voice_2)
+            >>> command = abjad.VoiceNumber(2)
+            >>> abjad.attach(command, voice_2[0])
             >>> staff = abjad.Staff(
             ...     [voice_1, voice_2],
             ...     simultaneous=True,
@@ -323,11 +323,11 @@ class LilyPondFile:
             Searches score:
 
             >>> voice_1 = abjad.Voice("c''4 b' a' g'", name="Voice_1")
-            >>> literal = abjad.LilyPondLiteral(r"\voiceOne", "opening")
-            >>> abjad.attach(literal, voice_1)
+            >>> command = abjad.VoiceNumber(1)
+            >>> abjad.attach(command, voice_1[0])
             >>> voice_2 = abjad.Voice("c'4 d' e' f'", name="Voice_2")
-            >>> literal = abjad.LilyPondLiteral(r"\voiceTwo", "opening")
-            >>> abjad.attach(literal, voice_2)
+            >>> command = abjad.VoiceNumber(2)
+            >>> abjad.attach(command, voice_2[0])
             >>> staff = abjad.Staff(
             ...     [voice_1, voice_2],
             ...     simultaneous=True,

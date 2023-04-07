@@ -460,6 +460,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.StopTrillSpan'>
         <class 'abjad.indicators.Tie'>
         <class 'abjad.indicators.TimeSignature'>
+        <class 'abjad.indicators.VoiceNumber'>
         <class 'abjad.instruments.Accordion'>
         <class 'abjad.instruments.AltoFlute'>
         <class 'abjad.instruments.AltoSaxophone'>
