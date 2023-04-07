@@ -29,9 +29,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \voiceOne
                         \set fontSize = #-3
                         \slash
+                        \voiceOne
                         <
                             \tweak font-size 0
                             \tweak transparent ##t
@@ -88,9 +88,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \voiceOne
                         \set fontSize = #-3
                         \slash
+                        \voiceOne
                         <
                             \tweak font-size 0
                             \tweak transparent ##t
@@ -148,9 +148,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \voiceOne
                         \set fontSize = #-3
                         \slash
+                        \voiceOne
                         <
                             \tweak font-size 0
                             \tweak transparent ##t
@@ -261,9 +261,9 @@ r"""
                 <<
                     \context Voice = "On_Beat_Grace_Container"
                     {
-                        \voiceOne
                         \set fontSize = #-3
                         \slash
+                        \voiceOne
                         <
                             \tweak font-size 0
                             \tweak transparent ##t

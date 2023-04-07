@@ -1608,7 +1608,7 @@ class LilyPondLiteral:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
+        >>> literal = abjad.LilyPondLiteral(r"\slurDotted", site="before")
         >>> abjad.attach(literal, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1633,7 +1633,7 @@ class LilyPondLiteral:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
+        >>> literal = abjad.LilyPondLiteral(r"\slurDotted", site="before")
         >>> abjad.attach(literal, staff[0])
         >>> literal = abjad.LilyPondLiteral("", site="absolute_before")
         >>> abjad.attach(literal, staff[0])
@@ -1670,7 +1670,7 @@ class LilyPondLiteral:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> abjad.slur(staff[:])
-        >>> literal = abjad.LilyPondLiteral(r"\slurDotted")
+        >>> literal = abjad.LilyPondLiteral(r"\slurDotted", site="before")
         >>> abjad.attach(literal, staff[0], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1699,7 +1699,7 @@ class LilyPondLiteral:
         ...     r"\startStaff",
         ...     r"\once \override Staff.StaffSymbol.color = #red",
         ... ]
-        >>> literal = abjad.LilyPondLiteral(lines)
+        >>> literal = abjad.LilyPondLiteral(lines, site="before")
         >>> abjad.attach(literal, staff[2], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1726,9 +1726,9 @@ class LilyPondLiteral:
         REGRESSION. Duplicate literals are allowed:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral("% text")
+        >>> literal = abjad.LilyPondLiteral("% text", site="before")
         >>> abjad.attach(literal, staff[0])
-        >>> literal = abjad.LilyPondLiteral("% text")
+        >>> literal = abjad.LilyPondLiteral("% text", site="before")
         >>> abjad.attach(literal, staff[0])
 
         >>> string = abjad.lilypond(staff)
@@ -1833,8 +1833,7 @@ class LilyPondLiteral:
     """
 
     argument: str | list[str] = ""
-    # TODO: probaby change default to "before"
-    site: str = "opening"
+    site: str = "before"
     directed: bool = False
 
     _allowable_sites: typing.ClassVar = (
@@ -1852,12 +1851,12 @@ class LilyPondLiteral:
         assert self.site in self._allowable_sites, repr(self.site)
         assert isinstance(self.directed, bool), repr(self.directed)
 
-    # TODO: activate this:
-    #    def _before_attach(self, component):
-    #        if self.site not in component._allowable_sites:
-    #            message = f"{type(component).__name__} does not accept"
-    #            message += f" format site {repr(self.site)}."
-    #            raise Exception(message)
+    def _before_attach(self, component):
+        if self.site not in component._allowable_sites:
+            message = f"{type(component).__name__} does not accept"
+            message += f" format site {self.site!r}:"
+            message += f"\n    {self!r}"
+            raise Exception(message)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -6039,6 +6038,9 @@ class TimeSignature:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        if self.is_non_dyadic_rational and not self.hide:
+            string = '#(ly:expect-warning "strange time signature found")'
+            contributions.before.commands.append(string)
         strings = self._get_lilypond_format()
         contributions.opening.commands.extend(strings)
         return contributions
@@ -6047,9 +6049,6 @@ class TimeSignature:
         result = []
         if self.hide:
             return result
-        if self.is_non_dyadic_rational:
-            string = '#(ly:expect-warning "strange time signature found")'
-            result.append(string)
         if self.partial is None:
             result.append(rf"\time {self.numerator}/{self.denominator}")
         else:

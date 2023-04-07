@@ -52,9 +52,9 @@ def after_grace_container(argument):
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -294,9 +294,9 @@ def before_grace_container(argument):
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -389,9 +389,9 @@ def contents(argument) -> list[_score.Component]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -583,9 +583,9 @@ def descendants(argument) -> list[_score.Component]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -752,9 +752,9 @@ def duration(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -959,10 +959,10 @@ def effective(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1461,9 +1461,9 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1593,10 +1593,10 @@ def effective_wrapper(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1712,9 +1712,9 @@ def grace(argument) -> bool:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1813,10 +1813,10 @@ def has_effective_indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1966,10 +1966,10 @@ def has_indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2164,10 +2164,10 @@ def indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2321,10 +2321,10 @@ def indicators(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2382,7 +2382,7 @@ def indicators(
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             []
         Chord("<e' g'>16"):
-            [LilyPondLiteral(argument='\\set fontSize = #-3', site='opening', directed=False), StartBeam(), LilyPondLiteral(argument='\\slash', site='opening', directed=False), StartSlur(), VoiceNumber(n=1, leak=False), Clef(name='alto', hide=False), Articulation(name='>')]
+            [LilyPondLiteral(argument='\\set fontSize = #-3', site='before', directed=False), StartBeam(), LilyPondLiteral(argument='\\slash', site='before', directed=False), StartSlur(), VoiceNumber(n=1, leak=False), Clef(name='alto', hide=False), Articulation(name='>')]
         Note("gs'16"):
             [Articulation(name='.')]
         Note("a'16"):
@@ -2566,10 +2566,10 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2750,9 +2750,9 @@ def lineage(argument) -> "Lineage":
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2956,9 +2956,9 @@ def logical_tie(argument) -> "_select.LogicalTie":
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -3147,9 +3147,9 @@ def measure_number(argument) -> int:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -3321,9 +3321,9 @@ def parentage(argument) -> "_parentage.Parentage":
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -3536,9 +3536,9 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -3796,9 +3796,9 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -3983,10 +3983,10 @@ def wrapper(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -4121,10 +4121,10 @@ def wrappers(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
-                            \clef "alto"
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
+                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t

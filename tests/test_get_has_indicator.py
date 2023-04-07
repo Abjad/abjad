@@ -23,7 +23,7 @@ def test_get_has_indicator_02():
 
 def test_get_has_indicator_03():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    command = abjad.LilyPondLiteral(r"\break", "closing")
+    command = abjad.LilyPondLiteral(r"\break", site="after")
     abjad.attach(command, staff[-1])
 
     assert not abjad.get.has_indicator(staff[0], abjad.LilyPondLiteral)

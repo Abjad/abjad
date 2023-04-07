@@ -2615,8 +2615,8 @@ def leaves(
                 \times 2/3
                 {
                     r8
-                    \ottava 1
                     \abjad-color-music #'red
+                    \ottava 1
                     d'8
                     \abjad-color-music #'blue
                     e'8
@@ -2683,8 +2683,8 @@ def leaves(
                 \times 2/3
                 {
                     r8
-                    \ottava 1
                     \abjad-color-music #'red
+                    \ottava 1
                     d'8
                     \abjad-color-music #'blue
                     e'8
@@ -5003,8 +5003,8 @@ def partition_by_durations(
             }
             {
                 {
-                    \tempo 4=60
                     \abjad-color-music #'red
+                    \tempo 4=60
                     \time 2/8
                     c'8
                     \abjad-color-music #'red
@@ -5082,8 +5082,8 @@ def partition_by_durations(
             }
             {
                 {
-                    \tempo 4=60
                     \abjad-color-music #'red
+                    \tempo 4=60
                     \time 2/8
                     c'8
                     \abjad-color-music #'red
@@ -5161,8 +5161,8 @@ def partition_by_durations(
             }
             {
                 {
-                    \tempo 4=60
                     \abjad-color-music #'red
+                    \tempo 4=60
                     \time 2/8
                     c'8
                     \abjad-color-music #'red
@@ -5241,8 +5241,8 @@ def partition_by_durations(
             }
             {
                 {
-                    \tempo 4=60
                     \abjad-color-music #'red
+                    \tempo 4=60
                     \time 2/8
                     c'8
                     \abjad-color-music #'blue
@@ -5319,8 +5319,8 @@ def partition_by_durations(
             }
             {
                 {
-                    \tempo 4=60
                     \abjad-color-music #'red
+                    \tempo 4=60
                     \time 2/8
                     c'8
                     d'8
@@ -5983,10 +5983,10 @@ def runs(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \abjad-color-music #'blue
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -6007,14 +6007,14 @@ def runs(
                         }
                         \context Voice = "MusicVoice"
                         {
-                            \voiceTwo
                             \abjad-color-music #'blue
+                            \voiceTwo
                             e'4
                             r8
                         }
                     >>
-                    \oneVoice
                     \abjad-color-music #'red
+                    \oneVoice
                     \afterGrace
                     f'8
                     {
@@ -6616,10 +6616,10 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \abjad-color-music #'blue
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -6640,8 +6640,8 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
                         }
                         \context Voice = "MusicVoice"
                         {
-                            \voiceTwo
                             \abjad-color-music #'blue
+                            \voiceTwo
                             e'4
                         }
                     >>
@@ -6828,10 +6828,10 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \abjad-color-music #'blue
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -6856,8 +6856,8 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
                             e'4
                         }
                     >>
-                    \oneVoice
                     \abjad-color-music #'red
+                    \oneVoice
                     \afterGrace
                     f'4
                     {

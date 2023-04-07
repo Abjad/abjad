@@ -1811,7 +1811,7 @@ class AfterGraceContainer(Container):
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
         >>> string = '#(define afterGraceFraction (cons 15 16))'
-        >>> literal = abjad.LilyPondLiteral(string)
+        >>> literal = abjad.LilyPondLiteral(string, site="before")
         >>> abjad.attach(literal, voice[0])
         >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
         >>> after_grace_container = abjad.AfterGraceContainer(notes)
@@ -1859,7 +1859,7 @@ class AfterGraceContainer(Container):
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
         >>> string = '#(define afterGraceFraction (cons 15 16))'
-        >>> literal = abjad.LilyPondLiteral(string)
+        >>> literal = abjad.LilyPondLiteral(string, site="before")
         >>> abjad.attach(literal, voice[0])
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
@@ -1897,7 +1897,7 @@ class AfterGraceContainer(Container):
 
         >>> voice = abjad.Voice("c'4 <d' f'>4 e'4 f'4")
         >>> string = '#(define afterGraceFraction (cons 15 16))'
-        >>> literal = abjad.LilyPondLiteral(string)
+        >>> literal = abjad.LilyPondLiteral(string, site="before")
         >>> abjad.attach(literal, voice[0])
         >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
         >>> abjad.attach(after_grace_container, voice[1])
@@ -5024,7 +5024,9 @@ class Tuplet(Container):
         >>> staff = abjad.Staff([tuplet_3])
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
-        >>> literal = abjad.LilyPondLiteral(r'\set tupletFullLength = ##t')
+        >>> literal = abjad.LilyPondLiteral(
+        ...     r"\set tupletFullLength = ##t", site="opening"
+        ... )
         >>> abjad.attach(literal, staff)
         >>> abjad.show(staff) # doctest: +SKIP
 
