@@ -48,9 +48,9 @@ class OnBeatGraceContainer(_score.Container):
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -329,9 +329,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -386,9 +386,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -443,9 +443,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -501,9 +501,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceOne
                             \set fontSize = #-3
                             \slash
+                            \voiceOne
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -564,9 +564,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceTwo
                             \set fontSize = #-3
                             \slash
+                            \voiceTwo
                             <
                                 g
                                 \tweak font-size 0
@@ -622,9 +622,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceTwo
                             \set fontSize = #-3
                             \slash
+                            \voiceTwo
                             <
                                 g
                                 \tweak font-size 0
@@ -680,9 +680,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceTwo
                             \set fontSize = #-3
                             \slash
+                            \voiceTwo
                             <
                                 e
                                 g
@@ -739,9 +739,9 @@ def on_beat_grace_container(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
-                            \voiceTwo
                             \set fontSize = #-3
                             \slash
+                            \voiceTwo
                             <
                                 e
                                 g
@@ -820,12 +820,15 @@ def on_beat_grace_container(
         message = f"grace {repr(grace_container_duration)}"
         message += f" exceeds anchor {repr(insert_duration)}."
         raise Exception(message)
-    literal = _indicators.LilyPondLiteral(rf"\set fontSize = #{grace_font_size}")
+    literal = _indicators.LilyPondLiteral(
+        rf"\set fontSize = #{grace_font_size}",
+        site="before",
+    )
     _bind.attach(literal, on_beat_grace_container[0], tag=tag)
     if not do_not_beam:
         _spanners.beam(on_beat_grace_container[:], tag=tag)
     if not do_not_slash:
-        literal = _indicators.LilyPondLiteral(r"\slash")
+        literal = _indicators.LilyPondLiteral(r"\slash", site="before")
         _bind.attach(literal, on_beat_grace_container[0], tag=tag)
     if not do_not_slur:
         _spanners.slur(on_beat_grace_container[:], tag=tag)

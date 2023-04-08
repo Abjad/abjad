@@ -18,6 +18,7 @@ class_to_default_values = {
     abjad.Articulation: ("staccato",),
     abjad.Bundle: (abjad.Articulation("."),),
     abjad.ColorFingering: (0,),
+    abjad.LilyPondLiteral: ("", "before"),
     abjad.Markup: (r"\markup Allegro",),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
     abjad.MetronomeMark: ((1, 4), 90),

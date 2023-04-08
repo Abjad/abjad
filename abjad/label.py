@@ -30,7 +30,7 @@ def _color_leaf(leaf, color, *, deactivate=False, tag=None):
     else:
         assert color.startswith("#")
         string = rf"\abjad-color-music #'{color[1:]}"
-        literal = _indicators.LilyPondLiteral(string)
+        literal = _indicators.LilyPondLiteral(string, site="before")
         _attach(literal, leaf)
     return leaf
 

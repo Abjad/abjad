@@ -4,9 +4,9 @@ import abjad
 def test_Inspection_indicators_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.slur(staff[:])
-    command_1 = abjad.LilyPondLiteral(r"\slurDotted")
+    command_1 = abjad.LilyPondLiteral(r"\slurDotted", site="before")
     abjad.attach(command_1, staff[0])
-    command_2 = abjad.LilyPondLiteral(r"\slurUp")
+    command_2 = abjad.LilyPondLiteral(r"\slurUp", site="before")
     abjad.attach(command_2, staff[0])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(

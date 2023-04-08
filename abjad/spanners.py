@@ -130,7 +130,7 @@ def beam(
         staff = _parentage.Parentage(start_leaf).get(_score.Staff)
         lilypond_type = getattr(staff, "lilypond_type", "Staff")
         string = rf"\override {lilypond_type}.Stem.stemlet-length = {stemlet_length}"
-        literal = _indicators.LilyPondLiteral(string)
+        literal = _indicators.LilyPondLiteral(string, site="before")
         for indicator in start_leaf._get_indicators():
             if indicator == literal:
                 break
@@ -139,7 +139,7 @@ def beam(
         staff = _parentage.Parentage(stop_leaf).get(_score.Staff)
         lilypond_type = getattr(staff, "lilypond_type", "Staff")
         string = rf"\revert {lilypond_type}.Stem.stemlet-length"
-        literal = _indicators.LilyPondLiteral(string)
+        literal = _indicators.LilyPondLiteral(string, site="before")
         for indicator in stop_leaf._get_indicators():
             if indicator == literal:
                 break
@@ -1033,7 +1033,7 @@ def glissando(
                 r"\once \override Dots.transparent = ##t",
                 r"\once \override Stem.transparent = ##t",
             ]
-            literal = _indicators.LilyPondLiteral(strings)
+            literal = _indicators.LilyPondLiteral(strings, site="before")
             _bind.attach(literal, leaf, tag=tag.append(_tag.Tag("abjad.glissando(-1)")))
         if hide_middle_note_heads:
             if leaf is not leaves[0]:
@@ -1052,7 +1052,7 @@ def glissando(
                             r"\override Stem.transparent = ##t",
                         ]
                     )
-                literal = _indicators.LilyPondLiteral(strings)
+                literal = _indicators.LilyPondLiteral(strings, site="before")
                 if right_broken is True:
                     _bind.attach(
                         literal,
@@ -1080,7 +1080,7 @@ def glissando(
                             r"\override Stem.transparent = ##t",
                         ]
                     )
-                literal = _indicators.LilyPondLiteral(strings)
+                literal = _indicators.LilyPondLiteral(strings, site="before")
                 _bind.attach(
                     literal,
                     leaf,
@@ -1090,7 +1090,7 @@ def glissando(
                 )
             elif left_broken and leaf is leaves[1]:
                 string = r"\override NoteColumn.glissando-skip = ##t"
-                literal = _indicators.LilyPondLiteral(string)
+                literal = _indicators.LilyPondLiteral(string, site="before")
                 _bind.attach(
                     literal,
                     leaf,
@@ -1111,7 +1111,7 @@ def glissando(
                     )
                 if right_broken:
                     deactivate_glissando = True
-                    literal = _indicators.LilyPondLiteral(strings)
+                    literal = _indicators.LilyPondLiteral(strings, site="before")
                     _bind.attach(
                         literal,
                         leaf,
@@ -1131,7 +1131,7 @@ def glissando(
                             .append(_tag.Tag("RIGHT_BROKEN_SHOW_NEXT")),
                         )
                 else:
-                    literal = _indicators.LilyPondLiteral(strings)
+                    literal = _indicators.LilyPondLiteral(strings, site="before")
                     _bind.attach(
                         literal,
                         leaf,
