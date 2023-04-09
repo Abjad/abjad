@@ -4346,8 +4346,9 @@ class Rest(Leaf):
     ..  container:: example
 
         >>> rest = abjad.Rest("r8.")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), rest)
         >>> staff = abjad.Staff([rest])
+        >>> score = abjad.Score([staff], name="Score")
+        >>> abjad.attach(abjad.TimeSignature((3, 16)), rest)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5022,6 +5023,7 @@ class Tuplet(Container):
         >>> abjad.tweak(tuplet_3, r"\tweak staff-padding 4")
 
         >>> staff = abjad.Staff([tuplet_3])
+        >>> score = abjad.Score([staff], name="Score")
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
         >>> literal = abjad.LilyPondLiteral(
@@ -6617,8 +6619,9 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'4 c'4")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), tuplet[0])
             >>> staff = abjad.Staff([tuplet])
+            >>> score = abjad.Score([staff], name="Score")
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), tuplet[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6639,6 +6642,7 @@ class Tuplet(Container):
             Can be rewritten without a tuplet bracket:
 
             >>> staff = abjad.Staff("c'8. c'8.")
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -6658,8 +6662,9 @@ class Tuplet(Container):
             Nontrivializable tuplet:
 
             >>> tuplet = abjad.Tuplet((3, 5), "c'4 c'4 c'4 c'4 c'4")
-            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
             >>> staff = abjad.Staff([tuplet])
+            >>> score = abjad.Score([staff], name="Score")
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -6690,8 +6695,9 @@ class Tuplet(Container):
             REGRESSION. Nontrivializable tuplet:
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'2. c4")
-            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
             >>> staff = abjad.Staff([tuplet])
+            >>> score = abjad.Score([staff], name="Score")
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::

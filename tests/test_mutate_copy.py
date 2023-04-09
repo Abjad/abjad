@@ -14,6 +14,7 @@ def test_mutate_copy_01():
             abjad.Container("g'8 a'"),
         ]
     )
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -81,6 +82,7 @@ def test_mutate_copy_02():
             abjad.Container("g'8 a'"),
         ]
     )
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -150,6 +152,7 @@ def test_mutate_copy_03():
             abjad.Container("g'8 a'"),
         ]
     )
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -218,6 +221,7 @@ def test_mutate_copy_04():
             abjad.Container("b'8 c''"),
         ]
     )
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -303,6 +307,7 @@ def test_mutate_copy_05():
             abjad.Container("b'8 c''"),
         ]
     )
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -383,6 +388,7 @@ def test_mutate_copy_06():
             abjad.Container("b'8 c''"),
         ]
     )
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -457,6 +463,7 @@ def test_mutate_copy_07():
             abjad.Container("b'8 c''"),
         ]
     )
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])

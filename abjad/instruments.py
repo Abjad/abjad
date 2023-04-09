@@ -132,11 +132,11 @@ class Instrument:
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
     pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[-inf, +inf]")
 
-    _site: typing.ClassVar[str] = "opening"
     _latent: typing.ClassVar[bool] = True
     _persistent: typing.ClassVar[bool] = True
     _redraw: typing.ClassVar[bool] = True
     check_effective_context: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "opening"
 
     def __post_init__(self):
         assert isinstance(self.context, str), repr(self.context)

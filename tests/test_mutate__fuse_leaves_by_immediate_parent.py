@@ -217,6 +217,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_08():
     """
 
     staff = abjad.Staff(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
+    abjad.Score([staff], name="Score")
     indicators = (
         abjad.BeforeGraceContainer("b'16"),
         abjad.Clef("alto"),
@@ -263,6 +264,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
     """
 
     staff = abjad.Staff(r"d'8 c'8 ~ c'32 r16 r16 r16 r4")
+    abjad.Score([staff], name="Score")
 
     indicators = (abjad.TimeSignature((3, 4)), abjad.StartBeam())
     for indicator in indicators:
@@ -315,6 +317,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_10():
     """
 
     staff = abjad.Staff(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
+    abjad.Score([staff], name="Score")
     indicators = (
         abjad.BeforeGraceContainer("b'16"),
         abjad.Clef("alto"),

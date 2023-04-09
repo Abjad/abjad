@@ -291,16 +291,14 @@ class MetricModulation:
         Attach metric modulations to generate score output:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4 e'4 d'4")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0])
-        >>> score = abjad.Score([staff])
-
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c4"),
         ...     right_rhythm=abjad.Note("c8."),
         ... )
         >>> abjad.attach(metric_modulation, staff[3], direction=abjad.UP)
         >>> abjad.override(staff).TextScript.staff_padding = 2.5
-
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -308,7 +306,7 @@ class MetricModulation:
 
             >>> string = abjad.lilypond(score)
             >>> print(string)
-            \new Score
+            \context Score = "Score"
             <<
                 \new Staff
                 \with
@@ -493,6 +491,7 @@ class MetricModulation:
         markup = _indicators.Markup(string)
         return markup
 
+    # TODO: return dictionary
     def _get_markup_arguments(self):
         if self._note_to_note():
             left_exponent = self.left_rhythm[0].written_duration.exponent
@@ -672,9 +671,8 @@ class MetricModulation:
         ..  container:: example
 
             >>> staff = abjad.Staff("c'4 d'4 e'4 f'4 e'4 d'4")
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0])
-            >>> score = abjad.Score([staff])
-
             >>> metric_modulation = abjad.MetricModulation(
             ...     left_rhythm=abjad.Note("c4"),
             ...     right_rhythm=abjad.Note("c8."),
@@ -682,7 +680,6 @@ class MetricModulation:
             ... )
             >>> abjad.attach(metric_modulation, staff[3], direction=abjad.UP)
             >>> abjad.override(staff).TextScript.staff_padding = 2.5
-
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -690,7 +687,7 @@ class MetricModulation:
 
                 >>> string = abjad.lilypond(score)
                 >>> print(string)
-                \new Score
+                \context Score = "Score"
                 <<
                     \new Staff
                     \with

@@ -2848,7 +2848,12 @@ class LilyPondParser(Parser):
                 x, _score.BeforeGraceContainer
             ):
                 for indicator in apply_forward:
-                    _bind.attach(indicator, x)
+                    try:
+                        _bind.attach(indicator, x)
+                    except _exceptions.MissingContextError:
+                        score = _score.Score([x], simultaneous=False)
+                        _bind.attach(indicator, x)
+                        score[:] = []
                 if previous_leaf:
                     for indicator in apply_backward:
                         _bind.attach(indicator, previous_leaf)

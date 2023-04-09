@@ -2,6 +2,7 @@ from .. import _iterlib
 from .. import bind as _bind
 from .. import duration as _duration
 from .. import enums as _enums
+from .. import exceptions as _exceptions
 from .. import indicators as _indicators
 from .. import pitch as _pitch
 from .. import score as _score
@@ -419,7 +420,12 @@ class ReducedLyParser(Parser):
             measure.append(x)
         leaf = _iterlib._get_leaf(measure, 0)
         time_signature = _indicators.TimeSignature(p[2])
-        _bind.attach(time_signature, leaf)
+        try:
+            _bind.attach(time_signature, leaf)
+        except _exceptions.MissingContextError:
+            score = _score.Score([measure])
+            _bind.attach(time_signature, leaf)
+            score[:] = []
         p[0] = measure
 
     def p_negative_leaf_duration__INTEGER_N__dots(self, p):

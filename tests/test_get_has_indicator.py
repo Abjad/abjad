@@ -43,6 +43,7 @@ def test_get_has_indicator_04():
 
 def test_get_has_indicator_05():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.Score([staff], name="Score")
     time_signature = abjad.TimeSignature((4, 8))
     abjad.attach(time_signature, staff[0])
 

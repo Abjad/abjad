@@ -79,6 +79,7 @@ def color_container(container, color="#red") -> None:
     ..  container:: example
 
         >>> staff = abjad.Staff("c'8 d'8")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
         >>> abjad.label.color_container(staff, "#red")
         >>> abjad.show(staff) # doctest: +SKIP

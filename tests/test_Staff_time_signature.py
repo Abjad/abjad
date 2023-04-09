@@ -7,6 +7,7 @@ def test_Staff_time_signature_01():
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
+    abjad.Score([staff], name="Score")
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
 
@@ -34,6 +35,7 @@ def test_Staff_time_signature_02():
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
+    abjad.Score([staff], name="Score")
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
     for x in staff:
@@ -48,6 +50,7 @@ def test_Staff_time_signature_03():
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
+    abjad.Score([staff], name="Score")
     time_signature = abjad.TimeSignature((2, 4))
     abjad.attach(time_signature, staff[0])
     abjad.detach(time_signature, staff[0])

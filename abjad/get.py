@@ -214,6 +214,7 @@ def bar_line_crossing(argument) -> bool:
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d'4 e'4")
+        >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((3, 8))
         >>> abjad.attach(time_signature, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1063,7 +1064,7 @@ def effective(
         Arbitrary objects (like strings) can be contexted:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.attach('color', staff[1], context='Staff')
+        >>> abjad.attach("color", staff[1], context="Staff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1093,9 +1094,9 @@ def effective(
         Scans forwards or backwards when ``n`` is set:
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8 g'8")
-        >>> abjad.attach('red', staff[0], context='Staff')
-        >>> abjad.attach('blue', staff[2], context='Staff')
-        >>> abjad.attach('yellow', staff[4], context='Staff')
+        >>> abjad.attach("red", staff[0], context="Staff")
+        >>> abjad.attach("blue", staff[2], context="Staff")
+        >>> abjad.attach("yellow", staff[4], context="Staff")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1160,8 +1161,8 @@ def effective(
         >>> abjad.attach(
         ...     abjad.Clef("treble", hide=True),
         ...     staff[0],
-        ...     synthetic_offset=-1,
-        ...     )
+        ...     synthetic_offset=abjad.Offset(-1),
+        ... )
         >>> abjad.attach(abjad.Clef("alto"), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1211,7 +1212,7 @@ def effective(
         >>> abjad.attach(
         ...     abjad.Clef("alto", hide=True),
         ...     staff[-1],
-        ...     synthetic_offset=1,
+        ...     synthetic_offset=abjad.Offset(1),
         ...     )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1251,6 +1252,7 @@ def effective(
         Gets effective time signature:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff], name="Score")
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> abjad.show(staff) # doctest: +SKIP

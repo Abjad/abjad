@@ -410,6 +410,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.exceptions.AssignabilityError'>
         <class 'abjad.exceptions.ImpreciseMetronomeMarkError'>
         <class 'abjad.exceptions.LilyPondParserError'>
+        <class 'abjad.exceptions.MissingContextError'>
         <class 'abjad.exceptions.MissingMetronomeMarkError'>
         <class 'abjad.exceptions.ParentageError'>
         <class 'abjad.exceptions.PersistentIndicatorError'>

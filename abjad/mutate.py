@@ -446,22 +446,18 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
         following_leaf = copy(leaf)
         for indicator in _get.indicators(following_leaf):
             if i != following_leaf_count - 1:
-                if (
-                    getattr(indicator, "_time_orientation", _enums.LEFT)
-                    != _enums.MIDDLE
-                ):
+                if getattr(indicator, "time_orientation", _enums.LEFT) != _enums.MIDDLE:
                     _bind.detach(indicator, following_leaf)
             elif (
-                getattr(indicator, "_time_orientation", _enums.LEFT) != _enums.RIGHT
-                and getattr(indicator, "_time_orientation", _enums.LEFT)
-                != _enums.MIDDLE
+                getattr(indicator, "time_orientation", _enums.LEFT) != _enums.RIGHT
+                and getattr(indicator, "time_orientation", _enums.LEFT) != _enums.MIDDLE
             ):
                 _bind.detach(indicator, following_leaf)
         _bind.detach(_score.BeforeGraceContainer, following_leaf)
         following_leaves.append(following_leaf)
     if following_leaf_count > 0:
         for indicator in _get.indicators(leaf):
-            if getattr(indicator, "_time_orientation", _enums.LEFT) == _enums.RIGHT:
+            if getattr(indicator, "time_orientation", _enums.LEFT) == _enums.RIGHT:
                 _bind.detach(indicator, leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
@@ -704,7 +700,7 @@ def _split_leaf_by_durations(leaf, durations, *, cyclic=False, tag=None):
     last_result_leaf = result_leaves[-1]
     for indicator in _get.indicators(leaf):
         _bind.detach(indicator, leaf)
-        direction = getattr(indicator, "_time_orientation", _enums.LEFT)
+        direction = getattr(indicator, "time_orientation", _enums.LEFT)
         if direction is _enums.LEFT:
             _bind.attach(indicator, first_result_leaf)
         elif direction == _enums.RIGHT:
@@ -813,6 +809,7 @@ def copy(argument, n=1) -> list[_score.Component]:
 
         >>> staff = abjad.Staff(r"c'8 d'8 e'8 f'8")
         >>> staff.extend(r"g'8 a'8 b'8 c''8")
+        >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((2, 4))
         >>> abjad.attach(time_signature, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -944,6 +941,7 @@ def extract(argument):
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
         >>> leaves = abjad.select.leaves(staff)
+        >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
         >>> abjad.hairpin('p < f', leaves)
@@ -1000,6 +998,7 @@ def extract(argument):
         >>> staff = abjad.Staff()
         >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
         >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
+        >>> score = abjad.Score([staff], name="Score")
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
         >>> time_signature = abjad.TimeSignature((3, 4))
@@ -1250,6 +1249,7 @@ def logical_tie_to_tuplet(
     ..  container:: example
 
         >>> staff = abjad.Staff(r"df'8 c'8 ~ c'16 cqs''4")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.attach(abjad.Dynamic('p'), staff[0])
         >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
         >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
@@ -1314,6 +1314,7 @@ def logical_tie_to_tuplet(
     ..  container:: example
 
         >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.hairpin('p < f', staff[:])
         >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
         >>> time_signature = abjad.TimeSignature((7, 16))
@@ -1640,6 +1641,7 @@ def scale(argument, multiplier) -> None:
         Scales tied leaves by dot-generating mutliplier:
 
         >>> staff = abjad.Staff(r"c'8 \accent ~ c'8 d'8")
+        >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((3, 8))
         >>> abjad.attach(time_signature, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1717,6 +1719,7 @@ def scale(argument, multiplier) -> None:
         Scales leaves in tuplet:
 
         >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
         >>> tuplet = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
         >>> staff.append(tuplet)
         >>> time_signature = abjad.TimeSignature((4, 8))
@@ -1845,9 +1848,9 @@ def split(argument, durations, *, cyclic=False, tag=None):
             {
                 c'2.
                 \p
+                \<
                 ~
                 c'4
-                \<
                 d'2
                 \f
                 ~
@@ -1912,12 +1915,12 @@ def split(argument, durations, *, cyclic=False, tag=None):
                 {
                     c'8
                     \p
+                    \<
                     ~
                 }
                 \context CustomVoice = "1"
                 {
                     c'8
-                    \<
                 }
                 \context CustomVoice = "1"
                 {
@@ -2307,6 +2310,7 @@ def swap(argument, container):
         Swaps containers for tuplet:
 
         >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
         >>> staff.append(abjad.Container("c'4 d'4 e'4"))
         >>> staff.append(abjad.Container("d'4 e'4 f'4"))
         >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0][0])
@@ -2410,6 +2414,7 @@ def transpose(argument, interval):
         Transposes notes and chords in staff:
 
         >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
         >>> staff.extend("c'4 d'4 e'4 r4")
         >>> abjad.attach(abjad.TimeSignature((4, 4)), staff[0])
         >>> staff.extend("d'4 e'4 <f' a' c''>4")
@@ -2558,6 +2563,7 @@ def wrap(argument, container):
 
         >>> notes = [abjad.Note(n, (1, 8)) for n in range(8)]
         >>> staff = abjad.Staff(notes)
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.attach(abjad.TimeSignature((4, 8)), staff[0])
         >>> container = abjad.Container()
         >>> abjad.mutate.wrap(staff[:4], container)
@@ -2639,6 +2645,7 @@ def wrap(argument, container):
         wrap:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff], name="Score")
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
         >>> container = abjad.Container()

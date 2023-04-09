@@ -128,7 +128,8 @@ class Dynamic:
 
     ..  container:: example
 
-        REGRESSION. Duplicate dynamics raise exception on attach:
+        REGRESSION. Duplicate dynamics raise exception on attach
+        when ``check_duplicate_indicator=True``:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> dynamic = abjad.Dynamic("p")
@@ -676,8 +677,8 @@ class Dynamic:
     name: typing.Union[str, "Dynamic"] = "f"
     command: str | None = None
     format_hairpin_stop: bool = False
-    hide: bool = False
-    leak: bool = dataclasses.field(default=False, compare=False)
+    hide: bool = dataclasses.field(compare=False, default=False)
+    leak: bool = dataclasses.field(compare=False, default=False)
     name_is_textual: bool = False
     ordinal: int | _math.Infinity | _math.NegativeInfinity | None = None
 
@@ -814,8 +815,6 @@ class Dynamic:
         6: "fffff",
     }
 
-    _site: typing.ClassVar[str] = "after"
-
     _lilypond_dynamic_commands: typing.ClassVar = [
         _ for _ in _dynamic_names if not _ == "niente"
     ]
@@ -829,6 +828,8 @@ class Dynamic:
         '"p"': 2,
         "sfz": 2.5,
     }
+
+    site: typing.ClassVar[str] = "after"
 
     def __eq__(self, argument) -> bool:
         """

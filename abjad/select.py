@@ -1838,6 +1838,7 @@ def group_by_measure(argument) -> list[list]:
     ..  container:: example
 
         >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
@@ -1893,6 +1894,7 @@ def group_by_measure(argument) -> list[list]:
         Groups leaves by measure and joins pairs of consecutive groups:
 
         >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
@@ -1948,6 +1950,7 @@ def group_by_measure(argument) -> list[list]:
         Groups leaves by measure; then gets item 0 in each group:
 
         >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
@@ -1999,6 +2002,7 @@ def group_by_measure(argument) -> list[list]:
         Groups leaves by measure; then gets item -1 in each group:
 
         >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
@@ -2101,6 +2105,7 @@ def group_by_measure(argument) -> list[list]:
         Groups logical ties by measure:
 
         >>> staff = abjad.Staff("c'8 d' ~ d' e' ~ e' f' g' ~ g'")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.setting(staff).autoBeaming = False
         >>> abjad.attach(abjad.TimeSignature((2, 8)), staff[0])
         >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[4])
@@ -2158,6 +2163,7 @@ def group_by_measure(argument) -> list[list]:
         REGRESSION: works for pickup measure:
 
         >>> staff = abjad.Staff(r"c'4 | d'4 e'4 f'4 | g'4 a'4 b'4")
+        >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((3, 4), partial=(1, 4))
         >>> abjad.attach(time_signature, staff[0])
 
@@ -4589,6 +4595,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -4667,6 +4674,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -4737,6 +4745,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -4816,6 +4825,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -4896,6 +4906,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -4964,6 +4975,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -5042,6 +5054,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -5123,6 +5136,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -5197,6 +5211,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])
@@ -5281,6 +5296,7 @@ def partition_by_durations(
         ...     abjad.Container("g'8 a'"),
         ...     abjad.Container("b'8 c''"),
         ... ])
+        >>> score = abjad.Score([staff], name="Score")
         >>> for container in staff:
         ...     time_signature = abjad.TimeSignature((2, 8))
         ...     abjad.attach(time_signature, container[0])

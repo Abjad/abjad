@@ -251,6 +251,8 @@ def components(
     assert all(isinstance(_, _indicators.TimeSignature) for _ in time_signatures), repr(
         time_signatures
     )
+    staff = _score.Staff(components, name="Staff")
+    score = _score.Score([staff], name="Score")
     if not time_signatures:
         duration = _get.duration(components)
         time_signature = _indicators.TimeSignature(duration.pair)
@@ -263,8 +265,6 @@ def components(
         for time_signature, part in zip(time_signatures, parts):
             assert isinstance(time_signature, _indicators.TimeSignature)
             _bind.attach(time_signature, _select.leaf(part, 0))
-    staff = _score.Staff(components, name="Staff")
-    score = _score.Score([staff], name="Score")
     items: list[_score.Component | str] = []
     items.append(r'\include "abjad.ily"')
     for include in includes or []:

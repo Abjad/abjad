@@ -252,6 +252,7 @@ def leaves(
     ..  container:: example
 
         >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
         >>> staff.extend("<c' bf'>8 <g' a'>8")
         >>> staff.extend("af'8 r8")
         >>> staff.extend("r8 gf'8")
@@ -393,6 +394,7 @@ def leaves(
         Pitched iteration is controlled by a ternary flag.
 
         >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
         >>> staff.extend("<c' bf'>8 <g' a'>8")
         >>> staff.extend("af'8 r8")
         >>> staff.extend("r8 gf'8")

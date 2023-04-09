@@ -1,7 +1,7 @@
 import abjad
 
 
-def test_Inspection_indicators_01():
+def test_get_indicators_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.slur(staff[:])
     command_1 = abjad.LilyPondLiteral(r"\slurDotted", site="before")
@@ -31,7 +31,7 @@ def test_Inspection_indicators_01():
     assert len(indicators) == 2
 
 
-def test_Inspection_indicators_02():
+def test_get_indicators_02():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     clef = abjad.Clef("treble")
     abjad.attach(clef, staff[0])
@@ -56,7 +56,7 @@ def test_Inspection_indicators_02():
     assert len(indicators) == 2
 
 
-def test_Inspection_indicators_03():
+def test_get_indicators_03():
     note = abjad.Note("c'4")
     stem_tremolo = abjad.StemTremolo(16)
     abjad.attach(stem_tremolo, note)

@@ -7,6 +7,7 @@ def test_get_bar_line_crossing_01():
     """
 
     staff = abjad.Staff("c'8 d'8 e'4 f'8")
+    abjad.Score([staff], name="Score")
     time_signature = abjad.TimeSignature((2, 8), partial=abjad.Duration(1, 8))
     abjad.attach(time_signature, staff[0])
 

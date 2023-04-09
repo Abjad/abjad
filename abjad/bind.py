@@ -86,13 +86,14 @@ class Wrapper:
     def __init__(
         self,
         annotation: str | enum.Enum | None = None,
-        check_duplicate_indicator=False,
-        component=None,
+        # TODO: maybe remove check_duplicate_indicator and check automatically?
+        check_duplicate_indicator: bool = False,
+        component: _score.Component | None = None,
         context: str | None = None,
         deactivate: bool = False,
         direction: _enums.Vertical | None = None,
         indicator: typing.Any | None = None,
-        synthetic_offset: int | None = None,
+        synthetic_offset: _duration.Offset | None = None,
         tag: _tag.Tag = _tag.Tag(),
     ) -> None:
         assert not isinstance(indicator, type(self)), repr(indicator)
@@ -114,6 +115,9 @@ class Wrapper:
         self._indicator = indicator
         self._synthetic_offset: _duration.Offset | None
         if synthetic_offset is not None:
+            assert isinstance(synthetic_offset, _duration.Offset), repr(
+                synthetic_offset
+            )
             self._synthetic_offset = _duration.Offset(synthetic_offset)
         else:
             self._synthetic_offset = synthetic_offset
@@ -316,14 +320,12 @@ class Wrapper:
             indicator = self.indicator.indicator
         else:
             indicator = self.indicator
-        # if getattr(self.indicator, "context", None) is not None:
         if getattr(indicator, "context", None) is not None:
             if check_duplicate_indicator is True:
                 self._warn_duplicate_indicator(component)
             self._unbind_component()
             self._component = component
             self._update_effective_context()
-            # if getattr(self.indicator, "_mutates_offsets_in_seconds", False):
             if getattr(indicator, "_mutates_offsets_in_seconds", False):
                 self._component._update_later(offsets_in_seconds=True)
         component._wrappers.append(self)
@@ -338,7 +340,6 @@ class Wrapper:
             indicator = self.indicator.indicator
         else:
             indicator = self.indicator
-        # if getattr(self.indicator, "_mutates_offsets_in_seconds", False):
         if getattr(indicator, "_mutates_offsets_in_seconds", False):
             correct_effective_context._update_later(offsets_in_seconds=True)
 
@@ -385,7 +386,9 @@ class Wrapper:
         return self._effective_context
 
     def _unbind_component(self):
-        if self._component is not None and self in self._component._wrappers:
+        if self._component is not None and id(self) in [
+            id(_) for _ in self._component._wrappers
+        ]:
             self._component._wrappers.remove(self)
         self._component = None
 
@@ -569,7 +572,6 @@ class Wrapper:
             >>> wrapper.start_offset, wrapper.leaked_start_offset
             (Offset((0, 1)), Offset((1, 2)))
 
-        Returns offset.
         """
         if self._synthetic_offset is not None:
             return self._synthetic_offset
@@ -577,10 +579,11 @@ class Wrapper:
             indicator = self.indicator.indicator
         else:
             indicator = self.indicator
+        assert isinstance(self.component, _score.Component)
         if not getattr(indicator, "leak", False):
-            return self._component._get_timespan().start_offset
+            return self.component._get_timespan().start_offset
         else:
-            return self._component._get_timespan().stop_offset
+            return self.component._get_timespan().stop_offset
 
     @property
     def start_offset(self) -> _duration.Offset:
@@ -590,16 +593,15 @@ class Wrapper:
         This is either the wrapper's synthetic offset or the start offset of the
         wrapper's component.
         """
-        if self._synthetic_offset is not None:
-            return self._synthetic_offset
-        return self._component._get_timespan().start_offset
+        if self.synthetic_offset is not None:
+            return self.synthetic_offset
+        assert isinstance(self.component, _score.Component)
+        return self.component._get_timespan().start_offset
 
     @property
-    def synthetic_offset(self):
+    def synthetic_offset(self) -> _duration.Offset | None:
         """
         Gets synthetic offset.
-
-        Returns offset or none.
         """
         return self._synthetic_offset
 
@@ -680,30 +682,72 @@ def annotate(component, annotation, indicator) -> None:
     Wrapper(annotation=annotation, component=component, indicator=indicator)
 
 
-def attach(  # noqa: 302
+@typing.overload
+def attach(
     attachable,
     target,
-    check_duplicate_indicator=False,
-    context=None,
-    deactivate=False,
+    *,
+    check_duplicate_indicator: bool = False,
+    context: str | None = None,
+    deactivate: bool = False,
     direction: _enums.Vertical | None = None,
-    do_not_test=None,
-    synthetic_offset=None,
-    tag=None,
-    wrapper=None,
-):
+    do_not_test: bool = False,
+    synthetic_offset: _duration.Offset | None = None,
+    tag: _tag.Tag | None = None,
+    wrapper: typing.Literal[True] = True,
+) -> Wrapper:
+    ...
+
+
+@typing.overload
+def attach(
+    attachable,
+    target,
+    *,
+    check_duplicate_indicator: bool = False,
+    context: str | None = None,
+    deactivate: bool = False,
+    direction: _enums.Vertical | None = None,
+    do_not_test: bool = False,
+    synthetic_offset: _duration.Offset | None = None,
+    tag: _tag.Tag | None = None,
+    wrapper: typing.Literal[False],
+) -> None:
+    ...
+
+
+def attach(
+    attachable,
+    target,
+    *,
+    check_duplicate_indicator: bool = False,
+    context: str | None = None,
+    deactivate: bool = False,
+    direction: _enums.Vertical | None = None,
+    do_not_test: bool = False,
+    synthetic_offset: _duration.Offset | None = None,
+    tag: _tag.Tag | None = None,
+    wrapper: bool = False,
+) -> Wrapper | None:
     r"""
-    Attaches ``attachable`` to ``target``.
+    Attaches ``attachable`` to (leaf or container) ``target``.
 
-    First form attaches indicator ``attachable`` to single leaf ``target``.
+    Acceptable types of ``attachable``:
 
-    Second for attaches grace container ``attachable`` to leaf ``target``.
+    ::
 
-    Third form attaches wrapper ``attachable`` to unknown (?) ``target``.
+        * indicator
+        * abjad.Wrapper
+        * abjad.BeforeGraceContainer
+        * abjad.AfterGraceContainer
+
+    The class of ``target`` is almost always ``abjad.Leaf``. A small number
+    of indicators (like ``abjad.LilyPondLiteral``) can attach to both ``abjad.Leaf``
+    and ``abjad.Container`` objects.
+
+    Attaches clef to first note in staff:
 
     ..  container:: example
-
-        Attaches clef to first note in staff:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef("alto"), staff[0])
@@ -776,22 +820,14 @@ def attach(  # noqa: 302
         (Note("e'4"), Clef(name='alto', hide=False))
         (Note("f'4"), Clef(name='alto', hide=False))
 
-        Derives context from default ``attachable`` context when ``context`` is none.
+        Derives context from ``attachable.context`` context when ``context=None``.
 
     ..  container:: example
 
-        Two contexted indicators can not be attached at the same offset if both
-        indicators are active:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Clef("treble"), staff[0])
-        >>> abjad.attach(abjad.Clef("alto"), staff[0], check_duplicate_indicator=True)
-        Traceback (most recent call last):
-            ...
-        abjad...PersistentIndicatorError: Can not attach ...
-
-        But simultaneous contexted indicators are allowed if only one is active (and all
-        others are inactive):
+        If multiple contexted indicators are attached at the same offset then
+        ``abjad.attach()`` raises ``abjad.PersistentIndicatorError`` if all
+        indicators are active. But simultaneous contexted indicators are
+        allowed if only one is active (and all others are inactive):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef("treble"), staff[0])
@@ -872,25 +908,13 @@ def attach(  # noqa: 302
         (Note("e'4"), Clef(name='alto', hide=False))
         (Note("f'4"), Clef(name='alto', hide=False))
 
-    ..  container:: example
+        Note that ``tag`` must be an ``abjad.Tag`` when ``deactivate=True``.
 
-        Tag must exist when ``deactivate`` is true:
+    Return type depends on value of ``wrapper``:
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Clef('alto'), staff[0], deactivate=True)
-        Traceback (most recent call last):
-            ...
-        Exception: tag must exist when deactivate is true.
+        * returns ``abjad.Wrapper`` when ``wrapper`` is true
+        * returns none when ``wrapper`` is not true
 
-    ..  container:: example
-
-        Returns wrapper when ``wrapper`` is true:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Clef('alto'), staff[0], wrapper=True)
-        Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
-
-    Otherwise returns none.
     """
     if isinstance(attachable, _tweaks.Bundle):
         nonbundle_attachable = attachable.indicator
@@ -907,16 +931,17 @@ def attach(  # noqa: 302
         raise Exception(f"must be be tag: {repr(tag)}")
 
     assert nonbundle_attachable is not None, repr(nonbundle_attachable)
-    assert target is not None, repr(target)
+    assert isinstance(target, _score.Component), repr(target)
 
-    if context is not None and hasattr(nonbundle_attachable, "_main_leaf"):
+    grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
+    if context is not None and isinstance(nonbundle_attachable, grace_prototype):
         raise Exception(f"set context only for indicators, not {attachable!r}.")
 
     if deactivate is True and tag is None:
         raise Exception("tag must exist when deactivate is true.")
 
     if hasattr(nonbundle_attachable, "_before_attach"):
-        nonbundle_attachable._before_attach(target)
+        nonbundle_attachable._before_attach(deactivate, target)
 
     if hasattr(nonbundle_attachable, "_attachment_test_all") and not do_not_test:
         result = nonbundle_attachable._attachment_test_all(target)
@@ -928,14 +953,11 @@ def attach(  # noqa: 302
             message = "\n".join(result)
             raise Exception(message)
 
-    prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
-    if isinstance(nonbundle_attachable, prototype):
-        if not hasattr(target, "written_duration"):
+    if isinstance(nonbundle_attachable, grace_prototype):
+        if not isinstance(target, _score.Leaf):
             raise Exception("grace containers attach to single leaf only.")
         nonbundle_attachable._attach(target)
-        return
-
-    assert isinstance(target, _score.Component), repr(target)
+        return None
 
     if isinstance(target, _score.Container):
         acceptable = False
@@ -985,6 +1007,8 @@ def attach(  # noqa: 302
 
     if wrapper is True:
         return wrapper_
+    else:
+        return None
 
 
 def detach(argument, target=None, by_id=False):
@@ -1241,10 +1265,8 @@ def detach(argument, target=None, by_id=False):
                 if isinstance(wrapper, argument):
                     target._wrappers.remove(wrapper)
                     result.append(wrapper)
-                # elif isinstance(wrapper.indicator, argument):
                 elif isinstance(wrapper.unbundle_indicator(), argument):
                     wrapper._detach()
-                    # result.append(wrapper.indicator)
                     result.append(wrapper.get_item())
             result = tuple(result)
             return result
@@ -1260,16 +1282,13 @@ def detach(argument, target=None, by_id=False):
                 if wrapper is argument:
                     wrapper._detach()
                     result.append(wrapper)
-                # elif wrapper.indicator == argument:
                 elif wrapper.unbundle_indicator() == argument:
-                    # if by_id is True and id(argument) != id(wrapper.indicator):
                     if by_id is True and id(argument) != id(
                         wrapper.unbundle_indicator()
                     ):
                         pass
                     else:
                         wrapper._detach()
-                        # result.append(wrapper.indicator)
                         result.append(wrapper.get_item())
             result = tuple(result)
             return result

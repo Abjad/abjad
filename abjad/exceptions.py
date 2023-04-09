@@ -27,6 +27,14 @@ class LilyPondParserError(Exception):
     pass
 
 
+class MissingContextError(Exception):
+    """
+    No context found.
+    """
+
+    pass
+
+
 class MissingMetronomeMarkError(Exception):
     """
     No metronome mark found.

@@ -75,6 +75,7 @@ def test_mutate_split_02():
     """
 
     staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -151,6 +152,7 @@ def test_mutate_split_03():
     """
 
     staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -226,6 +228,7 @@ def test_mutate_split_04():
     """
 
     staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -302,6 +305,7 @@ def test_mutate_split_05():
     """
 
     staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
@@ -381,6 +385,7 @@ def test_mutate_split_06():
     """
 
     staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    abjad.Score([staff], name="Score")
     for container in staff:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])

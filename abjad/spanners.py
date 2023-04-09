@@ -1008,7 +1008,7 @@ def glissando(
                 if not _previous_leaf_changes_current_pitch(leaf):
                     _parenthesize_leaf(leaf)
         should_attach_glissando = False
-        deactivate_glissando = None
+        deactivate_glissando = False
         if leaf._has_indicator(_indicators.BendAfter):
             pass
         elif leaf is leaves[-1]:

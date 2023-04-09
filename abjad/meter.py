@@ -1564,16 +1564,17 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
             ...     measure[0],
             ...     abjad.TimeSignature
-            ...     )
+            ... )
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     time_signature,
             ...     boundary_depth=1,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2065,6 +2066,7 @@ class Meter:
             beat in meter:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
             >>> meter = abjad.Meter((6, 8))
             >>> abjad.Meter.rewrite_meter(staff[:], meter)
@@ -2086,6 +2088,7 @@ class Meter:
             Setting boundary depth to 1 subdivides the first note in this measure:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
             >>> meter = abjad.Meter((6, 8))
             >>> abjad.Meter.rewrite_meter(staff[:], meter, boundary_depth=1)
@@ -2110,11 +2113,9 @@ class Meter:
             itself:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter(
-            ...     (6, 8),
-            ...     preferred_boundary_depth=1,
-            ...     )
+            >>> meter = abjad.Meter((6, 8), preferred_boundary_depth=1)
             >>> abjad.Meter.rewrite_meter(staff[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2142,6 +2143,7 @@ class Meter:
             >>> lily_string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
             >>> lily_string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
             >>> staff = abjad.Staff(lily_string)
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2217,6 +2219,7 @@ class Meter:
             >>> lily_string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
             >>> lily_string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
             >>> staff = abjad.Staff(lily_string)
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
 

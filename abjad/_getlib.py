@@ -199,7 +199,7 @@ def _get_grace_container(component):
 
 
 def _get_indicator(
-    component,
+    component: _score.Component,
     prototype: _typings.Prototype | None = None,
     *,
     default: typing.Any | None = None,
@@ -214,10 +214,10 @@ def _get_indicator(
         return list(indicators)[0]
     else:
         name = getattr(prototype, "__name__", "")
-        strings = "\n".join([str(_) for _ in indicators])
-        raise Exception(
-            f"{len(indicators)} {name} indicators attached to component:\n{strings}"
-        )
+        strings = "\n".join(["    " + str(_) for _ in indicators])
+        string = f"{len(indicators)} {name} indicators attached to {component}:"
+        string += f"\n{strings}"
+        raise Exception(string)
 
 
 def _get_leaf_from_leaf(leaf, n):
