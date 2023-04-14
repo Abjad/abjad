@@ -340,8 +340,9 @@ class Wrapper:
             indicator = self.indicator.indicator
         else:
             indicator = self.indicator
-        if getattr(indicator, "_mutates_offsets_in_seconds", False):
-            correct_effective_context._update_later(offsets_in_seconds=True)
+        if correct_effective_context is not None:
+            if getattr(indicator, "_mutates_offsets_in_seconds", False):
+                correct_effective_context._update_later(offsets_in_seconds=True)
 
     def _detach(self):
         self._unbind_component()
