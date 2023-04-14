@@ -54,6 +54,7 @@ def test_mutate_copy_01():
 
     result = abjad.mutate.copy(leaves[2:4])
     new = abjad.Staff(result)
+    abjad.Score([new], name="Score")
 
     assert abjad.lilypond(new) == abjad.string.normalize(
         r"""
@@ -122,6 +123,7 @@ def test_mutate_copy_02():
 
     result = abjad.mutate.copy(staff[1:2])
     new = abjad.Staff(result)
+    abjad.Score([new], name="Score")
 
     assert abjad.lilypond(new) == abjad.string.normalize(
         r"""
@@ -192,6 +194,7 @@ def test_mutate_copy_03():
 
     result = abjad.mutate.copy(leaves[-3:])
     new = abjad.Staff(result)
+    abjad.Score([new], name="Score")
 
     assert abjad.lilypond(new) == abjad.string.normalize(
         r"""
@@ -262,6 +265,7 @@ def test_mutate_copy_04():
     ), print(abjad.lilypond(staff))
 
     new_staff = abjad.mutate.copy(staff)
+    abjad.Score([new_staff], name="Score")
 
     assert abjad.lilypond(new_staff) == abjad.string.normalize(
         r"""
@@ -349,6 +353,7 @@ def test_mutate_copy_05():
 
     result = abjad.mutate.copy(staff[1:])
     new_staff = abjad.Staff(result)
+    abjad.Score([new_staff], name="Score")
 
     assert abjad.lilypond(new_staff) == abjad.string.normalize(
         r"""
@@ -430,6 +435,7 @@ def test_mutate_copy_06():
 
     result = abjad.mutate.copy(leaves[:6])
     new_staff = abjad.Staff(result)
+    abjad.Score([new_staff], name="Score")
 
     assert abjad.lilypond(new_staff) == abjad.string.normalize(
         r"""
@@ -505,6 +511,7 @@ def test_mutate_copy_07():
 
     result = abjad.mutate.copy(staff[-2:])
     new_staff = abjad.Staff(result)
+    abjad.Score([new_staff], name="Score")
 
     assert abjad.lilypond(new_staff) == abjad.string.normalize(
         r"""
@@ -558,6 +565,7 @@ def test_mutate_copy_08():
 
     new_notes = abjad.mutate.copy(staff[:4])
     staff.extend(new_notes)
+    abjad.Score([staff], name="Score")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

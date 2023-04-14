@@ -3235,6 +3235,7 @@ class MultimeasureRest(Leaf):
         REGRESSION #1049. Parser reads multimeasure rest multipliers:
 
         >>> staff = abjad.Staff(r"\time 3/8 R1 * 3/8")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

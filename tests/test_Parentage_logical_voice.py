@@ -383,6 +383,7 @@ def test_Parentage_logical_voice_10():
         f'8
         """
     )
+    abjad.Score([staff], name="Score")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

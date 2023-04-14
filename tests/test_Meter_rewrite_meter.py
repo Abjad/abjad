@@ -6,6 +6,7 @@ def test_Meter_rewrite_meter_01():
     container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
     staff = abjad.Staff()
     staff[:] = container
+    abjad.Score([staff], name="Score")
     grace_container = abjad.BeforeGraceContainer("c'16 d'16")
     abjad.attach(grace_container, staff[1])
     meter = abjad.Meter((4, 4))
