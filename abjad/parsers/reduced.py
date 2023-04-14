@@ -125,6 +125,7 @@ class ReducedLyParser(Parser):
         >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
         >>> container = parser(string)
         >>> staff = abjad.Staff([container])
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

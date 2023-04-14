@@ -185,6 +185,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_07():
     logical_tie = abjad.get.logical_tie(voice[0][0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
     staff = abjad.Staff([voice])
+    abjad.Score([staff], name="Score")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

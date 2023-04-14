@@ -6132,8 +6132,7 @@ class TimeSignature:
     partial: _duration.Duration | None = None
 
     check_effective_context: typing.ClassVar[bool] = True
-    # TODO: context should probably be "Score"
-    context: typing.ClassVar[str] = "Staff"
+    context: typing.ClassVar[str] = "Score"
     persistent: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "opening"
 

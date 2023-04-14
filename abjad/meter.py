@@ -1162,6 +1162,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff[:] = container
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1236,6 +1237,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff[:] = container
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1312,6 +1314,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1364,6 +1367,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
             ...     measure[0],
@@ -1403,6 +1407,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
             ...     measure[0],
@@ -1444,6 +1449,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
             ...     measure[0],
@@ -1515,6 +1521,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1603,6 +1610,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
             ...     measure[0],
@@ -1980,6 +1988,7 @@ class Meter:
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
             >>> staff = abjad.Staff()
             >>> staff.append(container)
+            >>> score = abjad.Score([staff], name="Score")
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -3164,6 +3173,7 @@ class _MeterManager:
         >>> string = string.replace('!', '|')
         >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
         >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
         >>> staff[:] = container
 
         ..  docs::
