@@ -14,7 +14,7 @@ def test_bind_01():
     staff = abjad.Staff([voice])
     score = abjad.Score([staff])
     leaf = abjad.select.leaf(staff, 0)
-    mark = abjad.MetronomeMark((1, 4), 72)
+    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 72)
     abjad.attach(mark, leaf)
     score[:] = []
     string = abjad.lilypond(staff)

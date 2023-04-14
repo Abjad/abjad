@@ -16,25 +16,27 @@ from . import overrides as _overrides
 from . import pitch as _pitch
 from . import sequence as _sequence
 from . import string as _string
-from . import typings as _typings
 
 _EMPTY_CHORD = "<>"
 
 
 def _before_attach(indicator, deactivate, component):
-    if deactivate is False:
-        for wrapper in component._get_indicators(unwrap=False):
-            if not isinstance(wrapper.indicator, type(indicator)):
-                continue
-            if indicator != wrapper.indicator:
-                if hasattr(indicator, "hide"):
-                    if indicator.hide != wrapper.indicator.hide:
-                        continue
-            classname = type(component).__name__
-            message = f"can not attach {indicator!r} to {classname}:"
-            message += f"\n    {wrapper.indicator!r} is already attached"
-            message += f" to {classname}."
-            raise Exception(message)
+    if getattr(indicator, "nestable_spanner", False) is True:
+        return
+    if deactivate is True:
+        return
+    for wrapper in component._get_indicators(unwrap=False):
+        if not isinstance(wrapper.indicator, type(indicator)):
+            continue
+        if indicator != wrapper.indicator:
+            if hasattr(indicator, "hide"):
+                if indicator.hide != wrapper.indicator.hide:
+                    continue
+        classname = type(component).__name__
+        message = f"can not attach {indicator!r} to {classname}:"
+        message += f"\n    {wrapper.indicator!r} is already attached"
+        message += f" to {classname}."
+        raise Exception(message)
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -2320,9 +2322,8 @@ class Markup:
         return string
 
 
-# TODO: frozen=True
 @functools.total_ordering
-@dataclasses.dataclass(slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
 class MetronomeMark:
     r"""
     MetronomeMark.
@@ -2334,7 +2335,7 @@ class MetronomeMark:
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark((1, 4), 90)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 90)
         >>> abjad.attach(mark, staff[0])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -2362,7 +2363,7 @@ class MetronomeMark:
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark((1, 4), fractions.Fraction(272, 3))
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), fractions.Fraction(272, 3))
         >>> abjad.attach(mark, staff[0])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -2389,7 +2390,7 @@ class MetronomeMark:
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
-        ...     (1, 4),
+        ...     abjad.Duration(1, 4),
         ...     fractions.Fraction(272, 3),
         ...     decimal="90.66",
         ... )
@@ -2419,7 +2420,7 @@ class MetronomeMark:
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
-        ...     (1, 4),
+        ...     abjad.Duration(1, 4),
         ...     fractions.Fraction(901, 10),
         ...     decimal=True,
         ... )
@@ -2450,7 +2451,7 @@ class MetronomeMark:
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark((1, 4), (120, 133), 'Quick')
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), (120, 133), "Quick")
         >>> abjad.attach(mark, staff[0])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -2480,7 +2481,7 @@ class MetronomeMark:
         ...     67.5,
         ...  )
         >>> mark = abjad.MetronomeMark(
-        ...     reference_duration=(1, 4),
+        ...     reference_duration=abjad.Duration(1, 4),
         ...     units_per_minute=fractions.Fraction(135, 2),
         ...     custom_markup=markup,
         ...  )
@@ -2511,25 +2512,18 @@ class MetronomeMark:
         Decimal overrides:
 
         >>> import fractions
-        >>> mark = abjad.MetronomeMark(
-        ...     (1, 4),
-        ...     fractions.Fraction(272, 3),
-        ... )
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), fractions.Fraction(272, 3))
         >>> mark.decimal
         False
 
         >>> mark = abjad.MetronomeMark(
-        ...     (1, 4),
-        ...     fractions.Fraction(272, 3),
-        ...     decimal="90.66",
+        ...     abjad.Duration(1, 4), fractions.Fraction(272, 3), decimal="90.66",
         ... )
         >>> mark.decimal
         '90.66'
 
         >>> mark = abjad.MetronomeMark(
-        ...     (1, 4),
-        ...     fractions.Fraction(901, 10),
-        ...     decimal=True,
+        ...     abjad.Duration(1, 4), fractions.Fraction(901, 10), decimal=True,
         ... )
         >>> mark.decimal
         True
@@ -2540,10 +2534,10 @@ class MetronomeMark:
         should still determine effective metronome mark):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> metronome_mark_1 = abjad.MetronomeMark((1, 4), 72)
+        >>> metronome_mark_1 = abjad.MetronomeMark(abjad.Duration(1, 4), 72)
         >>> abjad.attach(metronome_mark_1, staff[0])
         >>> metronome_mark_2 = abjad.MetronomeMark(
-        ...     textual_indication='Allegro',
+        ...     textual_indication="Allegro",
         ...     hide=True,
         ... )
         >>> abjad.attach(metronome_mark_2, staff[2])
@@ -2577,8 +2571,8 @@ class MetronomeMark:
 
         Equality testing:
 
-        >>> mark_1 = abjad.MetronomeMark((3, 32), 52)
-        >>> mark_2 = abjad.MetronomeMark((3, 32), 52)
+        >>> mark_1 = abjad.MetronomeMark(abjad.Duration(3, 32), 52)
+        >>> mark_2 = abjad.MetronomeMark(abjad.Duration(3, 32), 52)
 
         >>> mark_1 == mark_2
         True
@@ -2588,8 +2582,8 @@ class MetronomeMark:
 
     ..  container:: example
 
-        >>> mark_1 = abjad.MetronomeMark((3, 32), 52)
-        >>> mark_2 = abjad.MetronomeMark((6, 32), 104)
+        >>> mark_1 = abjad.MetronomeMark(abjad.Duration(3, 32), 52)
+        >>> mark_2 = abjad.MetronomeMark(abjad.Duration(6, 32), 104)
 
         >>> mark_1 == mark_2
         False
@@ -2599,9 +2593,9 @@ class MetronomeMark:
 
     ..  container:: example
 
-        >>> mark_1 = abjad.MetronomeMark((3, 32), 52, 'Langsam')
-        >>> mark_2 = abjad.MetronomeMark((3, 32), 52, 'Langsam')
-        >>> mark_3 = abjad.MetronomeMark((3, 32), 52, 'Slow')
+        >>> mark_1 = abjad.MetronomeMark(abjad.Duration(3, 32), 52, "Langsam")
+        >>> mark_2 = abjad.MetronomeMark(abjad.Duration(3, 32), 52, "Langsam")
+        >>> mark_3 = abjad.MetronomeMark(abjad.Duration(3, 32), 52, "Slow")
 
         >>> mark_1 == mark_2
         True
@@ -2611,7 +2605,7 @@ class MetronomeMark:
 
     """
 
-    reference_duration: _typings.Duration | None = None
+    reference_duration: _duration.Duration | None = None
     units_per_minute: int | fractions.Fraction | None = None
     textual_indication: str | None = None
     custom_markup: Markup | None = None
@@ -2625,9 +2619,10 @@ class MetronomeMark:
     site: typing.ClassVar[str] = "opening"
 
     def __post_init__(self):
-        assert isinstance(self.textual_indication, str | type(None))
         if self.reference_duration:
-            self.reference_duration = _duration.Duration(self.reference_duration)
+            assert isinstance(self.reference_duration, _duration.Duration), repr(
+                self.reference_duration
+            )
         if isinstance(self.units_per_minute, float):
             raise Exception(
                 f"do not set units-per-minute to float ({self.units_per_minute});"
@@ -2639,7 +2634,7 @@ class MetronomeMark:
             assert len(self.units_per_minute) == 2
             item_prototype = (int, _duration.Duration)
             assert all(isinstance(_, item_prototype) for _ in self.units_per_minute)
-            self.units_per_minute = tuple(sorted(self.units_per_minute))
+        assert isinstance(self.textual_indication, str | type(None))
         if self.custom_markup is not None:
             assert isinstance(self.custom_markup, Markup)
         if self.decimal is not None:
@@ -2758,20 +2753,23 @@ class MetronomeMark:
 
             Imprecise metronome marks:
 
-            >>> abjad.MetronomeMark((1, 4), 60).is_imprecise
-            False
-            >>> abjad.MetronomeMark(4, 60, 'Langsam').is_imprecise
-            False
-            >>> abjad.MetronomeMark(textual_indication='Langsam').is_imprecise
+            >>> duration = abjad.Duration(1, 4)
+
+            >>> abjad.MetronomeMark(textual_indication="Langsam").is_imprecise
             True
-            >>> abjad.MetronomeMark(4, (35, 50), 'Langsam').is_imprecise
+
+            >>> abjad.MetronomeMark(duration, (35, 50), "Langsam").is_imprecise
             True
-            >>> abjad.MetronomeMark((1, 4), (35, 50)).is_imprecise
+
+            >>> abjad.MetronomeMark(duration, (35, 50)).is_imprecise
             True
 
             Precise metronome marks:
 
-            >>> abjad.MetronomeMark((1, 4), 60).is_imprecise
+            >>> abjad.MetronomeMark(duration, 60).is_imprecise
+            False
+
+            >>> abjad.MetronomeMark(duration, 60, "Langsam").is_imprecise
             False
 
         """
@@ -2788,7 +2786,7 @@ class MetronomeMark:
 
         ..  container:: example
 
-            >>> mark = abjad.MetronomeMark((1, 8), 52)
+            >>> mark = abjad.MetronomeMark(abjad.Duration(1, 8), 52)
             >>> mark.quarters_per_minute
             Fraction(104, 1)
 
@@ -2825,7 +2823,7 @@ class MetronomeMark:
 
         ..  container:: example
 
-            >>> mark = abjad.MetronomeMark((1, 4), 60)
+            >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
             >>> mark.duration_to_milliseconds((3, 8))
             Duration(1500, 1)
 
@@ -3618,15 +3616,13 @@ class StartGroup:
 
     """
 
+    nestable_spanner: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
 
-    # TODO: activate this:
-    """
     def _before_attach(self, deactivate, component):
         _before_attach(self, deactivate, component)
-    """
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -4775,8 +4771,6 @@ class StartTextSpan:
 
     def _get_right_text_tweak(self):
         if isinstance(self.right_text, str):
-            # TODO: is right_text ever set to string?
-            #       should right_text be forced to always be a string? never markup?
             return self.right_text
         if self.concat_hspace_right is not None:
             number = self.concat_hspace_right
@@ -5198,16 +5192,14 @@ class StopGroup:
     """
 
     leak: bool = dataclasses.field(default=False, compare=False)
+    nestable_spanner: typing.ClassVar[bool] = True
 
     time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
 
-    # TODO: activate this:
-    """
     def _before_attach(self, deactivate, component):
         _before_attach(self, deactivate, component)
-    """
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -5297,8 +5289,7 @@ class StopHairpin:
             contributions.after.leak.append(_EMPTY_CHORD)
             contributions.after.leaks.append(string)
         else:
-            # TODO: contributions.after.spanner_stops.append()?
-            contributions.after.articulations.append(string)
+            contributions.after.spanner_stops.append(string)
         return contributions
 
 
@@ -5984,8 +5975,7 @@ class Tie:
         return contributions
 
 
-# TODO: frozen=True
-@dataclasses.dataclass(order=True, slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class TimeSignature:
     r"""
     Time signature.
@@ -6137,14 +6127,12 @@ class TimeSignature:
     site: typing.ClassVar[str] = "opening"
 
     def __post_init__(self):
-        pair_ = getattr(self.pair, "pair", self.pair)
-        assert len(pair_) == 2, repr(pair_)
-        assert isinstance(pair_[0], int)
-        assert isinstance(pair_[1], int)
-        numerator, denominator = pair_
-        self.pair = (numerator, denominator)
+        assert isinstance(self.pair, tuple), repr(self.pair)
+        assert len(self.pair) == 2, repr(self.pair)
+        assert isinstance(self.pair[0], int)
+        assert isinstance(self.pair[1], int)
         if self.partial is not None:
-            self.partial = _duration.Duration(self.partial)
+            assert isinstance(self.partial, _duration.Duration), repr(self.partial)
 
     def __copy__(self, *arguments) -> "TimeSignature":
         """

@@ -724,7 +724,12 @@ class Meter:
 
         Returns time signature.
         """
-        return _indicators.TimeSignature(self.root_node.preprolated_duration)
+        duration = self.root_node.preprolated_duration
+        if hasattr(duration, "pair"):
+            pair = duration.pair
+        else:
+            pair = duration
+        return _indicators.TimeSignature(pair)
 
     @property
     def increase_monotonic(self) -> bool | None:
