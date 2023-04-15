@@ -195,6 +195,8 @@ music cyclically every 3 half notes, just so nothing crosses the bar lines accid
 You can see how each part is twice as slow as the previous, and starts a little bit later
 too: 
 
+::
+
     >>> descents = voice_to_descents["Viola"][:10]
     >>> for i, descent in enumerate(descents):
     ...     string = rf"\markup \rounded-box \bold {i}"
@@ -389,7 +391,7 @@ We define more functions:
 
     >>> def attach_contexted_indicators(score):
     ...     leaf = abjad.select.leaf(score["Bell_Staff"], 0)
-    ...     metronome_mark = abjad.MetronomeMark((1, 4), (112, 120))
+    ...     metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), (112, 120))
     ...     abjad.attach(metronome_mark, leaf)
     ...     time_signature = abjad.TimeSignature((6, 4))
     ...     abjad.attach(time_signature, leaf)
