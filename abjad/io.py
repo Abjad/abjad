@@ -129,7 +129,6 @@ class LilyPondIO:
         parts = [
             str(lilypond_path),
             *self.flags,
-            # "-dbackend=cairo",
             "-dno-point-and-click",
             "-o",
             str(input_path.with_suffix("")),
