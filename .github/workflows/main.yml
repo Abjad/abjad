@@ -34,10 +34,6 @@ jobs:
         echo $PYTHONPATH
     - name: Install LilyPond
       run: |
-        # lilypond_url=http://lilypond.org/download/binaries/linux-64/
-        # lilypond_source=lilypond-2.23.6-1.linux-64.sh
-        # wget -q -O /tmp/lilypond $lilypond_url/$lilypond_source
-        # sh /tmp/lilypond --batch
         lilypond_version=2.25.3
         lilypond_archive=lilypond-${lilypond_version}-linux-x86_64.tar.gz
         lilypond_url=https://gitlab.com/lilypond/lilypond/-/releases/
@@ -46,8 +42,6 @@ jobs:
         cd /tmp
         wget -q ${lilypond_url}
         tar -xf ${lilypond_archive}
-        # TODO: remove following line?
-        echo "/home/runner/bin" >> $GITHUB_PATH
     - name: Install Abjad
       run: |
         export PATH=/tmp/lilypond-2.25.3/bin:/home/runner/bin:$PATH
