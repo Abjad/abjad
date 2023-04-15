@@ -44,16 +44,10 @@ jobs:
         lilypond_url=${lilypond_url}/v${lilypond_version}/downloads/${lilypond_archive}
         echo ${lilypond_url}
         cd /tmp
-        echo AAA
-        ls
         wget -q ${lilypond_url}
         tar -xf ${lilypond_archive}
-        echo BBB
-        ls
-        echo $HOME
+        # TODO: remove following line?
         echo "/home/runner/bin" >> $GITHUB_PATH
-        echo CCC
-        which lilypond
     - name: Install Abjad
       run: |
         export PATH=/tmp/lilypond-2.25.3/bin:/home/runner/bin:$PATH
