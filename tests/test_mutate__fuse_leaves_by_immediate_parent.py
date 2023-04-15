@@ -151,7 +151,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_06():
     """
 
     voice = abjad.Voice(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
-    abjad.attach(abjad.MetronomeMark((1, 4), 120), voice[0])
+    abjad.attach(abjad.MetronomeMark(abjad.Duration(1, 4), 120), voice[0])
     logical_tie = abjad.get.logical_tie(voice[0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 

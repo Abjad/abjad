@@ -21,7 +21,7 @@ class_to_default_values = {
     abjad.LilyPondLiteral: ("", "before"),
     abjad.Markup: (r"\markup Allegro",),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
-    abjad.MetronomeMark: ((1, 4), 90),
+    abjad.MetronomeMark: (abjad.Duration(1, 4), 90),
     abjad.TimeSignature: ((4, 4),),
     abjad.Tweak: (r"\tweak color #red",),
 }

@@ -1779,7 +1779,7 @@ def with_start_offsets(
 
         >>> staff = abjad.Staff(r"c'2 d' e' f'")
         >>> score = abjad.Score([staff])
-        >>> mark = abjad.MetronomeMark((1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> abjad.attach(mark, staff[0])
         >>> abjad.label.with_start_offsets(staff, clock_time=True)
         Duration(8, 1)
@@ -1820,7 +1820,7 @@ def with_start_offsets(
 
         >>> staff = abjad.Staff(r"c'2 d' e' f'")
         >>> score = abjad.Score([staff])
-        >>> mark = abjad.MetronomeMark((1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> abjad.attach(mark, staff[0])
         >>> abjad.label.with_start_offsets(
         ...     staff,

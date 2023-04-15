@@ -31,7 +31,7 @@ def test_LilyPondParser__indicators__MetronomeMark_01():
 def test_LilyPondParser__indicators__MetronomeMark_02():
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     leaves = abjad.select.leaves(target)
-    mark = abjad.MetronomeMark((1, 4), 60)
+    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
     abjad.attach(mark, leaves[0], context="Staff")
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -59,7 +59,7 @@ def test_LilyPondParser__indicators__MetronomeMark_02():
 def test_LilyPondParser__indicators__MetronomeMark_03():
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     leaves = abjad.select.leaves(target)
-    mark = abjad.MetronomeMark((1, 4), (59, 63))
+    mark = abjad.MetronomeMark(abjad.Duration(1, 4), (59, 63))
     abjad.attach(mark, leaves[0], context="Staff")
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -87,7 +87,7 @@ def test_LilyPondParser__indicators__MetronomeMark_03():
 def test_LilyPondParser__indicators__MetronomeMark_04():
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     mark = abjad.MetronomeMark(
-        reference_duration=(1, 4),
+        reference_duration=abjad.Duration(1, 4),
         units_per_minute=60,
         textual_indication='"Like a majestic swan, alive with youth and vigour!"',
     )
@@ -119,7 +119,7 @@ def test_LilyPondParser__indicators__MetronomeMark_04():
 def test_LilyPondParser__indicators__MetronomeMark_05():
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     mark = abjad.MetronomeMark(
-        reference_duration=(1, 16),
+        reference_duration=abjad.Duration(1, 16),
         units_per_minute=(34, 55),
         textual_indication='"Brighter than a thousand suns"',
     )

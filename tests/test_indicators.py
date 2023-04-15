@@ -28,30 +28,30 @@ def test_indicators_01():
     assert abjad.Dynamic("p", hide=True) != abjad.Dynamic("f", hide=False)
     assert abjad.Dynamic("p", hide=True) != abjad.Dynamic("f", hide=True)
 
-    assert abjad.MetronomeMark((1, 4), 60, hide=False) == abjad.MetronomeMark(
-        (1, 4), 60, hide=False
-    )
-    assert abjad.MetronomeMark((1, 4), 60, hide=False) == abjad.MetronomeMark(
-        (1, 4), 60, hide=True
-    )
-    assert abjad.MetronomeMark((1, 4), 60, hide=True) == abjad.MetronomeMark(
-        (1, 4), 60, hide=False
-    )
-    assert abjad.MetronomeMark((1, 4), 60, hide=True) == abjad.MetronomeMark(
-        (1, 4), 60, hide=True
-    )
-    assert abjad.MetronomeMark((1, 4), 60, hide=False) != abjad.MetronomeMark(
-        (1, 4), 72, hide=False
-    )
-    assert abjad.MetronomeMark((1, 4), 60, hide=False) != abjad.MetronomeMark(
-        (1, 4), 72, hide=True
-    )
-    assert abjad.MetronomeMark((1, 4), 60, hide=True) != abjad.MetronomeMark(
-        (1, 4), 72, hide=False
-    )
-    assert abjad.MetronomeMark((1, 4), 60, hide=True) != abjad.MetronomeMark(
-        (1, 4), 72, hide=True
-    )
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=False
+    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=False)
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=False
+    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=True)
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=True
+    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=False)
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=True
+    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=True)
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=False
+    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=False)
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=False
+    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=True)
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=True
+    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=False)
+    assert abjad.MetronomeMark(
+        abjad.Duration(1, 4), 60, hide=True
+    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=True)
 
     assert abjad.TimeSignature(((3, 4)), hide=False) == abjad.TimeSignature(
         ((3, 4)), hide=False

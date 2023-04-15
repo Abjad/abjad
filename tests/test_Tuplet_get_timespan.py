@@ -5,7 +5,7 @@ def test_Tuplet_get_timespan_01():
     staff = abjad.Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
     leaves = abjad.select.leaves(staff)
     score = abjad.Score([staff])
-    mark = abjad.MetronomeMark((1, 4), 60)
+    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
     abjad.attach(mark, leaves[0])
 
     assert abjad.lilypond(score) == abjad.string.normalize(
