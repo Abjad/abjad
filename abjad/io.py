@@ -971,8 +971,8 @@ def run_lilypond(
     if lilypond_log_file_path is None:
         lilypond_log_file_path = configuration.lilypond_log_file_path
     ly_path_ = pathlib.Path(ly_path)
-    command = "{} {} -dbackend=cairo -dno-point-and-click --output={} {}"
-    # command = "{} {} -dno-point-and-click --output={} {}"
+    # command = "{} {} -dbackend=cairo -dno-point-and-click --output={} {}"
+    command = "{} {} -dno-point-and-click --output={} {}"
     command = command.format(lilypond_path, flags, ly_path_.with_suffix(""), ly_path)
     process = subprocess.Popen(
         command,
