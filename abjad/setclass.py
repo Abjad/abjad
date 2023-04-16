@@ -1085,7 +1085,7 @@ class SetClass:
         return prime_form
 
     @property
-    def is_inversion_equivalent(self):
+    def is_inversion_equivalent(self) -> bool:
         """
         Is true when set-class is inversion-equivalent.
 
@@ -1099,7 +1099,7 @@ class SetClass:
 
             >>> pitch_class_set = set_class.prime_form
             >>> inverted_pitch_class_set = pitch_class_set.invert()
-            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
+            >>> inverted_set_class = abjad.SetClass.from_pitches(
             ...     inverted_pitch_class_set
             ... )
             >>> print(inverted_set_class)
@@ -1121,7 +1121,7 @@ class SetClass:
 
             >>> pitch_class_set = set_class.prime_form
             >>> inverted_pitch_class_set = pitch_class_set.invert()
-            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
+            >>> inverted_set_class = abjad.SetClass.from_pitches(
             ...     inverted_pitch_class_set,
             ...     lex_rank=True,
             ... )
@@ -1145,7 +1145,7 @@ class SetClass:
 
             >>> pitch_class_set = set_class.prime_form
             >>> inverted_pitch_class_set = pitch_class_set.invert()
-            >>> inverted_set_class = abjad.SetClass.from_pitch_class_set(
+            >>> inverted_set_class = abjad.SetClass.from_pitches(
             ...     inverted_pitch_class_set,
             ...     lex_rank=True,
             ...     transposition_only=True,
@@ -1156,11 +1156,10 @@ class SetClass:
             >>> set_class.is_inversion_equivalent
             False
 
-        Returns true or false.
         """
         prime_form = self.prime_form
         inverted_pitch_class_set = prime_form.invert()
-        inverted_set_class = type(self).from_pitch_class_set(
+        inverted_set_class = type(self).from_pitches(
             inverted_pitch_class_set,
             lex_rank=self.lex_rank,
             transposition_only=self.transposition_only,
@@ -1221,21 +1220,20 @@ class SetClass:
         )
         return prime_form
 
-    # TODO: change to from_pitches()
     @staticmethod
-    def from_pitch_class_set(pitch_class_set, lex_rank=None, transposition_only=None):
+    def from_pitches(pitches, lex_rank=None, transposition_only=None):
         """
-        Makes set-class from ``pitch_class_set``.
+        Makes set-class from ``pitches``.
 
         ..  container:: example
 
             >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> set_class = abjad.SetClass.from_pitches(pc_set)
             >>> print(set_class)
             SC(5-31){0, 1, 3, 6, 9}
 
             >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     lex_rank=True,
             ... )
@@ -1243,7 +1241,7 @@ class SetClass:
             SC(5-22){0, 1, 3, 6, 9}
 
             >>> pc_set = abjad.PitchClassSet([9, 0, 3, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     transposition_only=True,
             ... )
@@ -1253,12 +1251,12 @@ class SetClass:
         ..  container:: example
 
             >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> set_class = abjad.SetClass.from_pitches(pc_set)
             >>> print(set_class)
             SC(6-32){0, 2, 4, 5, 7, 9}
 
             >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     lex_rank=True,
             ... )
@@ -1266,7 +1264,7 @@ class SetClass:
             SC(6-49){0, 2, 4, 5, 7, 9}
 
             >>> pc_set = abjad.PitchClassSet([9, 11, 1, 2, 4, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     transposition_only=True,
             ... )
@@ -1276,12 +1274,12 @@ class SetClass:
         ..  container:: example
 
             >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> set_class = abjad.SetClass.from_pitches(pc_set)
             >>> print(set_class)
             SC(4-9){0, 1, 6, 7}
 
             >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     lex_rank=True,
             ... )
@@ -1289,7 +1287,7 @@ class SetClass:
             SC(4-17){0, 1, 6, 7}
 
             >>> pc_set = abjad.PitchClassSet([11, 0, 5, 6])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     transposition_only=True,
             ... )
@@ -1299,12 +1297,12 @@ class SetClass:
         ..  container:: example
 
             >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(pc_set)
+            >>> set_class = abjad.SetClass.from_pitches(pc_set)
             >>> print(set_class)
             SC(3-11){0, 3, 7}
 
             >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     lex_rank=True,
             ... )
@@ -1312,16 +1310,16 @@ class SetClass:
             SC(3-11){0, 3, 7}
 
             >>> pc_set = abjad.PitchClassSet([0, 4, 7])
-            >>> set_class = abjad.SetClass.from_pitch_class_set(
+            >>> set_class = abjad.SetClass.from_pitches(
             ...     pc_set,
             ...     transposition_only=True,
             ... )
             >>> print(set_class)
             SC(3-17){0, 4, 7}
 
-        Returns set-class.
+        Returns new set-class.
         """
-        pitch_class_set = _pcollections.PitchClassSet(pitch_class_set)
+        pitch_class_set = _pcollections.PitchClassSet(pitches)
         prime_form = pitch_class_set.get_prime_form(
             transposition_only=transposition_only
         )

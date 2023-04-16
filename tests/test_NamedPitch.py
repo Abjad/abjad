@@ -24,7 +24,7 @@ values.extend(
         (abjad.NamedPitch(), 0),
         (abjad.NamedPitchClass("cs'"), 1),
         (abjad.NamedPitchClass("c"), 0),
-        (abjad.NamedPitchClass("cf,"), -1),  # TODO: Is this correct?
+        (abjad.NamedPitchClass("cf,"), -1),
         (None, 0),
         (abjad.NumberedPitch("bs'"), 12),
         (abjad.NumberedPitch("c"), -12),

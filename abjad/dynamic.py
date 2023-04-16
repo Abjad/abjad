@@ -128,30 +128,6 @@ class Dynamic:
 
     ..  container:: example
 
-        REGRESSION. Duplicate dynamics raise exception on attach
-        when ``check_duplicate_indicator=True``:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> dynamic = abjad.Dynamic("p")
-        >>> abjad.attach(dynamic, staff[0])
-        >>> dynamic = abjad.Dynamic("p")
-        >>> abjad.attach(dynamic, staff[0], check_duplicate_indicator=True)
-        Traceback (most recent call last):
-            ...
-        abjad.exceptions.PersistentIndicatorError:
-        <BLANKLINE>
-        Can not attach ...
-        <BLANKLINE>
-        Wrapper(...)
-        <BLANKLINE>
-            ... to Note("c'4") in None because ...
-        <BLANKLINE>
-        Wrapper(...)
-        <BLANKLINE>
-            ... is already attached to the same leaf.
-
-    ..  container:: example
-
         Tweaks:
 
         >>> note = abjad.Note("c'4")

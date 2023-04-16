@@ -89,7 +89,7 @@ class LilyPondOverride:
     property_path: str | typing.Sequence[str] = "color"
     value: bool | int | float | str = "#red"
 
-    _format_leaf_children: typing.ClassVar[bool] = False
+    format_leaf_children: typing.ClassVar[bool] = False
 
     def __post_init__(self):
         if self.lilypond_type is not None:
@@ -294,7 +294,7 @@ class LilyPondSetting:
     is_unset: bool = False
     value: typing.Any = False
 
-    _format_leaf_children: typing.ClassVar[bool] = False
+    format_leaf_children: typing.ClassVar[bool] = False
 
     def __post_init__(self):
         if self.lilypond_type is not None:

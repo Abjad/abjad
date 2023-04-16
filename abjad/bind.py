@@ -12,6 +12,60 @@ from . import tag as _tag
 from . import tweaks as _tweaks
 
 
+def _before_attach(indicator, deactivate, component):
+    if getattr(indicator, "temporarily_do_not_check", False) is True:
+        return
+    if hasattr(indicator, "allowable_sites"):
+        if indicator.site not in component._allowable_sites:
+            message = f"\n  {indicator!r}"
+            message += f"\n  Can not attach to {component.__class__.__name__}."
+            message += f"\n  {component.__class__.__name__} allows only "
+            message += ", ".join(component._allowable_sites)
+            message += " sites."
+            raise Exception(message)
+    if not hasattr(indicator, "context"):
+        return
+    if getattr(indicator, "find_context_on_attach", False) is True:
+        if hasattr(indicator, "context"):
+            context = Wrapper._find_correct_effective_context(
+                component, indicator.context
+            )
+            if context is None:
+                message = f"can not find {indicator.context} context"
+                message += f" in parentage of {component!r}."
+                raise _exceptions.MissingContextError(message)
+    if getattr(indicator, "nestable_spanner", False) is True:
+        return
+    if deactivate is True:
+        return
+    for wrapper in component._get_indicators(unwrap=False):
+        if not isinstance(wrapper.indicator, type(indicator)):
+            continue
+        if getattr(indicator, "leak", None) != getattr(wrapper.indicator, "leak", None):
+            continue
+        if indicator != wrapper.indicator:
+            if (
+                getattr(indicator, "allow_multiple_with_different_values", False)
+                is True
+            ):
+                continue
+            if hasattr(indicator, "hide"):
+                if indicator.hide != wrapper.indicator.hide:
+                    continue
+            if getattr(indicator, "site", None) != getattr(
+                wrapper.indicator, "site", None
+            ):
+                continue
+        classname = type(component).__name__
+        message = f"attempting to attach conflicting indicator to {classname}:"
+        message += "\n  Already attached:"
+        message += f"\n    {wrapper.indicator!r}"
+        # message += f"\n    {wrapper!r}"
+        message += "\n  Attempting to attach:"
+        message += f"\n    {indicator!r}"
+        raise _exceptions.PersistentIndicatorError(message)
+
+
 class Wrapper:
     r"""
     Wrapper.
@@ -30,8 +84,8 @@ class Wrapper:
 
         >>> voice_1 = abjad.Voice("c''4 d'' e'' f''", name="VoiceI")
         >>> voice_2 = abjad.Voice("c'4 d' e' f'", name="VoiceII")
-        >>> abjad.attach(abjad.Clef("alto"), voice_2[0])
         >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
+        >>> abjad.attach(abjad.Clef("alto"), voice_2[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -326,7 +380,7 @@ class Wrapper:
             self._unbind_component()
             self._component = component
             self._update_effective_context()
-            if getattr(indicator, "_mutates_offsets_in_seconds", False):
+            if getattr(indicator, "mutates_offsets_in_seconds", False):
                 self._component._update_later(offsets_in_seconds=True)
         component._wrappers.append(self)
 
@@ -341,7 +395,7 @@ class Wrapper:
         else:
             indicator = self.indicator
         if correct_effective_context is not None:
-            if getattr(indicator, "_mutates_offsets_in_seconds", False):
+            if getattr(indicator, "mutates_offsets_in_seconds", False):
                 correct_effective_context._update_later(offsets_in_seconds=True)
 
     def _detach(self):
@@ -349,13 +403,14 @@ class Wrapper:
         self._unbind_effective_context()
         return self
 
-    def _find_correct_effective_context(self):
-        if self.context is None:
+    @staticmethod
+    def _find_correct_effective_context(component, context):
+        if context is None:
             return None
         abjad = importlib.import_module("abjad")
-        context = getattr(abjad, self.context, self.context)
+        context = getattr(abjad, context, context)
         candidate = None
-        parentage = self.component._get_parentage()
+        parentage = component._get_parentage()
         if isinstance(context, type):
             for component in parentage:
                 if not hasattr(component, "_lilypond_type"):
@@ -402,7 +457,9 @@ class Wrapper:
         self._effective_context = None
 
     def _update_effective_context(self):
-        correct_effective_context = self._find_correct_effective_context()
+        correct_effective_context = self._find_correct_effective_context(
+            self.component, self.context
+        )
         if self._effective_context is not correct_effective_context:
             self._bind_effective_context(correct_effective_context)
         if correct_effective_context is not None:
@@ -587,6 +644,40 @@ class Wrapper:
             return self.component._get_timespan().stop_offset
 
     @property
+    def site_adjusted_start_offset(self) -> _duration.Offset:
+        r"""
+        Gets site-adjusted start offset.
+
+        ..  container:: example
+
+            >>> staff = abjad.Staff("c'4")
+            >>> abjad.attach(abjad.Ottava(-1, site="before"), staff[0])
+            >>> abjad.attach(abjad.Ottava(0, site="after"), staff[0])
+            >>> for wrapper in abjad.get.wrappers(staff[0], abjad.Ottava):
+            ...     wrapper.indicator, wrapper.site_adjusted_start_offset
+            (Ottava(n=-1, site='before'), Offset((0, 1)))
+            (Ottava(n=0, site='after'), Offset((1, 4)))
+
+        Indicators with site equal to ``absolute_after``, ``after`` or ``closing``
+        give a site-adjusted start offset equal to the stop offset of the wrapper's
+        component.
+
+        Indicators with any other site give a site-adjusted start offset equal to the
+        start offset of the wrapper's component. This is the usual case, and means
+        that site-adjusted start offset equals vanilla start offset.
+
+        But if ``synthetic_offset`` is set then ``synthetic_offset`` is returned
+        directly without examining the format site at all.
+        """
+        if self.synthetic_offset is not None:
+            return self.synthetic_offset
+        site = getattr(self.unbundle_indicator(), "site", "before")
+        if site in ("absolute_after", "after", "closing"):
+            return self.component._get_timespan().stop_offset
+        else:
+            return self.component._get_timespan().start_offset
+
+    @property
     def start_offset(self) -> _duration.Offset:
         """
         Gets start offset.
@@ -639,6 +730,111 @@ class Wrapper:
         if isinstance(self.indicator, _tweaks.Bundle):
             return self.indicator.indicator
         return self.indicator
+
+
+def _unsafe_attach(
+    attachable,
+    target,
+    *,
+    check_duplicate_indicator: bool = False,
+    context: str | None = None,
+    deactivate: bool = False,
+    direction: _enums.Vertical | None = None,
+    do_not_test: bool = False,
+    synthetic_offset: _duration.Offset | None = None,
+    tag: _tag.Tag | None = None,
+    wrapper: bool = False,
+) -> Wrapper | None:
+    if isinstance(attachable, _tweaks.Bundle):
+        nonbundle_attachable = attachable.indicator
+    else:
+        nonbundle_attachable = attachable
+    assert not isinstance(nonbundle_attachable, _tweaks.Bundle)
+
+    if isinstance(nonbundle_attachable, _tag.Tag):
+        message = "use the tag=None keyword instead of attach():\n"
+        message += f"   {repr(attachable)}"
+        raise Exception(message)
+
+    if tag is not None and not isinstance(tag, _tag.Tag):
+        raise Exception(f"must be be tag: {repr(tag)}")
+
+    assert nonbundle_attachable is not None, repr(nonbundle_attachable)
+    assert isinstance(target, _score.Component), repr(target)
+
+    grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
+    if context is not None and isinstance(nonbundle_attachable, grace_prototype):
+        raise Exception(f"set context only for indicators, not {attachable!r}.")
+
+    if deactivate is True and tag is None:
+        raise Exception("tag must exist when deactivate is true.")
+
+    if hasattr(nonbundle_attachable, "_attachment_test_all") and not do_not_test:
+        result = nonbundle_attachable._attachment_test_all(target)
+        if result is not True:
+            assert isinstance(result, list), repr(result)
+            result = ["  " + _ for _ in result]
+            message = f"{nonbundle_attachable!r}._attachment_test_all():"
+            result.insert(0, message)
+            message = "\n".join(result)
+            raise Exception(message)
+
+    if isinstance(nonbundle_attachable, grace_prototype):
+        if not isinstance(target, _score.Leaf):
+            raise Exception("grace containers attach to single leaf only.")
+        nonbundle_attachable._attach(target)
+        return None
+
+    if isinstance(target, _score.Container):
+        acceptable = False
+        if isinstance(
+            nonbundle_attachable, dict | str | enum.Enum | _tag.Tag | Wrapper
+        ):
+            acceptable = True
+        if getattr(nonbundle_attachable, "can_attach_to_containers", False):
+            acceptable = True
+        if not acceptable:
+            message = f"can not attach {attachable!r} to containers: {target!r}"
+            raise Exception(message)
+    elif not isinstance(target, _score.Leaf):
+        message = f"indicator {attachable!r} must attach to leaf, not {target!r}."
+        raise Exception(message)
+
+    component = target
+    assert isinstance(component, _score.Component), repr(component)
+
+    annotation = None
+    if isinstance(attachable, Wrapper):
+        annotation = attachable.annotation
+        context = context or attachable.context
+        deactivate = deactivate or attachable.deactivate
+        synthetic_offset = synthetic_offset or attachable.synthetic_offset
+        tag = tag or attachable.tag
+        attachable._detach()
+        attachable = attachable.indicator
+
+    if hasattr(nonbundle_attachable, "context"):
+        context = context or nonbundle_attachable.context
+
+    if tag is None:
+        tag = _tag.Tag()
+
+    wrapper_ = Wrapper(
+        annotation=annotation,
+        check_duplicate_indicator=check_duplicate_indicator,
+        component=component,
+        context=context,
+        deactivate=deactivate,
+        direction=direction,
+        indicator=attachable,
+        synthetic_offset=synthetic_offset,
+        tag=tag,
+    )
+
+    if wrapper is True:
+        return wrapper_
+    else:
+        return None
 
 
 def annotate(component, annotation, indicator) -> None:
@@ -922,94 +1118,22 @@ def attach(
     else:
         nonbundle_attachable = attachable
     assert not isinstance(nonbundle_attachable, _tweaks.Bundle)
-
-    if isinstance(nonbundle_attachable, _tag.Tag):
-        message = "use the tag=None keyword instead of attach():\n"
-        message += f"   {repr(attachable)}"
-        raise Exception(message)
-
-    if tag is not None and not isinstance(tag, _tag.Tag):
-        raise Exception(f"must be be tag: {repr(tag)}")
-
     assert nonbundle_attachable is not None, repr(nonbundle_attachable)
     assert isinstance(target, _score.Component), repr(target)
-
-    grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
-    if context is not None and isinstance(nonbundle_attachable, grace_prototype):
-        raise Exception(f"set context only for indicators, not {attachable!r}.")
-
-    if deactivate is True and tag is None:
-        raise Exception("tag must exist when deactivate is true.")
-
-    if hasattr(nonbundle_attachable, "_before_attach"):
-        nonbundle_attachable._before_attach(deactivate, target)
-
-    if hasattr(nonbundle_attachable, "_attachment_test_all") and not do_not_test:
-        result = nonbundle_attachable._attachment_test_all(target)
-        if result is not True:
-            assert isinstance(result, list), repr(result)
-            result = ["  " + _ for _ in result]
-            message = f"{nonbundle_attachable!r}._attachment_test_all():"
-            result.insert(0, message)
-            message = "\n".join(result)
-            raise Exception(message)
-
-    if isinstance(nonbundle_attachable, grace_prototype):
-        if not isinstance(target, _score.Leaf):
-            raise Exception("grace containers attach to single leaf only.")
-        nonbundle_attachable._attach(target)
-        return None
-
-    if isinstance(target, _score.Container):
-        acceptable = False
-        if isinstance(
-            nonbundle_attachable, dict | str | enum.Enum | _tag.Tag | Wrapper
-        ):
-            acceptable = True
-        if getattr(nonbundle_attachable, "_can_attach_to_containers", False):
-            acceptable = True
-        if not acceptable:
-            message = f"can not attach {attachable!r} to containers: {target!r}"
-            raise Exception(message)
-    elif not isinstance(target, _score.Leaf):
-        message = f"indicator {attachable!r} must attach to leaf, not {target!r}."
-        raise Exception(message)
-
-    component = target
-    assert isinstance(component, _score.Component), repr(component)
-
-    annotation = None
-    if isinstance(attachable, Wrapper):
-        annotation = attachable.annotation
-        context = context or attachable.context
-        deactivate = deactivate or attachable.deactivate
-        synthetic_offset = synthetic_offset or attachable.synthetic_offset
-        tag = tag or attachable.tag
-        attachable._detach()
-        attachable = attachable.indicator
-
-    if hasattr(nonbundle_attachable, "context"):
-        context = context or nonbundle_attachable.context
-
-    if tag is None:
-        tag = _tag.Tag()
-
-    wrapper_ = Wrapper(
-        annotation=annotation,
+    _before_attach(nonbundle_attachable, deactivate, target)
+    result = _unsafe_attach(
+        attachable,
+        target,
         check_duplicate_indicator=check_duplicate_indicator,
-        component=component,
         context=context,
         deactivate=deactivate,
         direction=direction,
-        indicator=attachable,
+        do_not_test=do_not_test,
         synthetic_offset=synthetic_offset,
         tag=tag,
+        wrapper=wrapper,
     )
-
-    if wrapper is True:
-        return wrapper_
-    else:
-        return None
+    return result
 
 
 def detach(argument, target=None, by_id=False):

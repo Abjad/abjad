@@ -6404,8 +6404,6 @@ def tuplets(
                 result.append(tuplet)
     return result
 
-    # TODO: write grace examples
-
 
 def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
     r"""

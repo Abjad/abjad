@@ -61,19 +61,17 @@ class VerticalMoment:
     ### INITIALIZER ###
 
     def __init__(self, components=None, offset=None):
-        self._components = components
+        self._components = components or ()
         self._offset = offset
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a vertical moment with the same
-        components as this vertical moment.
-
-        Returns true or false.
+        Is true when ``argument`` is a vertical moment with the same components as this
+        vertical moment.
         """
-        if isinstance(argument, VerticalMoment):
+        if isinstance(argument, type(self)):
             if len(self) == len(argument):
                 for c, d in zip(self.components, argument.components):
                     if c is not d:

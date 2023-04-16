@@ -132,11 +132,11 @@ class Instrument:
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
     pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[-inf, +inf]")
 
-    _latent: typing.ClassVar[bool] = True
-    _persistent: typing.ClassVar[bool] = True
-    _redraw: typing.ClassVar[bool] = True
     check_effective_context: typing.ClassVar[bool] = True
-    site: typing.ClassVar[str] = "opening"
+    latent: typing.ClassVar[bool] = True
+    persistent: typing.ClassVar[bool] = True
+    redraw: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "before"
 
     def __post_init__(self):
         assert isinstance(self.context, str), repr(self.context)
@@ -174,33 +174,6 @@ class Instrument:
 
     def _get_lilypond_format(self, context=None):
         return []
-
-    @property
-    def latent(self) -> bool:
-        """
-        Is true for all instruments.
-
-        Class constant.
-        """
-        return self._latent
-
-    @property
-    def persistent(self) -> bool:
-        """
-        Is true.
-
-        Class constant.
-        """
-        return self._persistent
-
-    @property
-    def redraw(self) -> bool:
-        """
-        Is true for all instruments.
-
-        Class constant.
-        """
-        return self._redraw
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)

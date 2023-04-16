@@ -185,7 +185,7 @@ def _illustrate_pitch_class_segment(
     bar_line = _indicators.BarLine("|.")
     _bind.attach(bar_line, leaf)
     string = r"\override Score.BarLine.transparent = ##f"
-    command = _indicators.LilyPondLiteral(string, "after")
+    command = _indicators.LilyPondLiteral(string, site="after")
     last_leaf = _select.leaf(score, -1)
     _bind.attach(command, last_leaf)
     lilypond_file = _lilypondfile.LilyPondFile([preamble, score])

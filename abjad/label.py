@@ -733,7 +733,7 @@ def vertical_moments(
             pitch_class_set = _pcollections.PitchClassSet(generator)
             if not pitch_class_set:
                 continue
-            set_class = _setclass.SetClass.from_pitch_class_set(
+            set_class = _setclass.SetClass.from_pitches(
                 pitch_class_set,
                 lex_rank=prototype.lex_rank,
                 transposition_only=prototype.transposition_only,
@@ -1712,7 +1712,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None):
         pitch_class_set = _pcollections.PitchClassSet(generator)
         if not pitch_class_set:
             continue
-        set_class = _setclass.SetClass.from_pitch_class_set(
+        set_class = _setclass.SetClass.from_pitches(
             pitch_class_set,
             lex_rank=prototype.lex_rank,
             transposition_only=prototype.transposition_only,

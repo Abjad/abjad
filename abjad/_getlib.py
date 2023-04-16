@@ -289,9 +289,17 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
             key = str(type(wrapper.unbundle_indicator()))
         if key not in wrappers:
             wrappers[key] = wrapper
-        elif wrappers[key].start_offset < wrapper.start_offset:
+        # elif wrappers[key].start_offset < wrapper.start_offset:
+        elif (
+            wrappers[key].site_adjusted_start_offset
+            < wrapper.site_adjusted_start_offset
+        ):
             wrappers[key] = wrapper
-        elif wrappers[key].start_offset == wrapper.start_offset:
+        # elif wrappers[key].start_offset == wrapper.start_offset:
+        elif (
+            wrappers[key].site_adjusted_start_offset
+            == wrapper.site_adjusted_start_offset
+        ):
             if isinstance(
                 wrappers[key].unbundle_indicator(), _indicators.StartHairpin
             ) and isinstance(wrapper.unbundle_indicator(), _dynamic.Dynamic):

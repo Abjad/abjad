@@ -224,7 +224,7 @@ class LilyPondFile:
     items: list = dataclasses.field(default_factory=list)
     lilypond_language_token: bool | str = True
     lilypond_version_token: bool | str = True
-    tag: _tag.Tag | None = None  # TODO: externalize
+    tag: _tag.Tag | None = None
 
     def __contains__(self, argument) -> bool:
         """
@@ -382,7 +382,7 @@ class LilyPondFile:
 
             >>> include_container = abjad.Container()
             >>> string = r'\include "layout.ly"'
-            >>> literal = abjad.LilyPondLiteral(string, "opening")
+            >>> literal = abjad.LilyPondLiteral(string, site="opening")
             >>> abjad.attach(literal, include_container)
             >>> staff = abjad.Staff("c'4 d' e' f'", name="Staff")
             >>> container = abjad.Container(
