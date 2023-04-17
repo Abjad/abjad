@@ -66,29 +66,31 @@ def _illustrate_pitch_range(range_):
     stop_note = _score.Note(range_.stop_pitch, 1)
     if start_pitch_clef == stop_pitch_clef:
         if start_pitch_clef == _indicators.Clef("bass"):
-            bass_staff = _score.Staff(name="Bass_Staff")
-            _bind.attach(_indicators.Clef("bass"), bass_staff)
-            bass_staff.extend([start_note, stop_note])
-            bass_leaves = _select.leaves(bass_staff)
+            bass_voice = _score.Voice(name="Bass_Voice")
+            bass_staff = _score.Staff([bass_voice], name="Bass_Staff")
+            bass_voice.extend([start_note, stop_note])
+            _bind.attach(_indicators.Clef("bass"), start_note)
+            bass_leaves = _select.leaves(bass_voice)
             _spanners.glissando(bass_leaves)
             score = _score.Score([bass_staff], name="Score")
         else:
-            treble_staff = _score.Staff(name="Treble_Staff")
-            _bind.attach(_indicators.Clef("treble"), treble_staff)
-            treble_staff.extend([start_note, stop_note])
-            treble_leaves = _select.leaves(treble_staff)
+            treble_voice = _score.Voice(name="Treble_Voice")
+            treble_staff = _score.Staff([treble_voice], name="Treble_Staff")
+            treble_voice.extend([start_note, stop_note])
+            _bind.attach(_indicators.Clef("treble"), start_note)
+            treble_leaves = _select.leaves(treble_voice)
             _spanners.glissando(treble_leaves)
             score = _score.Score([treble_staff], name="Score")
     else:
         score = make_piano_score()
-        treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
-        bass_staff.extend([start_note, stop_note])
-        treble_staff.extend("s1 s1")
-        bass_leaves = _select.leaves(bass_staff)
+        treble_voice, bass_voice = score["Treble_Voice"], score["Bass_Voice"]
+        bass_voice.extend([start_note, stop_note])
+        treble_voice.extend("s1 s1")
+        bass_leaves = _select.leaves(bass_voice)
         _spanners.glissando(bass_leaves)
-        _bind.attach(_indicators.StaffChange("Treble_Staff"), bass_staff[1])
-        _bind.attach(_indicators.Clef("treble"), treble_staff[0])
-        _bind.attach(_indicators.Clef("bass"), bass_staff[0])
+        _bind.attach(_indicators.StaffChange("Treble_Staff"), bass_voice[1])
+        _bind.attach(_indicators.Clef("treble"), treble_voice[0])
+        _bind.attach(_indicators.Clef("bass"), bass_voice[0])
     for leaf in _iterate.leaves(score):
         leaf.multiplier = (1, 4)
     _overrides.override(score).BarLine.stencil = False
@@ -373,14 +375,20 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        \tweak color #red
-                        c'4
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            \tweak color #red
+                            c'4
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        r4
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            r4
+                        }
                     }
                 >>
             >>
@@ -403,23 +411,29 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        <
-                            \tweak color #blue
-                            a'
-                            \tweak color #blue
-                            bf'
-                        >4
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            <
+                                \tweak color #blue
+                                a'
+                                \tweak color #blue
+                                bf'
+                            >4
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        <
-                            \tweak color #red
-                            c
-                            \tweak color #red
-                            d
-                        >4
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            <
+                                \tweak color #red
+                                c
+                                \tweak color #red
+                                d
+                            >4
+                        }
                     }
                 >>
             >>
@@ -446,25 +460,31 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        <
-                            \tweak color #blue
-                            a'
-                            \tweak color #blue
-                            bf'
-                        >4
-                        ^ \markup loco
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            <
+                                \tweak color #blue
+                                a'
+                                \tweak color #blue
+                                bf'
+                            >4
+                            ^ \markup loco
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        <
-                            \tweak color #red
-                            c
-                            \tweak color #red
-                            d
-                        >4
-                        _ \markup ped.
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            <
+                                \tweak color #red
+                                c
+                                \tweak color #red
+                                d
+                            >4
+                            _ \markup ped.
+                        }
                     }
                 >>
             >>
@@ -472,15 +492,16 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     """
     leaves = leaves or []
     lowest_treble_pitch = _pitch.NamedPitch(lowest_treble_pitch)
-    treble_staff = _score.Staff(name="Treble_Staff")
-    bass_staff = _score.Staff(name="Bass_Staff")
+    treble_voice = _score.Voice(name="Treble_Voice")
+    treble_staff = _score.Staff([treble_voice], name="Treble_Staff")
+    bass_voice = _score.Voice(name="Bass_Voice")
+    bass_staff = _score.Staff([bass_voice], name="Bass_Staff")
     staff_group = _score.StaffGroup(
         [treble_staff, bass_staff],
         lilypond_type="PianoStaff",
         name="Piano_Staff",
     )
-    score = _score.Score(name="Score")
-    score.append(staff_group)
+    score = _score.Score([staff_group], name="Score")
     for leaf in leaves:
         markup_wrappers = _get.indicators(leaf, _indicators.Markup, unwrap=False)
         written_duration = leaf.written_duration
@@ -521,12 +542,12 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 _bind.attach(markup_copy, treble_leaf, direction=wrapper.direction)
             else:
                 _bind.attach(markup_copy, bass_leaf, direction=wrapper.direction)
-        treble_staff.append(treble_leaf)
-        bass_staff.append(bass_leaf)
-    if 0 < len(treble_staff):
+        treble_voice.append(treble_leaf)
+        bass_voice.append(bass_leaf)
+    if 0 < len(treble_voice):
         clef = _indicators.Clef("treble")
-        _bind.attach(clef, treble_staff[0])
-    if 0 < len(bass_staff):
+        _bind.attach(clef, treble_voice[0])
+    if 0 < len(bass_voice):
         clef = _indicators.Clef("bass")
-        _bind.attach(clef, bass_staff[0])
+        _bind.attach(clef, bass_voice[0])
     return score

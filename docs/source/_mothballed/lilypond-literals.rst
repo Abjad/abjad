@@ -9,11 +9,11 @@ components.
 Creating LilyPond literals
 --------------------------
 
-Use ``LilyPondLiteral`` to create a LilyPond literal:
+Use ``abjad.LilyPondLiteral`` to create a LilyPond literal:
 
 ::
 
-    >>> literal = abjad.LilyPondLiteral(r'\bar "||"', 'after')
+    >>> literal = abjad.LilyPondLiteral(r'\bar "||"', site="after")
 
 Understanding the interpreter representation of LilyPond literals
 -----------------------------------------------------------------
@@ -26,13 +26,13 @@ Understanding the interpreter representation of LilyPond literals
 
 ``r'\bar "||"'`` tells you the LilyPond literal to be formatted.
 
-``'after'`` tells you where the literal will be formatted relative to the leaf to which
+``"after"`` tells you where the literal will be formatted relative to the leaf to which
 it is attached.
 
 Attaching LilyPond literals to Abjad components
 -----------------------------------------------
 
-Use ``attach()`` to attach a LilyPond literal to any Abjad leaf:
+Use ``abjad.attach()`` to attach a LilyPond literal to any Abjad leaf:
 
 ::
 
@@ -102,9 +102,9 @@ compare equal:
 
 ::
 
-    >>> literal_1 = abjad.LilyPondLiteral(r'\bar "||"', 'after')
-    >>> literal_2 = abjad.LilyPondLiteral(r'\bar "||"', 'before')
-    >>> literal_3 = abjad.LilyPondLiteral(r'\slurUp')
+    >>> literal_1 = abjad.LilyPondLiteral(r'\bar "||"', site="after")
+    >>> literal_2 = abjad.LilyPondLiteral(r'\bar "||"', site="before")
+    >>> literal_3 = abjad.LilyPondLiteral(r"\slurUp")
 
 ::
 

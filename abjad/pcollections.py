@@ -616,17 +616,23 @@ class PitchRange:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        s1 * 1/4
-                        s1 * 1/4
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            s1 * 1/4
+                            s1 * 1/4
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        c1 * 1/4
-                        \glissando
-                        \change Staff = Treble_Staff
-                        c''''1 * 1/4
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            c1 * 1/4
+                            \glissando
+                            \change Staff = Treble_Staff
+                            c''''1 * 1/4
+                        }
                     }
                 >>
             >>
@@ -1129,23 +1135,29 @@ class PitchSegment:
             <<
                 \context Staff = "Treble_Staff"
                 {
-                    \clef "treble"
-                    r1 * 1/8
-                    r1 * 1/8
-                    fs'1 * 1/8
-                    g'1 * 1/8
-                    r1 * 1/8
-                    g'1 * 1/8
+                    \context Voice = "Treble_Voice"
+                    {
+                        \clef "treble"
+                        r1 * 1/8
+                        r1 * 1/8
+                        fs'1 * 1/8
+                        g'1 * 1/8
+                        r1 * 1/8
+                        g'1 * 1/8
+                    }
                 }
                 \context Staff = "Bass_Staff"
                 {
-                    \clef "bass"
-                    bf1 * 1/8
-                    bqf1 * 1/8
-                    r1 * 1/8
-                    r1 * 1/8
-                    bqf1 * 1/8
-                    r1 * 1/8
+                    \context Voice = "Bass_Voice"
+                    {
+                        \clef "bass"
+                        bf1 * 1/8
+                        bqf1 * 1/8
+                        r1 * 1/8
+                        r1 * 1/8
+                        bqf1 * 1/8
+                        r1 * 1/8
+                    }
                 }
             >>
 
@@ -1251,23 +1263,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs'1 * 1/8
-                        g'1 * 1/8
-                        r1 * 1/8
-                        g'1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs'1 * 1/8
+                            g'1 * 1/8
+                            r1 * 1/8
+                            g'1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        bf1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            bf1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                 >>
 
@@ -1288,23 +1306,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        d'1 * 1/8
-                        dqf'1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        dqf'1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            d'1 * 1/8
+                            dqf'1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            dqf'1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs1 * 1/8
-                        f1 * 1/8
-                        r1 * 1/8
-                        f1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs1 * 1/8
+                            f1 * 1/8
+                            r1 * 1/8
+                            f1 * 1/8
+                        }
                     }
                 >>
 
@@ -1332,23 +1356,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs'1 * 1/8
-                        g'1 * 1/8
-                        r1 * 1/8
-                        g'1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs'1 * 1/8
+                            g'1 * 1/8
+                            r1 * 1/8
+                            g'1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        bf1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            bf1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                 >>
 
@@ -1369,23 +1399,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs''1 * 1/8
-                        a''1 * 1/8
-                        r1 * 1/8
-                        a''1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs''1 * 1/8
+                            a''1 * 1/8
+                            r1 * 1/8
+                            a''1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        fs1 * 1/8
-                        gqs1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        gqs1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            fs1 * 1/8
+                            gqs1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            gqs1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                 >>
 
@@ -1413,23 +1449,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs'1 * 1/8
-                        g'1 * 1/8
-                        r1 * 1/8
-                        g'1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs'1 * 1/8
+                            g'1 * 1/8
+                            r1 * 1/8
+                            g'1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        bf1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            bf1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                 >>
 
@@ -1450,23 +1492,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        g'1 * 1/8
-                        r1 * 1/8
-                        g'1 * 1/8
-                        fs'1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            g'1 * 1/8
+                            r1 * 1/8
+                            g'1 * 1/8
+                            fs'1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        bf1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            r1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            bqf1 * 1/8
+                            bf1 * 1/8
+                        }
                     }
                 >>
 
@@ -1493,23 +1541,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs'1 * 1/8
-                        g'1 * 1/8
-                        r1 * 1/8
-                        g'1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs'1 * 1/8
+                            g'1 * 1/8
+                            r1 * 1/8
+                            g'1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        bf1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            bf1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                 >>
 
@@ -1530,23 +1584,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        g'1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs'1 * 1/8
-                        g'1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            g'1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs'1 * 1/8
+                            g'1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        r1 * 1/8
-                        bf1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            r1 * 1/8
+                            bf1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            bqf1 * 1/8
+                        }
                     }
                 >>
 
@@ -1575,23 +1635,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        r1 * 1/8
-                        r1 * 1/8
-                        fs'1 * 1/8
-                        g'1 * 1/8
-                        r1 * 1/8
-                        g'1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            r1 * 1/8
+                            r1 * 1/8
+                            fs'1 * 1/8
+                            g'1 * 1/8
+                            r1 * 1/8
+                            g'1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        bf1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        bqf1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            bf1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            bqf1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                 >>
 
@@ -1612,23 +1678,29 @@ class PitchSegment:
                 <<
                     \context Staff = "Treble_Staff"
                     {
-                        \clef "treble"
-                        a'1 * 1/8
-                        aqs'1 * 1/8
-                        f''1 * 1/8
-                        fs''1 * 1/8
-                        aqs'1 * 1/8
-                        fs''1 * 1/8
+                        \context Voice = "Treble_Voice"
+                        {
+                            \clef "treble"
+                            a'1 * 1/8
+                            aqs'1 * 1/8
+                            f''1 * 1/8
+                            fs''1 * 1/8
+                            aqs'1 * 1/8
+                            fs''1 * 1/8
+                        }
                     }
                     \context Staff = "Bass_Staff"
                     {
-                        \clef "bass"
-                        r1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
-                        r1 * 1/8
+                        \context Voice = "Bass_Voice"
+                        {
+                            \clef "bass"
+                            r1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                            r1 * 1/8
+                        }
                     }
                 >>
 

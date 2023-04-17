@@ -31,7 +31,8 @@ def _before_attach(indicator, deactivate, component):
                 component, indicator.context
             )
             if context is None:
-                message = f"can not find {indicator.context} context"
+                message = f"\n    {indicator} requires {indicator.context} context;"
+                message += f"\n    can not find {indicator.context}"
                 message += f" in parentage of {component!r}."
                 raise _exceptions.MissingContextError(message)
     if getattr(indicator, "nestable_spanner", False) is True:
