@@ -167,7 +167,7 @@
     #})
     )
 
-% TODO: abstract out score building code to separate function
+% TODO: use LilyPond \rhythm markup
 #(define-markup-command
     (abjad-metric-modulation layout props
         lhs-length lhs-dots rhs-length rhs-dots modulation-scale)
@@ -253,7 +253,7 @@
     #})
     )
 
-% TODO: abstract out score building code to separate function
+% TODO: use LilyPond \rhythm markup
 #(define-markup-command
     (abjad-metric-modulation-tuplet-lhs layout props
         tuplet-length tuplet-dots tuplet-n tuplet-d
@@ -343,7 +343,7 @@
     #})
     )
 
-% TODO: abstract out score building code to separate function
+% TODO: use LilyPond \rhythm markup
 #(define-markup-command
     (abjad-metric-modulation-tuplet-rhs layout props
         note-length note-dots

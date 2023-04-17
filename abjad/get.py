@@ -1542,7 +1542,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
     if staff_change is not None:
         for component in argument._get_parentage():
             root = component
-        effective_staff = root[staff_change.staff]
+        effective_staff = root[staff_change.staff_name]
         return effective_staff
     for component in argument._get_parentage():
         if isinstance(component, _score.Staff):
@@ -2274,7 +2274,7 @@ def indicator(
 
 
 def indicators(
-    argument,
+    argument: _score.Component,
     prototype: _typings.Prototype | None = None,
     *,
     attributes: dict | None = None,
@@ -2456,7 +2456,6 @@ def indicators(
         Note("ds'4")                   [Articulation(name='.')]
 
     """
-    # TODO: extend to any non-none argument
     if not isinstance(argument, _score.Component):
         message = "can only get indicators on component"
         message += f" (not {argument!r})."
@@ -3101,11 +3100,12 @@ def logical_tie(argument) -> "_select.LogicalTie":
     return _select.LogicalTie(leaves)
 
 
-def markup(argument, *, direction: int | None = None) -> list[_indicators.Markup]:
+def markup(
+    argument: _score.Component, *, direction: int | None = None
+) -> list[_indicators.Markup]:
     """
     Gets markup.
     """
-    # TODO: extend to any non-none argument
     if not isinstance(argument, _score.Component):
         raise Exception("can only get markup on component.")
     result = argument._get_markup(direction=direction)
@@ -3642,7 +3642,7 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
     return set(generator)
 
 
-def sounding_pitch(argument) -> _pitch.NamedPitch:
+def sounding_pitch(argument: _score.Note) -> _pitch.NamedPitch:
     r"""
     Gets sounding pitch of note.
 
@@ -3680,7 +3680,7 @@ def sounding_pitch(argument) -> _pitch.NamedPitch:
     return _getlib._get_sounding_pitch(argument)
 
 
-def sounding_pitches(argument) -> set[_pitch.NamedPitch]:
+def sounding_pitches(argument: _score.Chord) -> set[_pitch.NamedPitch]:
     r"""
     Gets sounding pitches.
 
@@ -3714,7 +3714,6 @@ def sounding_pitches(argument) -> set[_pitch.NamedPitch]:
             NamedPitch("fs'''")
 
     """
-    # TODO: extend to any non-none argument
     if not isinstance(argument, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
     pitches = _getlib._get_sounding_pitches(argument)
@@ -4282,6 +4281,19 @@ class Lineage(collections.abc.Sequence):
             components.append(component)
             components.extend(descendants(component)[1:])
         self._components = components
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when ``argument`` lineage with components of same id.
+        """
+        if isinstance(argument, type(self)):
+            if len(self) == len(argument):
+                for c, d in zip(self.components, argument.components):
+                    if c is not d:
+                        return False
+                else:
+                    return True
+        return False
 
     def __getitem__(self, argument):
         """

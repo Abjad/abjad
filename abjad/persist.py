@@ -46,8 +46,7 @@ def as_ly(
     return ly_file_path, abjad_formatting_time
 
 
-# TODO: remove remove_ly keyword
-def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
+def as_midi(argument, midi_file_path, **keywords):
     """
     Persists ``argument`` as MIDI file.
 
@@ -68,8 +67,6 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     with timer:
         success = _io.run_lilypond(ly_file_path)
     lilypond_rendering_time = timer.elapsed_time
-    if remove_ly:
-        os.remove(ly_file_path)
     if os.name == "nt":
         extension = "mid"
     else:
@@ -84,13 +81,11 @@ def as_midi(argument, midi_file_path, *, remove_ly=False, **keywords):
     )
 
 
-# TODO: remove remove_ly keyword
 def as_pdf(
     argument,
     pdf_file_path,
     *,
     illustrate_function=None,
-    remove_ly=False,
     tags=False,
     **keywords,
 ):
@@ -121,8 +116,6 @@ def as_pdf(
     with timer:
         success = _io.run_lilypond(ly_file_path)
     lilypond_rendering_time = timer.elapsed_time
-    if remove_ly:
-        os.remove(ly_file_path)
     return (
         pdf_file_path,
         abjad_formatting_time,
@@ -131,7 +124,6 @@ def as_pdf(
     )
 
 
-# TODO: remove remove_ly keyword
 def as_png(
     argument,
     png_file_path,
@@ -139,7 +131,6 @@ def as_png(
     flags="--png",
     illustrate_function=None,
     preview=False,
-    remove_ly=False,
     resolution=False,
     tags=False,
     **keywords,
@@ -190,8 +181,6 @@ def as_png(
         shutil.move(source_png_file_path, target_png_file_path)
         png_file_paths.append(target_png_file_path)
     shutil.rmtree(temporary_directory)
-    if remove_ly:
-        os.remove(ly_file_path)
     if 1 < len(png_file_paths):
         _png_page_pattern = re.compile(r".+page(\d+)\.png")
         png_file_paths.sort(key=lambda x: int(_png_page_pattern.match(x).groups()[0]))

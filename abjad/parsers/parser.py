@@ -288,7 +288,7 @@ class GuileProxy:
         r"""
         Handles LilyPond ``\breathe`` command.
         """
-        return _indicators.LilyPondLiteral(r"\breathe", "after")
+        return _indicators.LilyPondLiteral(r"\breathe", site="after")
 
     def clef(self, string):
         r"""
@@ -400,7 +400,7 @@ class GuileProxy:
         """
         leaf = _score.Skip(duration.duration, tag=self.tag)
         if duration.multiplier is not None:
-            _bind.attach(duration.multiplier, leaf)
+            _bind._unsafe_attach(duration.multiplier, leaf)
         return leaf
 
     def slashed_grace_container(self, music):
@@ -446,7 +446,7 @@ class GuileProxy:
                         new_tonic, key_signature.mode
                     )
                     _bind.detach(key_signature, music)
-                    _bind.attach(new_key_signature, music)
+                    _bind._unsafe_attach(new_key_signature, music)
             if isinstance(music, _score.Note):
                 music.written_pitch = LilyPondParser._transpose_enharmonically(
                     from_pitch, to_pitch, music.written_pitch
@@ -536,7 +536,7 @@ class GuileProxy:
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
             annotation = {"UnrelativableMusic": True}
-            _bind.attach(annotation, music)
+            _bind._unsafe_attach(annotation, music)
 
     @staticmethod
     def _get_default_absolute_pitch(pitch, reference):
@@ -2830,7 +2830,7 @@ class LilyPondParser(Parser):
             component = music.pop(0)
             context.append(component)
         for wrapper in music._wrappers:
-            _bind.attach(wrapper, context)
+            _bind._unsafe_attach(wrapper, context)
         return context
 
     def _construct_sequential_music(self, music):
@@ -2849,17 +2849,17 @@ class LilyPondParser(Parser):
             ):
                 for indicator in apply_forward:
                     try:
-                        _bind.attach(indicator, x)
+                        _bind._unsafe_attach(indicator, x)
                     except _exceptions.MissingContextError:
                         score = _score.Score([x], simultaneous=False)
-                        _bind.attach(indicator, x)
+                        _bind._unsafe_attach(indicator, x)
                         score[:] = []
                 if previous_leaf:
                     for indicator in apply_backward:
-                        _bind.attach(indicator, previous_leaf)
+                        _bind._unsafe_attach(indicator, previous_leaf)
                 else:
                     for indicator in apply_backward:
-                        _bind.attach(indicator, x)
+                        _bind._unsafe_attach(indicator, x)
                 apply_forward[:] = []
                 apply_backward[:] = []
                 previous_leaf = x
@@ -2879,14 +2879,14 @@ class LilyPondParser(Parser):
         # or to the container itself if there were no leaves
         if previous_leaf:
             for indicator in apply_forward:
-                _bind.attach(indicator, previous_leaf)
+                _bind._unsafe_attach(indicator, previous_leaf)
             for indicator in apply_backward:
-                _bind.attach(indicator, previous_leaf)
+                _bind._unsafe_attach(indicator, previous_leaf)
         else:
             for indicator in apply_forward:
-                _bind.attach(indicator, container)
+                _bind._unsafe_attach(indicator, container)
             for indicator in apply_backward:
-                _bind.attach(indicator, container)
+                _bind._unsafe_attach(indicator, container)
         return container
 
     def _construct_simultaneous_music(self, music):
@@ -2983,10 +2983,10 @@ class LilyPondParser(Parser):
         )
         for post_event in post_events:
             if isinstance(post_event, prototype):
-                _bind.attach(post_event, leaf)
+                _bind._unsafe_attach(post_event, leaf)
             if isinstance(post_event, tuple) and isinstance(post_event[0], prototype):
                 indicator, direction = post_event
-                _bind.attach(indicator, leaf, direction=direction)
+                _bind._unsafe_attach(indicator, leaf, direction=direction)
 
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)
@@ -3062,7 +3062,7 @@ class LilyPondParser(Parser):
         elif name == "GlissandoEvent":
             return _indicators.Glissando()
         elif name == "LaissezVibrerEvent":
-            return _indicators.LilyPondLiteral(r"\laissezVibrer", "after")
+            return _indicators.LilyPondLiteral(r"\laissezVibrer", site="after")
         elif name == "LineBreakEvent":
             return _indicators.LilyPondLiteral(r"\break")
         elif name == "NoteGroupingEvent":
@@ -4667,7 +4667,7 @@ class LilyPondSyntacticalDefinition:
             chord.multiplier = multiplier
         self.client._process_post_events(chord, p[3])
         annotation = {"UnrelativableMusic": True}
-        _bind.attach(annotation, chord)
+        _bind._unsafe_attach(annotation, chord)
         if self.client._last_chord not in self.client._repeated_chords:
             self.client._repeated_chords[self.client._last_chord] = []
         self.client._repeated_chords[self.client._last_chord].append(chord)

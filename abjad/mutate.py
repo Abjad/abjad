@@ -1603,7 +1603,9 @@ def replace(argument, recipients, wrappers=False):
         donor._wrappers.remove(wrapper)
         wrapper._component = recipient
         recipient._wrappers.append(wrapper)
-        context = wrapper._find_correct_effective_context()
+        context = wrapper._find_correct_effective_context(
+            wrapper.component, wrapper.context
+        )
         if context is not None:
             context._dependent_wrappers.append(wrapper)
 

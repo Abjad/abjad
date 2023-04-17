@@ -2758,7 +2758,11 @@ class MetricAccentKernel:
 
         Returns true or false.
         """
-        return super().__eq__(argument)
+        if isinstance(argument, type(self)):
+            if self.kernel == argument.kernel:
+                if self.duration == argument.duration:
+                    return True
+        return False
 
     def __hash__(self):
         """
@@ -2781,7 +2785,10 @@ class MetricAccentKernel:
         """
         Gets duration.
         """
-        return _duration.Duration(self._offsets[-1])
+        if self._offsets:
+            return _duration.Duration(self._offsets[-1])
+        else:
+            return _duration.Duration(0)
 
     @property
     def kernel(self):

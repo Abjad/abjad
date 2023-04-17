@@ -61,8 +61,8 @@ def _get_indicator_contributions(component, contributions):
             continue
         elif (
             wrapper.context is None
-            and hasattr(wrapper.get_item(), "_format_leaf_children")
-            and not getattr(wrapper.get_item(), "_format_leaf_children")
+            and hasattr(wrapper.get_item(), "format_leaf_children")
+            and not getattr(wrapper.get_item(), "format_leaf_children")
             and wrapper.component is not component
         ):
             continue

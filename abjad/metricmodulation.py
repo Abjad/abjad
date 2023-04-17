@@ -1,3 +1,4 @@
+import dataclasses
 import typing
 
 from . import _getlib
@@ -8,6 +9,7 @@ from . import indicators as _indicators
 from . import score as _score
 
 
+@dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
 class MetricModulation:
     r"""
     Metric modulation.
@@ -327,41 +329,26 @@ class MetricModulation:
 
     """
 
-    __slots__ = (
-        "_hide",
-        "_left_markup",
-        "_left_rhythm",
-        "_right_markup",
-        "_right_rhythm",
-        "_scale",
-    )
+    left_rhythm: typing.Any
+    right_rhythm: typing.Any
+    hide: bool = False
+    left_markup: _indicators.Markup | None = None
+    right_markup: _indicators.Markup | None = None
+    scale: tuple[int | float, int | float] = (1, 1)
 
     directed: typing.ClassVar[bool] = True
 
-    def __init__(
-        self,
-        left_rhythm,
-        right_rhythm,
-        *,
-        hide: bool = False,
-        left_markup: _indicators.Markup | None = None,
-        right_markup: _indicators.Markup | None = None,
-        scale: tuple[int | float, int | float] = (1, 1),
-    ) -> None:
-        self._hide = bool(hide)
-        left_rhythm = self._initialize_rhythm(left_rhythm)
-        self._left_rhythm = left_rhythm
-        right_rhythm = self._initialize_rhythm(right_rhythm)
-        self._right_rhythm = right_rhythm
-        self._right_rhythm = right_rhythm
-        if left_markup is not None:
-            assert isinstance(left_markup, _indicators.Markup)
-        self._left_markup = left_markup
-        if right_markup is not None:
-            assert isinstance(right_markup, _indicators.Markup)
-        self._right_markup = right_markup
-        assert isinstance(scale, tuple), repr(scale)
-        self._scale = scale
+    def __post_init__(self):
+        assert isinstance(self.hide, bool), repr(self.hide)
+        if self.left_markup is not None:
+            assert isinstance(self.left_markup, _indicators.Markup), repr(
+                self.left_markup
+            )
+        if self.right_markup is not None:
+            assert isinstance(self.right_markup, _indicators.Markup), repr(
+                self.right_markup
+            )
+        assert isinstance(self.scale, tuple), repr(self.scale)
 
     def __eq__(self, argument) -> bool:
         """
@@ -419,18 +406,6 @@ class MetricModulation:
                 return True
         return False
 
-    def __hash__(self) -> int:
-        """
-        Hashes metric modulation.
-        """
-        return hash(self.__class__.__name__ + str(self))
-
-    def __repr__(self) -> str:
-        """
-        Gets repr.
-        """
-        return f"{type(self).__name__}(left_rhythm={self.left_rhythm!r}, right_rhythm={self.right_rhythm!r})"
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_command_string(self):
@@ -475,36 +450,40 @@ class MetricModulation:
         return contributions
 
     def _get_markup(self):
+        left_rhythm = self._initialize_rhythm(self.left_rhythm)
+        right_rhythm = self._initialize_rhythm(self.right_rhythm)
         string = self._get_lilypond_command_string()
         if string is not None:
             markup = _indicators.Markup(rf"\markup {string}")
             return markup
         strings = []
-        string = _illustrators.components_to_score_markup_string(self.left_rhythm)
+        string = _illustrators.components_to_score_markup_string(left_rhythm)
         strings.extend(string.split("\n"))
         strings.append("=")
         strings.append(r"\hspace #-0.5")
-        string = _illustrators.components_to_score_markup_string(self.right_rhythm)
+        string = _illustrators.components_to_score_markup_string(right_rhythm)
         strings.extend(string.split("\n"))
         string = "\n".join(strings)
         string = rf"\markup {{ {string} }}"
         markup = _indicators.Markup(string)
         return markup
 
-    # TODO: return dictionary
+    # TODO: return namespace
     def _get_markup_arguments(self):
+        left_rhythm = self._initialize_rhythm(self.left_rhythm)
+        right_rhythm = self._initialize_rhythm(self.right_rhythm)
         if self._note_to_note():
-            left_exponent = self.left_rhythm[0].written_duration.exponent
-            left_dots = self.left_rhythm[0].written_duration.dot_count
-            right_exponent = self.right_rhythm[0].written_duration.exponent
-            right_dots = self.right_rhythm[0].written_duration.dot_count
+            left_exponent = left_rhythm[0].written_duration.exponent
+            left_dots = left_rhythm[0].written_duration.dot_count
+            right_exponent = right_rhythm[0].written_duration.exponent
+            right_dots = right_rhythm[0].written_duration.dot_count
             return (left_exponent, left_dots, right_exponent, right_dots)
         elif self._lhs_tuplet():
-            tuplet_exponent = self.left_rhythm[0][0].written_duration.exponent
-            tuplet_dots = self.left_rhythm[0][0].written_duration.dot_count
-            tuplet_n, tuplet_d = self.left_rhythm[0].multiplier
-            note_exponent = self.right_rhythm[0].written_duration.exponent
-            note_dots = self.right_rhythm[0].written_duration.dot_count
+            tuplet_exponent = left_rhythm[0][0].written_duration.exponent
+            tuplet_dots = left_rhythm[0][0].written_duration.dot_count
+            tuplet_n, tuplet_d = left_rhythm[0].multiplier
+            note_exponent = right_rhythm[0].written_duration.exponent
+            note_dots = right_rhythm[0].written_duration.dot_count
             return (
                 tuplet_exponent,
                 tuplet_dots,
@@ -514,11 +493,11 @@ class MetricModulation:
                 note_dots,
             )
         elif self._rhs_tuplet():
-            note_exponent = self.left_rhythm[0].written_duration.exponent
-            note_dots = self.left_rhythm[0].written_duration.dot_count
-            tuplet_exponent = self.right_rhythm[0][0].written_duration.exponent
-            tuplet_dots = self.right_rhythm[0][0].written_duration.dot_count
-            tuplet_n, tuplet_d = self.right_rhythm[0].multiplier
+            note_exponent = left_rhythm[0].written_duration.exponent
+            note_dots = left_rhythm[0].written_duration.dot_count
+            tuplet_exponent = right_rhythm[0][0].written_duration.exponent
+            tuplet_dots = right_rhythm[0][0].written_duration.dot_count
+            tuplet_n, tuplet_d = right_rhythm[0].multiplier
             return (
                 note_exponent,
                 note_dots,
@@ -538,77 +517,40 @@ class MetricModulation:
         return selection
 
     def _lhs_tuplet(self):
+        left_rhythm = self._initialize_rhythm(self.left_rhythm)
+        right_rhythm = self._initialize_rhythm(self.right_rhythm)
         if (
-            isinstance(self.left_rhythm[0], _score.Tuplet)
-            and len(self.left_rhythm[0]) == 1
-            and isinstance(self.right_rhythm[0], _score.Note)
-            and len(self.right_rhythm) == 1
+            isinstance(left_rhythm[0], _score.Tuplet)
+            and len(left_rhythm[0]) == 1
+            and isinstance(right_rhythm[0], _score.Note)
+            and len(right_rhythm) == 1
         ):
             return True
         return False
 
     def _note_to_note(self):
+        left_rhythm = self._initialize_rhythm(self.left_rhythm)
+        right_rhythm = self._initialize_rhythm(self.right_rhythm)
         if (
-            isinstance(self.left_rhythm[0], _score.Note)
-            and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], _score.Note)
-            and len(self.right_rhythm) == 1
+            isinstance(left_rhythm[0], _score.Note)
+            and len(left_rhythm) == 1
+            and isinstance(right_rhythm[0], _score.Note)
+            and len(right_rhythm) == 1
         ):
             return True
         return False
 
     def _rhs_tuplet(self):
+        left_rhythm = self._initialize_rhythm(self.left_rhythm)
+        right_rhythm = self._initialize_rhythm(self.right_rhythm)
         if (
-            isinstance(self.left_rhythm[0], _score.Note)
-            and len(self.left_rhythm) == 1
-            and isinstance(self.right_rhythm[0], _score.Tuplet)
-            and len(self.right_rhythm[0]) == 1
+            isinstance(left_rhythm[0], _score.Note)
+            and len(left_rhythm) == 1
+            and isinstance(right_rhythm[0], _score.Tuplet)
+            and len(right_rhythm[0]) == 1
         ):
             return True
         return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def hide(self) -> bool:
-        """
-        Is true when metric modulation generates no LilyPond output.
-        """
-        return self._hide
-
-    @property
-    def left_markup(self) -> _indicators.Markup | None:
-        """
-        Gets left markup of metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ... )
-            >>> metric_modulation.left_markup
-
-        """
-        return self._left_markup
-
-    @property
-    def left_rhythm(self):
-        """
-        Gets left rhythm of metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ... )
-            >>> metric_modulation.left_rhythm
-            [Note("c'4")]
-
-        Returns list.
-        """
-        return self._left_rhythm
 
     @property
     def ratio(self) -> tuple[int, int]:
@@ -630,88 +572,3 @@ class MetricModulation:
         duration = left_duration / right_duration
         pair = _duration.pair(duration)
         return pair
-
-    @property
-    def right_markup(self) -> _indicators.Markup | None:
-        r"""Gets right markup of metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ... )
-            >>> metric_modulation.right_markup
-
-        """
-        return self._right_markup
-
-    @property
-    def right_rhythm(self):
-        """
-        Gets right tempo of metric modulation.
-
-        ..  container:: example
-
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c'4"),
-            ...     right_rhythm=abjad.Note("c'4."),
-            ... )
-            >>> metric_modulation.right_rhythm
-            [Note("c'4.")]
-
-        """
-        return self._right_rhythm
-
-    @property
-    def scale(self) -> tuple[int | float, int | float]:
-        r"""
-        Gets scale of output markup.
-
-        ..  container:: example
-
-            >>> staff = abjad.Staff("c'4 d'4 e'4 f'4 e'4 d'4")
-            >>> score = abjad.Score([staff], name="Score")
-            >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0])
-            >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Note("c4"),
-            ...     right_rhythm=abjad.Note("c8."),
-            ...     scale=(0.5, 0.5),
-            ... )
-            >>> abjad.attach(metric_modulation, staff[3], direction=abjad.UP)
-            >>> abjad.override(staff).TextScript.staff_padding = 2.5
-            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(score)
-                >>> print(string)
-                \context Score = "Score"
-                <<
-                    \new Staff
-                    \with
-                    {
-                        \override TextScript.staff-padding = 2.5
-                    }
-                    {
-                        \time 3/4
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                        ^ \markup \abjad-metric-modulation #2 #0 #3 #1 #'(0.5 . 0.5)
-                        e'4
-                        d'4
-                    }
-                >>
-
-        """
-        return self._scale
-
-    @property
-    def tweaks(self) -> None:
-        """
-        Are not implemented on metric modulation.
-        """
-        pass

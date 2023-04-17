@@ -89,6 +89,14 @@ class Configuration:
         """
         del self._settings[i]
 
+    def __eq__(self, argument):
+        """
+        Returns true when ``argument`` is configuratioin with same settings.
+        """
+        if isinstance(argument, type(self)):
+            return self._settings == argument._settings
+        return False
+
     def __getitem__(self, argument) -> typing.Any:
         """
         Gets item or slice identified by ``argument``.
@@ -512,10 +520,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.instruments.Viola'>
         <class 'abjad.instruments.Violin'>
         <class 'abjad.instruments.Xylophone'>
-        <class 'abjad.io.AbjadGrapher'>
-        <class 'abjad.io.Illustrator'>
-        <class 'abjad.io.LilyPondIO'>
-        <class 'abjad.io.Player'>
         <class 'abjad.label.ColorMap'>
         <class 'abjad.lilypondfile.Block'>
         <class 'abjad.lilypondfile.LilyPondFile'>
@@ -536,23 +540,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.overrides.SettingInterface'>
         <class 'abjad.parentage.Parentage'>
         <class 'abjad.parsers.base.Parser'>
-        <class 'abjad.parsers.parser.ContextSpeccedMusic'>
-        <class 'abjad.parsers.parser.GuileProxy'>
-        <class 'abjad.parsers.parser.LilyPondDuration'>
-        <class 'abjad.parsers.parser.LilyPondEvent'>
-        <class 'abjad.parsers.parser.LilyPondFraction'>
-        <class 'abjad.parsers.parser.LilyPondGrammarGenerator'>
-        <class 'abjad.parsers.parser.LilyPondLexicalDefinition'>
-        <class 'abjad.parsers.parser.LilyPondParser'>
-        <class 'abjad.parsers.parser.LilyPondSyntacticalDefinition'>
-        <class 'abjad.parsers.parser.MarkupCommand'>
-        <class 'abjad.parsers.parser.Music'>
-        <class 'abjad.parsers.parser.SequentialMusic'>
-        <class 'abjad.parsers.parser.SimultaneousMusic'>
-        <class 'abjad.parsers.parser.SyntaxNode'>
-        <class 'abjad.parsers.reduced.ReducedLyParser'>
-        <class 'abjad.parsers.scheme.Scheme'>
-        <class 'abjad.parsers.scheme.SchemeParser'>
         <class 'abjad.pattern.Pattern'>
         <class 'abjad.pattern.PatternTuple'>
         <class 'abjad.pcollections.PitchClassSegment'>
@@ -616,6 +603,8 @@ def list_all_classes(modules="abjad", ignored_classes=None):
     """
     all_classes = set()
     for module in yield_all_modules(modules):
+        if "parser" in module.__name__:
+            continue
         name = module.__name__.split(".")[-1]
         for name in dir(module):
             item = getattr(module, name)
@@ -623,6 +612,8 @@ def list_all_classes(modules="abjad", ignored_classes=None):
                 if "sphinx" in repr(item):
                     continue
                 if item.__name__.startswith("_"):
+                    continue
+                if "abjad.io" in str(item):
                     continue
                 if "abjad" in repr(item):
                     all_classes.add(item)

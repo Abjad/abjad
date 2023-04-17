@@ -73,6 +73,19 @@ class Parentage(collections.abc.Sequence):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, argument):
+        """
+        Is true when ``argument`` is a parent with the same components as this parentage.
+        """
+        if isinstance(argument, type(self)):
+            if len(self) == len(argument):
+                for c, d in zip(self, argument):
+                    if c is not d:
+                        return False
+                else:
+                    return True
+        return False
+
     def __getitem__(self, argument):
         """
         Gets ``argument``.

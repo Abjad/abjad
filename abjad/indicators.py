@@ -1,5 +1,5 @@
 """
-Indicators
+Indicators.
 """
 import collections
 import dataclasses
@@ -18,25 +18,6 @@ from . import sequence as _sequence
 from . import string as _string
 
 _EMPTY_CHORD = "<>"
-
-
-def _before_attach(indicator, deactivate, component):
-    if getattr(indicator, "nestable_spanner", False) is True:
-        return
-    if deactivate is True:
-        return
-    for wrapper in component._get_indicators(unwrap=False):
-        if not isinstance(wrapper.indicator, type(indicator)):
-            continue
-        if indicator != wrapper.indicator:
-            if hasattr(indicator, "hide"):
-                if indicator.hide != wrapper.indicator.hide:
-                    continue
-        classname = type(component).__name__
-        message = f"can not attach {indicator!r} to {classname}:"
-        message += f"\n    {wrapper.indicator!r} is already attached"
-        message += f" to {classname}."
-        raise Exception(message)
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -117,9 +98,6 @@ class Arpeggio:
         if self.direction is not None:
             assert isinstance(self.direction, _enums.Vertical), repr(self.direction)
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-
     def _get_lilypond_format(self):
         return r"\arpeggio"
 
@@ -187,7 +165,8 @@ class Articulation:
 
     name: str
 
-    _shortcut_to_word: typing.ClassVar[dict[str, str]] = {
+    post_event: typing.ClassVar[bool] = True
+    shortcut_to_word: typing.ClassVar[dict[str, str]] = {
         "^": "marcato",
         "+": "stopped",
         "-": "tenuto",
@@ -196,14 +175,13 @@ class Articulation:
         ".": "staccato",
         "_": "portato",
     }
-    post_event: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
 
     def _get_lilypond_format(self, wrapper=None):
         if self.name:
-            string = self._shortcut_to_word.get(self.name)
+            string = self.shortcut_to_word.get(self.name)
             if not string:
                 string = self.name
             if wrapper is not None and wrapper.direction:
@@ -233,53 +211,58 @@ class BarLine:
 
         Final bar line:
 
-        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
+        >>> staff = abjad.Staff("c'4 d'4 e'4 f'4", name="Staff")
+        >>> score = abjad.Score([staff], name="Score")
         >>> bar_line = abjad.BarLine("|.")
         >>> abjad.attach(bar_line, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> bar_line
-        BarLine(abbreviation='|.', site='after')
-
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(score)
             >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-                \bar "|."
-            }
+            \context Score = "Score"
+            <<
+                \context Staff = "Staff"
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    \bar "|."
+                }
+            >>
 
     ..  container:: example
 
         Specify repeat bars like this:
 
-        >>> staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
+        >>> staff = abjad.Staff("c'4 d' e' f' g' a' b' c''", name="Staff")
+        >>> score = abjad.Score([staff], name="Score")
         >>> abjad.attach(abjad.BarLine(".|:"), staff[3])
         >>> abjad.attach(abjad.BarLine(":|."), staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(score)
             >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-                \bar ".|:"
-                g'4
-                a'4
-                b'4
-                c''4
-                \bar ":|."
-            }
+            \context Score = "Score"
+            <<
+                \context Staff = "Staff"
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    \bar ".|:"
+                    g'4
+                    a'4
+                    b'4
+                    c''4
+                    \bar ":|."
+                }
+            >>
 
         This allows you to bypass LilyPond's ``\volta`` command.
 
@@ -288,10 +271,9 @@ class BarLine:
     abbreviation: str = "|"
     site: str = "after"
 
-    _context: typing.ClassVar[str] = "Score"
-
-    # scraped from LilyPond docs because LilyPond fails to error on unrecognized string
-    _known_abbreviations = (
+    context: typing.ClassVar[str] = "Score"
+    find_context_on_attach: typing.ClassVar[bool] = True
+    known_abbreviations: typing.ClassVar[tuple[str, ...]] = (
         "",
         "|",
         ".",
@@ -314,13 +296,12 @@ class BarLine:
         "'",
     )
 
-    def _before_attach(self, deactivate, component):
-        for indicator in component._get_indicators():
-            if isinstance(indicator, type(self)) and indicator.site == self.site:
-                classname = type(component).__name__
-                message = f"can not attach {self!r} to {classname}:"
-                message += f"\n    {indicator!r} is already attached to {classname}."
-                raise Exception(message)
+    def __post_init__(self):
+        """
+        LilyPond fails to error on unknown bar-line abbreviation, so we check here.
+        """
+        if self.abbreviation not in self.known_abbreviations:
+            raise Exception(f"unknown bar-line abbreviation: {self.abbreviation!r}.")
 
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'
@@ -330,21 +311,6 @@ class BarLine:
         site = getattr(contributions, self.site)
         site.commands.append(self._get_lilypond_format())
         return contributions
-
-    @property
-    def context(self) -> str:
-        r"""
-        Gets (historically conventional) context.
-
-        ..  container:: example
-
-            >>> bar_line = abjad.BarLine('|.')
-            >>> bar_line.context
-            'Score'
-
-        Override with ``abjad.attach(..., context='...')``.
-        """
-        return self._context
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -361,9 +327,6 @@ class BeamCount:
 
     left: int = 0
     right: int = 0
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -443,9 +406,6 @@ class BendAfter:
     site: typing.ClassVar[str] = "after"
     time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-
     def _get_lilypond_format(self):
         return rf"- \bendAfter #'{self.bend_amount}"
 
@@ -463,11 +423,12 @@ class BreathMark:
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
-        >>> abjad.beam(staff[:4])
-        >>> abjad.beam(staff[4:])
-        >>> abjad.attach(abjad.BreathMark(), staff[3])
-        >>> abjad.attach(abjad.BreathMark(), staff[7])
+        >>> voice = abjad.Voice("c'8 d' e' f' g' a' b' c''")
+        >>> staff = abjad.Staff([voice])
+        >>> abjad.beam(voice[:4])
+        >>> abjad.beam(voice[4:])
+        >>> abjad.attach(abjad.BreathMark(), voice[3])
+        >>> abjad.attach(abjad.BreathMark(), voice[7])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -476,20 +437,23 @@ class BreathMark:
             >>> print(string)
             \new Staff
             {
-                c'8
-                [
-                d'8
-                e'8
-                f'8
-                ]
-                \breathe
-                g'8
-                [
-                a'8
-                b'8
-                c''8
-                ]
-                \breathe
+                \new Voice
+                {
+                    c'8
+                    [
+                    d'8
+                    e'8
+                    f'8
+                    ]
+                    \breathe
+                    g'8
+                    [
+                    a'8
+                    b'8
+                    c''8
+                    ]
+                    \breathe
+                }
             }
 
     ..  container:: example
@@ -757,7 +721,12 @@ class Clef:
     name: str = "treble"
     hide: bool = dataclasses.field(compare=False, default=False)
 
-    _clef_name_to_middle_c_position = {
+    context: typing.ClassVar[str] = "Staff"
+    persistent: typing.ClassVar[bool] = True
+    redraw: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "before"
+
+    clef_name_to_middle_c_position = {
         "treble": -6,
         "alto": 0,
         "varC": 0,
@@ -773,11 +742,6 @@ class Clef:
         "tab": 0,
     }
 
-    context: typing.ClassVar[str] = "Staff"
-    persistent: typing.ClassVar[bool] = True
-    redraw: typing.ClassVar[bool] = True
-    site: typing.ClassVar[str] = "opening"
-
     _to_width = {
         "alto": 2.75,
         "varC": 2.75,
@@ -790,9 +754,7 @@ class Clef:
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+        assert isinstance(self.hide, bool), repr(self.hide)
 
     def _calculate_middle_c_position(self, clef_name):
         alteration = 0
@@ -814,7 +776,7 @@ class Clef:
                 raise Exception(f"bad clef alteration suffix: {suffix!r}.")
         else:
             base_name = clef_name
-        return self._clef_name_to_middle_c_position[base_name] + alteration
+        return self.clef_name_to_middle_c_position[base_name] + alteration
 
     def _clef_name_to_staff_position_zero(self, clef_name):
         return {
@@ -1203,8 +1165,8 @@ class ColorFingering:
     post_event: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "after"
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def __post_init__(self):
+        assert isinstance(self.number, int), repr(self.number)
 
     def _get_lilypond_format(self):
         return self.markup._get_lilypond_format()
@@ -1350,7 +1312,7 @@ class Fermata:
 
     command: str = "fermata"
 
-    _allowable_commands: typing.ClassVar = (
+    allowable_commands: typing.ClassVar = (
         "fermata",
         "longfermata",
         "shortfermata",
@@ -1360,8 +1322,8 @@ class Fermata:
     post_event: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "after"
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def __post_init__(self):
+        assert self.command in self.allowable_commands, repr(self.command)
 
     def _get_lilypond_format(self):
         return rf"\{self.command}"
@@ -1401,19 +1363,14 @@ class Glissando:
 
     """
 
-    allow_repeats: bool = False
-    allow_ties: bool = False
-    parenthesize_repeats: bool = False
-    stems: bool = False
-    style: str | None = None
     zero_padding: bool = False
 
     context: typing.ClassVar[str] = "Voice"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def __post_init__(self):
+        assert isinstance(self.zero_padding, bool), repr(self.zero_padding)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -1501,10 +1458,15 @@ class InstrumentName:
 
     """
 
-    markup: typing.Union[str, "Markup"] = "instrument name"
+    markup: typing.Union[str, "Markup"]
     _: dataclasses.KW_ONLY
     context: str = "Staff"
-    site: str = "before"
+
+    site: typing.ClassVar[str] = "before"
+
+    def __post_init__(self):
+        assert isinstance(self.markup, str | Markup), repr(self.markup)
+        assert isinstance(self.context, str), repr(self.context)
 
     @property
     def _lilypond_type(self):
@@ -1625,8 +1587,13 @@ class KeyCluster:
 
     directed: typing.ClassVar[bool] = True
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def __post_init__(self):
+        assert isinstance(self.include_flat_markup, bool), repr(
+            self.include_flat_markup
+        )
+        assert isinstance(self.include_natural_markup, bool), repr(
+            self.include_natural_markup
+        )
 
     def _get_contributions(self, wrapper=None):
         contributions = _contributions.ContributionsBySite()
@@ -1804,7 +1771,7 @@ class LilyPondLiteral:
         Directed literal:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
+        >>> literal = abjad.LilyPondLiteral(r"\f", directed=True, site="after")
         >>> bundle = abjad.bundle(
         ...     literal,
         ...     r"- \tweak color #blue",
@@ -1835,8 +1802,8 @@ class LilyPondLiteral:
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> literal = abjad.LilyPondLiteral(
         ...     r"\breathe",
-        ...     "after",
         ...     directed=False,
+        ...     site="after",
         ... )
         >>> bundle = abjad.bundle(literal, r"\tweak color #blue")
         >>> abjad.attach(bundle, staff[0])
@@ -1867,7 +1834,7 @@ class LilyPondLiteral:
         Tweaks:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> literal = abjad.LilyPondLiteral(r"\f", "after", directed=True)
+        >>> literal = abjad.LilyPondLiteral(r"\f", directed=True, site="after")
         >>> bundle = abjad.bundle(literal, r"- \tweak color #blue")
         >>> abjad.attach(bundle, staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1889,10 +1856,11 @@ class LilyPondLiteral:
     """
 
     argument: str | list[str] = ""
+    _: dataclasses.KW_ONLY
     site: str = "before"
     directed: bool = False
 
-    _allowable_sites: typing.ClassVar = (
+    allowable_sites: typing.ClassVar[tuple[str, ...]] = (
         "absolute_after",
         "absolute_before",
         "after",
@@ -1900,19 +1868,15 @@ class LilyPondLiteral:
         "closing",
         "opening",
     )
-    _can_attach_to_containers: typing.ClassVar[bool] = True
-    _format_leaf_children: typing.ClassVar[bool] = False
+    can_attach_to_containers: typing.ClassVar[bool] = True
+    format_leaf_children: typing.ClassVar[bool] = False
 
     def __post_init__(self):
-        assert self.site in self._allowable_sites, repr(self.site)
+        if not isinstance(self.argument, str):
+            assert all(isinstance(_, str) for _ in self.argument), repr(self.argument)
         assert isinstance(self.directed, bool), repr(self.directed)
-
-    def _before_attach(self, deactivate, component):
-        if self.site not in component._allowable_sites:
-            message = f"{type(component).__name__} does not accept"
-            message += f" format site {self.site!r}:"
-            message += f"\n    {self!r}"
-            raise Exception(message)
+        assert isinstance(self.site, str), repr(self.site)
+        assert self.site in self.allowable_sites, repr(self.site)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -1946,6 +1910,9 @@ class Mode:
     """
 
     name: str = "major"
+
+    def __post_init__(self):
+        assert isinstance(self.name, str), repr(self.name)
 
     def intervals(self):
         """
@@ -2159,12 +2126,9 @@ class LaissezVibrer:
 
     """
 
-    time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
     post_event: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "after"
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
     def _get_lilypond_format(self):
         return r"\laissezVibrer"
@@ -2612,11 +2576,11 @@ class MetronomeMark:
     decimal: bool | str = False
     hide: bool = dataclasses.field(compare=False, default=False)
 
-    _mutates_offsets_in_seconds: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
+    mutates_offsets_in_seconds: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "METRONOME_MARK"
     persistent: typing.ClassVar[bool] = True
-    site: typing.ClassVar[str] = "opening"
+    site: typing.ClassVar[str] = "before"
 
     def __post_init__(self):
         if self.reference_duration:
@@ -2677,9 +2641,6 @@ class MetronomeMark:
             return string
         string = f"{self._dotted}={self.units_per_minute}"
         return string
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_lilypond_format(self):
         equation = None
@@ -2937,7 +2898,7 @@ class Ottava:
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> ottava = abjad.Ottava(n=1)
         >>> abjad.attach(ottava, staff[0])
-        >>> ottava = abjad.Ottava(n=0, site='after')
+        >>> ottava = abjad.Ottava(n=0, site="after")
         >>> abjad.attach(ottava, staff[-1])
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2957,10 +2918,17 @@ class Ottava:
 
     """
 
-    n: int | None = None
+    n: int = 0
+    _: dataclasses.KW_ONLY
+    # TODO: maybe implement "leak" instead of "site"?
     site: str = "before"
 
+    context: typing.ClassVar[str] = "Staff"
     persistent: typing.ClassVar[bool] = True
+
+    def __post_init__(self):
+        assert isinstance(self.n, int), repr(self.n)
+        assert isinstance(self.site, str), repr(self.site)
 
     def _before_attach(self, deactivate, component):
         for indicator in component._get_indicators():
@@ -3047,8 +3015,11 @@ class RehearsalMark:
 
     context: typing.ClassVar[str] = "Score"
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def __post_init__(self):
+        if self.markup is not None:
+            assert isinstance(self.markup, str | Markup), repr(self.markup)
+        if self.number is not None:
+            assert isinstance(self.number, int), repr(self.number)
 
     def _get_lilypond_format(self):
         if self.markup is not None:
@@ -3173,13 +3144,14 @@ class Repeat:
     repeat_count: int = 2
     repeat_type: str = "volta"
 
-    _can_attach_to_containers: typing.ClassVar[bool] = True
-    _format_leaf_children: typing.ClassVar[bool] = False
+    can_attach_to_containers: typing.ClassVar[bool] = True
+    format_leaf_children: typing.ClassVar[bool] = False
     context: typing.ClassVar[str] = "Score"
     site: typing.ClassVar[str] = "before"
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def __post_init__(self):
+        assert isinstance(self.repeat_count, int), repr(self.repeat_count)
+        assert isinstance(self.repeat_type, str), repr(self.repeat_type)
 
     def _get_lilypond_format(self):
         return rf"\repeat {self.repeat_type} {self.repeat_count}"
@@ -3323,7 +3295,6 @@ class RepeatTie:
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
-    persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
 
     def _attachment_test_all(self, argument):
@@ -3333,9 +3304,6 @@ class RepeatTie:
             string = f"Must be note or chord (not {argument})."
             return [string]
         return True
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
@@ -3397,7 +3365,7 @@ class ShortInstrumentName:
 
     """
 
-    markup: typing.Union[str, "Markup", None] = None
+    markup: typing.Union[str, Markup]
     _: dataclasses.KW_ONLY
     context: str = "Staff"
     site: str = "before"
@@ -3406,17 +3374,16 @@ class ShortInstrumentName:
     persistent: typing.ClassVar[bool] = True
     redraw: typing.ClassVar[bool] = True
 
-    @property
-    def _lilypond_type(self):
-        if isinstance(self.context, type):
-            return self.context.__name__
-        elif isinstance(self.context, str):
-            return self.context
-        else:
-            return type(self.context).__name__
+    def __post_init__(self):
+        assert isinstance(self.markup, str | Markup), repr(self.markup)
+        assert isinstance(self.context, str), repr(self.context)
+        assert isinstance(self.site, str), repr(self.site)
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def _get_contributions(self, component=None):
+        contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
+        site.commands.extend(self._get_lilypond_format())
+        return contributions
 
     def _get_lilypond_format(self, context=None):
         result = []
@@ -3425,7 +3392,7 @@ class ShortInstrumentName:
         elif context is not None:
             context = context.lilypond_type
         else:
-            context = self._lilypond_type
+            context = self._get_lilypond_type()
         if isinstance(self.markup, Markup):
             string = self.markup.string
         else:
@@ -3435,11 +3402,13 @@ class ShortInstrumentName:
         result.append(string)
         return result
 
-    def _get_contributions(self, component=None):
-        contributions = _contributions.ContributionsBySite()
-        site = getattr(contributions, self.site)
-        site.commands.extend(self._get_lilypond_format())
-        return contributions
+    def _get_lilypond_type(self):
+        if isinstance(self.context, type):
+            return self.context.__name__
+        elif isinstance(self.context, str):
+            return self.context
+        else:
+            return type(self.context).__name__
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -3480,21 +3449,22 @@ class StaffChange:
 
     """
 
-    staff: str | None = None
+    staff_name: str | bool
 
-    _format_leaf_children: typing.ClassVar[bool] = False
     context: typing.ClassVar[str] = "Staff"
-    site: typing.ClassVar[str] = "opening"
+    format_leaf_children: typing.ClassVar[bool] = False
+    site: typing.ClassVar[str] = "before"
     time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    def __post_init__(self):
+        assert isinstance(self.staff_name, str | bool), repr(self.staff_name)
+        if isinstance(self.staff_name, bool):
+            assert self.staff_name is False, repr(self.staff_name)
 
     def _get_lilypond_format(self):
-        if self.staff is None:
+        if self.staff_name is False:
             return r"\change Staff = ##f"
-        assert isinstance(self.staff, str), repr(self.staff)
-        return rf"\change Staff = {self.staff}"
+        return rf"\change Staff = {self.staff_name}"
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -3574,9 +3544,6 @@ class StartBeam:
             string = f"{symbol} {string}"
         return string
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         string = self._add_direction("[", wrapper)
@@ -3616,13 +3583,11 @@ class StartGroup:
 
     """
 
+    context: typing.ClassVar[str] = "Voice"
     nestable_spanner: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -3966,11 +3931,11 @@ class StartHairpin:
 
     shape: str = "<"
 
-    _crescendo_start: typing.ClassVar[str] = r"\<"
-    _decrescendo_start: typing.ClassVar[str] = r"\>"
-    _known_shapes = ("<", "o<", "<|", "o<|", ">", ">o", "|>", "|>o", "--")
     context: typing.ClassVar[str] = "Voice"
+    crescendo_start: typing.ClassVar[str] = r"\<"
+    decrescendo_start: typing.ClassVar[str] = r"\>"
     directed: typing.ClassVar[bool] = True
+    known_shapes = ("<", "o<", "<|", "o<|", ">", ">o", "|>", "|>o", "--")
     parameter: typing.ClassVar[str] = "DYNAMIC"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
@@ -3978,14 +3943,14 @@ class StartHairpin:
     spanner_start: typing.ClassVar[bool] = True
     trend: typing.ClassVar[bool] = True
 
+    def __post_init__(self):
+        assert self.shape in self.known_shapes, repr(self.shape)
+
     def _add_direction(self, string, *, wrapper=None):
         if wrapper.direction is not None:
             symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     @staticmethod
     def _circled_tip():
@@ -4029,11 +3994,11 @@ class StartHairpin:
             string = override.tweak_string()
             strings.append(string)
         if "<" in self.shape or "--" in self.shape:
-            string = self._crescendo_start
+            string = self.crescendo_start
             string = self._add_direction(string, wrapper=wrapper)
             strings.append(string)
         elif ">" in self.shape:
-            string = self._decrescendo_start
+            string = self.decrescendo_start
             string = self._add_direction(string, wrapper=wrapper)
             strings.append(string)
         else:
@@ -4045,28 +4010,6 @@ class StartHairpin:
         strings = self._get_lilypond_format(wrapper=wrapper)
         contributions.after.spanner_starts.extend(strings)
         return contributions
-
-    @property
-    def known_shapes(self) -> tuple[str, ...]:
-        r"""
-        Gets known hairpin shapes.
-
-        ..  container:: example
-
-            >>> for shape in abjad.StartHairpin().known_shapes:
-            ...     shape
-            '<'
-            'o<'
-            '<|'
-            'o<|'
-            '>'
-            '>o'
-            '|>'
-            '|>o'
-            '--'
-
-        """
-        return self._known_shapes
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -4113,9 +4056,6 @@ class StartPhrasingSlur:
             symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
@@ -4187,7 +4127,8 @@ class StartPianoPedal:
 
     """
 
-    kind: str | None = None
+    # TODO: change "kind" to "command" with "\unaCorda", "\sostenutoOn", "\sustainOn"
+    kind: str = "sustain"
 
     context: typing.ClassVar[str] = "StaffGroup"
     parameter: typing.ClassVar[str] = "PEDAL"
@@ -4196,11 +4137,7 @@ class StartPianoPedal:
     spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        if self.kind is not None:
-            assert self.kind in ("sustain", "sostenuto", "corda"), repr(self.kind)
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+        assert self.kind in ("sustain", "sostenuto", "corda"), repr(self.kind)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -4209,7 +4146,7 @@ class StartPianoPedal:
         elif self.kind == "sostenuto":
             string = r"\sostenutoOn"
         else:
-            assert self.kind in ("sustain", None)
+            assert self.kind == "sustain"
             string = r"\sustainOn"
         contributions.after.spanner_starts.append(string)
         return contributions
@@ -4348,9 +4285,6 @@ class StartSlur:
             symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             string = f"{symbol} {string}"
         return string
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
@@ -4688,6 +4622,7 @@ class StartTextSpan:
     right_text: str | Markup | None = None
     style: str | None = None
 
+    allow_multiple_with_different_values: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "TEXT_SPANNER"
@@ -4704,6 +4639,9 @@ class StartTextSpan:
         "solid-line-with-hook",
         "solid-line-with-up-hook",
     )
+
+    def __post_init__(self):
+        assert isinstance(self.command, str), repr(self.command)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
@@ -4899,9 +4837,6 @@ class StartTrillSpan:
         if self.pitch is not None:
             assert isinstance(self.pitch, _pitch.NamedPitch), repr(self.pitch)
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-
     def _get_contributions(self, *, component=None):
         contributions = _contributions.ContributionsBySite()
         string = r"\startTrillSpan"
@@ -5003,9 +4938,6 @@ class StemTremolo:
         if not _math.is_nonnegative_integer_power_of_two(self.tremolo_flags):
             raise ValueError(f"nonnegative integer power of 2: {self.tremolo_flags!r}.")
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-
     def _get_lilypond_format(self):
         return f":{self.tremolo_flags!s}"
 
@@ -5082,9 +5014,6 @@ class StopBeam:
     parameter: typing.ClassVar[str] = "BEAM"
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -5192,14 +5121,12 @@ class StopGroup:
     """
 
     leak: bool = dataclasses.field(default=False, compare=False)
-    nestable_spanner: typing.ClassVar[bool] = True
 
-    time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
+    context: typing.ClassVar[str] = "Voice"
+    nestable_spanner: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
+    time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -5275,12 +5202,10 @@ class StopHairpin:
     leak: bool = dataclasses.field(default=False, compare=False)
 
     context: typing.ClassVar[str] = "Voice"
+    # TODO: should these be uncommented?
     # parameter: typing.ClassVar[str] = "DYNAMIC"
     # persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -5394,9 +5319,6 @@ class StopPhrasingSlur:
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         string = r"\)"
@@ -5502,7 +5424,8 @@ class StopPianoPedal:
 
     """
 
-    kind: str | None = None
+    # TODO: change "kind" to "command"
+    kind: str = "sustain"
     leak: bool = dataclasses.field(default=False, compare=False)
 
     time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
@@ -5513,12 +5436,8 @@ class StopPianoPedal:
     spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        if self.kind is not None:
-            assert self.kind in ("sustain", "sostenuto", "corda")
+        assert self.kind in ("sustain", "sostenuto", "corda")
         assert isinstance(self.leak, bool), repr(self.leak)
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -5527,7 +5446,7 @@ class StopPianoPedal:
         elif self.kind == "sostenuto":
             command = r"\sostenutoOff"
         else:
-            assert self.kind in ("sustain", None)
+            assert self.kind == "sustain"
             command = r"\sustainOff"
         if self.leak:
             contributions.after.leak.append(_EMPTY_CHORD)
@@ -5642,9 +5561,6 @@ class StopSlur:
     def __post_init__(self):
         assert isinstance(self.leak, bool), repr(self.leak)
 
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         string = ")"
@@ -5737,6 +5653,7 @@ class StopTextSpan:
 
     context: typing.ClassVar[str] = "Voice"
     enchained: typing.ClassVar[bool] = True
+    nestable_spanner: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "TEXT_SPANNER"
     persistent: typing.ClassVar[bool] = True
     spanner_stop: typing.ClassVar[bool] = True
@@ -5827,9 +5744,6 @@ class StopTrillSpan:
 
     def __post_init__(self):
         assert isinstance(self.leak, bool), repr(self.leak)
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
@@ -5947,7 +5861,6 @@ class Tie:
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
-    persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
 
     def _add_direction(self, string, *, wrapper=None):
@@ -5963,9 +5876,6 @@ class Tie:
             string = f"Must be note or chord (not {argument})."
             return [string]
         return True
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
@@ -6124,7 +6034,7 @@ class TimeSignature:
     check_effective_context: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
     persistent: typing.ClassVar[bool] = True
-    site: typing.ClassVar[str] = "opening"
+    site: typing.ClassVar[str] = "before"
 
     def __post_init__(self):
         assert isinstance(self.pair, tuple), repr(self.pair)
@@ -6134,12 +6044,14 @@ class TimeSignature:
         if self.partial is not None:
             assert isinstance(self.partial, _duration.Duration), repr(self.partial)
 
+    # TODO: remove in favor of dataclass definition?
     def __copy__(self, *arguments) -> "TimeSignature":
         """
         Copies time signature.
         """
         return type(self)((self.numerator, self.denominator), partial=self.partial)
 
+    # TODO: remove in favor of dataclass definition
     def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` is a time signature with numerator and denominator
@@ -6151,16 +6063,6 @@ class TimeSignature:
                 if self.denominator == argument.denominator:
                     return True
         return False
-
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-        """
-        import abjad
-
-        score = abjad.get.parentage(component).get(abjad.Score)
-        if score is None:
-            raise _exceptions.MissingContextError("can't find score")
-        """
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
@@ -6439,14 +6341,11 @@ class VoiceNumber:
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "VOICE_NUMBER"
     persistent: typing.ClassVar[bool] = True
+    temporarily_do_not_check: typing.ClassVar[bool] = True
 
     def __post_init__(self):
         assert self.n in (1, 2, 3, 4, None), repr(self.n)
-
-    """
-    def _before_attach(self, deactivate, component):
-        _before_attach(self, deactivate, component)
-    """
+        assert isinstance(self.leak, bool), repr(self.leak)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
