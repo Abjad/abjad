@@ -253,7 +253,8 @@ def components(
     assert all(isinstance(_, _indicators.TimeSignature) for _ in time_signatures), repr(
         time_signatures
     )
-    staff = _score.Staff(components, name="Staff")
+    voice = _score.Voice(components, name="Voice")
+    staff = _score.Staff([voice], name="Staff")
     score = _score.Score([staff], name="Score")
     if not time_signatures:
         duration = _get.duration(components)
@@ -264,9 +265,12 @@ def components(
         durations = [_.duration for _ in time_signatures]
         parts = _select.partition_by_durations(leaves, durations)
         assert len(parts) == len(time_signatures)
+        previous_time_signature = None
         for time_signature, part in zip(time_signatures, parts):
             assert isinstance(time_signature, _indicators.TimeSignature)
-            _bind.attach(time_signature, _select.leaf(part, 0))
+            if time_signature != previous_time_signature:
+                _bind.attach(time_signature, _select.leaf(part, 0))
+            previous_time_signature = time_signature
     items: list[_score.Component | str] = []
     items.append(r'\include "abjad.ily"')
     for include in includes or []:
