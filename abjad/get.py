@@ -3072,26 +3072,26 @@ def logical_tie(argument) -> "_select.LogicalTie":
 
         Omits spurious rest when user repeat-ties into rest from note:
 
-        >>> staff = abjad.Staff("r4 c'4")
+        >>> voice = abjad.Voice("r4 c'4", name="Voice")
         >>> # user error; shouldn't tie note to rest:
-        >>> abjad.attach(abjad.RepeatTie(), staff[1])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(abjad.RepeatTie(), voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 r4
                 c'4
                 \repeatTie
             }
 
-        >>> abjad.get.logical_tie(staff[0])
+        >>> abjad.get.logical_tie(voice[0])
         LogicalTie(items=[Rest('r4')])
 
-        >>> abjad.get.logical_tie(staff[1])
+        >>> abjad.get.logical_tie(voice[1])
         LogicalTie(items=[Note("c'4")])
 
     """

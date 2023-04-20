@@ -167,6 +167,7 @@ Let's see what a few of these look like. Here are the first ten violin 1 descent
 
     >>> leaves = abjad.sequence.flatten(descents)
     >>> staff = abjad.Staff(leaves)
+    >>> score = abjad.Score([staff], name="Score")
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
@@ -185,6 +186,7 @@ Here are the first ten violin 2 descents:
 
     >>> leaves = abjad.sequence.flatten(descents)
     >>> staff = abjad.Staff(leaves)
+    >>> score = abjad.Score([staff], name="Score")
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
@@ -206,6 +208,7 @@ too:
 
     >>> notes = abjad.sequence.flatten(descents)
     >>> staff = abjad.Staff(notes)
+    >>> score = abjad.Score([staff], name="Score")
     >>> selections = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select.leaf(staff, 0)
@@ -500,13 +503,13 @@ We define more functions:
     >>> def attach_rehearsal_marks(score, measure_indices):
     ...     bell_voice = score["Bell_Voice"]
     ...     for measure_index in measure_indices:
-    ...         command = abjad.LilyPondLiteral(r"\mark \default", "before")
+    ...         command = abjad.LilyPondLiteral(r"\mark \default", site="before")
     ...         abjad.attach(command, bell_voice[measure_index])
 
     >>> def attach_page_breaks(score, measure_indices):
     ...     bell_voice = score["Bell_Voice"]
     ...     for measure_index in measure_indices:
-    ...         command = abjad.LilyPondLiteral(r"\break", "after")
+    ...         command = abjad.LilyPondLiteral(r"\break", site="after")
     ...         abjad.attach(command, bell_voice[measure_index])
 
 ::
