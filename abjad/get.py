@@ -931,6 +931,7 @@ def effective(
     ..  container:: example
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -940,7 +941,6 @@ def effective(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -1566,6 +1566,7 @@ def effective_wrapper(
         REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1575,7 +1576,6 @@ def effective_wrapper(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -1786,6 +1786,7 @@ def has_effective_indicator(
     ..  container:: example
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1795,7 +1796,6 @@ def has_effective_indicator(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -1939,6 +1939,7 @@ def has_indicator(
     ..  container:: example
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -1948,7 +1949,6 @@ def has_indicator(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -2072,6 +2072,7 @@ def has_indicator(
         Set ``attributes`` dictionary to test indicator attributes:
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
+        >>> staff = abjad.Staff([voice], name="Staff")
         >>> abjad.attach(abjad.Clef('treble'), voice[0])
         >>> abjad.attach(abjad.Clef('alto'), voice[2])
         >>> abjad.show(voice) # doctest: +SKIP
@@ -2137,6 +2138,7 @@ def indicator(
     ..  container:: example
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2146,7 +2148,6 @@ def indicator(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -2288,6 +2289,7 @@ def indicators(
     ..  container:: example
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2297,7 +2299,6 @@ def indicators(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> for note in abjad.select.notes(staff):
         ...     abjad.attach(abjad.Articulation("."), note)
 
@@ -2538,6 +2539,7 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
         REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -2547,7 +2549,6 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -3949,6 +3950,7 @@ def wrapper(
     ..  container:: example
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -3958,7 +3960,6 @@ def wrapper(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> for note in abjad.select.notes(staff):
         ...     abjad.attach(abjad.Articulation("."), note)
 
@@ -4087,6 +4088,7 @@ def wrappers(
         REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
         >>> container = abjad.on_beat_grace_container(
@@ -4096,7 +4098,6 @@ def wrappers(
         >>> abjad.attach(abjad.Articulation(">"), container[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
         >>> for note in abjad.select.notes(staff):
         ...     abjad.attach(abjad.Articulation("."), note)
 

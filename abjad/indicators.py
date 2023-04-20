@@ -272,7 +272,7 @@ class BarLine:
     site: str = "after"
 
     context: typing.ClassVar[str] = "Score"
-    find_context_on_attach: typing.ClassVar[bool] = True
+    # find_context_on_attach: typing.ClassVar[bool] = True
     known_abbreviations: typing.ClassVar[tuple[str, ...]] = (
         "",
         "|",
@@ -600,17 +600,17 @@ class Clef:
         LilyPond can not handle simultaneous clefs:
 
         >>> voice_1 = abjad.Voice("e'8 g' f' a' g' b'")
+        >>> voice_2 = abjad.Voice("c'4. c,8 b,, a,,")
+        >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> abjad.attach(abjad.Clef("treble"), voice_1[0], context="Voice")
         >>> command = abjad.VoiceNumber(1)
         >>> abjad.attach(command, voice_1[0])
         >>> voice_1.consists_commands.append("Clef_engraver")
-        >>> voice_2 = abjad.Voice("c'4. c,8 b,, a,,")
         >>> abjad.attach(abjad.Clef("treble"), voice_2[0], context="Voice")
         >>> abjad.attach(abjad.Clef("bass"), voice_2[1], context="Voice")
         >>> command = abjad.VoiceNumber(2)
         >>> abjad.attach(command, voice_2[0])
         >>> voice_2.consists_commands.append("Clef_engraver")
-        >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
         >>> staff.remove_commands.append("Clef_engraver")
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -722,6 +722,7 @@ class Clef:
     hide: bool = dataclasses.field(compare=False, default=False)
 
     context: typing.ClassVar[str] = "Staff"
+    # find_context_on_attach: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     redraw: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "before"
@@ -1295,10 +1296,12 @@ class Fermata:
         Tweaks:
 
         >>> note = abjad.Note("c'4")
+        >>> staff = abjad.Staff([note], name="Staff")
+        >>> score = abjad.Score([staff], name="Score")
         >>> fermata = abjad.Fermata()
         >>> bundle = abjad.bundle(fermata, r"- \tweak color #blue")
         >>> abjad.attach(bundle, note)
-        >>> abjad.show(note) # doctest: +SKIP
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
@@ -1319,6 +1322,7 @@ class Fermata:
         "verylongfermata",
     )
     context: typing.ClassVar[str] = "Score"
+    find_context_on_attach: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "after"
 
@@ -1341,17 +1345,17 @@ class Glissando:
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> voice = abjad.Voice("c'4 d' e' f'", name="Voice")
         >>> glissando = abjad.Glissando()
         >>> bundle = abjad.bundle(glissando, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(bundle, voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 - \tweak color #blue
@@ -1366,6 +1370,7 @@ class Glissando:
     zero_padding: bool = False
 
     context: typing.ClassVar[str] = "Voice"
+    # find_context_on_attach: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
 

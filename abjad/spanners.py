@@ -124,7 +124,6 @@ def beam(
         _bind.attach(start_beam_, start_leaf, direction=direction, tag=tag)
         _bind.detach(_indicators.StopBeam, stop_leaf)
         _bind.attach(stop_beam_, stop_leaf, tag=tag)
-
         if stemlet_length is None:
             continue
         staff = _parentage.Parentage(start_leaf).get(_score.Staff)
@@ -139,16 +138,14 @@ def beam(
         staff = _parentage.Parentage(stop_leaf).get(_score.Staff)
         lilypond_type = getattr(staff, "lilypond_type", "Staff")
         string = rf"\revert {lilypond_type}.Stem.stemlet-length"
-        literal = _indicators.LilyPondLiteral(string, site="before")
+        literal = _indicators.LilyPondLiteral(string, site="after")
         for indicator in stop_leaf._get_indicators():
             if indicator == literal:
                 break
         else:
             _bind.attach(literal, stop_leaf, tag=tag)
-
     if not durations:
         return
-
     if len(original_leaves) == 1:
         return
 
@@ -224,7 +221,6 @@ def beam(
                     right = min(previous, flag_count)
             beam_count = _indicators.BeamCount(left, right)
             _bind.attach(beam_count, last_leaf, tag=tag)
-
         # TODO: eventually remove middle leaf beam counts?
         for middle_leaf in part[1:-1]:
             if not _is_beamable(middle_leaf, beam_rests=beam_rests):
@@ -275,123 +271,136 @@ def glissando(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.glissando(staff[:])
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
+        >>> abjad.glissando(voice[:])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                c'8
-                \glissando
-                d'8
-                \glissando
-                e'8
-                \glissando
-                f'8
+                \context Voice = "Voice"
+                {
+                    c'8
+                    \glissando
+                    d'8
+                    \glissando
+                    e'8
+                    \glissando
+                    f'8
+                }
             }
 
     ..  container:: example
 
         Glissando avoids bend-after indicators:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
         >>> bend_after = abjad.BendAfter()
-        >>> abjad.attach(bend_after, staff[1])
-        >>> abjad.glissando(staff[:])
+        >>> abjad.attach(bend_after, voice[1])
+        >>> abjad.glissando(voice[:])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                c'8
-                \glissando
-                d'8
-                - \bendAfter #'-4
-                e'8
-                \glissando
-                f'8
+                \context Voice = "Voice"
+                {
+                    c'8
+                    \glissando
+                    d'8
+                    - \bendAfter #'-4
+                    e'8
+                    \glissando
+                    f'8
+                }
             }
 
     ..  container:: example
 
         Does not allow repeated pitches:
 
-        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-        >>> abjad.glissando(
-        ...     staff[:],
-        ...     allow_repeats=False,
-        ... )
+        >>> voice = abjad.Voice("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
+        >>> abjad.glissando(voice[:], allow_repeats=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                a8
-                a8
-                \glissando
-                b8
-                ~
-                b8
-                \glissando
-                c'8
-                c'8
-                \glissando
-                d'8
-                ~
-                d'8
+                \context Voice = "Voice"
+                {
+                    a8
+                    \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    ~
+                    d'8
+                }
             }
 
     ..  container:: example
 
         Allows repeated pitches (but not ties):
 
-        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-        >>> abjad.glissando(
-        ...     staff[:],
-        ...     allow_repeats=True,
-        ... )
+        >>> voice = abjad.Voice("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
+        >>> abjad.glissando(voice[:], allow_repeats=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                a8
-                \glissando
-                a8
-                \glissando
-                b8
-                ~
-                b8
-                \glissando
-                c'8
-                \glissando
-                c'8
-                \glissando
-                d'8
-                ~
-                d'8
+                \context Voice = "Voice"
+                {
+                    a8
+                    \glissando
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    ~
+                    d'8
+                }
             }
 
     ..  container:: example
 
         Allows both repeated pitches and ties:
 
-        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> voice = abjad.Voice("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     allow_repeats=True,
         ...     allow_ties=True,
         ... )
@@ -401,25 +410,28 @@ def glissando(
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                a8
-                \glissando
-                a8
-                \glissando
-                b8
-                \glissando
-                ~
-                b8
-                \glissando
-                c'8
-                \glissando
-                c'8
-                \glissando
-                d'8
-                \glissando
-                ~
-                d'8
+                \context Voice = "Voice"
+                {
+                    a8
+                    \glissando
+                    a8
+                    \glissando
+                    b8
+                    \glissando
+                    ~
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    c'8
+                    \glissando
+                    d'8
+                    \glissando
+                    ~
+                    d'8
+                }
             }
 
         Ties are excluded when repeated pitches are not allowed because all ties
@@ -429,9 +441,10 @@ def glissando(
 
         Spans and parenthesizes repeated pitches:
 
-        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> voice = abjad.Voice("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     allow_repeats=True,
         ...     parenthesize_repeats=True,
         ... )
@@ -441,36 +454,40 @@ def glissando(
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                a8
-                \glissando
-                \parenthesize
-                a8
-                \glissando
-                b8
-                ~
-                \parenthesize
-                b8
-                \glissando
-                c'8
-                \glissando
-                \parenthesize
-                c'8
-                \glissando
-                d'8
-                ~
-                \parenthesize
-                d'8
+                \context Voice = "Voice"
+                {
+                    a8
+                    \glissando
+                    \parenthesize
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    \parenthesize
+                    b8
+                    \glissando
+                    c'8
+                    \glissando
+                    \parenthesize
+                    c'8
+                    \glissando
+                    d'8
+                    ~
+                    \parenthesize
+                    d'8
+                }
             }
 
     ..  container:: example
 
         Parenthesizes (but does not span) repeated pitches:
 
-        >>> staff = abjad.Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+        >>> voice = abjad.Voice("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     parenthesize_repeats=True,
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
@@ -479,76 +496,80 @@ def glissando(
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                a8
-                \parenthesize
-                a8
-                \glissando
-                b8
-                ~
-                \parenthesize
-                b8
-                \glissando
-                c'8
-                \parenthesize
-                c'8
-                \glissando
-                d'8
-                ~
-                \parenthesize
-                d'8
+                \context Voice = "Voice"
+                {
+                    a8
+                    \parenthesize
+                    a8
+                    \glissando
+                    b8
+                    ~
+                    \parenthesize
+                    b8
+                    \glissando
+                    c'8
+                    \parenthesize
+                    c'8
+                    \glissando
+                    d'8
+                    ~
+                    \parenthesize
+                    d'8
+                }
             }
 
     ..  container:: example
 
         With ``hide_middle_note_heads=True``:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.glissando(
-        ...     staff[:],
-        ...     hide_middle_note_heads=True,
-        ... )
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
+        >>> staff = abjad.Staff([voice], name="Staff")
+        >>> abjad.glissando(voice[:], hide_middle_note_heads=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
             >>> string = abjad.lilypond(staff)
             >>> print(string)
-            \new Staff
+            \context Staff = "Staff"
             {
-                c'8
-                \glissando
-                \hide NoteHead
-                \override Accidental.stencil = ##f
-                \override NoteColumn.glissando-skip = ##t
-                \override NoteHead.no-ledgers = ##t
-                d'8
-                e'8
-                \revert Accidental.stencil
-                \revert NoteColumn.glissando-skip
-                \revert NoteHead.no-ledgers
-                \undo \hide NoteHead
-                f'8
+                \context Voice = "Voice"
+                {
+                    c'8
+                    \glissando
+                    \hide NoteHead
+                    \override Accidental.stencil = ##f
+                    \override NoteColumn.glissando-skip = ##t
+                    \override NoteHead.no-ledgers = ##t
+                    d'8
+                    e'8
+                    \revert Accidental.stencil
+                    \revert NoteColumn.glissando-skip
+                    \revert NoteHead.no-ledgers
+                    \undo \hide NoteHead
+                    f'8
+                }
             }
 
     ..  container:: example
 
         With ``hide_middle_note_heads=True`` and ``hide_middle_stems=True``:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     hide_middle_note_heads=True,
         ...     hide_middle_stems=True,
         ... )
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'8
                 \glissando
@@ -576,18 +597,15 @@ def glissando(
 
         With ``right_broken=True``:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.glissando(
-        ...     staff[:],
-        ...     right_broken=True,
-        ... )
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
+        >>> abjad.glissando(voice[:], right_broken=True)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(voice, tags=True)
         >>> print(string)
-        \new Staff
+        \context Voice = "Voice"
         {
             c'8
             %! abjad.glissando(7)
@@ -608,19 +626,19 @@ def glissando(
 
         With ``right_broken=True`` and ``hide_middle_note_heads=True``:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     right_broken=True,
         ...     hide_middle_note_heads=True,
         ... )
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(voice, tags=True)
         >>> print(string)
-        \new Staff
+        \context Voice = "Voice"
         {
             c'8
             %! abjad.glissando(7)
@@ -667,20 +685,20 @@ def glissando(
         With ``right_broken=True``, ``hide_middle_note_heads=True`` and
         ``right_broken_show_next=True``:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     hide_middle_note_heads=True,
         ...     right_broken=True,
         ...     right_broken_show_next=True,
         ... )
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(voice, tags=True)
         >>> print(string)
-        \new Staff
+        \context Voice = "Voice"
         {
             c'8
             %! abjad.glissando(7)
@@ -742,19 +760,19 @@ def glissando(
 
         With ``left_broken=True`` (and ``hide_middle_note_heads=True``):
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     left_broken=True,
         ...     hide_middle_note_heads=True,
         ... )
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(voice, tags=True)
         >>> print(string)
-        \new Staff
+        \context Voice = "Voice"
         {
             %! HIDE_TO_JOIN_BROKEN_SPANNERS
             %! LEFT_BROKEN
@@ -794,18 +812,18 @@ def glissando(
 
         Tweaks apply to every glissando:
 
-        >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
+        >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     abjad.Tweak(r"- \tweak style #'trill"),
         ... )
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'8
                 - \tweak style #'trill
@@ -823,25 +841,25 @@ def glissando(
 
         With ``zero_padding=True`` on fixed pitch:
 
-        >>> staff = abjad.Staff("d'8 d'4. d'4. d'8")
+        >>> voice = abjad.Voice("d'8 d'4. d'4. d'8", name="Voice")
 
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     allow_repeats=True,
         ...     zero_padding=True,
         ... )
-        >>> for note in staff[1:]:
+        >>> for note in voice[1:]:
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 d'8
                 - \abjad-zero-padding-glissando
@@ -865,23 +883,20 @@ def glissando(
 
         With ``zero_padding=True`` on changing pitches:
 
-        >>> staff = abjad.Staff("c'8. d'8. e'8. f'8.")
-        >>> abjad.glissando(
-        ...     staff[:],
-        ...     zero_padding=True,
-        ... )
-        >>> for note in staff[1:-1]:
+        >>> voice = abjad.Voice("c'8. d'8. e'8. f'8.", name="Voice")
+        >>> abjad.glissando(voice[:], zero_padding=True)
+        >>> for note in voice[1:-1]:
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'8.
                 - \abjad-zero-padding-glissando
@@ -903,26 +918,26 @@ def glissando(
 
         With indexed tweaks:
 
-        >>> staff = abjad.Staff("d'4 d' d' d'")
+        >>> voice = abjad.Voice("d'4 d' d' d'", name="Voice")
         >>> abjad.glissando(
-        ...     staff[:],
+        ...     voice[:],
         ...     (abjad.Tweak(r"- \tweak color #red"), 0),
         ...     (abjad.Tweak(r"- \tweak color #red"), -1),
         ...     allow_repeats=True,
         ...     zero_padding=True,
         ... )
-        >>> for note in staff[1:-1]:
+        >>> for note in voice[1:-1]:
         ...     abjad.override(note).NoteHead.transparent = True
         ...     abjad.override(note).NoteHead.X_extent = "#'(0 . 0)"
         ...
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 d'4
                 - \tweak color #red
