@@ -293,39 +293,42 @@ def chord(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        \abjad-color-music #'green
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            \abjad-color-music #'green
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -390,47 +393,50 @@ def chords(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        bf'16
-                        \abjad-color-music #'red
-                        <a'' b''>16
-                        c'16
-                        \abjad-color-music #'blue
-                        <d' e'>4
-                        ~
-                        \abjad-color-music #'red
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        bf'16
-                        \abjad-color-music #'blue
-                        <a'' b''>16
-                        d'16
-                        \abjad-color-music #'red
-                        <e' fs'>4
-                        ~
-                        \abjad-color-music #'blue
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        r16
-                        bf'16
-                        \abjad-color-music #'red
-                        <a'' b''>16
-                        e'16
-                        \abjad-color-music #'blue
-                        <fs' gs'>4
-                        ~
-                        \abjad-color-music #'red
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            bf'16
+                            \abjad-color-music #'red
+                            <a'' b''>16
+                            c'16
+                            \abjad-color-music #'blue
+                            <d' e'>4
+                            ~
+                            \abjad-color-music #'red
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            bf'16
+                            \abjad-color-music #'blue
+                            <a'' b''>16
+                            d'16
+                            \abjad-color-music #'red
+                            <e' fs'>4
+                            ~
+                            \abjad-color-music #'blue
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            r16
+                            bf'16
+                            \abjad-color-music #'red
+                            <a'' b''>16
+                            e'16
+                            \abjad-color-music #'blue
+                            <fs' gs'>4
+                            ~
+                            \abjad-color-music #'red
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -934,44 +940,47 @@ def flatten(argument, depth: int = 1) -> list:
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \abjad-color-music #'red
-                        \time 7/4
-                        r16
-                        \abjad-color-music #'red
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        \abjad-color-music #'blue
-                        r16
-                        \abjad-color-music #'blue
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        \abjad-color-music #'red
-                        r16
-                        \abjad-color-music #'red
-                        bf'16
-                        <a'' b''>16
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'red
+                            \time 7/4
+                            r16
+                            \abjad-color-music #'red
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            \abjad-color-music #'blue
+                            r16
+                            \abjad-color-music #'blue
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'red
+                            r16
+                            \abjad-color-music #'red
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -1024,44 +1033,47 @@ def flatten(argument, depth: int = 1) -> list:
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \abjad-color-music #'red
-                        \time 7/4
-                        r16
-                        \abjad-color-music #'blue
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        \abjad-color-music #'red
-                        r16
-                        \abjad-color-music #'blue
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        \abjad-color-music #'red
-                        r16
-                        \abjad-color-music #'blue
-                        bf'16
-                        <a'' b''>16
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'red
+                            \time 7/4
+                            r16
+                            \abjad-color-music #'blue
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            \abjad-color-music #'red
+                            r16
+                            \abjad-color-music #'blue
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'red
+                            r16
+                            \abjad-color-music #'blue
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -2323,39 +2335,42 @@ def leaf(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        \abjad-color-music #'green
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            \abjad-color-music #'green
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -3946,39 +3961,42 @@ def note(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        \abjad-color-music #'green
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            \abjad-color-music #'green
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -4040,44 +4058,47 @@ def notes(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        \abjad-color-music #'red
-                        bf'16
-                        <a'' b''>16
-                        \abjad-color-music #'blue
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        \abjad-color-music #'red
-                        bf'16
-                        <a'' b''>16
-                        \abjad-color-music #'blue
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        r16
-                        \abjad-color-music #'red
-                        bf'16
-                        <a'' b''>16
-                        \abjad-color-music #'blue
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            \abjad-color-music #'red
+                            bf'16
+                            <a'' b''>16
+                            \abjad-color-music #'blue
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            \abjad-color-music #'red
+                            bf'16
+                            <a'' b''>16
+                            \abjad-color-music #'blue
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            r16
+                            \abjad-color-music #'red
+                            bf'16
+                            <a'' b''>16
+                            \abjad-color-music #'blue
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -5615,39 +5636,42 @@ def rest(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        \abjad-color-music #'green
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'green
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -5706,41 +5730,44 @@ def rests(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \abjad-color-music #'red
-                        \time 7/4
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        \abjad-color-music #'blue
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        \abjad-color-music #'red
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        e'16
-                        <fs' gs'>4
-                        ~
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'red
+                            \time 7/4
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            \abjad-color-music #'blue
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'red
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            e'16
+                            <fs' gs'>4
+                            ~
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -5800,43 +5827,46 @@ def run(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        c'16
-                        c'16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        d'16
-                        d'16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        r16
-                        \abjad-color-music #'green
-                        e'16
-                        \abjad-color-music #'green
-                        e'16
-                        \abjad-color-music #'green
-                        e'16
-                        \abjad-color-music #'green
-                        <fs' gs'>4
-                        ~
-                        \abjad-color-music #'green
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            c'16
+                            c'16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            d'16
+                            d'16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            r16
+                            \abjad-color-music #'green
+                            e'16
+                            \abjad-color-music #'green
+                            e'16
+                            \abjad-color-music #'green
+                            e'16
+                            \abjad-color-music #'green
+                            <fs' gs'>4
+                            ~
+                            \abjad-color-music #'green
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -5895,53 +5925,56 @@ def runs(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        \abjad-color-music #'red
-                        c'16
-                        \abjad-color-music #'red
-                        c'16
-                        \abjad-color-music #'red
-                        c'16
-                        \abjad-color-music #'red
-                        <d' e'>4
-                        ~
-                        \abjad-color-music #'red
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        \abjad-color-music #'blue
-                        d'16
-                        \abjad-color-music #'blue
-                        d'16
-                        \abjad-color-music #'blue
-                        d'16
-                        \abjad-color-music #'blue
-                        <e' fs'>4
-                        ~
-                        \abjad-color-music #'blue
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        r16
-                        \abjad-color-music #'red
-                        e'16
-                        \abjad-color-music #'red
-                        e'16
-                        \abjad-color-music #'red
-                        e'16
-                        \abjad-color-music #'red
-                        <fs' gs'>4
-                        ~
-                        \abjad-color-music #'red
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            \abjad-color-music #'red
+                            c'16
+                            \abjad-color-music #'red
+                            c'16
+                            \abjad-color-music #'red
+                            c'16
+                            \abjad-color-music #'red
+                            <d' e'>4
+                            ~
+                            \abjad-color-music #'red
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            \abjad-color-music #'blue
+                            d'16
+                            \abjad-color-music #'blue
+                            d'16
+                            \abjad-color-music #'blue
+                            d'16
+                            \abjad-color-music #'blue
+                            <e' fs'>4
+                            ~
+                            \abjad-color-music #'blue
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            r16
+                            \abjad-color-music #'red
+                            e'16
+                            \abjad-color-music #'red
+                            e'16
+                            \abjad-color-music #'red
+                            e'16
+                            \abjad-color-music #'red
+                            <fs' gs'>4
+                            ~
+                            \abjad-color-music #'red
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
@@ -6170,44 +6203,47 @@ def tuplet(
                     autoBeaming = ##f
                 }
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
+                    \context Voice = "Voice"
                     {
-                        \time 7/4
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        c'16
-                        <d' e'>4
-                        ~
-                        <d' e'>16
-                    }
-                    \times 8/9
-                    {
-                        r16
-                        bf'16
-                        <a'' b''>16
-                        d'16
-                        <e' fs'>4
-                        ~
-                        <e' fs'>16
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 10/9
-                    {
-                        \abjad-color-music #'green
-                        r16
-                        \abjad-color-music #'green
-                        bf'16
-                        \abjad-color-music #'green
-                        <a'' b''>16
-                        \abjad-color-music #'green
-                        e'16
-                        \abjad-color-music #'green
-                        <fs' gs'>4
-                        ~
-                        \abjad-color-music #'green
-                        <fs' gs'>16
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \time 7/4
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            c'16
+                            <d' e'>4
+                            ~
+                            <d' e'>16
+                        }
+                        \times 8/9
+                        {
+                            r16
+                            bf'16
+                            <a'' b''>16
+                            d'16
+                            <e' fs'>4
+                            ~
+                            <e' fs'>16
+                        }
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 10/9
+                        {
+                            \abjad-color-music #'green
+                            r16
+                            \abjad-color-music #'green
+                            bf'16
+                            \abjad-color-music #'green
+                            <a'' b''>16
+                            \abjad-color-music #'green
+                            e'16
+                            \abjad-color-music #'green
+                            <fs' gs'>4
+                            ~
+                            \abjad-color-music #'green
+                            <fs' gs'>16
+                        }
                     }
                 }
             >>
