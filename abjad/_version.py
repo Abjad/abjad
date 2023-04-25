@@ -1,3 +1,3 @@
-__version_info__ = (3, 16)
+__version_info__ = (3, 17)
 __version__ = ".".join(str(_) for _ in __version_info__[:2])
 __version__ += "".join(__version_info__[2:])
