@@ -51,17 +51,17 @@ classifiers = [
 ]
 
 extras_require = {
-    "nauert": ["abjad-ext-nauert>=3.16"],
-    "rmakers": ["abjad-ext-rmakers>=3.16"],
+    "nauert": ["abjad-ext-nauert>=3.17"],
+    "rmakers": ["abjad-ext-rmakers>=3.17"],
     "dev": [
-        "black>=23.1.0",
+        "black>=23.3.0",
         "flake8>=6.0.0",
         "isort>=5.12.0",
-        "mypy>=1.0.1",
-        "pytest>=7.2.1",
+        "mypy>=1.2.0",
+        "pytest>=7.3.1",
         "pytest-cov>=4.0.0",
         "pytest-helpers-namespace>=2021.12.29",
-        "sphinx-autodoc-typehints>=1.22",
+        "sphinx-autodoc-typehints>=1.23.0",
         "sphinx-rtd-theme>=1.0.0",
     ],
 }
