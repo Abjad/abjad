@@ -1729,15 +1729,15 @@ def tie(
 
         With repeat ties:
 
-        >>> staff = abjad.Staff("c'4 c' c' c'")
-        >>> abjad.tie(staff[:], repeat=True)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 c' c' c'", name="Voice")
+        >>> abjad.tie(voice[:], repeat=True)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 c'4
@@ -1752,15 +1752,15 @@ def tie(
 
         Removes any existing ties before attaching new tie:
 
-        >>> staff = abjad.Staff("c'4 ~ c' ~ c' ~ c'")
-        >>> abjad.tie(staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 ~ c' ~ c' ~ c'", name="Voice")
+        >>> abjad.tie(voice[:])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 ~
@@ -1776,15 +1776,15 @@ def tie(
         Ties consecutive chords if all adjacent pairs have at least one pitch
         in common:
 
-        >>> staff = abjad.Staff("<c'>4 <c' d'>4 <d'>4")
-        >>> abjad.tie(staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("<c'>4 <c' d'>4 <d'>4", name="Voice")
+        >>> abjad.tie(voice[:])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 <c'>4
                 ~
@@ -1797,15 +1797,15 @@ def tie(
 
         Enharmonics are allowed:
 
-        >>> staff = abjad.Staff("c'4 bs c' dff'")
-        >>> abjad.tie(staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 bs c' dff'", name="Voice")
+        >>> abjad.tie(voice[:])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 ~
@@ -1820,15 +1820,15 @@ def tie(
 
         Repeat tie threshold works like this:
 
-        >>> staff = abjad.Staff("d'4. d'2 d'4. d'2")
-        >>> abjad.tie(staff[:], repeat=(4, 8))
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("d'4. d'2 d'4. d'2", name="Voice")
+        >>> abjad.tie(voice[:], repeat=(4, 8))
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 d'4.
                 ~
@@ -1843,14 +1843,14 @@ def tie(
 
         Detaches ties before attach:
 
-        >>> staff = abjad.Staff("d'2 ~ d'8 ~ d'8 ~ d'8 ~ d'8")
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("d'2 ~ d'8 ~ d'8 ~ d'8 ~ d'8", name="Voice")
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 d'2
                 ~
@@ -1863,14 +1863,14 @@ def tie(
                 d'8
             }
 
-        >>> abjad.tie(staff[:], repeat=(4, 8))
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.tie(voice[:], repeat=(4, 8))
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 d'2
                 d'8

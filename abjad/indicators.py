@@ -1322,7 +1322,7 @@ class Fermata:
         "verylongfermata",
     )
     context: typing.ClassVar[str] = "Score"
-    find_context_on_attach: typing.ClassVar[bool] = True
+    # find_context_on_attach: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "after"
 
@@ -1467,6 +1467,7 @@ class InstrumentName:
     _: dataclasses.KW_ONLY
     context: str = "Staff"
 
+    # find_context_on_attach: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "before"
 
     def __post_init__(self):
@@ -2053,6 +2054,7 @@ class KeySignature:
     mode: Mode = Mode("major")
 
     context: typing.ClassVar[str] = "Staff"
+    # find_context_on_attach: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     redraw: typing.ClassVar[bool] = True
 
@@ -2582,6 +2584,8 @@ class MetronomeMark:
     hide: bool = dataclasses.field(compare=False, default=False)
 
     context: typing.ClassVar[str] = "Score"
+    # TODO: make this work:
+    # find_context_on_attach: typing.ClassVar[bool] = True
     mutates_offsets_in_seconds: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "METRONOME_MARK"
     persistent: typing.ClassVar[bool] = True
@@ -2929,6 +2933,7 @@ class Ottava:
     site: str = "before"
 
     context: typing.ClassVar[str] = "Staff"
+    # find_context_on_attach: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -2996,28 +3001,33 @@ class RehearsalMark:
         Tweaks:
 
         >>> note = abjad.Note("c'4")
+        >>> staff = abjad.Staff([note])
+        >>> score = abjad.Score([staff], name="Score")
         >>> mark = abjad.RehearsalMark(markup="A")
         >>> bundle = abjad.bundle(mark, r"\tweak color #blue")
         >>> abjad.attach(bundle, note)
-        >>> staff = abjad.Staff([note])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(score)
             >>> print(string)
-            \new Staff
-            {
-                \tweak color #blue
-                \mark A
-                c'4
-            }
+            \context Score = "Score"
+            <<
+                \new Staff
+                {
+                    \tweak color #blue
+                    \mark A
+                    c'4
+                }
+            >>
 
     """
 
     markup: Markup | str | None = None
     number: int | None = None
 
+    # find_context_on_attach: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
 
     def __post_init__(self):
@@ -3091,10 +3101,10 @@ class Repeat:
         Volta repeat:
 
         >>> container = abjad.Container("c'4 d'4 e'4 f'4")
-        >>> repeat = abjad.Repeat()
-        >>> abjad.attach(repeat, container)
         >>> staff = abjad.Staff([container])
         >>> score = abjad.Score([staff])
+        >>> repeat = abjad.Repeat()
+        >>> abjad.attach(repeat, container)
         >>> abjad.show(score)  # doctest: +SKIP
 
         ..  docs::
@@ -3120,10 +3130,10 @@ class Repeat:
         Unfold repeat:
 
         >>> container = abjad.Container("c'4 d'4 e'4 f'4")
-        >>> repeat = abjad.Repeat(repeat_type='unfold')
-        >>> abjad.attach(repeat, container)
         >>> staff = abjad.Staff([container])
         >>> score = abjad.Score([staff])
+        >>> repeat = abjad.Repeat(repeat_type='unfold')
+        >>> abjad.attach(repeat, container)
         >>> abjad.show(score)  # doctest: +SKIP
 
         ..  docs::
@@ -3151,6 +3161,7 @@ class Repeat:
 
     can_attach_to_containers: typing.ClassVar[bool] = True
     format_leaf_children: typing.ClassVar[bool] = False
+    # find_context_on_attach: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
     site: typing.ClassVar[str] = "before"
 
@@ -3174,17 +3185,17 @@ class RepeatTie:
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 c' d' d'")
+        >>> voice = abjad.Voice("c'4 c' d' d'", name="Voice")
         >>> repeat_tie = abjad.RepeatTie()
         >>> bundle = abjad.bundle(repeat_tie, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[1])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(bundle, voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 c'4
@@ -3194,14 +3205,14 @@ class RepeatTie:
                 d'4
             }
 
-        >>> abjad.get.indicators(staff[1], abjad.RepeatTie)
+        >>> abjad.get.indicators(voice[1], abjad.RepeatTie)
         [RepeatTie()]
 
-        >>> wrapper = abjad.get.indicator(staff[1], abjad.RepeatTie, unwrap=False)
+        >>> wrapper = abjad.get.indicator(voice[1], abjad.RepeatTie, unwrap=False)
         >>> wrapper.get_item()
         Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', tag=None),))
 
-        >>> for leaf in staff:
+        >>> for leaf in voice:
         ...     leaf, abjad.get.logical_tie(leaf)
         ...
         (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
@@ -3213,20 +3224,20 @@ class RepeatTie:
 
         With ``direction`` unset:
 
-        >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
+        >>> voice = abjad.Voice("c'4 c'4 c''4 c''4", name="Voice")
         >>> tie = abjad.RepeatTie()
         >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[1])
+        >>> abjad.attach(bundle, voice[1])
         >>> tie = abjad.RepeatTie()
         >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[3])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(bundle, voice[3])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 c'4
@@ -3240,20 +3251,20 @@ class RepeatTie:
 
         With ``direction=abjad.UP``:
 
-        >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
+        >>> voice = abjad.Voice("c'4 c'4 c''4 c''4", name="Voice")
         >>> tie = abjad.RepeatTie()
         >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[1], direction=abjad.UP)
+        >>> abjad.attach(bundle, voice[1], direction=abjad.UP)
         >>> tie = abjad.RepeatTie()
         >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[3], direction=abjad.UP)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(bundle, voice[3], direction=abjad.UP)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 c'4
@@ -3269,20 +3280,20 @@ class RepeatTie:
 
         With ``direction=abjad.DOWN``:
 
-        >>> staff = abjad.Staff("c'4 c'4 c''4 c''4")
+        >>> voice = abjad.Voice("c'4 c'4 c''4 c''4", name="Voice")
         >>> tie = abjad.RepeatTie()
         >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[1], direction=abjad.DOWN)
+        >>> abjad.attach(bundle, voice[1], direction=abjad.DOWN)
         >>> tie = abjad.RepeatTie()
         >>> bundle = abjad.bundle(tie, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[3], direction=abjad.DOWN)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(bundle, voice[3], direction=abjad.DOWN)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \context Voice = "Voice"
             {
                 c'4
                 c'4
@@ -3300,6 +3311,7 @@ class RepeatTie:
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
+    # find_context_on_attach: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
 
     def _attachment_test_all(self, argument):
@@ -6048,26 +6060,6 @@ class TimeSignature:
         assert isinstance(self.pair[1], int)
         if self.partial is not None:
             assert isinstance(self.partial, _duration.Duration), repr(self.partial)
-
-    # TODO: remove in favor of dataclass definition?
-    def __copy__(self, *arguments) -> "TimeSignature":
-        """
-        Copies time signature.
-        """
-        return type(self)((self.numerator, self.denominator), partial=self.partial)
-
-    # TODO: remove in favor of dataclass definition
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when ``argument`` is a time signature with numerator and denominator
-        equal to this time signature. Also true when ``argument`` is a tuple with first
-        and second elements equal to numerator and denominator of this time signature.
-        """
-        if isinstance(argument, type(self)):
-            if self.numerator == argument.numerator:
-                if self.denominator == argument.denominator:
-                    return True
-        return False
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
