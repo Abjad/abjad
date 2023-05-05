@@ -8,14 +8,14 @@ def test_mutate_replace_01():
     Equivalent to staff[1:3] = new_notes.
     """
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:2])
-    abjad.beam(staff[2:])
-    abjad.hairpin("< !", staff[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:2])
+    abjad.beam(voice[2:])
+    abjad.hairpin("< !", voice[:])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -29,9 +29,9 @@ def test_mutate_replace_01():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    old_notes = staff[1:3]
+    old_notes = voice[1:3]
     new_notes = [
         abjad.Note("c''16"),
         abjad.Note("c''16"),
@@ -42,9 +42,9 @@ def test_mutate_replace_01():
 
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -59,25 +59,25 @@ def test_mutate_replace_01():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate_replace_02():
     """
     Moves parentage from one old note to five new notes.
 
-    Equivalent to staff[:1] = new_notes.
+    Equivalent to voice[:1] = new_notes.
     """
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:2])
-    abjad.beam(staff[2:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:2])
+    abjad.beam(voice[2:])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -89,9 +89,9 @@ def test_mutate_replace_02():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    old_notes = staff[:1]
+    old_notes = voice[:1]
     new_notes = [
         abjad.Note("c''16"),
         abjad.Note("c''16"),
@@ -100,12 +100,14 @@ def test_mutate_replace_02():
         abjad.Note("c''16"),
     ]
     abjad.mutate.replace(old_notes, new_notes)
+    abjad.attach(abjad.StartBeam(), voice[0])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c''16
+            [
             c''16
             c''16
             c''16
@@ -118,25 +120,25 @@ def test_mutate_replace_02():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate_replace_03():
     """
     Moves parentage from two old notes to five new notes.
 
-    Equivalent to staff[:2] = new_notes.
+    Equivalent to voice[:2] = new_notes.
     """
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:2])
-    abjad.beam(staff[2:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:2])
+    abjad.beam(voice[2:])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -148,9 +150,9 @@ def test_mutate_replace_03():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    old_notes = staff[:2]
+    old_notes = voice[:2]
     new_notes = [
         abjad.Note("c''16"),
         abjad.Note("c''16"),
@@ -160,9 +162,9 @@ def test_mutate_replace_03():
     ]
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c''16
             c''16
@@ -175,25 +177,25 @@ def test_mutate_replace_03():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate_replace_04():
     """
     Moves parentage from three old notes to five new notes.
 
-    "Equivalent to staff[:3] = new_notes."
+    Equivalent to voice[:3] = new_notes.
     """
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:2])
-    abjad.beam(staff[2:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:2])
+    abjad.beam(voice[2:])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -205,9 +207,9 @@ def test_mutate_replace_04():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    old_notes = staff[:3]
+    old_notes = voice[:3]
     new_notes = [
         abjad.Note("c''16"),
         abjad.Note("c''16"),
@@ -216,12 +218,14 @@ def test_mutate_replace_04():
         abjad.Note("c''16"),
     ]
     abjad.mutate.replace(old_notes, new_notes)
+    abjad.attach(abjad.StartBeam(), voice[0])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c''16
+            [
             c''16
             c''16
             c''16
@@ -230,25 +234,25 @@ def test_mutate_replace_04():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate_replace_05():
     """
     Moves parentage from four old notes to five new notes.
 
-    Equivalent to staff[:] = new_notes.
+    Equivalent to voice[:] = new_notes.
     """
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:2])
-    abjad.beam(staff[2:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:2])
+    abjad.beam(voice[2:])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -260,9 +264,9 @@ def test_mutate_replace_05():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    old_notes = staff[:]
+    old_notes = voice[:]
     new_notes = [
         abjad.Note("c''16"),
         abjad.Note("c''16"),
@@ -272,9 +276,9 @@ def test_mutate_replace_05():
     ]
     abjad.mutate.replace(old_notes, new_notes)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c''16
             c''16
@@ -283,9 +287,9 @@ def test_mutate_replace_05():
             c''16
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate_replace_06():

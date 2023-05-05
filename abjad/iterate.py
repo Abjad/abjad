@@ -851,7 +851,6 @@ def pitches(argument) -> typing.Iterator[_pitch.NamedPitch]:
     ..  container:: example
 
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
-        >>> abjad.beam(staff[:])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -861,11 +860,9 @@ def pitches(argument) -> typing.Iterator[_pitch.NamedPitch]:
             \new Staff
             {
                 c'8
-                [
                 d'8
                 e'8
                 f'8
-                ]
             }
 
         >>> for pitch in abjad.iterate.pitches(staff):

@@ -102,15 +102,15 @@ def test_mutate_extract_03():
     Extracts container.
     """
 
-    staff = abjad.Staff()
-    staff.append(abjad.Container("c'8 d'8"))
-    staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select.leaves(staff)
+    voice = abjad.Voice()
+    voice.append(abjad.Container("c'8 d'8"))
+    voice.append(abjad.Container("e'8 f'8"))
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -124,14 +124,14 @@ def test_mutate_extract_03():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    container = staff[0]
+    container = voice[0]
     abjad.mutate.extract(container)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -143,10 +143,10 @@ def test_mutate_extract_03():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
     assert not container
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate_extract_04():

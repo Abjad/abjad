@@ -50,14 +50,14 @@ def test_Container_insert_02():
 
 
 def test_Container_insert_03():
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    abjad.beam(staff[:])
-    staff.insert(4, abjad.Rest((1, 4)))
+    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    abjad.beam(voice[:])
+    voice.insert(4, abjad.Rest((1, 4)))
 
-    assert abjad.wf.wellformed(staff)
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.wf.wellformed(voice)
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -76,14 +76,14 @@ def test_Container_insert_04():
     Insert works with really big positive values.
     """
 
-    staff = abjad.Staff([abjad.Note(n, (1, 8)) for n in range(4)])
-    abjad.beam(staff[:])
-    staff.insert(1000, abjad.Rest((1, 4)))
+    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    abjad.beam(voice[:])
+    voice.insert(1000, abjad.Rest((1, 4)))
 
-    assert abjad.wf.wellformed(staff)
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.wf.wellformed(voice)
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -167,14 +167,14 @@ def test_Container_insert_07():
 
 
 def test_Container_insert_08():
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:])
-    staff.insert(1, abjad.Note("cs'8"))
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:])
+    voice.insert(1, abjad.Note("cs'8"))
 
-    assert abjad.wf.wellformed(staff)
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.wf.wellformed(voice)
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [

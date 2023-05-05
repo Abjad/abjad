@@ -2,7 +2,7 @@ import abjad
 
 
 def test_LilyPondParser__indicators__Dynamic_01():
-    target = abjad.Staff("c2 c2 c2 c2 c2 c2")
+    target = abjad.Voice("c2 c2 c2 c2 c2 c2")
     dynamic = abjad.Dynamic("ppp")
     abjad.attach(dynamic, target[0], direction=abjad.DOWN)
     dynamic = abjad.Dynamic("mp")
@@ -18,7 +18,7 @@ def test_LilyPondParser__indicators__Dynamic_01():
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c2
             _ \ppp
@@ -36,7 +36,7 @@ def test_LilyPondParser__indicators__Dynamic_01():
         """
     )
 
-    string = r"""\new Staff { c2 _ \ppp c ^ \mp c2\rfz c\mf c2\spp c\ff }"""
+    string = r"""\new Voice { c2 _ \ppp c ^ \mp c2\rfz c\mf c2\spp c\ff }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result)

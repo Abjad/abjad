@@ -109,9 +109,12 @@ def test_mutate_fuse_06():
     Fuses two tuplets with same multiplier.
     """
 
+    voice = abjad.Voice()
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    voice.append(tuplet_1)
     abjad.beam(tuplet_1[:])
     tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
+    voice.append(tuplet_2)
     abjad.slur(tuplet_2[:])
 
     assert abjad.lilypond(tuplet_1) == abjad.string.normalize(
@@ -172,11 +175,12 @@ def test_mutate_fuse_07():
     Fuses tuplets with same multiplier in score.
     """
 
+    voice = abjad.Voice()
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    abjad.beam(tuplet_1[:])
     tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
-    abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
+    abjad.beam(tuplet_1[:])
+    abjad.slur(tuplet_2[:])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -235,10 +239,10 @@ def test_mutate_fuse_08():
     """
 
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    abjad.beam(tuplet_1[:])
     tuplet_2 = abjad.Tuplet((2, 3), "c'8 d'8 e'8 f'8 g'8")
-    abjad.slur(tuplet_2[:])
     voice = abjad.Voice([tuplet_1, tuplet_2])
+    abjad.beam(tuplet_1[:])
+    abjad.slur(tuplet_2[:])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""

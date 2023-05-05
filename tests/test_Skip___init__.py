@@ -87,12 +87,12 @@ def test_Skip___init___07():
     Initialize skip from beamed note.
     """
 
-    staff = abjad.Staff("c'8 c'8 c'8")
-    abjad.beam(staff[:])
-    skip = abjad.Skip(staff[0])
-    assert isinstance(staff[0], abjad.Note)
+    voice = abjad.Voice("c'8 c'8 c'8")
+    abjad.beam(voice[:])
+    skip = abjad.Skip(voice[0])
+    assert isinstance(voice[0], abjad.Note)
     assert isinstance(skip, abjad.Skip)
-    assert staff[0]._parent is staff
+    assert voice[0]._parent is voice
 
 
 def test_Skip___init___08():
@@ -131,12 +131,12 @@ def test_Skip___init___10():
     Initialize skip from spanned rest.
     """
 
-    staff = abjad.Staff(
+    voice = abjad.Voice(
         [abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))]
     )
-    abjad.beam(staff[:])
-    skip = abjad.Skip(staff[1])
+    abjad.beam(voice[:])
+    skip = abjad.Skip(voice[1])
     assert isinstance(skip, abjad.Skip)
-    assert isinstance(staff[1], abjad.Rest)
-    assert staff[1]._parent is staff
+    assert isinstance(voice[1], abjad.Rest)
+    assert voice[1]._parent is voice
     assert skip._parent is None

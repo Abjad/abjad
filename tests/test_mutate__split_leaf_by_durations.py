@@ -54,13 +54,13 @@ def test_mutate__split_leaf_by_durations_02():
     This test comes from #272 in GitHub.
     """
 
-    staff = abjad.Staff(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
-    leaf = abjad.get.leaf(staff, 0)
+    voice = abjad.Voice(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
+    leaf = abjad.get.leaf(voice, 0)
     abjad.mutate._split_leaf_by_durations(leaf, [abjad.Duration(1, 20)])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             \times 2/3
             {
@@ -77,9 +77,9 @@ def test_mutate__split_leaf_by_durations_02():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate__split_leaf_by_durations_03():
@@ -243,17 +243,17 @@ def test_mutate__split_leaf_by_durations_10():
     Ties after split.
     """
 
-    staff = abjad.Staff()
-    staff.append(abjad.Container("c'8 d'8"))
-    staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select.leaves(staff)
+    voice = abjad.Voice()
+    voice.append(abjad.Container("c'8 d'8"))
+    voice.append(abjad.Container("e'8 f'8"))
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -271,13 +271,13 @@ def test_mutate__split_leaf_by_durations_10():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
     abjad.mutate._split_leaf_by_durations(leaves[0], [abjad.Duration(1, 32)])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'32
@@ -297,6 +297,6 @@ def test_mutate__split_leaf_by_durations_10():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)

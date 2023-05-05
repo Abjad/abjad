@@ -255,7 +255,7 @@ def components(
     )
     voice = _score.Voice(components, name="Voice")
     staff = _score.Staff([voice], name="Staff")
-    score = _score.Score([staff], name="Score")
+    score = _score.Score([staff], name="Score", simultaneous=False)
     if not time_signatures:
         duration = _get.duration(components)
         time_signature = _indicators.TimeSignature(duration.pair)

@@ -582,6 +582,8 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
         wrappers.sort(key=key)
         open_spanners: dict = {}
         for wrapper in wrappers:
+            if wrapper.deactivate is True:
+                continue
             if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
                 command = wrapper.unbundle_indicator().command
@@ -861,6 +863,8 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
         wrappers.sort(key=lambda _: _.leaked_start_offset)
         open_spanners: dict = {}
         for wrapper in wrappers:
+            if wrapper.deactivate is True:
+                continue
             if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
                 command = wrapper.unbundle_indicator().command

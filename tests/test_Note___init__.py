@@ -95,9 +95,9 @@ def test_Note___init___08():
 
     chord = abjad.Chord([2, 3, 4], (1, 8))
     chords = abjad.mutate.copy(chord, 3)
-    staff = abjad.Staff(chords)
-    abjad.beam(staff[:])
-    note = abjad.Note(staff[0])
+    voice = abjad.Voice(chords)
+    abjad.beam(voice[:])
+    note = abjad.Note(voice[0])
 
     assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
@@ -147,15 +147,15 @@ def test_Note___init___11():
     Initializes note from beamed rest.
     """
 
-    staff = abjad.Staff(
+    voice = abjad.Voice(
         [abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))]
     )
-    abjad.beam(staff[:])
-    note = abjad.Note(staff[1])
+    abjad.beam(voice[:])
+    note = abjad.Note(voice[1])
 
-    assert isinstance(staff[1], abjad.Rest)
+    assert isinstance(voice[1], abjad.Rest)
     assert isinstance(note, abjad.Note)
-    assert staff[1]._parent is staff
+    assert voice[1]._parent is voice
     assert note._parent is None
 
 
@@ -196,15 +196,15 @@ def test_Note___init___14():
     Initializes note from beamed skip.
     """
 
-    staff = abjad.Staff(
+    voice = abjad.Voice(
         [abjad.Note(0, (1, 8)), abjad.Skip((1, 8)), abjad.Note(0, (1, 8))]
     )
-    abjad.beam(staff[:])
-    note = abjad.Note(staff[1])
+    abjad.beam(voice[:])
+    note = abjad.Note(voice[1])
 
-    assert isinstance(staff[1], abjad.Skip)
+    assert isinstance(voice[1], abjad.Skip)
     assert isinstance(note, abjad.Note)
-    assert staff[1]._parent is staff
+    assert voice[1]._parent is voice
     assert note._parent is None
 
 

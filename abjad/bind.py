@@ -12,7 +12,7 @@ from . import tag as _tag
 from . import tweaks as _tweaks
 
 
-def _before_attach(indicator, deactivate, component):
+def _before_attach(indicator, context, deactivate, component):
     if getattr(indicator, "temporarily_do_not_check", False) is True:
         return
     if hasattr(indicator, "allowable_sites"):
@@ -26,13 +26,12 @@ def _before_attach(indicator, deactivate, component):
     if not hasattr(indicator, "context"):
         return
     if getattr(indicator, "find_context_on_attach", False) is True:
-        if hasattr(indicator, "context"):
-            context = Wrapper._find_correct_effective_context(
-                component, indicator.context
-            )
-            if context is None:
-                message = f"\n    {indicator} requires {indicator.context} context;"
-                message += f"\n    can not find {indicator.context}"
+        the_context = context or indicator.context
+        if the_context is not None:
+            context_ = Wrapper._find_correct_effective_context(component, the_context)
+            if context_ is None:
+                message = f"\n    {indicator} requires {the_context} context;"
+                message += f"\n    can not find {the_context}"
                 message += f" in parentage of {component!r}."
                 raise _exceptions.MissingContextError(message)
     if getattr(indicator, "nestable_spanner", False) is True:
@@ -1121,7 +1120,7 @@ def attach(
     assert not isinstance(nonbundle_attachable, _tweaks.Bundle)
     assert nonbundle_attachable is not None, repr(nonbundle_attachable)
     assert isinstance(target, _score.Component), repr(target)
-    _before_attach(nonbundle_attachable, deactivate, target)
+    _before_attach(nonbundle_attachable, context, deactivate, target)
     result = _unsafe_attach(
         attachable,
         target,

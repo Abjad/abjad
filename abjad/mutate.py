@@ -937,10 +937,11 @@ def extract(argument):
 
         Extract tuplets:
 
-        >>> staff = abjad.Staff()
-        >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
-        >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
-        >>> leaves = abjad.select.leaves(staff)
+        >>> voice = abjad.Voice()
+        >>> voice.append(abjad.Tuplet((3, 2), "c'4 e'4"))
+        >>> voice.append(abjad.Tuplet((3, 2), "d'4 f'4"))
+        >>> leaves = abjad.select.leaves(voice)
+        >>> staff = abjad.Staff([voice])
         >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((3, 4))
         >>> abjad.attach(time_signature, leaves[0])
@@ -953,26 +954,29 @@ def extract(argument):
             >>> print(string)
             \new Staff
             {
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
+                \new Voice
                 {
-                    \time 3/4
-                    c'4
-                    \p
-                    \<
-                    e'4
-                }
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
-                {
-                    d'4
-                    f'4
-                    \f
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/2
+                    {
+                        \time 3/4
+                        c'4
+                        \p
+                        \<
+                        e'4
+                    }
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/2
+                    {
+                        d'4
+                        f'4
+                        \f
+                    }
                 }
             }
 
-        >>> empty_tuplet = abjad.mutate.extract(staff[-1])
-        >>> empty_tuplet = abjad.mutate.extract(staff[0])
+        >>> empty_tuplet = abjad.mutate.extract(voice[-1])
+        >>> empty_tuplet = abjad.mutate.extract(voice[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -981,23 +985,27 @@ def extract(argument):
             >>> print(string)
             \new Staff
             {
-                \time 3/4
-                c'4
-                \p
-                \<
-                e'4
-                d'4
-                f'4
-                \f
+                \new Voice
+                {
+                    \time 3/4
+                    c'4
+                    \p
+                    \<
+                    e'4
+                    d'4
+                    f'4
+                    \f
+                }
             }
 
     ..  container:: example
 
         Scales tuplet contents and then extracts tuplet:
 
-        >>> staff = abjad.Staff()
-        >>> staff.append(abjad.Tuplet((3, 2), "c'4 e'4"))
-        >>> staff.append(abjad.Tuplet((3, 2), "d'4 f'4"))
+        >>> voice = abjad.Voice()
+        >>> staff = abjad.Staff([voice])
+        >>> voice.append(abjad.Tuplet((3, 2), "c'4 e'4"))
+        >>> voice.append(abjad.Tuplet((3, 2), "d'4 f'4"))
         >>> score = abjad.Score([staff], name="Score")
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
@@ -1011,29 +1019,32 @@ def extract(argument):
             >>> print(string)
             \new Staff
             {
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
+                \new Voice
                 {
-                    \time 3/4
-                    c'4
-                    \p
-                    \<
-                    e'4
-                }
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
-                {
-                    d'4
-                    f'4
-                    \f
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/2
+                    {
+                        \time 3/4
+                        c'4
+                        \p
+                        \<
+                        e'4
+                    }
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/2
+                    {
+                        d'4
+                        f'4
+                        \f
+                    }
                 }
             }
 
-        >>> abjad.mutate.scale(staff[-1], abjad.Fraction(3, 2))
-        >>> empty_tuplet = abjad.mutate.extract(staff[-1])
-        >>> abjad.mutate.scale(staff[0], abjad.Fraction(3, 2))
-        >>> empty_tuplet = abjad.mutate.extract(staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.mutate.scale(voice[-1], abjad.Fraction(3, 2))
+        >>> empty_tuplet = abjad.mutate.extract(voice[-1])
+        >>> abjad.mutate.scale(voice[0], abjad.Fraction(3, 2))
+        >>> empty_tuplet = abjad.mutate.extract(voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
@@ -1041,14 +1052,17 @@ def extract(argument):
             >>> print(string)
             \new Staff
             {
-                \time 3/4
-                c'4.
-                \p
-                \<
-                e'4.
-                d'4.
-                f'4.
-                \f
+                \new Voice
+                {
+                    \time 3/4
+                    c'4.
+                    \p
+                    \<
+                    e'4.
+                    d'4.
+                    f'4.
+                    \f
+                }
             }
 
     ..  container:: example
@@ -1122,10 +1136,11 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
         Fuses parent-contiguous tuplets in selection:
 
         >>> tuplet_1 = abjad.Tuplet((2, 3), "c'8 d' e'")
-        >>> abjad.beam(tuplet_1[:])
         >>> tuplet_2 = abjad.Tuplet((2, 3), "c'16 d' e'")
+        >>> voice = abjad.Voice([tuplet_1, tuplet_2])
+        >>> staff = abjad.Staff([voice])
+        >>> abjad.beam(tuplet_1[:])
         >>> abjad.slur(tuplet_2[:])
-        >>> staff = abjad.Staff([tuplet_1, tuplet_2])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1134,25 +1149,28 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
             >>> print(string)
             \new Staff
             {
-                \times 2/3
+                \new Voice
                 {
-                    c'8
-                    [
-                    d'8
-                    e'8
-                    ]
-                }
-                \times 2/3
-                {
-                    c'16
-                    (
-                    d'16
-                    e'16
-                    )
+                    \times 2/3
+                    {
+                        c'8
+                        [
+                        d'8
+                        e'8
+                        ]
+                    }
+                    \times 2/3
+                    {
+                        c'16
+                        (
+                        d'16
+                        e'16
+                        )
+                    }
                 }
             }
 
-        >>> tuplets = staff[:]
+        >>> tuplets = voice[:]
         >>> abjad.mutate.fuse(tuplets)
         Tuplet('3:2', "c'8 d'8 e'8 c'16 d'16 e'16")
         >>> abjad.show(staff) #doctest: +SKIP
@@ -1163,18 +1181,21 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
             >>> print(string)
             \new Staff
             {
-                \times 2/3
+                \new Voice
                 {
-                    c'8
-                    [
-                    d'8
-                    e'8
-                    ]
-                    c'16
-                    (
-                    d'16
-                    e'16
-                    )
+                    \times 2/3
+                    {
+                        c'8
+                        [
+                        d'8
+                        e'8
+                        ]
+                        c'16
+                        (
+                        d'16
+                        e'16
+                        )
+                    }
                 }
             }
 
@@ -1248,14 +1269,15 @@ def logical_tie_to_tuplet(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff(r"df'8 c'8 ~ c'16 cqs''4")
+        >>> voice = abjad.Voice(r"df'8 c'8 ~ c'16 cqs''4")
+        >>> staff = abjad.Staff([voice])
         >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-        >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
-        >>> abjad.attach(abjad.Dynamic('f'), staff[-1])
+        >>> abjad.attach(abjad.Dynamic('p'), voice[0])
+        >>> abjad.attach(abjad.StartHairpin('<'), voice[0])
+        >>> abjad.attach(abjad.Dynamic('f'), voice[-1])
         >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
         >>> time_signature = abjad.TimeSignature((9, 16))
-        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.attach(time_signature, voice[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1268,18 +1290,21 @@ def logical_tie_to_tuplet(
                 \override DynamicLineSpanner.staff-padding = 3
             }
             {
-                \time 9/16
-                df'8
-                \p
-                \<
-                c'8
-                ~
-                c'16
-                cqs''4
-                \f
+                \new Voice
+                {
+                    \time 9/16
+                    df'8
+                    \p
+                    \<
+                    c'8
+                    ~
+                    c'16
+                    cqs''4
+                    \f
+                }
             }
 
-        >>> logical_tie = abjad.select.logical_tie(staff[1])
+        >>> logical_tie = abjad.select.logical_tie(voice[1])
         >>> abjad.mutate.logical_tie_to_tuplet(logical_tie, [2, 1, 1, 1])
         Tuplet('5:3', "c'8 c'16 c'16 c'16")
 
@@ -1293,32 +1318,36 @@ def logical_tie_to_tuplet(
                 \override DynamicLineSpanner.staff-padding = 3
             }
             {
-                \time 9/16
-                df'8
-                \p
-                \<
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 3/5
+                \new Voice
                 {
-                    c'8
-                    c'16
-                    c'16
-                    c'16
+                    \time 9/16
+                    df'8
+                    \p
+                    \<
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5
+                    {
+                        c'8
+                        c'16
+                        c'16
+                        c'16
+                    }
+                    cqs''4
+                    \f
                 }
-                cqs''4
-                \f
             }
 
         >>> abjad.show(staff) # doctest: +SKIP
 
     ..  container:: example
 
-        >>> staff = abjad.Staff(r"c'8 ~ c'16 cqs''4")
+        >>> voice = abjad.Voice(r"c'8 ~ c'16 cqs''4")
+        >>> staff = abjad.Staff([voice])
         >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.hairpin('p < f', staff[:])
+        >>> abjad.hairpin('p < f', voice[:])
         >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
         >>> time_signature = abjad.TimeSignature((7, 16))
-        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.attach(time_signature, voice[0])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1331,14 +1360,17 @@ def logical_tie_to_tuplet(
                 \override DynamicLineSpanner.staff-padding = 3
             }
             {
-                \time 7/16
-                c'8
-                \p
-                \<
-                ~
-                c'16
-                cqs''4
-                \f
+                \new Voice
+                {
+                    \time 7/16
+                    c'8
+                    \p
+                    \<
+                    ~
+                    c'16
+                    cqs''4
+                    \f
+                }
             }
 
     """
@@ -1374,17 +1406,17 @@ def replace(argument, recipients, wrappers=False):
 
         >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
         >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
-        >>> staff = abjad.Staff([tuplet_1, tuplet_2])
-        >>> leaves = abjad.select.leaves(staff)
+        >>> voice = abjad.Voice([tuplet_1, tuplet_2])
+        >>> leaves = abjad.select.leaves(voice)
         >>> abjad.hairpin('p < f', leaves)
         >>> abjad.slur(leaves)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 \times 2/3
                 {
@@ -1407,15 +1439,15 @@ def replace(argument, recipients, wrappers=False):
 
         >>> notes = abjad.makers.make_notes("c' d' e' f' c' d' e' f'", (1, 16))
         >>> abjad.mutate.replace([tuplet_1], notes)
-        >>> abjad.attach(abjad.Dynamic('p'), staff[0])
-        >>> abjad.attach(abjad.StartHairpin('<'), staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(abjad.Dynamic('p'), voice[0])
+        >>> abjad.attach(abjad.StartHairpin('<'), voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'16
                 \p
@@ -1808,16 +1840,16 @@ def split(argument, durations, *, cyclic=False, tag=None):
 
         Splits leaves cyclically and ties split notes:
 
-        >>> staff = abjad.Staff("c'1 d'1")
-        >>> abjad.hairpin('p < f', staff[:])
-        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 3
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'1 d'1")
+        >>> abjad.hairpin('p < f', voice[:])
+        >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 3
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             \with
             {
                 \override DynamicLineSpanner.staff-padding = 3
@@ -1832,17 +1864,17 @@ def split(argument, durations, *, cyclic=False, tag=None):
 
         >>> durations = [(3, 4)]
         >>> result = abjad.mutate.split(
-        ...     staff[:],
+        ...     voice[:],
         ...     durations,
         ...     cyclic=True,
         ...     )
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             \with
             {
                 \override DynamicLineSpanner.staff-padding = 3
@@ -2311,22 +2343,23 @@ def swap(argument, container):
 
         Swaps containers for tuplet:
 
-        >>> staff = abjad.Staff()
+        >>> voice = abjad.Voice()
+        >>> staff = abjad.Staff([voice])
         >>> score = abjad.Score([staff], name="Score")
-        >>> staff.append(abjad.Container("c'4 d'4 e'4"))
-        >>> staff.append(abjad.Container("d'4 e'4 f'4"))
-        >>> abjad.attach(abjad.TimeSignature((3, 4)), staff[0][0])
-        >>> leaves = abjad.select.leaves(staff)
+        >>> voice.append(abjad.Container("c'4 d'4 e'4"))
+        >>> voice.append(abjad.Container("d'4 e'4 f'4"))
+        >>> abjad.attach(abjad.TimeSignature((3, 4)), voice[0][0])
+        >>> leaves = abjad.select.leaves(voice)
         >>> abjad.hairpin('p < f', leaves)
-        >>> measures = staff[:]
+        >>> measures = voice[:]
         >>> abjad.slur(leaves)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 {
                     \time 3/4
@@ -2346,17 +2379,17 @@ def swap(argument, container):
                 }
             }
 
-        >>> containers = staff[:]
+        >>> containers = voice[:]
         >>> tuplet = abjad.Tuplet((2, 3), [])
         >>> tuplet.denominator = 4
         >>> abjad.mutate.swap(containers, tuplet)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 \times 4/6
                 {
@@ -2378,11 +2411,11 @@ def swap(argument, container):
         REGRESSION: context indicators survive swap:
 
         >>> prototype = abjad.TimeSignature
-        >>> for component in abjad.iterate.components(staff):
+        >>> for component in abjad.iterate.components(voice):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
-        Staff("{ 2/3 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Voice("{ 2/3 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Tuplet('3:2', "c'4 d'4 e'4 d'4 e'4 f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("c'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("d'4") TimeSignature(pair=(3, 4), hide=False, partial=None)

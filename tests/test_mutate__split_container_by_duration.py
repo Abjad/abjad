@@ -7,17 +7,17 @@ def test_mutate__split_container_by_duration_01():
     Adds tie after split.
     """
 
-    staff = abjad.Staff()
-    staff.append(abjad.Container("c'8 d'8"))
-    staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select.leaves(staff)
+    voice = abjad.Voice()
+    voice.append(abjad.Container("c'8 d'8"))
+    voice.append(abjad.Container("e'8 f'8"))
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -35,13 +35,13 @@ def test_mutate__split_container_by_duration_01():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    abjad.mutate._split_container_by_duration(staff[0], abjad.Duration(1, 32))
+    abjad.mutate._split_container_by_duration(voice[0], abjad.Duration(1, 32))
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'32
@@ -63,9 +63,9 @@ def test_mutate__split_container_by_duration_01():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate__split_container_by_duration_02():
@@ -73,17 +73,17 @@ def test_mutate__split_container_by_duration_02():
     Split in-score container at split offset with non-power-of-two denominator.
     """
 
-    staff = abjad.Staff()
-    staff.append(abjad.Container("c'8 d'8"))
-    staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select.leaves(staff)
+    voice = abjad.Voice()
+    voice.append(abjad.Container("c'8 d'8"))
+    voice.append(abjad.Container("e'8 f'8"))
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -101,13 +101,13 @@ def test_mutate__split_container_by_duration_02():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    abjad.mutate._split_container_by_duration(staff[0], abjad.Duration(1, 5))
+    abjad.mutate._split_container_by_duration(voice[0], abjad.Duration(1, 5))
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -137,6 +137,6 @@ def test_mutate__split_container_by_duration_02():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)

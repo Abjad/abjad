@@ -6,17 +6,17 @@ def test_mutate_split_01():
     Cyclically splits note in score.
     """
 
-    staff = abjad.Staff()
-    staff.append(abjad.Container("c'8 d'8"))
-    staff.append(abjad.Container("e'8 f'8"))
-    leaves = abjad.select.leaves(staff)
+    voice = abjad.Voice()
+    voice.append(abjad.Container("c'8 d'8"))
+    voice.append(abjad.Container("e'8 f'8"))
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -34,14 +34,14 @@ def test_mutate_split_01():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    notes = staff[0][1:2]
+    notes = voice[0][1:2]
     result = abjad.mutate.split(notes, [abjad.Duration(3, 64)], cyclic=True)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -63,9 +63,9 @@ def test_mutate_split_01():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
     assert len(result) == 3
 
 
@@ -74,12 +74,13 @@ def test_mutate_split_02():
     Cyclically splits consecutive notes in score.
     """
 
-    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    voice = abjad.Voice([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    staff = abjad.Staff([voice])
     abjad.Score([staff], name="Score")
-    for container in staff:
+    for container in voice:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select.leaves(staff)
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -88,21 +89,24 @@ def test_mutate_split_02():
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'8
-                [
-                (
-                d'8
-                ]
-            }
-            {
-                \time 2/8
-                e'8
-                [
-                f'8
-                )
-                ]
+                {
+                    \time 2/8
+                    c'8
+                    [
+                    (
+                    d'8
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'8
+                    [
+                    f'8
+                    )
+                    ]
+                }
             }
         }
         """
@@ -114,29 +118,32 @@ def test_mutate_split_02():
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'16.
-                [
-                (
-                ~
-                c'32
-                d'16
-                ~
-                d'16
-                ]
-            }
-            {
-                \time 2/8
-                e'32
-                [
-                ~
-                e'16.
-                f'16.
-                ~
-                f'32
-                )
-                ]
+                {
+                    \time 2/8
+                    c'16.
+                    [
+                    (
+                    ~
+                    c'32
+                    d'16
+                    ~
+                    d'16
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'32
+                    [
+                    ~
+                    e'16.
+                    f'16.
+                    ~
+                    f'32
+                    )
+                    ]
+                }
             }
         }
         """
@@ -151,12 +158,13 @@ def test_mutate_split_03():
     Cyclically splits note in score.
     """
 
-    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    voice = abjad.Voice([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    staff = abjad.Staff([voice])
     abjad.Score([staff], name="Score")
-    for container in staff:
+    for container in voice:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select.leaves(staff)
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -165,54 +173,60 @@ def test_mutate_split_03():
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'8
-                [
-                (
-                d'8
-                ]
-            }
-            {
-                \time 2/8
-                e'8
-                [
-                f'8
-                )
-                ]
+                {
+                    \time 2/8
+                    c'8
+                    [
+                    (
+                    d'8
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'8
+                    [
+                    f'8
+                    )
+                    ]
+                }
             }
         }
         """
     ), print(abjad.lilypond(staff))
 
-    notes = staff[0][1:]
+    notes = voice[0][1:]
     result = abjad.mutate.split(notes, [abjad.Duration(1, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'8
-                [
-                (
-                d'32
-                ~
-                d'32
-                ~
-                d'32
-                ~
-                d'32
-                ]
-            }
-            {
-                \time 2/8
-                e'8
-                [
-                f'8
-                )
-                ]
+                {
+                    \time 2/8
+                    c'8
+                    [
+                    (
+                    d'32
+                    ~
+                    d'32
+                    ~
+                    d'32
+                    ~
+                    d'32
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'8
+                    [
+                    f'8
+                    )
+                    ]
+                }
             }
         }
         """
@@ -227,12 +241,13 @@ def test_mutate_split_04():
     Cyclically splits consecutive notes in score.
     """
 
-    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    voice = abjad.Voice([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    staff = abjad.Staff([voice])
     abjad.Score([staff], name="Score")
-    for container in staff:
+    for container in voice:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select.leaves(staff)
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -241,21 +256,24 @@ def test_mutate_split_04():
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'8
-                [
-                (
-                d'8
-                ]
-            }
-            {
-                \time 2/8
-                e'8
-                [
-                f'8
-                )
-                ]
+                {
+                    \time 2/8
+                    c'8
+                    [
+                    (
+                    d'8
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'8
+                    [
+                    f'8
+                    )
+                    ]
+                }
             }
         }
         """
@@ -267,29 +285,32 @@ def test_mutate_split_04():
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'16
-                [
-                (
-                ~
-                c'16
-                d'16
-                ~
-                d'16
-                ]
-            }
-            {
-                \time 2/8
-                e'16
-                [
-                ~
-                e'16
-                f'16
-                ~
-                f'16
-                )
-                ]
+                {
+                    \time 2/8
+                    c'16
+                    [
+                    (
+                    ~
+                    c'16
+                    d'16
+                    ~
+                    d'16
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'16
+                    [
+                    ~
+                    e'16
+                    f'16
+                    ~
+                    f'16
+                    )
+                    ]
+                }
             }
         }
         """
@@ -304,12 +325,13 @@ def test_mutate_split_05():
     Cyclically splits measure in score.
     """
 
-    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    voice = abjad.Voice([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    staff = abjad.Staff([voice])
     abjad.Score([staff], name="Score")
-    for container in staff:
+    for container in voice:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select.leaves(staff)
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -318,58 +340,64 @@ def test_mutate_split_05():
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'8
-                [
-                (
-                d'8
-                ]
-            }
-            {
-                \time 2/8
-                e'8
-                [
-                f'8
-                )
-                ]
+                {
+                    \time 2/8
+                    c'8
+                    [
+                    (
+                    d'8
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'8
+                    [
+                    f'8
+                    )
+                    ]
+                }
             }
         }
         """
     ), print(abjad.lilypond(staff))
 
-    measures = staff[:1]
+    measures = voice[:1]
     result = abjad.mutate.split(measures, [abjad.Duration(1, 16)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'16
-                [
-                (
-                ~
-            }
-            {
-                c'16
-            }
-            {
-                d'16
-                ~
-            }
-            {
-                d'16
-                ]
-            }
-            {
-                \time 2/8
-                e'8
-                [
-                f'8
-                )
-                ]
+                {
+                    \time 2/8
+                    c'16
+                    [
+                    (
+                    ~
+                }
+                {
+                    c'16
+                }
+                {
+                    d'16
+                    ~
+                }
+                {
+                    d'16
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'8
+                    [
+                    f'8
+                    )
+                    ]
+                }
             }
         }
         """
@@ -384,12 +412,13 @@ def test_mutate_split_06():
     Cyclically splits consecutive measures in score.
     """
 
-    staff = abjad.Staff([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    voice = abjad.Voice([abjad.Container("c'8 d'"), abjad.Container("e'8 f'")])
+    staff = abjad.Staff([voice])
     abjad.Score([staff], name="Score")
-    for container in staff:
+    for container in voice:
         time_signature = abjad.TimeSignature((2, 8))
         abjad.attach(time_signature, container[0])
-    leaves = abjad.select.leaves(staff)
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[-2:])
     abjad.slur(leaves)
@@ -398,66 +427,72 @@ def test_mutate_split_06():
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'8
-                [
-                (
-                d'8
-                ]
-            }
-            {
-                \time 2/8
-                e'8
-                [
-                f'8
-                )
-                ]
+                {
+                    \time 2/8
+                    c'8
+                    [
+                    (
+                    d'8
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'8
+                    [
+                    f'8
+                    )
+                    ]
+                }
             }
         }
         """
     ), print(abjad.lilypond(staff))
 
-    measures = staff[:]
+    measures = voice[:]
     result = abjad.mutate.split(measures, [abjad.Duration(3, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
+            \new Voice
             {
-                \time 2/8
-                c'16.
-                [
-                (
-                ~
-            }
-            {
-                c'32
-                d'16
-                ~
-            }
-            {
-                d'16
-                ]
-            }
-            {
-                \time 2/8
-                e'32
-                [
-                ~
-            }
-            {
-                e'16.
-            }
-            {
-                f'16.
-                ~
-            }
-            {
-                f'32
-                )
-                ]
+                {
+                    \time 2/8
+                    c'16.
+                    [
+                    (
+                    ~
+                }
+                {
+                    c'32
+                    d'16
+                    ~
+                }
+                {
+                    d'16
+                    ]
+                }
+                {
+                    \time 2/8
+                    e'32
+                    [
+                    ~
+                }
+                {
+                    e'16.
+                }
+                {
+                    f'16.
+                    ~
+                }
+                {
+                    f'32
+                    )
+                    ]
+                }
             }
         }
         """
@@ -656,19 +691,19 @@ def test_mutate_split_11():
     Splits container in score.
     """
 
-    staff = abjad.Staff([abjad.Container("c'8 d'8 e'8 f'8")])
-    voice = staff[0]
-    leaves = abjad.select.leaves(staff)
+    voice = abjad.Voice([abjad.Container("c'8 d'8 e'8 f'8")])
+    container = voice[0]
+    leaves = abjad.select.leaves(container)
     abjad.beam(leaves)
 
-    result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
+    result = abjad.mutate.split([container], [abjad.Duration(1, 4)])
 
     left = result[0][0]
     right = result[1][0]
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -682,7 +717,7 @@ def test_mutate_split_11():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
     assert abjad.lilypond(left) == abjad.string.normalize(
         r"""
@@ -704,16 +739,16 @@ def test_mutate_split_11():
         """
     ), print(abjad.lilypond(right))
 
-    assert abjad.lilypond(voice) == abjad.string.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
         }
         """
-    ), print(abjad.lilypond(voice))
+    ), print(abjad.lilypond(container))
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -727,9 +762,9 @@ def test_mutate_split_11():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_mutate_split_12():

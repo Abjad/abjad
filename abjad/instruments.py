@@ -67,14 +67,14 @@ Instruments.
     Two instruments active on a single staff:
 
     >>> voice_1 = abjad.Voice("e'8 g'8 f'8 a'8")
+    >>> voice_2 = abjad.Voice("c'2")
+    >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
     >>> flute = abjad.Flute()
     >>> abjad.attach(flute, voice_1[0], context="Voice")
     >>> abjad.attach(abjad.VoiceNumber(1), voice_1[0])
-    >>> voice_2 = abjad.Voice("c'2")
     >>> abjad.attach(abjad.VoiceNumber(2), voice_2[0])
     >>> viola = abjad.Viola()
     >>> abjad.attach(viola, voice_2[0], context="Voice")
-    >>> staff = abjad.Staff([voice_1, voice_2], simultaneous=True)
     >>> abjad.show(staff) # doctest: +SKIP
 
     ..  docs::
@@ -129,6 +129,7 @@ class Instrument:
 
     clefs: tuple[str, ...] = ()
     context: str = "Staff"
+    # find_context_on_attach: typing.ClassVar[bool] = True
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
     pitch_range: _pcollections.PitchRange = _pcollections.PitchRange("[-inf, +inf]")
 

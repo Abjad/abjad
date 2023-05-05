@@ -2,16 +2,16 @@ import abjad
 
 
 def test_get_indicators_01():
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.slur(staff[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.slur(voice[:])
     command_1 = abjad.LilyPondLiteral(r"\slurDotted", site="before")
-    abjad.attach(command_1, staff[0])
+    abjad.attach(command_1, voice[0])
     command_2 = abjad.LilyPondLiteral(r"\slurUp", site="before")
-    abjad.attach(command_2, staff[0])
+    abjad.attach(command_2, voice[0])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             \slurDotted
             \slurUp
@@ -23,36 +23,40 @@ def test_get_indicators_01():
             )
         }
         """
-    ), abjad.lilypond(staff)
+    ), abjad.lilypond(voice)
 
-    indicators = abjad.get.indicators(staff[0], abjad.LilyPondLiteral)
+    indicators = abjad.get.indicators(voice[0], abjad.LilyPondLiteral)
     assert command_1 in indicators
     assert command_2 in indicators
     assert len(indicators) == 2
 
 
 def test_get_indicators_02():
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    staff = abjad.Staff([voice])
     clef = abjad.Clef("treble")
-    abjad.attach(clef, staff[0])
+    abjad.attach(clef, voice[0])
     dynamic = abjad.Dynamic("p")
-    abjad.attach(dynamic, staff[0])
+    abjad.attach(dynamic, voice[0])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
-            \clef "treble"
-            c'8
-            \p
-            d'8
-            e'8
-            f'8
+            \new Voice
+            {
+                \clef "treble"
+                c'8
+                \p
+                d'8
+                e'8
+                f'8
+            }
         }
         """
     ), abjad.lilypond(staff)
 
-    indicators = abjad.get.indicators(staff[0])
+    indicators = abjad.get.indicators(voice[0])
     assert len(indicators) == 2
 
 

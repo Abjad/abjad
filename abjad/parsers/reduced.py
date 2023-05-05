@@ -392,7 +392,7 @@ class ReducedLyParser(Parser):
         p[0] = p[1]
         if p[2]:
             annotation = {"post events": p[2]}
-            _bind.attach(annotation, p[0])
+            _bind._unsafe_attach(annotation, p[0])
 
     def p_leaf_body__chord_body(self, p):
         """
@@ -422,10 +422,10 @@ class ReducedLyParser(Parser):
         leaf = _iterlib._get_leaf(measure, 0)
         time_signature = _indicators.TimeSignature(p[2])
         try:
-            _bind.attach(time_signature, leaf)
+            _bind._unsafe_attach(time_signature, leaf)
         except _exceptions.MissingContextError:
             score = _score.Score([measure])
-            _bind.attach(time_signature, leaf)
+            _bind._unsafe_attach(time_signature, leaf)
             score[:] = []
         p[0] = measure
 
@@ -612,18 +612,18 @@ class ReducedLyParser(Parser):
                     _indicators.StopSlur,
                 ):
                     indicator = current_class()
-                    _bind.attach(indicator, leaf)
+                    _bind._unsafe_attach(indicator, leaf)
                     continue
                 if current_class in (
                     _indicators.StartBeam,
                     _indicators.StopBeam,
                 ):
                     indicator = current_class()
-                    _bind.attach(indicator, leaf)
+                    _bind._unsafe_attach(indicator, leaf)
                     continue
                 if current_class is _indicators.Tie:
                     indicator = current_class()
-                    _bind.attach(indicator, leaf)
+                    _bind._unsafe_attach(indicator, leaf)
                     continue
 
     def _cleanup(self, parsed):

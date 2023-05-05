@@ -462,14 +462,14 @@ def test_Container___setitem___09():
 def test_Container___setitem___10():
     r"""Sets leaf between spanned compoennts."""
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:])
     note = abjad.Note("g'8")
-    staff[2:2] = [note]
+    voice[2:2] = [note]
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -480,13 +480,15 @@ def test_Container___setitem___10():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container___setitem___11():
-    r"""Sets multiple leaves between spanned components."""
+    r"""
+    Sets multiple leaves between spanned components.
+    """
 
     notes = [
         abjad.Note("c'8"),
@@ -501,12 +503,12 @@ def test_Container___setitem___11():
     middle = notes[2:4]
     end = notes[4:]
 
-    staff = abjad.Staff(beginning + end)
-    abjad.beam(staff[:])
+    voice = abjad.Voice(beginning + end)
+    abjad.beam(voice[:])
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -516,13 +518,13 @@ def test_Container___setitem___11():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    staff[2:2] = middle
+    voice[2:2] = middle
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -534,22 +536,24 @@ def test_Container___setitem___11():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container___setitem___12():
-    r"""Replaces multiple spanned leaves with with single leaf."""
+    r"""
+    Replaces multiple spanned leaves with with single leaf.
+    """
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:])
     note = abjad.Note("c''8")
-    staff[1:3] = [note]
+    voice[1:3] = [note]
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -558,22 +562,24 @@ def test_Container___setitem___12():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container___setitem___13():
-    r"""Replaces three spanned leaves with three different leaves."""
+    """
+    Replaces three spanned leaves with three different leaves.
+    """
 
-    staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    abjad.beam(staff[:])
+    voice = abjad.Voice("c'8 d'8 e'8 f'8")
+    abjad.beam(voice[:])
     notes = [abjad.Note("b'8"), abjad.Note("a'8"), abjad.Note("g'8")]
-    staff[1:3] = notes
+    voice[1:3] = notes
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             c'8
             [
@@ -584,9 +590,9 @@ def test_Container___setitem___13():
             ]
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container___setitem___14():
