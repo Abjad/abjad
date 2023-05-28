@@ -343,6 +343,7 @@ def _graph_container(container):
     return graph
 
 
+# TODO: remove because unused?
 def _compare_backup(path):
     if isinstance(path, str):
         paths = [path]
@@ -992,6 +993,8 @@ def run_lilypond(
     return exit_code
 
 
+# TODO: remove because Abjad doesn't need to implement this;
+#       use subprocess.call(command, shell=True) instead
 def spawn_subprocess(command: str) -> int:
     """
     Spawns subprocess and runs ``command``.

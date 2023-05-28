@@ -1,3 +1,5 @@
+import pytest
+
 import abjad
 
 
@@ -30,3 +32,17 @@ def test_bind_01():
         }
         """
     )
+
+
+def test_bind_02():
+    """
+    Make sure exception is raised when check_duplicate_indicator=True.
+    """
+
+    score = abjad.Score(r"\new Staff { c'' d'' e'' f'' } \new Staff { c' d' e' f' }")
+    mark_1 = abjad.MetronomeMark(abjad.Duration(1, 8), 52)
+    mark_2 = abjad.MetronomeMark(abjad.Duration(1, 8), 73)
+    abjad.attach(mark_1, score[0][0])
+
+    with pytest.raises(Exception):
+        abjad.attach(mark_2, score[1][0], check_duplicate_indicator=True)
