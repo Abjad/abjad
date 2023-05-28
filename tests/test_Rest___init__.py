@@ -66,9 +66,9 @@ def test_Rest___init___05():
 
     chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 8))
     chords = abjad.mutate.copy(chord, 3)
-    staff = abjad.Staff(chords)
-    abjad.beam(staff[:])
-    rest = abjad.Rest(staff[0])
+    voice = abjad.Voice(chords)
+    abjad.beam(voice[:])
+    rest = abjad.Rest(voice[0])
 
     assert abjad.lilypond(rest) == abjad.string.normalize(
         r"""

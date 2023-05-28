@@ -55,13 +55,13 @@ def test_Container_pop_02():
     Containers pop nested containers correctly.
     """
 
-    staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select.leaves(staff)
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -75,13 +75,13 @@ def test_Container_pop_02():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    sequential = staff.pop()
+    sequential = voice.pop()
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -90,9 +90,9 @@ def test_Container_pop_02():
             }
         }
         """
-    ), print(abjad.lilypond(staff))
+    ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
     assert abjad.lilypond(sequential) == abjad.string.normalize(
         r"""

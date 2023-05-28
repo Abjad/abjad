@@ -37,6 +37,7 @@ def test_Container_append_02():
     """
 
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    abjad.Voice([tuplet])
     abjad.beam(tuplet[:])
     tuplet.append(abjad.Note(5, (1, 16)), preserve_duration=True)
 

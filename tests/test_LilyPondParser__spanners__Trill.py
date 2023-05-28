@@ -9,12 +9,13 @@ def test_LilyPondParser__spanners__Trill_01():
     """
 
     notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
-    target = abjad.Container(notes)
+    target = abjad.Voice(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             c'4
             \startTrillSpan
@@ -39,12 +40,13 @@ def test_LilyPondParser__spanners__Trill_02():
     """
 
     notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
-    target = abjad.Container(notes)
+    target = abjad.Voice(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             c'4
             \startTrillSpan
@@ -59,10 +61,9 @@ def test_LilyPondParser__spanners__Trill_02():
     )
 
     string = (
-        r"\relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c"
+        r"\new Voice \relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c"
         r" \stopTrillSpan }"
     )
-
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

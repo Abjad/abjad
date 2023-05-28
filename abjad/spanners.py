@@ -59,15 +59,15 @@ def beam(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'8 d' e' f'")
-        >>> abjad.beam(staff[:], direction=abjad.UP)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'8 d' e' f'")
+        >>> abjad.beam(voice[:], direction=abjad.UP)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'8
                 ^ [
@@ -1176,16 +1176,16 @@ def hairpin(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.hairpin("p < f", staff[:], direction=abjad.UP)
-        >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> abjad.hairpin("p < f", voice[:], direction=abjad.UP)
+        >>> abjad.override(voice[0]).DynamicLineSpanner.staff_padding = 4
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
@@ -1201,16 +1201,16 @@ def hairpin(
 
         With two-part string descriptor:
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.hairpin("< !", staff[:])
-        >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> abjad.hairpin("< !", voice[:])
+        >>> abjad.override(voice[0]).DynamicLineSpanner.staff_padding = 4
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
@@ -1225,20 +1225,20 @@ def hairpin(
 
         With dynamic objects:
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> start_dynamic = abjad.Dynamic("niente", command=r"\!")
         >>> start_hairpin = abjad.StartHairpin("o<|")
         >>> bundle = abjad.bundle(start_hairpin, r"- \tweak color #blue")
         >>> stop_dynamic = abjad.Dynamic('"f"')
-        >>> abjad.hairpin([start_dynamic, bundle, stop_dynamic], staff[:])
-        >>> abjad.override(staff[0]).DynamicLineSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.hairpin([start_dynamic, bundle, stop_dynamic], voice[:])
+        >>> abjad.override(voice[0]).DynamicLineSpanner.staff_padding = 4
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
@@ -1333,15 +1333,15 @@ def horizontal_bracket(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.horizontal_bracket(staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> abjad.horizontal_bracket(voice[:])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'4
                 \startGroup
@@ -1420,15 +1420,15 @@ def phrasing_slur(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.phrasing_slur(staff[:], direction=abjad.UP)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> abjad.phrasing_slur(voice[:], direction=abjad.UP)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'4
                 ^ \(
@@ -1456,6 +1456,7 @@ def phrasing_slur(
 def piano_pedal(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
+    context: str | None = None,
     selector: typing.Callable = lambda _: _select.leaves(_),
     start_piano_pedal: _indicators.StartPianoPedal | None = None,
     stop_piano_pedal: _indicators.StopPianoPedal | None = None,
@@ -1467,7 +1468,7 @@ def piano_pedal(
     ..  container:: example
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.piano_pedal(staff[:])
+        >>> abjad.piano_pedal(staff[:], context="Staff")
         >>> abjad.setting(staff).pedalSustainStyle = "#'mixed"
         >>> abjad.override(staff).SustainPedalLineSpanner.staff_padding = 5
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1499,8 +1500,8 @@ def piano_pedal(
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
-    _bind.attach(start_piano_pedal, start_leaf, tag=tag)
-    _bind.attach(stop_piano_pedal, stop_leaf, tag=tag)
+    _bind.attach(start_piano_pedal, start_leaf, context=context, tag=tag)
+    _bind.attach(stop_piano_pedal, stop_leaf, context=context, tag=tag)
 
 
 def slur(
@@ -1517,15 +1518,15 @@ def slur(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.slur(staff[:], direction=abjad.UP)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> abjad.slur(voice[:], direction=abjad.UP)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'4
                 ^ (
@@ -1564,24 +1565,24 @@ def text_spanner(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
         ...     style="solid-line-with-arrow",
         ... )
         >>> abjad.text_spanner(
-        ...     staff[:], direction=abjad.UP, start_text_span=start_text_span
+        ...     voice[:], direction=abjad.UP, start_text_span=start_text_span
         ... )
-        >>> abjad.override(staff[0]).TextSpanner.staff_padding = 4
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.override(voice[0]).TextSpanner.staff_padding = 4
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 \once \override TextSpanner.staff-padding = 4
                 c'4
@@ -1599,27 +1600,27 @@ def text_spanner(
 
         Enchained spanners:
 
-        >>> staff = abjad.Staff("c'4 d' e' f' r")
+        >>> voice = abjad.Voice("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
+        >>> abjad.text_spanner(voice[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright tasto"),
         ...     right_text=abjad.Markup(r"\markup \upright pont."),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
-        >>> abjad.override(staff).TextSpanner.staff_padding = 4
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.text_spanner(voice[-3:], start_text_span=start_text_span)
+        >>> abjad.override(voice).TextSpanner.staff_padding = 4
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             \with
             {
                 \override TextSpanner.staff-padding = 4
@@ -1641,26 +1642,26 @@ def text_spanner(
                 \stopTextSpan
             }
 
-        >>> staff = abjad.Staff("c'4 d' e' f' r")
+        >>> voice = abjad.Voice("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     style="dashed-line-with-arrow",
         ... )
-        >>> abjad.text_spanner(staff[:3], start_text_span=start_text_span)
+        >>> abjad.text_spanner(voice[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright tasto"),
         ...     style="solid-line-with-hook",
         ... )
-        >>> abjad.text_spanner(staff[-3:], start_text_span=start_text_span)
-        >>> abjad.override(staff).TextSpanner.staff_padding = 4
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.text_spanner(voice[-3:], start_text_span=start_text_span)
+        >>> abjad.override(voice).TextSpanner.staff_padding = 4
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             \with
             {
                 \override TextSpanner.staff-padding = 4
@@ -1937,15 +1938,15 @@ def trill_spanner(
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.trill_spanner(staff[:])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> abjad.trill_spanner(voice[:])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'4
                 \startTrillSpan

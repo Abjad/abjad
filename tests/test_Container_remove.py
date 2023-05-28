@@ -61,14 +61,14 @@ def test_Container_remove_02():
     abjad.Container returns after removal.
     """
 
-    staff = abjad.Staff("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select.leaves(staff)
-    sequential = staff[0]
+    voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = abjad.select.leaves(voice)
+    sequential = voice[0]
     abjad.beam(leaves)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 c'8
@@ -84,11 +84,11 @@ def test_Container_remove_02():
         """
     )
 
-    staff.remove(sequential)
+    voice.remove(sequential)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             {
                 e'8
@@ -99,7 +99,7 @@ def test_Container_remove_02():
         """
     )
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.wellformed(voice)
 
     assert abjad.lilypond(sequential) == abjad.string.normalize(
         r"""

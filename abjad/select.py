@@ -284,7 +284,7 @@ def chord(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -331,7 +331,7 @@ def chord(
                         }
                     }
                 }
-            >>
+            }
 
     """
     return chords(argument, exclude=exclude, grace=grace)[n]
@@ -384,7 +384,7 @@ def chords(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -439,7 +439,7 @@ def chords(
                         }
                     }
                 }
-            >>
+            }
 
     """
     items = []
@@ -931,7 +931,7 @@ def flatten(argument, depth: int = 1) -> list:
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -983,7 +983,7 @@ def flatten(argument, depth: int = 1) -> list:
                         }
                     }
                 }
-            >>
+            }
 
     ..  container:: example
 
@@ -1024,7 +1024,7 @@ def flatten(argument, depth: int = 1) -> list:
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -1076,7 +1076,7 @@ def flatten(argument, depth: int = 1) -> list:
                         }
                     }
                 }
-            >>
+            }
 
     """
     items = _sequence.flatten(argument, depth=depth)
@@ -2326,7 +2326,7 @@ def leaf(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -2373,7 +2373,7 @@ def leaf(
                         }
                     }
                 }
-            >>
+            }
 
     """
     return leaves(
@@ -3952,7 +3952,7 @@ def note(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -3999,7 +3999,7 @@ def note(
                         }
                     }
                 }
-            >>
+            }
 
     """
     return notes(argument, exclude=exclude, grace=grace)[n]
@@ -4049,7 +4049,7 @@ def notes(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -4101,7 +4101,7 @@ def notes(
                         }
                     }
                 }
-            >>
+            }
 
     """
     items = []
@@ -5627,7 +5627,7 @@ def rest(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -5674,7 +5674,7 @@ def rest(
                         }
                     }
                 }
-            >>
+            }
 
     """
     return rests(argument, exclude=exclude, grace=grace)[n]
@@ -5721,7 +5721,7 @@ def rests(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -5770,7 +5770,7 @@ def rests(
                         }
                     }
                 }
-            >>
+            }
 
     """
     items = []
@@ -5818,7 +5818,7 @@ def run(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -5869,7 +5869,7 @@ def run(
                         }
                     }
                 }
-            >>
+            }
 
     """
     return runs(argument, exclude=exclude)[n]
@@ -5916,7 +5916,7 @@ def runs(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -5977,7 +5977,7 @@ def runs(
                         }
                     }
                 }
-            >>
+            }
 
     ..  container:: example
 
@@ -6194,7 +6194,7 @@ def tuplet(
             >>> string = abjad.lilypond(score)
             >>> print(string)
             \context Score = "Score"
-            <<
+            {
                 \context Staff = "Staff"
                 \with
                 {
@@ -6246,7 +6246,7 @@ def tuplet(
                         }
                     }
                 }
-            >>
+            }
 
     """
     return tuplets(argument, exclude=exclude, level=level)[n]
@@ -6565,7 +6565,7 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
         [Note("f'8")]
 
         >>> for item in result:
-        ...     abjad.piano_pedal(item)
+        ...     abjad.piano_pedal(item, context="Staff")
         ...
 
         >>> abjad.label.by_selector(result, True)

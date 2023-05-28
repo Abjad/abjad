@@ -130,19 +130,22 @@ class Dynamic:
 
         Tweaks:
 
-        >>> note = abjad.Note("c'4")
+        >>> voice = abjad.Voice("c'4")
         >>> dynamic = abjad.Dynamic("f")
         >>> bundle = abjad.bundle(dynamic, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, note)
-        >>> abjad.show(note) # doctest: +SKIP
+        >>> abjad.attach(bundle, voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(note)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            c'4
-            - \tweak color #blue
-            \f
+            \new Voice
+            {
+                c'4
+                - \tweak color #blue
+                \f
+            }
 
     ..  container:: example
 
@@ -163,16 +166,16 @@ class Dynamic:
 
         With ``direction`` unset:
 
-        >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic("p"), staff[0])
-        >>> abjad.attach(abjad.Dynamic("f"), staff[1])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'2 c''2")
+        >>> abjad.attach(abjad.Dynamic("p"), voice[0])
+        >>> abjad.attach(abjad.Dynamic("f"), voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'2
                 \p
@@ -182,16 +185,16 @@ class Dynamic:
 
         With ``direction=abjad.UP``:
 
-        >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.UP)
-        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.UP)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'2 c''2")
+        >>> abjad.attach(abjad.Dynamic("p"), voice[0], direction=abjad.UP)
+        >>> abjad.attach(abjad.Dynamic("f"), voice[1], direction=abjad.UP)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'2
                 ^ \p
@@ -201,16 +204,16 @@ class Dynamic:
 
         With ``direction=abjad.DOWN``:
 
-        >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic("p"), staff[0], direction=abjad.DOWN)
-        >>> abjad.attach(abjad.Dynamic("f"), staff[1], direction=abjad.DOWN)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'2 c''2")
+        >>> abjad.attach(abjad.Dynamic("p"), voice[0], direction=abjad.DOWN)
+        >>> abjad.attach(abjad.Dynamic("f"), voice[1], direction=abjad.DOWN)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'2
                 _ \p
@@ -222,16 +225,16 @@ class Dynamic:
 
         REGRESSION. Effort dynamics default to down:
 
-        >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic('"p"'), staff[0])
-        >>> abjad.attach(abjad.Dynamic('"f"'), staff[1])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'2 c''2")
+        >>> abjad.attach(abjad.Dynamic('"p"'), voice[0])
+        >>> abjad.attach(abjad.Dynamic('"f"'), voice[1])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'2
                 _ #(make-dynamic-script
@@ -263,16 +266,16 @@ class Dynamic:
 
         And may be overriden:
 
-        >>> staff = abjad.Staff("c'2 c''2")
-        >>> abjad.attach(abjad.Dynamic('"p"'), staff[0], direction=abjad.UP)
-        >>> abjad.attach(abjad.Dynamic('"f"'), staff[1], direction=abjad.UP)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'2 c''2")
+        >>> abjad.attach(abjad.Dynamic('"p"'), voice[0], direction=abjad.UP)
+        >>> abjad.attach(abjad.Dynamic('"f"'), voice[1], direction=abjad.UP)
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'2
                 ^ #(make-dynamic-script
@@ -342,21 +345,21 @@ class Dynamic:
 
         Without leaked stop dynamic:
 
-        >>> staff = abjad.Staff("c'4 d' e' r")
+        >>> voice = abjad.Voice("c'4 d' e' r")
         >>> start_dynamic = abjad.Dynamic("mf")
         >>> start_hairpin = abjad.StartHairpin(">")
         >>> stop_dynamic = abjad.Dynamic("pp")
-        >>> abjad.attach(start_dynamic, staff[0])
-        >>> abjad.attach(start_hairpin, staff[0])
-        >>> abjad.attach(stop_dynamic, staff[-2])
-        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(start_dynamic, voice[0])
+        >>> abjad.attach(start_hairpin, voice[0])
+        >>> abjad.attach(stop_dynamic, voice[-2])
+        >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             \with
             {
                 \override DynamicLineSpanner.staff-padding = 4
@@ -373,21 +376,21 @@ class Dynamic:
 
         With leaked stop dynamic:
 
-        >>> staff = abjad.Staff("c'4 d' e' r")
+        >>> voice = abjad.Voice("c'4 d' e' r")
         >>> start_dynamic = abjad.Dynamic("mf")
         >>> start_hairpin = abjad.StartHairpin(">")
         >>> stop_dynamic = abjad.Dynamic("pp", leak=True)
-        >>> abjad.attach(start_dynamic, staff[0])
-        >>> abjad.attach(start_hairpin, staff[0])
-        >>> abjad.attach(stop_dynamic, staff[-2])
-        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(start_dynamic, voice[0])
+        >>> abjad.attach(start_hairpin, voice[0])
+        >>> abjad.attach(stop_dynamic, voice[-2])
+        >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             \with
             {
                 \override DynamicLineSpanner.staff-padding = 4
@@ -407,21 +410,21 @@ class Dynamic:
 
         Leaks format after spanners:
 
-        >>> staff = abjad.Staff("c'8 [ d' e' ] f'")
+        >>> voice = abjad.Voice("c'8 [ d' e' ] f'")
         >>> start_dynamic = abjad.Dynamic("mf")
         >>> start_hairpin = abjad.StartHairpin(">")
         >>> stop_dynamic = abjad.Dynamic("pp", leak=True)
-        >>> abjad.attach(start_dynamic, staff[0])
-        >>> abjad.attach(start_hairpin, staff[0])
-        >>> abjad.attach(stop_dynamic, staff[-2])
-        >>> abjad.override(staff).DynamicLineSpanner.staff_padding = 4
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(start_dynamic, voice[0])
+        >>> abjad.attach(start_hairpin, voice[0])
+        >>> abjad.attach(stop_dynamic, voice[-2])
+        >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             \with
             {
                 \override DynamicLineSpanner.staff-padding = 4
@@ -443,16 +446,16 @@ class Dynamic:
 
         Leaked and nonleaked dynamic may be attached to the same leaf:
 
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(abjad.Dynamic("f"), staff[0])
-        >>> abjad.attach(abjad.Dynamic("p", leak=True), staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Dynamic("f"), voice[0])
+        >>> abjad.attach(abjad.Dynamic("p", leak=True), voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(voice)
             >>> print(string)
-            \new Staff
+            \new Voice
             {
                 c'4
                 \f
@@ -468,15 +471,15 @@ class Dynamic:
         Leaks and tweaks on the same dynamic format correctly; LilyPond empty chord
         ``<>`` symbol appears before postevents:
 
-        >>> staff = abjad.Staff("r4 d' e' f'")
+        >>> voice = abjad.Voice("r4 d' e' f'")
         >>> dynamic = abjad.Dynamic("f", leak=True)
         >>> bundle = abjad.bundle(dynamic, r"- \tweak color #blue")
-        >>> abjad.attach(bundle, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.attach(bundle, voice[0])
+        >>> abjad.show(voice) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff)
+        >>> string = abjad.lilypond(voice)
         >>> print(string)
-        \new Staff
+        \new Voice
         {
             r4
             <>
@@ -660,6 +663,7 @@ class Dynamic:
 
     context: typing.ClassVar[str] = "Voice"
     directed: typing.ClassVar[bool] = True
+    # find_context_on_attach: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "DYNAMIC"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True

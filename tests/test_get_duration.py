@@ -9,11 +9,11 @@ def test_get_duration_01():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    score = abjad.Score([staff])
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
     abjad.attach(mark, staff[0])
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 42)
     abjad.attach(mark, staff[2])
-    score = abjad.Score([staff])
 
     assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
@@ -51,11 +51,11 @@ def test_get_duration_03():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
+    abjad.Score([staff])
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
     abjad.attach(mark, staff[0])
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 42)
     abjad.attach(mark, staff[2])
-    abjad.Score([staff])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

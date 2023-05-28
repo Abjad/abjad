@@ -1650,8 +1650,6 @@ class Container(Component):
             >>> container.extend("fs16 cs' e' a'")
             >>> container.extend("cs''16 e'' cs'' a'")
             >>> container.extend("fs'16 e' cs' fs")
-            >>> start_slur = abjad.StartSlur()
-            >>> abjad.slur(container[:], direction=abjad.DOWN, start_slur=start_slur)
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1660,7 +1658,6 @@ class Container(Component):
                 >>> print(string)
                 {
                     fs16
-                    _ (
                     cs'16
                     e'16
                     a'16
@@ -1672,7 +1669,6 @@ class Container(Component):
                     e'16
                     cs'16
                     fs16
-                    )
                 }
 
             >>> container.insert(-4, abjad.Note("e'4"))
@@ -1684,7 +1680,6 @@ class Container(Component):
                 >>> print(string)
                 {
                     fs16
-                    _ (
                     cs'16
                     e'16
                     a'16
@@ -1697,7 +1692,6 @@ class Container(Component):
                     e'16
                     cs'16
                     fs16
-                    )
                 }
 
         """

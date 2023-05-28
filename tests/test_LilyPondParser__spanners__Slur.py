@@ -8,12 +8,13 @@ def test_LilyPondParser__spanners__Slur_01():
     Successful slurs, showing single leaf overlap.
     """
 
-    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.slur(target[2:])
     abjad.slur(target[:3])
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             c'4
             (
@@ -37,12 +38,13 @@ def test_LilyPondParser__spanners__Slur_02():
     Swapped start and stop.
     """
 
-    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.slur(target[2:])
     abjad.slur(target[:3])
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             c'4
             (
@@ -56,8 +58,7 @@ def test_LilyPondParser__spanners__Slur_02():
         """
     )
 
-    string = r"\relative c' { c ( c c () c ) }"
-
+    string = r"\new Voice \relative c' { c ( c c () c ) }"
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
@@ -108,7 +109,7 @@ def test_LilyPondParser__spanners__Slur_07():
     With direction.
     """
 
-    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     start_slur = abjad.StartSlur()
     abjad.slur(target[:3], direction=abjad.DOWN, start_slur=start_slur)
     start_slur = abjad.StartSlur()
@@ -116,6 +117,7 @@ def test_LilyPondParser__spanners__Slur_07():
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             c'4
             _ (

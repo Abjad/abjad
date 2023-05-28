@@ -151,7 +151,6 @@ def test_mutate__fuse_leaves_by_immediate_parent_06():
     """
 
     voice = abjad.Voice(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
-    abjad.attach(abjad.MetronomeMark(abjad.Duration(1, 4), 120), voice[0])
     logical_tie = abjad.get.logical_tie(voice[0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
@@ -159,7 +158,6 @@ def test_mutate__fuse_leaves_by_immediate_parent_06():
         r"""
         \new Voice
         {
-            \tempo 4=120
             c'4
             ~
             c'16
@@ -264,12 +262,13 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
     the end of the logical tie after fusing.
     """
 
-    staff = abjad.Staff(r"d'8 c'8 ~ c'32 r16 r16 r16 r4")
+    voice = abjad.Voice(r"d'8 c'8 ~ c'32 r16 r16 r16 r4")
+    staff = abjad.Staff([voice])
     abjad.Score([staff], name="Score")
 
     indicators = (abjad.TimeSignature((3, 4)), abjad.StartBeam())
     for indicator in indicators:
-        abjad.attach(indicator, staff[0])
+        abjad.attach(indicator, voice[0])
 
     indicators = (
         abjad.BeforeGraceContainer("b'16"),
@@ -278,31 +277,34 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
         abjad.StopBeam(),
     )
     for indicator in indicators:
-        abjad.attach(indicator, staff[1])
+        abjad.attach(indicator, voice[1])
 
-    logical_tie = abjad.get.logical_tie(staff[1])
+    logical_tie = abjad.get.logical_tie(voice[1])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
-            \time 3/4
-            d'8
-            [
-            \grace {
-                b'16
+            \new Voice
+            {
+                \time 3/4
+                d'8
+                [
+                \grace {
+                    b'16
+                }
+                c'8
+                - \accent
+                - \staccato
+                ~
+                c'32
+                ]
+                r16
+                r16
+                r16
+                r4
             }
-            c'8
-            - \accent
-            - \staccato
-            ~
-            c'32
-            ]
-            r16
-            r16
-            r16
-            r4
         }
         """
     ), print(abjad.lilypond(staff))

@@ -8,12 +8,13 @@ def test_LilyPondParser__spanners__Text_01():
     Successful text spanners, showing single leaf overlap.
     """
 
-    container = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    container = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.text_spanner(container[2:])
     abjad.text_spanner(container[:3])
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             c'4
             \startTextSpan
@@ -39,12 +40,13 @@ def test_LilyPondParser__spanners__Text_02():
     Swapped start and stop.
     """
 
-    target = abjad.Container(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.text_spanner(target[2:])
     abjad.text_spanner(target[:3])
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             c'4
             \startTextSpan
@@ -59,10 +61,9 @@ def test_LilyPondParser__spanners__Text_02():
     )
 
     string = (
-        r"\relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c"
+        r"\new Voice \relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c"
         r" \stopTextSpan }"
     )
-
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result

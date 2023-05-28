@@ -29,7 +29,7 @@ def test_LilyPondParser__misc__chord_repetition_01():
 
 
 def test_LilyPondParser__misc__chord_repetition_02():
-    target = abjad.Staff(
+    target = abjad.Voice(
         [
             abjad.Chord([0, 4, 7], (1, 8)),
             abjad.Chord([0, 4, 7], (1, 8)),
@@ -51,7 +51,7 @@ def test_LilyPondParser__misc__chord_repetition_02():
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
-        \new Staff
+        \new Voice
         {
             <c' e' g'>8
             \p
@@ -67,7 +67,7 @@ def test_LilyPondParser__misc__chord_repetition_02():
         """
     )
 
-    string = r"""\new Staff { <c' e' g'>8\p q q4-! q8.^"text" q16 q4-! }"""
+    string = r"""\new Voice { <c' e' g'>8\p q q4-! q8.^"text" q16 q4-! }"""
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
