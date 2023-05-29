@@ -323,6 +323,7 @@ def _fuse_leaves(leaves, *, tag=None):
     return result
 
 
+# TODO: remove because unused?
 def _fuse_leaves_by_immediate_parent(leaves, *, tag=None):
     result = []
     parts = _get_leaves_grouped_by_immediate_parents(leaves)
@@ -419,12 +420,6 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
             successors = descendants
             break
     return component_2 in successors
-
-
-def _move_indicators(donor_component, recipient_component):
-    for wrapper in _get.wrappers(donor_component):
-        _bind.detach(wrapper, donor_component)
-        _bind.attach(wrapper, recipient_component)
 
 
 def _set_leaf_duration(leaf, new_duration, *, tag=None):

@@ -45,7 +45,6 @@ def _get_annotation(component, annotation, default=None, unwrap: bool = True):
     for wrapper in _get_annotation_wrappers(component):
         if wrapper.annotation == annotation:
             if unwrap is True:
-                # return wrapper.indicator
                 return wrapper.get_item()
             else:
                 return wrapper
