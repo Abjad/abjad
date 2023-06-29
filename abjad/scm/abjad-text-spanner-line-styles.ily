@@ -21,16 +21,17 @@ abjad-dashed-line-with-arrow = #(
     #{
     - \tweak Y-extent ##f
     - \tweak arrow-width 0.25
-    - \tweak dash-fraction 0.25
-    - \tweak dash-period 1.5
-    - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
-    - \tweak bound-details.right.arrow ##t
-    - \tweak bound-details.right.padding 0.5
-    - \tweak bound-details.right.stencil-align-dir-y #center
+    - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.right-broken.arrow ##t
     - \tweak bound-details.right-broken.padding 0
     - \tweak bound-details.right-broken.text ##f
+    - \tweak bound-details.right.arrow ##t
+    - \tweak bound-details.right.padding 0.5
+    - \tweak bound-details.right.stencil-align-dir-y #center
+    - \tweak dash-fraction 0.25
+    - \tweak dash-period 1.5
+    - \tweak to-barline ##t
     $music
     #}
     )
@@ -45,8 +46,6 @@ abjad-dashed-line-with-hook = #(
     - \tweak dash-period 1.5
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
-    % right padding to avoid last leaf in spanner:
-    %%%- \tweak bound-details.right.padding 1.25
     - \tweak bound-details.right.stencil-align-dir-y #up
     - \tweak bound-details.right.text \markup { \draw-line #'(0 . -1) }
     - \tweak bound-details.right-broken.arrow ##f
@@ -66,8 +65,6 @@ abjad-dashed-line-with-up-hook = #(
     - \tweak dash-period 1.5
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
-    % right padding to avoid last leaf in spanner:
-    %%%- \tweak bound-details.right.padding 1.25
     - \tweak bound-details.right.stencil-align-dir-y #down
     - \tweak bound-details.right.text \markup { \draw-line #'(0 . -1) }
     - \tweak bound-details.right-broken.arrow ##f
@@ -101,14 +98,15 @@ abjad-solid-line-with-arrow = #(
     #{
     - \tweak Y-extent ##f
     - \tweak arrow-width 0.25
-    - \tweak dash-fraction 1
-    - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
+    - \tweak bound-details.left.stencil-align-dir-y #center
+    - \tweak bound-details.right-broken.padding 0
+    - \tweak bound-details.right-broken.text ##f
     - \tweak bound-details.right.arrow ##t
     - \tweak bound-details.right.padding 0.5
     - \tweak bound-details.right.stencil-align-dir-y #center
-    - \tweak bound-details.right-broken.padding 0
-    - \tweak bound-details.right-broken.text ##f
+    - \tweak dash-fraction 1
+    - \tweak to-barline ##f
     $music
     #}
     )
@@ -122,8 +120,6 @@ abjad-solid-line-with-hook = #(
     - \tweak dash-fraction 1
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
-    % right padding to avoid last leaf in spanner:
-    - \tweak bound-details.right.padding 1.25
     - \tweak bound-details.right.stencil-align-dir-y #up
     - \tweak bound-details.right.text \markup { \draw-line #'(0 . -1) }
     - \tweak bound-details.right-broken.arrow ##f
@@ -142,8 +138,6 @@ abjad-solid-line-with-up-hook = #(
     - \tweak dash-fraction 1
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
-    % right padding to avoid last leaf in spanner:
-    - \tweak bound-details.right.padding 1.25
     - \tweak bound-details.right.stencil-align-dir-y #down
     - \tweak bound-details.right.text \markup { \draw-line #'(0 . -1) }
     - \tweak bound-details.right-broken.arrow ##f

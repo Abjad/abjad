@@ -120,10 +120,8 @@ def _get_effective(
         for wrapper in component_._wrappers:
             if wrapper.annotation:
                 continue
-            # if isinstance(wrapper.indicator, prototype):
             if isinstance(wrapper.unbundle_indicator(), prototype):
                 append_wrapper = True
-                # if command is not None and wrapper.indicator.command != command:
                 if (
                     command is not None
                     and wrapper.unbundle_indicator().command != command
@@ -131,7 +129,6 @@ def _get_effective(
                     continue
                 if attributes is not None:
                     for name, value in attributes.items():
-                        # if getattr(wrapper.indicator, name, None) != value:
                         if getattr(wrapper.unbundle_indicator(), name, None) != value:
                             append_wrapper = False
                 if not append_wrapper:
@@ -150,10 +147,8 @@ def _get_effective(
         for wrapper in component_._dependent_wrappers:
             if wrapper.annotation:
                 continue
-            # if isinstance(wrapper.indicator, prototype):
             if isinstance(wrapper.unbundle_indicator(), prototype):
                 append_wrapper = True
-                # if command is not None and wrapper.indicator.command != command:
                 if (
                     command is not None
                     and wrapper.unbundle_indicator().command != command
@@ -161,7 +156,6 @@ def _get_effective(
                     continue
                 if attributes is not None:
                     for name, value in attributes.items():
-                        # if getattr(wrapper.indicator, name, None) != value:
                         if getattr(wrapper.unbundle_indicator(), name, None) != value:
                             append_wrapper = False
                 if not append_wrapper:
@@ -179,7 +173,6 @@ def _get_effective(
         return
     wrapper = candidate_wrappers[all_offsets[index]][0]
     if unwrap:
-        # return wrapper.indicator
         return wrapper.unbundle_indicator()
     return wrapper
 

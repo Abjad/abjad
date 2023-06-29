@@ -140,13 +140,13 @@ def partition_by_counts(
     sequence,
     counts,
     *,
-    cyclic=False,
-    enchain=False,
+    cyclic: bool = False,
+    enchain: bool = False,
     overhang=False,
-    reversed_=False,
+    reversed_: bool = False,
 ) -> list:
     r"""
-    Partitions sequence by ``counts``.
+    Partitions ``sequence`` by ``counts``.
 
     Partitions sequence once by counts without overhang:
 
@@ -477,7 +477,7 @@ def partition_by_counts(
     ..  container:: example
 
         Partitions sequence cyclically by counts and asserts that sequence partitions
-        exactly Exact partitioning means partitioning with no overhang:
+        exactly. Exact partitioning means partitioning with no overhang:
 
         >>> sequence = list(range(10))
         >>> parts = abjad.sequence.partition_by_counts(
@@ -499,7 +499,7 @@ def partition_by_counts(
 
         Partitions string:
 
-        >>> sequence = list('some text')
+        >>> sequence = list("some text")
         >>> parts = abjad.sequence.partition_by_counts(
         ...     sequence,
         ...     [3],
@@ -589,7 +589,7 @@ def partition_by_counts(
         ...     part
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
-    Returns list of sequences.
+    Returns list of ``sequence`` types.
     """
     if not all(isinstance(_, int) and 0 <= _ for _ in counts):
         raise Exception(f"must be nonnegative integers: {counts!r}.")
@@ -637,7 +637,7 @@ def partition_by_counts(
 
 def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
     r"""
-    Partitions sequence by ``ratio`` of lengths.
+    Partitions ``sequence`` by ``ratio`` of lengths.
 
     Partitions sequence by ``1:1:1`` ratio:
 
@@ -665,7 +665,7 @@ def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
         [3, 4]
         [5, 6, 7, 8, 9]
 
-    Returns list of sequences.
+    Returns list of ``sequence`` types.
     """
     assert isinstance(ratio, tuple), repr(ratio)
     length = len(sequence)
@@ -676,7 +676,7 @@ def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
 
 def partition_by_ratio_of_weights(sequence, weights) -> list:
     """
-    Partitions sequence by ratio of ``weights``.
+    Partitions ``sequence`` by ratio of ``weights``.
 
     ..  container:: example
 
@@ -803,7 +803,7 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
     Rounded weight-proportions of sequences returned equal to rounded ``weights``.
 
-    Returns list of sequences.
+    Returns list of ``sequence`` types.
     """
     list_weight = _math.weight(sequence)
     weights_parts = _math.partition_integer_by_ratio(list_weight, weights)
@@ -831,14 +831,14 @@ def partition_by_weights(
     sequence,
     weights,
     *,
-    cyclic=False,
-    overhang=False,
+    cyclic: bool = False,
+    overhang: bool = False,
     allow_part_weights=_enums.EXACT,
 ) -> list:
     r"""
-    Partitions sequence by ``weights`` exactly.
+    Partitions ``sequence`` by ``weights`` exactly.
 
-    >>> sequence = list([3, 3, 3, 3, 4, 4, 4, 4, 5])
+    >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
 
     ..  container:: example
 
@@ -1057,7 +1057,7 @@ def partition_by_weights(
         [5]
         [5]
 
-    Returns list of sequences.
+    Returns list of ``sequence`` types.
     """
     if allow_part_weights is _enums.EXACT:
         candidate = type(sequence)(sequence)
@@ -1092,9 +1092,9 @@ def partition_by_weights(
     return result
 
 
-def split(sequence, weights, *, cyclic=False, overhang=False) -> list:
+def split(sequence, weights, *, cyclic: bool = False, overhang: bool = False) -> list:
     r"""
-    Splits sequence by ``weights``.
+    Splits ``sequence`` by ``weights``.
 
     Splits sequence cyclically by weights with overhang:
 
@@ -1177,7 +1177,7 @@ def split(sequence, weights, *, cyclic=False, overhang=False) -> list:
         [(12, 2), (-18, 2)]
         [(-2, 2)]
 
-    Returns list of sequences.
+    Returns list of ``sequence`` types.
     """
     result = []
     current_index = 0
@@ -1217,14 +1217,13 @@ def split(sequence, weights, *, cyclic=False, overhang=False) -> list:
 
 def filter(sequence, predicate=None):
     """
-    Filters sequence by ``predicate``.
+    Filters ``sequence`` by callable ``predicate``.
 
     ..  container:: example
 
         By length:
 
-        >>> items = [[1], [2, 3, [4]], [5], [6, 7, [8]]]
-        >>> sequence = list(items)
+        >>> sequence = [[1], [2, 3, [4]], [5], [6, 7, [8]]]
 
         >>> abjad.sequence.filter(sequence, lambda _: len(_) == 1)
         [[1], [5]]
@@ -1239,7 +1238,7 @@ def filter(sequence, predicate=None):
         ... )
         [Note("d'8"), Note("f'8")]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     if predicate is None:
         return sequence[:]
@@ -1267,7 +1266,7 @@ def _flatten_helper(sequence, classes, depth):
                 yield item_
 
 
-def flatten(sequence, *, classes=None, depth=1):
+def flatten(sequence, *, classes=None, depth: int = 1):
     r"""
     Flattens ``sequence``.
 
@@ -1275,25 +1274,19 @@ def flatten(sequence, *, classes=None, depth=1):
 
         Flattens sequence:
 
-        >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-        >>> sequence = list(items)
-
+        >>> sequence = [1, [2, 3, [4]], 5, [6, 7, [8]]]
         >>> abjad.sequence.flatten(sequence)
         [1, 2, 3, [4], 5, 6, 7, [8]]
 
         Flattens sequence to depth 2:
 
-        >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-        >>> sequence = list(items)
-
+        >>> sequence = [1, [2, 3, [4]], 5, [6, 7, [8]]]
         >>> abjad.sequence.flatten(sequence, depth=2)
         [1, 2, 3, 4, 5, 6, 7, 8]
 
         Flattens sequence to depth -1:
 
-        >>> items = [1, [2, 3, [4]], 5, [6, 7, [8]]]
-        >>> sequence = list(items)
-
+        >>> sequence = [1, [2, 3, [4]], 5, [6, 7, [8]]]
         >>> abjad.sequence.flatten(sequence, depth=-1)
         [1, 2, 3, 4, 5, 6, 7, 8]
 
@@ -1303,7 +1296,7 @@ def flatten(sequence, *, classes=None, depth=1):
         >>> abjad.sequence.flatten(sequence, classes=(tuple, list))
         ['ab', 'cd', 'ef', 'gh', 'ij', 'kl']
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     if classes is None:
         classes = (collections.abc.Sequence,)
@@ -1313,7 +1306,7 @@ def flatten(sequence, *, classes=None, depth=1):
 
 def group_by(sequence, predicate=None) -> list:
     """
-    Groups sequence items by value of items.
+    Groups ``sequence`` items by value of items.
 
     ..  container:: example
 
@@ -1343,7 +1336,7 @@ def group_by(sequence, predicate=None) -> list:
         [Note("d'8"), Note("d'8")]
         [Note("e'8"), Note("e'8"), Note("e'8")]
 
-    Returns list of sequence types.
+    Returns list of ``sequence`` types.
     """
     items = []
     if predicate is None:
@@ -1378,9 +1371,9 @@ def has_duplicates(sequence):
     return len(set(sequence)) < len(sequence)
 
 
-def is_decreasing(sequence, *, strict=True) -> bool:
+def is_decreasing(sequence, *, strict: bool = True) -> bool:
     """
-    Is true when sequence decreases.
+    Is true when ``sequence`` is decreasing.
 
     Is true when sequence is strictly decreasing:
 
@@ -1439,9 +1432,9 @@ def is_decreasing(sequence, *, strict=True) -> bool:
             return False
 
 
-def is_increasing(sequence, *, strict=True) -> bool:
+def is_increasing(sequence, *, strict: bool = True) -> bool:
     """
-    Is true when sequence increases.
+    Is true when ``sequence`` is increasing.
 
     Is true when sequence is strictly increasing:
 
@@ -1500,18 +1493,14 @@ def is_increasing(sequence, *, strict=True) -> bool:
             return False
 
 
-def is_permutation(sequence, *, length=None) -> bool:
+def is_permutation(sequence) -> bool:
     """
-    Is true when sequence is a permutation.
-
-    Is true when sequence is a permutation:
+    Is true when ``sequence`` is a permutation.
 
     ..  container:: example
 
         >>> abjad.sequence.is_permutation([4, 5, 0, 3, 2, 1])
         True
-
-        Is false when sequence is not a permutation:
 
         >>> abjad.sequence.is_permutation([1, 1, 5, 3, 2, 1])
         False
@@ -1522,21 +1511,15 @@ def is_permutation(sequence, *, length=None) -> bool:
 
 def is_repetition_free(sequence) -> bool:
     """
-    Is true when sequence is repetition-free.
-
-    Is true when sequence is repetition-free:
+    Is true when ``sequence`` is repetition-free.
 
     ..  container:: example
 
         >>> abjad.sequence.is_repetition_free([0, 1, 2, 6, 7, 8])
         True
 
-        Is true when sequence is empty:
-
         >>> abjad.sequence.is_repetition_free([])
         True
-
-        Is false when sequence contains repetitions:
 
         >>> abjad.sequence.is_repetition_free([0, 1, 2, 2, 7, 8])
         False
@@ -1565,7 +1548,7 @@ def join(sequence):
         >>> abjad.sequence.join(sequence)
         [(1, 2, 3, 4, 5, 6)]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     if not sequence:
         return type(sequence)()
@@ -1575,11 +1558,13 @@ def join(sequence):
     return type(sequence)([item])
 
 
-def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
+def nwise(
+    sequence, n: int = 2, *, cyclic: bool = False, wrapped: bool = False
+) -> typing.Iterator:
     """
-    Iterates ``sequence`` ``n`` at a time.
+    Iterates ``sequence`` ``n`` items at a time.
 
-    Iterates iterable by pairs:
+    Iterates items 2 at a time:
 
     ..  container:: example
 
@@ -1597,7 +1582,7 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
         [7, 8]
         [8, 9]
 
-        Iterates iterable by triples:
+        Iterates items 3 at a time:
 
         >>> sequence = list(range(10))
         >>> for item in abjad.sequence.nwise(sequence, n=3):
@@ -1612,7 +1597,7 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
         [6, 7, 8]
         [7, 8, 9]
 
-        Iterates iterable by pairs. Wraps around at end:
+        Iterates items 2 at a time. Wraps around at end:
 
         >>> sequence = list(range(10))
         >>> for item in abjad.sequence.nwise(sequence, n=2, wrapped=True):
@@ -1629,7 +1614,7 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
         [8, 9]
         [9, 0]
 
-        Iterates iterable by triples. Wraps around at end:
+        Iterates items 3 at a time. Wraps around at end:
 
         >>> sequence = list(range(10))
         >>> for item in abjad.sequence.nwise(sequence, n=3, wrapped=True):
@@ -1646,7 +1631,7 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
         [8, 9, 0]
         [9, 0, 1]
 
-        Iterates iterable by pairs. Cycles indefinitely:
+        Iterates items 2 at a time. Cycles indefinitely:
 
         >>> sequence = list(range(10))
         >>> pairs = abjad.sequence.nwise(sequence, n=2, cyclic=True)
@@ -1671,7 +1656,7 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
 
         Returns infinite generator.
 
-        Iterates iterable by triples. Cycles indefinitely:
+        Iterates items 3 at a time. Cycles indefinitely:
 
         >>> sequence = list(range(10))
         >>> triples = abjad.sequence.nwise(sequence, n=3, cyclic=True)
@@ -1696,7 +1681,7 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
 
         Returns infinite generator.
 
-        Iterates items one at a time:
+        Iterates items 1 at a time:
 
         >>> sequence = list(range(10))
         >>> for item in abjad.sequence.nwise(sequence, n=1):
@@ -1713,7 +1698,7 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
         [8]
         [9]
 
-    Ignores ``wrapped`` when ``cyclic`` is true.
+    Ignores ``wrapped`` when ``cyclic=True``.
     """
     if cyclic:
         item_buffer = []
@@ -1761,27 +1746,26 @@ def nwise(sequence, n=2, *, cyclic=False, wrapped=False) -> typing.Iterator:
 
 def permute(sequence, permutation):
     r"""
-    Permutes sequence by ``permutation``.
+    Permutes ``sequence`` by ``permutation``.
 
     ..  container:: example
 
-        >>> sequence = list([10, 11, 12, 13, 14, 15])
-        >>> abjad.sequence.permute(sequence, [5, 4, 0, 1, 2, 3])
+        >>> abjad.sequence.permute([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
         [15, 14, 10, 11, 12, 13]
 
-        >>> sequence = list([11, 12, 13, 14])
-        >>> abjad.sequence.permute(sequence, [1, 0, 3, 2])
+        >>> abjad.sequence.permute([11, 12, 13, 14], [1, 0, 3, 2])
         [12, 11, 14, 13]
+
+    ..  container:: exception
 
         Raises exception when lengths do not match:
 
-        >>> sequence = list([1, 2, 3, 4, 5, 6])
-        >>> abjad.sequence.permute(sequence, [3, 0, 1, 2])
+        >>> abjad.sequence.permute([1, 2, 3, 4, 5, 6], [3, 0, 1, 2])
         Traceback (most recent call last):
             ...
         ValueError: permutation [3, 0, 1, 2] must match length of [1, 2, 3, 4, 5, 6].
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     permutation = type(sequence)(permutation)
     if not is_permutation(permutation):
@@ -1799,7 +1783,7 @@ def permute(sequence, permutation):
 
 def remove(sequence, pattern):
     """
-    Removes items at ``indices``.
+    Removes ``sequence`` items at indices specified by ``pattern``.
 
     ..  container:: example
 
@@ -1830,7 +1814,7 @@ def remove(sequence, pattern):
         >>> abjad.sequence.remove(sequence, abjad.index([-97, -98, -99]))
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     items = []
     length = len(sequence)
@@ -1860,12 +1844,10 @@ def remove_repeats(sequence):
 
     ..  container:: example
 
-        >>> items = [31, 31, 35, 35, 31, 31, 31, 31, 35]
-        >>> sequence = list(items)
-        >>> abjad.sequence.remove_repeats(sequence)
+        >>> abjad.sequence.remove_repeats([31, 31, 35, 35, 31, 31, 31, 31, 35])
         [31, 35, 31, 35]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     items = [sequence[0]]
     for item in sequence[1:]:
@@ -1874,9 +1856,9 @@ def remove_repeats(sequence):
     return type(sequence)(items)
 
 
-def repeat(sequence, n=1) -> list:
+def repeat(sequence, n: int = 1) -> list:
     r"""
-    Repeats sequence.
+    Repeats ``sequence``, to a total of ``n`` copies.
 
     ..  container:: example
 
@@ -1889,7 +1871,7 @@ def repeat(sequence, n=1) -> list:
         >>> abjad.sequence.repeat([1, 2, 3], n=2)
         [[1, 2, 3], [1, 2, 3]]
 
-    Returns list of sequence types.
+    Returns list of ``sequence`` types.
     """
     sequences = []
     for i in range(n):
@@ -1897,7 +1879,7 @@ def repeat(sequence, n=1) -> list:
     return sequences
 
 
-def repeat_to_length(sequence, length=None, *, start=0):
+def repeat_to_length(sequence, length: int = 0, *, start: int = 0):
     """
     Repeats ``sequence`` to ``length``.
 
@@ -1920,7 +1902,7 @@ def repeat_to_length(sequence, length=None, *, start=0):
         >>> abjad.sequence.repeat_to_length([1, 2, 3], 10, start=100)
         [2, 3, 1, 2, 3, 1, 2, 3, 1, 2]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     assert _math.is_nonnegative_integer(length), repr(length)
     assert len(sequence), repr(sequence)
@@ -1936,7 +1918,7 @@ def repeat_to_length(sequence, length=None, *, start=0):
 
 def repeat_to_weight(sequence, weight, *, allow_total=_enums.EXACT):
     """
-    Repeats sequence to ``weight``.
+    Repeats ``sequence`` to ``weight``.
 
     ..  container:: example
 
@@ -1964,7 +1946,7 @@ def repeat_to_weight(sequence, weight, *, allow_total=_enums.EXACT):
         >>> [abjad.duration.with_denominator(_, 16) for _ in sequence]
         [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     assert 0 <= weight
     if allow_total is _enums.EXACT:
@@ -2013,15 +1995,15 @@ def repeat_to_weight(sequence, weight, *, allow_total=_enums.EXACT):
 
 def replace(sequence, old, new):
     """
-    Replaces ``old`` with ``new``.
+    Replaces every ``old``-valued item in ``sequence`` with ``new``.
 
     ..  container:: example
 
-        >>> sequence = list([0, 2, 3, 0, 2, 3, 0, 2, 3])
+        >>> sequence = [0, 2, 3, 0, 2, 3, 0, 2, 3]
         >>> abjad.sequence.replace(sequence, 0, 1)
         [1, 2, 3, 1, 2, 3, 1, 2, 3]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     items = []
     for item in sequence:
@@ -2080,7 +2062,7 @@ def replace_at(sequence, indices, new_material):
         ... )
         ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     assert isinstance(indices, collections.abc.Sequence)
     assert len(indices) == 2
@@ -2117,7 +2099,7 @@ def replace_at(sequence, indices, new_material):
 
 def retain_pattern(sequence, pattern):
     """
-    Retains items at indices matching ``pattern``.
+    Retains ``sequence`` items at indices matching ``pattern``.
 
     ..  container:: example
 
@@ -2144,7 +2126,7 @@ def retain_pattern(sequence, pattern):
         >>> abjad.sequence.retain_pattern(sequence, abjad.index([-97, -98, -99]))
         []
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     length = len(sequence)
     items = []
@@ -2154,15 +2136,15 @@ def retain_pattern(sequence, pattern):
     return type(sequence)(items)
 
 
-def reverse(sequence, *, recurse=False):
+def reverse(sequence, *, recurse: bool = False):
     r"""
-    Reverses sequence.
+    Reverses ``sequence``.
 
     ..  container:: example
 
         Reverses sequence:
 
-        >>> sequence = list([[1, 2], 3, [4, 5]])
+        >>> sequence = [[1, 2], 3, [4, 5]]
 
         >>> abjad.sequence.reverse(sequence)
         [[4, 5], 3, [1, 2]]
@@ -2181,7 +2163,7 @@ def reverse(sequence, *, recurse=False):
         NumberedPitch(3)
         PitchClassSegment([2, 1])
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     if not recurse:
         return type(sequence)(reversed(sequence))
@@ -2197,7 +2179,7 @@ def reverse(sequence, *, recurse=False):
     return type(sequence)(items)
 
 
-def rotate(sequence, n=0):
+def rotate(sequence, n: int = 0):
     r"""
     Rotates ``sequence`` by index ``n``.
 
@@ -2217,14 +2199,14 @@ def rotate(sequence, n=0):
         >>> abjad.sequence.rotate(sequence, n=-3)
         [3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
 
-        Rotates sequence neither to the right nor the left:
+        Rotates sequence to neither the right nor the left:
 
         >>> sequence = list(range(10))
 
         >>> abjad.sequence.rotate(sequence, n=0)
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     n = n or 0
     items = []
@@ -2237,10 +2219,9 @@ def rotate(sequence, n=0):
 
 def sum_by_sign(sequence, *, sign=(-1, 0, 1)):
     """
-    Sums consecutive sequence items by ``sign``.
+    Sums consecutive ``sequence`` items by ``sign``.
 
-    >>> items = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
-    >>> sequence = list(items)
+    >>> sequence = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
     >>> abjad.sequence.sum_by_sign(sequence)
     [0, -2, 5, -5, 8, -11]
@@ -2272,7 +2253,7 @@ def sum_by_sign(sequence, *, sign=(-1, 0, 1)):
 
     Sums consecutive positive elements when ``1`` in ``sign``.
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     items = []
     generator = itertools.groupby(sequence, _math.sign)
@@ -2287,9 +2268,9 @@ def sum_by_sign(sequence, *, sign=(-1, 0, 1)):
 
 def truncate(sequence, *, sum_=None, weight=None):
     """
-    Truncates sequence.
+    Truncates ``sequence``.
 
-    >>> sequence = list([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
+    >>> sequence = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 
     ..  container:: example
 
@@ -2341,7 +2322,7 @@ def truncate(sequence, *, sum_=None, weight=None):
 
     Raises value error on negative ``sum``.
 
-    Returns sequence type.
+    Returns ``sequence`` type.
     """
     if weight is not None:
         assert 0 <= weight, repr(weight)
@@ -2375,7 +2356,7 @@ def truncate(sequence, *, sum_=None, weight=None):
 
 def weight(sequence) -> typing.Any:
     """
-    Gets weight.
+    Gets weight of ``sequence``.
 
     ..  container:: example
 
@@ -2410,15 +2391,15 @@ def weight(sequence) -> typing.Any:
     return sum(weights)
 
 
-def zip(sequences, *, cyclic=False, truncate=True) -> list[tuple]:
+def zip(sequences, *, cyclic: bool = False, truncate: bool = True) -> list[tuple]:
     """
-    Zips sequences in sequence.
+    Zips ``sequences``.
 
     Zips cyclically:
 
     ..  container:: example
 
-        >>> sequence = list([[1, 2, 3], ['a', 'b']])
+        >>> sequence = [[1, 2, 3], ['a', 'b']]
         >>> for item in abjad.sequence.zip(sequence, cyclic=True):
         ...     item
         ...
@@ -2426,8 +2407,7 @@ def zip(sequences, *, cyclic=False, truncate=True) -> list[tuple]:
         (2, 'b')
         (3, 'a')
 
-        >>> items = [[10, 11, 12], [20, 21], [30, 31, 32, 33]]
-        >>> sequence = list(items)
+        >>> sequence = [[10, 11, 12], [20, 21], [30, 31, 32, 33]]
         >>> for item in abjad.sequence.zip(sequence, cyclic=True):
         ...     item
         ...
@@ -2438,8 +2418,7 @@ def zip(sequences, *, cyclic=False, truncate=True) -> list[tuple]:
 
         Zips without truncation:
 
-        >>> items = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
-        >>> sequence = list(items)
+        >>> sequence = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
         >>> for item in abjad.sequence.zip(sequence, truncate=False):
         ...     item
         ...
@@ -2452,9 +2431,9 @@ def zip(sequences, *, cyclic=False, truncate=True) -> list[tuple]:
 
         Zips strictly:
 
-        >>> items = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
-        >>> for item in abjad.sequence.zip(items):
-        ...     item
+        >>> sequences = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
+        >>> for triple in abjad.sequence.zip(sequences):
+        ...     triple
         ...
         (1, 11, 21)
         (2, 12, 22)
