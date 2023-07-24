@@ -39,28 +39,29 @@ def _before_attach(indicator, context, deactivate, component):
     if deactivate is True:
         return
     for wrapper in component._get_indicators(unwrap=False):
-        if not isinstance(wrapper.indicator, type(indicator)):
+        if not isinstance(wrapper.unbundle_indicator(), type(indicator)):
             continue
-        if getattr(indicator, "leak", None) != getattr(wrapper.indicator, "leak", None):
+        if getattr(indicator, "leak", None) != getattr(
+            wrapper.unbundle_indicator(), "leak", None
+        ):
             continue
-        if indicator != wrapper.indicator:
+        if indicator != wrapper.unbundle_indicator():
             if (
                 getattr(indicator, "allow_multiple_with_different_values", False)
                 is True
             ):
                 continue
             if hasattr(indicator, "hide"):
-                if indicator.hide != wrapper.indicator.hide:
+                if indicator.hide != wrapper.unbundle_indicator().hide:
                     continue
             if getattr(indicator, "site", None) != getattr(
-                wrapper.indicator, "site", None
+                wrapper.unbundle_indicator(), "site", None
             ):
                 continue
         classname = type(component).__name__
         message = f"attempting to attach conflicting indicator to {classname}:"
         message += "\n  Already attached:"
-        message += f"\n    {wrapper.indicator!r}"
-        # message += f"\n    {wrapper!r}"
+        message += f"\n    {wrapper.unbundle_indicator()!r}"
         message += "\n  Attempting to attach:"
         message += f"\n    {indicator!r}"
         raise _exceptions.PersistentIndicatorError(message)
