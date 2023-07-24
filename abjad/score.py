@@ -5005,6 +5005,8 @@ class Tuplet(Container):
 
     ..  container:: example
 
+        Tweak tuplets like this:
+
         >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
         >>> abjad.tweak(tuplet_1, r"\tweak color #red")
         >>> abjad.tweak(tuplet_1, r"\tweak staff-padding 2")
