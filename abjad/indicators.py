@@ -3709,7 +3709,8 @@ class StartHairpin:
         >>> abjad.attach(abjad.StartHairpin('<|'), voice[0])
         >>> abjad.attach(abjad.Dynamic('f'), voice[-1])
         >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4.5
-        >>> abjad.show(voice) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3738,7 +3739,8 @@ class StartHairpin:
         >>> abjad.attach(abjad.StartHairpin('o<|'), voice[0])
         >>> abjad.attach(abjad.Dynamic('f'), voice[-1])
         >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4.5
-        >>> abjad.show(voice) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3826,7 +3828,8 @@ class StartHairpin:
         >>> abjad.attach(abjad.StartHairpin('|>'), voice[0])
         >>> abjad.attach(abjad.Dynamic('p'), voice[-1])
         >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4.5
-        >>> abjad.show(voice) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -3855,7 +3858,8 @@ class StartHairpin:
         >>> abjad.attach(abjad.StartHairpin('|>o'), voice[0])
         >>> abjad.attach(abjad.Dynamic('niente', command=r'\!'), voice[-1])
         >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4.5
-        >>> abjad.show(voice) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 

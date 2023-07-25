@@ -1232,7 +1232,8 @@ def hairpin(
         >>> stop_dynamic = abjad.Dynamic('"f"')
         >>> abjad.hairpin([start_dynamic, bundle, stop_dynamic], voice[:])
         >>> abjad.override(voice[0]).DynamicLineSpanner.staff_padding = 4
-        >>> abjad.show(voice) # doctest: +SKIP
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
