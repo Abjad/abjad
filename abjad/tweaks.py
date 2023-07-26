@@ -102,11 +102,14 @@ class Bundle:
         if len(lists) == 2 and [r"\pitchedTrill"] in lists:
             lists.remove([r"\pitchedTrill"])
         assert len(lists) == 1, repr(lists)
-        for list_ in lists:
-            strings = []
-            for tweak in sorted(self.tweaks):
-                strings.extend(tweak._list_contributions())
-            list_[0:0] = strings
+        list_ = lists[0]
+        strings = []
+        for tweak in sorted(self.tweaks):
+            strings.extend(tweak._list_contributions())
+        if 2 <= len(list_) and list_[-2] in ("^", "_", "-"):
+            list_[-2:-2] = strings
+        else:
+            list_[-1:-1] = strings
         return contributions
 
     def get_attribute(self, attribute: str) -> Tweak | None:

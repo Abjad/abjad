@@ -940,8 +940,8 @@ def glissando(
             \context Voice = "Voice"
             {
                 d'4
-                - \tweak color #red
                 - \abjad-zero-padding-glissando
+                - \tweak color #red
                 \glissando
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
@@ -951,8 +951,8 @@ def glissando(
                 \once \override NoteHead.X-extent = #'(0 . 0)
                 \once \override NoteHead.transparent = ##t
                 d'4
-                - \tweak color #red
                 - \abjad-zero-padding-glissando
+                - \tweak color #red
                 \glissando
                 d'4
             }
@@ -1244,9 +1244,9 @@ def hairpin(
                 \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
                 \!
-                - \tweak color #blue
                 - \tweak circled-tip ##t
                 - \tweak stencil #abjad-flared-hairpin
+                - \tweak color #blue
                 \<
                 d'4
                 e'4
