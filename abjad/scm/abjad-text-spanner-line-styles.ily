@@ -19,7 +19,6 @@ abjad-dashed-line-with-arrow = #(
     (parser location music)
     (ly:music?)
     #{
-    - \tweak Y-extent ##f
     - \tweak arrow-width 0.25
     - \tweak bound-details.left-broken.text ##f
     - \tweak bound-details.left.stencil-align-dir-y #center
@@ -41,7 +40,6 @@ abjad-dashed-line-with-hook = #(
     (parser location music)
     (ly:music?)
     #{
-    - \tweak Y-extent ##f
     - \tweak dash-fraction 0.25
     - \tweak dash-period 1.5
     - \tweak bound-details.left.stencil-align-dir-y #center
@@ -60,7 +58,6 @@ abjad-dashed-line-with-up-hook = #(
     (parser location music)
     (ly:music?)
     #{
-    - \tweak Y-extent ##f
     - \tweak dash-fraction 0.25
     - \tweak dash-period 1.5
     - \tweak bound-details.left.stencil-align-dir-y #center
@@ -79,7 +76,6 @@ abjad-invisible-line = #(
     (parser location music)
     (ly:music?)
     #{
-    - \tweak Y-extent ##f
     - \tweak dash-period 0
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
@@ -96,7 +92,6 @@ abjad-solid-line-with-arrow = #(
     (parser location music)
     (ly:music?)
     #{
-    - \tweak Y-extent ##f
     - \tweak arrow-width 0.25
     - \tweak bound-details.left-broken.text ##f
     - \tweak bound-details.left.stencil-align-dir-y #center
@@ -116,7 +111,6 @@ abjad-solid-line-with-hook = #(
     (parser location music)
     (ly:music?)
     #{
-    - \tweak Y-extent ##f
     - \tweak dash-fraction 1
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f
@@ -134,7 +128,6 @@ abjad-solid-line-with-up-hook = #(
     (parser location music)
     (ly:music?)
     #{
-    - \tweak Y-extent ##f
     - \tweak dash-fraction 1
     - \tweak bound-details.left.stencil-align-dir-y #center
     - \tweak bound-details.left-broken.text ##f

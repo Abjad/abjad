@@ -4323,7 +4323,7 @@ class StartTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="solid-line-with-arrow",
+        ...     style=r"\abjad-solid-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -4362,7 +4362,7 @@ class StartTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(
         ...     start_text_span,
@@ -4377,7 +4377,7 @@ class StartTextSpan:
         ...     command=r"\startTextSpanOne",
         ...     left_text=abjad.Markup(r"\upright A"),
         ...     right_text=abjad.Markup(r"\markup \upright B"),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(
         ...     start_text_span,
@@ -4436,7 +4436,7 @@ class StartTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=left_text,
         ...     right_text=right_text,
-        ...     style='solid-line-with-arrow',
+        ...     style=r"\abjad-solid-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -4471,7 +4471,7 @@ class StartTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -4503,7 +4503,7 @@ class StartTextSpan:
         >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
-        ...     style="dashed-line-with-hook",
+        ...     style=r"\abjad-dashed-line-with-hook",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -4535,7 +4535,7 @@ class StartTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="invisible-line",
+        ...     style=r"\abjad-invisible-line",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -4568,7 +4568,7 @@ class StartTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="solid-line-with-arrow",
+        ...     style=r"\abjad-solid-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -4600,7 +4600,7 @@ class StartTextSpan:
         >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
-        ...     style="solid-line-with-hook",
+        ...     style=r"\abjad-solid-line-with-hook",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -4638,7 +4638,7 @@ class StartTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(
         ...     start_text_span,
@@ -4689,24 +4689,14 @@ class StartTextSpan:
     post_event: typing.ClassVar[bool] = True
     spanner_start: typing.ClassVar[bool] = True
 
-    _styles = (
-        "dashed-line-with-arrow",
-        "dashed-line-with-hook",
-        "dashed-line-with-up-hook",
-        "invisible-line",
-        "solid-line-with-arrow",
-        "solid-line-with-hook",
-        "solid-line-with-up-hook",
-    )
-
     def __post_init__(self):
         assert isinstance(self.command, str), repr(self.command)
+        assert isinstance(self.style, str | None), repr(self.style)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         if self.style is not None:
-            string = rf"- \abjad-{self.style}"
-            contributions.after.spanner_starts.append(string)
+            contributions.after.spanner_starts.append(rf"- {self.style}")
         if self.left_text:
             string = self._get_left_text_directive()
             contributions.after.spanner_starts.append(string)
@@ -5644,7 +5634,7 @@ class StopTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
@@ -5677,7 +5667,7 @@ class StopTextSpan:
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> bundle = abjad.bundle(start_text_span, r"- \tweak staff-padding 2.5")
         >>> abjad.attach(bundle, voice[0])
