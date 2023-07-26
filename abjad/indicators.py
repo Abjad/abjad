@@ -4339,10 +4339,10 @@ class StartTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4403,18 +4403,18 @@ class StartTextSpan:
                 c'4
                 - \tweak transparent ##t
                 ^ \markup SPACER
-                - \tweak color #blue
-                - \tweak staff-padding 2.5
-                - \abjad-dashed-line-with-arrow
-                - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
-                - \tweak bound-details.right.text \markup \upright tasto
-                \startTextSpan
-                - \tweak color #red
-                - \tweak staff-padding 6
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright A \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright B
+                - \tweak color #red
+                - \tweak staff-padding 6
                 \startTextSpanOne
+                - \abjad-dashed-line-with-arrow
+                - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak color #blue
+                - \tweak staff-padding 2.5
+                \startTextSpan
                 d'4
                 e'4
                 f'4
@@ -4452,10 +4452,10 @@ class StartTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4487,10 +4487,10 @@ class StartTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4519,9 +4519,9 @@ class StartTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-hook
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4551,10 +4551,10 @@ class StartTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-invisible-line
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4584,10 +4584,10 @@ class StartTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4616,9 +4616,9 @@ class StartTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-solid-line-with-hook
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -4629,6 +4629,46 @@ class StartTextSpan:
         Styles constrained to ``'dashed-line-with-arrow'``, ``'dashed-line-with-hook'``,
         ``'invisible-line'``, ``'solid-line-with-arrow'``, ``'solid-line-with-hook'``,
         none.
+
+    ..  container:: example
+
+        REGRESSION. Tweaking the dash-fraction of the start text span works correctly:
+
+        >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> start_text_span = abjad.StartTextSpan(
+        ...     left_text=abjad.Markup(r"\upright pont."),
+        ...     right_text=abjad.Markup(r"\markup \upright tasto"),
+        ...     style="dashed-line-with-arrow",
+        ... )
+        >>> bundle = abjad.bundle(
+        ...     start_text_span,
+        ...     r"- \tweak dash-fraction 0.85",
+        ...     r"- \tweak staff-padding 2.5",
+        ... )
+        >>> abjad.attach(bundle, voice[0])
+        >>> stop_text_span = abjad.StopTextSpan()
+        >>> abjad.attach(stop_text_span, voice[-1])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                c'4
+                - \abjad-dashed-line-with-arrow
+                - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
+                - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak dash-fraction 0.85
+                - \tweak staff-padding 2.5
+                \startTextSpan
+                d'4
+                e'4
+                f'4
+                \stopTextSpan
+            }
 
     """
 
@@ -5620,10 +5660,10 @@ class StopTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
@@ -5653,10 +5693,10 @@ class StopTextSpan:
             \new Voice
             {
                 c'4
-                - \tweak staff-padding 2.5
                 - \abjad-dashed-line-with-arrow
                 - \tweak bound-details.left.text \markup \concat { \upright pont. \hspace #0.5 }
                 - \tweak bound-details.right.text \markup \upright tasto
+                - \tweak staff-padding 2.5
                 \startTextSpan
                 d'4
                 e'4
