@@ -1570,7 +1570,7 @@ def text_spanner(
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
         ...     right_text=abjad.Markup(r"\markup \upright tasto"),
-        ...     style="solid-line-with-arrow",
+        ...     style=r"\abjad-solid-line-with-arrow",
         ... )
         >>> abjad.text_spanner(
         ...     voice[:], direction=abjad.UP, start_text_span=start_text_span
@@ -1604,13 +1604,13 @@ def text_spanner(
         >>> voice = abjad.Voice("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> abjad.text_spanner(voice[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright tasto"),
         ...     right_text=abjad.Markup(r"\markup \upright pont."),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> abjad.text_spanner(voice[-3:], start_text_span=start_text_span)
         >>> abjad.override(voice).TextSpanner.staff_padding = 4
@@ -1646,12 +1646,12 @@ def text_spanner(
         >>> voice = abjad.Voice("c'4 d' e' f' r")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
-        ...     style="dashed-line-with-arrow",
+        ...     style=r"\abjad-dashed-line-with-arrow",
         ... )
         >>> abjad.text_spanner(voice[:3], start_text_span=start_text_span)
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright tasto"),
-        ...     style="solid-line-with-hook",
+        ...     style=r"\abjad-solid-line-with-hook",
         ... )
         >>> abjad.text_spanner(voice[-3:], start_text_span=start_text_span)
         >>> abjad.override(voice).TextSpanner.staff_padding = 4
