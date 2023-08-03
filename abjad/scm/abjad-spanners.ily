@@ -1,7 +1,7 @@
 %%% GLISSANDO OVERRIDES %%%
 
 abjad-continuous-glissando = #(
-    define-music-function (parser location music) (ly:music?)
+    define-music-function (music) (ly:music?)
     #{
     \override Glissando.bound-details.left.padding = -1
     \override Glissando.bound-details.left.start-at-dot = ##f
@@ -11,7 +11,7 @@ abjad-continuous-glissando = #(
     )
 
 abjad-revert-continuous-glissando = #(
-    define-music-function (parser location music) (ly:music?)
+    define-music-function (music) (ly:music?)
     #{
     \revert Glissando.bound-details.left.padding
     \revert Glissando.bound-details.left.start-at-dot

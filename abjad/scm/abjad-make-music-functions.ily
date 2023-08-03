@@ -3,10 +3,7 @@
 % But you can use these music functions within markup functions.
 
 
-abjad-make-note = #(
-    define-music-function
-    (parser location length dots)
-    (number? number?)
+abjad-make-note = #(define-music-function (length dots) (number? number?)
     (make-music
         'SequentialMusic
         'elements
@@ -19,9 +16,7 @@ abjad-make-note = #(
     )
 
 abjad-make-tuplet-monad = #(
-    define-music-function
-    (parser location length dots n d)
-    (number? number? number? number?)
+    define-music-function (length dots n d) (number? number? number? number?)
     (make-music
         'SequentialMusic
         'elements

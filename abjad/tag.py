@@ -2,6 +2,7 @@ import dataclasses
 import typing
 
 from . import _indentlib
+from . import string as _string
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -176,6 +177,28 @@ class Tag:
                 return Tag(word)
         else:
             return None
+
+    def retain_shoutcase(self) -> "Tag":
+        """
+        Retains shoutcase.
+
+        ..  container:: example
+
+            >>> tag = abjad.Tag("-PARTS:DEFAULT_CLEF:_apply_clef()")
+            >>> tag.retain_shoutcase()
+            Tag(string='-PARTS:DEFAULT_CLEF')
+
+            >>> tag = abjad.Tag("_debug_function()")
+            >>> tag.retain_shoutcase()
+            Tag(string='')
+
+        """
+        words = []
+        for word in self.words():
+            if _string.is_shout_case(word) or word[0] in ("-", "+"):
+                words.append(word)
+        string = ":".join(words)
+        return type(self)(string)
 
     def words(self) -> list[str]:
         """
