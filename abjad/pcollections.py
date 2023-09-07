@@ -1519,7 +1519,7 @@ class PitchSegment:
                 >>
 
         """
-        return dataclasses.replace(self, items=reversed(self))
+        return dataclasses.replace(self, items=list(reversed(self)))
 
     def rotate(self, n=0) -> "PitchSegment":
         r"""
