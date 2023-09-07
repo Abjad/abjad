@@ -1,7 +1,7 @@
 %%% COLORED MUSIC %%%
 
 abjad-color-music = #(
-    define-music-function (parser location color music) (symbol? ly:music?)
+    define-music-function (color music) (symbol? ly:music?)
     #{
     \once \override Accidental.color = #(x11-color color)
     \once \override Beam.color = #(x11-color color)
@@ -18,9 +18,7 @@ abjad-color-music = #(
     )
 
 abjad-invisible-music = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+    define-music-function (music) (ly:music?)
     #{
     \once \override Accidental.transparent = ##t
     \once \override Dots.transparent = ##t
@@ -35,9 +33,7 @@ abjad-invisible-music = #(
     )
 
 abjad-invisible-music-coloring = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+    define-music-function (music) (ly:music?)
     #{
     \abjad-color-music #'salmon
     $music

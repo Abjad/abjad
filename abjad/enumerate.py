@@ -1,5 +1,6 @@
 import functools
 import itertools
+import typing
 
 from . import math as _math
 from . import sequence as _sequence
@@ -430,7 +431,7 @@ def yield_partitions(argument):
         yield partition
 
 
-def yield_permutations(argument):
+def yield_permutations(argument) -> typing.Generator[typing.Any, None, None]:
     """
     Yields permutations of sequence.
 

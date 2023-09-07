@@ -392,6 +392,12 @@ class Component:
             assert isinstance(self._tag, _tag.Tag), repr(self._tag)
         return self._tag
 
+    @tag.setter
+    def tag(self, argument):
+        if argument is not None:
+            assert isinstance(argument, _tag.Tag), repr(argument)
+        self._tag = argument
+
 
 class Leaf(Component):
     """
@@ -3202,6 +3208,10 @@ class Context(Container):
         """
         return super().tag
 
+    @tag.setter
+    def tag(self, argument) -> None:
+        self._tag = argument
+
 
 class MultimeasureRest(Leaf):
     r"""
@@ -3298,6 +3308,10 @@ class MultimeasureRest(Leaf):
 
         """
         return super().tag
+
+    @tag.setter
+    def tag(self, argument) -> None:
+        self._tag = argument
 
 
 @functools.total_ordering
@@ -4501,6 +4515,10 @@ class Score(Context):
 
         """
         return super().tag
+
+    @tag.setter
+    def tag(self, argument) -> None:
+        self._tag = argument
 
 
 class Skip(Leaf):
@@ -5737,6 +5755,10 @@ class Tuplet(Container):
 
         """
         return super().tag
+
+    @tag.setter
+    def tag(self, argument) -> None:
+        self._tag = argument
 
     ### PUBLIC METHODS ###
 
@@ -7161,3 +7183,7 @@ class Voice(Context):
 
         """
         return super().tag
+
+    @tag.setter
+    def tag(self, argument) -> None:
+        self._tag = argument

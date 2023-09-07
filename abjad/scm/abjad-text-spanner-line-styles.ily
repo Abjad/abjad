@@ -1,9 +1,6 @@
 %%% GLISSANDO LINE STYLES %%%
 
-abjad-zero-padding-glissando = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-zero-padding-glissando = #(define-music-function (music) (ly:music?)
     #{
     - \tweak bound-details.left.padding 0
     - \tweak bound-details.left.start-at-dot ##f
@@ -14,10 +11,7 @@ abjad-zero-padding-glissando = #(
 
 %%% TEXT SPANNER LINE STYLES %%%
 
-abjad-dashed-line-with-arrow = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-dashed-line-with-arrow = #(define-music-function (music) (ly:music?)
     #{
     - \tweak arrow-width 0.25
     - \tweak bound-details.left-broken.text ##f
@@ -35,10 +29,7 @@ abjad-dashed-line-with-arrow = #(
     #}
     )
 
-abjad-dashed-line-with-hook = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-dashed-line-with-hook = #(define-music-function (music) (ly:music?)
     #{
     - \tweak dash-fraction 0.25
     - \tweak dash-period 1.5
@@ -53,10 +44,7 @@ abjad-dashed-line-with-hook = #(
     #}
     )
 
-abjad-dashed-line-with-up-hook = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-dashed-line-with-up-hook = #(define-music-function (music) (ly:music?)
     #{
     - \tweak dash-fraction 0.25
     - \tweak dash-period 1.5
@@ -71,10 +59,7 @@ abjad-dashed-line-with-up-hook = #(
     #}
     )
     
-abjad-invisible-line = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-invisible-line = #(define-music-function (music) (ly:music?)
     #{
     - \tweak dash-period 0
     - \tweak bound-details.left.stencil-align-dir-y #center
@@ -87,10 +72,7 @@ abjad-invisible-line = #(
     #}
     )
     
-abjad-solid-line-with-arrow = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-solid-line-with-arrow = #(define-music-function (music) (ly:music?)
     #{
     - \tweak arrow-width 0.25
     - \tweak bound-details.left-broken.text ##f
@@ -106,10 +88,7 @@ abjad-solid-line-with-arrow = #(
     #}
     )
     
-abjad-solid-line-with-hook = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-solid-line-with-hook = #(define-music-function (music) (ly:music?)
     #{
     - \tweak dash-fraction 1
     - \tweak bound-details.left.stencil-align-dir-y #center
@@ -123,10 +102,7 @@ abjad-solid-line-with-hook = #(
     #}
     )
 
-abjad-solid-line-with-up-hook = #(
-    define-music-function
-    (parser location music)
-    (ly:music?)
+abjad-solid-line-with-up-hook = #(define-music-function (music) (ly:music?)
     #{
     - \tweak dash-fraction 1
     - \tweak bound-details.left.stencil-align-dir-y #center

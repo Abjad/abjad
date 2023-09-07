@@ -332,7 +332,11 @@ class Tuning:
             result.append(pitch)
         return tuple(result)
 
-    def voice_pitch_classes(self, pitch_classes, allow_open_strings: bool = True):
+    def voice_pitch_classes(
+        self,
+        pitch_classes: list[_pitch.NamedPitchClass],
+        allow_open_strings: bool = True,
+    ) -> list[tuple[_pitch.NamedPitch | None, ...]]:
         r"""
         Voices ``pitch_classes``.
 
@@ -340,7 +344,7 @@ class Tuning:
 
             >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
             >>> tuning = abjad.Tuning(tuple(pitches))
-            >>> voicings = tuning.voice_pitch_classes(('a',))
+            >>> voicings = tuning.voice_pitch_classes([abjad.NamedPitchClass('a')])
             >>> for voicing in voicings:
             ...     voicing
             ...
@@ -354,10 +358,8 @@ class Tuning:
             (None, NamedPitch("a''"), None, None)
             (NamedPitch("a'"), None, None, None)
 
-            >>> voicings = tuning.voice_pitch_classes(
-            ...     ("a", "d"),
-            ...     allow_open_strings=False,
-            ... )
+            >>> pcs = [abjad.NamedPitchClass(_) for _ in ["a", "d"]]
+            >>> voicings = tuning.voice_pitch_classes(pcs, allow_open_strings=False)
             >>> for voicing in voicings:
             ...     voicing
             ...
@@ -412,13 +414,16 @@ class Tuning:
 
         """
         assert self.pitches is not None
-        pitch_classes = [_pitch.NamedPitchClass(_) for _ in pitch_classes]
-        pitch_classes.extend([None] * (len(self.pitches) - len(pitch_classes)))
-        permutations = _enumerate.yield_permutations(pitch_classes)
-        permutations = set([tuple(_) for _ in permutations])
+        assert all(isinstance(_, _pitch.NamedPitchClass) for _ in pitch_classes), repr(
+            pitch_classes
+        )
+        nones = [None] * (len(self.pitches) - len(pitch_classes))
+        pcs_and_nones = pitch_classes + nones
+        permutations = _enumerate.yield_permutations(pcs_and_nones)
+        unique_tuples = set([tuple(_) for _ in permutations])
         pitch_ranges = self.pitch_ranges
         result: list[tuple[_pitch.NamedPitch | None, ...]] = []
-        for permutation in permutations:
+        for permutation in unique_tuples:
             sequences: list = []
             for pitch_range, pitch_class in zip(pitch_ranges, permutation):
                 pitches: list[_pitch.NamedPitch | None]
@@ -436,8 +441,10 @@ class Tuning:
             subresult = _enumerate.outer_product(sequences)
             subresult = [tuple(x) for x in subresult]
             result.extend(subresult)
+        assert isinstance(result, list)
+        assert all(isinstance(_, tuple) for _ in result)
         result.sort()
-        return tuple(result)
+        return result
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)

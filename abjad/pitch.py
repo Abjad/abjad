@@ -41,16 +41,16 @@ _accidental_abbreviation_to_semitones = {
     "ss": 2,
 }
 
-# TODO: possibly remove?
+# TODO: change to function; accommodate arbitrarily long abbreviations
 _accidental_abbreviation_to_symbol = {
     "ff": "bb",
-    "tqf": "b~",
+    "tqf": "tqf",
     "f": "b",
-    "qf": "~",
+    "qf": "qf",
     "": "",
-    "qs": "+",
+    "qs": "qs",
     "s": "#",
-    "tqs": "#+",
+    "tqs": "tqs",
     "ss": "##",
 }
 
@@ -924,7 +924,7 @@ class Accidental:
             'bb'
 
             >>> abjad.Accidental("tqf").symbol
-            'b~'
+            'tqf'
 
             >>> abjad.Accidental("f").symbol
             'b'
@@ -933,13 +933,13 @@ class Accidental:
             ''
 
             >>> abjad.Accidental("qs").symbol
-            '+'
+            'qs'
 
             >>> abjad.Accidental("s").symbol
             '#'
 
             >>> abjad.Accidental("tqs").symbol
-            '#+'
+            'tqs'
 
             >>> abjad.Accidental("ss").symbol
             '##'
@@ -5059,7 +5059,7 @@ class NamedPitch(Pitch):
             name = self._get_diatonic_pc_name().upper()
             return f"{name}{self.accidental.symbol}{self.octave.number}"
         else:
-            raise ValueError(f"must be 'us' or none: {locale!r}.")
+            raise ValueError(f'must be "us" or none: {locale!r}.')
 
     def invert(self, axis=None) -> "NamedPitch":
         """
@@ -5595,7 +5595,7 @@ class NumberedPitch(Pitch):
         """
         return super().from_hertz(hertz)
 
-    def get_name(self, locale=None) -> str:
+    def get_name(self, locale: str | None = None) -> str:
         """
         Gets name of numbered pitch name according to ``locale``.
 

@@ -775,7 +775,7 @@ def with_durations(
                 c'4.
                 ^ \markup \fraction 3 8
                 d'8
-                ^ \markup \fraction 4 8
+                ^ \markup \fraction 1 2
                 ~
                 d'4.
                 e'16
@@ -821,8 +821,8 @@ def with_durations(
         pair = duration.pair
         if denominator is not None:
             pair = _duration.with_denominator(duration, denominator)
-        numerator, denominator = pair
-        label = _indicators.Markup(rf"\markup \fraction {numerator} {denominator}")
+        n, d = pair
+        label = _indicators.Markup(rf"\markup \fraction {n} {d}")
         _attach(label, logical_tie.head, direction=direction)
 
 
