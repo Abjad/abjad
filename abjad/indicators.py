@@ -2677,7 +2677,7 @@ class MetronomeMark:
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
         stem_height = 1
-        string = "abjad-metronome-mark-markup"
+        string = r"\abjad-metronome-mark-markup"
         string += f" #{duration_log}"
         string += f" #{self.reference_duration.dot_count}"
         string += f" #{stem_height}"
