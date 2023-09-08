@@ -4115,11 +4115,11 @@ def partition_by_counts(
     argument,
     counts,
     *,
-    cyclic=False,
-    enchain=False,
-    fuse_overhang=False,
-    nonempty=False,
-    overhang=False,
+    cyclic: bool = False,
+    enchain: bool = False,
+    fuse_overhang: bool = False,
+    nonempty: bool = False,
+    overhang: bool | _enums.Comparison = False,
 ) -> list[list]:
     r"""
     Partitions items in ``argument`` by ``counts``.
@@ -4597,10 +4597,10 @@ def partition_by_durations(
     argument,
     durations,
     *,
-    cyclic=False,
-    fill=None,
-    in_seconds=False,
-    overhang=False,
+    cyclic: bool = False,
+    fill: _enums.Comparison | None = None,
+    in_seconds: bool = False,
+    overhang: bool | _enums.Comparison = False,
 ) -> list[list]:
     r"""
     Partitions items in ``argument`` by ``durations``.
@@ -5467,7 +5467,7 @@ def partition_by_durations(
     return selections
 
 
-def partition_by_ratio(argument, ratio) -> list[list]:
+def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
     r"""
     Partitions items in ``argument`` by ``ratio``.
 
