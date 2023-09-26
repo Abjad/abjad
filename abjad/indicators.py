@@ -4626,8 +4626,9 @@ class StartTextSpan:
                 \stopTextSpan
             }
 
-        Styles constrained to ``'dashed-line-with-arrow'``, ``'dashed-line-with-hook'``,
-        ``'invisible-line'``, ``'solid-line-with-arrow'``, ``'solid-line-with-hook'``,
+        Styles constrained to ``r'\abjad-dashed-line-with-arrow'``,
+        ``r'\abjad-dashed-line-with-hook'``, ``r'\abjad-invisible-line'``,
+        ``r'\abjad-solid-line-with-arrow'``, ``r'\abjad-solid-line-with-hook'``,
         none.
 
     ..  container:: example

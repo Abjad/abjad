@@ -142,7 +142,7 @@ def partition_by_counts(
     *,
     cyclic: bool = False,
     enchain: bool = False,
-    overhang=False,
+    overhang: bool | _enums.Comparison = False,
     reversed_: bool = False,
 ) -> list:
     r"""
@@ -591,6 +591,10 @@ def partition_by_counts(
 
     Returns list of ``sequence`` types.
     """
+    assert isinstance(cyclic, bool), repr(cyclic)
+    assert isinstance(enchain, bool), repr(enchain)
+    assert overhang in (True, False, _enums.EXACT), repr(overhang)
+    assert isinstance(reversed_, bool), repr(reversed_)
     if not all(isinstance(_, int) and 0 <= _ for _ in counts):
         raise Exception(f"must be nonnegative integers: {counts!r}.")
     if reversed_:
@@ -674,7 +678,7 @@ def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
     return parts
 
 
-def partition_by_ratio_of_weights(sequence, weights) -> list:
+def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> list:
     """
     Partitions ``sequence`` by ratio of ``weights``.
 
@@ -829,11 +833,11 @@ def partition_by_ratio_of_weights(sequence, weights) -> list:
 
 def partition_by_weights(
     sequence,
-    weights,
+    weights: typing.Sequence[int | fractions.Fraction],
     *,
     cyclic: bool = False,
     overhang: bool = False,
-    allow_part_weights=_enums.EXACT,
+    allow_part_weights: _enums.Comparison = _enums.EXACT,
 ) -> list:
     r"""
     Partitions ``sequence`` by ``weights`` exactly.
@@ -1092,7 +1096,13 @@ def partition_by_weights(
     return result
 
 
-def split(sequence, weights, *, cyclic: bool = False, overhang: bool = False) -> list:
+def split(
+    sequence,
+    weights: typing.Sequence[int | fractions.Fraction],
+    *,
+    cyclic: bool = False,
+    overhang: bool = False,
+) -> list:
     r"""
     Splits ``sequence`` by ``weights``.
 
@@ -1215,7 +1225,7 @@ def split(sequence, weights, *, cyclic: bool = False, overhang: bool = False) ->
     return result
 
 
-def filter(sequence, predicate=None):
+def filter(sequence, predicate: typing.Callable | None = None):
     """
     Filters ``sequence`` by callable ``predicate``.
 
@@ -1266,7 +1276,9 @@ def _flatten_helper(sequence, classes, depth):
                 yield item_
 
 
-def flatten(sequence, *, classes=None, depth: int = 1):
+def flatten(
+    sequence, *, classes: typing.Sequence[typing.Type] | None = None, depth: int = 1
+):
     r"""
     Flattens ``sequence``.
 
@@ -1304,7 +1316,7 @@ def flatten(sequence, *, classes=None, depth: int = 1):
     return type(sequence)(items)
 
 
-def group_by(sequence, predicate=None) -> list:
+def group_by(sequence, predicate: typing.Callable | None = None) -> list:
     """
     Groups ``sequence`` items by value of items.
 
@@ -1744,7 +1756,7 @@ def nwise(
                 item_buffer.pop(0)
 
 
-def permute(sequence, permutation):
+def permute(sequence, permutation: typing.Sequence[int]):
     r"""
     Permutes ``sequence`` by ``permutation``.
 
@@ -1916,7 +1928,12 @@ def repeat_to_length(sequence, length: int = 0, *, start: int = 0):
     return type(sequence)(items[start:stop_index])
 
 
-def repeat_to_weight(sequence, weight, *, allow_total=_enums.EXACT):
+def repeat_to_weight(
+    sequence,
+    weight: int | fractions.Fraction,
+    *,
+    allow_total: _enums.Comparison = _enums.EXACT,
+):
     """
     Repeats ``sequence`` to ``weight``.
 
@@ -2217,7 +2234,7 @@ def rotate(sequence, n: int = 0):
     return type(sequence)(items)
 
 
-def sum_by_sign(sequence, *, sign=(-1, 0, 1)):
+def sum_by_sign(sequence, *, sign: typing.Sequence[int] = (-1, 0, 1)):
     """
     Sums consecutive ``sequence`` items by ``sign``.
 
@@ -2266,7 +2283,12 @@ def sum_by_sign(sequence, *, sign=(-1, 0, 1)):
     return type(sequence)(items)
 
 
-def truncate(sequence, *, sum_=None, weight=None):
+def truncate(
+    sequence,
+    *,
+    sum_: int | fractions.Fraction | None = None,
+    weight: int | fractions.Fraction | None = None,
+):
     """
     Truncates ``sequence``.
 
